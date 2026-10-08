@@ -39,7 +39,8 @@ unless a developer explicitly enables a remote binding.
 ## Deployment prerequisites
 
 The checked-in configuration deliberately has `ALERTS_ENABLED=false` and no
-account/KV ID. **It is not deployed yet.** Provision only in a verified Freevia
+account/KV ID. **This optional monitor remains undeployed.**
+It is not a Google Play or Firebase requirement. If enabled later, provision only in a verified Freevia
 Cloudflare account, then record its account ID and the dedicated KV namespace ID
 in the configuration. Do not let Wrangler auto-select a personal account.
 

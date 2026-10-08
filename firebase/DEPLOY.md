@@ -20,6 +20,15 @@ initiated, Authentication data is removed from live and backup systems within
 180 days. Freevia's 30-day request handling commitment does not shorten that
 provider retention interval.
 
+The first natural GitHub scheduled cleanup apply completed at
+2026-10-08 23:30:54 UTC in
+[run 37859798046](https://github.com/freevia-org/backgammon-buddy/actions/runs/37859798046).
+Independent API reads confirmed deletion of both disposable Auth identities and
+the entire test match tree, with completed protective markers retained. The two
+public REST online repository variables were subsequently set and read back for
+the next signed candidate. Optional telemetry platform values remain unset;
+updated-device acceptance and store distribution are separate steps.
+
 Cloud matches become inaccessible 30 days after server-stamped creation,
 including unfinished games and unclaimed invitations. The hourly cleanup job
 deletes their events and rolls before their parent record. Verified in-app
@@ -146,7 +155,7 @@ Supply both defines so `onlineConfigProvider` selects the production backend:
 
 ```sh
 flutter build apk --release \
-  --dart-define=AIGAMMON_FIREBASE_PROJECT=aigammon \
+  --dart-define=AIGAMMON_FIREBASE_PROJECT=backgammon-buddy-freevia \
   --dart-define=AIGAMMON_FIREBASE_API_KEY=<web-api-key>
 ```
 

@@ -1114,7 +1114,7 @@ class _Harness {
           buddyDoubles ? const _AlwaysDoubles() : const _FlatFacade()),
       buddyCameraProvider.overrideWithValue(camera),
       boardLearnerProvider.overrideWithValue(learner),
-      buddyTtsProvider.overrideWithValue(const SilentBuddyTts()),
+      buddyTtsProvider.overrideWithValue(SilentBuddyTts.new),
       // Without these two the screen would reach a real `AudioRecorder` and a
       // real analytics sink: `flutter_test` reports android, so every platform
       // guard in the app answers "yes, this is a phone".
@@ -1242,7 +1242,7 @@ class _HandoverHarness {
       engineFacadeProvider.overrideWithValue(const _FlatFacade()),
       buddyCameraProvider.overrideWithValue(camera),
       boardLearnerProvider.overrideWithValue(learner),
-      buddyTtsProvider.overrideWithValue(const SilentBuddyTts()),
+      buddyTtsProvider.overrideWithValue(SilentBuddyTts.new),
       // As in [_Harness]: `flutter_test` reports android, so an un-overridden
       // microphone would be a real `AudioRecorder` on a channel with nothing
       // behind it.

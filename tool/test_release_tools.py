@@ -6,6 +6,7 @@ import struct
 import subprocess
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 from unittest.mock import patch
 import zipfile
 
@@ -15,6 +16,13 @@ from release_build_number import resolve
 
 
 class ReleaseToolsTest(unittest.TestCase):
+    def test_android_offline_speech_engine_visibility(self):
+        manifest = ET.parse(Path(__file__).resolve().parents[1] /
+                            'app/android/app/src/main/AndroidManifest.xml')
+        actions = [node.get('{http://schemas.android.com/apk/res/android}name')
+                   for node in manifest.findall('./queries/intent/action')]
+        self.assertIn('android.intent.action.TTS_SERVICE', actions)
+
     def test_build_number_requires_explicit_history_baseline(self):
         self.assertEqual(resolve('1'), (1, False))
         self.assertEqual(resolve('1', base='500'), (501, True))

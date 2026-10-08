@@ -48,18 +48,19 @@ bool get isBuddyModeSupportedPlatform =>
     (defaultTargetPlatform == TargetPlatform.android ||
         defaultTargetPlatform == TargetPlatform.iOS);
 
-/// The engine Buddy speaks through, behind a provider for the same reason the
-/// camera is behind one.
+/// A fresh speech engine for each Buddy session. The session disposes its engine
+/// when it ends, so caching an engine would leave later matches with a closed
+/// voice. The factory itself may safely remain cached in the provider.
 ///
 /// `flutter_test` runs with `defaultTargetPlatform == TargetPlatform.android`,
 /// so [BuddySpeaker.forPlatform] would build a real `FlutterTts` — and reach
 /// for a plugin channel with nothing on the other end — in every widget test
 /// that mounts this screen. The platform choice itself is unchanged and still
 /// lives in `speaker.dart`.
-final buddyTtsProvider = Provider<BuddyTts>(
+final buddyTtsProvider = Provider<BuddyTts Function()>(
   (ref) => isBuddySpeechSupportedPlatform
-      ? FlutterTtsBuddyTts()
-      : const SilentBuddyTts(),
+      ? FlutterTtsBuddyTts.new
+      : SilentBuddyTts.new,
 );
 
 /// How this screen gets a microphone, behind a provider for the reasons the
@@ -243,7 +244,7 @@ class _BuddyGameScreenState extends ConsumerState<BuddyGameScreen>
         (ref.read(settingsProvider).valueOrNull ?? AppSettings.defaults)
             .buddyMicHint;
     _speaker = BuddySpeaker(
-      engine: ref.read(buddyTtsProvider),
+      engine: ref.read(buddyTtsProvider)(),
       phrasing: widget.setup.phrasing,
     );
     final preferences = ref.read(settingsProvider).valueOrNull ?? AppSettings.defaults;

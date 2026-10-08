@@ -183,6 +183,7 @@ androidComponents {
 }
 
 dependencies {
+    testImplementation("junit:junit:4.13.2")
     if (hasFirebaseConfig) {
         // `firebase-crashlytics-ndk` is the artifact that installs the native
         // signal handlers. The firebase_crashlytics Flutter plugin depends only

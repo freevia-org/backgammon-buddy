@@ -14,12 +14,13 @@ deletion of verified identity/data requests within 30 days. The dedicated
 `backgammon-buddy-freevia` project is owned by `info@freevia.org` and is under
 the organization administered by that account. Firestore `eur3` and no billing
 account were read back from Google. Anonymous Authentication is enabled and
-processes sign-in data in the United States. Rules and a live isolated create/join/deletion smoke passed;
-the hourly WIF workflow needs its own production execution check before online
-release configuration is enabled. See [operations](privacy-cleanup-operations.md).
+processes sign-in data in the United States. Rules, a live isolated
+create/join/deletion smoke and the first natural hourly WIF apply passed. The
+scheduled run deleted two disposable identities and their match tree; independent
+cloud reads verified the result. See [operations](privacy-cleanup-operations.md).
 
-For the first candidate, enable only the two REST online configuration values
-after that verification. Optional telemetry platform configuration remains
+Only the two REST online configuration values are now set for the next signed
+candidate; their values were read back privately. Optional telemetry platform configuration remains
 unset; no Analytics property was created. SDK capability in source is not proof
 that a specific signed binary collects data. Confirm the exact build's defines
 before selecting store categories and record them with the release evidence.
@@ -61,8 +62,12 @@ Release owner checklist:
 - [x] Verify project ownership, organization, EU Firestore location, billing
   disabled, anonymous-only sign-in, PITR disabled. Optional telemetry remains
   unconfigured for the first candidate.
-- [ ] Verify hourly WIF apply and independent missed-run/failure monitoring;
-  update hosted policy with approved timings, 24-hour security marker, US
+- [x] Verify hourly WIF apply and actual disposable-fixture deletion, including
+  both Auth identities and the full match tree. Online repository values set;
+  the next signed binary still needs online acceptance.
+- [ ] Arrange operator inspection of failed/missed runs (an independent alert
+  service is optional, prepared but undeployed); update hosted policy with
+  approved timings, 24-hour security marker, US
   Authentication processing and Google's separate retention. Support must verify ownership; a UID/invite alone
   never authorizes erasure. Lost-device email requests need case review, not a
   blind UID-based admin command.

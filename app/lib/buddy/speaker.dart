@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:backgammon_core/backgammon_core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 import 'phrasing.dart';
@@ -65,35 +66,112 @@ class SilentBuddyTts implements BuddyTts {
   Future<void> dispose() async {}
 }
 
-/// [BuddyTts] over `flutter_tts`.
+/// Native offline Android speech, with `flutter_tts` for iOS synthesis.
 ///
-/// Constructed ONLY from [BuddySpeaker.forPlatform] and only after the platform
-/// check has passed, so no desktop build ever reaches the `FlutterTts`
-/// constructor — the same discipline `initializeObservability` applies to
-/// `Firebase.initializeApp`.
+/// Android requires a native acknowledgment and active-voice check: the locked
+/// flutter_tts plugin discards TextToSpeech.setVoice's actual result.
 class FlutterTtsBuddyTts implements BuddyTts {
-  FlutterTtsBuddyTts([FlutterTts? tts]) : _tts = tts ?? FlutterTts();
+  FlutterTtsBuddyTts([FlutterTts? tts]) : _tts = tts;
 
-  final FlutterTts _tts;
+  FlutterTts? _tts;
+  FlutterTts get _iosTts => _tts ??= FlutterTts();
+  static const _android =
+      MethodChannel('org.freevia.backgammonbuddy/offline_speech');
+  static int _nextSession = 0;
+  final String _session =
+      '${DateTime.now().microsecondsSinceEpoch}-${_nextSession++}';
+  static FlutterTtsBuddyTts? _iosOwner;
+  Completer<void>? _iosCancellation;
+  bool _canSpeak = false;
+  bool _disposed = false;
+
+  bool get _isAndroid => defaultTargetPlatform == TargetPlatform.android;
 
   @override
   Future<void> configure() async {
-    // `awaitSpeakCompletion(true)` is what makes `speak` a real future rather
-    // than a fire-and-forget; without it the speaker's queue would collapse and
-    // every line would cut off the one before it.
-    await _tts.awaitSpeakCompletion(true);
-    await _tts.setLanguage(kBuddySpeechLanguage);
-    await _tts.setSpeechRate(kBuddySpeechRate);
+    if (_disposed) return;
+    _canSpeak = false;
+    if (_isAndroid) {
+      // The bridge selects and verifies a safe installed voice immediately
+      // before each utterance, without changing the system engine or language.
+      final configured = await _android.invokeMethod<int>(
+        'configure', {'session': _session},
+      );
+      _canSpeak = !_disposed && configured == 1;
+      return;
+    }
+    // On iOS flutter_tts uses AVSpeechSynthesizer, whose speech generation
+    // runs on device. Its voice metadata has no Android network flag.
+    final previous = _iosOwner;
+    previous?._cancelIosSpeech();
+    _iosOwner = this;
+    if (previous != null && !identical(previous, this)) {
+      // Settle the old native utterance too: releasing only its Dart waiter
+      // would leave it queued ahead of the new session in AVSpeechSynthesizer.
+      await _iosTts.stop();
+      if (!_ownsIos) return;
+    }
+    if (await _iosTts.setLanguage(kBuddySpeechLanguage) != 1 || !_ownsIos) return;
+    await _iosTts.awaitSpeakCompletion(true);
+    if (!_ownsIos) return;
+    await _iosTts.setSpeechRate(kBuddySpeechRate);
+    _canSpeak = _ownsIos;
+  }
+
+  bool get _ownsIos => !_disposed && identical(_iosOwner, this);
+
+  void _cancelIosSpeech() {
+    final cancellation = _iosCancellation;
+    if (cancellation != null && !cancellation.isCompleted) cancellation.complete();
   }
 
   @override
-  Future<void> speak(String text) => _tts.speak(text);
+  Future<void> speak(String text) async {
+    if (!_canSpeak || _disposed) return;
+    if (_isAndroid) {
+      // Completes on native utterance completion/stop, or immediately when no
+      // verified offline voice exists. The transcript already contains text.
+      await _android.invokeMethod<int>(
+        'speak', {'session': _session, 'text': text},
+      );
+    } else if (_ownsIos) {
+      final cancellation = Completer<void>();
+      _iosCancellation = cancellation;
+      try {
+        // flutter_tts iOS didCancel does not settle its pending speak Future.
+        // Stop/dispose/lease loss must still unblock the speaker's own queue.
+        await Future.any<void>([
+          _iosTts.speak(text).then<void>((_) {}),
+          cancellation.future,
+        ]);
+      } finally {
+        if (identical(_iosCancellation, cancellation)) _iosCancellation = null;
+      }
+    }
+  }
 
   @override
-  Future<void> stop() => _tts.stop();
+  Future<void> stop() async {
+    if (_isAndroid) {
+      await _android.invokeMethod<int>('stop', {'session': _session});
+    } else if (_ownsIos) {
+      _cancelIosSpeech();
+      await _iosTts.stop();
+    }
+  }
 
   @override
-  Future<void> dispose() => _tts.stop();
+  Future<void> dispose() async {
+    _disposed = true;
+    _canSpeak = false;
+    if (_isAndroid) {
+      await _android.invokeMethod<int>('dispose', {'session': _session});
+    } else if (identical(_iosOwner, this)) {
+      _iosOwner = null;
+      _cancelIosSpeech();
+      await _iosTts.stop();
+    }
+  }
 }
 
 /// The voice's language tag.
@@ -209,6 +287,7 @@ class BuddySpeaker {
           await engine.configure();
           _configured = true;
         }
+        if (_disposed || generation != _generation) return;
         await engine.speak(line.speech);
       } catch (error, stack) {
         // Swallowed on purpose, and for the same reason

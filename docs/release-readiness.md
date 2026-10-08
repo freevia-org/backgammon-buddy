@@ -1,22 +1,50 @@
-# Release readiness — 2026-10-08
+# Release readiness — 2026-10-09
 
-**Status: software preparation and diagnostic mobile build validation complete;
-release signing, device acceptance and service policy decisions remain open.** Publisher is **Freevia**, source is
+**Status: tutor implementation, review fixes and the Freevia online service are
+implemented. Final signed Android acceptance and store preparation are in
+progress; the app has not been submitted or released.** Publisher is **Freevia**, source is
 <https://github.com/freevia-org/backgammon-buddy>, policy is
 <https://freevia.org/backgammon-buddy/privacy/>, and support is
 <https://freevia.org/backgammon-buddy/support/>. This report does not claim store release.
-Repository secrets, deployed Firebase settings and store account history remain
-unverified. No release-signed candidate or store submission was produced here.
-Android artifacts are release-mode/debug-signed diagnostics; iOS Runner is unsigned.
+The app identity is `org.freevia.backgammonbuddy` on Android and iOS. First-party
+source is MIT licensed; third-party components retain their own licenses.
+Both Git remotes point to the Freevia repository. A new Freevia upload certificate
+and signing secrets are configured, with build-number baseline 10000. The signed
+Android build exposed an extra x86_64 packaging issue; commit `1b17b39` restricts
+release packaging to the two supported ARM ABIs while preserving debug emulator
+support. The corrected signed APK `0.14.0+10011` passed independent package,
+certificate, ABI, native alignment, ZIP and branding checks and was installed
+side-by-side on the test phone. Later notice/privacy changes require rebuilding
+the final candidate and Play bundle.
+
+The dedicated Firebase project `backgammon-buddy-freevia` belongs to the Google
+organization administered by `info@freevia.org`. EU Firestore storage, anonymous
+Authentication, retention rules and authenticated deletion controls are deployed.
+Two GitHub OIDC cleanup dry-runs and the first natural scheduled apply passed.
+Independent cloud reads confirmed deletion of two disposable identities and
+their complete match tree. The two REST online configuration values are set for
+the final candidate; optional telemetry remains unconfigured.
+An independent alert monitor is prepared as optional operations tooling
+and is not deployed. Authentication processing is in the
+US, with Google's separate retention disclosed; see the
+[deployment record](../firebase/DEPLOY.md) and [operations](privacy-cleanup-operations.md).
+
+A Backgammon Buddy draft exists in Freevia's Google Play account. The owner
+approved ages 13 and over, IARC terms, and Google's default installer protection.
+IARC generated ESRB Everyone and PEGI 3 ratings; the declared target audience is
+13 and over. Listing text, artwork, policy/contact URLs and access instructions
+are saved; no bundle has been uploaded. Apple Developer access is not ready, so iOS builds remain
+unsigned and cannot establish App Store readiness.
 The product/privacy/support routes were deployed and independently verified HTTP
 200 with the expected distinct page titles; privacy@freevia.org and
 support@freevia.org are the existing Freevia contacts.
-The public policy/contact availability gate is satisfied. The former `/aigammon/`
+The public policy/contact URLs are available; the policy still needs the new
+retention and deletion facts before online launch. The former `/aigammon/`
 product route redirects to `/backgammon-buddy/`. Public source was published to
 the Freevia repository; the validation evidence below identifies the tested commit.
 See the [code review](code-review-2026-10-08.md) for code fixes and test results.
 
-## Prepared in this round
+## Software preparation
 
 - Android and iOS automatic release jobs now require successful CI from a
   **same-repository push to master**. A PR whose branch is named master cannot
@@ -24,9 +52,9 @@ See the [code review](code-review-2026-10-08.md) for code fixes and test results
   maintainers. This addresses the secret exposure risk of running untrusted
   heads through `workflow_run`. [GitHub trigger documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#workflow_run).
 - Flutter tests, goldens, Android builds, and iOS builds use **3.44.8** together.
-- Android explicitly builds **ARMv7 and ARM64** APKs, matching the Rust libraries,
-  and checks the engine is present in each finished artifact. Flutter's default
-  split build also emits x86_64, which previously lacked our engine.
+- Android builds a universal **ARMv7 and ARM64** APK, matching the Rust libraries,
+  and checks the engine is present in each finished artifact. Explicit release
+  ABI filters exclude plugins' x86_64 libraries when no x86_64 engine is shipped.
   [Flutter Android deployment](https://docs.flutter.dev/deployment/android).
 - Automatic Android tester distribution now requires release signing. Missing
   credentials still allow a debug-signed diagnostic APK artifact, never a Play
@@ -40,11 +68,20 @@ See the [code review](code-review-2026-10-08.md) for code fixes and test results
   dependency's complete source archive, and Kazaross-XG2 attribution/permission.
   Both production model blobs match the pinned CC0-licensed training repository;
   its license is bundled. See [provenance](../native/licenses/README.md).
+- Native mobile notices now cover the exact 131 Android modules and 14 Apple
+  package pins. Forty upstream texts retain their verified bytes, and the
+  original OkHttp public-suffix source reproduces the packaged data. Offline
+  Licenses entries and CI checks cover notice, artifact and source drift; see
+  the [mobile inventory](mobile-dependency-inventory-2026-10-09.md).
 - Settings now describes privacy/data handling, deletion and support. Optional
   Firebase Analytics, Performance and Crashlytics default off in native config
   and require a persisted explicit choice; withdrawal closes forwarding and SDK
   collection. Delayed initialization cannot restore withdrawn consent. Native
   operations already in flight and already sent data cannot be retracted.
+- Nearby QR decoding uses the existing camera plugin and pinned pure-Dart
+  `zxing2`; ML Kit and its independent metrics/model downloads are removed.
+  Rotation, frame-stride, permission and lifecycle tests pass. Physical camera
+  acceptance remains separate from those tests.
 - Live online and nearby games are unassisted, including the screen's runtime
   guard; post-game review/practice remains available. No bilateral coaching
   protocol is implied.
@@ -70,10 +107,10 @@ See the [code review](code-review-2026-10-08.md) for code fixes and test results
 
 | Priority | Gate | Evidence and action |
 |---|---|---|
-| P1 | Cloud policy decisions and store disclosures | In-app controls, existing Freevia contacts and the public policy are available (live HTTP200 verified). Define cloud retention and an administrative deletion process, verify Firebase settings, and complete Play Data safety / Apple App Privacy from the signed binary. See [disclosure worksheet](store-disclosures.md). |
-| P1 | Platform-native license/privacy inventory | Rust/model/table notices are bundled with source evidence. Inspect actual Android/iOS native SDK dependencies and privacy manifests after building; Flutter's Dart registry and Rust inventory do not establish every platform SDK notice. |
-| P1 | Signed Android acceptance | Run the updated workflow; verify signing certificate, version code, bundled nets/engine, merged permissions/features, and installation plus update over the previous tester release. Build the AAB option and inspect the resulting bundle before submission. Existing secrets and account access are unverified, not assumed absent. |
-| P1 | iOS store artifact | Both ad-hoc and App Store export-only paths are implemented; neither a signed store profile/export nor App Store Connect validation was exercised here. Verify selected Xcode/SDK, static engine symbols, device startup and archive privacy report. |
+| P1 | Cloud operations and store disclosures | The owner approved 30-day hosted-match expiry and deletion-request handling. EU Firestore, US anonymous Auth processing, deployed rules and in-app deletion are documented. Scheduled apply and independent deletion read-back passed in run 37859798046. Update the hosted policy, then complete disclosures against the configured signed binary. The independent alert monitor is optional and undeployed; operators still need to inspect cleanup failures and missed runs. See [disclosure worksheet](store-disclosures.md). |
+| P1 | Final artifact inventory | Android and Apple native notice/source inventory is captured and bundled, and post-QR iOS evidence passes its guard. Verify the final rebuilt APK/AAB and unsigned iOS artifact against those exact notices and privacy metadata. |
+| P1 | Signed Android acceptance | Signed APK 0.14.0+10011 passed package/signature/ABI/alignment checks and initial phone tutor/save/practice tests; the older app/data remain intact. Build the final source with online configuration and bundled notices, inspect APK/AAB and symbols, then update the new package and finish device acceptance. |
+| P1 | iOS store artifact | Apple account access is not ready. Unsigned builds pass, but a signed profile/export, device acceptance and App Store Connect validation remain unavailable. Verify no-ad-ID framework selection and complete native license/privacy inventory from the current artifact. |
 | P1 | Real-device tutor and Buddy acceptance | Complete the [Buddy protocol](buddy-mode-test-protocol.md) and the tutor smoke checks below on Android and iOS. CI cannot certify camera, microphone, local-network prompts, thermal load, lifecycle behavior, or speech. Camera dice recognition remains experimental: typed dice are the supported path. |
 | P2 | Native crash symbolication | Final CI retained unstripped Android engine symbols; the signed iOS path is configured to retain archive dSYMs but was not exercised. Native upload and a deliberately symbolicated test crash still need exact-release validation; keep symbols beyond CI artifact retention. |
 | P2 | Distribution metadata/build history | Publisher/contact and source URLs are Freevia. Confirm screenshots, age ratings, countries/platforms and review instructions. The owner selected the new Android/iOS identity `org.freevia.backgammonbuddy`; it coexists with prior experimental apps and does not migrate their data. The Freevia Play account had no Backgammon entry or release history when inspected. `RELEASE_BUILD_NUMBER_BASE=10000` is configured above observed prior tester codes; universal APK and AAB use the same explicit code. |
@@ -95,7 +132,7 @@ draft was cross-checked against current code, including reset-practice behavior.
 | Feature | Source behavior | Decision or verification needed |
 |---|---|---|
 | Local games, analysis, settings, diagnostics | SQLite and app-local files (`app/lib/data`, `app/lib/diagnostics`). History deletion is local. | Describe storage/backup, deletion, and what diagnostics the user can share. |
-| Online matches | Firebase anonymous identity and Firestore match/event/roll records (`packages/online_client`, `firebase/firestore.rules`). Rules deny client-side deletion. | Establish retention and an administrative deletion process; determine applicable account-deletion requirements for the chosen account experience. Local History deletion does not erase Firestore records. |
+| Online matches | Firebase anonymous identity and Firestore match/event/roll records (`packages/online_client`, `firebase/firestore.rules`). Authenticated privacy requests freeze access; the least-privilege service deletes cloud records and identities. | Scheduled execution verified; update the hosted policy and verify the configured binary. Local History deletion remains separate from cloud deletion. |
 | Usage and reliability telemetry | Native defaults off; explicit persisted opt-in controls Analytics, Performance and Crashlytics. Consent checked across asynchronous startup. Ads consent denied and Android AD_ID permission removed. | Verify SDK network behavior, backend retention and form categories in the actual binary. Withdrawal cannot retract prior/in-flight transmission. |
 | Buddy camera/microphone | Camera frames are processed locally; optional audio is reduced to a transient dice-sound hint (`app/lib/buddy`). | Verify the shipped binary behaves this way, state the purposes clearly, and test refusals/backgrounding. Permission strings are present on Android/iOS. |
 | Nearby networking / QR | Local UDP/WebSocket traffic and optional camera scanning (`packages/lan_play`). | Describe local-network usage; test iOS permission denial and direct-address/QR fallback when discovery fails. |
@@ -141,6 +178,16 @@ draft was cross-checked against current code, including reset-practice behavior.
 
 ## Remote build evidence
 
+Current follow-up evidence:
+
+| Run | Verified result |
+|---|---|
+| [CI 37858159028](https://github.com/freevia-org/backgammon-buddy/actions/runs/37858159028) | All 11 jobs passed at `68f6342`, including native notices and optional monitor checks. |
+| [Android 37856568143](https://github.com/freevia-org/backgammon-buddy/actions/runs/37856568143) | Signed universal ARM APK at `1b17b39`, version 0.14.0+10011, package `org.freevia.backgammonbuddy`, valid Freevia v2 signature and native/ZIP checks. APK SHA-256 `735ca26b43d022a974ab2bba344b03a26d093f85ca30de18fb9c32611eb2122c`. No legacy publisher string found in decoded ZIP entries. This earlier candidate lacks subsequent notice/privacy changes. |
+| [iOS 37856567962](https://github.com/freevia-org/backgammon-buddy/actions/runs/37856567962) | Post-QR unsigned Runner and captured inventory passed. Fourteen package pins and 27 source notices match the reviewed catalog; 23 privacy manifests captured, with no linked ML Kit or advertising identity/conversion framework paths. This is not signed/device/store acceptance. |
+
+Earlier diagnostic baseline:
+
 The following automatic runs target software revision
 [`eb86f917`](https://github.com/freevia-org/backgammon-buddy/commit/eb86f917845b8fec49e17d791308722e08843f9f).
 All three completed successfully on October 8, 2026 UTC:
@@ -174,7 +221,12 @@ presence, signing profiles and build numbers. Original JNI, DataStore 1.1.7 and
 CameraX 1.6.1 binaries pass the corrected rule. Dependencies remain unchanged,
 and the final packaged APKs passed the corrected checks in the run above.
 
-## Verification limits of this round
+## Historical verification limits — October 8 baseline
+
+The following paragraphs describe the earlier diagnostic build review. The
+October 9 identity, signing, device and deployed-service work above supersedes
+their environment and access observations; it does not turn old diagnostics
+into a verified current release candidate.
 
 Read-only local tool inventory found Flutter 3.44.8, Windows VS2022 Build Tools
 and a staged Windows engine DLL. Android SDK/build tools are present, but only

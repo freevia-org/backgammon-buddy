@@ -23,8 +23,8 @@ make the runner pass. A manual dry-run can confirm access without changing data.
 
 GitHub can delay or drop scheduled jobs under load, and automatically disables
 scheduled workflows in a public repository after 60 days without repository
-activity. Freevia must monitor the last successful **scheduled apply** timestamp
-independently of code activity and investigate a gap of two hours; manual
+activity. Operators should inspect the last successful **scheduled apply** timestamp
+and investigate a gap of two hours; manual
 dry-runs do not prove deletion happened. Re-enable a disabled workflow explicitly
 after checking its configuration. Do not create artificial commits to keep it
 alive. These constraints are documented by
@@ -32,11 +32,12 @@ alive. These constraints are documented by
 
 The Actions job summary contains counts even when the runner reports incomplete
 work; preparation/authentication failures show that no summary is available.
-Freevia's designated operator must enable Actions failure notifications and
-verify their delivery, plus arrange an independent missed-run alert. Account
-notification preferences and missed-run alert delivery have **not** been
-verified in this setup. A timer alone is insufficient evidence for the published
-retention commitment. Do not silently extend retention after an outage.
+Freevia's designated operator should inspect Actions runs and enable failure
+notifications. An independent missed-run alert is an optional operational
+improvement, not a Google Play, Firebase or launch requirement. Account
+notification preferences and independent alert delivery have **not** been
+verified in this setup. The schedule is not an unattended timing guarantee;
+investigate failures and do not silently extend retention after an outage.
 
 ## Configured identity
 
@@ -93,10 +94,24 @@ and [queued disposable fixture dry-run](https://github.com/freevia-org/backgammo
 The latter found two authenticated requests and one match with zero mutations,
 as required for manual execution. Neither run proves scheduled deletion.
 
-The disposable identities, match and child logs remain queued for the next
-natural scheduled apply. Verify the service account deletes both Auth identities
-and the whole match tree, and marks both requests complete, before enabling the
-candidate's online configuration. Do not publish fixture identifiers or tokens.
+The first [natural scheduled apply](https://github.com/freevia-org/backgammon-buddy/actions/runs/37859798046)
+completed successfully at **2026-10-08 23:30:54 UTC**, from source `68f6342`.
+It started at 23:30:18 UTC, about 13 minutes after the nominal minute-17 cron;
+this directly demonstrates why the schedule is described as best-effort.
+The count-only result was `mode=apply`, `requests=2`, `matches=1`,
+`documentsDeleted=3`, `accountsDeleted=2`, `overdueRequests=0`, `moreWork=false`.
+Independent Google API reads then confirmed both disposable Auth identities
+absent, the entire match/events/rolls tree absent, and both request markers
+complete. The markers intentionally remain for their 24-hour protection period.
+This exercised actual service-account write/delete permissions through GitHub
+OIDC; fixture identifiers and tokens were not published.
+
+The two public online repository variables, `AIGAMMON_FIREBASE_PROJECT` and
+`AIGAMMON_FIREBASE_API_KEY`, were set and their values read back successfully
+for the next signed candidate. Freevia project ownership, organization, `eur3`
+storage and disabled billing were reverified first. No optional telemetry
+platform configuration was set. This backend evidence does not replace the
+updated binary's online/device acceptance or authorize store distribution.
 
 The independent Cloudflare monitor is prepared under `ops/privacy-monitor`, with
 tests for missed runs, failure, unknown health, deduplication and recovery. It is
@@ -104,4 +119,6 @@ not deployed: currently accessible Wrangler/connector credentials expose only a
 personal Cloudflare account, including the existing freevia.org zone. A verified
 Freevia account, sender setup and verified `info@freevia.org` destination are
 needed. The owner approved status-only operational emails and one test; no such
-email has been sent yet. This remains an explicit release gate.
+email has been sent yet. This optional monitor remains
+undeployed; it is not a launch gate. Operators must still inspect scheduled
+cleanup runs and investigate failures or missed runs as described above.
