@@ -162,6 +162,26 @@ android {
     }
 }
 
+androidComponents {
+    finalizeDsl { dsl ->
+        // Flutter's universal-APK defaults include x86_64 even when its CLI
+        // --target-platform requests ARM only. Third-party .so files then leak
+        // that unsupported ABI into APK/AAB metadata without our native engine.
+        // AGP unions defaultConfig and build-type filters, so move Flutter's
+        // defaults to non-release types before limiting release packaging.
+        val flutterAbis = dsl.defaultConfig.ndk.abiFilters.toSet()
+        dsl.defaultConfig.ndk.abiFilters.clear()
+        dsl.buildTypes.forEach { buildType ->
+            if (buildType.name == "release") {
+                buildType.ndk.abiFilters.clear()
+                buildType.ndk.abiFilters.addAll(setOf("armeabi-v7a", "arm64-v8a"))
+            } else {
+                buildType.ndk.abiFilters.addAll(flutterAbis)
+            }
+        }
+    }
+}
+
 dependencies {
     if (hasFirebaseConfig) {
         // `firebase-crashlytics-ndk` is the artifact that installs the native

@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:camera/camera.dart';
 
 import 'qr_payload.dart';
+import 'qr_decoder.dart';
 
 /// The camera, behind one method.
 ///
-/// [LanScreen] never touches `mobile_scanner` directly; it asks a [QrScanner]
+/// [LanScreen] never owns a camera directly; it asks a [QrScanner]
 /// for a string and deals with the three answers below. That is what makes the
 /// join flow testable on a machine with no camera — a widget test overrides
 /// [qrScannerProvider] with a scripted scanner and drives the whole path from
@@ -55,193 +56,291 @@ final class QrScanUnavailable extends QrScanOutcome {
   final String message;
 }
 
-/// Whether `mobile_scanner` has a camera implementation for [platform].
-///
-/// Android, iOS and macOS only. Windows and Linux — where this app also runs,
-/// and where Play Nearby is perfectly usable through discovery and typed
-/// addresses — have no implementation, and asking for one there throws rather
-/// than returning empty. Keeping the list here (rather than at the call site)
-/// means the join tab has exactly one story for "no camera", however the
-/// device got there.
-bool qrScanSupportedOn(TargetPlatform platform) => switch (platform) {
-      TargetPlatform.android || TargetPlatform.iOS || TargetPlatform.macOS =>
-        true,
-      TargetPlatform.windows || TargetPlatform.linux || TargetPlatform.fuchsia =>
-        false,
-    };
+/// The existing camera plugin supports the app's Android/iOS shipping targets.
+/// Desktop nearby play retains discovery and manual address entry.
+bool qrScanSupportedOn(TargetPlatform platform) =>
+    platform == TargetPlatform.android || platform == TargetPlatform.iOS;
 
-/// The production scanner: a full-screen camera preview.
-///
-/// It filters on this app's own payload — a foreign QR code (a poster, a Wi-Fi
-/// card, a receipt) is reported inline and the camera KEEPS RUNNING, so the
-/// user just moves the phone rather than starting over. The route pops on the
-/// first valid Backgammon Buddy code and only that.
-class MobileScannerQrScanner implements QrScanner {
-  const MobileScannerQrScanner();
+class CameraQrScanner implements QrScanner {
+  const CameraQrScanner();
 
   @override
   Future<QrScanOutcome> scan(BuildContext context) async {
-    // Checked BEFORE the route is pushed: on a platform the plugin does not
-    // implement, building the preview throws from inside the widget tree,
-    // where the join tab could neither catch it nor say anything useful.
-    if (!qrScanSupportedOn(defaultTargetPlatform)) {
-      return const QrScanUnavailable(
-        'This device cannot scan QR codes. Enter the address shown on the '
-        'other device by hand.',
-      );
+    if (kIsWeb || !qrScanSupportedOn(defaultTargetPlatform)) {
+      return QrScanUnavailable(
+          cameraErrorText(CameraException('unsupported', '')));
     }
     final outcome = await Navigator.of(context).push<QrScanOutcome>(
       MaterialPageRoute(builder: (_) => const QrScanPage()),
     );
-    // A swipe-back or the system back button pops with no value.
     return outcome ?? const QrScanCancelled();
   }
 }
 
-/// The scanner route. Public only so a manual/integration run can push it.
+/// Injectable camera boundary keeps lifecycle and late-frame handling testable.
+abstract interface class QrScanCamera {
+  Future<void> start(void Function(QrLuminanceFrame) onFrame,
+      void Function(CameraException) onError);
+  Widget preview();
+  Future<void> toggleTorch();
+  Future<void> close();
+}
+
+class PhoneQrScanCamera implements QrScanCamera {
+  CameraController? _controller;
+  bool _torch = false;
+
+  @override
+  Future<void> start(void Function(QrLuminanceFrame) onFrame,
+      void Function(CameraException) onError) async {
+    final cameras = await availableCameras();
+    if (cameras.isEmpty) throw CameraException('noCamera', '');
+    final back = cameras.firstWhere(
+      (c) => c.lensDirection == CameraLensDirection.back,
+      orElse: () => cameras.first,
+    );
+    final controller = CameraController(back, ResolutionPreset.medium,
+        enableAudio: false,
+        imageFormatGroup: defaultTargetPlatform == TargetPlatform.iOS
+            ? ImageFormatGroup.bgra8888
+            : ImageFormatGroup.yuv420);
+    _controller = controller;
+    _torch = false;
+    await controller.initialize();
+    final clock = Stopwatch()..start();
+    var lastFrame = -250;
+    await controller.startImageStream((image) {
+      if (_controller != controller ||
+          clock.elapsedMilliseconds - lastFrame < 250) {
+        return;
+      }
+      lastFrame = clock.elapsedMilliseconds;
+      final format = image.format.group;
+      if (image.planes.isEmpty ||
+          !(format == ImageFormatGroup.yuv420 ||
+              format == ImageFormatGroup.nv21 ||
+              format == ImageFormatGroup.bgra8888)) {
+        onError(CameraException('unsupportedFormat', ''));
+        return;
+      }
+      final plane = image.planes.first;
+      final bgra = format == ImageFormatGroup.bgra8888;
+      final frame = QrLuminanceFrame.fromPlane(
+          width: image.width,
+          height: image.height,
+          bytes: plane.bytes,
+          rowStride: plane.bytesPerRow,
+          pixelStride: bgra ? 4 : (plane.bytesPerPixel ?? 1),
+          bgra: bgra);
+      if (frame != null) onFrame(frame);
+    });
+  }
+
+  @override
+  Widget preview() => _controller?.value.isInitialized == true
+      ? CameraPreview(_controller!)
+      : const SizedBox.shrink();
+
+  @override
+  Future<void> toggleTorch() async {
+    final controller = _controller;
+    if (controller == null || !controller.value.isInitialized) return;
+    await controller.setFlashMode(_torch ? FlashMode.off : FlashMode.torch);
+    _torch = !_torch;
+  }
+
+  @override
+  Future<void> close() async {
+    final controller = _controller;
+    _controller = null;
+    // CameraController.dispose also stops its image stream and releases the lamp.
+    await controller?.dispose();
+  }
+}
+
 class QrScanPage extends StatefulWidget {
-  const QrScanPage({super.key});
+  const QrScanPage({super.key, this.camera, this.decoder});
+  final QrScanCamera? camera;
+  final Future<String?> Function(QrLuminanceFrame)? decoder;
 
   @override
   State<QrScanPage> createState() => _QrScanPageState();
 }
 
-class _QrScanPageState extends State<QrScanPage> {
-  late final MobileScannerController _controller = MobileScannerController(
-    // QR only: the detector has less to do, and a stray barcode on a coffee cup
-    // never even reaches the filter.
-    formats: const [BarcodeFormat.qrCode],
-    detectionSpeed: DetectionSpeed.normal,
-  );
-
-  /// Set the instant a valid code is accepted.
-  ///
-  /// The detector fires many times a second, and a code held in frame produces
-  /// a burst of identical results. Without this latch the route would pop once
-  /// per frame — and the join flow would start twice.
+class _QrScanPageState extends State<QrScanPage> with WidgetsBindingObserver {
+  late final QrScanCamera _camera = widget.camera ?? PhoneQrScanCamera();
+  Future<void> _cameraWork = Future.value();
+  bool _active = true;
+  bool _ready = false;
   bool _handled = false;
-
-  /// Shown when something scanned but was not ours.
+  bool _decoding = false;
+  int _generation = 0;
+  CameraException? _error;
   String? _hint;
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _open();
+  }
+
+  void _open() {
+    final generation = ++_generation;
+    _cameraWork = _cameraWork.then((_) async {
+      if (!mounted || !_active || generation != _generation) return;
+      try {
+        await _camera.start((frame) => _onFrame(frame, generation),
+            (error) => _fail(error, generation));
+        if (!mounted || !_active || generation != _generation) return;
+        setState(() {
+          _ready = true;
+          _error = null;
+        });
+      } catch (error) {
+        _fail(
+            error is CameraException
+                ? error
+                : CameraException('unavailable', ''),
+            generation);
+      }
+    });
+  }
+
+  void _close() {
+    ++_generation;
+    // Serialize shutdown after an in-flight permission/start request. A resumed
+    // route cannot open another controller before the previous one is released.
+    _cameraWork =
+        _cameraWork.then((_) => _camera.close()).catchError((Object _) {});
+  }
+
+  void _fail(CameraException error, int generation) {
+    if (!mounted || generation != _generation) return;
+    setState(() {
+      _error = error;
+      _ready = false;
+    });
+    _close();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // The native permission sheet temporarily makes the app inactive. Let its
+    // first result finish, rather than reopening and asking again after denial.
+    // A full background transition (paused/hidden) still closes a pending start.
+    if (state == AppLifecycleState.inactive && !_ready) return;
+    final active = state == AppLifecycleState.resumed;
+    if (active == _active) return;
+    _active = active;
+    if (active) {
+      setState(() {
+        _ready = false;
+        _error = null;
+      });
+      _open();
+    } else {
+      setState(() => _ready = false);
+      _close();
+    }
+  }
+
+  Future<void> _onFrame(QrLuminanceFrame frame, int generation) async {
+    if (!mounted ||
+        !_active ||
+        !_ready ||
+        _handled ||
+        _decoding ||
+        generation != _generation) {
+      return;
+    }
+    _decoding = true;
+    try {
+      final raw =
+          await (widget.decoder?.call(frame) ?? compute(decodeQrFrame, frame));
+      if (!mounted ||
+          !_active ||
+          _handled ||
+          generation != _generation ||
+          raw == null) {
+        return;
+      }
+      if (tryDecodeQrJoin(raw) != null) {
+        _handled = true;
+        Navigator.of(context).pop(QrScanCode(raw));
+      } else if (_hint == null) {
+        setState(
+            () => _hint = 'That is not a Backgammon Buddy game code. Point the '
+                'camera at the QR code on the other device\'s Host screen.');
+      }
+    } catch (_) {
+      // A malformed camera frame or unrecognized QR is not a camera failure.
+    } finally {
+      _decoding = false;
+    }
+  }
+
+  Future<void> _toggleTorch() async {
+    if (!_ready) return;
+    try {
+      await _camera.toggleTorch();
+    } catch (_) {}
+  }
+
+  @override
   void dispose() {
-    unawaited(_controller.dispose());
+    WidgetsBinding.instance.removeObserver(this);
+    _active = false;
+    _close();
     super.dispose();
   }
 
-  void _onDetect(BarcodeCapture capture) {
-    if (_handled || !mounted) return;
-    for (final barcode in capture.barcodes) {
-      final raw = barcode.rawValue;
-      if (raw == null) continue;
-      if (tryDecodeQrJoin(raw) == null) continue;
-      _handled = true;
-      Navigator.of(context).pop(QrScanCode(raw));
-      return;
-    }
-    // Nothing in this frame was ours. Say so once, quietly, and keep scanning.
-    if (_hint == null && capture.barcodes.isNotEmpty) {
-      setState(() => _hint = 'That is not a Backgammon Buddy game code. Point the '
-          'camera at the QR code on the other device\'s Host screen.');
-    }
-  }
-
-  /// Toggle the lamp, tolerating a camera that is not up yet.
-  ///
-  /// `toggleTorch` throws `controllerUninitialized` until `start()` has come
-  /// back — half a second on a real phone, and the torch button is on screen
-  /// for all of it. A tap in that window is a no-op, not a crash report.
-  Future<void> _toggleTorch() async {
-    try {
-      await _controller.toggleTorch();
-    } on MobileScannerException catch (_) {
-      // Not up yet, or no lamp on this camera. Nothing to tell the user: they
-      // can see whether the light came on.
-    }
-  }
-
-  /// What a back gesture out of this route reports.
-  ///
-  /// The distinction matters: backing out of a WORKING camera is a decision
-  /// (nothing to say), while backing out of a camera that refused to start is
-  /// the same event as tapping "Enter the address instead" — and the join tab
-  /// must show the reason either way, or the user is left with a scan button
-  /// that silently does nothing.
-  QrScanOutcome get _backOutcome => backOutcomeFor(_controller.value.error);
-
   @override
-  Widget build(BuildContext context) {
-    return PopScope(
-      // The route always pops WITH a value. Left to itself, a system back or a
-      // swipe pops with null, which reads as a plain cancellation even when the
-      // camera never started.
-      canPop: false,
-      onPopInvokedWithResult: (didPop, _) {
-        if (didPop) return;
-        Navigator.of(context).pop(_backOutcome);
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Scan the host\'s code'),
-          actions: [
+  Widget build(BuildContext context) => PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, _) {
+          if (!didPop) Navigator.of(context).pop(backOutcomeFor(_error));
+        },
+        child: Scaffold(
+          appBar: AppBar(title: const Text('Scan the host\'s code'), actions: [
             IconButton(
-              tooltip: 'Torch',
-              icon: const Icon(Icons.flashlight_on),
-              onPressed: () => unawaited(_toggleTorch()),
-            ),
-          ],
+                tooltip: 'Torch',
+                icon: const Icon(Icons.flashlight_on),
+                onPressed: () => unawaited(_toggleTorch())),
+          ]),
+          body: _error != null
+              ? _CameraProblem(
+                  message: cameraErrorText(_error!),
+                  onDismiss: () =>
+                      Navigator.of(context).pop(backOutcomeFor(_error)))
+              : Stack(fit: StackFit.expand, children: [
+                  const ColoredBox(color: Colors.black),
+                  if (_ready) Center(child: _camera.preview()),
+                  if (!_ready) const Center(child: CircularProgressIndicator()),
+                  Positioned(
+                      left: 16,
+                      right: 16,
+                      bottom: 32,
+                      child: SafeArea(child: _ScanCaption(hint: _hint))),
+                ]),
         ),
-        body: Stack(
-          fit: StackFit.expand,
-          children: [
-            MobileScanner(
-              controller: _controller,
-              onDetect: _onDetect,
-              // A camera error is a message and a way out, never a black screen
-              // the user has to guess their way off.
-              errorBuilder: (context, error) => _CameraProblem(
-                message: cameraErrorText(error),
-                onDismiss: () =>
-                    Navigator.of(context).pop(QrScanUnavailable(cameraErrorText(error))),
-              ),
-            ),
-            Positioned(
-              left: 16,
-              right: 16,
-              bottom: 32,
-              child: _ScanCaption(hint: _hint),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+      );
 }
 
-/// The outcome a back gesture out of the scanner reports, given whatever the
-/// camera's last state was.
-///
-/// Split out so the "back says the same thing the button says" rule can be
-/// tested: the permission-denied SCREEN cannot be reached headlessly (no
-/// camera means no camera error), but this rule is the whole point of it.
-QrScanOutcome backOutcomeFor(MobileScannerException? error) => error == null
+QrScanOutcome backOutcomeFor(CameraException? error) => error == null
     ? const QrScanCancelled()
     : QrScanUnavailable(cameraErrorText(error));
 
-/// Turn a scanner failure into something a person can act on. Every branch ends
-/// by pointing at manual entry.
-String cameraErrorText(MobileScannerException error) =>
-    switch (error.errorCode) {
-      MobileScannerErrorCode.permissionDenied =>
+String cameraErrorText(CameraException error) => switch (error.code) {
+      'CameraAccessDenied' ||
+      'CameraAccessDeniedWithoutPrompt' ||
+      'CameraAccessRestricted' =>
         'Backgammon Buddy does not have permission to use the camera. Allow camera '
-            'access in your device settings, or enter the address shown on the '
-            'other device by hand.',
-      MobileScannerErrorCode.unsupported =>
-        'This device cannot scan QR codes. Enter the address shown on the '
-            'other device by hand.',
-      _ => 'The camera could not be started. Enter the address shown on the '
-          'other device by hand.',
+            'access in your device settings, or enter the address shown on the other device by hand.',
+      'unsupported' =>
+        'This device cannot scan QR codes. Enter the address shown on the other device by hand.',
+      _ =>
+        'The camera could not be started. Enter the address shown on the other device by hand.',
     };
 
 class _CameraProblem extends StatelessWidget {
@@ -257,7 +356,8 @@ class _CameraProblem extends StatelessWidget {
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(32),
-          child: Column(
+          child: SingleChildScrollView(
+              child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               const Icon(Icons.no_photography_outlined, size: 40),
@@ -269,7 +369,7 @@ class _CameraProblem extends StatelessWidget {
                 child: const Text('Enter the address instead'),
               ),
             ],
-          ),
+          )),
         ),
       ),
     );
@@ -304,5 +404,5 @@ class _ScanCaption extends StatelessWidget {
 
 /// The scanner [LanScreen] uses. Overridden in widget tests with a scripted one.
 final qrScannerProvider = Provider<QrScanner>(
-  (ref) => const MobileScannerQrScanner(),
+  (ref) => const CameraQrScanner(),
 );

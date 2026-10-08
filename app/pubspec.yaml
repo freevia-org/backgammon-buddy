@@ -17,15 +17,9 @@ dependencies:
   # encoder) — it paints on a canvas and pulls in no platform channel, so it
   # costs the app nothing on the platforms that never scan.
   qr_flutter: ^4.1.0
-  # The camera preview the guest scans with, and the barcode decoder behind it.
-  # A plugin, so it does have native code on Android/iOS/macOS/web, but its
-  # dependency list is small (collection, meta, plugin_platform_interface, web)
-  # and it is the only thing here that decodes a QR code. It is NOT the app's
-  # only camera any more — Buddy Mode uses `camera` below, for frames this
-  # package does not expose — but both want CAMERA on Android and
-  # NSCameraUsageDescription on iOS; see the manifest and Info.plist, and
-  # test/android_manifest_test.dart plus test/ios_info_plist_test.dart.
-  mobile_scanner: ^7.4.0
+  # Decode nearby join codes locally from the existing camera frame stream.
+  # Pure Dart: no ML Kit metrics, downloaded models or second native camera SDK.
+  zxing2: 0.2.4
   drift_flutter: ^0.2.0
   sqlite3_flutter_libs: ^0.5.24
   backgammon_core:
@@ -50,12 +44,7 @@ dependencies:
   # the camera and hands it `Frame`s; see lib/buddy/camera_frame_source.dart.
   board_vision:
     path: ../packages/board_vision
-  # The camera Buddy Mode watches the board through. Distinct from
-  # mobile_scanner above, which owns the QR path and exposes no frame stream:
-  # this is the only plugin that surrenders raw YUV420 planes
-  # (`startImageStream`), which is precisely what board_vision needs. The two
-  # never run at once — QR join and a Buddy match are different screens — but
-  # they do share the CAMERA permission and the iOS usage string.
+  # Shared by Buddy board perception and nearby QR scanning on separate screens.
   camera: ^0.12.0+2
   # Buddy's voice. Wraps the platform TTS engine on each OS, so it adds no
   # model or asset weight; lib/buddy/speaker.dart still guards it to Android/iOS

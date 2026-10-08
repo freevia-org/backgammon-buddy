@@ -97,6 +97,22 @@ void main() {
     expect(source, contains('"base/lib/\$ABI/libaigammon_engine.so"'));
   });
 
+  test('universal release packaging filters transitive unsupported ABIs', () {
+    final gradle = File('android/app/build.gradle.kts').readAsStringSync();
+    final filters = gradle.substring(gradle.indexOf('androidComponents {'));
+    expect(filters, contains('finalizeDsl { dsl ->'));
+    expect(filters, contains('dsl.defaultConfig.ndk.abiFilters.clear()'));
+    expect(filters, contains('if (buildType.name == "release")'));
+    expect(filters, contains('buildType.ndk.abiFilters.clear()'));
+    expect(
+      filters,
+      contains(
+        'buildType.ndk.abiFilters.addAll(setOf("armeabi-v7a", "arm64-v8a"))',
+      ),
+    );
+    expect(filters, contains('buildType.ndk.abiFilters.addAll(flutterAbis)'));
+  });
+
   test(
     'APK and AAB share a build number without Flutter ABI version offsets',
     () {

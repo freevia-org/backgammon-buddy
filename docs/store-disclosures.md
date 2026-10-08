@@ -13,8 +13,8 @@ The owner approved EU Firestore storage, 30-day hosted-match availability and
 deletion of verified identity/data requests within 30 days. The dedicated
 `backgammon-buddy-freevia` project is owned by `info@freevia.org` and is under
 the organization administered by that account. Firestore `eur3` and no billing
-account were read back from Google. Anonymous Authentication is enabled and is
-a global service. Rules and a live isolated create/join/deletion smoke passed;
+account were read back from Google. Anonymous Authentication is enabled and
+processes sign-in data in the United States. Rules and a live isolated create/join/deletion smoke passed;
 the hourly WIF workflow needs its own production execution check before online
 release configuration is enabled. See [operations](privacy-cleanup-operations.md).
 
@@ -23,6 +23,13 @@ after that verification. Optional telemetry platform configuration remains
 unset; no Analytics property was created. SDK capability in source is not proof
 that a specific signed binary collects data. Confirm the exact build's defines
 before selecting store categories and record them with the release evidence.
+
+Provider retention is separate from Freevia's request handling: Firebase says
+Authentication keeps IP logs for a few weeks and removes authentication data
+from its live and backup systems within 180 days after the customer initiates
+account deletion. The 30-day commitment covers Freevia's execution of the
+identity/match deletion workflow, not immediate erasure from every Google
+system. See [Firebase privacy](https://firebase.google.com/support/privacy).
 
 | Flow | Data and destination | Required choice / purpose | Retention and deletion evidence |
 |---|---|---|---|
@@ -55,8 +62,8 @@ Release owner checklist:
   disabled, anonymous-only sign-in, PITR disabled. Optional telemetry remains
   unconfigured for the first candidate.
 - [ ] Verify hourly WIF apply and independent missed-run/failure monitoring;
-  update hosted policy with approved timings, 24-hour security marker and global
-  Authentication processing. Support must verify ownership; a UID/invite alone
+  update hosted policy with approved timings, 24-hour security marker, US
+  Authentication processing and Google's separate retention. Support must verify ownership; a UID/invite alone
   never authorizes erasure. Lost-device email requests need case review, not a
   blind UID-based admin command.
 - [ ] Review applicable data processing terms. Before enabling telemetry in a

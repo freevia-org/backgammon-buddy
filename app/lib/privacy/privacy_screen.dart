@@ -60,7 +60,8 @@ class PrivacyScreen extends ConsumerWidget {
                   'History on this device does not delete online records. '
                   'Hosted matches expire 30 days after creation; scheduled '
                   'cleanup removes their cloud logs. Match records are stored '
-                  'in the EU; Firebase Authentication is a global service. '
+                  'in the EU; Firebase Authentication processes sign-in data '
+                  'in the United States. '
                   'Nearby play exchanges match information with the other '
                   'device on your local network.',
             ),
@@ -169,7 +170,9 @@ class _OnlineDeletionSectionState
         content: const Text(
           'This immediately ends access to this identity’s cloud matches for '
           'both players and requests deletion of the identity and shared online '
-          'match logs within 30 days. Local History and practice remain on this '
+          'match logs within 30 days. Google may take up to 180 days after '
+          'account deletion to remove Authentication data from its live and '
+          'backup systems. Local History and practice remain on this '
           'device. Previously sent optional diagnostics are separate; contact '
           'privacy@freevia.org about those. This request cannot be undone.',
         ),
@@ -198,11 +201,13 @@ class _OnlineDeletionSectionState
           OnlineDeletionResult.requested =>
             'Deletion requested. This online identity is signed out. Its cloud '
                 'data will be deleted within 30 days. Starting online play again '
-                'creates a new identity. Contact privacy@freevia.org for help.',
+                'creates a new identity. Google’s Authentication data removal '
+                'can take up to 180 days. Contact privacy@freevia.org for help.',
           OnlineDeletionResult.requestedLocalSignOutFailed =>
             'Deletion requested. Its cloud data will be deleted within 30 days. '
                 'The device could not clear the saved sign-in, but the online identity '
-                'is blocked from further match access. Contact privacy@freevia.org for help.',
+                'is blocked from further match access. Google’s Authentication '
+                'data removal can take up to 180 days. Contact privacy@freevia.org for help.',
           OnlineDeletionResult.noIdentity =>
             'No usable online identity is saved on this device. No new account '
                 'was created. If you previously used online play, contact '

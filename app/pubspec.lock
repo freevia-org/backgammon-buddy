@@ -682,14 +682,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-  mobile_scanner:
-    dependency: "direct main"
-    description:
-      name: mobile_scanner
-      sha256: ce3f059ebd6dbfab7292bba0e893e354b46730636820d3c9ef69005ce2d55bce
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.4.0"
   objective_c:
     dependency: transitive
     description:
@@ -1238,6 +1230,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.3"
+  zxing2:
+    dependency: "direct main"
+    description:
+      name: zxing2
+      sha256: "2677c49a3b9ca9457cb1d294fd4bd5041cac6aab8cdb07b216ba4e98945c684f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.4"
 sdks:
   dart: ">=3.12.2 <4.0.0"
   flutter: ">=3.44.0"

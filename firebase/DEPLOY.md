@@ -12,8 +12,13 @@ Native, `eur3` (EU), free tier, database delete protection enabled and PITR
 disabled. No billing account is attached. Authentication enables only anonymous
 sign-in; its reported subtype is `IDENTITY_PLATFORM`. Do not infer paid billing
 from that subtype. No Analytics property or optional telemetry configuration was
-created for this candidate. Authentication is a global service, so the EU
-statement applies to Firestore records, not every Firebase operation.
+created for this candidate. Authentication processes sign-in data in the United
+States, so the EU statement applies to Firestore records, not every Firebase
+operation. [Firebase's privacy documentation](https://firebase.google.com/support/privacy)
+states that Auth IP logs last a few weeks and that, after account deletion is
+initiated, Authentication data is removed from live and backup systems within
+180 days. Freevia's 30-day request handling commitment does not shorten that
+provider retention interval.
 
 Cloud matches become inaccessible 30 days after server-stamped creation,
 including unfinished games and unclaimed invitations. The hourly cleanup job
