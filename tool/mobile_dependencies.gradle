@@ -1,0 +1,43 @@
+// Read-only Gradle dependency/POM evidence for the exact release classpath.
+// Run: ./gradlew -I ../../tool/mobile_dependencies.gradle :app:writeMobileDependencyInventory
+import groovy.json.JsonOutput
+import java.security.MessageDigest
+
+gradle.projectsEvaluated {
+    def app = gradle.rootProject.findProject(':app')
+    // Init scripts also run in Flutter's included Gradle build, which has no app.
+    if (app == null) return
+    app.tasks.register('writeMobileDependencyInventory') {
+        doLast {
+            def output = new File(app.rootProject.projectDir, '../build/mobile-dependencies/android')
+            def poms = new File(output, 'poms')
+            poms.mkdirs()
+            def modules = [:]
+            app.configurations.getByName('releaseRuntimeClasspath').resolvedConfiguration.resolvedArtifacts.each { artifact ->
+                def id = artifact.moduleVersion.id
+                def coordinate = "${id.group}:${id.name}:${id.version}"
+                if (!modules.containsKey(coordinate)) {
+                    def item = [coordinate: coordinate, artifacts: []]
+                    try {
+                        def request = app.dependencies.create("${coordinate}@pom")
+                        def detached = app.configurations.detachedConfiguration(request)
+                        detached.transitive = false
+                        def pom = detached.singleFile
+                        def filename = coordinate.replaceAll('[^A-Za-z0-9._-]', '_') + '.pom'
+                        new File(poms, filename).bytes = pom.bytes
+                        item.pom_file = 'poms/' + filename
+                    } catch (Exception ignored) {
+                        item.pom_status = 'POM unavailable from configured repositories'
+                    }
+                    modules[coordinate] = item
+                }
+                modules[coordinate].artifacts.add([name: artifact.file.name,
+                    sha256: MessageDigest.getInstance('SHA-256').digest(artifact.file.bytes).encodeHex().toString()])
+            }
+            def record = [configuration: 'releaseRuntimeClasspath',
+                          dependencies: modules.values().sort { it.coordinate }]
+            new File(output, 'resolved.json').text = JsonOutput.prettyPrint(JsonOutput.toJson(record)) + '\n'
+            println("Captured ${modules.size()} Android module identities and available POMs")
+        }
+    }
+}

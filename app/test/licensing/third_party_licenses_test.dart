@@ -11,7 +11,7 @@ void main() {
     'native transitive notices and model terms are available offline',
     () async {
       final entries = await additionalNativeLicenses().toList();
-      expect(entries, hasLength(3));
+      expect(entries, hasLength(4));
       final text = entries
           .expand((e) => e.paragraphs)
           .map((p) => p.text)
@@ -21,6 +21,7 @@ void main() {
       expect(text, contains('CC0'));
       expect(text, contains('by Neil Kazaross 2011.'));
       expect(text, contains('permission notice are preserved.'));
+      expect(text, contains('Copyright (c) 2026 Freevia'));
       final source = await rootBundle.load(
         'assets/licenses/dyn-eq-0.1.3-source.tar.gz',
       );
@@ -29,6 +30,8 @@ void main() {
   );
 
   test('bundled native licenses preserve the upstream texts exactly', () async {
+    expect(await rootBundle.loadString('assets/licenses/Freevia-MIT.txt'),
+        await File('../LICENSE').readAsString());
     for (final name in ['MIT', 'APACHE']) {
       final bundled = await rootBundle.load(
         'assets/licenses/wildbg-LICENSE-$name.txt',

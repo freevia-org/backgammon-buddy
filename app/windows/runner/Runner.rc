@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "Backgammon Buddy" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "aigammon_app" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 com.xmelon. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 Freevia. All rights reserved." "\0"
             VALUE "OriginalFilename", "aigammon_app.exe" "\0"
             VALUE "ProductName", "Backgammon Buddy" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

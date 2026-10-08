@@ -26,7 +26,7 @@ class ReleaseToolsTest(unittest.TestCase):
     def profile(self):
         return {'ExpirationDate': datetime(2030, 1, 1), 'TeamIdentifier': ['TEAM'],
                 'Name': 'Freevia & Distribution', 'Entitlements': {
-                    'application-identifier': 'TEAM.com.xmelon.aigammon', 'get-task-allow': False}}
+                    'application-identifier': 'TEAM.org.freevia.backgammonbuddy', 'get-task-allow': False}}
 
     def test_store_export_is_local_and_xml_escapes_name(self):
         result = export_options(self.profile(), 'app-store-connect')

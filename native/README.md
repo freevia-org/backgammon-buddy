@@ -125,11 +125,10 @@ linked **statically** into the app binary and its symbols are resolved at runtim
 via `DynamicLibrary.process()` (see `libraryLoadStrategyFor` in
 `packages/engine_bindings/lib/src/ffi/library_loader.dart`).
 
-**Bundle id.** The iOS `PRODUCT_BUNDLE_IDENTIFIER` is **`com.xmelon.aigammon`**,
-which deliberately diverges from the Android `applicationId`
-(`com.xmelon.aigammon_app`): Apple's `CFBundleIdentifier` charset excludes
-underscores, so the Android id would break signing / App Store submission. iOS and
-Android are registered as separate apps in Firebase, so the ids need not match.
+**Bundle id.** The Freevia iOS `PRODUCT_BUNDLE_IDENTIFIER` and Android
+`applicationId` are **`org.freevia.backgammonbuddy`**. This is a new installed
+identity; it coexists with earlier experimental builds and does not migrate or
+erase their local history. Firebase still registers each platform separately.
 
 **Staticlib target.** The shim's `Cargo.toml` already declares
 `crate-type = ["cdylib", "staticlib"]`, so the staticlib is a first-class build

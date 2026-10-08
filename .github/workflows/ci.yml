@@ -27,6 +27,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: python3 tool/release_preflight.py
       - run: python3 -m unittest discover -s tool -p test_release_tools.py
+      - run: python3 -m unittest discover -s tool -p test_mobile_dependency_inventory.py
 
   # The pure-Dart packages. One job definition, one leg each: they were
   # near-identical copies of the same six steps, and every change to the shape

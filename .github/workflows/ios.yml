@@ -35,6 +35,10 @@ jobs:
     # release compiles (unsigned, then the signed archive) plus an xcodebuild
     # archive/export. Generous by design.
     timeout-minutes: 60
+    env:
+      # Supported by the locked FlutterFire SPM package; this app has no ads.
+      # Select FirebaseAnalyticsCore instead of the identity/ad conversion product.
+      FIREBASE_ANALYTICS_WITHOUT_ADID: 'true'
     # A PR head named master satisfies branches above. Only trusted repository
     # pushes may enter this automatic job, which can access signing secrets.
     if: >-
@@ -151,6 +155,24 @@ jobs:
         with:
           name: aigammon-symbols-ios-${{ github.run_number }}
           path: app/build/symbols/ios
+          if-no-files-found: error
+
+      - name: Capture iOS native dependencies and privacy manifests
+        run: |
+          python3 tool/mobile_dependency_inventory.py \
+            --artifact app/build/ios/iphoneos/Runner.app.zip \
+            --apple-source-root app/ios --apple-source-root app/build/ios \
+            --apple-source-root "$HOME/Library/Developer/Xcode/DerivedData" \
+            --require-no-apple-ad-support \
+            --out-dir app/build/mobile-dependencies/ios-unsigned
+          xcodebuild -version > app/build/mobile-dependencies/ios-unsigned/xcode-version.txt
+          xcrun --sdk iphoneos --show-sdk-version > app/build/mobile-dependencies/ios-unsigned/sdk-version.txt
+
+      - name: Upload iOS dependency evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: aigammon-ios-dependencies-${{ github.run_number }}
+          path: app/build/mobile-dependencies/ios-unsigned
           if-no-files-found: error
 
       # ---------------------------------------------------------------------
@@ -329,6 +351,22 @@ jobs:
         with:
           name: aigammon-ios-${{ inputs.export_method || 'ad-hoc' }}-${{ github.run_number }}
           path: ${{ steps.ipa.outputs.ipa_path }}
+          if-no-files-found: error
+
+      - name: Capture signed IPA dependency evidence
+        if: steps.ios.outputs.has_signing == 'true'
+        env:
+          IPA_PATH: ${{ steps.ipa.outputs.ipa_path }}
+        run: |
+          python3 tool/mobile_dependency_inventory.py --artifact "$IPA_PATH" \
+            --require-no-apple-ad-support --out-dir app/build/mobile-dependencies/ios-signed
+
+      - name: Upload signed IPA dependency evidence
+        if: steps.ios.outputs.has_signing == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: aigammon-ios-signed-dependencies-${{ github.run_number }}
+          path: app/build/mobile-dependencies/ios-signed
           if-no-files-found: error
 
       - name: Upload signed archive symbols

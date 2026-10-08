@@ -22,6 +22,9 @@ Stream<LicenseEntry> nativeEngineLicenses() async* {
 
 Stream<LicenseEntry> additionalNativeLicenses() async* {
   yield LicenseEntryWithLineBreaks(const [
+    'Backgammon Buddy (Freevia)',
+  ], await rootBundle.loadString('assets/licenses/Freevia-MIT.txt'));
+  yield LicenseEntryWithLineBreaks(const [
     'Kazaross-XG2 match equity table',
   ], await rootBundle.loadString('assets/licenses/Kazaross-XG2-NOTICE.txt'));
   yield LicenseEntryWithLineBreaks(const [

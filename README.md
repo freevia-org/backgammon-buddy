@@ -274,8 +274,9 @@ building a production release with the online defines are documented in
     forced off so the poll fallback is actually exercised.
 - **`android.yml`** (`workflow_dispatch`, CI success on `master`):
   cross-compiles the engine for the two device ABIs with `cargo-ndk`, builds
-  per-ABI release APKs, and — when the Firebase secrets are configured —
-  distributes the `arm64-v8a` one to testers via Firebase App Distribution.
+  one ARMv7/ARM64 release APK with the same version code as the optional AAB,
+  and — when Firebase and release-signing secrets are configured — distributes
+  it to testers via Firebase App Distribution.
 - **`ios.yml`** (`workflow_dispatch`, CI success on `master`): builds the engine
   staticlib for `aarch64-apple-ios`, links it into `Runner`, and uploads an
   unsigned `Runner.app`; when the signing secrets are configured it also builds

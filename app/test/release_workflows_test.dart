@@ -8,6 +8,29 @@ void main() {
   String workflow(String name) =>
       File('../.github/workflows/$name.yml').readAsStringSync();
 
+  test('Freevia mobile identity agrees across builds and signing validation', () {
+    const identity = 'org.freevia.backgammonbuddy';
+    final android = File('android/app/build.gradle.kts').readAsStringSync();
+    expect(android, contains('namespace = "$identity"'));
+    expect(android, contains('applicationId = "$identity"'));
+    expect(
+      File(
+        'android/app/src/main/kotlin/org/freevia/backgammonbuddy/MainActivity.kt',
+      ).readAsStringSync(),
+      startsWith('package $identity'),
+    );
+    final ios = File('ios/Runner.xcodeproj/project.pbxproj').readAsStringSync();
+    final bundles = RegExp(
+      r'PRODUCT_BUNDLE_IDENTIFIER = ([^;]+);',
+    ).allMatches(ios).map((match) => match.group(1)).toSet();
+    expect(bundles, {identity, '$identity.RunnerTests'});
+    expect(workflow('android'), contains('--arg package_name "$identity"'));
+    expect(
+      File('../tool/ios_export_options.py').readAsStringSync(),
+      contains("BUNDLE = '$identity'"),
+    );
+  });
+
   test('iOS distribution uses native CLI and retains ad-hoc signing gates', () {
     final source = workflow('ios');
     expect(source, contains('runs-on: macos-latest'));
@@ -73,6 +96,32 @@ void main() {
     expect(source, contains('"lib/\$ABI/libaigammon_engine.so"'));
     expect(source, contains('"base/lib/\$ABI/libaigammon_engine.so"'));
   });
+
+  test(
+    'APK and AAB share a build number without Flutter ABI version offsets',
+    () {
+      final source = workflow('android');
+      expect(
+        source,
+        isNot(contains('flutter build apk --release --split-per-abi')),
+      );
+      for (final kind in ['apk', 'appbundle']) {
+        final command = RegExp(
+          'flutter build $kind([\\s\\S]*?)\\\$DEFINES',
+        ).firstMatch(source)!.group(1)!;
+        expect(command, contains('--build-number="\$BUILD_NUMBER"'));
+        expect(command, isNot(contains('--split-per-abi')));
+      }
+      expect(
+        source,
+        contains('--android build/app/outputs/flutter-apk/app-release.apk'),
+      );
+      expect(
+        source,
+        contains('file: app/build/app/outputs/flutter-apk/app-release.apk'),
+      );
+    },
+  );
 
   test('debug signing cannot reach automatic tester distribution', () {
     final source = workflow('android');

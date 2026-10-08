@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 import plistlib
 
-BUNDLE = 'com.xmelon.aigammon'
+BUNDLE = 'org.freevia.backgammonbuddy'
 
 
 def export_options(profile, method, now=None):

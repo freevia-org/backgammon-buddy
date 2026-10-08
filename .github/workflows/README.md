@@ -72,14 +72,15 @@ distribution mid-upload.
    layout. At runtime the app loads it with
    `DynamicLibrary.open('libaigammon_engine.so')`. **Two ABIs, not three:**
    x86_64 devices/emulators are outside this distribution target set.
-4. `flutter build apk --release --split-per-abi --target-platform android-arm,android-arm64`,
-   producing `app-arm64-v8a-release.apk` and `app-armeabi-v7a-release.apk`.
+4. `flutter build apk --release --target-platform android-arm,android-arm64`,
+   producing one ARMv7/ARM64 `app-release.apk` with the same version code as the
+   optional AAB. Split APKs are deliberately avoided because Flutter adds ABI
+   offsets that would make a later bundle appear to be a version downgrade.
    Flutter otherwise defaults to all three ABIs, independently of which Rust
    libraries exist. The workflow inspects each finished APK for its engine
    library before uploading artifacts.
-5. Uploads **both** per-ABI APKs as the `aigammon-apk` artifact, and distributes
-   the `arm64-v8a` one to the testers group (App Distribution takes one file and
-   does no ABI matching; `armeabi-v7a` stays available from the artifact).
+5. Uploads the universal APK as the `aigammon-apk` artifact, and distributes it
+   to the testers group when configured.
    Firebase distribution requires both Firebase credentials and release signing.
 
 ### Preparing a Google Play bundle
@@ -183,7 +184,7 @@ and [service-account authentication](https://firebase.google.com/docs/app-distri
 |---|---|
 | `IOS_CERT_P12_BASE64` | base64 of the **Apple Distribution** certificate exported as a `.p12` |
 | `IOS_CERT_PASSWORD` | the password set when exporting that `.p12` |
-| `IOS_PROVISIONING_PROFILE_BASE64` | base64 of the **ad-hoc** `.mobileprovision` (expected profile name `aigammon-adhoc`, bundle id `com.xmelon.aigammon`, with tester device UDIDs) |
+| `IOS_PROVISIONING_PROFILE_BASE64` | base64 of the **ad-hoc** `.mobileprovision` (expected profile name `aigammon-adhoc`, bundle id `org.freevia.backgammonbuddy`, with tester device UDIDs) |
 | `IOS_APP_STORE_PROFILE_BASE64` | base64 of the App Store distribution profile; used only by manual `app-store-connect` export |
 | `FIREBASE_IOS_APP_ID` | the iOS App ID from the Firebase console (`1:…:ios:…`) |
 
@@ -201,7 +202,7 @@ present. Until then the job builds and uploads the APK artifact and logs a clear
 1. **Register the Android app in Firebase.** In the
    [Firebase console](https://console.firebase.google.com/project/aigammon)
    open **Project overview → Add app → Android** and register package name
-   `com.xmelon.aigammon_app`. You do **not** need to download or commit
+   `org.freevia.backgammonbuddy`. You do **not** need to download or commit
    `google-services.json` for distribution: App Distribution
    of a raw APK only needs the App ID + a service account. Optional in-app
    Firebase telemetry is configured separately and requires user consent. Copy the generated

@@ -18,16 +18,21 @@ automatic Firebase distribution unless release signing is configured.
 
 ## 1. A keystore already exists locally
 
-`E:\…\AIGammon\app\android\aigammon-upload.jks` was generated for this repo, with:
+The new Freevia identity `org.freevia.backgammonbuddy` uses a dedicated upload
+key generated on 2026-10-09. The certificate subject is
+`CN=Backgammon Buddy Upload, O=Freevia`; its SHA-256 digest is
+`ec6b2f117457a10eb30f5ea366f31219569eb091c263c18c21d85fb6171e4c6a`.
 
 | file | contents |
 |---|---|
-| `app/android/aigammon-upload.jks` | the keystore itself |
-| `app/android/aigammon-upload.jks.base64.txt` | the same file, base64 — paste this into the `ANDROID_KEYSTORE_BASE64` secret |
-| `app/android/aigammon-upload.credentials.txt` | the generated store/key password + a copy of the table below |
+| `app/android/freevia-backgammon-buddy-upload.jks` | the private upload keystore |
+| `app/android/key.properties` | the generated random password, alias and keystore path |
 
-All three are **git-ignored** (`app/android/.gitignore`) and exist only on this
-machine. If you prefer to use your own keystore instead, see §3.
+Both files are **git-ignored** (`app/android/.gitignore`). The four GitHub
+repository secrets were configured directly from them without printing the
+password or writing a base64 copy. Keep a secure owner-controlled backup. Prior
+experimental signing material remains locally for recovery and is not used for
+Freevia builds. If generating another key before release, see §3.
 
 ## 2. Add the four repository secrets
 
@@ -36,16 +41,18 @@ repository secret**. Create each of these:
 
 | Secret | Value |
 |---|---|
-| `ANDROID_KEYSTORE_BASE64` | the entire contents of `aigammon-upload.jks.base64.txt` (one long line, no newlines) |
-| `ANDROID_KEYSTORE_PASSWORD` | the store password from `aigammon-upload.credentials.txt` |
-| `ANDROID_KEY_ALIAS` | `aigammon-upload` |
-| `ANDROID_KEY_PASSWORD` | the key password (same value as the store password for the generated keystore) |
+| `ANDROID_KEYSTORE_BASE64` | base64 of the Freevia upload keystore |
+| `ANDROID_KEYSTORE_PASSWORD` | `storePassword` from the private `key.properties` |
+| `ANDROID_KEY_ALIAS` | `freevia-backgammon-buddy-upload` |
+| `ANDROID_KEY_PASSWORD` | `keyPassword` from the private `key.properties` |
 
 All four must be present. The workflow checks for all four together, so a
 partially-filled set skips signing rather than failing the build half-way.
 
 Once they are set, the next push to `master` produces a **release-signed** APK;
-the job log prints `Release signing ENABLED`.
+the job log prints `Release signing ENABLED`. Set `RELEASE_BUILD_NUMBER_BASE`
+or provide manual `build_number` above previous releases first; signed builds
+fail if no explicit baseline/override is configured.
 
 ## 3. Generating your OWN keystore instead
 
@@ -54,34 +61,25 @@ do so **before** any signed build reaches a real user.
 
 ```bash
 keytool -genkeypair -v \
-  -keystore aigammon-upload.jks \
-  -keyalg RSA -keysize 2048 -validity 10000 \
-  -alias aigammon-upload
+  -keystore freevia-backgammon-buddy-upload.jks \
+  -keyalg RSA -keysize 3072 -validity 10000 \
+  -alias freevia-backgammon-buddy-upload \
+  -dname "CN=Backgammon Buddy Upload, O=Freevia"
 ```
 
-`keytool` prompts for the store password, then the distinguished name, then the
-key password (press Enter to reuse the store password). To do it
-non-interactively — which is what was done for the checked-in setup — pass them
-as flags instead:
-
-```bash
-keytool -genkeypair -v \
-  -keystore aigammon-upload.jks \
-  -keyalg RSA -keysize 2048 -validity 10000 \
-  -alias aigammon-upload \
-  -storepass '<STORE_PASSWORD>' -keypass '<KEY_PASSWORD>' \
-  -dname "CN=AIGammon, OU=AIGammon, O=xmelon, L=Unknown, ST=Unknown, C=US"
-```
+`keytool` prompts for the password. Use a randomly generated value stored in a
+password manager. For automation, use `-storepass:env` and `-keypass:env` with a
+private process environment; keep credentials out of command arguments and logs.
 
 Then base64 it for the secret:
 
 ```bash
 # Linux / macOS
-base64 -w0 aigammon-upload.jks > aigammon-upload.jks.base64.txt
+base64 -w0 freevia-backgammon-buddy-upload.jks > freevia-backgammon-buddy-upload.jks.base64.txt
 
 # Windows PowerShell
-[Convert]::ToBase64String([IO.File]::ReadAllBytes('aigammon-upload.jks')) |
-  Set-Content aigammon-upload.jks.base64.txt -NoNewline
+[Convert]::ToBase64String([IO.File]::ReadAllBytes('freevia-backgammon-buddy-upload.jks')) |
+  Set-Content freevia-backgammon-buddy-upload.jks.base64.txt -NoNewline
 ```
 
 …and fill in the four secrets from §2 with your own values.
@@ -95,9 +93,9 @@ base64 -w0 aigammon-upload.jks > aigammon-upload.jks.base64.txt
 Create `app/android/key.properties` (git-ignored) by hand:
 
 ```properties
-storeFile=aigammon-upload.jks
+storeFile=freevia-backgammon-buddy-upload.jks
 storePassword=<STORE_PASSWORD>
-keyAlias=aigammon-upload
+keyAlias=freevia-backgammon-buddy-upload
 keyPassword=<KEY_PASSWORD>
 ```
 
@@ -108,7 +106,7 @@ debug-key fallback and its warning apply.
 ## 5. Verifying what a build was signed with
 
 ```bash
-apksigner verify --verbose --print-certs app/build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+apksigner verify --verbose --print-certs app/build/app/outputs/flutter-apk/app-release.apk
 ```
 
 Use `apksigner` from the Android SDK build-tools directory (or add it to PATH).
@@ -120,6 +118,16 @@ For a Google Play bundle, manually dispatch the Android workflow with
 `build_appbundle` enabled. It requires all four signing secrets and saves an AAB
 plus its Dart symbols as an artifact; it does not upload to Google Play. See
 [release readiness](../../docs/release-readiness.md) for the remaining checks.
+
+The workflow builds a universal ARMv7/ARM64 APK so its version code equals the
+AAB's. Flutter's `--split-per-abi` adds ABI offsets; do not mix those output codes
+with the bundle sequence. On 2026-10-09, the latest old-repository tester artifact
+had codes 2028 (ARM64) and 4028 (x86_64), and used an Android Debug certificate.
+The Freevia repository baseline is 10000, above those observed codes. The Freevia
+Play Console contained no prior Backgammon app when inspected on 2026-10-09.
+The owner-selected `org.freevia.backgammonbuddy` package is a separate install
+from the experimental app, preserving its existing data. It does not import the
+older app's history automatically.
 
 ## 6. The other file you drop in by hand: `google-services.json`
 
@@ -135,7 +143,7 @@ Web API key all ship inside every APK already — but it is what the
 what capture a native crash in the Rust engine `.so`.
 
 **Get it, do not write it:** Firebase console → ⚙ *Project settings* → *Your
-apps* → the Android app (`com.xmelon.aigammon_app`) → **google-services.json**.
+apps* → the Android app (`org.freevia.backgammonbuddy`) → **google-services.json**.
 Save it at `app/android/app/google-services.json`. A hand-assembled file whose
 `package_name` does not match `applicationId` exactly fails the build with *"No
 matching client found for package name"*.

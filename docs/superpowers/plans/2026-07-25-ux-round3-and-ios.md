@@ -30,7 +30,7 @@
 - Tests: widget test — human commits via taps: no move animation runs (probe BoardView overlay/animation state); AI reply still animates; hint-apply still animates; online remote move still animates (fake controller).
 
 ### Task 3: iOS project scaffold + engine FFI wiring (F3a)
-- `flutter create --platforms=ios .` in `app/` (keeps existing lib/). Set bundle id `com.xmelon.aigammon` (match Android applicationId — verify actual value in `app/android/app/build.gradle.kts` and mirror it).
+- `flutter create --platforms=ios .` in `app/` (keeps existing lib/). Set bundle id `org.freevia.backgammonbuddy` (match Android applicationId — verify actual value in `app/android/app/build.gradle.kts` and mirror it).
 - Engine linking: iOS forbids runtime-loaded dylibs from arbitrary paths; link `libaigammon_engine.a` statically into the Runner and load symbols via `DynamicLibrary.process()`/`DynamicLibrary.executable()`:
   - `packages/engine_bindings` loader: platform switch — Windows/Android keep `DynamicLibrary.open(...)`; iOS/macOS use `DynamicLibrary.process()`. Unit-testable via a loader-strategy function.
   - Xcode wiring WITHOUT a Mac: hand-author the pieces (they're plain text): add `ios/Flutter/Engine.xcconfig` fragment or edit `Release.xcconfig`/`Debug.xcconfig` with `OTHER_LDFLAGS = $(inherited) -force_load $(PROJECT_DIR)/Frameworks/libaigammon_engine.a` (exact path per CI staging step), ensuring symbols survive dead-code stripping. CI validates.

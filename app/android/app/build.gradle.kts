@@ -88,7 +88,7 @@ if (!hasReleaseSigning) {
 }
 
 android {
-    namespace = "com.xmelon.aigammon_app"
+    namespace = "org.freevia.backgammonbuddy"
     compileSdk = flutter.compileSdkVersion
     // Pinned rather than `flutter.ndkVersion`, and it must stay in lockstep with
     // the revision `.github/workflows/android.yml` installs via sdkmanager. The
@@ -106,7 +106,7 @@ android {
 
     defaultConfig {
         // Registered Android identity; keep Firebase's package_name in sync.
-        applicationId = "com.xmelon.aigammon_app"
+        applicationId = "org.freevia.backgammonbuddy"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         // Pinned explicitly (was flutter.minSdkVersion, currently 24) so the
