@@ -172,6 +172,13 @@ Runner requires a development team" on the headless runner. The IPA is uploaded
 as `aigammon-ios-<export-method>-<run>`. Only configured ad-hoc exports are
 distributed to the Firebase **`testers`** group.
 
+The macOS job uses exact-pinned `firebase-tools@15.25.1` on Node 22 for ad-hoc
+distribution. The Linux-only Docker action used by Android cannot execute on a
+macOS runner. The CLI authenticates through a temporary mode-0600 service-account
+file referenced by `GOOGLE_APPLICATION_CREDENTIALS`, removed on shell exit; the
+install step receives no credential. See [Firebase's iOS CLI guide](https://firebase.google.com/docs/app-distribution/ios/distribute-cli)
+and [service-account authentication](https://firebase.google.com/docs/app-distribution/authenticate-service-account?platform=ios).
+
 | Secret | What it is |
 |---|---|
 | `IOS_CERT_P12_BASE64` | base64 of the **Apple Distribution** certificate exported as a `.p12` |

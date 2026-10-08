@@ -61,6 +61,7 @@ remedy, rather than treating these as remaining failures.
 
 | Severity | Finding and remedy | Source |
 |---|---|---|
+| P2 | The configured iOS tester upload used a Docker action on a macOS runner, where container actions cannot run. It now uses exact-pinned Firebase CLI with temporary ADC credentials and cleanup; signing/ad-hoc gates are unchanged. | [iOS workflow](../.github/workflows/ios.yml), [workflow guide](../.github/workflows/README.md) |
 | P1 | Configured mobile SDKs collected without an explicit in-app choice. Native defaults are now off, consent persists, forwarding is gated, and generation-aware initialization prevents delayed enable after withdrawal. | [telemetry controller](../app/lib/analytics/telemetry_controller.dart), [Firebase initialization](../app/lib/analytics/firebase_observability.dart), [privacy controls](../app/lib/privacy/privacy_settings_section.dart) |
 | P2 | Game history and score were separate writes. Completed game/score/completion now commit atomically; practice/source deletion is transactional and migration tested. | [MatchRepository](../app/lib/data/match_repository.dart), [practice persistence](../app/lib/data/practice_repository.dart) |
 | P2 | New-repository workflow counters restart, risking lower signed build numbers. Signed builds now require an owner-selected override or baseline verified against past uploads. | [build-number validator](../tool/release_build_number.py), [release workflows](../.github/workflows) |
@@ -135,7 +136,7 @@ The native profile includes three real computer-vs-computer games. Focused bug
 tests include startup-no-handshake/silent-exit cases, queued saves after disposal,
 delayed score snapshots, and resignation turn/Crawford semantics. Release/config
 checks passed **17 tests**, including the three new trust/signing/ABI guards. All
-three workflow YAML files parsed successfully and all **46 shell run blocks**
+three workflow YAML files parsed successfully and all **48 shell run blocks**
 passed `bash -n` syntax checks.
 
 The licensing/Settings checks passed **13 tests**, covering asset exactness,
@@ -158,3 +159,7 @@ Firebase emulator E2E suites were **not run in this round**; backend rules were
 unchanged. Signed/native mobile builds, device permission flows, 16 KB
 compatibility and store submissions were also **not run**. Source assertions and
 local tests do not certify those release gates.
+
+An additional release-only follow-up validated four workflow boundary tests
+(including the new macOS CLI distribution guard) after the integrated suite.
+No signed upload was dispatched to validate credentials or native artifacts.

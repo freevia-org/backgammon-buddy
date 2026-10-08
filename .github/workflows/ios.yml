@@ -341,17 +341,34 @@ jobs:
             app/build/symbols/ios
           if-no-files-found: error
 
+      - name: Node for macOS Firebase distribution
+        if: steps.ios.outputs.has_signing == 'true' && steps.ios.outputs.has_distribution == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Firebase CLI for macOS distribution
+        if: steps.ios.outputs.has_signing == 'true' && steps.ios.outputs.has_distribution == 'true'
+        # Container actions cannot run on macOS. Keep CLI install separate from
+        # credential access, and pin its exact reviewed package version.
+        run: npm install --global firebase-tools@15.25.1
+
       - name: Distribute IPA to Firebase App Distribution
         if: steps.ios.outputs.has_signing == 'true' && steps.ios.outputs.has_distribution == 'true'
-        # Commit-pinned for the same reason as android.yml: a mutable tag is a
-        # supply-chain hole and this step receives the service-account key.
-        # `v1` resolved to this commit on 2026-07-31.
-        uses: wzieba/Firebase-Distribution-Github-Action@bd494989dd4bec0343f78adee87fe66e48279ad6 # v1
-        with:
-          appId: ${{ secrets.FIREBASE_IOS_APP_ID }}
-          serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          groups: testers
-          file: ${{ steps.ipa.outputs.ipa_path }}
+        env:
+          FIREBASE_IOS_APP_ID: ${{ secrets.FIREBASE_IOS_APP_ID }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          IPA_PATH: ${{ steps.ipa.outputs.ipa_path }}
+        run: |
+          set -euo pipefail
+          umask 077
+          GOOGLE_APPLICATION_CREDENTIALS="$(mktemp "$RUNNER_TEMP/firebase-distribution.XXXXXX")"
+          export GOOGLE_APPLICATION_CREDENTIALS
+          trap 'rm -f "$GOOGLE_APPLICATION_CREDENTIALS"' EXIT
+          printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$GOOGLE_APPLICATION_CREDENTIALS"
+          unset FIREBASE_SERVICE_ACCOUNT
+          firebase appdistribution:distribute "$IPA_PATH" \
+            --app "$FIREBASE_IOS_APP_ID" --groups testers --non-interactive
 
       - name: Skip signing + distribution (secrets not set)
         if: steps.ios.outputs.has_signing != 'true'

@@ -233,8 +233,8 @@ entry.
 
 `nativeSymbolUploadEnabled = true` with `unstrippedNativeLibsDir` pointed at the
 cargo-ndk output (`app/android/app/src/main/jniLibs`) makes the Crashlytics
-plugin *generate* symbol files during a release build. Two things still stand
-between that and a readable Rust stack trace, and both are open:
+plugin *generate* symbol files during a release build. Native symbolication
+still needs the exact-release upload and test-crash validation below:
 
 1. **Nothing uploads them.** Generation and upload are separate Gradle tasks,
    and only the generation one is hooked into `assemble`. Upload needs an
@@ -248,18 +248,15 @@ between that and a readable Rust stack trace, and both are open:
    drives Gradle with its own property set, and a bare second `./gradlew`
    invocation would reconfigure the project differently. Wiring it needs a
    verified CI run, which this repo cannot do from a Windows dev machine.
-2. **The `.so` carries no debug info to symbolicate from.**
-   `native/engine_shim/Cargo.toml` declares no `[profile.release]`, so Rust's
-   default applies and release builds emit no DWARF. The unstripped `.so` still
-   has an ELF symbol table, so symbolication would reach *function names* but
-   never file/line. Full fidelity needs `[profile.release] debug = 1` in that
-   crate — deliberately not added here, because it changes the native build for
-   iOS as well and would ship unverified.
+2. **Release line tables and unstripped artifacts are now prepared.**
+   `native/engine_shim/Cargo.toml` enables `[profile.release] debug = 1` and CI
+   preserves the Android `jniLibs` artifact and signed iOS archive dSYMs.
+   Verify a deliberately triggered native test crash against those exact
+   artifacts before claiming file/line symbolication works in Firebase.
 
-So today an Android native crash **is captured and does arrive** — signal,
-thread, and an address-level stack — which is strictly more than the nothing
-that arrived before. It is not yet readable without manual `addr2line` work
-against the matching `jniLibs` artifact.
+Native Crashlytics collection now also requires the user's optional telemetry
+choice. A configured build alone does not opt the user in. Keep the matching
+symbols outside CI's artifact retention window for any distributed build.
 
 ### Console steps
 

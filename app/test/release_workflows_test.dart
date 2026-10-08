@@ -8,6 +8,35 @@ void main() {
   String workflow(String name) =>
       File('../.github/workflows/$name.yml').readAsStringSync();
 
+  test('iOS distribution uses native CLI and retains ad-hoc signing gates', () {
+    final source = workflow('ios');
+    expect(source, contains('runs-on: macos-latest'));
+    expect(
+      source,
+      isNot(contains('uses: wzieba/Firebase-Distribution-Github-Action')),
+    );
+    expect(source, contains('firebase-tools@15.25.1'));
+    final distribute = RegExp(
+      r'      - name: Distribute IPA to Firebase App Distribution\r?\n'
+      r'        if: ([^\r\n]+)',
+    ).firstMatch(source)!.group(1)!;
+    expect(
+      distribute,
+      "steps.ios.outputs.has_signing == 'true' && "
+      "steps.ios.outputs.has_distribution == 'true'",
+    );
+    expect(source, contains("if [ \"\$EXPORT_METHOD\" = 'ad-hoc' ]"));
+    expect(source, contains('export GOOGLE_APPLICATION_CREDENTIALS'));
+    expect(
+      source,
+      contains('trap \'rm -f "\$GOOGLE_APPLICATION_CREDENTIALS"\' EXIT'),
+    );
+    expect(
+      source,
+      contains('firebase appdistribution:distribute "\$IPA_PATH"'),
+    );
+  });
+
   test('automatic privileged builds require a trusted master push', () {
     for (final name in ['android', 'ios']) {
       final source = workflow(name);
