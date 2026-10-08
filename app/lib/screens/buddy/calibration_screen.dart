@@ -143,10 +143,11 @@ class CameraHold {
 ///
 /// Flutter reports Android's `onPause` as [AppLifecycleState.inactive] and
 /// `onStop` as [AppLifecycleState.paused], and the camera is genuinely gone by
-/// the second — but a permission dialog, a notification shade and a phone call
-/// all produce the first, and the plugin's own example releases there. So does
-/// this. The cost of releasing early is a reopen nobody sees; the cost of
-/// releasing late is a dead camera that survives the resume.
+/// the second. Once ready, release on `inactive` too, for a notification shade
+/// or phone call. Before the camera is ready, `inactive` can be the permission
+/// sheet itself, including a late event after refusal. Keep that result instead
+/// of closing and immediately asking again. A full `hidden`/`paused` transition
+/// still releases the hold, including an open that has not finished yet.
 mixin BuddyCameraLifecycle<T extends StatefulWidget>
     on State<T>, WidgetsBindingObserver {
   /// The shared camera this screen holds.
@@ -162,6 +163,7 @@ mixin BuddyCameraLifecycle<T extends StatefulWidget>
   bool _wantsCamera = false;
   bool _holdsCamera = false;
   bool _reconciling = false;
+  bool _cameraReady = false;
 
   /// Whether [stopCamera] has run — the screen is going away rather than
   /// merely losing the camera for a while.
@@ -201,6 +203,7 @@ mixin BuddyCameraLifecycle<T extends StatefulWidget>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     if (_stopping) return;
+    if (state == AppLifecycleState.inactive && !_cameraReady) return;
     _wantsCamera = state == AppLifecycleState.resumed;
     unawaited(_reconcile());
   }
@@ -212,10 +215,13 @@ mixin BuddyCameraLifecycle<T extends StatefulWidget>
       while (_wantsCamera != _holdsCamera) {
         if (_wantsCamera) {
           _holdsCamera = true;
+          _cameraReady = false;
           final opening = await lifecycleCamera.open();
+          _cameraReady = opening is CameraReady;
           if (mounted && _wantsCamera) onCameraOpening(opening);
         } else {
           _holdsCamera = false;
+          _cameraReady = false;
           if (mounted && !_stopping) onCameraOpening(null);
           await lifecycleCamera.close();
         }

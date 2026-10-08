@@ -382,6 +382,36 @@ void main() {
     );
   });
 
+  for (final scale in [1.0, 2.0]) {
+    testWidgets('review actions retain 48px touch targets on a narrow phone at ${scale}x',
+        (t) async {
+      await t.binding.setSurfaceSize(const Size(320, 640));
+      addTearDown(() => t.binding.setSurfaceSize(null));
+      final gameId = await _seedCachedBlunder(t);
+      await _pumpLoaded(t, _app(gameId, textScale: scale));
+      await t.tap(find.byTooltip('Next'));
+      await t.pumpAndSettle();
+      expect(t.takeException(), isNull);
+      for (final name in ['reviewExplain', 'reviewSave']) {
+        final button = find.byKey(ValueKey(name));
+        // Check the painted coordinates: a nominal 48px layout inside a
+        // FittedBox still shrinks the user's actual hit target.
+        final bounds = t.getRect(button);
+        expect(bounds.width, greaterThanOrEqualTo(48));
+        expect(bounds.height, greaterThanOrEqualTo(48));
+      }
+      await t.ensureVisible(find.byKey(const ValueKey('reviewExplain')));
+      await t.tap(find.byKey(const ValueKey('reviewExplain')));
+      await t.pumpAndSettle();
+      expect(find.byType(BottomSheet), findsOneWidget);
+      Navigator.of(t.element(find.byType(BottomSheet))).pop();
+      await t.pumpAndSettle();
+      await t.ensureVisible(find.byKey(const ValueKey('reviewSave')));
+      expect(find.byKey(const ValueKey('reviewSave')).hitTestable(), findsOneWidget);
+      expect(t.takeException(), isNull);
+    });
+  }
+
   testWidgets('the board NEVER resizes as the rows below it come and go', (
     t,
   ) async {

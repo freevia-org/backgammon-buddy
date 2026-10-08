@@ -347,7 +347,16 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
 
     return Column(
       children: [
-        _SummaryHeader(analysis: analysis),
+        // Large text on a short phone must leave room for the board and its
+        // controls. The full summary stays available by scrolling this area.
+        ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.sizeOf(context).height * 0.25,
+          ),
+          child: SingleChildScrollView(
+            child: _SummaryHeader(analysis: analysis),
+          ),
+        ),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(8),
@@ -400,6 +409,15 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
               ? null
               : _moveInfo(current),
         ),
+        // Interactive controls must not inherit the verdict's scale-down
+        // transform. Reserve their own full-sized strip at every cursor step.
+        _reserved(
+          (MediaQuery.textScalerOf(context).scale(20) + 24)
+              .clamp(48.0, double.infinity),
+          current == null && cube == null
+              ? null
+              : _decisionActions(current, cube),
+        ),
         _cursorBar(states.length),
         Expanded(child: _moveList()),
       ],
@@ -420,11 +438,9 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   /// [child] is `null`. The whole point is that the two cases measure alike.
   ///
   /// The heights are fixed in LOGICAL pixels, but the contents are text, which
-  /// the user's system text-scale setting grows without asking. Every slot's
-  /// content is therefore wrapped in a scale-down [FittedBox] (see
-  /// [_scaleToFit]), so a large setting shrinks the row instead of squeezing it
-  /// into a box it no longer fits — the board's fixed size is the invariant here,
-  /// and it cannot be traded away for a taller caption.
+  /// the user's system text-scale setting grows without asking. Caption/verdict
+  /// text uses [_scaleToFit]. Action buttons have a separate, unscaled slot
+  /// whose height accommodates large text without changing between moves.
   Widget _reserved(double height, Widget? child) => SizedBox(
     height: height,
     child: child == null ? null : Center(child: child),
@@ -550,32 +566,52 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
                 ),
                 const SizedBox(width: 12),
                 Text('Best: $best', maxLines: 1, softWrap: false),
-                const SizedBox(width: 8),
-                TextButton.icon(
-                  onPressed: () => showMoveExplanation(
-                    context,
-                    title: '${_sideLabel(m.player)}: ${a.played}',
-                    explanation: m.eventIndex > 0
-                        ? MoveExplanation.forAssessment(
-                            _states![m.eventIndex - 1],
-                            a,
-                          )
-                        : null,
-                  ),
-                  icon: const Icon(Icons.school_outlined, size: 16),
-                  label: const Text('Explain'),
-                ),
-                if (a.isDecision && a.ranked.isNotEmpty)
-                  TextButton.icon(
-                    onPressed: () => _savePractice(m.eventIndex),
-                    icon: const Icon(Icons.bookmark_add_outlined, size: 16),
-                    label: const Text('Save for practice'),
-                  ),
               ],
             ),
             alignment: Alignment.centerLeft,
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _decisionActions(MoveAnalysis? move, CubeDecisionAnalysis? cube) {
+    final buttonStyle = TextButton.styleFrom(
+      minimumSize: const Size(48, 48),
+      tapTargetSize: MaterialTapTargetSize.padded,
+    );
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (move != null) ...[
+            TextButton.icon(
+              key: const ValueKey('reviewExplain'),
+              style: buttonStyle,
+              onPressed: () => showMoveExplanation(
+                context,
+                title: '${_sideLabel(move.player)}: ${move.assessment.played}',
+                explanation: move.eventIndex > 0
+                    ? MoveExplanation.forAssessment(
+                        _states![move.eventIndex - 1], move.assessment)
+                    : null,
+              ),
+              icon: const Icon(Icons.school_outlined, size: 16),
+              label: const Text('Explain'),
+            ),
+            if (move.assessment.isDecision && move.assessment.ranked.isNotEmpty)
+              TextButton.icon(
+                key: const ValueKey('reviewSave'),
+                style: buttonStyle,
+                onPressed: () => _savePractice(move.eventIndex),
+                icon: const Icon(Icons.bookmark_add_outlined, size: 16),
+                label: const Text('Save for practice'),
+              ),
+          ],
+          if (cube != null) _cubeExplanationButton(cube, buttonStyle),
+        ],
       ),
     );
   }
@@ -598,41 +634,39 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   }
 
   Widget _cubeInfo(CubeDecisionAnalysis cube) => _scaleToFit(
-    Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          '${_sideLabel(cube.player)}: ${CubeDecisionAnalysis.label(cube.action)} · '
-          '${cube.mark.name} · ${cube.lossLabel} loss',
-        ),
-        TextButton(
-          onPressed: () => showDialog<void>(
-            context: context,
-            builder: (context) => AlertDialog(
-              title: const Text('Cube decision'),
-              content: Text(
-                'Played: ${CubeDecisionAnalysis.label(cube.action)} '
-                '(${(cube.chosenValue * 100).toStringAsFixed(2)}% match win).\n'
-                'Best: ${CubeDecisionAnalysis.label(cube.bestAction)} '
-                '(${(cube.bestValue * 100).toStringAsFixed(2)}% match win).\n\n'
-                '0-ply estimate from the acting player’s perspective. Assumes an '
-                'optimal take/pass response. Uses a 0.7 cube-life approximation '
-                'on the taken-double branch, not a full future-recube search. '
-                'Deeper analysis can change the answer.',
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Close'),
-                ),
-              ],
-            ),
-          ),
-          child: Text('Best: ${CubeDecisionAnalysis.label(cube.bestAction)}'),
-        ),
-      ],
+    Text(
+      '${_sideLabel(cube.player)}: ${CubeDecisionAnalysis.label(cube.action)} · '
+      '${cube.mark.name} · ${cube.lossLabel} loss',
     ),
   );
+
+  Widget _cubeExplanationButton(CubeDecisionAnalysis cube, ButtonStyle style) =>
+      TextButton(
+        style: style,
+        onPressed: () => showDialog<void>(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Cube decision'),
+            content: Text(
+              'Played: ${CubeDecisionAnalysis.label(cube.action)} '
+              '(${(cube.chosenValue * 100).toStringAsFixed(2)}% match win).\n'
+              'Best: ${CubeDecisionAnalysis.label(cube.bestAction)} '
+              '(${(cube.bestValue * 100).toStringAsFixed(2)}% match win).\n\n'
+              '0-ply estimate from the acting player’s perspective. Assumes an '
+              'optimal take/pass response. Uses a 0.7 cube-life approximation '
+              'on the taken-double branch, not a full future-recube search. '
+              'Deeper analysis can change the answer.',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Close'),
+              ),
+            ],
+          ),
+        ),
+        child: Text('Best: ${CubeDecisionAnalysis.label(cube.bestAction)}'),
+      );
 
   /// The scrollable full move history: every recorded line, with its mark dot +
   /// word + equity loss for assessed moves. The current step is highlighted and
@@ -689,14 +723,16 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
               ),
               if (analysis != null) ...[
                 const SizedBox(width: 8),
-                _markChip(analysis.assessment),
+                Flexible(child: _markChip(analysis.assessment)),
               ],
               if (cube != null)
-                Text(
-                  '${cube.mark.name} −${cube.lossLabel}',
-                  style: TextStyle(
-                    color: _markStyle(cube.mark).$1,
-                    fontSize: 12,
+                Flexible(
+                  child: Text(
+                    '${cube.mark.name} −${cube.lossLabel}',
+                    style: TextStyle(
+                      color: _markStyle(cube.mark).$1,
+                      fontSize: 12,
+                    ),
                   ),
                 ),
             ],
@@ -719,13 +755,15 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
       children: [
         Icon(Icons.circle, size: 10, color: color),
         const SizedBox(width: 4),
-        Text(
-          '$label$lossText',
-          style: TextStyle(
-            color: color,
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            fontFeatures: const [FontFeature.tabularFigures()],
+        Flexible(
+          child: Text(
+            '$label$lossText',
+            style: TextStyle(
+              color: color,
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              fontFeatures: const [FontFeature.tabularFigures()],
+            ),
           ),
         ),
       ],

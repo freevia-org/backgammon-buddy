@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,12 +12,10 @@ import '../feedback/feedback_link.dart';
 /// Firebase config, and a tester can paste the result into any message.
 /// ("Copy" rather than a share sheet deliberately: `share_plus` is not a
 /// dependency and a plugin is not worth adding for one button.) **Report an
-/// issue** opens a GitHub issue with the log already pasted in, for the user
-/// who is willing to file one.
+/// issue** previews the exact report locally before opening a GitHub draft.
 ///
-/// Crashlytics reports the same errors automatically on mobile, but this screen
-/// does not depend on it: on desktop, and in any build without Firebase config,
-/// this is still the whole delivery mechanism.
+/// Configured, opted-in Crashlytics can report errors on mobile, but this
+/// screen also works without Firebase or optional telemetry.
 class DiagnosticsScreen extends StatefulWidget {
   const DiagnosticsScreen({super.key, this.log, this.openUrl});
 
@@ -38,6 +34,7 @@ class DiagnosticsScreen extends StatefulWidget {
 
 class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
   CrashLog get _log => widget.log ?? CrashLog.instance;
+  bool _reporting = false;
 
   Future<void> _copy() async {
     final messenger = ScaffoldMessenger.of(context);
@@ -48,21 +45,61 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
     );
   }
 
-  /// Opens a pre-filled GitHub issue carrying the log.
+  /// Previews the exact payload before it is sent in a GitHub URL.
   ///
   /// The excerpt is the same human-readable report Copy produces, clamped by
   /// [buildFeedbackIssueUri] to something a URL can actually carry — the
   /// clipboard route stays the way to send a long log in full.
-  void _reportIssue() {
+  Future<void> _reportIssue() async {
+    if (_reporting) return;
     final uri = buildFeedbackIssueUri(
       appVersion: appVersion,
       platform: currentPlatformName(),
       diagnosticsExcerpt: _log.isEmpty ? null : _log.asText(),
     );
-    final open = widget.openUrl ?? openExternally;
-    // Silent on failure: there is no browser to fall back to, and an error
-    // under a "report an issue" button is a poor joke.
-    unawaited(open(uri).catchError((Object _) => false));
+    setState(() => _reporting = true);
+    try {
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          scrollable: true,
+          title: const Text('Review diagnostic report'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Opening the draft sends the details below to GitHub, '
+                'including the app version, platform and any error details. '
+                'No public issue is posted until you submit it there. '
+                'If these details contain private information, cancel and '
+                'use Copy to prepare a report yourself.',
+              ),
+              const SizedBox(height: 16),
+              SelectableText(
+                '${uri.queryParameters['title']}\n\n'
+                '${uri.queryParameters['body']}',
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Open GitHub'),
+            ),
+          ],
+        ),
+      );
+      if (confirmed != true || !mounted) return;
+      final open = widget.openUrl ?? openExternally;
+      await open(uri).catchError((Object _) => false);
+    } finally {
+      if (mounted) setState(() => _reporting = false);
+    }
   }
 
   Future<void> _clear() async {
@@ -83,7 +120,7 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
           // and the app is still misbehaving" is a report worth sending, and
           // the version and platform go with it either way.
           IconButton(
-            onPressed: _reportIssue,
+            onPressed: _reporting ? null : _reportIssue,
             icon: const Icon(Icons.outgoing_mail),
             tooltip: 'Report an issue on GitHub',
           ),
@@ -109,8 +146,8 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
                     'logged here — come back and copy the details into a bug '
                     'report.',
                     textAlign: TextAlign.center,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant),
+                    style: theme.textTheme.bodyMedium
+                        ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
                   ),
                 ),
               )

@@ -103,7 +103,10 @@ void main() {
       ));
 
       await t.tap(find.byTooltip('Report an issue on GitHub'));
-      await t.pump();
+      await t.pumpAndSettle();
+      expect(opened, isEmpty);
+      await t.tap(find.text('Open GitHub'));
+      await t.pumpAndSettle();
 
       final body = opened.single.queryParameters['body']!;
       expect(body, contains('### Diagnostics'));
@@ -126,11 +129,14 @@ void main() {
       ));
 
       await t.tap(find.byTooltip('Report an issue on GitHub'));
-      await t.pump();
+      await t.pumpAndSettle();
+      expect(opened, isEmpty);
+      await t.tap(find.text('Open GitHub'));
+      await t.pumpAndSettle();
 
       expect(opened, hasLength(1));
-      expect(
-          opened.single.queryParameters['body'], isNot(contains('Diagnostics')));
+      expect(opened.single.queryParameters['body'],
+          isNot(contains('Diagnostics')));
     });
   });
 }
