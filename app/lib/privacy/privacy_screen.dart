@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../feedback/feedback_link.dart';
+import 'online_data_deletion.dart';
 
 const privacyPolicyUrl = String.fromEnvironment(
   'AIGAMMON_PRIVACY_POLICY_URL',
@@ -57,9 +58,13 @@ class PrivacyScreen extends ConsumerWidget {
                   'settings, moves and dice-handshake records to Google '
                   'Firebase so both players can play the same match. Deleting '
                   'History on this device does not delete online records. '
+                  'Hosted matches expire 30 days after creation; scheduled '
+                  'cleanup removes their cloud logs. Match records are stored '
+                  'in the EU; Firebase Authentication is a global service. '
                   'Nearby play exchanges match information with the other '
                   'device on your local network.',
             ),
+            const _OnlineDeletionSection(),
             const _PrivacySection(
               title: 'Optional usage and crash diagnostics',
               text:
@@ -119,7 +124,9 @@ class PrivacyScreen extends ConsumerWidget {
               trailing: const Icon(Icons.open_in_new),
               onTap: () async {
                 try {
-                  if (await ref.read(urlOpenerProvider)(Uri.parse(supportUrl))) {
+                  if (await ref.read(urlOpenerProvider)(
+                    Uri.parse(supportUrl),
+                  )) {
                     return;
                   }
                 } catch (_) {}
@@ -139,6 +146,110 @@ class PrivacyScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+class _OnlineDeletionSection extends ConsumerStatefulWidget {
+  const _OnlineDeletionSection();
+
+  @override
+  ConsumerState<_OnlineDeletionSection> createState() =>
+      _OnlineDeletionSectionState();
+}
+
+class _OnlineDeletionSectionState
+    extends ConsumerState<_OnlineDeletionSection> {
+  bool _busy = false;
+  String? _result;
+
+  Future<void> _request() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete online identity and data?'),
+        content: const Text(
+          'This immediately ends access to this identity’s cloud matches for '
+          'both players and requests deletion of the identity and shared online '
+          'match logs within 30 days. Local History and practice remain on this '
+          'device. Previously sent optional diagnostics are separate; contact '
+          'privacy@freevia.org about those. This request cannot be undone.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Request deletion'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    setState(() {
+      _busy = true;
+      _result = null;
+    });
+    try {
+      final result = await ref.read(requestOnlineDeletionProvider)();
+      if (!mounted) return;
+      setState(() {
+        _result = switch (result) {
+          OnlineDeletionResult.requested =>
+            'Deletion requested. This online identity is signed out. Its cloud '
+                'data will be deleted within 30 days. Starting online play again '
+                'creates a new identity. Contact privacy@freevia.org for help.',
+          OnlineDeletionResult.requestedLocalSignOutFailed =>
+            'Deletion requested. Its cloud data will be deleted within 30 days. '
+                'The device could not clear the saved sign-in, but the online identity '
+                'is blocked from further match access. Contact privacy@freevia.org for help.',
+          OnlineDeletionResult.noIdentity =>
+            'No usable online identity is saved on this device. No new account '
+                'was created. If you previously used online play, contact '
+                'privacy@freevia.org for help; hosted matches expire after 30 days.',
+        };
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _result =
+            'Could not confirm the deletion request. Check your connection and retry, or contact privacy@freevia.org.';
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _busy = false;
+        });
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.only(bottom: 24),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Delete online data',
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        const SizedBox(height: 8),
+        const Text(
+          'Use this device’s saved sign-in to verify ownership. A player identifier or invite code alone does not prove ownership. Local-only players do not need an online account.',
+        ),
+        const SizedBox(height: 8),
+        OutlinedButton.icon(
+          onPressed: _busy ? null : _request,
+          icon: const Icon(Icons.delete_outline),
+          label: Text(
+            _busy ? 'Sending request…' : 'Delete online identity and data',
+          ),
+        ),
+        if (_result != null) ...[const SizedBox(height: 8), Text(_result!)],
+      ],
+    ),
+  );
 }
 
 class _PrivacySection extends StatelessWidget {

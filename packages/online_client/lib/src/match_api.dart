@@ -27,7 +27,9 @@ const int kIndexDigits = 8;
 ///     that is what makes the append log contiguous without a server;
 ///   * zero padding makes lexicographic id order equal numeric order.
 String logDocId(int index) {
-  if (index < 0) throw ArgumentError.value(index, 'index', 'must not be negative');
+  if (index < 0) {
+    throw ArgumentError.value(index, 'index', 'must not be negative');
+  }
   final text = index.toString();
   if (text.length > kIndexDigits) {
     throw ArgumentError.value(index, 'index', 'exceeds $kIndexDigits digits');
@@ -188,8 +190,7 @@ class RemoteEvent {
     final seq = f['seq'];
     final gameNo = f['gameNo'];
     if (seq is! int || gameNo is! int) {
-      throw MalformedDocumentException(
-          'malformed-event', 'bad seq/gameNo: $f');
+      throw MalformedDocumentException('malformed-event', 'bad seq/gameNo: $f');
     }
     final GameEvent event;
     try {
@@ -344,6 +345,24 @@ class MatchApi {
     docs.close();
   }
 
+  /// Request erasure of this authenticated identity and its hosted match logs.
+  /// Security rules bind the path to the ID token, require a server timestamp,
+  /// and immediately freeze related cloud matches. Safe to retry after a lost
+  /// response: an existing request already expresses the same intent.
+  Future<void> requestDataDeletion() async {
+    try {
+      await docs.create(
+        'privacyRequests/$uid',
+        const {'status': 'pending'},
+        serverTimestamps: ['requestedAt'],
+      );
+    } on AlreadyExistsException {
+      // The owner can read their existing request; do not treat a spoofed path
+      // or unrelated permission failure as a successful request.
+      if (await docs.get('privacyRequests/$uid') == null) rethrow;
+    }
+  }
+
   // --- matches ---------------------------------------------------------------
 
   /// Open a new match and return its document (the invite code is [MatchDoc.code]).
@@ -372,7 +391,8 @@ class MatchApi {
         'status': 'waiting',
       };
       try {
-        await docs.create('matches/$code', fields, serverTimestamps: ['createdAt']);
+        await docs
+            .create('matches/$code', fields, serverTimestamps: ['createdAt']);
         return MatchDoc(
           code: code,
           hostUid: uid,

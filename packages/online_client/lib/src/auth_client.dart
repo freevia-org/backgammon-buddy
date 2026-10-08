@@ -21,7 +21,6 @@ class AuthSession {
     required this.refreshToken,
     required this.expiresAt,
   });
-
 }
 
 /// Firebase anonymous auth over the Identity Toolkit REST API.
@@ -63,6 +62,11 @@ class AuthClient {
   /// The current session, or null before [signInAnonymously].
   AuthSession? get session => _session;
 
+  /// Restore an existing identity without silently creating another account.
+  /// Privacy actions must never create an account just to ask to delete it.
+  Future<AuthSession?> restoreExistingSession() async =>
+      _session ?? await _restore(preserveOnError: true);
+
   /// Sign in as the anonymous user, REUSING the stored one when possible.
   ///
   /// Order matters: a stored refresh token is exchanged first, so a relaunch
@@ -78,11 +82,12 @@ class AuthClient {
 
   /// Exchange a stored refresh token for a live session, or null when there is
   /// nothing usable to restore.
-  Future<AuthSession?> _restore() async {
+  Future<AuthSession?> _restore({bool preserveOnError = false}) async {
     StoredSession? stored;
     try {
       stored = await store.read();
     } catch (_) {
+      if (preserveOnError) rethrow;
       // An unreadable store costs a new anonymous user, never a failed launch.
       return null;
     }
@@ -98,6 +103,9 @@ class AuthClient {
       ));
       return _session;
     } on OnlineException {
+      // Privacy requests must retain the retry credential on any auth/network
+      // failure and must not confuse a failed refresh with "no account".
+      if (preserveOnError) rethrow;
       // The refresh token is dead (revoked, or the project was reset). Drop it
       // so the next launch does not pay for the same rejection again.
       await _clearStore();
@@ -174,8 +182,8 @@ class AuthClient {
     final s = _session;
     if (s == null) return;
     try {
-      await store.write(
-          StoredSession(uid: s.uid, refreshToken: s.refreshToken));
+      await store
+          .write(StoredSession(uid: s.uid, refreshToken: s.refreshToken));
     } catch (_) {
       // Best effort by design; see above.
     }
@@ -198,7 +206,8 @@ class AuthClient {
     }
     if (res.statusCode < 200 || res.statusCode >= 300) {
       final err = body['error'];
-      final message = err is Map ? (err['message']?.toString() ?? res.body) : res.body;
+      final message =
+          err is Map ? (err['message']?.toString() ?? res.body) : res.body;
       throw OnlineException('http-${res.statusCode}', message);
     }
     return body;

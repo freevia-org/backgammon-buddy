@@ -6,8 +6,48 @@ import 'package:online_client/online_client.dart';
 import 'package:test/test.dart';
 
 void main() {
+  group('restoreExistingSession', () {
+    test(
+        'privacy restore surfaces unreadable storage instead of claiming no account',
+        () async {
+      final auth = AuthClient(OnlineConfig.emulator(),
+          store: _BrokenStore(),
+          inner: MockClient((_) async => throw StateError('must not sign up')));
+      addTearDown(auth.close);
+      await expectLater(auth.restoreExistingSession(), throwsStateError);
+    });
+    test('does not create an account when no identity is stored', () async {
+      var requests = 0;
+      final auth =
+          AuthClient(OnlineConfig.emulator(), inner: MockClient((_) async {
+        requests++;
+        return http.Response('{}', 500);
+      }));
+      addTearDown(auth.close);
+      expect(await auth.restoreExistingSession(), isNull);
+      expect(requests, 0);
+    });
+
+    test('failed refresh preserves retry credential and never signs up',
+        () async {
+      final store = InMemoryTokenStore();
+      await store
+          .write(const StoredSession(uid: 'original', refreshToken: 'retry'));
+      final auth = AuthClient(OnlineConfig.emulator(), store: store,
+          inner: MockClient((request) async {
+        expect(request.url.path, endsWith('/token'));
+        return http.Response('{"error":{"message":"TEMPORARY_FAILURE"}}', 503);
+      }));
+      addTearDown(auth.close);
+      await expectLater(
+          auth.restoreExistingSession(), throwsA(isA<OnlineException>()));
+      expect((await store.read())?.uid, 'original');
+    });
+  });
+
   group('signInAnonymously', () {
-    test('hits the emulator identitytoolkit URL with returnSecureToken', () async {
+    test('hits the emulator identitytoolkit URL with returnSecureToken',
+        () async {
       late http.Request captured;
       final client = MockClient((req) async {
         captured = req;
@@ -22,8 +62,8 @@ void main() {
         );
       });
       var clock = DateTime.utc(2026, 1, 1, 0, 0, 0);
-      final auth = AuthClient(OnlineConfig.emulator(),
-          inner: client, now: () => clock);
+      final auth =
+          AuthClient(OnlineConfig.emulator(), inner: client, now: () => clock);
 
       final session = await auth.signInAnonymously();
 
@@ -230,8 +270,8 @@ void main() {
         return http.Response(signUpBody('uid-new'), 200);
       });
 
-      final auth = AuthClient(OnlineConfig.emulator(),
-          inner: client, store: store);
+      final auth =
+          AuthClient(OnlineConfig.emulator(), inner: client, store: store);
       final session = await auth.signInAnonymously();
 
       // Tried the stored token first, then fell back rather than throwing.
@@ -243,8 +283,8 @@ void main() {
 
     test('an unreadable store costs a new user, never a failed launch',
         () async {
-      final client = MockClient((req) async =>
-          http.Response(signUpBody('uid-fresh'), 200));
+      final client = MockClient(
+          (req) async => http.Response(signUpBody('uid-fresh'), 200));
       final auth = AuthClient(OnlineConfig.emulator(),
           inner: client, store: _BrokenStore());
 
@@ -254,8 +294,8 @@ void main() {
 
     test('with no store the session still works, it just does not persist',
         () async {
-      final client = MockClient((req) async =>
-          http.Response(signUpBody('uid-x'), 200));
+      final client =
+          MockClient((req) async => http.Response(signUpBody('uid-x'), 200));
       final auth = AuthClient(OnlineConfig.emulator(), inner: client);
       expect((await auth.signInAnonymously()).uid, 'uid-x');
     });

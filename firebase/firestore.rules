@@ -48,9 +48,26 @@ service cloud.firestore {
       return request.auth.uid;
     }
 
+    // A verified deletion request immediately closes the old identity's
+    // write channel, including during the administrator's recursive purge.
+    function canUseOnline() {
+      return signedIn()
+        && !exists(/databases/$(database)/documents/privacyRequests/$(uid()));
+    }
+
+    function isAvailable(m) {
+      return !('deletingAt' in m)
+        && m.createdAt is timestamp
+        && request.time < m.createdAt + duration.value(30, 'd')
+        && !exists(/databases/$(database)/documents/privacyRequests/$(m.hostUid))
+        && (m.guestUid == null
+          || !exists(/databases/$(database)/documents/privacyRequests/$(m.guestUid)));
+    }
+
     // A participant of a match, given that match's data map.
     function isParticipant(m) {
-      return signedIn() && (uid() == m.hostUid || uid() == m.guestUid);
+      return canUseOnline() && isAvailable(m)
+        && (uid() == m.hostUid || uid() == m.guestUid);
     }
 
     // A participant of a match that is actually BEING PLAYED.
@@ -126,15 +143,15 @@ service cloud.firestore {
       // a code is in use, and a waiting match is world-readable by design
       // anyway, so the only new signal is "this code belongs to a match
       // already in progress" — worth nothing against a 32^8 code space.
-      allow get: if signedIn()
+      allow get: if canUseOnline()
         && (resource == null
             || isParticipant(resource.data)
-            || resource.data.status == 'waiting');
+            || (isAvailable(resource.data) && resource.data.status == 'waiting'));
       allow list: if false;
 
       // CREATE. Exact shape, host is the caller, seat open, waiting state,
       // odd match length 1..25, server-stamped createdAt.
-      allow create: if signedIn()
+      allow create: if canUseOnline()
         && request.resource.data.keys().hasOnly(
              ['hostUid', 'guestUid', 'length', 'cubeless', 'status', 'createdAt'])
         && request.resource.data.keys().hasAll(
@@ -159,7 +176,7 @@ service cloud.firestore {
       // affectedKeys() pins the diff to those two fields: length, cubeless,
       // hostUid and createdAt are immutable.
       function isJoinTransition() {
-        return signedIn()
+        return canUseOnline() && isAvailable(resource.data)
           && resource.data.status == 'waiting'
           && resource.data.guestUid == null
           && request.resource.data.diff(resource.data)
@@ -261,6 +278,19 @@ service cloud.firestore {
                .affectedKeys().hasOnly(['reveal'])
           && isHex64(request.resource.data.reveal);
       }
+    }
+
+    // Verified requests contain no email address or credentials. Only the
+    // authenticated owner can create/read their request; only the admin job
+    // may complete it. A UID or invite code supplied to support is not proof.
+    match /privacyRequests/{userId} {
+      allow get: if signedIn() && userId == uid();
+      allow create: if signedIn() && userId == uid()
+        && request.resource.data.keys().hasOnly(['status', 'requestedAt'])
+        && request.resource.data.keys().hasAll(['status', 'requestedAt'])
+        && request.resource.data.status == 'pending'
+        && request.resource.data.requestedAt == request.time;
+      allow list, update, delete: if false;
     }
 
     // ---------- everything else ----------

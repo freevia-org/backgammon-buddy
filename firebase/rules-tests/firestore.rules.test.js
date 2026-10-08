@@ -1061,6 +1061,67 @@ describe('rolls: immutability, read, delete', () => {
 // catch-all
 // =====================================================================
 
+describe('privacy requests and retention', () => {
+  const requestDoc = (db, uid = HOST) => doc(db, 'privacyRequests', uid);
+  const pending = () => ({ status: 'pending', requestedAt: serverTimestamp() });
+
+  it('accepts only the authenticated owner with server timestamp and exact shape', async () => {
+    await assertFails(setDoc(requestDoc(outsiderDb), pending()));
+    await assertFails(setDoc(requestDoc(anonDb), pending()));
+    await assertFails(setDoc(requestDoc(hostDb), { status: 'pending', requestedAt: new Date(0) }));
+    await assertFails(setDoc(requestDoc(hostDb), { ...pending(), uid: GUEST }));
+    await assertFails(setDoc(requestDoc(hostDb), { ...pending(), status: 'complete' }));
+    await assertSucceeds(setDoc(requestDoc(hostDb), pending()));
+    await assertSucceeds(getDoc(requestDoc(hostDb)));
+    await assertFails(getDoc(requestDoc(guestDb)));
+    await assertFails(getDocs(collection(hostDb, 'privacyRequests')));
+    await assertFails(updateDoc(requestDoc(hostDb), { status: 'complete' }));
+    await assertFails(deleteDoc(requestDoc(hostDb)));
+  });
+
+  it('freezes both participants and prevents new matches after request creation', async () => {
+    await seedActiveMatch('ABCDEFGH');
+    await assertSucceeds(setDoc(requestDoc(hostDb), pending()));
+    await assertFails(getDoc(matchDoc(hostDb, 'ABCDEFGH')));
+    await assertFails(getDoc(matchDoc(guestDb, 'ABCDEFGH')));
+    await assertFails(setDoc(matchDoc(hostDb, 'NEWGAMES'), newMatchPayload()));
+    await assertFails(updateDoc(matchDoc(guestDb, 'ABCDEFGH'), { status: 'complete' }));
+    await assertFails(setDoc(eventDoc(guestDb, 'ABCDEFGH', '00000000'), {
+      seq: 0, gameNo: 1, author: GUEST, event: '{}',
+    }));
+    await assertFails(setDoc(rollDoc(guestDb, 'ABCDEFGH', '00000000'), {
+      n: 0, roller: GUEST, commit: HEX,
+    }));
+  });
+
+  it('blocks guest requests from other invites and closes host pending invites', async () => {
+    await seedMatch('ABCDEFGH');
+    await assertSucceeds(setDoc(requestDoc(guestDb, GUEST), pending()));
+    await assertFails(updateDoc(matchDoc(guestDb, 'ABCDEFGH'), { guestUid: GUEST, status: 'active' }));
+    await assertSucceeds(setDoc(requestDoc(hostDb), pending()));
+    await assertFails(getDoc(matchDoc(outsiderDb, 'ABCDEFGH')));
+  });
+
+  it('denies expired match and nested log access even before scheduled purge', async () => {
+    await seedActiveMatch('ABCDEFGH', { createdAt: new Date(Date.now() - 31 * 86400000) });
+    await assertFails(getDoc(matchDoc(hostDb, 'ABCDEFGH')));
+    await assertFails(getDocs(collection(guestDb, 'matches', 'ABCDEFGH', 'events')));
+    await assertFails(setDoc(rollDoc(hostDb, 'ABCDEFGH', '00000000'), { n: 0, roller: HOST, commit: HEX }));
+    await assertFails(updateDoc(matchDoc(hostDb, 'ABCDEFGH'), { status: 'complete' }));
+    await seedMatch('WAITINGA', { createdAt: new Date(Date.now() - 31 * 86400000) });
+    await assertFails(getDoc(matchDoc(guestDb, 'WAITINGA')));
+    await assertFails(updateDoc(matchDoc(guestDb, 'WAITINGA'), { guestUid: GUEST, status: 'active' }));
+  });
+
+  it('keeps recent matches usable and admin-frozen matches closed', async () => {
+    await seedActiveMatch('ABCDEFGH', { createdAt: new Date(Date.now() - 29 * 86400000) });
+    await assertSucceeds(getDoc(matchDoc(hostDb, 'ABCDEFGH')));
+    await seedActiveMatch('FROZENAA', { deletingAt: new Date() });
+    await assertFails(getDoc(matchDoc(hostDb, 'FROZENAA')));
+    await assertFails(setDoc(eventDoc(guestDb, 'FROZENAA', '00000000'), { seq: 0, gameNo: 1, author: GUEST, event: '{}' }));
+  });
+});
+
 describe('everything else', () => {
   it('denies reads and writes outside the match model', async () => {
     await assertFails(getDoc(doc(hostDb, 'users', HOST)));

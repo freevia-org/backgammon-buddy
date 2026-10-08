@@ -5,6 +5,8 @@ import 'package:aigammon_app/data/database.dart';
 import 'package:aigammon_app/data/settings_repository.dart';
 import 'package:aigammon_app/privacy/privacy_screen.dart';
 import 'package:aigammon_app/privacy/privacy_settings_section.dart';
+import 'package:aigammon_app/privacy/online_data_deletion.dart';
+import 'package:aigammon_app/online/online_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,6 +14,142 @@ import 'package:flutter_test/flutter_test.dart';
 import '../data/test_database.dart';
 
 void main() {
+  test(
+    'local-only deletion does not require cloud config or create identity',
+    () async {
+      final db = newTestDatabase();
+      final container = ProviderContainer(
+        overrides: [
+          databaseProvider.overrideWithValue(db),
+          onlineConfigProvider.overrideWithValue(null),
+        ],
+      );
+      addTearDown(container.dispose);
+      addTearDown(db.close);
+      expect(
+        await container.read(requestOnlineDeletionProvider)(),
+        OnlineDeletionResult.noIdentity,
+      );
+      expect(await container.read(onlineSessionStoreProvider).read(), isNull);
+    },
+  );
+
+  testWidgets(
+    'acknowledged deletion with failed local clear is still reported as requested',
+    (tester) async {
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            requestOnlineDeletionProvider.overrideWithValue(
+              () async => OnlineDeletionResult.requestedLocalSignOutFailed,
+            ),
+          ],
+          child: const MaterialApp(home: PrivacyScreen()),
+        ),
+      );
+      final button = find.widgetWithText(
+        OutlinedButton,
+        'Delete online identity and data',
+      );
+      await tester.scrollUntilVisible(button, 200);
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(button);
+      await tester.pumpAndSettle();
+      await tester.tap(button);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Request deletion'));
+      await tester.pumpAndSettle();
+      expect(
+        find.textContaining(
+          'Deletion requested. Its cloud data will be deleted within 30 days.',
+        ),
+        findsOneWidget,
+      );
+      expect(
+        find.textContaining('The device could not clear the saved sign-in'),
+        findsOneWidget,
+      );
+      expect(find.textContaining('Could not confirm'), findsNothing);
+    },
+  );
+
+  testWidgets(
+    'online deletion requires confirmation and reports only acknowledged request',
+    (tester) async {
+      var requests = 0;
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            requestOnlineDeletionProvider.overrideWithValue(() async {
+              requests++;
+              return OnlineDeletionResult.requested;
+            }),
+          ],
+          child: const MaterialApp(home: PrivacyScreen()),
+        ),
+      );
+      final button = find.widgetWithText(
+        OutlinedButton,
+        'Delete online identity and data',
+      );
+      await tester.scrollUntilVisible(button, 200);
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(button);
+      await tester.pumpAndSettle();
+      await tester.tap(button);
+      await tester.pumpAndSettle();
+      expect(requests, 0);
+      await tester.tap(find.text('Cancel'));
+      await tester.pumpAndSettle();
+      expect(requests, 0);
+      await tester.tap(button);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Request deletion'));
+      await tester.pumpAndSettle();
+      expect(requests, 1);
+      expect(
+        find.textContaining(
+          'Deletion requested. This online identity is signed out.',
+        ),
+        findsOneWidget,
+      );
+    },
+  );
+
+  testWidgets(
+    'online deletion failure keeps retry available without claiming success',
+    (tester) async {
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            requestOnlineDeletionProvider.overrideWithValue(() async {
+              throw StateError('offline');
+            }),
+          ],
+          child: const MaterialApp(home: PrivacyScreen()),
+        ),
+      );
+      final button = find.widgetWithText(
+        OutlinedButton,
+        'Delete online identity and data',
+      );
+      await tester.scrollUntilVisible(button, 200);
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(button);
+      await tester.pumpAndSettle();
+      await tester.tap(button);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Request deletion'));
+      await tester.pumpAndSettle();
+      expect(
+        find.textContaining('Could not confirm the deletion request.'),
+        findsOneWidget,
+      );
+      expect(tester.widget<OutlinedButton>(button).onPressed, isNotNull);
+      expect(find.textContaining('Deletion requested.'), findsNothing);
+    },
+  );
+
   test('only public HTTPS policy URLs are exposed', () {
     expect(publicPrivacyPolicyUri(''), isNull);
     expect(publicPrivacyPolicyUri('file:///private'), isNull);

@@ -10,6 +10,47 @@ import 'package:test/test.dart';
 import 'mock_api.dart';
 
 void main() {
+  group('requestDataDeletion', () {
+    test('binds request to current uid with server timestamp', () async {
+      late http.Request captured;
+      final api = await apiFor((req) async {
+        captured = req;
+        return ok({});
+      });
+      addTearDown(api.close);
+      await api.requestDataDeletion();
+      final write = (jsonDecode(captured.body) as Map)['writes'][0] as Map;
+      expect(write['update']['name'], endsWith('/privacyRequests/uid-local'));
+      expect(write['update']['fields'], {
+        'status': {'stringValue': 'pending'}
+      });
+      expect(write['updateTransforms'], [
+        {'fieldPath': 'requestedAt', 'setToServerValue': 'REQUEST_TIME'}
+      ]);
+      expect(write['currentDocument'], {'exists': false});
+    });
+
+    test('retry verifies an existing own request and does not swallow denial',
+        () async {
+      final api = await apiFor((req) async {
+        if (req.method == 'POST') return err(409, 'ALREADY_EXISTS');
+        expect(req.url.path, endsWith('/privacyRequests/uid-local'));
+        return ok({
+          'name': 'privacyRequests/uid-local',
+          'fields': {
+            'status': {'stringValue': 'pending'}
+          }
+        });
+      });
+      addTearDown(api.close);
+      await api.requestDataDeletion();
+      final denied = await apiFor((_) async => err(403, 'PERMISSION_DENIED'));
+      addTearDown(denied.close);
+      await expectLater(denied.requestDataDeletion(),
+          throwsA(isA<PermissionDeniedException>()));
+    });
+  });
+
   group('logDocId', () {
     test('zero-pads to eight digits', () {
       expect(logDocId(0), '00000000');
@@ -35,8 +76,10 @@ void main() {
         final code = generateInviteCode();
         expect(code, hasLength(kCodeLength));
         expect(code, matches(RegExp('^[$kCodeAlphabet]{$kCodeLength}\$')));
-        expect(code, isNot(anyOf(contains('I'), contains('O'), contains('0'),
-            contains('1'))));
+        expect(
+            code,
+            isNot(anyOf(
+                contains('I'), contains('O'), contains('0'), contains('1'))));
       }
     });
   });
@@ -51,8 +94,8 @@ void main() {
 
       final match = await api.createMatch(length: 5, cubeless: true);
 
-      final write =
-          (jsonDecode(captured.body) as Map)['writes'][0] as Map<String, Object?>;
+      final write = (jsonDecode(captured.body) as Map)['writes'][0]
+          as Map<String, Object?>;
       expect(write['currentDocument'], {'exists': false});
       expect(write['updateTransforms'], [
         {'fieldPath': 'createdAt', 'setToServerValue': 'REQUEST_TIME'},
@@ -76,8 +119,8 @@ void main() {
       final codes = <String>[];
       var call = 0;
       final api = await apiFor((req) async {
-        final name = (jsonDecode(req.body) as Map)['writes'][0]['update']['name']
-            as String;
+        final name = (jsonDecode(req.body) as Map)['writes'][0]['update']
+            ['name'] as String;
         codes.add(name.split('/').last);
         return call++ == 0 ? err(409, 'ALREADY_EXISTS') : ok({});
       });
@@ -206,11 +249,10 @@ void main() {
         Move([const CheckerMove(23, 18), const CheckerMove(18, 12)]),
       );
 
-      await api.submitEvent(
-          code: 'ABCD1234', seq: 42, gameNo: 2, event: event);
+      await api.submitEvent(code: 'ABCD1234', seq: 42, gameNo: 2, event: event);
 
-      final write =
-          (jsonDecode(captured.body) as Map)['writes'][0] as Map<String, Object?>;
+      final write = (jsonDecode(captured.body) as Map)['writes'][0]
+          as Map<String, Object?>;
       final update = write['update'] as Map<String, Object?>;
       expect(update['name'], endsWith('/matches/ABCD1234/events/00000042'));
       final fields = update['fields'] as Map<String, Object?>;
@@ -261,8 +303,7 @@ void main() {
       final events = await api.fetchEventsSince('ABCD1234', 2);
 
       expect(captured.url.toString(), endsWith('/matches/ABCD1234:runQuery'));
-      final sq =
-          (jsonDecode(captured.body) as Map)['structuredQuery'] as Map;
+      final sq = (jsonDecode(captured.body) as Map)['structuredQuery'] as Map;
       expect((sq['where'] as Map)['fieldFilter'], {
         'field': {'fieldPath': 'seq'},
         'op': 'GREATER_THAN',
@@ -278,20 +319,25 @@ void main() {
     test('follows pages until a short page arrives', () async {
       final cursors = <int>[];
       final api = await apiFor((req) async {
-        final sq =
-            (jsonDecode(req.body) as Map)['structuredQuery'] as Map;
+        final sq = (jsonDecode(req.body) as Map)['structuredQuery'] as Map;
         final cursor = int.parse(((sq['where'] as Map)['fieldFilter']
             as Map)['value']['integerValue'] as String);
         cursors.add(cursor);
         // pageSize 2: full pages at 0 and 2, then a short page.
         if (cursor == -1) {
           return http.Response(
-              eventRows([(0, DoubleEvent(Player.white)), (1, TakeEvent(Player.black))]),
+              eventRows([
+                (0, DoubleEvent(Player.white)),
+                (1, TakeEvent(Player.black))
+              ]),
               200);
         }
         if (cursor == 1) {
           return http.Response(
-              eventRows([(2, DoubleEvent(Player.white)), (3, TakeEvent(Player.black))]),
+              eventRows([
+                (2, DoubleEvent(Player.white)),
+                (3, TakeEvent(Player.black))
+              ]),
               200);
         }
         return http.Response(eventRows([(4, DoubleEvent(Player.white))]), 200);
@@ -300,7 +346,8 @@ void main() {
       final events = await api.fetchEventsSince('C', -1, pageSize: 2);
 
       expect(events.map((e) => e.seq), [0, 1, 2, 3, 4]);
-      expect(cursors, [-1, 1, 3], reason: 'each page resumes after its last seq');
+      expect(cursors, [-1, 1, 3],
+          reason: 'each page resumes after its last seq');
     });
 
     test('an empty first page ends the walk', () async {
@@ -356,8 +403,8 @@ void main() {
         return ok({'fields': {}});
       });
       await api.submitReveal(code: 'C', n: 1, reveal: hexC);
-      expect(captured.url.queryParametersAll['updateMask.fieldPaths'],
-          ['reveal']);
+      expect(
+          captured.url.queryParametersAll['updateMask.fieldPaths'], ['reveal']);
       expect(jsonDecode(captured.body), {
         'fields': {
           'reveal': {'stringValue': hexC},

@@ -21,20 +21,25 @@ void main() {
       'same database)', () async {
     // This is the whole point: the uid is what firestore.rules gates every
     // match document on, so losing it on relaunch strands both seats.
-    await OnlineSessionStore(db)
-        .write(const StoredSession(uid: 'uid-1', refreshToken: 'refresh-1'));
+    await OnlineSessionStore(
+      db,
+    ).write(const StoredSession(uid: 'uid-1', refreshToken: 'refresh-1'));
 
     final afterRestart = await OnlineSessionStore(db).read();
-    expect(afterRestart,
-        const StoredSession(uid: 'uid-1', refreshToken: 'refresh-1'));
+    expect(
+      afterRestart,
+      const StoredSession(uid: 'uid-1', refreshToken: 'refresh-1'),
+    );
   });
 
   test('a rotated refresh token replaces the stored one', () async {
     final store = OnlineSessionStore(db);
-    await store
-        .write(const StoredSession(uid: 'uid-1', refreshToken: 'refresh-1'));
-    await store
-        .write(const StoredSession(uid: 'uid-1', refreshToken: 'refresh-2'));
+    await store.write(
+      const StoredSession(uid: 'uid-1', refreshToken: 'refresh-1'),
+    );
+    await store.write(
+      const StoredSession(uid: 'uid-1', refreshToken: 'refresh-2'),
+    );
     expect((await store.read())!.refreshToken, 'refresh-2');
   });
 
@@ -42,14 +47,36 @@ void main() {
     // They answer different questions and expire on different terms: the token
     // is dead when the server says so, the pointer when the match ends.
     final store = OnlineSessionStore(db);
-    await store
-        .write(const StoredSession(uid: 'uid-1', refreshToken: 'refresh-1'));
+    await store.write(
+      const StoredSession(uid: 'uid-1', refreshToken: 'refresh-1'),
+    );
     await store.rememberMatch('ABCD2345');
 
     await store.clear();
 
     expect(await store.read(), isNull);
     expect(await store.lastMatchCode(), 'ABCD2345');
+  });
+
+  test(
+    'privacy sign-out atomically clears credentials and resume pointer',
+    () async {
+      final store = OnlineSessionStore(db, strict: true);
+      await store.write(const StoredSession(uid: 'u', refreshToken: 'r'));
+      await store.rememberMatch('ABCDEFGH');
+      await store.clearIdentityForPrivacy();
+      expect(await store.read(), isNull);
+      expect(await store.lastMatchCode(), isNull);
+    },
+  );
+
+  test('strict privacy storage surfaces a closed database', () async {
+    final store = OnlineSessionStore(db, strict: true);
+    await store.write(const StoredSession(uid: 'u', refreshToken: 'r'));
+    await db.close();
+    await expectLater(store.read(), throwsA(anything));
+    await expectLater(store.clearIdentityForPrivacy(), throwsA(anything));
+    db = newTestDatabase();
   });
 
   test('the match pointer round-trips and can be forgotten', () async {
@@ -70,9 +97,9 @@ void main() {
     expect(await store.read(), isNull);
     expect(await store.lastMatchCode(), isNull);
     await expectLater(
-        store.write(
-            const StoredSession(uid: 'u', refreshToken: 'r')),
-        completes);
+      store.write(const StoredSession(uid: 'u', refreshToken: 'r')),
+      completes,
+    );
     await expectLater(store.forgetMatch(), completes);
 
     // Re-open one for the tearDown to close.

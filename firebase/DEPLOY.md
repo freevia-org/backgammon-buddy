@@ -1,14 +1,29 @@
-# AIGammon online play — deployment & configuration
+# Backgammon Buddy online play — deployment & configuration
 
-**The entire backend is `firestore.rules`.** There is no server code: no Cloud
-Functions, no container, nothing to build or deploy but a rules file. Matches
-live in Firestore documents, players sign in anonymously, dice are agreed
-between the two clients by a commit-reveal handshake, and each client validates
-the other's moves with the full rules engine. That is what keeps online play on
-the **free Spark plan — no Blaze upgrade, no credit card, no billing account.**
+Online play uses anonymous Firebase Authentication and Firestore security
+rules. Dice use a client commit-reveal handshake and clients validate moves.
+The administrative runner in `admin/privacy_cleanup.mjs` handles retention and
+verified erasure requests separately from play. There are no Cloud Functions.
 
-Deployment is therefore four short steps (§1–§4 below), of which only one is a
-command.
+Production verified on 2026-10-09: `backgammon-buddy-freevia` (583751824961),
+owned by `info@freevia.org`, under organization `532542832085` (console display
+name `info-org`, administered by the same Freevia account). Firestore is Standard
+Native, `eur3` (EU), free tier, database delete protection enabled and PITR
+disabled. No billing account is attached. Authentication enables only anonymous
+sign-in; its reported subtype is `IDENTITY_PLATFORM`. Do not infer paid billing
+from that subtype. No Analytics property or optional telemetry configuration was
+created for this candidate. Authentication is a global service, so the EU
+statement applies to Firestore records, not every Firebase operation.
+
+Cloud matches become inaccessible 30 days after server-stamped creation,
+including unfinished games and unclaimed invitations. The hourly cleanup job
+deletes their events and rolls before their parent record. Verified in-app
+requests immediately freeze related matches and request removal of the identity
+and cloud match records within 30 days. A completed request marker lasts 24
+hours to block previously issued ID tokens. See
+[privacy cleanup operations](../docs/privacy-cleanup-operations.md) for WIF,
+monitoring, limits and recovery. Scheduled execution is best-effort and must be
+monitored; a local History deletion is not a cloud erasure request.
 
 The app resolves its online backend from `onlineConfigProvider`
 (`app/lib/online/online_providers.dart`):
@@ -28,7 +43,7 @@ emulator suite, then run the app in debug:
 ```sh
 # From firebase/ — start the Firestore + Auth emulators (the only two there
 # are; firebase.json declares no others).
-firebase emulators:start
+firebase emulators:start --project demo-aigammon
 
 # From app/ — a normal debug run picks up OnlineConfig.emulator()
 # (demo-aigammon on 127.0.0.1: Firestore 8080, Auth 9099).
@@ -51,24 +66,19 @@ inside a single `firebase emulators:exec` (see the `online` job in
 
 ## Production deployment
 
-### 1. Create (or verify) the `aigammon` project — Spark plan
+### 1. Verify the Freevia project
 
-In the [Firebase console](https://console.firebase.google.com/), **Add project**
-→ name it `aigammon` (Google Analytics is not needed). A new project is on the
-free **Spark** plan by default: **leave it there.** Nothing in this app requires
-Blaze, and no billing account needs to exist.
-
-If the project already exists, check the plan badge at the bottom of the console
-sidebar; **Spark** is the expected value.
-
-Then create the Firestore database itself: **Build → Firestore Database →
-Create database** → production mode → pick a location (any; it cannot be changed
-later). The rules deployed in §3 replace the default deny-all ruleset.
+Use the existing `backgammon-buddy-freevia` project. Confirm the project ID,
+Freevia ownership, organization, Firestore `eur3` location and absence of a
+billing account before deployment. Do not reuse a personal or unrelated app's
+project. Database location is fixed; the approved storage location is EU.
 
 ### 2. Enable anonymous authentication
 
-**Build → Authentication → Get started → Sign-in method → Anonymous → Enable →
-Save.**
+`firebase.json` declares only the anonymous provider. From this directory run
+`firebase deploy --only auth --project backgammon-buddy-freevia` using a current
+Firebase CLI. Read back the provider settings after changing them; this command
+is not a blanket disable of providers previously enabled elsewhere.
 
 Every client signs in anonymously before creating or joining a match; the uid it
 receives is what `firestore.rules` checks ownership against. Online play cannot
@@ -86,16 +96,17 @@ firebase login
 Then, from the `firebase/` directory:
 
 ```sh
-firebase deploy --only firestore:rules --project aigammon
+firebase deploy --only firestore --project backgammon-buddy-freevia
 ```
 
-That is the whole backend deploy. (`firestore.indexes.json` is deployed by
-`--only firestore` if it ever grows an index; it is currently empty, and the
+`firestore.indexes.json` is currently empty, and the
 queries the client makes — `events` by `seq`, `rolls` by `n` — are served by the
-automatic single-field indexes.)
+automatic single-field indexes. The cleanup runner also uses single-field
+queries by participant, creation time, request status and completion time.
 
-Re-run this command after ANY edit to `firestore.rules`; nothing else in the
-repo needs deploying, ever.
+Re-run this command after any rules edit. The separate cleanup workflow must
+also be deployed on the default branch and its OIDC dry-run and scheduled apply
+verified before enabling online play in a public candidate.
 
 ### 4. Retrieve the Web API key and set the repo Variables
 
@@ -103,18 +114,19 @@ The production `OnlineConfig` needs two values:
 
 | Value | Where to find it |
 |---|---|
-| **Project ID** | `aigammon` (Firebase console → ⚙ *Project settings* → **General** → *Project ID*) |
+| **Project ID** | `backgammon-buddy-freevia` (Firebase console → ⚙ *Project settings* → **General** → *Project ID*) |
 | **Web API Key** | Firebase console → ⚙ *Project settings* → **General** tab → **Web API Key** |
 
 If the Web API Key row is missing, the project has no web app registered yet:
 **Project settings → General → Your apps → Web (`</>`)**, register any nickname
-(no hosting), and the key appears. The app bundles no Firebase SDK, so the rest
-of the generated config snippet is irrelevant.
+(no hosting), and the key appears. The REST online client needs only the project
+and API key. Optional mobile telemetry SDKs use separate platform options; keep
+those unset for the first candidate until their configuration/retention is verified.
 
 Add both in the GitHub repo under **Settings → Secrets and variables → Actions →
 Variables → New repository variable** (Variables, not Secrets — see below):
 
-- `AIGAMMON_FIREBASE_PROJECT` → `aigammon`
+- `AIGAMMON_FIREBASE_PROJECT` → `backgammon-buddy-freevia`
 - `AIGAMMON_FIREBASE_API_KEY` → the Web API Key
 
 The Web API key is **not a secret** in the credential sense: it identifies the
@@ -222,7 +234,7 @@ entry.
   written, the plugins are not applied, and the build stays green with Dart-only
   crash reporting and no automatic traces (the log says so, as a warning).
 - **Locally** — download the real file: Firebase console → ⚙ *Project settings*
-  → *Your apps* → the **Android** app (`com.xmelon.aigammon_app`) →
+  → *Your apps* → the **Android** app (`org.freevia.backgammonbuddy`) →
   **google-services.json**. Drop it at `app/android/app/google-services.json`.
   Do not hand-assemble one; `package_name` must match `applicationId` exactly or
   Gradle fails with *"No matching client found for package name"*. Without the
@@ -602,11 +614,9 @@ and ad-hoc profile CI needs, so enrollment is required.
 
 In the [Apple Developer portal](https://developer.apple.com/account/resources/identifiers/list)
 → **Certificates, Identifiers & Profiles → Identifiers → +** → **App IDs → App**,
-register the explicit bundle id **`com.xmelon.aigammon`** (this is the iOS
-`PRODUCT_BUNDLE_IDENTIFIER`; it intentionally omits the underscore in the
-Android `com.xmelon.aigammon_app` because Apple's `CFBundleIdentifier` charset
-forbids underscores — see `native/README.md`). No special capabilities are
-needed.
+register the explicit bundle id **`org.freevia.backgammonbuddy`**, matching the
+iOS `PRODUCT_BUNDLE_IDENTIFIER` and Android application ID. No special
+capabilities are needed.
 
 ### 3. Register tester devices (UDIDs)
 
@@ -634,18 +644,18 @@ On a Mac (Keychain Access can generate the signing request):
 ### 5. Create the ad-hoc provisioning profile
 
 In the portal, **Profiles → +** → **Distribution → Ad Hoc** → select App ID
-`com.xmelon.aigammon` → the Apple Distribution certificate from step 4 → the
+`org.freevia.backgammonbuddy` → the Apple Distribution certificate from step 4 → the
 tester devices from step 3. **Name it exactly `aigammon-adhoc`** (the workflow's
 `ExportOptions.plist` reads the profile's actual name dynamically, but keeping
 this name matches the docs and CI logs). Download the `.mobileprovision`.
 
 ### 6. Create the iOS app in Firebase → `FIREBASE_IOS_APP_ID`
 
-In the [Firebase console](https://console.firebase.google.com/project/aigammon)
+In the [Firebase console](https://console.firebase.google.com/project/backgammon-buddy-freevia)
 → **Project overview → Add app → iOS**, register bundle id
-**`com.xmelon.aigammon`**. You do **not** need `GoogleService-Info.plist` (the
-app bundles no Firebase SDK; App Distribution of a raw IPA needs only the App ID
-+ the service account). Copy the generated **App ID** — it looks like
+**`org.freevia.backgammonbuddy`**. You do **not** need `GoogleService-Info.plist` (the
+REST online client does not use it; App Distribution of a raw IPA needs the App ID
++ the service account). Optional telemetry uses separate runtime options. Copy the generated **App ID** — it looks like
 `1:1234567890:ios:abcdef0123456789`. Ensure a testers group aliased exactly
 **`testers`** exists (created once for Android; reused here).
 
