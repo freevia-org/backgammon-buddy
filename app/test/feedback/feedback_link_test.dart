@@ -17,8 +17,8 @@ void main() {
       // repo, a dropped label, a body that stopped being escaped.
       expect(
         uri.toString(),
-        'https://github.com/tony-xmelon/aigammon/issues/new'
-        '?title=%5BFeedback%5D+AI+Gammon+0.12.0+%28android%29'
+        'https://github.com/freevia-org/backgammon-buddy/issues/new'
+        '?title=%5BFeedback%5D+Backgammon+Buddy+0.12.0+%28android%29'
         '&body=%23%23%23+What+happened%3F%0A%0A%3C%21--+Describe+the+problem+'
         'or+the+idea.+--%3E%0A%0A%23%23%23+Details%0A%0A-+App+version%3A+0.12.0'
         '%0A-+Platform%3A+android%0A'
@@ -31,10 +31,10 @@ void main() {
           buildFeedbackIssueUri(appVersion: '1.0.0', platform: 'ios');
       expect(uri.scheme, 'https');
       expect(uri.host, 'github.com');
-      expect(uri.path, '/tony-xmelon/aigammon/issues/new');
+      expect(uri.path, '/freevia-org/backgammon-buddy/issues/new');
       // `enhancement` and not `feedback`: GitHub silently drops a `labels=`
       // value that does not exist on the repository, and `feedback` does not
-      // exist on tony-xmelon/aigammon while `enhancement` (a default label)
+      // exist on freevia-org/backgammon-buddy while `enhancement` (a default label)
       // does. A label that vanishes on submit is worse than no label.
       expect(uri.queryParameters['labels'], 'enhancement');
     });
@@ -46,7 +46,7 @@ void main() {
       expect(body, contains('- App version: 9.9.9'));
       expect(body, contains('- Platform: windows'));
       expect(uri.queryParameters['title'],
-          '[Feedback] AI Gammon 9.9.9 (windows)');
+          '[Feedback] Backgammon Buddy 9.9.9 (windows)');
     });
 
     test('no diagnostics section when there is no excerpt', () {

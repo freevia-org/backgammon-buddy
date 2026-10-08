@@ -1,5 +1,6 @@
 import 'package:backgammon_core/backgammon_core.dart';
 
+import '../game/player_agent.dart';
 import 'move_assessment.dart';
 import 'tutor_service.dart';
 
@@ -23,16 +24,65 @@ class MoveAnalysis {
   });
 
   Map<String, dynamic> toJson() => {
-        'eventIndex': eventIndex,
-        'player': player.name,
-        'assessment': assessment.toJson(),
-      };
+    'eventIndex': eventIndex,
+    'player': player.name,
+    'assessment': assessment.toJson(),
+  };
 
   factory MoveAnalysis.fromJson(Map<String, dynamic> j) => MoveAnalysis(
-        eventIndex: (j['eventIndex'] as num).toInt(),
+    eventIndex: (j['eventIndex'] as num).toInt(),
+    player: Player.values.byName(j['player'] as String),
+    assessment: MoveAssessment.fromJson(
+      (j['assessment'] as Map).cast<String, dynamic>(),
+    ),
+  );
+}
+
+enum CubeDecisionKind { noDouble, double, take, pass }
+
+/// Values are from the actor's perspective, as match-winning probabilities.
+class CubeDecisionAnalysis {
+  const CubeDecisionAnalysis({
+    required this.eventIndex,
+    required this.player,
+    required this.action,
+    required this.bestAction,
+    required this.chosenValue,
+    required this.bestValue,
+  });
+  final int eventIndex;
+  final Player player;
+  final CubeDecisionKind action;
+  final CubeDecisionKind bestAction;
+  final double chosenValue;
+  final double bestValue;
+  double get equityLoss => (bestValue - chosenValue).clamp(0.0, 1.0);
+  MoveMark get mark =>
+      markForMetric(equityLoss, AssessmentMetric.matchWinningChance);
+  String get lossLabel =>
+      formatAssessmentLoss(equityLoss, AssessmentMetric.matchWinningChance);
+  static String label(CubeDecisionKind kind) => switch (kind) {
+    CubeDecisionKind.noDouble => 'No double',
+    CubeDecisionKind.double => 'Double',
+    CubeDecisionKind.take => 'Take',
+    CubeDecisionKind.pass => 'Pass',
+  };
+  Map<String, dynamic> toJson() => {
+    'eventIndex': eventIndex,
+    'player': player.name,
+    'action': action.name,
+    'bestAction': bestAction.name,
+    'chosenValue': chosenValue,
+    'bestValue': bestValue,
+  };
+  factory CubeDecisionAnalysis.fromJson(Map<String, dynamic> j) =>
+      CubeDecisionAnalysis(
+        eventIndex: j['eventIndex'] as int,
         player: Player.values.byName(j['player'] as String),
-        assessment:
-            MoveAssessment.fromJson((j['assessment'] as Map).cast<String, dynamic>()),
+        action: CubeDecisionKind.values.byName(j['action'] as String),
+        bestAction: CubeDecisionKind.values.byName(j['bestAction'] as String),
+        chosenValue: (j['chosenValue'] as num).toDouble(),
+        bestValue: (j['bestValue'] as num).toDouble(),
       );
 }
 
@@ -42,34 +92,74 @@ class MoveAnalysis {
 /// [blunderCount]) do their own per-player filtering.
 class GameAnalysis {
   /// Serialized JSON schema version, so a future format change is detectable.
-  // v1 could cache a false Best verdict when the engine omitted a ranking.
-  // Recompute those results under the stricter assessment contract.
-  static const int version = 2;
+  // v3 adds score-aware utilities, forced-play flags, and cube decisions.
+  static const int version = 3;
 
   final List<MoveAnalysis> moves;
+  final List<CubeDecisionAnalysis> cubeDecisions;
+  final MatchState? matchBefore;
+  final bool? cubeless;
 
-  const GameAnalysis(this.moves);
+  const GameAnalysis(
+    this.moves, {
+    this.cubeDecisions = const [],
+    this.matchBefore,
+    this.cubeless,
+  });
 
-  /// Mean equity loss across every move [p] played (0 when [p] made no moves).
-  /// Dance moves count as 0-loss moves (they still divide the mean), matching
-  /// how [TutorService.assess] scores a forced pass.
+  /// A valid schema alone does not make a cached grading current: earlier
+  /// recorded games or authoritative cube rules may have arrived since then.
+  bool matchesContext(MatchState? score, bool? cubeRules) =>
+      matchBefore == score && cubeless == cubeRules;
+
+  AssessmentMetric get metric => matchBefore == null
+      ? AssessmentMetric.cubelessEquity
+      : AssessmentMetric.matchWinningChance;
+  int decisionCount(Player p) =>
+      moves.where((m) => m.player == p && m.assessment.isDecision).length;
+  double cubeErrorRate(Player p) {
+    final own = cubeDecisions.where((c) => c.player == p).toList();
+    return own.isEmpty
+        ? 0
+        : own.fold<double>(0, (s, c) => s + c.equityLoss) / own.length;
+  }
+
+  /// Mean utility loss over checker decisions. Forced plays do not dilute it.
   double errorRate(Player p) {
-    final own = moves.where((m) => m.player == p).toList();
+    final own = moves
+        .where((m) => m.player == p && m.assessment.isDecision)
+        .toList();
     if (own.isEmpty) return 0;
-    final total =
-        own.fold<double>(0, (sum, m) => sum + m.assessment.equityLoss);
+    final total = own.fold<double>(
+      0,
+      (sum, m) => sum + m.assessment.equityLoss,
+    );
     return total / own.length;
   }
 
   /// Number of [MoveMark.blunder] moves [p] played.
   int blunderCount(Player p) => moves
-      .where((m) => m.player == p && m.assessment.mark == MoveMark.blunder)
+      .where(
+        (m) =>
+            m.player == p &&
+            m.assessment.isDecision &&
+            m.assessment.mark == MoveMark.blunder,
+      )
       .length;
 
   Map<String, dynamic> toJson() => {
-        'v': version,
-        'moves': [for (final m in moves) m.toJson()],
-      };
+    'v': version,
+    'moves': [for (final m in moves) m.toJson()],
+    'cubeDecisions': [for (final c in cubeDecisions) c.toJson()],
+    'cubeless': cubeless,
+    if (matchBefore != null)
+      'matchBefore': {
+        'length': matchBefore!.matchLength,
+        'white': matchBefore!.whiteScore,
+        'black': matchBefore!.blackScore,
+        'crawfordPlayed': matchBefore!.crawfordPlayed,
+      },
+  };
 
   /// Rebuilds from [toJson]. Throws [FormatException] on an unknown version.
   factory GameAnalysis.fromJson(Map<String, dynamic> j) {
@@ -77,10 +167,26 @@ class GameAnalysis {
     if (v != version) {
       throw FormatException('unsupported GameAnalysis version: $v');
     }
-    return GameAnalysis([
-      for (final m in (j['moves'] as List))
-        MoveAnalysis.fromJson((m as Map).cast<String, dynamic>()),
-    ]);
+    final match = j['matchBefore'] as Map?;
+    return GameAnalysis(
+      [
+        for (final m in (j['moves'] as List))
+          MoveAnalysis.fromJson((m as Map).cast<String, dynamic>()),
+      ],
+      cubeless: j['cubeless'] as bool?,
+      cubeDecisions: [
+        for (final c in (j['cubeDecisions'] as List? ?? []))
+          CubeDecisionAnalysis.fromJson((c as Map).cast<String, dynamic>()),
+      ],
+      matchBefore: match == null
+          ? null
+          : MatchState(
+              matchLength: match['length'] as int,
+              whiteScore: match['white'] as int,
+              blackScore: match['black'] as int,
+              crawfordPlayed: match['crawfordPlayed'] as bool,
+            ),
+    );
   }
 }
 
@@ -104,18 +210,36 @@ class GameAnalyzer {
   Future<GameAnalysis> analyze(
     List<GameEvent> events, {
     required bool isCrawford,
+    MatchState? matchBefore,
+    bool? cubeless = false,
     void Function(double)? onProgress,
   }) async {
     onProgress?.call(0);
     if (events.isEmpty) {
       onProgress?.call(1);
-      return const GameAnalysis([]);
+      return GameAnalysis([], matchBefore: matchBefore, cubeless: cubeless);
     }
 
     final opening = events.first as OpeningRollEvent;
     var game = Game.start(opening, isCrawfordGame: isCrawford);
 
     final moves = <MoveAnalysis>[];
+    final cubes = <CubeDecisionAnalysis>[];
+    MatchContext? contextFor(Player side) => matchBefore == null
+        ? null
+        : MatchContext(
+            moverAway:
+                matchBefore.matchLength -
+                (side == Player.white
+                    ? matchBefore.whiteScore
+                    : matchBefore.blackScore),
+            opponentAway:
+                matchBefore.matchLength -
+                (side == Player.white
+                    ? matchBefore.blackScore
+                    : matchBefore.whiteScore),
+            crawfordPlayed: matchBefore.crawfordPlayed,
+          );
     final total = events.length - 1; // events appended after the opening roll
     for (var i = 1; i < events.length; i++) {
       final event = events[i];
@@ -123,17 +247,77 @@ class GameAnalyzer {
         // The running game's state is exactly the moving-phase state this move
         // was played from.
         final before = game.state;
-        final assessment = await tutor.assess(before, event.move);
-        moves.add(MoveAnalysis(
-          eventIndex: i,
-          player: event.player,
-          assessment: assessment,
-        ));
+        final assessment = await tutor.assess(
+          before,
+          event.move,
+          context: contextFor(event.player),
+        );
+        moves.add(
+          MoveAnalysis(
+            eventIndex: i,
+            player: event.player,
+            assessment: assessment,
+          ),
+        );
+      }
+      final before = game.state;
+      final ctx = contextFor(before.turn);
+      if (ctx != null && cubeless == false && !before.isCrawfordGame) {
+        if (before.phase == GamePhase.awaitingRoll &&
+            (before.cube.owner == null || before.cube.owner == before.turn) &&
+            (event is DoubleEvent || event is RollEvent)) {
+          final a = await tutor.assessCube(
+            before,
+            ctx,
+            playerDoubled: event is DoubleEvent,
+          );
+          final doubleValue = a.bestDoubledEquity;
+          final noDoubleValue = a.advice.equityNoDouble;
+          final bestDouble = doubleValue > noDoubleValue;
+          cubes.add(
+            CubeDecisionAnalysis(
+              eventIndex: i,
+              player: before.turn,
+              action: event is DoubleEvent
+                  ? CubeDecisionKind.double
+                  : CubeDecisionKind.noDouble,
+              bestAction: bestDouble
+                  ? CubeDecisionKind.double
+                  : CubeDecisionKind.noDouble,
+              chosenValue: event is DoubleEvent ? doubleValue : noDoubleValue,
+              bestValue: bestDouble ? doubleValue : noDoubleValue,
+            ),
+          );
+        } else if (before.phase == GamePhase.cubeOffered &&
+            (event is TakeEvent || event is DropEvent)) {
+          final a = await tutor.assessCubeResponse(before, ctx);
+          final take = 1 - a.advice.equityDoubleTake;
+          final pass = 1 - a.advice.equityDoubleDrop;
+          cubes.add(
+            CubeDecisionAnalysis(
+              eventIndex: i,
+              player: before.turn,
+              action: event is TakeEvent
+                  ? CubeDecisionKind.take
+                  : CubeDecisionKind.pass,
+              bestAction: take >= pass
+                  ? CubeDecisionKind.take
+                  : CubeDecisionKind.pass,
+              chosenValue: event is TakeEvent ? take : pass,
+              bestValue: take >= pass ? take : pass,
+            ),
+          );
+        }
       }
       game = game.append(event);
       onProgress?.call(total == 0 ? 1 : i / total);
     }
     onProgress?.call(1);
-    return GameAnalysis(moves);
+    return GameAnalysis(
+      moves,
+      cubeDecisions: cubes,
+      matchBefore: matchBefore,
+      cubeless: cubeless,
+    );
   }
 }

@@ -27,10 +27,31 @@ class MetricExplainerDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
+            Text('Match-winning chance (MWC)', style: text.titleSmall),
+            const SizedBox(height: 4),
+            const Text(
+              'When the score is known, checker plays are ranked by '
+              'estimated chance of winning the match. Loss is in percentage '
+              'points (pp): 1 pp means 51% falls to 50%. The current cube stake '
+              'and gammon/backgammon outcomes are included. Forced passes and '
+              'rolls with one legal resulting position are excluded from averages.',
+            ),
+            const SizedBox(height: 12),
+            Text('Search and uncertainty', style: text.titleSmall),
+            const SizedBox(height: 4),
+            const Text(
+              'Checker rankings are 0-ply static after-play estimates, '
+              'not rollouts. Match values use a match equity table and no future '
+              'cube turns. Cube reviews use a partial 0.7 cube-life approximation '
+              'on taken doubles. Neither is full cubeful search. Away scores '
+              'above 25 use the table’s 25-away boundary. Near ties can change '
+              'with deeper analysis; there is no calibrated confidence interval.',
+            ),
+            const SizedBox(height: 12),
             Text('Equity', style: text.titleSmall),
             const SizedBox(height: 4),
             const Text(
-              'Equity is how many points a position is worth on average — the '
+              'If the score is unavailable, cubeless equity is how many points a position is worth on average — the '
               'expected result with the cube at 1. +1.0 means you expect to win '
               'one point; −0.5 means you expect to lose half a point.',
             ),
@@ -47,22 +68,35 @@ class MetricExplainerDialog extends StatelessWidget {
             Text('Error rate', style: text.titleSmall),
             const SizedBox(height: 4),
             const Text(
-              'Your error rate is the average equity loss across all your moves '
-              'this game. Lower is better: a rate near 0 means you played close '
-              'to perfectly; a larger rate means costlier mistakes on average.',
+              'Mean loss averages your graded checker decisions in the displayed '
+              'unit. Cube decisions have their own average. Lower means closer '
+              'to this engine’s top estimates; it is not a calibrated player rating.',
             ),
             const SizedBox(height: 12),
             Text('Move marks', style: text.titleSmall),
             const SizedBox(height: 4),
-            const Text('Each move is graded by how much equity it gave up:'),
+            const Text(
+              'MWC teaching bands: Best < 0.05 pp, Good < 0.5 pp, '
+              'Dubious < 1.5 pp, Error < 3 pp, Blunder ≥ 3 pp. These are product '
+              'teaching bands, not calibrated confidence or tournament ratings.\n\n'
+              'Cubeless equity teaching bands:',
+            ),
             const SizedBox(height: 8),
             _threshold(context, Colors.green.shade700, 'Best', 'lost < 0.001'),
             _threshold(context, Colors.green.shade600, 'Good', 'lost < 0.020'),
             _threshold(
-                context, Colors.amber.shade800, 'Dubious', 'lost < 0.050'),
-            _threshold(context, Colors.orange.shade800, 'Error', 'lost < 0.110'),
+              context,
+              Colors.amber.shade800,
+              'Dubious',
+              'lost < 0.050',
+            ),
             _threshold(
-                context, Colors.red.shade700, 'Blunder', 'lost ≥ 0.110'),
+              context,
+              Colors.orange.shade800,
+              'Error',
+              'lost < 0.110',
+            ),
+            _threshold(context, Colors.red.shade700, 'Blunder', 'lost ≥ 0.110'),
           ],
         ),
       ),
@@ -76,7 +110,11 @@ class MetricExplainerDialog extends StatelessWidget {
   }
 
   Widget _threshold(
-      BuildContext context, Color color, String label, String range) {
+    BuildContext context,
+    Color color,
+    String label,
+    String range,
+  ) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Row(
@@ -85,8 +123,10 @@ class MetricExplainerDialog extends StatelessWidget {
           const SizedBox(width: 8),
           SizedBox(
             width: 80,
-            child: Text(label,
-                style: TextStyle(color: color, fontWeight: FontWeight.w600)),
+            child: Text(
+              label,
+              style: TextStyle(color: color, fontWeight: FontWeight.w600),
+            ),
           ),
           Text(range, style: Theme.of(context).textTheme.bodySmall),
         ],

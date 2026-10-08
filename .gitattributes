@@ -1,0 +1,7 @@
+# Release provenance hashes must survive Windows/Linux checkout differences.
+# Preserve upstream license typography, including original trailing spaces.
+app/assets/licenses/native-dependencies.txt text eol=lf whitespace=-blank-at-eol
+app/assets/licenses/wildbg-training-CC0.txt text eol=lf
+native/licenses/upstream/*.txt text eol=lf
+native/licenses/*.json text eol=lf
+app/assets/licenses/*.tar.gz binary

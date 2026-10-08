@@ -10,6 +10,7 @@ import '../data/app_settings.dart';
 import '../game/game_record.dart';
 import '../game/match_controller.dart';
 import '../game/player_agent.dart';
+import '../net/net_match_controller.dart';
 import '../tutor/move_assessment.dart';
 import '../tutor/tutor_service.dart';
 import '../tutor/coaching.dart';
@@ -256,8 +257,7 @@ class _GameScreenState extends State<GameScreen> {
   /// exactly when the pass-device overlay raises (behind the opaque overlay),
   /// so the board never flips while it is visible mid-turn. Ignored by the
   /// fixed orientation modes.
-  late bool _displayedWhiteAtBottom =
-      _c.state.turn == Player.white;
+  late bool _displayedWhiteAtBottom = _c.state.turn == Player.white;
 
   bool get _hotSeat =>
       _c.isLocalHuman(Player.white) && _c.isLocalHuman(Player.black);
@@ -276,7 +276,8 @@ class _GameScreenState extends State<GameScreen> {
       _hotSeat &&
       widget.orientation != BoardOrientationMode.followActive;
 
-  TutorService? get _tutor => widget.tutor;
+  // Live peer games are unassisted even if a caller supplies a tutor.
+  TutorService? get _tutor => _c is NetMatchController ? null : widget.tutor;
 
   // --- Tutor state -----------------------------------------------------------
 
@@ -410,7 +411,7 @@ class _GameScreenState extends State<GameScreen> {
     _tutorOptions = widget.tutorOptions;
     _tutorSync = TutorSync(
       controller: _c,
-      tutor: () => widget.tutor,
+      tutor: () => _tutor,
       doublingLegal: _doublingLegal,
       pendingCubeSide: () =>
           _humanSideWith((s) => _c.pendingCubeOf(s).value != null),
@@ -487,13 +488,13 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   List<Listenable> _humanNotifiers() => [
-        for (final side in [Player.white, Player.black])
-          if (_c.isLocalHuman(side)) ...[
-            _c.pendingMoveOf(side),
-            _c.pendingCubeOf(side),
-            _c.pendingResignOf(side),
-          ],
-      ];
+    for (final side in [Player.white, Player.black])
+      if (_c.isLocalHuman(side)) ...[
+        _c.pendingMoveOf(side),
+        _c.pendingCubeOf(side),
+        _c.pendingResignOf(side),
+      ],
+  ];
 
   void _onChange() {
     if (!mounted) return;
@@ -536,10 +537,12 @@ class _GameScreenState extends State<GameScreen> {
     final match = _c.match;
     final winner = match.winner;
     if (winner == null) return;
-    final winnerScore =
-        winner == Player.white ? match.whiteScore : match.blackScore;
-    final loserScore =
-        winner == Player.white ? match.blackScore : match.whiteScore;
+    final winnerScore = winner == Player.white
+        ? match.whiteScore
+        : match.blackScore;
+    final loserScore = winner == Player.white
+        ? match.blackScore
+        : match.whiteScore;
     widget.analytics.logMatchCompleted(
       mode: widget.analyticsMode,
       matchLength: match.matchLength,
@@ -564,8 +567,10 @@ class _GameScreenState extends State<GameScreen> {
   /// Logs the local player's double. Called from BOTH double affordances (the
   /// header's and the tabletop action bar's) — they are separate widgets, and a
   /// double is a double whichever one sent it.
-  void _logCubeOffered() => widget.analytics
-      .logCubeOffered(mode: widget.analyticsMode, cubeValue: _c.state.cube.value);
+  void _logCubeOffered() => widget.analytics.logCubeOffered(
+    mode: widget.analyticsMode,
+    cubeValue: _c.state.cube.value,
+  );
 
   // --- Auto-pass on a dance --------------------------------------------------
 
@@ -699,8 +704,9 @@ class _GameScreenState extends State<GameScreen> {
         SnackBar(
           behavior: SnackBarBehavior.floating,
           margin: const EdgeInsets.only(bottom: 104, left: 12, right: 12),
-          content:
-              const Text('Tip: drag checkers or tap them — change in Settings'),
+          content: const Text(
+            'Tip: drag checkers or tap them — change in Settings',
+          ),
           duration: const Duration(seconds: 6),
           action: SnackBarAction(
             label: 'Got it',
@@ -711,9 +717,11 @@ class _GameScreenState extends State<GameScreen> {
       _dragHintBar = bar;
       // Forget the controller however the bar goes (timeout, "Got it", or a
       // replacement), so `dispose` only ever removes a hint that is still up.
-      unawaited(bar.closed.then((_) {
-        if (identical(_dragHintBar, bar)) _dragHintBar = null;
-      }));
+      unawaited(
+        bar.closed.then((_) {
+          if (identical(_dragHintBar, bar)) _dragHintBar = null;
+        }),
+      );
     });
   }
 
@@ -741,12 +749,25 @@ class _GameScreenState extends State<GameScreen> {
   // --- Hint panel ------------------------------------------------------------
 
   void _openHint() {
+    if (_tutorOptions.tryFirst && !_entryControl.canConfirm) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Stage a complete legal play first, then ask for a hint.',
+          ),
+        ),
+      );
+      return;
+    }
     widget.analytics.logTutorHintUsed(mode: widget.analyticsMode);
     final moveSide = _humanSideWith((s) => _c.pendingMoveOf(s).value != null);
     final state =
         (moveSide != null ? _c.pendingMoveOf(moveSide).value : null) ??
-            _c.state;
-    _hint.open(() => _tutor!.hintOrNone(state), position: state);
+        _c.state;
+    _hint.open(
+      () => _tutor!.hintOrNone(state, context: _c.contextFor(state.turn)),
+      position: state,
+    );
   }
 
   /// Stages [move] onto the interactive board and closes the hint panel. Only
@@ -833,32 +854,35 @@ class _GameScreenState extends State<GameScreen> {
   /// reads. Held as one widget instance so the screen's own rebuilds (a
   /// roll-beat frame, a tap hint, an assessment landing) do not reach it.
   Widget _hudScope() => _hudWidget ??= ListenableBuilder(
-        listenable: _observable,
-        builder: (context, _) => GameHud(
-          controller: _c,
-          showScoring: widget.showScoring,
-          opponentLabel: widget.opponentLabel,
-          opponentDetail: widget.opponentDetail,
-          onSurrender: _hasLocalHuman ? _openSurrender : null,
-          // Tabletop moves Double to the players' own edges — the shared
-          // header cannot tell which of the two people pressed it.
-          showDouble: !_tabletopBars,
-          onDoubled: _logCubeOffered,
-        ),
-      );
+    listenable: _observable,
+    builder: (context, _) => GameHud(
+      controller: _c,
+      showScoring: widget.showScoring,
+      opponentLabel: widget.opponentLabel,
+      opponentDetail: widget.opponentDetail,
+      onSurrender: _hasLocalHuman ? _openSurrender : null,
+      // Tabletop moves Double to the players' own edges — the shared
+      // header cannot tell which of the two people pressed it.
+      showDouble: !_tabletopBars,
+      onDoubled: _logCubeOffered,
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     final state = _c.state;
-    final pendingSide = _humanSideWith((s) => _c.pendingMoveOf(s).value != null);
+    final pendingSide = _humanSideWith(
+      (s) => _c.pendingMoveOf(s).value != null,
+    );
     // The side whose move may be ENTERED right now: nobody while that side's own
     // roll is still being presented (see [DicePresenter.entryHeld]). Everything downstream —
     // the board's interactivity, the action bar's affordances — reads this, so
     // entry appears as one piece the moment the dice settle.
     final moveSide = _dice.entryHeld(pendingSide) ? null : pendingSide;
     final cubeSide = _humanSideWith((s) => _c.pendingCubeOf(s).value != null);
-    final resignSide =
-        _humanSideWith((s) => _c.pendingResignOf(s).value != null);
+    final resignSide = _humanSideWith(
+      (s) => _c.pendingResignOf(s).value != null,
+    );
     final whiteAtBottom = switch (widget.orientation) {
       BoardOrientationMode.fixedWhite => true,
       BoardOrientationMode.fixedBlack => false,
@@ -881,7 +905,9 @@ class _GameScreenState extends State<GameScreen> {
                 // whole match — reserved height, live only on its owner's turn.
                 if (_tabletopBars)
                   _topActionBar(
-                      moveSide, whiteAtBottom ? Player.black : Player.white),
+                    moveSide,
+                    whiteAtBottom ? Player.black : Player.white,
+                  ),
                 Expanded(
                   // The board's slot. An error banner FLOATS at its top edge
                   // (just under the HUD, where it used to sit) instead of being
@@ -1005,7 +1031,9 @@ class _GameScreenState extends State<GameScreen> {
           winner: _c.match.winner,
           score: scoreLine(_c),
           savedToHistory: _canShowSummary,
-          summaryAction: _canShowSummary ? _summaryAction('Match summary') : null,
+          summaryAction: _canShowSummary
+              ? _summaryAction('Match summary')
+              : null,
           onDone: () => Navigator.of(context).maybePop(),
         ),
       ];
@@ -1015,7 +1043,9 @@ class _GameScreenState extends State<GameScreen> {
         gameEndDialog(
           result: _c.state.result!,
           score: scoreLine(_c),
-          summaryAction: _canShowSummary ? _summaryAction('Analyze game') : null,
+          summaryAction: _canShowSummary
+              ? _summaryAction('Analyze game')
+              : null,
           onNextGame: _c.continueToNextGame,
         ),
       ];
@@ -1038,8 +1068,8 @@ class _GameScreenState extends State<GameScreen> {
           state: state,
           tutorLine:
               _tutor == null || advice == null || !_tutorOptions.cubeAdvice
-                  ? ''
-                  : '\nTutor: ${advice.advice.shouldTake ? 'Take' : 'Pass'}',
+              ? ''
+              : '\nTutor: ${advice.advice.shouldTake ? 'Take' : 'Pass'}',
           onPass: () => _answerCube(cubeSide, CubeAction.drop),
           onTake: () => _answerCube(cubeSide, CubeAction.take),
         ),
@@ -1096,7 +1126,8 @@ class _GameScreenState extends State<GameScreen> {
   /// this it would simply be hidden and then pop back afterwards.
   void _closeSurrenderIfOutranked() {
     if (!_surrenderOpen) return;
-    final outranked = _c.matchOver ||
+    final outranked =
+        _c.matchOver ||
         _c.awaitingNextGame ||
         _passDevicePending ||
         _humanSideWith((s) => _c.pendingCubeOf(s).value != null) != null ||
@@ -1218,13 +1249,10 @@ class _GameScreenState extends State<GameScreen> {
       footnote: ready
           ? null
           : _surrenderNeedsSideChoice
-              ? "Available at the start of ${playerName(side)}'s turn"
-              : 'Available at the start of your turn',
+          ? "Available at the start of ${playerName(side)}'s turn"
+          : 'Available at the start of your turn',
       actions: [
-        CardAction(
-          label: 'Cancel',
-          onPressed: () => setState(_closeSurrender),
-        ),
+        CardAction(label: 'Cancel', onPressed: () => setState(_closeSurrender)),
         for (final (value, label) in const [
           (ResignValue.single, 'Single (1)'),
           (ResignValue.gammon, 'Gammon (2)'),
@@ -1247,20 +1275,17 @@ class _GameScreenState extends State<GameScreen> {
   /// made during the opponent's turn simply waits rather than firing against
   /// whoever happens to be on turn.
   Widget _surrenderSideChooser() => ModalCard(
-        title: 'Surrender',
-        message: 'Who is conceding this game?',
-        actions: [
-          CardAction(
-            label: 'Cancel',
-            onPressed: () => setState(_closeSurrender),
-          ),
-          for (final side in [Player.white, Player.black])
-            CardAction(
-              label: playerName(side),
-              onPressed: () => setState(() => _surrenderFor = side),
-            ),
-        ],
-      );
+    title: 'Surrender',
+    message: 'Who is conceding this game?',
+    actions: [
+      CardAction(label: 'Cancel', onPressed: () => setState(_closeSurrender)),
+      for (final side in [Player.white, Player.black])
+        CardAction(
+          label: playerName(side),
+          onPressed: () => setState(() => _surrenderFor = side),
+        ),
+    ],
+  );
 
   /// Offers the resignation and closes the sheet. Re-checks [_surrenderReady] AT
   /// INVOCATION for the same reason the header's Double re-checks its own
@@ -1271,8 +1296,10 @@ class _GameScreenState extends State<GameScreen> {
     final ready = _surrenderReady;
     setState(_closeSurrender);
     if (!ready) return;
-    widget.analytics
-        .logResignOffered(mode: widget.analyticsMode, value: value.name);
+    widget.analytics.logResignOffered(
+      mode: widget.analyticsMode,
+      value: value.name,
+    );
     _c.offerResign(value);
   }
 
@@ -1296,10 +1323,10 @@ class _GameScreenState extends State<GameScreen> {
   bool get _canShowSummary => widget.persistedMatchId != null;
 
   CardAction _summaryAction(String label) => CardAction(
-        label: label,
-        busy: _summaryLoading,
-        onPressed: _summaryLoading ? null : _openMatchSummary,
-      );
+    label: label,
+    busy: _summaryLoading,
+    onPressed: _summaryLoading ? null : _openMatchSummary,
+  );
 
   /// Awaits the persisted match id (a brief spinner) then pushes the match's
   /// detail screen (games list → per-game analysis). Swallows a failed insert
@@ -1330,17 +1357,21 @@ class _GameScreenState extends State<GameScreen> {
         ..sort((a, b) => b.compareTo(a));
 
   String _coachSummary() {
+    if (_c.state.phase != GamePhase.moving &&
+        _c.state.phase != GamePhase.awaitingRoll) {
+      return positionCommentary(_c.state);
+    }
     final indices = _reviewIndices;
     if (indices.isEmpty) return positionCommentary(_c.state);
     final index = indices.first;
     final assessment = _tutorSync.assessmentsByEventIndex[index]!;
     final before = _tutorSync.positionsByEventIndex[index]!;
     final label = playerName(before.turn);
-    if (assessment.ranked.isEmpty) {
-      return '$label had no legal play. A forced pass is not a mistake.';
+    if (!assessment.isDecision) {
+      return '$label had no choice of resulting position. Forced plays are not graded.';
     }
     return '$label’s last play: ${assessment.mark.name}, '
-        '${assessment.equityLoss.toStringAsFixed(3)} equity loss. Tap to review.';
+        '${assessment.lossLabel} loss. Tap to review.';
   }
 
   void _openCoach() {
@@ -1417,9 +1448,9 @@ class _GameScreenState extends State<GameScreen> {
       tilePadding: EdgeInsets.zero,
       title: Text('${playerName(before.turn)}: ${a.played}'),
       subtitle: Text(
-        a.ranked.isEmpty
-            ? 'Forced pass'
-            : '${a.mark.name} · ${a.equityLoss.toStringAsFixed(3)} equity loss',
+        !a.isDecision
+            ? 'Forced play · excluded from averages'
+            : '${a.mark.name} · ${a.lossLabel} loss',
       ),
       children: [
         Padding(
@@ -1454,7 +1485,8 @@ class _GameScreenState extends State<GameScreen> {
   /// tutor is on, the fixed-height cube-advice slot beneath it (empty until the
   /// pre-roll gate resolves its advice).
   Widget _bottomRegion(Player? moveSide, Player? owner) {
-    final showCube = _tutor != null &&
+    final showCube =
+        _tutor != null &&
         _tutorOptions.cubeAdvice &&
         _tutorSync.cubeAdvice != null &&
         _c.awaitingHumanTurn;
@@ -1475,20 +1507,19 @@ class _GameScreenState extends State<GameScreen> {
                   child: showCube
                       ? _cubeAdviceLine(_tutorSync.cubeAdvice!)
                       : _tutorOptions.commentary
-                          ? InkWell(
-                              onTap: _openCoach,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 8),
-                                child: Text(
-                                  _coachSummary(),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.bodySmall,
-                                ),
-                              ),
-                            )
-                          : const SizedBox.shrink(),
+                      ? InkWell(
+                          onTap: _openCoach,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Text(
+                              _coachSummary(),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context).textTheme.bodySmall,
+                            ),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
                 ),
                 IconButton(
                   tooltip: 'Tutor coaching and options',
@@ -1524,13 +1555,13 @@ class _GameScreenState extends State<GameScreen> {
   /// disappearing would resize the board's slot on every hand-over (F6). On the
   /// other player's turn it simply goes inert — see [_actionBar]'s `owner`.
   Widget _topActionBar(Player? moveSide, Player owner) => RotatedBox(
-        quarterTurns: 2,
-        child: _actionBar(
-          moveSide,
-          owner: owner,
-          key: const ValueKey('topActionBar'),
-        ),
-      );
+    quarterTurns: 2,
+    child: _actionBar(
+      moveSide,
+      owner: owner,
+      key: const ValueKey('topActionBar'),
+    ),
+  );
 
   /// The contextual action bar. Its height is ALWAYS 64px (a fixed
   /// [SizedBox]) so nothing below the board ever reflows as the phase changes —
@@ -1591,15 +1622,17 @@ class _GameScreenState extends State<GameScreen> {
           if (showHint) _hintButton(live),
           const Spacer(),
           TextButton(
-            onPressed:
-                live && _entryControl.canUndo ? _entryControl.undo : null,
+            onPressed: live && _entryControl.canUndo
+                ? _entryControl.undo
+                : null,
             style: _compactButton,
             child: const Text('Undo'),
           ),
           const SizedBox(width: 8),
           FilledButton(
-            onPressed:
-                live && _entryControl.canConfirm ? _entryControl.confirm : null,
+            onPressed: live && _entryControl.canConfirm
+                ? _entryControl.confirm
+                : null,
             style: _compactButton,
             child: const Text('Confirm'),
           ),
@@ -1617,8 +1650,9 @@ class _GameScreenState extends State<GameScreen> {
             TapWhenDisabled(
               onDisabledTap: () => _explainTabletopDoubleBlocked(live),
               child: OutlinedButton.icon(
-                onPressed:
-                    live && _doublingLegal(_c.state) ? _offerDouble : null,
+                onPressed: live && _doublingLegal(_c.state)
+                    ? _offerDouble
+                    : null,
                 icon: const Icon(Icons.control_point_duplicate, size: 16),
                 label: const Text('Double'),
                 style: _compactButton,
@@ -1732,8 +1766,7 @@ class _GameScreenState extends State<GameScreen> {
   /// whose edge is asking.
   String _doubleBlockedReasonFor(GameState s) {
     if (s.isCrawfordGame) {
-      return 'No doubling in the Crawford game — this single game decides '
-          'the match.';
+      return 'The cube is unavailable for the Crawford game.';
     }
     if (s.cube.owner != null && s.cube.owner != s.turn) {
       return 'Only the cube owner can double, and the other side owns it '
@@ -1746,16 +1779,15 @@ class _GameScreenState extends State<GameScreen> {
   /// why the bar cannot afford default button density on a narrow phone.
   static final ButtonStyle _compactButton = ButtonStyle(
     visualDensity: VisualDensity.compact,
-    padding: const WidgetStatePropertyAll(
-        EdgeInsets.symmetric(horizontal: 12)),
+    padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 12)),
   );
 
   Widget _hintButton([bool enabled = true]) => OutlinedButton.icon(
-        onPressed: enabled ? _openHint : null,
-        icon: const Icon(Icons.lightbulb_outline, size: 18),
-        label: const Text('Hint'),
-        style: _compactButton,
-      );
+    onPressed: enabled ? _openHint : null,
+    icon: const Icon(Icons.lightbulb_outline, size: 18),
+    label: const Text('Hint'),
+    style: _compactButton,
+  );
 
   /// The idle-bar status line: what the game is waiting on.
   String _statusText() {
@@ -1776,19 +1808,19 @@ class _GameScreenState extends State<GameScreen> {
   /// with the cached instance) so each revision hands it a freshly folded row
   /// list. See the rebuild-scoping note on [_sheetRevision].
   Widget _scoreSheetScope() => _scoreSheetWidget ??= ListenableBuilder(
-        listenable: _sheetRevision,
-        builder: (context, _) {
-          final leftSide = _sheetLeftSide();
-          return ScoreSheetPanel(
-            rows: _scoreSheetRows(),
-            leftSide: leftSide,
-            columnLabels: _sheetColumnLabels(leftSide),
-            assessments: _tutorSync.assessmentsByEventIndex,
-            revealedBest: _tutorSync.revealedBest,
-            onToggleBest: _toggleRevealedBest,
-          );
-        },
+    listenable: _sheetRevision,
+    builder: (context, _) {
+      final leftSide = _sheetLeftSide();
+      return ScoreSheetPanel(
+        rows: _scoreSheetRows(),
+        leftSide: leftSide,
+        columnLabels: _sheetColumnLabels(leftSide),
+        assessments: _tutorSync.assessmentsByEventIndex,
+        revealedBest: _tutorSync.revealedBest,
+        onToggleBest: _toggleRevealedBest,
       );
+    },
+  );
 
   /// Toggles an assessed cell's "Best: …" line. The set lives with the tutor's
   /// other bookkeeping; the sheet is told its content moved.
@@ -1835,7 +1867,7 @@ class _GameScreenState extends State<GameScreen> {
     final advice = a.advice;
     final text = advice.shouldDouble
         ? 'Tutor: Double — opponent should '
-            '${advice.shouldTake ? 'take' : 'pass'}'
+              '${advice.shouldTake ? 'take' : 'pass'}'
         : 'Tutor: Roll';
     final scheme = Theme.of(context).colorScheme;
     return Row(
@@ -1861,7 +1893,6 @@ class _GameScreenState extends State<GameScreen> {
       ],
     );
   }
-
 }
 
 // --- Error banner ------------------------------------------------------------
@@ -1933,13 +1964,20 @@ class _TapHintBanner extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           child: Row(
             children: [
-              Icon(Icons.info_outline, size: 16, color: scheme.onInverseSurface),
+              Icon(
+                Icons.info_outline,
+                size: 16,
+                color: scheme.onInverseSurface,
+              ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   message,
                   maxLines: 2,
-                  style: TextStyle(color: scheme.onInverseSurface, fontSize: 12),
+                  style: TextStyle(
+                    color: scheme.onInverseSurface,
+                    fontSize: 12,
+                  ),
                 ),
               ),
             ],

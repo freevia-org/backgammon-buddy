@@ -8,6 +8,8 @@ import '../analytics/analytics_events.dart';
 import '../analytics/analytics_screen_view.dart';
 import '../board/board_view.dart';
 import '../data/match_repository.dart';
+import '../data/recorded_match_context.dart';
+import '../data/practice_repository.dart';
 import '../engine/engine_provider.dart';
 import '../game/game_record.dart';
 import '../tutor/game_analyzer.dart';
@@ -16,6 +18,7 @@ import '../tutor/tutor_service.dart';
 import '../tutor/coaching.dart';
 import '../tutor/coaching_widgets.dart';
 import 'metric_explainer.dart';
+import 'practice_screen.dart';
 
 /// Post-game replay + analysis for a single recorded game.
 ///
@@ -67,6 +70,7 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
 
   /// The move analyses keyed by their event index (cursor position).
   Map<int, MoveAnalysis> _byEventIndex = const {};
+  Map<int, CubeDecisionAnalysis> _cubeByEventIndex = const {};
 
   GameAnalysis? _analysis;
   int _cursor = 0;
@@ -111,6 +115,8 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
       final row = await repo.loadGame(widget.gameId);
       final events = await repo.loadGameEvents(widget.gameId);
       final states = _replayPrefixes(events, row.isCrawford);
+      final matchBefore = await matchBeforeRecordedGame(repo, row);
+      final match = await repo.loadMatch(row.matchId);
 
       final cached = await repo.loadAnalysis(widget.gameId);
       GameAnalysis? analysis;
@@ -119,11 +125,18 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
           analysis = GameAnalysis.fromJson(
             (jsonDecode(cached) as Map).cast<String, dynamic>(),
           );
+          // Historical records can arrive later (e.g. reconnect persistence).
+          // A cache computed without the score must not survive that recovery.
+          if (!analysis.matchesContext(matchBefore, match.cubeless)) {
+            analysis = null;
+          }
         } on FormatException {
           // Stale or malformed derived data is a cache miss. The original
           // game log remains authoritative and can be analyzed again.
         } on TypeError {
           // Also recover from malformed cache fields / shape.
+        } on ArgumentError {
+          // Unknown enum names are malformed derived data too.
         }
       }
       if (analysis == null) {
@@ -133,24 +146,40 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
         analysis = await GameAnalyzer(tutor).analyze(
           events,
           isCrawford: row.isCrawford,
+          matchBefore: matchBefore,
+          cubeless: match.cubeless,
           onProgress: (p) {
             if (mounted) setState(() => _progress = p);
           },
         );
-        await repo.saveAnalysis(
-            widget.gameId, jsonEncode(analysis.toJson()));
+        await repo.saveAnalysis(widget.gameId, jsonEncode(analysis.toJson()));
       }
 
       if (!mounted) return;
       final lines = buildGameRecord(events);
       final completedAnalysis = analysis;
+      for (final cube in completedAnalysis.cubeDecisions) {
+        if (cube.action == CubeDecisionKind.noDouble) {
+          lines.add(
+            RecordLine(
+              '${_sideLabel(cube.player)} rolls without doubling',
+              actor: cube.player,
+              eventIndex: cube.eventIndex,
+            ),
+          );
+        }
+      }
+      lines.sort((a, b) => (a.eventIndex ?? -1).compareTo(b.eventIndex ?? -1));
       setState(() {
         _states = states;
         _events = events;
         _lines = lines;
         _analysis = completedAnalysis;
         _byEventIndex = {
-          for (final m in completedAnalysis.moves) m.eventIndex: m
+          for (final m in completedAnalysis.moves) m.eventIndex: m,
+        };
+        _cubeByEventIndex = {
+          for (final c in completedAnalysis.cubeDecisions) c.eventIndex: c,
         };
         // Allocate a stable per-row key once the record is known (this screen
         // loads one game, so the record identity never changes afterward). Row
@@ -181,10 +210,14 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   /// Folds [events] with a single running [Game], recording the state after
   /// each event. `result[i]` is the state after events[0..i].
   static List<GameState> _replayPrefixes(
-      List<GameEvent> events, bool isCrawford) {
+    List<GameEvent> events,
+    bool isCrawford,
+  ) {
     if (events.isEmpty) return const [];
-    var game = Game.start(events.first as OpeningRollEvent,
-        isCrawfordGame: isCrawford);
+    var game = Game.start(
+      events.first as OpeningRollEvent,
+      isCrawfordGame: isCrawford,
+    );
     final states = <GameState>[game.state];
     for (var i = 1; i < events.length; i++) {
       game = game.append(events[i]);
@@ -211,8 +244,11 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
       final key = _rowKeys[_cursor];
       final ctx = key?.currentContext;
       if (ctx != null) {
-        Scrollable.ensureVisible(ctx,
-            duration: const Duration(milliseconds: 200), alignment: 0.5);
+        Scrollable.ensureVisible(
+          ctx,
+          duration: const Duration(milliseconds: 200),
+          alignment: 0.5,
+        );
       }
     });
   }
@@ -220,9 +256,9 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   @override
   // See [HomeScreen] for why every screen splits build/_build.
   Widget build(BuildContext context) => AnalyticsScreenView(
-        name: AnalyticsScreens.analysis,
-        child: _build(context),
-      );
+    name: AnalyticsScreens.analysis,
+    child: _build(context),
+  );
 
   Widget _build(BuildContext context) {
     return Scaffold(
@@ -278,27 +314,30 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   Widget _loaded(List<GameState> states) {
     final analysis = _analysis!;
     final current = _byEventIndex[_cursor];
+    final cube = _cubeByEventIndex[_cursor];
     // When the cursor sits on an assessed move, frame the PRE-move position: the
     // board as it stood BEFORE the move, so both the played and best overlays
     // read against the choice that was faced. `_states[i]` is the state after
     // events[0..i], so the pre-move state for the move at event `i` is
     // `_states[i-1]` (the post-roll state — its dice are already set). Assessed
     // moves are never at index 0 (the opening roll), so `_cursor - 1` is valid.
-    final preMove = current != null && _cursor > 0;
+    final preMove = (current != null || cube != null) && _cursor > 0;
     final shownState = preMove ? states[_cursor - 1] : states[_cursor];
 
     // Historical dice for the shown position: both players' persistent pairs as
     // folded up to the shown state's event (the pre-move state is after
     // events[0.._cursor-1]; a plain step is after events[0.._cursor]).
     final foldThrough = preMove ? _cursor - 1 : _cursor;
-    final (whiteDice, blackDice) = persistentDice(_events, through: foldThrough);
+    final (whiteDice, blackDice) = persistentDice(
+      _events,
+      through: foldThrough,
+    );
 
     // The move overlay (only on an assessed move): source rings + destination
     // triangles for either the played move or, when toggled, the engine's best.
     final a = current?.assessment;
-    final hasBest = a != null &&
-        a.best.checkerMoves.isNotEmpty &&
-        !a.best.sameAs(a.played);
+    final hasBest =
+        a != null && a.best.checkerMoves.isNotEmpty && !a.best.sameAs(a.played);
     final overlayMove = (a == null)
         ? null
         : (_showBest && hasBest ? a.best : a.played);
@@ -329,8 +368,9 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
                 // on a board where nothing is actually pickable.
                 strongHighlightSources: srcs,
                 highlightedDestinations: dests,
-                highlightMovingPlayer:
-                    overlayMove == null ? null : current!.player,
+                highlightMovingPlayer: overlayMove == null
+                    ? null
+                    : current!.player,
               ),
             ),
           ),
@@ -342,7 +382,9 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
         // conditional height here would have moved both.
         _reserved(
           _captionSlotHeight,
-          preMove
+          cube != null
+              ? _caption('Position before the cube decision')
+              : preMove
               ? _preMoveCaption(showingBest: _showBest && hasBest)
               // A bare step (the opening, a roll, a cube/resign event) has no
               // move to frame; the slot still says what the board is showing
@@ -351,7 +393,13 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
         ),
         _reserved(_toggleSlotHeight, hasBest ? _playedBestToggle() : null),
         _reserved(
-            _moveInfoSlotHeight, current == null ? null : _moveInfo(current)),
+          _moveInfoSlotHeight,
+          cube != null
+              ? _cubeInfo(cube)
+              : current == null
+              ? null
+              : _moveInfo(current),
+        ),
         _cursorBar(states.length),
         Expanded(child: _moveList()),
       ],
@@ -377,19 +425,24 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   /// [_scaleToFit]), so a large setting shrinks the row instead of squeezing it
   /// into a box it no longer fits — the board's fixed size is the invariant here,
   /// and it cannot be traded away for a taller caption.
-  Widget _reserved(double height, Widget? child) =>
-      SizedBox(height: height, child: child == null ? null : Center(child: child));
+  Widget _reserved(double height, Widget? child) => SizedBox(
+    height: height,
+    child: child == null ? null : Center(child: child),
+  );
 
   /// Wraps [child] so it never asks for more room than it is given: measured at
   /// its natural size, then scaled down to fit. [alignment] is where the scaled
   /// result sits in the slot.
-  static Widget _scaleToFit(Widget child,
-          {Alignment alignment = Alignment.center}) =>
-      FittedBox(fit: BoxFit.scaleDown, alignment: alignment, child: child);
+  static Widget _scaleToFit(
+    Widget child, {
+    Alignment alignment = Alignment.center,
+  }) => FittedBox(fit: BoxFit.scaleDown, alignment: alignment, child: child);
 
-  Widget _preMoveCaption({required bool showingBest}) => _caption(showingBest
-      ? 'Showing the best move on the position before the move'
-      : 'Showing position before the move');
+  Widget _preMoveCaption({required bool showingBest}) => _caption(
+    showingBest
+        ? 'Showing the best move on the position before the move'
+        : 'Showing position before the move',
+  );
 
   /// One eye-icon caption line, sized to fit the reserved slot.
   Widget _caption(String text) {
@@ -398,14 +451,21 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.visibility_outlined,
-              size: 14, color: Theme.of(context).colorScheme.outline),
+          Icon(
+            Icons.visibility_outlined,
+            size: 14,
+            color: Theme.of(context).colorScheme.outline,
+          ),
           const SizedBox(width: 6),
           Flexible(
-            child: _scaleToFit(Text(text,
+            child: _scaleToFit(
+              Text(
+                text,
                 maxLines: 1,
                 softWrap: false,
-                style: Theme.of(context).textTheme.bodySmall)),
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
           ),
         ],
       ),
@@ -420,15 +480,17 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   Widget _playedBestToggle() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: _scaleToFit(SegmentedButton<bool>(
-        showSelectedIcon: false,
-        segments: const [
-          ButtonSegment(value: false, label: Text('Played')),
-          ButtonSegment(value: true, label: Text('Best')),
-        ],
-        selected: {_showBest},
-        onSelectionChanged: (s) => setState(() => _showBest = s.first),
-      )),
+      child: _scaleToFit(
+        SegmentedButton<bool>(
+          showSelectedIcon: false,
+          segments: const [
+            ButtonSegment(value: false, label: Text('Played')),
+            ButtonSegment(value: true, label: Text('Best')),
+          ],
+          selected: {_showBest},
+          onSelectionChanged: (s) => setState(() => _showBest = s.first),
+        ),
+      ),
     );
   }
 
@@ -447,8 +509,9 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
           IconButton(
             tooltip: 'Next',
             icon: const Icon(Icons.chevron_right),
-            onPressed:
-                _cursor < length - 1 ? () => _setCursor(_cursor + 1) : null,
+            onPressed: _cursor < length - 1
+                ? () => _setCursor(_cursor + 1)
+                : null,
           ),
         ],
       ),
@@ -458,9 +521,9 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   Widget _moveInfo(MoveAnalysis m) {
     final a = m.assessment;
     final (color, label) = _markStyle(a.mark);
-    final loss = a.equityLoss;
-    final lossText =
-        loss >= 0.001 ? '  −${loss.toStringAsFixed(3)}' : '  (best)';
+    final lossText = a.isDecision
+        ? '  −${a.lossLabel}'
+        : ' · excluded from averages';
     final best = a.best.checkerMoves.isEmpty ? '(no play)' : '${a.best}';
     return Material(
       color: Theme.of(context).colorScheme.surfaceContainerHighest,
@@ -479,10 +542,12 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
               children: [
                 Icon(Icons.circle, size: 12, color: color),
                 const SizedBox(width: 8),
-                Text('${_sideLabel(m.player)}: $label$lossText',
-                    maxLines: 1,
-                    softWrap: false,
-                    style: TextStyle(color: color, fontWeight: FontWeight.w600)),
+                Text(
+                  '${_sideLabel(m.player)}: ${a.isDecision ? label : 'Forced'}$lossText',
+                  maxLines: 1,
+                  softWrap: false,
+                  style: TextStyle(color: color, fontWeight: FontWeight.w600),
+                ),
                 const SizedBox(width: 12),
                 Text('Best: $best', maxLines: 1, softWrap: false),
                 const SizedBox(width: 8),
@@ -500,6 +565,12 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
                   icon: const Icon(Icons.school_outlined, size: 16),
                   label: const Text('Explain'),
                 ),
+                if (a.isDecision && a.ranked.isNotEmpty)
+                  TextButton.icon(
+                    onPressed: () => _savePractice(m.eventIndex),
+                    icon: const Icon(Icons.bookmark_add_outlined, size: 16),
+                    label: const Text('Save for practice'),
+                  ),
               ],
             ),
             alignment: Alignment.centerLeft,
@@ -508,6 +579,60 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
       ),
     );
   }
+
+  Future<void> _savePractice(int eventIndex) async {
+    try {
+      final id = await ref
+          .read(practiceRepositoryProvider)
+          .saveMistake(gameId: widget.gameId, eventIndex: eventIndex);
+      if (!mounted) return;
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(builder: (_) => PracticeScreen(positionId: id)),
+      );
+    } catch (error) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not save this decision: $error')),
+      );
+    }
+  }
+
+  Widget _cubeInfo(CubeDecisionAnalysis cube) => _scaleToFit(
+    Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          '${_sideLabel(cube.player)}: ${CubeDecisionAnalysis.label(cube.action)} · '
+          '${cube.mark.name} · ${cube.lossLabel} loss',
+        ),
+        TextButton(
+          onPressed: () => showDialog<void>(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Cube decision'),
+              content: Text(
+                'Played: ${CubeDecisionAnalysis.label(cube.action)} '
+                '(${(cube.chosenValue * 100).toStringAsFixed(2)}% match win).\n'
+                'Best: ${CubeDecisionAnalysis.label(cube.bestAction)} '
+                '(${(cube.bestValue * 100).toStringAsFixed(2)}% match win).\n\n'
+                '0-ply estimate from the acting player’s perspective. Assumes an '
+                'optimal take/pass response. Uses a 0.7 cube-life approximation '
+                'on the taken-double branch, not a full future-recube search. '
+                'Deeper analysis can change the answer.',
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Close'),
+                ),
+              ],
+            ),
+          ),
+          child: Text('Best: ${CubeDecisionAnalysis.label(cube.bestAction)}'),
+        ),
+      ],
+    ),
+  );
 
   /// The scrollable full move history: every recorded line, with its mark dot +
   /// word + equity loss for assessed moves. The current step is highlighted and
@@ -534,13 +659,13 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   Widget _moveRow(RecordLine line) {
     final index = line.eventIndex;
     final analysis = index == null ? null : _byEventIndex[index];
+    final cube = index == null ? null : _cubeByEventIndex[index];
     final isCurrent = index != null && index == _cursor;
     final key = index == null ? null : _rowKeys[index];
     final scheme = Theme.of(context).colorScheme;
-    final mono = Theme.of(context)
-        .textTheme
-        .bodyMedium
-        ?.copyWith(fontFeatures: const [FontFeature.tabularFigures()]);
+    final mono = Theme.of(context).textTheme.bodyMedium?.copyWith(
+      fontFeatures: const [FontFeature.tabularFigures()],
+    );
 
     return Container(
       key: key,
@@ -552,17 +677,28 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
           child: Row(
             children: [
               Expanded(
-                child: Text(line.text,
-                    style: isCurrent
-                        ? mono?.copyWith(
-                            fontWeight: FontWeight.w700,
-                            color: scheme.onPrimaryContainer)
-                        : mono),
+                child: Text(
+                  line.text,
+                  style: isCurrent
+                      ? mono?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: scheme.onPrimaryContainer,
+                        )
+                      : mono,
+                ),
               ),
               if (analysis != null) ...[
                 const SizedBox(width: 8),
                 _markChip(analysis.assessment),
               ],
+              if (cube != null)
+                Text(
+                  '${cube.mark.name} −${cube.lossLabel}',
+                  style: TextStyle(
+                    color: _markStyle(cube.mark).$1,
+                    fontSize: 12,
+                  ),
+                ),
             ],
           ),
         ),
@@ -573,32 +709,36 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   /// A mark-coloured dot + word (+ loss) for a move-list row — the shared P8
   /// idiom, so the mark reads without relying on colour alone.
   Widget _markChip(MoveAssessment a) {
+    if (!a.isDecision) {
+      return const Text('Forced', style: TextStyle(fontSize: 12));
+    }
     final (color, label) = _markStyle(a.mark);
-    final loss = a.equityLoss;
-    final lossText = loss >= 0.001 ? ' −${loss.toStringAsFixed(3)}' : '';
+    final lossText = a.mark == MoveMark.best ? '' : ' −${a.lossLabel}';
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Icon(Icons.circle, size: 10, color: color),
         const SizedBox(width: 4),
-        Text('$label$lossText',
-            style: TextStyle(
-              color: color,
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              fontFeatures: const [FontFeature.tabularFigures()],
-            )),
+        Text(
+          '$label$lossText',
+          style: TextStyle(
+            color: color,
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            fontFeatures: const [FontFeature.tabularFigures()],
+          ),
+        ),
       ],
     );
   }
 
   (Color, String) _markStyle(MoveMark mark) => switch (mark) {
-        MoveMark.best => (Colors.green.shade700, 'Best'),
-        MoveMark.good => (Colors.green.shade600, 'Good'),
-        MoveMark.dubious => (Colors.amber.shade800, 'Dubious'),
-        MoveMark.error => (Colors.orange.shade800, 'Error'),
-        MoveMark.blunder => (Colors.red.shade700, 'Blunder'),
-      };
+    MoveMark.best => (Colors.green.shade700, 'Best'),
+    MoveMark.good => (Colors.green.shade600, 'Good'),
+    MoveMark.dubious => (Colors.amber.shade800, 'Dubious'),
+    MoveMark.error => (Colors.orange.shade800, 'Error'),
+    MoveMark.blunder => (Colors.red.shade700, 'Blunder'),
+  };
 }
 
 /// The per-player summary: error rate (mean equity loss) and blunder count.
@@ -631,8 +771,13 @@ class _SummaryHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label, style: Theme.of(context).textTheme.titleSmall),
-        Text('Error rate ${rate.toStringAsFixed(3)}'),
+        Text('Mean loss ${formatAssessmentLoss(rate, analysis.metric)}'),
+        Text('${analysis.decisionCount(p)} checker decisions'),
         Text('Blunders $blunders'),
+        if (analysis.cubeDecisions.isNotEmpty)
+          Text(
+            'Cube loss ${formatAssessmentLoss(analysis.cubeErrorRate(p), AssessmentMetric.matchWinningChance)}',
+          ),
       ],
     );
   }

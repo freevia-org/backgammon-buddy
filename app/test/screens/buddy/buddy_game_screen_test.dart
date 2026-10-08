@@ -965,7 +965,7 @@ void main() {
         final h = _Harness(
           camera: FakeBuddyCamera(
             opening: const CameraUnavailable(
-              'AI Gammon does not have permission to use the camera. Allow '
+              'Backgammon Buddy does not have permission to use the camera. Allow '
               'camera access in your device settings and try again.',
             ),
           ),

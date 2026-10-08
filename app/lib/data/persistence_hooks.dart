@@ -61,18 +61,9 @@ class RepositoryPersistence implements MatchPersistence {
     required MatchState matchAfter,
   }) async {
     final matchId = await matchIdFuture;
-    await repo.recordGame(
-      matchId: matchId,
-      gameNumber: gameNumber,
-      isCrawford: isCrawford,
-      events: events,
-      result: result,
-    );
-    await repo.updateScore(
-      matchId: matchId,
-      whiteScore: matchAfter.whiteScore,
-      blackScore: matchAfter.blackScore,
-    );
+    await repo.recordGameAndScore(matchId: matchId, gameNumber: gameNumber,
+      isCrawford: isCrawford, events: events, result: result,
+      matchAfter: matchAfter);
   }
 
   @override

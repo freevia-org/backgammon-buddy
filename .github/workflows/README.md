@@ -2,16 +2,17 @@
 
 | Workflow | File | Trigger | Purpose |
 |---|---|---|---|
-| CI | `ci.yml` | push to `master`, all PRs | Six job definitions — see the breakdown below |
+| CI | `ci.yml` | push to `master`, all PRs | Package, app, native, emulator and release-preflight checks — see the breakdown below |
 | Android | `android.yml` | `workflow_dispatch`, **CI success on a same-repository `master` push** | Build ARM/ARM64 APKs, distribute only with release signing and Firebase configured, and optionally prepare a signed Play bundle artifact |
 | iOS | `ios.yml` | `workflow_dispatch`, **CI success on `master`** | Build the Rust engine staticlib, statically link it into `Runner`, produce an unsigned `Runner.app`, and (when configured) build a signed IPA and push it to Firebase App Distribution |
 
-## `ci.yml` — the six jobs
+## `ci.yml` — test jobs
 
 Five can start independently; `online` waits on `rules`.
 
 | Job | Runner | What it does |
 |---|---|---|
+| `release-preflight` | Linux | Offline model/Rust-notice hashes and synthetic artifact/profile/build-number validator tests. |
 | `packages` | Linux | One job definition, **four matrix legs** — `backgammon_core`, `board_vision`, `lan_play`, `match_transport` — each `dart analyze --fatal-infos` + `dart test`. `fail-fast: false`, so a push that breaks two packages reports both. `lan_play` alone runs under its `-P ci` retry preset: it is the only suite that binds real sockets. |
 | `engine` | Linux | `cargo fmt --check`, `cargo clippy -p aigammon_engine -- -D warnings`, `cargo build --release` and `cargo test --release` in `native/engine_shim`, then `engine_bindings` analyze, unit tests, and `dart test -P engine` against the freshly built `.so` with the production nets. |
 | `app` | Linux | `flutter analyze` + `flutter test -x golden`. The goldens are excluded here on purpose and run in `goldens` instead; between the two jobs the app suite is covered whole. |
@@ -146,14 +147,19 @@ Xcode build both need macOS).
 
 ### Signing + Firebase distribution (secret-gated)
 
-The signing/distribution path is **skipped** until **four** repository secrets
-are all present **together with** the existing `FIREBASE_SERVICE_ACCOUNT`
-(reused from Android) — the gate requires all five so a missing service account
-skips cleanly instead of failing at the distribute step. When they exist, the
+Signing requires a certificate, password, selected distribution profile and an
+explicit release build-number baseline (see below). Firebase distribution is a
+separate ad-hoc-only gate requiring `FIREBASE_IOS_APP_ID` and
+`FIREBASE_SERVICE_ACCOUNT`. When signing is configured, the
 workflow imports the certificate into a throwaway keychain, installs the
 provisioning profile, derives the team id / profile name / UUID from the profile
 itself (nothing hard-coded), and writes an `ExportOptions.plist` for an
-**ad-hoc** export. It then builds the signed IPA in three explicit commands
+**ad-hoc** export by default. Manual dispatch can select **app-store-connect**
+and use `IOS_APP_STORE_PROFILE_BASE64`; this creates an export-only artifact and
+never submits it or distributes it to Firebase. Missing store signing inputs
+fail instead of falling back to an ad-hoc profile. The profile validator checks
+expiry, bundle/team identity and release/distribution type; `plistlib` escapes
+profile names correctly. It then builds the signed IPA in three explicit commands
 rather than `flutter build ipa`: `flutter build ios --release --no-codesign`
 (compile), then `xcodebuild … archive` with **manual** signing settings passed
 on the command line (`CODE_SIGN_STYLE=Manual`, `DEVELOPMENT_TEAM`,
@@ -163,13 +169,15 @@ on the command line (`CODE_SIGN_STYLE=Manual`, `DEVELOPMENT_TEAM`,
 pbxproj settings outrank xcconfig — only command-line build settings override
 them, so `flutter build ipa`'s internal archive would fail with "Signing for
 Runner requires a development team" on the headless runner. The IPA is uploaded
-as `aigammon-ios-signed` and distributed to the Firebase **`testers`** group.
+as `aigammon-ios-<export-method>-<run>`. Only configured ad-hoc exports are
+distributed to the Firebase **`testers`** group.
 
 | Secret | What it is |
 |---|---|
 | `IOS_CERT_P12_BASE64` | base64 of the **Apple Distribution** certificate exported as a `.p12` |
 | `IOS_CERT_PASSWORD` | the password set when exporting that `.p12` |
 | `IOS_PROVISIONING_PROFILE_BASE64` | base64 of the **ad-hoc** `.mobileprovision` (expected profile name `aigammon-adhoc`, bundle id `com.xmelon.aigammon`, with tester device UDIDs) |
+| `IOS_APP_STORE_PROFILE_BASE64` | base64 of the App Store distribution profile; used only by manual `app-store-connect` export |
 | `FIREBASE_IOS_APP_ID` | the iOS App ID from the Firebase console (`1:…:ios:…`) |
 
 Producing these requires an **Apple Developer Program** membership and is done
@@ -187,8 +195,9 @@ present. Until then the job builds and uploads the APK artifact and logs a clear
    [Firebase console](https://console.firebase.google.com/project/aigammon)
    open **Project overview → Add app → Android** and register package name
    `com.xmelon.aigammon_app`. You do **not** need to download or commit
-   `google-services.json`: the app bundles no Firebase SDK, and App Distribution
-   of a raw APK only needs the App ID + a service account. Copy the generated
+   `google-services.json` for distribution: App Distribution
+   of a raw APK only needs the App ID + a service account. Optional in-app
+   Firebase telemetry is configured separately and requires user consent. Copy the generated
    **App ID** — it looks like `1:1234567890:android:abcdef0123456789`.
 
 2. **Create the testers group.** In **Release & Monitor → App Distribution →
@@ -217,13 +226,38 @@ That shrinks the binary and removes Dart symbol names from it — which means a
 stack trace from a shipped build is **unreadable until it is symbolicated**.
 
 Each build therefore uploads its symbols as their own artifact, keyed by run
-number (the same value as the build number baked into the app), so a trace can
+number (record its resolved `BUILD_NUMBER` with the release), so a trace can
 be matched to the exact build that produced it:
 
 | Artifact | From |
 |---|---|
 | `aigammon-symbols-android-<run>` | `android.yml` |
 | `aigammon-symbols-ios-<run>` | `ios.yml` |
+| `aigammon-native-symbols-android-<run>` | Unstripped Rust engine shared libraries with release line tables |
+| `aigammon-ios-signed-symbols-<run>` | Signed archive dSYMs plus its exact Dart symbols |
+
+Preserve these outside GitHub's artifact retention window. Native symbol upload
+and a deliberately symbolicated test crash remain acceptance steps; producing an
+artifact does not verify that Firebase can resolve it.
+
+## Build numbers after repository migration
+
+`github.run_number` restarts in a new repository. Every **signed** path therefore
+requires either manual `build_number` or repository variable
+`RELEASE_BUILD_NUMBER_BASE`. The latter resolves to `base + github.run_number`.
+The release owner must first inspect prior Android/iOS uploads and select values
+that exceed them; this tool validates integers/range, not external store history.
+Without either value, unsigned/debug diagnostic artifacts still use the run
+number, but signing fails. Artifact names remain keyed by the workflow run.
+
+## Native artifact checks
+
+`python tool/release_preflight.py` verifies model blob provenance and locked Rust
+notices without a toolchain or network. Android builds also call it with each
+APK/AAB: it verifies actual engine ABIs and all bundled ELF64 LOAD/RELRO segment
+alignment; APKs additionally run SDK `zipalign -v -c -P 16 4`. Device page-size
+testing and AAB-to-installed-split inspection remain necessary. Run
+`python -m unittest discover -s tool -p test_release_tools.py` for parser tests.
 
 To read a trace a tester copied out of **Settings → Diagnostics** (see
 `app/lib/diagnostics/crash_log.dart`):

@@ -71,13 +71,13 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
     _matchLength = settings.defaultMatchLength;
     _difficulty = settings.defaultDifficulty;
     _settingsTutorOverride = settings.tutorOverride;
+    _tutorOptions = settings.tutorOptions;
     _tutorEnabled = _settingsTutorOverride ?? _defaultTutor(_difficulty);
   }
 
-  /// The default tutor state: ON for a vs-computer easy/medium match, OFF for
-  /// hard/expert and for hot-seat.
-  bool _defaultTutor(Difficulty d) =>
-      widget.vsComputer && (d == Difficulty.easy || d == Difficulty.medium);
+  /// Learning support is available at every AI strength. Hot-seat requires an
+  /// explicit choice because the two players share the screen.
+  bool _defaultTutor(Difficulty d) => widget.vsComputer;
 
   @override
   // See [HomeScreen] for why every screen splits build/_build.
@@ -341,6 +341,7 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
       mode: mode,
       whiteType: whiteType,
       blackType: blackType,
+      cubeless: _cubeless,
     );
     return (RepositoryPersistence(repo, matchIdFuture), matchIdFuture);
   }

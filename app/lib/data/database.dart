@@ -21,6 +21,9 @@ class Matches extends Table {
   TextColumn get whiteType => text()();
   TextColumn get blackType => text()();
 
+  /// Null for legacy records whose cube setting was not recorded.
+  BoolColumn get cubeless => boolean().nullable()();
+
   IntColumn get whiteScore => integer().withDefault(const Constant(0))();
   IntColumn get blackScore => integer().withDefault(const Constant(0))();
 
@@ -166,6 +169,17 @@ class Settings extends Table {
   /// frame gate to look sooner — see `lib/buddy/dice_sound_trigger.dart`.
   BoolColumn get buddyMicHint => boolean().withDefault(const Constant(true))();
 
+  /// Persistent tutor defaults (v10); match-specific changes do not overwrite
+  /// these unless explicitly saved through Settings.
+  BoolColumn get tutorBestMoves => boolean().withDefault(const Constant(true))();
+  BoolColumn get tutorExplanations => boolean().withDefault(const Constant(true))();
+  BoolColumn get tutorCommentary => boolean().withDefault(const Constant(true))();
+  BoolColumn get tutorCubeAdvice => boolean().withDefault(const Constant(true))();
+  BoolColumn get tutorTryFirst => boolean().withDefault(const Constant(false))();
+
+  /// Optional remote analytics/performance/crash reporting is opt-in.
+  BoolColumn get telemetryEnabled => boolean().withDefault(const Constant(false))();
+
   @override
   Set<Column> get primaryKey => {id};
 
@@ -205,14 +219,55 @@ class OnlineSession extends Table {
   List<String> get customConstraints => const ['CHECK (id = 1)'];
 }
 
+/// A saved decision, with its original position and match context. Deleting the
+/// source game also removes its exercises and attempts; no orphan copies of
+/// deleted game history remain.
+@DataClassName('PracticePositionRow')
+class PracticePositions extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get gameId => integer().customConstraint(
+      'NOT NULL REFERENCES games (id) ON DELETE CASCADE')();
+  IntColumn get eventIndex => integer()();
+  DateTimeColumn get createdAt => dateTime()();
+  TextColumn get player => text()();
+  TextColumn get eventsJson => text()();
+  BoolColumn get isCrawford => boolean()();
+  IntColumn get matchLength => integer().nullable()();
+  IntColumn get whiteScore => integer().nullable()();
+  IntColumn get blackScore => integer().nullable()();
+  BoolColumn get crawfordPlayed => boolean().nullable()();
+  BoolColumn get cubeless => boolean().nullable()();
+  TextColumn get assessmentJson => text()();
+  TextColumn get themesJson => text()();
+  DateTimeColumn get dueAt => dateTime()();
+  IntColumn get intervalDays => integer().withDefault(const Constant(0))();
+  IntColumn get successStreak => integer().withDefault(const Constant(0))();
+  DateTimeColumn get lastAttemptAt => dateTime().nullable()();
+
+  @override
+  List<Set<Column>> get uniqueKeys => [{gameId, eventIndex}];
+}
+
+@DataClassName('PracticeAttemptRow')
+class PracticeAttempts extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get positionId => integer().customConstraint(
+      'NOT NULL REFERENCES practice_positions (id) ON DELETE CASCADE')();
+  DateTimeColumn get attemptedAt => dateTime()();
+  TextColumn get assessmentJson => text().nullable()();
+  BoolColumn get passed => boolean()();
+  BoolColumn get revealed => boolean()();
+}
+
 /// The app's local SQLite database (matches + event-sourced games + the
 /// single-row [Settings] preferences + the single-row [OnlineSession]).
-@DriftDatabase(tables: [Matches, Games, Settings, OnlineSession])
+@DriftDatabase(tables: [Matches, Games, Settings, OnlineSession,
+  PracticePositions, PracticeAttempts])
 class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 9;
+  int get schemaVersion => 10;
 
   // Games.matchId is a SQL-level foreign key with ON DELETE CASCADE, but SQLite
   // only ENFORCES foreign keys when the per-connection `foreign_keys` pragma is
@@ -322,6 +377,19 @@ class AppDatabase extends _$AppDatabase {
           if (from >= 2 && from <= 8) {
             await m.addColumn(settings, settings.buddyPhrasing);
             await m.addColumn(settings, settings.buddyMicHint);
+          }
+          if (from >= 2 && from < 10) {
+            await m.addColumn(settings, settings.tutorBestMoves);
+            await m.addColumn(settings, settings.tutorExplanations);
+            await m.addColumn(settings, settings.tutorCommentary);
+            await m.addColumn(settings, settings.tutorCubeAdvice);
+            await m.addColumn(settings, settings.tutorTryFirst);
+            await m.addColumn(settings, settings.telemetryEnabled);
+          }
+          if (from < 10) {
+            await m.addColumn(matches, matches.cubeless);
+            await m.createTable(practicePositions);
+            await m.createTable(practiceAttempts);
           }
         },
         beforeOpen: (details) async {

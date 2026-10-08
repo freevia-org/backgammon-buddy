@@ -4,6 +4,7 @@ import 'package:backgammon_core/backgammon_core.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../game/match_controller.dart';
+import '../../game/player_agent.dart';
 import '../../tutor/move_assessment.dart';
 import '../../tutor/tutor_service.dart';
 
@@ -62,6 +63,7 @@ class TutorSync extends ChangeNotifier {
   /// old one. `Game.append` carries the same event objects forward, so an
   /// identity check on the first event is exactly "still the same log".
   GameEvent? _assessLogRoot;
+  final Map<Player, MatchContext> _gameContexts = {};
 
   /// Points the assessment cursor at the log as it stands NOW: nothing before
   /// this point will be assessed, and the running prefix is the state the whole
@@ -76,6 +78,11 @@ class TutorSync extends ChangeNotifier {
     _lastEventCount = events.length;
     _assessPrefix = controller.game.state;
     _assessLogRoot = events.isEmpty ? null : events.first;
+    // A final move can arrive after the controller has already awarded points.
+    // Keep the score faced in this game, rather than grading with the next score.
+    for (final side in Player.values) {
+      _gameContexts[side] = controller.contextFor(side);
+    }
   }
 
   /// Post-move assessments for EVERY move of the current game — both sides,
@@ -175,16 +182,18 @@ class TutorSync extends ChangeNotifier {
   void _fireAssessment(int eventIndex, GameState before, Move played) {
     final gen = _gameGeneration;
     unawaited(
-      tutor()!.assessOrNull(before, played).then((assessment) {
-        if (_disposed || gen != _gameGeneration) return;
-        // Null = the engine could not answer (already recorded by the tutor).
-        // The cell stays unmarked rather than claiming a verdict.
-        if (assessment == null) return;
-        assessmentsByEventIndex[eventIndex] = assessment;
-        positionsByEventIndex[eventIndex] = before;
-        notifyListeners();
-        onSheetDirty(); // a cell gained its mark dot and equity loss
-      }),
+      tutor()!
+          .assessOrNull(before, played, context: _gameContexts[before.turn])
+          .then((assessment) {
+            if (_disposed || gen != _gameGeneration) return;
+            // Null = the engine could not answer (already recorded by the tutor).
+            // The cell stays unmarked rather than claiming a verdict.
+            if (assessment == null) return;
+            assessmentsByEventIndex[eventIndex] = assessment;
+            positionsByEventIndex[eventIndex] = before;
+            notifyListeners();
+            onSheetDirty(); // a cell gained its mark dot and equity loss
+          }),
     );
   }
 
@@ -205,15 +214,21 @@ class TutorSync extends ChangeNotifier {
     _cubeAdviceKey = key;
     final seq = ++_cubeAdviceSeq;
     _cubeAdvice = null;
-    unawaited(tutor()!
-        .assessCubeOrNull(s, controller.contextFor(s.turn), playerDoubled: false)
-        .then((advice) {
-      // A null advice leaves the row absent, which is what it already looks
-      // like before the answer lands — no error over the board.
-      if (_disposed || seq != _cubeAdviceSeq || advice == null) return;
-      _cubeAdvice = advice;
-      notifyListeners();
-    }));
+    unawaited(
+      tutor()!
+          .assessCubeOrNull(
+            s,
+            controller.contextFor(s.turn),
+            playerDoubled: false,
+          )
+          .then((advice) {
+            // A null advice leaves the row absent, which is what it already looks
+            // like before the answer lands — no error over the board.
+            if (_disposed || seq != _cubeAdviceSeq || advice == null) return;
+            _cubeAdvice = advice;
+            notifyListeners();
+          }),
+    );
   }
 
   /// Recomputes the take/pass advice while a human faces an opponent's double
@@ -232,13 +247,15 @@ class TutorSync extends ChangeNotifier {
     final seq = ++_cubeResponseSeq;
     _cubeResponseAdvice = null;
     final state = controller.pendingCubeOf(cubeSide).value!;
-    unawaited(tutor()!
-        .assessCubeResponseOrNull(state, controller.contextFor(state.turn))
-        .then((advice) {
-      if (_disposed || seq != _cubeResponseSeq || advice == null) return;
-      _cubeResponseAdvice = advice;
-      notifyListeners();
-    }));
+    unawaited(
+      tutor()!
+          .assessCubeResponseOrNull(state, controller.contextFor(state.turn))
+          .then((advice) {
+            if (_disposed || seq != _cubeResponseSeq || advice == null) return;
+            _cubeResponseAdvice = advice;
+            notifyListeners();
+          }),
+    );
   }
 
   @override

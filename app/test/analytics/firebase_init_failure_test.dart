@@ -40,12 +40,16 @@ void main() {
 
   test('a failed initialization is recorded in the on-device log', () async {
     final observability = await initializeObservability(
+      consentGranted: true,
       configOverride: config,
       initializer: (_) async => throw StateError('revoked api key'),
     );
 
-    expect(observability.isEnabled, isFalse,
-        reason: 'a failed init must still yield working no-op sinks');
+    expect(
+      observability.isEnabled,
+      isFalse,
+      reason: 'a failed init must still yield working no-op sinks',
+    );
     expect(recorded, ['firebase-init: Bad state: revoked api key']);
   });
 

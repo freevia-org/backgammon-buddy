@@ -57,8 +57,8 @@ void main() {
     expect(_segSelected<int>(t, 7), isTrue, reason: 'match length from settings');
     expect(_segSelected<Difficulty>(t, Difficulty.hard), isTrue,
         reason: 'difficulty from settings');
-    // Tutor override is null -> per-mode default (hard vs-computer = OFF).
-    expect(_tutorSwitch(t), isFalse);
+    // Learning support remains on as computer strength increases.
+    expect(_tutorSwitch(t), isTrue);
 
     // No selector shows a checkmark (it would squeeze the labels onto two lines).
     final segs = find.byWidgetPredicate((w) => w is SegmentedButton);
@@ -79,7 +79,7 @@ void main() {
     );
     await _pump(t, settings, vsComputer: true);
 
-    // Expert's per-mode default is OFF, but the override forces ON.
+    // Explicit ON remains respected at expert strength.
     expect(_segSelected<Difficulty>(t, Difficulty.expert), isTrue);
     expect(_tutorSwitch(t), isTrue);
   });

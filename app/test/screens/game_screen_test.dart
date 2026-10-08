@@ -3373,10 +3373,10 @@ void main() {
       await t.tap(hint);
       await pumpUntil(t, () => find.text('Top plays').evaluate().isNotEmpty);
 
-      // The panel lists the synthetic best (0.100) above the real plays (0.040).
+      // The panel converts 0.100/0.040 cubeless equity to 50.77/50.31% MWC at 5-away/5-away.
       expect(find.text('Top plays'), findsOneWidget);
-      expect(find.textContaining('0.100'), findsWidgets);
-      expect(find.textContaining('0.040'), findsWidgets);
+      expect(find.textContaining('50.77'), findsWidgets);
+      expect(find.textContaining('50.31'), findsWidgets);
 
       c.disposeController();
     });
@@ -3465,11 +3465,11 @@ void main() {
           reason: 'nothing assessed yet — no mark in the sheet');
 
       await commitFirstMove(t);
-      await pumpUntil(t, () => find.textContaining('−0.060').evaluate().isNotEmpty);
-      // 0.10 - 0.04 = 0.06 give-up, shown as "−0.060" beside the notation in
+      await pumpUntil(t, () => find.textContaining('−0.46pp').evaluate().isNotEmpty);
+      // The 0.06 cubeless difference is 0.46392 percentage points MWC, shown as "−0.46pp" beside the notation in
       // White's cell of turn row 1 (row 0 being the opening span).
       final cell = find.byKey(const ValueKey('sheetLeft1'));
-      expect(find.descendant(of: cell, matching: find.textContaining('−0.060')),
+      expect(find.descendant(of: cell, matching: find.textContaining('−0.46pp')),
           findsOneWidget);
       expect(find.descendant(of: cell, matching: find.byIcon(Icons.circle)),
           findsOneWidget, reason: 'the assessed cell carries a mark dot');
@@ -3494,7 +3494,7 @@ void main() {
       await t.pumpWidget(_tutorHarness(c, tutor));
       await pumpUntil(t, () => human.pendingMoveRequest.value != null);
       await commitFirstMove(t);
-      await pumpUntil(t, () => find.textContaining('−0.060').evaluate().isNotEmpty);
+      await pumpUntil(t, () => find.textContaining('−0.46pp').evaluate().isNotEmpty);
 
       expect(find.textContaining('Best:'), findsNothing);
       await t.tap(find.byKey(const ValueKey('sheetLeft1')));
@@ -3722,7 +3722,7 @@ void main() {
         expect(find.descendant(of: side, matching: find.byIcon(Icons.circle)),
             findsOneWidget);
         expect(
-            find.descendant(of: side, matching: find.textContaining('−0.060')),
+            find.descendant(of: side, matching: find.textContaining('−0.46pp')),
             findsOneWidget);
       }
 
@@ -4068,7 +4068,7 @@ void main() {
 
       // The loss renders in FULL — it is its own widget, not a span the
       // notation's ellipsis can swallow.
-      expect(find.text('−0.060'), findsWidgets,
+      expect(find.text('−0.46pp'), findsWidgets,
           reason: 'the score survives a maximally long notation');
       expect(t.takeException(), isNull, reason: 'and the cell does not overflow');
 
@@ -4485,7 +4485,7 @@ void main() {
       expect(
           find.descendant(
               of: find.byKey(const ValueKey('sheetLeft1')),
-              matching: find.textContaining('−0.060')),
+              matching: find.textContaining('−0.46pp')),
           findsOneWidget,
           reason: "White's own verdict is still in White's cell");
 
@@ -4503,7 +4503,7 @@ void main() {
       await pumpUntil(t, () => human.pendingMoveRequest.value != null);
       await commitFirstMove(t);
       await pumpUntil(
-          t, () => find.textContaining('−0.060').evaluate().isNotEmpty);
+          t, () => find.textContaining('−0.46pp').evaluate().isNotEmpty);
 
       // End the game the deterministic way: at White's next pre-roll gate,
       // resign a single; the AI accepts (so Black takes the point).
@@ -4573,7 +4573,7 @@ void main() {
           t, () => find.byType(CircularProgressIndicator).evaluate().isEmpty);
     }
 
-    testWidgets('the two number columns are labelled Equity / Loss', (t) async {
+    testWidgets('the two number columns are labelled MWC % / Loss pp', (t) async {
       await t.binding.setSurfaceSize(_surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -4582,8 +4582,8 @@ void main() {
       await t.pumpWidget(_tutorHarness(c, TutorService(RealRankEngine())));
       await openHint(t, human);
 
-      expect(find.text('Equity'), findsOneWidget);
-      expect(find.text('Loss'), findsOneWidget);
+      expect(find.text('MWC %'), findsOneWidget);
+      expect(find.text('Loss pp'), findsOneWidget);
 
       c.disposeController();
     });
@@ -5522,15 +5522,15 @@ void main() {
       await pumpUntil(t, () => human.pendingMoveRequest.value != null);
       await commitFirstMove(t);
       await pumpUntil(
-          t, () => find.textContaining('−0.060').evaluate().isNotEmpty);
+          t, () => find.textContaining('−0.46pp').evaluate().isNotEmpty);
 
       // The dot is the only carrier of the verdict on screen, and it carries it
       // in colour — so the verdict has to reach a screen reader as a word.
       // The cell merges its parts into one node; the dot contributes the mark
       // WORD to it, so the verdict survives with the colour stripped away.
       final cell = t.getSemantics(find.byKey(const ValueKey('sheetLeft1')));
-      expect(cell.label, contains('Error'));
-      expect(cell.label, contains('−0.060'));
+      expect(cell.label, contains('Good'));
+      expect(cell.label, contains('−0.46pp'));
 
       handle.dispose();
       c.disposeController();

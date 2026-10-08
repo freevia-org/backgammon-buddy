@@ -89,7 +89,11 @@ void main() {
     await t.ensureVisible(licenses);
     await t.pumpAndSettle();
     await t.tap(licenses);
-    await t.pumpAndSettle();
+    // License parsing may use a real isolate; settling the loading spinner in
+    // fake time can time out. This test covers navigation; asset contents are
+    // verified separately in third_party_licenses_test.dart.
+    await t.pump();
+    await t.pump(const Duration(milliseconds: 400));
     expect(find.byType(LicensePage), findsOneWidget);
     expect(t.takeException(), isNull);
 

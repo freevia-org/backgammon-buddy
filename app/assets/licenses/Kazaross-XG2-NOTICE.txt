@@ -1,0 +1,15 @@
+Kazaross-XG2.xml
+
+Table rolled up to 9 point match. Then uses R/K MET
+which was rolled up to 15 and extrapolated to  25 points
+by Neil Kazaross 2011.
+
+This file is distributed as a part of the GNU Backgammon program.
+
+Copying and distribution of verbatim and modified versions of this file
+is permitted in any medium provided the copyright notice and this
+permission notice are preserved.
+
+Backgammon Buddy uses the unmodified table values as generated Dart constants.
+Source: packages/engine_bindings/assets/met/Kazaross-XG2.xml
+Upstream: https://raw.githubusercontent.com/mormegil-cz/gnubg/master/met/Kazaross-XG2.xml

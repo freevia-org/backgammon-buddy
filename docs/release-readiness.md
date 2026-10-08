@@ -1,9 +1,18 @@
 # Release readiness — 2026-10-08
 
-**Status: preparation complete for review; store submission is not yet verified.**
-This audit inspected source and ran local checks. It did not inspect repository
-secret values, developer accounts, deployed Firebase settings, or store listings;
-it did not build/sign a mobile artifact, distribute, publish, or change a version.
+**Status: local software preparation implemented; mobile acceptance and service
+policy decisions remain open.** Publisher is **Freevia**, source is
+<https://github.com/freevia-org/backgammon-buddy>, policy is
+<https://freevia.org/backgammon-buddy/privacy/>, and support is
+<https://freevia.org/backgammon-buddy/support/>. This report does not claim store release.
+Repository secrets, deployed Firebase settings and store account history remain
+unverified. No signed mobile artifact or store submission was performed here.
+The product/privacy/support routes were deployed and independently verified HTTP
+200 with the expected distinct page titles; privacy@freevia.org and
+support@freevia.org are the existing Freevia contacts.
+The public policy/contact availability gate is satisfied. The former `/aigammon/`
+product route redirects to `/backgammon-buddy/`. Public source publication to the
+Freevia repository is authorized and in progress.
 See the [code review](code-review-2026-10-08.md) for code fixes and test results.
 
 ## Prepared in this round
@@ -25,23 +34,41 @@ See the [code review](code-review-2026-10-08.md) for code fixes and test results
   plus separate Dart symbols, with mandatory signing credentials. It does not
   upload to Google Play. New Play apps use app bundles.
   [Android App Bundles](https://developer.android.com/guide/app-bundle).
-- Settings now opens Flutter's licenses page. The shipped assets include the
-  upstream wildbg MIT and Apache-2.0 texts, engine/shim attribution and net
-  provenance. The license texts are tested against the pinned upstream files;
-  this does not conclude the model or native-transitive license review.
+- Settings opens Flutter's licenses page with direct wildbg notices, generated
+  notices for 119 locked target-applicable Rust components, the unmodified MPL
+  dependency's complete source archive, and Kazaross-XG2 attribution/permission.
+  Both production model blobs match the pinned CC0-licensed training repository;
+  its license is bundled. See [provenance](../native/licenses/README.md).
+- Settings now describes privacy/data handling, deletion and support. Optional
+  Firebase Analytics, Performance and Crashlytics default off in native config
+  and require a persisted explicit choice; withdrawal closes forwarding and SDK
+  collection. Delayed initialization cannot restore withdrawn consent. Native
+  operations already in flight and already sent data cannot be retracted.
+- Live online and nearby games are unassisted, including the screen's runtime
+  guard; post-game review/practice remains available. No bilateral coaching
+  protocol is implied.
+- iOS manual dispatch can create an **export-only App Store IPA** using a separate
+  store profile. Profile identity/type/expiry checks and escaped export options
+  are implemented. Store exports cannot go through Firebase distribution.
+- Both signed mobile paths require an explicit build number or verified repository
+  baseline; a new repository's reset workflow counter cannot silently sign an
+  older version. Android checks all bundled 64-bit ELF LOAD/RELRO alignment plus
+  APK ZIP alignment. CI retains native engine symbols and signed iOS dSYMs.
+- Offline preflight validates Cargo/model/license hashes and has focused tests
+  for malformed/alignment-failing ELF, profile mismatches and build-number input.
 
 ## Outstanding release gates
 
 | Priority | Gate | Evidence and action |
 |---|---|---|
-| P1 | Privacy policy and data disclosures | No policy document, public policy URL, or in-app policy entry was found. Complete the inventory below, select a privacy contact and retention policy, publish the policy, expose it in the app, and complete Play Data safety / Apple App Privacy. Do not claim the configured mobile app collects no data. |
-| P1 | Remaining dependency/model notices | The in-app entry and direct wildbg notices are now bundled. Review Rust-transitive and platform-native notices, and confirm redistribution terms for the production models/training inputs. Net source identity was verified; provenance alone does not establish license permissions. Include any additional required texts before release. |
+| P1 | Cloud policy decisions and store disclosures | In-app controls, existing Freevia contacts and the public policy are available (live HTTP200 verified). Define cloud retention and an administrative deletion process, verify Firebase settings, and complete Play Data safety / Apple App Privacy from the signed binary. See [disclosure worksheet](store-disclosures.md). |
+| P1 | Platform-native license/privacy inventory | Rust/model/table notices are bundled with source evidence. Inspect actual Android/iOS native SDK dependencies and privacy manifests after building; Flutter's Dart registry and Rust inventory do not establish every platform SDK notice. |
 | P1 | Signed Android acceptance | Run the updated workflow; verify signing certificate, version code, bundled nets/engine, merged permissions/features, and installation plus update over the previous tester release. Build the AAB option and inspect the resulting bundle before submission. Existing secrets and account access are unverified, not assumed absent. |
-| P1 | iOS store artifact | The current iOS workflow produces an unsigned app and optionally an **ad-hoc** IPA for registered tester devices. An App Store distribution profile/export and App Store Connect validation still need to be exercised. Verify selected Xcode/SDK, the static engine symbols, device startup, and archive privacy report. |
+| P1 | iOS store artifact | Both ad-hoc and App Store export-only paths are implemented; neither a signed store profile/export nor App Store Connect validation was exercised here. Verify selected Xcode/SDK, static engine symbols, device startup and archive privacy report. |
 | P1 | Real-device tutor and Buddy acceptance | Complete the [Buddy protocol](buddy-mode-test-protocol.md) and the tutor smoke checks below on Android and iOS. CI cannot certify camera, microphone, local-network prompts, thermal load, lifecycle behavior, or speech. Camera dice recognition remains experimental: typed dice are the supported path. |
-| P2 | Native crash symbolication | Android capture and symbol generation are configured, but native symbol upload is still an explicit gap in [Firebase deployment](../firebase/DEPLOY.md). Verify a deliberate test crash is symbolicated using the exact release; keep Dart symbols and native symbols/dSYMs beyond the CI artifact retention window. |
-| P2 | Distribution metadata | Confirm store identity/contact, screenshots, age ratings, supported countries/platforms, support URL and review instructions. Android id is `com.xmelon.aigammon_app`; iOS id is `com.xmelon.aigammon`. Choose and tag the next version only after the candidate is accepted. |
-| P2 | Windows distribution | Windows is a development target today: no Windows installer/signing CI or clean-machine acceptance evidence. Decide whether it is a public launch platform before advertising downloads. |
+| P2 | Native crash symbolication | Unstripped Android engine symbols and signed iOS archive dSYMs are now retained by CI. Native upload and a deliberately symbolicated test crash still need exact-release validation; keep symbols beyond CI artifact retention. |
+| P2 | Distribution metadata/build history | Publisher/contact and source URLs are Freevia. Confirm screenshots, age ratings, countries/platforms and review instructions. Inspect old store/tester build numbers before selecting `build_number` or `RELEASE_BUILD_NUMBER_BASE` in the new repository. Android id `com.xmelon.aigammon_app` and iOS id `com.xmelon.aigammon` remain unchanged. |
+| P2 | Windows distribution | Desktop integration passed with the real native engine, advancing five plies. No Windows installer/signing CI or clean-machine acceptance evidence exists; decide the public distribution target before advertising downloads. |
 
 Google Play requires an accessible policy in the app and in the listing, with
 accurate data/SDK disclosures and retention/deletion information. Apple's privacy
@@ -50,13 +77,17 @@ practices. These are submission gates, not a finished policy drafted from unknow
 business decisions. [Play User Data](https://support.google.com/googleplay/android-developer/answer/10144311),
 [Apple App Privacy](https://developer.apple.com/app-store/app-privacy-details/).
 
-## Data inventory to finish before policy writing
+## Data inventory and disclosure handoff
+
+The [store disclosure worksheet](store-disclosures.md) records exact flows,
+contacts, local deletion controls and remaining policy decisions. The hosted
+draft was cross-checked against current code, including reset-practice behavior.
 
 | Feature | Source behavior | Decision or verification needed |
 |---|---|---|
 | Local games, analysis, settings, diagnostics | SQLite and app-local files (`app/lib/data`, `app/lib/diagnostics`). History deletion is local. | Describe storage/backup, deletion, and what diagnostics the user can share. |
 | Online matches | Firebase anonymous identity and Firestore match/event/roll records (`packages/online_client`, `firebase/firestore.rules`). Rules deny client-side deletion. | Establish retention and an administrative deletion process; determine applicable account-deletion requirements for the chosen account experience. Local History deletion does not erase Firestore records. |
-| Usage and reliability telemetry | `initializeObservability` enables Analytics, Performance and Crashlytics on configured mobile builds (`app/lib/analytics/firebase_observability.dart`). No in-app collection choice was found. | Review SDK defaults, identifiers, data destinations and region-specific consent needs; decide and implement collection controls before release where required. |
+| Usage and reliability telemetry | Native defaults off; explicit persisted opt-in controls Analytics, Performance and Crashlytics. Consent checked across asynchronous startup. Ads consent denied and Android AD_ID permission removed. | Verify SDK network behavior, backend retention and form categories in the actual binary. Withdrawal cannot retract prior/in-flight transmission. |
 | Buddy camera/microphone | Camera frames are processed locally; optional audio is reduced to a transient dice-sound hint (`app/lib/buddy`). | Verify the shipped binary behaves this way, state the purposes clearly, and test refusals/backgrounding. Permission strings are present on Android/iOS. |
 | Nearby networking / QR | Local UDP/WebSocket traffic and optional camera scanning (`packages/lan_play`). | Describe local-network usage; test iOS permission denial and direct-address/QR fallback when discovery fails. |
 | Feedback | Opens a user-reviewed GitHub issue (`app/lib/feedback`). | Explain when diagnostic details leave the device and that submitted public issues may be visible to others. |
@@ -100,6 +131,24 @@ business decisions. [Play User Data](https://support.google.com/googleplay/andro
    that concrete candidate.
 
 ## Verification limits of this round
+
+Read-only local tool inventory found Flutter 3.44.8, Windows VS2022 Build Tools
+and a staged Windows engine DLL. Android SDK/build tools are present, but only
+NDK27.2 is installed; pinned NDK28.2 is absent and some Android SDK licenses are
+unaccepted. No heavy install, license acceptance or connected-device changes were
+performed. Local upload keystore/key.properties exist and are ignored; their
+credentials were not printed. Old-origin GitHub secret/variable listing returned
+403, which does not establish absence. Root created the Freevia destination;
+remote credentials and store access remain separate acceptance evidence.
+
+Publication scan inspected 5,661 reachable Git objects (2,027 text blobs and 152
+binary blobs). High-confidence credential patterns produced only Kotlin property
+read false positives; no tracked key/raw-video paths were found. All ten real
+corpus photos were visually inspected: boards/table/room furniture, no people or
+readable private text; EXIF was empty. This pattern/visual scan is not an absolute
+guarantee about arbitrary secrets or every historical binary.
+The prepared current tree, including untracked source/notices, also passed a
+556-text-file high-confidence credential scan without matches.
 
 The new release tests guard workflow trust/signing/ABI declarations and existing
 Android config tests. They do not execute GitHub Actions or prove a signed binary

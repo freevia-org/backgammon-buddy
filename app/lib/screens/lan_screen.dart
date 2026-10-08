@@ -17,13 +17,11 @@ import '../data/match_repository.dart';
 import '../data/persistence_hooks.dart';
 import '../data/settings_repository.dart';
 import '../diagnostics/crash_log.dart';
-import '../engine/engine_provider.dart';
 import '../lan/join_qr_code.dart';
 import '../lan/lan_transport.dart';
 import '../lan/qr_payload.dart';
 import '../lan/qr_scanner.dart';
 import '../net/net_match_controller.dart';
-import '../tutor/tutor_service.dart';
 import 'game_screen.dart';
 
 /// How often the JOIN tab sweeps for hosts while it is on screen.
@@ -93,10 +91,8 @@ class _LanScreenState extends State<LanScreen>
 
   @override
   // See [HomeScreen] for why every screen splits build/_build.
-  Widget build(BuildContext context) => AnalyticsScreenView(
-        name: AnalyticsScreens.lan,
-        child: _build(context),
-      );
+  Widget build(BuildContext context) =>
+      AnalyticsScreenView(name: AnalyticsScreens.lan, child: _build(context));
 
   Widget _build(BuildContext context) {
     return Scaffold(
@@ -104,15 +100,31 @@ class _LanScreenState extends State<LanScreen>
         title: const Text('Play Nearby'),
         bottom: TabBar(
           controller: _tabs,
-          tabs: const [Tab(text: 'Host'), Tab(text: 'Join')],
+          tabs: const [
+            Tab(text: 'Host'),
+            Tab(text: 'Join'),
+          ],
         ),
       ),
       body: SafeArea(
-        child: TabBarView(
-          controller: _tabs,
+        child: Column(
           children: [
-            const _HostTab(),
-            _JoinTab(active: _index == 1),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16, 12, 16, 8),
+              child: Text(
+                'Live nearby games are unassisted. Review your '
+                'moves and practise mistakes after the match.',
+              ),
+            ),
+            Expanded(
+              child: TabBarView(
+                controller: _tabs,
+                children: [
+                  const _HostTab(),
+                  _JoinTab(active: _index == 1),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -227,14 +239,22 @@ class _HostTabState extends ConsumerState<_HostTab> {
     // that never became ready) latched it forever and no later presence flap
     // could open a board: the same "stuck true" shape as the drops this
     // transport has been bitten by twice.
-    unawaited(_launch(session).catchError((Object e, StackTrace stack) {
-      // Nobody awaits this — it is fired from a presence listener — so a throw
-      // on the way to the board (a history row that will not insert, a
-      // teardown that fails) had no owner. The host is still hosting, so it
-      // goes to the same slot a controller that never became ready uses.
-      CrashLog.instance.record(e, stack: stack, source: 'lan-host-launch');
-      if (mounted) setState(() => _error = _launchErrorText(e));
-    }).whenComplete(() => _launching = false));
+    unawaited(
+      _launch(session)
+          .catchError((Object e, StackTrace stack) {
+            // Nobody awaits this — it is fired from a presence listener — so a throw
+            // on the way to the board (a history row that will not insert, a
+            // teardown that fails) had no owner. The host is still hosting, so it
+            // goes to the same slot a controller that never became ready uses.
+            CrashLog.instance.record(
+              e,
+              stack: stack,
+              source: 'lan-host-launch',
+            );
+            if (mounted) setState(() => _error = _launchErrorText(e));
+          })
+          .whenComplete(() => _launching = false),
+    );
   }
 
   /// Build the host's controller, wait for game 1 to fold, and open the board.
@@ -248,16 +268,17 @@ class _HostTabState extends ConsumerState<_HostTab> {
     final matchIdFuture = repo.startMatch(
       matchLength: session.config.length,
       mode: 'lan',
+      cubeless: session.config.cubeless,
       whiteType: side == Player.white ? 'human' : 'remote',
       blackType: side == Player.black ? 'human' : 'remote',
     );
-    ref.read(appAnalyticsProvider).logMatchStarted(
+    ref
+        .read(appAnalyticsProvider)
+        .logMatchStarted(
           mode: AnalyticsModes.lan,
           matchLength: session.config.length,
           cubeless: session.config.cubeless,
-          // The tutor default is the user's setting (see _openGame), read
-          // once for the whole launch above.
-          tutor: settings.networkedTutorEnabled,
+          tutor: false,
         );
     final controller = session.controller(
       persistence: RepositoryPersistence(repo, matchIdFuture),
@@ -309,7 +330,7 @@ class _HostTabState extends ConsumerState<_HostTab> {
 
   String _hostErrorText(Object e) => e is SocketException
       ? 'Could not start hosting — the port is already in use. '
-          'Close any other copy of AI Gammon and try again.'
+            'Close any other copy of Backgammon Buddy and try again.'
       : 'Could not start hosting. Check your Wi-Fi connection and try again.';
 
   // --- build -----------------------------------------------------------------
@@ -330,8 +351,9 @@ class _HostTabState extends ConsumerState<_HostTab> {
           Text(
             'Both devices must be on the same Wi-Fi. This one deals the dice '
             'and keeps the score.',
-            style: theme.textTheme.bodyMedium
-                ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
           ),
           const SizedBox(height: 20),
           Text('Match length', style: theme.textTheme.titleSmall),
@@ -345,16 +367,16 @@ class _HostTabState extends ConsumerState<_HostTab> {
               ButtonSegment(value: 7, label: Text('7')),
             ],
             selected: {_matchLength},
-            onSelectionChanged:
-                _starting ? null : (s) => setState(() => _matchLength = s.first),
+            onSelectionChanged: _starting
+                ? null
+                : (s) => setState(() => _matchLength = s.first),
           ),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
             title: const Text('Play without cube'),
             subtitle: const Text('No doubling cube this match'),
             value: _cubeless,
-            onChanged:
-                _starting ? null : (v) => setState(() => _cubeless = v),
+            onChanged: _starting ? null : (v) => setState(() => _cubeless = v),
           ),
           const SizedBox(height: 16),
           FilledButton(
@@ -408,8 +430,9 @@ class _HostTabState extends ConsumerState<_HostTab> {
           Text(
             'Tell the other player this code. It is what lets them in — the '
             'app never sends it over the network.',
-            style: theme.textTheme.bodySmall
-                ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
@@ -456,8 +479,9 @@ class _AddressRow extends StatelessWidget {
       return Text(
         'Ask the other device to look for nearby games. Listening on port '
         '$port.',
-        style: theme.textTheme.bodySmall
-            ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+        style: theme.textTheme.bodySmall?.copyWith(
+          color: theme.colorScheme.onSurfaceVariant,
+        ),
         textAlign: TextAlign.center,
       );
     }
@@ -478,9 +502,9 @@ class _AddressRow extends StatelessWidget {
               onPressed: () async {
                 await Clipboard.setData(ClipboardData(text: '$address:$port'));
                 if (!context.mounted) return;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Address copied')),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(const SnackBar(content: Text('Address copied')));
               },
             ),
           ],
@@ -506,7 +530,11 @@ enum _JoinPhase {
 
 /// One host to connect to, from either the discovered list or the manual form.
 class _Target {
-  const _Target({required this.name, required this.address, required this.port});
+  const _Target({
+    required this.name,
+    required this.address,
+    required this.port,
+  });
 
   final String name;
   final String address;
@@ -585,7 +613,9 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
   void _startSweeping() {
     _sweep?.cancel();
     _sweep = Timer.periodic(
-        _probeInterval, (_) => recordFailures(_probe(), source: 'lan-probe'));
+      _probeInterval,
+      (_) => recordFailures(_probe(), source: 'lan-probe'),
+    );
     // A microtask, not a direct call: this runs from initState and from
     // didUpdateWidget, where the first thing [_probe] does — setState — is not
     // yet legal.
@@ -628,7 +658,10 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
     _codeController.clear();
     setState(() {
       _target = _Target(
-          name: host.name, address: host.address, port: host.port);
+        name: host.name,
+        address: host.address,
+        port: host.port,
+      );
       _phase = _JoinPhase.code;
       _failure = null;
       _formError = null;
@@ -650,8 +683,11 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
   void _connectPicked() {
     final code = _codeController.text.trim();
     if (!_validCode(code)) {
-      setState(() => _formError = 'Enter the 4-digit code from the other '
-          'device.');
+      setState(
+        () => _formError =
+            'Enter the 4-digit code from the other '
+            'device.',
+      );
       return;
     }
     _startConnect(_target!, code);
@@ -663,8 +699,11 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
     final port = int.tryParse(_portController.text.trim());
     final code = _manualCodeController.text.trim();
     if (address.isEmpty) {
-      setState(() => _formError = 'Enter the address shown on the other '
-          'device.');
+      setState(
+        () => _formError =
+            'Enter the address shown on the other '
+            'device.',
+      );
       return;
     }
     if (port == null || port < 1 || port > 65535) {
@@ -672,8 +711,11 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
       return;
     }
     if (!_validCode(code)) {
-      setState(() => _formError = 'Enter the 4-digit code from the other '
-          'device.');
+      setState(
+        () => _formError =
+            'Enter the 4-digit code from the other '
+            'device.',
+      );
       return;
     }
     _startConnect(_Target(name: address, address: address, port: port), code);
@@ -699,7 +741,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
       switch (outcome) {
         case QrScanCancelled():
           // Backed out on purpose. Nothing to report — and nothing left over
-          // either: a message about the LAST scan ("that was not an AI Gammon
+          // either: a message about the LAST scan ("that was not a Backgammon Buddy
           // code") is stale the moment a new scan is opened, and leaving it
           // under the button makes a deliberate cancellation look like a
           // failure.
@@ -711,8 +753,11 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
         case QrScanCode(:final raw):
           final payload = tryDecodeQrJoin(raw);
           if (payload == null) {
-            setState(() => _scanError = 'That QR code is not an AI Gammon game. '
-                'Scan the one on the other device\'s Host screen.');
+            setState(
+              () => _scanError =
+                  'That QR code is not a Backgammon Buddy game. '
+                  'Scan the one on the other device\'s Host screen.',
+            );
             return;
           }
           _addressController.text = payload.address;
@@ -737,8 +782,11 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
       // is owed an answer, and the typing form below still works.
       CrashLog.instance.record(e, stack: stack, source: 'lan-scan');
       if (mounted) {
-        setState(() => _scanError = 'The scanner could not be opened. '
-            'Enter the address and code below instead.');
+        setState(
+          () => _scanError =
+              'The scanner could not be opened. '
+              'Enter the address and code below instead.',
+        );
       }
     } finally {
       // Guards the ROUTE, so it is released as soon as the route is gone —
@@ -756,11 +804,13 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
   /// throw into nobody: this is a tap, not an await. The connecting card is
   /// where a join failure belongs, and it already carries Try again and Back.
   void _startConnect(_Target target, String code) {
-    unawaited(_connect(target, code).catchError((Object e, StackTrace stack) {
-      CrashLog.instance.record(e, stack: stack, source: 'lan-join');
-      _releaseSession();
-      if (mounted) setState(() => _failure = _joinErrorText(e));
-    }));
+    unawaited(
+      _connect(target, code).catchError((Object e, StackTrace stack) {
+        CrashLog.instance.record(e, stack: stack, source: 'lan-join');
+        _releaseSession();
+        if (mounted) setState(() => _failure = _joinErrorText(e));
+      }),
+    );
   }
 
   Future<void> _connect(_Target target, String code) async {
@@ -829,16 +879,17 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
     final matchIdFuture = repo.startMatch(
       matchLength: session.config.length,
       mode: 'lan',
+      cubeless: session.config.cubeless,
       whiteType: side == Player.white ? 'human' : 'remote',
       blackType: side == Player.black ? 'human' : 'remote',
     );
-    ref.read(appAnalyticsProvider).logMatchStarted(
+    ref
+        .read(appAnalyticsProvider)
+        .logMatchStarted(
           mode: AnalyticsModes.lan,
           matchLength: session.config.length,
           cubeless: session.config.cubeless,
-          // The tutor default is the user's setting (see _openGame), read
-          // once for the whole launch above.
-          tutor: settings.networkedTutorEnabled,
+          tutor: false,
         );
     final controller = session.controller(
       persistence: RepositoryPersistence(repo, matchIdFuture),
@@ -886,10 +937,10 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
       return 'Wrong room code. Check the four digits on the other device.';
     }
     if (lower.contains('version') || lower.contains('protocol')) {
-      return 'The other device is running a different version of AI Gammon.';
+      return 'The other device is running a different version of Backgammon Buddy.';
     }
     if (lower.contains('handshake required')) {
-      return 'That device did not answer the way AI Gammon does. Check the '
+      return 'That device did not answer the way Backgammon Buddy does. Check the '
           'address and port.';
     }
     return 'Could not join: $reason';
@@ -902,12 +953,12 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
     return _TabBody(
       children: switch (_phase) {
         _JoinPhase.browsing => [
-            _scanCard(),
-            const SizedBox(height: 16),
-            _hostsCard(),
-            const SizedBox(height: 16),
-            _manualCard(),
-          ],
+          _scanCard(),
+          const SizedBox(height: 16),
+          _hostsCard(),
+          const SizedBox(height: 16),
+          _manualCard(),
+        ],
         _JoinPhase.code => [_codeCard()],
         _JoinPhase.connecting => [_connectingCard()],
       },
@@ -924,8 +975,9 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
         Text(
           'The other device shows a QR code on its Host screen. Scanning it '
           'fills in the address and the room code for you.',
-          style: theme.textTheme.bodyMedium
-              ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
         ),
         const SizedBox(height: 12),
         FilledButton.icon(
@@ -952,8 +1004,9 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
           Text(
             'No games found yet. Make sure the other device is hosting and '
             'both are on the same Wi-Fi — or enter its address below.',
-            style: theme.textTheme.bodyMedium
-                ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
           )
         else
           for (final host in _hosts)
@@ -983,8 +1036,9 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
           'Automatic discovery does not work on every network (and on iOS it '
           'may be blocked entirely). The host screen shows this device what to '
           'type.',
-          style: theme.textTheme.bodySmall
-              ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
         ),
         const SizedBox(height: 12),
         Row(
@@ -1050,8 +1104,9 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
       children: [
         Text(
           'Enter the 4-digit code shown on the other device.',
-          style: theme.textTheme.bodyMedium
-              ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+          style: theme.textTheme.bodyMedium?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
         ),
         const SizedBox(height: 16),
         TextField(
@@ -1077,10 +1132,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
           ),
           child: const Text('Connect'),
         ),
-        TextButton(
-          onPressed: _backToBrowsing,
-          child: const Text('Back'),
-        ),
+        TextButton(onPressed: _backToBrowsing, child: const Text('Back')),
         if (_formError != null) _ErrorRow(_formError!),
       ],
     );
@@ -1105,10 +1157,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
             ),
             child: const Text('Try again'),
           ),
-          TextButton(
-            onPressed: _backToBrowsing,
-            child: const Text('Back'),
-          ),
+          TextButton(onPressed: _backToBrowsing, child: const Text('Back')),
         ] else ...[
           _StatusRow(text: _linkText()),
           const SizedBox(height: 16),
@@ -1128,12 +1177,12 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
   /// the host is mid-match (or still reaping a half-open socket from a previous
   /// guest), and the client keeps retrying on its own.
   String _linkText() => switch (_linkState.status) {
-        GuestConnectionStatus.busy => 'Room in use — waiting…',
-        GuestConnectionStatus.reconnecting => 'Lost the connection — retrying…',
-        GuestConnectionStatus.connected => 'Connected — starting the match…',
-        GuestConnectionStatus.failed => 'Could not join.',
-        GuestConnectionStatus.connecting => 'Connecting…',
-      };
+    GuestConnectionStatus.busy => 'Room in use — waiting…',
+    GuestConnectionStatus.reconnecting => 'Lost the connection — retrying…',
+    GuestConnectionStatus.connected => 'Connected — starting the match…',
+    GuestConnectionStatus.failed => 'Could not join.',
+    GuestConnectionStatus.connecting => 'Connecting…',
+  };
 }
 
 // --- shared ------------------------------------------------------------------
@@ -1141,13 +1190,12 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
 /// The settings a launch runs on: read ONCE, at the top of `_launch`, and
 /// AWAITED rather than peeked at.
 ///
-/// Both tabs pass this one snapshot on to the analytics event and to
-/// [_openGame], so the tutor flag that is reported and the board that is built
-/// cannot disagree. Awaited, because nothing on this screen watches the stream:
+/// Both tabs pass this snapshot to [_openGame] for animation/interaction choices.
+/// Awaited, because nothing on this screen watches the stream:
 /// a peek would hand out the defaults for as long as the first value is in
 /// flight, and Nearby is the FASTEST board to reach from a cold start — two
-/// taps — so that window is precisely where a user's "tutor off" would be
-/// ignored. A settings store that cannot be read at all falls back to the
+/// taps — so a cold-start peek could ignore saved interaction preferences.
+/// A settings store that cannot be read at all falls back to the
 /// defaults, the same as everywhere else.
 ///
 /// (The host tab's `initState` still peeks, deliberately: it seeds the
@@ -1171,18 +1219,7 @@ Future<void> _openGame({
   required String opponentLabel,
   required AppSettings settings,
 }) async {
-  // The tutor is local and read-only on the LAN exactly as it is online. It
-  // marks BOTH columns of the score sheet — the peer's completed moves are
-  // assessed on the same terms as your own — but everything PROSPECTIVE (hints,
-  // cube advice) is offered for the local player's own pending decision alone.
-  // Retrospective for both, prospective for you: that is what keeps it fair,
-  // and why an off-switch can only cost you help. Whether it is built at all is
-  // the user's setting — see [AppSettings.networkedTutorEnabled] for what Auto
-  // means here — and a null tutor is what turns every tutor surface off on the
-  // board.
-  final tutor = settings.networkedTutorEnabled
-      ? TutorService(ref.read(engineFacadeProvider))
-      : null;
+  // Live peer matches are unassisted; History review creates its own tutor.
   await Navigator.of(context).push(
     MaterialPageRoute(
       builder: (_) => GameScreen(
@@ -1191,7 +1228,7 @@ Future<void> _openGame({
         orientation: controller.localSide == Player.white
             ? BoardOrientationMode.fixedWhite
             : BoardOrientationMode.fixedBlack,
-        tutor: tutor,
+        tutor: null,
         analytics: ref.read(appAnalyticsProvider),
         analyticsMode: AnalyticsModes.lan,
         opponentLabel: opponentLabel,
@@ -1327,8 +1364,8 @@ class _ButtonSpinner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const SizedBox(
-        height: 20,
-        width: 20,
-        child: CircularProgressIndicator(strokeWidth: 2),
-      );
+    height: 20,
+    width: 20,
+    child: CircularProgressIndicator(strokeWidth: 2),
+  );
 }

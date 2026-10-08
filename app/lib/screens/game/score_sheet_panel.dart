@@ -160,7 +160,9 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
                       child: Text(
                         'No moves yet',
                         style: TextStyle(
-                            fontSize: 12, color: scheme.onSurfaceVariant),
+                          fontSize: 12,
+                          color: scheme.onSurfaceVariant,
+                        ),
                       ),
                     )
                   : ListView.builder(
@@ -168,8 +170,7 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
                       controller: _scroll,
                       padding: const EdgeInsets.symmetric(vertical: 2),
                       itemCount: rows.length,
-                      itemBuilder: (context, i) =>
-                          _row(rows[i], i, leftSide),
+                      itemBuilder: (context, i) => _row(rows[i], i, leftSide),
                     ),
             ),
           ],
@@ -213,11 +214,10 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
   }
 
   /// One sheet row: a numbered two-cell turn row, or a full-width span row.
-  Widget _row(ScoreSheetRow row, int index, Player leftSide) =>
-      switch (row) {
-        ScoreSheetTurn() => _turnRow(row, index, leftSide),
-        ScoreSheetSpan() => _spanRow(row, index),
-      };
+  Widget _row(ScoreSheetRow row, int index, Player leftSide) => switch (row) {
+    ScoreSheetTurn() => _turnRow(row, index, leftSide),
+    ScoreSheetSpan() => _spanRow(row, index),
+  };
 
   /// A numbered turn row: the turn number in the gutter, then one equal-width
   /// cell per side (the left one being [leftSide]'s).
@@ -281,7 +281,9 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
     String markLabel = '';
     String lossText = '';
     // A dance offers no choice, so grading it "best" is noise — no mark at all.
-    if (assessment != null && assessment.ranked.isNotEmpty) {
+    if (assessment != null &&
+        assessment.isDecision &&
+        assessment.ranked.isNotEmpty) {
       final (color, label) = _markStyle(assessment.mark);
       markColor = color;
       markLabel = label;
@@ -291,7 +293,11 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
       // lowercase copy of it, so the column and the dot's label cannot disagree
       // about their own casing — see below, where the dot then keeps quiet
       // rather than have a reader hear "Best … best".
-      lossText = loss >= 0.001 ? '−${loss.toStringAsFixed(3)}' : label;
+      lossText = assessment.mark == MoveMark.best
+          ? label
+          : assessment.metric == AssessmentMetric.matchWinningChance
+          ? '−${(loss * 100).toStringAsFixed(2)}pp'
+          : '−${loss.toStringAsFixed(3)}';
     }
 
     final line = Row(
@@ -326,8 +332,7 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
           Text(
             lossText,
             maxLines: 1,
-            style: base.copyWith(
-                color: markColor, fontWeight: FontWeight.w600),
+            style: base.copyWith(color: markColor, fontWeight: FontWeight.w600),
           ),
         ],
       ],
@@ -348,7 +353,9 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: base.copyWith(
-                  fontSize: 11, color: scheme.onSurfaceVariant),
+                fontSize: 11,
+                color: scheme.onSurfaceVariant,
+              ),
             ),
         ],
       ),
@@ -397,20 +404,21 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
   /// fits in a ~180pt column) but it is what the dot's semantics node says, so
   /// the verdict is not colour-only.
   (Color, String) _markStyle(MoveMark mark) => switch (mark) {
-        MoveMark.best => (Colors.green.shade700, 'Best'),
-        MoveMark.good => (Colors.green.shade600, 'Good'),
-        MoveMark.dubious => (Colors.amber.shade800, 'Dubious'),
-        MoveMark.error => (Colors.orange.shade800, 'Error'),
-        MoveMark.blunder => (Colors.red.shade700, 'Blunder'),
-      };
+    MoveMark.best => (Colors.green.shade700, 'Best'),
+    MoveMark.good => (Colors.green.shade600, 'Good'),
+    MoveMark.dubious => (Colors.amber.shade800, 'Dubious'),
+    MoveMark.error => (Colors.orange.shade800, 'Error'),
+    MoveMark.blunder => (Colors.red.shade700, 'Blunder'),
+  };
 
   /// A small leading dot in the actor's checker colour (ivory for White, ebony
   /// for Black), or an empty transparent slot for a neutral line (the opening).
   Widget _actorDot(Player? actor) {
     if (actor == null) return const SizedBox(width: 10, height: 10);
     final isWhite = actor == Player.white;
-    final color =
-        isWhite ? BoardTheme.light.whiteChecker : BoardTheme.light.blackChecker;
+    final color = isWhite
+        ? BoardTheme.light.whiteChecker
+        : BoardTheme.light.blackChecker;
     final border = isWhite
         ? BoardTheme.light.whiteCheckerBorder
         : BoardTheme.light.blackCheckerBorder;

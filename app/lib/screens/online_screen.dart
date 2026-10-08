@@ -18,10 +18,8 @@ import '../data/match_repository.dart';
 import '../data/persistence_hooks.dart';
 import '../data/settings_repository.dart';
 import '../diagnostics/crash_log.dart';
-import '../engine/engine_provider.dart';
 import '../net/net_match_controller.dart';
 import '../online/online_providers.dart';
-import '../tutor/tutor_service.dart';
 import 'game_screen.dart';
 
 /// The online-play entry screen: create a match (share a code, wait for an
@@ -42,9 +40,9 @@ class OnlineScreen extends ConsumerWidget {
   @override
   // See [HomeScreen] for why every screen splits build/_build.
   Widget build(BuildContext context, WidgetRef ref) => AnalyticsScreenView(
-        name: AnalyticsScreens.online,
-        child: _build(context, ref),
-      );
+    name: AnalyticsScreens.online,
+    child: _build(context, ref),
+  );
 
   Widget _build(BuildContext context, WidgetRef ref) {
     final config = ref.watch(onlineConfigProvider);
@@ -59,7 +57,17 @@ class OnlineScreen extends ConsumerWidget {
                 padding: const EdgeInsets.all(24),
                 child: config == null
                     ? const _NotConfiguredCard()
-                    : const _OnlineBody(),
+                    : const Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Live online games are unassisted. Review your '
+                            'moves and practise mistakes after the match.',
+                          ),
+                          SizedBox(height: 16),
+                          _OnlineBody(),
+                        ],
+                      ),
               ),
             ),
           ),
@@ -82,17 +90,24 @@ class _NotConfiguredCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.cloud_off,
-                size: 48, color: theme.colorScheme.onSurfaceVariant),
+            Icon(
+              Icons.cloud_off,
+              size: 48,
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
             const SizedBox(height: 16),
-            Text('Online play isn’t configured in this build',
-                style: theme.textTheme.titleMedium, textAlign: TextAlign.center),
+            Text(
+              'Online play isn’t configured in this build',
+              style: theme.textTheme.titleMedium,
+              textAlign: TextAlign.center,
+            ),
             const SizedBox(height: 8),
             Text(
               'This build has no Firebase backend wired up, so create/join '
               'matches are unavailable.',
-              style: theme.textTheme.bodyMedium
-                  ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
               textAlign: TextAlign.center,
             ),
           ],
@@ -259,8 +274,9 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
   /// gone away (see [_rejoin]).
   void _say(String message) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   Future<void> _forgetResume() async {
@@ -441,18 +457,17 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
     final matchIdFuture = repo.startMatch(
       matchLength: doc.length,
       mode: 'online',
+      cubeless: doc.cubeless,
       whiteType: localSide == Player.white ? 'human' : 'remote',
       blackType: localSide == Player.black ? 'human' : 'remote',
     );
-    // The tutor default is the user's setting, exactly as it is for a local
-    // match — see [AppSettings.networkedTutorEnabled] for what Auto means here.
-    final tutorEnabled = settings.networkedTutorEnabled;
-    ref.read(appAnalyticsProvider).logMatchStarted(
+    ref
+        .read(appAnalyticsProvider)
+        .logMatchStarted(
           mode: AnalyticsModes.online,
           matchLength: doc.length,
-          // Online matches are always played with the cube.
-          cubeless: false,
-          tutor: tutorEnabled,
+          cubeless: doc.cubeless,
+          tutor: false,
         );
     // The match document has both seats by now (the create flow waited for the
     // join, the join flow just claimed one), so it is handed to the transport as
@@ -498,22 +513,15 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
       if (live && failure != null) _say(_errorText(failure));
       return;
     }
-    // The tutor is local and read-only online. It marks BOTH columns of the
-    // score sheet — the opponent's completed moves are assessed on the same
-    // terms as your own — but everything PROSPECTIVE (hints, cube advice) is
-    // offered for the local player's own pending decision alone. Retrospective
-    // for both, prospective for you: that is what keeps it fair, and why an
-    // off-switch can only cost you help. Built only when the setting has it on
-    // ([tutorEnabled]); null is what turns every tutor surface off on the board.
-    final tutor =
-        tutorEnabled ? TutorService(ref.read(engineFacadeProvider)) : null;
+    // No bilateral assistance agreement exists in the protocol. Live network
+    // games therefore get no tutor; post-game analysis builds its own service.
     await Navigator.of(context).push(
       MaterialPageRoute(
         builder: (_) => GameScreen(
           key: ValueKey(controller),
           controller: controller,
           orientation: orientation,
-          tutor: tutor,
+          tutor: null,
           analytics: ref.read(appAnalyticsProvider),
           analyticsMode: AnalyticsModes.online,
           // The header names the sides "You … Opp" online (the remote player is
@@ -575,8 +583,11 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
     return _SectionCard(
       title: 'Match in progress',
       children: [
-        Text('You were playing match $code.',
-            style: theme.textTheme.bodyMedium, textAlign: TextAlign.center),
+        Text(
+          'You were playing match $code.',
+          style: theme.textTheme.bodyMedium,
+          textAlign: TextAlign.center,
+        ),
         const SizedBox(height: 16),
         FilledButton(
           onPressed: _rejoining ? null : () => _rejoin(code),
@@ -587,7 +598,8 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
               ? const SizedBox(
                   height: 20,
                   width: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2))
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
               : const Text('Rejoin'),
         ),
         TextButton(
@@ -640,7 +652,8 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
               ? const SizedBox(
                   height: 20,
                   width: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2))
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
               : const Text('Create'),
         ),
         if (_createError != null) _errorRow(_createError!),
@@ -671,9 +684,9 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
               onPressed: () async {
                 await Clipboard.setData(ClipboardData(text: _createdCode!));
                 if (!mounted) return;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Code copied')),
-                );
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(const SnackBar(content: Text('Code copied')));
               },
             ),
           ],
@@ -683,9 +696,10 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-                height: 18,
-                width: 18,
-                child: CircularProgressIndicator(strokeWidth: 2)),
+              height: 18,
+              width: 18,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
             SizedBox(width: 12),
             Text('Waiting for opponent…'),
           ],
@@ -735,7 +749,8 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
               ? const SizedBox(
                   height: 20,
                   width: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2))
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
               : const Text('Join'),
         ),
         if (_joinError != null) _errorRow(_joinError!),
@@ -766,8 +781,7 @@ class _UpperCaseFormatter extends TextInputFormatter {
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
     TextEditingValue newValue,
-  ) =>
-      newValue.copyWith(text: newValue.text.toUpperCase());
+  ) => newValue.copyWith(text: newValue.text.toUpperCase());
 }
 
 /// A titled card wrapper for the create / join / waiting sections.

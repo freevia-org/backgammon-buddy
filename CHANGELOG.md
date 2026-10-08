@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to AI Gammon are recorded here.
+All notable changes to Backgammon Buddy are recorded here.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -19,6 +19,18 @@ set by CI from the workflow run number and is not tracked here.
 
 ### Added
 
+- Persistent coaching preferences, try-first hints, a human-decision learning
+  profile, saved-mistake practice and spaced reviews with deletion/reset controls.
+- Score-aware checker assessment, post-game cube review and grounded
+  prime/anchor/race/hitting comparisons; forced choices are excluded from means.
+- Concise retrospective Buddy teaching through text and speech after committed
+  human plays, following saved commentary/explanation choices.
+- Freevia privacy/support pages in Settings and explicit optional telemetry
+  consent, with native collection disabled by default and live withdrawal gates.
+- Complete locked Rust notices, verified upstream CC0 model terms and bundled
+  MPL source; offline release provenance checks and native artifact validation.
+- Optional export-only iOS App Store IPA preparation, profile checks, native
+  symbol artifacts and explicit release build-number baseline controls.
 - Independent per-match tutor controls for best-move hints, move explanations,
   game commentary and cube advice. Candidate comparisons and post-game
   explanations show engine estimates alongside observable board changes, with
@@ -31,6 +43,12 @@ set by CI from the workflow run number and is not tracked here.
 
 ### Fixed
 
+- Completed-game history and score updates are atomic, including migration
+  coverage for new learning records and original cube-rule metadata.
+- Live online/nearby games cannot inject tutor assistance; post-game study is
+  retained. Online analytics now records the actual cubeless setting.
+- A telemetry choice withdrawn during delayed SDK initialization no longer
+  enables native collection afterwards.
 - Missing engine rankings no longer become a false **Best** move assessment;
   old analysis caches are recomputed. Stale hint/cube results are discarded,
   cubeless matches suppress cube advice, and hint panels show positive loss

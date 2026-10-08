@@ -7,6 +7,7 @@ import 'package:aigammon_app/engine/engine_provider.dart';
 import 'package:aigammon_app/game/game_record.dart';
 import 'package:aigammon_app/game/player_agent.dart';
 import 'package:aigammon_app/screens/analysis_screen.dart';
+import 'package:aigammon_app/screens/practice_screen.dart';
 import 'package:aigammon_app/tutor/game_analyzer.dart';
 import 'package:aigammon_app/tutor/tutor_service.dart';
 import 'package:backgammon_core/backgammon_core.dart';
@@ -32,18 +33,20 @@ const _surface = Size(900, 1600);
   final g2 = g1.append(const RollEvent(Player.black, 3, 2));
   final b1 = g2.state.legalMoves.first;
   final g3 = g2.append(MoveEvent(Player.black, b1));
-  final g4 = g3.append(const ResignOfferEvent(Player.white, ResignValue.single));
+  final g4 = g3.append(
+    const ResignOfferEvent(Player.white, ResignValue.single),
+  );
   final g5 = g4.append(const ResignAcceptEvent(Player.black));
   return (game: g5, played: [w1, b1]);
 }
 
 Probabilities _probs(double equity) => Probabilities(
-      win: (equity + 1) / 2,
-      winGammon: 0,
-      winBackgammon: 0,
-      loseGammon: 0,
-      loseBackgammon: 0,
-    );
+  win: (equity + 1) / 2,
+  winGammon: 0,
+  winBackgammon: 0,
+  loseGammon: 0,
+  loseBackgammon: 0,
+);
 
 ScoredMove _scored(Move move, double equity) =>
     ScoredMove(move: move, probabilities: _probs(equity));
@@ -67,8 +70,10 @@ class ScriptedEngine implements EngineFacade {
 
   @override
   Future<List<ScoredMove>> rankMoves(
-          BoardState board, Player mover, Dice dice) async =>
-      rankings[calls++];
+    BoardState board,
+    Player mover,
+    Dice dice,
+  ) async => rankings[calls++];
 
   @override
   Future<Probabilities> evaluate(BoardState board, Player mover) async =>
@@ -84,9 +89,17 @@ class FlatFacade implements EngineFacade {
   const FlatFacade();
   @override
   Future<List<ScoredMove>> rankMoves(
-      BoardState board, Player mover, Dice dice) async {
+    BoardState board,
+    Player mover,
+    Dice dice,
+  ) async {
     const flat = Probabilities(
-        win: 0.5, winGammon: 0, winBackgammon: 0, loseGammon: 0, loseBackgammon: 0);
+      win: 0.5,
+      winGammon: 0,
+      winBackgammon: 0,
+      loseGammon: 0,
+      loseBackgammon: 0,
+    );
     return [
       for (final m in MoveGenerator.legalMoves(board, mover, dice))
         ScoredMove(move: m, probabilities: flat),
@@ -101,12 +114,20 @@ class FlatFacade implements EngineFacade {
       throw UnimplementedError();
 }
 
+class _CubeFacade extends FlatFacade {
+  @override
+  Future<Probabilities> evaluate(BoardState board, Player mover) async =>
+      _probs(.9);
+}
+
 // --- Board probes ------------------------------------------------------------
 
-BoardPainter _painterOf(WidgetTester t) => t
-    .widgetList<CustomPaint>(find.byType(CustomPaint))
-    .firstWhere((c) => c.painter is BoardPainter)
-    .painter as BoardPainter;
+BoardPainter _painterOf(WidgetTester t) =>
+    t
+            .widgetList<CustomPaint>(find.byType(CustomPaint))
+            .firstWhere((c) => c.painter is BoardPainter)
+            .painter
+        as BoardPainter;
 
 // --- App harness -------------------------------------------------------------
 
@@ -117,28 +138,28 @@ Widget _app(
   int gameId, {
   EngineFacade facade = const FlatFacade(),
   double textScale = 1.0,
-}) =>
-    ProviderScope(
-      overrides: [
-        databaseProvider.overrideWithValue(_db),
-        engineFacadeProvider.overrideWithValue(facade),
-      ],
-      child: MaterialApp(
-        // Applied through `builder` so the override lands INSIDE the app's own
-        // MediaQuery (which supplies the surface size) rather than replacing it.
-        builder: (context, child) => MediaQuery(
-          data: MediaQuery.of(context)
-              .copyWith(textScaler: TextScaler.linear(textScale)),
-          child: child!,
-        ),
-        home: AnalysisScreen(gameId: gameId),
-      ),
-    );
+}) => ProviderScope(
+  overrides: [
+    databaseProvider.overrideWithValue(_db),
+    engineFacadeProvider.overrideWithValue(facade),
+  ],
+  child: MaterialApp(
+    // Applied through `builder` so the override lands INSIDE the app's own
+    // MediaQuery (which supplies the surface size) rather than replacing it.
+    builder: (context, child) => MediaQuery(
+      data: MediaQuery.of(
+        context,
+      ).copyWith(textScaler: TextScaler.linear(textScale)),
+      child: child!,
+    ),
+    home: AnalysisScreen(gameId: gameId),
+  ),
+);
 
 Future<void> _pumpLoaded(WidgetTester t, Widget app) async {
   await t.pumpWidget(app);
   for (var i = 0; i < 60; i++) {
-    if (find.textContaining('Error rate').evaluate().isNotEmpty) break;
+    if (find.textContaining('Mean loss').evaluate().isNotEmpty) break;
     await t.runAsync(() async {
       await Future<void>.delayed(const Duration(milliseconds: 10));
     });
@@ -170,37 +191,115 @@ Future<int> _seedCachedBlunder(WidgetTester t) async {
       _ranking(fx.played[0], 0.20),
       _ranking(fx.played[1], 0.0),
     ]);
-    final analysis = await GameAnalyzer(TutorService(engine))
-        .analyze(fx.game.events, isCrawford: false);
+    final analysis = await GameAnalyzer(
+      TutorService(engine),
+    ).analyze(fx.game.events, isCrawford: false, cubeless: null);
     await _repo.saveAnalysis(gameId, jsonEncode(analysis.toJson()));
   });
   return gameId;
 }
 
 void main() {
+  testWidgets(
+    'score-aware cube replay links an assessed checker decision to blind practice',
+    (t) async {
+      await t.binding.setSurfaceSize(_surface);
+      addTearDown(() => t.binding.setSurfaceSize(null));
+      late int gameId;
+      await t.runAsync(() async {
+        final matchId = await _repo.startMatch(
+          matchLength: 5,
+          cubeless: false,
+          mode: 'vsComputer',
+          whiteType: 'human',
+          blackType: 'ai:expert',
+        );
+        var game = Game.start(const OpeningRollEvent(whiteDie: 6, blackDie: 1));
+        game = game
+            .append(MoveEvent(Player.white, game.state.legalMoves.first))
+            .append(const DoubleEvent(Player.black))
+            .append(const DropEvent(Player.white));
+        gameId = await _repo.recordGame(
+          matchId: matchId,
+          gameNumber: 1,
+          isCrawford: false,
+          events: game.events,
+          result: game.state.result!,
+        );
+      });
+      await _pumpLoaded(t, _app(gameId, facade: _CubeFacade()));
+      expect(find.textContaining('pp MWC'), findsWidgets);
+      await t.tap(find.byTooltip('Next'));
+      await t.pumpAndSettle();
+      expect(find.text('Save for practice'), findsOneWidget);
+      await t.tap(find.byTooltip('Next'));
+      await t.pumpAndSettle();
+      expect(find.text('Position before the cube decision'), findsOneWidget);
+      expect(find.textContaining('Black: Double'), findsOneWidget);
+      await t.tap(find.byTooltip('Next'));
+      await t.pumpAndSettle();
+      expect(find.textContaining('White: Pass'), findsOneWidget);
+      await t.tap(find.text('Best: Pass'));
+      await t.pumpAndSettle();
+      expect(
+        find.textContaining('0.7 cube-life approximation'),
+        findsOneWidget,
+      );
+      await t.tap(find.text('Close'));
+      await t.pumpAndSettle();
+      await t.tap(find.byTooltip('Previous'));
+      await t.tap(find.byTooltip('Previous'));
+      await t.pumpAndSettle();
+      await t.tap(find.text('Save for practice'));
+      for (var i = 0; i < 60; i++) {
+        await t.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 10)),
+        );
+        await t.pump();
+        if (find.textContaining('No hints are shown').evaluate().isNotEmpty) {
+          break;
+        }
+      }
+      await t.pumpAndSettle();
+      expect(find.byType(PracticeScreen), findsOneWidget);
+      expect(find.textContaining('No hints are shown'), findsOneWidget);
+      expect(find.textContaining('Original game:'), findsNothing);
+      await t.runAsync(() async {
+        final saved = await _db.select(_db.practicePositions).get();
+        expect(saved.single.gameId, gameId);
+        expect(saved.single.eventIndex, 1);
+        expect(saved.single.matchLength, 5);
+      });
+      await t.pumpWidget(const SizedBox());
+    },
+  );
   group('moveHighlights (true origins/landings only)', () {
     test('multi-hop single checker marks only the true origin and landing', () {
       // 24/18/13: one checker via two dice — 18 is a transit point, not a
       // landing, and not an origin.
-      final (sources, destinations) = moveHighlights(Move(const [
-        CheckerMove(23, 17),
-        CheckerMove(17, 12),
-      ]));
+      final (sources, destinations) = moveHighlights(
+        Move(const [CheckerMove(23, 17), CheckerMove(17, 12)]),
+      );
       expect(sources, {23});
       expect(destinations, {12});
-      expect(destinations.contains(17), isFalse,
-          reason: 'the pass-through point is not a landing');
-      expect(sources.contains(17), isFalse,
-          reason: 'the pass-through point is not an origin');
+      expect(
+        destinations.contains(17),
+        isFalse,
+        reason: 'the pass-through point is not a landing',
+      );
+      expect(
+        sources.contains(17),
+        isFalse,
+        reason: 'the pass-through point is not an origin',
+      );
     });
 
     test('two checkers sharing a point mark it as both origin and landing', () {
       // One checker leaves 13 (13/7) while another arrives on 13 (24/13); in
       // notation order the arrival opens its own chain, so 13 is both.
-      final (sources, destinations) = moveHighlights(Move(const [
-        CheckerMove(12, 6),
-        CheckerMove(23, 12),
-      ]));
+      final (sources, destinations) = moveHighlights(
+        Move(const [CheckerMove(12, 6), CheckerMove(23, 12)]),
+      );
       expect(sources, {12, 23});
       expect(destinations, {6, 12});
       expect(sources.contains(12), isTrue);
@@ -215,8 +314,7 @@ void main() {
   });
   tearDown(() => _db.close());
 
-  testWidgets(
-      'stepped move: shows historical dice, played-move highlights, and the '
+  testWidgets('stepped move: shows historical dice, played-move highlights, and the '
       'Played/Best toggle swaps the overlay', (t) async {
     await t.binding.setSurfaceSize(_surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
@@ -229,7 +327,7 @@ void main() {
 
     // Summary header shows both players' error rates and the blunder count.
     expect(find.text('Analysis'), findsOneWidget);
-    expect(find.textContaining('Error rate'), findsNWidgets(2));
+    expect(find.textContaining('Mean loss'), findsNWidgets(2));
     expect(find.text('Blunders 1'), findsOneWidget); // White
 
     // Step onto White's move (event index 1): the PRE-move (opening) position is
@@ -240,10 +338,16 @@ void main() {
     expect(find.text('Showing position before the move'), findsOneWidget);
 
     final onPlayed = _painterOf(t);
-    expect(onPlayed.whiteDice, Dice(6, 1),
-        reason: 'the mover\'s roll shows on White\'s pair');
-    expect(onPlayed.blackDice, isNull,
-        reason: 'Black has not rolled by this step');
+    expect(
+      onPlayed.whiteDice,
+      Dice(6, 1),
+      reason: 'the mover\'s roll shows on White\'s pair',
+    );
+    expect(
+      onPlayed.blackDice,
+      isNull,
+      reason: 'Black has not rolled by this step',
+    );
     expect(onPlayed.movingPlayer, Player.white);
 
     // The played move is drawn: its origins wear the STRONG selection ring (not
@@ -251,8 +355,11 @@ void main() {
     // landings the destination highlights. Source index 0 is never in a legal
     // White opening move, so it stays out of the played overlay.
     expect(onPlayed.strongHighlightLocations, playedSrcs);
-    expect(onPlayed.highlightedSources, isEmpty,
-        reason: 'the replay overlay must not use the weak source ring');
+    expect(
+      onPlayed.highlightedSources,
+      isEmpty,
+      reason: 'the replay overlay must not use the weak source ring',
+    );
     expect(onPlayed.highlightedDestinations, playedDests);
     expect(onPlayed.strongHighlightLocations.contains(0), isFalse);
 
@@ -264,22 +371,31 @@ void main() {
     await t.pumpAndSettle();
 
     final onBest = _painterOf(t);
-    expect(onBest.strongHighlightLocations.contains(0), isTrue,
-        reason: 'the best-move overlay differs from the played one');
-    expect(onBest.strongHighlightLocations,
-        isNot(onPlayed.strongHighlightLocations));
+    expect(
+      onBest.strongHighlightLocations.contains(0),
+      isTrue,
+      reason: 'the best-move overlay differs from the played one',
+    );
+    expect(
+      onBest.strongHighlightLocations,
+      isNot(onPlayed.strongHighlightLocations),
+    );
   });
 
-  testWidgets('the board NEVER resizes as the rows below it come and go',
-      (t) async {
+  testWidgets('the board NEVER resizes as the rows below it come and go', (
+    t,
+  ) async {
     await t.binding.setSurfaceSize(_surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
 
     final gameId = await _seedCachedBlunder(t);
     await _pumpLoaded(t, _app(gameId));
 
-    Rect boardRect() => t.getRect(find.byWidgetPredicate(
-        (w) => w is CustomPaint && w.painter is BoardPainter));
+    Rect boardRect() => t.getRect(
+      find.byWidgetPredicate(
+        (w) => w is CustomPaint && w.painter is BoardPainter,
+      ),
+    );
 
     final rects = <int, Rect>{0: boardRect()};
     // The six steps cover every combination: a bare opening / roll / resign
@@ -292,81 +408,112 @@ void main() {
       await t.pumpAndSettle();
       rects[step] = boardRect();
       seen[step] = (
-        caption: find.textContaining('position before the move')
+        caption: find
+            .textContaining('position before the move')
             .evaluate()
             .isNotEmpty,
         toggle: find.byType(SegmentedButton<bool>).evaluate().isNotEmpty,
       );
     }
 
-    expect(seen[1], (caption: true, toggle: true),
-        reason: "White's blunder shows caption + Played/Best");
-    expect(seen[2], (caption: false, toggle: false),
-        reason: 'the bare roll step shows neither');
-    expect(seen[3], (caption: true, toggle: false),
-        reason: "Black's best move shows the caption but no toggle");
+    expect(seen[1], (
+      caption: true,
+      toggle: true,
+    ), reason: "White's blunder shows caption + Played/Best");
+    expect(seen[2], (
+      caption: false,
+      toggle: false,
+    ), reason: 'the bare roll step shows neither');
+    expect(seen[3], (
+      caption: true,
+      toggle: false,
+    ), reason: "Black's best move shows the caption but no toggle");
 
     for (var step = 1; step < 6; step++) {
-      expect(rects[step], rects[0],
-          reason: 'the board must not change size stepping to $step '
-              '(caption/toggle/verdict rows are reserved space)');
+      expect(
+        rects[step],
+        rects[0],
+        reason:
+            'the board must not change size stepping to $step '
+            '(caption/toggle/verdict rows are reserved space)',
+      );
     }
   });
 
   for (final scale in [1.6, 3.0]) {
     testWidgets(
-        'system text at ${scale}x: the reserved rows absorb it and the board '
-        'still holds still', (t) async {
-      await t.binding.setSurfaceSize(_surface);
-      addTearDown(() => t.binding.setSurfaceSize(null));
+      'system text at ${scale}x: the reserved rows absorb it and the board '
+      'still holds still',
+      (t) async {
+        await t.binding.setSurfaceSize(_surface);
+        addTearDown(() => t.binding.setSurfaceSize(null));
 
-      final gameId = await _seedCachedBlunder(t);
-      await _pumpLoaded(t, _app(gameId, textScale: scale));
+        final gameId = await _seedCachedBlunder(t);
+        await _pumpLoaded(t, _app(gameId, textScale: scale));
 
-      Rect boardRect() => t.getRect(find.byWidgetPredicate(
-          (w) => w is CustomPaint && w.painter is BoardPainter));
+        Rect boardRect() => t.getRect(
+          find.byWidgetPredicate(
+            (w) => w is CustomPaint && w.painter is BoardPainter,
+          ),
+        );
 
-      // Step onto White's blunder: caption + Played/Best + verdict all present.
-      await t.tap(find.byTooltip('Next'));
-      await t.pumpAndSettle();
-      expect(find.byType(SegmentedButton<bool>), findsOneWidget);
-      expect(t.takeException(), isNull,
-          reason: 'the fixed slots must not overflow at ${scale}x');
+        // Step onto White's blunder: caption + Played/Best + verdict all present.
+        await t.tap(find.byTooltip('Next'));
+        await t.pumpAndSettle();
+        expect(find.byType(SegmentedButton<bool>), findsOneWidget);
+        expect(
+          t.takeException(),
+          isNull,
+          reason: 'the fixed slots must not overflow at ${scale}x',
+        );
 
-      // Everything actually ends up inside its reserved slot on screen.
-      // `getRect` applies the scale-down transform, so this is what the user
-      // sees, not what the row asked for.
-      expect(t.getRect(find.byType(SegmentedButton<bool>)).height,
-          lessThanOrEqualTo(56.5));
-      final verdict = find.byKey(const ValueKey('moveVerdictRow'));
-      expect(t.getRect(verdict).height, lessThanOrEqualTo(40.5));
+        // Everything actually ends up inside its reserved slot on screen.
+        // `getRect` applies the scale-down transform, so this is what the user
+        // sees, not what the row asked for.
+        expect(
+          t.getRect(find.byType(SegmentedButton<bool>)).height,
+          lessThanOrEqualTo(56.5),
+        );
+        final verdict = find.byKey(const ValueKey('moveVerdictRow'));
+        expect(t.getRect(verdict).height, lessThanOrEqualTo(40.5));
 
-      // At 3x the verdict row genuinely outgrows its 40pt slot, so this is the
-      // case that proves the slot SCALES its content rather than squeezing it:
-      // the laid-out height (measured unbounded inside the FittedBox) exceeds
-      // the slot, while the on-screen height does not.
-      if (scale >= 3.0) {
-        final laidOut = t.getSize(verdict).height;
-        expect(laidOut, greaterThan(40),
-            reason: 'premise: 3x text outgrows the verdict slot');
-        expect(t.getRect(verdict).height, lessThan(laidOut),
-            reason: 'the row is scaled down, not clipped');
-      }
+        // At 3x the verdict row genuinely outgrows its 40pt slot, so this is the
+        // case that proves the slot SCALES its content rather than squeezing it:
+        // the laid-out height (measured unbounded inside the FittedBox) exceeds
+        // the slot, while the on-screen height does not.
+        if (scale >= 3.0) {
+          final laidOut = t.getSize(verdict).height;
+          expect(
+            laidOut,
+            greaterThan(40),
+            reason: 'premise: 3x text outgrows the verdict slot',
+          );
+          expect(
+            t.getRect(verdict).height,
+            lessThan(laidOut),
+            reason: 'the row is scaled down, not clipped',
+          );
+        }
 
-      final withRows = boardRect();
+        final withRows = boardRect();
 
-      // Step to the bare roll step (none of the three rows).
-      await t.tap(find.byTooltip('Next'));
-      await t.pumpAndSettle();
-      expect(find.byType(SegmentedButton<bool>), findsNothing);
-      expect(boardRect(), withRows,
-          reason: 'reserved space holds the board still at ${scale}x too');
-      expect(t.takeException(), isNull);
-    });
+        // Step to the bare roll step (none of the three rows).
+        await t.tap(find.byTooltip('Next'));
+        await t.pumpAndSettle();
+        expect(find.byType(SegmentedButton<bool>), findsNothing);
+        expect(
+          boardRect(),
+          withRows,
+          reason: 'reserved space holds the board still at ${scale}x too',
+        );
+        expect(t.takeException(), isNull);
+      },
+    );
   }
 
-  testWidgets('move list: all moves listed, current highlighted, tap jumps',
-      (t) async {
+  testWidgets('move list: all moves listed, current highlighted, tap jumps', (
+    t,
+  ) async {
     await t.binding.setSurfaceSize(_surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -378,8 +525,11 @@ void main() {
     // Every recorded line is shown (opening, White move, Black move, resign
     // offer, accept — the bare roll produces no line).
     for (final line in lines) {
-      expect(find.text(line.text), findsOneWidget,
-          reason: 'move list must list every line: ${line.text}');
+      expect(
+        find.text(line.text),
+        findsOneWidget,
+        reason: 'move list must list every line: ${line.text}',
+      );
     }
 
     // Tap the Black-move row (event index 3): the cursor jumps there and the
@@ -395,8 +545,9 @@ void main() {
     expect(rowText.style?.fontWeight, FontWeight.w700);
   });
 
-  testWidgets('metric explainer names equity, error rate and the thresholds',
-      (t) async {
+  testWidgets('metric explainer names equity, error rate and the thresholds', (
+    t,
+  ) async {
     await t.binding.setSurfaceSize(_surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -432,20 +583,30 @@ void main() {
     expect(find.text('Showing position before the move'), findsNothing);
 
     final painter = _painterOf(t);
-    expect(painter.highlightedSources, isEmpty,
-        reason: 'a roll step has no move to overlay');
+    expect(
+      painter.highlightedSources,
+      isEmpty,
+      reason: 'a roll step has no move to overlay',
+    );
     expect(painter.highlightedDestinations, isEmpty);
-    expect(find.byType(SegmentedButton<bool>), findsNothing,
-        reason: 'no Played/Best toggle off an assessed move');
+    expect(
+      find.byType(SegmentedButton<bool>),
+      findsNothing,
+      reason: 'no Played/Best toggle off an assessed move',
+    );
   });
 
-  testWidgets('stale v1 false-Best cache is recomputed and replaced', (t) async {
+  testWidgets('stale v1 false-Best cache is recomputed and replaced', (
+    t,
+  ) async {
     await t.binding.setSurfaceSize(_surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
     final gameId = await _seedCachedBlunder(t);
     final fixture = _finishedGame();
     await t.runAsync(() async {
-      final old = jsonDecode((await _repo.loadAnalysis(gameId))!) as Map<String, dynamic>;
+      final old =
+          jsonDecode((await _repo.loadAnalysis(gameId))!)
+              as Map<String, dynamic>;
       old['v'] = 1;
       for (final move in old['moves'] as List) {
         move['assessment']['ranked'] = [];
@@ -454,20 +615,24 @@ void main() {
       await _repo.saveAnalysis(gameId, jsonEncode(old));
     });
     final engine = ScriptedEngine([
-      _ranking(fixture.played[0], .2), _ranking(fixture.played[1], 0),
+      _ranking(fixture.played[0], .2),
+      _ranking(fixture.played[1], 0),
     ]);
     await _pumpLoaded(t, _app(gameId, facade: engine));
     expect(engine.calls, 2);
     await t.runAsync(() async {
-      final saved = jsonDecode((await _repo.loadAnalysis(gameId))!) as Map<String, dynamic>;
+      final saved =
+          jsonDecode((await _repo.loadAnalysis(gameId))!)
+              as Map<String, dynamic>;
       expect(saved['v'], GameAnalysis.version);
       final analysis = GameAnalysis.fromJson(saved);
       expect(analysis.blunderCount(Player.white), 1);
     });
   });
 
-  testWidgets('no cache: runs the analyzer and persists the analysis',
-      (t) async {
+  testWidgets('no cache: runs the analyzer and persists the analysis', (
+    t,
+  ) async {
     await t.binding.setSurfaceSize(_surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -487,20 +652,26 @@ void main() {
         events: fx.game.events,
         result: fx.game.state.result!,
       );
-      expect(await _repo.loadAnalysis(gameId), isNull,
-          reason: 'precondition: nothing cached yet');
+      expect(
+        await _repo.loadAnalysis(gameId),
+        isNull,
+        reason: 'precondition: nothing cached yet',
+      );
     });
 
     await _pumpLoaded(t, _app(gameId));
 
-    expect(find.textContaining('Error rate'), findsNWidgets(2));
+    expect(find.textContaining('Mean loss'), findsNWidgets(2));
 
     String? saved;
     await t.runAsync(() async {
       saved = await _repo.loadAnalysis(gameId);
     });
-    expect(saved, isNotNull,
-        reason: 'the no-cache path must saveAnalysis after analyzing');
+    expect(
+      saved,
+      isNotNull,
+      reason: 'the no-cache path must saveAnalysis after analyzing',
+    );
     final decoded = jsonDecode(saved!) as Map<String, dynamic>;
     expect(decoded['v'], GameAnalysis.version);
   });

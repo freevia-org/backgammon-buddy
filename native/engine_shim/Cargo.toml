@@ -9,6 +9,11 @@ publish = false
 # from walking up the tree and trying to attach us to another workspace.
 [workspace]
 
+# Preserve line tables in unstripped artifacts for native crash symbolication.
+# Platform packaging may strip the shipped binary; CI archives these originals.
+[profile.release]
+debug = 1
+
 [lib]
 crate-type = ["cdylib", "staticlib"]
 

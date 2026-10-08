@@ -1,6 +1,16 @@
 name: iOS
 on:
   workflow_dispatch:
+    inputs:
+      build_number:
+        description: Explicit build number above previous releases (or set RELEASE_BUILD_NUMBER_BASE)
+        type: string
+        default: ''
+      export_method:
+        description: Signed export type (App Store option creates an artifact only)
+        type: choice
+        options: [ad-hoc, app-store-connect]
+        default: ad-hoc
   # Gated on CI passing for the same commit — see the long note in android.yml
   # for why `workflow_run` rather than merging into ci.yml with `needs:`. A
   # broken master must not reach the testers group.
@@ -40,6 +50,12 @@ jobs:
           # `workflow_run` would otherwise check out the default branch rather
           # than the commit CI validated.
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+
+      - name: Resolve build number
+        env:
+          REQUESTED_BUILD_NUMBER: ${{ inputs.build_number }}
+          BUILD_NUMBER_BASE: ${{ vars.RELEASE_BUILD_NUMBER_BASE }}
+        run: python3 tool/release_build_number.py
 
       - name: Rust toolchain (iOS device target)
         uses: dtolnay/rust-toolchain@stable
@@ -86,8 +102,7 @@ jobs:
       #
       # --obfuscate --split-debug-info: see the same flags in android.yml for
       # what it costs and why the symbols are uploaded separately. The signed
-      # build below compiles the same Dart with the same flags, so ONE symbols
-      # artifact — uploaded from this always-running unsigned leg — covers both.
+      # build below keeps its own exact Dart symbols alongside archive dSYMs.
       - name: Build unsigned .app
         working-directory: app
         env:
@@ -110,12 +125,12 @@ jobs:
           if [ -n "$FB_PROJECT" ] && [ -n "$FB_API_KEY" ] \
              && [ -n "$FB_SENDER_ID" ] && [ -n "$FB_IOS_APP_ID" ]; then
             DEFINES="$DEFINES --dart-define=AIGAMMON_FIREBASE_SENDER_ID=$FB_SENDER_ID --dart-define=AIGAMMON_FIREBASE_IOS_APP_ID=$FB_IOS_APP_ID"
-            echo "Telemetry ENABLED (Analytics + Performance + Crashlytics)"
+            echo "Telemetry configured (collection requires user opt-in)"
           else
             echo "Telemetry config incomplete — building with analytics/performance/crashlytics disabled"
           fi
           flutter build ios --release --no-codesign \
-            --build-number=${{ github.run_number }} \
+            --build-number="$BUILD_NUMBER" \
             --obfuscate --split-debug-info=build/symbols/ios \
             $DEFINES
 
@@ -141,7 +156,9 @@ jobs:
       # ---------------------------------------------------------------------
       # Signing + Firebase distribution (secret-gated).
       #
-      # This whole path stays skipped until FOUR repository secrets exist:
+      # Signing needs the certificate, password, selected profile and an explicit
+      # build-number baseline. Store exports require the separate store profile.
+      # Ad-hoc Firebase distribution additionally needs the Firebase secrets:
       #   IOS_CERT_P12_BASE64            base64 of the Apple Distribution .p12
       #   IOS_CERT_PASSWORD             the .p12 export password
       #   IOS_PROVISIONING_PROFILE_BASE64  base64 of the ad-hoc .mobileprovision
@@ -159,17 +176,33 @@ jobs:
           IOS_CERT_P12_BASE64: ${{ secrets.IOS_CERT_P12_BASE64 }}
           IOS_CERT_PASSWORD: ${{ secrets.IOS_CERT_PASSWORD }}
           IOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+          IOS_APP_STORE_PROFILE_BASE64: ${{ secrets.IOS_APP_STORE_PROFILE_BASE64 }}
+          EXPORT_METHOD: ${{ inputs.export_method || 'ad-hoc' }}
           FIREBASE_IOS_APP_ID: ${{ secrets.FIREBASE_IOS_APP_ID }}
           # FIREBASE_SERVICE_ACCOUNT is reused from Android; gate on it too so a
           # missing service account skips cleanly instead of failing at distribute.
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
+          PROFILE="$IOS_PROVISIONING_PROFILE_BASE64"
+          if [ "$EXPORT_METHOD" = 'app-store-connect' ]; then
+            PROFILE="$IOS_APP_STORE_PROFILE_BASE64"
+            if [ -z "$IOS_CERT_P12_BASE64" ] || [ -z "$IOS_CERT_PASSWORD" ] || [ -z "$PROFILE" ]; then
+              echo '::error::Store export requires the distribution certificate, password and IOS_APP_STORE_PROFILE_BASE64.'
+              exit 1
+            fi
+          fi
           if [ -n "$IOS_CERT_P12_BASE64" ] && [ -n "$IOS_CERT_PASSWORD" ] \
-             && [ -n "$IOS_PROVISIONING_PROFILE_BASE64" ] && [ -n "$FIREBASE_IOS_APP_ID" ] \
-             && [ -n "$FIREBASE_SERVICE_ACCOUNT" ]; then
+             && [ -n "$PROFILE" ]; then
+            if [ "$HAS_RELEASE_BUILD_NUMBER" != 'true' ]; then
+              echo '::error::Set RELEASE_BUILD_NUMBER_BASE or a build_number above prior published versions before signing.'
+              exit 1
+            fi
             echo "has_signing=true" >> "$GITHUB_OUTPUT"
           else
             echo "has_signing=false" >> "$GITHUB_OUTPUT"
+          fi
+          if [ "$EXPORT_METHOD" = 'ad-hoc' ] && [ -n "$FIREBASE_IOS_APP_ID" ] && [ -n "$FIREBASE_SERVICE_ACCOUNT" ]; then
+            echo "has_distribution=true" >> "$GITHUB_OUTPUT"
           fi
 
       # Import the distribution cert into a throwaway keychain, install the
@@ -185,6 +218,8 @@ jobs:
           IOS_CERT_P12_BASE64: ${{ secrets.IOS_CERT_P12_BASE64 }}
           IOS_CERT_PASSWORD: ${{ secrets.IOS_CERT_PASSWORD }}
           IOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+          IOS_APP_STORE_PROFILE_BASE64: ${{ secrets.IOS_APP_STORE_PROFILE_BASE64 }}
+          EXPORT_METHOD: ${{ inputs.export_method || 'ad-hoc' }}
           FB_PROJECT: ${{ vars.AIGAMMON_FIREBASE_PROJECT }}
           FB_API_KEY: ${{ vars.AIGAMMON_FIREBASE_API_KEY }}
           FB_SENDER_ID: ${{ vars.AIGAMMON_FIREBASE_SENDER_ID }}
@@ -206,9 +241,12 @@ jobs:
           security list-keychains -d user -s "$KEYCHAIN" $(security list-keychains -d user | sed 's/"//g')
 
           # --- Install the provisioning profile & read its metadata ---
-          echo "$IOS_PROVISIONING_PROFILE_BASE64" | base64 --decode > "$RUNNER_TEMP/profile.mobileprovision"
+          PROFILE="$IOS_PROVISIONING_PROFILE_BASE64"
+          if [ "$EXPORT_METHOD" = 'app-store-connect' ]; then PROFILE="$IOS_APP_STORE_PROFILE_BASE64"; fi
+          echo "$PROFILE" | base64 --decode > "$RUNNER_TEMP/profile.mobileprovision"
           PLIST="$RUNNER_TEMP/profile.plist"
           security cms -D -i "$RUNNER_TEMP/profile.mobileprovision" > "$PLIST"
+          python3 ../tool/ios_export_options.py "$PLIST" "$RUNNER_TEMP/ExportOptions.plist" --method "$EXPORT_METHOD"
           UUID="$(/usr/libexec/PlistBuddy -c 'Print :UUID' "$PLIST")"
           PROFILE_NAME="$(/usr/libexec/PlistBuddy -c 'Print :Name' "$PLIST")"
           TEAM_ID="$(/usr/libexec/PlistBuddy -c 'Print :TeamIdentifier:0' "$PLIST")"
@@ -235,33 +273,6 @@ jobs:
           echo "::add-mask::$UUID"
           echo "Installed provisioning profile (name, UUID and team id masked)"
 
-          # --- ExportOptions.plist for an ad-hoc export (manual signing) ---
-          cat > "$RUNNER_TEMP/ExportOptions.plist" <<PLIST_EOF
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>method</key>
-            <string>ad-hoc</string>
-            <key>signingStyle</key>
-            <string>manual</string>
-            <key>teamID</key>
-            <string>$TEAM_ID</string>
-            <key>signingCertificate</key>
-            <string>Apple Distribution</string>
-            <key>provisioningProfiles</key>
-            <dict>
-              <key>com.xmelon.aigammon</key>
-              <string>$PROFILE_NAME</string>
-            </dict>
-            <key>stripSwiftSymbols</key>
-            <true/>
-            <key>compileBitcode</key>
-            <false/>
-          </dict>
-          </plist>
-          PLIST_EOF
-
           # --- Online-play + telemetry dart-defines (same pattern as the
           # unsigned build; this is the binary testers actually install, so it
           # must carry the same config) ---
@@ -286,7 +297,7 @@ jobs:
           # pbxproj), then export the IPA. --build-number flows into the archive
           # via FLUTTER_BUILD_NUMBER in Generated.xcconfig.
           flutter build ios --release --no-codesign \
-            --build-number=${{ github.run_number }} \
+            --build-number="$BUILD_NUMBER" \
             --obfuscate --split-debug-info=build/symbols/ios \
             $DEFINES
 
@@ -308,6 +319,7 @@ jobs:
             -exportPath build/ios/ipa
 
           IPA="$(ls build/ios/ipa/*.ipa | head -1)"
+          test -d "$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM"
           echo "Built IPA: $IPA"
           echo "ipa_path=app/$IPA" >> "$GITHUB_OUTPUT"
 
@@ -315,12 +327,22 @@ jobs:
         if: steps.ios.outputs.has_signing == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: aigammon-ios-signed
+          name: aigammon-ios-${{ inputs.export_method || 'ad-hoc' }}-${{ github.run_number }}
           path: ${{ steps.ipa.outputs.ipa_path }}
           if-no-files-found: error
 
-      - name: Distribute IPA to Firebase App Distribution
+      - name: Upload signed archive symbols
         if: steps.ios.outputs.has_signing == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: aigammon-ios-signed-symbols-${{ github.run_number }}
+          path: |
+            ${{ runner.temp }}/Runner.xcarchive/dSYMs
+            app/build/symbols/ios
+          if-no-files-found: error
+
+      - name: Distribute IPA to Firebase App Distribution
+        if: steps.ios.outputs.has_signing == 'true' && steps.ios.outputs.has_distribution == 'true'
         # Commit-pinned for the same reason as android.yml: a mutable tag is a
         # supply-chain hole and this step receives the service-account key.
         # `v1` resolved to this commit on 2026-07-31.

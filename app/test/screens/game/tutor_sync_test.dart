@@ -12,7 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 class _Controller implements MatchController {
   @override
-  final game = Game.start(const OpeningRollEvent(whiteDie: 6, blackDie: 1));
+  Game game = Game.start(const OpeningRollEvent(whiteDie: 6, blackDie: 1));
   @override
   bool awaitingHumanTurn = true;
   @override
@@ -20,9 +20,13 @@ class _Controller implements MatchController {
   final pendingCube = ValueNotifier<GameState?>(null);
   @override
   ValueListenable<GameState?> pendingCubeOf(Player side) => pendingCube;
+  MatchContext context = const MatchContext(
+    moverAway: 5,
+    opponentAway: 5,
+    crawfordPlayed: false,
+  );
   @override
-  MatchContext contextFor(Player actor) =>
-      const MatchContext(moverAway: 5, opponentAway: 5, crawfordPlayed: false);
+  MatchContext contextFor(Player actor) => context;
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
@@ -37,50 +41,101 @@ class _DeferredTutor extends TutorService {
   final offer = Completer<CubeAssessment?>();
   final response = Completer<CubeAssessment?>();
   @override
-  Future<CubeAssessment?> assessCubeOrNull(GameState state, MatchContext ctx,
-          {required bool playerDoubled, double cubeLife = .7}) =>
-      offer.future;
+  Future<CubeAssessment?> assessCubeOrNull(
+    GameState state,
+    MatchContext ctx, {
+    required bool playerDoubled,
+    double cubeLife = .7,
+  }) => offer.future;
   @override
   Future<CubeAssessment?> assessCubeResponseOrNull(
-          GameState state, MatchContext ctx,
-          {double cubeLife = .7}) =>
-      response.future;
+    GameState state,
+    MatchContext ctx, {
+    double cubeLife = .7,
+  }) => response.future;
+}
+
+class _RecordingTutor extends TutorService {
+  _RecordingTutor() : super(_UnusedEngine());
+  MatchContext? assessedContext;
+  @override
+  Future<MoveAssessment?> assessOrNull(
+    GameState before,
+    Move played, {
+    MatchContext? context,
+  }) async {
+    assessedContext = context;
+    return null;
+  }
 }
 
 void main() {
+  test(
+    'a final move retains the score from before the game was awarded',
+    () async {
+      final controller = _Controller()..awaitingHumanTurn = false;
+      final tutor = _RecordingTutor();
+      final sync = TutorSync(
+        controller: controller,
+        tutor: () => tutor,
+        doublingLegal: (_) => false,
+        pendingCubeSide: () => null,
+        onSheetDirty: () {},
+      );
+      controller.game = controller.game.append(
+        MoveEvent(Player.white, controller.state.legalMoves.first),
+      );
+      // Controllers may update match totals before delivering their change event.
+      controller.context = const MatchContext(
+        moverAway: 0,
+        opponentAway: 5,
+        crawfordPlayed: false,
+      );
+      sync.sync();
+      await Future<void>.delayed(Duration.zero);
+      expect(tutor.assessedContext?.moverAway, 5);
+      sync.dispose();
+      controller.pendingCube.dispose();
+    },
+  );
   const answer = CubeAssessment(
-      actionWasDouble: false,
-      advice: MatchCubeAdvice(
-          shouldDouble: true,
-          shouldTake: true,
-          equityNoDouble: .5,
-          equityDoubleTake: .6,
-          equityDoubleDrop: .7));
+    actionWasDouble: false,
+    advice: MatchCubeAdvice(
+      shouldDouble: true,
+      shouldTake: true,
+      equityNoDouble: .5,
+      equityDoubleTake: .6,
+      equityDoubleDrop: .7,
+    ),
+  );
 
   for (final response in [false, true]) {
-    test('late cube ${response ? 'response' : 'offer'} advice stays cleared',
-        () async {
-      final controller = _Controller();
-      final tutor = _DeferredTutor();
-      controller.awaitingHumanTurn = !response;
-      if (response) controller.pendingCube.value = controller.state;
-      final sync = TutorSync(
+    test(
+      'late cube ${response ? 'response' : 'offer'} advice stays cleared',
+      () async {
+        final controller = _Controller();
+        final tutor = _DeferredTutor();
+        controller.awaitingHumanTurn = !response;
+        if (response) controller.pendingCube.value = controller.state;
+        final sync = TutorSync(
           controller: controller,
           tutor: () => tutor,
           doublingLegal: (_) => true,
           pendingCubeSide: () =>
               controller.pendingCube.value == null ? null : Player.white,
-          onSheetDirty: () {});
-      sync.sync();
-      controller.awaitingHumanTurn = false;
-      controller.pendingCube.value = null;
-      sync.sync();
-      (response ? tutor.response : tutor.offer).complete(answer);
-      await Future<void>.delayed(Duration.zero);
-      expect(sync.cubeAdvice, isNull);
-      expect(sync.cubeResponseAdvice, isNull);
-      sync.dispose();
-      controller.pendingCube.dispose();
-    });
+          onSheetDirty: () {},
+        );
+        sync.sync();
+        controller.awaitingHumanTurn = false;
+        controller.pendingCube.value = null;
+        sync.sync();
+        (response ? tutor.response : tutor.offer).complete(answer);
+        await Future<void>.delayed(Duration.zero);
+        expect(sync.cubeAdvice, isNull);
+        expect(sync.cubeResponseAdvice, isNull);
+        sync.dispose();
+        controller.pendingCube.dispose();
+      },
+    );
   }
 }

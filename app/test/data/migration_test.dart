@@ -217,6 +217,32 @@ CREATE TABLE "online_session" (
 ''';
 
 void main() {
+  test('9 -> 10 preserves preferences and history, adds opt-in telemetry and practice', () async {
+    final raw = sqlite3.openInMemory();
+    raw.execute(_v1MatchesDdl);
+    raw.execute(_v1GamesDdl);
+    raw.execute(_v7SettingsDdl);
+    raw.execute("ALTER TABLE settings ADD COLUMN buddy_phrasing TEXT NOT NULL DEFAULT 'terse'");
+    raw.execute('ALTER TABLE settings ADD COLUMN buddy_mic_hint INTEGER NOT NULL DEFAULT 1');
+    raw.execute(_v8OnlineSessionDdl);
+    raw.execute("INSERT INTO settings (id, theme_mode, tutor_override, buddy_mic_hint) VALUES (1, 'dark', 'off', 0)");
+    raw.execute("INSERT INTO matches (id, created_at, match_length, mode, white_type, black_type) VALUES (1, 0, 5, 'hotSeat', 'human', 'human')");
+    raw.execute('PRAGMA user_version = 9');
+    final db = AppDatabase(NativeDatabase.opened(raw));
+    final settings = await db.select(db.settings).getSingle();
+    expect(settings.themeMode, 'dark');
+    expect(settings.tutorOverride, 'off');
+    expect(settings.buddyMicHint, isFalse);
+    expect(settings.telemetryEnabled, isFalse);
+    expect(settings.tutorBestMoves, isTrue);
+    expect(settings.tutorTryFirst, isFalse);
+    expect((await db.select(db.matches).getSingle()).cubeless, isNull,
+      reason: 'Old matches must not be guessed as cubeful or cubeless');
+    expect(await db.select(db.practicePositions).get(), isEmpty);
+    expect(await db.select(db.practiceAttempts).get(), isEmpty);
+    await db.close();
+  });
+
   test(
       'fresh install (onCreate) seeds v9 defaults: drag ON, dice roll animation '
       'ON, pass-device cover OFF, hot-seat board rotation OFF, hint not shown, '
@@ -248,7 +274,7 @@ void main() {
             'latched OFF only by a refusal or by the user');
 
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.read<int>('user_version'), 9);
+    expect(version.read<int>('user_version'), db.schemaVersion);
 
     await db.close();
   });
@@ -306,7 +332,7 @@ void main() {
 
     // 3c. The schema version was bumped to 7.
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.read<int>('user_version'), 9);
+    expect(version.read<int>('user_version'), db.schemaVersion);
 
     // 3d. Writes still work post-migration (FK/insert into the migrated schema).
     final newId = await db.into(db.matches).insert(MatchesCompanion.insert(
@@ -386,7 +412,7 @@ void main() {
 
     // 3c. The schema version was bumped to 7, and still exactly one row.
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.read<int>('user_version'), 9);
+    expect(version.read<int>('user_version'), db.schemaVersion);
     expect(await db.select(db.settings).get(), hasLength(1));
 
     await db.close();
@@ -457,7 +483,7 @@ void main() {
 
     // 3c. The schema version was bumped to 7, still exactly one row.
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.read<int>('user_version'), 9);
+    expect(version.read<int>('user_version'), db.schemaVersion);
     expect(await db.select(db.settings).get(), hasLength(1));
 
     // 3d. Writes still work post-migration (upsert the migrated settings row).
@@ -528,7 +554,7 @@ void main() {
 
     // 3c. The schema version was bumped to 7, still exactly one row.
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.read<int>('user_version'), 9);
+    expect(version.read<int>('user_version'), db.schemaVersion);
     expect(await db.select(db.settings).get(), hasLength(1));
 
     // 3d. Writes still work post-migration (upsert the migrated settings row).
@@ -589,7 +615,7 @@ void main() {
 
     // 3c. Version bumped, still one row, and writes go through.
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.read<int>('user_version'), 9);
+    expect(version.read<int>('user_version'), db.schemaVersion);
     expect(await db.select(db.settings).get(), hasLength(1));
     await db.into(db.settings).insertOnConflictUpdate(SettingsCompanion(
         id: const Value(1), showPassDevice: const Value(true)));
@@ -654,7 +680,7 @@ void main() {
     // 3c. Version bumped, still one row, and a save into the new column works
     //     (the failure mode a missing migration branch would produce).
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.read<int>('user_version'), 9);
+    expect(version.read<int>('user_version'), db.schemaVersion);
     expect(await db.select(db.settings).get(), hasLength(1));
     await db.into(db.settings).insertOnConflictUpdate(SettingsCompanion(
         id: const Value(1), rotateBoardHotSeat: const Value(true)));
@@ -728,7 +754,7 @@ void main() {
     expect(matches, hasLength(1));
     expect(matches.single.read<int>('match_length'), 7);
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.read<int>('user_version'), 9);
+    expect(version.read<int>('user_version'), db.schemaVersion);
 
     // 3d. And the table is usable, which is the failure a missing branch would
     //     have produced at the first sign-in.
@@ -812,7 +838,7 @@ void main() {
     final matches = await db.customSelect('SELECT * FROM matches').get();
     expect(matches, hasLength(1));
     final version = await db.customSelect('PRAGMA user_version').getSingle();
-    expect(version.read<int>('user_version'), 9);
+    expect(version.read<int>('user_version'), db.schemaVersion);
 
     // 3d. And both columns are writable, which is the failure a missing branch
     //     would have produced at the first settings save.
@@ -892,7 +918,7 @@ void main() {
           .customSelect('PRAGMA user_version')
           .map((r) => r.read<int>('user_version'))
           .getSingle();
-      expect(version, 9, reason: '${start.label}: upgraded all the way');
+      expect(version, db.schemaVersion, reason: '${start.label}: upgraded all the way');
 
       await db.close();
     }

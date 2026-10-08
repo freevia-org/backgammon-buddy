@@ -14,19 +14,78 @@ import 'move_assessment.dart';
 class TutorService {
   // The advisor is stored in a private field; the public named parameter keeps
   // the `advisor` name for callers, so an initializing formal is not possible.
-  TutorService(this._engine, {MatchCubeAdvisor advisor = const MatchCubeAdvisor()})
-      // ignore: prefer_initializing_formals
-      : _advisor = advisor;
+  TutorService(
+    this._engine, {
+    MatchCubeAdvisor advisor = const MatchCubeAdvisor(),
+  })
+    // ignore: prefer_initializing_formals
+    : _advisor = advisor;
 
   final EngineFacade _engine;
   final MatchCubeAdvisor _advisor;
 
   /// Ranked candidate plays for [state], best first. Empty when [state] is not
   /// in the moving phase or the player has no legal play (a dance).
-  Future<List<ScoredMove>> hint(GameState state) async {
+  Future<List<ScoredMove>> hint(
+    GameState state, {
+    MatchContext? context,
+  }) async {
     if (state.phase != GamePhase.moving) return const [];
     if (state.legalMoves.isEmpty) return const [];
-    return _engine.rankMoves(state.board, state.turn, state.dice!);
+    final ranked = await _engine.rankMoves(
+      state.board,
+      state.turn,
+      state.dice!,
+    );
+    return _scoreForContext(ranked, state, context);
+  }
+
+  /// A static expected match-winning value: weight each exclusive game outcome
+  /// by the match equity after awarding its points at the current cube stake.
+  /// This changes the objective at e.g. double-match point or gammon-go scores.
+  /// It does not search future rolls/cubes or change the engine's probabilities.
+  List<ScoredMove> _scoreForContext(
+    List<ScoredMove> ranked,
+    GameState state,
+    MatchContext? context,
+  ) {
+    for (final move in ranked) {
+      final p = move.probabilities;
+      final values = [
+        p.win,
+        p.winGammon,
+        p.winBackgammon,
+        p.loseGammon,
+        p.loseBackgammon,
+      ];
+      if (values.any((v) => !v.isFinite || v < 0 || v > 1) ||
+          p.winBackgammon > p.winGammon ||
+          p.winGammon > p.win ||
+          p.loseBackgammon > p.loseGammon ||
+          p.loseGammon > 1 - p.win + 1e-6) {
+        throw StateError('The engine returned invalid outcome probabilities.');
+      }
+    }
+    if (context == null) return ranked;
+    if (context.moverAway < 1 || context.opponentAway < 1) {
+      throw StateError(
+        'A checker decision requires the score before the game ends.',
+      );
+    }
+    return [
+      for (final move in ranked)
+        ScoredMove(
+          move: move.move,
+          probabilities: move.probabilities,
+          matchWinningChance: matchEquityOfDistribution(
+            move.probabilities,
+            moverAway: context.moverAway,
+            opponentAway: context.opponentAway,
+            stake: state.cube.value,
+            crawfordPlayed: context.crawfordPlayed || state.isCrawfordGame,
+          ),
+        ),
+    ]..sort((a, b) => b.rankingValue.compareTo(a.rankingValue));
   }
 
   /// Assesses [played] against the best available play.
@@ -40,23 +99,32 @@ class TutorService {
   ///
   /// On a dance (no legal play) the result is `equityLoss 0`, [MoveMark.best],
   /// and `best = Move.none`.
-  Future<MoveAssessment> assess(GameState before, Move played) async {
+  Future<MoveAssessment> assess(
+    GameState before,
+    Move played, {
+    MatchContext? context,
+  }) async {
     if (before.phase != GamePhase.moving || before.dice == null) {
       throw StateError(
         'A move assessment requires the position before a move.',
       );
     }
-    if (before.legalMoves.isEmpty) {
+    final legal = before.legalMoves;
+    final metric = context == null
+        ? AssessmentMetric.cubelessEquity
+        : AssessmentMetric.matchWinningChance;
+    if (legal.isEmpty) {
       return MoveAssessment(
         played: played,
         best: Move.none,
         equityLoss: 0,
         ranked: const [],
+        metric: metric,
+        isDecision: false,
       );
     }
 
-    final ranked =
-        await _engine.rankMoves(before.board, before.turn, before.dice!);
+    final ranked = await hint(before, context: context);
     if (ranked.isEmpty) {
       throw StateError('The engine returned no ranking for a legal move.');
     }
@@ -70,7 +138,7 @@ class TutorService {
     if (playedScored == null) {
       throw StateError('The played move was not found in the engine ranking.');
     }
-    final rawLoss = best.equity - playedScored.equity;
+    final rawLoss = best.rankingValue - playedScored.rankingValue;
     if (!rawLoss.isFinite) {
       throw StateError('The engine returned a non-finite move evaluation.');
     }
@@ -80,6 +148,8 @@ class TutorService {
       best: best.move,
       equityLoss: rawLoss < 0 ? 0 : rawLoss,
       ranked: ranked,
+      metric: metric,
+      isDecision: legal.length > 1,
     );
   }
 
@@ -87,7 +157,10 @@ class TutorService {
   /// position equivalence (the applied-board fallback). Returns null when
   /// neither matches.
   ScoredMove? _resolvePlayed(
-      GameState before, Move played, List<ScoredMove> ranked) {
+    GameState before,
+    Move played,
+    List<ScoredMove> ranked,
+  ) {
     for (final sm in ranked) {
       if (sm.move.sameAs(played)) return sm;
     }
@@ -110,8 +183,12 @@ class TutorService {
   /// [MatchCubeAdvisor.advise] (default 0.7). It is plumbed here so a future
   /// settings screen (Plan 7+) can wire a user-tunable cube-life without
   /// touching this API; today callers just take the default.
-  Future<CubeAssessment> assessCube(GameState state, MatchContext ctx,
-      {required bool playerDoubled, double cubeLife = 0.7}) async {
+  Future<CubeAssessment> assessCube(
+    GameState state,
+    MatchContext ctx, {
+    required bool playerDoubled,
+    double cubeLife = 0.7,
+  }) async {
     final probs = await _engine.evaluate(state.board, state.turn);
     final advice = _advisor.advise(
       probs: probs,
@@ -141,8 +218,10 @@ class TutorService {
   /// [MatchCubeAdvisor.advise] (default 0.7), plumbed for a future settings
   /// hook exactly as in [assessCube].
   Future<CubeAssessment> assessCubeResponse(
-      GameState state, MatchContext deciderCtx,
-      {double cubeLife = 0.7}) async {
+    GameState state,
+    MatchContext deciderCtx, {
+    double cubeLife = 0.7,
+  }) async {
     final doubler = state.turn.opponent;
     final probs = await _engine.evaluate(state.board, doubler);
     final advice = _advisor.advise(
@@ -178,9 +257,12 @@ class TutorService {
   /// Empty already means "nothing to suggest" to the hint panel (a dance, a
   /// state that is not moving), so a failure lands on a path the caller
   /// handles.
-  Future<List<ScoredMove>> hintOrNone(GameState state) async {
+  Future<List<ScoredMove>> hintOrNone(
+    GameState state, {
+    MatchContext? context,
+  }) async {
     try {
-      return await hint(state);
+      return await hint(state, context: context);
     } catch (error, stack) {
       _recordTutorFailure('hint', error, stack);
       return const [];
@@ -191,9 +273,13 @@ class TutorService {
   ///
   /// Null, not a zero-loss assessment: an unanswered move must leave the score
   /// sheet cell blank, never award it the "best play" dot it did not earn.
-  Future<MoveAssessment?> assessOrNull(GameState before, Move played) async {
+  Future<MoveAssessment?> assessOrNull(
+    GameState before,
+    Move played, {
+    MatchContext? context,
+  }) async {
     try {
-      return await assess(before, played);
+      return await assess(before, played, context: context);
     } catch (error, stack) {
       _recordTutorFailure('assess', error, stack);
       return null;
@@ -201,11 +287,19 @@ class TutorService {
   }
 
   /// [assessCube] for the live tutor: null rather than a throw.
-  Future<CubeAssessment?> assessCubeOrNull(GameState state, MatchContext ctx,
-      {required bool playerDoubled, double cubeLife = 0.7}) async {
+  Future<CubeAssessment?> assessCubeOrNull(
+    GameState state,
+    MatchContext ctx, {
+    required bool playerDoubled,
+    double cubeLife = 0.7,
+  }) async {
     try {
-      return await assessCube(state, ctx,
-          playerDoubled: playerDoubled, cubeLife: cubeLife);
+      return await assessCube(
+        state,
+        ctx,
+        playerDoubled: playerDoubled,
+        cubeLife: cubeLife,
+      );
     } catch (error, stack) {
       _recordTutorFailure('assessCube', error, stack);
       return null;
@@ -214,8 +308,10 @@ class TutorService {
 
   /// [assessCubeResponse] for the live tutor: null rather than a throw.
   Future<CubeAssessment?> assessCubeResponseOrNull(
-      GameState state, MatchContext deciderCtx,
-      {double cubeLife = 0.7}) async {
+    GameState state,
+    MatchContext deciderCtx, {
+    double cubeLife = 0.7,
+  }) async {
     try {
       return await assessCubeResponse(state, deciderCtx, cubeLife: cubeLife);
     } catch (error, stack) {

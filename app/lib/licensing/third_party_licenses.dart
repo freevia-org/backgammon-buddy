@@ -20,6 +20,18 @@ Stream<LicenseEntry> nativeEngineLicenses() async* {
   }
 }
 
+Stream<LicenseEntry> additionalNativeLicenses() async* {
+  yield LicenseEntryWithLineBreaks(const [
+    'Kazaross-XG2 match equity table',
+  ], await rootBundle.loadString('assets/licenses/Kazaross-XG2-NOTICE.txt'));
+  yield LicenseEntryWithLineBreaks(const [
+    'Native Rust dependencies',
+  ], await rootBundle.loadString('assets/licenses/native-dependencies.txt'));
+  yield LicenseEntryWithLineBreaks(const [
+    'wildbg neural-network models and training data',
+  ], await rootBundle.loadString('assets/licenses/wildbg-training-CC0.txt'));
+}
+
 bool _nativeLicensesRegistered = false;
 
 /// Registers lazily: startup never waits for license-asset IO, and repeated
@@ -27,11 +39,12 @@ bool _nativeLicensesRegistered = false;
 void showAppLicenses(BuildContext context) {
   if (!_nativeLicensesRegistered) {
     LicenseRegistry.addLicense(nativeEngineLicenses);
+    LicenseRegistry.addLicense(additionalNativeLicenses);
     _nativeLicensesRegistered = true;
   }
   showLicensePage(
     context: context,
-    applicationName: 'AI Gammon',
+    applicationName: 'Backgammon Buddy',
     applicationVersion: appVersion,
   );
 }

@@ -4,6 +4,20 @@
 // Fetched: 2026-07-25
 // Data: unmodified gnubg "Kazaross XG2 25 point MET" (numeric
 // match-equity table). Regenerate with: dart run tool/generate_met.dart
+// Original attribution and permission notice:
+// Kazaross-XG2.xml
+//
+// Table rolled up to 9 point match. Then uses R/K MET
+// which was rolled up to 15 and extrapolated to  25 points
+// by Neil Kazaross 2011.
+//
+// This file is distributed as a part of the GNU Backgammon program.
+//
+// Copying and distribution of verbatim and modified versions of this file
+// is permitted in any medium provided the copyright notice and this
+// permission notice are preserved.
+//
+// $Id$
 
 /// Kazaross-XG2 match equity table (gnubg default).
 ///

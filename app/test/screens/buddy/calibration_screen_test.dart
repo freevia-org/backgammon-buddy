@@ -437,13 +437,13 @@ void main() {
         (t) async {
       final h = _Harness(
         opening: const CameraUnavailable(
-          'AI Gammon does not have permission to use the camera.',
+          'Backgammon Buddy does not have permission to use the camera.',
         ),
       );
       await h.pump(t);
 
       expect(
-        find.text('AI Gammon does not have permission to use the camera.'),
+        find.text('Backgammon Buddy does not have permission to use the camera.'),
         findsOneWidget,
       );
       expect(find.byKey(const Key('buddy-handle-0')), findsNothing);

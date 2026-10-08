@@ -5,10 +5,10 @@ Source revision: 24d26fe0c7c6ddbb277894c2f92c18410198e4a9
 Copyright (c) 2023 Carsten Wenderdel
 
 The upstream engine declares Apache-2.0 OR MIT. Both upstream license texts
-are included in this app's licenses. This attribution is supplied by AI Gammon;
+are included in this app's licenses. This attribution is supplied by Backgammon Buddy;
 it is not an upstream NOTICE file.
 
-AI Gammon's native wrapper is derived from wildbg's wildbg-c crate. The wrapper
+Backgammon Buddy's native wrapper is derived from wildbg's wildbg-c crate. The wrapper
 adds wildbg_new_with_path to load neural nets from a runtime directory and
 removes the exported wildbg_new constructor that embeds demo nets. These
 changes are recorded in native/engine_shim/src/lib.rs in the app source.
@@ -23,5 +23,11 @@ https://github.com/carsten-wenderdel/wildbg-training
 contact.onnx source git blob: fe5596b6d38640a92d2e83837ebdd9c872540320
 race.onnx source git blob: 09f7db7d7fb678d8837f56afe5dbc1134fccf0b7
 
-These model details record provenance; they do not assign the engine's
-software license to the models or their training data.
+The source training repository dedicates its contents under CC0-1.0. Its
+LICENSE and the exact model blobs were verified at revision:
+3c9f2655bd7ca26e4991af24732004a2a425a061
+https://github.com/carsten-wenderdel/wildbg-training/tree/3c9f2655bd7ca26e4991af24732004a2a425a061
+Both model blob IDs match that repository's data/0017/contact.onnx and
+data/0016/race.onnx. The CC0 text is bundled as wildbg-training-CC0.txt.
+This records the upstream dedication; the engine's MIT/Apache terms are
+separate from the models' terms.

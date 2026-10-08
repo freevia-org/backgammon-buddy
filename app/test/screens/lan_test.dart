@@ -44,7 +44,10 @@ class FakeFacade implements EngineFacade {
 
   @override
   Future<List<ScoredMove>> rankMoves(
-      BoardState board, Player mover, Dice dice) async {
+    BoardState board,
+    Player mover,
+    Dice dice,
+  ) async {
     final legal = MoveGenerator.legalMoves(board, mover, dice);
     return [for (final m in legal) ScoredMove(move: m, probabilities: _flat)];
   }
@@ -130,12 +133,12 @@ class FakeTransport implements NearbyTransport {
 /// A hosting session over an in-memory backend, with the guest arriving on cue.
 class FakeHostSession implements HostSession {
   FakeHostSession(this.config, {this.roomCode = '4271', this.port = 47780})
-      : backend = InMemoryBackend(
-          config: config,
-          matchCode: '4271',
-          resumeToken: 'TESTTOKEN',
-          capabilities: const Capabilities(durable: false, rejoinable: false),
-        );
+    : backend = InMemoryBackend(
+        config: config,
+        matchCode: '4271',
+        resumeToken: 'TESTTOKEN',
+        capabilities: const Capabilities(durable: false, rejoinable: false),
+      );
 
   @override
   final MatchConfig config;
@@ -169,12 +172,13 @@ class FakeHostSession implements HostSession {
   @override
   NetMatchController controller({
     MatchPersistence persistence = const NoopPersistence(),
-  }) =>
-      NetMatchController(
-        transport: _RefusingConnect(
-            InMemoryTransport.host(backend), () => connectError),
-        persistence: persistence,
-      );
+  }) => NetMatchController(
+    transport: _RefusingConnect(
+      InMemoryTransport.host(backend),
+      () => connectError,
+    ),
+    persistence: persistence,
+  );
 
   @override
   Future<void> stop() async {
@@ -218,8 +222,7 @@ class _RefusingConnect implements MatchTransport {
     required int seq,
     required int gameNo,
     required GameEvent event,
-  }) =>
-      inner.sendEvent(seq: seq, gameNo: gameNo, event: event);
+  }) => inner.sendEvent(seq: seq, gameNo: gameNo, event: event);
 
   @override
   Future<void> createRoll(int n, String commit) => inner.createRoll(n, commit);
@@ -302,8 +305,7 @@ class FakeGuestSession implements GuestSession {
   @override
   NetMatchController controller({
     MatchPersistence persistence = const NoopPersistence(),
-  }) =>
-      throw UnimplementedError('the join tests stop before the board');
+  }) => throw UnimplementedError('the join tests stop before the board');
 
   @override
   Future<void> dispose() async {
@@ -376,15 +378,22 @@ void main() {
           engineFacadeProvider.overrideWithValue(const FakeFacade()),
           databaseProvider.overrideWithValue(db),
           // A plain stream keeps the test off drift's watch-timer.
-          settingsProvider.overrideWith((ref) =>
-              settingsStream ?? Stream.value(settings ?? AppSettings.defaults)),
+          settingsProvider.overrideWith(
+            (ref) =>
+                settingsStream ??
+                Stream.value(settings ?? AppSettings.defaults),
+          ),
         ],
         child: const MaterialApp(home: LanScreen()),
       );
 
   /// Pump until [finder] matches. Never `pumpAndSettle`: the waiting and
   /// probing states carry a [CircularProgressIndicator], which never settles.
-  Future<void> pumpUntil(WidgetTester t, Finder finder, {int tries = 60}) async {
+  Future<void> pumpUntil(
+    WidgetTester t,
+    Finder finder, {
+    int tries = 60,
+  }) async {
     for (var i = 0; i < tries; i++) {
       if (finder.evaluate().isNotEmpty) return;
       await t.pump(const Duration(milliseconds: 50));
@@ -399,8 +408,9 @@ void main() {
   }
 
   group('host tab', () {
-    testWidgets('start hosting shows the room code, the address and a wait',
-        (t) async {
+    testWidgets('start hosting shows the room code, the address and a wait', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -450,16 +460,18 @@ void main() {
       expect(find.textContaining('Game 1'), findsWidgets);
     });
 
-    // The settings screen's tutor default is honoured on the LAN exactly as it
-    // is for a local match: OFF means no tutor is built, so the board carries
+    // Nearby games remain unassisted for every local tutor preference.
+    // OFF means no tutor is built, so the board carries
     // no hint button and no post-move marks.
-    testWidgets('the tutor setting OFF opens the board without a tutor',
-        (t) async {
+    testWidgets('the tutor setting OFF opens the board without a tutor', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
       await t.pumpWidget(
-          app(settings: AppSettings.defaults.copyWith(tutorOverride: false)));
+        app(settings: AppSettings.defaults.copyWith(tutorOverride: false)),
+      );
       await t.pump();
       await t.tap(find.widgetWithText(FilledButton, 'Start hosting'));
       await pumpUntil(t, find.text('4271'));
@@ -469,25 +481,35 @@ void main() {
       expect(t.widget<GameScreen>(find.byType(GameScreen)).tutor, isNull);
     });
 
-    testWidgets('the tutor setting ON opens the board with a tutor', (t) async {
+    testWidgets('the tutor setting ON still opens an unassisted nearby game', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
       await t.pumpWidget(
-          app(settings: AppSettings.defaults.copyWith(tutorOverride: true)));
+        app(settings: AppSettings.defaults.copyWith(tutorOverride: true)),
+      );
       await t.pump();
       await t.tap(find.widgetWithText(FilledButton, 'Start hosting'));
       await pumpUntil(t, find.text('4271'));
       transport.hostSession!.guestArrives();
       await pumpUntil(t, find.byType(GameScreen));
 
-      expect(t.widget<GameScreen>(find.byType(GameScreen)).tutor, isNotNull);
+      final game = t.widget<GameScreen>(find.byType(GameScreen));
+      expect(game.tutor, isNull);
+      expect(
+        game.persistedMatchId,
+        isNotNull,
+        reason: 'post-game review remains available without a live tutor',
+      );
     });
 
     // Auto (the shipped default) keeps the networked default: ON. The peer is a
     // person, so there is no difficulty to derive a default from.
-    testWidgets('the tutor setting AUTO keeps the networked default (on)',
-        (t) async {
+    testWidgets('the tutor setting AUTO keeps nearby play unassisted', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -498,7 +520,7 @@ void main() {
       transport.hostSession!.guestArrives();
       await pumpUntil(t, find.byType(GameScreen));
 
-      expect(t.widget<GameScreen>(find.byType(GameScreen)).tutor, isNotNull);
+      expect(t.widget<GameScreen>(find.byType(GameScreen)).tutor, isNull);
     });
 
     // The launch reads the settings ONCE and AWAITS them; it does not peek at a
@@ -506,68 +528,78 @@ void main() {
     // reach from a cold start — two taps, Nearby then Start hosting — so the
     // very first launch of a run is exactly where a peek would hand out the
     // defaults and quietly ignore a user's tutor-off.
-    testWidgets('the launch waits for the settings instead of peeking at them',
-        (t) async {
-      await t.binding.setSurfaceSize(surface);
-      addTearDown(() => t.binding.setSurfaceSize(null));
+    testWidgets(
+      'the launch waits for the settings instead of peeking at them',
+      (t) async {
+        await t.binding.setSurfaceSize(surface);
+        addTearDown(() => t.binding.setSurfaceSize(null));
 
-      final slowSettings = Completer<AppSettings>();
-      await t.pumpWidget(
-          app(settingsStream: Stream.fromFuture(slowSettings.future)));
-      await t.pump();
-      await t.tap(find.widgetWithText(FilledButton, 'Start hosting'));
-      await pumpUntil(t, find.text('4271'));
-      transport.hostSession!.guestArrives();
+        final slowSettings = Completer<AppSettings>();
+        await t.pumpWidget(
+          app(settingsStream: Stream.fromFuture(slowSettings.future)),
+        );
+        await t.pump();
+        await t.tap(find.widgetWithText(FilledButton, 'Start hosting'));
+        await pumpUntil(t, find.text('4271'));
+        transport.hostSession!.guestArrives();
 
-      // Frames pass with the settings still in flight: no board yet. A peek
-      // would have opened one here, on the defaults.
-      for (var i = 0; i < 10; i++) {
-        await t.pump(const Duration(milliseconds: 50));
-      }
-      expect(find.byType(GameScreen), findsNothing);
+        // Frames pass with the settings still in flight: no board yet. A peek
+        // would have opened one here, on the defaults.
+        for (var i = 0; i < 10; i++) {
+          await t.pump(const Duration(milliseconds: 50));
+        }
+        expect(find.byType(GameScreen), findsNothing);
 
-      slowSettings
-          .complete(AppSettings.defaults.copyWith(tutorOverride: false));
-      await pumpUntil(t, find.byType(GameScreen));
+        slowSettings.complete(
+          AppSettings.defaults.copyWith(tutorOverride: false),
+        );
+        await pumpUntil(t, find.byType(GameScreen));
 
-      expect(find.byType(GameScreen), findsOneWidget);
-      expect(t.widget<GameScreen>(find.byType(GameScreen)).tutor, isNull,
-          reason: 'the awaited setting ruled, not the default');
-    });
+        expect(find.byType(GameScreen), findsOneWidget);
+        expect(
+          t.widget<GameScreen>(find.byType(GameScreen)).tutor,
+          isNull,
+          reason: 'the awaited setting ruled, not the default',
+        );
+      },
+    );
 
     testWidgets(
-        'a launch that never connects says so, and does not jam the launcher',
-        (t) async {
-      await t.binding.setSurfaceSize(surface);
-      addTearDown(() => t.binding.setSurfaceSize(null));
+      'a launch that never connects says so, and does not jam the launcher',
+      (t) async {
+        await t.binding.setSurfaceSize(surface);
+        addTearDown(() => t.binding.setSurfaceSize(null));
 
-      await t.pumpWidget(app());
-      await t.pump();
-      await t.tap(find.widgetWithText(FilledButton, 'Start hosting'));
-      await pumpUntil(t, find.text('4271'));
+        await t.pumpWidget(app());
+        await t.pump();
+        await t.tap(find.widgetWithText(FilledButton, 'Start hosting'));
+        await pumpUntil(t, find.text('4271'));
 
-      final session = transport.hostSession!;
-      session.connectError =
-          const TransportUnavailable('link-lost', 'the guest went away');
-      session.guestArrives();
-      await pumpUntil(t, find.textContaining('could not be started'));
+        final session = transport.hostSession!;
+        session.connectError = const TransportUnavailable(
+          'link-lost',
+          'the guest went away',
+        );
+        session.guestArrives();
+        await pumpUntil(t, find.textContaining('could not be started'));
 
-      // (1) The failure reaches the user. Before, the spinner simply stopped
-      //     and the host was left looking at a room code that would never open
-      //     a board, with nothing said about why.
-      expect(find.textContaining('the guest went away'), findsOneWidget);
-      expect(find.byType(GameScreen), findsNothing);
+        // (1) The failure reaches the user. Before, the spinner simply stopped
+        //     and the host was left looking at a room code that would never open
+        //     a board, with nothing said about why.
+        expect(find.textContaining('the guest went away'), findsOneWidget);
+        expect(find.byType(GameScreen), findsNothing);
 
-      // (2) …and the launch guard is CLEAR, so the next presence flap launches.
-      //     It used to be left latched on this exact path, which made the
-      //     failure permanent for as long as the screen stayed open.
-      session.connectError = null;
-      session.guestConnected.value = false;
-      await t.pump();
-      session.guestConnected.value = true;
-      await pumpUntil(t, find.byType(GameScreen));
-      expect(find.byType(GameScreen), findsOneWidget);
-    });
+        // (2) …and the launch guard is CLEAR, so the next presence flap launches.
+        //     It used to be left latched on this exact path, which made the
+        //     failure permanent for as long as the screen stayed open.
+        session.connectError = null;
+        session.guestConnected.value = false;
+        await t.pump();
+        session.guestConnected.value = true;
+        await pumpUntil(t, find.byType(GameScreen));
+        expect(find.byType(GameScreen), findsOneWidget);
+      },
+    );
 
     testWidgets('the launched match is persisted as a lan match', (t) async {
       await t.binding.setSurfaceSize(surface);
@@ -598,8 +630,9 @@ void main() {
       expect(rows.single.blackType, 'remote');
     });
 
-    testWidgets('stop hosting tears the session down and returns to the form',
-        (t) async {
+    testWidgets('stop hosting tears the session down and returns to the form', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -617,8 +650,9 @@ void main() {
       expect(find.text('Match length'), findsOneWidget);
     });
 
-    testWidgets('a bind failure is reported in words, not in an exception',
-        (t) async {
+    testWidgets('a bind failure is reported in words, not in an exception', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
       transport.hostError = const SocketException('address in use');
@@ -630,13 +664,17 @@ void main() {
 
       expect(find.textContaining('port is already in use'), findsOneWidget);
       // Still on the form, so the user can try again.
-      expect(find.widgetWithText(FilledButton, 'Start hosting'), findsOneWidget);
+      expect(
+        find.widgetWithText(FilledButton, 'Start hosting'),
+        findsOneWidget,
+      );
     });
   });
 
   group('join tab', () {
-    testWidgets('a discovered host is listed and leads to the code field',
-        (t) async {
+    testWidgets('a discovered host is listed and leads to the code field', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
       transport.hosts = const [
@@ -657,8 +695,9 @@ void main() {
       expect(find.textContaining('4-digit code'), findsWidgets);
     });
 
-    testWidgets('an empty sweep says so and keeps the manual form available',
-        (t) async {
+    testWidgets('an empty sweep says so and keeps the manual form available', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -684,29 +723,34 @@ void main() {
       expect(transport.discoverCalls, greaterThan(first));
     });
 
-    testWidgets('a code shorter than four digits is refused before connecting',
-        (t) async {
-      await t.binding.setSurfaceSize(surface);
-      addTearDown(() => t.binding.setSurfaceSize(null));
-      transport.hosts = const [
-        DiscoveredHost(name: 'Ada', address: '192.168.1.9', port: 47780),
-      ];
+    testWidgets(
+      'a code shorter than four digits is refused before connecting',
+      (t) async {
+        await t.binding.setSurfaceSize(surface);
+        addTearDown(() => t.binding.setSurfaceSize(null));
+        transport.hosts = const [
+          DiscoveredHost(name: 'Ada', address: '192.168.1.9', port: 47780),
+        ];
 
-      await t.pumpWidget(app());
-      await t.pump();
-      await openJoinTab(t);
-      await t.tap(find.text('Ada'));
-      await t.pump();
+        await t.pumpWidget(app());
+        await t.pump();
+        await openJoinTab(t);
+        await t.tap(find.text('Ada'));
+        await t.pump();
 
-      await t.enterText(find.byType(TextField), '12');
-      await t.tap(find.widgetWithText(FilledButton, 'Connect'));
-      await t.pump();
+        await t.enterText(find.byType(TextField), '12');
+        await t.tap(find.widgetWithText(FilledButton, 'Connect'));
+        await t.pump();
 
-      expect(transport.joins, isEmpty);
-      // The card's own copy says "shown on the other device"; the error says
-      // "from the other device" — match the error specifically.
-      expect(find.textContaining('code from the other device'), findsOneWidget);
-    });
+        expect(transport.joins, isEmpty);
+        // The card's own copy says "shown on the other device"; the error says
+        // "from the other device" — match the error specifically.
+        expect(
+          find.textContaining('code from the other device'),
+          findsOneWidget,
+        );
+      },
+    );
 
     testWidgets('a busy room reads as waiting, not as an error', (t) async {
       await t.binding.setSurfaceSize(surface);
@@ -728,8 +772,9 @@ void main() {
       expect(transport.joins.single.code, '4271');
       expect(find.text('Connecting…'), findsOneWidget);
 
-      transport.guestSession!
-          .emit(const GuestConnectionState.busy('the host is already playing'));
+      transport.guestSession!.emit(
+        const GuestConnectionState.busy('the host is already playing'),
+      );
       await t.pump();
 
       expect(find.text('Room in use — waiting…'), findsOneWidget);
@@ -737,8 +782,9 @@ void main() {
       expect(find.widgetWithText(FilledButton, 'Try again'), findsNothing);
     });
 
-    testWidgets('a wrong code is terminal: a readable reason and a retry',
-        (t) async {
+    testWidgets('a wrong code is terminal: a readable reason and a retry', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
       transport.hosts = const [
@@ -767,7 +813,9 @@ void main() {
       expect(find.text('Join Ada'), findsOneWidget);
     });
 
-    testWidgets('a version mismatch is explained rather than quoted', (t) async {
+    testWidgets('a version mismatch is explained rather than quoted', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
       transport.hosts = const [
@@ -788,8 +836,9 @@ void main() {
       expect(find.textContaining('different version'), findsOneWidget);
     });
 
-    testWidgets('manual entry submits the typed address, port and code',
-        (t) async {
+    testWidgets('manual entry submits the typed address, port and code', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -856,28 +905,36 @@ void main() {
     String shownQr(WidgetTester t) =>
         encodeQrJoin(t.widget<JoinQrCode>(find.byType(JoinQrCode)).payload);
 
-    testWidgets('the host shows a QR code carrying its address, port and code',
-        (t) async {
-      await t.binding.setSurfaceSize(surface);
-      addTearDown(() => t.binding.setSurfaceSize(null));
+    testWidgets(
+      'the host shows a QR code carrying its address, port and code',
+      (t) async {
+        await t.binding.setSurfaceSize(surface);
+        addTearDown(() => t.binding.setSurfaceSize(null));
 
-      await t.pumpWidget(app());
-      await t.pump();
-      await t.tap(find.widgetWithText(FilledButton, 'Start hosting'));
-      await pumpUntil(t, find.byType(JoinQrCode));
+        await t.pumpWidget(app());
+        await t.pump();
+        await t.tap(find.widgetWithText(FilledButton, 'Start hosting'));
+        await pumpUntil(t, find.byType(JoinQrCode));
 
-      expect(
-        shownQr(t),
-        encodeQrJoin(const QrJoinPayload(
-            address: '192.168.1.5', port: 47780, code: '4271')),
-      );
-      // An addition, not a replacement: the spoken code is still there.
-      expect(find.text('4271'), findsOneWidget);
-      expect(find.text('192.168.1.5:47780'), findsOneWidget);
-    });
+        expect(
+          shownQr(t),
+          encodeQrJoin(
+            const QrJoinPayload(
+              address: '192.168.1.5',
+              port: 47780,
+              code: '4271',
+            ),
+          ),
+        );
+        // An addition, not a replacement: the spoken code is still there.
+        expect(find.text('4271'), findsOneWidget);
+        expect(find.text('192.168.1.5:47780'), findsOneWidget);
+      },
+    );
 
-    testWidgets('the QR follows the CURRENT session, not the first one',
-        (t) async {
+    testWidgets('the QR follows the CURRENT session, not the first one', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -902,8 +959,9 @@ void main() {
       expect(shownQr(t), isNot(first));
       expect(
         shownQr(t),
-        encodeQrJoin(const QrJoinPayload(
-            address: '10.0.0.9', port: 47790, code: '1357')),
+        encodeQrJoin(
+          const QrJoinPayload(address: '10.0.0.9', port: 47790, code: '1357'),
+        ),
       );
       // And it round-trips: what the guest's camera reads is what it dials.
       final decoded = tryDecodeQrJoin(shownQr(t))!;
@@ -912,8 +970,9 @@ void main() {
       expect(decoded.code, '1357');
     });
 
-    testWidgets('with no local address there is no QR, but the code remains',
-        (t) async {
+    testWidgets('with no local address there is no QR, but the code remains', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
       transport.address = null;
@@ -943,8 +1002,11 @@ void main() {
     testWidgets('a scanned code fills the form and joins', (t) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
-      scanner.outcome = QrScanCode(encodeQrJoin(const QrJoinPayload(
-          address: '10.0.0.4', port: 47790, code: '1234')));
+      scanner.outcome = QrScanCode(
+        encodeQrJoin(
+          const QrJoinPayload(address: '10.0.0.4', port: 47790, code: '1234'),
+        ),
+      );
 
       await t.pumpWidget(app());
       await t.pump();
@@ -960,12 +1022,16 @@ void main() {
       expect(find.text('Joining 10.0.0.4'), findsOneWidget);
     });
 
-    testWidgets('the scanned target is left in the manual fields to correct',
-        (t) async {
+    testWidgets('the scanned target is left in the manual fields to correct', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
-      scanner.outcome = QrScanCode(encodeQrJoin(const QrJoinPayload(
-          address: '10.0.0.4', port: 47790, code: '1234')));
+      scanner.outcome = QrScanCode(
+        encodeQrJoin(
+          const QrJoinPayload(address: '10.0.0.4', port: 47790, code: '1234'),
+        ),
+      );
 
       await t.pumpWidget(app());
       await t.pump();
@@ -983,8 +1049,9 @@ void main() {
       expect(t.widget<TextField>(fields.at(2)).controller!.text, '1234');
     });
 
-    testWidgets('a foreign QR code is refused and nothing is dialled',
-        (t) async {
+    testWidgets('a foreign QR code is refused and nothing is dialled', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
       scanner.outcome = const QrScanCode('WIFI:S:CafeWifi;T:WPA;P:hunter2;;');
@@ -993,10 +1060,10 @@ void main() {
       await t.pump();
       await openJoinTab(t);
       await t.tap(find.widgetWithText(FilledButton, 'Scan QR code'));
-      await pumpUntil(t, find.textContaining('not an AI Gammon game'));
+      await pumpUntil(t, find.textContaining('not a Backgammon Buddy game'));
 
       expect(transport.joins, isEmpty);
-      expect(find.textContaining('not an AI Gammon game'), findsOneWidget);
+      expect(find.textContaining('not a Backgammon Buddy game'), findsOneWidget);
       // Still on the browsing form, with every other way in intact.
       expect(find.text('Enter address'), findsOneWidget);
       expect(find.widgetWithText(FilledButton, 'Scan QR code'), findsOneWidget);
@@ -1007,8 +1074,9 @@ void main() {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
       scanner.outcome = const QrScanUnavailable(
-          'AI Gammon does not have permission to use the camera. Enter the '
-          'address by hand.');
+        'Backgammon Buddy does not have permission to use the camera. Enter the '
+        'address by hand.',
+      );
 
       await t.pumpWidget(app());
       await t.pump();
@@ -1016,8 +1084,10 @@ void main() {
       await t.tap(find.widgetWithText(FilledButton, 'Scan QR code'));
       await pumpUntil(t, find.textContaining('permission to use the camera'));
 
-      expect(find.textContaining('permission to use the camera'),
-          findsOneWidget);
+      expect(
+        find.textContaining('permission to use the camera'),
+        findsOneWidget,
+      );
       expect(transport.joins, isEmpty);
 
       // Not a dead end: the typed path still gets this device into a game.
@@ -1043,13 +1113,17 @@ void main() {
       await t.pump();
 
       expect(transport.joins, isEmpty);
-      expect(find.byIcon(Icons.error_outline), findsNothing,
-          reason: 'backing out of a scan is not a failure');
+      expect(
+        find.byIcon(Icons.error_outline),
+        findsNothing,
+        reason: 'backing out of a scan is not a failure',
+      );
       expect(find.text('Enter address'), findsOneWidget);
     });
 
-    testWidgets('cancelling a later scan clears the earlier scan\'s error',
-        (t) async {
+    testWidgets('cancelling a later scan clears the earlier scan\'s error', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
       scanner.outcome = const QrScanCode('WIFI:S:CafeWifi;T:WPA;P:hunter2;;');
@@ -1058,8 +1132,8 @@ void main() {
       await t.pump();
       await openJoinTab(t);
       await t.tap(find.widgetWithText(FilledButton, 'Scan QR code'));
-      await pumpUntil(t, find.textContaining('not an AI Gammon game'));
-      expect(find.textContaining('not an AI Gammon game'), findsOneWidget);
+      await pumpUntil(t, find.textContaining('not a Backgammon Buddy game'));
+      expect(find.textContaining('not a Backgammon Buddy game'), findsOneWidget);
 
       // Second attempt, backed out of. The complaint about the FIRST scan is
       // about a scan that is over, and must not sit under the button.
@@ -1068,18 +1142,22 @@ void main() {
       await t.pump();
       await t.pump();
 
-      expect(find.textContaining('not an AI Gammon game'), findsNothing);
+      expect(find.textContaining('not a Backgammon Buddy game'), findsNothing);
       expect(transport.joins, isEmpty);
     });
 
-    testWidgets('a second tap while the scanner is open opens nothing new',
-        (t) async {
+    testWidgets('a second tap while the scanner is open opens nothing new', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
       scanner
         ..gate = Completer<void>()
-        ..outcome = QrScanCode(encodeQrJoin(const QrJoinPayload(
-            address: '10.0.0.4', port: 47790, code: '1234')));
+        ..outcome = QrScanCode(
+          encodeQrJoin(
+            const QrJoinPayload(address: '10.0.0.4', port: 47790, code: '1234'),
+          ),
+        );
 
       await t.pumpWidget(app());
       await t.pump();

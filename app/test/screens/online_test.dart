@@ -39,7 +39,10 @@ class FakeFacade implements EngineFacade {
 
   @override
   Future<List<ScoredMove>> rankMoves(
-      BoardState board, Player mover, Dice dice) async {
+    BoardState board,
+    Player mover,
+    Dice dice,
+  ) async {
     final legal = MoveGenerator.legalMoves(board, mover, dice);
     return [for (final m in legal) ScoredMove(move: m, probabilities: _flat)];
   }
@@ -85,12 +88,17 @@ FakeMatch _waitingMatch(FakeBackend backend, String code) {
 /// [db] backs the (now history-persisted) online launch: `_launch` inserts a
 /// match row through the repository over [databaseProvider], so the tests pass
 /// an in-memory db to keep off the real drift store.
-Widget _app(FakeMatchApi api,
-    {bool configured = true, required AppDatabase db, AppSettings? settings}) {
+Widget _app(
+  FakeMatchApi api, {
+  bool configured = true,
+  required AppDatabase db,
+  AppSettings? settings,
+}) {
   return ProviderScope(
     overrides: [
-      onlineConfigProvider
-          .overrideWithValue(configured ? OnlineConfig.emulator() : null),
+      onlineConfigProvider.overrideWithValue(
+        configured ? OnlineConfig.emulator() : null,
+      ),
       matchApiProvider.overrideWith((ref) async => api),
       // The lobby's api is a FAKE with no Firestore behind it, so there is
       // nothing to open a real-time gRPC stream to: every match here runs on the
@@ -102,7 +110,8 @@ Widget _app(FakeMatchApi api,
       // Launching a game reads settingsProvider (for animation speed); serve a
       // static value so the test avoids the real drift store and its watch-timer.
       settingsProvider.overrideWith(
-          (ref) => Stream.value(settings ?? AppSettings.defaults)),
+        (ref) => Stream.value(settings ?? AppSettings.defaults),
+      ),
     ],
     child: const MaterialApp(home: OnlineScreen()),
   );
@@ -131,8 +140,7 @@ void main() {
   });
 
   testWidgets('config null shows the not-configured card, no crash', (t) async {
-    await t.pumpWidget(
-        _app(screenApi(backend), configured: false, db: db));
+    await t.pumpWidget(_app(screenApi(backend), configured: false, db: db));
     await t.pumpAndSettle();
 
     expect(find.byIcon(Icons.cloud_off), findsOneWidget);
@@ -142,8 +150,9 @@ void main() {
     expect(find.text('Join match'), findsNothing);
   });
 
-  testWidgets('create flow: code shown, then active → GameScreen pushed',
-      (t) async {
+  testWidgets('create flow: code shown, then active → GameScreen pushed', (
+    t,
+  ) async {
     await t.binding.setSurfaceSize(surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -166,37 +175,45 @@ void main() {
     expect(api.calls['createMatch'], 1);
   });
 
-  testWidgets('join flow: enter code → GameScreen pushed with the uppercased code',
-      (t) async {
-    await t.binding.setSurfaceSize(surface);
-    addTearDown(() => t.binding.setSurfaceSize(null));
+  testWidgets(
+    'join flow: enter code → GameScreen pushed with the uppercased code',
+    (t) async {
+      await t.binding.setSurfaceSize(surface);
+      addTearDown(() => t.binding.setSurfaceSize(null));
 
-    final api = screenApi(backend);
-    _waitingMatch(backend, 'ABC123');
-    await t.pumpWidget(_app(api, db: db));
-    await t.pumpAndSettle();
+      final api = screenApi(backend);
+      _waitingMatch(backend, 'ABC123');
+      await t.pumpWidget(_app(api, db: db));
+      await t.pumpAndSettle();
 
-    await t.enterText(find.byType(TextField), 'abc123');
-    await t.pump();
-    await t.tap(find.widgetWithText(FilledButton, 'Join'));
+      await t.enterText(find.byType(TextField), 'abc123');
+      await t.pump();
+      await t.tap(find.widgetWithText(FilledButton, 'Join'));
 
-    await _pumpUntil(t, find.byType(GameScreen));
-    expect(find.byType(GameScreen), findsOneWidget);
-    expect(api.joinCodes, ['ABC123']); // trimmed + uppercased
-  });
+      await _pumpUntil(t, find.byType(GameScreen));
+      expect(find.byType(GameScreen), findsOneWidget);
+      expect(api.joinCodes, ['ABC123']); // trimmed + uppercased
+    },
+  );
 
-  // The settings screen's tutor default is honoured online exactly as it is for
-  // a local match: OFF means no tutor is built, so the board carries no hint
+  // Live online play is unassisted for every local tutor preference.
+  // OFF means no tutor is built, so the board carries no hint
   // button and no post-move marks.
-  testWidgets('the tutor setting OFF opens the board without a tutor',
-      (t) async {
+  testWidgets('the tutor setting OFF opens the board without a tutor', (
+    t,
+  ) async {
     await t.binding.setSurfaceSize(surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
 
     final api = screenApi(backend);
     _waitingMatch(backend, 'ABC123');
-    await t.pumpWidget(_app(api,
-        db: db, settings: AppSettings.defaults.copyWith(tutorOverride: false)));
+    await t.pumpWidget(
+      _app(
+        api,
+        db: db,
+        settings: AppSettings.defaults.copyWith(tutorOverride: false),
+      ),
+    );
     await t.pumpAndSettle();
 
     await t.enterText(find.byType(TextField), 'ABC123');
@@ -207,14 +224,21 @@ void main() {
     expect(t.widget<GameScreen>(find.byType(GameScreen)).tutor, isNull);
   });
 
-  testWidgets('the tutor setting ON opens the board with a tutor', (t) async {
+  testWidgets('the tutor setting ON still opens an unassisted online game', (
+    t,
+  ) async {
     await t.binding.setSurfaceSize(surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
 
     final api = screenApi(backend);
     _waitingMatch(backend, 'ABC123');
-    await t.pumpWidget(_app(api,
-        db: db, settings: AppSettings.defaults.copyWith(tutorOverride: true)));
+    await t.pumpWidget(
+      _app(
+        api,
+        db: db,
+        settings: AppSettings.defaults.copyWith(tutorOverride: true),
+      ),
+    );
     await t.pumpAndSettle();
 
     await t.enterText(find.byType(TextField), 'ABC123');
@@ -222,13 +246,17 @@ void main() {
     await t.tap(find.widgetWithText(FilledButton, 'Join'));
     await _pumpUntil(t, find.byType(GameScreen));
 
-    expect(t.widget<GameScreen>(find.byType(GameScreen)).tutor, isNotNull);
+    final game = t.widget<GameScreen>(find.byType(GameScreen));
+    expect(game.tutor, isNull);
+    expect(
+      game.persistedMatchId,
+      isNotNull,
+      reason: 'post-game review remains available without a live tutor',
+    );
   });
 
-  // Auto (the shipped default) keeps the networked default: ON. The opponent is
-  // a person, so there is no difficulty to derive a default from.
-  testWidgets('the tutor setting AUTO keeps the networked default (on)',
-      (t) async {
+  // Auto also follows the unassisted network policy.
+  testWidgets('the tutor setting AUTO keeps online play unassisted', (t) async {
     await t.binding.setSurfaceSize(surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -242,7 +270,7 @@ void main() {
     await t.tap(find.widgetWithText(FilledButton, 'Join'));
     await _pumpUntil(t, find.byType(GameScreen));
 
-    expect(t.widget<GameScreen>(find.byType(GameScreen)).tutor, isNotNull);
+    expect(t.widget<GameScreen>(find.byType(GameScreen)).tutor, isNull);
   });
 
   testWidgets('a launch whose transport never connects says why', (t) async {
@@ -270,8 +298,9 @@ void main() {
     expect(find.textContaining('the network is gone'), findsOneWidget);
   });
 
-  testWidgets('join flow persists an online match row (joiner is Black)',
-      (t) async {
+  testWidgets('join flow persists an online match row (joiner is Black)', (
+    t,
+  ) async {
     await t.binding.setSurfaceSize(surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -288,8 +317,9 @@ void main() {
 
     // The launch inserted an online match row over the in-memory db. The joiner
     // plays Black, so blackType is 'human' and whiteType (the opponent) 'remote'.
-    final rows =
-        await t.runAsync(() => MatchRepository(db).watchMatches().first);
+    final rows = await t.runAsync(
+      () => MatchRepository(db).watchMatches().first,
+    );
     expect(rows, isNotNull);
     expect(rows!.length, 1);
     final row = rows.first;
@@ -300,8 +330,9 @@ void main() {
     expect(row.completed, isFalse);
   });
 
-  testWidgets('join error: inline error shown, field editable, retry works',
-      (t) async {
+  testWidgets('join error: inline error shown, field editable, retry works', (
+    t,
+  ) async {
     await t.binding.setSurfaceSize(surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -316,8 +347,10 @@ void main() {
     await t.pump();
     await t.pump();
 
-    expect(find.text('No match with that code. Check it and try again.'),
-        findsOneWidget);
+    expect(
+      find.text('No match with that code. Check it and try again.'),
+      findsOneWidget,
+    );
     expect(find.byType(GameScreen), findsNothing);
     // The field is still editable (not disabled).
     expect(t.widget<TextField>(find.byType(TextField)).enabled, isTrue);
@@ -331,8 +364,9 @@ void main() {
     expect(api.joinCodes, ['ZZZZZZ', 'ZZZZZZ']);
   });
 
-  testWidgets('the lobby wait BACKS OFF instead of billing 2s forever',
-      (t) async {
+  testWidgets('the lobby wait BACKS OFF instead of billing 2s forever', (
+    t,
+  ) async {
     // A free-tier budget guard, not a UX one. The lobby wait is the longest idle
     // window in the product ("create a match, then go and tell your friend"),
     // and it is the ONE window still polled — what it waits for is a field on
@@ -364,10 +398,16 @@ void main() {
 
     // Flat 2s would be ~300. The 15s ceiling puts it near 45 (5 fast cycles,
     // then 4+8+15+15… seconds); allow slack for the ramp, but nowhere near flat.
-    expect(reads, lessThan(60),
-        reason: 'the lobby wait is not backing off — $reads reads in 10 minutes');
-    expect(reads, greaterThan(5),
-        reason: 'the wait stopped polling entirely, which would never launch');
+    expect(
+      reads,
+      lessThan(60),
+      reason: 'the lobby wait is not backing off — $reads reads in 10 minutes',
+    );
+    expect(
+      reads,
+      greaterThan(5),
+      reason: 'the wait stopped polling entirely, which would never launch',
+    );
   });
 
   testWidgets('cancel-while-waiting stops polling without errors', (t) async {
@@ -415,8 +455,9 @@ void main() {
       return m;
     }
 
-    testWidgets('the card offers the stored match and Rejoin re-enters it',
-        (t) async {
+    testWidgets('the card offers the stored match and Rejoin re-enters it', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -441,28 +482,36 @@ void main() {
       expect(find.text('Match in progress'), findsNothing);
     });
 
-    testWidgets('a finished match is dropped rather than offered as a dead door',
-        (t) async {
-      await t.binding.setSurfaceSize(surface);
-      addTearDown(() => t.binding.setSurfaceSize(null));
+    testWidgets(
+      'a finished match is dropped rather than offered as a dead door',
+      (t) async {
+        await t.binding.setSurfaceSize(surface);
+        addTearDown(() => t.binding.setSurfaceSize(null));
 
-      final m = await seedResumable('DONE1234');
-      m.status = 'complete';
+        final m = await seedResumable('DONE1234');
+        m.status = 'complete';
 
-      await t.pumpWidget(_app(screenApi(backend), db: db));
-      await t.pumpAndSettle();
-      await t.tap(find.widgetWithText(FilledButton, 'Rejoin'));
-      await t.pump();
-      await t.pump();
+        await t.pumpWidget(_app(screenApi(backend), db: db));
+        await t.pumpAndSettle();
+        await t.tap(find.widgetWithText(FilledButton, 'Rejoin'));
+        await t.pump();
+        await t.pump();
 
-      expect(find.byType(GameScreen), findsNothing);
-      // The card is gone (there is nothing to rejoin) and a snackbar says why.
-      expect(find.text('Match in progress'), findsNothing);
-      expect(find.widgetWithText(SnackBar, 'That match has finished — nothing '
-          'left to rejoin.'), findsOneWidget);
-      // The pointer is gone, so the card does not come back next launch.
-      expect(await OnlineSessionStore(db).lastMatchCode(), isNull);
-    });
+        expect(find.byType(GameScreen), findsNothing);
+        // The card is gone (there is nothing to rejoin) and a snackbar says why.
+        expect(find.text('Match in progress'), findsNothing);
+        expect(
+          find.widgetWithText(
+            SnackBar,
+            'That match has finished — nothing '
+            'left to rejoin.',
+          ),
+          findsOneWidget,
+        );
+        // The pointer is gone, so the card does not come back next launch.
+        expect(await OnlineSessionStore(db).lastMatchCode(), isNull);
+      },
+    );
 
     testWidgets('Forget this match clears the card', (t) async {
       await t.binding.setSurfaceSize(surface);
@@ -480,8 +529,9 @@ void main() {
       expect(await OnlineSessionStore(db).lastMatchCode(), isNull);
     });
 
-    testWidgets('typing your OWN code into Join resumes instead of failing',
-        (t) async {
+    testWidgets('typing your OWN code into Join resumes instead of failing', (
+      t,
+    ) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 

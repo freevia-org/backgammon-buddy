@@ -75,7 +75,7 @@ void main() {
       expect(opened, hasLength(1));
       final uri = opened.single;
       expect(uri.host, 'github.com');
-      expect(uri.path, '/tony-xmelon/aigammon/issues/new');
+      expect(uri.path, '/freevia-org/backgammon-buddy/issues/new');
       // The live app version, not a literal: the point of the pre-fill is that
       // the report says which build it came from.
       expect(uri.queryParameters['body'], contains('App version: $appVersion'));

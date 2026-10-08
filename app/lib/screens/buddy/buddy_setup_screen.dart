@@ -229,6 +229,10 @@ class _BuddySetupScreenState extends ConsumerState<BuddySetupScreen> {
                       value: _cubeless,
                       onChanged: (v) => setState(() => _cubeless = v),
                     ),
+                    const SizedBox(height: 12),
+                    const Text('Tutor commentary and move explanations follow your saved '
+                        'Tutor preferences in Settings. Buddy gives occasional feedback after '
+                        'your plays; typed dice and manual moves work the same way.'),
                     const SizedBox(height: 40),
                     SizedBox(
                       width: double.infinity,

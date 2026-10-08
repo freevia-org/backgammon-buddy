@@ -1,8 +1,14 @@
-# AI Gammon
+# Backgammon Buddy
 
 A backgammon tutor and practice app built with **Flutter** and driven by a neural-net
 engine ([wildbg](https://github.com/carsten-wenderdel/wildbg), vendored, dual
 **MIT OR Apache-2.0**).
+
+Published by **Freevia**. [Product](https://freevia.org/backgammon-buddy/) ·
+[Privacy](https://freevia.org/backgammon-buddy/privacy/) ·
+[Support](https://freevia.org/backgammon-buddy/support/) ·
+[Source and feedback](https://github.com/freevia-org/backgammon-buddy).
+Mobile store release remains subject to the [candidate checks](docs/release-readiness.md).
 
 **Available now (local play):**
 
@@ -14,16 +20,23 @@ engine ([wildbg](https://github.com/carsten-wenderdel/wildbg), vendored, dual
   between turns.
 - **Match play** to N points with the **doubling cube**, gammon/backgammon
   scoring, and the **Crawford** rule.
-- **Tutor mode** — choose **best-move hints**, **move explanations**, **game
-  commentary**, and **cube advice** independently, during local-match setup or
-  from the standard game's coaching panel. Compare candidate plays, estimated
-  equity/win/gammon outcomes and observable board changes; review either side's
-  recent move and open explanations in post-game analysis. Per-move **marks**
-  (best / good / dubious / error / blunder) report equity loss versus the top
-  estimate. Checker rankings currently use **cubeless equity**, so they do not
-  account for match score or future doubling; board observations are teaching
-  cues, not a trace of the neural engine's reasoning. **Cube advice** is
-  match-aware through a match-equity table and Janowski cubeful-equity advisor.
+- **Tutor mode** — save independent preferences for **best-move hints**, **move
+  explanations**, **game commentary**, **cube advice**, and **try first**.
+  Compare legal alternatives, win/gammon estimates and observable board changes.
+  Known match scores use estimated match-winning probability; unknown old
+  history is labelled cubeless. Static checker estimates exclude future cube
+  decisions; cube advice uses a partial Janowski model. Explanations report
+  grounded observations, not the neural engine's internal reasoning.
+- **Learning & practice** — review recurring themes in your own decisions,
+  save mistakes from replay, retry before revealing the answer, and revisit
+  positions on a spaced schedule. Forced plays do not improve the error average.
+  Post-game review includes cube decisions where cube rules are known. Practice
+  progress remains on the device and can be reset or deleted.
+- **Fair live multiplayer** — online and nearby games are unassisted; saved
+  games remain available for post-game review and practice.
+- **Privacy controls** — optional Firebase usage/performance/crash diagnostics
+  default off and require an explicit choice. Settings describes local data,
+  online play, camera/audio, deletion and feedback, and links the public policy.
 - **Buddy Mode** (Android/iOS) — play on your **real board** against the engine,
   with the phone propped up watching. A guided calibration teaches Buddy your
   board: drag the handles onto the corners of the felt (four more on the seam
@@ -113,7 +126,7 @@ the engine, net-loading, and licensing details.
 ### 1. Clone with submodules
 
 ```powershell
-git clone --recurse-submodules https://github.com/tony-xmelon/aigammon
+git clone --recurse-submodules https://github.com/freevia-org/backgammon-buddy
 # already cloned without --recurse-submodules?
 git submodule update --init --recursive
 ```
@@ -266,7 +279,9 @@ building a production release with the online defines are documented in
 - **`ios.yml`** (`workflow_dispatch`, CI success on `master`): builds the engine
   staticlib for `aarch64-apple-ios`, links it into `Runner`, and uploads an
   unsigned `Runner.app`; when the signing secrets are configured it also builds
-  a signed ad-hoc IPA and distributes it to the same testers group.
+  a signed ad-hoc IPA and distributes it to the same testers group. Manual
+  dispatch can instead prepare an export-only App Store IPA; that path does
+  not submit to a store or distribute to Firebase.
 - Setup instructions for both distribution workflows, and the debug-symbol
   artifacts every release build uploads:
   [`.github/workflows/README.md`](.github/workflows/README.md).
@@ -280,6 +295,10 @@ tutoring improvements, fixes and remaining learning roadmap. Android's manual
 workflow can prepare a signed Play bundle with `build_appbundle`; it does not
 submit it to a store. Automatic Android tester distribution requires release
 signing as well as Firebase credentials.
+Both signed mobile paths require an explicit build-number override or an
+owner-selected baseline above previous uploads; a migrated repository's workflow
+counter alone is not sufficient. See the workflow guide for native symbols and
+artifact alignment checks.
 
 Every release is a merge to `master` that bumps `version:` in `app/pubspec.yaml`
 — **and `appVersion` in `app/lib/branding/app_version.dart` with it**, since the
@@ -293,7 +312,7 @@ commit, is a release-time decision:
 
 ```bash
 # on master, at the merge commit
-git tag -a v0.14.0 -m "AI Gammon v0.14.0 — <one line, the same one the merge used>"
+git tag -a v0.14.0 -m "Backgammon Buddy v0.14.0 — <one line, the same one the merge used>"
 git push origin v0.14.0
 ```
 

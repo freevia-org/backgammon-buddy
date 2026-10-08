@@ -13,6 +13,8 @@ import '../data/app_settings.dart';
 import '../data/settings_repository.dart';
 import '../feedback/feedback_link.dart';
 import '../licensing/third_party_licenses.dart';
+import '../privacy/privacy_settings_section.dart';
+import '../tutor/coaching_widgets.dart';
 import 'diagnostics_screen.dart';
 
 /// The preferences screen. Every control autosaves on change (there is no save
@@ -169,13 +171,28 @@ class SettingsScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      'Auto follows the per-mode default: on for easy/medium vs '
-                      'computer and for nearby/online play, off otherwise. On '
-                      'and Off apply to every mode. The tutor runs on this '
-                      'device: it hints only your own decisions, and scores '
-                      'both players’ moves once they are played.',
+                      'Auto enables the tutor at every computer difficulty. '
+                      'On and Off set the starting choice for local matches. '
+                      'Nearby and online matches are unassisted; their saved '
+                      'games can be reviewed afterwards. Teaching preferences '
+                      'below are saved on this device.',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: Theme.of(context).colorScheme.onSurfaceVariant),
+                    ),
+                    const SizedBox(height: 24),
+                    ExpansionTile(
+                      tilePadding: EdgeInsets.zero,
+                      title: const Text('Tutor preferences'),
+                      subtitle: const Text('Saved defaults for future matches'),
+                      children: [TutorOptionControls(
+                        options: settings.tutorOptions,
+                        onChanged: (options) => repo.setTutorOptions(options)
+                            .catchError((Object error) {
+                          if (!context.mounted) return;
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text('Could not save tutor preferences.')));
+                        }),
+                      )],
                     ),
                     const SizedBox(height: 24),
                     _Section(
@@ -321,6 +338,8 @@ class SettingsScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 24),
+                    const PrivacySettingsSection(),
+                    const SizedBox(height: 24),
                     // The ONLY route to the on-device error log — the sink that
                     // works with no network and no Firebase config, and the
                     // only one a tester can read. Crashlytics reports the same
@@ -368,7 +387,7 @@ class SettingsScreen extends ConsumerWidget {
                         contentPadding: EdgeInsets.zero,
                         leading: const Icon(Icons.description_outlined),
                         title: const Text('Open-source licenses'),
-                        subtitle: const Text('AI Gammon $appVersion'),
+                        subtitle: const Text('Backgammon Buddy $appVersion'),
                         trailing: const Icon(Icons.chevron_right),
                         onTap: () => showAppLicenses(context),
                       ),

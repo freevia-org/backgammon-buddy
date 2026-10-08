@@ -25,14 +25,16 @@ void main() {
   // Fail loudly if the data is not oriented/consistent as expected.
   validateMet(met);
 
-  final out = _render(met);
+  final notice = RegExp(r'<!--[\s\S]*?-->').firstMatch(xml)!.group(0)!
+      .replaceFirst('<!--', '').replaceFirst('-->', '').trim();
+  final out = _render(met, notice);
   File(_outPath).writeAsStringSync(out);
   stdout.writeln('Wrote $_outPath '
       '(maxAway=${met.length}, ${met.length}x${met.length} pre-Crawford, '
       '${met.length} post-Crawford).');
 }
 
-String _render(ParsedMet met) {
+String _render(ParsedMet met, String notice) {
   String d(double v) {
     // Dart's double.toString() yields the shortest string that round-trips to
     // the identical double, so the generated literals reparse exactly (this is
@@ -50,6 +52,10 @@ String _render(ParsedMet met) {
   b.writeln('// Data: unmodified gnubg "Kazaross XG2 25 point MET" (numeric');
   b.writeln('// match-equity table). Regenerate with: '
       'dart run tool/generate_met.dart');
+  b.writeln('// Original attribution and permission notice:');
+  for (final line in notice.split('\n')) {
+    b.writeln('// ${line.trim()}'.trimRight());
+  }
   b.writeln();
   b.writeln('/// Kazaross-XG2 match equity table (gnubg default).');
   b.writeln('///');

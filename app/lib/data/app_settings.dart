@@ -2,6 +2,7 @@ import 'package:engine_bindings/engine_bindings.dart' show Difficulty;
 import 'package:flutter/material.dart' show ThemeMode;
 
 import '../buddy/phrasing.dart' show BuddyPhrasing;
+import '../tutor/coaching.dart' show TutorOptions;
 
 /// Checker + dice animation speed. Maps to an [AnimationTimings] preset via
 /// [timings].
@@ -163,6 +164,8 @@ class AppSettings {
     this.dragHintShown = false,
     this.buddyPhrasing = BuddyPhrasing.terse,
     this.buddyMicHint = true,
+    this.tutorOptions = const TutorOptions(),
+    this.telemetryEnabled = false,
   });
 
   /// The out-of-the-box defaults, matching the `Settings` table's column
@@ -254,6 +257,12 @@ class AppSettings {
   /// sooner.
   final bool buddyMicHint;
 
+  /// Saved teaching defaults, copied into each new match.
+  final TutorOptions tutorOptions;
+
+  /// Explicit opt-in to remote diagnostics and usage collection.
+  final bool telemetryEnabled;
+
   /// Whether a NETWORKED match (LAN or online) starts with live tutor mode.
   ///
   /// [tutorOverride] rules when the user set it explicitly; Auto (null) keeps
@@ -296,6 +305,8 @@ class AppSettings {
     bool? dragHintShown,
     BuddyPhrasing? buddyPhrasing,
     bool? buddyMicHint,
+    TutorOptions? tutorOptions,
+    bool? telemetryEnabled,
   }) {
     return AppSettings(
       themeMode: themeMode ?? this.themeMode,
@@ -315,6 +326,8 @@ class AppSettings {
       dragHintShown: dragHintShown ?? this.dragHintShown,
       buddyPhrasing: buddyPhrasing ?? this.buddyPhrasing,
       buddyMicHint: buddyMicHint ?? this.buddyMicHint,
+      tutorOptions: tutorOptions ?? this.tutorOptions,
+      telemetryEnabled: telemetryEnabled ?? this.telemetryEnabled,
     );
   }
 
@@ -335,7 +348,9 @@ class AppSettings {
       other.rotateBoardHotSeat == rotateBoardHotSeat &&
       other.dragHintShown == dragHintShown &&
       other.buddyPhrasing == buddyPhrasing &&
-      other.buddyMicHint == buddyMicHint;
+      other.buddyMicHint == buddyMicHint &&
+      other.tutorOptions == tutorOptions &&
+      other.telemetryEnabled == telemetryEnabled;
 
   @override
   int get hashCode => Object.hash(
@@ -353,7 +368,9 @@ class AppSettings {
       rotateBoardHotSeat,
       dragHintShown,
       buddyPhrasing,
-      buddyMicHint);
+      buddyMicHint,
+      tutorOptions,
+      telemetryEnabled);
 
   @override
   String toString() => 'AppSettings(themeMode: $themeMode, '
@@ -370,7 +387,8 @@ class AppSettings {
       'rotateBoardHotSeat: $rotateBoardHotSeat, '
       'dragHintShown: $dragHintShown, '
       'buddyPhrasing: $buddyPhrasing, '
-      'buddyMicHint: $buddyMicHint)';
+      'buddyMicHint: $buddyMicHint, '
+      'tutorOptions: $tutorOptions, telemetryEnabled: $telemetryEnabled)';
 }
 
 /// Sentinel marking an un-passed [AppSettings.copyWith] argument (so a caller

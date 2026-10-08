@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'analytics/analytics_events.dart';
 import 'analytics/app_analytics.dart';
-import 'analytics/firebase_observability.dart';
+import 'analytics/telemetry_controller.dart';
 import 'data/app_settings.dart';
 import 'data/settings_repository.dart';
 import 'diagnostics/crash_log.dart';
@@ -28,34 +28,43 @@ Future<void> main() async {
   CrashLog.installGlobalHandlers();
   unawaited(CrashLog.initializeStorage());
 
-  // Telemetry. On Windows/Linux/macOS — and in any build without a complete
-  // Firebase config — this returns the all-no-op bundle WITHOUT touching a
-  // single Firebase symbol, so nothing below changes shape by platform: the
-  // providers are always overridden, just sometimes with no-ops.
-  final observability = await initializeObservability();
-
-  // Crashlytics becomes a SECOND sink on the crash funnel, never a
-  // replacement. All three sources — FlutterError.onError,
-  // PlatformDispatcher.onError and the engine isolate's onIsolateError — go
-  // through CrashLog.record, so this one line covers all of them, and the
-  // on-device log keeps working offline and on desktop exactly as before.
-  // Attached only when there is a real reporter behind it: registering a no-op
-  // sink would just add a call per error for nothing.
-  if (observability.isEnabled) {
-    final reporter = observability.crashReporter;
-    CrashLog.instance.addSink((error, stack, source) {
-      reporter.recordError(error, stack, reason: source);
-    });
-  }
-
-  runApp(ProviderScope(
+  final telemetry = TelemetryController();
+  final container = ProviderContainer(
     overrides: [
-      appAnalyticsProvider.overrideWithValue(observability.analytics),
-      appPerformanceProvider.overrideWithValue(observability.performance),
-      appCrashReporterProvider.overrideWithValue(observability.crashReporter),
+      telemetryControllerProvider.overrideWithValue(telemetry),
+      appAnalyticsProvider.overrideWithValue(telemetry),
+      appPerformanceProvider.overrideWithValue(telemetry),
+      appCrashReporterProvider.overrideWithValue(telemetry),
     ],
-    child: AiGammonApp(startup: startup),
-  ));
+  );
+  // Defaults are off both here and in native config. Read the persisted choice
+  // before any optional Firebase initialization. The same provider container
+  // also keeps launchers' initial tutoring preferences available immediately.
+  try {
+    final settings = await container.read(settingsProvider.future);
+    // Optional SDK startup must not delay the first frame.
+    unawaited(telemetry.setEnabled(settings.telemetryEnabled));
+  } catch (error, stack) {
+    CrashLog.instance.record(error, stack: stack, source: 'settings-startup');
+  }
+  container.listen(settingsProvider, (_, next) {
+    final settings = next.valueOrNull;
+    if (settings != null) {
+      unawaited(telemetry.setEnabled(settings.telemetryEnabled));
+    }
+  });
+  // A stable forwarding sink becomes inert immediately when consent is revoked.
+  // Local diagnostics remain available independently of remote collection.
+  CrashLog.instance.addSink((error, stack, source) {
+    telemetry.recordError(error, stack, reason: source);
+  });
+
+  runApp(
+    UncontrolledProviderScope(
+      container: container,
+      child: AiGammonApp(startup: startup),
+    ),
+  );
 }
 
 class AiGammonApp extends ConsumerStatefulWidget {
@@ -94,9 +103,9 @@ class _AiGammonAppState extends ConsumerState<AiGammonApp> {
     // (sub-frame) initial load resolves.
     final themeMode =
         ref.watch(settingsProvider).valueOrNull?.themeMode ??
-            AppSettings.defaults.themeMode;
+        AppSettings.defaults.themeMode;
     return MaterialApp(
-      title: 'AI Gammon',
+      title: 'Backgammon Buddy',
       theme: _theme(Brightness.light),
       darkTheme: _theme(Brightness.dark),
       themeMode: themeMode,
@@ -108,8 +117,10 @@ class _AiGammonAppState extends ConsumerState<AiGammonApp> {
 /// The app theme for one brightness: the brown-seeded Material 3 scheme, plus
 /// the app-wide segmented-button treatment.
 ThemeData _theme(Brightness brightness) {
-  final scheme =
-      ColorScheme.fromSeed(seedColor: Colors.brown, brightness: brightness);
+  final scheme = ColorScheme.fromSeed(
+    seedColor: Colors.brown,
+    brightness: brightness,
+  );
   return ThemeData(
     colorScheme: scheme,
     useMaterial3: true,
@@ -130,8 +141,8 @@ ThemeData _theme(Brightness brightness) {
           (states) => states.contains(WidgetState.disabled)
               ? null
               : states.contains(WidgetState.selected)
-                  ? scheme.onPrimary
-                  : scheme.onSurface,
+              ? scheme.onPrimary
+              : scheme.onSurface,
         ),
       ),
     ),

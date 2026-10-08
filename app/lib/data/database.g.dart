@@ -74,6 +74,20 @@ class $MatchesTable extends Matches with TableInfo<$MatchesTable, MatchRow> {
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
+  static const VerificationMeta _cubelessMeta = const VerificationMeta(
+    'cubeless',
+  );
+  @override
+  late final GeneratedColumn<bool> cubeless = GeneratedColumn<bool>(
+    'cubeless',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("cubeless" IN (0, 1))',
+    ),
+  );
   static const VerificationMeta _whiteScoreMeta = const VerificationMeta(
     'whiteScore',
   );
@@ -130,6 +144,7 @@ class $MatchesTable extends Matches with TableInfo<$MatchesTable, MatchRow> {
     mode,
     whiteType,
     blackType,
+    cubeless,
     whiteScore,
     blackScore,
     winner,
@@ -193,6 +208,12 @@ class $MatchesTable extends Matches with TableInfo<$MatchesTable, MatchRow> {
     } else if (isInserting) {
       context.missing(_blackTypeMeta);
     }
+    if (data.containsKey('cubeless')) {
+      context.handle(
+        _cubelessMeta,
+        cubeless.isAcceptableOrUnknown(data['cubeless']!, _cubelessMeta),
+      );
+    }
     if (data.containsKey('white_score')) {
       context.handle(
         _whiteScoreMeta,
@@ -250,6 +271,10 @@ class $MatchesTable extends Matches with TableInfo<$MatchesTable, MatchRow> {
         DriftSqlType.string,
         data['${effectivePrefix}black_type'],
       )!,
+      cubeless: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}cubeless'],
+      ),
       whiteScore: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}white_score'],
@@ -286,6 +311,9 @@ class MatchRow extends DataClass implements Insertable<MatchRow> {
   /// Player identity strings, e.g. 'human' or 'ai:expert'.
   final String whiteType;
   final String blackType;
+
+  /// Null for legacy records whose cube setting was not recorded.
+  final bool? cubeless;
   final int whiteScore;
   final int blackScore;
 
@@ -299,6 +327,7 @@ class MatchRow extends DataClass implements Insertable<MatchRow> {
     required this.mode,
     required this.whiteType,
     required this.blackType,
+    this.cubeless,
     required this.whiteScore,
     required this.blackScore,
     this.winner,
@@ -313,6 +342,9 @@ class MatchRow extends DataClass implements Insertable<MatchRow> {
     map['mode'] = Variable<String>(mode);
     map['white_type'] = Variable<String>(whiteType);
     map['black_type'] = Variable<String>(blackType);
+    if (!nullToAbsent || cubeless != null) {
+      map['cubeless'] = Variable<bool>(cubeless);
+    }
     map['white_score'] = Variable<int>(whiteScore);
     map['black_score'] = Variable<int>(blackScore);
     if (!nullToAbsent || winner != null) {
@@ -330,6 +362,9 @@ class MatchRow extends DataClass implements Insertable<MatchRow> {
       mode: Value(mode),
       whiteType: Value(whiteType),
       blackType: Value(blackType),
+      cubeless: cubeless == null && nullToAbsent
+          ? const Value.absent()
+          : Value(cubeless),
       whiteScore: Value(whiteScore),
       blackScore: Value(blackScore),
       winner: winner == null && nullToAbsent
@@ -351,6 +386,7 @@ class MatchRow extends DataClass implements Insertable<MatchRow> {
       mode: serializer.fromJson<String>(json['mode']),
       whiteType: serializer.fromJson<String>(json['whiteType']),
       blackType: serializer.fromJson<String>(json['blackType']),
+      cubeless: serializer.fromJson<bool?>(json['cubeless']),
       whiteScore: serializer.fromJson<int>(json['whiteScore']),
       blackScore: serializer.fromJson<int>(json['blackScore']),
       winner: serializer.fromJson<String?>(json['winner']),
@@ -367,6 +403,7 @@ class MatchRow extends DataClass implements Insertable<MatchRow> {
       'mode': serializer.toJson<String>(mode),
       'whiteType': serializer.toJson<String>(whiteType),
       'blackType': serializer.toJson<String>(blackType),
+      'cubeless': serializer.toJson<bool?>(cubeless),
       'whiteScore': serializer.toJson<int>(whiteScore),
       'blackScore': serializer.toJson<int>(blackScore),
       'winner': serializer.toJson<String?>(winner),
@@ -381,6 +418,7 @@ class MatchRow extends DataClass implements Insertable<MatchRow> {
     String? mode,
     String? whiteType,
     String? blackType,
+    Value<bool?> cubeless = const Value.absent(),
     int? whiteScore,
     int? blackScore,
     Value<String?> winner = const Value.absent(),
@@ -392,6 +430,7 @@ class MatchRow extends DataClass implements Insertable<MatchRow> {
     mode: mode ?? this.mode,
     whiteType: whiteType ?? this.whiteType,
     blackType: blackType ?? this.blackType,
+    cubeless: cubeless.present ? cubeless.value : this.cubeless,
     whiteScore: whiteScore ?? this.whiteScore,
     blackScore: blackScore ?? this.blackScore,
     winner: winner.present ? winner.value : this.winner,
@@ -407,6 +446,7 @@ class MatchRow extends DataClass implements Insertable<MatchRow> {
       mode: data.mode.present ? data.mode.value : this.mode,
       whiteType: data.whiteType.present ? data.whiteType.value : this.whiteType,
       blackType: data.blackType.present ? data.blackType.value : this.blackType,
+      cubeless: data.cubeless.present ? data.cubeless.value : this.cubeless,
       whiteScore: data.whiteScore.present
           ? data.whiteScore.value
           : this.whiteScore,
@@ -427,6 +467,7 @@ class MatchRow extends DataClass implements Insertable<MatchRow> {
           ..write('mode: $mode, ')
           ..write('whiteType: $whiteType, ')
           ..write('blackType: $blackType, ')
+          ..write('cubeless: $cubeless, ')
           ..write('whiteScore: $whiteScore, ')
           ..write('blackScore: $blackScore, ')
           ..write('winner: $winner, ')
@@ -443,6 +484,7 @@ class MatchRow extends DataClass implements Insertable<MatchRow> {
     mode,
     whiteType,
     blackType,
+    cubeless,
     whiteScore,
     blackScore,
     winner,
@@ -458,6 +500,7 @@ class MatchRow extends DataClass implements Insertable<MatchRow> {
           other.mode == this.mode &&
           other.whiteType == this.whiteType &&
           other.blackType == this.blackType &&
+          other.cubeless == this.cubeless &&
           other.whiteScore == this.whiteScore &&
           other.blackScore == this.blackScore &&
           other.winner == this.winner &&
@@ -471,6 +514,7 @@ class MatchesCompanion extends UpdateCompanion<MatchRow> {
   final Value<String> mode;
   final Value<String> whiteType;
   final Value<String> blackType;
+  final Value<bool?> cubeless;
   final Value<int> whiteScore;
   final Value<int> blackScore;
   final Value<String?> winner;
@@ -482,6 +526,7 @@ class MatchesCompanion extends UpdateCompanion<MatchRow> {
     this.mode = const Value.absent(),
     this.whiteType = const Value.absent(),
     this.blackType = const Value.absent(),
+    this.cubeless = const Value.absent(),
     this.whiteScore = const Value.absent(),
     this.blackScore = const Value.absent(),
     this.winner = const Value.absent(),
@@ -494,6 +539,7 @@ class MatchesCompanion extends UpdateCompanion<MatchRow> {
     required String mode,
     required String whiteType,
     required String blackType,
+    this.cubeless = const Value.absent(),
     this.whiteScore = const Value.absent(),
     this.blackScore = const Value.absent(),
     this.winner = const Value.absent(),
@@ -510,6 +556,7 @@ class MatchesCompanion extends UpdateCompanion<MatchRow> {
     Expression<String>? mode,
     Expression<String>? whiteType,
     Expression<String>? blackType,
+    Expression<bool>? cubeless,
     Expression<int>? whiteScore,
     Expression<int>? blackScore,
     Expression<String>? winner,
@@ -522,6 +569,7 @@ class MatchesCompanion extends UpdateCompanion<MatchRow> {
       if (mode != null) 'mode': mode,
       if (whiteType != null) 'white_type': whiteType,
       if (blackType != null) 'black_type': blackType,
+      if (cubeless != null) 'cubeless': cubeless,
       if (whiteScore != null) 'white_score': whiteScore,
       if (blackScore != null) 'black_score': blackScore,
       if (winner != null) 'winner': winner,
@@ -536,6 +584,7 @@ class MatchesCompanion extends UpdateCompanion<MatchRow> {
     Value<String>? mode,
     Value<String>? whiteType,
     Value<String>? blackType,
+    Value<bool?>? cubeless,
     Value<int>? whiteScore,
     Value<int>? blackScore,
     Value<String?>? winner,
@@ -548,6 +597,7 @@ class MatchesCompanion extends UpdateCompanion<MatchRow> {
       mode: mode ?? this.mode,
       whiteType: whiteType ?? this.whiteType,
       blackType: blackType ?? this.blackType,
+      cubeless: cubeless ?? this.cubeless,
       whiteScore: whiteScore ?? this.whiteScore,
       blackScore: blackScore ?? this.blackScore,
       winner: winner ?? this.winner,
@@ -576,6 +626,9 @@ class MatchesCompanion extends UpdateCompanion<MatchRow> {
     if (blackType.present) {
       map['black_type'] = Variable<String>(blackType.value);
     }
+    if (cubeless.present) {
+      map['cubeless'] = Variable<bool>(cubeless.value);
+    }
     if (whiteScore.present) {
       map['white_score'] = Variable<int>(whiteScore.value);
     }
@@ -600,6 +653,7 @@ class MatchesCompanion extends UpdateCompanion<MatchRow> {
           ..write('mode: $mode, ')
           ..write('whiteType: $whiteType, ')
           ..write('blackType: $blackType, ')
+          ..write('cubeless: $cubeless, ')
           ..write('whiteScore: $whiteScore, ')
           ..write('blackScore: $blackScore, ')
           ..write('winner: $winner, ')
@@ -1429,6 +1483,96 @@ class $SettingsTable extends Settings
     ),
     defaultValue: const Constant(true),
   );
+  static const VerificationMeta _tutorBestMovesMeta = const VerificationMeta(
+    'tutorBestMoves',
+  );
+  @override
+  late final GeneratedColumn<bool> tutorBestMoves = GeneratedColumn<bool>(
+    'tutor_best_moves',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("tutor_best_moves" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _tutorExplanationsMeta = const VerificationMeta(
+    'tutorExplanations',
+  );
+  @override
+  late final GeneratedColumn<bool> tutorExplanations = GeneratedColumn<bool>(
+    'tutor_explanations',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("tutor_explanations" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _tutorCommentaryMeta = const VerificationMeta(
+    'tutorCommentary',
+  );
+  @override
+  late final GeneratedColumn<bool> tutorCommentary = GeneratedColumn<bool>(
+    'tutor_commentary',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("tutor_commentary" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _tutorCubeAdviceMeta = const VerificationMeta(
+    'tutorCubeAdvice',
+  );
+  @override
+  late final GeneratedColumn<bool> tutorCubeAdvice = GeneratedColumn<bool>(
+    'tutor_cube_advice',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("tutor_cube_advice" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _tutorTryFirstMeta = const VerificationMeta(
+    'tutorTryFirst',
+  );
+  @override
+  late final GeneratedColumn<bool> tutorTryFirst = GeneratedColumn<bool>(
+    'tutor_try_first',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("tutor_try_first" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _telemetryEnabledMeta = const VerificationMeta(
+    'telemetryEnabled',
+  );
+  @override
+  late final GeneratedColumn<bool> telemetryEnabled = GeneratedColumn<bool>(
+    'telemetry_enabled',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("telemetry_enabled" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -1447,6 +1591,12 @@ class $SettingsTable extends Settings
     dragHintShown,
     buddyPhrasing,
     buddyMicHint,
+    tutorBestMoves,
+    tutorExplanations,
+    tutorCommentary,
+    tutorCubeAdvice,
+    tutorTryFirst,
+    telemetryEnabled,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1592,6 +1742,60 @@ class $SettingsTable extends Settings
         ),
       );
     }
+    if (data.containsKey('tutor_best_moves')) {
+      context.handle(
+        _tutorBestMovesMeta,
+        tutorBestMoves.isAcceptableOrUnknown(
+          data['tutor_best_moves']!,
+          _tutorBestMovesMeta,
+        ),
+      );
+    }
+    if (data.containsKey('tutor_explanations')) {
+      context.handle(
+        _tutorExplanationsMeta,
+        tutorExplanations.isAcceptableOrUnknown(
+          data['tutor_explanations']!,
+          _tutorExplanationsMeta,
+        ),
+      );
+    }
+    if (data.containsKey('tutor_commentary')) {
+      context.handle(
+        _tutorCommentaryMeta,
+        tutorCommentary.isAcceptableOrUnknown(
+          data['tutor_commentary']!,
+          _tutorCommentaryMeta,
+        ),
+      );
+    }
+    if (data.containsKey('tutor_cube_advice')) {
+      context.handle(
+        _tutorCubeAdviceMeta,
+        tutorCubeAdvice.isAcceptableOrUnknown(
+          data['tutor_cube_advice']!,
+          _tutorCubeAdviceMeta,
+        ),
+      );
+    }
+    if (data.containsKey('tutor_try_first')) {
+      context.handle(
+        _tutorTryFirstMeta,
+        tutorTryFirst.isAcceptableOrUnknown(
+          data['tutor_try_first']!,
+          _tutorTryFirstMeta,
+        ),
+      );
+    }
+    if (data.containsKey('telemetry_enabled')) {
+      context.handle(
+        _telemetryEnabledMeta,
+        telemetryEnabled.isAcceptableOrUnknown(
+          data['telemetry_enabled']!,
+          _telemetryEnabledMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -1664,6 +1868,30 @@ class $SettingsTable extends Settings
       buddyMicHint: attachedDatabase.typeMapping.read(
         DriftSqlType.bool,
         data['${effectivePrefix}buddy_mic_hint'],
+      )!,
+      tutorBestMoves: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}tutor_best_moves'],
+      )!,
+      tutorExplanations: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}tutor_explanations'],
+      )!,
+      tutorCommentary: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}tutor_commentary'],
+      )!,
+      tutorCubeAdvice: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}tutor_cube_advice'],
+      )!,
+      tutorTryFirst: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}tutor_try_first'],
+      )!,
+      telemetryEnabled: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}telemetry_enabled'],
       )!,
     );
   }
@@ -1760,6 +1988,17 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   /// Off changes nothing about how a match plays. The hint only ever tells the
   /// frame gate to look sooner — see `lib/buddy/dice_sound_trigger.dart`.
   final bool buddyMicHint;
+
+  /// Persistent tutor defaults (v10); match-specific changes do not overwrite
+  /// these unless explicitly saved through Settings.
+  final bool tutorBestMoves;
+  final bool tutorExplanations;
+  final bool tutorCommentary;
+  final bool tutorCubeAdvice;
+  final bool tutorTryFirst;
+
+  /// Optional remote analytics/performance/crash reporting is opt-in.
+  final bool telemetryEnabled;
   const SettingsRow({
     required this.id,
     required this.themeMode,
@@ -1777,6 +2016,12 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     required this.dragHintShown,
     required this.buddyPhrasing,
     required this.buddyMicHint,
+    required this.tutorBestMoves,
+    required this.tutorExplanations,
+    required this.tutorCommentary,
+    required this.tutorCubeAdvice,
+    required this.tutorTryFirst,
+    required this.telemetryEnabled,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1799,6 +2044,12 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     map['drag_hint_shown'] = Variable<bool>(dragHintShown);
     map['buddy_phrasing'] = Variable<String>(buddyPhrasing);
     map['buddy_mic_hint'] = Variable<bool>(buddyMicHint);
+    map['tutor_best_moves'] = Variable<bool>(tutorBestMoves);
+    map['tutor_explanations'] = Variable<bool>(tutorExplanations);
+    map['tutor_commentary'] = Variable<bool>(tutorCommentary);
+    map['tutor_cube_advice'] = Variable<bool>(tutorCubeAdvice);
+    map['tutor_try_first'] = Variable<bool>(tutorTryFirst);
+    map['telemetry_enabled'] = Variable<bool>(telemetryEnabled);
     return map;
   }
 
@@ -1822,6 +2073,12 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       dragHintShown: Value(dragHintShown),
       buddyPhrasing: Value(buddyPhrasing),
       buddyMicHint: Value(buddyMicHint),
+      tutorBestMoves: Value(tutorBestMoves),
+      tutorExplanations: Value(tutorExplanations),
+      tutorCommentary: Value(tutorCommentary),
+      tutorCubeAdvice: Value(tutorCubeAdvice),
+      tutorTryFirst: Value(tutorTryFirst),
+      telemetryEnabled: Value(telemetryEnabled),
     );
   }
 
@@ -1847,6 +2104,12 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       dragHintShown: serializer.fromJson<bool>(json['dragHintShown']),
       buddyPhrasing: serializer.fromJson<String>(json['buddyPhrasing']),
       buddyMicHint: serializer.fromJson<bool>(json['buddyMicHint']),
+      tutorBestMoves: serializer.fromJson<bool>(json['tutorBestMoves']),
+      tutorExplanations: serializer.fromJson<bool>(json['tutorExplanations']),
+      tutorCommentary: serializer.fromJson<bool>(json['tutorCommentary']),
+      tutorCubeAdvice: serializer.fromJson<bool>(json['tutorCubeAdvice']),
+      tutorTryFirst: serializer.fromJson<bool>(json['tutorTryFirst']),
+      telemetryEnabled: serializer.fromJson<bool>(json['telemetryEnabled']),
     );
   }
   @override
@@ -1869,6 +2132,12 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       'dragHintShown': serializer.toJson<bool>(dragHintShown),
       'buddyPhrasing': serializer.toJson<String>(buddyPhrasing),
       'buddyMicHint': serializer.toJson<bool>(buddyMicHint),
+      'tutorBestMoves': serializer.toJson<bool>(tutorBestMoves),
+      'tutorExplanations': serializer.toJson<bool>(tutorExplanations),
+      'tutorCommentary': serializer.toJson<bool>(tutorCommentary),
+      'tutorCubeAdvice': serializer.toJson<bool>(tutorCubeAdvice),
+      'tutorTryFirst': serializer.toJson<bool>(tutorTryFirst),
+      'telemetryEnabled': serializer.toJson<bool>(telemetryEnabled),
     };
   }
 
@@ -1889,6 +2158,12 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     bool? dragHintShown,
     String? buddyPhrasing,
     bool? buddyMicHint,
+    bool? tutorBestMoves,
+    bool? tutorExplanations,
+    bool? tutorCommentary,
+    bool? tutorCubeAdvice,
+    bool? tutorTryFirst,
+    bool? telemetryEnabled,
   }) => SettingsRow(
     id: id ?? this.id,
     themeMode: themeMode ?? this.themeMode,
@@ -1908,6 +2183,12 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     dragHintShown: dragHintShown ?? this.dragHintShown,
     buddyPhrasing: buddyPhrasing ?? this.buddyPhrasing,
     buddyMicHint: buddyMicHint ?? this.buddyMicHint,
+    tutorBestMoves: tutorBestMoves ?? this.tutorBestMoves,
+    tutorExplanations: tutorExplanations ?? this.tutorExplanations,
+    tutorCommentary: tutorCommentary ?? this.tutorCommentary,
+    tutorCubeAdvice: tutorCubeAdvice ?? this.tutorCubeAdvice,
+    tutorTryFirst: tutorTryFirst ?? this.tutorTryFirst,
+    telemetryEnabled: telemetryEnabled ?? this.telemetryEnabled,
   );
   SettingsRow copyWithCompanion(SettingsCompanion data) {
     return SettingsRow(
@@ -1955,6 +2236,24 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       buddyMicHint: data.buddyMicHint.present
           ? data.buddyMicHint.value
           : this.buddyMicHint,
+      tutorBestMoves: data.tutorBestMoves.present
+          ? data.tutorBestMoves.value
+          : this.tutorBestMoves,
+      tutorExplanations: data.tutorExplanations.present
+          ? data.tutorExplanations.value
+          : this.tutorExplanations,
+      tutorCommentary: data.tutorCommentary.present
+          ? data.tutorCommentary.value
+          : this.tutorCommentary,
+      tutorCubeAdvice: data.tutorCubeAdvice.present
+          ? data.tutorCubeAdvice.value
+          : this.tutorCubeAdvice,
+      tutorTryFirst: data.tutorTryFirst.present
+          ? data.tutorTryFirst.value
+          : this.tutorTryFirst,
+      telemetryEnabled: data.telemetryEnabled.present
+          ? data.telemetryEnabled.value
+          : this.telemetryEnabled,
     );
   }
 
@@ -1976,13 +2275,19 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           ..write('rotateBoardHotSeat: $rotateBoardHotSeat, ')
           ..write('dragHintShown: $dragHintShown, ')
           ..write('buddyPhrasing: $buddyPhrasing, ')
-          ..write('buddyMicHint: $buddyMicHint')
+          ..write('buddyMicHint: $buddyMicHint, ')
+          ..write('tutorBestMoves: $tutorBestMoves, ')
+          ..write('tutorExplanations: $tutorExplanations, ')
+          ..write('tutorCommentary: $tutorCommentary, ')
+          ..write('tutorCubeAdvice: $tutorCubeAdvice, ')
+          ..write('tutorTryFirst: $tutorTryFirst, ')
+          ..write('telemetryEnabled: $telemetryEnabled')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll([
     id,
     themeMode,
     animationSpeed,
@@ -1999,7 +2304,13 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     dragHintShown,
     buddyPhrasing,
     buddyMicHint,
-  );
+    tutorBestMoves,
+    tutorExplanations,
+    tutorCommentary,
+    tutorCubeAdvice,
+    tutorTryFirst,
+    telemetryEnabled,
+  ]);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -2019,7 +2330,13 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           other.rotateBoardHotSeat == this.rotateBoardHotSeat &&
           other.dragHintShown == this.dragHintShown &&
           other.buddyPhrasing == this.buddyPhrasing &&
-          other.buddyMicHint == this.buddyMicHint);
+          other.buddyMicHint == this.buddyMicHint &&
+          other.tutorBestMoves == this.tutorBestMoves &&
+          other.tutorExplanations == this.tutorExplanations &&
+          other.tutorCommentary == this.tutorCommentary &&
+          other.tutorCubeAdvice == this.tutorCubeAdvice &&
+          other.tutorTryFirst == this.tutorTryFirst &&
+          other.telemetryEnabled == this.telemetryEnabled);
 }
 
 class SettingsCompanion extends UpdateCompanion<SettingsRow> {
@@ -2039,6 +2356,12 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
   final Value<bool> dragHintShown;
   final Value<String> buddyPhrasing;
   final Value<bool> buddyMicHint;
+  final Value<bool> tutorBestMoves;
+  final Value<bool> tutorExplanations;
+  final Value<bool> tutorCommentary;
+  final Value<bool> tutorCubeAdvice;
+  final Value<bool> tutorTryFirst;
+  final Value<bool> telemetryEnabled;
   const SettingsCompanion({
     this.id = const Value.absent(),
     this.themeMode = const Value.absent(),
@@ -2056,6 +2379,12 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     this.dragHintShown = const Value.absent(),
     this.buddyPhrasing = const Value.absent(),
     this.buddyMicHint = const Value.absent(),
+    this.tutorBestMoves = const Value.absent(),
+    this.tutorExplanations = const Value.absent(),
+    this.tutorCommentary = const Value.absent(),
+    this.tutorCubeAdvice = const Value.absent(),
+    this.tutorTryFirst = const Value.absent(),
+    this.telemetryEnabled = const Value.absent(),
   });
   SettingsCompanion.insert({
     this.id = const Value.absent(),
@@ -2074,6 +2403,12 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     this.dragHintShown = const Value.absent(),
     this.buddyPhrasing = const Value.absent(),
     this.buddyMicHint = const Value.absent(),
+    this.tutorBestMoves = const Value.absent(),
+    this.tutorExplanations = const Value.absent(),
+    this.tutorCommentary = const Value.absent(),
+    this.tutorCubeAdvice = const Value.absent(),
+    this.tutorTryFirst = const Value.absent(),
+    this.telemetryEnabled = const Value.absent(),
   });
   static Insertable<SettingsRow> custom({
     Expression<int>? id,
@@ -2092,6 +2427,12 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Expression<bool>? dragHintShown,
     Expression<String>? buddyPhrasing,
     Expression<bool>? buddyMicHint,
+    Expression<bool>? tutorBestMoves,
+    Expression<bool>? tutorExplanations,
+    Expression<bool>? tutorCommentary,
+    Expression<bool>? tutorCubeAdvice,
+    Expression<bool>? tutorTryFirst,
+    Expression<bool>? telemetryEnabled,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -2113,6 +2454,12 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
       if (dragHintShown != null) 'drag_hint_shown': dragHintShown,
       if (buddyPhrasing != null) 'buddy_phrasing': buddyPhrasing,
       if (buddyMicHint != null) 'buddy_mic_hint': buddyMicHint,
+      if (tutorBestMoves != null) 'tutor_best_moves': tutorBestMoves,
+      if (tutorExplanations != null) 'tutor_explanations': tutorExplanations,
+      if (tutorCommentary != null) 'tutor_commentary': tutorCommentary,
+      if (tutorCubeAdvice != null) 'tutor_cube_advice': tutorCubeAdvice,
+      if (tutorTryFirst != null) 'tutor_try_first': tutorTryFirst,
+      if (telemetryEnabled != null) 'telemetry_enabled': telemetryEnabled,
     });
   }
 
@@ -2133,6 +2480,12 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Value<bool>? dragHintShown,
     Value<String>? buddyPhrasing,
     Value<bool>? buddyMicHint,
+    Value<bool>? tutorBestMoves,
+    Value<bool>? tutorExplanations,
+    Value<bool>? tutorCommentary,
+    Value<bool>? tutorCubeAdvice,
+    Value<bool>? tutorTryFirst,
+    Value<bool>? telemetryEnabled,
   }) {
     return SettingsCompanion(
       id: id ?? this.id,
@@ -2151,6 +2504,12 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
       dragHintShown: dragHintShown ?? this.dragHintShown,
       buddyPhrasing: buddyPhrasing ?? this.buddyPhrasing,
       buddyMicHint: buddyMicHint ?? this.buddyMicHint,
+      tutorBestMoves: tutorBestMoves ?? this.tutorBestMoves,
+      tutorExplanations: tutorExplanations ?? this.tutorExplanations,
+      tutorCommentary: tutorCommentary ?? this.tutorCommentary,
+      tutorCubeAdvice: tutorCubeAdvice ?? this.tutorCubeAdvice,
+      tutorTryFirst: tutorTryFirst ?? this.tutorTryFirst,
+      telemetryEnabled: telemetryEnabled ?? this.telemetryEnabled,
     );
   }
 
@@ -2205,6 +2564,24 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     if (buddyMicHint.present) {
       map['buddy_mic_hint'] = Variable<bool>(buddyMicHint.value);
     }
+    if (tutorBestMoves.present) {
+      map['tutor_best_moves'] = Variable<bool>(tutorBestMoves.value);
+    }
+    if (tutorExplanations.present) {
+      map['tutor_explanations'] = Variable<bool>(tutorExplanations.value);
+    }
+    if (tutorCommentary.present) {
+      map['tutor_commentary'] = Variable<bool>(tutorCommentary.value);
+    }
+    if (tutorCubeAdvice.present) {
+      map['tutor_cube_advice'] = Variable<bool>(tutorCubeAdvice.value);
+    }
+    if (tutorTryFirst.present) {
+      map['tutor_try_first'] = Variable<bool>(tutorTryFirst.value);
+    }
+    if (telemetryEnabled.present) {
+      map['telemetry_enabled'] = Variable<bool>(telemetryEnabled.value);
+    }
     return map;
   }
 
@@ -2226,7 +2603,13 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
           ..write('rotateBoardHotSeat: $rotateBoardHotSeat, ')
           ..write('dragHintShown: $dragHintShown, ')
           ..write('buddyPhrasing: $buddyPhrasing, ')
-          ..write('buddyMicHint: $buddyMicHint')
+          ..write('buddyMicHint: $buddyMicHint, ')
+          ..write('tutorBestMoves: $tutorBestMoves, ')
+          ..write('tutorExplanations: $tutorExplanations, ')
+          ..write('tutorCommentary: $tutorCommentary, ')
+          ..write('tutorCubeAdvice: $tutorCubeAdvice, ')
+          ..write('tutorTryFirst: $tutorTryFirst, ')
+          ..write('telemetryEnabled: $telemetryEnabled')
           ..write(')'))
         .toString();
   }
@@ -2543,6 +2926,1474 @@ class OnlineSessionCompanion extends UpdateCompanion<OnlineSessionRow> {
   }
 }
 
+class $PracticePositionsTable extends PracticePositions
+    with TableInfo<$PracticePositionsTable, PracticePositionRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $PracticePositionsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _gameIdMeta = const VerificationMeta('gameId');
+  @override
+  late final GeneratedColumn<int> gameId = GeneratedColumn<int>(
+    'game_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL REFERENCES games (id) ON DELETE CASCADE',
+  );
+  static const VerificationMeta _eventIndexMeta = const VerificationMeta(
+    'eventIndex',
+  );
+  @override
+  late final GeneratedColumn<int> eventIndex = GeneratedColumn<int>(
+    'event_index',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _playerMeta = const VerificationMeta('player');
+  @override
+  late final GeneratedColumn<String> player = GeneratedColumn<String>(
+    'player',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _eventsJsonMeta = const VerificationMeta(
+    'eventsJson',
+  );
+  @override
+  late final GeneratedColumn<String> eventsJson = GeneratedColumn<String>(
+    'events_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _isCrawfordMeta = const VerificationMeta(
+    'isCrawford',
+  );
+  @override
+  late final GeneratedColumn<bool> isCrawford = GeneratedColumn<bool>(
+    'is_crawford',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("is_crawford" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _matchLengthMeta = const VerificationMeta(
+    'matchLength',
+  );
+  @override
+  late final GeneratedColumn<int> matchLength = GeneratedColumn<int>(
+    'match_length',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _whiteScoreMeta = const VerificationMeta(
+    'whiteScore',
+  );
+  @override
+  late final GeneratedColumn<int> whiteScore = GeneratedColumn<int>(
+    'white_score',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _blackScoreMeta = const VerificationMeta(
+    'blackScore',
+  );
+  @override
+  late final GeneratedColumn<int> blackScore = GeneratedColumn<int>(
+    'black_score',
+    aliasedName,
+    true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _crawfordPlayedMeta = const VerificationMeta(
+    'crawfordPlayed',
+  );
+  @override
+  late final GeneratedColumn<bool> crawfordPlayed = GeneratedColumn<bool>(
+    'crawford_played',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("crawford_played" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _cubelessMeta = const VerificationMeta(
+    'cubeless',
+  );
+  @override
+  late final GeneratedColumn<bool> cubeless = GeneratedColumn<bool>(
+    'cubeless',
+    aliasedName,
+    true,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("cubeless" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _assessmentJsonMeta = const VerificationMeta(
+    'assessmentJson',
+  );
+  @override
+  late final GeneratedColumn<String> assessmentJson = GeneratedColumn<String>(
+    'assessment_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _themesJsonMeta = const VerificationMeta(
+    'themesJson',
+  );
+  @override
+  late final GeneratedColumn<String> themesJson = GeneratedColumn<String>(
+    'themes_json',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dueAtMeta = const VerificationMeta('dueAt');
+  @override
+  late final GeneratedColumn<DateTime> dueAt = GeneratedColumn<DateTime>(
+    'due_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _intervalDaysMeta = const VerificationMeta(
+    'intervalDays',
+  );
+  @override
+  late final GeneratedColumn<int> intervalDays = GeneratedColumn<int>(
+    'interval_days',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _successStreakMeta = const VerificationMeta(
+    'successStreak',
+  );
+  @override
+  late final GeneratedColumn<int> successStreak = GeneratedColumn<int>(
+    'success_streak',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  static const VerificationMeta _lastAttemptAtMeta = const VerificationMeta(
+    'lastAttemptAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> lastAttemptAt =
+      GeneratedColumn<DateTime>(
+        'last_attempt_at',
+        aliasedName,
+        true,
+        type: DriftSqlType.dateTime,
+        requiredDuringInsert: false,
+      );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    gameId,
+    eventIndex,
+    createdAt,
+    player,
+    eventsJson,
+    isCrawford,
+    matchLength,
+    whiteScore,
+    blackScore,
+    crawfordPlayed,
+    cubeless,
+    assessmentJson,
+    themesJson,
+    dueAt,
+    intervalDays,
+    successStreak,
+    lastAttemptAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'practice_positions';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<PracticePositionRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('game_id')) {
+      context.handle(
+        _gameIdMeta,
+        gameId.isAcceptableOrUnknown(data['game_id']!, _gameIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_gameIdMeta);
+    }
+    if (data.containsKey('event_index')) {
+      context.handle(
+        _eventIndexMeta,
+        eventIndex.isAcceptableOrUnknown(data['event_index']!, _eventIndexMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_eventIndexMeta);
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('player')) {
+      context.handle(
+        _playerMeta,
+        player.isAcceptableOrUnknown(data['player']!, _playerMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_playerMeta);
+    }
+    if (data.containsKey('events_json')) {
+      context.handle(
+        _eventsJsonMeta,
+        eventsJson.isAcceptableOrUnknown(data['events_json']!, _eventsJsonMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_eventsJsonMeta);
+    }
+    if (data.containsKey('is_crawford')) {
+      context.handle(
+        _isCrawfordMeta,
+        isCrawford.isAcceptableOrUnknown(data['is_crawford']!, _isCrawfordMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_isCrawfordMeta);
+    }
+    if (data.containsKey('match_length')) {
+      context.handle(
+        _matchLengthMeta,
+        matchLength.isAcceptableOrUnknown(
+          data['match_length']!,
+          _matchLengthMeta,
+        ),
+      );
+    }
+    if (data.containsKey('white_score')) {
+      context.handle(
+        _whiteScoreMeta,
+        whiteScore.isAcceptableOrUnknown(data['white_score']!, _whiteScoreMeta),
+      );
+    }
+    if (data.containsKey('black_score')) {
+      context.handle(
+        _blackScoreMeta,
+        blackScore.isAcceptableOrUnknown(data['black_score']!, _blackScoreMeta),
+      );
+    }
+    if (data.containsKey('crawford_played')) {
+      context.handle(
+        _crawfordPlayedMeta,
+        crawfordPlayed.isAcceptableOrUnknown(
+          data['crawford_played']!,
+          _crawfordPlayedMeta,
+        ),
+      );
+    }
+    if (data.containsKey('cubeless')) {
+      context.handle(
+        _cubelessMeta,
+        cubeless.isAcceptableOrUnknown(data['cubeless']!, _cubelessMeta),
+      );
+    }
+    if (data.containsKey('assessment_json')) {
+      context.handle(
+        _assessmentJsonMeta,
+        assessmentJson.isAcceptableOrUnknown(
+          data['assessment_json']!,
+          _assessmentJsonMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_assessmentJsonMeta);
+    }
+    if (data.containsKey('themes_json')) {
+      context.handle(
+        _themesJsonMeta,
+        themesJson.isAcceptableOrUnknown(data['themes_json']!, _themesJsonMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_themesJsonMeta);
+    }
+    if (data.containsKey('due_at')) {
+      context.handle(
+        _dueAtMeta,
+        dueAt.isAcceptableOrUnknown(data['due_at']!, _dueAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dueAtMeta);
+    }
+    if (data.containsKey('interval_days')) {
+      context.handle(
+        _intervalDaysMeta,
+        intervalDays.isAcceptableOrUnknown(
+          data['interval_days']!,
+          _intervalDaysMeta,
+        ),
+      );
+    }
+    if (data.containsKey('success_streak')) {
+      context.handle(
+        _successStreakMeta,
+        successStreak.isAcceptableOrUnknown(
+          data['success_streak']!,
+          _successStreakMeta,
+        ),
+      );
+    }
+    if (data.containsKey('last_attempt_at')) {
+      context.handle(
+        _lastAttemptAtMeta,
+        lastAttemptAt.isAcceptableOrUnknown(
+          data['last_attempt_at']!,
+          _lastAttemptAtMeta,
+        ),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  List<Set<GeneratedColumn>> get uniqueKeys => [
+    {gameId, eventIndex},
+  ];
+  @override
+  PracticePositionRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return PracticePositionRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      gameId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}game_id'],
+      )!,
+      eventIndex: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}event_index'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      player: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}player'],
+      )!,
+      eventsJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}events_json'],
+      )!,
+      isCrawford: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}is_crawford'],
+      )!,
+      matchLength: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}match_length'],
+      ),
+      whiteScore: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}white_score'],
+      ),
+      blackScore: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}black_score'],
+      ),
+      crawfordPlayed: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}crawford_played'],
+      ),
+      cubeless: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}cubeless'],
+      ),
+      assessmentJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}assessment_json'],
+      )!,
+      themesJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}themes_json'],
+      )!,
+      dueAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}due_at'],
+      )!,
+      intervalDays: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}interval_days'],
+      )!,
+      successStreak: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}success_streak'],
+      )!,
+      lastAttemptAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}last_attempt_at'],
+      ),
+    );
+  }
+
+  @override
+  $PracticePositionsTable createAlias(String alias) {
+    return $PracticePositionsTable(attachedDatabase, alias);
+  }
+}
+
+class PracticePositionRow extends DataClass
+    implements Insertable<PracticePositionRow> {
+  final int id;
+  final int gameId;
+  final int eventIndex;
+  final DateTime createdAt;
+  final String player;
+  final String eventsJson;
+  final bool isCrawford;
+  final int? matchLength;
+  final int? whiteScore;
+  final int? blackScore;
+  final bool? crawfordPlayed;
+  final bool? cubeless;
+  final String assessmentJson;
+  final String themesJson;
+  final DateTime dueAt;
+  final int intervalDays;
+  final int successStreak;
+  final DateTime? lastAttemptAt;
+  const PracticePositionRow({
+    required this.id,
+    required this.gameId,
+    required this.eventIndex,
+    required this.createdAt,
+    required this.player,
+    required this.eventsJson,
+    required this.isCrawford,
+    this.matchLength,
+    this.whiteScore,
+    this.blackScore,
+    this.crawfordPlayed,
+    this.cubeless,
+    required this.assessmentJson,
+    required this.themesJson,
+    required this.dueAt,
+    required this.intervalDays,
+    required this.successStreak,
+    this.lastAttemptAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['game_id'] = Variable<int>(gameId);
+    map['event_index'] = Variable<int>(eventIndex);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['player'] = Variable<String>(player);
+    map['events_json'] = Variable<String>(eventsJson);
+    map['is_crawford'] = Variable<bool>(isCrawford);
+    if (!nullToAbsent || matchLength != null) {
+      map['match_length'] = Variable<int>(matchLength);
+    }
+    if (!nullToAbsent || whiteScore != null) {
+      map['white_score'] = Variable<int>(whiteScore);
+    }
+    if (!nullToAbsent || blackScore != null) {
+      map['black_score'] = Variable<int>(blackScore);
+    }
+    if (!nullToAbsent || crawfordPlayed != null) {
+      map['crawford_played'] = Variable<bool>(crawfordPlayed);
+    }
+    if (!nullToAbsent || cubeless != null) {
+      map['cubeless'] = Variable<bool>(cubeless);
+    }
+    map['assessment_json'] = Variable<String>(assessmentJson);
+    map['themes_json'] = Variable<String>(themesJson);
+    map['due_at'] = Variable<DateTime>(dueAt);
+    map['interval_days'] = Variable<int>(intervalDays);
+    map['success_streak'] = Variable<int>(successStreak);
+    if (!nullToAbsent || lastAttemptAt != null) {
+      map['last_attempt_at'] = Variable<DateTime>(lastAttemptAt);
+    }
+    return map;
+  }
+
+  PracticePositionsCompanion toCompanion(bool nullToAbsent) {
+    return PracticePositionsCompanion(
+      id: Value(id),
+      gameId: Value(gameId),
+      eventIndex: Value(eventIndex),
+      createdAt: Value(createdAt),
+      player: Value(player),
+      eventsJson: Value(eventsJson),
+      isCrawford: Value(isCrawford),
+      matchLength: matchLength == null && nullToAbsent
+          ? const Value.absent()
+          : Value(matchLength),
+      whiteScore: whiteScore == null && nullToAbsent
+          ? const Value.absent()
+          : Value(whiteScore),
+      blackScore: blackScore == null && nullToAbsent
+          ? const Value.absent()
+          : Value(blackScore),
+      crawfordPlayed: crawfordPlayed == null && nullToAbsent
+          ? const Value.absent()
+          : Value(crawfordPlayed),
+      cubeless: cubeless == null && nullToAbsent
+          ? const Value.absent()
+          : Value(cubeless),
+      assessmentJson: Value(assessmentJson),
+      themesJson: Value(themesJson),
+      dueAt: Value(dueAt),
+      intervalDays: Value(intervalDays),
+      successStreak: Value(successStreak),
+      lastAttemptAt: lastAttemptAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(lastAttemptAt),
+    );
+  }
+
+  factory PracticePositionRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return PracticePositionRow(
+      id: serializer.fromJson<int>(json['id']),
+      gameId: serializer.fromJson<int>(json['gameId']),
+      eventIndex: serializer.fromJson<int>(json['eventIndex']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      player: serializer.fromJson<String>(json['player']),
+      eventsJson: serializer.fromJson<String>(json['eventsJson']),
+      isCrawford: serializer.fromJson<bool>(json['isCrawford']),
+      matchLength: serializer.fromJson<int?>(json['matchLength']),
+      whiteScore: serializer.fromJson<int?>(json['whiteScore']),
+      blackScore: serializer.fromJson<int?>(json['blackScore']),
+      crawfordPlayed: serializer.fromJson<bool?>(json['crawfordPlayed']),
+      cubeless: serializer.fromJson<bool?>(json['cubeless']),
+      assessmentJson: serializer.fromJson<String>(json['assessmentJson']),
+      themesJson: serializer.fromJson<String>(json['themesJson']),
+      dueAt: serializer.fromJson<DateTime>(json['dueAt']),
+      intervalDays: serializer.fromJson<int>(json['intervalDays']),
+      successStreak: serializer.fromJson<int>(json['successStreak']),
+      lastAttemptAt: serializer.fromJson<DateTime?>(json['lastAttemptAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'gameId': serializer.toJson<int>(gameId),
+      'eventIndex': serializer.toJson<int>(eventIndex),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'player': serializer.toJson<String>(player),
+      'eventsJson': serializer.toJson<String>(eventsJson),
+      'isCrawford': serializer.toJson<bool>(isCrawford),
+      'matchLength': serializer.toJson<int?>(matchLength),
+      'whiteScore': serializer.toJson<int?>(whiteScore),
+      'blackScore': serializer.toJson<int?>(blackScore),
+      'crawfordPlayed': serializer.toJson<bool?>(crawfordPlayed),
+      'cubeless': serializer.toJson<bool?>(cubeless),
+      'assessmentJson': serializer.toJson<String>(assessmentJson),
+      'themesJson': serializer.toJson<String>(themesJson),
+      'dueAt': serializer.toJson<DateTime>(dueAt),
+      'intervalDays': serializer.toJson<int>(intervalDays),
+      'successStreak': serializer.toJson<int>(successStreak),
+      'lastAttemptAt': serializer.toJson<DateTime?>(lastAttemptAt),
+    };
+  }
+
+  PracticePositionRow copyWith({
+    int? id,
+    int? gameId,
+    int? eventIndex,
+    DateTime? createdAt,
+    String? player,
+    String? eventsJson,
+    bool? isCrawford,
+    Value<int?> matchLength = const Value.absent(),
+    Value<int?> whiteScore = const Value.absent(),
+    Value<int?> blackScore = const Value.absent(),
+    Value<bool?> crawfordPlayed = const Value.absent(),
+    Value<bool?> cubeless = const Value.absent(),
+    String? assessmentJson,
+    String? themesJson,
+    DateTime? dueAt,
+    int? intervalDays,
+    int? successStreak,
+    Value<DateTime?> lastAttemptAt = const Value.absent(),
+  }) => PracticePositionRow(
+    id: id ?? this.id,
+    gameId: gameId ?? this.gameId,
+    eventIndex: eventIndex ?? this.eventIndex,
+    createdAt: createdAt ?? this.createdAt,
+    player: player ?? this.player,
+    eventsJson: eventsJson ?? this.eventsJson,
+    isCrawford: isCrawford ?? this.isCrawford,
+    matchLength: matchLength.present ? matchLength.value : this.matchLength,
+    whiteScore: whiteScore.present ? whiteScore.value : this.whiteScore,
+    blackScore: blackScore.present ? blackScore.value : this.blackScore,
+    crawfordPlayed: crawfordPlayed.present
+        ? crawfordPlayed.value
+        : this.crawfordPlayed,
+    cubeless: cubeless.present ? cubeless.value : this.cubeless,
+    assessmentJson: assessmentJson ?? this.assessmentJson,
+    themesJson: themesJson ?? this.themesJson,
+    dueAt: dueAt ?? this.dueAt,
+    intervalDays: intervalDays ?? this.intervalDays,
+    successStreak: successStreak ?? this.successStreak,
+    lastAttemptAt: lastAttemptAt.present
+        ? lastAttemptAt.value
+        : this.lastAttemptAt,
+  );
+  PracticePositionRow copyWithCompanion(PracticePositionsCompanion data) {
+    return PracticePositionRow(
+      id: data.id.present ? data.id.value : this.id,
+      gameId: data.gameId.present ? data.gameId.value : this.gameId,
+      eventIndex: data.eventIndex.present
+          ? data.eventIndex.value
+          : this.eventIndex,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      player: data.player.present ? data.player.value : this.player,
+      eventsJson: data.eventsJson.present
+          ? data.eventsJson.value
+          : this.eventsJson,
+      isCrawford: data.isCrawford.present
+          ? data.isCrawford.value
+          : this.isCrawford,
+      matchLength: data.matchLength.present
+          ? data.matchLength.value
+          : this.matchLength,
+      whiteScore: data.whiteScore.present
+          ? data.whiteScore.value
+          : this.whiteScore,
+      blackScore: data.blackScore.present
+          ? data.blackScore.value
+          : this.blackScore,
+      crawfordPlayed: data.crawfordPlayed.present
+          ? data.crawfordPlayed.value
+          : this.crawfordPlayed,
+      cubeless: data.cubeless.present ? data.cubeless.value : this.cubeless,
+      assessmentJson: data.assessmentJson.present
+          ? data.assessmentJson.value
+          : this.assessmentJson,
+      themesJson: data.themesJson.present
+          ? data.themesJson.value
+          : this.themesJson,
+      dueAt: data.dueAt.present ? data.dueAt.value : this.dueAt,
+      intervalDays: data.intervalDays.present
+          ? data.intervalDays.value
+          : this.intervalDays,
+      successStreak: data.successStreak.present
+          ? data.successStreak.value
+          : this.successStreak,
+      lastAttemptAt: data.lastAttemptAt.present
+          ? data.lastAttemptAt.value
+          : this.lastAttemptAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PracticePositionRow(')
+          ..write('id: $id, ')
+          ..write('gameId: $gameId, ')
+          ..write('eventIndex: $eventIndex, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('player: $player, ')
+          ..write('eventsJson: $eventsJson, ')
+          ..write('isCrawford: $isCrawford, ')
+          ..write('matchLength: $matchLength, ')
+          ..write('whiteScore: $whiteScore, ')
+          ..write('blackScore: $blackScore, ')
+          ..write('crawfordPlayed: $crawfordPlayed, ')
+          ..write('cubeless: $cubeless, ')
+          ..write('assessmentJson: $assessmentJson, ')
+          ..write('themesJson: $themesJson, ')
+          ..write('dueAt: $dueAt, ')
+          ..write('intervalDays: $intervalDays, ')
+          ..write('successStreak: $successStreak, ')
+          ..write('lastAttemptAt: $lastAttemptAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    gameId,
+    eventIndex,
+    createdAt,
+    player,
+    eventsJson,
+    isCrawford,
+    matchLength,
+    whiteScore,
+    blackScore,
+    crawfordPlayed,
+    cubeless,
+    assessmentJson,
+    themesJson,
+    dueAt,
+    intervalDays,
+    successStreak,
+    lastAttemptAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is PracticePositionRow &&
+          other.id == this.id &&
+          other.gameId == this.gameId &&
+          other.eventIndex == this.eventIndex &&
+          other.createdAt == this.createdAt &&
+          other.player == this.player &&
+          other.eventsJson == this.eventsJson &&
+          other.isCrawford == this.isCrawford &&
+          other.matchLength == this.matchLength &&
+          other.whiteScore == this.whiteScore &&
+          other.blackScore == this.blackScore &&
+          other.crawfordPlayed == this.crawfordPlayed &&
+          other.cubeless == this.cubeless &&
+          other.assessmentJson == this.assessmentJson &&
+          other.themesJson == this.themesJson &&
+          other.dueAt == this.dueAt &&
+          other.intervalDays == this.intervalDays &&
+          other.successStreak == this.successStreak &&
+          other.lastAttemptAt == this.lastAttemptAt);
+}
+
+class PracticePositionsCompanion extends UpdateCompanion<PracticePositionRow> {
+  final Value<int> id;
+  final Value<int> gameId;
+  final Value<int> eventIndex;
+  final Value<DateTime> createdAt;
+  final Value<String> player;
+  final Value<String> eventsJson;
+  final Value<bool> isCrawford;
+  final Value<int?> matchLength;
+  final Value<int?> whiteScore;
+  final Value<int?> blackScore;
+  final Value<bool?> crawfordPlayed;
+  final Value<bool?> cubeless;
+  final Value<String> assessmentJson;
+  final Value<String> themesJson;
+  final Value<DateTime> dueAt;
+  final Value<int> intervalDays;
+  final Value<int> successStreak;
+  final Value<DateTime?> lastAttemptAt;
+  const PracticePositionsCompanion({
+    this.id = const Value.absent(),
+    this.gameId = const Value.absent(),
+    this.eventIndex = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.player = const Value.absent(),
+    this.eventsJson = const Value.absent(),
+    this.isCrawford = const Value.absent(),
+    this.matchLength = const Value.absent(),
+    this.whiteScore = const Value.absent(),
+    this.blackScore = const Value.absent(),
+    this.crawfordPlayed = const Value.absent(),
+    this.cubeless = const Value.absent(),
+    this.assessmentJson = const Value.absent(),
+    this.themesJson = const Value.absent(),
+    this.dueAt = const Value.absent(),
+    this.intervalDays = const Value.absent(),
+    this.successStreak = const Value.absent(),
+    this.lastAttemptAt = const Value.absent(),
+  });
+  PracticePositionsCompanion.insert({
+    this.id = const Value.absent(),
+    required int gameId,
+    required int eventIndex,
+    required DateTime createdAt,
+    required String player,
+    required String eventsJson,
+    required bool isCrawford,
+    this.matchLength = const Value.absent(),
+    this.whiteScore = const Value.absent(),
+    this.blackScore = const Value.absent(),
+    this.crawfordPlayed = const Value.absent(),
+    this.cubeless = const Value.absent(),
+    required String assessmentJson,
+    required String themesJson,
+    required DateTime dueAt,
+    this.intervalDays = const Value.absent(),
+    this.successStreak = const Value.absent(),
+    this.lastAttemptAt = const Value.absent(),
+  }) : gameId = Value(gameId),
+       eventIndex = Value(eventIndex),
+       createdAt = Value(createdAt),
+       player = Value(player),
+       eventsJson = Value(eventsJson),
+       isCrawford = Value(isCrawford),
+       assessmentJson = Value(assessmentJson),
+       themesJson = Value(themesJson),
+       dueAt = Value(dueAt);
+  static Insertable<PracticePositionRow> custom({
+    Expression<int>? id,
+    Expression<int>? gameId,
+    Expression<int>? eventIndex,
+    Expression<DateTime>? createdAt,
+    Expression<String>? player,
+    Expression<String>? eventsJson,
+    Expression<bool>? isCrawford,
+    Expression<int>? matchLength,
+    Expression<int>? whiteScore,
+    Expression<int>? blackScore,
+    Expression<bool>? crawfordPlayed,
+    Expression<bool>? cubeless,
+    Expression<String>? assessmentJson,
+    Expression<String>? themesJson,
+    Expression<DateTime>? dueAt,
+    Expression<int>? intervalDays,
+    Expression<int>? successStreak,
+    Expression<DateTime>? lastAttemptAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (gameId != null) 'game_id': gameId,
+      if (eventIndex != null) 'event_index': eventIndex,
+      if (createdAt != null) 'created_at': createdAt,
+      if (player != null) 'player': player,
+      if (eventsJson != null) 'events_json': eventsJson,
+      if (isCrawford != null) 'is_crawford': isCrawford,
+      if (matchLength != null) 'match_length': matchLength,
+      if (whiteScore != null) 'white_score': whiteScore,
+      if (blackScore != null) 'black_score': blackScore,
+      if (crawfordPlayed != null) 'crawford_played': crawfordPlayed,
+      if (cubeless != null) 'cubeless': cubeless,
+      if (assessmentJson != null) 'assessment_json': assessmentJson,
+      if (themesJson != null) 'themes_json': themesJson,
+      if (dueAt != null) 'due_at': dueAt,
+      if (intervalDays != null) 'interval_days': intervalDays,
+      if (successStreak != null) 'success_streak': successStreak,
+      if (lastAttemptAt != null) 'last_attempt_at': lastAttemptAt,
+    });
+  }
+
+  PracticePositionsCompanion copyWith({
+    Value<int>? id,
+    Value<int>? gameId,
+    Value<int>? eventIndex,
+    Value<DateTime>? createdAt,
+    Value<String>? player,
+    Value<String>? eventsJson,
+    Value<bool>? isCrawford,
+    Value<int?>? matchLength,
+    Value<int?>? whiteScore,
+    Value<int?>? blackScore,
+    Value<bool?>? crawfordPlayed,
+    Value<bool?>? cubeless,
+    Value<String>? assessmentJson,
+    Value<String>? themesJson,
+    Value<DateTime>? dueAt,
+    Value<int>? intervalDays,
+    Value<int>? successStreak,
+    Value<DateTime?>? lastAttemptAt,
+  }) {
+    return PracticePositionsCompanion(
+      id: id ?? this.id,
+      gameId: gameId ?? this.gameId,
+      eventIndex: eventIndex ?? this.eventIndex,
+      createdAt: createdAt ?? this.createdAt,
+      player: player ?? this.player,
+      eventsJson: eventsJson ?? this.eventsJson,
+      isCrawford: isCrawford ?? this.isCrawford,
+      matchLength: matchLength ?? this.matchLength,
+      whiteScore: whiteScore ?? this.whiteScore,
+      blackScore: blackScore ?? this.blackScore,
+      crawfordPlayed: crawfordPlayed ?? this.crawfordPlayed,
+      cubeless: cubeless ?? this.cubeless,
+      assessmentJson: assessmentJson ?? this.assessmentJson,
+      themesJson: themesJson ?? this.themesJson,
+      dueAt: dueAt ?? this.dueAt,
+      intervalDays: intervalDays ?? this.intervalDays,
+      successStreak: successStreak ?? this.successStreak,
+      lastAttemptAt: lastAttemptAt ?? this.lastAttemptAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (gameId.present) {
+      map['game_id'] = Variable<int>(gameId.value);
+    }
+    if (eventIndex.present) {
+      map['event_index'] = Variable<int>(eventIndex.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (player.present) {
+      map['player'] = Variable<String>(player.value);
+    }
+    if (eventsJson.present) {
+      map['events_json'] = Variable<String>(eventsJson.value);
+    }
+    if (isCrawford.present) {
+      map['is_crawford'] = Variable<bool>(isCrawford.value);
+    }
+    if (matchLength.present) {
+      map['match_length'] = Variable<int>(matchLength.value);
+    }
+    if (whiteScore.present) {
+      map['white_score'] = Variable<int>(whiteScore.value);
+    }
+    if (blackScore.present) {
+      map['black_score'] = Variable<int>(blackScore.value);
+    }
+    if (crawfordPlayed.present) {
+      map['crawford_played'] = Variable<bool>(crawfordPlayed.value);
+    }
+    if (cubeless.present) {
+      map['cubeless'] = Variable<bool>(cubeless.value);
+    }
+    if (assessmentJson.present) {
+      map['assessment_json'] = Variable<String>(assessmentJson.value);
+    }
+    if (themesJson.present) {
+      map['themes_json'] = Variable<String>(themesJson.value);
+    }
+    if (dueAt.present) {
+      map['due_at'] = Variable<DateTime>(dueAt.value);
+    }
+    if (intervalDays.present) {
+      map['interval_days'] = Variable<int>(intervalDays.value);
+    }
+    if (successStreak.present) {
+      map['success_streak'] = Variable<int>(successStreak.value);
+    }
+    if (lastAttemptAt.present) {
+      map['last_attempt_at'] = Variable<DateTime>(lastAttemptAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PracticePositionsCompanion(')
+          ..write('id: $id, ')
+          ..write('gameId: $gameId, ')
+          ..write('eventIndex: $eventIndex, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('player: $player, ')
+          ..write('eventsJson: $eventsJson, ')
+          ..write('isCrawford: $isCrawford, ')
+          ..write('matchLength: $matchLength, ')
+          ..write('whiteScore: $whiteScore, ')
+          ..write('blackScore: $blackScore, ')
+          ..write('crawfordPlayed: $crawfordPlayed, ')
+          ..write('cubeless: $cubeless, ')
+          ..write('assessmentJson: $assessmentJson, ')
+          ..write('themesJson: $themesJson, ')
+          ..write('dueAt: $dueAt, ')
+          ..write('intervalDays: $intervalDays, ')
+          ..write('successStreak: $successStreak, ')
+          ..write('lastAttemptAt: $lastAttemptAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $PracticeAttemptsTable extends PracticeAttempts
+    with TableInfo<$PracticeAttemptsTable, PracticeAttemptRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $PracticeAttemptsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _positionIdMeta = const VerificationMeta(
+    'positionId',
+  );
+  @override
+  late final GeneratedColumn<int> positionId = GeneratedColumn<int>(
+    'position_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints:
+        'NOT NULL REFERENCES practice_positions (id) ON DELETE CASCADE',
+  );
+  static const VerificationMeta _attemptedAtMeta = const VerificationMeta(
+    'attemptedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> attemptedAt = GeneratedColumn<DateTime>(
+    'attempted_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _assessmentJsonMeta = const VerificationMeta(
+    'assessmentJson',
+  );
+  @override
+  late final GeneratedColumn<String> assessmentJson = GeneratedColumn<String>(
+    'assessment_json',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _passedMeta = const VerificationMeta('passed');
+  @override
+  late final GeneratedColumn<bool> passed = GeneratedColumn<bool>(
+    'passed',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("passed" IN (0, 1))',
+    ),
+  );
+  static const VerificationMeta _revealedMeta = const VerificationMeta(
+    'revealed',
+  );
+  @override
+  late final GeneratedColumn<bool> revealed = GeneratedColumn<bool>(
+    'revealed',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("revealed" IN (0, 1))',
+    ),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    positionId,
+    attemptedAt,
+    assessmentJson,
+    passed,
+    revealed,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'practice_attempts';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<PracticeAttemptRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('position_id')) {
+      context.handle(
+        _positionIdMeta,
+        positionId.isAcceptableOrUnknown(data['position_id']!, _positionIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_positionIdMeta);
+    }
+    if (data.containsKey('attempted_at')) {
+      context.handle(
+        _attemptedAtMeta,
+        attemptedAt.isAcceptableOrUnknown(
+          data['attempted_at']!,
+          _attemptedAtMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_attemptedAtMeta);
+    }
+    if (data.containsKey('assessment_json')) {
+      context.handle(
+        _assessmentJsonMeta,
+        assessmentJson.isAcceptableOrUnknown(
+          data['assessment_json']!,
+          _assessmentJsonMeta,
+        ),
+      );
+    }
+    if (data.containsKey('passed')) {
+      context.handle(
+        _passedMeta,
+        passed.isAcceptableOrUnknown(data['passed']!, _passedMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_passedMeta);
+    }
+    if (data.containsKey('revealed')) {
+      context.handle(
+        _revealedMeta,
+        revealed.isAcceptableOrUnknown(data['revealed']!, _revealedMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_revealedMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  PracticeAttemptRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return PracticeAttemptRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      positionId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}position_id'],
+      )!,
+      attemptedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}attempted_at'],
+      )!,
+      assessmentJson: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}assessment_json'],
+      ),
+      passed: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}passed'],
+      )!,
+      revealed: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}revealed'],
+      )!,
+    );
+  }
+
+  @override
+  $PracticeAttemptsTable createAlias(String alias) {
+    return $PracticeAttemptsTable(attachedDatabase, alias);
+  }
+}
+
+class PracticeAttemptRow extends DataClass
+    implements Insertable<PracticeAttemptRow> {
+  final int id;
+  final int positionId;
+  final DateTime attemptedAt;
+  final String? assessmentJson;
+  final bool passed;
+  final bool revealed;
+  const PracticeAttemptRow({
+    required this.id,
+    required this.positionId,
+    required this.attemptedAt,
+    this.assessmentJson,
+    required this.passed,
+    required this.revealed,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['position_id'] = Variable<int>(positionId);
+    map['attempted_at'] = Variable<DateTime>(attemptedAt);
+    if (!nullToAbsent || assessmentJson != null) {
+      map['assessment_json'] = Variable<String>(assessmentJson);
+    }
+    map['passed'] = Variable<bool>(passed);
+    map['revealed'] = Variable<bool>(revealed);
+    return map;
+  }
+
+  PracticeAttemptsCompanion toCompanion(bool nullToAbsent) {
+    return PracticeAttemptsCompanion(
+      id: Value(id),
+      positionId: Value(positionId),
+      attemptedAt: Value(attemptedAt),
+      assessmentJson: assessmentJson == null && nullToAbsent
+          ? const Value.absent()
+          : Value(assessmentJson),
+      passed: Value(passed),
+      revealed: Value(revealed),
+    );
+  }
+
+  factory PracticeAttemptRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return PracticeAttemptRow(
+      id: serializer.fromJson<int>(json['id']),
+      positionId: serializer.fromJson<int>(json['positionId']),
+      attemptedAt: serializer.fromJson<DateTime>(json['attemptedAt']),
+      assessmentJson: serializer.fromJson<String?>(json['assessmentJson']),
+      passed: serializer.fromJson<bool>(json['passed']),
+      revealed: serializer.fromJson<bool>(json['revealed']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'positionId': serializer.toJson<int>(positionId),
+      'attemptedAt': serializer.toJson<DateTime>(attemptedAt),
+      'assessmentJson': serializer.toJson<String?>(assessmentJson),
+      'passed': serializer.toJson<bool>(passed),
+      'revealed': serializer.toJson<bool>(revealed),
+    };
+  }
+
+  PracticeAttemptRow copyWith({
+    int? id,
+    int? positionId,
+    DateTime? attemptedAt,
+    Value<String?> assessmentJson = const Value.absent(),
+    bool? passed,
+    bool? revealed,
+  }) => PracticeAttemptRow(
+    id: id ?? this.id,
+    positionId: positionId ?? this.positionId,
+    attemptedAt: attemptedAt ?? this.attemptedAt,
+    assessmentJson: assessmentJson.present
+        ? assessmentJson.value
+        : this.assessmentJson,
+    passed: passed ?? this.passed,
+    revealed: revealed ?? this.revealed,
+  );
+  PracticeAttemptRow copyWithCompanion(PracticeAttemptsCompanion data) {
+    return PracticeAttemptRow(
+      id: data.id.present ? data.id.value : this.id,
+      positionId: data.positionId.present
+          ? data.positionId.value
+          : this.positionId,
+      attemptedAt: data.attemptedAt.present
+          ? data.attemptedAt.value
+          : this.attemptedAt,
+      assessmentJson: data.assessmentJson.present
+          ? data.assessmentJson.value
+          : this.assessmentJson,
+      passed: data.passed.present ? data.passed.value : this.passed,
+      revealed: data.revealed.present ? data.revealed.value : this.revealed,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PracticeAttemptRow(')
+          ..write('id: $id, ')
+          ..write('positionId: $positionId, ')
+          ..write('attemptedAt: $attemptedAt, ')
+          ..write('assessmentJson: $assessmentJson, ')
+          ..write('passed: $passed, ')
+          ..write('revealed: $revealed')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    positionId,
+    attemptedAt,
+    assessmentJson,
+    passed,
+    revealed,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is PracticeAttemptRow &&
+          other.id == this.id &&
+          other.positionId == this.positionId &&
+          other.attemptedAt == this.attemptedAt &&
+          other.assessmentJson == this.assessmentJson &&
+          other.passed == this.passed &&
+          other.revealed == this.revealed);
+}
+
+class PracticeAttemptsCompanion extends UpdateCompanion<PracticeAttemptRow> {
+  final Value<int> id;
+  final Value<int> positionId;
+  final Value<DateTime> attemptedAt;
+  final Value<String?> assessmentJson;
+  final Value<bool> passed;
+  final Value<bool> revealed;
+  const PracticeAttemptsCompanion({
+    this.id = const Value.absent(),
+    this.positionId = const Value.absent(),
+    this.attemptedAt = const Value.absent(),
+    this.assessmentJson = const Value.absent(),
+    this.passed = const Value.absent(),
+    this.revealed = const Value.absent(),
+  });
+  PracticeAttemptsCompanion.insert({
+    this.id = const Value.absent(),
+    required int positionId,
+    required DateTime attemptedAt,
+    this.assessmentJson = const Value.absent(),
+    required bool passed,
+    required bool revealed,
+  }) : positionId = Value(positionId),
+       attemptedAt = Value(attemptedAt),
+       passed = Value(passed),
+       revealed = Value(revealed);
+  static Insertable<PracticeAttemptRow> custom({
+    Expression<int>? id,
+    Expression<int>? positionId,
+    Expression<DateTime>? attemptedAt,
+    Expression<String>? assessmentJson,
+    Expression<bool>? passed,
+    Expression<bool>? revealed,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (positionId != null) 'position_id': positionId,
+      if (attemptedAt != null) 'attempted_at': attemptedAt,
+      if (assessmentJson != null) 'assessment_json': assessmentJson,
+      if (passed != null) 'passed': passed,
+      if (revealed != null) 'revealed': revealed,
+    });
+  }
+
+  PracticeAttemptsCompanion copyWith({
+    Value<int>? id,
+    Value<int>? positionId,
+    Value<DateTime>? attemptedAt,
+    Value<String?>? assessmentJson,
+    Value<bool>? passed,
+    Value<bool>? revealed,
+  }) {
+    return PracticeAttemptsCompanion(
+      id: id ?? this.id,
+      positionId: positionId ?? this.positionId,
+      attemptedAt: attemptedAt ?? this.attemptedAt,
+      assessmentJson: assessmentJson ?? this.assessmentJson,
+      passed: passed ?? this.passed,
+      revealed: revealed ?? this.revealed,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (positionId.present) {
+      map['position_id'] = Variable<int>(positionId.value);
+    }
+    if (attemptedAt.present) {
+      map['attempted_at'] = Variable<DateTime>(attemptedAt.value);
+    }
+    if (assessmentJson.present) {
+      map['assessment_json'] = Variable<String>(assessmentJson.value);
+    }
+    if (passed.present) {
+      map['passed'] = Variable<bool>(passed.value);
+    }
+    if (revealed.present) {
+      map['revealed'] = Variable<bool>(revealed.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PracticeAttemptsCompanion(')
+          ..write('id: $id, ')
+          ..write('positionId: $positionId, ')
+          ..write('attemptedAt: $attemptedAt, ')
+          ..write('assessmentJson: $assessmentJson, ')
+          ..write('passed: $passed, ')
+          ..write('revealed: $revealed')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -2550,6 +4401,11 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $GamesTable games = $GamesTable(this);
   late final $SettingsTable settings = $SettingsTable(this);
   late final $OnlineSessionTable onlineSession = $OnlineSessionTable(this);
+  late final $PracticePositionsTable practicePositions =
+      $PracticePositionsTable(this);
+  late final $PracticeAttemptsTable practiceAttempts = $PracticeAttemptsTable(
+    this,
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -2559,6 +4415,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     games,
     settings,
     onlineSession,
+    practicePositions,
+    practiceAttempts,
   ];
   @override
   StreamQueryUpdateRules get streamUpdateRules => const StreamQueryUpdateRules([
@@ -2568,6 +4426,20 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         limitUpdateKind: UpdateKind.delete,
       ),
       result: [TableUpdate('games', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'games',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('practice_positions', kind: UpdateKind.delete)],
+    ),
+    WritePropagation(
+      on: TableUpdateQuery.onTableName(
+        'practice_positions',
+        limitUpdateKind: UpdateKind.delete,
+      ),
+      result: [TableUpdate('practice_attempts', kind: UpdateKind.delete)],
     ),
   ]);
 }
@@ -2580,6 +4452,7 @@ typedef $$MatchesTableCreateCompanionBuilder =
       required String mode,
       required String whiteType,
       required String blackType,
+      Value<bool?> cubeless,
       Value<int> whiteScore,
       Value<int> blackScore,
       Value<String?> winner,
@@ -2593,6 +4466,7 @@ typedef $$MatchesTableUpdateCompanionBuilder =
       Value<String> mode,
       Value<String> whiteType,
       Value<String> blackType,
+      Value<bool?> cubeless,
       Value<int> whiteScore,
       Value<int> blackScore,
       Value<String?> winner,
@@ -2659,6 +4533,11 @@ class $$MatchesTableFilterComposer
 
   ColumnFilters<String> get blackType => $composableBuilder(
     column: $table.blackType,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get cubeless => $composableBuilder(
+    column: $table.cubeless,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -2747,6 +4626,11 @@ class $$MatchesTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<bool> get cubeless => $composableBuilder(
+    column: $table.cubeless,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<int> get whiteScore => $composableBuilder(
     column: $table.whiteScore,
     builder: (column) => ColumnOrderings(column),
@@ -2796,6 +4680,9 @@ class $$MatchesTableAnnotationComposer
 
   GeneratedColumn<String> get blackType =>
       $composableBuilder(column: $table.blackType, builder: (column) => column);
+
+  GeneratedColumn<bool> get cubeless =>
+      $composableBuilder(column: $table.cubeless, builder: (column) => column);
 
   GeneratedColumn<int> get whiteScore => $composableBuilder(
     column: $table.whiteScore,
@@ -2873,6 +4760,7 @@ class $$MatchesTableTableManager
                 Value<String> mode = const Value.absent(),
                 Value<String> whiteType = const Value.absent(),
                 Value<String> blackType = const Value.absent(),
+                Value<bool?> cubeless = const Value.absent(),
                 Value<int> whiteScore = const Value.absent(),
                 Value<int> blackScore = const Value.absent(),
                 Value<String?> winner = const Value.absent(),
@@ -2884,6 +4772,7 @@ class $$MatchesTableTableManager
                 mode: mode,
                 whiteType: whiteType,
                 blackType: blackType,
+                cubeless: cubeless,
                 whiteScore: whiteScore,
                 blackScore: blackScore,
                 winner: winner,
@@ -2897,6 +4786,7 @@ class $$MatchesTableTableManager
                 required String mode,
                 required String whiteType,
                 required String blackType,
+                Value<bool?> cubeless = const Value.absent(),
                 Value<int> whiteScore = const Value.absent(),
                 Value<int> blackScore = const Value.absent(),
                 Value<String?> winner = const Value.absent(),
@@ -2908,6 +4798,7 @@ class $$MatchesTableTableManager
                 mode: mode,
                 whiteType: whiteType,
                 blackType: blackType,
+                cubeless: cubeless,
                 whiteScore: whiteScore,
                 blackScore: blackScore,
                 winner: winner,
@@ -3007,6 +4898,30 @@ final class $$GamesTableReferences
       manager.$state.copyWith(prefetchedData: [item]),
     );
   }
+
+  static MultiTypedResultKey<$PracticePositionsTable, List<PracticePositionRow>>
+  _practicePositionsRefsTable(_$AppDatabase db) =>
+      MultiTypedResultKey.fromTable(
+        db.practicePositions,
+        aliasName: $_aliasNameGenerator(
+          db.games.id,
+          db.practicePositions.gameId,
+        ),
+      );
+
+  $$PracticePositionsTableProcessedTableManager get practicePositionsRefs {
+    final manager = $$PracticePositionsTableTableManager(
+      $_db,
+      $_db.practicePositions,
+    ).filter((f) => f.gameId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _practicePositionsRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $$GamesTableFilterComposer extends Composer<_$AppDatabase, $GamesTable> {
@@ -3078,6 +4993,31 @@ class $$GamesTableFilterComposer extends Composer<_$AppDatabase, $GamesTable> {
           ),
     );
     return composer;
+  }
+
+  Expression<bool> practicePositionsRefs(
+    Expression<bool> Function($$PracticePositionsTableFilterComposer f) f,
+  ) {
+    final $$PracticePositionsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.practicePositions,
+      getReferencedColumn: (t) => t.gameId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PracticePositionsTableFilterComposer(
+            $db: $db,
+            $table: $db.practicePositions,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
   }
 }
 
@@ -3223,6 +5163,32 @@ class $$GamesTableAnnotationComposer
     );
     return composer;
   }
+
+  Expression<T> practicePositionsRefs<T extends Object>(
+    Expression<T> Function($$PracticePositionsTableAnnotationComposer a) f,
+  ) {
+    final $$PracticePositionsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.id,
+          referencedTable: $db.practicePositions,
+          getReferencedColumn: (t) => t.gameId,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$PracticePositionsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.practicePositions,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return f(composer);
+  }
 }
 
 class $$GamesTableTableManager
@@ -3238,7 +5204,7 @@ class $$GamesTableTableManager
           $$GamesTableUpdateCompanionBuilder,
           (GameRow, $$GamesTableReferences),
           GameRow,
-          PrefetchHooks Function({bool matchId})
+          PrefetchHooks Function({bool matchId, bool practicePositionsRefs})
         > {
   $$GamesTableTableManager(_$AppDatabase db, $GamesTable table)
     : super(
@@ -3301,47 +5267,72 @@ class $$GamesTableTableManager
                     (e.readTable(table), $$GamesTableReferences(db, table, e)),
               )
               .toList(),
-          prefetchHooksCallback: ({matchId = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [],
-              addJoins:
-                  <
-                    T extends TableManagerState<
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic,
-                      dynamic
-                    >
-                  >(state) {
-                    if (matchId) {
-                      state =
-                          state.withJoin(
-                                currentTable: table,
-                                currentColumn: table.matchId,
-                                referencedTable: $$GamesTableReferences
-                                    ._matchIdTable(db),
-                                referencedColumn: $$GamesTableReferences
-                                    ._matchIdTable(db)
-                                    .id,
-                              )
-                              as T;
-                    }
+          prefetchHooksCallback:
+              ({matchId = false, practicePositionsRefs = false}) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (practicePositionsRefs) db.practicePositions,
+                  ],
+                  addJoins:
+                      <
+                        T extends TableManagerState<
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic
+                        >
+                      >(state) {
+                        if (matchId) {
+                          state =
+                              state.withJoin(
+                                    currentTable: table,
+                                    currentColumn: table.matchId,
+                                    referencedTable: $$GamesTableReferences
+                                        ._matchIdTable(db),
+                                    referencedColumn: $$GamesTableReferences
+                                        ._matchIdTable(db)
+                                        .id,
+                                  )
+                                  as T;
+                        }
 
-                    return state;
+                        return state;
+                      },
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (practicePositionsRefs)
+                        await $_getPrefetchedData<
+                          GameRow,
+                          $GamesTable,
+                          PracticePositionRow
+                        >(
+                          currentTable: table,
+                          referencedTable: $$GamesTableReferences
+                              ._practicePositionsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$GamesTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).practicePositionsRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.gameId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                    ];
                   },
-              getPrefetchedDataCallback: (items) async {
-                return [];
+                );
               },
-            );
-          },
         ),
       );
 }
@@ -3358,7 +5349,7 @@ typedef $$GamesTableProcessedTableManager =
       $$GamesTableUpdateCompanionBuilder,
       (GameRow, $$GamesTableReferences),
       GameRow,
-      PrefetchHooks Function({bool matchId})
+      PrefetchHooks Function({bool matchId, bool practicePositionsRefs})
     >;
 typedef $$SettingsTableCreateCompanionBuilder =
     SettingsCompanion Function({
@@ -3378,6 +5369,12 @@ typedef $$SettingsTableCreateCompanionBuilder =
       Value<bool> dragHintShown,
       Value<String> buddyPhrasing,
       Value<bool> buddyMicHint,
+      Value<bool> tutorBestMoves,
+      Value<bool> tutorExplanations,
+      Value<bool> tutorCommentary,
+      Value<bool> tutorCubeAdvice,
+      Value<bool> tutorTryFirst,
+      Value<bool> telemetryEnabled,
     });
 typedef $$SettingsTableUpdateCompanionBuilder =
     SettingsCompanion Function({
@@ -3397,6 +5394,12 @@ typedef $$SettingsTableUpdateCompanionBuilder =
       Value<bool> dragHintShown,
       Value<String> buddyPhrasing,
       Value<bool> buddyMicHint,
+      Value<bool> tutorBestMoves,
+      Value<bool> tutorExplanations,
+      Value<bool> tutorCommentary,
+      Value<bool> tutorCubeAdvice,
+      Value<bool> tutorTryFirst,
+      Value<bool> telemetryEnabled,
     });
 
 class $$SettingsTableFilterComposer
@@ -3485,6 +5488,36 @@ class $$SettingsTableFilterComposer
 
   ColumnFilters<bool> get buddyMicHint => $composableBuilder(
     column: $table.buddyMicHint,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get tutorBestMoves => $composableBuilder(
+    column: $table.tutorBestMoves,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get tutorExplanations => $composableBuilder(
+    column: $table.tutorExplanations,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get tutorCommentary => $composableBuilder(
+    column: $table.tutorCommentary,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get tutorCubeAdvice => $composableBuilder(
+    column: $table.tutorCubeAdvice,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get tutorTryFirst => $composableBuilder(
+    column: $table.tutorTryFirst,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get telemetryEnabled => $composableBuilder(
+    column: $table.telemetryEnabled,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -3577,6 +5610,36 @@ class $$SettingsTableOrderingComposer
     column: $table.buddyMicHint,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<bool> get tutorBestMoves => $composableBuilder(
+    column: $table.tutorBestMoves,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get tutorExplanations => $composableBuilder(
+    column: $table.tutorExplanations,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get tutorCommentary => $composableBuilder(
+    column: $table.tutorCommentary,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get tutorCubeAdvice => $composableBuilder(
+    column: $table.tutorCubeAdvice,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get tutorTryFirst => $composableBuilder(
+    column: $table.tutorTryFirst,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get telemetryEnabled => $composableBuilder(
+    column: $table.telemetryEnabled,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$SettingsTableAnnotationComposer
@@ -3663,6 +5726,36 @@ class $$SettingsTableAnnotationComposer
     column: $table.buddyMicHint,
     builder: (column) => column,
   );
+
+  GeneratedColumn<bool> get tutorBestMoves => $composableBuilder(
+    column: $table.tutorBestMoves,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get tutorExplanations => $composableBuilder(
+    column: $table.tutorExplanations,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get tutorCommentary => $composableBuilder(
+    column: $table.tutorCommentary,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get tutorCubeAdvice => $composableBuilder(
+    column: $table.tutorCubeAdvice,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get tutorTryFirst => $composableBuilder(
+    column: $table.tutorTryFirst,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get telemetryEnabled => $composableBuilder(
+    column: $table.telemetryEnabled,
+    builder: (column) => column,
+  );
 }
 
 class $$SettingsTableTableManager
@@ -3712,6 +5805,12 @@ class $$SettingsTableTableManager
                 Value<bool> dragHintShown = const Value.absent(),
                 Value<String> buddyPhrasing = const Value.absent(),
                 Value<bool> buddyMicHint = const Value.absent(),
+                Value<bool> tutorBestMoves = const Value.absent(),
+                Value<bool> tutorExplanations = const Value.absent(),
+                Value<bool> tutorCommentary = const Value.absent(),
+                Value<bool> tutorCubeAdvice = const Value.absent(),
+                Value<bool> tutorTryFirst = const Value.absent(),
+                Value<bool> telemetryEnabled = const Value.absent(),
               }) => SettingsCompanion(
                 id: id,
                 themeMode: themeMode,
@@ -3729,6 +5828,12 @@ class $$SettingsTableTableManager
                 dragHintShown: dragHintShown,
                 buddyPhrasing: buddyPhrasing,
                 buddyMicHint: buddyMicHint,
+                tutorBestMoves: tutorBestMoves,
+                tutorExplanations: tutorExplanations,
+                tutorCommentary: tutorCommentary,
+                tutorCubeAdvice: tutorCubeAdvice,
+                tutorTryFirst: tutorTryFirst,
+                telemetryEnabled: telemetryEnabled,
               ),
           createCompanionCallback:
               ({
@@ -3748,6 +5853,12 @@ class $$SettingsTableTableManager
                 Value<bool> dragHintShown = const Value.absent(),
                 Value<String> buddyPhrasing = const Value.absent(),
                 Value<bool> buddyMicHint = const Value.absent(),
+                Value<bool> tutorBestMoves = const Value.absent(),
+                Value<bool> tutorExplanations = const Value.absent(),
+                Value<bool> tutorCommentary = const Value.absent(),
+                Value<bool> tutorCubeAdvice = const Value.absent(),
+                Value<bool> tutorTryFirst = const Value.absent(),
+                Value<bool> telemetryEnabled = const Value.absent(),
               }) => SettingsCompanion.insert(
                 id: id,
                 themeMode: themeMode,
@@ -3765,6 +5876,12 @@ class $$SettingsTableTableManager
                 dragHintShown: dragHintShown,
                 buddyPhrasing: buddyPhrasing,
                 buddyMicHint: buddyMicHint,
+                tutorBestMoves: tutorBestMoves,
+                tutorExplanations: tutorExplanations,
+                tutorCommentary: tutorCommentary,
+                tutorCubeAdvice: tutorCubeAdvice,
+                tutorTryFirst: tutorTryFirst,
+                telemetryEnabled: telemetryEnabled,
               ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
@@ -3969,6 +6086,1056 @@ typedef $$OnlineSessionTableProcessedTableManager =
       OnlineSessionRow,
       PrefetchHooks Function()
     >;
+typedef $$PracticePositionsTableCreateCompanionBuilder =
+    PracticePositionsCompanion Function({
+      Value<int> id,
+      required int gameId,
+      required int eventIndex,
+      required DateTime createdAt,
+      required String player,
+      required String eventsJson,
+      required bool isCrawford,
+      Value<int?> matchLength,
+      Value<int?> whiteScore,
+      Value<int?> blackScore,
+      Value<bool?> crawfordPlayed,
+      Value<bool?> cubeless,
+      required String assessmentJson,
+      required String themesJson,
+      required DateTime dueAt,
+      Value<int> intervalDays,
+      Value<int> successStreak,
+      Value<DateTime?> lastAttemptAt,
+    });
+typedef $$PracticePositionsTableUpdateCompanionBuilder =
+    PracticePositionsCompanion Function({
+      Value<int> id,
+      Value<int> gameId,
+      Value<int> eventIndex,
+      Value<DateTime> createdAt,
+      Value<String> player,
+      Value<String> eventsJson,
+      Value<bool> isCrawford,
+      Value<int?> matchLength,
+      Value<int?> whiteScore,
+      Value<int?> blackScore,
+      Value<bool?> crawfordPlayed,
+      Value<bool?> cubeless,
+      Value<String> assessmentJson,
+      Value<String> themesJson,
+      Value<DateTime> dueAt,
+      Value<int> intervalDays,
+      Value<int> successStreak,
+      Value<DateTime?> lastAttemptAt,
+    });
+
+final class $$PracticePositionsTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $PracticePositionsTable,
+          PracticePositionRow
+        > {
+  $$PracticePositionsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $GamesTable _gameIdTable(_$AppDatabase db) => db.games.createAlias(
+    $_aliasNameGenerator(db.practicePositions.gameId, db.games.id),
+  );
+
+  $$GamesTableProcessedTableManager get gameId {
+    final $_column = $_itemColumn<int>('game_id')!;
+
+    final manager = $$GamesTableTableManager(
+      $_db,
+      $_db.games,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_gameIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static MultiTypedResultKey<$PracticeAttemptsTable, List<PracticeAttemptRow>>
+  _practiceAttemptsRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.practiceAttempts,
+    aliasName: $_aliasNameGenerator(
+      db.practicePositions.id,
+      db.practiceAttempts.positionId,
+    ),
+  );
+
+  $$PracticeAttemptsTableProcessedTableManager get practiceAttemptsRefs {
+    final manager = $$PracticeAttemptsTableTableManager(
+      $_db,
+      $_db.practiceAttempts,
+    ).filter((f) => f.positionId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(
+      _practiceAttemptsRefsTable($_db),
+    );
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+}
+
+class $$PracticePositionsTableFilterComposer
+    extends Composer<_$AppDatabase, $PracticePositionsTable> {
+  $$PracticePositionsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get eventIndex => $composableBuilder(
+    column: $table.eventIndex,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get player => $composableBuilder(
+    column: $table.player,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get eventsJson => $composableBuilder(
+    column: $table.eventsJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get isCrawford => $composableBuilder(
+    column: $table.isCrawford,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get matchLength => $composableBuilder(
+    column: $table.matchLength,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get whiteScore => $composableBuilder(
+    column: $table.whiteScore,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get blackScore => $composableBuilder(
+    column: $table.blackScore,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get crawfordPlayed => $composableBuilder(
+    column: $table.crawfordPlayed,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get cubeless => $composableBuilder(
+    column: $table.cubeless,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get assessmentJson => $composableBuilder(
+    column: $table.assessmentJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get themesJson => $composableBuilder(
+    column: $table.themesJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get dueAt => $composableBuilder(
+    column: $table.dueAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get intervalDays => $composableBuilder(
+    column: $table.intervalDays,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get successStreak => $composableBuilder(
+    column: $table.successStreak,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get lastAttemptAt => $composableBuilder(
+    column: $table.lastAttemptAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$GamesTableFilterComposer get gameId {
+    final $$GamesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gameId,
+      referencedTable: $db.games,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GamesTableFilterComposer(
+            $db: $db,
+            $table: $db.games,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  Expression<bool> practiceAttemptsRefs(
+    Expression<bool> Function($$PracticeAttemptsTableFilterComposer f) f,
+  ) {
+    final $$PracticeAttemptsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.practiceAttempts,
+      getReferencedColumn: (t) => t.positionId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PracticeAttemptsTableFilterComposer(
+            $db: $db,
+            $table: $db.practiceAttempts,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$PracticePositionsTableOrderingComposer
+    extends Composer<_$AppDatabase, $PracticePositionsTable> {
+  $$PracticePositionsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get eventIndex => $composableBuilder(
+    column: $table.eventIndex,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get player => $composableBuilder(
+    column: $table.player,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get eventsJson => $composableBuilder(
+    column: $table.eventsJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get isCrawford => $composableBuilder(
+    column: $table.isCrawford,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get matchLength => $composableBuilder(
+    column: $table.matchLength,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get whiteScore => $composableBuilder(
+    column: $table.whiteScore,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get blackScore => $composableBuilder(
+    column: $table.blackScore,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get crawfordPlayed => $composableBuilder(
+    column: $table.crawfordPlayed,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get cubeless => $composableBuilder(
+    column: $table.cubeless,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get assessmentJson => $composableBuilder(
+    column: $table.assessmentJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get themesJson => $composableBuilder(
+    column: $table.themesJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get dueAt => $composableBuilder(
+    column: $table.dueAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get intervalDays => $composableBuilder(
+    column: $table.intervalDays,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get successStreak => $composableBuilder(
+    column: $table.successStreak,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get lastAttemptAt => $composableBuilder(
+    column: $table.lastAttemptAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$GamesTableOrderingComposer get gameId {
+    final $$GamesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gameId,
+      referencedTable: $db.games,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GamesTableOrderingComposer(
+            $db: $db,
+            $table: $db.games,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$PracticePositionsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $PracticePositionsTable> {
+  $$PracticePositionsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<int> get eventIndex => $composableBuilder(
+    column: $table.eventIndex,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<String> get player =>
+      $composableBuilder(column: $table.player, builder: (column) => column);
+
+  GeneratedColumn<String> get eventsJson => $composableBuilder(
+    column: $table.eventsJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get isCrawford => $composableBuilder(
+    column: $table.isCrawford,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get matchLength => $composableBuilder(
+    column: $table.matchLength,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get whiteScore => $composableBuilder(
+    column: $table.whiteScore,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get blackScore => $composableBuilder(
+    column: $table.blackScore,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get crawfordPlayed => $composableBuilder(
+    column: $table.crawfordPlayed,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get cubeless =>
+      $composableBuilder(column: $table.cubeless, builder: (column) => column);
+
+  GeneratedColumn<String> get assessmentJson => $composableBuilder(
+    column: $table.assessmentJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get themesJson => $composableBuilder(
+    column: $table.themesJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get dueAt =>
+      $composableBuilder(column: $table.dueAt, builder: (column) => column);
+
+  GeneratedColumn<int> get intervalDays => $composableBuilder(
+    column: $table.intervalDays,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get successStreak => $composableBuilder(
+    column: $table.successStreak,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get lastAttemptAt => $composableBuilder(
+    column: $table.lastAttemptAt,
+    builder: (column) => column,
+  );
+
+  $$GamesTableAnnotationComposer get gameId {
+    final $$GamesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.gameId,
+      referencedTable: $db.games,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$GamesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.games,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  Expression<T> practiceAttemptsRefs<T extends Object>(
+    Expression<T> Function($$PracticeAttemptsTableAnnotationComposer a) f,
+  ) {
+    final $$PracticeAttemptsTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.practiceAttempts,
+      getReferencedColumn: (t) => t.positionId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PracticeAttemptsTableAnnotationComposer(
+            $db: $db,
+            $table: $db.practiceAttempts,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$PracticePositionsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $PracticePositionsTable,
+          PracticePositionRow,
+          $$PracticePositionsTableFilterComposer,
+          $$PracticePositionsTableOrderingComposer,
+          $$PracticePositionsTableAnnotationComposer,
+          $$PracticePositionsTableCreateCompanionBuilder,
+          $$PracticePositionsTableUpdateCompanionBuilder,
+          (PracticePositionRow, $$PracticePositionsTableReferences),
+          PracticePositionRow,
+          PrefetchHooks Function({bool gameId, bool practiceAttemptsRefs})
+        > {
+  $$PracticePositionsTableTableManager(
+    _$AppDatabase db,
+    $PracticePositionsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$PracticePositionsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$PracticePositionsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$PracticePositionsTableAnnotationComposer(
+                $db: db,
+                $table: table,
+              ),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<int> gameId = const Value.absent(),
+                Value<int> eventIndex = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<String> player = const Value.absent(),
+                Value<String> eventsJson = const Value.absent(),
+                Value<bool> isCrawford = const Value.absent(),
+                Value<int?> matchLength = const Value.absent(),
+                Value<int?> whiteScore = const Value.absent(),
+                Value<int?> blackScore = const Value.absent(),
+                Value<bool?> crawfordPlayed = const Value.absent(),
+                Value<bool?> cubeless = const Value.absent(),
+                Value<String> assessmentJson = const Value.absent(),
+                Value<String> themesJson = const Value.absent(),
+                Value<DateTime> dueAt = const Value.absent(),
+                Value<int> intervalDays = const Value.absent(),
+                Value<int> successStreak = const Value.absent(),
+                Value<DateTime?> lastAttemptAt = const Value.absent(),
+              }) => PracticePositionsCompanion(
+                id: id,
+                gameId: gameId,
+                eventIndex: eventIndex,
+                createdAt: createdAt,
+                player: player,
+                eventsJson: eventsJson,
+                isCrawford: isCrawford,
+                matchLength: matchLength,
+                whiteScore: whiteScore,
+                blackScore: blackScore,
+                crawfordPlayed: crawfordPlayed,
+                cubeless: cubeless,
+                assessmentJson: assessmentJson,
+                themesJson: themesJson,
+                dueAt: dueAt,
+                intervalDays: intervalDays,
+                successStreak: successStreak,
+                lastAttemptAt: lastAttemptAt,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required int gameId,
+                required int eventIndex,
+                required DateTime createdAt,
+                required String player,
+                required String eventsJson,
+                required bool isCrawford,
+                Value<int?> matchLength = const Value.absent(),
+                Value<int?> whiteScore = const Value.absent(),
+                Value<int?> blackScore = const Value.absent(),
+                Value<bool?> crawfordPlayed = const Value.absent(),
+                Value<bool?> cubeless = const Value.absent(),
+                required String assessmentJson,
+                required String themesJson,
+                required DateTime dueAt,
+                Value<int> intervalDays = const Value.absent(),
+                Value<int> successStreak = const Value.absent(),
+                Value<DateTime?> lastAttemptAt = const Value.absent(),
+              }) => PracticePositionsCompanion.insert(
+                id: id,
+                gameId: gameId,
+                eventIndex: eventIndex,
+                createdAt: createdAt,
+                player: player,
+                eventsJson: eventsJson,
+                isCrawford: isCrawford,
+                matchLength: matchLength,
+                whiteScore: whiteScore,
+                blackScore: blackScore,
+                crawfordPlayed: crawfordPlayed,
+                cubeless: cubeless,
+                assessmentJson: assessmentJson,
+                themesJson: themesJson,
+                dueAt: dueAt,
+                intervalDays: intervalDays,
+                successStreak: successStreak,
+                lastAttemptAt: lastAttemptAt,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$PracticePositionsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback:
+              ({gameId = false, practiceAttemptsRefs = false}) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (practiceAttemptsRefs) db.practiceAttempts,
+                  ],
+                  addJoins:
+                      <
+                        T extends TableManagerState<
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic,
+                          dynamic
+                        >
+                      >(state) {
+                        if (gameId) {
+                          state =
+                              state.withJoin(
+                                    currentTable: table,
+                                    currentColumn: table.gameId,
+                                    referencedTable:
+                                        $$PracticePositionsTableReferences
+                                            ._gameIdTable(db),
+                                    referencedColumn:
+                                        $$PracticePositionsTableReferences
+                                            ._gameIdTable(db)
+                                            .id,
+                                  )
+                                  as T;
+                        }
+
+                        return state;
+                      },
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (practiceAttemptsRefs)
+                        await $_getPrefetchedData<
+                          PracticePositionRow,
+                          $PracticePositionsTable,
+                          PracticeAttemptRow
+                        >(
+                          currentTable: table,
+                          referencedTable: $$PracticePositionsTableReferences
+                              ._practiceAttemptsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $$PracticePositionsTableReferences(
+                                db,
+                                table,
+                                p0,
+                              ).practiceAttemptsRefs,
+                          referencedItemsForCurrentItem:
+                              (item, referencedItems) => referencedItems.where(
+                                (e) => e.positionId == item.id,
+                              ),
+                          typedResults: items,
+                        ),
+                    ];
+                  },
+                );
+              },
+        ),
+      );
+}
+
+typedef $$PracticePositionsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $PracticePositionsTable,
+      PracticePositionRow,
+      $$PracticePositionsTableFilterComposer,
+      $$PracticePositionsTableOrderingComposer,
+      $$PracticePositionsTableAnnotationComposer,
+      $$PracticePositionsTableCreateCompanionBuilder,
+      $$PracticePositionsTableUpdateCompanionBuilder,
+      (PracticePositionRow, $$PracticePositionsTableReferences),
+      PracticePositionRow,
+      PrefetchHooks Function({bool gameId, bool practiceAttemptsRefs})
+    >;
+typedef $$PracticeAttemptsTableCreateCompanionBuilder =
+    PracticeAttemptsCompanion Function({
+      Value<int> id,
+      required int positionId,
+      required DateTime attemptedAt,
+      Value<String?> assessmentJson,
+      required bool passed,
+      required bool revealed,
+    });
+typedef $$PracticeAttemptsTableUpdateCompanionBuilder =
+    PracticeAttemptsCompanion Function({
+      Value<int> id,
+      Value<int> positionId,
+      Value<DateTime> attemptedAt,
+      Value<String?> assessmentJson,
+      Value<bool> passed,
+      Value<bool> revealed,
+    });
+
+final class $$PracticeAttemptsTableReferences
+    extends
+        BaseReferences<
+          _$AppDatabase,
+          $PracticeAttemptsTable,
+          PracticeAttemptRow
+        > {
+  $$PracticeAttemptsTableReferences(
+    super.$_db,
+    super.$_table,
+    super.$_typedResult,
+  );
+
+  static $PracticePositionsTable _positionIdTable(_$AppDatabase db) =>
+      db.practicePositions.createAlias(
+        $_aliasNameGenerator(
+          db.practiceAttempts.positionId,
+          db.practicePositions.id,
+        ),
+      );
+
+  $$PracticePositionsTableProcessedTableManager get positionId {
+    final $_column = $_itemColumn<int>('position_id')!;
+
+    final manager = $$PracticePositionsTableTableManager(
+      $_db,
+      $_db.practicePositions,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_positionIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$PracticeAttemptsTableFilterComposer
+    extends Composer<_$AppDatabase, $PracticeAttemptsTable> {
+  $$PracticeAttemptsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get attemptedAt => $composableBuilder(
+    column: $table.attemptedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get assessmentJson => $composableBuilder(
+    column: $table.assessmentJson,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get passed => $composableBuilder(
+    column: $table.passed,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get revealed => $composableBuilder(
+    column: $table.revealed,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$PracticePositionsTableFilterComposer get positionId {
+    final $$PracticePositionsTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.positionId,
+      referencedTable: $db.practicePositions,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PracticePositionsTableFilterComposer(
+            $db: $db,
+            $table: $db.practicePositions,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$PracticeAttemptsTableOrderingComposer
+    extends Composer<_$AppDatabase, $PracticeAttemptsTable> {
+  $$PracticeAttemptsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get attemptedAt => $composableBuilder(
+    column: $table.attemptedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get assessmentJson => $composableBuilder(
+    column: $table.assessmentJson,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get passed => $composableBuilder(
+    column: $table.passed,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get revealed => $composableBuilder(
+    column: $table.revealed,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$PracticePositionsTableOrderingComposer get positionId {
+    final $$PracticePositionsTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.positionId,
+      referencedTable: $db.practicePositions,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$PracticePositionsTableOrderingComposer(
+            $db: $db,
+            $table: $db.practicePositions,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$PracticeAttemptsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $PracticeAttemptsTable> {
+  $$PracticeAttemptsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get attemptedAt => $composableBuilder(
+    column: $table.attemptedAt,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<String> get assessmentJson => $composableBuilder(
+    column: $table.assessmentJson,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get passed =>
+      $composableBuilder(column: $table.passed, builder: (column) => column);
+
+  GeneratedColumn<bool> get revealed =>
+      $composableBuilder(column: $table.revealed, builder: (column) => column);
+
+  $$PracticePositionsTableAnnotationComposer get positionId {
+    final $$PracticePositionsTableAnnotationComposer composer =
+        $composerBuilder(
+          composer: this,
+          getCurrentColumn: (t) => t.positionId,
+          referencedTable: $db.practicePositions,
+          getReferencedColumn: (t) => t.id,
+          builder:
+              (
+                joinBuilder, {
+                $addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer,
+              }) => $$PracticePositionsTableAnnotationComposer(
+                $db: $db,
+                $table: $db.practicePositions,
+                $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+                joinBuilder: joinBuilder,
+                $removeJoinBuilderFromRootComposer:
+                    $removeJoinBuilderFromRootComposer,
+              ),
+        );
+    return composer;
+  }
+}
+
+class $$PracticeAttemptsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $PracticeAttemptsTable,
+          PracticeAttemptRow,
+          $$PracticeAttemptsTableFilterComposer,
+          $$PracticeAttemptsTableOrderingComposer,
+          $$PracticeAttemptsTableAnnotationComposer,
+          $$PracticeAttemptsTableCreateCompanionBuilder,
+          $$PracticeAttemptsTableUpdateCompanionBuilder,
+          (PracticeAttemptRow, $$PracticeAttemptsTableReferences),
+          PracticeAttemptRow,
+          PrefetchHooks Function({bool positionId})
+        > {
+  $$PracticeAttemptsTableTableManager(
+    _$AppDatabase db,
+    $PracticeAttemptsTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$PracticeAttemptsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$PracticeAttemptsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$PracticeAttemptsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<int> positionId = const Value.absent(),
+                Value<DateTime> attemptedAt = const Value.absent(),
+                Value<String?> assessmentJson = const Value.absent(),
+                Value<bool> passed = const Value.absent(),
+                Value<bool> revealed = const Value.absent(),
+              }) => PracticeAttemptsCompanion(
+                id: id,
+                positionId: positionId,
+                attemptedAt: attemptedAt,
+                assessmentJson: assessmentJson,
+                passed: passed,
+                revealed: revealed,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required int positionId,
+                required DateTime attemptedAt,
+                Value<String?> assessmentJson = const Value.absent(),
+                required bool passed,
+                required bool revealed,
+              }) => PracticeAttemptsCompanion.insert(
+                id: id,
+                positionId: positionId,
+                attemptedAt: attemptedAt,
+                assessmentJson: assessmentJson,
+                passed: passed,
+                revealed: revealed,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable(table),
+                  $$PracticeAttemptsTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({positionId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (positionId) {
+                      state =
+                          state.withJoin(
+                                currentTable: table,
+                                currentColumn: table.positionId,
+                                referencedTable:
+                                    $$PracticeAttemptsTableReferences
+                                        ._positionIdTable(db),
+                                referencedColumn:
+                                    $$PracticeAttemptsTableReferences
+                                        ._positionIdTable(db)
+                                        .id,
+                              )
+                              as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$PracticeAttemptsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $PracticeAttemptsTable,
+      PracticeAttemptRow,
+      $$PracticeAttemptsTableFilterComposer,
+      $$PracticeAttemptsTableOrderingComposer,
+      $$PracticeAttemptsTableAnnotationComposer,
+      $$PracticeAttemptsTableCreateCompanionBuilder,
+      $$PracticeAttemptsTableUpdateCompanionBuilder,
+      (PracticeAttemptRow, $$PracticeAttemptsTableReferences),
+      PracticeAttemptRow,
+      PrefetchHooks Function({bool positionId})
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -3981,4 +7148,8 @@ class $AppDatabaseManager {
       $$SettingsTableTableManager(_db, _db.settings);
   $$OnlineSessionTableTableManager get onlineSession =>
       $$OnlineSessionTableTableManager(_db, _db.onlineSession);
+  $$PracticePositionsTableTableManager get practicePositions =>
+      $$PracticePositionsTableTableManager(_db, _db.practicePositions);
+  $$PracticeAttemptsTableTableManager get practiceAttempts =>
+      $$PracticeAttemptsTableTableManager(_db, _db.practiceAttempts);
 }

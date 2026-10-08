@@ -20,6 +20,14 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  release-preflight:
+    name: release provenance and artifact validator tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tool/release_preflight.py
+      - run: python3 -m unittest discover -s tool -p test_release_tools.py
+
   # The pure-Dart packages. One job definition, one leg each: they were
   # near-identical copies of the same six steps, and every change to the shape
   # (a cache, an analyzer flag) had to be made in every copy or silently drift.
@@ -152,6 +160,9 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          # License exactness checks compare bundled texts with pinned upstream.
+          submodules: recursive
       - uses: subosito/flutter-action@v2
         with:
           channel: stable

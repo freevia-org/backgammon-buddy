@@ -39,8 +39,15 @@ class Probabilities {
 class ScoredMove {
   final Move move;
   final Probabilities probabilities; // mover's perspective, after the move
+  /// Optional app-layer score-aware value. Native ranking remains cubeless;
+  /// callers can attach a match value without changing the probability data.
+  final double? matchWinningChance;
   double get equity => probabilities.equity;
-  const ScoredMove({required this.move, required this.probabilities});
+  double get rankingValue => matchWinningChance ?? equity;
+  const ScoredMove(
+      {required this.move,
+      required this.probabilities,
+      this.matchWinningChance});
 }
 
 /// wildbg cube advice (Janowski-based internally, including the

@@ -130,7 +130,9 @@ class HintPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ranked = moves ?? const <ScoredMove>[];
-    final bestEq = ranked.isEmpty ? 0.0 : ranked.first.equity;
+    final bestEq = ranked.isEmpty ? 0.0 : ranked.first.rankingValue;
+    final matchValue =
+        ranked.isNotEmpty && ranked.first.matchWinningChance != null;
     final top = ranked.take(5).toList();
     return Stack(
       children: [
@@ -159,9 +161,10 @@ class HintPanel extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: Text('Top plays',
-                              style:
-                                  Theme.of(context).textTheme.titleMedium),
+                          child: Text(
+                            'Top plays',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
                         ),
                         IconButton(
                           tooltip: 'What do these numbers mean?',
@@ -191,29 +194,21 @@ class HintPanel extends StatelessWidget {
                         'Tap a play to preview it on the board, then Confirm.',
                       ),
                       const SizedBox(height: 8),
-                      _columnHeader(context),
+                      Text(
+                        matchValue
+                            ? '0-ply estimate · current score and stake · no future cubes'
+                            : '0-ply cubeless estimate · score unavailable',
+                      ),
+                      const Text('Near ties can change with deeper analysis.'),
+                      _columnHeader(context, matchValue),
                       for (var i = 0; i < top.length; i++) ...[
                         _row(context, i, top[i], bestEq),
                         if (explanations && position != null)
-                          ExpansionTile(
-                            tilePadding: EdgeInsets.zero,
-                            title: Text(
-                              i == 0
-                                  ? 'Why this play?'
-                                  : 'Compare this alternative',
-                            ),
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 12),
-                                child: MoveExplanationView(
-                                  explanation: MoveExplanation.forCandidate(
-                                    position!,
-                                    top[i],
-                                    top.first,
-                                  ),
-                                ),
-                              ),
-                            ],
+                          _CandidateExplanation(
+                            position: position!,
+                            candidate: top[i],
+                            best: top.first,
+                            top: i == 0,
                           ),
                       ],
                     ],
@@ -231,10 +226,10 @@ class HintPanel extends StatelessWidget {
   /// aligned over them at the same widths the rows use, so the figures are not
   /// left for the reader to guess at. The ⓘ in the header explains what they
   /// mean.
-  Widget _columnHeader(BuildContext context) {
+  Widget _columnHeader(BuildContext context, bool matchValue) {
     final style = Theme.of(context).textTheme.labelSmall?.copyWith(
-          color: Theme.of(context).colorScheme.onSurfaceVariant,
-        );
+      color: Theme.of(context).colorScheme.onSurfaceVariant,
+    );
     return Padding(
       padding: const EdgeInsets.only(bottom: 2),
       child: Row(
@@ -242,11 +237,19 @@ class HintPanel extends StatelessWidget {
           const Spacer(),
           SizedBox(
             width: _numberColumn,
-            child: Text('Equity', style: style, textAlign: TextAlign.right),
+            child: Text(
+              matchValue ? 'MWC %' : 'Equity',
+              style: style,
+              textAlign: TextAlign.right,
+            ),
           ),
           SizedBox(
             width: _numberColumn,
-            child: Text('Loss', style: style, textAlign: TextAlign.right),
+            child: Text(
+              matchValue ? 'Loss pp' : 'Loss',
+              style: style,
+              textAlign: TextAlign.right,
+            ),
           ),
         ],
       ),
@@ -254,9 +257,13 @@ class HintPanel extends StatelessWidget {
   }
 
   Widget _row(BuildContext context, int i, ScoredMove sm, double bestEq) {
+    final matchValue = sm.matchWinningChance != null;
+    final loss = (bestEq - sm.rankingValue).clamp(0.0, double.infinity);
     final delta = i == 0
         ? '—'
-        : (bestEq - sm.equity).clamp(0, double.infinity).toStringAsFixed(3);
+        : matchValue
+        ? (loss * 100).toStringAsFixed(2)
+        : loss.toStringAsFixed(3);
     final mono = Theme.of(context).textTheme.bodyMedium?.copyWith(
       fontFeatures: const [FontFeature.tabularFigures()],
     );
@@ -266,16 +273,18 @@ class HintPanel extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 4),
         child: Row(
           children: [
-            SizedBox(
-              width: 20,
-              child: Text('${i + 1}.', style: mono),
-            ),
+            SizedBox(width: 20, child: Text('${i + 1}.', style: mono)),
             Expanded(child: Text('${sm.move}', style: mono)),
             const SizedBox(width: 8),
             SizedBox(
               width: _numberColumn,
-              child: Text(sm.equity.toStringAsFixed(3),
-                  style: mono, textAlign: TextAlign.right),
+              child: Text(
+                matchValue
+                    ? (sm.rankingValue * 100).toStringAsFixed(2)
+                    : sm.equity.toStringAsFixed(3),
+                style: mono,
+                textAlign: TextAlign.right,
+              ),
             ),
             SizedBox(
               width: _numberColumn,
@@ -286,4 +295,44 @@ class HintPanel extends StatelessWidget {
       ),
     );
   }
+}
+
+/// The full 36-roll hitting-opportunity count is only needed after the reader
+/// requests an explanation; collapsed hint rows never run move generation.
+class _CandidateExplanation extends StatefulWidget {
+  const _CandidateExplanation({
+    required this.position,
+    required this.candidate,
+    required this.best,
+    required this.top,
+  });
+  final GameState position;
+  final ScoredMove candidate;
+  final ScoredMove best;
+  final bool top;
+  @override
+  State<_CandidateExplanation> createState() => _CandidateExplanationState();
+}
+
+class _CandidateExplanationState extends State<_CandidateExplanation> {
+  bool _expanded = false;
+  @override
+  Widget build(BuildContext context) => ExpansionTile(
+    tilePadding: EdgeInsets.zero,
+    title: Text(widget.top ? 'Why this play?' : 'Compare this alternative'),
+    onExpansionChanged: (value) => setState(() => _expanded = value),
+    children: [
+      if (_expanded)
+        Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: MoveExplanationView(
+            explanation: MoveExplanation.forCandidate(
+              widget.position,
+              widget.candidate,
+              widget.best,
+            ),
+          ),
+        ),
+    ],
+  );
 }

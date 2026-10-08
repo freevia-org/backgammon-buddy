@@ -23,6 +23,7 @@ class MatchRepository {
     required String mode,
     required String whiteType,
     required String blackType,
+    bool? cubeless,
   }) {
     return db.into(db.matches).insert(MatchesCompanion.insert(
           createdAt: DateTime.now(),
@@ -30,6 +31,7 @@ class MatchRepository {
           mode: mode,
           whiteType: whiteType,
           blackType: blackType,
+          cubeless: Value(cubeless),
         ));
   }
 
@@ -54,6 +56,9 @@ class MatchRepository {
   }
 
   /// Updates the running score for [matchId].
+  ///
+  /// Controllers use [recordGameAndScore] so a crash cannot persist only one
+  /// half of a completed game's history and score.
   Future<void> updateScore({
     required int matchId,
     required int whiteScore,
@@ -65,6 +70,21 @@ class MatchRepository {
         blackScore: Value(blackScore),
       ),
     );
+  }
+
+  Future<int> recordGameAndScore({required int matchId, required int gameNumber,
+      required bool isCrawford, required List<GameEvent> events,
+      required GameResult result, required MatchState matchAfter}) {
+    return db.transaction(() async {
+      final id = await recordGame(matchId: matchId, gameNumber: gameNumber,
+        isCrawford: isCrawford, events: events, result: result);
+      await updateScore(matchId: matchId, whiteScore: matchAfter.whiteScore,
+        blackScore: matchAfter.blackScore);
+      if (matchAfter.winner case final winner?) {
+        await completeMatch(matchId: matchId, winner: winner.name);
+      }
+      return id;
+    });
   }
 
   /// Marks [matchId] complete with the winning side ('white' | 'black').

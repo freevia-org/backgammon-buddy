@@ -2,6 +2,10 @@ name: Android
 on:
   workflow_dispatch:
     inputs:
+      build_number:
+        description: Explicit version code above every previous release (or set RELEASE_BUILD_NUMBER_BASE)
+        type: string
+        default: ''
       build_appbundle:
         description: Build a signed Google Play bundle artifact (does not upload to Play)
         type: boolean
@@ -59,6 +63,12 @@ jobs:
           # different tree than the one CI validated.
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
+      - name: Resolve build number
+        env:
+          REQUESTED_BUILD_NUMBER: ${{ inputs.build_number }}
+          BUILD_NUMBER_BASE: ${{ vars.RELEASE_BUILD_NUMBER_BASE }}
+        run: python3 tool/release_build_number.py
+
       # Two ABIs, not three. `x86_64-linux-android` is an EMULATOR target: no
       # phone or tablet in the testers group runs it, and every build paid for a
       # third full Rust cross-compile plus a third copy of the engine .so inside
@@ -98,7 +108,7 @@ jobs:
         run: |
           set -eu
           SDK="${ANDROID_SDK_ROOT:-$ANDROID_HOME}"
-          yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" "ndk;28.2.13676358"
+          yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" "ndk;28.2.13676358" "build-tools;36.0.0"
           echo "ANDROID_NDK_HOME=$SDK/ndk/28.2.13676358" >> "$GITHUB_ENV"
 
       - name: Cross-compile engine shim -> jniLibs
@@ -158,6 +168,14 @@ jobs:
         run: |
           echo "::error::A Play bundle requires all four Android signing secrets. See app/android/KEYSTORE_SETUP.md."
           exit 1
+
+      - name: Require owner-selected release build number
+        if: steps.signing.outputs.has_signing == 'true'
+        run: |
+          if [ "$HAS_RELEASE_BUILD_NUMBER" != 'true' ]; then
+            echo '::error::Set RELEASE_BUILD_NUMBER_BASE or a build_number above prior published versions before signing.'
+            exit 1
+          fi
 
       # Android telemetry config file, generated — never committed.
       #
@@ -286,13 +304,13 @@ jobs:
           if [ -n "$FB_PROJECT" ] && [ -n "$FB_API_KEY" ] \
              && [ -n "$FB_SENDER_ID" ] && [ -n "$FB_ANDROID_APP_ID" ]; then
             DEFINES="$DEFINES --dart-define=AIGAMMON_FIREBASE_SENDER_ID=$FB_SENDER_ID --dart-define=AIGAMMON_FIREBASE_ANDROID_APP_ID=$FB_ANDROID_APP_ID"
-            echo "Telemetry ENABLED (Analytics + Performance + Crashlytics)"
+            echo "Telemetry configured (collection requires user opt-in)"
           else
             echo "Telemetry config incomplete — building with analytics/performance/crashlytics disabled"
           fi
           flutter build apk --release --split-per-abi \
             --target-platform android-arm,android-arm64 \
-            --build-number=${{ github.run_number }} \
+            --build-number="$BUILD_NUMBER" \
             --obfuscate --split-debug-info=build/symbols/android \
             $DEFINES
           ls -l build/app/outputs/flutter-apk/*.apk
@@ -301,17 +319,21 @@ jobs:
           for ABI in arm64-v8a armeabi-v7a; do
             unzip -Z1 "build/app/outputs/flutter-apk/app-$ABI-release.apk" \
               | grep -Fx "lib/$ABI/libaigammon_engine.so"
+            python3 ../tool/release_preflight.py \
+              --android "build/app/outputs/flutter-apk/app-$ABI-release.apk" \
+              --abis "$ABI" --zipalign "${ANDROID_SDK_ROOT:-$ANDROID_HOME}/build-tools/36.0.0/zipalign"
           done
           if [ "$BUILD_APPBUNDLE" = 'true' ]; then
             flutter build appbundle --release \
               --target-platform android-arm,android-arm64 \
-              --build-number=${{ github.run_number }} \
+              --build-number="$BUILD_NUMBER" \
               --obfuscate --split-debug-info=build/symbols/android-bundle \
               $DEFINES
             for ABI in arm64-v8a armeabi-v7a; do
               unzip -Z1 build/app/outputs/bundle/release/app-release.aab \
                 | grep -Fx "base/lib/$ABI/libaigammon_engine.so"
             done
+            python3 ../tool/release_preflight.py --android build/app/outputs/bundle/release/app-release.aab
           fi
 
       - name: Upload signed Google Play bundle
@@ -341,6 +363,13 @@ jobs:
         with:
           name: aigammon-symbols-android-${{ github.run_number }}
           path: app/build/symbols/android
+          if-no-files-found: error
+
+      - name: Upload unstripped native engine symbols
+        uses: actions/upload-artifact@v4
+        with:
+          name: aigammon-native-symbols-android-${{ github.run_number }}
+          path: app/android/app/src/main/jniLibs
           if-no-files-found: error
 
       # Secrets can't be referenced in a step-level `if:`, so gate on an env var

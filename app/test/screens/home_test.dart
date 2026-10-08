@@ -10,6 +10,7 @@ import 'package:aigammon_app/game/player_agent.dart';
 import 'package:aigammon_app/screens/buddy/buddy_setup_screen.dart';
 import 'package:aigammon_app/screens/game_screen.dart';
 import 'package:aigammon_app/screens/home_screen.dart';
+import 'package:aigammon_app/screens/learning_screen.dart';
 import 'package:aigammon_app/screens/new_match_screen.dart';
 import 'package:backgammon_core/backgammon_core.dart';
 import 'package:engine_bindings/engine_bindings.dart';
@@ -71,7 +72,7 @@ const _surface = Size(900, 1300);
 /// disk. Set in [main]'s `setUp`, closed in `tearDown`.
 late AppDatabase _db;
 
-Widget _app() => ProviderScope(
+Widget _app({double textScale = 1}) => ProviderScope(
       overrides: [
         engineFacadeProvider.overrideWithValue(const FakeFacade()),
         databaseProvider.overrideWithValue(_db),
@@ -81,10 +82,26 @@ Widget _app() => ProviderScope(
         // The real defaults (drag ON, hint not yet shown) are served verbatim:
         // the one-time hint SnackBar floats ABOVE the bottom action bar, so it
         // does not obscure the Roll/Confirm buttons these setup-flow tests tap.
-        settingsProvider.overrideWith((ref) => Stream.value(AppSettings.defaults)),
+        settingsProvider
+            .overrideWith((ref) => Stream.value(AppSettings.defaults)),
       ],
-      child: const MaterialApp(home: HomeScreen()),
+      child: MaterialApp(
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(context)
+              .copyWith(textScaler: TextScaler.linear(textScale)),
+          child: child!,
+        ),
+        home: const HomeScreen(),
+      ),
     );
+
+/// Real users scroll the growing menu on short windows before tapping a mode.
+Future<void> _tapVisible(WidgetTester t, Finder finder) async {
+  await t.ensureVisible(finder);
+  await t.pumpAndSettle();
+  expect(finder.hitTestable(), findsOneWidget);
+  await t.tap(finder);
+}
 
 // --- Board-driving helpers (mirror game_screen_test) -------------------------
 
@@ -93,8 +110,8 @@ BoardPainter _painterOf(WidgetTester t) => t
     .firstWhere((c) => c.painter is BoardPainter)
     .painter as BoardPainter;
 
-Rect _boardRect(WidgetTester t) => t.getRect(
-    find.byWidgetPredicate((w) => w is CustomPaint && w.painter is BoardPainter));
+Rect _boardRect(WidgetTester t) => t.getRect(find
+    .byWidgetPredicate((w) => w is CustomPaint && w.painter is BoardPainter));
 
 Future<void> _tapPoint(WidgetTester t, int index) async {
   final r = _boardRect(t);
@@ -173,11 +190,12 @@ void main() {
   });
   tearDown(() => _db.close());
 
-  testWidgets('home shows both mode buttons; vs-computer reveals AI selectors, '
+  testWidgets(
+      'home shows both mode buttons; vs-computer reveals AI selectors, '
       'two-players hides them', (t) async {
     await t.pumpWidget(_app());
 
-    expect(find.text('AI Gammon'), findsOneWidget);
+    expect(find.text('Backgammon Buddy'), findsOneWidget);
     expect(find.text('Play vs Computer'), findsOneWidget);
     expect(find.text('Two Players'), findsOneWidget);
     // The two remote modes sit below the local ones, nearby before online.
@@ -187,7 +205,7 @@ void main() {
         lessThan(t.getTopLeft(find.text('Play Online')).dy));
 
     // Play vs Computer → difficulty + side selectors appear.
-    await t.tap(find.text('Play vs Computer'));
+    await _tapVisible(t, find.text('Play vs Computer'));
     await t.pumpAndSettle();
     expect(find.byType(NewMatchScreen), findsOneWidget);
     expect(find.text('Difficulty'), findsOneWidget);
@@ -199,7 +217,7 @@ void main() {
     // Back to home, then Two Players → those selectors are gone.
     await t.pageBack();
     await t.pumpAndSettle();
-    await t.tap(find.text('Two Players'));
+    await _tapVisible(t, find.text('Two Players'));
     await t.pumpAndSettle();
     expect(find.byType(NewMatchScreen), findsOneWidget);
     expect(find.text('Match length'), findsOneWidget);
@@ -209,6 +227,49 @@ void main() {
     // FIXED board by default (the tabletop layout).
     expect(find.text('Rotate board for Black'), findsNothing);
     expect(find.text('Rotate board between turns'), findsNothing);
+  });
+
+  testWidgets(
+      'small large-text home keeps every mode reachable and opens learning',
+      (t) async {
+    await t.binding.setSurfaceSize(const Size(320, 568));
+    addTearDown(() => t.binding.setSurfaceSize(null));
+    await t.pumpWidget(_app(textScale: 2));
+    final title = find.text('Backgammon Buddy');
+    expect(title, findsOneWidget);
+    final titleWidget = t.widget<Text>(title);
+    final titleWidth = t.getSize(title).width;
+    final measuredTitle = TextPainter(
+      text: TextSpan(text: titleWidget.data, style: titleWidget.style),
+      textDirection: TextDirection.ltr,
+      textScaler: const TextScaler.linear(2),
+    )..layout(maxWidth: titleWidth);
+    expect(measuredTitle.computeLineMetrics().every((line) => line.width <= titleWidth + 0.5), isTrue,
+        reason: 'the full product name wraps within the phone at large text');
+    measuredTitle.dispose();
+    for (final label in [
+      'Learning & practice',
+      'Play vs Computer',
+      'Two Players',
+      'Play with Buddy',
+      'Play Nearby',
+      'Play Online',
+      'History'
+    ]) {
+      final text = find.text(label);
+      await t.ensureVisible(text);
+      await t.pumpAndSettle();
+      expect(text.hitTestable(), findsOneWidget,
+          reason: '$label stays reachable by scrolling');
+      expect(t.takeException(), isNull);
+    }
+    await _tapVisible(t, find.text('Learning & practice'));
+    await t.pumpAndSettle();
+    expect(find.byType(LearningScreen), findsOneWidget);
+    await t
+        .runAsync(() => Future<void>.delayed(const Duration(milliseconds: 30)));
+    await t.pump();
+    expect(t.takeException(), isNull);
   });
 
   group('first impression (phone portrait)', () {
@@ -227,7 +288,7 @@ void main() {
       // The hero: the same painted mark as the launcher icon, above the title.
       expect(find.byType(AppMark), findsOneWidget);
       expect(t.getBottomLeft(find.byType(AppMark)).dy,
-          lessThan(t.getTopLeft(find.text('AI Gammon')).dy));
+          lessThan(t.getTopLeft(find.text('Backgammon Buddy')).dy));
 
       // The version sits in the bottom band, not in the content cluster.
       final footer = find.text('v$appVersion');
@@ -236,14 +297,14 @@ void main() {
 
       // The identity cluster reads in the upper half — the old layout left the
       // whole top of the screen empty.
-      expect(t.getTopLeft(find.byType(AppMark)).dy,
-          lessThan(phone.height * 0.35));
+      expect(
+          t.getTopLeft(find.byType(AppMark)).dy, lessThan(phone.height * 0.35));
     });
 
     testWidgets('setup form starts under the app bar, not mid-screen',
         (t) async {
       await pumpPhone(t);
-      await t.tap(find.text('Play vs Computer'));
+      await _tapVisible(t, find.text('Play vs Computer'));
       await t.pumpAndSettle();
 
       // App bar is 56 tall; with the form's 16pt top padding the first caption
@@ -252,13 +313,14 @@ void main() {
     });
   });
 
-  testWidgets('vs computer: Start builds a controller and the match runs to a '
+  testWidgets(
+      'vs computer: Start builds a controller and the match runs to a '
       'human roll gate', (t) async {
     await t.binding.setSurfaceSize(_surface);
     addTearDown(() => t.binding.setSurfaceSize(null));
 
     await t.pumpWidget(_app());
-    await t.tap(find.text('Play vs Computer'));
+    await _tapVisible(t, find.text('Play vs Computer'));
     await t.pumpAndSettle();
 
     // A 1-point match keeps the run short (single, Crawford game).
@@ -280,7 +342,7 @@ void main() {
     addTearDown(() => t.binding.setSurfaceSize(null));
 
     await t.pumpWidget(_app());
-    await t.tap(find.text('Play vs Computer'));
+    await _tapVisible(t, find.text('Play vs Computer'));
     await t.pumpAndSettle();
 
     await t.tap(find.text('1'));
@@ -316,7 +378,7 @@ void main() {
     addTearDown(() => t.binding.setSurfaceSize(null));
 
     await t.pumpWidget(_app());
-    await t.tap(find.text('Two Players'));
+    await _tapVisible(t, find.text('Two Players'));
     await t.pumpAndSettle();
 
     await t.tap(find.text('Start match'));
@@ -339,9 +401,9 @@ void main() {
       .value;
 
   group('tutor toggle', () {
-    testWidgets('vs-computer easy defaults ON, expert defaults OFF', (t) async {
+    testWidgets('vs-computer tutoring stays ON at every difficulty', (t) async {
       await t.pumpWidget(_app());
-      await t.tap(find.text('Play vs Computer'));
+      await _tapVisible(t, find.text('Play vs Computer'));
       await t.pumpAndSettle();
 
       // Default difficulty is medium -> ON.
@@ -351,39 +413,41 @@ void main() {
       await t.pumpAndSettle();
       expect(tutorSwitchValue(t), isTrue, reason: 'easy -> ON');
 
-      await t.tap(find.text('Expert'));
+      await _tapVisible(t, find.text('Expert'));
       await t.pumpAndSettle();
-      expect(tutorSwitchValue(t), isFalse, reason: 'expert -> OFF');
+      expect(tutorSwitchValue(t), isTrue,
+          reason: 'expert still supports learning');
 
-      await t.tap(find.text('Hard'));
+      await _tapVisible(t, find.text('Hard'));
       await t.pumpAndSettle();
-      expect(tutorSwitchValue(t), isFalse, reason: 'hard -> OFF');
+      expect(tutorSwitchValue(t), isTrue,
+          reason: 'hard still supports learning');
     });
 
     testWidgets('hot-seat defaults OFF', (t) async {
       await t.pumpWidget(_app());
-      await t.tap(find.text('Two Players'));
+      await _tapVisible(t, find.text('Two Players'));
       await t.pumpAndSettle();
       expect(tutorSwitchValue(t), isFalse);
     });
 
     testWidgets('user override is sticky across difficulty changes', (t) async {
       await t.pumpWidget(_app());
-      await t.tap(find.text('Play vs Computer'));
+      await _tapVisible(t, find.text('Play vs Computer'));
       await t.pumpAndSettle();
 
-      // At expert the default is OFF; the user turns it ON.
-      await t.tap(find.text('Expert'));
-      await t.pumpAndSettle();
-      expect(tutorSwitchValue(t), isFalse);
-      await t.tap(find.widgetWithText(SwitchListTile, 'Tutor mode'));
+      // At expert the default is ON; the user deliberately turns it OFF.
+      await _tapVisible(t, find.text('Expert'));
       await t.pumpAndSettle();
       expect(tutorSwitchValue(t), isTrue);
-
-      // Switching to another OFF-default difficulty must NOT reset it.
-      await t.tap(find.text('Hard'));
+      await _tapVisible(t, find.widgetWithText(SwitchListTile, 'Tutor mode'));
       await t.pumpAndSettle();
-      expect(tutorSwitchValue(t), isTrue,
+      expect(tutorSwitchValue(t), isFalse);
+
+      // Switching to another ON-default difficulty must NOT reset the override.
+      await _tapVisible(t, find.text('Hard'));
+      await t.pumpAndSettle();
+      expect(tutorSwitchValue(t), isFalse,
           reason: 'a touched toggle stays authoritative');
     });
   });
@@ -407,7 +471,7 @@ void main() {
       expect(t.getTopLeft(buddy).dy,
           lessThan(t.getTopLeft(find.text('Play Nearby')).dy));
 
-      await t.tap(buddy);
+      await _tapVisible(t, buddy);
       await t.pumpAndSettle();
       expect(find.byType(BuddySetupScreen), findsOneWidget);
     });
@@ -432,7 +496,7 @@ void main() {
 
   testWidgets('back from setup returns to home', (t) async {
     await t.pumpWidget(_app());
-    await t.tap(find.text('Play vs Computer'));
+    await _tapVisible(t, find.text('Play vs Computer'));
     await t.pumpAndSettle();
     expect(find.byType(NewMatchScreen), findsOneWidget);
 

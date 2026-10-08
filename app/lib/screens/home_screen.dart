@@ -7,6 +7,7 @@ import '../branding/app_version.dart';
 import 'buddy/buddy_game_screen.dart';
 import 'buddy/buddy_setup_screen.dart';
 import 'history_screen.dart';
+import 'learning_screen.dart';
 import 'lan_screen.dart';
 import 'new_match_screen.dart';
 import 'online_screen.dart';
@@ -70,22 +71,30 @@ class HomeScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Semantics(
-                            label: 'AI Gammon',
+                            label: 'Backgammon Buddy',
                             child: const AppMark(size: 140),
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            'AI Gammon',
+                            'Backgammon Buddy',
                             style: theme.textTheme.displaySmall,
+                            textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            'Backgammon with a neural-net engine',
+                            'Improve your backgammon, one decision at a time',
                             style: theme.textTheme.titleMedium?.copyWith(
                                 color: theme.colorScheme.onSurfaceVariant),
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 40),
+                          _ModeButton(
+                            label: 'Learning & practice',
+                            icon: Icons.school_outlined,
+                            onPressed: () => Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_) => const LearningScreen())),
+                          ),
+                          const SizedBox(height: 12),
                           _ModeButton(
                             label: 'Play vs Computer',
                             icon: Icons.smart_toy_outlined,

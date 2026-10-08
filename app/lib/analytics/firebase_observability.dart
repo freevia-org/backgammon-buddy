@@ -49,6 +49,8 @@ class Observability {
 /// and the only place the platform guard is applied.** It returns
 /// [Observability.disabled] WITHOUT touching any Firebase symbol when:
 ///
+///  * the user has not opted in, or the current choice was withdrawn;
+///
 ///  * the platform is not Android or iOS ([isFirebaseSupportedPlatform]) — the
 ///    Windows/Linux/macOS case, checked FIRST so no plugin channel is ever
 ///    consulted on a platform whose plugins are not registered;
@@ -68,9 +70,14 @@ class Observability {
 /// failure path is unreachable in a test process without a seam. Production
 /// calls this with neither.
 Future<Observability> initializeObservability({
+  bool consentGranted = false,
+  bool Function()? isConsentCurrent,
   @visibleForTesting FirebaseAppConfig? configOverride,
   @visibleForTesting FirebaseInitializer? initializer,
+  @visibleForTesting Future<void> Function(bool)? collectionSetter,
 }) async {
+  bool allowed() => consentGranted && (isConsentCurrent?.call() ?? true);
+  if (!allowed()) return Observability.disabled;
   if (!isFirebaseSupportedPlatform) return Observability.disabled;
   final config = configOverride ?? FirebaseAppConfig.fromEnvironment();
   if (config == null) return Observability.disabled;
@@ -84,6 +91,16 @@ Future<Observability> initializeObservability({
         projectId: config.projectId,
       ),
     );
+    // The user may withdraw while platform initialization is pending. Never
+    // start collection using the choice captured before that await.
+    if (!allowed()) return Observability.disabled;
+    await (collectionSetter?.call(true) ??
+        setFirebaseCollectionEnabled(true, canEnable: allowed));
+    if (!allowed()) {
+      await (collectionSetter?.call(false) ??
+          setFirebaseCollectionEnabled(false));
+      return Observability.disabled;
+    }
     return Observability(
       analytics: FirebaseAppAnalytics(FirebaseAnalytics.instance),
       performance: FirebaseAppPerformance(FirebasePerformance.instance),
@@ -91,6 +108,9 @@ Future<Observability> initializeObservability({
       isEnabled: true,
     );
   } catch (error, stack) {
+    try {
+      await setFirebaseCollectionEnabled(false);
+    } catch (_) {}
     // Not rethrown — see the doc comment — but not silent either. The
     // on-device log survives a dead telemetry backend and is reachable from
     // the Diagnostics screen and from a "Send feedback" issue, so a broken
@@ -112,6 +132,38 @@ typedef FirebaseInitializer = Future<void> Function(FirebaseOptions options);
 Future<void> _initializeFirebaseApp(FirebaseOptions options) =>
     Firebase.initializeApp(options: options);
 
+/// Native defaults are also off (Android manifest / iOS Info.plist), so plugins
+/// cannot collect before Dart has loaded the user's choice. SDK overrides are
+/// persisted by Firebase; revoke them when the user withdraws consent.
+Future<void> setFirebaseCollectionEnabled(
+  bool enabled, {
+  bool Function()? canEnable,
+}) async {
+  if (!isFirebaseSupportedPlatform || Firebase.apps.isEmpty) return;
+  if (enabled && !(canEnable?.call() ?? true)) return;
+  final analytics = FirebaseAnalytics.instance;
+  Future<void> consent() => analytics.setConsent(
+    analyticsStorageConsentGranted: enabled,
+    adStorageConsentGranted: false,
+    adUserDataConsentGranted: false,
+    adPersonalizationSignalsConsentGranted: false,
+  );
+  if (enabled) await consent();
+  if (enabled && !(canEnable?.call() ?? true)) return;
+  await Future.wait([
+    if (!enabled) consent(),
+    analytics.setAnalyticsCollectionEnabled(enabled),
+    FirebasePerformance.instance.setPerformanceCollectionEnabled(enabled),
+    FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(enabled),
+  ]);
+  if (!enabled) {
+    await Future.wait([
+      analytics.resetAnalyticsData(),
+      FirebaseCrashlytics.instance.deleteUnsentReports(),
+    ]);
+  }
+}
+
 /// [AppAnalytics] over Firebase Analytics.
 class FirebaseAppAnalytics implements AppAnalytics {
   FirebaseAppAnalytics(this._analytics);
@@ -123,16 +175,20 @@ class FirebaseAppAnalytics implements AppAnalytics {
     // Fire-and-forget by design: an analytics write must never make a caller
     // await, and a failed write must never surface. The SDK buffers to disk and
     // uploads on its own schedule, so "await" would only measure the enqueue.
-    unawaited(_analytics
-        .logEvent(name: name, parameters: _sanitize(parameters))
-        .catchError((Object _) {}));
+    unawaited(
+      _analytics
+          .logEvent(name: name, parameters: _sanitize(parameters))
+          .catchError((Object _) {}),
+    );
   }
 
   @override
   void logScreenView(String screenName) {
-    unawaited(_analytics
-        .logScreenView(screenName: screenName)
-        .catchError((Object _) {}));
+    unawaited(
+      _analytics
+          .logScreenView(screenName: screenName)
+          .catchError((Object _) {}),
+    );
   }
 
   /// Firebase accepts only `String` and `num` parameter values, and rejects the
@@ -278,9 +334,11 @@ class FirebaseAppCrashReporter implements AppCrashReporter {
       // crash-free-users metric. Genuine process-killing crashes are the
       // native layer's business — see the class doc for what captures those
       // and how far the reports get symbolicated.
-      unawaited(_crashlytics
-          .recordError(error, stack, reason: reason, fatal: false)
-          .catchError((Object _) {}));
+      unawaited(
+        _crashlytics
+            .recordError(error, stack, reason: reason, fatal: false)
+            .catchError((Object _) {}),
+      );
     } catch (_) {
       // A reporter that throws while reporting turns one bug into two.
     }

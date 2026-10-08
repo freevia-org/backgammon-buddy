@@ -7,6 +7,27 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  test(
+    'native transitive notices and model terms are available offline',
+    () async {
+      final entries = await additionalNativeLicenses().toList();
+      expect(entries, hasLength(3));
+      final text = entries
+          .expand((e) => e.paragraphs)
+          .map((p) => p.text)
+          .join('\n');
+      expect(text, contains('dyn-eq 0.1.3'));
+      expect(text, contains('Mozilla Public License'));
+      expect(text, contains('CC0'));
+      expect(text, contains('by Neil Kazaross 2011.'));
+      expect(text, contains('permission notice are preserved.'));
+      final source = await rootBundle.load(
+        'assets/licenses/dyn-eq-0.1.3-source.tar.gz',
+      );
+      expect(source.lengthInBytes, greaterThan(0));
+    },
+  );
+
   test('bundled native licenses preserve the upstream texts exactly', () async {
     for (final name in ['MIT', 'APACHE']) {
       final bundled = await rootBundle.load(

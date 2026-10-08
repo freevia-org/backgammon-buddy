@@ -11,6 +11,7 @@ import '../../analytics/analytics_screen_view.dart';
 import '../../analytics/app_analytics.dart';
 import '../../board/board_view.dart';
 import '../../buddy/buddy_policy.dart';
+import '../../buddy/buddy_coach.dart';
 import '../../buddy/buddy_session.dart';
 import '../../buddy/camera_frame_source.dart';
 import '../../buddy/dice_sound_trigger.dart';
@@ -24,6 +25,7 @@ import '../../engine/engine_provider.dart';
 import '../../game/game_controller.dart';
 import '../../game/game_record.dart';
 import '../../game/player_agent.dart';
+import '../../tutor/tutor_service.dart';
 import '../game/tap_when_disabled.dart';
 import 'buddy_setup_screen.dart';
 import 'calibration_screen.dart';
@@ -196,6 +198,7 @@ class _BuddyGameScreenState extends ConsumerState<BuddyGameScreen>
   BuddyCamera get lifecycleCamera => _camera;
   late final BuddySpeaker _speaker;
   late final BuddySession _session;
+  BuddyCoach? _coach;
   final BoardEntryController _entry = BoardEntryController();
 
   /// Read once in [initState] rather than through `ref` at the call site,
@@ -243,6 +246,12 @@ class _BuddyGameScreenState extends ConsumerState<BuddyGameScreen>
       engine: ref.read(buddyTtsProvider),
       phrasing: widget.setup.phrasing,
     );
+    final preferences = ref.read(settingsProvider).valueOrNull ?? AppSettings.defaults;
+    if (preferences.tutorOverride != false) {
+      _coach = BuddyCoach(tutor: TutorService(ref.read(engineFacadeProvider)),
+        options: preferences.tutorOptions, speaker: _speaker,
+        userSide: widget.setup.userSide);
+    }
     final repo = ref.read(matchRepositoryProvider);
     final buddyType = 'ai:${widget.setup.difficulty.name}';
     final matchId = repo.startMatch(
@@ -250,6 +259,7 @@ class _BuddyGameScreenState extends ConsumerState<BuddyGameScreen>
       mode: 'buddy',
       whiteType: widget.setup.buddySide == Player.white ? buddyType : 'human',
       blackType: widget.setup.buddySide == Player.black ? buddyType : 'human',
+      cubeless: widget.setup.cubeless,
     );
     _session = BuddySession(
       engine: AiAgent(ref.read(engineFacadeProvider), widget.setup.difficulty),
@@ -318,6 +328,7 @@ class _BuddyGameScreenState extends ConsumerState<BuddyGameScreen>
       unawaited(_mic?.stop());
     }
     _session.dispose();
+    _coach?.dispose();
     _entry.dispose();
     unawaited(_speaker.dispose());
     // The camera's hold went back at the top of this method, through
@@ -329,6 +340,7 @@ class _BuddyGameScreenState extends ConsumerState<BuddyGameScreen>
   }
 
   void _onChange() {
+    _coach?.sync(_controller);
     if (mounted) setState(() {});
     _syncMic();
   }

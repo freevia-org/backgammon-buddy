@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../buddy/phrasing.dart' show BuddyPhrasing;
 import '../diagnostics/crash_log.dart';
+import '../tutor/coaching.dart';
 import 'app_settings.dart';
 import 'database.dart';
 
@@ -27,6 +28,21 @@ class SettingsRepository {
   /// Upserts row 1 with [settings]. Enums persist by their `.name`.
   Future<void> save(AppSettings settings) async {
     await db.into(db.settings).insertOnConflictUpdate(_toCompanion(settings));
+  }
+
+  Future<void> setTelemetryEnabled(bool enabled) async {
+    await (db.update(db.settings)..where((t) => t.id.equals(1)))
+        .write(SettingsCompanion(telemetryEnabled: Value(enabled)));
+  }
+
+  Future<void> setTutorOptions(TutorOptions options) async {
+    await (db.update(db.settings)..where((t) => t.id.equals(1))).write(
+      SettingsCompanion(tutorBestMoves: Value(options.bestMoves),
+        tutorExplanations: Value(options.explanations),
+        tutorCommentary: Value(options.commentary),
+        tutorCubeAdvice: Value(options.cubeAdvice),
+        tutorTryFirst: Value(options.tryFirst)),
+    );
   }
 
   /// Latches the microphone hint OFF because the operating system refused it,
@@ -80,6 +96,10 @@ class SettingsRepository {
         dragHintShown: row.dragHintShown,
         buddyPhrasing: _phrasingFromName(row.buddyPhrasing),
         buddyMicHint: row.buddyMicHint,
+        tutorOptions: TutorOptions(bestMoves: row.tutorBestMoves,
+          explanations: row.tutorExplanations, commentary: row.tutorCommentary,
+          cubeAdvice: row.tutorCubeAdvice, tryFirst: row.tutorTryFirst),
+        telemetryEnabled: row.telemetryEnabled,
       );
 
   static SettingsCompanion _toCompanion(AppSettings s) => SettingsCompanion(
@@ -99,6 +119,12 @@ class SettingsRepository {
         dragHintShown: Value(s.dragHintShown),
         buddyPhrasing: Value(s.buddyPhrasing.name),
         buddyMicHint: Value(s.buddyMicHint),
+        tutorBestMoves: Value(s.tutorOptions.bestMoves),
+        tutorExplanations: Value(s.tutorOptions.explanations),
+        tutorCommentary: Value(s.tutorOptions.commentary),
+        tutorCubeAdvice: Value(s.tutorOptions.cubeAdvice),
+        tutorTryFirst: Value(s.tutorOptions.tryFirst),
+        telemetryEnabled: Value(s.telemetryEnabled),
       );
 
   // --- Enum <-> string codecs (tolerant of unknown values) -------------------
