@@ -335,6 +335,8 @@ worth doing once tagging has actually been in use for a few releases.
 
 ## Licensing
 
+Freevia's original code is available under the [MIT License](LICENSE).
+Third-party code, models and data retain their own licenses and notices.
 The vendored **wildbg** engine (and the `engine_shim` copy of its `wildbg-c`
-crate) is dual-licensed **MIT OR Apache-2.0**; **this repository's own license is
-not yet chosen — TODO for the owner.**
+crate) is dual-licensed **MIT OR Apache-2.0**. See the
+[native dependency and model notices](native/licenses/README.md).
