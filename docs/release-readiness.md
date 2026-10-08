@@ -154,9 +154,14 @@ are separate checks. The RELRO requirement is documented by
 it was not relaxed to make the failed build pass. Local NDK27.2 builds of the
 actual JNI C sources end RELRO at `0x25000` with only `max-page-size`, and at
 `0x28000` with the added `common-page-size` flag. Both have 16 KB LOAD alignment.
-Eight Python release tests now include this distinction. Local Gradle caches do
-not contain the project's exact wrapper/plugin combination; CI must validate the
-final Android integration.
+Eight Python release tests now include this distinction. An isolated probe using
+the exact AGP 9.0.1 with the installed Gradle 9.5 confirmed the final JNI CMake
+argument contains the flag, while an unrelated library receives no override.
+The upstream JNI CMake build also passed locally with the added flag; generated
+commands retain build-id, no-undefined and gc-sections linker flags plus FORTIFY
+and stack protection, and the result retains GNU_RELRO and BIND_NOW. The helper
+uses an explicit Android extension lookup. The full project with its Gradle 9.1
+wrapper, NDK28.2 and packaged APKs still requires the pending CI rebuild.
 
 ## Verification limits of this round
 

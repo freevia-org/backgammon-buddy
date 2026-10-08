@@ -170,9 +170,12 @@ Signing/export/distribution steps were skipped. The
 [Android build](https://github.com/freevia-org/backgammon-buddy/actions/runs/37841351028)
 compiled both native ABIs and APKs but failed artifact preflight on JNI RELRO
 alignment, before artifact upload. The scoped fix reproduces/passes locally with
-the real dependency sources; an exact-workflow rebuild must still pass the
-unchanged ELF and ZIP gates. See [release readiness](release-readiness.md) for
-artifact details and the linker evidence.
+the real dependency sources. An isolated exact-AGP-9.0.1 probe confirmed the
+CMake argument reaches JNI alone, and an actual upstream CMake build passed the
+ELF checks while retaining its hardening/link flags, GNU_RELRO and BIND_NOW.
+The probe used installed Gradle 9.5 and NDK27.2; an exact-workflow rebuild must
+still pass the unchanged ELF and ZIP gates. See
+[release readiness](release-readiness.md) for artifact details and linker evidence.
 
 Signed mobile acceptance, physical-device permission flows, 16 KB device testing,
 deployed-backend acceptance and store submission remain unperformed.
