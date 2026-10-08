@@ -62,8 +62,10 @@ class PrivacyScreen extends ConsumerWidget {
                   'cleanup removes their cloud logs. Match records are stored '
                   'in the EU; Firebase Authentication processes sign-in data '
                   'in the United States. '
+                  'Online connections to Google use encryption in transit. '
                   'Nearby play exchanges match information with the other '
-                  'device on your local network.',
+                  'device over an unencrypted local connection; use trusted '
+                  'Wi-Fi.',
             ),
             const _OnlineDeletionSection(),
             const _PrivacySection(
@@ -92,9 +94,9 @@ class PrivacyScreen extends ConsumerWidget {
               title: 'Feedback you choose to send',
               text:
                   'Feedback opens a GitHub issue draft for you to review. '
-                  'The draft includes the app version and platform; feedback '
-                  'from Diagnostics may include error details. Nothing is '
-                  'submitted until you submit the issue. Posted issues may be '
+                  'Opening the draft sends its app version and platform to '
+                  'GitHub; feedback from Diagnostics may also send error '
+                  'details. No issue is posted until you submit it. Issues may be '
                   'public, so remove private information before sending.',
             ),
             if (privacyContact.isNotEmpty)

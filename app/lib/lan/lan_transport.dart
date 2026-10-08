@@ -137,17 +137,10 @@ class LiveNearbyTransport implements NearbyTransport {
   final LanTimings timings;
 
   @override
-  String get deviceName {
-    try {
-      final host = Platform.localHostname.trim();
-      // Rune-safe (a hostname can carry non-ASCII): see [truncateForDisplay].
-      if (host.isNotEmpty) return truncateForDisplay(host, 32);
-    } catch (_) {
-      // Some platforms refuse the hostname; a generic label still identifies
-      // the device well enough for a room with two phones in it.
-    }
-    return 'Backgammon Buddy device';
-  }
+  // A hostname can contain a person's name. Discovery is visible to nearby
+  // devices, so use an app label rather than silently exposing the OS name.
+  // Peers are distinguished by address/port and paired by the room code.
+  String get deviceName => 'Backgammon Buddy device';
 
   @override
   Future<HostSession> startHosting({
