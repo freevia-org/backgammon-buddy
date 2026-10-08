@@ -56,12 +56,13 @@ See the [code review](code-review-2026-10-08.md) for code fixes and test results
   APK ZIP alignment. CI retains native engine symbols and signed iOS dSYMs.
 - Offline preflight validates Cargo/model/license hashes and has focused tests
   for malformed/alignment-failing ELF, profile mismatches and build-number input.
-- The first Android artifact check caught a separate GNU_RELRO alignment failure
-  in `jni` 1.0.0's `libdartjni.so`. An app-owned Gradle hook now adds the missing
-  `common-page-size=16384` linker flag only to `:jni`, retaining upstream's
-  `max-page-size=16384` and all artifact checks. The actual dependency's C sources
-  reproduce the failure and pass with both flags locally. Exact-workflow rebuild
-  acceptance is pending; no dependency or Pub-cache source was patched.
+- Android artifact checks now distinguish an unsafe RELRO prefix from a complete
+  read/write LOAD protected by RELRO. The initial unconditional end-alignment rule
+  rejected safe JNI and DataStore layouts; no native runtime failure was
+  demonstrated. The unnecessary JNI linker workaround was removed. The corrected
+  validator rejects rounded protection that overlaps other writable/executable
+  LOADs and reports every library failure plus ZIP errors in one run. Full APK
+  validation with the corrected check is pending.
 
 ## Outstanding release gates
 
@@ -69,7 +70,7 @@ See the [code review](code-review-2026-10-08.md) for code fixes and test results
 |---|---|---|
 | P1 | Cloud policy decisions and store disclosures | In-app controls, existing Freevia contacts and the public policy are available (live HTTP200 verified). Define cloud retention and an administrative deletion process, verify Firebase settings, and complete Play Data safety / Apple App Privacy from the signed binary. See [disclosure worksheet](store-disclosures.md). |
 | P1 | Platform-native license/privacy inventory | Rust/model/table notices are bundled with source evidence. Inspect actual Android/iOS native SDK dependencies and privacy manifests after building; Flutter's Dart registry and Rust inventory do not establish every platform SDK notice. |
-| P1 | Android diagnostic artifact validation | The first ARMv7/ARM64 build compiled successfully but failed the ARM64 `libdartjni.so` RELRO gate. Rebuild with the scoped JNI linker fix and require every ELF and APK ZIP check to pass before accepting artifacts. |
+| P1 | Android diagnostic artifact validation | Both ARMv7/ARM64 builds compiled successfully, but the initial RELRO validator rejected safe complete-LOAD layouts. Rebuild with the corrected layout-aware validator and require every ELF and APK ZIP check to pass before accepting artifacts. |
 | P1 | Signed Android acceptance | Run the updated workflow; verify signing certificate, version code, bundled nets/engine, merged permissions/features, and installation plus update over the previous tester release. Build the AAB option and inspect the resulting bundle before submission. Existing secrets and account access are unverified, not assumed absent. |
 | P1 | iOS store artifact | Both ad-hoc and App Store export-only paths are implemented; neither a signed store profile/export nor App Store Connect validation was exercised here. Verify selected Xcode/SDK, static engine symbols, device startup and archive privacy report. |
 | P1 | Real-device tutor and Buddy acceptance | Complete the [Buddy protocol](buddy-mode-test-protocol.md) and the tutor smoke checks below on Android and iOS. CI cannot certify camera, microphone, local-network prompts, thermal load, lifecycle behavior, or speech. Camera dice recognition remains experimental: typed dice are the supported path. |
@@ -140,28 +141,31 @@ draft was cross-checked against current code, including reset-practice behavior.
 ## Remote build evidence
 
 The following automatic runs target software revision
-[`c7b5b9f`](https://github.com/freevia-org/backgammon-buddy/commit/c7b5b9fd72bc6b84a2fb53fde4ce857f9b65624c):
+[`6f84c741`](https://github.com/freevia-org/backgammon-buddy/commit/6f84c7414273cbac3a9d26ff99bc762037674798):
 
 | Run | Verified result |
 |---|---|
-| [CI 37840461766](https://github.com/freevia-org/backgammon-buddy/actions/runs/37840461766) | All 10 jobs passed, including Windows goldens, real-engine app tests and Firestore emulator rules/transport/widget E2E jobs. |
-| [iOS 37841351114](https://github.com/freevia-org/backgammon-buddy/actions/runs/37841351114) | ARM64 Rust engine and unsigned Flutter Runner built successfully. Uploaded `aigammon-ios-unsigned` (18,191,157 bytes) and `aigammon-symbols-ios-2` (1,517,106 bytes). Signed IPA/export/distribution steps were skipped. This is compilation evidence, not a signed archive or device acceptance. |
-| [Android 37841351028](https://github.com/freevia-org/backgammon-buddy/actions/runs/37841351028) | Both Rust ABIs and release APKs compiled; provenance passed. Artifact preflight rejected ARM64 `libdartjni.so` because its GNU_RELRO end was not 16 KB aligned. No APK/symbol upload or distribution occurred. The local correction above awaits an exact-workflow rebuild. |
+| [CI 37845257034](https://github.com/freevia-org/backgammon-buddy/actions/runs/37845257034) | All 10 jobs passed, including Windows goldens, real-engine app tests and Firestore emulator rules/transport/widget E2E jobs. |
+| [iOS 37845799818](https://github.com/freevia-org/backgammon-buddy/actions/runs/37845799818) | ARM64 Rust engine and unsigned Flutter Runner built successfully. Uploaded `aigammon-ios-unsigned` (18,190,530 bytes) and `aigammon-symbols-ios-4` (1,517,106 bytes). Signed IPA/export/distribution steps were skipped. This is compilation evidence, not a signed archive or device acceptance. |
+| [Android 37845799838](https://github.com/freevia-org/backgammon-buddy/actions/runs/37845799838) | Both Rust ABIs and release APKs compiled; provenance passed. Artifact preflight rejected ARM64 `libdatastore_shared_counter.so` at RELRO end `0x6000`. This was a false positive from the unconditional end-alignment rule. No APK/symbol upload or distribution occurred; a corrected-validator rebuild is pending. |
 
-LOAD alignment/address congruence, GNU_RELRO end alignment, and APK ZIP alignment
-are separate checks. The RELRO requirement is documented by
-[Android's compatibility guidance](https://developer.android.com/guide/practices/page-sizes#check_the_relro_security_flag);
-it was not relaxed to make the failed build pass. Local NDK27.2 builds of the
-actual JNI C sources end RELRO at `0x25000` with only `max-page-size`, and at
-`0x28000` with the added `common-page-size` flag. Both have 16 KB LOAD alignment.
-Eight Python release tests now include this distinction. An isolated probe using
-the exact AGP 9.0.1 with the installed Gradle 9.5 confirmed the final JNI CMake
-argument contains the flag, while an unrelated library receives no override.
-The upstream JNI CMake build also passed locally with the added flag; generated
-commands retain build-id, no-undefined and gc-sections linker flags plus FORTIFY
-and stack protection, and the result retains GNU_RELRO and BIND_NOW. The helper
-uses an explicit Android extension lookup. The full project with its Gradle 9.1
-wrapper, NDK28.2 and packaged APKs still requires the pending CI rebuild.
+LOAD alignment/address congruence, RELRO protection and APK ZIP alignment are
+separate checks. Android's guide warns about an unaligned RELRO end protecting
+writable data. The loader's precise behavior also allows a complete LOAD to be
+protected without an aligned RELRO end: Android 15 rounds the protection range,
+and current AOSP explicitly exempts complete-LOAD layouts from the extra end
+alignment check. The validator's narrow exception additionally requires an
+RW/non-executable owner and no other writable/executable LOAD in the rounded
+range. It does not enable compatibility mode, disable RELRO, or exempt a library
+by name. [Android guidance](https://developer.android.com/guide/practices/page-sizes#check_the_relro_security_flag),
+[Android 15 loader](https://android.googlesource.com/platform/bionic/+/refs/tags/android-15.0.0_r1/linker/linker_phdr.cpp#1062),
+[AOSP complete-LOAD rule](https://android.googlesource.com/platform/bionic/+/android16-qpr2-release/linker/linker_phdr_16kib_compat.cpp#427).
+
+Eighteen Python release tests cover unsafe prefixes, rounded RW/RX overlaps,
+malformed headers, multiple simultaneous library/ZIP failures, ABI/engine
+presence, signing profiles and build numbers. Original JNI, DataStore 1.1.7 and
+CameraX 1.6.1 binaries pass the corrected rule. Dependencies remain unchanged;
+the full project's packaged APKs still require the pending CI rebuild.
 
 ## Verification limits of this round
 

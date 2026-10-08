@@ -61,7 +61,7 @@ remedy, rather than treating these as remaining failures.
 
 | Severity | Finding and remedy | Source |
 |---|---|---|
-| P2 | The first Android artifact build found `jni` 1.0.0's `libdartjni.so` had 16 KB LOAD alignment but an unaligned GNU_RELRO end. A scoped app-owned Gradle hook adds `common-page-size=16384` alongside the dependency's existing max-page-size flag. Actual-source native reproduction and new RELRO fixtures pass; the rebuilt APK remains subject to the unchanged artifact gate in CI. | [JNI linker adjustment](../app/android/jni-page-size.gradle), [artifact validator](../tool/release_preflight.py) |
+| P2 | The new Android preflight initially rejected safe complete-LOAD RELRO layouts in JNI and DataStore. The validator now follows Android loader semantics with a narrow complete-RW-LOAD exception and rejects rounded protection over other writable/executable data. All library/ZIP failures are reported together. The unnecessary JNI Gradle workaround was removed; no native runtime failure was demonstrated. | [artifact validator](../tool/release_preflight.py), [regressions](../tool/test_release_tools.py) |
 | P2 | The configured iOS tester upload used a Docker action on a macOS runner, where container actions cannot run. It now uses exact-pinned Firebase CLI with temporary ADC credentials and cleanup; signing/ad-hoc gates are unchanged. | [iOS workflow](../.github/workflows/ios.yml), [workflow guide](../.github/workflows/README.md) |
 | P1 | Configured mobile SDKs collected without an explicit in-app choice. Native defaults are now off, consent persists, forwarding is gated, and generation-aware initialization prevents delayed enable after withdrawal. | [telemetry controller](../app/lib/analytics/telemetry_controller.dart), [Firebase initialization](../app/lib/analytics/firebase_observability.dart), [privacy controls](../app/lib/privacy/privacy_settings_section.dart) |
 | P2 | Game history and score were separate writes. Completed game/score/completion now commit atomically; practice/source deletion is transactional and migration tested. | [MatchRepository](../app/lib/data/match_repository.dart), [practice persistence](../app/lib/data/practice_repository.dart) |
@@ -102,7 +102,7 @@ remedy, rather than treating these as remaining failures.
 - The public privacy/contact gate is satisfied by the live Freevia pages. Mobile
   store release still needs dependency native SDK manifests/notices, signed
   artifacts, service retention decisions and real-device acceptance. The first
-  Android artifact's JNI alignment failure also requires a passing rebuild.
+  Android artifact validation also requires a passing corrected-validator rebuild.
   Android bundles and optional iOS App Store exports
   prepare artifacts only; they do not submit a release.
 - Buddy's camera dice reader is not reliable enough to advertise automatic dice
@@ -117,8 +117,8 @@ inventory, verified official store guidance and candidate acceptance sequence.
 
 Final integrated completion checks include 21 focused privacy/consent/Settings
 tests, 10 Freevia-feedback tests, 6 license/workflow tests and 7 MET tests; these
-overlap the full suites below. Eight Python artifact/profile/build-number tests
-passed, including the subsequent RELRO regressions. Native notices regenerate deterministically offline and provenance
+overlap the full suites below. Eighteen Python artifact/profile/build-number tests
+passed, including the subsequent RELRO/aggregate-diagnostic regressions. Native notices regenerate deterministically offline and provenance
 checks pass for 119 Rust components and both production models.
 
 The coordinating agent ran `dart analyze --fatal-infos` successfully for all six
@@ -159,23 +159,23 @@ the **2,294** package/Flutter test count above; it is evidence of desktop runtim
 operation, not mobile signing or clean-machine installer acceptance.
 
 Remote validation at
-[`c7b5b9f`](https://github.com/freevia-org/backgammon-buddy/commit/c7b5b9fd72bc6b84a2fb53fde4ce857f9b65624c)
-then passed [all 10 CI jobs](https://github.com/freevia-org/backgammon-buddy/actions/runs/37840461766),
+[`6f84c741`](https://github.com/freevia-org/backgammon-buddy/commit/6f84c7414273cbac3a9d26ff99bc762037674798)
+then passed [all 10 CI jobs](https://github.com/freevia-org/backgammon-buddy/actions/runs/37845257034),
 including Firestore emulator rules/transport/widget E2E tests. These cloud runs
 are separate evidence and are not added to the local **2,294** total.
 
-The [iOS build](https://github.com/freevia-org/backgammon-buddy/actions/runs/37841351114)
+The [iOS build](https://github.com/freevia-org/backgammon-buddy/actions/runs/37845799818)
 passed with the ARM64 native engine, unsigned Runner and Dart-symbol artifacts.
 Signing/export/distribution steps were skipped. The
-[Android build](https://github.com/freevia-org/backgammon-buddy/actions/runs/37841351028)
-compiled both native ABIs and APKs but failed artifact preflight on JNI RELRO
-alignment, before artifact upload. The scoped fix reproduces/passes locally with
-the real dependency sources. An isolated exact-AGP-9.0.1 probe confirmed the
-CMake argument reaches JNI alone, and an actual upstream CMake build passed the
-ELF checks while retaining its hardening/link flags, GNU_RELRO and BIND_NOW.
-The probe used installed Gradle 9.5 and NDK27.2; an exact-workflow rebuild must
-still pass the unchanged ELF and ZIP gates. See
-[release readiness](release-readiness.md) for artifact details and linker evidence.
+[Android build](https://github.com/freevia-org/backgammon-buddy/actions/runs/37845799838)
+compiled both native ABIs and APKs but failed artifact preflight on DataStore's
+complete-LOAD RELRO layout, before artifact upload. Android 15 and current AOSP
+source show that this layout is safe when rounded protection contains no other
+writable/executable bytes. Original JNI and official DataStore/CameraX binaries
+pass the corrected validator, while unsafe-prefix and permission-overlap
+regressions fail as required. The temporary JNI linker adjustment was unnecessary
+and removed. A fresh workflow must still validate the packaged APKs with the
+corrected gate. See [release readiness](release-readiness.md) for details.
 
 Signed mobile acceptance, physical-device permission flows, 16 KB device testing,
 deployed-backend acceptance and store submission remain unperformed.
