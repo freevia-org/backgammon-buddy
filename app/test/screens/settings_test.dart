@@ -80,6 +80,24 @@ void main() {
         findsOneWidget);
   });
 
+  testWidgets('About opens the Flutter licenses page', (t) async {
+    await t.pumpWidget(_app());
+    _feed.add(AppSettings.defaults);
+    await t.pumpAndSettle();
+
+    final licenses = find.text('Open-source licenses');
+    await t.ensureVisible(licenses);
+    await t.pumpAndSettle();
+    await t.tap(licenses);
+    await t.pumpAndSettle();
+    expect(find.byType(LicensePage), findsOneWidget);
+    expect(t.takeException(), isNull);
+
+    // Dispose the route before its asynchronous license list finishes loading.
+    await t.pumpWidget(const SizedBox.shrink());
+    await t.pumpAndSettle();
+  });
+
   testWidgets('the Buddy phrasing default is terse and autosaves', (t) async {
     await t.binding.setSurfaceSize(const Size(600, 2400));
     addTearDown(() => t.binding.setSurfaceSize(null));

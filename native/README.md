@@ -96,15 +96,16 @@ cargo build --package wildbg-c --release
 > `cargo build --package wildbg-c --release` completes (~2.5 min cold). A full
 > MSVC Build Tools install would also work for the `-msvc` target.
 
-## Cube advice: money game only
+## Cube advice: raw engine and app adapter
 
 wildbg's `cube_info(position)` implements the Janowski cube formulas (including
 too-good-to-double) but takes **no away scores** — its advice assumes a money
 game. Only `best_move` is match-aware (via `BgConfig { x_away, o_away }`).
-Consequently `engine_bindings`' `CubeAdvice` ignores match context; if the
-tutor needs cube advice at a match score (score-dependent take points,
-Crawford), a Dart Janowski + match-equity-table adapter must be built then.
-Recorded in the engine-integration plan's deferred list.
+Consequently the raw `CubeAdvice` ignores match context. The app's tutor uses
+`engine_bindings`' `MatchCubeAdvisor` instead: a Dart Janowski + match-equity-table
+adapter that handles away scores and Crawford. Checker ranking in the app still
+uses cubeless evaluation; do not infer score-aware checker advice from the cube
+adapter's presence.
 
 ## Build matrix
 
@@ -174,9 +175,10 @@ the first fix to try is adding `-lc++` (and, if a symbol like `res_9_init` shows
 up, `-lresolv`) to the same `OTHER_LDFLAGS` line. libSystem is linked
 automatically and needs no flag.
 
-**Deployment target.** The scaffold's `IPHONEOS_DEPLOYMENT_TARGET` is Flutter's
-default `13.0`, which is fine for the Rust staticlib (`aarch64-apple-ios`
-defaults below that) — left unchanged.
+**Deployment target.** `Runner.xcodeproj/project.pbxproj` sets
+`IPHONEOS_DEPLOYMENT_TARGET` to **15.0**. This is the minimum supported device OS,
+not the SDK version used to compile an App Store submission; verify both in the
+[release checklist](../docs/release-readiness.md).
 
 
 ---
@@ -190,15 +192,9 @@ discovery. No plugin is involved in the networking itself — only
 
 ### Android
 
-**No manifest change is needed for the LAN feature.**
-
-- `INTERNET` is what binding a socket and connecting to one requires, and it is
-  already present: Flutter's tooling merges it in from
-  `android/app/src/{debug,profile}/AndroidManifest.xml` for those variants, and
-  the Play-published release variant gets it from the merged manifest of the
-  plugins the app already depends on. If a future release build ever fails to
-  open a socket, add `<uses-permission android:name="android.permission.INTERNET"/>`
-  to `android/app/src/main/AndroidManifest.xml` — that is the single fix.
+- `INTERNET` is required for binding and connecting sockets. It is declared
+  explicitly in `app/android/app/src/main/AndroidManifest.xml` so release builds
+  carry it too; the debug/profile manifests alone would not cover release.
 - **UDP broadcast needs no permission at all.** `CHANGE_WIFI_MULTICAST_STATE`
   (and a `WifiManager.MulticastLock`) is required only for **multicast** and for
   receiving *subnet-directed* broadcasts on some older devices; AIGammon's

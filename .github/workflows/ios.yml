@@ -25,9 +25,14 @@ jobs:
     # release compiles (unsigned, then the signed archive) plus an xcodebuild
     # archive/export. Generous by design.
     timeout-minutes: 60
+    # A PR head named master satisfies branches above. Only trusted repository
+    # pushes may enter this automatic job, which can access signing secrets.
     if: >-
       github.event_name == 'workflow_dispatch' ||
-      github.event.workflow_run.conclusion == 'success'
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_branch == 'master' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
     steps:
       - uses: actions/checkout@v4
         with:
@@ -67,6 +72,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: 3.44.8
 
       - name: Flutter pub get
         working-directory: app

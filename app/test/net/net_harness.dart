@@ -36,6 +36,7 @@ class RecordingPersistence implements MatchPersistence {
   int matchFinishedCalls = 0;
   MatchState? finalState;
   int throwOnGame = -1;
+  Future<void>? gameWriteGate;
 
   @override
   Future<void> onGameFinished({
@@ -45,6 +46,7 @@ class RecordingPersistence implements MatchPersistence {
     required GameResult result,
     required MatchState matchAfter,
   }) async {
+    await gameWriteGate;
     if (gameNumber == throwOnGame) {
       throw StateError('scripted persistence failure');
     }

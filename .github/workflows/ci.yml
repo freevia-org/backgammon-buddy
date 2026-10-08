@@ -155,6 +155,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: 3.44.8
           cache: true
       - run: flutter pub get
         working-directory: app
@@ -177,7 +178,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
-          # Pinned, unlike the other two `flutter-action` uses in this file: the
+          # Same pin as app tests and distribution builds. The
           # golden comparisons below are a byte-for-byte PNG match with zero
           # tolerance, so a stable-channel Skia/text-rendering change on an
           # unpinned SDK would redden this job with nothing in the repo having
@@ -263,6 +264,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: 3.44.8
           cache: true
       - uses: actions/cache@v4
         with:

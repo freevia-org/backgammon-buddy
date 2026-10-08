@@ -16,6 +16,8 @@ import '../engine/engine_provider.dart';
 import '../game/game_controller.dart';
 import '../game/player_agent.dart';
 import '../tutor/tutor_service.dart';
+import '../tutor/coaching.dart';
+import '../tutor/coaching_widgets.dart';
 import 'game_screen.dart';
 import 'setup_options.dart';
 
@@ -55,6 +57,7 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
   /// starts forced on/off and no longer auto-tracks difficulty.
   late bool _tutorEnabled;
   bool _tutorTouched = false;
+  TutorOptions _tutorOptions = const TutorOptions();
 
   /// The settings tutor override (null = use the per-mode default). Captured in
   /// [initState] so difficulty changes only re-derive the default when unset.
@@ -152,13 +155,28 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
                       contentPadding: EdgeInsets.zero,
                       title: const Text('Tutor mode'),
                       subtitle: const Text(
-                          'Live hints, move marks, and cube advice'),
+                        'Learn with hints, explanations, and game commentary',
+                      ),
                       value: _tutorEnabled,
                       onChanged: (v) => setState(() {
                         _tutorEnabled = v;
                         _tutorTouched = true;
                       }),
                     ),
+                    if (_tutorEnabled)
+                      ExpansionTile(
+                        tilePadding: EdgeInsets.zero,
+                        title: const Text('Tutoring options'),
+                        subtitle: const Text(
+                          'For this match; adjustable during play',
+                        ),
+                        children: [
+                          TutorOptionControls(
+                            options: _tutorOptions,
+                            onChanged: (v) => setState(() => _tutorOptions = v),
+                          ),
+                        ],
+                      ),
                     CubelessSwitch(
                       value: _cubeless,
                       onChanged: (v) => setState(() => _cubeless = v),
@@ -215,6 +233,7 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
           controller: controller,
           orientation: orientation,
           tutor: tutor,
+          tutorOptions: _tutorOptions,
           analytics: ref.read(appAnalyticsProvider),
           analyticsMode: mode,
           // The header's detail row names the level you chose ("vs AI · Easy ·

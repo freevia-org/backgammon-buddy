@@ -42,7 +42,9 @@ class MoveAnalysis {
 /// [blunderCount]) do their own per-player filtering.
 class GameAnalysis {
   /// Serialized JSON schema version, so a future format change is detectable.
-  static const int version = 1;
+  // v1 could cache a false Best verdict when the engine omitted a ranking.
+  // Recompute those results under the stricter assessment contract.
+  static const int version = 2;
 
   final List<MoveAnalysis> moves;
 

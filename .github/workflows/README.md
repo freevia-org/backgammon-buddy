@@ -2,17 +2,17 @@
 
 | Workflow | File | Trigger | Purpose |
 |---|---|---|---|
-| CI | `ci.yml` | push to `master`, all PRs | Six jobs — see the breakdown below |
-| Android | `android.yml` | `workflow_dispatch`, **CI success on `master`** | Cross-compile the Rust engine for Android ABIs, build a release APK, and (when configured) push it to Firebase App Distribution |
+| CI | `ci.yml` | push to `master`, all PRs | Six job definitions — see the breakdown below |
+| Android | `android.yml` | `workflow_dispatch`, **CI success on a same-repository `master` push** | Build ARM/ARM64 APKs, distribute only with release signing and Firebase configured, and optionally prepare a signed Play bundle artifact |
 | iOS | `ios.yml` | `workflow_dispatch`, **CI success on `master`** | Build the Rust engine staticlib, statically link it into `Runner`, produce an unsigned `Runner.app`, and (when configured) build a signed IPA and push it to Firebase App Distribution |
 
 ## `ci.yml` — the six jobs
 
-Five run in parallel from the start; `online` waits on `rules`.
+Five can start independently; `online` waits on `rules`.
 
 | Job | Runner | What it does |
 |---|---|---|
-| `packages` | Linux | One job definition, **three matrix legs** — `backgammon_core`, `lan_play`, `match_transport` — each `dart analyze --fatal-infos` + `dart test`. `fail-fast: false`, so a push that breaks two packages reports both. `lan_play` alone runs under its `-P ci` retry preset: it is the only suite that binds real sockets. |
+| `packages` | Linux | One job definition, **four matrix legs** — `backgammon_core`, `board_vision`, `lan_play`, `match_transport` — each `dart analyze --fatal-infos` + `dart test`. `fail-fast: false`, so a push that breaks two packages reports both. `lan_play` alone runs under its `-P ci` retry preset: it is the only suite that binds real sockets. |
 | `engine` | Linux | `cargo fmt --check`, `cargo clippy -p aigammon_engine -- -D warnings`, `cargo build --release` and `cargo test --release` in `native/engine_shim`, then `engine_bindings` analyze, unit tests, and `dart test -P engine` against the freshly built `.so` with the production nets. |
 | `app` | Linux | `flutter analyze` + `flutter test -x golden`. The goldens are excluded here on purpose and run in `goldens` instead; between the two jobs the app suite is covered whole. |
 | `goldens` | **Windows** | `flutter test --tags golden`, on a **pinned** Flutter version. The golden PNGs are Windows-generated and the comparison is byte-for-byte, so the runner compares like with like rather than needing a tolerance wide enough to swallow a real regression. |
@@ -22,11 +22,18 @@ Five run in parallel from the start; `online` waits on `rules`.
 `firebase-tools` is pinned to the same major.minor in `rules` and `online`; the
 two must not drift onto different emulator versions.
 
+All Flutter test and distribution jobs use **Flutter 3.44.8**, including the
+golden tests. Upgrade those pins together and regenerate goldens deliberately.
+
 ## Distribution is gated on CI
 
 `android.yml` and `ios.yml` no longer trigger on `push`. They trigger on
 `workflow_run` — CI *completing* on `master` — and their single job is guarded
-by `github.event.workflow_run.conclusion == 'success'`. Previously all three
+by CI success, `event == 'push'`, `head_branch == 'master'`, and the head
+repository matching this repository. A PR branch can also be named `master`;
+the branch trigger alone does not establish trust. These jobs have signing and
+distribution secrets, so they must not check out untrusted PR heads.
+Previously all three
 workflows raced the same push in parallel, so a commit that broke the test suite
 still built and distributed a binary; testers got a broken build before anyone
 noticed the red X.
@@ -63,20 +70,26 @@ distribution mid-upload.
    cross-compiles `libaigammon_engine.so` straight into the Flutter jniLibs
    layout. At runtime the app loads it with
    `DynamicLibrary.open('libaigammon_engine.so')`. **Two ABIs, not three:**
-   `x86_64` is an emulator-only target and no tester device runs it.
-4. `flutter build apk --release --split-per-abi`, producing
-   `app-arm64-v8a-release.apk` and `app-armeabi-v7a-release.apk`. Flutter
-   packages every ABI present under `src/main/jniLibs/<abi>/` into `lib/<abi>/`,
-   so **no `abiFilters` / `ndk.abiFilters` block is needed** in
-   `build.gradle.kts` — the set of ABIs is exactly the set `cargo ndk` produced,
-   and `--split-per-abi` then gives each its own APK instead of shipping every
-   tester a copy of the engine they cannot run. An `.aab` was the alternative and
-   is not usable here: Firebase App Distribution only accepts a bundle for an app
-   linked to Google Play (it needs Play App Signing to derive the APKs), and this
-   project has no Play listing.
+   x86_64 devices/emulators are outside this distribution target set.
+4. `flutter build apk --release --split-per-abi --target-platform android-arm,android-arm64`,
+   producing `app-arm64-v8a-release.apk` and `app-armeabi-v7a-release.apk`.
+   Flutter otherwise defaults to all three ABIs, independently of which Rust
+   libraries exist. The workflow inspects each finished APK for its engine
+   library before uploading artifacts.
 5. Uploads **both** per-ABI APKs as the `aigammon-apk` artifact, and distributes
    the `arm64-v8a` one to the testers group (App Distribution takes one file and
    does no ABI matching; `armeabi-v7a` stays available from the artifact).
+   Firebase distribution requires both Firebase credentials and release signing.
+
+### Preparing a Google Play bundle
+
+Manually dispatch Android with **build_appbundle = true** to also build a signed
+ARM/ARM64 `.aab`. All four Android signing secrets are mandatory for this option;
+the workflow fails clearly if they are missing. The result and its separate
+Dart symbols are saved in `aigammon-play-bundle-<run number>`. This prepares an
+artifact only; it does not submit to Google Play. APK tester distribution still
+runs when configured. Complete [release readiness](../../docs/release-readiness.md)
+before a store submission.
 
 ### Signing
 
@@ -85,7 +98,9 @@ The `Configure release signing` step decodes the upload keystore and writes
 `app/android/key.properties`; `app/android/app/build.gradle.kts` picks it up and
 selects the real `release` signing config. When the secrets are absent the step
 prints a `::warning::` and Gradle falls back to Flutter's **debug** keystore, so
-the job stays green — but that APK cannot be published.
+the job stays green — but that APK cannot be published and is not automatically
+distributed to testers. This keeps a temporary runner's debug key from creating
+an install that the next signed build cannot update in place.
 
 Four secrets, all required together:
 

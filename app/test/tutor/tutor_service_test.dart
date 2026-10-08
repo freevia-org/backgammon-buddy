@@ -202,6 +202,27 @@ void main() {
   });
 
   group('TutorService.assess', () {
+    test('missing ranking is unavailable, never a best mark', () async {
+      final before = _movingState();
+      final tutor = TutorService(FakeEngine());
+      expect(tutor.assess(before, before.legalMoves.first), throwsStateError);
+      expect(await tutor.assessOrNull(before, before.legalMoves.first), isNull);
+    });
+
+    test('unranked play is unavailable, never a best mark', () async {
+      final before = _movingState();
+      final tutor = TutorService(
+        FakeEngine(ranked: [_scored(before.legalMoves.first, .1)]),
+      );
+      expect(tutor.assess(before, before.legalMoves.last), throwsStateError);
+      expect(await tutor.assessOrNull(before, before.legalMoves.last), isNull);
+    });
+
+    test('a position outside move entry cannot earn a best mark', () async {
+      final tutor = TutorService(FakeEngine());
+      expect(tutor.assess(_awaitingRollState(), Move.none), throwsStateError);
+    });
+
     test('played == top play: loss 0, mark best', () async {
       final top = Move([const CheckerMove(23, 20)]);
       final other = Move([const CheckerMove(12, 9)]);

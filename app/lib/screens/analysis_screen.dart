@@ -13,6 +13,8 @@ import '../game/game_record.dart';
 import '../tutor/game_analyzer.dart';
 import '../tutor/move_assessment.dart';
 import '../tutor/tutor_service.dart';
+import '../tutor/coaching.dart';
+import '../tutor/coaching_widgets.dart';
 import 'metric_explainer.dart';
 
 /// Post-game replay + analysis for a single recorded game.
@@ -111,11 +113,20 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
       final states = _replayPrefixes(events, row.isCrawford);
 
       final cached = await repo.loadAnalysis(widget.gameId);
-      GameAnalysis analysis;
+      GameAnalysis? analysis;
       if (cached != null) {
-        analysis = GameAnalysis.fromJson(
-            (jsonDecode(cached) as Map).cast<String, dynamic>());
-      } else {
+        try {
+          analysis = GameAnalysis.fromJson(
+            (jsonDecode(cached) as Map).cast<String, dynamic>(),
+          );
+        } on FormatException {
+          // Stale or malformed derived data is a cache miss. The original
+          // game log remains authoritative and can be analyzed again.
+        } on TypeError {
+          // Also recover from malformed cache fields / shape.
+        }
+      }
+      if (analysis == null) {
         if (mounted) setState(() => _analyzing = true);
         final tutor =
             widget.tutor ?? TutorService(ref.read(engineFacadeProvider));
@@ -132,12 +143,15 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
 
       if (!mounted) return;
       final lines = buildGameRecord(events);
+      final completedAnalysis = analysis;
       setState(() {
         _states = states;
         _events = events;
         _lines = lines;
-        _analysis = analysis;
-        _byEventIndex = {for (final m in analysis.moves) m.eventIndex: m};
+        _analysis = completedAnalysis;
+        _byEventIndex = {
+          for (final m in completedAnalysis.moves) m.eventIndex: m
+        };
         // Allocate a stable per-row key once the record is known (this screen
         // loads one game, so the record identity never changes afterward). Row
         // keys must NOT be reminted on rebuild or auto-scroll would lose its
@@ -471,6 +485,21 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
                     style: TextStyle(color: color, fontWeight: FontWeight.w600)),
                 const SizedBox(width: 12),
                 Text('Best: $best', maxLines: 1, softWrap: false),
+                const SizedBox(width: 8),
+                TextButton.icon(
+                  onPressed: () => showMoveExplanation(
+                    context,
+                    title: '${_sideLabel(m.player)}: ${a.played}',
+                    explanation: m.eventIndex > 0
+                        ? MoveExplanation.forAssessment(
+                            _states![m.eventIndex - 1],
+                            a,
+                          )
+                        : null,
+                  ),
+                  icon: const Icon(Icons.school_outlined, size: 16),
+                  label: const Text('Explain'),
+                ),
               ],
             ),
             alignment: Alignment.centerLeft,

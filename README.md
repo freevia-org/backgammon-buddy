@@ -1,6 +1,6 @@
 # AI Gammon
 
-Cross-platform backgammon built with **Flutter** and driven by a neural-net
+A backgammon tutor and practice app built with **Flutter** and driven by a neural-net
 engine ([wildbg](https://github.com/carsten-wenderdel/wildbg), vendored, dual
 **MIT OR Apache-2.0**).
 
@@ -14,11 +14,16 @@ engine ([wildbg](https://github.com/carsten-wenderdel/wildbg), vendored, dual
   between turns.
 - **Match play** to N points with the **doubling cube**, gammon/backgammon
   scoring, and the **Crawford** rule.
-- **Tutor mode** — a read-only coaching overlay during play: live **hints**
-  (ranked candidate moves), per-move **marks** (best / good / dubious / error /
-  blunder) with the **equity loss** versus the engine's best move, and
-  **match-aware cube advice** that respects the score via a match-equity table
-  (MET) and a Janowski cubeful-equity advisor rather than money-game odds.
+- **Tutor mode** — choose **best-move hints**, **move explanations**, **game
+  commentary**, and **cube advice** independently, during local-match setup or
+  from the standard game's coaching panel. Compare candidate plays, estimated
+  equity/win/gammon outcomes and observable board changes; review either side's
+  recent move and open explanations in post-game analysis. Per-move **marks**
+  (best / good / dubious / error / blunder) report equity loss versus the top
+  estimate. Checker rankings currently use **cubeless equity**, so they do not
+  account for match score or future doubling; board observations are teaching
+  cues, not a trace of the neural engine's reasoning. **Cube advice** is
+  match-aware through a match-equity table and Janowski cubeful-equity advisor.
 - **Buddy Mode** (Android/iOS) — play on your **real board** against the engine,
   with the phone propped up watching. A guided calibration teaches Buddy your
   board: drag the handles onto the corners of the felt (four more on the seam
@@ -267,6 +272,14 @@ building a production release with the online defines are documented in
   [`.github/workflows/README.md`](.github/workflows/README.md).
 
 ## Releasing
+
+The current [release-readiness checklist](docs/release-readiness.md) records
+store blockers, artifact/device checks and privacy/notices work. The
+[2026-10-08 code review](docs/code-review-2026-10-08.md) covers this round's
+tutoring improvements, fixes and remaining learning roadmap. Android's manual
+workflow can prepare a signed Play bundle with `build_appbundle`; it does not
+submit it to a store. Automatic Android tester distribution requires release
+signing as well as Firebase credentials.
 
 Every release is a merge to `master` that bumps `version:` in `app/pubspec.yaml`
 — **and `appVersion` in `app/lib/branding/app_version.dart` with it**, since the

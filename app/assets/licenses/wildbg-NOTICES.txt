@@ -1,0 +1,27 @@
+wildbg native engine
+
+Upstream project: https://github.com/carsten-wenderdel/wildbg
+Source revision: 24d26fe0c7c6ddbb277894c2f92c18410198e4a9
+Copyright (c) 2023 Carsten Wenderdel
+
+The upstream engine declares Apache-2.0 OR MIT. Both upstream license texts
+are included in this app's licenses. This attribution is supplied by AI Gammon;
+it is not an upstream NOTICE file.
+
+AI Gammon's native wrapper is derived from wildbg's wildbg-c crate. The wrapper
+adds wildbg_new_with_path to load neural nets from a runtime directory and
+removes the exported wildbg_new constructor that embeds demo nets. These
+changes are recorded in native/engine_shim/src/lib.rs in the app source.
+
+Bundled neural-network provenance
+
+contact.onnx and race.onnx were obtained from the wildbg nets branch at revision
+8c42b06f2ff4868431fc0372b2787e612537317d. The source commit identifies
+wildbg-training generation 0017 for contact and generation 0016 for race:
+https://github.com/carsten-wenderdel/wildbg-training
+
+contact.onnx source git blob: fe5596b6d38640a92d2e83837ebdd9c872540320
+race.onnx source git blob: 09f7db7d7fb678d8837f56afe5dbc1134fccf0b7
+
+These model details record provenance; they do not assign the engine's
+software license to the models or their training data.

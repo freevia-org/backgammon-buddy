@@ -5,6 +5,8 @@ import 'package:engine_bindings/engine_bindings.dart';
 import 'package:flutter/material.dart';
 
 import '../metric_explainer.dart';
+import '../../tutor/coaching.dart';
+import '../../tutor/coaching_widgets.dart';
 
 /// The tutor hint panel's state: whether it is open, whether its ranking is
 /// still resolving, and what came back.
@@ -39,8 +41,15 @@ class HintController extends ChangeNotifier {
 
   bool _disposed = false;
 
+  GameState? get position => _position;
+  GameState? _position;
+
   /// Opens the panel and asks [request] for the ranking to fill it with.
-  void open(Future<List<ScoredMove>> Function() request) {
+  void open(
+    Future<List<ScoredMove>> Function() request, {
+    GameState? position,
+  }) {
+    _position = position;
     _open = true;
     _loading = true;
     _moves = null;
@@ -49,12 +58,22 @@ class HintController extends ChangeNotifier {
     stagedMove.value = null;
     notifyListeners();
     final seq = ++_seq;
-    unawaited(request().then((moves) {
-      if (_disposed || seq != _seq) return;
-      _loading = false;
-      _moves = moves;
-      notifyListeners();
-    }));
+    unawaited(
+      Future.sync(request).then(
+        (moves) {
+          if (_disposed || seq != _seq) return;
+          _loading = false;
+          _moves = moves;
+          notifyListeners();
+        },
+        onError: (Object error, StackTrace stack) {
+          if (_disposed || seq != _seq) return;
+          _loading = false;
+          _moves = const [];
+          notifyListeners();
+        },
+      ),
+    );
   }
 
   void close() {
@@ -90,11 +109,15 @@ class HintPanel extends StatelessWidget {
     required this.moves,
     required this.onClose,
     required this.onApply,
+    this.position,
+    this.explanations = true,
   });
 
   final bool loading;
   final List<ScoredMove>? moves;
   final VoidCallback onClose;
+  final GameState? position;
+  final bool explanations;
 
   /// Tap-to-apply: stage the play onto the interactive board and close the
   /// panel.
@@ -123,8 +146,11 @@ class HintPanel extends StatelessWidget {
           child: Material(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 480),
-              child: Padding(
+              constraints: BoxConstraints(
+                maxWidth: 480,
+                maxHeight: MediaQuery.sizeOf(context).height * .8,
+              ),
+              child: SingleChildScrollView(
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -161,9 +187,35 @@ class HintPanel extends StatelessWidget {
                         child: Text('No hints available.'),
                       )
                     else ...[
+                      const Text(
+                        'Tap a play to preview it on the board, then Confirm.',
+                      ),
+                      const SizedBox(height: 8),
                       _columnHeader(context),
-                      for (var i = 0; i < top.length; i++)
+                      for (var i = 0; i < top.length; i++) ...[
                         _row(context, i, top[i], bestEq),
+                        if (explanations && position != null)
+                          ExpansionTile(
+                            tilePadding: EdgeInsets.zero,
+                            title: Text(
+                              i == 0
+                                  ? 'Why this play?'
+                                  : 'Compare this alternative',
+                            ),
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 12),
+                                child: MoveExplanationView(
+                                  explanation: MoveExplanation.forCandidate(
+                                    position!,
+                                    top[i],
+                                    top.first,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                      ],
                     ],
                   ],
                 ),
@@ -202,11 +254,12 @@ class HintPanel extends StatelessWidget {
   }
 
   Widget _row(BuildContext context, int i, ScoredMove sm, double bestEq) {
-    final delta = i == 0 ? '—' : (sm.equity - bestEq).toStringAsFixed(3);
-    final mono = Theme.of(context)
-        .textTheme
-        .bodyMedium
-        ?.copyWith(fontFeatures: const [FontFeature.tabularFigures()]);
+    final delta = i == 0
+        ? '—'
+        : (bestEq - sm.equity).clamp(0, double.infinity).toStringAsFixed(3);
+    final mono = Theme.of(context).textTheme.bodyMedium?.copyWith(
+      fontFeatures: const [FontFeature.tabularFigures()],
+    );
     return InkWell(
       onTap: () => onApply(sm.move),
       child: Padding(

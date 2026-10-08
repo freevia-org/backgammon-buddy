@@ -41,6 +41,11 @@ class TutorService {
   /// On a dance (no legal play) the result is `equityLoss 0`, [MoveMark.best],
   /// and `best = Move.none`.
   Future<MoveAssessment> assess(GameState before, Move played) async {
+    if (before.phase != GamePhase.moving || before.dice == null) {
+      throw StateError(
+        'A move assessment requires the position before a move.',
+      );
+    }
     if (before.legalMoves.isEmpty) {
       return MoveAssessment(
         played: played,
@@ -53,12 +58,7 @@ class TutorService {
     final ranked =
         await _engine.rankMoves(before.board, before.turn, before.dice!);
     if (ranked.isEmpty) {
-      return MoveAssessment(
-        played: played,
-        best: Move.none,
-        equityLoss: 0,
-        ranked: const [],
-      );
+      throw StateError('The engine returned no ranking for a legal move.');
     }
 
     final best = ranked.first;
@@ -66,10 +66,14 @@ class TutorService {
 
     // Equity is from the mover's perspective (higher is better), so the loss is
     // best minus played; a resolved play at the top gives 0 (clamped against
-    // float fuzz). An unresolvable submission is treated as no loss rather than
-    // fabricating a penalty.
-    final rawLoss =
-        playedScored == null ? 0.0 : best.equity - playedScored.equity;
+    // float fuzz). Missing evidence must never award a false "Best" mark.
+    if (playedScored == null) {
+      throw StateError('The played move was not found in the engine ranking.');
+    }
+    final rawLoss = best.equity - playedScored.equity;
+    if (!rawLoss.isFinite) {
+      throw StateError('The engine returned a non-finite move evaluation.');
+    }
 
     return MoveAssessment(
       played: played,

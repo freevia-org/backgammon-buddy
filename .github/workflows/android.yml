@@ -1,6 +1,11 @@
 name: Android
 on:
   workflow_dispatch:
+    inputs:
+      build_appbundle:
+        description: Build a signed Google Play bundle artifact (does not upload to Play)
+        type: boolean
+        default: false
   # Gated on CI rather than on `push`. Both workflows used to fire on the same
   # master push, in parallel, so a commit that broke the test suite still built
   # an APK and pushed it to the testers group — a broken master reached real
@@ -36,11 +41,15 @@ jobs:
     # then a release APK. Deliberately well clear of the observed ~25 min worst
     # case so a cache miss is not mistaken for a hang.
     timeout-minutes: 60
-    # A manual dispatch builds whatever is at HEAD; a CI-triggered run builds
-    # only if CI actually passed.
+    # workflow_run has release secrets even after an unprivileged PR workflow.
+    # A PR head named master also matches the trigger's branch filter, so require
+    # a push from this repository before checking out the CI head with secrets.
     if: >-
       github.event_name == 'workflow_dispatch' ||
-      github.event.workflow_run.conclusion == 'success'
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_branch == 'master' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
     steps:
       - uses: actions/checkout@v4
         with:
@@ -106,6 +115,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: 3.44.8
 
       - name: Flutter pub get
         working-directory: app
@@ -117,6 +127,7 @@ jobs:
       # reads. Absent -> say so loudly and let Gradle's documented debug-key
       # fallback keep the job green. See app/android/KEYSTORE_SETUP.md.
       - name: Configure release signing
+        id: signing
         env:
           ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
@@ -135,10 +146,18 @@ jobs:
               echo "keyAlias=$(esc "$ANDROID_KEY_ALIAS")"
               echo "keyPassword=$(esc "$ANDROID_KEY_PASSWORD")"
             } > app/android/key.properties
+            echo "has_signing=true" >> "$GITHUB_OUTPUT"
             echo "Release signing ENABLED (upload keystore installed)"
           else
+            echo "has_signing=false" >> "$GITHUB_OUTPUT"
             echo "::warning::Android signing secrets not set — the release APK will be signed with the DEBUG keystore and cannot be published. See app/android/KEYSTORE_SETUP.md"
           fi
+
+      - name: Require release signing for a Play bundle
+        if: inputs.build_appbundle && steps.signing.outputs.has_signing != 'true'
+        run: |
+          echo "::error::A Play bundle requires all four Android signing secrets. See app/android/KEYSTORE_SETUP.md."
+          exit 1
 
       # Android telemetry config file, generated — never committed.
       #
@@ -226,7 +245,9 @@ jobs:
       #     (net_match_controller, match_transport, online_client) — degraded
       #     text, no behaviour change. Nothing here dispatches on it.
       #
-      # --split-per-abi, not a universal APK and not an app bundle:
+      # APKs are the tester-distribution format. A manual build_appbundle request
+      # also produces a signed Play artifact, without submitting it to a store.
+      # --split-per-abi:
       #   * a universal APK carried every ABI's copy of the ~MB engine .so to
       #     every tester, and no device can use more than one of them;
       #   * an .aab is the smaller artifact on paper, but Firebase App
@@ -234,6 +255,8 @@ jobs:
       #     PLAY — it needs Play App Signing to derive installable APKs from the
       #     bundle. This project has no Play listing and distributes straight to
       #     a testers group, so an .aab here would be rejected at upload.
+      # --target-platform explicitly limits Flutter to the same two Rust ABIs.
+      # Without it Flutter also emits an x86_64 APK with no engine library.
       # That leaves two per-ABI APKs (arm64-v8a, armeabi-v7a). Flutter gives them
       # distinct version codes automatically (it prefixes the ABI index), which
       # is what keeps two uploads of the same build from colliding.
@@ -247,6 +270,7 @@ jobs:
           # id identifies the app to distribute and to report telemetry for, so
           # there is deliberately no second secret for it.
           FB_ANDROID_APP_ID: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
+          BUILD_APPBUNDLE: ${{ inputs.build_appbundle }}
         run: |
           DEFINES=""
           if [ -n "$FB_PROJECT" ] && [ -n "$FB_API_KEY" ]; then
@@ -267,10 +291,38 @@ jobs:
             echo "Telemetry config incomplete — building with analytics/performance/crashlytics disabled"
           fi
           flutter build apk --release --split-per-abi \
+            --target-platform android-arm,android-arm64 \
             --build-number=${{ github.run_number }} \
             --obfuscate --split-debug-info=build/symbols/android \
             $DEFINES
           ls -l build/app/outputs/flutter-apk/*.apk
+          # Flutter otherwise also builds x86_64, whose Rust engine was not
+          # compiled above. Check the actual APKs, not just the staged inputs.
+          for ABI in arm64-v8a armeabi-v7a; do
+            unzip -Z1 "build/app/outputs/flutter-apk/app-$ABI-release.apk" \
+              | grep -Fx "lib/$ABI/libaigammon_engine.so"
+          done
+          if [ "$BUILD_APPBUNDLE" = 'true' ]; then
+            flutter build appbundle --release \
+              --target-platform android-arm,android-arm64 \
+              --build-number=${{ github.run_number }} \
+              --obfuscate --split-debug-info=build/symbols/android-bundle \
+              $DEFINES
+            for ABI in arm64-v8a armeabi-v7a; do
+              unzip -Z1 build/app/outputs/bundle/release/app-release.aab \
+                | grep -Fx "base/lib/$ABI/libaigammon_engine.so"
+            done
+          fi
+
+      - name: Upload signed Google Play bundle
+        if: inputs.build_appbundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: aigammon-play-bundle-${{ github.run_number }}
+          path: |
+            app/build/app/outputs/bundle/release/app-release.aab
+            app/build/symbols/android-bundle
+          if-no-files-found: error
 
       - uses: actions/upload-artifact@v4
         with:
@@ -306,7 +358,7 @@ jobs:
           fi
 
       - name: Distribute to Firebase App Distribution
-        if: steps.fb.outputs.has_firebase == 'true'
+        if: steps.fb.outputs.has_firebase == 'true' && steps.signing.outputs.has_signing == 'true'
         # Pinned to a commit SHA, not the `v1` tag: a mutable tag can be
         # repointed at any commit by the action's owner (or by anyone who
         # compromises that account), and this step is handed the Firebase
@@ -324,7 +376,7 @@ jobs:
           # the build artifact above for the rare 32-bit tester.
           file: app/build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
 
-      - name: Skip Firebase distribution (secrets not set)
-        if: steps.fb.outputs.has_firebase != 'true'
+      - name: Skip Firebase distribution (Firebase or signing secrets not set)
+        if: steps.fb.outputs.has_firebase != 'true' || steps.signing.outputs.has_signing != 'true'
         run: |
-          echo "Firebase secrets not set — skipping distribution (see .github/workflows/README.md: Firebase App Distribution setup)"
+          echo "Firebase or Android signing secrets not set — skipping distribution (see .github/workflows/README.md: Firebase App Distribution setup)"

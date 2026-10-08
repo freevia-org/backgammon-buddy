@@ -57,7 +57,9 @@ class Engine {
     }
   }
 
-  /// Cubeless win/gammon/backgammon probabilities for [mover] in [board].
+  /// Cubeless win/gammon/backgammon probabilities for [mover] ON ROLL in
+  /// [board]. To see the same turn from the opponent's perspective, invert the
+  /// returned probabilities; changing [mover] gives the opponent the next roll.
   Probabilities evaluate(BoardState board, Player mover) {
     _checkAlive();
     _loadPips(board, mover);

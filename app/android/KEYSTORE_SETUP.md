@@ -6,11 +6,13 @@ to Flutter's **debug** keystore with a loud warning (see the gate at the top of
 `app/android/app/build.gradle.kts`). A debug-signed APK installs fine for
 testers but **cannot be published**, and — because every machine has a different
 debug key — an app once installed from one debug-signed build cannot be updated
-by another.
+by another. CI retains these builds as downloadable artifacts, but skips
+automatic Firebase distribution unless release signing is configured.
 
-> **The keystore is the app's identity.** Lose it and you can never ship an
-> update to the same Play Store listing again. Back it up (a password manager is
-> ideal) the moment you create it.
+> Back up the keystore and credentials. With **Play App Signing**, the upload
+> key and the app signing key are distinct: Google supports resetting a lost
+> upload key. APKs distributed directly still need the same signing identity
+> for compatible updates. See [Android's signing guide](https://developer.android.com/studio/publish/app-signing).
 
 ---
 
@@ -106,11 +108,18 @@ debug-key fallback and its warning apply.
 ## 5. Verifying what a build was signed with
 
 ```bash
-keytool -printcert -jarfile app/build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+apksigner verify --verbose --print-certs app/build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
 ```
 
+Use `apksigner` from the Android SDK build-tools directory (or add it to PATH).
 The debug key shows `CN=Android Debug, O=Android, C=US`. The upload key shows
-the `-dname` you supplied above.
+the `-dname` you supplied above. Record its SHA-256 certificate digest with the
+release. Unlike `keytool -jarfile`, this verifies modern APK signing schemes.
+
+For a Google Play bundle, manually dispatch the Android workflow with
+`build_appbundle` enabled. It requires all four signing secrets and saves an AAB
+plus its Dart symbols as an artifact; it does not upload to Google Play. See
+[release readiness](../../docs/release-readiness.md) for the remaining checks.
 
 ## 6. The other file you drop in by hand: `google-services.json`
 

@@ -28,6 +28,10 @@ class EngineService {
   /// game would simply stop with no error to show.
   static const Duration defaultCallTimeout = Duration(seconds: 30);
 
+  /// Bounds model initialization as well as the handshake. Startup does not go
+  /// through [_call], so its timeout must exist independently of call timeouts.
+  static const Duration defaultStartupTimeout = Duration(seconds: 60);
+
   final Isolate _isolate;
   final SendPort _worker;
   final ReceivePort _fromWorker;
@@ -106,6 +110,8 @@ class EngineService {
   /// ones that kill the isolate during startup. See [_onIsolateError].
   ///
   /// [callTimeout] bounds every verb; see [defaultCallTimeout].
+  /// [startupTimeout] bounds the initial engine handshake, including a worker
+  /// that exits silently or wedges while loading its neural nets.
   ///
   /// [workerEntry] replaces the isolate's entry point and exists ONLY for the
   /// transport's own tests, which need a worker that misbehaves in a specific
@@ -116,6 +122,7 @@ class EngineService {
     required String netsPath,
     void Function(Object error, StackTrace? stack)? onIsolateError,
     Duration callTimeout = defaultCallTimeout,
+    Duration startupTimeout = defaultStartupTimeout,
     void Function(List<Object?> args)? workerEntry,
   }) async {
     final handshake = ReceivePort();
@@ -203,16 +210,18 @@ class EngineService {
       heldDeath = err;
     });
 
-    final isolate = await Isolate.spawn(
-      workerEntry ?? _workerMain,
-      [handshake.sendPort, libraryPath, netsPath],
-      errorsAreFatal: true,
-      onError: deaths.sendPort,
-      onExit: deaths.sendPort,
-    );
-
+    Isolate? isolate;
     try {
-      final workerPort = await ready.future;
+      isolate = await Isolate.spawn(
+        workerEntry ?? _workerMain,
+        [handshake.sendPort, libraryPath, netsPath],
+        errorsAreFatal: true,
+        onError: deaths.sendPort,
+        onExit: deaths.sendPort,
+      );
+      final workerPort = await ready.future.timeout(startupTimeout,
+          onTimeout: () => throw TimeoutException(
+              'engine isolate did not initialize', startupTimeout));
       // Handshake done. Build the service FIRST — synchronously, in this one
       // turn — so the error port always has a live destination from here on,
       // and only then drop the handshake port. `deaths` stays open and stays
@@ -229,7 +238,7 @@ class EngineService {
       await handshakeSub.cancel();
       handshake.close();
       deaths.close();
-      isolate.kill(priority: Isolate.immediate);
+      isolate?.kill(priority: Isolate.immediate);
       rethrow;
     }
   }

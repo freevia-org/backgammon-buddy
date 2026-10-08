@@ -12,6 +12,7 @@ import '../buddy/phrasing.dart';
 import '../data/app_settings.dart';
 import '../data/settings_repository.dart';
 import '../feedback/feedback_link.dart';
+import '../licensing/third_party_licenses.dart';
 import 'diagnostics_screen.dart';
 
 /// The preferences screen. Every control autosaves on change (there is no save
@@ -358,6 +359,18 @@ class SettingsScreen extends ConsumerWidget {
                             onTap: () => _sendFeedback(ref),
                           ),
                         ],
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    _Section(
+                      label: 'About',
+                      child: ListTile(
+                        contentPadding: EdgeInsets.zero,
+                        leading: const Icon(Icons.description_outlined),
+                        title: const Text('Open-source licenses'),
+                        subtitle: const Text('AI Gammon $appVersion'),
+                        trailing: const Icon(Icons.chevron_right),
+                        onTap: () => showAppLicenses(context),
                       ),
                     ),
                   ],

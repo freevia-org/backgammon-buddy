@@ -17,6 +17,37 @@ set by CI from the workflow run number and is not tracked here.
 
 ## [Unreleased]
 
+### Added
+
+- Independent per-match tutor controls for best-move hints, move explanations,
+  game commentary and cube advice. Candidate comparisons and post-game
+  explanations show engine estimates alongside observable board changes, with
+  explicit cubeless-ranking and explanation limitations.
+- A manual Android workflow option to prepare a signed Google Play bundle and
+  its Dart symbols, without store submission; release-readiness and code-review
+  reports document the remaining publishing and tutoring work.
+- An Open-source licenses entry in Settings, including bundled upstream wildbg
+  license texts and engine/net provenance notices alongside Flutter's licenses.
+
+### Fixed
+
+- Missing engine rankings no longer become a false **Best** move assessment;
+  old analysis caches are recomputed. Stale hint/cube results are discarded,
+  cubeless matches suppress cube advice, and hint panels show positive loss
+  values and remain scrollable on small screens.
+- Native engine initialization now has its own timeout, so a worker that never
+  completes the startup handshake cannot leave the app waiting indefinitely.
+- Queued multiplayer history saves survive leaving the game and retain the
+  score for the game being saved, rather than reading a later match score.
+- Computer resignation responses use the offerer's on-roll probability
+  perspective and the correct post-Crawford match equity.
+- Android APKs target only the ARM/ARM64 ABIs for which CI builds the native
+  engine, and packaging checks verify that engine is in every artifact.
+- Automatic mobile release jobs require successful CI from a same-repository
+  master push; PR branches named master cannot reach jobs with signing secrets.
+  Android builds using the fallback debug key are no longer automatically
+  distributed to testers. All Flutter CI/build jobs share the tested SDK pin.
+
 ### Changed
 
 - **Buddy Mode's dice reader searches the whole playing surface**, and reads a

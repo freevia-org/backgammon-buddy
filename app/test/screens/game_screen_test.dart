@@ -571,6 +571,35 @@ class _DanceController extends ChangeNotifier implements MatchController {
 }
 
 void main() {
+  testWidgets('tutor options remain usable on a narrow phone with large text', (t) async {
+    await t.binding.setSurfaceSize(const Size(320, 568));
+    addTearDown(() => t.binding.setSurfaceSize(null));
+    final white = LocalHumanAgent();
+    final c = GameController(white: white, black: LocalHumanAgent(), matchLength: 5,
+      diceRoller: ScriptedDiceRoller(Dice(6, 1), [Dice(3, 1)]));
+    await t.pumpWidget(MaterialApp(
+      builder: (context, child) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(2)),
+        child: child!),
+      home: GameScreen(controller: c, tutor: TutorService(RealRankEngine())),
+    ));
+    await pumpUntil(t, () => white.pendingMoveRequest.value != null);
+    expect(find.widgetWithText(OutlinedButton, 'Hint'), findsOneWidget);
+    await t.tap(find.byTooltip('Tutor coaching and options'));
+    await t.pumpAndSettle();
+    await t.ensureVisible(find.text('Tutoring options'));
+    await t.tap(find.text('Tutoring options'));
+    await t.pumpAndSettle();
+    await t.ensureVisible(find.text('Best-move hints'));
+    await t.tap(find.text('Best-move hints'));
+    await t.pumpAndSettle();
+    expect(t.takeException(), isNull);
+    Navigator.of(t.element(find.text('Your tutor'))).pop();
+    await t.pumpAndSettle();
+    expect(find.widgetWithText(OutlinedButton, 'Hint'), findsNothing);
+    c.disposeController();
+  });
+
   setUp(() => TestWidgetsFlutterBinding.ensureInitialized());
 
   group('pre-roll: tapping the dice rolls', () {

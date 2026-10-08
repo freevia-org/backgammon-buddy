@@ -86,6 +86,10 @@ class TutorSync extends ChangeNotifier {
   /// otherwise be scoreless. Cleared when a new game begins.
   final Map<int, MoveAssessment> assessmentsByEventIndex = {};
 
+  /// Saved decision positions for retrospective explanations, newest first in
+  /// the UI. An old async answer must not replace the latest completed move.
+  final Map<int, GameState> positionsByEventIndex = {};
+
   /// Event indices whose score-sheet cell has its best-move line revealed
   /// (tap-to-reveal). Cleared when a new game begins.
   final Set<int> revealedBest = {};
@@ -139,6 +143,7 @@ class TutorSync extends ChangeNotifier {
       // the new log.
       seedAssessmentCursor();
       assessmentsByEventIndex.clear();
+      positionsByEventIndex.clear();
       revealedBest.clear();
       _gameGeneration++;
       return;
@@ -169,15 +174,18 @@ class TutorSync extends ChangeNotifier {
   /// (a [_gameGeneration] mismatch) or this object was disposed.
   void _fireAssessment(int eventIndex, GameState before, Move played) {
     final gen = _gameGeneration;
-    unawaited(tutor()!.assessOrNull(before, played).then((assessment) {
-      if (_disposed || gen != _gameGeneration) return;
-      // Null = the engine could not answer (already recorded by the tutor).
-      // The cell stays unmarked rather than claiming a verdict.
-      if (assessment == null) return;
-      assessmentsByEventIndex[eventIndex] = assessment;
-      notifyListeners();
-      onSheetDirty(); // a cell gained its mark dot and equity loss
-    }));
+    unawaited(
+      tutor()!.assessOrNull(before, played).then((assessment) {
+        if (_disposed || gen != _gameGeneration) return;
+        // Null = the engine could not answer (already recorded by the tutor).
+        // The cell stays unmarked rather than claiming a verdict.
+        if (assessment == null) return;
+        assessmentsByEventIndex[eventIndex] = assessment;
+        positionsByEventIndex[eventIndex] = before;
+        notifyListeners();
+        onSheetDirty(); // a cell gained its mark dot and equity loss
+      }),
+    );
   }
 
   /// Recomputes the pre-roll cube advice exactly when a human's turn gate is
@@ -187,6 +195,7 @@ class TutorSync extends ChangeNotifier {
     final s = controller.state;
     final showAdvice = controller.awaitingHumanTurn && doublingLegal(s);
     if (!showAdvice) {
+      _cubeAdviceSeq++;
       _cubeAdvice = null;
       _cubeAdviceKey = null;
       return;
@@ -212,6 +221,7 @@ class TutorSync extends ChangeNotifier {
   void _syncCubeResponse() {
     final cubeSide = pendingCubeSide();
     if (cubeSide == null) {
+      _cubeResponseSeq++;
       _cubeResponseAdvice = null;
       _cubeResponseKey = null;
       return;

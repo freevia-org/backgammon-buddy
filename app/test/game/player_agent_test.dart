@@ -122,6 +122,13 @@ GameState _cubeOfferedState() => GameState.testState(
       phase: GamePhase.cubeOffered,
     );
 
+/// Black offers before rolling, so white decides while black stays on roll.
+GameState _resignOfferedState(ResignValue value) => GameState.testState(
+      board: BoardState.initial(),
+      turn: Player.black,
+      phase: GamePhase.awaitingRoll,
+    ).offerResign(value);
+
 /// A [MatchContext] for the human tests, which ignore it.
 final _humanCtx = _ctx(moverAway: 3, opponentAway: 3);
 
@@ -335,14 +342,15 @@ void main() {
       // beat it. The OLD heuristic would DECLINE (winGammon 0.9 > 0.25); the
       // match-aware policy ACCEPTS. This is the headline behaviour flip.
       final engine = FakeEngine(
-          evalProbs: _probs(win: 0.99, winGammon: 0.9, winBackgammon: 0.5));
+          evalProbs:
+              _probs(win: 0.99, winGammon: 0.9, winBackgammon: 0.5).inverted);
       final agent = AiAgent(engine, Difficulty.expert, Random(1));
       expect(
-          await agent.chooseResignResponse(_awaitingRollState(),
+          await agent.chooseResignResponse(_resignOfferedState(ResignValue.single),
               ResignValue.single, _ctx(moverAway: 1, opponentAway: 5)),
           isTrue);
-      expect(engine.lastEvalMover, Player.white,
-          reason: 'evaluated from the acceptor (state.turn)');
+      expect(engine.lastEvalMover, Player.black,
+          reason: 'the offerer is still on roll if play continues');
     });
 
     test('long match: declines a single when a gammon is very likely', () async {
@@ -360,12 +368,35 @@ void main() {
       expect(eqPlayOn, greaterThan(eqAccept + 0.005),
           reason: 'fixture must genuinely clear the hysteresis band');
 
-      final engine = FakeEngine(evalProbs: probs);
+      final engine = FakeEngine(evalProbs: probs.inverted);
       final agent = AiAgent(engine, Difficulty.expert, Random(1));
       expect(
           await agent.chooseResignResponse(
-              _awaitingRollState(), ResignValue.single, ctx),
+              _resignOfferedState(ResignValue.single), ResignValue.single, ctx),
           isFalse);
+      expect(engine.lastEvalMover, Player.black);
+    });
+
+    test('Crawford resignation uses post-Crawford equities for the next game',
+        () async {
+      // White is 3-away versus a 1-away leader in the Crawford game. Banking
+      // a single reaches 2-away post-Crawford (0.48803 match equity). With
+      // 90% wins and 40% gammons, playing on yields only 0.444015. Treating
+      // the next game as another Crawford game instead incorrectly declines.
+      final state = GameState.testState(
+        board: BoardState.initial(),
+        turn: Player.black,
+        phase: GamePhase.awaitingRoll,
+        isCrawfordGame: true,
+      ).offerResign(ResignValue.single);
+      final engine = FakeEngine(
+          evalProbs: _probs(win: 0.9, winGammon: 0.4).inverted);
+      final agent = AiAgent(engine, Difficulty.expert, Random(1));
+
+      expect(
+          await agent.chooseResignResponse(
+              state, ResignValue.single, _ctx(moverAway: 3, opponentAway: 1)),
+          isTrue);
     });
 
     test('long match: declines a gammon offer when a backgammon is likely',
@@ -385,11 +416,11 @@ void main() {
       expect(eqPlayOn, greaterThan(eqAccept + 0.005),
           reason: 'fixture must genuinely clear the hysteresis band');
 
-      final engine = FakeEngine(evalProbs: probs);
+      final engine = FakeEngine(evalProbs: probs.inverted);
       final agent = AiAgent(engine, Difficulty.expert, Random(1));
       expect(
           await agent.chooseResignResponse(
-              _awaitingRollState(), ResignValue.gammon, ctx),
+              _resignOfferedState(ResignValue.gammon), ResignValue.gammon, ctx),
           isFalse);
     });
 
@@ -407,11 +438,12 @@ void main() {
       expect(eqPlayOn, lessThan(eqAccept),
           reason: 'banking the max class beats playing on');
 
-      final engine = FakeEngine(evalProbs: probs);
+      final engine = FakeEngine(evalProbs: probs.inverted);
       final agent = AiAgent(engine, Difficulty.expert, Random(1));
       expect(
           await agent.chooseResignResponse(
-              _awaitingRollState(), ResignValue.backgammon, ctx),
+              _resignOfferedState(ResignValue.backgammon),
+              ResignValue.backgammon, ctx),
           isTrue);
     });
 
@@ -432,11 +464,11 @@ void main() {
       expect(eqPlayOn, lessThan(eqAccept + 0.005),
           reason: 'but inside the hysteresis band');
 
-      final engine = FakeEngine(evalProbs: probs);
+      final engine = FakeEngine(evalProbs: probs.inverted);
       final agent = AiAgent(engine, Difficulty.expert, Random(1));
       expect(
           await agent.chooseResignResponse(
-              _awaitingRollState(), ResignValue.single, ctx),
+              _resignOfferedState(ResignValue.single), ResignValue.single, ctx),
           isTrue);
     });
   });

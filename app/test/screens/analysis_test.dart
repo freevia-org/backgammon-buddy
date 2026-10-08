@@ -439,6 +439,33 @@ void main() {
         reason: 'no Played/Best toggle off an assessed move');
   });
 
+  testWidgets('stale v1 false-Best cache is recomputed and replaced', (t) async {
+    await t.binding.setSurfaceSize(_surface);
+    addTearDown(() => t.binding.setSurfaceSize(null));
+    final gameId = await _seedCachedBlunder(t);
+    final fixture = _finishedGame();
+    await t.runAsync(() async {
+      final old = jsonDecode((await _repo.loadAnalysis(gameId))!) as Map<String, dynamic>;
+      old['v'] = 1;
+      for (final move in old['moves'] as List) {
+        move['assessment']['ranked'] = [];
+        move['assessment']['equityLoss'] = 0;
+      }
+      await _repo.saveAnalysis(gameId, jsonEncode(old));
+    });
+    final engine = ScriptedEngine([
+      _ranking(fixture.played[0], .2), _ranking(fixture.played[1], 0),
+    ]);
+    await _pumpLoaded(t, _app(gameId, facade: engine));
+    expect(engine.calls, 2);
+    await t.runAsync(() async {
+      final saved = jsonDecode((await _repo.loadAnalysis(gameId))!) as Map<String, dynamic>;
+      expect(saved['v'], GameAnalysis.version);
+      final analysis = GameAnalysis.fromJson(saved);
+      expect(analysis.blunderCount(Player.white), 1);
+    });
+  });
+
   testWidgets('no cache: runs the analyzer and persists the analysis',
       (t) async {
     await t.binding.setSurfaceSize(_surface);

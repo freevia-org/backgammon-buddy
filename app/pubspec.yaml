@@ -125,6 +125,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/nets/
+    - assets/licenses/
 
 # Launcher icons. The source PNGs are generated from the app's own brand mark
 # (lib/branding/app_mark.dart) — see tool/generate_app_icon.dart. Regenerate the

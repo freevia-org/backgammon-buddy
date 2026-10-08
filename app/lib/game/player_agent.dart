@@ -213,7 +213,9 @@ class LocalHumanAgent implements PlayerAgent {
 /// agent is testable without the native engine. [EngineServiceFacade] wraps a
 /// real [EngineService] in production.
 abstract interface class EngineFacade {
-  /// Cubeless win/gammon/backgammon probabilities from [mover]'s perspective.
+  /// Cubeless probabilities from [mover]'s perspective, with [mover] on roll.
+  /// Use [Probabilities.inverted] to view that position from the other side;
+  /// querying the other player instead also changes whose turn is evaluated.
   Future<Probabilities> evaluate(BoardState board, Player mover);
   Future<List<ScoredMove>> rankMoves(
       BoardState board, Player mover, Dice dice);
@@ -316,8 +318,8 @@ class AiAgent implements PlayerAgent {
 
   /// Match-equity-based resign policy. This agent is the potential ACCEPTOR of
   /// the opponent's resignation; after [GameState.offerResign] `state.turn` is
-  /// this decider, so evaluating from `state.turn` gives the acceptor's own
-  /// win distribution.
+  /// this decider, but the offerer still owns the next roll if play continues.
+  /// Evaluate the offerer on roll, then invert to the acceptor's distribution.
   ///
   /// Accepting banks a FIXED number of points now; playing on continues the game
   /// at the current cube stake with the full range of outcomes (the acceptor may
@@ -343,19 +345,24 @@ class AiAgent implements PlayerAgent {
   @override
   Future<bool> chooseResignResponse(
       GameState state, ResignValue value, MatchContext ctx) async {
-    final probs = await _engine.evaluate(state.board, state.turn);
+    final probs =
+        (await _engine.evaluate(state.board, state.turn.opponent)).inverted;
     final offeredPoints = state.cube.value * value.multiplier;
+    // Both alternatives end this game. If it is the Crawford game, any next
+    // game has a live cube even though the current match context has not yet
+    // folded the result and marked Crawford as played.
+    final crawfordAfterGame = ctx.crawfordPlayed || state.isCrawfordGame;
     final eqAccept = matchEquityAfter(
       ctx.moverAway - offeredPoints,
       ctx.opponentAway,
-      crawfordPlayed: ctx.crawfordPlayed,
+      crawfordPlayed: crawfordAfterGame,
     );
     final eqPlayOn = matchEquityOfDistribution(
       probs,
       moverAway: ctx.moverAway,
       opponentAway: ctx.opponentAway,
       stake: state.cube.value,
-      crawfordPlayed: ctx.crawfordPlayed,
+      crawfordPlayed: crawfordAfterGame,
     );
     // Decline only when playing on is clearly better; otherwise accept.
     return eqPlayOn <= eqAccept + 0.005;

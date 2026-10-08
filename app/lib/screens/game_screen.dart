@@ -12,6 +12,8 @@ import '../game/match_controller.dart';
 import '../game/player_agent.dart';
 import '../tutor/move_assessment.dart';
 import '../tutor/tutor_service.dart';
+import '../tutor/coaching.dart';
+import '../tutor/coaching_widgets.dart';
 import 'game/dice_presenter.dart';
 import 'game/game_dialogs.dart';
 import 'game/game_hud.dart';
@@ -85,6 +87,7 @@ class GameScreen extends StatefulWidget {
     required this.controller,
     this.orientation = BoardOrientationMode.fixedWhite,
     this.tutor,
+    this.tutorOptions = const TutorOptions(),
     this.timings = AnimationTimings.off,
     this.interactionOptions = const BoardInteractionOptions(),
     this.showScoring = true,
@@ -215,6 +218,7 @@ class GameScreen extends StatefulWidget {
   /// cells) — and cube advice at the human's pre-roll gate / cube-offer dialog.
   /// Display-only: hints never auto-apply.
   final TutorService? tutor;
+  final TutorOptions tutorOptions;
 
   @override
   State<GameScreen> createState() => _GameScreenState();
@@ -385,6 +389,7 @@ class _GameScreenState extends State<GameScreen> {
   /// The tutor hint panel's open/loading/result state, and the staged move it
   /// hands to the board when a hint row is tapped.
   final HintController _hint = HintController();
+  late TutorOptions _tutorOptions;
 
   /// Bridges the interactive [BoardView]'s move-entry builder to the bottom
   /// action bar: it mirrors the live Undo/Confirm/Pass affordances and forwards
@@ -402,6 +407,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
+    _tutorOptions = widget.tutorOptions;
     _tutorSync = TutorSync(
       controller: _c,
       tutor: () => widget.tutor,
@@ -498,6 +504,9 @@ class _GameScreenState extends State<GameScreen> {
     _dice.syncRollBeat();
     _syncDancePass();
     _tutorSync.sync();
+    // A result requested for an earlier decision must not be applied to the
+    // next turn (for example after a network state replacement).
+    if (_hint.isOpen && !identical(_hint.position, _c.state)) _hint.close();
     _maybeShowDragHint();
     setState(() {});
   }
@@ -725,7 +734,9 @@ class _GameScreenState extends State<GameScreen> {
   // --- Tutor synchronisation -------------------------------------------------
 
   bool _doublingLegal(GameState s) =>
-      !s.isCrawfordGame && (s.cube.owner == null || s.cube.owner == s.turn);
+      !_c.cubeless &&
+      !s.isCrawfordGame &&
+      (s.cube.owner == null || s.cube.owner == s.turn);
 
   // --- Hint panel ------------------------------------------------------------
 
@@ -733,8 +744,9 @@ class _GameScreenState extends State<GameScreen> {
     widget.analytics.logTutorHintUsed(mode: widget.analyticsMode);
     final moveSide = _humanSideWith((s) => _c.pendingMoveOf(s).value != null);
     final state =
-        (moveSide != null ? _c.pendingMoveOf(moveSide).value : null) ?? _c.state;
-    _hint.open(() => _tutor!.hintOrNone(state));
+        (moveSide != null ? _c.pendingMoveOf(moveSide).value : null) ??
+            _c.state;
+    _hint.open(() => _tutor!.hintOrNone(state), position: state);
   }
 
   /// Stages [move] onto the interactive board and closes the hint panel. Only
@@ -742,7 +754,10 @@ class _GameScreenState extends State<GameScreen> {
   /// interactive and would ignore it, so we simply close.
   void _applyHint(Move move) {
     final moveSide = _humanSideWith((s) => _c.pendingMoveOf(s).value != null);
-    _hint.apply(move, stage: moveSide != null);
+    _hint.apply(
+      move,
+      stage: moveSide != null && identical(_hint.position, _c.state),
+    );
   }
 
   /// Tracks the acting side and — when [GameScreen.showPassDevice] is on —
@@ -967,6 +982,8 @@ class _GameScreenState extends State<GameScreen> {
               HintPanel(
                 loading: _hint.isLoading,
                 moves: _hint.moves,
+                position: _hint.position,
+                explanations: _tutorOptions.explanations,
                 onClose: _hint.close,
                 onApply: _applyHint,
               ),
@@ -1019,9 +1036,10 @@ class _GameScreenState extends State<GameScreen> {
       return [
         cubeDialog(
           state: state,
-          tutorLine: _tutor == null || advice == null
-              ? ''
-              : '\nTutor: ${advice.advice.shouldTake ? 'Take' : 'Pass'}',
+          tutorLine:
+              _tutor == null || advice == null || !_tutorOptions.cubeAdvice
+                  ? ''
+                  : '\nTutor: ${advice.advice.shouldTake ? 'Take' : 'Pass'}',
           onPass: () => _answerCube(cubeSide, CubeAction.drop),
           onTake: () => _answerCube(cubeSide, CubeAction.take),
         ),
@@ -1301,13 +1319,127 @@ class _GameScreenState extends State<GameScreen> {
     if (!mounted) return;
     setState(() => _summaryLoading = false);
     await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => MatchDetailScreen(matchId: matchId),
-      ),
+      MaterialPageRoute(builder: (_) => MatchDetailScreen(matchId: matchId)),
     );
   }
 
   // --- Tutor UI --------------------------------------------------------------
+
+  List<int> get _reviewIndices =>
+      _tutorSync.assessmentsByEventIndex.keys.toList()
+        ..sort((a, b) => b.compareTo(a));
+
+  String _coachSummary() {
+    final indices = _reviewIndices;
+    if (indices.isEmpty) return positionCommentary(_c.state);
+    final index = indices.first;
+    final assessment = _tutorSync.assessmentsByEventIndex[index]!;
+    final before = _tutorSync.positionsByEventIndex[index]!;
+    final label = playerName(before.turn);
+    if (assessment.ranked.isEmpty) {
+      return '$label had no legal play. A forced pass is not a mistake.';
+    }
+    return '$label’s last play: ${assessment.mark.name}, '
+        '${assessment.equityLoss.toStringAsFixed(3)} equity loss. Tap to review.';
+  }
+
+  void _openCoach() {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setSheetState) => ListenableBuilder(
+          listenable: Listenable.merge([_tutorSync, _c]),
+          builder: (context, _) => SafeArea(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.sizeOf(context).height * .8,
+              ),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Your tutor',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    if (_tutorOptions.commentary) ...[
+                      const SizedBox(height: 12),
+                      Text(positionCommentary(_c.state)),
+                    ],
+                    const SizedBox(height: 12),
+                    Text(
+                      'Recent decisions',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    if (_reviewIndices.isEmpty)
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: Text(
+                          'Feedback appears after a completed move is evaluated. '
+                          'Unavailable evaluations are left unmarked.',
+                        ),
+                      ),
+                    for (final index in _reviewIndices.take(2))
+                      _reviewDecision(index),
+                    const Divider(),
+                    ExpansionTile(
+                      tilePadding: EdgeInsets.zero,
+                      title: const Text('Tutoring options'),
+                      subtitle: const Text('Applies to this match'),
+                      children: [
+                        TutorOptionControls(
+                          options: _tutorOptions,
+                          onChanged: (options) {
+                            setState(() => _tutorOptions = options);
+                            setSheetState(() {});
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _reviewDecision(int index) {
+    final a = _tutorSync.assessmentsByEventIndex[index]!;
+    final before = _tutorSync.positionsByEventIndex[index]!;
+    final explanation = MoveExplanation.forAssessment(before, a);
+    return ExpansionTile(
+      tilePadding: EdgeInsets.zero,
+      title: Text('${playerName(before.turn)}: ${a.played}'),
+      subtitle: Text(
+        a.ranked.isEmpty
+            ? 'Forced pass'
+            : '${a.mark.name} · ${a.equityLoss.toStringAsFixed(3)} equity loss',
+      ),
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Best: ${a.best}'),
+              if (_tutorOptions.explanations && explanation != null) ...[
+                const SizedBox(height: 8),
+                MoveExplanationView(explanation: explanation),
+              ],
+              if (a.ranked.isEmpty)
+                const Text('There was no legal checker play.'),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
   /// Height of the tutor advice slot below the action bar. RESERVED whenever a
   /// tutor is attached, whether or not there is advice to show right now, for
@@ -1322,8 +1454,10 @@ class _GameScreenState extends State<GameScreen> {
   /// tutor is on, the fixed-height cube-advice slot beneath it (empty until the
   /// pre-roll gate resolves its advice).
   Widget _bottomRegion(Player? moveSide, Player? owner) {
-    final showCube =
-        _tutor != null && _tutorSync.cubeAdvice != null && _c.awaitingHumanTurn;
+    final showCube = _tutor != null &&
+        _tutorOptions.cubeAdvice &&
+        _tutorSync.cubeAdvice != null &&
+        _c.awaitingHumanTurn;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -1335,7 +1469,40 @@ class _GameScreenState extends State<GameScreen> {
           SizedBox(
             key: const ValueKey('adviceLine'),
             height: _adviceLineHeight,
-            child: showCube ? _cubeAdviceLine(_tutorSync.cubeAdvice!) : null,
+            child: Row(
+              children: [
+                Expanded(
+                  child: showCube
+                      ? _cubeAdviceLine(_tutorSync.cubeAdvice!)
+                      : _tutorOptions.commentary
+                          ? InkWell(
+                              onTap: _openCoach,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                child: Text(
+                                  _coachSummary(),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.bodySmall,
+                                ),
+                              ),
+                            )
+                          : const SizedBox.shrink(),
+                ),
+                IconButton(
+                  tooltip: 'Tutor coaching and options',
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(
+                    minWidth: 36,
+                    minHeight: 28,
+                  ),
+                  iconSize: 20,
+                  onPressed: _openCoach,
+                  icon: const Icon(Icons.school_outlined),
+                ),
+              ],
+            ),
           ),
       ],
     );
@@ -1403,7 +1570,8 @@ class _GameScreenState extends State<GameScreen> {
     final scheme = Theme.of(context).colorScheme;
     // Whether THIS bar's owner is the one who may act right now.
     final live = owner == null || _actingSide(moveSide) == owner;
-    final showHint = _tutor != null && moveSide != null;
+    final showHint =
+        _tutor != null && _tutorOptions.bestMoves && moveSide != null;
     final Widget content;
     if (moveSide != null && _entryControl.isDance) {
       content = Row(
@@ -1478,7 +1646,20 @@ class _GameScreenState extends State<GameScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         // Disabled Material buttons are already muted; the extra wash makes the
         // OTHER player's bar recede as a whole so a glance finds the live one.
-        child: Opacity(opacity: live ? 1 : 0.45, child: content),
+        child: Opacity(
+          opacity: live ? 1 : 0.45,
+          // Large accessibility text can exceed a phone's width. Preserve the
+          // readable labels and make every action reachable by scrolling.
+          child: LayoutBuilder(
+            builder: (context, constraints) => SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minWidth: constraints.maxWidth),
+                child: IntrinsicWidth(child: content),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

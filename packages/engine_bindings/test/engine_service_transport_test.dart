@@ -35,6 +35,18 @@ void silentWorker(List<Object?> args) {
   });
 }
 
+/// Stays alive without completing engine initialization.
+void silentStartupWorker(List<Object?> args) {
+  ReceivePort().listen((_) {});
+}
+
+/// Exits before sending either a successful handshake or an init error.
+void exitsBeforeStartupWorker(List<Object?> args) {}
+
+void failedStartupWorker(List<Object?> args) {
+  (args[0] as SendPort).send(['init_error', 'model files unavailable']);
+}
+
 /// Completes the handshake and dies immediately afterwards, inside the window
 /// spawn() needs to finish wiring the service up.
 void dyingWorker(List<Object?> args) {
@@ -102,6 +114,32 @@ void echoWorker(List<Object?> args) {
 }
 
 void main() {
+  for (final worker in [silentStartupWorker, exitsBeforeStartupWorker]) {
+    test('startup without a handshake times out ($worker)', () async {
+      await expectLater(
+        EngineService.spawn(
+          netsPath: 'unused',
+          workerEntry: worker,
+          startupTimeout: const Duration(milliseconds: 150),
+        ),
+        throwsA(isA<TimeoutException>().having(
+            (e) => e.message, 'message', contains('initialize'))),
+      );
+    });
+  }
+
+  test('startup preserves the initialization error before clean exit', () async {
+    await expectLater(
+      EngineService.spawn(
+        netsPath: 'unused',
+        workerEntry: failedStartupWorker,
+        startupTimeout: const Duration(seconds: 2),
+      ),
+      throwsA(isA<StateError>().having(
+          (e) => e.message, 'message', 'model files unavailable')),
+    );
+  });
+
   test('a normal round trip still works through the rebuilt handshake',
       () async {
     final service =

@@ -5,6 +5,8 @@
 /// happy-path suites.
 library;
 
+import 'dart:async';
+
 import 'package:aigammon_app/game/player_agent.dart' show CubeAction;
 import 'package:aigammon_app/net/net_match_controller.dart';
 import 'package:backgammon_core/backgammon_core.dart';
@@ -232,6 +234,41 @@ void main() {
   });
 
   group('persistence', () {
+    test('queued history finishes after leaving the completed match', () async {
+      final p = await NetPair.start(length: 1);
+      final gate = Completer<void>();
+      p.guestPersistence.gameWriteGate = gate.future;
+      await p.playOut();
+
+      p.guest.disposeController();
+      gate.complete();
+      await settle();
+
+      expect(p.guestPersistence.games, hasLength(1));
+      expect(p.guestPersistence.matchFinishedCalls, 1,
+          reason: 'leaving the game must not discard its queued history');
+    });
+
+    test('queued game writes retain the score at each game end', () async {
+      final p = await NetPair.start(length: 3);
+      final gate = Completer<void>();
+      p.guestPersistence.gameWriteGate = gate.future;
+      await p.playOut();
+      gate.complete();
+      await settle();
+
+      final games = p.guestPersistence.games;
+      expect(games.length, greaterThan(1));
+      var expected = MatchState(matchLength: 3);
+      for (final game in games) {
+        expected = expected.applyResult(game.result);
+        expect(game.matchAfter.whiteScore, expected.whiteScore,
+            reason: 'game ${game.gameNumber} must retain its own score');
+        expect(game.matchAfter.blackScore, expected.blackScore,
+            reason: 'game ${game.gameNumber} must retain its own score');
+      }
+    });
+
     test('fires once per finished game and once per match on BOTH ends',
         () async {
       final p = await NetPair.start(length: 1);

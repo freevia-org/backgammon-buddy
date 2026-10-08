@@ -1451,6 +1451,7 @@ class NetMatchController extends ChangeNotifier implements MatchController {
     _lastFinishedGameNo = ef.gameNo;
     final result = next.state.result!;
     _match = _match.applyResult(result);
+    final matchAfter = _match;
     // Persist the JUST-finished game with its COMPLETE event log. This fires at
     // the applyResult moment — before any of the next game's events fold (they
     // buffer while [_awaitingNextGame]) — so [next.events] is the whole game.
@@ -1461,13 +1462,13 @@ class NetMatchController extends ChangeNotifier implements MatchController {
             isCrawford: next.state.isCrawfordGame,
             events: next.events,
             result: result,
-            matchAfter: _match,
+            matchAfter: matchAfter,
           ));
     }
     if (_match.isMatchOver) {
       if (!_matchPersisted) {
         _matchPersisted = true;
-        _persist(() => persistence.onMatchFinished(_match));
+        _persist(() => persistence.onMatchFinished(matchAfter));
       }
     } else if (ef.gameNo > _acknowledgedThrough) {
       // Pause for the game-over dialog — unless this is a replay of a game the
@@ -2191,7 +2192,9 @@ class NetMatchController extends ChangeNotifier implements MatchController {
   /// storage layer.
   void _persist(Future<void> Function() hook) {
     _persistChain = _persistChain.then((_) async {
-      if (_disposed) return;
+      // These writes describe games already completed. Disposing the screen
+      // stops play, but must not discard history still waiting behind a slow
+      // earlier write. _notify already suppresses updates after disposal.
       try {
         await hook();
       } catch (e) {
