@@ -100,9 +100,9 @@ remedy, rather than treating these as remaining failures.
   extraction of coaching presentation/state behind tested boundaries over another
   broad rewrite while new teaching behavior settles.
 - The public privacy/contact gate is satisfied by the live Freevia pages. Mobile
-  store release still needs dependency native SDK manifests/notices, signed
-  artifacts, service retention decisions and real-device acceptance. The first
-  Android artifact validation also requires a passing corrected-validator rebuild.
+  store release still needs dependency native SDK manifests/notices, release-signed
+  candidates, service retention decisions and real-device acceptance. Diagnostic
+  Android and iOS build validation is complete, including corrected ELF checks.
   Android bundles and optional iOS App Store exports
   prepare artifacts only; they do not submit a release.
 - Buddy's camera dice reader is not reliable enough to advertise automatic dice
@@ -159,27 +159,32 @@ the **2,294** package/Flutter test count above; it is evidence of desktop runtim
 operation, not mobile signing or clean-machine installer acceptance.
 
 Remote validation at
-[`6f84c741`](https://github.com/freevia-org/backgammon-buddy/commit/6f84c7414273cbac3a9d26ff99bc762037674798)
-then passed [all 10 CI jobs](https://github.com/freevia-org/backgammon-buddy/actions/runs/37845257034),
+[`eb86f917`](https://github.com/freevia-org/backgammon-buddy/commit/eb86f917845b8fec49e17d791308722e08843f9f)
+then passed [all 10 CI jobs](https://github.com/freevia-org/backgammon-buddy/actions/runs/37849457718),
 including Firestore emulator rules/transport/widget E2E tests. These cloud runs
 are separate evidence and are not added to the local **2,294** total.
 
-The [iOS build](https://github.com/freevia-org/backgammon-buddy/actions/runs/37845799818)
+The [iOS build](https://github.com/freevia-org/backgammon-buddy/actions/runs/37849851091)
 passed with the ARM64 native engine, unsigned Runner and Dart-symbol artifacts.
 Signing/export/distribution steps were skipped. The
-[Android build](https://github.com/freevia-org/backgammon-buddy/actions/runs/37845799838)
-compiled both native ABIs and APKs but failed artifact preflight on DataStore's
-complete-LOAD RELRO layout, before artifact upload. Android 15 and current AOSP
-source show that this layout is safe when rounded protection contains no other
-writable/executable bytes. Original JNI and official DataStore/CameraX binaries
-pass the corrected validator, while unsafe-prefix and permission-overlap
-regressions fail as required. The temporary JNI linker adjustment was unnecessary
-and removed. A fresh workflow must still validate the packaged APKs with the
-corrected gate. See [release readiness](release-readiness.md) for details.
+[Android build](https://github.com/freevia-org/backgammon-buddy/actions/runs/37849850922)
+also passed: both native ABIs, release-mode/debug-signed APKs, provenance,
+engine/ABI presence, 64-bit ELF validation and ZIP alignment. Diagnostic APKs,
+Dart symbols and unstripped engine symbols were uploaded. Play bundle creation
+and tester distribution were skipped. The diagnostic artifact gate is closed.
 
-Signed mobile acceptance, physical-device permission flows, 16 KB device testing,
+Earlier Android runs exposed an overly strict RELRO validator, not a demonstrated
+native runtime failure. Android 15 and current AOSP source allow complete-LOAD
+RELRO layouts when rounded protection contains no other writable/executable
+bytes. Original JNI and official DataStore/CameraX binaries pass the corrected
+rule, while unsafe-prefix and permission-overlap regressions fail as required.
+The unnecessary JNI linker adjustment was removed. The final APKs passed this
+corrected gate; see [release readiness](release-readiness.md) for exact artifact
+sizes, links and loader evidence.
+
+Release-signed mobile acceptance, physical-device permission flows, 16 KB device testing,
 deployed-backend acceptance and store submission remain unperformed.
 
 An additional release-only follow-up validated four workflow boundary tests
 (including the new macOS CLI distribution guard) after the integrated suite.
-No signed upload was dispatched to validate credentials or native artifacts.
+No release-signed upload was dispatched; distribution credentials remain unvalidated.

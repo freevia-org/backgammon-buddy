@@ -1,12 +1,13 @@
 # Release readiness — 2026-10-08
 
-**Status: local software preparation implemented; mobile acceptance and service
-policy decisions remain open.** Publisher is **Freevia**, source is
+**Status: software preparation and diagnostic mobile build validation complete;
+release signing, device acceptance and service policy decisions remain open.** Publisher is **Freevia**, source is
 <https://github.com/freevia-org/backgammon-buddy>, policy is
 <https://freevia.org/backgammon-buddy/privacy/>, and support is
 <https://freevia.org/backgammon-buddy/support/>. This report does not claim store release.
 Repository secrets, deployed Firebase settings and store account history remain
-unverified. No signed mobile artifact or store submission was performed here.
+unverified. No release-signed candidate or store submission was produced here.
+Android artifacts are release-mode/debug-signed diagnostics; iOS Runner is unsigned.
 The product/privacy/support routes were deployed and independently verified HTTP
 200 with the expected distinct page titles; privacy@freevia.org and
 support@freevia.org are the existing Freevia contacts.
@@ -53,7 +54,8 @@ See the [code review](code-review-2026-10-08.md) for code fixes and test results
 - Both signed mobile paths require an explicit build number or verified repository
   baseline; a new repository's reset workflow counter cannot silently sign an
   older version. Android checks all bundled 64-bit ELF LOAD/RELRO alignment plus
-  APK ZIP alignment. CI retains native engine symbols and signed iOS dSYMs.
+  APK ZIP alignment. CI retains native engine symbols and can retain signed iOS
+  dSYMs when that export path is exercised.
 - Offline preflight validates Cargo/model/license hashes and has focused tests
   for malformed/alignment-failing ELF, profile mismatches and build-number input.
 - Android artifact checks now distinguish an unsafe RELRO prefix from a complete
@@ -61,8 +63,8 @@ See the [code review](code-review-2026-10-08.md) for code fixes and test results
   rejected safe JNI and DataStore layouts; no native runtime failure was
   demonstrated. The unnecessary JNI linker workaround was removed. The corrected
   validator rejects rounded protection that overlaps other writable/executable
-  LOADs and reports every library failure plus ZIP errors in one run. Full APK
-  validation with the corrected check is pending.
+  LOADs and reports every library failure plus ZIP errors in one run. Both final
+  diagnostic APKs passed the corrected ELF and ZIP checks.
 
 ## Outstanding release gates
 
@@ -70,11 +72,10 @@ See the [code review](code-review-2026-10-08.md) for code fixes and test results
 |---|---|---|
 | P1 | Cloud policy decisions and store disclosures | In-app controls, existing Freevia contacts and the public policy are available (live HTTP200 verified). Define cloud retention and an administrative deletion process, verify Firebase settings, and complete Play Data safety / Apple App Privacy from the signed binary. See [disclosure worksheet](store-disclosures.md). |
 | P1 | Platform-native license/privacy inventory | Rust/model/table notices are bundled with source evidence. Inspect actual Android/iOS native SDK dependencies and privacy manifests after building; Flutter's Dart registry and Rust inventory do not establish every platform SDK notice. |
-| P1 | Android diagnostic artifact validation | Both ARMv7/ARM64 builds compiled successfully, but the initial RELRO validator rejected safe complete-LOAD layouts. Rebuild with the corrected layout-aware validator and require every ELF and APK ZIP check to pass before accepting artifacts. |
 | P1 | Signed Android acceptance | Run the updated workflow; verify signing certificate, version code, bundled nets/engine, merged permissions/features, and installation plus update over the previous tester release. Build the AAB option and inspect the resulting bundle before submission. Existing secrets and account access are unverified, not assumed absent. |
 | P1 | iOS store artifact | Both ad-hoc and App Store export-only paths are implemented; neither a signed store profile/export nor App Store Connect validation was exercised here. Verify selected Xcode/SDK, static engine symbols, device startup and archive privacy report. |
 | P1 | Real-device tutor and Buddy acceptance | Complete the [Buddy protocol](buddy-mode-test-protocol.md) and the tutor smoke checks below on Android and iOS. CI cannot certify camera, microphone, local-network prompts, thermal load, lifecycle behavior, or speech. Camera dice recognition remains experimental: typed dice are the supported path. |
-| P2 | Native crash symbolication | Unstripped Android engine symbols and signed iOS archive dSYMs are now retained by CI. Native upload and a deliberately symbolicated test crash still need exact-release validation; keep symbols beyond CI artifact retention. |
+| P2 | Native crash symbolication | Final CI retained unstripped Android engine symbols; the signed iOS path is configured to retain archive dSYMs but was not exercised. Native upload and a deliberately symbolicated test crash still need exact-release validation; keep symbols beyond CI artifact retention. |
 | P2 | Distribution metadata/build history | Publisher/contact and source URLs are Freevia. Confirm screenshots, age ratings, countries/platforms and review instructions. Inspect old store/tester build numbers before selecting `build_number` or `RELEASE_BUILD_NUMBER_BASE` in the new repository. Android id `com.xmelon.aigammon_app` and iOS id `com.xmelon.aigammon` remain unchanged. |
 | P2 | Windows distribution | Desktop integration passed with the real native engine, advancing five plies. No Windows installer/signing CI or clean-machine acceptance evidence exists; decide the public distribution target before advertising downloads. |
 
@@ -141,13 +142,19 @@ draft was cross-checked against current code, including reset-practice behavior.
 ## Remote build evidence
 
 The following automatic runs target software revision
-[`6f84c741`](https://github.com/freevia-org/backgammon-buddy/commit/6f84c7414273cbac3a9d26ff99bc762037674798):
+[`eb86f917`](https://github.com/freevia-org/backgammon-buddy/commit/eb86f917845b8fec49e17d791308722e08843f9f).
+All three completed successfully on October 8, 2026 UTC:
 
 | Run | Verified result |
 |---|---|
-| [CI 37845257034](https://github.com/freevia-org/backgammon-buddy/actions/runs/37845257034) | All 10 jobs passed, including Windows goldens, real-engine app tests and Firestore emulator rules/transport/widget E2E jobs. |
-| [iOS 37845799818](https://github.com/freevia-org/backgammon-buddy/actions/runs/37845799818) | ARM64 Rust engine and unsigned Flutter Runner built successfully. Uploaded `aigammon-ios-unsigned` (18,190,530 bytes) and `aigammon-symbols-ios-4` (1,517,106 bytes). Signed IPA/export/distribution steps were skipped. This is compilation evidence, not a signed archive or device acceptance. |
-| [Android 37845799838](https://github.com/freevia-org/backgammon-buddy/actions/runs/37845799838) | Both Rust ABIs and release APKs compiled; provenance passed. Artifact preflight rejected ARM64 `libdatastore_shared_counter.so` at RELRO end `0x6000`. This was a false positive from the unconditional end-alignment rule. No APK/symbol upload or distribution occurred; a corrected-validator rebuild is pending. |
+| [CI 37849457718](https://github.com/freevia-org/backgammon-buddy/actions/runs/37849457718) | All 10 jobs passed, including Windows goldens, native-engine integration, Flutter app tests and Firestore emulator rules/transport/widget E2E jobs. |
+| [iOS 37849851091](https://github.com/freevia-org/backgammon-buddy/actions/runs/37849851091) | ARM64 Rust engine and unsigned Flutter Runner built successfully. Uploaded `aigammon-ios-unsigned` (18,191,063 bytes) and `aigammon-symbols-ios-5` (1,517,106 bytes). Signed IPA/export/distribution steps were skipped. This is compilation evidence, not a release-signed candidate or device acceptance. |
+| [Android 37849850922](https://github.com/freevia-org/backgammon-buddy/actions/runs/37849850922) | Both Rust ABIs and release-mode/debug-signed APKs compiled. Provenance, engine/ABI presence, every bundled 64-bit ELF check and both APK ZIP checks passed. Uploaded `aigammon-apk` (39,551,363 bytes), `aigammon-symbols-android-5` (2,663,074 bytes) and `aigammon-native-symbols-android-5` (72,504,055 bytes). Play bundle/export and tester distribution were skipped. |
+
+**The diagnostic Android artifact validation gate is closed.** Artifact sizes
+above are GitHub's uploaded archive sizes. These artifacts establish build and
+packaging success; they do not establish release-signing identity, upgrade
+compatibility, physical-device behavior, or store acceptance.
 
 LOAD alignment/address congruence, RELRO protection and APK ZIP alignment are
 separate checks. Android's guide warns about an unaligned RELRO end protecting
@@ -164,8 +171,8 @@ by name. [Android guidance](https://developer.android.com/guide/practices/page-s
 Eighteen Python release tests cover unsafe prefixes, rounded RW/RX overlaps,
 malformed headers, multiple simultaneous library/ZIP failures, ABI/engine
 presence, signing profiles and build numbers. Original JNI, DataStore 1.1.7 and
-CameraX 1.6.1 binaries pass the corrected rule. Dependencies remain unchanged;
-the full project's packaged APKs still require the pending CI rebuild.
+CameraX 1.6.1 binaries pass the corrected rule. Dependencies remain unchanged,
+and the final packaged APKs passed the corrected checks in the run above.
 
 ## Verification limits of this round
 
