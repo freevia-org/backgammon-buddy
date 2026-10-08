@@ -336,6 +336,9 @@ jobs:
           python3 tool/mobile_dependency_inventory.py "${ARGS[@]}" \
             --android-dependencies app/build/mobile-dependencies/android/resolved.json \
             --out-dir app/build/mobile-dependencies/android
+          python3 tool/mobile_notices.py --check \
+            --android-resolved app/build/mobile-dependencies/android/resolved.json \
+            --flutter-license "$(dirname "$(dirname "$(command -v flutter)")")/bin/cache/pkg/sky_engine/LICENSE"
 
       - name: Upload Android dependency evidence
         uses: actions/upload-artifact@v4

@@ -1,0 +1,51 @@
+OkHttp 4.12.0 Public Suffix List source availability
+
+The public suffix list included in OkHttp is subject to the Mozilla Public
+License 2.0. The original license notice, the complete MPL 2.0 text and the
+complete original human-readable source list are bundled with this app:
+
+  okhttp-publicsuffix-NOTICE.txt
+  okhttp-publicsuffix-MPL-2.0.txt
+  okhttp-publicsuffix-4.12.0-source.dat
+
+The source list is unmodified, including its original comments and notices.
+It may be modified and redistributed under MPL 2.0. The app's license does not
+restrict recipients' rights to this source. A copy is also available without
+charge in the public Backgammon Buddy source repository:
+https://github.com/freevia-org/backgammon-buddy/tree/master/app/assets/licenses
+
+Original component: com.squareup.okhttp3:okhttp:4.12.0
+Upstream release tag: parent-4.12.0
+Release commit: 4984568367caaf359b82c452bd28b5e192824d1c
+Last suffix import commit: 40cb04338da423f7f73e83025717652ed35b7896
+
+Exact source:
+https://raw.githubusercontent.com/square/okhttp/4984568367caaf359b82c452bd28b5e192824d1c/okhttp/src/test/resources/okhttp3/internal/publicsuffix/public_suffix_list.dat
+SHA-256: e8b273972eb5a70e888bd3e7d7c5b9b04e600a59d69def9136a74d70ae6fcdd3
+
+Exact upstream notice (also checked against the resolved JAR):
+https://raw.githubusercontent.com/square/okhttp/4984568367caaf359b82c452bd28b5e192824d1c/okhttp/src/main/resources/okhttp3/internal/publicsuffix/NOTICE
+SHA-256: 8a9c58fbded5ea3474315e4a9824ca8b1486098a1a03e897e0b19419d5e1876a
+
+License text:
+https://www.mozilla.org/media/MPL/2.0/index.txt
+SHA-256: 3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04
+
+The source contains 9,499 normal/wildcard rules and 8 exceptions. Removing
+comments, sorting unsigned UTF-8 bytes, splitting !-prefixed exceptions and
+writing two big-endian length-prefixed newline-delimited lists reproduces
+every uncompressed byte of okhttp3/internal/publicsuffix/publicsuffixes.gz
+in the resolved OkHttp 4.12.0 JAR. This is the format used by upstream's
+PublicSuffixListGenerator.java at the same release commit.
+
+JAR publicsuffixes.gz SHA-256:
+9af43e9995ec749e7a30eec4e5a87770d7e2027847084a07cca82060eff0c791
+Uncompressed data SHA-256:
+5beda335cfa1a9a9f84c4d17f2267ad7304c3c23d14d41256032d78db274431f
+
+Offline verifier and optional actual-JAR comparison:
+python tool/verify_okhttp_publicsuffix.py
+python tool/verify_okhttp_publicsuffix.py --jar /path/to/okhttp-4.12.0.jar
+
+This retained source snapshot documents the shipped library version. It is not
+a replacement for publicsuffix.org's current list for a new implementation.

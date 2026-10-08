@@ -11,17 +11,22 @@ void main() {
     'native transitive notices and model terms are available offline',
     () async {
       final entries = await additionalNativeLicenses().toList();
-      expect(entries, hasLength(4));
-      final text = entries
-          .expand((e) => e.paragraphs)
-          .map((p) => p.text)
-          .join('\n');
+      expect(entries, hasLength(7));
+      final text =
+          entries.expand((e) => e.paragraphs).map((p) => p.text).join('\n');
       expect(text, contains('dyn-eq 0.1.3'));
       expect(text, contains('Mozilla Public License'));
       expect(text, contains('CC0'));
       expect(text, contains('by Neil Kazaross 2011.'));
       expect(text, contains('permission notice are preserved.'));
       expect(text, contains('Copyright (c) 2026 Freevia'));
+      expect(text, contains('androidx.camera:camera-core:1.6.1'));
+      expect(text, contains('com.google.protobuf:protobuf-javalite:3.25.5'));
+      expect(text, contains('Firebase Analytics / Google App Measurement'));
+      expect(text, contains('The LibYuv Project Authors'));
+      expect(text,
+          contains('OkHttp 4.12.0 Public Suffix List source availability'));
+      expect(text, contains('// ===BEGIN ICANN DOMAINS==='));
       final source = await rootBundle.load(
         'assets/licenses/dyn-eq-0.1.3-source.tar.gz',
       );
@@ -58,10 +63,8 @@ void main() {
         entries.every((e) => e.packages.single == 'wildbg (native engine)'),
         isTrue,
       );
-      final text = entries
-          .expand((e) => e.paragraphs)
-          .map((p) => p.text)
-          .join('\n');
+      final text =
+          entries.expand((e) => e.paragraphs).map((p) => p.text).join('\n');
       expect(text, contains('Copyright (c) 2023 Carsten Wenderdel'));
       expect(text, contains('Permission is hereby granted'));
       expect(text, contains('Version 2.0, January 2004'));

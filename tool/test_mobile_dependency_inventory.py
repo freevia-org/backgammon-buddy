@@ -29,13 +29,14 @@ class MobileInventoryTest(unittest.TestCase):
             archive.writestr('lib/arm64-v8a/libtest.so', b'native evidence')
             archive.writestr('META-INF/example.version', '1.2.3\n')
             archive.writestr('assets/licenses/LICENSE.txt', 'license text')
+            archive.writestr('third_party_licenses.txt', 'SDK notice text')
         report = inspect_artifact(artifact)
         self.assertEqual(report['privacy_manifests'][0]['declarations'], manifest)
         self.assertEqual(report['frameworks'][0]['CFBundleVersion'], '123')
         self.assertNotIn('MUST-NOT-EXPORT', json.dumps(report))
         self.assertEqual(report['version_markers']['META-INF/example.version'], '1.2.3')
         self.assertEqual(len(report['native_libraries']), 1)
-        self.assertEqual(len(report['notice_assets']), 1)
+        self.assertEqual(len(report['notice_assets']), 2)
 
     def test_direct_pom_terms_are_recorded_and_missing_terms_remain_unknown(self):
         (self.root / 'one.pom').write_text('''<project xmlns="http://maven.apache.org/POM/4.0.0">

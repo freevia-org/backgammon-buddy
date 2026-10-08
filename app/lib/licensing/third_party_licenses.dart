@@ -33,6 +33,26 @@ Stream<LicenseEntry> additionalNativeLicenses() async* {
   yield LicenseEntryWithLineBreaks(const [
     'wildbg neural-network models and training data',
   ], await rootBundle.loadString('assets/licenses/wildbg-training-CC0.txt'));
+  yield LicenseEntryWithLineBreaks(const [
+    'Android native dependencies',
+  ], await rootBundle.loadString('assets/licenses/android-native-notices.txt'));
+  yield LicenseEntryWithLineBreaks(const [
+    'Apple native dependencies',
+  ], await rootBundle.loadString('assets/licenses/apple-native-notices.txt'));
+  final suffixSource = <String>[];
+  for (final name in [
+    'PROVENANCE.txt',
+    'NOTICE.txt',
+    'MPL-2.0.txt',
+    '4.12.0-source.dat',
+  ]) {
+    suffixSource.add(await rootBundle.loadString(
+      'assets/licenses/okhttp-publicsuffix-$name',
+    ));
+  }
+  yield LicenseEntryWithLineBreaks(const [
+    'OkHttp public-suffix list — license and complete source',
+  ], suffixSource.join('\n\n'));
 }
 
 bool _nativeLicensesRegistered = false;

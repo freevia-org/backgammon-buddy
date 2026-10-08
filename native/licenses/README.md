@@ -25,6 +25,8 @@ engine's MIT/Apache licenses. This establishes the published upstream terms and
 matching artifacts, without representing an independent audit of all training
 inputs or authorship.
 
-Flutter's registry supplies Dart package notices. Actual Android/iOS builds must
-also be inspected for platform-native SDK license/manifests contributed by
-Firebase, Flutter and plugins; this Rust inventory does not replace that review.
+Flutter's registry supplies Dart package notices. The separate
+[mobile native inventory](mobile/README.md) preserves Android and Apple SDK
+notices and feeds two additional offline Licenses entries. It is generated from
+actual resolved modules, exact artifact hashes and pinned Apple source notices;
+CI rejects dependency changes until the corresponding notice review is updated.

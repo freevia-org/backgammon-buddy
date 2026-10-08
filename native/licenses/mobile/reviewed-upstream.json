@@ -1,0 +1,73 @@
+{
+  "android": {
+    "androidx.camera:camera-core:1.6.1": {
+      "note": "CameraX declares Apache-2.0 and BSD-3-Clause for its libyuv component. Upstream libyuv notice provenance is pinned separately from the CameraX binary.",
+      "notices": [
+        "libyuv-BSD",
+        "libyuv-PATENTS"
+      ]
+    },
+    "androidx.datastore:datastore-preferences-external-protobuf:1.1.7": {
+      "notices": [
+        "Google-protobuf-BSD"
+      ]
+    },
+    "com.google.protobuf:protobuf-javalite:3.25.5": {
+      "notices": [
+        "Google-protobuf-BSD"
+      ]
+    },
+    "com.squareup.okhttp3:okhttp:4.12.0": {
+      "note": "The MPL-2.0 public suffix list source and license are also available in the separate OkHttp public-suffix source entry in Licenses.",
+      "notices": []
+    },
+    "eu.simonbinder:sqlite3-native-library:3.52.0": {
+      "notices": [
+        "SQLite-public-domain"
+      ]
+    }
+  },
+  "flutter_engine_revision": "0cd610717bde95fd88343c64f81c11ba4e5c0010",
+  "notices": {
+    "Apache-2.0": {
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "sources": [
+        "https://www.apache.org/licenses/LICENSE-2.0.txt"
+      ]
+    },
+    "Flutter-engine-composite": {
+      "sha256": "82a5f93f918f99ff82af18c8be176c709dc812cb3f5e1e1cd93847bdeb0f9369",
+      "sources": [
+        "https://storage.googleapis.com/flutter_infra_release/flutter/0cd610717bde95fd88343c64f81c11ba4e5c0010/sky_engine.zip",
+        "Flutter SDK generated sky_engine/LICENSE for engine 0cd610717bde95fd88343c64f81c11ba4e5c0010; CI verifies its complete SHA-256 against the build SDK."
+      ]
+    },
+    "Google-protobuf-BSD": {
+      "sha256": "6e5e117324afd944dcf67f36cf329843bc1a92229a8cd9bb573d7a83130fea7d",
+      "sources": [
+        "https://github.com/protocolbuffers/protobuf/blob/v25.5/LICENSE",
+        "https://github.com/protocolbuffers/protobuf/blob/v3.10.0/LICENSE (same license text; AndroidX relocated protobuf)"
+      ]
+    },
+    "SQLite-public-domain": {
+      "sha256": "ee6af51062b30d532991face5164136ae6f84e265ecf8abe89dc69dac45ca1e7",
+      "sources": [
+        "https://github.com/sqlite/sqlite/blob/version-3.52.0/LICENSE.md"
+      ]
+    },
+    "libyuv-BSD": {
+      "sha256": "2b2cc1180c7e6988328ad2033b04b80117419db9c4c584918bbb3cfec7e9364f",
+      "sources": [
+        "https://chromium.googlesource.com/libyuv/libyuv/+/afae031e789e344bfc34c9e763c83f861a1ff3f1/LICENSE",
+        "AndroidX camera release manifest pin: https://android.googlesource.com/platform/manifest/+/0e8141d7deae3ac92d2ce5674cf5d76286de4a29/default.xml"
+      ]
+    },
+    "libyuv-PATENTS": {
+      "sha256": "4da84211f947c6f9f7dd8fbce513e1522e01833407ae732b8c9a2bbb75fed495",
+      "sources": [
+        "https://chromium.googlesource.com/libyuv/libyuv/+/afae031e789e344bfc34c9e763c83f861a1ff3f1/PATENTS",
+        "AndroidX camera release manifest pin: https://android.googlesource.com/platform/manifest/+/0e8141d7deae3ac92d2ce5674cf5d76286de4a29/default.xml"
+      ]
+    }
+  }
+}

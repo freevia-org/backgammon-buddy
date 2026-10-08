@@ -50,7 +50,7 @@ def inspect_artifact(path):
                     'DTSDKName', 'DTXcode', 'MinimumOSVersion') if key in plist}
                 metadata['path'] = name
                 result['frameworks'].append(metadata)
-            elif re.search(r'(^|/)(licenses?|notices?|copying|acknowledgements)([./_-]|$)', lower):
+            elif re.search(r'(^|/)(licenses?|notices?|copying|acknowledgements|third_party_licenses)([./_-]|$)', lower):
                 result['notice_assets'].append({'path': name, 'sha256': sha(archive.read(name))})
     return result
 

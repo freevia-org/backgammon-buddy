@@ -5,3 +5,9 @@ app/assets/licenses/wildbg-training-CC0.txt text eol=lf
 native/licenses/upstream/*.txt text eol=lf
 native/licenses/*.json text eol=lf
 app/assets/licenses/*.tar.gz binary
+app/assets/licenses/okhttp-publicsuffix-* text eol=lf whitespace=-blank-at-eol
+# Mobile notices retain exact upstream bytes, including mixed CRLF/LF sources.
+native/licenses/mobile/texts/*.txt -text whitespace=-blank-at-eol,-blank-at-eof
+native/licenses/mobile/*.json text eol=lf
+app/assets/licenses/android-native-notices.txt -text whitespace=-blank-at-eol
+app/assets/licenses/apple-native-notices.txt -text whitespace=-blank-at-eol

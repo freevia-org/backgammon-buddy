@@ -165,6 +165,9 @@ jobs:
             --apple-source-root "$HOME/Library/Developer/Xcode/DerivedData" \
             --require-no-apple-ad-support \
             --out-dir app/build/mobile-dependencies/ios-unsigned
+          python3 tool/mobile_notices.py --check \
+            --apple-inventory app/build/mobile-dependencies/ios-unsigned/inventory.json \
+            --flutter-license "$(dirname "$(dirname "$(command -v flutter)")")/bin/cache/pkg/sky_engine/LICENSE"
           xcodebuild -version > app/build/mobile-dependencies/ios-unsigned/xcode-version.txt
           xcrun --sdk iphoneos --show-sdk-version > app/build/mobile-dependencies/ios-unsigned/sdk-version.txt
 
