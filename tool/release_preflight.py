@@ -37,7 +37,7 @@ def check_sources(root=ROOT):
 
 
 def elf_16kb(data, label):
-    """Check every LOAD alignment in a little-endian ELF64 shared object."""
+    """Check LOAD alignment and GNU_RELRO ends in a little-endian ELF64 object."""
     assert data[:4] == b'\x7fELF', f'{label}: not ELF'
     assert data[4] == 2 and data[5] == 1, f'{label}: expected little-endian ELF64'
     phoff = struct.unpack_from('<Q', data, 32)[0]
@@ -52,7 +52,12 @@ def elf_16kb(data, label):
             assert alignment >= 16384 and alignment & (alignment - 1) == 0, f'{label}: LOAD alignment below 16 KB'
             assert (address - fileoff) % 16384 == 0, f'{label}: LOAD address/offset incongruent'
         if kind == 0x6474e552:
-            assert (address + memsize) % 16384 == 0, f'{label}: GNU_RELRO end is not 16 KB aligned'
+            end = address + memsize
+            remainder = end % 16384
+            assert remainder == 0, (
+                f'{label}: GNU_RELRO end 0x{end:x} is not 16 KB aligned '
+                f'(remainder 0x{remainder:x})'
+            )
     assert loads, f'{label}: no LOAD segments'
 
 

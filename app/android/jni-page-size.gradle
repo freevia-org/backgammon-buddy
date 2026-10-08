@@ -1,0 +1,9 @@
+// package:jni sets max-page-size itself but omits common-page-size. Both are
+// needed for a 16 KB-aligned GNU_RELRO end, independently of LOAD alignment.
+// Keep this app-owned adjustment scoped to :jni; do not patch the Pub cache.
+// https://developer.android.com/guide/practices/page-sizes#compile_using_ndk_r27_or_lower
+plugins.withId('com.android.library') {
+    android.defaultConfig.externalNativeBuild.cmake.arguments(
+        '-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-z,common-page-size=16384'
+    )
+}

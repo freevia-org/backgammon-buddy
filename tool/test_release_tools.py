@@ -45,12 +45,17 @@ class ReleaseToolsTest(unittest.TestCase):
         profile['ProvisionedDevices'] = ['device']
         export_options(profile, 'ad-hoc')
 
-    def elf(self, alignment):
-        data = bytearray(120)
+    def elf(self, alignment, relro=None):
+        count = 1 if relro is None else 2
+        data = bytearray(64 + count * 56)
         data[:6] = b'\x7fELF\x02\x01'
         struct.pack_into('<Q', data, 32, 64)
-        struct.pack_into('<HH', data, 54, 56, 1)
+        struct.pack_into('<HH', data, 54, 56, count)
         struct.pack_into('<IIQQQQQQ', data, 64, 1, 4, 0, 0, 0, 120, 120, alignment)
+        if relro is not None:
+            address, memsize = relro
+            struct.pack_into('<IIQQQQQQ', data, 120, 0x6474e552, 4,
+                             0, address, 0, memsize, memsize, 1)
         return data
 
     def test_page_alignment_accepts_16kb_rejects_4kb(self):
@@ -61,6 +66,16 @@ class ReleaseToolsTest(unittest.TestCase):
     def test_malformed_elf_does_not_pass(self):
         with self.assertRaises((AssertionError, struct.error)):
             elf_16kb(b'not elf', 'test.so')
+
+    def test_aligned_load_and_relro_pass(self):
+        elf_16kb(self.elf(16384, relro=(0x24870, 0x3790)), 'test.so')
+
+    def test_aligned_load_does_not_excuse_unaligned_relro(self):
+        # max-page-size alone produces this layout in jni 1.0.0. The separate
+        # common-page-size flag pads RELRO to the next 16 KB boundary.
+        with self.assertRaisesRegex(
+                AssertionError, r'GNU_RELRO end 0x25000.*remainder 0x1000'):
+            elf_16kb(self.elf(16384, relro=(0x24870, 0x790)), 'libdartjni.so')
 
 
 if __name__ == '__main__':

@@ -12,7 +12,7 @@ the coordinating agent reviewed integration and ran the wider test suites. The
 work stays in the current checkout; no version bump or mobile store submission
 was performed. Public source publication to
 [Freevia's repository](https://github.com/freevia-org/backgammon-buddy) is
-authorized and in progress.
+complete; the remote validation section below identifies the tested revision.
 
 ## Tutoring implemented
 
@@ -61,6 +61,7 @@ remedy, rather than treating these as remaining failures.
 
 | Severity | Finding and remedy | Source |
 |---|---|---|
+| P2 | The first Android artifact build found `jni` 1.0.0's `libdartjni.so` had 16 KB LOAD alignment but an unaligned GNU_RELRO end. A scoped app-owned Gradle hook adds `common-page-size=16384` alongside the dependency's existing max-page-size flag. Actual-source native reproduction and new RELRO fixtures pass; the rebuilt APK remains subject to the unchanged artifact gate in CI. | [JNI linker adjustment](../app/android/jni-page-size.gradle), [artifact validator](../tool/release_preflight.py) |
 | P2 | The configured iOS tester upload used a Docker action on a macOS runner, where container actions cannot run. It now uses exact-pinned Firebase CLI with temporary ADC credentials and cleanup; signing/ad-hoc gates are unchanged. | [iOS workflow](../.github/workflows/ios.yml), [workflow guide](../.github/workflows/README.md) |
 | P1 | Configured mobile SDKs collected without an explicit in-app choice. Native defaults are now off, consent persists, forwarding is gated, and generation-aware initialization prevents delayed enable after withdrawal. | [telemetry controller](../app/lib/analytics/telemetry_controller.dart), [Firebase initialization](../app/lib/analytics/firebase_observability.dart), [privacy controls](../app/lib/privacy/privacy_settings_section.dart) |
 | P2 | Game history and score were separate writes. Completed game/score/completion now commit atomically; practice/source deletion is transactional and migration tested. | [MatchRepository](../app/lib/data/match_repository.dart), [practice persistence](../app/lib/data/practice_repository.dart) |
@@ -98,9 +99,11 @@ remedy, rather than treating these as remaining failures.
 - The standard game screen still coordinates many concerns. Prefer gradual
   extraction of coaching presentation/state behind tested boundaries over another
   broad rewrite while new teaching behavior settles.
-- Mobile store release remains gated on public privacy information, dependency
-  native SDK manifests/notices, signed artifacts, service retention decisions and
-  real-device acceptance. Android bundles and optional iOS App Store exports
+- The public privacy/contact gate is satisfied by the live Freevia pages. Mobile
+  store release still needs dependency native SDK manifests/notices, signed
+  artifacts, service retention decisions and real-device acceptance. The first
+  Android artifact's JNI alignment failure also requires a passing rebuild.
+  Android bundles and optional iOS App Store exports
   prepare artifacts only; they do not submit a release.
 - Buddy's camera dice reader is not reliable enough to advertise automatic dice
   reading. The committed certified-roll corpus remains 0/4 recognized and 0 wrong;
@@ -114,8 +117,8 @@ inventory, verified official store guidance and candidate acceptance sequence.
 
 Final integrated completion checks include 21 focused privacy/consent/Settings
 tests, 10 Freevia-feedback tests, 6 license/workflow tests and 7 MET tests; these
-overlap the full suites below. Six additional Python artifact/profile/build-number
-tests passed. Native notices regenerate deterministically offline and provenance
+overlap the full suites below. Eight Python artifact/profile/build-number tests
+passed, including the subsequent RELRO regressions. Native notices regenerate deterministically offline and provenance
 checks pass for 119 Rust components and both production models.
 
 The coordinating agent ran `dart analyze --fatal-infos` successfully for all six
@@ -155,10 +158,24 @@ advancing **five plies** through the app. This integration run is separate from
 the **2,294** package/Flutter test count above; it is evidence of desktop runtime
 operation, not mobile signing or clean-machine installer acceptance.
 
-Firebase emulator E2E suites were **not run in this round**; backend rules were
-unchanged. Signed/native mobile builds, device permission flows, 16 KB
-compatibility and store submissions were also **not run**. Source assertions and
-local tests do not certify those release gates.
+Remote validation at
+[`c7b5b9f`](https://github.com/freevia-org/backgammon-buddy/commit/c7b5b9fd72bc6b84a2fb53fde4ce857f9b65624c)
+then passed [all 10 CI jobs](https://github.com/freevia-org/backgammon-buddy/actions/runs/37840461766),
+including Firestore emulator rules/transport/widget E2E tests. These cloud runs
+are separate evidence and are not added to the local **2,294** total.
+
+The [iOS build](https://github.com/freevia-org/backgammon-buddy/actions/runs/37841351114)
+passed with the ARM64 native engine, unsigned Runner and Dart-symbol artifacts.
+Signing/export/distribution steps were skipped. The
+[Android build](https://github.com/freevia-org/backgammon-buddy/actions/runs/37841351028)
+compiled both native ABIs and APKs but failed artifact preflight on JNI RELRO
+alignment, before artifact upload. The scoped fix reproduces/passes locally with
+the real dependency sources; an exact-workflow rebuild must still pass the
+unchanged ELF and ZIP gates. See [release readiness](release-readiness.md) for
+artifact details and the linker evidence.
+
+Signed mobile acceptance, physical-device permission flows, 16 KB device testing,
+deployed-backend acceptance and store submission remain unperformed.
 
 An additional release-only follow-up validated four workflow boundary tests
 (including the new macOS CLI distribution guard) after the integrated suite.
