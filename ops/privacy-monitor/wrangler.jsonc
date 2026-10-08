@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "backgammon-buddy-privacy-monitor",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-08",
+  "workers_dev": false,
+  "preview_urls": false,
+  "send_metrics": false,
+  "observability": { "enabled": true, "head_sampling_rate": 1 },
+  "triggers": { "crons": ["47 * * * *"] },
+  "kv_namespaces": [{ "binding": "STATE" }],
+  "send_email": [{ "name": "ALERT_EMAIL", "destination_address": "info@freevia.org" }],
+  "vars": {
+    "ALERTS_ENABLED": "false",
+    "ALERT_FROM": "privacy-monitor@freevia.org"
+  }
+}

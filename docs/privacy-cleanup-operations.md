@@ -84,11 +84,24 @@ environment; no credential file or repository secret is created. The job alone
 gets `contents: read` and `id-token: write`. IAM, IAM Credentials, STS and Resource
 Manager APIs were enabled; no billing account was attached by this setup.
 
-## Verification still required
+## Production verification
 
-The cloud resources and bindings were read back successfully. The workflow must
-be committed to `master` before GitHub can issue its matching OIDC identity.
-Run the manual dry-run there to verify the complete exchange and actual runner
-access, then observe a scheduled apply. These checks are separate from unit and
-emulator tests; until they pass, do not describe hourly production cleanup as
-operationally verified.
+The cloud resources and bindings were read back successfully. Two manual runs
+on committed `master` completed the GitHub OIDC exchange and the actual runner:
+[initial access](https://github.com/freevia-org/backgammon-buddy/actions/runs/37855356390)
+and [queued disposable fixture dry-run](https://github.com/freevia-org/backgammon-buddy/actions/runs/37855479892).
+The latter found two authenticated requests and one match with zero mutations,
+as required for manual execution. Neither run proves scheduled deletion.
+
+The disposable identities, match and child logs remain queued for the next
+natural scheduled apply. Verify the service account deletes both Auth identities
+and the whole match tree, and marks both requests complete, before enabling the
+candidate's online configuration. Do not publish fixture identifiers or tokens.
+
+The independent Cloudflare monitor is prepared under `ops/privacy-monitor`, with
+tests for missed runs, failure, unknown health, deduplication and recovery. It is
+not deployed: currently accessible Wrangler/connector credentials expose only a
+personal Cloudflare account, including the existing freevia.org zone. A verified
+Freevia account, sender setup and verified `info@freevia.org` destination are
+needed. The owner approved status-only operational emails and one test; no such
+email has been sent yet. This remains an explicit release gate.

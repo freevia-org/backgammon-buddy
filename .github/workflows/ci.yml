@@ -20,6 +20,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  privacy-monitor:
+    name: independent privacy monitor tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: ops/privacy-monitor
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: ops/privacy-monitor/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm test
+      - run: npm run check
+      # Bundle only: no Cloudflare authentication, remote bindings or deployment.
+      - run: npm run build
+
   release-preflight:
     name: release provenance and artifact validator tests
     runs-on: ubuntu-latest
