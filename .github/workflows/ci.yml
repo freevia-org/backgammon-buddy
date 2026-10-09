@@ -22,7 +22,7 @@ concurrency:
 jobs:
   privacy-monitor:
     name: independent privacy monitor tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     defaults:
       run:
@@ -42,7 +42,7 @@ jobs:
 
   release-preflight:
     name: release provenance and artifact validator tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - run: python3 tool/release_preflight.py
@@ -69,7 +69,7 @@ jobs:
   # nothing but a Dart SDK.
   packages:
     name: ${{ matrix.package }} tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # Pure-Dart unit suites; about a minute in practice. The ceiling only ever
     # fires on a hang (a stuck pub fetch, a test awaiting a future that never
     # lands) rather than on slow-but-working CI. lan_play binds real sockets and
@@ -116,7 +116,7 @@ jobs:
 
   engine:
     name: engine build + integration tests (linux)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # A COLD Rust cache builds wildbg + the shim from scratch, then the real-net
     # integration suite runs. Generous on purpose: a cache miss must not read as
     # a failure.
@@ -180,7 +180,7 @@ jobs:
 
   app:
     name: flutter app tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # Flutter SDK download plus ~700 widget tests.
     timeout-minutes: 30
     steps:
@@ -248,7 +248,7 @@ jobs:
   # one.
   rules:
     name: firestore rules
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
@@ -277,7 +277,7 @@ jobs:
 
   online:
     name: online play (emulator)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # Fails fast on the rules: there is no point standing up four toolchains to
     # play a two-client match against a rules file that already failed its own
     # unit tests.

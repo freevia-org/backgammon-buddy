@@ -64,7 +64,7 @@ void main() {
 
   test('Node 24 actions run only on GitHub-hosted runner labels', () {
     const supportedHostedLabels = {
-      'ubuntu-latest',
+      'ubuntu-24.04',
       'windows-latest',
       'macos-latest',
     };
