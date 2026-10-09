@@ -24,6 +24,20 @@ class TutorService {
   final EngineFacade _engine;
   final MatchCubeAdvisor _advisor;
 
+  /// Static position outlook, without ranking or revealing a checker play.
+  Future<Probabilities?> evaluatePositionOrNull(GameState state) async {
+    try {
+      final result = await _engine.evaluate(state.board, state.turn);
+      if (!result.win.isFinite || result.win < 0 || result.win > 1) {
+        throw StateError('Invalid position win estimate.');
+      }
+      return result;
+    } catch (error, stack) {
+      _recordTutorFailure('position', error, stack);
+      return null;
+    }
+  }
+
   /// Ranked candidate plays for [state], best first. Empty when [state] is not
   /// in the moving phase or the player has no legal play (a dance).
   Future<List<ScoredMove>> hint(

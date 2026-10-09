@@ -96,6 +96,28 @@ class TutorSync extends ChangeNotifier {
   /// Saved decision positions for retrospective explanations, newest first in
   /// the UI. An old async answer must not replace the latest completed move.
   final Map<int, GameState> positionsByEventIndex = {};
+  final Set<int> completedAssessments = {};
+  final Set<int> _pendingAssessments = {};
+
+  /// A selected move from a resumed log may predate the live assessment cursor.
+  void review(int index) {
+    final events = controller.game.events;
+    if (tutor() == null ||
+        index < 0 ||
+        index >= events.length ||
+        completedAssessments.contains(index) ||
+        _pendingAssessments.contains(index)) {
+      return;
+    }
+    final event = events[index];
+    if (event is MoveEvent) {
+      _fireAssessment(
+        index,
+        Game.replay(events.sublist(0, index)).state,
+        event.move,
+      );
+    }
+  }
 
   /// Event indices whose score-sheet cell has its best-move line revealed
   /// (tap-to-reveal). Cleared when a new game begins.
@@ -151,8 +173,16 @@ class TutorSync extends ChangeNotifier {
       seedAssessmentCursor();
       assessmentsByEventIndex.clear();
       positionsByEventIndex.clear();
+      completedAssessments.clear();
+      _pendingAssessments.clear();
       revealedBest.clear();
       _gameGeneration++;
+      _cubeAdviceSeq++;
+      _cubeResponseSeq++;
+      _cubeAdviceKey = null;
+      _cubeResponseKey = null;
+      _cubeAdvice = null;
+      _cubeResponseAdvice = null;
       return;
     }
     if (len == _lastEventCount) return;
@@ -181,16 +211,26 @@ class TutorSync extends ChangeNotifier {
   /// (a [_gameGeneration] mismatch) or this object was disposed.
   void _fireAssessment(int eventIndex, GameState before, Move played) {
     final gen = _gameGeneration;
+    final service = tutor()!;
+    _pendingAssessments.add(eventIndex);
+    // History selection can show the decision before its async grade arrives.
+    positionsByEventIndex[eventIndex] = before;
     unawaited(
-      tutor()!
+      service
           .assessOrNull(before, played, context: _gameContexts[before.turn])
           .then((assessment) {
-            if (_disposed || gen != _gameGeneration) return;
+            if (_disposed ||
+                gen != _gameGeneration ||
+                !identical(service, tutor())) {
+              return;
+            }
             // Null = the engine could not answer (already recorded by the tutor).
             // The cell stays unmarked rather than claiming a verdict.
-            if (assessment == null) return;
-            assessmentsByEventIndex[eventIndex] = assessment;
-            positionsByEventIndex[eventIndex] = before;
+            _pendingAssessments.remove(eventIndex);
+            completedAssessments.add(eventIndex);
+            if (assessment != null) {
+              assessmentsByEventIndex[eventIndex] = assessment;
+            }
             notifyListeners();
             onSheetDirty(); // a cell gained its mark dot and equity loss
           }),

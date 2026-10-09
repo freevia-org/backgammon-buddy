@@ -1,3 +1,5 @@
+import 'dart:ui' show Tristate;
+
 import 'package:aigammon_app/game/game_record.dart';
 import 'package:aigammon_app/screens/game/score_sheet_panel.dart';
 import 'package:aigammon_app/tutor/move_assessment.dart';
@@ -31,21 +33,26 @@ MoveAssessment _assessment(double loss) {
 
 void main() {
   Widget panel(MoveAssessment assessment) => MaterialApp(
-        home: Scaffold(
-          body: ScoreSheetPanel(
-            rows: const [
-              ScoreSheetTurn(1,
-                  white: ScoreCell(
-                      text: '31: 8/5 6/5', actor: Player.white, eventIndex: 1)),
-            ],
-            leftSide: Player.white,
-            columnLabels: const ('You', 'AI'),
-            assessments: {1: assessment},
-            revealedBest: const {},
-            onToggleBest: (_) {},
+    home: Scaffold(
+      body: ScoreSheetPanel(
+        rows: const [
+          ScoreSheetTurn(
+            1,
+            white: ScoreCell(
+              text: '31: 8/5 6/5',
+              actor: Player.white,
+              eventIndex: 1,
+            ),
           ),
-        ),
-      );
+        ],
+        leftSide: Player.white,
+        columnLabels: const ('You', 'AI'),
+        assessments: {1: assessment},
+        revealedBest: const {},
+        onToggleBest: (_) {},
+      ),
+    ),
+  );
 
   // The mark dot speaks its verdict, because on screen the verdict is a colour
   // and nothing else. Where the loss slot has a number, the two say different
@@ -70,14 +77,101 @@ void main() {
     await t.pumpWidget(panel(_assessment(0.0)));
     await t.pump();
 
-    expect(find.text('Best'), findsOneWidget,
-        reason: 'the printed word matches the mark word, casing included');
+    expect(
+      find.text('Best'),
+      findsOneWidget,
+      reason: 'the printed word matches the mark word, casing included',
+    );
     expect(find.text('best'), findsNothing);
 
     final cell = t.getSemantics(find.byKey(const ValueKey('sheetLeft0')));
-    expect('Best'.allMatches(cell.label).length, 1,
-        reason: 'the dot does not echo the word the column already prints');
+    expect(
+      'Best'.allMatches(cell.label).length,
+      1,
+      reason: 'the dot does not echo the word the column already prints',
+    );
 
     handle.dispose();
   });
+
+  testWidgets('pending moves can be selected and retain selected styling', (
+    t,
+  ) async {
+    final semantics = t.ensureSemantics();
+    final selected = <int>[];
+    final toggled = <int>[];
+    await t.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: ScoreSheetPanel(
+            rows: const [
+              ScoreSheetTurn(
+                1,
+                white: ScoreCell(
+                  text: '31: 8/5 6/5',
+                  actor: Player.white,
+                  eventIndex: 2,
+                ),
+              ),
+            ],
+            leftSide: Player.white,
+            columnLabels: const ('You', 'AI'),
+            assessments: const {},
+            revealedBest: const {},
+            selectedEventIndex: 2,
+            onSelectEvent: selected.add,
+            onToggleBest: toggled.add,
+          ),
+        ),
+      ),
+    );
+    await t.pump();
+    final cell = find.byKey(const ValueKey('sheetLeft0'));
+    await t.tap(cell);
+    expect(selected, [2]);
+    expect(toggled, isEmpty);
+    final selectedInk = t.widget<Ink>(
+      find.descendant(of: cell, matching: find.byType(Ink)),
+    );
+    expect(
+      (selectedInk.decoration as BoxDecoration).color,
+      Theme.of(t.element(cell)).colorScheme.secondaryContainer,
+    );
+    expect(t.getSemantics(cell).flagsCollection.isSelected, Tristate.isTrue);
+    expect(t.takeException(), isNull);
+    semantics.dispose();
+  });
+
+  testWidgets(
+    'pending moves retain the legacy callback when no selector exists',
+    (t) async {
+      final toggled = <int>[];
+      await t.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: ScoreSheetPanel(
+              rows: const [
+                ScoreSheetTurn(
+                  1,
+                  white: ScoreCell(
+                    text: '31: 8/5 6/5',
+                    actor: Player.white,
+                    eventIndex: 3,
+                  ),
+                ),
+              ],
+              leftSide: Player.white,
+              columnLabels: const ('You', 'AI'),
+              assessments: const {},
+              revealedBest: const {},
+              onToggleBest: toggled.add,
+            ),
+          ),
+        ),
+      );
+      await t.pump();
+      await t.tap(find.byKey(const ValueKey('sheetLeft0')));
+      expect(toggled, [3]);
+    },
+  );
 }

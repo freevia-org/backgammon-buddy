@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:backgammon_core/backgammon_core.dart';
 import 'package:flutter/material.dart';
+import 'package:engine_bindings/engine_bindings.dart';
 
 import '../analytics/analytics_events.dart';
 import '../analytics/app_analytics.dart';
@@ -22,6 +23,8 @@ import 'game/hint_panel.dart';
 import 'game/score_sheet_panel.dart';
 import 'game/tap_when_disabled.dart';
 import 'game/tutor_sync.dart';
+import 'game/tutor_panel.dart';
+import 'game/tutor_presentation.dart';
 import 'history_screen.dart';
 
 /// The playing screen. Assembles the [BoardView], a top HUD, a bottom action
@@ -391,6 +394,11 @@ class _GameScreenState extends State<GameScreen> {
   /// hands to the board when a hint row is tapped.
   final HintController _hint = HintController();
   late TutorOptions _tutorOptions;
+  final TutorPresentation _tutorPresentation = TutorPresentation();
+  bool _tutorExpanded = false;
+  final Map<MoveAssessment, MoveExplanation?> _moveExplanations = {};
+  GameEvent? _explanationLogRoot;
+  Move? _hintEntrySeen;
 
   /// Bridges the interactive [BoardView]'s move-entry builder to the bottom
   /// action bar: it mirrors the live Undo/Confirm/Pass affordances and forwards
@@ -429,6 +437,7 @@ class _GameScreenState extends State<GameScreen> {
       },
     )..addListener(_repaint);
     _hint.addListener(_repaint);
+    _tutorPresentation.addListener(_repaint);
     _observable = Listenable.merge([_c, ..._humanNotifiers(), _entryControl]);
     _observable.addListener(_onChange);
     widget.analytics.logScreenView(AnalyticsScreens.game);
@@ -450,6 +459,10 @@ class _GameScreenState extends State<GameScreen> {
     // callbacks. A replaced widget may carry different ones, so the caches go.
     _hudWidget = null;
     _scoreSheetWidget = null;
+    if (oldWidget.tutorOptions != widget.tutorOptions) {
+      _tutorOptions = widget.tutorOptions;
+    }
+    _syncTutorPresentation();
   }
 
   @override
@@ -481,6 +494,8 @@ class _GameScreenState extends State<GameScreen> {
     _tutorSync.dispose();
     _hint.removeListener(_repaint);
     _hint.dispose();
+    _tutorPresentation.removeListener(_repaint);
+    _tutorPresentation.dispose();
     _sheetRevision.dispose();
     _entryControl.dispose();
     _c.disposeController();
@@ -505,6 +520,7 @@ class _GameScreenState extends State<GameScreen> {
     _dice.syncRollBeat();
     _syncDancePass();
     _tutorSync.sync();
+    _syncTutorPresentation();
     // A result requested for an earlier decision must not be applied to the
     // next turn (for example after a network state replacement).
     if (_hint.isOpen && !identical(_hint.position, _c.state)) _hint.close();
@@ -746,9 +762,47 @@ class _GameScreenState extends State<GameScreen> {
       !s.isCrawfordGame &&
       (s.cube.owner == null || s.cube.owner == s.turn);
 
+  Move? get _stagedTutorMove => identical(_entryControl.position, _c.state)
+      ? _entryControl.stagedMove
+      : null;
+
+  void _syncTutorPresentation() {
+    final events = _c.game.events;
+    final logRoot = events.isEmpty ? null : events.first;
+    if (!identical(_explanationLogRoot, logRoot)) {
+      _moveExplanations.clear();
+      _explanationLogRoot = logRoot;
+    }
+    final staged = _stagedTutorMove;
+    final changed = _hintEntrySeen == null
+        ? staged != null
+        : staged == null || !_hintEntrySeen!.sameAs(staged);
+    _hintEntrySeen = staged;
+    if (_hint.isOpen &&
+        (changed ||
+            !_tutorOptions.bestMoves ||
+            (_tutorOptions.tryFirst && !_entryControl.canConfirm))) {
+      _hint.close();
+    }
+    final oldSelection = _tutorPresentation.selectedEventIndex;
+    _tutorPresentation.sync(
+      position: _c.state,
+      events: events,
+      staged: staged,
+      complete: staged != null && _entryControl.canConfirm,
+      options: _tutorOptions,
+      tutor: _tutor,
+      context: _c.contextFor(_c.state.turn),
+    );
+    if (oldSelection != _tutorPresentation.selectedEventIndex) {
+      _markSheetDirty();
+    }
+  }
+
   // --- Hint panel ------------------------------------------------------------
 
   void _openHint() {
+    if (_tutor == null || !_tutorOptions.bestMoves) return;
     if (_tutorOptions.tryFirst && !_entryControl.canConfirm) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -760,12 +814,23 @@ class _GameScreenState extends State<GameScreen> {
       return;
     }
     widget.analytics.logTutorHintUsed(mode: widget.analyticsMode);
+    final stageRequest = _tutorPresentation.stagedRequest;
+    final assessment = _tutorPresentation.stagedAssessment;
+    if (_tutorPresentation.selectedEventIndex != null) {
+      _tutorPresentation.select(null);
+      _markSheetDirty();
+    }
+    _tutorExpanded = true;
     final moveSide = _humanSideWith((s) => _c.pendingMoveOf(s).value != null);
     final state =
         (moveSide != null ? _c.pendingMoveOf(moveSide).value : null) ??
         _c.state;
     _hint.open(
-      () => _tutor!.hintOrNone(state, context: _c.contextFor(state.turn)),
+      () => assessment != null
+          ? Future.value(assessment.ranked)
+          : stageRequest != null
+          ? stageRequest.then((value) => value?.ranked ?? const [])
+          : _tutor!.hintOrNone(state, context: _c.contextFor(state.turn)),
       position: state,
     );
   }
@@ -779,6 +844,7 @@ class _GameScreenState extends State<GameScreen> {
       move,
       stage: moveSide != null && identical(_hint.position, _c.state),
     );
+    setState(() => _tutorExpanded = false);
   }
 
   /// Tracks the acting side and — when [GameScreen.showPassDevice] is on —
@@ -871,6 +937,18 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     final state = _c.state;
+    final availableHeight =
+        MediaQuery.sizeOf(context).height -
+        MediaQuery.paddingOf(context).vertical;
+    final tutorHeight = (160 * MediaQuery.textScalerOf(context).scale(1)).clamp(
+      96.0,
+      (availableHeight * .30).clamp(96.0, 196.0),
+    );
+    final tutorMaxHeight =
+        (MediaQuery.sizeOf(context).height -
+                MediaQuery.paddingOf(context).vertical -
+                128)
+            .clamp(tutorHeight, 600.0);
     final pendingSide = _humanSideWith(
       (s) => _c.pendingMoveOf(s).value != null,
     );
@@ -990,7 +1068,15 @@ class _GameScreenState extends State<GameScreen> {
                     ],
                   ),
                 ),
-                _scoreSheetScope(),
+                SizedBox(
+                  height: availableHeight < 480 ? 56 : ScoreSheetPanel.height,
+                  child: _scoreSheetScope(),
+                ),
+                if (_tutor != null)
+                  SizedBox(
+                    key: const ValueKey('tutorReservedSpace'),
+                    height: tutorHeight,
+                  ),
                 // In the tabletop layout the bottom bar belongs to ONE player
                 // (the side the board faces) and goes inert on the other's turn;
                 // everywhere else it is the screen's only bar and serves whoever
@@ -1003,16 +1089,32 @@ class _GameScreenState extends State<GameScreen> {
                 ),
               ],
             ),
-            ..._buildModals(cubeSide, resignSide),
-            if (_hint.isOpen)
-              HintPanel(
-                loading: _hint.isLoading,
-                moves: _hint.moves,
-                position: _hint.position,
-                explanations: _tutorOptions.explanations,
-                onClose: _hint.close,
-                onApply: _applyHint,
+            if (_tutor != null)
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 64,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(maxHeight: tutorMaxHeight),
+                  child: TutorPanel(
+                    leading: _tutorPresentation.selectedEventIndex == null
+                        ? null
+                        : TextButton(
+                            onPressed: () => _selectTutorMove(null),
+                            child: const Text('Live'),
+                          ),
+                    expanded: _tutorExpanded,
+                    onExpandedChanged: (expanded) =>
+                        setState(() => _tutorExpanded = expanded),
+                    collapsedHeight: tutorHeight,
+                    expandedHeight: tutorMaxHeight,
+                    summary: _tutorSummary(),
+                    details: _tutorDetails(),
+                    onOpenSettings: _openTutorSettings,
+                  ),
+                ),
               ),
+            ..._buildModals(cubeSide, resignSide),
           ],
         ),
       ),
@@ -1352,192 +1454,335 @@ class _GameScreenState extends State<GameScreen> {
 
   // --- Tutor UI --------------------------------------------------------------
 
-  List<int> get _reviewIndices =>
-      _tutorSync.assessmentsByEventIndex.keys.toList()
-        ..sort((a, b) => b.compareTo(a));
+  List<int> get _reviewIndices => [
+    for (var i = 0; i < _c.game.events.length; i++)
+      if (_c.game.events[i] is MoveEvent) i,
+  ];
 
-  String _coachSummary() {
-    if (_c.state.phase != GamePhase.moving &&
-        _c.state.phase != GamePhase.awaitingRoll) {
-      return positionCommentary(_c.state);
-    }
+  int? get _visibleReviewIndex {
+    final selected = _tutorPresentation.selectedEventIndex;
+    if (selected != null) return selected;
+    if (!_c.awaitingHumanTurn) return null;
     final indices = _reviewIndices;
-    if (indices.isEmpty) return positionCommentary(_c.state);
-    final index = indices.first;
-    final assessment = _tutorSync.assessmentsByEventIndex[index]!;
-    final before = _tutorSync.positionsByEventIndex[index]!;
-    final label = playerName(before.turn);
-    if (!assessment.isDecision) {
-      return '$label had no choice of resulting position. Forced plays are not graded.';
-    }
-    return '$label’s last play: ${assessment.mark.name}, '
-        '${assessment.lossLabel} loss. Tap to review.';
+    return indices.isEmpty ? null : indices.last;
   }
 
-  void _openCoach() {
-    showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      showDragHandle: true,
-      builder: (context) => StatefulBuilder(
-        builder: (context, setSheetState) => ListenableBuilder(
-          listenable: Listenable.merge([_tutorSync, _c]),
-          builder: (context, _) => SafeArea(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.sizeOf(context).height * .8,
-              ),
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Your tutor',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    if (_tutorOptions.commentary) ...[
-                      const SizedBox(height: 12),
-                      Text(positionCommentary(_c.state)),
-                    ],
-                    const SizedBox(height: 12),
-                    Text(
-                      'Recent decisions',
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    if (_reviewIndices.isEmpty)
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8),
-                        child: Text(
-                          'Feedback appears after a completed move is evaluated. '
-                          'Unavailable evaluations are left unmarked.',
-                        ),
-                      ),
-                    for (final index in _reviewIndices.take(2))
-                      _reviewDecision(index),
-                    const Divider(),
-                    ExpansionTile(
-                      tilePadding: EdgeInsets.zero,
-                      title: const Text('Tutoring options'),
-                      subtitle: const Text('Applies to this match'),
-                      children: [
-                        TutorOptionControls(
-                          options: _tutorOptions,
-                          onChanged: (options) {
-                            setState(() => _tutorOptions = options);
-                            setSheetState(() {});
-                          },
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+  GameState _beforeReview(int index) =>
+      _tutorSync.positionsByEventIndex[index] ??
+      Game.replay(_c.game.events.sublist(0, index)).state;
+
+  MoveExplanation? _explanation(GameState before, MoveAssessment assessment) {
+    if (_moveExplanations.containsKey(assessment)) {
+      return _moveExplanations[assessment];
+    }
+    // Staging can create many distinct assessments without advancing the game.
+    // Their ranked lists must not stay retained for the lifetime of a match.
+    if (_moveExplanations.length >= 64) {
+      _moveExplanations.remove(_moveExplanations.keys.first);
+    }
+    final explanation = MoveExplanation.forAssessment(before, assessment);
+    _moveExplanations[assessment] = explanation;
+    return explanation;
+  }
+
+  String _moveActor(Player side) => _hotSeat
+      ? playerName(side)
+      : _c.isLocalHuman(side)
+      ? 'Your'
+      : 'Computer’s';
+
+  String _quality(MoveAssessment assessment) => !assessment.isDecision
+      ? 'forced play'
+      : switch (assessment.mark) {
+          MoveMark.best => 'a top choice',
+          MoveMark.good => 'a sound choice',
+          MoveMark.dubious => 'a choice worth reviewing',
+          MoveMark.error => 'a missed opportunity',
+          MoveMark.blunder => 'a costly mistake',
+        };
+
+  ({String heading, String reason}) _tutorCopy() {
+    final selected = _tutorPresentation.selectedEventIndex;
+    if (!_tutorOptions.commentary && selected == null) {
+      return (
+        heading: 'Game commentary is off.',
+        reason: 'Open the tutor for the tools you have enabled.',
+      );
+    }
+    final review = _visibleReviewIndex;
+    if (review != null) {
+      final event = _c.game.events[review] as MoveEvent;
+      final assessment = _tutorSync.assessmentsByEventIndex[review];
+      final before = _beforeReview(review);
+      final explanation = assessment != null && _tutorOptions.explanations
+          ? _explanation(before, assessment)
+          : null;
+      final next = selected == null ? ' Roll next.' : '';
+      final unavailable = _tutorSync.completedAssessments.contains(review);
+      final plan =
+          explanation?.summaryReason ??
+          'No evaluated explanation is available for this recorded move.';
+      return (
+        heading:
+            '${selected == null ? '' : 'Review: '}${_moveActor(event.player)} play: '
+            '${assessment == null
+                ? unavailable
+                      ? 'analysis unavailable'
+                      : 'reviewing…'
+                : _quality(assessment)}.$next',
+        reason: _tutorOptions.explanations ? plan : '',
+      );
+    }
+    final staged = _stagedTutorMove;
+    final complete = staged != null && _entryControl.canConfirm;
+    if (_tutorOptions.tryFirst &&
+        !complete &&
+        _c.state.phase == GamePhase.moving) {
+      return (
+        heading: staged == null
+            ? 'Try your own play first.'
+            : 'Keep building your play.',
+        reason:
+            'Stage a complete legal play before revealing coaching or hints.',
+      );
+    }
+    if (staged != null) {
+      final assessment = _tutorPresentation.stagedAssessment;
+      final explanation = assessment != null && _tutorOptions.explanations
+          ? _explanation(_c.state, assessment)
+          : null;
+      return (
+        heading: assessment != null
+            ? 'Your staged play: ${_quality(assessment)}.'
+            : complete
+            ? 'Your full play is staged.'
+            : 'Your play is taking shape.',
+        reason: _tutorOptions.explanations
+            ? explanation?.summaryReason ??
+                  stagedMoveCommentary(_c.state, staged, isComplete: complete)
+            : complete
+            ? 'Confirm to play it, or Undo to reconsider.'
+            : 'Finish the remaining dice, or Undo to reconsider.',
+      );
+    }
+    if (_c.isThinking && !_c.isLocalHuman(_c.state.turn)) {
+      return (
+        heading: 'The computer is considering its play.',
+        reason: 'Its completed play will be reviewed here.',
+      );
+    }
+    final position = PositionCoaching.forState(_c.state);
+    return (
+      heading: _tutorPresentation.positionAssessment ?? position.summary,
+      reason: _tutorOptions.explanations ? position.plan : '',
     );
   }
 
-  Widget _reviewDecision(int index) {
-    final a = _tutorSync.assessmentsByEventIndex[index]!;
-    final before = _tutorSync.positionsByEventIndex[index]!;
-    final explanation = MoveExplanation.forAssessment(before, a);
-    return ExpansionTile(
-      tilePadding: EdgeInsets.zero,
-      title: Text('${playerName(before.turn)}: ${a.played}'),
-      subtitle: Text(
-        !a.isDecision
-            ? 'Forced play · excluded from averages'
-            : '${a.mark.name} · ${a.lossLabel} loss',
-      ),
+  Widget _tutorSummary() {
+    final copy = _tutorCopy();
+    return Column(
+      key: const ValueKey('tutorSummary'),
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        Text(
+          copy.heading,
+          key: const ValueKey('tutorSummaryHeading'),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+        ),
+        if (copy.reason.isNotEmpty)
+          Text(copy.reason, key: const ValueKey('tutorSummaryReason')),
+      ],
+    );
+  }
+
+  void _selectTutorMove(int? index) {
+    if (_tutor == null) return;
+    _hint.close();
+    _tutorPresentation.select(index);
+    if (index != null) {
+      _tutorSync.review(index);
+    } else {
+      _syncTutorPresentation();
+    }
+    setState(() => _tutorExpanded = false);
+    _markSheetDirty();
+  }
+
+  Widget _tutorDetails() {
+    final review = _visibleReviewIndex;
+    final staged = _stagedTutorMove;
+    final complete = staged != null && _entryControl.canConfirm;
+    final blocked =
+        review == null &&
+        _tutorOptions.tryFirst &&
+        _c.state.phase == GamePhase.moving &&
+        !complete;
+    final assessment = review == null
+        ? _tutorPresentation.stagedAssessment
+        : _tutorSync.assessmentsByEventIndex[review];
+    final before = review == null ? _c.state : _beforeReview(review);
+    final explanation =
+        !blocked && _tutorOptions.explanations && assessment != null
+        ? _explanation(before, assessment)
+        : null;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (review != null)
+          Text('Played: ${(_c.game.events[review] as MoveEvent).move}'),
+        if (blocked)
+          const Text(
+            'Finish your own legal play first. Coaching will then help you compare it.',
+          ),
+        if (!blocked && explanation != null)
+          MoveExplanationView(explanation: explanation, showOverview: false),
+        if (!blocked &&
+            review == null &&
+            staged == null &&
+            _tutorOptions.commentary &&
+            _tutorOptions.explanations)
+          for (final reason in PositionCoaching.forState(_c.state).reasons)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Text(reason),
+            ),
+        if (!blocked && _tutorOptions.bestMoves && assessment != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Text('Best: ${assessment.best}'),
+          ),
+        if (_tutorOptions.cubeAdvice &&
+            _c.awaitingHumanTurn &&
+            _tutorPresentation.selectedEventIndex == null &&
+            _tutorSync.cubeAdvice != null)
+          _cubeAdviceLine(_tutorSync.cubeAdvice!),
+        if (_hint.isOpen && !blocked && _tutorOptions.bestMoves)
+          _rankedTutorDetails(),
+        if (!_hint.isOpen &&
+            !blocked &&
+            review == null &&
+            _tutorOptions.bestMoves &&
+            _entryControl.active)
+          TextButton.icon(
+            onPressed: _openHint,
+            icon: const Icon(Icons.lightbulb_outline),
+            label: const Text('Show ranked plays'),
+          ),
+        if (!blocked && assessment == null && !_hint.isOpen)
+          const Padding(
+            padding: EdgeInsets.only(top: 8),
+            child: Text(
+              'Tap a completed move in the log to review its decision here.',
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _rankedTutorDetails() {
+    final moves = _hint.moves ?? const <ScoredMove>[];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Top plays', style: Theme.of(context).textTheme.titleMedium),
+        if (_hint.isLoading)
+          const LinearProgressIndicator()
+        else if (moves.isEmpty)
+          const Text('No hints available.')
+        else ...[
+          const Text('Tap a play to preview it on the board, then Confirm.'),
+          for (var i = 0; i < moves.length && i < 5; i++) ...[
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: Text('${i + 1}.'),
+              title: Text('${moves[i].move}'),
+              subtitle: Text(
+                i == 0 ? 'Top choice for this position' : 'Alternative play',
+              ),
+              onTap: () => _applyHint(moves[i].move),
+            ),
+            if (_tutorOptions.explanations && _hint.position != null)
+              _InlineCandidateExplanation(
+                position: _hint.position!,
+                candidate: moves[i],
+                best: moves.first,
+                top: i == 0,
+              ),
+          ],
+          ExpansionTile(
+            tilePadding: EdgeInsets.zero,
+            title: const Text('Engine estimates'),
             children: [
-              Text('Best: ${a.best}'),
-              if (_tutorOptions.explanations && explanation != null) ...[
-                const SizedBox(height: 8),
-                MoveExplanationView(explanation: explanation),
-              ],
-              if (a.ranked.isEmpty)
-                const Text('There was no legal checker play.'),
+              const Text(
+                '0-ply estimate · current score and stake · no future cubes',
+              ),
+              Text(moves.first.matchWinningChance == null ? 'Equity' : 'MWC %'),
+              for (final move in moves.take(5))
+                Text(
+                  '${move.move}: ${move.matchWinningChance == null ? move.equity.toStringAsFixed(3) : (move.matchWinningChance! * 100).toStringAsFixed(2)}',
+                ),
+              const Text('Near ties can change with deeper analysis.'),
             ],
           ),
-        ),
+        ],
       ],
     );
   }
 
-  /// Height of the tutor advice slot below the action bar. RESERVED whenever a
-  /// tutor is attached, whether or not there is advice to show right now, for
-  /// exactly the reason [_actionBar] is pinned to 64px: the board FILLS the slot
-  /// between the HUD and this region, so on a phone (where that slot is
-  /// height-bound) a line appearing here would resize the board mid-turn. The
-  /// advice comes and goes at every pre-roll gate, so an unreserved line meant a
-  /// board that grew and shrank by this much on every turn (F6).
-  static const double _adviceLineHeight = 28;
-
-  /// The bottom region: the fixed-height contextual action bar and, when the
-  /// tutor is on, the fixed-height cube-advice slot beneath it (empty until the
-  /// pre-roll gate resolves its advice).
-  Widget _bottomRegion(Player? moveSide, Player? owner) {
-    final showCube =
-        _tutor != null &&
-        _tutorOptions.cubeAdvice &&
-        _tutorSync.cubeAdvice != null &&
-        _c.awaitingHumanTurn;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _actionBar(moveSide, owner: owner),
-        // With no tutor there is never advice, so no slot is reserved at all —
-        // the tutor is fixed for the life of the screen, so this is still a
-        // constant height per screen.
-        if (_tutor != null)
-          SizedBox(
-            key: const ValueKey('adviceLine'),
-            height: _adviceLineHeight,
-            child: Row(
+  void _openTutorSettings() {
+    showDialog<void>(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, refresh) => Dialog(
+          insetPadding: const EdgeInsets.all(12),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: 560,
+              maxHeight: MediaQuery.sizeOf(context).height * .88,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Expanded(
-                  child: showCube
-                      ? _cubeAdviceLine(_tutorSync.cubeAdvice!)
-                      : _tutorOptions.commentary
-                      ? InkWell(
-                          onTap: _openCoach,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: Text(
-                              _coachSummary(),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                ),
-                IconButton(
-                  tooltip: 'Tutor coaching and options',
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(
-                    minWidth: 36,
-                    minHeight: 28,
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Text(
+                    'Tutoring options',
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  iconSize: 20,
-                  onPressed: _openCoach,
-                  icon: const Icon(Icons.school_outlined),
+                ),
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: TutorOptionControls(
+                      options: _tutorOptions,
+                      onChanged: (options) {
+                        setState(() => _tutorOptions = options);
+                        _syncTutorPresentation();
+                        _markSheetDirty();
+                        refresh(() {});
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Done'),
+                  ),
                 ),
               ],
             ),
           ),
-      ],
+        ),
+      ),
     );
   }
+
+  Widget _bottomRegion(Player? moveSide, Player? owner) =>
+      _actionBar(moveSide, owner: owner);
 
   /// The TOP player's action bar (tabletop hot-seat only): the same contextual
   /// bar as [_actionBar], owned by [owner] — the side the board does NOT face —
@@ -1816,24 +2061,17 @@ class _GameScreenState extends State<GameScreen> {
         leftSide: leftSide,
         columnLabels: _sheetColumnLabels(leftSide),
         assessments: _tutorSync.assessmentsByEventIndex,
-        revealedBest: _tutorSync.revealedBest,
+        revealedBest: const {},
         onToggleBest: _toggleRevealedBest,
+        selectedEventIndex: _tutorPresentation.selectedEventIndex,
+        onSelectEvent: _tutor == null ? null : _selectTutorMove,
       );
     },
   );
 
   /// Toggles an assessed cell's "Best: …" line. The set lives with the tutor's
   /// other bookkeeping; the sheet is told its content moved.
-  void _toggleRevealedBest(int eventIndex) {
-    setState(() {
-      if (_tutorSync.revealedBest.contains(eventIndex)) {
-        _tutorSync.revealedBest.remove(eventIndex);
-      } else {
-        _tutorSync.revealedBest.add(eventIndex);
-      }
-    });
-    _markSheetDirty();
-  }
+  void _toggleRevealedBest(int eventIndex) => _selectTutorMove(eventIndex);
 
   /// Which side owns the sheet's LEFT column: the single locally-human side
   /// where there is one (so "You" reads first, as in the header score and the
@@ -1896,6 +2134,53 @@ class _GameScreenState extends State<GameScreen> {
 }
 
 // --- Error banner ------------------------------------------------------------
+
+class _InlineCandidateExplanation extends StatefulWidget {
+  const _InlineCandidateExplanation({
+    required this.position,
+    required this.candidate,
+    required this.best,
+    required this.top,
+  });
+  final GameState position;
+  final ScoredMove candidate;
+  final ScoredMove best;
+  final bool top;
+  @override
+  State<_InlineCandidateExplanation> createState() =>
+      _InlineCandidateExplanationState();
+}
+
+class _InlineCandidateExplanationState
+    extends State<_InlineCandidateExplanation> {
+  bool _expanded = false;
+  MoveExplanation? _explanation;
+  @override
+  void didUpdateWidget(_InlineCandidateExplanation oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(widget.position, oldWidget.position) ||
+        !identical(widget.candidate, oldWidget.candidate)) {
+      _explanation = null;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => ExpansionTile(
+    tilePadding: EdgeInsets.zero,
+    title: Text(widget.top ? 'Why this play?' : 'Compare this alternative'),
+    onExpansionChanged: (value) => setState(() => _expanded = value),
+    children: [
+      if (_expanded)
+        MoveExplanationView(
+          explanation: _explanation ??= MoveExplanation.forCandidate(
+            widget.position,
+            widget.candidate,
+            widget.best,
+          ),
+        ),
+    ],
+  );
+}
 
 class _ErrorBanner extends StatelessWidget {
   const _ErrorBanner({required this.error});

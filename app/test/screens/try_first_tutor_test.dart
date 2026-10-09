@@ -35,6 +35,9 @@ void main() {
       ),
     );
     await pumpUntil(t, () => human.pendingMoveRequest.value != null);
+    expect(find.text('Try your own play first.'), findsOneWidget);
+    expect(find.textContaining('estimated edge'), findsNothing);
+    expect(find.textContaining('roughly even'), findsNothing);
     final hint = find.widgetWithText(OutlinedButton, 'Hint');
     await t.tap(hint);
     await t.pump();
@@ -44,6 +47,10 @@ void main() {
       find.textContaining('Stage a complete legal play first'),
       findsOneWidget,
     );
+    // Let the instructional snackbar leave before exercising the bottom bar.
+    await t.pumpAndSettle();
+    await t.pump(const Duration(seconds: 5));
+    await t.pumpAndSettle();
     final confirm = find.widgetWithText(FilledButton, 'Confirm');
     for (var i = 0; i < 6 && !isButtonEnabled(t, confirm); i++) {
       await tapBoardPoint(t, boardPainterOf(t).highlightedSources.first);
@@ -53,8 +60,20 @@ void main() {
     await t.tap(hint);
     await t.pumpAndSettle();
     expect(engine.asked, hasLength(1));
+    expect(find.text('MWC %'), findsNothing);
+    expect(find.textContaining('0-ply estimate'), findsNothing);
+    await t.ensureVisible(find.text('Engine estimates'));
+    await t.tap(find.text('Engine estimates'));
+    await t.pumpAndSettle();
     expect(find.text('MWC %'), findsOneWidget);
     expect(find.textContaining('0-ply estimate'), findsOneWidget);
+    await t.tap(find.widgetWithText(TextButton, 'Undo'));
+    await t.pumpAndSettle();
+    expect(find.text('Top plays'), findsNothing);
+    expect(find.text('MWC %'), findsNothing);
+    expect(find.textContaining('estimated edge'), findsNothing);
+    expect(find.textContaining('Your staged play:'), findsNothing);
+    expect(engine.asked, hasLength(1));
     await t.pumpWidget(const SizedBox());
     controller.disposeController();
   });

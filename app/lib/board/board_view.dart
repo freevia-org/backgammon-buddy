@@ -33,6 +33,8 @@ class BoardEntryController extends ChangeNotifier {
   bool _canUndo = false;
   bool _canConfirm = false;
   bool _isDance = false;
+  GameState? _position;
+  Move? _stagedMove;
 
   /// Whether a move is currently being entered (the interactive moving phase).
   bool get active => _active;
@@ -45,6 +47,11 @@ class BoardEntryController extends ChangeNotifier {
 
   /// Whether the moving phase has no legal play (offer a Pass instead).
   bool get isDance => _isDance;
+
+  /// Position and immutable hop snapshot currently shown by move entry.
+  /// Partial edits can change these without changing Undo/Confirm affordances.
+  GameState? get position => _position;
+  Move? get stagedMove => _stagedMove;
 
   // Action callbacks bound by the owning [BoardView]; null when unbound.
   VoidCallback? _onUndo;
@@ -98,17 +105,25 @@ class BoardEntryController extends ChangeNotifier {
     required bool canUndo,
     required bool canConfirm,
     required bool isDance,
+    required GameState? position,
+    required Move? stagedMove,
   }) {
     if (_active == active &&
         _canUndo == canUndo &&
         _canConfirm == canConfirm &&
-        _isDance == isDance) {
+        _isDance == isDance &&
+        identical(_position, position) &&
+        (_stagedMove == null
+            ? stagedMove == null
+            : stagedMove != null && _stagedMove!.sameAs(stagedMove))) {
       return;
     }
     _active = active;
     _canUndo = canUndo;
     _canConfirm = canConfirm;
     _isDance = isDance;
+    _position = position;
+    _stagedMove = stagedMove;
     _emit();
   }
 
@@ -710,7 +725,8 @@ class _BoardViewState extends State<BoardView>
   @override
   void initState() {
     super.initState();
-    _animController = AnimationController(vsync: this)..addListener(_onAnimTick);
+    _animController = AnimationController(vsync: this)
+      ..addListener(_onAnimTick);
     _resetBuilder();
     widget.externalMove?.addListener(_applyExternalMove);
     widget.lastMove?.addListener(_onLastMove);
@@ -774,6 +790,12 @@ class _BoardViewState extends State<BoardView>
       canUndo: builder != null && builder.chosenHops.isNotEmpty,
       canConfirm: builder != null && builder.isComplete,
       isDance: _isDance,
+      position: builder == null ? null : widget.state,
+      stagedMove: builder == null || builder.chosenHops.isEmpty
+          ? null
+          : builder.isComplete
+          ? builder.build()
+          : Move(List.unmodifiable(builder.chosenHops)),
     );
   }
 
@@ -884,8 +906,7 @@ class _BoardViewState extends State<BoardView>
   /// stationary pauses between hops). No cap — a long multi-hop play travels in
   /// full.
   Duration _totalDuration(int hopCount) =>
-      widget.hopDuration * hopCount +
-      widget.interHopDuration * (hopCount - 1);
+      widget.hopDuration * hopCount + widget.interHopDuration * (hopCount - 1);
 
   /// Stages the current [BoardView.externalMove] value into the builder: resets
   /// entry and re-enters the move's hops in canonical order, leaving it complete
@@ -947,7 +968,8 @@ class _BoardViewState extends State<BoardView>
     BoardState board,
     ({int location, int stackIndex, bool isWhite})? hidden,
     ({Offset center, bool isWhite})? overlay,
-  })? _animFrame(BoardGeometry geometry) {
+  })?
+  _animFrame(BoardGeometry geometry) {
     final anim = _animation;
     if (anim == null) return null;
     final n = anim.hops.length;
@@ -1094,13 +1116,18 @@ class _BoardViewState extends State<BoardView>
     if (DateTime.now().difference(armedAt) > window) return false;
     if (_selectedSource != armedTarget) return false;
     if (!builder.selectableSources.contains(armedTarget)) return false;
-    if (_tapTarget(geometry, localPosition, builder) != armedTarget) return false;
+    if (_tapTarget(geometry, localPosition, builder) != armedTarget) {
+      return false;
+    }
     if (_addressesDestination(geometry, localPosition, builder, armedTarget)) {
       return false;
     }
     // The decisive guard: consume the tap only when there is a hop to play.
-    final destination =
-        highestDieDestination(builder, armedTarget, widget.state.turn);
+    final destination = highestDieDestination(
+      builder,
+      armedTarget,
+      widget.state.turn,
+    );
     if (destination == null) return false;
     _applyQuickHop(builder, armedTarget, destination);
     return true;
@@ -1123,7 +1150,11 @@ class _BoardViewState extends State<BoardView>
   /// forgiveness [_handleTap] applies. Mirrors [_handleTap]'s precedence so the
   /// two can never disagree about what a tap means.
   bool _addressesDestination(
-      BoardGeometry geometry, Offset pos, MoveBuilder builder, int source) {
+    BoardGeometry geometry,
+    Offset pos,
+    MoveBuilder builder,
+    int source,
+  ) {
     final loc = geometry.locationAt(pos);
     final chained = _chainedDestinations(builder, source);
     if (loc != null &&
@@ -1216,15 +1247,18 @@ class _BoardViewState extends State<BoardView>
       // Forgiving fallbacks: a near direct destination completes the hop; then a
       // near combined landing enters the chain; else a near source re-selects;
       // else the tap hit nothing actionable, so clear.
-      final nearDest =
-          _nearestDestination(geometry, localPosition, builder, selected);
+      final nearDest = _nearestDestination(
+        geometry,
+        localPosition,
+        builder,
+        selected,
+      );
       if (nearDest != null) {
         builder.addHop(selected, nearDest);
         _selectedSource = null;
         return;
       }
-      final nearChain =
-          _nearestTarget(geometry, localPosition, chained);
+      final nearChain = _nearestTarget(geometry, localPosition, chained);
       if (nearChain != null) {
         _enterChain(builder, selected, nearChain);
         _selectedSource = null;
@@ -1323,7 +1357,11 @@ class _BoardViewState extends State<BoardView>
   /// The legal destination for [source] whose region centre is nearest [pos]
   /// within [_tapTolerance], or `null` when none is close enough.
   int? _nearestDestination(
-      BoardGeometry geometry, Offset pos, MoveBuilder builder, int source) {
+    BoardGeometry geometry,
+    Offset pos,
+    MoveBuilder builder,
+    int source,
+  ) {
     return _nearestTarget(geometry, pos, builder.destinationsFor(source));
   }
 
@@ -1453,7 +1491,9 @@ class _BoardViewState extends State<BoardView>
   /// The hidden-checker record for the drag ghost: the top checker of
   /// [_dragSource] on [board], lifted while it travels as the overlay. `null`
   /// when nothing is being dragged or the source is empty.
-  ({int location, int stackIndex, bool isWhite})? _dragHidden(BoardState board) {
+  ({int location, int stackIndex, bool isWhite})? _dragHidden(
+    BoardState board,
+  ) {
     final source = _dragSource;
     if (source == null) return null;
     final isWhite = widget.state.turn == Player.white;
@@ -1469,7 +1509,8 @@ class _BoardViewState extends State<BoardView>
 
   @override
   Widget build(BuildContext context) {
-    final theme = widget.theme ??
+    final theme =
+        widget.theme ??
         (Theme.of(context).brightness == Brightness.dark
             ? BoardTheme.dark
             : BoardTheme.light);
@@ -1482,8 +1523,10 @@ class _BoardViewState extends State<BoardView>
       child: LayoutBuilder(
         builder: (context, constraints) {
           final size = Size(constraints.maxWidth, constraints.maxHeight);
-          final geometry =
-              BoardGeometry(size, whiteAtBottom: widget.whiteAtBottom);
+          final geometry = BoardGeometry(
+            size,
+            whiteAtBottom: widget.whiteAtBottom,
+          );
 
           final dragSource = _dragSource;
           final dragPointer = _dragPointer;
@@ -1497,10 +1540,12 @@ class _BoardViewState extends State<BoardView>
           // move entry.
           final turn = widget.state.turn;
           final override = widget.diceOverride;
-          final whiteDice = (override != null && override.roller == Player.white)
+          final whiteDice =
+              (override != null && override.roller == Player.white)
               ? override.faces
               : widget.whiteDice;
-          final blackDice = (override != null && override.roller == Player.black)
+          final blackDice =
+              (override != null && override.roller == Player.black)
               ? override.faces
               : widget.blackDice;
 
@@ -1523,8 +1568,9 @@ class _BoardViewState extends State<BoardView>
           // started travelling yet: freeze the board at the captured PRE-move
           // position (no overlay) so the moved checker sits at its source until
           // the hold releases. Only when no live/drag animation is in play.
-          final held =
-              (!dragging && _animation == null) ? _pendingAnimation : null;
+          final held = (!dragging && _animation == null)
+              ? _pendingAnimation
+              : null;
           final BoardPainter painter;
           if (dragging) {
             // Drag: paint the preview board, hide the lifted source checker, and
@@ -1578,27 +1624,29 @@ class _BoardViewState extends State<BoardView>
               usedDiceSlots: playedSlots,
               // A static overlay's origins wear the STRONG ring; the live
               // builder never uses it (its pickup is [selectedCheckerLocation]).
-              strongHighlightLocations:
-                  builder == null ? widget.strongHighlightSources : const {},
+              strongHighlightLocations: builder == null
+                  ? widget.strongHighlightSources
+                  : const {},
               // When a builder owns the board (interactive moving phase) the
               // live selection drives the highlights; otherwise the static
               // overlay fields (the replay/analysis move highlights) apply.
               highlightedSources: builder == null
                   ? widget.highlightedSources
                   : (showHl && selected == null)
-                      ? builder.selectableSources
-                      : const {},
+                  ? builder.selectableSources
+                  : const {},
               highlightedDestinations: builder == null
                   ? widget.highlightedDestinations
                   : (showHl && selected != null)
-                      ? builder.destinationsFor(selected)
-                      : const {},
+                  ? builder.destinationsFor(selected)
+                  : const {},
               combinedDestinations:
                   (showHl && builder != null && selected != null)
-                      ? _chainedDestinations(builder, selected)
-                      : const {},
-              selectedCheckerLocation:
-                  builder != null && showHl ? selected : null,
+                  ? _chainedDestinations(builder, selected)
+                  : const {},
+              selectedCheckerLocation: builder != null && showHl
+                  ? selected
+                  : null,
               movingPlayer: builder != null
                   ? widget.state.turn
                   : widget.highlightMovingPlayer,
@@ -1621,23 +1669,25 @@ class _BoardViewState extends State<BoardView>
             gestures: <Type, GestureRecognizerFactory>{
               TapGestureRecognizer:
                   GestureRecognizerFactoryWithHandlers<TapGestureRecognizer>(
-                () => TapGestureRecognizer(
-                  debugOwner: this,
-                  // Movement never cancels the tap; only the pan claiming the
-                  // gesture does. See [_tapSurvivesTravel].
-                  preAcceptSlopTolerance: null,
-                  postAcceptSlopTolerance: null,
-                ),
-                (recognizer) {
-                  // The DOWN position is where the user aimed; the release may
-                  // have drifted. Route by the aim.
-                  recognizer.onTapDown =
-                      (details) => _tapDownPosition = details.localPosition;
-                  recognizer.onTapUp = (details) => _onTapUp(
-                      geometry, _tapDownPosition ?? details.localPosition);
-                  recognizer.onTapCancel = () => _tapDownPosition = null;
-                },
-              ),
+                    () => TapGestureRecognizer(
+                      debugOwner: this,
+                      // Movement never cancels the tap; only the pan claiming the
+                      // gesture does. See [_tapSurvivesTravel].
+                      preAcceptSlopTolerance: null,
+                      postAcceptSlopTolerance: null,
+                    ),
+                    (recognizer) {
+                      // The DOWN position is where the user aimed; the release may
+                      // have drifted. Route by the aim.
+                      recognizer.onTapDown = (details) =>
+                          _tapDownPosition = details.localPosition;
+                      recognizer.onTapUp = (details) => _onTapUp(
+                        geometry,
+                        _tapDownPosition ?? details.localPosition,
+                      );
+                      recognizer.onTapCancel = () => _tapDownPosition = null;
+                    },
+                  ),
               // Pan recognisers are attached only when drag is enabled, so with
               // drag off a pan simply falls through (does nothing) while taps
               // keep working. With both attached, Flutter's gesture arena routes
@@ -1646,15 +1696,15 @@ class _BoardViewState extends State<BoardView>
               if (dragEnabled)
                 PanGestureRecognizer:
                     GestureRecognizerFactoryWithHandlers<PanGestureRecognizer>(
-                  () => PanGestureRecognizer(debugOwner: this),
-                  (recognizer) {
-                    recognizer.onStart = (details) =>
-                        _onPanStart(geometry, details.localPosition);
-                    recognizer.onUpdate =
-                        (details) => _onPanUpdate(details.localPosition);
-                    recognizer.onEnd = (_) => _onPanEnd(geometry);
-                  },
-                ),
+                      () => PanGestureRecognizer(debugOwner: this),
+                      (recognizer) {
+                        recognizer.onStart = (details) =>
+                            _onPanStart(geometry, details.localPosition);
+                        recognizer.onUpdate = (details) =>
+                            _onPanUpdate(details.localPosition);
+                        recognizer.onEnd = (_) => _onPanEnd(geometry);
+                      },
+                    ),
             },
             child: CustomPaint(size: size, painter: painter),
           );

@@ -20,6 +20,8 @@ class ScoreSheetPanel extends StatefulWidget {
     required this.assessments,
     required this.revealedBest,
     required this.onToggleBest,
+    this.onSelectEvent,
+    this.selectedEventIndex,
   });
 
   /// Total height of the always-present score sheet. FIXED and unconditional,
@@ -66,8 +68,8 @@ class ScoreSheetPanel extends StatefulWidget {
   /// The two column labels, left first — "You"/"AI", or the neutral "W"/"B".
   final (String, String) columnLabels;
 
-  /// Post-move assessments by event index; a cell with one gains a mark dot,
-  /// an equity loss and a tap target.
+  /// Post-move assessments by event index; a cell with one gains a mark dot
+  /// and an equity loss. Move selection remains available while work is pending.
   final Map<int, MoveAssessment> assessments;
 
   /// Event indices whose best-play line is currently revealed.
@@ -75,6 +77,13 @@ class ScoreSheetPanel extends StatefulWidget {
 
   /// Toggles the best-play line under an assessed cell.
   final void Function(int eventIndex) onToggleBest;
+
+  /// Selects an event for the tutor. Falls back to [onToggleBest] for callers
+  /// that still use the score sheet's inline best-play disclosure.
+  final ValueChanged<int>? onSelectEvent;
+
+  /// The move currently being discussed by the tutor.
+  final int? selectedEventIndex;
 
   @override
   State<ScoreSheetPanel> createState() => _ScoreSheetPanelState();
@@ -263,8 +272,9 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
   /// the cell exists to show. Now the NOTATION gives way instead, and the score
   /// is always legible.
   ///
-  /// An assessed cell is tappable: it toggles a second "Best: …" line beneath
-  /// the notation (the sheet scrolls, so the extra line costs the board nothing).
+  /// Every played cell is tappable, including while its assessment is pending.
+  /// The tutor caller selects the move; older callers can still toggle a second
+  /// "Best: …" line beneath the notation without changing the sheet's height.
   /// An empty cell (the side has not moved this turn) renders as blank space.
   Widget _cell(ScoreCell? cell, Key key) {
     if (cell == null) return SizedBox(key: key);
@@ -338,26 +348,34 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
       ],
     );
 
-    if (assessment == null) return KeyedSubtree(key: key, child: line);
-
-    return InkWell(
-      key: key,
-      onTap: () => widget.onToggleBest(cell.eventIndex),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          line,
-          if (revealed && assessment.best.checkerMoves.isNotEmpty)
-            Text(
-              'Best: ${assessment.best}',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: base.copyWith(
-                fontSize: 11,
-                color: scheme.onSurfaceVariant,
-              ),
-            ),
-        ],
+    final selected = widget.selectedEventIndex == cell.eventIndex;
+    return Semantics(
+      selected: selected,
+      child: InkWell(
+        key: key,
+        onTap: () =>
+            (widget.onSelectEvent ?? widget.onToggleBest)(cell.eventIndex),
+        child: Ink(
+          color: selected ? scheme.secondaryContainer : null,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              line,
+              if (revealed &&
+                  assessment != null &&
+                  assessment.best.checkerMoves.isNotEmpty)
+                Text(
+                  'Best: ${assessment.best}',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: base.copyWith(
+                    fontSize: 11,
+                    color: scheme.onSurfaceVariant,
+                  ),
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }

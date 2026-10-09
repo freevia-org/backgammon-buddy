@@ -16,7 +16,7 @@ import 'package:aigammon_app/game/player_agent.dart';
 import 'package:aigammon_app/net/net_match_controller.dart';
 import 'package:aigammon_app/screens/game_screen.dart';
 import 'package:aigammon_app/screens/history_screen.dart';
-import 'package:aigammon_app/screens/metric_explainer.dart';
+import 'package:aigammon_app/screens/game/tutor_panel.dart';
 import 'package:aigammon_app/tutor/tutor_service.dart';
 import 'package:backgammon_core/backgammon_core.dart';
 import 'package:engine_bindings/engine_bindings.dart';
@@ -585,16 +585,19 @@ void main() {
     ));
     await pumpUntil(t, () => white.pendingMoveRequest.value != null);
     expect(find.widgetWithText(OutlinedButton, 'Hint'), findsOneWidget);
-    await t.tap(find.byTooltip('Tutor coaching and options'));
+    await t.tap(find.byKey(const ValueKey('tutorPanelToggle')));
     await t.pumpAndSettle();
-    await t.ensureVisible(find.text('Tutoring options'));
-    await t.tap(find.text('Tutoring options'));
+    await t.tap(find.byTooltip('Tutoring options'));
     await t.pumpAndSettle();
-    await t.ensureVisible(find.text('Best-move hints'));
-    await t.tap(find.text('Best-move hints'));
+    final bestMovesSwitch = find.descendant(
+        of: find.ancestor(of: find.text('Best-move hints'),
+            matching: find.byType(SwitchListTile)), matching: find.byType(Switch));
+    await t.ensureVisible(bestMovesSwitch);
+    await t.pumpAndSettle();
+    await t.tap(bestMovesSwitch);
     await t.pumpAndSettle();
     expect(t.takeException(), isNull);
-    Navigator.of(t.element(find.text('Your tutor'))).pop();
+    await t.tap(find.widgetWithText(TextButton, 'Done'));
     await t.pumpAndSettle();
     expect(find.widgetWithText(OutlinedButton, 'Hint'), findsNothing);
     c.disposeController();
@@ -2479,7 +2482,7 @@ void main() {
   group('F6: no board reflow on a phone', () {
     const phone = Size(390, 844);
 
-    testWidgets('the tutor advice line appearing and going leaves the board put',
+    testWidgets('the tutor updating after Roll leaves the board put',
         (t) async {
       await t.binding.setSurfaceSize(phone);
       addTearDown(() => t.binding.setSurfaceSize(null));
@@ -2507,7 +2510,8 @@ void main() {
       // next gate's advice lands).
       await t.tap(find.widgetWithText(FilledButton, 'Roll'));
       await pumpUntil(t, () => !c.awaitingHumanTurn);
-      expect(find.textContaining('Tutor:'), findsNothing);
+      expect(find.text('Tutor:'), findsOneWidget);
+      expect(find.textContaining('Roll when'), findsNothing);
       expect(boardRect(t), withAdvice,
           reason: 'the advice line has a reserved slot — the board holds still');
 
@@ -3118,6 +3122,7 @@ void main() {
       final expected = MoveGenerator.legalMoves(s.board, s.turn, s.dice!).first;
       await t.tap(find.widgetWithText(OutlinedButton, 'Hint'));
       await pumpUntil(t, () => find.text('Top plays').evaluate().isNotEmpty);
+      await t.pumpAndSettle();
       await t.tap(find.text('$expected').first);
       await t.pump(); // panel closes; the play is STAGED programmatically
 
@@ -3372,9 +3377,13 @@ void main() {
       expect(hint, findsOneWidget);
       await t.tap(hint);
       await pumpUntil(t, () => find.text('Top plays').evaluate().isNotEmpty);
+      await t.pumpAndSettle();
 
       // The panel converts 0.100/0.040 cubeless equity to 50.77/50.31% MWC at 5-away/5-away.
       expect(find.text('Top plays'), findsOneWidget);
+      await t.ensureVisible(find.text('Engine estimates'));
+      await t.tap(find.text('Engine estimates'));
+      await t.pumpAndSettle();
       expect(find.textContaining('50.77'), findsWidgets);
       expect(find.textContaining('50.31'), findsWidgets);
 
@@ -3408,6 +3417,7 @@ void main() {
 
       await t.tap(find.widgetWithText(OutlinedButton, 'Hint'));
       await pumpUntil(t, () => find.text('Top plays').evaluate().isNotEmpty);
+      await t.pumpAndSettle();
 
       // Tap the top row (the move text of the first-ranked play).
       await t.tap(find.text('$expected').first);
@@ -3477,7 +3487,7 @@ void main() {
       c.disposeController();
     });
 
-    testWidgets('an assessed cell reveals its best play on tap', (t) async {
+    testWidgets('an assessed cell selects analysis in the collapsed tutor', (t) async {
       await t.binding.setSurfaceSize(_surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -3499,12 +3509,18 @@ void main() {
       expect(find.textContaining('Best:'), findsNothing);
       await t.tap(find.byKey(const ValueKey('sheetLeft1')));
       await t.pumpAndSettle();
-      expect(find.textContaining('Best:'), findsOneWidget,
-          reason: 'tap-to-reveal shows the best play under the notation');
-      // Tapping again folds it away.
-      await t.tap(find.byKey(const ValueKey('sheetLeft1')));
+      expect(find.text('Live'), findsOneWidget);
+      expect(t.widget<TutorPanel>(find.byType(TutorPanel)).expanded, isFalse);
+      expect(t.widget<Text>(find.byKey(const ValueKey('tutorSummaryHeading'))).data,
+          contains('Your play'));
+      // Expanding adds the alternatives under the same selected feedback.
+      await t.tap(find.byKey(const ValueKey('tutorPanelToggle')));
+      await t.pumpAndSettle();
+      expect(find.textContaining('Best:'), findsOneWidget);
+      await t.tap(find.text('Live'));
       await t.pumpAndSettle();
       expect(find.textContaining('Best:'), findsNothing);
+      expect(find.text('Live'), findsNothing);
 
       c.disposeController();
     });
@@ -3561,6 +3577,8 @@ void main() {
       await pumpUntil(t, () => c.awaitingHumanTurn);
       await pumpUntil(
           t, () => find.textContaining('Tutor:').evaluate().isNotEmpty);
+      await t.tap(find.byKey(const ValueKey('tutorPanelToggle')));
+      await t.pumpAndSettle();
       expect(find.textContaining('Tutor: Double'), findsOneWidget);
       c.disposeController();
 
@@ -3596,10 +3614,9 @@ void main() {
 
       await pumpUntil(t, () => human.pendingCubeRequest.value != null);
       expect(find.textContaining('offers a double'), findsOneWidget);
-      await pumpUntil(
-          t, () => find.textContaining('Tutor:').evaluate().isNotEmpty);
+      await pumpUntil(t, () => find.textContaining(RegExp('Tutor: (Take|Pass)')).evaluate().isNotEmpty);
       // The advice is either Take or Pass; assert the line is present.
-      expect(find.textContaining('Tutor:'), findsOneWidget);
+      expect(find.textContaining(RegExp('Tutor: (Take|Pass)')), findsOneWidget);
 
       c.disposeController();
     });
@@ -3979,11 +3996,10 @@ void main() {
       expect(t.getRect(find.byType(BoardView)), empty,
           reason: 'assessed cells cost the board nothing');
 
-      // Revealing a best-play line grows a cell to two lines — inside the
-      // sheet's scroll view, so still nothing for the board.
+      // Selecting a move changes the tutor, with no reflow of the board.
       await t.tap(find.byKey(const ValueKey('sheetLeft1')));
       await t.pumpAndSettle();
-      expect(find.textContaining('Best:'), findsWidgets);
+      expect(find.text('Live'), findsOneWidget);
       expect(t.getRect(find.byType(BoardView)), empty,
           reason: 'the sheet scrolls rather than growing');
 
@@ -4555,7 +4571,7 @@ void main() {
     });
   });
 
-  group('hint sheet column headers', () {
+  group('optional hint estimates', () {
     // White (human) moves first against a hanging AI, so the hint sheet can be
     // opened on a live human move-entry and stays open.
     GameController humanMoving(LocalHumanAgent human) => GameController(
@@ -4569,11 +4585,12 @@ void main() {
       await pumpUntil(t, () => human.pendingMoveRequest.value != null);
       await t.tap(find.widgetWithText(OutlinedButton, 'Hint'));
       await pumpUntil(t, () => find.text('Top plays').evaluate().isNotEmpty);
+      await t.pumpAndSettle();
       await pumpUntil(
           t, () => find.byType(CircularProgressIndicator).evaluate().isEmpty);
     }
 
-    testWidgets('the two number columns are labelled MWC % / Loss pp', (t) async {
+    testWidgets('match estimates are labelled and hidden until requested', (t) async {
       await t.binding.setSurfaceSize(_surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -4582,13 +4599,17 @@ void main() {
       await t.pumpWidget(_tutorHarness(c, TutorService(RealRankEngine())));
       await openHint(t, human);
 
+      expect(find.text('MWC %'), findsNothing);
+      await t.ensureVisible(find.text('Engine estimates'));
+      await t.tap(find.text('Engine estimates'));
+      await t.pumpAndSettle();
       expect(find.text('MWC %'), findsOneWidget);
-      expect(find.text('Loss pp'), findsOneWidget);
+      expect(find.textContaining('0-ply estimate'), findsOneWidget);
 
       c.disposeController();
     });
 
-    testWidgets('the sheet ⓘ opens the shared metric explainer', (t) async {
+    testWidgets('estimate methodology is available in the continuous panel', (t) async {
       await t.binding.setSurfaceSize(_surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
 
@@ -4597,15 +4618,17 @@ void main() {
       await t.pumpWidget(_tutorHarness(c, TutorService(RealRankEngine())));
       await openHint(t, human);
 
-      expect(find.byType(MetricExplainerDialog), findsNothing);
-      await t.tap(find.byIcon(Icons.info_outline));
+      expect(find.textContaining('no future cubes'), findsNothing);
+      await t.ensureVisible(find.text('Engine estimates'));
+      await t.tap(find.text('Engine estimates'));
       await t.pumpAndSettle();
-
-      expect(find.byType(MetricExplainerDialog), findsOneWidget);
-      expect(find.text('Understanding the metrics'), findsOneWidget);
-      await t.tap(find.widgetWithText(TextButton, 'Got it'));
+      expect(find.textContaining('no future cubes'), findsOneWidget);
+      expect(find.byType(TutorPanel), findsOneWidget);
+      expect(find.byType(Dialog), findsNothing);
+      await t.ensureVisible(find.text('Engine estimates'));
+      await t.tap(find.text('Engine estimates'));
       await t.pumpAndSettle();
-      expect(find.byType(MetricExplainerDialog), findsNothing);
+      expect(find.textContaining('no future cubes'), findsNothing);
 
       c.disposeController();
     });
@@ -5332,8 +5355,11 @@ void main() {
       expect(find.byType(BoardView), findsOneWidget,
           reason: 'the board is still there and the gate still open');
       expect(c.awaitingHumanTurn, isTrue);
-      expect(find.textContaining('Tutor:'), findsNothing,
-          reason: 'no advice, rather than a fabricated one');
+      expect(find.text('Tutor:'), findsOneWidget);
+      await t.tap(find.byKey(const ValueKey('tutorPanelToggle')));
+      await t.pumpAndSettle();
+      expect(find.textContaining('Tutor: Double'), findsNothing,
+          reason: 'no cube advice, rather than a fabricated one');
 
       c.disposeController();
     });
@@ -5354,6 +5380,7 @@ void main() {
 
       await t.tap(find.widgetWithText(OutlinedButton, 'Hint'));
       await pumpUntil(t, () => find.text('Top plays').evaluate().isNotEmpty);
+      await t.pumpAndSettle();
       // The panel must not be left spinning forever on a failed ranking.
       await pumpUntil(
           t, () => find.byType(CircularProgressIndicator).evaluate().isEmpty,

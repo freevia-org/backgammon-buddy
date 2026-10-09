@@ -1,5 +1,9 @@
 # Release readiness — 2026-10-09
 
+The subsequent internal-tester feedback is implemented in source as a
+[continuous tutor panel](tutor-panel-feedback-2026-10-09.md). It requires a new
+Android build; the delivery evidence below still refers to build 10018.
+
 **Status: the owner deferred physical-board Buddy Mode to version 2. Replacement
 Android candidate 0.14.0+10018 hides that mode and its settings and removes
 microphone access. Full CI, the signed-artifact audit and exact-APK offline tutor

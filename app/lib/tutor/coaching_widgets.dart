@@ -50,35 +50,58 @@ class TutorOptionControls extends StatelessWidget {
 }
 
 class MoveExplanationView extends StatelessWidget {
-  const MoveExplanationView({super.key, required this.explanation});
+  const MoveExplanationView({
+    super.key,
+    required this.explanation,
+    this.showOverview = true,
+  });
 
   final MoveExplanation explanation;
+  final bool showOverview;
+  String? get _comparison => showOverview
+      ? explanation.comparison
+      : explanation.comparison
+            ?.replaceFirst(explanation.summaryReason, '')
+            .trim();
 
   @override
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(explanation.verdict),
-      const SizedBox(height: 8),
-      Text(explanation.estimate),
-      if (explanation.comparison != null) ...[
+      if (showOverview) Text(explanation.verdict),
+      if (explanation.comparison == null &&
+          explanation.plan.isNotEmpty &&
+          (showOverview || explanation.plan != explanation.summaryReason)) ...[
         const SizedBox(height: 8),
-        Text(explanation.comparison!),
+        Text(explanation.plan),
+      ],
+      if (_comparison != null && _comparison!.isNotEmpty) ...[
+        const SizedBox(height: 8),
+        Text(_comparison!),
       ],
       const SizedBox(height: 12),
-      Text(
-        'What changes on the board',
-        style: Theme.of(context).textTheme.titleSmall,
-      ),
+      Text('What to watch next', style: Theme.of(context).textTheme.titleSmall),
       for (final observation in explanation.observations)
         Padding(
           padding: const EdgeInsets.only(top: 6),
           child: Text('• $observation'),
         ),
       const SizedBox(height: 12),
-      Text(
-        MoveExplanation.limitations,
-        style: Theme.of(context).textTheme.bodySmall,
+      ExpansionTile(
+        tilePadding: EdgeInsets.zero,
+        childrenPadding: const EdgeInsets.only(bottom: 8),
+        title: const Text('Estimates and how they work'),
+        children: [
+          Text(explanation.estimate),
+          const SizedBox(height: 8),
+          Text(
+            '${MoveExplanation.limitations} Point numbers in the teaching notes '
+            'are counted from the mover’s home board. Hitting-roll counts include '
+            'all 36 ordered dice outcomes and legal direct or indirect hits; '
+            'they are opportunities, not a prediction of the opponent’s choice.',
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
       ),
     ],
   );

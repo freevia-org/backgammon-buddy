@@ -68,6 +68,13 @@ set by CI from the workflow run number and is not tracked here.
 
 ### Changed
 
+- The live tutor is one continuous panel above the game actions. Tap its
+  top-right label or swipe up to expand it; settings are behind the expanded
+  panel's cog. The compact view follows the position, staged checkers, Undo and
+  the computer's reply. Tap a logged move to review it, then return with Live.
+  Short tactical explanations lead, with ranked plays, scenarios and optional
+  engine methodology available below. Delayed analysis cannot replace a newer
+  decision or history selection.
 - **Buddy Mode's dice reader searches the whole playing surface**, and reads a
   face as a **shape** rather than by counting pips. `PipPattern` matches
   pairwise pip distances inside a die's own frame — blind to rotation and

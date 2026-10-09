@@ -87,7 +87,7 @@ void main() {
       await tester.ensureVisible(find.text('Why this play?'));
       await tester.tap(find.text('Why this play?'));
       await tester.pumpAndSettle();
-      expect(find.textContaining('highest estimated value'), findsOneWidget);
+      expect(find.text('A top choice for this position.'), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
   }
