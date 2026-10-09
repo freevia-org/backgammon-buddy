@@ -13,6 +13,7 @@ Mobile store release remains subject to the [candidate checks](docs/release-read
 ## Feedback and ideas
 
 Found a bug or have an idea to help players improve? Open a [bug report](https://github.com/freevia-org/backgammon-buddy/issues/new?template=bug_report.yml) or [suggest an idea](https://github.com/freevia-org/backgammon-buddy/issues/new?template=feature_request.yml). Please keep reports free of passwords, personal information, private match codes, and unredacted logs; use [Freevia support](https://freevia.org/backgammon-buddy/support/) for private matters. See the [interactive tutor experience preview](docs/tutor-experience/index.html), built from real Android screenshots captured during testing.
+
 **Available now (local play):**
 
 - **Play vs computer** at four difficulties (`easy`, `medium`, `hard`,
@@ -95,18 +96,13 @@ file).
 | [`packages/online_client`](packages/online_client) | Firebase-backed online-play client — pure Dart, no Firebase SDK: anonymous auth and direct Firestore documents over REST (match create/join by invite code, append-only event log), plus `FirestoreTransport` on Firestore's **real-time `Listen` gRPC stream with a polling fallback**. Runs against the emulator in tests. |
 | [`packages/board_vision`](packages/board_vision) | Buddy Mode's perception core — pure Dart, no camera and no Flutter, so it runs in CI. Homography and the ROI atlas, calibration and colour learning (no colour constants anywhere), occupancy and dice reading, state-primed legal-play matching, expected-board verification and drift recovery, continuous readability. Its suite scores a committed corpus of real board photographs against accuracy thresholds. |
 | [`firebase/`](firebase/) | The online backend, which is **only** Firestore security rules (`firestore.rules`) — no Cloud Functions, free Spark plan — plus their emulator rules-test suite, emulator config, and the deploy guide ([`DEPLOY.md`](firebase/DEPLOY.md)). |
-| [
-ative/wildbg`](native/wildbg) | The vendored [wildbg](https://github.com/carsten-wenderdel/wildbg) engine — a **git submodule**, never edited directly. |
-| [
-ative/engine_shim`](native/engine_shim) | Thin C shim (`cdylib`, `aigammon_engine`) — a verbatim copy of wildbg's `wildbg-c` crate plus a `wildbg_new_with_path` constructor that loads nets from disk at runtime. Windows/Android/iOS build scripts live here. |
-| [
-ative/wildbg-nets`](native/wildbg-nets) | The **production** neural nets (`contact.onnx`, `race.onnx`) from wildbg's 
-ets` branch. The submodule itself ships only weak demo nets. |
+| [`native/wildbg`](native/wildbg) | The vendored [wildbg](https://github.com/carsten-wenderdel/wildbg) engine — a **git submodule**, never edited directly. |
+| [`native/engine_shim`](native/engine_shim) | Thin C shim (`cdylib`, `aigammon_engine`) — a verbatim copy of wildbg's `wildbg-c` crate plus a `wildbg_new_with_path` constructor that loads nets from disk at runtime. Windows/Android/iOS build scripts live here. |
+| [`native/wildbg-nets`](native/wildbg-nets) | The **production** neural nets (`contact.onnx`, `race.onnx`) from wildbg's `nets` branch. The submodule itself ships only weak demo nets. |
 | [`docs/superpowers/`](docs/superpowers/) | Architecture spec and the per-phase implementation plans. |
 | [`.github/workflows/`](.github/workflows/) | CI (`ci.yml`), the Android APK workflow (`android.yml`) and the iOS `.app`/IPA workflow (`ios.yml`) — the latter two gated on CI passing, both distributing through Firebase App Distribution. See [`.github/workflows/README.md`](.github/workflows/README.md). |
 
-See [
-ative/README.md`](native/README.md) and
+See [`native/README.md`](native/README.md) and
 [`packages/engine_bindings/README.md`](packages/engine_bindings/README.md) for
 the engine, net-loading, and licensing details.
 
@@ -125,12 +121,10 @@ git submodule update --init --recursive
 - **Flutter** (stable channel) with Windows desktop support enabled. Desktop
   builds require **Developer Mode** turned on (Settings → For developers) so
   Flutter can create the symlinks its plugins need.
-- **NuGet CLI** (
-uget.exe`) on `PATH` — `winget install Microsoft.NuGet`.
+- **NuGet CLI** (`nuget.exe`) on `PATH` — `winget install Microsoft.NuGet`.
   Buddy Mode's `flutter_tts` dependency ships a Windows plugin whose
   `CMakeLists.txt` shells out to NuGet for CppWinRT and hard-fails without it,
-  so a desktop build stops at 
-uget.exe not found. Please install it.` before
+  so a desktop build stops at `nuget.exe not found. Please install it.` before
   compiling a line of app code. Nothing on Windows ever *calls* that plugin —
   Buddy Mode is mobile-only and `lib/buddy/speaker.dart` guards it — but
   Flutter offers no way to exclude a plugin from one platform's build, so the
@@ -174,8 +168,7 @@ uget.exe not found. Please install it.` before
   assembler (`as.exe`), so `dlltool` fails when building the engine. This
   machine uses [WinLibs](https://winlibs.com/) (winget
   `BrechtSanders.WinLibs.POSIX.UCRT`). See
-  [
-ative/README.md`](native/README.md) for the full toolchain note. (An MSVC
+  [`native/README.md`](native/README.md) for the full toolchain note. (An MSVC
   Build Tools install with the `-msvc` target is an alternative.)
 
 ### 3. Build the engine DLL
@@ -257,8 +250,7 @@ building a production release with the online defines are documented in
     just enough to need a tolerance that would hide real regressions.
   - **`rules`** (Linux): emulator leg 1 — the `firestore.rules` unit tests
     (mocha, `@firebase/rules-unit-testing`) against a firestore-only emulator.
-    Seconds, and FIRST: `online` 
-eeds:` it, so a broken rules file is red
+    Seconds, and FIRST: `online` `needs:` it, so a broken rules file is red
     before four toolchains are installed.
   - **`online`** (Linux): `online_client` analyze + unit tests, then emulator
     legs 2–4 inside one `firebase emulators:exec` — `online_client -P emulator`
