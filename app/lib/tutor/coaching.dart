@@ -20,6 +20,22 @@ class TutorOptions {
   final bool cubeAdvice;
   final bool tryFirst;
 
+  static const coach = TutorOptions();
+  static const hintsOnly = TutorOptions(
+    bestMoves: true,
+    explanations: false,
+    commentary: false,
+    cubeAdvice: false,
+  );
+  static const tryFirstStyle = TutorOptions(tryFirst: true);
+
+  TutorStyle? get style {
+    if (this == coach) return TutorStyle.coach;
+    if (this == hintsOnly) return TutorStyle.hintsOnly;
+    if (this == tryFirstStyle) return TutorStyle.tryFirst;
+    return null;
+  }
+
   TutorOptions copyWith({
     bool? bestMoves,
     bool? explanations,
@@ -46,6 +62,8 @@ class TutorOptions {
   int get hashCode =>
       Object.hash(bestMoves, explanations, commentary, cubeAdvice, tryFirst);
 }
+
+enum TutorStyle { coach, hintsOnly, tryFirst }
 
 enum CoachingTheme {
   hitting,
@@ -312,12 +330,21 @@ class MoveExplanation {
                 '${delta.abs().toStringAsFixed(1)} percentage points $direction. '
                 '${delta < 0 ? 'It can still rank higher because gammons and backgammons have different value at the current ${best.matchWinningChance == null ? 'stake' : 'match score'}.' : ''}'
             .trim();
-    return (
-      detail: detail,
-      summary: gains.isNotEmpty
-          ? gains.first
-          : 'The key difference is checker placement; compare useful landing points for the next roll.',
-    );
+    final onlyTopAnchors = top.anchors
+        .where((point) => !chosen.anchors.contains(point))
+        .toList();
+    final summary = gains.isNotEmpty
+        ? gains.first
+        : chosen.blots > top.blots
+        ? 'This play leaves ${chosen.blots} single checkers; the top play leaves ${top.blots}.'
+        : onlyTopAnchors.isNotEmpty
+        ? 'The top play keeps a safe anchor on point ${onlyTopAnchors.first}.'
+        : chosen.homePoints < top.homePoints
+        ? 'The top play closes more entry points in case one of your checkers is hit.'
+        : chosenShots > topShots
+        ? 'The top play leaves fewer chances for the opponent to hit back.'
+        : 'The plays leave similar immediate risks; compare which landing points stay useful next roll.';
+    return (detail: detail, summary: summary);
   }
 
   static MoveExplanation? forAssessment(GameState before, MoveAssessment a) {
@@ -378,7 +405,7 @@ class MoveExplanation {
     final blots = after.points.where((n) => n == 1).length;
     final oldBlots = original.points.where((n) => n == 1).length;
     observations.add(
-      'Leaves $blots ${blots == 1 ? 'blot' : 'blots'} '
+      '${blots == 0 ? 'Leaves no single checkers exposed' : 'Leaves $blots exposed single ${blots == 1 ? 'checker' : 'checkers'}'} '
       '(previously $oldBlots). ${blots == 0 ? 'There are no single checkers to hit.' : 'Check whether the opponent can reach them before choosing safety over another gain.'}',
     );
     if (afterFeatures.longestPrime >= 3 || beforeFeatures.longestPrime >= 3) {

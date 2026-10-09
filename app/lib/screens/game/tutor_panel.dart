@@ -23,7 +23,7 @@ class TutorPanel extends StatefulWidget {
        assert(expandedHeight >= collapsedHeight);
 
   static const double handleHeight = 4;
-  static const double headerHeight = 40;
+  static const double headerHeight = 48;
 
   final bool expanded;
   final ValueChanged<bool> onExpandedChanged;

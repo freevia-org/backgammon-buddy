@@ -51,33 +51,21 @@ void main() {
       await pumpUntil(t, () => human.pendingMoveRequest.value != null);
       await t.pumpAndSettle();
       final current = _heading(t);
-      final roll = find.byKey(const ValueKey('tutorRoll'));
-      final rollRect = t.getRect(roll);
-      expect(t.widget<FilledButton>(roll).onPressed, isNull);
-      expect(
-        find.ancestor(
-          of: roll,
-          matching: find.byKey(const ValueKey('actionBar')),
-        ),
-        findsOneWidget,
-      );
-      expect(
-        find.descendant(
-          of: find.byKey(const ValueKey('actionBar')),
-          matching: find.text('Roll'),
-        ),
-        findsOneWidget,
-      );
       final actionBar = find.byKey(const ValueKey('actionBar'));
+      final actionBarRect = t.getRect(actionBar);
+      expect(
+        find.descendant(of: actionBar, matching: find.text('Hint')),
+        findsOneWidget,
+      );
       final panel = find.byKey(const ValueKey('tutorPanel'));
       expect(t.getBottomLeft(actionBar).dy, 844);
       expect(t.getBottomLeft(panel).dy, t.getTopLeft(actionBar).dy);
       await t.tap(find.byKey(const ValueKey('tutorPanelToggle')));
       await t.pumpAndSettle();
-      expect(t.getBottomRight(roll).dy, rollRect.bottom);
+      expect(t.getRect(actionBar), actionBarRect);
       await t.tap(find.byKey(const ValueKey('tutorPanelToggle')));
       await t.pumpAndSettle();
-      expect(t.getBottomRight(roll).dy, rollRect.bottom);
+      expect(t.getRect(actionBar), actionBarRect);
       expect(find.byTooltip('Tutor coaching and options'), findsNothing);
       await _hop(t);
       expect(_heading(t), isNot(current));
@@ -89,11 +77,13 @@ void main() {
         current,
         reason: 'Undo must restore the current decision',
       );
-      expect(t.getRect(roll), rollRect);
+      expect(t.getRect(actionBar), actionBarRect);
 
       await commitFirstMove(t);
       await pumpUntil(t, () => controller.awaitingHumanTurn);
       await t.pumpAndSettle();
+      final roll = find.byKey(const ValueKey('tutorRoll'));
+      final rollRect = t.getRect(roll);
       expect(_heading(t), contains('Computer'));
       expect(_reason(t), startsWith('Roll next'));
       expect(t.widget<FilledButton>(roll).onPressed, isNotNull);
@@ -130,8 +120,8 @@ void main() {
       await pumpUntil(t, () => human.pendingMoveRequest.value != null);
       await t.pumpAndSettle();
       expect(_reason(t), isNot(contains('Roll next')));
-      expect(t.widget<FilledButton>(roll).onPressed, isNull);
-      expect(t.getRect(roll), rollRect);
+      expect(find.byKey(const ValueKey('tutorRoll')), findsNothing);
+      expect(t.getRect(actionBar), actionBarRect);
       expect(_heading(t), isNot(startsWith('Review:')));
       expect(
         t

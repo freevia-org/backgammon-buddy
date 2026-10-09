@@ -1494,10 +1494,10 @@ class _GameScreenState extends State<GameScreen> {
       ? 'forced play'
       : switch (assessment.mark) {
           MoveMark.best => 'top choice',
-          MoveMark.good => 'sound choice',
-          MoveMark.dubious => 'worth reviewing',
-          MoveMark.error => 'missed opportunity',
-          MoveMark.blunder => 'costly mistake',
+          MoveMark.good => 'sound play',
+          MoveMark.dubious => 'another play may fit better',
+          MoveMark.error => 'another play fits this position better',
+          MoveMark.blunder => 'a clearly stronger play was available',
         };
 
   ({String heading, String reason}) _tutorCopy() {
@@ -1572,8 +1572,14 @@ class _GameScreenState extends State<GameScreen> {
     }
     final position = PositionCoaching.forState(_c.state);
     return (
-      heading: _tutorPresentation.positionAssessment ?? position.summary,
-      reason: _tutorOptions.explanations ? position.plan : '',
+      heading: position.summary,
+      reason: _tutorOptions.explanations
+          ? [
+              position.plan,
+              if (_tutorPresentation.positionAssessment != null)
+                _tutorPresentation.positionAssessment,
+            ].whereType<String>().join(' ')
+          : '',
     );
   }
 

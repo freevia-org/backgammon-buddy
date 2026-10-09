@@ -14,7 +14,40 @@ class TutorOptionControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
+      Padding(
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+        child: Text(
+          'Tutoring style',
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Wrap(
+          spacing: 8,
+          runSpacing: 0,
+          children: [
+            _styleChoice(context, TutorStyle.coach, 'Coach'),
+            _styleChoice(context, TutorStyle.hintsOnly, 'Hints only'),
+            _styleChoice(context, TutorStyle.tryFirst, 'Try first'),
+          ],
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+        child: Text(switch (options.style) {
+          TutorStyle.coach =>
+            'Position prompts, move feedback, hints, and cube advice.',
+          TutorStyle.hintsOnly =>
+            'Ranked plays on request. Live position prompts and automatic move feedback stay off.',
+          TutorStyle.tryFirst =>
+            'Stage your current play before seeing ranked hints or its grade; board guidance stays on.',
+          null => 'Custom mix. Adjust any of the options below.',
+        }, style: Theme.of(context).textTheme.bodySmall),
+      ),
+      const Divider(height: 1),
       SwitchListTile(
         title: const Text('Best-move hints'),
         subtitle: const Text('Reveal ranked plays while you decide'),
@@ -41,12 +74,28 @@ class TutorOptionControls extends StatelessWidget {
       ),
       SwitchListTile(
         title: const Text('Try a move first'),
-        subtitle: const Text('Stage a complete play before revealing hints'),
+        subtitle: const Text(
+          'Stage your current play before revealing hints or its grade',
+        ),
         value: options.tryFirst,
         onChanged: (v) => onChanged(options.copyWith(tryFirst: v)),
       ),
     ],
   );
+
+  Widget _styleChoice(BuildContext context, TutorStyle style, String label) =>
+      ChoiceChip(
+        label: Text(label),
+        selected: options.style == style,
+        onSelected: (selected) {
+          if (!selected) return;
+          onChanged(switch (style) {
+            TutorStyle.coach => TutorOptions.coach,
+            TutorStyle.hintsOnly => TutorOptions.hintsOnly,
+            TutorStyle.tryFirst => TutorOptions.tryFirstStyle,
+          });
+        },
+      );
 }
 
 class MoveExplanationView extends StatelessWidget {
@@ -79,12 +128,34 @@ class MoveExplanationView extends StatelessWidget {
         const SizedBox(height: 8),
         Text(_comparison!),
       ],
+      const SizedBox(height: 8),
+      Text(
+        'Quick static estimate (0-ply, no rollouts); notes describe board changes and possible replies, not a promise of what happens next.',
+        style: Theme.of(context).textTheme.bodySmall,
+      ),
       const SizedBox(height: 12),
       Text('What to watch next', style: Theme.of(context).textTheme.titleSmall),
-      for (final observation in explanation.observations)
+      for (final observation in _prioritizedObservations(
+        explanation.observations,
+      ).take(2))
         Padding(
           padding: const EdgeInsets.only(top: 6),
           child: Text('• $observation'),
+        ),
+      if (explanation.observations.length > 2)
+        ExpansionTile(
+          tilePadding: EdgeInsets.zero,
+          childrenPadding: const EdgeInsets.only(bottom: 8),
+          title: const Text('More board details'),
+          children: [
+            for (final observation in _prioritizedObservations(
+              explanation.observations,
+            ).skip(2))
+              Padding(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: Text('• $observation'),
+              ),
+          ],
         ),
       const SizedBox(height: 12),
       ExpansionTile(
@@ -105,6 +176,32 @@ class MoveExplanationView extends StatelessWidget {
       ),
     ],
   );
+
+  List<String> _prioritizedObservations(List<String> observations) {
+    int priority(String text) {
+      final lower = text.toLowerCase();
+      if (lower.contains('of 36 rolls') || lower.contains('hitting roll')) {
+        return 5;
+      }
+      if (lower.contains('exposed single checker') ||
+          lower.contains('leaves no exposed')) {
+        return 4;
+      }
+      if (lower.startsWith('hits ') || lower.startsWith('enters ')) return 3;
+      if (lower.startsWith('gives up ') || lower.startsWith('makes ')) return 2;
+      if (lower.startsWith('anchors ') || lower.startsWith('longest run')) {
+        return 1;
+      }
+      return 0;
+    }
+
+    final ranked = observations.indexed.toList()
+      ..sort((a, b) {
+        final byPriority = priority(b.$2).compareTo(priority(a.$2));
+        return byPriority != 0 ? byPriority : a.$1.compareTo(b.$1);
+      });
+    return [for (final entry in ranked) entry.$2];
+  }
 }
 
 Future<void> showMoveExplanation(

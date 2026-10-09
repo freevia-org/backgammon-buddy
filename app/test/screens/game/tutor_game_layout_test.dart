@@ -92,7 +92,7 @@ void main() {
             move.eventIndex,
           );
           expect(find.byKey(const ValueKey('sheetLeft1')), findsOneWidget);
-          await t.tap(roll);
+          await t.tap(find.widgetWithText(FilledButton, 'Roll'));
           await t.pumpAndSettle();
 
           await t.tap(toggle);
@@ -100,7 +100,12 @@ void main() {
           expect(t.takeException(), isNull);
           expect(t.getRect(find.byType(BoardView)), board);
           expect(t.getRect(panel).bottom, collapsed.bottom);
-          expect(t.getRect(find.widgetWithText(FilledButton, 'Roll')), roll);
+          final confirm = find.widgetWithText(FilledButton, 'Confirm');
+          expect(confirm, findsOneWidget);
+          expect(t.getRect(actionBar), actionBarRect);
+          await t.ensureVisible(confirm);
+          await t.pumpAndSettle();
+          expect(confirm.hitTestable(), findsOneWidget);
           expect(t.getRect(panel).top, greaterThanOrEqualTo(0));
           expect(
             t.getSemantics(toggle).flagsCollection.isExpanded,

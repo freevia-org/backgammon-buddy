@@ -93,7 +93,7 @@ void main() {
       );
       expect(a, b);
       expect(a.join(' '), contains('Hits 1 opposing checker'));
-      expect(a.join(' '), contains('Leaves 2 blots'));
+      expect(a.join(' '), contains('Leaves 2 exposed single checkers'));
       expect(a.join(' '), contains('Gives up made point 6'));
     },
   );
