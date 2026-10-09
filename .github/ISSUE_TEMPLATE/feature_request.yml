@@ -21,6 +21,16 @@ body:
       description: Describe the change or feature you have in mind.
     validations:
       required: true
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Filled in by the app when you open this form.
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      description: Filled in by the app when you open this form.
   - type: textarea
     id: context
     attributes:

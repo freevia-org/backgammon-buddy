@@ -5,7 +5,9 @@ import 'package:url_launcher/url_launcher.dart';
 /// The repository issues live in.
 const String kFeedbackRepository = 'freevia-org/backgammon-buddy';
 
-/// Builds the "new issue" URL, pre-filled.
+enum FeedbackKind { bug, idea }
+
+/// Builds the selected GitHub issue form URL with its fields pre-filled.
 ///
 /// **Why pre-fill at all.** The two questions every bug report needs answered
 /// first are "which version" and "which platform", and the two an author is
@@ -22,44 +24,53 @@ const String kFeedbackRepository = 'freevia-org/backgammon-buddy';
 /// a short platform name from [currentPlatformName] (`android`, `iOS`,
 /// `windows`, …) — Flutter's own spelling, mixed case and all, since a report
 /// is read by a human and `iOS` is what that human calls it.
-/// [diagnosticsExcerpt], when given, is appended verbatim in a fenced block —
-/// the Diagnostics screen passes the on-device error log so a crash report
-/// carries its own stack trace.
+/// [diagnosticsExcerpt], when given, is prefilled in the optional context field
+/// after the Diagnostics screen previews it for the user.
 Uri buildFeedbackIssueUri({
+  required FeedbackKind kind,
   required String appVersion,
   required String platform,
   String? diagnosticsExcerpt,
 }) {
-  final body = StringBuffer()
-    ..writeln('### What happened?')
-    ..writeln()
-    ..writeln('<!-- Describe the problem or the idea. -->')
-    ..writeln()
-    ..writeln('### Details')
-    ..writeln()
-    ..writeln('- App version: $appVersion')
-    ..writeln('- Platform: $platform');
-
   final excerpt = diagnosticsExcerpt?.trim();
-  if (excerpt != null && excerpt.isNotEmpty) {
-    body
-      ..writeln()
-      ..writeln('### Diagnostics')
-      ..writeln()
-      ..writeln('```')
-      ..writeln(_clampExcerpt(excerpt))
-      ..writeln('```');
+  final query = <String, String>{
+    'template': kind == FeedbackKind.bug
+        ? 'bug_report.yml'
+        : 'feature_request.yml',
+    'title': kind == FeedbackKind.bug
+        ? '[Bug]: Backgammon Buddy $appVersion ($platform)'
+        : '[Idea]: Backgammon Buddy',
+    'version': appVersion,
+    'platform': platform,
+  };
+
+  if (kind == FeedbackKind.bug) {
+    query.addAll({
+      'summary': 'Replace this with a short description of what happened.',
+      'reproduce': 'Replace this with the steps that led to the problem.',
+      'expected': 'Replace this with what you expected to happen.',
+    });
+    if (excerpt != null && excerpt.isNotEmpty) {
+      query['context'] = _clampExcerpt(excerpt);
+    }
+  } else {
+    query.addAll({
+      'need': 'Replace this with what you wanted to do or learn.',
+      'idea': 'Replace this with the change you would find helpful.',
+    });
   }
 
-  return Uri.https('github.com', '/$kFeedbackRepository/issues/new', {
-    'title': '[Feedback] Backgammon Buddy $appVersion ($platform)',
-    'body': body.toString(),
-    // Must name a label that EXISTS on the repository: GitHub applies the ones
-    // it recognizes and silently drops the rest, so an invented label is a
-    // no-op that looks like it worked. `enhancement` is one of GitHub's default
-    // labels and is present on freevia-org/backgammon-buddy; `feedback` is not.
-    'labels': 'enhancement',
-  });
+  return Uri.https('github.com', '/$kFeedbackRepository/issues/new', query);
+}
+
+/// Text shown before opening GitHub, matching the fields sent in the URL.
+String feedbackDraftPreviewText(Uri uri) {
+  final fields = uri.queryParameters;
+  final values = fields.entries
+      .where((entry) => !const {'template', 'title'}.contains(entry.key))
+      .map((entry) => '${entry.key}: ${entry.value}')
+      .join('\n\n');
+  return '${fields['title']}\n\n$values';
 }
 
 /// A URL is not an unbounded transport.

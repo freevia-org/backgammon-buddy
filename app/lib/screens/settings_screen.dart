@@ -370,12 +370,21 @@ class SettingsScreen extends ConsumerWidget {
                           // does attach the log.
                           ListTile(
                             contentPadding: EdgeInsets.zero,
-                            leading: const Icon(Icons.feedback_outlined),
-                            title: const Text('Send feedback'),
+                            leading: const Icon(Icons.bug_report_outlined),
+                            title: const Text('Report a bug'),
                             subtitle: const Text(
-                                'Opens a pre-filled issue on GitHub'),
+                                'Open a guided report on GitHub'),
                             trailing: const Icon(Icons.open_in_new, size: 18),
-                            onTap: () => _sendFeedback(ref),
+                            onTap: () => _sendFeedback(ref, FeedbackKind.bug),
+                          ),
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: const Icon(Icons.lightbulb_outline),
+                            title: const Text('Suggest an idea'),
+                            subtitle: const Text(
+                                'Help us improve the tutor and game'),
+                            trailing: const Icon(Icons.open_in_new, size: 18),
+                            onTap: () => _sendFeedback(ref, FeedbackKind.idea),
                           ),
                         ],
                       ),
@@ -408,9 +417,10 @@ class SettingsScreen extends ConsumerWidget {
 /// Fire-and-forget, and failure is silent by design: if no browser can be
 /// reached there is nothing the user can do about it from here, and a red
 /// error under a "Send feedback" button is a poor joke.
-void _sendFeedback(WidgetRef ref) {
+void _sendFeedback(WidgetRef ref, FeedbackKind kind) {
   ref.read(appAnalyticsProvider).logFeedbackOpened();
   final uri = buildFeedbackIssueUri(
+    kind: kind,
     appVersion: appVersion,
     platform: currentPlatformName(),
   );

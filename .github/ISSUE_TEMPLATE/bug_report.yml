@@ -34,6 +34,12 @@ body:
       label: App version
       placeholder: For example, 0.14.0 (10023)
   - type: input
+    id: platform
+    attributes:
+      label: Platform
+      description: Filled in by the app when you open this form.
+      placeholder: Android, iOS, Windows, or macOS
+  - type: input
     id: device
     attributes:
       label: Device and OS

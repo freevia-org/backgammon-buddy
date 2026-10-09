@@ -104,6 +104,7 @@ void main() {
       ..record('diagnostic ${'x' * 2000}',
           stack: StackTrace.fromString('#0 sampleStack'));
     final expected = buildFeedbackIssueUri(
+      kind: FeedbackKind.bug,
       appVersion: appVersion,
       platform: currentPlatformName(),
       diagnosticsExcerpt: log.asText(),
@@ -124,14 +125,13 @@ void main() {
       of: find.byType(AlertDialog),
       matching: find.byType(SelectableText),
     ));
-    expect(preview.data,
-        '${expected.queryParameters['title']}\n\n${expected.queryParameters['body']}');
+    expect(preview.data, feedbackDraftPreviewText(expected));
     expect(preview.data, contains('(truncated'));
     log.record('new error after the review opened');
     await tester.tap(find.text('Open GitHub'));
     await tester.pumpAndSettle();
     expect(opened, [expected]);
-    expect(opened.single.queryParameters['body'],
+    expect(opened.single.queryParameters['context'],
         isNot(contains('new error after the review opened')));
   });
 

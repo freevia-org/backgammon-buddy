@@ -51,7 +51,7 @@ void main() {
         child: const MaterialApp(home: SettingsScreen()),
       );
 
-  group('Settings → Send feedback', () {
+  group('Settings → feedback forms', () {
     setUp(() {
       db = newTestDatabase();
       feed = StreamController<AppSettings>();
@@ -62,28 +62,48 @@ void main() {
       await db.close();
     });
 
-    testWidgets('opens the pre-filled GitHub issue and reports the event',
+    testWidgets('opens the prefilled bug form with app details',
         (t) async {
       await t.pumpWidget(settingsApp());
       feed.add(AppSettings.defaults);
       await t.pumpAndSettle();
 
-      await t.scrollUntilVisible(find.text('Send feedback'), 200);
-      await t.tap(find.text('Send feedback'));
+      await t.scrollUntilVisible(find.text('Report a bug'), 200);
+      await t.tap(find.text('Report a bug'));
       await t.pump();
 
       expect(opened, hasLength(1));
       final uri = opened.single;
       expect(uri.host, 'github.com');
       expect(uri.path, '/freevia-org/backgammon-buddy/issues/new');
+      expect(uri.queryParameters['template'], 'bug_report.yml');
       // The live app version, not a literal: the point of the pre-fill is that
       // the report says which build it came from.
-      expect(uri.queryParameters['body'], contains('App version: $appVersion'));
+      expect(uri.queryParameters['version'], appVersion);
+      expect(uri.queryParameters['platform'], currentPlatformName());
+      expect(uri.queryParameters['summary'], isNotEmpty);
+      expect(uri.queryParameters['reproduce'], isNotEmpty);
+      expect(uri.queryParameters['expected'], isNotEmpty);
       // From Settings there is no crash to attach — this is the "I have an
       // idea" route.
-      expect(uri.queryParameters['body'], isNot(contains('Diagnostics')));
+      expect(uri.queryParameters.containsKey('context'), isFalse);
 
       expect(analytics.countOf('feedback_opened'), 1);
+    });
+
+    testWidgets('opens the separate idea form with required prompts', (t) async {
+      await t.pumpWidget(settingsApp());
+      feed.add(AppSettings.defaults);
+      await t.pumpAndSettle();
+      await t.scrollUntilVisible(find.text('Suggest an idea'), 200);
+      await t.tap(find.text('Suggest an idea'));
+      await t.pump();
+      final uri = opened.single;
+      expect(uri.queryParameters['template'], 'feature_request.yml');
+      expect(uri.queryParameters['need'], isNotEmpty);
+      expect(uri.queryParameters['idea'], isNotEmpty);
+      expect(uri.queryParameters['version'], appVersion);
+      expect(uri.queryParameters['platform'], currentPlatformName());
     });
   });
 
@@ -108,10 +128,10 @@ void main() {
       await t.tap(find.text('Open GitHub'));
       await t.pumpAndSettle();
 
-      final body = opened.single.queryParameters['body']!;
-      expect(body, contains('### Diagnostics'));
-      expect(body, contains('the dice went sideways'));
-      expect(body, contains('App version: $appVersion'));
+      expect(opened.single.queryParameters['template'], 'bug_report.yml');
+      expect(opened.single.queryParameters['context'],
+          contains('the dice went sideways'));
+      expect(opened.single.queryParameters['version'], appVersion);
     });
 
     testWidgets('is reachable with an empty log, and sends no empty block',
@@ -135,8 +155,7 @@ void main() {
       await t.pumpAndSettle();
 
       expect(opened, hasLength(1));
-      expect(opened.single.queryParameters['body'],
-          isNot(contains('Diagnostics')));
+      expect(opened.single.queryParameters.containsKey('context'), isFalse);
     });
   });
 }

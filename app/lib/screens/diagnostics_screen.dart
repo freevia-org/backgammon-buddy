@@ -53,6 +53,7 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
   Future<void> _reportIssue() async {
     if (_reporting) return;
     final uri = buildFeedbackIssueUri(
+      kind: FeedbackKind.bug,
       appVersion: appVersion,
       platform: currentPlatformName(),
       diagnosticsExcerpt: _log.isEmpty ? null : _log.asText(),
@@ -76,10 +77,7 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
                 'use Copy to prepare a report yourself.',
               ),
               const SizedBox(height: 16),
-              SelectableText(
-                '${uri.queryParameters['title']}\n\n'
-                '${uri.queryParameters['body']}',
-              ),
+              SelectableText(feedbackDraftPreviewText(uri)),
             ],
           ),
           actions: [

@@ -8,6 +8,7 @@ void main() {
   group('buildFeedbackIssueUri', () {
     test('produces the exact URL for a known version and platform', () {
       final uri = buildFeedbackIssueUri(
+        kind: FeedbackKind.bug,
         appVersion: '0.12.0',
         platform: 'android',
       );
@@ -18,69 +19,79 @@ void main() {
       expect(
         uri.toString(),
         'https://github.com/freevia-org/backgammon-buddy/issues/new'
-        '?title=%5BFeedback%5D+Backgammon+Buddy+0.12.0+%28android%29'
-        '&body=%23%23%23+What+happened%3F%0A%0A%3C%21--+Describe+the+problem+'
-        'or+the+idea.+--%3E%0A%0A%23%23%23+Details%0A%0A-+App+version%3A+0.12.0'
-        '%0A-+Platform%3A+android%0A'
-        '&labels=enhancement',
+        '?template=bug_report.yml'
+        '&title=%5BBug%5D%3A+Backgammon+Buddy+0.12.0+%28android%29'
+        '&version=0.12.0&platform=android'
+        '&summary=Replace+this+with+a+short+description+of+what+happened.'
+        '&reproduce=Replace+this+with+the+steps+that+led+to+the+problem.'
+        '&expected=Replace+this+with+what+you+expected+to+happen.',
       );
     });
 
     test('points at the issues form of the right repository', () {
-      final uri =
-          buildFeedbackIssueUri(appVersion: '1.0.0', platform: 'ios');
+      final uri = buildFeedbackIssueUri(
+        kind: FeedbackKind.idea,
+        appVersion: '1.0.0',
+        platform: 'ios',
+      );
       expect(uri.scheme, 'https');
       expect(uri.host, 'github.com');
       expect(uri.path, '/freevia-org/backgammon-buddy/issues/new');
-      // `enhancement` and not `feedback`: GitHub silently drops a `labels=`
-      // value that does not exist on the repository, and `feedback` does not
-      // exist on freevia-org/backgammon-buddy while `enhancement` (a default label)
-      // does. A label that vanishes on submit is worse than no label.
-      expect(uri.queryParameters['labels'], 'enhancement');
+      expect(uri.queryParameters['template'], 'feature_request.yml');
+      expect(uri.queryParameters['need'], isNotEmpty);
+      expect(uri.queryParameters['idea'], isNotEmpty);
     });
 
-    test('the decoded body carries the version and platform', () {
-      final uri =
-          buildFeedbackIssueUri(appVersion: '9.9.9', platform: 'windows');
-      final body = uri.queryParameters['body']!;
-      expect(body, contains('- App version: 9.9.9'));
-      expect(body, contains('- Platform: windows'));
-      expect(uri.queryParameters['title'],
-          '[Feedback] Backgammon Buddy 9.9.9 (windows)');
+    test('the form carries the version and platform', () {
+      final uri = buildFeedbackIssueUri(
+        kind: FeedbackKind.bug,
+        appVersion: '9.9.9',
+        platform: 'windows',
+      );
+      expect(uri.queryParameters['version'], '9.9.9');
+      expect(uri.queryParameters['platform'], 'windows');
+      expect(
+        uri.queryParameters['title'],
+        '[Bug]: Backgammon Buddy 9.9.9 (windows)',
+      );
     });
 
-    test('no diagnostics section when there is no excerpt', () {
+    test('no context field when there is no diagnostics excerpt', () {
       for (final excerpt in [null, '', '   \n  ']) {
         final uri = buildFeedbackIssueUri(
+          kind: FeedbackKind.bug,
           appVersion: '0.12.0',
           platform: 'android',
           diagnosticsExcerpt: excerpt,
         );
-        expect(uri.queryParameters['body'], isNot(contains('Diagnostics')),
-            reason: 'excerpt: ${excerpt == null ? 'null' : '"$excerpt"'}');
+        expect(
+          uri.queryParameters.containsKey('context'),
+          isFalse,
+          reason: 'excerpt: ${excerpt == null ? 'null' : '"$excerpt"'}',
+        );
       }
     });
 
-    test('an excerpt lands in a fenced block', () {
+    test('an excerpt is prefilled in the optional context field', () {
       final uri = buildFeedbackIssueUri(
+        kind: FeedbackKind.bug,
         appVersion: '0.12.0',
         platform: 'android',
         diagnosticsExcerpt: 'StateError: boom\n#0  main',
       );
-      final body = uri.queryParameters['body']!;
-      expect(body, contains('### Diagnostics'));
-      expect(body, contains('```\nStateError: boom\n#0  main\n```'));
+      expect(uri.queryParameters['context'], contains('StateError: boom'));
     });
 
     test('a long excerpt is truncated so the URL stays usable', () {
       // GitHub's issue form is a GET. An over-long URL is not truncated
       // gracefully — it is rejected — so the excerpt has to be cut here.
       final uri = buildFeedbackIssueUri(
+        kind: FeedbackKind.bug,
         appVersion: '0.12.0',
         platform: 'android',
         diagnosticsExcerpt: 'x' * 100000,
       );
-      final body = uri.queryParameters['body']!;
+      final body = uri.queryParameters['context']!;
       expect(body, contains('(truncated'));
       expect(body.length, lessThan(2000));
       // And the whole percent-encoded URL stays inside the practical browser
