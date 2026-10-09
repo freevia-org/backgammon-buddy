@@ -69,6 +69,36 @@ class _RecordingTutor extends TutorService {
   }
 }
 
+class _RetryTutor extends TutorService {
+  _RetryTutor() : super(_UnusedEngine());
+  int calls = 0;
+  MoveAssessment? answer;
+  @override
+  Future<MoveAssessment?> assessOrNull(
+    GameState before,
+    Move played, {
+    MatchContext? context,
+  }) async {
+    calls++;
+    return answer;
+  }
+}
+
+class _DeferredMoveTutor extends TutorService {
+  _DeferredMoveTutor() : super(_UnusedEngine());
+  final answer = Completer<MoveAssessment?>();
+  int calls = 0;
+  @override
+  Future<MoveAssessment?> assessOrNull(
+    GameState before,
+    Move played, {
+    MatchContext? context,
+  }) {
+    calls++;
+    return answer.future;
+  }
+}
+
 void main() {
   test(
     'a final move retains the score from before the game was awarded',
@@ -98,6 +128,85 @@ void main() {
       controller.pendingCube.dispose();
     },
   );
+  test('a failed move grade can be retried from historical review', () async {
+    final controller = _Controller()..awaitingHumanTurn = false;
+    final tutor = _RetryTutor();
+    final sync = TutorSync(
+      controller: controller,
+      tutor: () => tutor,
+      doublingLegal: (_) => false,
+      pendingCubeSide: () => null,
+      onSheetDirty: () {},
+    );
+    final played = controller.state.legalMoves.first;
+    controller.game = controller.game.append(MoveEvent(Player.white, played));
+    sync.sync();
+    await Future<void>.delayed(Duration.zero);
+
+    const eventIndex = 1;
+    expect(tutor.calls, 1);
+    expect(sync.completedAssessments, isNot(contains(eventIndex)));
+    expect(sync.assessmentsByEventIndex, isNot(contains(eventIndex)));
+
+    tutor.answer = MoveAssessment(
+      played: played,
+      best: played,
+      equityLoss: 0,
+      ranked: const [],
+    );
+    sync.review(eventIndex);
+    await Future<void>.delayed(Duration.zero);
+
+    expect(tutor.calls, 2);
+    expect(sync.completedAssessments, contains(eventIndex));
+    expect(sync.assessmentsByEventIndex, contains(eventIndex));
+    sync.dispose();
+    controller.pendingCube.dispose();
+  });
+  test('a move grade retries on the replacement tutor service', () async {
+    final controller = _Controller()..awaitingHumanTurn = false;
+    final oldTutor = _DeferredMoveTutor();
+    final newTutor = _RetryTutor();
+    final played = controller.state.legalMoves.first;
+    newTutor.answer = MoveAssessment(
+      played: played,
+      best: played,
+      equityLoss: 0,
+      ranked: const [],
+    );
+    TutorService? currentTutor = oldTutor;
+    final sync = TutorSync(
+      controller: controller,
+      tutor: () => currentTutor,
+      doublingLegal: (_) => false,
+      pendingCubeSide: () => null,
+      onSheetDirty: () {},
+    );
+    controller.game = controller.game.append(MoveEvent(Player.white, played));
+    sync.sync();
+    expect(oldTutor.calls, 1);
+    currentTutor = newTutor;
+
+    // Even a stale non-null answer must not be filed; the replacement tutor
+    // should grade the saved position instead.
+    oldTutor.answer.complete(
+      MoveAssessment(
+        played: played,
+        best: played,
+        equityLoss: .5,
+        ranked: const [],
+      ),
+    );
+    await Future<void>.delayed(Duration.zero);
+    await Future<void>.delayed(Duration.zero);
+
+    const eventIndex = 1;
+    expect(newTutor.calls, 1);
+    expect(sync.assessmentsByEventIndex[eventIndex]?.equityLoss, 0);
+    expect(sync.completedAssessments, contains(eventIndex));
+    sync.dispose();
+    controller.pendingCube.dispose();
+  });
   const answer = CubeAssessment(
     actionWasDouble: false,
     advice: MatchCubeAdvice(

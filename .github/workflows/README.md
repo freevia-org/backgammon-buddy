@@ -200,7 +200,7 @@ present. Until then the job builds and uploads the APK artifact and logs a clear
 "skipping distribution" message. To enable distribution:
 
 1. **Register the Android app in Firebase.** In the
-   [Firebase console](https://console.firebase.google.com/project/aigammon)
+   [Firebase console](https://console.firebase.google.com/project/backgammon-buddy-freevia)
    open **Project overview → Add app → Android** and register package name
    `org.freevia.backgammonbuddy`. You do **not** need to download or commit
    `google-services.json` for distribution: App Distribution

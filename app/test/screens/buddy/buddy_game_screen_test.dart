@@ -756,7 +756,14 @@ void main() {
         }
         await h.frame(t);
         await h.frame(t);
-        return (_transcript(t), _prompt(t));
+        final result = (_transcript(t), _prompt(t));
+        // The next run mounts a second AppDatabase in this same widget test.
+        // Unmount and release this harness first so two database instances do
+        // not overlap and trigger Drift's multiple-open diagnostic.
+        await t.pumpWidget(const SizedBox());
+        await h.settle(t);
+        await h.dispose();
+        return result;
       }
 
       final without = await play(MicOpening.refused);
@@ -1112,6 +1119,8 @@ class _Harness {
   late final FakeBoardLearner learner = FakeBoardLearner(vision);
   final BoardHandles handles = BoardHandles.seed(folding: false);
   late final AppDatabase db;
+  ProviderContainer? _container;
+  bool _disposed = false;
 
   BuddySetup get setup => BuddySetup(
         matchLength: matchLength,
@@ -1126,8 +1135,7 @@ class _Harness {
     await t.binding.setSurfaceSize(const Size(420, 900));
     addTearDown(() => t.binding.setSurfaceSize(null));
     db = newTestDatabase();
-    addTearDown(db.close);
-    addTearDown(camera.shutDown);
+    addTearDown(dispose);
 
     // A container rather than a bare ProviderScope, and awaited before the
     // pump, because the screen reads the SETTINGS synchronously in initState:
@@ -1150,7 +1158,7 @@ class _Harness {
       settingsProvider.overrideWith(
           (ref) => Stream.value(_kSettings.copyWith(buddyMicHint: micHint))),
     ]);
-    addTearDown(container.dispose);
+    _container = container;
     await container.read(settingsProvider.future);
 
     await t.pumpWidget(UncontrolledProviderScope(
@@ -1170,6 +1178,17 @@ class _Harness {
       ),
     ));
     await settle(t);
+  }
+
+  /// Releases this harness early when a widget test runs multiple matches in
+  /// sequence. Teardown remains safe because the registration in [pump] uses
+  /// this idempotent method too.
+  Future<void> dispose() async {
+    if (_disposed) return;
+    _disposed = true;
+    _container?.dispose();
+    await camera.shutDown();
+    await db.close();
   }
 
   /// One settled frame, and everything it sets off.

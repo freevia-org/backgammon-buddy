@@ -148,4 +148,18 @@ void main() {
             'is a gap — capture without symbolication is a partial state, and '
             'an undocumented partial state reads as a bug');
   });
+
+  test('production Firebase guidance names Freevia’s project consistently', () {
+    const projectId = 'backgammon-buddy-freevia';
+    expect(read('../firebase/.firebaserc'), contains(projectId));
+    expect(read(deployDocPath),
+        contains('--dart-define=AIGAMMON_FIREBASE_PROJECT=$projectId'));
+    expect(
+        read(workflowPath.replaceFirst('android.yml', 'README.md')),
+        contains('https://console.firebase.google.com/project/$projectId'));
+    expect(
+        File('../packages/online_client/lib/src/online_config.dart')
+            .readAsStringSync(),
+        contains('`$projectId` in production'));
+  });
 }

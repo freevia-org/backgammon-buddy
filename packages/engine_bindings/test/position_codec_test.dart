@@ -17,10 +17,8 @@ void main() {
     expect(encodePips(BoardState.initial(), Player.black), wildbgStart);
   });
 
-  test('bars are encoded at indices 25 (mover) and 0 (opponent, negative)',
-      () {
-    final b = BoardState(
-        points: List.filled(24, 0), whiteBar: 2, blackBar: 1);
+  test('bars are encoded at indices 25 (mover) and 0 (opponent, negative)', () {
+    final b = BoardState(points: List.filled(24, 0), whiteBar: 2, blackBar: 1);
     final whiteView = encodePips(b, Player.white);
     expect(whiteView[25], 2);
     expect(whiteView[0], -1);
@@ -38,6 +36,35 @@ void main() {
     expect(encodePips(b, Player.white)[24], 1);
     // Black mover: mirrored — the white checker is the OPPONENT on pip 1.
     expect(encodePips(b, Player.black)[1], -1);
+  });
+
+  test('rejects checker counts that would overflow the native i8 encoding', () {
+    final points = List<int>.filled(24, 0);
+    points[0] = 256; // would narrow to zero in the native shim
+    final board = BoardState(points: points);
+
+    expect(() => encodePips(board, Player.white), throwsArgumentError);
+  });
+
+  test('accepts the native checker-count boundary of plus and minus 15', () {
+    final points = List<int>.filled(24, 0);
+    points[0] = 15;
+    points[23] = -15;
+
+    final pips = encodePips(BoardState(points: points), Player.white);
+    expect(pips[1], 15);
+    expect(pips[24], -15);
+  });
+
+  test('rejects a position with more than 15 checkers on one side', () {
+    final points = List<int>.filled(24, 0);
+    points[0] = 8;
+    points[1] = 8;
+
+    expect(
+      () => encodePips(BoardState(points: points), Player.white),
+      throwsArgumentError,
+    );
   });
 
   test('decodeDetail maps pips back to CheckerMove for both movers', () {

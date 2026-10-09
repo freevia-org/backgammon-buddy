@@ -319,7 +319,7 @@ sessions would otherwise pollute production analytics:
 
 ```sh
 flutter build apk --release \
-  --dart-define=AIGAMMON_FIREBASE_PROJECT=aigammon \
+  --dart-define=AIGAMMON_FIREBASE_PROJECT=backgammon-buddy-freevia \
   --dart-define=AIGAMMON_FIREBASE_API_KEY=<web-api-key> \
   --dart-define=AIGAMMON_FIREBASE_SENDER_ID=<project-number> \
   --dart-define=AIGAMMON_FIREBASE_ANDROID_APP_ID=<1:...:android:...>

@@ -53,6 +53,12 @@ set by CI from the workflow run number and is not tracked here.
   old analysis caches are recomputed. Stale hint/cube results are discarded,
   cubeless matches suppress cube advice, and hint panels show positive loss
   values and remain scrollable on small screens.
+- Failed move assessments remain retryable during historical review, and an
+  in-flight grade is reissued against a replacement tutor instead of leaving
+  that move stuck as pending.
+- Malformed checker counts are rejected before Dart values narrow into the
+  native engine's `i8` position encoding, preventing wrapped analysis of a
+  different board.
 - Native engine initialization now has its own timeout, so a worker that never
   completes the startup handshake cannot leave the app waiting indefinitely.
 - Queued multiplayer history saves survive leaving the game and retain the

@@ -5,11 +5,35 @@ import 'package:backgammon_core/backgammon_core.dart';
 /// 24 -> 1), index 25 = mover's bar.
 List<int> encodePips(BoardState board, Player mover) {
   final n = mover == Player.white ? board : board.mirrored();
-  return [
+  final pips = [
     -n.blackBar,
     ...n.points,
     n.whiteBar,
   ];
+  // The native shim receives these as c_int, then narrows each value to i8
+  // before Wildbg validates the position. Reject malformed Dart positions
+  // before that cast: otherwise values such as 256 can wrap to 0 and produce
+  // plausible analysis for a different board. Partial test/analysis positions
+  // are supported (unrepresented checkers are treated as borne off), but no
+  // side may have more than 15 checkers represented on the board or bar.
+  var moverCheckers = 0;
+  var opponentCheckers = 0;
+  for (final pip in pips) {
+    if (pip.abs() > 15) {
+      throw ArgumentError.value(
+          pip, 'board', 'each point and bar count must be at most 15');
+    }
+    if (pip > 0) {
+      moverCheckers += pip;
+    } else {
+      opponentCheckers -= pip;
+    }
+  }
+  if (moverCheckers > 15 || opponentCheckers > 15) {
+    throw ArgumentError.value(
+        board, 'board', 'a player cannot have more than 15 checkers');
+  }
+  return pips;
 }
 
 /// Maps one wildbg move detail (from: 1-25 where 25 = bar; to: 0-24 where

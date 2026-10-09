@@ -10,7 +10,8 @@
 /// documents) and Identity Toolkit / secure-token (anonymous auth). There are no
 /// Cloud Functions in the serverless model — see Plan 16.
 class OnlineConfig {
-  /// The Firebase project id (e.g. `demo-aigammon` locally, `aigammon` in prod).
+  /// The Firebase project id (e.g. `demo-aigammon` locally,
+  /// `backgammon-buddy-freevia` in production).
   final String projectId;
 
   /// The project's Web API key. Required for production Identity Toolkit calls;

@@ -219,16 +219,26 @@ class TutorSync extends ChangeNotifier {
       service
           .assessOrNull(before, played, context: _gameContexts[before.turn])
           .then((assessment) {
-            if (_disposed ||
-                gen != _gameGeneration ||
-                !identical(service, tutor())) {
+            if (_disposed || gen != _gameGeneration) return;
+            if (!identical(service, tutor())) {
+              // A setting or widget replacement can swap the tutor while an
+              // engine request is in flight. Drop that answer and reissue the
+              // same saved decision against the current service. Leaving the
+              // index pending here would make the move permanently unreviewable.
+              _pendingAssessments.remove(eventIndex);
+              if (tutor() != null) {
+                _fireAssessment(eventIndex, before, played);
+              } else {
+                notifyListeners();
+                onSheetDirty();
+              }
               return;
             }
             // Null = the engine could not answer (already recorded by the tutor).
             // The cell stays unmarked rather than claiming a verdict.
             _pendingAssessments.remove(eventIndex);
-            completedAssessments.add(eventIndex);
             if (assessment != null) {
+              completedAssessments.add(eventIndex);
               assessmentsByEventIndex[eventIndex] = assessment;
             }
             notifyListeners();
