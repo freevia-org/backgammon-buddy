@@ -64,14 +64,6 @@ class HomeScreen extends ConsumerWidget {
                   final compact = constraints.maxHeight < 570 || textScale > 1.3;
                   final actions = <Widget>[
                     _ModeButton(
-                      label: 'Learning & practice',
-                      compactLabel: 'Learn & practice',
-                      icon: Icons.school_outlined,
-                      onPressed: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const LearningScreen()),
-                      ),
-                    ),
-                    _ModeButton(
                       label: 'Play vs Computer',
                       compactLabel: 'vs Computer',
                       icon: Icons.smart_toy_outlined,
@@ -116,8 +108,16 @@ class HomeScreen extends ConsumerWidget {
                       ),
                     ),
                     _ModeButton(
-                      label: 'History',
-                      compactLabel: 'History',
+                      label: 'Learning & practice',
+                      compactLabel: 'Learn & practice',
+                      icon: Icons.school_outlined,
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const LearningScreen()),
+                      ),
+                    ),
+                    _ModeButton(
+                      label: 'Games Archive',
+                      compactLabel: 'Games Archive',
                       icon: Icons.history,
                       onPressed: () => Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => const HistoryScreen()),

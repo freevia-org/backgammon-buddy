@@ -200,11 +200,13 @@ void main() {
     expect(find.text('Backgammon Buddy'), findsOneWidget);
     expect(find.text('Play vs Computer'), findsOneWidget);
     expect(find.text('Two Players'), findsOneWidget);
-    // The two remote modes sit below the local ones, nearby before online.
+    // The remote modes share a row, with Nearby before Online.
     expect(find.text('Play Nearby'), findsOneWidget);
     expect(find.text('Play Online'), findsOneWidget);
+    expect(t.getTopLeft(find.text('Play Nearby')).dx,
+        lessThan(t.getTopLeft(find.text('Play Online')).dx));
     expect(t.getTopLeft(find.text('Play Nearby')).dy,
-        lessThan(t.getTopLeft(find.text('Play Online')).dy));
+        t.getTopLeft(find.text('Play Online')).dy);
 
     // Play vs Computer → difficulty + side selectors appear.
     await _tapVisible(t, find.text('Play vs Computer'));
@@ -249,7 +251,7 @@ void main() {
       'Two Players',
       'Nearby',
       'Online',
-      'History'
+      'Games Archive'
     ]) {
       final text = find.text(label);
       expect(text.hitTestable(), findsOneWidget,
@@ -276,7 +278,7 @@ void main() {
       'Two Players',
       'Play Nearby',
       'Play Online',
-      'History',
+      'Games Archive',
     ]) {
       expect(find.text(label).hitTestable(), findsOneWidget,
           reason: '$label is visible without scrolling');
@@ -323,6 +325,19 @@ void main() {
       // whole top of the screen empty.
       expect(
           t.getTopLeft(find.byType(AppMark)).dy, lessThan(phone.height * 0.35));
+    });
+
+    testWidgets('learning and archive close the mode list on the final row',
+        (t) async {
+      await pumpPhone(t);
+
+      final learning = t.getTopLeft(find.text('Learning & practice'));
+      final archive = t.getTopLeft(find.text('Games Archive'));
+      final online = t.getTopLeft(find.text('Play Online'));
+      expect(learning.dx, lessThan(archive.dx));
+      expect(learning.dy, greaterThan(online.dy));
+      expect(archive.dy, greaterThan(online.dy));
+      expect((learning.dy - archive.dy).abs(), lessThan(1));
     });
 
     testWidgets('setup form starts under the app bar, not mid-screen',
@@ -488,10 +503,10 @@ void main() {
         debugDefaultTargetPlatformOverride = platform;
         await t.pumpWidget(_app());
         expect(find.text('Play with Buddy'), findsNothing);
-        expect(find.text('Learning & practice'), findsOneWidget);
         expect(find.text('Play vs Computer'), findsOneWidget);
         expect(find.text('Play Nearby'), findsOneWidget);
         expect(find.text('Play Online'), findsOneWidget);
+        expect(find.text('Games Archive'), findsOneWidget);
         await t.pumpWidget(const SizedBox.shrink());
       }
       debugDefaultTargetPlatformOverride = null;
@@ -503,12 +518,6 @@ void main() {
 
       final buddy = find.text('Play with Buddy');
       expect(buddy, findsOneWidget);
-      // A local mode after the other local choices and before the remote pair.
-      expect(t.getTopLeft(find.text('Two Players')).dx,
-          lessThan(t.getTopLeft(buddy).dx));
-      expect(t.getTopLeft(buddy).dy,
-          lessThan(t.getTopLeft(find.text('Play Nearby')).dy));
-
       await _tapVisible(t, buddy);
       await t.pumpAndSettle();
       expect(find.byType(BuddySetupScreen), findsOneWidget);
