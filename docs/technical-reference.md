@@ -1,0 +1,334 @@
+# Backgammon Buddy technical reference
+
+This is the former repository README, kept as an engineering reference. For
+current store availability, support and legal information, use the
+[Backgammon Buddy website](https://freevia.org/backgammon-buddy/). Some release
+notes below describe earlier candidate builds and should not be read as a
+public-install announcement.
+
+A backgammon tutor and practice app built with **Flutter** and driven by a neural-net
+engine ([wildbg](https://github.com/carsten-wenderdel/wildbg), vendored, dual
+**MIT OR Apache-2.0**).
+
+Published by **Freevia**. [Product](https://freevia.org/backgammon-buddy/) ·
+[Privacy](https://freevia.org/backgammon-buddy/privacy/) ·
+[Support](https://freevia.org/backgammon-buddy/support/) ·
+[Source and feedback](https://github.com/freevia-org/backgammon-buddy).
+Mobile store release remains subject to the [candidate checks](docs/release-readiness.md).
+
+## Feedback and ideas
+
+Found a bug or have an idea to help players improve? Open a [bug report](https://github.com/freevia-org/backgammon-buddy/issues/new?template=bug_report.yml) or [suggest an idea](https://github.com/freevia-org/backgammon-buddy/issues/new?template=feature_request.yml). Please keep reports free of passwords, personal information, private match codes, and unredacted logs; use [Freevia support](https://freevia.org/backgammon-buddy/support/) for private matters. See the [interactive tutor experience preview](docs/tutor-experience/index.html), built from real Android screenshots captured during testing.
+
+**Available now (local play):**
+
+- **Play vs computer** at four difficulties (`easy`, `medium`, `hard`,
+  `expert`). One engine serves every level: `expert` always plays the
+  top-ranked move; lower levels sample among near-best moves with increasing
+  randomness.
+- **Hot-seat** — two humans on the same device, with a pass-device prompt
+  between turns.
+- **Match play** to N points with the **doubling cube**, gammon/backgammon
+  scoring, and the **Crawford** rule.
+- **Tutor mode** — save independent preferences for **best-move hints**, **move
+  explanations**, **game commentary**, **cube advice**, and **try first**.
+  Compare legal alternatives, win/gammon estimates and observable board changes.
+  Known match scores use estimated match-winning probability; unknown old
+  history is labelled cubeless. Static checker estimates exclude future cube
+  decisions; cube advice uses a partial Janowski model. Explanations report
+  grounded observations, not the neural engine's internal reasoning.
+- **Learning & practice** — review recurring themes in your own decisions,
+  save mistakes from replay, retry before revealing the answer, and revisit
+  positions on a spaced schedule. Forced plays do not improve the error average.
+  Post-game review includes cube decisions where cube rules are known. Practice
+  progress remains on the device and can be reset or deleted.
+- **Fair live multiplayer** — online and nearby games are unassisted; saved
+  games remain available for post-game review and practice.
+- **Privacy controls** — optional Firebase usage/performance/crash diagnostics
+  default off and require an explicit choice. Settings describes local data,
+  online play, nearby QR camera access, deletion and feedback, and links the
+  public policy.
+- **Match history + post-game analysis** — finished matches are saved and can be
+  replayed move by move; a background pass replays the event log through the
+  engine to flag **blunders** and summarise cube/checker errors.
+- **Local persistence** — matches and their event logs are stored on-device with
+  **drift/SQLite**; cached analysis lives alongside them.
+- **Online play** over Firebase, **serverless** — **create** a match to get a
+  short **invite code**, or **join** an opponent's match by code; the match is
+  an append-only Firestore event log both clients fold. Dice come from a
+  **commit-reveal handshake** between the two clients, so neither can bias the
+  RNG without the other seeing it, and each client re-checks every event the
+  other writes with the full rules engine — a proven violation **freezes** the
+  match rather than being quietly accepted. The whole backend is one security
+  rules file, which runs against the **Firebase Emulator Suite** for offline
+  development; a two-client full-match end-to-end test (with adversarial legs)
+  verifies it there. Frames arrive over Firestore's **real-time listener**
+  (gRPC `Listen`), with the **poll loop kept as a fallback** for a network that
+  cannot open the stream. See
+  [**Deploying online play**](#deploying-online-play) below.
+- **Play Nearby (LAN)** — two devices on the same Wi-Fi, no internet and no
+  account: one hosts (UDP discovery beacon + a WebSocket relay), the other joins
+  from a discovered list, by typing the room code, or by **scanning the host's
+  QR code** (the host shows one; address, port and code travel together, so
+  there is nothing to read out loud). It runs the **same** commit-reveal dice
+  and the same mutual validation as online play, because both go through one
+  **`MatchTransport`** seam and one match controller — the host binds a socket,
+  it does not referee the game.
+- **Tabletop hot-seat** — two players, one device, passing it between turns.
+
+**Planned for version 2:** physical-board Buddy Mode is parked and hidden from
+the version 1 release. Its calibration, board/dice recognition, microphone hints
+and spoken coaching code remain in the repository for future development.
+Physical-device acceptance is still required before enabling that mode; see
+[`docs/buddy-mode-test-protocol.md`](docs/buddy-mode-test-protocol.md).
+On-screen tutoring and nearby QR joining are separate version 1 features.
+
+See [`docs/superpowers/plans/`](docs/superpowers/plans/) for the per-phase plans,
+and the
+[architecture design](docs/superpowers/specs/2026-07-24-aigammon-architecture-design.md)
+for the ORIGINAL v1 design (its networking chapters predate the current
+serverless, one-controller architecture — see the banner at the top of that
+file).
+
+## Repository layout
+
+| Path | What it is |
+|---|---|
+| [`app/`](app/) | The Flutter app — UI (`CustomPaint` board), Riverpod state, `GameController`, screens (home, new match, game, history, post-game analysis), the tutor overlay (`app/lib/tutor/`), and drift persistence (`app/lib/data/`). |
+| [`packages/backgammon_core`](packages/backgammon_core) | Pure Dart rules engine — zero dependencies. `BoardState`, `GameState`, `MatchState`, move generation, event-sourced game log, gnubg Position IDs. |
+| [`packages/engine_bindings`](packages/engine_bindings) | `dart:ffi` bindings + an isolate-hosted `EngineService` over the native library: move ranking, evaluation, difficulty sampling, and match-aware cube advice (`MatchCubeAdvisor` — Janowski cubeful equities over a Kazaross-XG2 match-equity table). |
+| [`packages/match_transport`](packages/match_transport) | The `MatchTransport` seam both multiplayer modes run on: the interface and its normative fold/resync contract, the shared wire frames, the commit-reveal fair-dice protocol, an in-memory reference transport, and `transport_contract.dart` — the contract as a reusable suite, run against all three implementations. |
+| [`packages/lan_play`](packages/lan_play) | Play Nearby over a LAN — UDP discovery, a WebSocket host server + guest client, the JSON wire protocol, and `SocketTransport` (host and guest halves) over a dumb append-only relay. No game authority anywhere. |
+| [`packages/online_client`](packages/online_client) | Firebase-backed online-play client — pure Dart, no Firebase SDK: anonymous auth and direct Firestore documents over REST (match create/join by invite code, append-only event log), plus `FirestoreTransport` on Firestore's **real-time `Listen` gRPC stream with a polling fallback**. Runs against the emulator in tests. |
+| [`packages/board_vision`](packages/board_vision) | Buddy Mode's perception core — pure Dart, no camera and no Flutter, so it runs in CI. Homography and the ROI atlas, calibration and colour learning (no colour constants anywhere), occupancy and dice reading, state-primed legal-play matching, expected-board verification and drift recovery, continuous readability. Its suite scores a committed corpus of real board photographs against accuracy thresholds. |
+| [`firebase/`](firebase/) | The online backend, which is **only** Firestore security rules (`firestore.rules`) — no Cloud Functions, free Spark plan — plus their emulator rules-test suite, emulator config, and the deploy guide ([`DEPLOY.md`](firebase/DEPLOY.md)). |
+| [`native/wildbg`](native/wildbg) | The vendored [wildbg](https://github.com/carsten-wenderdel/wildbg) engine — a **git submodule**, never edited directly. |
+| [`native/engine_shim`](native/engine_shim) | Thin C shim (`cdylib`, `aigammon_engine`) — a verbatim copy of wildbg's `wildbg-c` crate plus a `wildbg_new_with_path` constructor that loads nets from disk at runtime. Windows/Android/iOS build scripts live here. |
+| [`native/wildbg-nets`](native/wildbg-nets) | The **production** neural nets (`contact.onnx`, `race.onnx`) from wildbg's `nets` branch. The submodule itself ships only weak demo nets. |
+| [`docs/superpowers/`](docs/superpowers/) | Architecture spec and the per-phase implementation plans. |
+| [`.github/workflows/`](.github/workflows/) | CI (`ci.yml`), the Android APK workflow (`android.yml`) and the iOS `.app`/IPA workflow (`ios.yml`) — the latter two gated on CI passing, both distributing through Firebase App Distribution. See [`.github/workflows/README.md`](.github/workflows/README.md). |
+
+See [`native/README.md`](native/README.md) and
+[`packages/engine_bindings/README.md`](packages/engine_bindings/README.md) for
+the engine, net-loading, and licensing details.
+
+## Getting started (Windows dev)
+
+### 1. Clone with submodules
+
+```powershell
+git clone --recurse-submodules https://github.com/freevia-org/backgammon-buddy
+# already cloned without --recurse-submodules?
+git submodule update --init --recursive
+```
+
+### 2. Toolchain
+
+- **Flutter** (stable channel) with Windows desktop support enabled. Desktop
+  builds require **Developer Mode** turned on (Settings → For developers) so
+  Flutter can create the symlinks its plugins need.
+- **NuGet CLI** (`nuget.exe`) on `PATH` — `winget install Microsoft.NuGet`.
+  Buddy Mode's `flutter_tts` dependency ships a Windows plugin whose
+  `CMakeLists.txt` shells out to NuGet for CppWinRT and hard-fails without it,
+  so a desktop build stops at `nuget.exe not found. Please install it.` before
+  compiling a line of app code. Nothing on Windows ever *calls* that plugin —
+  Buddy Mode is mobile-only and `lib/buddy/speaker.dart` guards it — but
+  Flutter offers no way to exclude a plugin from one platform's build, so the
+  Windows toolchain has to satisfy it.
+  - **On a Windows N/KN edition the same plugin can take the desktop build
+    down at launch, and nothing on this side of the seam can stop it.**
+    `flutter_tts_plugin.cpp` constructs a WinRT `SpeechSynthesizer` and a
+    `Windows.Media.Playback.MediaPlayer` in the plugin's own constructor,
+    which `RegisterWithRegistrar` runs unconditionally while Flutter registers
+    plugins — before any Dart code, and so before any guard of ours. On an N
+    or KN edition without the **Media Feature Pack** those classes are not
+    registered, the activation throws, and `flutter run -d windows` dies as it
+    starts rather than when something asks for a voice. It is a **dev-target
+    problem only**: Buddy Mode is Android/iOS
+    (`isBuddyModeSupportedPlatform`), the app's own speech path is guarded
+    (`isBuddySpeechSupportedPlatform` → `SilentBuddyTts` off-mobile) and never
+    calls the plugin, and CI never builds Windows. The only real fix is
+    patching the plugin, so this is **recorded rather than fixed** — install
+    the Media Feature Pack on such a machine, or develop on an edition that
+    ships it.
+  - Buddy Mode's **`record`** dependency (the dice-sound attention hint) is the
+    same shape of dependency and needs **nothing extra**: `record_windows`
+    builds against the Windows SDK's own Media Foundation headers and calls no
+    `find_program`. It does ask for CMake ≥ 3.23, which the CMake bundled with
+    Visual Studio 2022 satisfies. Like the voice, the microphone is never
+    reached on Windows — `lib/buddy/dice_sound_trigger.dart` guards it — but
+    the plugin is still registered and compiled into a desktop build.
+  - **On ANDROID the same plugin is a CI watch item, not a local one.**
+    `record_android` 2.1.2 builds itself with AGP 9.2.1 where
+    `android/settings.gradle.kts` pins 9.0.1 for the app, and it requires
+    `compileSdk` 36 — which is exactly the `flutter.compileSdkVersion` of
+    Flutter 3.44.8, so there is no headroom above it. Nothing on this machine
+    sees either: there is no local Android toolchain, and a desktop build never
+    reads a Gradle file. `.github/workflows/android.yml` assembles a real APK,
+    so **that** is where a plugin bumping its own minimum lands — as a Gradle
+    failure naming the version it wanted. The fix if it fires is to raise the
+    pin (or the Flutter channel) rather than to pin the plugin back, since the
+    requirement is the plugin's own build script and not a preference.
+- **Rust**, `stable-x86_64-pc-windows-gnu` toolchain.
+- A **full MinGW-w64** on `PATH` — Rust's self-contained MinGW ships no GNU
+  assembler (`as.exe`), so `dlltool` fails when building the engine. This
+  machine uses [WinLibs](https://winlibs.com/) (winget
+  `BrechtSanders.WinLibs.POSIX.UCRT`). See
+  [`native/README.md`](native/README.md) for the full toolchain note. (An MSVC
+  Build Tools install with the `-msvc` target is an alternative.)
+
+### 3. Build the engine DLL
+
+```powershell
+native/engine_shim/build-windows.ps1
+```
+
+This runs `cargo build --release` in the shim crate and stages
+`aigammon_engine.dll` into `packages/engine_bindings/native/windows/`.
+
+### 4. Run the tests
+
+```powershell
+# Pure Dart rules
+cd packages/backgammon_core; dart pub get; dart test
+
+# FFI bindings — unit suite (no native lib) then the engine profile (real DLL + nets)
+cd packages/engine_bindings; dart pub get; dart test; dart test -P engine
+
+# Buddy Mode's perception core, corpus harness included
+cd packages/board_vision; dart pub get; dart test
+
+# Flutter app — widget/unit tests, then desktop integration test (real engine)
+cd app; flutter pub get; flutter test
+flutter test integration_test -d windows
+```
+
+### 5. Run the app
+
+```powershell
+cd app
+flutter run -d windows
+```
+
+## Deploying online play
+
+Online play runs on **Firebase's free Spark plan** — Firestore documents,
+security rules and anonymous auth, with **no Cloud Functions and no billing
+account**. There is no server: dice are agreed by a commit-reveal handshake
+between the two clients, and each client validates the other's events with the
+full rules engine, freezing the match on a proven violation. Debug builds
+default to the **local emulator suite** — no configuration needed; start it from
+`firebase/` and `flutter run`. To run the full online test matrix locally:
+
+```powershell
+pwsh firebase/run-emulator-tests.ps1
+```
+
+**If `pwsh` came from the Microsoft Store**, the script re-runs itself under
+Windows PowerShell and says so — you need do nothing. The Store build
+is MSIX-packaged and hands its child processes a **virtualized `%LOCALAPPDATA%`**,
+which hides the real pub cache from them: the emulator's own suites pass, and
+then leg 2 dies on ``Could not find `bin\test.dart` in package `test` `` before a
+single test loads. It is the shell, not the code — the identical command run
+from `cmd`, Git Bash or Windows PowerShell passes, which is exactly what the
+re-exec at the top of the script arranges.
+
+Creating the project, enabling anonymous sign-in, deploying the rules
+(`firebase deploy --only firestore:rules`), retrieving the Web API key, and
+building a production release with the online defines are documented in
+[`firebase/DEPLOY.md`](firebase/DEPLOY.md).
+
+## Continuous integration
+
+- **`ci.yml`** (push to `master`, all PRs) runs:
+  - **`packages`** (Linux, matrixed over `backgammon_core`, `board_vision`,
+    `lan_play`, `match_transport`): `dart analyze --fatal-infos` + `dart test`
+    each. `lan_play` runs under its `ci` preset, which retries twice — it is the
+    only suite here that binds real sockets. `board_vision` scores the committed
+    corpus, so a Buddy Mode perception regression turns this job red exactly
+    like a rules one.
+  - **`engine`** (Linux): `cargo fmt --check`, `clippy`, the Rust shim's own
+    tests, then the cdylib build followed by `dart test` and
+    `dart test -P engine` against the real `.so`.
+  - **`app`** (Linux): `flutter analyze` + `flutter test -x golden`.
+  - **`goldens`** (Windows): `flutter test --tags golden`. A Windows runner
+    because the golden PNGs are Windows-generated and Linux antialiasing drifts
+    just enough to need a tolerance that would hide real regressions.
+  - **`rules`** (Linux): emulator leg 1 — the `firestore.rules` unit tests
+    (mocha, `@firebase/rules-unit-testing`) against a firestore-only emulator.
+    Seconds, and FIRST: `online` `needs:` it, so a broken rules file is red
+    before four toolchains are installed.
+  - **`online`** (Linux): `online_client` analyze + unit tests, then emulator
+    legs 2–4 inside one `firebase emulators:exec` — `online_client -P emulator`
+    (the REST transport against the real rules), the app's two-client E2E on the
+    real-time listener path, and that same E2E once more with the listener
+    forced off so the poll fallback is actually exercised.
+- **`android.yml`** (`workflow_dispatch`, CI success on `master`):
+  cross-compiles the engine for the two device ABIs with `cargo-ndk`, builds
+  one ARMv7/ARM64 release APK with the same version code as the optional AAB,
+  and — when Firebase and release-signing secrets are configured — distributes
+  it to testers via Firebase App Distribution.
+- **`ios.yml`** (`workflow_dispatch`, CI success on `master`): builds the engine
+  staticlib for `aarch64-apple-ios`, links it into `Runner`, and uploads an
+  unsigned `Runner.app`; when the signing secrets are configured it also builds
+  a signed ad-hoc IPA and distributes it to the same testers group. Manual
+  dispatch can instead prepare an export-only App Store IPA; that path does
+  not submit to a store or distribute to Firebase.
+- Setup instructions for both distribution workflows, and the debug-symbol
+  artifacts every release build uploads:
+  [`.github/workflows/README.md`](.github/workflows/README.md).
+
+## Releasing
+
+The current [release-readiness checklist](docs/release-readiness.md) records
+store blockers, artifact/device checks and privacy/notices work. The
+[2026-10-08 code review](docs/code-review-2026-10-08.md) covers this round's
+tutoring improvements, fixes and remaining learning roadmap. Android's manual
+workflow can prepare a signed Play bundle with `build_appbundle`; it does not
+submit it to a store. Automatic Android tester distribution requires release
+signing as well as Firebase credentials.
+Both signed mobile paths require an explicit build-number override or an
+owner-selected baseline above previous uploads; a migrated repository's workflow
+counter alone is not sufficient. See the workflow guide for native symbols and
+artifact alignment checks.
+
+Every release is a merge to `master` that bumps `version:` in `app/pubspec.yaml`
+— **and `appVersion` in `app/lib/branding/app_version.dart` with it**, since the
+home screen's footer reads the second one and `app_version_test.dart` fails the
+suite if the pair drifts — and adds a section to
+[`CHANGELOG.md`](CHANGELOG.md). Each release also gets an **annotated tag** —
+a convention this section has documented since v0.13.0 but which has never
+actually been run (`git tag` is empty as of the v0.14.0 branch; v0.13.0 was
+shipped untagged). Starting it, and whether to back-tag v0.13.0's merge
+commit, is a release-time decision:
+
+```bash
+# on master, at the merge commit
+git tag -a v0.14.0 -m "Backgammon Buddy v0.14.0 — <one line, the same one the merge used>"
+git push origin v0.14.0
+```
+
+Annotated (`-a`), not lightweight: an annotated tag is a real object carrying a
+tagger, a date and a message, so `git describe` names builds sensibly and the
+release's own summary survives independently of the merge commit. The name is
+`v` + the exact `pubspec.yaml` version, with no build number — the `+n` suffix is
+CI's run counter and changes on every rebuild of the same source.
+
+Releases before v0.13.0 are **not** tagged retroactively. Their merge commits all
+carry the version in the subject line (`Merge feature/… (v0.11.0)`), which is
+enough to find them, and inventing tags after the fact would put dates on objects
+that never had them.
+
+Gating `android.yml` on `pubspec.yaml`'s version matching the tag was considered
+and **deferred**: that workflow is already gated on `workflow_run` from CI and
+checks out `workflow_run.head_sha`, and a tag-equality check on top of that has
+to answer what a `workflow_dispatch` run — which has no tag — should do. It is
+worth doing once tagging has actually been in use for a few releases.
+
+## Licensing
+
+Freevia's original code is available under the [MIT License](LICENSE).
+Third-party code, models and data retain their own licenses and notices.
+The vendored **wildbg** engine (and the `engine_shim` copy of its `wildbg-c`
+crate) is dual-licensed **MIT OR Apache-2.0**. See the
+[native dependency and model notices](native/licenses/README.md).
