@@ -333,6 +333,31 @@ void main() {
       );
     });
 
+    test('rejects malformed query rows instead of silently omitting them',
+        () async {
+      for (final body in [
+        jsonEncode({'not': 'an array'}),
+        jsonEncode([null]),
+        jsonEncode([{}]),
+        jsonEncode([
+          {'error': 'not an object'},
+        ]),
+        jsonEncode([
+          {'document': 'not an object'},
+        ]),
+      ]) {
+        final docs = docsFor(
+          MockClient((_) async => http.Response(body, 200)),
+        );
+        await expectLater(
+          docs.query('matches/A', 'events'),
+          throwsA(isA<MalformedDocumentException>()
+              .having((e) => e.code, 'code', 'malformed-firestore-query')),
+          reason: body,
+        );
+      }
+    });
+
     test('surfaces a non-2xx query failure as a typed exception', () async {
       final docs = docsFor(MockClient((_) async => http.Response(
             jsonEncode([

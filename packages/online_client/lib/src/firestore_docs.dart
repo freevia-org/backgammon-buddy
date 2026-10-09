@@ -202,18 +202,44 @@ class FirestoreDocs {
     if (_isError(res)) throw onlineExceptionFor(res.statusCode, res.body);
     final decoded = jsonDecode(res.body);
     if (decoded is! List) {
-      throw onlineExceptionFor(res.statusCode, res.body);
+      throw const MalformedDocumentException(
+        'malformed-firestore-query',
+        'query response must be an array',
+      );
     }
     final out = <FirestoreDoc>[];
     for (final row in decoded) {
-      if (row is! Map) continue;
+      if (row is! Map) {
+        throw const MalformedDocumentException(
+          'malformed-firestore-query',
+          'query response row must be an object',
+        );
+      }
       // A streamed error row, and read-time-only rows that carry no document.
-      if (row['error'] is Map) {
-        throw onlineExceptionFor(res.statusCode, res.body);
+      if (row.containsKey('error')) {
+        if (row['error'] is Map) {
+          throw onlineExceptionFor(res.statusCode, res.body);
+        }
+        throw const MalformedDocumentException(
+          'malformed-firestore-query',
+          'query error row must contain an object',
+        );
+      }
+      if (row.containsKey('document') && row['document'] is! Map) {
+        throw const MalformedDocumentException(
+          'malformed-firestore-query',
+          'query response document must be an object',
+        );
       }
       final doc = row['document'];
-      if (doc is! Map) continue;
-      out.add(_docFrom(doc.cast<String, Object?>()));
+      if (doc is Map) {
+        out.add(_docFrom(doc.cast<String, Object?>()));
+      } else if (row['readTime'] is! String) {
+        throw const MalformedDocumentException(
+          'malformed-firestore-query',
+          'query row without a document must contain a readTime',
+        );
+      }
     }
     return out;
   }
@@ -237,6 +263,12 @@ class FirestoreDocs {
 
   FirestoreDoc _docFrom(Map<String, Object?> body) {
     final fields = body['fields'];
+    if (fields != null && fields is! Map) {
+      throw const MalformedDocumentException(
+        'malformed-firestore-value',
+        'document fields must be an object',
+      );
+    }
     return FirestoreDoc(
       name: body['name']?.toString() ?? '',
       fields: fields is Map

@@ -83,8 +83,40 @@ void main() {
     });
   });
 
-  test('fromFirestoreValue throws on an unknown wrapper', () {
-    expect(() => fromFirestoreValue({'weirdValue': 1}), throwsFormatException);
+  test('malformed typed values are terminal document errors', () {
+    for (final value in <Map<String, Object?>>[
+      {'weirdValue': 1},
+      {'nullValue': false},
+      {'booleanValue': 'yes'},
+      {'integerValue': 'not-an-int'},
+      {'doubleValue': 'not-a-number'},
+      {'stringValue': 42},
+      {'timestampValue': 'not-a-timestamp'},
+      {
+        'mapValue': {
+          'fields': {'nested': 7}
+        }
+      },
+      {
+        'arrayValue': {
+          'values': ['not-a-typed-value']
+        }
+      },
+      {'stringValue': 'valid', 'booleanValue': true},
+    ]) {
+      expect(
+        () => fromFirestoreValue(value),
+        throwsA(isA<MalformedDocumentException>()),
+        reason: '$value',
+      );
+    }
+  });
+
+  test('decodeFields rejects a field without a typed wrapper', () {
+    expect(
+      () => decodeFields({'seq': 3}),
+      throwsA(isA<MalformedDocumentException>()),
+    );
   });
 
   group('field helpers', () {

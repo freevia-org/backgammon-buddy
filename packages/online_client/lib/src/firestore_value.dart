@@ -5,6 +5,8 @@
 /// These helpers convert between that representation and plain Dart values.
 library;
 
+import 'online_exception.dart';
+
 /// Convert a plain Dart value into a Firestore typed-value map.
 ///
 /// Supported: `null`, [bool], [int], [double], [String], [DateTime] (encoded as
@@ -43,45 +45,121 @@ Map<String, Object?> toFirestoreValue(Object? value) {
 ///
 /// `integerValue` decodes to [int], `doubleValue` to [double], `timestampValue`
 /// to a UTC [DateTime], `mapValue`/`arrayValue` recursively. Throws
-/// [FormatException] on an unrecognised or malformed wrapper.
+/// [MalformedDocumentException] on an unrecognised or malformed wrapper so a
+/// poller can stop on a permanent bad document instead of retrying it forever.
 Object? fromFirestoreValue(Map<String, Object?> value) {
-  if (value.containsKey('nullValue')) return null;
-  if (value.containsKey('booleanValue')) return value['booleanValue'] as bool;
-  if (value.containsKey('integerValue')) {
-    final raw = value['integerValue'];
-    return raw is int ? raw : int.parse(raw as String);
-  }
-  if (value.containsKey('doubleValue')) {
-    return (value['doubleValue'] as num).toDouble();
-  }
-  if (value.containsKey('stringValue')) return value['stringValue'] as String;
-  if (value.containsKey('timestampValue')) {
-    return DateTime.parse(value['timestampValue'] as String).toUtc();
-  }
-  if (value.containsKey('mapValue')) {
-    final map = value['mapValue'] as Map<String, Object?>?;
-    final fields = (map?['fields'] as Map<String, Object?>?) ?? const {};
-    return {
-      for (final entry in fields.entries)
-        entry.key: fromFirestoreValue(entry.value as Map<String, Object?>),
+  try {
+    const wrappers = {
+      'nullValue',
+      'booleanValue',
+      'integerValue',
+      'doubleValue',
+      'stringValue',
+      'timestampValue',
+      'mapValue',
+      'arrayValue',
     };
+    final keys = value.keys.where(wrappers.contains).toList();
+    if (keys.length != 1 || value.length != 1) {
+      throw FormatException('expected one Firestore value wrapper');
+    }
+    switch (keys.single) {
+      case 'nullValue':
+        final raw = value['nullValue'];
+        if (raw != null && raw != 'NULL_VALUE') {
+          throw FormatException('nullValue must be null or NULL_VALUE');
+        }
+        return null;
+      case 'booleanValue':
+        final raw = value['booleanValue'];
+        if (raw is bool) return raw;
+        throw FormatException('booleanValue must be a bool');
+      case 'integerValue':
+        final raw = value['integerValue'];
+        if (raw is int) return raw;
+        if (raw is String) return int.parse(raw);
+        throw FormatException('integerValue must be an int or string');
+      case 'doubleValue':
+        final raw = value['doubleValue'];
+        if (raw is num) return raw.toDouble();
+        throw FormatException('doubleValue must be numeric');
+      case 'stringValue':
+        final raw = value['stringValue'];
+        if (raw is String) return raw;
+        throw FormatException('stringValue must be a string');
+      case 'timestampValue':
+        final raw = value['timestampValue'];
+        if (raw is String) return DateTime.parse(raw).toUtc();
+        throw FormatException('timestampValue must be a string');
+      case 'mapValue':
+        final raw = value['mapValue'];
+        if (raw is! Map) throw FormatException('mapValue must be an object');
+        final fields = raw['fields'];
+        if (fields == null) return <String, Object?>{};
+        if (fields is! Map) {
+          throw FormatException('mapValue.fields must be an object');
+        }
+        final decoded = <String, Object?>{};
+        for (final entry in fields.entries) {
+          if (entry.key is! String || entry.value is! Map) {
+            throw FormatException('mapValue.fields contains an invalid entry');
+          }
+          decoded[entry.key as String] = fromFirestoreValue(
+            (entry.value as Map).cast<String, Object?>(),
+          );
+        }
+        return decoded;
+      case 'arrayValue':
+        final raw = value['arrayValue'];
+        if (raw is! Map) throw FormatException('arrayValue must be an object');
+        final values = raw['values'];
+        if (values == null) return <Object?>[];
+        if (values is! List || values.any((item) => item is! Map)) {
+          throw FormatException(
+              'arrayValue.values must be typed value objects');
+        }
+        return [
+          for (final item in values)
+            fromFirestoreValue((item as Map).cast<String, Object?>()),
+        ];
+      default:
+        throw FormatException('unrecognised Firestore value: $value');
+    }
+  } on OnlineException {
+    rethrow;
+  } on FormatException catch (error) {
+    throw MalformedDocumentException(
+        'malformed-firestore-value', error.message);
+  } on TypeError catch (error) {
+    throw MalformedDocumentException('malformed-firestore-value', '$error');
+  } on ArgumentError catch (error) {
+    throw MalformedDocumentException('malformed-firestore-value', '$error');
   }
-  if (value.containsKey('arrayValue')) {
-    final arr = value['arrayValue'] as Map<String, Object?>?;
-    final values = (arr?['values'] as List?) ?? const [];
-    return [
-      for (final e in values) fromFirestoreValue(e as Map<String, Object?>),
-    ];
-  }
-  throw FormatException('unrecognised Firestore value: $value');
 }
 
 /// Decode a document's `fields` object (a map of field-name → typed value) into
 /// a plain `Map<String, Object?>`.
-Map<String, Object?> decodeFields(Map<String, Object?> fields) => {
-      for (final entry in fields.entries)
-        entry.key: fromFirestoreValue(entry.value as Map<String, Object?>),
-    };
+Map<String, Object?> decodeFields(Map<String, Object?> fields) {
+  try {
+    final decoded = <String, Object?>{};
+    for (final entry in fields.entries) {
+      if (entry.value is! Map) {
+        throw const MalformedDocumentException(
+          'malformed-firestore-value',
+          'document field is not a typed value object',
+        );
+      }
+      decoded[entry.key] = fromFirestoreValue(
+        (entry.value as Map).cast<String, Object?>(),
+      );
+    }
+    return decoded;
+  } on OnlineException {
+    rethrow;
+  } on TypeError catch (error) {
+    throw MalformedDocumentException('malformed-firestore-value', '$error');
+  }
+}
 
 /// Encode a plain field map into a Firestore `fields` object.
 Map<String, Object?> encodeFields(Map<String, Object?> fields) => {

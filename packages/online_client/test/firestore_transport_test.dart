@@ -626,6 +626,70 @@ void main() {
       expect(errors.length, 1, reason: 'and kept re-reporting it');
     });
 
+    test('a malformed typed Firestore field stops polling terminally', () async {
+      var queries = 0;
+      final t = await connected((req) async {
+        if (req.url.path.endsWith(':runQuery')) {
+          if (queriedCollection(req) == 'rolls') return http.Response('[]', 200);
+          queries++;
+          return http.Response(
+            jsonEncode([
+              {
+                'document': {
+                  'name': 'projects/p/databases/(default)/documents/matches/C'
+                      '/events/00000000',
+                  'fields': {
+                    'seq': {'integerValue': 'not-an-integer'},
+                    'gameNo': {'integerValue': '1'},
+                    'author': {'stringValue': 'uid-remote'},
+                    'event': {'stringValue': '{}'},
+                  },
+                },
+              },
+            ]),
+            200,
+          );
+        }
+        return quiet(req);
+      }, poll: const Duration(milliseconds: 5));
+
+      final errors = <Object>[];
+      t.inbound.listen((_) {}, onError: errors.add);
+      await waitFor(() => errors.isNotEmpty, reason: 'the fault never surfaced');
+      expect(errors.single, isA<TransportRejected>()
+          .having((e) => e.code, 'code', 'malformed-firestore-value'));
+      expect(t.status, TransportStatus.failed);
+
+      final after = queries;
+      await Future<void>.delayed(const Duration(milliseconds: 120));
+      expect(queries, after, reason: 'the poll loop kept re-reading bad data');
+      expect(errors.length, 1);
+    });
+
+    test('a malformed query row stops polling terminally', () async {
+      var eventQueries = 0;
+      final t = await connected((req) async {
+        if (req.url.path.endsWith(':runQuery')) {
+          if (queriedCollection(req) == 'rolls') return http.Response('[]', 200);
+          eventQueries++;
+          return http.Response(jsonEncode([{'document': 'bad'}]), 200);
+        }
+        return quiet(req);
+      }, poll: const Duration(milliseconds: 5));
+
+      final errors = <Object>[];
+      t.inbound.listen((_) {}, onError: errors.add);
+      await waitFor(() => errors.isNotEmpty, reason: 'the fault never surfaced');
+      expect(errors.single, isA<TransportRejected>()
+          .having((e) => e.code, 'code', 'malformed-firestore-query'));
+      expect(t.status, TransportStatus.failed);
+
+      final after = eventQueries;
+      await Future<void>.delayed(const Duration(milliseconds: 120));
+      expect(eventQueries, after, reason: 'the poll loop kept re-reading bad data');
+      expect(errors.length, 1);
+    });
+
     test('an undecodable ROLL document is terminal the same way', () async {
       final t = await connected((req) async {
         if (req.url.path.endsWith(':runQuery')) {
