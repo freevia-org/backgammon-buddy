@@ -1,11 +1,12 @@
 # Android release delivery — 2026-10-09
 
 Freevia's Backgammon Buddy `org.freevia.backgammonbuddy`, version
-`0.14.0+10018`, is **available to internal testers** in Google Play, replacing
-10017. Its first production release and the existing store/privacy declarations
-have been **submitted for Google review**. Console shows **Changes in review**;
-automated quick checks are still running and must succeed before review delivery.
-Public production availability is not yet confirmed.
+`0.14.0+10020`, is **available to internal testers** in Google Play, replacing
+10018 with the live tutor update. The first production release remains 10018;
+it and the existing store/privacy declarations were submitted for Google review.
+At that submission, Console showed **Changes in review** with automated quick
+checks running. This internal-only follow-up did not alter or resubmit production
+or the listing. Public production availability is not yet confirmed.
 
 The owner authorized Android publication and supplied two Google accounts. Their
 app-named list is selected and saved with exactly two users. Personal addresses
@@ -14,13 +15,51 @@ No invitation emails were sent.
 
 The [tester opt-in link](https://play.google.com/apps/internaltest/4701280291485247000)
 requires one of those approved accounts. Play reports the track active and
-the replacement release available, published on 2026-10-09 at 12:55 Kyiv time
-(09:55 UTC). The earlier 10017 release was published at 11:56 Kyiv (08:56 UTC).
+the replacement release available, published on 2026-10-09 at 14:22 Kyiv time
+(11:22 UTC). Earlier releases 10018 and 10017 were published at 12:55 Kyiv
+(09:55 UTC) and 11:56 Kyiv (08:56 UTC), respectively.
 Testers may see
 `org.freevia.backgammonbuddy (unreviewed)` as a temporary download name until
 app review. Play's publication confirmation notes that propagation usually
 takes up to an hour and can take longer; tester installation from Play has not
 yet been independently observed.
+
+## Internal live tutor update — 10020
+
+Source `d0da10b2945007fdda8957625f72775c6228297d` passed all 11 jobs in
+[CI 37921732739](https://github.com/freevia-org/backgammon-buddy/actions/runs/37921732739).
+[Android build 37921800569](https://github.com/freevia-org/backgammon-buddy/actions/runs/37921800569)
+produced signed APK and AAB version `0.14.0+10020`. The independent audit passed
+before rollout. The internal preview showed **Ready to release** with no errors
+or warnings, and release 3 was saved and published as
+`0.14.0 — live tutor update`. Console confirms **Active**, **Available to internal
+testers**, version code **10020**, and the unchanged selected two-user tester list.
+No new agreement or authentication step was required, and no invitations were sent.
+
+The release adds a continuous expandable tutor panel, advice for staged moves,
+restored advice after Undo, current-position feedback after computer replies,
+move-log review, and clearer tactical explanations. Settings are available from
+the expanded panel's cog. Local validation passed 1,224 tests with seven
+skips, including goldens; portrait, landscape and enlarged-text layouts were checked.
+See the [tutor validation and artifact record](tutor-panel-feedback-2026-10-09.md).
+
+| Artifact | Bytes | SHA-256 |
+|---|---:|---|
+| APK | 77,431,364 | `8978b8064390665e4bad8a9636cc7771c7e80bbc15141d17f35381f60ff82e71` |
+| AAB | 73,223,504 | `beae6b89243c4d7422ace3e536904f02545b6ab1cf3671595b16c668a61166d2` |
+
+Exact identity, Freevia upload signer/configuration, permissions, license assets,
+APK/JAR signatures, bundletool validation, native 16 KB alignment, APK ZIP alignment
+and matching debug symbols all passed. All 14 non-Dart native library payloads
+match 10018 byte for byte; only the two Dart `libapp.so` payloads changed. This is
+static artifact evidence, not an exact-10020 device or Test Lab runtime claim.
+The earlier 10018 runtime result remains separately identified below.
+
+The signed candidates, dependency inventories, logs and audit reports are under
+`app/build/release-audit/android-d0da10b/`. Publication, ready-preview and preserved
+tester-list screenshots/DOM evidence use the `internal-10020-` prefix under
+`app/build/release-audit/play-console/`. Production, store screenshots and listing
+were left unchanged in this follow-up.
 
 ## V1 replacement and production submission
 

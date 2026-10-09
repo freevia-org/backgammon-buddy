@@ -1,8 +1,11 @@
 # Release readiness — 2026-10-09
 
-The subsequent internal-tester feedback is implemented in source as a
-[continuous tutor panel](tutor-panel-feedback-2026-10-09.md). It requires a new
-Android build; the delivery evidence below still refers to build 10018.
+The subsequent internal-tester feedback shipped as
+[continuous tutor panel build 10020](tutor-panel-feedback-2026-10-09.md), available
+to the same two internal testers at 14:22 Kyiv on October 9. The production
+submission and baseline runtime evidence below still refer to build 10018.
+The further request for a compact left-aligned tutor with a centered drag handle
+and an anchored Roll control is a follow-up to 10020, not part of that build.
 
 **Status: the owner deferred physical-board Buddy Mode to version 2. Replacement
 Android candidate 0.14.0+10018 hides that mode and its settings and removes
