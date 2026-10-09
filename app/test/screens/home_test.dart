@@ -1,3 +1,4 @@
+import 'package:aigammon_app/physical_buddy_availability.dart';
 import 'package:aigammon_app/board/board_painter.dart';
 import 'package:aigammon_app/branding/app_mark.dart';
 import 'package:aigammon_app/branding/app_version.dart';
@@ -72,8 +73,9 @@ const _surface = Size(900, 1300);
 /// disk. Set in [main]'s `setUp`, closed in `tearDown`.
 late AppDatabase _db;
 
-Widget _app({double textScale = 1}) => ProviderScope(
+Widget _app({double textScale = 1, bool physicalBuddy = false}) => ProviderScope(
       overrides: [
+        physicalBuddyEnabledProvider.overrideWithValue(physicalBuddy),
         engineFacadeProvider.overrideWithValue(const FakeFacade()),
         databaseProvider.overrideWithValue(_db),
         // NewMatchScreen reads its defaults from settingsProvider; serve them
@@ -251,7 +253,6 @@ void main() {
       'Learning & practice',
       'Play vs Computer',
       'Two Players',
-      'Play with Buddy',
       'Play Nearby',
       'Play Online',
       'History'
@@ -459,9 +460,23 @@ void main() {
     // registered against it has run.
     tearDown(() => debugDefaultTargetPlatformOverride = null);
 
-    testWidgets('sits with the local modes on a phone and opens its setup',
+    testWidgets('v1 hides physical Buddy on Android and iOS', (t) async {
+      for (final platform in [TargetPlatform.android, TargetPlatform.iOS]) {
+        debugDefaultTargetPlatformOverride = platform;
+        await t.pumpWidget(_app());
+        expect(find.text('Play with Buddy'), findsNothing);
+        expect(find.text('Learning & practice'), findsOneWidget);
+        expect(find.text('Play vs Computer'), findsOneWidget);
+        expect(find.text('Play Nearby'), findsOneWidget);
+        expect(find.text('Play Online'), findsOneWidget);
+        await t.pumpWidget(const SizedBox.shrink());
+      }
+      debugDefaultTargetPlatformOverride = null;
+    });
+
+    testWidgets('v2 opt-in retains physical-board setup',
         (t) async {
-      await t.pumpWidget(_app());
+      await t.pumpWidget(_app(physicalBuddy: true));
 
       final buddy = find.text('Play with Buddy');
       expect(buddy, findsOneWidget);

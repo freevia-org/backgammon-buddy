@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../physical_buddy_availability.dart';
 
 import '../analytics/analytics_events.dart';
 import '../analytics/analytics_screen_view.dart';
@@ -21,19 +24,19 @@ import 'settings_screen.dart';
 /// space that remains, and the version pinned to the bottom. The cluster is
 /// scrollable so a short window (a landscape phone, a small desktop window)
 /// degrades to a scroll rather than an overflow.
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
   // Split in two so the analytics wrapper can sit at the root of the screen
   // without re-indenting the whole tree: [build] names the screen, [_build] is
   // the screen. Every screen in this app follows the same shape.
-  Widget build(BuildContext context) => AnalyticsScreenView(
+  Widget build(BuildContext context, WidgetRef ref) => AnalyticsScreenView(
         name: AnalyticsScreens.home,
-        child: _build(context),
+        child: _build(context, ref),
       );
 
-  Widget _build(BuildContext context) {
+  Widget _build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     return Scaffold(
       body: SafeArea(
@@ -106,13 +109,10 @@ class HomeScreen extends StatelessWidget {
                             icon: Icons.people_outline,
                             onPressed: () => _open(context, vsComputer: false),
                           ),
-                          // A local mode like the two above it — the opponent
-                          // is the engine and the board is the one on the
-                          // table — so it sits with them rather than with the
-                          // two remote ones. Hidden where the mode cannot run
-                          // at all: it needs a camera to watch a board and a
-                          // voice to call the play, and a desktop has neither.
-                          if (isBuddyModeSupportedPlatform) ...[
+                          // Physical-board play is parked for v2. Its retained
+                          // implementation also needs a supported mobile device.
+                          if (ref.watch(physicalBuddyEnabledProvider) &&
+                              isBuddyModeSupportedPlatform) ...[
                             const SizedBox(height: 12),
                             _ModeButton(
                               label: 'Play with Buddy',

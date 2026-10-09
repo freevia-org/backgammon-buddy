@@ -10,6 +10,7 @@ import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../physical_buddy_availability.dart';
 import '../../analytics/analytics_events.dart';
 import '../../analytics/analytics_screen_view.dart';
 import '../../analytics/app_analytics.dart';
@@ -586,9 +587,27 @@ enum CalibrationStage {
 /// on real footage found placements that pass both while counting ten checkers
 /// wrong. A mis-calibration caught here costs the seconds it takes to nudge
 /// four handles. Caught mid-game, it costs the session.
-class CalibrationScreen extends ConsumerStatefulWidget {
+class CalibrationScreen extends StatelessWidget {
   const CalibrationScreen({
     super.key,
+    required this.request,
+    required this.onCalibrated,
+  });
+
+  final CalibrationRequest request;
+  final ValueChanged<CalibrationOutcome> onCalibrated;
+
+  @override
+  Widget build(BuildContext context) => PhysicalBuddyGate(
+        builder: (_) => _EnabledCalibrationScreen(
+          request: request,
+          onCalibrated: onCalibrated,
+        ),
+      );
+}
+
+class _EnabledCalibrationScreen extends ConsumerStatefulWidget {
+  const _EnabledCalibrationScreen({
     required this.request,
     required this.onCalibrated,
   });
@@ -599,11 +618,12 @@ class CalibrationScreen extends ConsumerStatefulWidget {
   final ValueChanged<CalibrationOutcome> onCalibrated;
 
   @override
-  ConsumerState<CalibrationScreen> createState() => _CalibrationScreenState();
+  ConsumerState<_EnabledCalibrationScreen> createState() =>
+      _CalibrationScreenState();
 }
 
-class _CalibrationScreenState extends ConsumerState<CalibrationScreen>
-    with WidgetsBindingObserver, BuddyCameraLifecycle<CalibrationScreen> {
+class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
+    with WidgetsBindingObserver, BuddyCameraLifecycle<_EnabledCalibrationScreen> {
   late final BuddyCamera _camera = ref.read(buddyCameraProvider);
   StreamSubscription<ObservedFrame>? _frames;
 

@@ -1,3 +1,4 @@
+import 'package:aigammon_app/physical_buddy_availability.dart';
 import 'package:aigammon_app/analytics/app_analytics.dart';
 import 'package:aigammon_app/buddy/buddy_session.dart';
 import 'package:aigammon_app/buddy/dice_sound_trigger.dart';
@@ -1109,6 +1110,7 @@ class _Harness {
     // would fall back to the defaults instead of the settings under test.
     // (`_HandoverHarness` below does the same, for the same reason.)
     final container = ProviderContainer(overrides: <Override>[
+      physicalBuddyEnabledProvider.overrideWithValue(true),
       databaseProvider.overrideWithValue(db),
       engineFacadeProvider.overrideWithValue(
           buddyDoubles ? const _AlwaysDoubles() : const _FlatFacade()),
@@ -1237,6 +1239,7 @@ class _HandoverHarness {
     addTearDown(camera.shutDown);
 
     final container = ProviderContainer(overrides: <Override>[
+      physicalBuddyEnabledProvider.overrideWithValue(true),
       databaseProvider.overrideWithValue(db),
       settingsProvider.overrideWith((ref) => Stream.value(_kSettings)),
       engineFacadeProvider.overrideWithValue(const _FlatFacade()),

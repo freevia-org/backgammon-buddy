@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../physical_buddy_availability.dart';
 import '../../analytics/analytics_events.dart';
 import '../../analytics/analytics_screen_view.dart';
 import '../../analytics/app_analytics.dart';
@@ -161,9 +162,24 @@ bool buddyDoubleAvailable({
 /// Every band but the two pictures has a FIXED height, exactly as the digital
 /// game screen's do: a match where the board resizes because a sentence got
 /// longer is a match played on a moving target.
-class BuddyGameScreen extends ConsumerStatefulWidget {
+class BuddyGameScreen extends StatelessWidget {
   const BuddyGameScreen({
     super.key,
+    required this.setup,
+    required this.outcome,
+  });
+
+  final BuddySetup setup;
+  final CalibrationOutcome outcome;
+
+  @override
+  Widget build(BuildContext context) => PhysicalBuddyGate(
+        builder: (_) => _EnabledBuddyGameScreen(setup: setup, outcome: outcome),
+      );
+}
+
+class _EnabledBuddyGameScreen extends ConsumerStatefulWidget {
+  const _EnabledBuddyGameScreen({
     required this.setup,
     required this.outcome,
   });
@@ -174,7 +190,7 @@ class BuddyGameScreen extends ConsumerStatefulWidget {
   final CalibrationOutcome outcome;
 
   @override
-  ConsumerState<BuddyGameScreen> createState() => _BuddyGameScreenState();
+  ConsumerState<_EnabledBuddyGameScreen> createState() => _BuddyGameScreenState();
 }
 
 /// The fixed heights. See the class doc for why they are fixed.
@@ -191,8 +207,8 @@ const double _kControlHeight = 64;
 /// the permanent record of the match is the game log in History.
 const int _kTranscriptLines = 40;
 
-class _BuddyGameScreenState extends ConsumerState<BuddyGameScreen>
-    with WidgetsBindingObserver, BuddyCameraLifecycle<BuddyGameScreen> {
+class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
+    with WidgetsBindingObserver, BuddyCameraLifecycle<_EnabledBuddyGameScreen> {
   late final BuddyCamera _camera = ref.read(buddyCameraProvider);
 
   @override

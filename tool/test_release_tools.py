@@ -16,7 +16,7 @@ from release_build_number import resolve
 
 
 class ReleaseToolsTest(unittest.TestCase):
-    def test_android_removes_unused_advertising_permissions(self):
+    def test_android_removes_unused_advertising_and_parked_microphone_permissions(self):
         manifest = ET.parse(Path(__file__).resolve().parents[1] /
                             'app/android/app/src/main/AndroidManifest.xml')
         removals = {
@@ -28,6 +28,7 @@ class ReleaseToolsTest(unittest.TestCase):
             'com.google.android.gms.permission.AD_ID',
             'android.permission.ACCESS_ADSERVICES_AD_ID',
             'android.permission.ACCESS_ADSERVICES_ATTRIBUTION',
+            'android.permission.RECORD_AUDIO',
         }.issubset(removals))
 
     def test_android_offline_speech_engine_visibility(self):

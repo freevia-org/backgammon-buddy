@@ -1,3 +1,4 @@
+import 'package:aigammon_app/physical_buddy_availability.dart';
 import 'package:aigammon_app/buddy/buddy_session.dart';
 import 'package:aigammon_app/buddy/speaker.dart';
 import 'package:aigammon_app/data/app_settings.dart';
@@ -183,6 +184,7 @@ class _Harness {
 
   Future<void> pump(WidgetTester t) async {
     final container = ProviderContainer(overrides: <Override>[
+      physicalBuddyEnabledProvider.overrideWithValue(true),
       settingsProvider.overrideWith((ref) => Stream.value(settings)),
       buddyCameraProvider.overrideWithValue(camera),
       boardLearnerProvider.overrideWithValue(learner),

@@ -80,15 +80,13 @@ class PrivacyScreen extends ConsumerWidget {
                   'from this choice.',
             ),
             const _PrivacySection(
-              title: 'Camera and microphone',
+              title: 'Camera for nearby QR codes',
               text:
-                  'The camera scans a nearby game’s QR code or reads your '
-                  'physical board in Buddy Mode. Board images are processed on '
-                  'your device. The optional microphone detects the sound of '
-                  'dice landing; audio is processed briefly in memory rather '
-                  'than saved as a recording. The app does not upload Buddy '
-                  'camera images or microphone audio. You can refuse these '
-                  'permissions; local on-screen games need neither.',
+                  'The optional camera scans nearby game QR codes. Images '
+                  'are processed on your device and are not saved or uploaded. '
+                  'You can refuse camera access and enter the host address '
+                  'manually. This version does not use the microphone or '
+                  'provide physical-board play.',
             ),
             const _PrivacySection(
               title: 'Feedback you choose to send',

@@ -36,34 +36,8 @@ Mobile store release remains subject to the [candidate checks](docs/release-read
   games remain available for post-game review and practice.
 - **Privacy controls** — optional Firebase usage/performance/crash diagnostics
   default off and require an explicit choice. Settings describes local data,
-  online play, camera/audio, deletion and feedback, and links the public policy.
-- **Buddy Mode** (Android/iOS) — play on your **real board** against the engine,
-  with the phone propped up watching. A guided calibration teaches Buddy your
-  board: drag the handles onto the corners of the felt (four more on the seam
-  for a folding case) and confirm the position it draws back over the picture.
-  It learns *your* board's checker and felt colours from the thirty checkers of
-  the starting position — **no colour constants exist anywhere in the
-  pipeline**. After that it reads your **plays** off the felt and speaks both
-  sides of the table ("You rolled 6-3." … "I rolled 5-2 — play 13/8, 24/22."),
-  objects to an illegal play with the reason, names the checker you put in the
-  wrong place, doubles by voice, and says when it has lost the board — a
-  **readability light** names the cause and a nudged board reopens
-  recalibration with the handles where they were, with the match resuming
-  exactly where it paused. **The roll is typed rather than read**: the
-  three-tap dice pad is the shipping dice path and is always open, because the
-  camera's dice reader **declines rather than misreads** on the real corpus
-  today — it found no pair on any of the four frames carrying a certified
-  roll, and read none of them wrong. The **band-location** half of the work
-  that would find dice this small has since landed — the reader searches the
-  whole playing surface and reads a face as a shape rather than counting its
-  pips — and the floor did not move; the **tilt** half is still queued, and
-  dice this small may want a closer camera either way. The microphone is an optional
-  optimization (it hears the dice land and looks sooner; nothing is recorded),
-  and the belief mirror is one tap away for a play the felt does not give up.
-  Matches land in History with analysis like any other. The perception core is
-  [`packages/board_vision`](packages/board_vision), scored in CI against a
-  committed corpus of real board photographs; the on-device acceptance run is
-  [`docs/buddy-mode-test-protocol.md`](docs/buddy-mode-test-protocol.md).
+  online play, nearby QR camera access, deletion and feedback, and links the
+  public policy.
 - **Match history + post-game analysis** — finished matches are saved and can be
   replayed move by move; a background pass replays the event log through the
   engine to flag **blunders** and summarise cube/checker errors.
@@ -91,6 +65,13 @@ Mobile store release remains subject to the [candidate checks](docs/release-read
   **`MatchTransport`** seam and one match controller — the host binds a socket,
   it does not referee the game.
 - **Tabletop hot-seat** — two players, one device, passing it between turns.
+
+**Planned for version 2:** physical-board Buddy Mode is parked and hidden from
+the version 1 release. Its calibration, board/dice recognition, microphone hints
+and spoken coaching code remain in the repository for future development.
+Physical-device acceptance is still required before enabling that mode; see
+[`docs/buddy-mode-test-protocol.md`](docs/buddy-mode-test-protocol.md).
+On-screen tutoring and nearby QR joining are separate version 1 features.
 
 See [`docs/superpowers/plans/`](docs/superpowers/plans/) for the per-phase plans,
 and the

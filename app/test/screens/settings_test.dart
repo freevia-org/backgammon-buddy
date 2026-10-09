@@ -1,3 +1,4 @@
+import 'package:aigammon_app/physical_buddy_availability.dart';
 import 'dart:async';
 
 import 'package:aigammon_app/buddy/phrasing.dart';
@@ -21,8 +22,9 @@ late AppDatabase _db;
 /// the screen's `settings` stay current across sequential edits.
 late StreamController<AppSettings> _feed;
 
-Widget _app() => ProviderScope(
+Widget _app({bool physicalBuddy = false}) => ProviderScope(
       overrides: [
+        physicalBuddyEnabledProvider.overrideWithValue(physicalBuddy),
         databaseProvider.overrideWithValue(_db),
         settingsProvider.overrideWith((ref) => _feed.stream),
       ],
@@ -74,10 +76,10 @@ void main() {
         find.widgetWithText(SwitchListTile, 'Combined moves'), findsOneWidget);
     expect(find.widgetWithText(SwitchListTile, 'Show score'), findsOneWidget);
 
-    // The Buddy Mode section: how Buddy talks, and whether it listens.
-    expect(find.text('Buddy Mode'), findsOneWidget);
+    // V1 exposes no physical-board voice or microphone controls.
+    expect(find.text('Buddy Mode'), findsNothing);
     expect(find.widgetWithText(SwitchListTile, 'Listen for the dice'),
-        findsOneWidget);
+        findsNothing);
   });
 
   testWidgets('About opens the Flutter licenses page', (t) async {
@@ -105,7 +107,7 @@ void main() {
   testWidgets('the Buddy phrasing default is terse and autosaves', (t) async {
     await t.binding.setSurfaceSize(const Size(600, 2400));
     addTearDown(() => t.binding.setSurfaceSize(null));
-    await t.pumpWidget(_app());
+    await t.pumpWidget(_app(physicalBuddy: true));
     _feed.add(AppSettings.defaults);
     await t.pumpAndSettle();
 
@@ -132,7 +134,7 @@ void main() {
     // operating system says no, and this switch is the way back.
     await t.binding.setSurfaceSize(const Size(600, 2400));
     addTearDown(() => t.binding.setSurfaceSize(null));
-    await t.pumpWidget(_app());
+    await t.pumpWidget(_app(physicalBuddy: true));
     _feed.add(AppSettings.defaults);
     await t.pumpAndSettle();
 

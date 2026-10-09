@@ -14,14 +14,12 @@ import 'package:flutter_test/flutter_test.dart';
 /// CAMERA is here for the same reason and by the same lesson: Play Nearby's QR
 /// join asks for it at runtime, and a runtime request for a permission the
 /// manifest never declared is refused without ever showing the user a prompt.
-/// RECORD_AUDIO joins them for Buddy Mode's dice-roll listener.
+/// Physical-board Buddy is parked for v2, so RECORD_AUDIO must be removed.
 void main() {
   const mainManifest = 'android/app/src/main/AndroidManifest.xml';
   const internet =
       '<uses-permission android:name="android.permission.INTERNET"/>';
   const camera = '<uses-permission android:name="android.permission.CAMERA"/>';
-  const recordAudio =
-      '<uses-permission android:name="android.permission.RECORD_AUDIO"/>';
 
   test('the MAIN manifest declares INTERNET (not just debug/profile)', () {
     final main = File(mainManifest).readAsStringSync();
@@ -39,12 +37,11 @@ void main() {
             'the permission outright, with no prompt to the user');
   });
 
-  test('the MAIN manifest declares RECORD_AUDIO (not just debug/profile)', () {
+  test('v1 removes RECORD_AUDIO including plugin contributions', () {
     final main = File(mainManifest).readAsStringSync();
-    expect(main, contains(recordAudio),
-        reason: "Buddy Mode's dice-roll listener requests RECORD_AUDIO at "
-            'runtime; without the declaration in src/main the release build is '
-            'denied the permission outright, with no prompt to the user');
+    final flat = main.replaceAll(RegExp(r'\s+'), ' ');
+    expect(flat, contains('<uses-permission '
+        'android:name="android.permission.RECORD_AUDIO" tools:node="remove"/>'));
   });
 
   test('the microphone is declared OPTIONAL hardware', () {

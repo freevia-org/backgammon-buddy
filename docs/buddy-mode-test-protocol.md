@@ -1,5 +1,10 @@
 # Buddy Mode — on-device test protocol
 
+**Release scope update — October 9, 2026:** the owner deferred physical-board
+Buddy Mode to version 2. Version 1 hides the mode and its settings; this protocol
+is retained for future development and does not block the on-screen tutor
+release. Nearby QR joining is a separate version 1 camera feature.
+
 **This is the acceptance test for Buddy Mode.** Everything else the mode has —
 1072 app tests, 521 `board_vision` tests including the scored corpus, a clean
 analyzer on seven packages — runs on a machine with no camera, no microphone,

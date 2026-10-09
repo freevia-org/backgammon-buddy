@@ -3,6 +3,7 @@ import 'package:engine_bindings/engine_bindings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../physical_buddy_availability.dart';
 import '../../analytics/analytics_events.dart';
 import '../../analytics/analytics_screen_view.dart';
 import '../../buddy/buddy_session.dart';
@@ -85,16 +86,28 @@ typedef BuddyLaunch = void Function(
 ///
 /// It is also the front of the chain: Start pushes the guided calibration flow,
 /// and [launch] is called once with both halves of what a session needs.
-class BuddySetupScreen extends ConsumerStatefulWidget {
+class BuddySetupScreen extends StatelessWidget {
   const BuddySetupScreen({super.key, required this.launch});
 
   final BuddyLaunch launch;
 
   @override
-  ConsumerState<BuddySetupScreen> createState() => _BuddySetupScreenState();
+  Widget build(BuildContext context) => PhysicalBuddyGate(
+        builder: (_) => _EnabledBuddySetupScreen(launch: launch),
+      );
 }
 
-class _BuddySetupScreenState extends ConsumerState<BuddySetupScreen> {
+class _EnabledBuddySetupScreen extends ConsumerStatefulWidget {
+  const _EnabledBuddySetupScreen({required this.launch});
+
+  final BuddyLaunch launch;
+
+  @override
+  ConsumerState<_EnabledBuddySetupScreen> createState() =>
+      _BuddySetupScreenState();
+}
+
+class _BuddySetupScreenState extends ConsumerState<_EnabledBuddySetupScreen> {
   /// The three that have a persisted default start from it; edits here are
   /// per-match and are not written back, exactly as on `NewMatchScreen`.
   ///
