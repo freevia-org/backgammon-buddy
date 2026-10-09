@@ -1,23 +1,25 @@
 # Play Data safety candidate worksheet — 2026-10-09
 
-Prepared for Freevia's `org.freevia.backgammonbuddy`. **Not yet saved in Play.**
-The intended release enables only the REST online project/key, with no native
-Firebase telemetry configuration. The final APK/AAB must confirm that setup,
-the local QR decoder, and the generic nearby label before applying this draft.
+Prepared for Freevia's `org.freevia.backgammonbuddy`. **Saved in Play Console;
+not submitted for review or rollout.** The signed Android candidate at
+`e6c8749`, version `0.14.0+10017`, confirms the REST online project/key with no
+native Firebase telemetry configuration, the local QR decoder and generic
+nearby label. Its actual APK and AAB have no advertising-ID or AdServices
+permissions. The verified AAB is saved in an unsubmitted internal release draft.
 
-## Proposed selections and source evidence
+## Saved selections and source evidence
 
 | Field | Candidate answer | App-specific evidence |
 |---|---|---|
 | Collects user data | Yes | Optional online authentication, match records and authenticated deletion requests leave the device. |
 | Personal info → User IDs | Collected; optional; not ephemeral | `AuthClient` obtains a persistent pseudonymous UID. `MatchApi` associates moves, dice and deletion requests with it. Purposes: app functionality, account management, fraud prevention/security. Local tutoring works without creating this identity. |
 | App activity → Other actions | Collected; optional; not ephemeral | Online checker moves, cube decisions, dice events and match state implement multiplayer. Purpose: app functionality. These are gameplay records, not a usage-analytics feed. Nearby play also exchanges gameplay with the selected peer. |
-| Device or other IDs | Proposed collected; optional; not ephemeral | Google Auth receives connection/IP information for authentication security and retains IP logs for weeks; nearby transport exchanges local addresses. Use this category for connection identifiers, not location: neither first-party path derives a geographical location. Confirm the provider's actual use and the console definition in the final review. Purposes: app functionality and fraud prevention/security. |
+| Device or other IDs | Collected; optional; not ephemeral | Google Auth receives connection/IP information for authentication security and retains IP logs for weeks; nearby transport exchanges local addresses. This category covers connection identifiers, not location: neither first-party path derives a geographical location. Purposes: app functionality and fraud prevention/security. |
 | Location | No first-party collection identified | Camera/QR does not use geolocation; an IP address alone is not evidence that a location is inferred. Do not import Analytics/Performance location declarations into an unconfigured candidate. |
 | Photos, videos, audio | No off-device collection by these features | Camera frames and short microphone buffers are processed locally. QR decoding is pure Dart. These permissions alone do not establish collection. |
 | App info and performance → Crash logs | Collected; optional; not ephemeral | Diagnostics → Report issue previews the exact report locally with Cancel, then sends an error/stack excerpt in the GitHub draft URL only after Open GitHub. This reaches GitHub before posting. Purpose: Analytics (diagnosing/fixing bugs). This user-initiated path is separate from disabled automated Firebase crash reporting. |
 | App info and performance → Diagnostics | Collected; optional; not ephemeral | Feedback URL prefill sends app version/platform and, from Diagnostics, technical error details. Purpose: Analytics (diagnosing/fixing bugs). GitHub can retain requests and posted issues; no ephemeral-processing claim. |
-| Automated Firebase telemetry | Not enabled in the intended candidate | Compile-time telemetry config is incomplete; initialization returns disabled before using Firebase. Verify the merged manifest, absence of generated platform config and actual candidate behavior. This does not remove the two optional feedback collection rows above. |
+| Automated Firebase telemetry | Not enabled in the signed candidate | Compile-time telemetry config is incomplete; initialization returns disabled before using Firebase. The decoded artifact has no generated `google_app_id`/sender resources, and native collection/personalization defaults are false. This does not remove the two optional feedback collection rows above. |
 | Name, email, phone, chat, contacts, purchases | No collection by gameplay/authentication | Anonymous REST sign-up sends no name/email/password. Nearby uses a generic app label, no OS hostname. There is no chat or purchase flow. Support and GitHub are separate, user-initiated channels. |
 | Data deletion | Yes; scheduled backend path verified | In-app authenticated request freezes the identity's match access and queues deletion; public support/privacy pages provide an external request route with ownership verification. The natural scheduled run removed both disposable test identities and their match tree. This does not promise instant erasure of all provider backups. |
 | Account creation / external account login | No user-facing account creation or external login | The app creates an anonymous backend Auth record for online play and restores this installation's token. It offers no username/password, email, OAuth login or account recovery across devices. User ID collection and data deletion remain declared. |
@@ -27,7 +29,7 @@ Gameplay fits Play's **Other actions** category, whose examples explicitly inclu
 gameplay. Optional means the app's local tutor remains usable without the online
 feature. Pseudonymous UIDs still need disclosure. These classifications apply
 the [current Play definitions](https://support.google.com/googleplay/android-developer/answer/10787469)
-to the code; verify exact form wording before saving.
+to the code and the Console's reviewed wording.
 
 The account answer applies Play's definition of an app account as a user-facing
 identity across applications/devices to this installation-bound anonymous flow.
@@ -69,8 +71,8 @@ Android bridge checks the native `setVoice` status and active voice metadata
 immediately before passing text to the engine. This avoids the locked
 `flutter_tts` plugin's discarded native selection status. iOS uses `AVSpeechSynthesizer`, which
 Apple documents as generating speech on device. These are synthesis controls,
-not evidence of audio leaving the device. The Android plugin initializes the
-user's installed system engine internally; offline voice selection is not a
+not evidence of audio leaving the device. The Android bridge initializes the
+user's installed system engine; offline voice selection is not a
 claim that all lifecycle/network behavior of that third-party engine is audited.
 [Android voice metadata](https://developer.android.com/reference/android/speech/tts/Voice#isNetworkConnectionRequired()),
 [Android installation feature](https://developer.android.com/reference/android/speech/tts/TextToSpeech.Engine#KEY_FEATURE_NOT_INSTALLED),
@@ -101,8 +103,79 @@ Likewise, library presence is not sufficient evidence that an uninitialized
 Analytics/Crashlytics/Performance product is collecting data. Final validation
 must still check native startup and configured resources.
 
-Before saving: record the final SHA/build/signature, actual merged permissions
-and SDK inventory, online-only configuration, scheduled deletion evidence, and
-policy consistency. The independent Cloudflare alert monitor is optional and
-is not a Play Data safety prerequisite. Review all distributed versions when
-telemetry is enabled later; then update this form and the policy.
+## Console and artifact evidence
+
+The Console preview lists five optional, non-ephemeral collected types: User
+IDs, Other actions, Device or other IDs, Crash logs and Diagnostics. “Shared”
+is unselected under the processor/user-initiated exceptions described above.
+The blanket encryption question is **No** because nearby transfers are plaintext.
+No user-facing account creation or external account login is declared. The
+deletion link is `https://freevia.org/backgammon-buddy/privacy/#retention`.
+The separate Advertising ID answer is **No**. Both forms displayed “Change
+saved. Send for review in Publishing overview”; no review submission was made.
+
+[CI 37862735385](https://github.com/freevia-org/backgammon-buddy/actions/runs/37862735385)
+passed all 11 jobs at `e6c8749b39273604d0a1799f27083912f96b5bec`.
+[Android build 37863371662](https://github.com/freevia-org/backgammon-buddy/actions/runs/37863371662)
+produced a release-signed APK and AAB at the same version code `10017`.
+The certificate is `CN=Backgammon Buddy Upload, O=Freevia`, SHA-256
+`ec6b2f117457a10eb30f5ea366f31219569eb091c263c18c21d85fb6171e4c6a`.
+Both artifacts have only ARM64/ARMv7, pass the 64-bit ELF checks, and contain
+14 license assets matching Git. APK ZIP alignment, AAB validation and signatures
+pass. The 131-module Android inventory matches the native notice catalog and
+contains no ML Kit scanner. Archive-wide byte scans found no legacy publisher
+branding. Online project configuration is present in both AOT libraries;
+native telemetry application resources are absent and all five native collection,
+ad-ID collection and personalization defaults are false. Both decoded manifests
+retain nine permissions, with classic AD_ID and both unused AdServices
+permissions absent. The local manifest merger and 20 release-tool tests passed;
+physical upgrade checks preserved History and practice records.
+
+| Artifact | Bytes | SHA-256 |
+|---|---:|---|
+| APK | 77,316,696 | `57dac295d9bed3aeeaa2a4546b17df7dbb0b9e5ea7d8b11d44f58ddac96f5ba8` |
+| AAB | 73,134,932 | `6fa0a1e86b195ba997f1dec3b0ec511ccf55fc48ec2ae6a50e38f89eac332cfa` |
+
+Play processed bundle `10017 (0.14.0)` with its ReTrace mapping and native debug
+symbols and saved it in internal release draft 1. Preview reported no artifact
+error; its only warning was that no testers are specified. **Save and publish
+was not pressed.** Play signing and default automatic protection remain enabled;
+this flow presented no new agreement. The Freevia certificate above signs the
+upload/sideload candidate; it is not a claim about Google's eventual distributed
+APK signing certificate.
+
+The saved store copy describes try-first as trying a full play before viewing
+hints, without implying that Confirm is required. Store copy and internal
+release notes explicitly call physical-board Buddy assistance experimental;
+the listing states that camera recognition needs calibration and may need
+manual correction.
+
+Seven unaltered physical-phone screenshots are saved in tutor-first order:
+live hints, live explanation, game review, review explanation, blind practice,
+practice result and home. The listing status is **Ready to send for review**;
+it has not been submitted. Six are 1440×2560; home is 1800×3200. Review/practice
+captures use build 10015; live/home captures use 10017, whose only application
+change removed unused manifest permissions. Each set has a local provenance
+manifest with hashes. The new prepared icon and feature graphic are conservatively
+declared as created/edited with AI; actual screenshots remain unlabeled. This
+interprets [Google's asset-specific declaration guidance](https://support.google.com/googleplay/android-developer/answer/17262077)
+for artwork prepared through code with AI assistance; the guidance does not
+expressly resolve that rendering method. No image synthesis or invented UI was
+used for the screenshots.
+
+Local proof files are under `app/build/release-audit/play-console/`:
+`data-safety-saved.png`, `advertising-id-saved.png`,
+`store-copy-final-saved.png`, `asset-labels-verified.png`,
+`bundle-10017-validation.png`, `bundle-10017-draft-saved.png` and
+`listing-ready-for-review.png`. The screenshot
+sources and provenance are in its `screenshots-10015/` and `screenshots-10017/`
+subdirectories; `store-copy-final.txt` and `internal-release-notes-final.txt`
+record the final narrowed wording. Signed artifacts and all APK/AAB Dart/native symbols are preserved
+under `app/build/release-audit/android-e6c8749/`, with `artifact-verification.json`.
+The hosted privacy/support policy was verified after deployment
+`89b9ac90-2035-40da-b3b9-768b96e783d9`, including deletion/retention, US Auth,
+plaintext nearby transport, GitHub draft transmission and local speech controls.
+
+The independent Cloudflare alert monitor is optional and is not a Play Data
+safety prerequisite. Review all distributed versions when telemetry is enabled
+later; then update this form and the policy.
