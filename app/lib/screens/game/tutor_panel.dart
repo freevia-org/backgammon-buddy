@@ -107,7 +107,7 @@ class _TutorPanelState extends State<TutorPanel> {
           height: targetHeight,
           width: double.infinity,
           clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(color: scheme.surfaceContainer),
+          decoration: const BoxDecoration(color: Colors.white),
           foregroundDecoration: BoxDecoration(
             border: Border(top: BorderSide(color: scheme.outlineVariant)),
           ),
@@ -267,7 +267,7 @@ class _TutorPanelState extends State<TutorPanel> {
                   right: 12,
                   bottom: 8,
                   child: Material(
-                    color: scheme.surfaceContainer,
+                    color: Colors.white,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
