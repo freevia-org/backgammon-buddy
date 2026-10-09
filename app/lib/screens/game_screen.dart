@@ -242,6 +242,7 @@ enum BoardOrientationMode {
 }
 
 class _GameScreenState extends State<GameScreen> {
+  static const double _tutorActionsHeight = 52;
   MatchController get _c => widget.controller;
 
   /// The merged listenable: the controller plus the pending-request notifiers of
@@ -1072,6 +1073,11 @@ class _GameScreenState extends State<GameScreen> {
                   height: availableHeight < 480 ? 56 : ScoreSheetPanel.height,
                   child: _scoreSheetScope(),
                 ),
+                if (_tutor != null)
+                  SizedBox(
+                    key: const ValueKey('tutorReservedSpace'),
+                    height: tutorHeight,
+                  ),
                 // In the tabletop layout the bottom bar belongs to ONE player
                 // (the side the board faces) and goes inert on the other's turn;
                 // everywhere else it is the screen's only bar and serves whoever
@@ -1082,18 +1088,13 @@ class _GameScreenState extends State<GameScreen> {
                       ? (whiteAtBottom ? Player.white : Player.black)
                       : null,
                 ),
-                if (_tutor != null)
-                  SizedBox(
-                    key: const ValueKey('tutorReservedSpace'),
-                    height: tutorHeight,
-                  ),
               ],
             ),
             if (_tutor != null)
               Positioned(
                 left: 0,
                 right: 0,
-                bottom: 0,
+                bottom: _tutorActionsHeight,
                 child: ConstrainedBox(
                   constraints: BoxConstraints(maxHeight: tutorMaxHeight),
                   child: TutorPanel(
@@ -1945,7 +1946,7 @@ class _GameScreenState extends State<GameScreen> {
     }
     return SizedBox(
       key: key,
-      height: rollInTutor ? 52 : 64,
+      height: rollInTutor ? _tutorActionsHeight : 64,
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: 12,

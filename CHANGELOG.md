@@ -70,8 +70,9 @@ set by CI from the workflow run number and is not tracked here.
 
 - The live tutor is one continuous panel with a centered drag handle and its
   icon, label and short prompt together on the left. Tap the label or swipe up
-  to expand it; settings are behind the expanded panel's cog. Roll stays at the
-  panel's bottom right while Hint, Undo and Confirm sit above the panel. The
+  to expand it; settings are behind the expanded panel's cog. Hint, Undo and
+  Confirm stay at the bottom for easy reach, with the tutor panel above them.
+  Roll stays at the panel's bottom right. The
   compact view follows the position, staged checkers, Undo and
   the computer's reply. Tap a logged move to review it, then return with Live.
   Short tactical explanations lead, with ranked plays, scenarios and optional
