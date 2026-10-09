@@ -51,6 +51,7 @@ jobs:
       - run: python3 -m unittest discover -s tool -p test_mobile_notices.py
       - run: python3 tool/mobile_notices.py --check
       - run: python3 -m unittest discover -s tool -p test_okhttp_publicsuffix.py
+      - run: python3 -m unittest discover -s tool -p test_verify_native_symbols.py
 
   # The pure-Dart packages. One job definition, one leg each: they were
   # near-identical copies of the same six steps, and every change to the shape

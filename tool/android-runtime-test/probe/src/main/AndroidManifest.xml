@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <queries><package android:name="org.freevia.backgammonbuddy" /></queries>
+    <application android:label="Runtime acceptance probe" />
+    <!-- Instrument OUR test package, never re-sign or inject into the release.
+         UI Automator drives the separately installed exact shipping APK. -->
+    <instrumentation android:name="androidx.test.runner.AndroidJUnitRunner"
+        android:targetPackage="org.freevia.runtimeprobe"
+        android:functionalTest="true" />
+</manifest>

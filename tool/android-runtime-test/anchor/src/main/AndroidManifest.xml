@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Test Lab requires an app APK for self-instrumenting test APKs.
+         This empty anchor is NOT the product and is never shipped. -->
+    <application android:label="Runtime test anchor" android:hasCode="false" />
+</manifest>
