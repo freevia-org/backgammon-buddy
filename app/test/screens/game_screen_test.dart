@@ -3521,6 +3521,11 @@ void main() {
       await t.tap(find.byKey(const ValueKey('tutorPanelToggle')));
       await t.pumpAndSettle();
       expect(find.textContaining('Best:'), findsOneWidget);
+      final playedLine = t.widget<Text>(
+        find.byKey(const ValueKey('playedMoveLine')),
+      );
+      expect(playedLine.data, contains('Played:'));
+      expect(playedLine.data, contains('Best:'));
 
       c.disposeController();
     });
@@ -3564,7 +3569,7 @@ void main() {
 
     testWidgets('cube advice line shows at the gate when tutor on, absent off',
         (t) async {
-      // Tutor ON: the "Tutor: Double" line appears at the human pre-roll gate.
+      // Tutor ON: a one-line double recommendation appears at the pre-roll gate.
       final human = LocalHumanAgent();
       final c = GameController(
         white: human,
@@ -3575,11 +3580,16 @@ void main() {
       final tutor = TutorService(TutorEngine());
       await t.pumpWidget(_tutorHarness(c, tutor));
       await pumpUntil(t, () => c.awaitingHumanTurn);
-      await pumpUntil(
-          t, () => find.textContaining('Tutor:').evaluate().isNotEmpty);
+      await pumpUntil(t, () => find.textContaining('Tutor:').evaluate().isNotEmpty);
       await t.tap(find.byKey(const ValueKey('tutorPanelToggle')));
       await t.pumpAndSettle();
-      expect(find.textContaining('Tutor: Double'), findsOneWidget);
+      expect(find.textContaining('Double — opponent should'), findsOneWidget);
+      expect(find.text('Tutor: Roll'), findsNothing);
+      final cubeAdvice = t.widget<Text>(
+        find.byKey(const ValueKey('cubeAdviceLine')),
+      );
+      expect(cubeAdvice.maxLines, 1);
+      expect(cubeAdvice.softWrap, isFalse);
       c.disposeController();
 
       // Tutor OFF: no advice line at the same gate.

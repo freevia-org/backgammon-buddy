@@ -129,6 +129,17 @@ void main() {
     await t.tap(find.byTooltip('Tutoring options'));
     expect(settingsOpened, 1);
 
+    // The fixed, non-scrollable header also acts as a collapse target, so the
+    // user can close the panel with a tap without reaching the handle.
+    final headerRect = t.getRect(
+      find.byKey(const ValueKey('tutorPanelHeader')),
+    );
+    await t.tapAt(Offset(headerRect.right - 100, headerRect.center.dy));
+    await t.pumpAndSettle();
+    expect(find.byTooltip('Tutoring options'), findsNothing);
+
+    await t.drag(handle, const Offset(0, -60));
+    await t.pumpAndSettle();
     await t.drag(handle, const Offset(0, 60));
     await t.pumpAndSettle();
     expect(find.byTooltip('Tutoring options'), findsNothing);

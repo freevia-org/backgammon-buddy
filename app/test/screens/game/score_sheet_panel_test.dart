@@ -31,6 +31,17 @@ MoveAssessment _assessment(double loss) {
   );
 }
 
+MoveAssessment _forcedAssessment({required bool passed}) {
+  final move = passed ? Move.none : Move([const CheckerMove(7, 4)]);
+  return MoveAssessment(
+    played: move,
+    best: move,
+    equityLoss: 0,
+    ranked: passed ? const [] : [_assessment(0).ranked.single],
+    isDecision: false,
+  );
+}
+
 void main() {
   Widget panel(MoveAssessment assessment) => MaterialApp(
     home: Scaffold(
@@ -92,6 +103,29 @@ void main() {
     );
 
     handle.dispose();
+  });
+
+  testWidgets('a forced endgame move is identified without a false grade', (
+    t,
+  ) async {
+    await t.pumpWidget(panel(_forcedAssessment(passed: false)));
+    await t.pump();
+
+    expect(find.text('Forced'), findsOneWidget);
+    expect(find.byIcon(Icons.circle), findsNothing);
+    expect(find.text('Best'), findsNothing);
+    expect(find.textContaining('−0.'), findsNothing);
+  });
+
+  testWidgets('a dance is identified as a pass without a false grade', (
+    t,
+  ) async {
+    await t.pumpWidget(panel(_forcedAssessment(passed: true)));
+    await t.pump();
+
+    expect(find.text('Pass'), findsOneWidget);
+    expect(find.byIcon(Icons.circle), findsNothing);
+    expect(find.text('Best'), findsNothing);
   });
 
   testWidgets('pending moves can be selected and retain selected styling', (

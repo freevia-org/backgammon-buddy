@@ -283,7 +283,9 @@ class GameHud extends StatelessWidget {
         height: _hudHeight,
         child: Padding(
           padding: const EdgeInsets.symmetric(
-              horizontal: 12, vertical: _verticalPadding),
+            horizontal: 12,
+            vertical: _verticalPadding,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -324,7 +326,9 @@ class GameHud extends StatelessWidget {
                             if (state.isCrawfordGame) ...[
                               const SizedBox(width: 8),
                               const _MiniBadge(
-                                  icon: Icons.star, label: 'Crawford'),
+                                icon: Icons.star,
+                                label: 'Crawford',
+                              ),
                             ],
                             // The cube chip is hidden in a cubeless match.
                             if (!controller.cubeless) ...[
@@ -352,13 +356,18 @@ class GameHud extends StatelessWidget {
                           onPressed: atGate && _doublingLegal
                               ? _offerDouble
                               : null,
-                          icon: const Icon(Icons.control_point_duplicate,
-                              size: 16),
-                          label: const Text('Double'),
+                          icon: const Icon(
+                            Icons.control_point_duplicate,
+                            size: 16,
+                          ),
+                          label: const Text(
+                            'Double',
+                            maxLines: 1,
+                            softWrap: false,
+                          ),
                           style: OutlinedButton.styleFrom(
                             visualDensity: VisualDensity.compact,
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 12),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
                           ),
                         ),
                       ),
@@ -439,9 +448,10 @@ class _MiniBadge extends StatelessWidget {
         children: [
           Icon(icon, size: 12, color: scheme.onSecondaryContainer),
           const SizedBox(width: 4),
-          Text(label,
-              style:
-                  TextStyle(color: scheme.onSecondaryContainer, fontSize: 12)),
+          Text(
+            label,
+            style: TextStyle(color: scheme.onSecondaryContainer, fontSize: 12),
+          ),
         ],
       ),
     );
@@ -459,17 +469,17 @@ class _CubeChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final suffix = owner == null
-        ? ''
-        : ' ${owner == Player.white ? 'W' : 'B'}';
+    final suffix = owner == null ? '' : ' ${owner == Player.white ? 'W' : 'B'}';
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
         color: scheme.secondaryContainer,
         borderRadius: BorderRadius.circular(6),
       ),
-      child: Text('×$value$suffix',
-          style: TextStyle(color: scheme.onSecondaryContainer, fontSize: 12)),
+      child: Text(
+        '×$value$suffix',
+        style: TextStyle(color: scheme.onSecondaryContainer, fontSize: 12),
+      ),
     );
   }
 }

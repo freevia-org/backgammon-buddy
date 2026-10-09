@@ -1638,7 +1638,11 @@ class _GameScreenState extends State<GameScreen> {
             ),
           ),
         if (review != null)
-          Text('Played: ${(_c.game.events[review] as MoveEvent).move}'),
+          Text(
+            'Played: ${(_c.game.events[review] as MoveEvent).move}'
+            '${_tutorOptions.bestMoves && assessment != null ? '  ·  Best: ${assessment.best}' : ''}',
+            key: const ValueKey('playedMoveLine'),
+          ),
         if (blocked)
           const Text(
             'Finish your own legal play first. Coaching will then help you compare it.',
@@ -1655,7 +1659,10 @@ class _GameScreenState extends State<GameScreen> {
               padding: const EdgeInsets.only(bottom: 8),
               child: Text(reason),
             ),
-        if (!blocked && _tutorOptions.bestMoves && assessment != null)
+        if (!blocked &&
+            review == null &&
+            _tutorOptions.bestMoves &&
+            assessment != null)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Text('Best: ${assessment.best}'),
@@ -1859,7 +1866,6 @@ class _GameScreenState extends State<GameScreen> {
           const Spacer(),
           FilledButton(
             onPressed: live ? _entryControl.pass : null,
-            style: _compactButton,
             child: const Text('No moves — pass'),
           ),
         ],
@@ -1901,7 +1907,7 @@ class _GameScreenState extends State<GameScreen> {
                     ? _offerDouble
                     : null,
                 icon: const Icon(Icons.control_point_duplicate, size: 16),
-                label: const Text('Double'),
+                label: const Text('Double', maxLines: 1, softWrap: false),
                 style: _compactButton,
               ),
             ),
@@ -2103,38 +2109,30 @@ class _GameScreenState extends State<GameScreen> {
     return ('You', widget.opponentLabel);
   }
 
-  /// The pre-roll cube advice: "Tutor: Double — opponent should take/pass" or
-  /// "Tutor: Roll".
+  /// The pre-roll cube advice: "Double — opponent should take/pass" or
+  /// no extra line when rolling is the recommendation (the tutor header already
+  /// gives the current prompt).
   /// Fills the reserved [_adviceLineHeight] slot (see [_bottomRegion]); the row
   /// is centred in it rather than padded to its own height.
   Widget _cubeAdviceLine(CubeAssessment a) {
     final advice = a.advice;
-    final text = advice.shouldDouble
-        ? 'Tutor: Double — opponent should '
-              '${advice.shouldTake ? 'take' : 'pass'}'
-        : 'Tutor: Roll';
+    if (!advice.shouldDouble) return const SizedBox.shrink();
+    final text =
+        'Double — opponent should ${advice.shouldTake ? 'take' : 'pass'}';
     final scheme = Theme.of(context).colorScheme;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(Icons.school, size: 16, color: scheme.primary),
-        const SizedBox(width: 6),
-        // Scale-to-fit rather than overflow: the longest advice string ("Double
-        // — opponent should take") outgrows a narrow phone once the system text
-        // scale is turned up, and a slightly smaller line still reads. Mirrors
-        // the HUD score's treatment.
-        Flexible(
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text(
-              text,
-              maxLines: 1,
-              softWrap: false,
-              style: TextStyle(color: scheme.primary, fontSize: 13),
-            ),
-          ),
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.centerLeft,
+        child: Text(
+          key: const ValueKey('cubeAdviceLine'),
+          text,
+          maxLines: 1,
+          softWrap: false,
+          style: TextStyle(color: scheme.primary, fontSize: 13),
         ),
-      ],
+      ),
     );
   }
 }

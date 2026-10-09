@@ -308,6 +308,11 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
           : assessment.metric == AssessmentMetric.matchWinningChance
           ? '−${(loss * 100).toStringAsFixed(2)}pp'
           : '−${loss.toStringAsFixed(3)}';
+    } else if (assessment != null && !assessment.isDecision) {
+      // A completed forced bear-off turn is still useful feedback, but it must
+      // not receive a fake quality grade. Dances have no candidate ranking and
+      // are identified as passes instead.
+      lossText = assessment.ranked.isEmpty ? 'Pass' : 'Forced';
     }
 
     final line = Row(
@@ -337,12 +342,15 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
             style: base,
           ),
         ),
-        if (markColor != null) ...[
+        if (markColor != null || lossText.isNotEmpty) ...[
           const SizedBox(width: 4),
           Text(
             lossText,
             maxLines: 1,
-            style: base.copyWith(color: markColor, fontWeight: FontWeight.w600),
+            style: base.copyWith(
+              color: markColor ?? scheme.onSurfaceVariant,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ],
       ],

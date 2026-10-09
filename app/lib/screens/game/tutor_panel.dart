@@ -109,6 +109,7 @@ class _TutorPanelState extends State<TutorPanel> {
                     const SizedBox(height: TutorPanel.handleHeight),
                     _dragTarget(
                       key: const ValueKey('tutorPanelHeader'),
+                      onTap: widget.expanded ? _toggle : null,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 12, right: 64),
                         child: SizedBox(
@@ -258,15 +259,19 @@ class _TutorPanelState extends State<TutorPanel> {
 
   void _toggle() => widget.onExpandedChanged(!widget.expanded);
 
-  Widget _dragTarget({required Key key, required Widget child}) =>
-      GestureDetector(
-        key: key,
-        behavior: HitTestBehavior.opaque,
-        onVerticalDragStart: (_) => _dragDistance = 0,
-        onVerticalDragUpdate: (details) =>
-            _dragDistance += details.primaryDelta ?? 0,
-        onVerticalDragEnd: _finishDrag,
-        onVerticalDragCancel: () => _dragDistance = 0,
-        child: child,
-      );
+  Widget _dragTarget({
+    required Key key,
+    required Widget child,
+    VoidCallback? onTap,
+  }) => GestureDetector(
+    key: key,
+    behavior: HitTestBehavior.opaque,
+    onTap: onTap,
+    onVerticalDragStart: (_) => _dragDistance = 0,
+    onVerticalDragUpdate: (details) =>
+        _dragDistance += details.primaryDelta ?? 0,
+    onVerticalDragEnd: _finishDrag,
+    onVerticalDragCancel: () => _dragDistance = 0,
+    child: child,
+  );
 }
