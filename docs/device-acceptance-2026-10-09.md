@@ -3,9 +3,21 @@
 Status: **signed build 10015 passed the core tutor, review, practice, permission,
 diagnostics and real online flows; final build 10017 passed a data-preserving
 update and focused smoke**. No remaining blocker was observed in these flows.
-This does not establish complete physical Buddy, optical QR, audible speech,
-16 KB runtime or store acceptance. The phone was released after testing with
+This physical-phone run does not establish physical Buddy, optical QR, audible
+speech, 16 KB runtime or store acceptance. The phone was released after testing with
 its original display settings restored.
+
+**V1 scope update, 2026-10-09:** the owner parked physical-board Buddy for v2.
+The replacement candidate hides its home/settings controls and blocks direct
+setup, calibration and game routes before hardware or session initialization.
+The microphone permission is removed; nearby QR camera joining remains. The
+10015/10017 results below are retained as historical evidence. Replacement
+10018 independently passed its APK/AAB audit (including absent microphone
+permission), 128 targeted tests and exact-APK offline tutor execution on a genuine
+16 KB ARM64 cloud device. Its Home hides physical Buddy; direct-route/settings
+regressions passed. See the [separate runtime report](android-runtime-symbolication-2026-10-09.md).
+The shared phone's 10018 upgrade/persistence and optical QR remain unperformed.
+Physical-board recognition and speech are outside v1 acceptance.
 
 ## Baseline and preservation
 
@@ -207,12 +219,14 @@ their transports. Only disposable test identities were used.
 The first natural scheduled cleanup, run `37859798046` at 23:30 UTC on
 2026-10-08, previously proved actual deletion of two disposable accounts and
 one match tree, with completed request markers. The newer phone-test batch is
-separate: **three identities, two matches and 17 child documents** have accepted
-deletion requests. As of the 2026-10-09 00:31 UTC check, the next scheduled run
-had not appeared; independent reads still found all three accounts, both match
-trees and three pending markers. No manual apply or administrative shortcut was
-used. GitHub scheduling
-is best effort; nominal `:17` execution is not an exact-time guarantee.
+separate: **three identities, two matches and 17 child documents** had accepted
+deletion requests. At 2026-10-09 08:30 UTC, the read-only verifier passed its
+completion assertions: **zero accounts, zero matches, zero child documents and
+zero pending markers remained; all three request markers were complete**.
+Scheduled cleanup run `37899803148` independently reported success at
+07:34:30–07:34:43 UTC. No manual apply or administrative shortcut was used.
+GitHub scheduling is best effort; nominal `:17` execution is not an exact-time
+guarantee.
 
 ## Actual store screenshots and display restoration
 
@@ -250,17 +264,20 @@ screenshots and UI evidence use the `final-*` prefix in the same local folder.
 | Native engine, ranked tutor hints, explanation and move confirmation | Initial full flow passed; native game/hints/explanation repeated successfully on final signed 10017 |
 | Detailed replay, saved practice, settings persistence | 10015 passed enlarged controls and second manual recall; History/practice/settings retained through 10017 update |
 | Background/resume and force-stop/relaunch | Observed; saved learning and selected defaults retained |
-| Offline launch | Not performed; transport independence not established |
+| Offline launch | Not performed on the shared phone; exact 10018 passed foreground offline local-tutor execution on the separate 16 KB cloud device |
 | Camera permission refusal | Initial defect fixed; stable fresh refusal and denied background/resume observed on signed 10015 |
 | Diagnostics report preview/Cancel | Passed on 10015; no GitHub/browser navigation or issue submission |
-| Real online host, join, rejoin, completed game and erasure request | Passed on 10015 against dedicated Freevia backend; immediate match access block observed; new batch's eventual purge remains pending verification |
-| Final permission-clean package | 10017 installed and inspected; no advertising-ID or AdServices permissions |
-| Physical board calibration, camera preview mapping, thrown dice, optical QR, microphone cadence, audible TTS | Not performed; requires physical setup and human observation |
-| 16 KB Android runtime | Not performed on this 4 KB phone; separate target required |
+| Real online host, join, rejoin, completed game and erasure | Passed on 10015 against dedicated Freevia backend; immediate access block observed; all three accounts, both match trees and 17 children subsequently verified deleted with completed markers |
+| Historical permission-clean package | 10017 installed and inspected; no advertising-ID or AdServices permissions. Replacement 10018 APK/AAB audit separately confirms RECORD_AUDIO is also absent |
+| Nearby optical QR joining (v1) | Not performed on this phone; a real second display and camera target are required; manual online/nearby entry is a separate path |
+| Physical board calibration, camera preview mapping, thrown dice, microphone cadence, audible TTS (v2 only) | Not performed; physical-board Buddy is parked and inaccessible in the replacement v1 release |
+| 16 KB Android runtime | This phone has 4 KB pages; exact 10018 passed on the separate 16 KB ARM64 Test Lab target |
 | iPhone acceptance | Not performed; no iPhone target used |
 
-Once a suitable target is available, run the tutor checks in
-[release readiness](release-readiness.md) and the complete
-[physical Buddy protocol](buddy-mode-test-protocol.md). Simulated camera frames,
-widget tests and transcript text are not substitutes for physical board or
-audible speech evidence.
+Additional physical-phone coverage is recorded in
+[release readiness](release-readiness.md): an in-place 10018 update preserving
+saved data and a nearby optical QR scan remain unperformed. The completed exact
+10018 offline tutor/16 KB results are in the [runtime report](android-runtime-symbolication-2026-10-09.md).
+The [physical Buddy protocol](buddy-mode-test-protocol.md) is retained for v2
+only; simulated frames or transcript text must not be presented as completed
+physical-board or audible-speech acceptance.

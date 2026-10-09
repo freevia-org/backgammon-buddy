@@ -1,25 +1,55 @@
 # Release readiness — 2026-10-09
 
-**Status: tutor implementation, the Freevia online service and signed Android
-artifact validation are complete. Android device acceptance and store preparation
-are recorded below; physical Buddy, 16 KB runtime and Apple gates remain open.
-The app has not been submitted for review or released.** Publisher is **Freevia**, source is
+**Status: the owner deferred physical-board Buddy Mode to version 2. Replacement
+Android candidate 0.14.0+10018 hides that mode and its settings and removes
+microphone access. Full CI, the signed-artifact audit and exact-APK offline tutor
+acceptance on a genuine 16 KB ARM64 Android device passed. The on-screen tutor remains the release focus. Android
+0.14.0+10018 is available to two approved internal Play testers. Production and
+11 associated changes were submitted; Google reports Changes in review with
+automated submission checks running. No public release is claimed. Apple remains
+on hold.** Publisher is **Freevia**, source is
 <https://github.com/freevia-org/backgammon-buddy>, policy is
 <https://freevia.org/backgammon-buddy/privacy/>, and support is
-<https://freevia.org/backgammon-buddy/support/>. This report does not claim store release.
+<https://freevia.org/backgammon-buddy/support/>. This report distinguishes internal
+testing from public store release.
 The app identity is `org.freevia.backgammonbuddy` on Android and iOS. First-party
 source is MIT licensed; third-party components retain their own licenses.
+Version 1 scope changes are committed as `de4768b`; candidate source
+`b32a976427cfe49e34b05fbadcc3a743ec4793a5` also includes reusable runtime and native
+symbol checks. [CI 37910030483](https://github.com/freevia-org/backgammon-buddy/actions/runs/37910030483)
+passed all 11 jobs; [Android 37910032478](https://github.com/freevia-org/backgammon-buddy/actions/runs/37910032478)
+produced the signed APK/AAB at build 10018. The scoped app change passed 128
+targeted tests and static analysis. Test Lab matrix `matrix-1grz0e5rpjqps` passed
+one test with zero failures on API 36, checking the exact installed APK hash,
+version, Freevia certificate and 16384-byte pages. With no active network before
+launch or after the tutor flow, it displayed real engine rankings, expanded a
+grounded explanation and activated Confirm. Home has no physical Buddy entry.
+See [runtime evidence](android-runtime-symbolication-2026-10-09.md).
 Both Git remotes point to the Freevia repository. A new Freevia upload certificate
 and signing secrets are configured, with build-number baseline 10000. The signed
 Android build exposed an extra x86_64 packaging issue; commit `1b17b39` restricts
 release packaging to the two supported ARM ABIs while preserving debug emulator
-support. Final source `e6c8749b39273604d0a1799f27083912f96b5bec` passed all 11 CI
-jobs and produced the signed APK and Play bundle at `0.14.0+10017`. Both passed
-independent identity, signature, ABI, native alignment, branding and notice
-checks; APK ZIP alignment and bundle validation also passed. The final change
-removes two unused advertising-service permissions; application behavior is
-unchanged from the `10015` candidate used for core functional acceptance. The final APK updates the
-new package without uninstalling the separate legacy tester app.
+support. The final `0.14.0+10018` APK/AAB passed independent identity, signature,
+ABI, native alignment, branding, configuration and notice checks; APK ZIP
+alignment and bundle validation also passed. `RECORD_AUDIO`, `AD_ID` and both
+AdServices permissions are absent. Camera remains for optional nearby QR.
+The upload certificate and application ID are unchanged, so the existing
+sideloaded installation has an in-place update path; the shared phone has not
+yet received 10018. Play uses a different distribution certificate, so do not
+uninstall that phone's app or risk saved data to switch channels.
+
+10018 APK SHA-256: `2ae2b79c87e6b0f2d38850449855b761d3b88614dd6ca6c2194d99a87ac4c5fa`.
+AAB SHA-256: `bff44c1fdeac1808b7209466c7a25720c4131bc87709a02ca45e8b4e7f21e1d5`.
+Artifacts, symbols, inventories and audit evidence are also preserved outside
+the cleanable build tree at
+`E:/Users/anton/Documents/Freevia/Releases/backgammon-buddy/0.14.0-10018/`.
+The archive includes 182 verified payload/evidence files (483,517,172 bytes),
+including 13 Test Lab results and eight runtime metadata records. Its
+`SHA256SUMS.txt` hash is
+`7f1700fb84c0659fac5d643c606a60495ec43f5ff207b195f40d9bd20d657c59`.
+Earlier 10015/10017 phone
+results below remain historical evidence; no physical-phone upgrade or optical
+QR test is inferred from the cloud-device run.
 
 The dedicated Firebase project `backgammon-buddy-freevia` belongs to the Google
 organization administered by `info@freevia.org`. EU Firestore storage, anonymous
@@ -33,31 +63,40 @@ and is not deployed. Authentication processing is in the
 US, with Google's separate retention disclosed; see the
 [deployment record](../firebase/DEPLOY.md) and [operations](privacy-cleanup-operations.md).
 
-A Backgammon Buddy draft exists in Freevia's Google Play account. The owner
+Backgammon Buddy is configured in Freevia's Google Play account. The owner
 approved ages 13 and over, IARC terms, and Google's default installer protection.
 IARC generated ESRB Everyone and PEGI 3 ratings; the declared target audience is
 13 and over. Listing text, artwork, policy/contact URLs and access instructions
-are saved. Data Safety declares five optional collected categories, and the
-Advertising ID answer is No; the Console confirmed both forms saved. An internal
-release draft contains the processed `10017 (0.14.0)` AAB, release notes and
-symbols; seven actual app screenshots are saved in tutor-first order. Play
-preview reports no artifact error, with only a warning that no testers are
-configured. Tester delivery and review/rollout remain pending; Save and publish
-was not pressed. Apple
+are submitted with the production release. Data Safety declares five optional
+collected categories, and the Advertising ID answer is No. The internal release
+contains processed `10018 (0.14.0)`, v1 notes and symbols. Six authentic
+tutor/review/practice screenshots remain after removing the older home image.
+Play validation showed no warnings or errors. Replacement internal publication
+completed at 12:55 Kyiv time on October 9, and Play reports **Available to
+internal testers** for the same two approved accounts. Production 10018 and
+11 changes were sent for review; automated checks were still running at the
+recorded submission. No invitation emails were sent. See the
+[delivery record](android-release-delivery-2026-10-09.md) for the latest state.
+Play-delivered installation itself has not been observed. Public approval and
+rollout remain Google's external processing steps. Apple
 Developer access is not ready, so iOS builds remain unsigned and cannot establish
 App Store readiness.
 The product/privacy/support routes were deployed and independently verified HTTP
 200 with the expected distinct page titles; privacy@freevia.org and
 support@freevia.org are the existing Freevia contacts.
-The approved policy/support update is live in
-[deployment 89b9ac90](https://89b9ac90.freevia.pages.dev), verified on freevia.org
-at 23:48:18 UTC on October 8 (October 9 locally). It covers 30-day EU match
+The version 1 landing/privacy/support update is live in
+[deployment b25d663d](https://b25d663d.freevia.pages.dev), verified on freevia.org
+on October 9. It covers 30-day EU match
 availability/deletion handling, separate US Authentication retention, local-data
 preservation, unencrypted nearby traffic, GitHub draft transmission and speech
-fallback. The support page links the Freevia MIT license. Only the two Backgammon
-policy/support HTML files changed; the verified prior deployment's homepage,
-QC Remote pages, other apps, assets, headers and redirects were preserved.
-All 39 served files matched the new immutable deployment. Product/privacy/support
+fallback for earlier internal builds. Current version 1 copy covers on-screen
+tutoring and optional nearby QR camera use; physical-board, microphone and
+spoken-Buddy promotion is removed. A labeled earlier-internal-build section
+preserves the accurate 10017 disclosure. The support page links the Freevia MIT
+license. Only the three Backgammon HTML pages changed from the actual latest
+production baseline `c884e4d3`, preserving its newer QC Remote policy, homepage,
+other apps, assets, headers and redirects. All 39 served files matched the new
+immutable deployment; 38 of 41 total files were unchanged. Product/privacy/support
 routes returned HTTP200 and advertise no public store/download links. The former `/aigammon/`
 product route redirects to `/backgammon-buddy/`. Public source was published to
 the Freevia repository; the validation evidence below identifies the tested commit.
@@ -142,17 +181,18 @@ See the [code review](code-review-2026-10-08.md) for code fixes and test results
   LOADs and reports every library failure plus ZIP errors in one run. Both final
   diagnostic APKs passed the corrected ELF and ZIP checks.
 
-## Outstanding release gates
+## Release checks and remaining work
 
 | Priority | Gate | Evidence and action |
 |---|---|---|
-| P1 | Cloud operations and store disclosures | Deployed retention/deletion and the live policy are verified; Play Data Safety and Advertising ID forms are saved, not submitted. The earlier natural scheduled cleanup and independent read-back passed in run 37859798046. Later phone test fixtures have authenticated deletion requests; request acceptance alone is not purge evidence. The independent alert monitor is optional and undeployed; operators still need to inspect cleanup failures and missed runs. See [disclosure worksheet](store-disclosures.md). |
-| P1 | Google Play delivery | Final signed APK/AAB 0.14.0+10017 passed artifact validation. Source-equivalent 10015 completed core local/online phone tests, and the final update smoke passed persistence and tutor checks. Play processed the AAB and saved internal release draft 1 with notes/symbols; seven screenshots and the listing are ready to send for review. No artifact errors; only the missing-testers warning remains. Configure testers and verify Play-delivered installation before any rollout. Nothing was submitted or published. |
-| P1 | iOS store artifact | Apple account access is not ready. The exact-source unsigned artifact passes its notice/privacy inventory and contains no advertising identity/conversion framework paths or dylib-load references. A signed profile/export, generated Xcode privacy report, device acceptance and App Store Connect validation remain unavailable. |
-| P1 | Remaining physical-device acceptance | Android tutor/review/practice, camera denial, diagnostics Cancel and live online flows passed as recorded in the [device report](device-acceptance-2026-10-09.md). Physical-board calibration, optical QR scanning, thrown dice, microphone cadence and audible speech remain unperformed. Complete the [Buddy protocol](buddy-mode-test-protocol.md) and iPhone acceptance before claiming those paths verified. Camera dice recognition remains experimental; typed dice are supported. |
-| P1 | 16 KB Android runtime | Final APK/AAB static ELF checks and APK ZIP alignment pass. The test phone uses 4096-byte pages, so it cannot prove runtime compatibility on a 16 KB device/emulator. That separate acceptance target remains open. |
-| P2 | Native crash symbolication | Final CI retained unstripped Android engine symbols; the signed iOS path is configured to retain archive dSYMs but was not exercised. Native upload and a deliberately symbolicated test crash still need exact-release validation; keep symbols beyond CI artifact retention. |
-| P2 | Distribution metadata/build history | Freevia listing/contact, ratings, review instructions and actual screenshots are prepared/saved. Confirm final countries/platforms and rollout scope. Identity `org.freevia.backgammonbuddy` coexists with prior experimental apps without migrating their data. `RELEASE_BUILD_NUMBER_BASE=10000` exceeds observed prior tester codes; final universal APK and AAB both use 10017. |
+| Complete / ongoing operations | Cloud operations and store disclosures | Deployed retention/deletion and the live policy are verified; Play Data Safety and Advertising ID forms were included in the production submission. Scheduled run 37866315438 deleted the later phone batch's three identities, two matches and 17 children; independent read-back confirmed none remain and all three request markers complete. Eight overnight scheduled runs succeeded. The independent alert monitor is optional and undeployed; routine operator inspection of failures/missed runs remains an ongoing responsibility. |
+| External review | Google Play review | Final signed 10018 passed artifact audit and exact-APK offline 16 KB tutoring. Internal 10018 is available with no validation errors/warnings. Production 10018, six screenshots, listing and declarations were submitted; automated checks/review remain external. Play-delivered installation itself has not been observed. Preserve existing local data when testing its different distribution certificate. |
+| Complete | Version 1 scope replacement | Source gate and 128 targeted tests passed; full CI, independent signed 10018 artifact audit and exact-APK 16 KB offline tutor run passed at b32a976. Play copy and website are updated. Six authentic 9:16 tutor/review/practice screenshots remain suitable; the old home image was removed. The new native 1080×2400 Home capture is acceptance evidence only. |
+| On hold | iOS store artifact | Apple account access is not ready and the owner explicitly deferred Apple. An earlier unsigned artifact passed its notice/privacy inventory and contained no advertising identity/conversion framework paths or dylib-load references; it predates the v1 gate. A current signed profile/export, generated Xcode privacy report, device acceptance and App Store Connect validation remain unavailable. |
+| P2 | Additional device coverage | Earlier Android tutor/review/practice, camera denial, diagnostics Cancel and live online flows passed as recorded in the [device report](device-acceptance-2026-10-09.md). Exact 10018 passed a fresh offline 16 KB cloud-device tutor run and hidden Home entry check; direct-route/settings regression tests passed. The shared-phone 10018 upgrade and nearby optical QR scan remain unperformed. Physical-board calibration, thrown dice, microphone cadence and audible speech are deferred with Buddy Mode to version 2 and do not block version 1. |
+| Complete | 16 KB Android runtime | Final APK/AAB ELF and APK ZIP checks pass. Exact signed APK 10018 ran the real engine and tutor on ARM64/API 36 with independently asserted 16384-byte pages and no active network before launch or after execution. Matrix matrix-1grz0e5rpjqps passed one test, zero failures, without billing. This covers the exercised local tutor path, not every plugin or an observed-crash test. |
+| P2 | Native crash symbolication | Final CI retained unstripped Android engine symbols, and Play processed the native symbols. An offline rehearsal matched every allocated ELF section in both final artifacts and resolved four known engine PCs per ARM ABI to source lines. This proves retained-symbol compatibility, not observed-crash capture or stack unwinding. The signed iOS dSYM path was not exercised. Keep symbols beyond CI artifact retention. |
+| Complete | Distribution metadata/build history | Freevia listing/contact, ratings, review instructions and six authentic screenshots are saved. Free Android distribution targets all 178 available countries; Play Games on PC is opted out. XR's automatic mobile-track inheritance is documented separately, not claimed tested. Identity `org.freevia.backgammonbuddy` coexists with prior experimental apps without migrating their data. Final universal APK and AAB both use 10018. |
 | P2 | Windows distribution | Desktop integration passed with the real native engine, advancing five plies. No Windows installer/signing CI or clean-machine acceptance evidence exists; decide the public distribution target before advertising downloads. |
 
 Google Play requires an accessible policy in the app and in the listing, with
@@ -175,9 +215,9 @@ and artifact/device verification are recorded as separate evidence.
 | Local games, analysis, settings, diagnostics | SQLite and app-local files (`app/lib/data`, `app/lib/diagnostics`). History deletion is local. | Describe storage/backup, deletion, and what diagnostics the user can share. |
 | Online matches | Firebase anonymous identity and Firestore match/event/roll records (`packages/online_client`, `firebase/firestore.rules`). Authenticated privacy requests freeze match access; the least-privilege service deletes cloud records and identities. | Signed phone host/join, both seats, reconnect, completion and deletion-request flows passed. Scheduled execution and hosted policy verified separately. Local History deletion remains separate from cloud deletion. |
 | Usage and reliability telemetry | Native defaults off; explicit persisted opt-in controls source capability. Final APK/AAB have no native telemetry app/sender configuration, and no Analytics property was created. Ads consent denied; AD_ID and both AdServices permissions absent. | Static configuration verified in both artifacts. A later enabled build needs provider retention, network and opt-in/withdrawal acceptance; withdrawal cannot retract prior/in-flight transmission. |
-| Buddy camera/microphone | Camera frames are processed locally; optional audio is reduced to a transient dice-sound hint (`app/lib/buddy`). | Verify the shipped binary behaves this way, state the purposes clearly, and test refusals/backgrounding. Permission strings are present on Android/iOS. |
+| Physical Buddy camera/microphone | Source retained under `app/lib/buddy`, parked for version 2. Version 1 must not expose its routes or initialize its sensors. | Verify entry-point guards and the replacement Android artifact's absent microphone permission. Nearby QR retains local camera access. |
 | Nearby networking / QR | Unencrypted local UDP/WebSocket traffic, a generic app discovery label and optional on-device camera decoding (`packages/lan_play`). | Do not claim blanket encryption in transit; use trusted Wi-Fi. Test iOS permission denial and direct-address/QR fallback when discovery fails. |
-| Buddy speech | Native Android offline-voice validation before text; iOS AVSpeechSynthesizer; transcript survives unavailable speech. | Test actual eligible voice, unavailable-voice fallback and stop/session lifecycle. Do not infer control over a third-party engine's background networking. |
+| Buddy speech | Parked with physical Buddy for version 2; source retains offline-voice validation and text fallback. | No spoken Buddy claim in version 1. Actual voice/lifecycle acceptance belongs to the future physical-board release. |
 | Feedback | Diagnostics offers a local preview/Cancel. Opening a GitHub draft sends its version/platform and error excerpt before public submission (`app/lib/feedback`). | Declare optional report collection separately from disabled Firebase telemetry. Confirm policy distinguishes draft transmission from public posting. |
 
 ## Candidate verification sequence
@@ -220,15 +260,17 @@ and artifact/device verification are recorded as separate evidence.
 
 ## Remote build evidence
 
-Current follow-up evidence:
+Historical follow-up evidence before the final 10018 candidate:
 
 Final Android source `e6c8749b39273604d0a1799f27083912f96b5bec` adds only two
 manifest permission removals and their Python regression to `9f92e47`.
 All 11 final CI jobs passed. The signed Android APK/AAB passed independent audit;
 phone acceptance is recorded separately below. iOS-affecting sources, dependencies
 and configuration are unchanged, so its verified `9f92e47` unsigned artifact
-remains applicable; redundant iOS run `37863235011` was canceled. No new iOS
-artifact or Apple acceptance is claimed for `e6c8749`.
+remains applicable to that historical Android-only change; redundant iOS run
+`37863235011` was canceled. The later v1 gate at `b32a976` affects shared Flutter
+source and requires a fresh Apple build when that platform resumes. No current
+signed iOS artifact or Apple acceptance is claimed.
 
 | Run | Verified result |
 |---|---|
@@ -240,7 +282,7 @@ artifact or Apple acceptance is claimed for `e6c8749`.
 | [Android 37856568143](https://github.com/freevia-org/backgammon-buddy/actions/runs/37856568143) | Signed universal ARM APK at `1b17b39`, version 0.14.0+10011, package `org.freevia.backgammonbuddy`, valid Freevia v2 signature and native/ZIP checks. APK SHA-256 `735ca26b43d022a974ab2bba344b03a26d093f85ca30de18fb9c32611eb2122c`. No legacy publisher string found in decoded ZIP entries. This earlier candidate lacks subsequent notice/privacy changes. |
 | [iOS 37856567962](https://github.com/freevia-org/backgammon-buddy/actions/runs/37856567962) | Post-QR unsigned Runner and captured inventory passed. Fourteen package pins and 27 source notices match the reviewed catalog; 23 privacy manifests captured, with no linked ML Kit or advertising identity/conversion framework paths. This is not signed/device/store acceptance. |
 
-Final Android evidence and APK/AAB Dart/native symbols are retained under
+Historical 10017 evidence and APK/AAB Dart/native symbols are retained under
 `app/build/release-audit/android-e6c8749/`, including `artifact-verification.json`,
 decoded manifests/resources, signature output and native inventory. The APK is
 77,316,696 bytes, SHA-256
@@ -262,10 +304,10 @@ practice persistence, camera-refusal/reentry and Diagnostics preview/Cancel.
 Its configured online flow passed host/join from both seats, force-stop/rejoin,
 completed-game persistence and authenticated deletion requests. The permission-only
 `10017` update preserves saved History/practice and still displays live hints and
-explanations; its installed permissions match the cleaned artifact. Three test
-identities, two matches and seventeen child documents were queued through
-authenticated deletion requests; until independently checked after the scheduler,
-these fixtures must not be described as purged. See the
+explanations; its installed permissions match the cleaned artifact. Scheduled
+run `37866315438` subsequently deleted the three test identities, two matches
+and seventeen child documents. Independent read-back at 08:30 UTC on October 9
+confirmed none remain and all three request markers are complete. See the
 [device acceptance record](device-acceptance-2026-10-09.md) for exact boundaries.
 
 The final iOS evidence is preserved locally under

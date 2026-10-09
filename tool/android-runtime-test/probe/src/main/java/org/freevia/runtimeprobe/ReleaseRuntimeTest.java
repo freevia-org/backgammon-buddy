@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -34,6 +35,8 @@ public class ReleaseRuntimeTest {
     private static final String APP = "org.freevia.backgammonbuddy";
     private UiDevice device;
     private File output;
+    private String initialAirplane;
+    private String initialWifi;
     private final JSONObject evidence = new JSONObject();
 
     @Test(timeout = 240_000)
@@ -67,6 +70,23 @@ public class ReleaseRuntimeTest {
             assertEquals("Release certificate changed", expectedCert, cert);
             assertEquals("Test service changed/re-signed the shipping APK", expectedSha, apkHash);
 
+            // Only the disposable cloud device is changed. No online match or
+            // account is created, and prior settings are restored in finally.
+            initialAirplane = device.executeShellCommand("settings get global airplane_mode_on").trim();
+            initialWifi = device.executeShellCommand("settings get global wifi_on").trim();
+            assertTrue("Cannot preserve airplane state", initialAirplane.matches("[01]"));
+            assertTrue("Cannot preserve Wi-Fi state", initialWifi.matches("[0123]"));
+            device.executeShellCommand("cmd connectivity airplane-mode enable");
+            device.executeShellCommand("svc wifi disable");
+            ConnectivityManager network = context.getSystemService(ConnectivityManager.class);
+            long offlineDeadline = SystemClock.uptimeMillis() + 15_000;
+            while (network.getActiveNetwork() != null && SystemClock.uptimeMillis() < offlineDeadline) {
+                SystemClock.sleep(200);
+            }
+            boolean offlineBefore = network.getActiveNetwork() == null
+                && device.executeShellCommand("settings get global airplane_mode_on").trim().equals("1");
+            evidence.put("offlineBeforeLaunch", offlineBefore);
+
             Intent launch = context.getPackageManager().getLaunchIntentForPackage(APP);
             assertNotNull("Installed app has no launcher", launch);
             context.startActivity(launch.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
@@ -98,8 +118,7 @@ public class ReleaseRuntimeTest {
             assertNotNull("No scored top candidate", best);
             evidence.put("scoredTopPlay", best.getContentDescription());
             best.click();
-            UiObject2 confirm = label("Confirm", 5_000);
-            assertTrue("Top play was not staged", confirm.isEnabled());
+            UiObject2 confirm = enabledLabel("Confirm", 5_000);
             confirm.click();
             evidence.put("confirmActivated", true);
             SystemClock.sleep(1_000);
@@ -107,6 +126,12 @@ public class ReleaseRuntimeTest {
             // A visible Hint alone does not prove a new turn. Record only the
             // action actually observed; native ranking is the runtime evidence.
             capture("after-play");
+            boolean offlineAfter = network.getActiveNetwork() == null;
+            evidence.put("offlineAfterTutor", offlineAfter);
+            // Some managed virtual targets retain Ethernet despite airplane mode.
+            // That keeps offline acceptance open, without discarding real 16 KB
+            // engine evidence or falsely labelling a connected run as offline.
+            evidence.put("offlineCoreVerified", offlineBefore && offlineAfter);
             evidence.put("passed", true);
             Log.i("BB_RUNTIME", evidence.toString());
         } catch (Throwable failure) {
@@ -115,6 +140,18 @@ public class ReleaseRuntimeTest {
             capture("failure");
             throw failure;
         } finally {
+            // Restoration must not skip evidence writing if a device command fails.
+            try {
+                if (initialAirplane != null && initialAirplane.matches("[01]")) {
+                    device.executeShellCommand("cmd connectivity airplane-mode " + (initialAirplane.equals("1") ? "enable" : "disable"));
+                }
+                if (initialWifi != null && initialWifi.matches("[0123]")) {
+                    device.executeShellCommand("svc wifi " + (initialWifi.equals("1") || initialWifi.equals("2") ? "enable" : "disable"));
+                }
+                evidence.put("networkRestoreCommandsCompleted", true);
+            } catch (Exception restoreFailure) {
+                evidence.put("networkRestoreCommandsCompleted", false);
+            }
             try (FileOutputStream stream = new FileOutputStream(new File(output, "evidence.json"))) {
                 stream.write(evidence.toString(2).getBytes(StandardCharsets.UTF_8));
             }
@@ -141,6 +178,16 @@ public class ReleaseRuntimeTest {
             SystemClock.sleep(200);
         } while (SystemClock.uptimeMillis() < end);
         throw new AssertionError("Missing visible label: " + label);
+    }
+
+    private UiObject2 enabledLabel(String label, long timeout) {
+        long end = SystemClock.uptimeMillis() + timeout;
+        do {
+            UiObject2 found = find(label);
+            if (found != null && found.isEnabled()) return found;
+            SystemClock.sleep(200);
+        } while (SystemClock.uptimeMillis() < end);
+        throw new AssertionError("Control never became enabled: " + label);
     }
 
     private UiObject2 find(String label) {

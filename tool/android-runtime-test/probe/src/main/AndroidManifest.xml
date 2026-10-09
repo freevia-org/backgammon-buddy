@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <queries><package android:name="org.freevia.backgammonbuddy" /></queries>
     <application android:label="Runtime acceptance probe" />
     <!-- Instrument OUR test package, never re-sign or inject into the release.

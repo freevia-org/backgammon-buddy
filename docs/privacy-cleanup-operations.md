@@ -106,6 +106,17 @@ complete. The markers intentionally remain for their 24-hour protection period.
 This exercised actual service-account write/delete permissions through GitHub
 OIDC; fixture identifiers and tokens were not published.
 
+The later physical-phone test batch was removed by
+[scheduled run 37866315438](https://github.com/freevia-org/backgammon-buddy/actions/runs/37866315438)
+at **03:44 Kyiv time on October 9 (00:44 UTC)**. It processed three requests,
+deleted two matches and 19 documents (17 children plus two parent records),
+and deleted three Auth identities, with no overdue requests or remaining work.
+Independent read-back at **11:30 Kyiv time (08:30 UTC)** confirmed zero fixture
+accounts, match parents or children remaining, zero pending request markers,
+and three complete protective markers. Eight overnight scheduled runs succeeded
+through the 10:34 Kyiv run. No manual apply or administrative deletion shortcut
+was used.
+
 The two public online repository variables, `AIGAMMON_FIREBASE_PROJECT` and
 `AIGAMMON_FIREBASE_API_KEY`, were set and their values read back successfully
 for the next signed candidate. Freevia project ownership, organization, `eur3`

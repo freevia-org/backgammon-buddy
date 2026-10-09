@@ -1,5 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Test Lab requires an app APK for self-instrumenting test APKs.
-         This empty anchor is NOT the product and is never shipped. -->
-    <application android:label="Runtime test anchor" android:hasCode="false" />
+    <!-- Test Lab requires a valid code-bearing launcher APK for this slot.
+         This inert anchor is NOT the product and is never shipped. -->
+    <application android:label="Runtime test anchor">
+        <activity android:name=".AnchorActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>

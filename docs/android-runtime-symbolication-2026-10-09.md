@@ -2,21 +2,70 @@
 
 ## Scope and status
 
-The signed `0.14.0+10017` APK/AAB have passed static 16 KB ELF/ZIP checks and
-4 KB physical-device acceptance. Those checks do not establish execution on a
-16 KB kernel. The replacement v1 release, with physical-board Buddy mode hidden,
-must receive its own runtime test; **no Test Lab matrix has been submitted yet**.
+The signed replacement v1 APK `0.14.0+10018`, with physical-board Buddy mode
+hidden, **passed actual 16 KB ARM64 execution and foreground offline tutoring**
+in the existing Freevia Firebase project's Test Lab. The installed whole-APK
+hash, signing certificate, and version matched the independently audited release.
+One matrix ran once; no billing was enabled. This supplements the separate
+static APK/AAB audit and earlier 4 KB physical-device acceptance.
 
 The source-level native symbolication rehearsal below passed. It deliberately
 does not claim an observed crash, stack unwinding, or crash-service ingestion.
 
-## Free 16 KB runtime preparation
+## Exact 10018 runtime acceptance
+
+Source: `b32a976427cfe49e34b05fbadcc3a743ec4793a5`, Android workflow
+[37910032478](https://github.com/freevia-org/backgammon-buddy/actions/runs/37910032478).
+Test Lab matrix `matrix-1grz0e5rpjqps` completed successfully on **9 October 2026
+at 12:52:53 Kyiv time (09:52:53 UTC)**. Its
+[authenticated results](https://console.firebase.google.com/project/backgammon-buddy-freevia/testlab/histories/bh.813025184b02081b/matrices/9136726721370232600)
+show one successful attempt, one JUnit test, zero failures/errors/skips, and
+10 seconds of test-process time (JUnit case: 9.026 seconds).
+
+| Check | Observed result |
+| --- | --- |
+| Target | `MediumPhone_ps16k.arm`, Android API 36, primary ABI `arm64-v8a` |
+| Actual kernel page size | `16384` bytes; no backcompat target or x86 translation |
+| Installed version | `org.freevia.backgammonbuddy`, version code `10018` |
+| Installed whole APK SHA-256 | `2ae2b79c87e6b0f2d38850449855b761d3b88614dd6ca6c2194d99a87ac4c5fa` |
+| Installed certificate SHA-256 | `ec6b2f117457a10eb30f5ea366f31219569eb091c263c18c21d85fb6171e4c6a` |
+| Home | Physical Buddy entry absent, visually confirmed in the captured screen |
+| Real native tutor | Top plays displayed; `6/5 8/5` ranked first at `50.67` MWC |
+| Explanation | Expanded “Why this play?” and “What changes on the board” |
+| Move action | Best candidate previewed; enabled Confirm activated |
+| Foreground offline core | No active network before app launch or after tutor; `offlineCoreVerified=true` |
+| Restoration | Disposable-device network restore commands completed |
+
+The probe tested the exact shipping APK as a separately installed app; it did
+not rebuild or re-sign the product. `evidence.json`, successful JUnit XML, and
+instrumentation output agree. The captured Home and explanation were inspected.
+No product fatal exception, fatal signal, or native-link error was found in the
+run's logcat. The local game and all test data belonged to the disposable cloud
+device; no shared phone or player account was accessed.
+
+This run covers the local engine, ranked hints, explanation, and move activation
+on a 16 KB device while offline. It does not claim optical QR, online multiplayer,
+all native plugins, an observed native crash/unwind, or a complete subsequent
+turn. Physical-board camera/voice acceptance is deferred to v2 by release scope.
+The unedited Home is 1080×2400 and is acceptance evidence only; the existing
+9:16 tutor screenshots remain the Play listing assets.
+
+All 13 result objects, including video, were downloaded under
+`app/build/release-audit/runtime-16kb/results/MediumPhone_ps16k.arm-36-en-portrait/`.
+The pulled probe evidence is below
+`artifacts/sdcard/Android/data/org.freevia.runtimeprobe/files/runtime-evidence/`.
+Matrix request/response, final matrix status, ToolResults step, and pre/postflight
+checks are retained alongside them in the ignored audit directory. The final
+postflight at 12:54 Kyiv (09:54 UTC) confirmed billing was still disabled.
+
+## Free Test Lab setup
 
 The existing Freevia project `backgammon-buddy-freevia` was checked through the
 authenticated Google APIs at 09:10 UTC:
 
-- Billing is disabled. The Test Lab Spark virtual quota has a limit of 10
-  executions per day; ToolResults lists zero test histories, with no next page.
+- Billing was disabled. The Test Lab Spark virtual quota had a limit of 10
+  executions per day; ToolResults initially listed zero test histories, with no
+  next page. The single run above used this existing free quota.
 - Its actual device catalog includes `MediumPhone_ps16k.arm`, ARM64 only,
   Android API 36/37. The similarly named `backcompat` model is not selected.
 - ToolResults was enabled in this project. `initializeSettings` created the
@@ -30,18 +79,41 @@ authenticated Google APIs at 09:10 UTC:
   the whole installed APK SHA-256. Its timeout is five minutes and no automatic
   retry is requested. See [the harness procedure](../tool/android-runtime-test/README.md).
 
-Only the exact replacement release may close this gate. A catalog entry, harness
-build, or quota setup is not runtime acceptance. Local Windows/Intel has no
-installed Android emulator/system image or usable ARM64 virtual target; the
-available phone has 4 KB pages. The optional ARM64/KVM runner capability probe
-has not been dispatched because Test Lab offers a direct ARM64 16 KB target.
+Local Windows/Intel has no installed Android emulator/system image or usable
+ARM64 virtual target; the available phone has 4 KB pages. The unused ARM64/KVM
+runner capability probe was removed after the direct Test Lab acceptance passed.
+No runner probe or second matrix was needed.
+
+An initial upload failed before matrix creation because the operator helper sent
+an unnecessary requester-billing header naming the billing-disabled app project.
+Removing that header allowed normal uploads to Google's managed Test Lab bucket.
+No billing setting, access policy, bucket ownership, or project was changed.
 
 Local evidence is under `app/build/release-audit/runtime-16kb/`:
 `testlab-catalog.json`, `testlab-quota.json`, `free-testlab-setup.json`, and
 ToolResults setup metadata. These ignored files contain operational evidence,
 not application data or credentials.
 
-## Exact 10017 native symbolication rehearsal
+## Exact 10018 native symbolication rehearsal
+
+The verifier was rerun against the replacement release's APK, AAB, and retained
+symbols. All allocated engine sections match exactly for both ABIs in both
+packages (24 ARM64 sections, 23 ARMv7); architecture/class and DWARF are checked.
+All four interior operation addresses per ABI resolve to positive source lines
+in `native/engine_shim/src/lib.rs`. The retained ELF hashes and PCs are identical
+to those listed for 10017 below. The exact 10018 reproduction report is
+`app/build/release-audit/android-b32a976/native-symbolication.json`.
+
+| Artifact | SHA-256 |
+| --- | --- |
+| Signed APK | `2ae2b79c87e6b0f2d38850449855b761d3b88614dd6ca6c2194d99a87ac4c5fa` |
+| Signed AAB | `bff44c1fdeac1808b7209466c7a25720c4131bc87709a02ca45e8b4e7f21e1d5` |
+
+This remains an offline synthetic known-PC rehearsal, separate from the actual
+16 KB runtime test above. There is no GNU build-ID or observed crash/unwind, and
+automated crash-service ingestion is not established.
+
+## Earlier 10017 native symbolication rehearsal
 
 Source: `e6c8749b39273604d0a1799f27083912f96b5bec`, Android workflow
 [37863371662](https://github.com/freevia-org/backgammon-buddy/actions/runs/37863371662).
@@ -80,8 +152,8 @@ crashed. The reproduction report and synthetic input/output stacks are in
 `app/build/release-audit/android-e6c8749/native-symbolication.json` and
 `synthetic-native-{arm64-v8a,armeabi-v7a}{,-symbolicated}.txt`.
 
-The verifier is reusable against the replacement release. Rerun it with that
-release's APK, AAB, and retained native symbols before transferring this evidence.
+The separate 10018 rerun above establishes the replacement artifact match; the
+10017 evidence is retained here as historical provenance.
 
 Primary references: [Android 16 KB testing](https://developer.android.com/guide/practices/page-sizes),
 [Test Lab Spark quotas](https://firebase.google.com/docs/test-lab/usage-quotas-pricing),
