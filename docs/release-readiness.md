@@ -1,7 +1,7 @@
-# Release readiness — 2026-10-09
+# Release readiness — 2026-10-09 (historical snapshot)
 
-The latest internal-tester feedback shipped as tutor-panel refinement build
-10023, available to the same two testers at 15:54 Kyiv on October 9. It restores
+At 15:54 Kyiv on October 9, 2026, tutor-panel refinement build 10023 became the
+latest internal-tester release, available to the same two testers. It restores
 full-size Hint, Roll and Confirm buttons, keeps Roll and Confirm in one right-hand
 slot, tightens the gap between the handle and tutor text, and keeps the selected
 history move highlighted. The focused tutor-workflow render passed. The signed
@@ -20,8 +20,9 @@ Android candidate 0.14.0+10018 hides that mode and its settings and removes
 microphone access. Full CI, the signed-artifact audit and exact-APK offline tutor
 acceptance on a genuine 16 KB ARM64 Android device passed for that candidate.
 The latest internal track release is 0.14.0+10023, available to two approved
-testers. This turn did not change production or the store listing, and no public
-production availability is claimed. Apple remains on hold.** Publisher is
+testers as of October 9, 2026. That snapshot did not change production or the
+store listing, and no public production availability was claimed. Apple remained
+on hold.** Publisher is
 **Freevia**, source is
 <https://github.com/freevia-org/backgammon-buddy>, policy is
 <https://freevia.org/backgammon-buddy/privacy/>, and support is

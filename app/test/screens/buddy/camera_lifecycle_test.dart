@@ -58,6 +58,31 @@ void main() {
     expect(camera.users, 0);
   });
 
+  testWidgets('an unexpected open failure is reported and shown as unavailable',
+      (tester) async {
+    final camera = _ThrowingCamera();
+    addTearDown(camera.shutDown);
+    final reported = <FlutterErrorDetails>[];
+    final previousOnError = FlutterError.onError;
+    FlutterError.onError = reported.add;
+    addTearDown(() => FlutterError.onError = previousOnError);
+
+    await tester.pumpWidget(_Probe(camera));
+    await tester.pump();
+
+    expect(
+      find.text('The camera could not be started. Check permissions and try again.'),
+      findsOneWidget,
+    );
+    expect(reported, hasLength(1));
+    expect(reported.single.exception, isA<StateError>());
+    expect(tester.takeException(), isNull);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump();
+    expect(camera.users, 0);
+  });
+
   testWidgets(
     'full background during permission closes then resumes normally',
     (tester) async {
@@ -117,6 +142,11 @@ class _PendingCamera extends FakeBuddyCamera {
     await super.open();
     return result.future;
   }
+}
+
+class _ThrowingCamera extends FakeBuddyCamera {
+  @override
+  Future<CameraOpening> open() => Future.error(StateError('platform failed'));
 }
 
 class _Probe extends StatefulWidget {

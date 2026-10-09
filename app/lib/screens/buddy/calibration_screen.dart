@@ -18,6 +18,21 @@ import '../../buddy/buddy_session.dart';
 import '../../buddy/camera_frame_source.dart';
 import '../game/tap_when_disabled.dart';
 
+void _reportBuddyCameraFailure(
+  Object error,
+  StackTrace stackTrace, {
+  required String operation,
+}) {
+  FlutterError.reportError(
+    FlutterErrorDetails(
+      exception: error,
+      stack: stackTrace,
+      library: 'Buddy camera',
+      context: ErrorDescription(operation),
+    ),
+  );
+}
+
 // -----------------------------------------------------------------------------
 // The seams.
 //
@@ -217,14 +232,34 @@ mixin BuddyCameraLifecycle<T extends StatefulWidget>
         if (_wantsCamera) {
           _holdsCamera = true;
           _cameraReady = false;
-          final opening = await lifecycleCamera.open();
+          CameraOpening opening;
+          try {
+            opening = await lifecycleCamera.open();
+          } catch (error, stackTrace) {
+            _reportBuddyCameraFailure(
+              error,
+              stackTrace,
+              operation: 'while opening the camera',
+            );
+            opening = const CameraUnavailable(
+              'The camera could not be started. Check permissions and try again.',
+            );
+          }
           _cameraReady = opening is CameraReady;
           if (mounted && _wantsCamera) onCameraOpening(opening);
         } else {
           _holdsCamera = false;
           _cameraReady = false;
           if (mounted && !_stopping) onCameraOpening(null);
-          await lifecycleCamera.close();
+          try {
+            await lifecycleCamera.close();
+          } catch (error, stackTrace) {
+            _reportBuddyCameraFailure(
+              error,
+              stackTrace,
+              operation: 'while closing the camera',
+            );
+          }
         }
       }
     } finally {
@@ -1687,6 +1722,7 @@ class PhoneBuddyCamera implements BuddyCamera {
   /// The counting itself is [CameraHold], above the plugin edge, because it is
   /// pure and it is the half that can be got wrong.
   final CameraHold _hold = CameraHold();
+  Future<CameraOpening>? _opening;
 
   @override
   Stream<ObservedFrame> get frames => _source.frames;
@@ -1720,8 +1756,45 @@ class PhoneBuddyCamera implements BuddyCamera {
   Future<List<CameraDescription>> enumerateCameras() => availableCameras();
 
   @override
-  Future<CameraOpening> open() async {
+  Future<CameraOpening> open() {
     _hold.acquire();
+    final pending = _opening;
+    if (pending != null) return pending;
+
+    final opening = _openCamera().catchError(
+      (Object error, StackTrace stackTrace) {
+        _reportBuddyCameraFailure(
+          error,
+          stackTrace,
+          operation: 'while opening the camera',
+        );
+        return const CameraUnavailable(
+          'The camera could not be started. Check permissions and try again.',
+        );
+      },
+    );
+    _opening = opening;
+    return _clearOpening(opening);
+  }
+
+  Future<CameraOpening> _clearOpening(Future<CameraOpening> opening) async {
+    try {
+      return await opening;
+    } catch (error, stackTrace) {
+      _reportBuddyCameraFailure(
+        error,
+        stackTrace,
+        operation: 'while opening the camera',
+      );
+      return const CameraUnavailable(
+        'The camera could not be started. Check permissions and try again.',
+      );
+    } finally {
+      if (identical(_opening, opening)) _opening = null;
+    }
+  }
+
+  Future<CameraOpening> _openCamera() async {
     final existing = _controller;
     if (existing != null) {
       // **Not a blind early return.** Android takes the camera away from a
@@ -1777,11 +1850,10 @@ class PhoneBuddyCamera implements BuddyCamera {
       enableAudio: false,
       imageFormatGroup: kBuddyImageFormat,
     );
-    // Outside the catch below, deliberately: a controller built with the wrong
-    // format is a bug in THIS file, not a condition of the device, and it must
-    // be loud rather than dressed up as "the camera could not be started".
-    checkBuddyImageFormat(controller.imageFormatGroup);
     try {
+      // A mismatched format is still reported as a diagnostic, but it must not
+      // escape the unawaited lifecycle task or strand a counted camera hold.
+      checkBuddyImageFormat(controller.imageFormatGroup);
       // This is where the operating system asks the user for the camera, which
       // is what makes the ask in-context: it happens on the screen that
       // explains why Buddy needs to look at the board.
@@ -1804,8 +1876,40 @@ class PhoneBuddyCamera implements BuddyCamera {
       }
       return const CameraReady();
     } on CameraException catch (error) {
-      await controller.dispose();
+      await _cleanFailedOpen(controller);
       return CameraUnavailable(_reasonFor(error));
+    } catch (error, stackTrace) {
+      await _cleanFailedOpen(controller);
+      _reportBuddyCameraFailure(
+        error,
+        stackTrace,
+        operation: 'while initializing or streaming the camera',
+      );
+      return const CameraUnavailable(
+        'The camera could not be started. Check permissions and try again.',
+      );
+    }
+  }
+
+  Future<void> _cleanFailedOpen(CameraController controller) async {
+    _controller = null;
+    try {
+      await _source.stop();
+    } catch (error, stackTrace) {
+      _reportBuddyCameraFailure(
+        error,
+        stackTrace,
+        operation: 'while cleaning up a failed camera stream',
+      );
+    }
+    try {
+      await controller.dispose();
+    } catch (error, stackTrace) {
+      _reportBuddyCameraFailure(
+        error,
+        stackTrace,
+        operation: 'while disposing a failed camera controller',
+      );
     }
   }
 
@@ -1844,8 +1948,11 @@ class PhoneBuddyCamera implements BuddyCamera {
     if (!_hold.release()) return;
     final controller = _controller;
     _controller = null;
-    await _source.stop();
-    await controller?.dispose();
+    try {
+      await _source.stop();
+    } finally {
+      await controller?.dispose();
+    }
   }
 
   /// Releases the gate as well — the provider's own teardown, not a screen's,

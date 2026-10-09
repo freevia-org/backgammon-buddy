@@ -210,8 +210,8 @@ class LocalHumanAgent implements PlayerAgent {
 }
 
 /// The engine operations [AiAgent] needs, narrowed to an interface so the
-/// agent is testable without the native engine. [EngineServiceFacade] wraps a
-/// real [EngineService] in production.
+/// agent is testable without the native engine. Production uses the managed
+/// facade in `engine_provider.dart` so engine death recovery stays in the path.
 abstract interface class EngineFacade {
   /// Cubeless probabilities from [mover]'s perspective, with [mover] on roll.
   /// Use [Probabilities.inverted] to view that position from the other side;
@@ -220,25 +220,6 @@ abstract interface class EngineFacade {
   Future<List<ScoredMove>> rankMoves(
       BoardState board, Player mover, Dice dice);
   Future<CubeAdvice> cubeInfo(BoardState board, Player mover);
-}
-
-/// Adapts a real [EngineService] to [EngineFacade].
-class EngineServiceFacade implements EngineFacade {
-  EngineServiceFacade(this._service);
-  final EngineService _service;
-
-  @override
-  Future<Probabilities> evaluate(BoardState board, Player mover) =>
-      _service.evaluate(board, mover);
-
-  @override
-  Future<List<ScoredMove>> rankMoves(
-          BoardState board, Player mover, Dice dice) =>
-      _service.rankMoves(board, mover, dice);
-
-  @override
-  Future<CubeAdvice> cubeInfo(BoardState board, Player mover) =>
-      _service.cubeInfo(board, mover);
 }
 
 /// An AI agent that consults the engine and samples a move according to

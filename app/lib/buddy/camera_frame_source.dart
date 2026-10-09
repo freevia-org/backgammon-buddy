@@ -736,19 +736,27 @@ class CameraFrameSource {
     if (_controller != null) return;
     _controller = controller;
     _clock.start();
-    _gyro = gyroscopeEventStream().listen(
-      (event) => gate.onGyro(
-        math.sqrt(event.x * event.x + event.y * event.y + event.z * event.z),
-        _clock.elapsed,
-      ),
-      // A phone with no gyroscope is a phone Buddy still works on — see
-      // [MotionTracker]. Losing the stream must not be louder than that.
-      onError: (Object error) {
-        if (kDebugMode) debugPrint('gyroscope unavailable: $error');
-      },
-      cancelOnError: true,
-    );
-    await controller.startImageStream(_onImage);
+    try {
+      _gyro = gyroscopeEventStream().listen(
+        (event) => gate.onGyro(
+          math.sqrt(event.x * event.x + event.y * event.y + event.z * event.z),
+          _clock.elapsed,
+        ),
+        // A phone with no gyroscope is a phone Buddy still works on — see
+        // [MotionTracker]. Losing the stream must not be louder than that.
+        onError: (Object error) {
+          if (kDebugMode) debugPrint('gyroscope unavailable: $error');
+        },
+        cancelOnError: true,
+      );
+      await controller.startImageStream(_onImage);
+    } catch (_) {
+      // `startImageStream` can fail after the plugin has partially started.
+      // Roll back our controller and sensor state before letting the caller
+      // translate the platform error into an unavailable-camera result.
+      await stop();
+      rethrow;
+    }
   }
 
   void _onImage(CameraImage image) {
@@ -763,7 +771,11 @@ class CameraFrameSource {
   }
 
   Future<void> stop() async {
-    await _gyro?.cancel();
+    try {
+      await _gyro?.cancel();
+    } catch (error) {
+      if (kDebugMode) debugPrint('gyroscope cleanup failed: $error');
+    }
     _gyro = null;
     final controller = _controller;
     _controller = null;

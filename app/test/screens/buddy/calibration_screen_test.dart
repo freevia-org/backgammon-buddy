@@ -558,6 +558,29 @@ void main() {
       expect(camera.enumerations, 2);
       await camera.close();
     });
+
+    test('concurrent opens share one camera enumeration', () async {
+      final camera = _CameraHeldOpen();
+      final first = camera.open();
+      final second = camera.open();
+
+      expect(camera.enumerations, 1);
+
+      await camera.close();
+      await camera.close();
+      camera.gate.complete(const <CameraDescription>[]);
+
+      final results = await Future.wait([first, second]);
+      expect(results, hasLength(2));
+      expect(
+        results.every(
+          (result) =>
+              result is CameraUnavailable &&
+              result.message == 'The camera was closed before it finished opening.',
+        ),
+        isTrue,
+      );
+    });
   });
 
   // A handle that can only be dragged is a handle only some people can place,
