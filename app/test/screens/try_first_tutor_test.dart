@@ -67,6 +67,10 @@ void main() {
     await t.pumpAndSettle();
     expect(find.text('MWC %'), findsOneWidget);
     expect(find.textContaining('0-ply estimate'), findsOneWidget);
+    // Expanded coaching covers the game actions; collapse before editing.
+    await t.tap(find.byKey(const ValueKey('tutorPanelToggle')));
+    await t.pumpAndSettle();
+    expect(find.widgetWithText(TextButton, 'Undo').hitTestable(), findsOneWidget);
     await t.tap(find.widgetWithText(TextButton, 'Undo'));
     await t.pumpAndSettle();
     expect(find.text('Top plays'), findsNothing);

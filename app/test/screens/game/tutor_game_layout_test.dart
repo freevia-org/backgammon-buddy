@@ -62,7 +62,12 @@ void main() {
           final collapsed = t.getRect(panel);
           final roll = t.getRect(find.widgetWithText(FilledButton, 'Roll'));
           expect(board.height, greaterThan(0));
-          expect(collapsed.bottom, lessThanOrEqualTo(roll.top));
+          expect(collapsed.contains(roll.center), isTrue);
+          expect(roll.right, collapsed.right - 12);
+          expect(roll.bottom, collapsed.bottom - 8);
+          expect(find.byIcon(Icons.school_outlined), findsOneWidget);
+          final grip = t.getRect(find.byKey(const ValueKey('tutorPanelGrip')));
+          expect(grip.center.dx, collapsed.center.dx);
           expect(t.getSize(toggle).height, greaterThanOrEqualTo(48));
           expect(
             t.getSemantics(toggle).flagsCollection.isExpanded,
@@ -92,6 +97,7 @@ void main() {
           expect(t.takeException(), isNull);
           expect(t.getRect(find.byType(BoardView)), board);
           expect(t.getRect(panel).bottom, collapsed.bottom);
+          expect(t.getRect(find.widgetWithText(FilledButton, 'Roll')), roll);
           expect(t.getRect(panel).top, greaterThanOrEqualTo(0));
           expect(
             t.getSemantics(toggle).flagsCollection.isExpanded,

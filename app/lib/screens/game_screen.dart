@@ -940,9 +940,9 @@ class _GameScreenState extends State<GameScreen> {
     final availableHeight =
         MediaQuery.sizeOf(context).height -
         MediaQuery.paddingOf(context).vertical;
-    final tutorHeight = (160 * MediaQuery.textScalerOf(context).scale(1)).clamp(
-      96.0,
-      (availableHeight * .30).clamp(96.0, 196.0),
+    final tutorHeight = (128 * MediaQuery.textScalerOf(context).scale(1)).clamp(
+      128.0,
+      (availableHeight * .32).clamp(128.0, 196.0),
     );
     final tutorMaxHeight =
         (MediaQuery.sizeOf(context).height -
@@ -1072,11 +1072,6 @@ class _GameScreenState extends State<GameScreen> {
                   height: availableHeight < 480 ? 56 : ScoreSheetPanel.height,
                   child: _scoreSheetScope(),
                 ),
-                if (_tutor != null)
-                  SizedBox(
-                    key: const ValueKey('tutorReservedSpace'),
-                    height: tutorHeight,
-                  ),
                 // In the tabletop layout the bottom bar belongs to ONE player
                 // (the side the board faces) and goes inert on the other's turn;
                 // everywhere else it is the screen's only bar and serves whoever
@@ -1087,16 +1082,42 @@ class _GameScreenState extends State<GameScreen> {
                       ? (whiteAtBottom ? Player.white : Player.black)
                       : null,
                 ),
+                if (_tutor != null)
+                  SizedBox(
+                    key: const ValueKey('tutorReservedSpace'),
+                    height: tutorHeight,
+                  ),
               ],
             ),
             if (_tutor != null)
               Positioned(
                 left: 0,
                 right: 0,
-                bottom: 64,
+                bottom: 0,
                 child: ConstrainedBox(
                   constraints: BoxConstraints(maxHeight: tutorMaxHeight),
                   child: TutorPanel(
+                    prompt: Text(
+                      _tutorCopy().heading,
+                      key: const ValueKey('tutorSummaryHeading'),
+                    ),
+                    rollAction: FilledButton(
+                      key: const ValueKey('tutorRoll'),
+                      onPressed:
+                          _canRoll(moveSide) &&
+                              (!_tabletopBars ||
+                                  _actingSide(moveSide) ==
+                                      (whiteAtBottom
+                                          ? Player.white
+                                          : Player.black))
+                          ? _rollDice
+                          : null,
+                      child: const Text('Roll'),
+                    ),
+                    rollActionWidth:
+                        MediaQuery.textScalerOf(context).scale(1) > 1.4
+                        ? 112
+                        : 80,
                     leading: _tutorPresentation.selectedEventIndex == null
                         ? null
                         : TextButton(
@@ -1488,17 +1509,17 @@ class _GameScreenState extends State<GameScreen> {
   String _moveActor(Player side) => _hotSeat
       ? playerName(side)
       : _c.isLocalHuman(side)
-      ? 'Your'
-      : 'Computer’s';
+      ? 'Your play'
+      : 'Computer';
 
   String _quality(MoveAssessment assessment) => !assessment.isDecision
       ? 'forced play'
       : switch (assessment.mark) {
-          MoveMark.best => 'a top choice',
-          MoveMark.good => 'a sound choice',
-          MoveMark.dubious => 'a choice worth reviewing',
-          MoveMark.error => 'a missed opportunity',
-          MoveMark.blunder => 'a costly mistake',
+          MoveMark.best => 'top choice',
+          MoveMark.good => 'sound choice',
+          MoveMark.dubious => 'worth reviewing',
+          MoveMark.error => 'missed opportunity',
+          MoveMark.blunder => 'costly mistake',
         };
 
   ({String heading, String reason}) _tutorCopy() {
@@ -1517,20 +1538,20 @@ class _GameScreenState extends State<GameScreen> {
       final explanation = assessment != null && _tutorOptions.explanations
           ? _explanation(before, assessment)
           : null;
-      final next = selected == null ? ' Roll next.' : '';
+      final next = selected == null ? 'Roll next. ' : '';
       final unavailable = _tutorSync.completedAssessments.contains(review);
       final plan =
           explanation?.summaryReason ??
           'No evaluated explanation is available for this recorded move.';
       return (
         heading:
-            '${selected == null ? '' : 'Review: '}${_moveActor(event.player)} play: '
+            '${selected == null ? '' : 'Review: '}${_moveActor(event.player)}: '
             '${assessment == null
                 ? unavailable
                       ? 'analysis unavailable'
                       : 'reviewing…'
-                : _quality(assessment)}.$next',
-        reason: _tutorOptions.explanations ? plan : '',
+                : _quality(assessment)}',
+        reason: '$next${_tutorOptions.explanations ? plan : ''}'.trim(),
       );
     }
     final staged = _stagedTutorMove;
@@ -1553,9 +1574,9 @@ class _GameScreenState extends State<GameScreen> {
           : null;
       return (
         heading: assessment != null
-            ? 'Your staged play: ${_quality(assessment)}.'
+            ? 'Your play: ${_quality(assessment)}'
             : complete
-            ? 'Your full play is staged.'
+            ? 'Ready to confirm'
             : 'Your play is taking shape.',
         reason: _tutorOptions.explanations
             ? explanation?.summaryReason ??
@@ -1584,13 +1605,6 @@ class _GameScreenState extends State<GameScreen> {
       key: const ValueKey('tutorSummary'),
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          copy.heading,
-          key: const ValueKey('tutorSummaryHeading'),
-          style: Theme.of(
-            context,
-          ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
-        ),
         if (copy.reason.isNotEmpty)
           Text(copy.reason, key: const ValueKey('tutorSummaryReason')),
       ],
@@ -1630,6 +1644,15 @@ class _GameScreenState extends State<GameScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if (review != null || assessment != null)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Text(
+              _tutorCopy().heading,
+              key: const ValueKey('tutorDetailHeading'),
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+          ),
         if (review != null)
           Text('Played: ${(_c.game.events[review] as MoveEvent).move}'),
         if (blocked)
@@ -1782,7 +1805,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Widget _bottomRegion(Player? moveSide, Player? owner) =>
-      _actionBar(moveSide, owner: owner);
+      _actionBar(moveSide, owner: owner, rollInTutor: _tutor != null);
 
   /// The TOP player's action bar (tabletop hot-seat only): the same contextual
   /// bar as [_actionBar], owned by [owner] — the side the board does NOT face —
@@ -1842,6 +1865,7 @@ class _GameScreenState extends State<GameScreen> {
     Player? moveSide, {
     Player? owner,
     Key key = const ValueKey('actionBar'),
+    bool rollInTutor = false,
   }) {
     final scheme = Theme.of(context).colorScheme;
     // Whether THIS bar's owner is the one who may act right now.
@@ -1904,10 +1928,11 @@ class _GameScreenState extends State<GameScreen> {
               ),
             ),
           const Spacer(),
-          FilledButton(
-            onPressed: live ? _rollDice : null,
-            child: const Text('Roll'),
-          ),
+          if (!rollInTutor)
+            FilledButton(
+              onPressed: live ? _rollDice : null,
+              child: const Text('Roll'),
+            ),
         ],
       );
     } else {
@@ -1920,9 +1945,12 @@ class _GameScreenState extends State<GameScreen> {
     }
     return SizedBox(
       key: key,
-      height: 64,
+      height: rollInTutor ? 52 : 64,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: rollInTutor ? 2 : 8,
+        ),
         // Disabled Material buttons are already muted; the extra wash makes the
         // OTHER player's bar recede as a whole so a glance finds the live one.
         child: Opacity(

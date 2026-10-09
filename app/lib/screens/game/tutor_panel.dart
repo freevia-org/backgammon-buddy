@@ -2,34 +2,43 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-/// One continuous tutor surface, bottom-anchored by its caller above the actions.
+/// One continuous tutor surface, bottom-anchored by its caller.
 ///
 /// Reserve [collapsedHeight] in the game layout and place this widget in a Stack
 /// with a fixed bottom edge. Expansion then covers the board instead of resizing
-/// it. The header and summary retain their space while details open below them.
+/// it. The header and summary retain their space while details open below them;
+/// Roll stays at the same bottom-right screen position throughout the animation.
 class TutorPanel extends StatefulWidget {
   const TutorPanel({
     super.key,
     required this.expanded,
     required this.onExpandedChanged,
+    required this.prompt,
     required this.summary,
     required this.details,
+    required this.rollAction,
     required this.onOpenSettings,
     this.leading,
-    this.collapsedHeight = 132,
+    this.rollActionWidth = 80,
+    this.collapsedHeight = 128,
     this.expandedHeight = 320,
-  }) : assert(collapsedHeight >= headerHeight),
+  }) : assert(collapsedHeight >= handleHeight + headerHeight),
+       assert(rollActionWidth >= 48),
        assert(expandedHeight >= collapsedHeight);
 
+  static const double handleHeight = 16;
   static const double headerHeight = 48;
 
   final bool expanded;
   final ValueChanged<bool> onExpandedChanged;
+  final Widget prompt;
   final Widget summary;
   final Widget details;
+  final Widget rollAction;
+  final double rollActionWidth;
   final VoidCallback onOpenSettings;
 
-  /// Optional persistent header action, such as returning from history to live.
+  /// Optional persistent action beside Roll, such as returning from history.
   final Widget? leading;
   final double collapsedHeight;
   final double expandedHeight;
@@ -74,8 +83,18 @@ class _TutorPanelState extends State<TutorPanel> {
       builder: (context, constraints) {
         final available = constraints.maxHeight;
         final collapsedHeight = math.min(widget.collapsedHeight, available);
-        final headerHeight = math.min(TutorPanel.headerHeight, collapsedHeight);
-        final summaryHeight = math.max(0.0, collapsedHeight - headerHeight);
+        final headerHeight = math.min(
+          TutorPanel.headerHeight,
+          collapsedHeight - TutorPanel.handleHeight,
+        );
+        final summaryHeight = math.max(
+          0.0,
+          collapsedHeight - TutorPanel.handleHeight - headerHeight,
+        );
+        final rightInset = widget.rollActionWidth + 24;
+        final liveWidth = widget.leading == null
+            ? 0.0
+            : math.max(56.0, MediaQuery.textScalerOf(context).scale(56));
         final targetHeight = widget.expanded
             ? math.min(widget.expandedHeight, available)
             : collapsedHeight;
@@ -94,97 +113,180 @@ class _TutorPanelState extends State<TutorPanel> {
           ),
           child: Material(
             color: Colors.transparent,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+            child: Stack(
               children: [
-                GestureDetector(
-                  key: const ValueKey('tutorPanelHeader'),
-                  behavior: HitTestBehavior.opaque,
-                  onVerticalDragStart: (_) => _dragDistance = 0,
-                  onVerticalDragUpdate: (details) =>
-                      _dragDistance += details.primaryDelta ?? 0,
-                  onVerticalDragEnd: _finishDrag,
-                  onVerticalDragCancel: () => _dragDistance = 0,
-                  child: SizedBox(
-                    height: headerHeight,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        if (widget.leading != null)
-                          Expanded(
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: widget.leading,
-                            ),
-                          )
-                        else
-                          const Spacer(),
-                        Semantics(
-                          key: const ValueKey('tutorPanelToggle'),
-                          label: 'Tutor:',
-                          button: true,
-                          expanded: widget.expanded,
-                          onTap: () =>
-                              widget.onExpandedChanged(!widget.expanded),
-                          child: ExcludeSemantics(
-                            child: TextButton(
-                              onPressed: () =>
-                                  widget.onExpandedChanged(!widget.expanded),
-                              style: TextButton.styleFrom(
-                                minimumSize: const Size(64, 48),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(height: TutorPanel.handleHeight),
+                    _dragTarget(
+                      key: const ValueKey('tutorPanelHeader'),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12, right: 64),
+                        child: SizedBox(
+                          height: headerHeight,
+                          child: Row(
+                            children: [
+                              Semantics(
+                                key: const ValueKey('tutorPanelToggle'),
+                                label: 'Tutor:',
+                                button: true,
+                                expanded: widget.expanded,
+                                onTap: _toggle,
+                                child: ExcludeSemantics(
+                                  child: InkWell(
+                                    onTap: _toggle,
+                                    child: SizedBox(
+                                      height: headerHeight,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(
+                                            Icons.school_outlined,
+                                            size: 18,
+                                            color: scheme.primary,
+                                          ),
+                                          const SizedBox(width: 6),
+                                          Text(
+                                            'Tutor:',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelLarge
+                                                ?.copyWith(
+                                                  color: scheme.primary,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
-                              child: const Text('Tutor:'),
+                              const SizedBox(width: 6),
+                              Expanded(
+                                child: DefaultTextStyle.merge(
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  child: widget.prompt,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      key: const ValueKey('tutorPanelSummary'),
+                      height: summaryHeight,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: 12,
+                          right: rightInset + liveWidth,
+                        ),
+                        child: NotificationListener<ScrollNotification>(
+                          onNotification: _summaryScroll,
+                          child: SingleChildScrollView(
+                            key: const ValueKey('tutorPanelSummaryScroll'),
+                            physics: const AlwaysScrollableScrollPhysics(
+                              parent: ClampingScrollPhysics(),
+                            ),
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: widget.summary,
+                          ),
+                        ),
+                      ),
+                    ),
+                    if (widget.expanded)
+                      Expanded(
+                        child: SingleChildScrollView(
+                          key: const ValueKey('tutorPanelDetails'),
+                          padding: const EdgeInsets.fromLTRB(12, 0, 12, 64),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Divider(color: scheme.outlineVariant),
+                              widget.details,
+                            ],
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: _dragTarget(
+                    key: const ValueKey('tutorPanelHandle'),
+                    child: Semantics(
+                      label: widget.expanded
+                          ? 'Collapse tutor'
+                          : 'Expand tutor',
+                      button: true,
+                      onTap: _toggle,
+                      child: GestureDetector(
+                        onTap: _toggle,
+                        behavior: HitTestBehavior.opaque,
+                        child: SizedBox(
+                          width: 64,
+                          height: 48,
+                          child: Align(
+                            alignment: Alignment.topCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 6),
+                              child: Container(
+                                key: const ValueKey('tutorPanelGrip'),
+                                width: 32,
+                                height: 4,
+                                decoration: BoxDecoration(
+                                  color: scheme.onSurfaceVariant,
+                                  borderRadius: BorderRadius.circular(2),
+                                ),
+                              ),
                             ),
                           ),
                         ),
+                      ),
+                    ),
+                  ),
+                ),
+                if (widget.expanded)
+                  Positioned(
+                    top: 0,
+                    right: 12,
+                    child: IconButton(
+                      key: const ValueKey('tutorPanelSettings'),
+                      tooltip: 'Tutoring options',
+                      onPressed: widget.onOpenSettings,
+                      icon: const Icon(Icons.settings_outlined),
+                      constraints: const BoxConstraints.tightFor(
+                        width: 48,
+                        height: 48,
+                      ),
+                    ),
+                  ),
+                Positioned(
+                  right: 12,
+                  bottom: 8,
+                  child: Material(
+                    color: scheme.surfaceContainer,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (widget.leading != null)
+                          SizedBox(
+                            width: liveWidth,
+                            height: 48,
+                            child: widget.leading,
+                          ),
                         SizedBox(
-                          width: 48,
+                          key: const ValueKey('tutorPanelRoll'),
+                          width: widget.rollActionWidth,
                           height: 48,
-                          child: widget.expanded
-                              ? IconButton(
-                                  key: const ValueKey('tutorPanelSettings'),
-                                  tooltip: 'Tutoring options',
-                                  onPressed: widget.onOpenSettings,
-                                  icon: const Icon(Icons.settings_outlined),
-                                )
-                              : null,
+                          child: widget.rollAction,
                         ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  key: const ValueKey('tutorPanelSummary'),
-                  height: summaryHeight,
-                  child: NotificationListener<ScrollNotification>(
-                    onNotification: _summaryScroll,
-                    child: SingleChildScrollView(
-                      key: const ValueKey('tutorPanelSummaryScroll'),
-                      physics: const AlwaysScrollableScrollPhysics(
-                        parent: ClampingScrollPhysics(),
-                      ),
-                      padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-                      child: widget.summary,
-                    ),
-                  ),
-                ),
-                if (widget.expanded)
-                  Expanded(
-                    child: SingleChildScrollView(
-                      key: const ValueKey('tutorPanelDetails'),
-                      padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Divider(color: scheme.outlineVariant),
-                          widget.details,
-                        ],
-                      ),
-                    ),
-                  ),
               ],
             ),
           ),
@@ -192,4 +294,18 @@ class _TutorPanelState extends State<TutorPanel> {
       },
     );
   }
+
+  void _toggle() => widget.onExpandedChanged(!widget.expanded);
+
+  Widget _dragTarget({required Key key, required Widget child}) =>
+      GestureDetector(
+        key: key,
+        behavior: HitTestBehavior.opaque,
+        onVerticalDragStart: (_) => _dragDistance = 0,
+        onVerticalDragUpdate: (details) =>
+            _dragDistance += details.primaryDelta ?? 0,
+        onVerticalDragEnd: _finishDrag,
+        onVerticalDragCancel: () => _dragDistance = 0,
+        child: child,
+      );
 }

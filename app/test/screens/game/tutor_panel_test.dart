@@ -7,6 +7,8 @@ void main() {
     required Size size,
     double textScale = 1,
     VoidCallback? onSettings,
+    bool history = false,
+    bool canRoll = true,
   }) {
     var expanded = false;
     return MaterialApp(
@@ -28,7 +30,7 @@ void main() {
                 Positioned(
                   left: 0,
                   right: 0,
-                  bottom: 64,
+                  bottom: 0,
                   child: ConstrainedBox(
                     constraints: BoxConstraints(maxHeight: size.height - 64),
                     child: TutorPanel(
@@ -36,16 +38,22 @@ void main() {
                       onExpandedChanged: (value) =>
                           setState(() => expanded = value),
                       onOpenSettings: onSettings ?? () {},
-                      summary: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Your move: Good', key: ValueKey('verdict')),
-                          Text(
-                            'Making a point protects both checkers and makes '
-                            're-entry harder for your opponent.',
-                            key: ValueKey('reason'),
-                          ),
-                        ],
+                      prompt: const Text('Good move', key: ValueKey('verdict')),
+                      rollActionWidth: textScale > 1.4 ? 112 : 80,
+                      rollAction: FilledButton(
+                        onPressed: canRoll ? () {} : null,
+                        child: const Text('Roll'),
+                      ),
+                      leading: history
+                          ? TextButton(
+                              onPressed: () {},
+                              child: const Text('Live'),
+                            )
+                          : null,
+                      summary: const Text(
+                        'Making a point protects both checkers and makes '
+                        're-entry harder for your opponent.',
+                        key: ValueKey('reason'),
                       ),
                       details: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,13 +67,6 @@ void main() {
                       ),
                     ),
                   ),
-                ),
-                const Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  height: 64,
-                  child: Center(child: Text('Roll')),
                 ),
               ],
             ),
@@ -92,18 +93,24 @@ void main() {
     final collapsed = t.getRect(surface);
     final summaryOffset = t.getTopLeft(summary) - collapsed.topLeft;
 
-    expect(collapsed.height, 132);
+    expect(collapsed.height, 128);
     expect(find.text('Tutor:'), findsOneWidget);
-    expect(t.getCenter(find.text('Tutor:')).dx, greaterThan(250));
+    expect(t.getCenter(find.text('Tutor:')).dx, lessThan(100));
+    expect(find.byIcon(Icons.school_outlined), findsOneWidget);
+    final grip = t.getRect(find.byKey(const ValueKey('tutorPanelGrip')));
+    expect(grip.center.dx, collapsed.center.dx);
+    expect(grip.top, lessThan(collapsed.top + 12));
     final labelOffset = t.getTopLeft(find.text('Tutor:')) - collapsed.topLeft;
     expect(find.byKey(const ValueKey('tutorPanelDetails')), findsNothing);
     expect(find.byTooltip('Tutoring options'), findsNothing);
-    expect(t.getTopLeft(find.text('Roll')).dy, greaterThan(collapsed.bottom));
+    final roll = t.getRect(find.widgetWithText(FilledButton, 'Roll'));
+    expect(collapsed.contains(roll.center), isTrue);
+    expect(roll.right, collapsed.right - 12);
 
     await t.tap(find.text('Tutor:'));
     await t.pump();
     await t.pump(const Duration(milliseconds: 80));
-    expect(t.getSize(surface).height, greaterThan(132));
+    expect(t.getSize(surface).height, greaterThan(128));
     expect(t.getSize(surface).height, lessThan(320));
     expect(t.takeException(), isNull);
     await t.pumpAndSettle();
@@ -114,7 +121,8 @@ void main() {
     expect(t.getTopLeft(summary) - expanded.topLeft, summaryOffset);
     expect(t.getTopLeft(find.text('Tutor:')) - expanded.topLeft, labelOffset);
     expect(t.getRect(find.byKey(const ValueKey('board'))), board);
-    expect(find.text('Your move: Good'), findsOneWidget);
+    expect(t.getRect(find.widgetWithText(FilledButton, 'Roll')), roll);
+    expect(find.text('Good move'), findsOneWidget);
     expect(find.byKey(const ValueKey('reason')), findsOneWidget);
     expect(find.byTooltip('Tutoring options'), findsOneWidget);
 
@@ -125,24 +133,24 @@ void main() {
     expect(t.takeException(), isNull);
   });
 
-  testWidgets('header drag expands and collapses; settings only expanded', (
+  testWidgets('center grip expands and collapses; settings only expanded', (
     t,
   ) async {
     const size = Size(360, 640);
     await setSize(t, size);
     var settingsOpened = 0;
     await t.pumpWidget(panel(size: size, onSettings: () => settingsOpened++));
-    final header = find.byKey(const ValueKey('tutorPanelHeader'));
-    await t.drag(header, const Offset(0, -60));
+    final handle = find.byKey(const ValueKey('tutorPanelHandle'));
+    await t.drag(handle, const Offset(0, -60));
     await t.pumpAndSettle();
     expect(find.byTooltip('Tutoring options'), findsOneWidget);
     await t.tap(find.byTooltip('Tutoring options'));
     expect(settingsOpened, 1);
 
-    await t.drag(header, const Offset(0, 60));
+    await t.drag(handle, const Offset(0, 60));
     await t.pumpAndSettle();
     expect(find.byTooltip('Tutoring options'), findsNothing);
-    expect(t.getSize(find.byKey(const ValueKey('tutorPanel'))).height, 132);
+    expect(t.getSize(find.byKey(const ValueKey('tutorPanel'))).height, 128);
     expect(t.takeException(), isNull);
   });
 
@@ -165,8 +173,14 @@ void main() {
       t,
     ) async {
       await setSize(t, size);
-      await t.pumpWidget(panel(size: size, textScale: 2));
+      await t.pumpWidget(
+        panel(size: size, textScale: 2, history: true, canRoll: false),
+      );
       expect(t.takeException(), isNull);
+      expect(find.text('Live').hitTestable(), findsOneWidget);
+      final roll = find.widgetWithText(FilledButton, 'Roll');
+      expect(t.widget<FilledButton>(roll).onPressed, isNull);
+      final rollRect = t.getRect(roll);
       final summary = find.byKey(const ValueKey('tutorPanelSummaryScroll'));
       await t.drag(summary, const Offset(0, -70));
       await t.pumpAndSettle();
@@ -175,7 +189,9 @@ void main() {
       expect(t.takeException(), isNull);
       final surface = t.getRect(find.byKey(const ValueKey('tutorPanel')));
       expect(surface.top, greaterThanOrEqualTo(0));
-      expect(surface.bottom, size.height - 64);
+      expect(surface.bottom, size.height);
+      expect(t.getRect(roll), rollRect);
+      expect(find.text('Live').hitTestable(), findsOneWidget);
       final details = find.byKey(const ValueKey('tutorPanelDetails'));
       final scrollable = find.descendant(
         of: details,

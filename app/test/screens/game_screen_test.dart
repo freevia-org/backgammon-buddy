@@ -3124,7 +3124,7 @@ void main() {
       await pumpUntil(t, () => find.text('Top plays').evaluate().isNotEmpty);
       await t.pumpAndSettle();
       await t.tap(find.text('$expected').first);
-      await t.pump(); // panel closes; the play is STAGED programmatically
+      await t.pumpAndSettle(); // panel collapses; the play is STAGED
 
       // Confirm the staged hint → it animates (the user did not drag it).
       await t.tap(find.widgetWithText(FilledButton, 'Confirm'));
@@ -3421,7 +3421,7 @@ void main() {
 
       // Tap the top row (the move text of the first-ranked play).
       await t.tap(find.text('$expected').first);
-      await t.pump();
+      await t.pumpAndSettle();
 
       // Panel closed and the play is STAGED: the preview diverges from the base
       // board, but nothing is committed yet (state is unchanged).
