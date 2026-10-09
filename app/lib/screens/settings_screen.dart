@@ -12,6 +12,7 @@ import '../buddy/phrasing.dart';
 import '../physical_buddy_availability.dart';
 import '../data/app_settings.dart';
 import '../data/settings_repository.dart';
+import '../diagnostics/crash_log.dart';
 import '../feedback/feedback_link.dart';
 import '../licensing/third_party_licenses.dart';
 import '../privacy/privacy_settings_section.dart';
@@ -43,14 +44,18 @@ class SettingsScreen extends ConsumerWidget {
     final settings = ref.watch(settingsProvider).valueOrNull ?? AppSettings.defaults;
     final repo = ref.read(settingsRepositoryProvider);
 
-    void save(AppSettings next) => repo.save(next);
+    void update(AppSettings Function(AppSettings current) change) =>
+        recordFailures(repo.update(change), source: 'settings-autosave');
+
+    void reset() =>
+        recordFailures(repo.save(AppSettings.defaults), source: 'settings-reset');
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
         actions: [
           TextButton(
-            onPressed: () => save(AppSettings.defaults),
+            onPressed: reset,
             child: const Text('Reset'),
           ),
         ],
@@ -79,8 +84,8 @@ class SettingsScreen extends ConsumerWidget {
                               value: ThemeMode.dark, label: Text('Dark')),
                         ],
                         selected: {settings.themeMode},
-                        onSelectionChanged: (s) =>
-                            save(settings.copyWith(themeMode: s.first)),
+                        onSelectionChanged: (s) => update((current) =>
+                            current.copyWith(themeMode: s.first)),
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -98,8 +103,8 @@ class SettingsScreen extends ConsumerWidget {
                               value: AnimationSpeed.fast, label: Text('Fast')),
                         ],
                         selected: {settings.animationSpeed},
-                        onSelectionChanged: (s) =>
-                            save(settings.copyWith(animationSpeed: s.first)),
+                        onSelectionChanged: (s) => update((current) =>
+                            current.copyWith(animationSpeed: s.first)),
                       ),
                     ),
                     // Sits directly under the speed control it qualifies: the
@@ -113,8 +118,8 @@ class SettingsScreen extends ConsumerWidget {
                       subtitle:
                           const Text('Tumble the dice before each roll'),
                       value: settings.diceRollAnimation,
-                      onChanged: (v) =>
-                          save(settings.copyWith(diceRollAnimation: v)),
+                      onChanged: (v) => update((current) =>
+                          current.copyWith(diceRollAnimation: v)),
                     ),
                     const SizedBox(height: 24),
                     _Section(
@@ -128,8 +133,8 @@ class SettingsScreen extends ConsumerWidget {
                           ButtonSegment(value: 7, label: Text('7')),
                         ],
                         selected: {settings.defaultMatchLength},
-                        onSelectionChanged: (s) =>
-                            save(settings.copyWith(defaultMatchLength: s.first)),
+                        onSelectionChanged: (s) => update((current) =>
+                            current.copyWith(defaultMatchLength: s.first)),
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -148,8 +153,8 @@ class SettingsScreen extends ConsumerWidget {
                               value: Difficulty.expert, label: Text('Expert')),
                         ],
                         selected: {settings.defaultDifficulty},
-                        onSelectionChanged: (s) =>
-                            save(settings.copyWith(defaultDifficulty: s.first)),
+                        onSelectionChanged: (s) => update((current) =>
+                            current.copyWith(defaultDifficulty: s.first)),
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -166,8 +171,8 @@ class SettingsScreen extends ConsumerWidget {
                               value: _TutorChoice.off, label: Text('Off')),
                         ],
                         selected: {_TutorChoice.fromOverride(settings.tutorOverride)},
-                        onSelectionChanged: (s) => save(settings.copyWith(
-                            tutorOverride: s.first.toOverride())),
+                        onSelectionChanged: (s) => update((current) =>
+                            current.copyWith(tutorOverride: s.first.toOverride())),
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -208,8 +213,8 @@ class SettingsScreen extends ConsumerWidget {
                                 'Ring selectable checkers and light up '
                                 'destinations'),
                             value: settings.showHighlights,
-                            onChanged: (v) =>
-                                save(settings.copyWith(showHighlights: v)),
+                            onChanged: (v) => update((current) =>
+                                current.copyWith(showHighlights: v)),
                           ),
                           SwitchListTile(
                             contentPadding: EdgeInsets.zero,
@@ -218,8 +223,8 @@ class SettingsScreen extends ConsumerWidget {
                                 'Drag a checker to its destination (taps always '
                                 'work)'),
                             value: settings.enableDrag,
-                            onChanged: (v) =>
-                                save(settings.copyWith(enableDrag: v)),
+                            onChanged: (v) => update((current) =>
+                                current.copyWith(enableDrag: v)),
                           ),
                           SwitchListTile(
                             contentPadding: EdgeInsets.zero,
@@ -227,8 +232,8 @@ class SettingsScreen extends ConsumerWidget {
                             subtitle: const Text(
                                 'One tap runs a checker through both dice'),
                             value: settings.enableCombinedTaps,
-                            onChanged: (v) =>
-                                save(settings.copyWith(enableCombinedTaps: v)),
+                            onChanged: (v) => update((current) =>
+                                current.copyWith(enableCombinedTaps: v)),
                           ),
                           // Hot-seat only, and OFF by default: "when playing
                           // person vs person, the default should be not
@@ -244,8 +249,8 @@ class SettingsScreen extends ConsumerWidget {
                             subtitle: const Text(
                                 'Hot-seat: flip the view for the active player'),
                             value: settings.rotateBoardHotSeat,
-                            onChanged: (v) =>
-                                save(settings.copyWith(rotateBoardHotSeat: v)),
+                            onChanged: (v) => update((current) =>
+                                current.copyWith(rotateBoardHotSeat: v)),
                           ),
                           // Independent of the rotation above — it covers the
                           // hand-over in either layout: "do not show the pass
@@ -257,8 +262,8 @@ class SettingsScreen extends ConsumerWidget {
                             subtitle: const Text(
                                 'Cover the board between hot-seat turns'),
                             value: settings.showPassDevice,
-                            onChanged: (v) =>
-                                save(settings.copyWith(showPassDevice: v)),
+                            onChanged: (v) => update((current) =>
+                                current.copyWith(showPassDevice: v)),
                           ),
                           SwitchListTile(
                             contentPadding: EdgeInsets.zero,
@@ -266,8 +271,8 @@ class SettingsScreen extends ConsumerWidget {
                             subtitle: const Text(
                                 'Display the running match score in the header'),
                             value: settings.showScoring,
-                            onChanged: (v) =>
-                                save(settings.copyWith(showScoring: v)),
+                            onChanged: (v) => update((current) =>
+                                current.copyWith(showScoring: v)),
                           ),
                         ],
                       ),
@@ -297,8 +302,8 @@ class SettingsScreen extends ConsumerWidget {
                                     label: Text('Friendly')),
                               ],
                               selected: {settings.buddyPhrasing},
-                              onSelectionChanged: (s) => save(
-                                  settings.copyWith(buddyPhrasing: s.first)),
+                              onSelectionChanged: (s) => update((current) =>
+                                  current.copyWith(buddyPhrasing: s.first)),
                             ),
                             const SizedBox(height: 8),
                             Text(
@@ -330,8 +335,8 @@ class SettingsScreen extends ConsumerWidget {
                                   'Buddy looks at the board sooner when it hears '
                                   'a throw. Off changes nothing else.'),
                               value: settings.buddyMicHint,
-                              onChanged: (v) =>
-                                  save(settings.copyWith(buddyMicHint: v)),
+                              onChanged: (v) => update((current) =>
+                                  current.copyWith(buddyMicHint: v)),
                             ),
                           ],
                         ),

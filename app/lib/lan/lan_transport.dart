@@ -151,20 +151,26 @@ class LiveNearbyTransport implements NearbyTransport {
     final roomCode = HostServer.generateRoomCode();
     HostServer server;
     try {
-      server = await HostServer.start(
-        port: defaultMatchPort,
-        roomCode: roomCode,
-        timings: timings,
-        lastSeq: () => relay.lastSeq,
-      );
+      try {
+        server = await HostServer.start(
+          port: defaultMatchPort,
+          roomCode: roomCode,
+          timings: timings,
+          lastSeq: () => relay.lastSeq,
+        );
+      } catch (_) {
+        // The preferred port is taken. An OS-chosen one works just as well —
+        // discovery carries it, and the screen shows it for manual entry.
+        server = await HostServer.start(
+          roomCode: roomCode,
+          timings: timings,
+          lastSeq: () => relay.lastSeq,
+        );
+      }
     } catch (_) {
-      // The preferred port is taken. An OS-chosen one works just as well —
-      // discovery carries it, and the screen shows it for manual entry.
-      server = await HostServer.start(
-        roomCode: roomCode,
-        timings: timings,
-        lastSeq: () => relay.lastSeq,
-      );
+      // Neither bind succeeded, so the session never took ownership.
+      await relay.close();
+      rethrow;
     }
     HostBeacon? beacon;
     try {
@@ -215,9 +221,10 @@ class LiveNearbyTransport implements NearbyTransport {
   /// `network_info_plus`'s `getWifiIP()` first and fall back to here, but the
   /// fallback answered every case the plugin did: `NetworkInterface.list` needs
   /// no permission, works on every platform the app targets (including the
-  /// desktops and simulators where the plugin returned nothing), and returns the
-  /// same Wi-Fi address because that is the non-loopback IPv4 interface a phone
-  /// on a LAN has. The plugin was five transitive dependencies and a location
+  /// desktops and simulators where the plugin returned nothing), and may return
+  /// several interfaces. Prefer likely Wi-Fi/Ethernet LAN adapters over VPN and
+  /// virtual adapters when selecting the address. The plugin was five
+  /// transitive dependencies and a location
   /// permission on some Android versions, bought nothing the fallback did not
   /// already provide, and is gone.
   ///
@@ -230,17 +237,57 @@ class LiveNearbyTransport implements NearbyTransport {
         type: InternetAddressType.IPv4,
         includeLoopback: false,
       );
-      for (final interface in interfaces) {
-        for (final address in interface.addresses) {
-          if (address.isLoopback || address.isLinkLocal) continue;
-          return address.address;
-        }
-      }
+      return selectLanAddress(<({String interfaceName, String address})>[
+        for (final interface in interfaces)
+          for (final address in interface.addresses)
+            if (!address.isLoopback && !address.isLinkLocal)
+              (interfaceName: interface.name, address: address.address),
+      ]);
     } catch (_) {
       // Enumeration refused; the caller shows its "ask them to search" copy.
     }
     return null;
   }
+}
+
+/// Select a plausible same-LAN IPv4 address when the OS reports more than one.
+/// Wi-Fi and Ethernet interfaces are preferred; common VPN/virtual interface
+/// names are deprioritized. Stable input order breaks ties for deterministic
+/// behavior across platform implementations.
+String? selectLanAddress(
+  Iterable<({String interfaceName, String address})> candidates,
+) {
+  ({String interfaceName, String address, int score})? best;
+  for (final candidate in candidates) {
+    final address = InternetAddress(candidate.address);
+    if (address.type != InternetAddressType.IPv4 ||
+        address.isLoopback ||
+        address.isLinkLocal) {
+      continue;
+    }
+    final name = candidate.interfaceName.toLowerCase();
+    final isVirtual = RegExp(
+      r'(vpn|tun|tap|utun|wireguard|(^|[^a-z])wg\d|docker|veth|virtual|bridge|tailscale|zerotier|hamachi)',
+    ).hasMatch(name);
+    final isLanAdapter = RegExp(
+      r'^(wlan|wifi|wi-fi|en\d+|eth\d+|ethernet|lan)',
+    ).hasMatch(name);
+    final octets = address.rawAddress;
+    final isPrivate =
+        octets[0] == 10 ||
+        (octets[0] == 172 && octets[1] >= 16 && octets[1] <= 31) ||
+        (octets[0] == 192 && octets[1] == 168);
+    final score =
+        (isPrivate ? 4 : 0) + (isLanAdapter ? 4 : 0) - (isVirtual ? 8 : 0);
+    if (best == null || score > best.score) {
+      best = (
+        interfaceName: candidate.interfaceName,
+        address: candidate.address,
+        score: score,
+      );
+    }
+  }
+  return best?.address;
 }
 
 class _LiveHostSession implements HostSession {

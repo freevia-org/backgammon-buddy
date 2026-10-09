@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:aigammon_app/physical_buddy_availability.dart';
 import 'package:aigammon_app/analytics/app_analytics.dart';
 import 'package:aigammon_app/buddy/buddy_session.dart';
@@ -636,6 +638,29 @@ void main() {
   });
 
   group('the microphone attention hint', () {
+    test('a startup that resolves after match end is stopped immediately',
+        () async {
+      final opening = Completer<MicOpening>();
+      var matchOver = false;
+      var stopped = false;
+      final starting = startBuddyMicWhileMatchActive(
+        start: () => opening.future,
+        matchIsOver: () => matchOver,
+        stop: () async {
+          stopped = true;
+        },
+      );
+
+      // The user can finish the match while the permission dialog or audio
+      // stream startup is still pending.
+      matchOver = true;
+      opening.complete(MicOpening.listening);
+
+      expect(await starting, MicOpening.listening);
+      expect(stopped, isTrue,
+          reason: 'the late-opened microphone must not survive the result');
+    });
+
     testWidgets('is opened where the screen is already asking for a throw',
         (t) async {
       // In context, and this is what "in context" means: the opening throw is

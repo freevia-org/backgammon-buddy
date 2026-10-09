@@ -49,6 +49,21 @@ bool get isBuddyModeSupportedPlatform =>
     (defaultTargetPlatform == TargetPlatform.android ||
         defaultTargetPlatform == TargetPlatform.iOS);
 
+/// Starts the in-context mic request and closes it if the match ended while
+/// the platform was still opening the stream. Platform permission dialogs and
+/// stream startup are asynchronous, so the terminal-state check belongs after
+/// [start] resolves as well as in the screen's regular change handler.
+@visibleForTesting
+Future<MicOpening> startBuddyMicWhileMatchActive({
+  required Future<MicOpening> Function() start,
+  required bool Function() matchIsOver,
+  required Future<void> Function() stop,
+}) async {
+  final opening = await start();
+  if (matchIsOver()) await stop();
+  return opening;
+}
+
 /// A fresh speech engine for each Buddy session. The session disposes its engine
 /// when it ends, so caching an engine would leave later matches with a closed
 /// voice. The factory itself may safely remain cached in the provider.
@@ -422,9 +437,18 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
       // The whole of what a hint does. See `FrameGate.attend`.
       onLookNow: _camera.attend,
     );
-    final opening = await listener.start();
+    var stoppedDuringStartup = false;
+    final opening = await startBuddyMicWhileMatchActive(
+      start: listener.start,
+      matchIsOver: () => _session.phase == BuddyPhase.over,
+      stop: () async {
+        stoppedDuringStartup = true;
+        _micStopped = true;
+        await listener.stop();
+      },
+    );
     if (!mounted) {
-      await listener.stop();
+      if (!stoppedDuringStartup) await listener.stop();
       return;
     }
     _mic = listener;

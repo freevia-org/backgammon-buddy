@@ -30,6 +30,18 @@ class SettingsRepository {
     await db.into(db.settings).insertOnConflictUpdate(_toCompanion(settings));
   }
 
+  /// Applies [change] to the latest persisted settings in one transaction.
+  /// This prevents rapid autosaves from overwriting independent edits with a
+  /// stale snapshot captured by the settings screen.
+  Future<void> update(AppSettings Function(AppSettings current) change) async {
+    await db.transaction(() async {
+      final current = await load();
+      await db.into(db.settings).insertOnConflictUpdate(
+            _toCompanion(change(current)),
+          );
+    });
+  }
+
   Future<void> setTelemetryEnabled(bool enabled) async {
     await (db.update(db.settings)..where((t) => t.id.equals(1)))
         .write(SettingsCompanion(telemetryEnabled: Value(enabled)));

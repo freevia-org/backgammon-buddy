@@ -50,9 +50,9 @@ if (hasFirebaseConfig) {
 //
 // `android/key.properties` is GIT-IGNORED and holds the upload-key credentials:
 //
-//     storeFile=aigammon-upload.jks     (relative to android/)
+//     storeFile=freevia-backgammon-buddy-upload.jks (relative to android/)
 //     storePassword=…
-//     keyAlias=aigammon-upload
+//     keyAlias=freevia-backgammon-buddy-upload
 //     keyPassword=…
 //
 // On a developer machine you create it yourself; in CI `android.yml` writes it

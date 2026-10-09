@@ -110,7 +110,7 @@ Four secrets, all required together:
 |---|---|
 | `ANDROID_KEYSTORE_BASE64` | base64 of the upload `.jks` |
 | `ANDROID_KEYSTORE_PASSWORD` | keystore password |
-| `ANDROID_KEY_ALIAS` | key alias (`aigammon-upload`) |
+| `ANDROID_KEY_ALIAS` | `freevia-backgammon-buddy-upload` |
 | `ANDROID_KEY_PASSWORD` | key password |
 
 Full instructions — including how to generate your own keystore — are in

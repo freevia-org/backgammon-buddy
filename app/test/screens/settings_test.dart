@@ -293,17 +293,16 @@ void main() {
     // Seeded defaults.
     expect((await _persisted(t)).themeMode, ThemeMode.system);
 
+    // Both callbacks run before the watched settings stream emits a rebuild.
+    // Each update must merge against the persisted row, not the snapshot this
+    // still-mounted widget captured.
     await t.tap(find.text('Dark'));
-    await _refresh(t);
-    expect((await _persisted(t)).themeMode, ThemeMode.dark,
-        reason: 'no save button — the change writes on selection');
-
-    // A second, independent edit persists and does not clobber the first.
     await t.tap(find.text('Fast'));
     await _refresh(t);
     final saved = await _persisted(t);
     expect(saved.animationSpeed, AnimationSpeed.fast);
-    expect(saved.themeMode, ThemeMode.dark, reason: 'earlier edit preserved');
+    expect(saved.themeMode, ThemeMode.dark,
+        reason: 'rapid independent edits must preserve both values');
 
     await t.tap(find.text('7'));
     await _refresh(t);

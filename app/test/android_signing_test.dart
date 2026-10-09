@@ -101,4 +101,15 @@ void main() {
     expect(workflow, contains('KEYSTORE_SETUP.md'),
         reason: 'the skip path must point at the setup instructions');
   });
+
+  test('CI signing artifact agrees with the documented Freevia upload key', () {
+    final workflow = read(workflowPath);
+    final doc = read(setupDocPath);
+    const storeFile = 'freevia-backgammon-buddy-upload.jks';
+    const alias = 'freevia-backgammon-buddy-upload';
+    expect(workflow, contains(storeFile));
+    expect(doc, contains(storeFile));
+    expect(doc, contains('ANDROID_KEY_ALIAS'));
+    expect(doc, contains(alias));
+  });
 }
