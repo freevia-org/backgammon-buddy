@@ -48,7 +48,7 @@ jobs:
        github.event.workflow_run.head_branch == 'master' &&
        github.event.workflow_run.head_repository.full_name == github.repository)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: recursive
           # `workflow_run` would otherwise check out the default branch rather
@@ -384,7 +384,7 @@ jobs:
 
       - name: Node for macOS Firebase distribution
         if: steps.ios.outputs.has_signing == 'true' && steps.ios.outputs.has_distribution == 'true'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
 

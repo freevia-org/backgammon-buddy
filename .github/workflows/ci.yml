@@ -28,8 +28,8 @@ jobs:
       run:
         working-directory: ops/privacy-monitor
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -44,7 +44,7 @@ jobs:
     name: release provenance and artifact validator tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: python3 tool/release_preflight.py
       - run: python3 -m unittest discover -s tool -p test_release_tools.py
       - run: python3 -m unittest discover -s tool -p test_mobile_dependency_inventory.py
@@ -94,7 +94,7 @@ jobs:
             test_args: -P ci
           - package: match_transport
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
@@ -102,7 +102,7 @@ jobs:
       # sdk / architecture / flavor / problem-matcher), so the pub package cache
       # is cached directly. Keyed on the lockfile: a dependency bump writes a new
       # key, anything else reuses the entry.
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: ~/.pub-cache
           key: pub-${{ runner.os }}-${{ matrix.package }}-${{ hashFiles(format('packages/{0}/pubspec.lock', matrix.package)) }}
@@ -122,7 +122,7 @@ jobs:
     # a failure.
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: recursive
       - uses: dtolnay/rust-toolchain@stable
@@ -160,7 +160,7 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: ~/.pub-cache
           key: pub-${{ runner.os }}-engine_bindings-${{ hashFiles('packages/engine_bindings/pubspec.lock') }}
@@ -184,7 +184,7 @@ jobs:
     # Flutter SDK download plus ~700 widget tests.
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # License exactness checks compare bundled texts with pinned upstream.
           submodules: recursive
@@ -210,7 +210,7 @@ jobs:
     # slower to provision than Linux and pays for the Flutter SDK download.
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
@@ -251,8 +251,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -286,10 +286,10 @@ jobs:
     # Firestore-emulator E2E legs behind emulators:exec.
     timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # Node is here for the Firebase CLI. The backend itself is rules-only —
       # Spark plan, no Cloud Functions — so nothing is built.
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
       - uses: actions/setup-java@v4
@@ -304,7 +304,7 @@ jobs:
           channel: stable
           flutter-version: 3.44.8
           cache: true
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: ~/.pub-cache
           key: pub-${{ runner.os }}-online_client-${{ hashFiles('packages/online_client/pubspec.lock') }}

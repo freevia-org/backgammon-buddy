@@ -8,6 +8,77 @@ void main() {
   String workflow(String name) =>
       File('../.github/workflows/$name.yml').readAsStringSync();
 
+  test('first-party actions use Node 24-compatible majors consistently', () {
+    final sources = Directory('../.github/workflows')
+        .listSync()
+        .whereType<File>()
+        .where((file) => file.path.endsWith('.yml'))
+        .map((file) => file.readAsStringSync())
+        .join('\n');
+    final uses = RegExp(
+      r'^\s*uses: actions/(checkout|setup-node|cache)@([^\s]+)(?:\s+#\s+(v[^\s]+))?',
+      multiLine: true,
+    ).allMatches(sources);
+    expect(uses, isNotEmpty);
+    for (final match in uses) {
+      final action = match.group(1)!;
+      final reference = match.group(2)!;
+      final commentVersion = match.group(3);
+      final expectedMajor = switch (action) {
+        'checkout' => 'v7',
+        'setup-node' => 'v7',
+        'cache' => 'v5',
+        _ => fail('Unexpected action $action'),
+      };
+      if (RegExp(r'^[0-9a-f]{40}$').hasMatch(reference)) {
+        expect(
+          commentVersion,
+          startsWith(expectedMajor),
+          reason: '$action SHA pin $reference must identify $expectedMajor',
+        );
+      } else {
+        expect(
+          reference,
+          expectedMajor,
+          reason: '$action must use $expectedMajor across workflows',
+        );
+      }
+    }
+
+    final privacy = File(
+      '../.github/workflows/privacy-cleanup.yml',
+    ).readAsStringSync();
+    expect(
+      privacy,
+      contains(
+        'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1',
+      ),
+    );
+    expect(
+      privacy,
+      contains(
+        'actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0',
+      ),
+    );
+  });
+
+  test('Node 24 actions run only on GitHub-hosted runner labels', () {
+    const supportedHostedLabels = {
+      'ubuntu-latest',
+      'windows-latest',
+      'macos-latest',
+    };
+    for (final name in ['ci', 'android', 'ios', 'privacy-cleanup']) {
+      final source = workflow(name);
+      final labels = RegExp(
+        r'^\s*runs-on:\s*([^\s]+)',
+        multiLine: true,
+      ).allMatches(source).map((match) => match.group(1)!);
+      expect(labels, isNotEmpty);
+      expect(labels, everyElement(isIn(supportedHostedLabels)));
+    }
+  });
+
   test('Freevia mobile identity agrees across builds and signing validation', () {
     const identity = 'org.freevia.backgammonbuddy';
     final android = File('android/app/build.gradle.kts').readAsStringSync();
