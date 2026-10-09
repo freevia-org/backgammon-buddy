@@ -1909,7 +1909,7 @@ class _GameScreenState extends State<GameScreen> {
           FilledButton(
             key: const ValueKey('tutorRoll'),
             onPressed: live ? _rollDice : null,
-            style: _compactButton,
+            style: compactForTutor ? _compactButton : null,
             child: const Text('Roll'),
           ),
         ],
