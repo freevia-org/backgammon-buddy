@@ -16,7 +16,7 @@ void main() {
         .map((file) => file.readAsStringSync())
         .join('\n');
     final uses = RegExp(
-      r'^\s*uses: actions/(checkout|setup-node|cache)@([^\s]+)(?:\s+#\s+(v[^\s]+))?',
+      r'^\s*uses: actions/(checkout|setup-node|cache|setup-java)@([^\s]+)(?:\s+#\s+(v[^\s]+))?',
       multiLine: true,
     ).allMatches(sources);
     expect(uses, isNotEmpty);
@@ -28,6 +28,7 @@ void main() {
         'checkout' => 'v7',
         'setup-node' => 'v7',
         'cache' => 'v5',
+        'setup-java' => 'v6',
         _ => fail('Unexpected action $action'),
       };
       if (RegExp(r'^[0-9a-f]{40}$').hasMatch(reference)) {
