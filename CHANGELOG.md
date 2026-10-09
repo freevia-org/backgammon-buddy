@@ -68,16 +68,17 @@ set by CI from the workflow run number and is not tracked here.
 
 ### Changed
 
-- The live tutor is one continuous panel with a centered drag handle and its
+- The live tutor is one continuous white panel with a centered drag handle and its
   icon, label and short prompt together on the left. Tap the label or swipe up
   to expand it; settings are behind the expanded panel's cog. Hint, Undo and
   Confirm stay at the bottom for easy reach, with the tutor panel above them.
-  Roll stays at the panel's bottom right. The
-  compact view follows the position, staged checkers, Undo and
-  the computer's reply. Tap a logged move to review it, then return with Live.
-  Short tactical explanations lead, with ranked plays, scenarios and optional
-  engine methodology available below. The tutor uses a white surface while the
-  game log retains its tinted background. Delayed analysis cannot replace a
+  Roll and Confirm share the action row's right-hand button slot. A history
+  selection stays highlighted in the log while it is under review.
+  The compact view follows the position, staged checkers, Undo and the
+  computer's reply. Tap a logged move to review it; rolling starts the live
+  turn. Short tactical explanations lead, with ranked plays, scenarios and
+  optional engine methodology available below. The tinted log background
+  distinguishes history from the white tutor. Delayed analysis cannot replace a
   newer decision or history selection.
 - **Buddy Mode's dice reader searches the whole playing surface**, and reads a
   face as a **shape** rather than by counting pips. `PipPattern` matches

@@ -357,23 +357,31 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
             (widget.onSelectEvent ?? widget.onToggleBest)(cell.eventIndex),
         child: Ink(
           color: selected ? scheme.secondaryContainer : null,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              line,
-              if (revealed &&
-                  assessment != null &&
-                  assessment.best.checkerMoves.isNotEmpty)
-                Text(
-                  'Best: ${assessment.best}',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: base.copyWith(
-                    fontSize: 11,
-                    color: scheme.onSurfaceVariant,
+          child: Container(
+            decoration: selected
+                ? BoxDecoration(
+                    border: Border.all(color: scheme.primary, width: 1.5),
+                    borderRadius: BorderRadius.circular(4),
+                  )
+                : null,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                line,
+                if (revealed &&
+                    assessment != null &&
+                    assessment.best.checkerMoves.isNotEmpty)
+                  Text(
+                    'Best: ${assessment.best}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: base.copyWith(
+                      fontSize: 11,
+                      color: scheme.onSurfaceVariant,
+                    ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -699,7 +699,7 @@ class _GameScreenState extends State<GameScreen> {
   /// cannot be shown during a build/rebuild, hence the post-frame deferral.
   ///
   /// The SnackBar floats [SnackBarBehavior.floating] with a bottom margin that
-  /// clears the fixed 64px bottom action bar, so
+  /// clears the fixed bottom action bar (52px with the tutor, otherwise 64px), so
   /// Confirm / Roll stay visible and tappable — the hint is genuinely
   /// non-blocking, not just logically so. It deliberately does NOT clear the
   /// whole score sheet: a margin tall enough for that would put the tip halfway
@@ -1102,29 +1102,6 @@ class _GameScreenState extends State<GameScreen> {
                       _tutorCopy().heading,
                       key: const ValueKey('tutorSummaryHeading'),
                     ),
-                    rollAction: FilledButton(
-                      key: const ValueKey('tutorRoll'),
-                      onPressed:
-                          _canRoll(moveSide) &&
-                              (!_tabletopBars ||
-                                  _actingSide(moveSide) ==
-                                      (whiteAtBottom
-                                          ? Player.white
-                                          : Player.black))
-                          ? _rollDice
-                          : null,
-                      child: const Text('Roll'),
-                    ),
-                    rollActionWidth:
-                        MediaQuery.textScalerOf(context).scale(1) > 1.4
-                        ? 112
-                        : 80,
-                    leading: _tutorPresentation.selectedEventIndex == null
-                        ? null
-                        : TextButton(
-                            onPressed: () => _selectTutorMove(null),
-                            child: const Text('Live'),
-                          ),
                     expanded: _tutorExpanded,
                     onExpandedChanged: (expanded) =>
                         setState(() => _tutorExpanded = expanded),
@@ -1806,7 +1783,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   Widget _bottomRegion(Player? moveSide, Player? owner) =>
-      _actionBar(moveSide, owner: owner, rollInTutor: _tutor != null);
+      _actionBar(moveSide, owner: owner, compactForTutor: _tutor != null);
 
   /// The TOP player's action bar (tabletop hot-seat only): the same contextual
   /// bar as [_actionBar], owned by [owner] — the side the board does NOT face —
@@ -1832,15 +1809,15 @@ class _GameScreenState extends State<GameScreen> {
     ),
   );
 
-  /// The contextual action bar. Its height is ALWAYS 64px (a fixed
-  /// [SizedBox]) so nothing below the board ever reflows as the phase changes —
+  /// The contextual action bar keeps a fixed height so nothing below the board
+  /// ever reflows as the phase changes — 52px with the tutor, otherwise 64px —
   /// only the bar's *contents* swap:
   ///
   /// * entering a move → `[Undo] [Confirm]` (Confirm primary, right),
   /// * a dance → `[No moves — pass]` — which the turn no longer WAITS on: the
   ///   dance passes itself after a readable beat (see [_syncDancePass]), and
   ///   this stays tappable throughout so an impatient player can skip it,
-  /// * the human pre-roll gate → `[Roll]`,
+  /// * the human pre-roll gate → `[Roll]` in the same right-hand slot as Confirm,
   /// * otherwise → a subtle status line (whose turn / thinking).
   ///
   /// The tutor Hint button sits far-left whenever a human move is open. Double
@@ -1857,7 +1834,7 @@ class _GameScreenState extends State<GameScreen> {
   /// button already uses.
   /// [owner] — tabletop hot-seat only — is the player this bar belongs to. The
   /// bar then LIVES only while that player is the one deciding ([_actingSide]);
-  /// on the other player's turn it keeps its shape and its 64px, but every
+  /// on the other player's turn it keeps its shape and fixed height, but every
   /// control is disabled and the whole row is dimmed, so the pair reads as "your
   /// buttons / their buttons" rather than two live copies of the same controls.
   /// `null` (every non-tabletop screen) means the bar serves whoever is
@@ -1866,7 +1843,7 @@ class _GameScreenState extends State<GameScreen> {
     Player? moveSide, {
     Player? owner,
     Key key = const ValueKey('actionBar'),
-    bool rollInTutor = false,
+    bool compactForTutor = false,
   }) {
     final scheme = Theme.of(context).colorScheme;
     // Whether THIS bar's owner is the one who may act right now.
@@ -1929,11 +1906,12 @@ class _GameScreenState extends State<GameScreen> {
               ),
             ),
           const Spacer(),
-          if (!rollInTutor)
-            FilledButton(
-              onPressed: live ? _rollDice : null,
-              child: const Text('Roll'),
-            ),
+          FilledButton(
+            key: const ValueKey('tutorRoll'),
+            onPressed: live ? _rollDice : null,
+            style: _compactButton,
+            child: const Text('Roll'),
+          ),
         ],
       );
     } else {
@@ -1946,11 +1924,11 @@ class _GameScreenState extends State<GameScreen> {
     }
     return SizedBox(
       key: key,
-      height: rollInTutor ? _tutorActionsHeight : 64,
+      height: compactForTutor ? _tutorActionsHeight : 64,
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: 12,
-          vertical: rollInTutor ? 2 : 8,
+          vertical: compactForTutor ? 2 : 8,
         ),
         // Disabled Material buttons are already muted; the extra wash makes the
         // OTHER player's bar recede as a whole so a glance finds the live one.
@@ -2000,6 +1978,10 @@ class _GameScreenState extends State<GameScreen> {
   /// act on.
   void _rollDice() {
     if (!_c.awaitingHumanTurn) return;
+    if (_tutorPresentation.selectedEventIndex != null) {
+      _tutorPresentation.select(null);
+      _markSheetDirty();
+    }
     _c.rollDice();
   }
 

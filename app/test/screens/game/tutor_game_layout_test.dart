@@ -61,10 +61,13 @@ void main() {
           final board = t.getRect(find.byType(BoardView));
           final collapsed = t.getRect(panel);
           final roll = t.getRect(find.widgetWithText(FilledButton, 'Roll'));
+          final actionBar = find.byKey(const ValueKey('actionBar'));
+          final actionBarRect = t.getRect(actionBar);
           expect(board.height, greaterThan(0));
-          expect(collapsed.contains(roll.center), isTrue);
-          expect(roll.right, collapsed.right - 12);
-          expect(roll.bottom, collapsed.bottom - 8);
+          expect(actionBarRect.contains(roll.center), isTrue);
+          expect(roll.right, actionBarRect.right - 12);
+          expect(actionBarRect.bottom, configuration.size.height);
+          expect(collapsed.bottom, actionBarRect.top);
           expect(find.byIcon(Icons.school_outlined), findsOneWidget);
           final grip = t.getRect(find.byKey(const ValueKey('tutorPanelGrip')));
           expect(grip.center.dx, collapsed.center.dx);
@@ -88,8 +91,8 @@ void main() {
                 .selectedEventIndex,
             move.eventIndex,
           );
-          expect(find.text('Live').hitTestable(), findsOneWidget);
-          await t.tap(find.text('Live'));
+          expect(find.byKey(const ValueKey('sheetLeft1')), findsOneWidget);
+          await t.tap(roll);
           await t.pumpAndSettle();
 
           await t.tap(toggle);

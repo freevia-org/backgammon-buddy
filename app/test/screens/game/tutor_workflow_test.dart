@@ -55,7 +55,10 @@ void main() {
       final rollRect = t.getRect(roll);
       expect(t.widget<FilledButton>(roll).onPressed, isNull);
       expect(
-        find.ancestor(of: roll, matching: find.byType(TutorPanel)),
+        find.ancestor(
+          of: roll,
+          matching: find.byKey(const ValueKey('actionBar')),
+        ),
         findsOneWidget,
       );
       expect(
@@ -63,14 +66,18 @@ void main() {
           of: find.byKey(const ValueKey('actionBar')),
           matching: find.text('Roll'),
         ),
-        findsNothing,
+        findsOneWidget,
       );
+      final actionBar = find.byKey(const ValueKey('actionBar'));
+      final panel = find.byKey(const ValueKey('tutorPanel'));
+      expect(t.getBottomLeft(actionBar).dy, 844);
+      expect(t.getBottomLeft(panel).dy, t.getTopLeft(actionBar).dy);
       await t.tap(find.byKey(const ValueKey('tutorPanelToggle')));
       await t.pumpAndSettle();
-      expect(t.getRect(roll), rollRect);
+      expect(t.getBottomRight(roll).dy, rollRect.bottom);
       await t.tap(find.byKey(const ValueKey('tutorPanelToggle')));
       await t.pumpAndSettle();
-      expect(t.getRect(roll), rollRect);
+      expect(t.getBottomRight(roll).dy, rollRect.bottom);
       expect(find.byTooltip('Tutor coaching and options'), findsNothing);
       await _hop(t);
       expect(_heading(t), isNot(current));
@@ -101,14 +108,25 @@ void main() {
       await t.pumpAndSettle();
       expect(_heading(t), startsWith('Review: Your'));
       expect(t.widget<TutorPanel>(find.byType(TutorPanel)).expanded, isFalse);
-      expect(find.text('Live').hitTestable(), findsOneWidget);
+      expect(
+        t
+            .widget<ScoreSheetPanel>(find.byType(ScoreSheetPanel))
+            .selectedEventIndex,
+        turn.white!.eventIndex,
+        reason: 'the move under tutor review stays highlighted in the log',
+      );
       await t.tap(find.text(turn.black!.text));
       await t.pumpAndSettle();
       expect(_heading(t), startsWith('Review: Computer'));
-      await t.tap(find.text('Live'));
+      expect(
+        t
+            .widget<ScoreSheetPanel>(find.byType(ScoreSheetPanel))
+            .selectedEventIndex,
+        turn.black!.eventIndex,
+      );
+      await t.tap(roll);
       await t.pumpAndSettle();
-      expect(_reason(t), startsWith('Roll next'));
-      await t.tap(find.widgetWithText(FilledButton, 'Roll'));
+      expect(_reason(t), isNot(startsWith('Roll next')));
       await pumpUntil(t, () => human.pendingMoveRequest.value != null);
       await t.pumpAndSettle();
       expect(_reason(t), isNot(contains('Roll next')));

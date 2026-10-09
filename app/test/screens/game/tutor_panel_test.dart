@@ -7,8 +7,6 @@ void main() {
     required Size size,
     double textScale = 1,
     VoidCallback? onSettings,
-    bool history = false,
-    bool canRoll = true,
   }) {
     var expanded = false;
     return MaterialApp(
@@ -39,17 +37,6 @@ void main() {
                           setState(() => expanded = value),
                       onOpenSettings: onSettings ?? () {},
                       prompt: const Text('Good move', key: ValueKey('verdict')),
-                      rollActionWidth: textScale > 1.4 ? 112 : 80,
-                      rollAction: FilledButton(
-                        onPressed: canRoll ? () {} : null,
-                        child: const Text('Roll'),
-                      ),
-                      leading: history
-                          ? TextButton(
-                              onPressed: () {},
-                              child: const Text('Live'),
-                            )
-                          : null,
                       summary: const Text(
                         'Making a point protects both checkers and makes '
                         're-entry harder for your opponent.',
@@ -103,10 +90,6 @@ void main() {
     final labelOffset = t.getTopLeft(find.text('Tutor:')) - collapsed.topLeft;
     expect(find.byKey(const ValueKey('tutorPanelDetails')), findsNothing);
     expect(find.byTooltip('Tutoring options'), findsNothing);
-    final roll = t.getRect(find.widgetWithText(FilledButton, 'Roll'));
-    expect(collapsed.contains(roll.center), isTrue);
-    expect(roll.right, collapsed.right - 12);
-
     await t.tap(find.text('Tutor:'));
     await t.pump();
     await t.pump(const Duration(milliseconds: 80));
@@ -121,7 +104,6 @@ void main() {
     expect(t.getTopLeft(summary) - expanded.topLeft, summaryOffset);
     expect(t.getTopLeft(find.text('Tutor:')) - expanded.topLeft, labelOffset);
     expect(t.getRect(find.byKey(const ValueKey('board'))), board);
-    expect(t.getRect(find.widgetWithText(FilledButton, 'Roll')), roll);
     expect(find.text('Good move'), findsOneWidget);
     expect(find.byKey(const ValueKey('reason')), findsOneWidget);
     expect(find.byTooltip('Tutoring options'), findsOneWidget);
@@ -173,14 +155,8 @@ void main() {
       t,
     ) async {
       await setSize(t, size);
-      await t.pumpWidget(
-        panel(size: size, textScale: 2, history: true, canRoll: false),
-      );
+      await t.pumpWidget(panel(size: size, textScale: 2));
       expect(t.takeException(), isNull);
-      expect(find.text('Live').hitTestable(), findsOneWidget);
-      final roll = find.widgetWithText(FilledButton, 'Roll');
-      expect(t.widget<FilledButton>(roll).onPressed, isNull);
-      final rollRect = t.getRect(roll);
       final summary = find.byKey(const ValueKey('tutorPanelSummaryScroll'));
       await t.drag(summary, const Offset(0, -70));
       await t.pumpAndSettle();
@@ -190,8 +166,6 @@ void main() {
       final surface = t.getRect(find.byKey(const ValueKey('tutorPanel')));
       expect(surface.top, greaterThanOrEqualTo(0));
       expect(surface.bottom, size.height);
-      expect(t.getRect(roll), rollRect);
-      expect(find.text('Live').hitTestable(), findsOneWidget);
       final details = find.byKey(const ValueKey('tutorPanelDetails'));
       final scrollable = find.descendant(
         of: details,

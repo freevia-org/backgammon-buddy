@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 /// Reserve [collapsedHeight] in the game layout and place this widget in a Stack
 /// with a fixed bottom edge. Expansion then covers the board instead of resizing
 /// it. The header and summary retain their space while details open below them;
-/// Roll stays at the same bottom-right screen position throughout the animation.
+/// the action bar remains below this panel when details are expanded.
 class TutorPanel extends StatefulWidget {
   const TutorPanel({
     super.key,
@@ -16,14 +16,10 @@ class TutorPanel extends StatefulWidget {
     required this.prompt,
     required this.summary,
     required this.details,
-    required this.rollAction,
     required this.onOpenSettings,
-    this.leading,
-    this.rollActionWidth = 80,
     this.collapsedHeight = 128,
     this.expandedHeight = 320,
   }) : assert(collapsedHeight >= handleHeight + headerHeight),
-       assert(rollActionWidth >= 48),
        assert(expandedHeight >= collapsedHeight);
 
   static const double handleHeight = 16;
@@ -34,12 +30,8 @@ class TutorPanel extends StatefulWidget {
   final Widget prompt;
   final Widget summary;
   final Widget details;
-  final Widget rollAction;
-  final double rollActionWidth;
   final VoidCallback onOpenSettings;
 
-  /// Optional persistent action beside Roll, such as returning from history.
-  final Widget? leading;
   final double collapsedHeight;
   final double expandedHeight;
 
@@ -91,10 +83,6 @@ class _TutorPanelState extends State<TutorPanel> {
           0.0,
           collapsedHeight - TutorPanel.handleHeight - headerHeight,
         );
-        final rightInset = widget.rollActionWidth + 24;
-        final liveWidth = widget.leading == null
-            ? 0.0
-            : math.max(56.0, MediaQuery.textScalerOf(context).scale(56));
         final targetHeight = widget.expanded
             ? math.min(widget.expandedHeight, available)
             : collapsedHeight;
@@ -179,10 +167,7 @@ class _TutorPanelState extends State<TutorPanel> {
                       key: const ValueKey('tutorPanelSummary'),
                       height: summaryHeight,
                       child: Padding(
-                        padding: EdgeInsets.only(
-                          left: 12,
-                          right: rightInset + liveWidth,
-                        ),
+                        padding: EdgeInsets.only(left: 12, right: 12),
                         child: NotificationListener<ScrollNotification>(
                           onNotification: _summaryScroll,
                           child: SingleChildScrollView(
@@ -263,30 +248,6 @@ class _TutorPanelState extends State<TutorPanel> {
                       ),
                     ),
                   ),
-                Positioned(
-                  right: 12,
-                  bottom: 8,
-                  child: Material(
-                    color: Colors.white,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (widget.leading != null)
-                          SizedBox(
-                            width: liveWidth,
-                            height: 48,
-                            child: widget.leading,
-                          ),
-                        SizedBox(
-                          key: const ValueKey('tutorPanelRoll'),
-                          width: widget.rollActionWidth,
-                          height: 48,
-                          child: widget.rollAction,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
