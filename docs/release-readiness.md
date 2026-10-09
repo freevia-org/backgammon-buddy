@@ -1,24 +1,28 @@
 # Release readiness — 2026-10-09
 
-The latest internal-tester feedback shipped as
-[compact tutor build 10022](tutor-compact-panel-2026-10-09.md), available to the
-same two internal testers at 14:49 Kyiv on October 9. The icon, label and prompt
-are on the left, a centered handle opens the panel, and Roll stays at its bottom
-right. The full local suite passed 1,224 tests with seven skips; static analysis,
-all 11 CI jobs and the exact signed-artifact audit passed. This follows
-[continuous tutor build 10020](tutor-panel-feedback-2026-10-09.md), published at
-14:22 Kyiv. These internal updates did not alter production or the listing.
-The production submission and baseline runtime evidence below still refer to
-build 10018; no new physical-device acceptance is claimed for 10022.
+The latest internal-tester feedback shipped as tutor-panel refinement build
+10023, available to the same two testers at 15:54 Kyiv on October 9. It restores
+full-size Hint, Roll and Confirm buttons, keeps Roll and Confirm in one right-hand
+slot, tightens the gap between the handle and tutor text, and keeps the selected
+history move highlighted. The focused tutor-workflow render passed. The signed
+APK/AAB, Freevia upload signature, package identity, supported ABIs, ELF/ZIP
+alignment and dependency provenance checks passed. This styling update did not
+run the full CI matrix or an exact-build device test. The preceding
+[compact tutor build 10022](tutor-compact-panel-2026-10-09.md) passed all 11 CI
+jobs and the full local suite (1,224 tests, seven skips); it was published at
+14:49 Kyiv. The earlier [continuous tutor build
+10020](tutor-panel-feedback-2026-10-09.md) was published at 14:22 Kyiv.
+These internal releases did not alter production or the listing. The production
+submission and baseline runtime evidence below still refer to build 10018.
 
 **Status: the owner deferred physical-board Buddy Mode to version 2. Replacement
 Android candidate 0.14.0+10018 hides that mode and its settings and removes
 microphone access. Full CI, the signed-artifact audit and exact-APK offline tutor
-acceptance on a genuine 16 KB ARM64 Android device passed. The on-screen tutor remains the release focus. Android
-0.14.0+10018 is available to two approved internal Play testers. Production and
-11 associated changes were submitted; Google reports Changes in review with
-automated submission checks running. No public release is claimed. Apple remains
-on hold.** Publisher is **Freevia**, source is
+acceptance on a genuine 16 KB ARM64 Android device passed for that candidate.
+The latest internal track release is 0.14.0+10023, available to two approved
+testers. This turn did not change production or the store listing, and no public
+production availability is claimed. Apple remains on hold.** Publisher is
+**Freevia**, source is
 <https://github.com/freevia-org/backgammon-buddy>, policy is
 <https://freevia.org/backgammon-buddy/privacy/>, and support is
 <https://freevia.org/backgammon-buddy/support/>. This report distinguishes internal

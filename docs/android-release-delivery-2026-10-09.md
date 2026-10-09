@@ -1,12 +1,13 @@
 # Android release delivery — 2026-10-09
 
 Freevia's Backgammon Buddy `org.freevia.backgammonbuddy`, version
-`0.14.0+10022`, is **available to internal testers** in Google Play, replacing
-10020 with compact tutor controls. The first production release remains 10018;
-it and the existing store/privacy declarations were submitted for Google review.
-At that submission, Console showed **Changes in review** with automated quick
-checks running. This internal-only follow-up did not alter or resubmit production
-or the listing. Public production availability is not yet confirmed.
+`0.14.0+10023`, is **available to internal testers** in Google Play, replacing
+10022 with the accepted tutor-panel spacing and full-size action buttons. Release
+5 was published at 15:54 Kyiv on October 9 (12:54 UTC). The first production
+release remains 10018; it and the existing store/privacy declarations were
+submitted for Google review. This internal-only follow-up did not alter or
+resubmit production or the listing. Public production availability is not yet
+confirmed.
 
 The owner authorized Android publication and supplied two Google accounts. Their
 app-named list is selected and saved with exactly two users. Personal addresses
@@ -15,14 +16,42 @@ No invitation emails were sent.
 
 The [tester opt-in link](https://play.google.com/apps/internaltest/4701280291485247000)
 requires one of those approved accounts. Play reports the track active and
-the replacement release available, published on 2026-10-09 at 14:49 Kyiv time
-(11:49 UTC). Earlier releases 10020, 10018 and 10017 were published at 14:22 Kyiv
+the latest release available to internal testers. Earlier releases 10022, 10020,
+10018 and 10017 were published at 14:49 Kyiv (11:49 UTC), 14:22 Kyiv
 (11:22 UTC), 12:55 Kyiv (09:55 UTC) and 11:56 Kyiv (08:56 UTC), respectively.
 Testers may see
 `org.freevia.backgammonbuddy (unreviewed)` as a temporary download name until
 app review. Play's publication confirmation notes that propagation usually
 takes up to an hour and can take longer; tester installation from Play has not
 yet been independently observed.
+
+## Internal tutor panel refinements — 10023
+
+Source `13736ccf1ef1631d9cfe87d8320777e027a0a3e8` produced signed APK/AAB
+version `0.14.0+10023` in [Android workflow 37931478694](https://github.com/freevia-org/backgammon-buddy/actions/runs/37931478694).
+The workflow succeeded; the package, explicit build number, Freevia upload
+certificate, two ARM ABIs, native ELF alignment and APK ZIP alignment were
+independently checked. Provenance validation matched all 119 Rust components and
+both production models. The local render harness passed for the tutor workflow.
+The full CI matrix and an exact-build physical-device test were not run for this
+styling-only update.
+
+Google Play preview showed build `10023 (0.14.0)`, retained all supported phone
+and tablet devices, and marked it **Ready to release**. Release 5 was published
+to the existing internal track, and Console confirms **Available to internal
+testers**. The same two-person tester list and opt-in link remain; no invitations
+were sent. Production, the store listing and legal declarations were unchanged.
+
+The update restores full-size Hint, Roll and Confirm buttons, keeps Roll and
+Confirm in the same right-hand action slot, reduces the space under the tutor
+handle, and preserves the selected-history highlight without a Live label.
+Archived APK, AAB, symbols, dependency evidence and workflow log are under
+`E:/Users/anton/Documents/Freevia/Releases/backgammon-buddy/0.14.0-10023/`.
+APK SHA-256: `b8729dee262832b29f2d826da128c44d0ea55111446c157054f57591618353a2`.
+AAB SHA-256: `4f3454f5598cf15d88886031b65384de80c5c3075d1a8d836d21804d83403216`.
+The 147-file archive totals 478,678,013 bytes. Every manifest entry was
+rechecked after copying. The archived `SHA256SUMS.txt` SHA-256 is
+`9aca0dbef361a1e1b3026f932dca02c8b8e3561d6e97ce175ac38cdb36a92e92`.
 
 ## Internal compact tutor controls — 10022
 
