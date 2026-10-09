@@ -341,7 +341,7 @@ jobs:
             --flutter-license "$(dirname "$(dirname "$(command -v flutter)")")/bin/cache/pkg/sky_engine/LICENSE"
 
       - name: Upload Android dependency evidence
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: aigammon-android-dependencies-${{ github.run_number }}
           path: app/build/mobile-dependencies/android
@@ -349,7 +349,7 @@ jobs:
 
       - name: Upload signed Google Play bundle
         if: inputs.build_appbundle
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: aigammon-play-bundle-${{ github.run_number }}
           path: |
@@ -357,7 +357,7 @@ jobs:
             app/build/symbols/android-bundle
           if-no-files-found: error
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: aigammon-apk
           # Universal ARM/ARM64 APK; version code matches the optional AAB.
@@ -367,14 +367,14 @@ jobs:
       # Keyed by run number: the build number in the APK is the same value, so
       # a trace from a tester's build maps to exactly one symbols artifact.
       - name: Upload Dart debug symbols
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: aigammon-symbols-android-${{ github.run_number }}
           path: app/build/symbols/android
           if-no-files-found: error
 
       - name: Upload unstripped native engine symbols
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: aigammon-native-symbols-android-${{ github.run_number }}
           path: app/android/app/src/main/jniLibs
