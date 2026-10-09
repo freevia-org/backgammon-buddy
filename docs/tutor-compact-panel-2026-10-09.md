@@ -37,6 +37,56 @@ inspected for current position, staged play, Undo, computer reply, history and
 expansion. These deterministic test agents establish UI behavior, not native
 engine strength or acceptance of a Play-installed build.
 
-Exact signed-build delivery evidence will be recorded after the candidate is
-built and checked. This source document does not establish Google Play
-availability.
+Source `b037dd302c56c8a3d67aa215dcc949c47948d040` passed all 11 jobs in
+[CI 37924567323](https://github.com/freevia-org/backgammon-buddy/actions/runs/37924567323).
+A supplemental history-review layout check also passed all four size/text-scale
+combinations, verifying that the rendered expanded verdict is not truncated.
+
+## Exact signed Android candidate
+
+[Android workflow 37924614290](https://github.com/freevia-org/backgammon-buddy/actions/runs/37924614290)
+produced signed **0.14.0+10022**, package `org.freevia.backgammonbuddy`, from the
+source above. Independent inspection of the downloaded artifacts passed.
+
+| Artifact | Bytes | SHA-256 |
+| --- | ---: | --- |
+| APK | 77,447,748 | `3c3c67e1f9fd5825887bba174804b8cac3208d4f0973ea0ddb1997b8cf3d20a6` |
+| AAB | 73,232,634 | `f5b588c4bd7249ac846c0cea9c7f53ea939ce1f3a4a27caf67827b9ec9377ef9` |
+
+The audit verified package/version identity, the expected Freevia upload signer,
+APK/JAR signatures, dedicated Freevia configuration, absence of legacy branding,
+license assets and resolved dependency inventory, ARM ABI packaging, permissions,
+bundletool validity, 16 KB ELF/ZIP alignment and matching native debug symbols.
+All 14 non-Dart native libraries are byte-identical to build 10018. This is static
+artifact evidence; build 10022 has no new physical-device or Test Lab acceptance
+claim. The separately documented build 10018 runtime result remains historical.
+
+## Internal delivery
+
+Google Play published internal release 4, **0.14.0 — compact tutor controls**,
+at **14:49 Kyiv on 2026-10-09 (11:49 UTC)**. The release preview had no errors or
+warnings; Console then confirmed Active, Available to internal testers, and
+version code 10022. The selected two-account tester list is unchanged.
+
+The [internal opt-in link](https://play.google.com/apps/internaltest/4701280291485247000)
+is unchanged. No invitations were sent and no new legal terms were accepted.
+Production and the store listing were not changed. This establishes internal
+availability, not an independently observed Play-delivered installation.
+
+Ready-preview, publication and tester-list screenshots and DOM records are
+preserved under `app/build/release-audit/play-console/internal-10022-*`.
+
+## Preserved release evidence
+
+The durable archive is
+`E:/Users/anton/Documents/Freevia/Releases/backgammon-buddy/0.14.0-10022/`.
+It contains **186 payload/evidence files totaling 482,209,934 bytes**, plus
+`SHA256SUMS.txt`. Every copied file and manifest entry was hash-verified, with
+no extra files. The manifest SHA-256 is
+`870cd3665560b3f301fb34f5b8f07695f7dacfba1b09f73aa31097101d42735b`.
+
+The archive retains all five workflow artifacts, static and symbol audits,
+CI/build logs, six final compact renders and their harness, the full local test
+and analysis logs, the supplemental four-case verdict test, and all six Play
+proof files. Credentials and private fixtures were excluded. The earlier 10018
+and 10020 archives and their manifest hashes are unchanged.

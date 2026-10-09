@@ -1,8 +1,8 @@
 # Android release delivery — 2026-10-09
 
 Freevia's Backgammon Buddy `org.freevia.backgammonbuddy`, version
-`0.14.0+10020`, is **available to internal testers** in Google Play, replacing
-10018 with the live tutor update. The first production release remains 10018;
+`0.14.0+10022`, is **available to internal testers** in Google Play, replacing
+10020 with compact tutor controls. The first production release remains 10018;
 it and the existing store/privacy declarations were submitted for Google review.
 At that submission, Console showed **Changes in review** with automated quick
 checks running. This internal-only follow-up did not alter or resubmit production
@@ -15,16 +15,55 @@ No invitation emails were sent.
 
 The [tester opt-in link](https://play.google.com/apps/internaltest/4701280291485247000)
 requires one of those approved accounts. Play reports the track active and
-the replacement release available, published on 2026-10-09 at 14:22 Kyiv time
-(11:22 UTC). Earlier releases 10018 and 10017 were published at 12:55 Kyiv
-(09:55 UTC) and 11:56 Kyiv (08:56 UTC), respectively.
+the replacement release available, published on 2026-10-09 at 14:49 Kyiv time
+(11:49 UTC). Earlier releases 10020, 10018 and 10017 were published at 14:22 Kyiv
+(11:22 UTC), 12:55 Kyiv (09:55 UTC) and 11:56 Kyiv (08:56 UTC), respectively.
 Testers may see
 `org.freevia.backgammonbuddy (unreviewed)` as a temporary download name until
 app review. Play's publication confirmation notes that propagation usually
 takes up to an hour and can take longer; tester installation from Play has not
 yet been independently observed.
 
-## Internal live tutor update — 10020
+## Internal compact tutor controls — 10022
+
+Source `b037dd302c56c8a3d67aa215dcc949c47948d040` passed all 11 jobs in
+[CI 37924567323](https://github.com/freevia-org/backgammon-buddy/actions/runs/37924567323).
+[Android build 37924614290](https://github.com/freevia-org/backgammon-buddy/actions/runs/37924614290)
+produced signed APK and AAB version `0.14.0+10022`. Independent artifact checks
+passed before rollout. Play accepted the bundle with ReTrace mapping and native
+symbols; its preview showed **Ready to release** with no errors or warnings.
+Release 4 was published as `0.14.0 — compact tutor controls`. Console confirms
+**Active**, **Available to internal testers**, code **10022**, and the unchanged
+selected list of two testers. No invitations or new legal agreements were involved.
+
+The compact panel puts the tutor icon, label and short prompt on the left,
+with analysis below and a draggable handle at the top center. Roll stays visible
+at the bottom right inside the panel, including while details expand, and is
+enabled only when a roll is legal. Expanded details retain the full verdict when
+the short header is truncated. Local validation passed 1,224 tests with seven
+expected skips and clean analysis. Six real-font renders were accepted; a
+supplemental four-case portrait/landscape test at normal and doubled text size
+verified that the expanded verdict wraps without truncation.
+See the [compact tutor validation record](tutor-compact-panel-2026-10-09.md).
+
+| Artifact | Bytes | SHA-256 |
+|---|---:|---|
+| APK | 77,447,748 | `3c3c67e1f9fd5825887bba174804b8cac3208d4f0973ea0ddb1997b8cf3d20a6` |
+| AAB | 73,232,634 | `f5b588c4bd7249ac846c0cea9c7f53ea939ce1f3a4a27caf67827b9ec9377ef9` |
+
+The exact package/version, Freevia signer and online configuration, permissions,
+license assets, APK/JAR signatures, bundletool validation, native ELF and APK ZIP
+alignment, and matching debug symbols passed independent verification. All 14
+non-Dart native libraries remain byte-identical to 10018. No exact-10022 device
+or Test Lab runtime result is claimed. Artifacts, logs and audit reports are under
+`app/build/release-audit/android-b037dd3/`; ready, published and tester-list
+screenshots/DOM evidence use the `internal-10022-` prefix under
+`app/build/release-audit/play-console/`.
+
+Production and the store listing were not changed during this internal-only
+release.
+
+## Historical internal live tutor update — 10020
 
 Source `d0da10b2945007fdda8957625f72775c6228297d` passed all 11 jobs in
 [CI 37921732739](https://github.com/freevia-org/backgammon-buddy/actions/runs/37921732739).
