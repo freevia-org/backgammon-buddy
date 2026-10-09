@@ -70,8 +70,9 @@ set by CI from the workflow run number and is not tracked here.
 
 - The live tutor is one continuous white panel with a centered drag handle and its
   icon, label and short prompt together on the left. Tap the label or swipe up
-  to expand it; settings are behind the expanded panel's cog. Hint, Undo and
-  Confirm stay at the bottom for easy reach, with the tutor panel above them.
+  to expand it; settings are behind the expanded panel's cog. A smaller gap
+  separates the handle and tutor text. Hint, Undo and Confirm stay at the bottom
+  for easy reach, with full-size buttons and the tutor above them.
   Roll and Confirm share the action row's right-hand button slot. A history
   selection stays highlighted in the log while it is under review.
   The compact view follows the position, staged checkers, Undo and the
