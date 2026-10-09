@@ -20,10 +20,10 @@ import 'settings_screen.dart';
 /// the match-mode entry points. Each mode button pushes a [NewMatchScreen] (as
 /// a route) configured for its mode.
 ///
-/// Layout: a settings row on top, the identity + buttons cluster centred in the
-/// space that remains, and the version pinned to the bottom. The cluster is
-/// scrollable so a short window (a landscape phone, a small desktop window)
-/// degrades to a scroll rather than an overflow.
+/// Layout: a settings row on top, the identity and all mode buttons grouped in
+/// the remaining space, and the version pinned to the bottom. The home menu is
+/// deliberately not scrollable: compact two-column buttons keep every mode
+/// visible together on a phone.
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
@@ -58,115 +58,130 @@ class HomeScreen extends ConsumerWidget {
               ),
             ),
             Expanded(
-              child: Align(
-                // Biased slightly above centre: the settings row already sits
-                // above the cluster, so a true centre reads as low, and this
-                // keeps the identity (mark + name + promise) in the upper third
-                // with the buttons following it.
-                alignment: const Alignment(0, -0.28),
-                child: SingleChildScrollView(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 420),
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Semantics(
-                            label: 'Backgammon Buddy',
-                            child: const AppMark(size: 140),
-                          ),
-                          const SizedBox(height: 20),
-                          Text(
-                            'Backgammon Buddy',
-                            style: theme.textTheme.displaySmall,
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 6),
-                          Text(
-                            'Improve your backgammon, one decision at a time',
-                            style: theme.textTheme.titleMedium?.copyWith(
-                                color: theme.colorScheme.onSurfaceVariant),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 40),
-                          _ModeButton(
-                            label: 'Learning & practice',
-                            icon: Icons.school_outlined,
-                            onPressed: () => Navigator.of(context).push(
-                              MaterialPageRoute(builder: (_) => const LearningScreen())),
-                          ),
-                          const SizedBox(height: 12),
-                          _ModeButton(
-                            label: 'Play vs Computer',
-                            icon: Icons.smart_toy_outlined,
-                            onPressed: () => _open(context, vsComputer: true),
-                          ),
-                          const SizedBox(height: 12),
-                          _ModeButton(
-                            label: 'Two Players',
-                            icon: Icons.people_outline,
-                            onPressed: () => _open(context, vsComputer: false),
-                          ),
-                          // Physical-board play is parked for v2. Its retained
-                          // implementation also needs a supported mobile device.
-                          if (ref.watch(physicalBuddyEnabledProvider) &&
-                              isBuddyModeSupportedPlatform) ...[
-                            const SizedBox(height: 12),
-                            _ModeButton(
-                              label: 'Play with Buddy',
-                              icon: Icons.videocam_outlined,
-                              onPressed: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => const BuddySetupScreen(
-                                    launch: openBuddyGame,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                          const SizedBox(height: 12),
-                          _ModeButton(
-                            label: 'Play Nearby',
-                            icon: Icons.wifi_tethering,
-                            onPressed: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => const LanScreen(),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          _ModeButton(
-                            label: 'Play Online',
-                            icon: Icons.public,
-                            onPressed: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => const OnlineScreen(),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          SizedBox(
-                            width: double.infinity,
-                            child: OutlinedButton.icon(
-                              onPressed: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => const HistoryScreen(),
-                                ),
-                              ),
-                              icon: const Icon(Icons.history),
-                              label: const Text('History'),
-                              style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 16),
-                              ),
-                            ),
-                          ),
-                        ],
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final textScale = MediaQuery.textScalerOf(context).scale(1);
+                  final compact = constraints.maxHeight < 570 || textScale > 1.3;
+                  final actions = <Widget>[
+                    _ModeButton(
+                      label: 'Learning & practice',
+                      compactLabel: 'Learn & practice',
+                      icon: Icons.school_outlined,
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const LearningScreen()),
                       ),
                     ),
-                  ),
-                ),
+                    _ModeButton(
+                      label: 'Play vs Computer',
+                      compactLabel: 'vs Computer',
+                      icon: Icons.smart_toy_outlined,
+                      onPressed: () => _open(context, vsComputer: true),
+                    ),
+                    _ModeButton(
+                      label: 'Two Players',
+                      compactLabel: 'Two Players',
+                      icon: Icons.people_outline,
+                      onPressed: () => _open(context, vsComputer: false),
+                    ),
+                    // Physical-board play is parked for v2. Its retained
+                    // implementation also needs a supported mobile device.
+                    if (ref.watch(physicalBuddyEnabledProvider) &&
+                        isBuddyModeSupportedPlatform)
+                      _ModeButton(
+                        label: 'Play with Buddy',
+                        compactLabel: 'Buddy',
+                        icon: Icons.videocam_outlined,
+                        onPressed: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const BuddySetupScreen(
+                              launch: openBuddyGame,
+                            ),
+                          ),
+                        ),
+                      ),
+                    _ModeButton(
+                      label: 'Play Nearby',
+                      compactLabel: 'Nearby',
+                      icon: Icons.wifi_tethering,
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const LanScreen()),
+                      ),
+                    ),
+                    _ModeButton(
+                      label: 'Play Online',
+                      compactLabel: 'Online',
+                      icon: Icons.public,
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const OnlineScreen()),
+                      ),
+                    ),
+                    _ModeButton(
+                      label: 'History',
+                      compactLabel: 'History',
+                      icon: Icons.history,
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const HistoryScreen()),
+                      ),
+                    ),
+                  ];
+                  final largeText = textScale > 1.3;
+                  final markSize = largeText ? 32.0 : (compact ? 56.0 : 104.0);
+                  final tileHeight = largeText ? 96.0 : (compact ? 82.0 : 92.0);
+                  return Align(
+                    alignment: compact ? Alignment.topCenter : const Alignment(0, -0.18),
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 420),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Semantics(
+                              label: 'Backgammon Buddy',
+                              child: AppMark(size: markSize),
+                            ),
+                            SizedBox(height: compact ? 4 : 8),
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                'Backgammon Buddy',
+                                style: compact ? theme.textTheme.titleLarge : theme.textTheme.displaySmall,
+                                textAlign: TextAlign.center,
+                                maxLines: 1,
+                                softWrap: false,
+                              ),
+                            ),
+                            if (!largeText) ...[
+                              const SizedBox(height: 4),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  'Improve your game with a tutor',
+                                  style: theme.textTheme.titleMedium?.copyWith(
+                                    color: theme.colorScheme.onSurfaceVariant,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                  maxLines: 1,
+                                  softWrap: false,
+                                ),
+                              ),
+                            ],
+                            SizedBox(height: compact ? 8 : 16),
+                            GridView.count(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 8,
+                              crossAxisSpacing: 8,
+                              mainAxisExtent: tileHeight,
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              children: actions,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
             Padding(
@@ -194,29 +209,46 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-/// A large, full-width entry button used for the home modes.
+/// A compact home action with a generous tap target and a wrapped label.
 class _ModeButton extends StatelessWidget {
   const _ModeButton({
     required this.label,
+    required this.compactLabel,
     required this.icon,
     required this.onPressed,
   });
 
   final String label;
+  final String compactLabel;
   final IconData icon;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
+    final largeText = MediaQuery.textScalerOf(context).scale(1) > 1.3;
     return SizedBox(
       width: double.infinity,
-      child: FilledButton.icon(
+      child: FilledButton(
         onPressed: onPressed,
-        icon: Icon(icon),
-        label: Text(label),
         style: FilledButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 18),
-          textStyle: Theme.of(context).textTheme.titleMedium,
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 5),
+          textStyle: Theme.of(context).textTheme.labelLarge,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (!largeText) ...[
+              Icon(icon),
+              const SizedBox(height: 3),
+            ],
+            Text(
+              largeText ? compactLabel : label,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
         ),
       ),
     );

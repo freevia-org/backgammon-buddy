@@ -97,7 +97,7 @@ Widget _app({double textScale = 1, bool physicalBuddy = false}) => ProviderScope
       ),
     );
 
-/// Real users scroll the growing menu on short windows before tapping a mode.
+/// Home actions must already be visible before any interaction.
 Future<void> _tapVisible(WidgetTester t, Finder finder) async {
   await t.ensureVisible(finder);
   await t.pumpAndSettle();
@@ -232,7 +232,7 @@ void main() {
   });
 
   testWidgets(
-      'small large-text home keeps every mode reachable and opens learning',
+      'small large-text home shows every mode without scrolling',
       (t) async {
     await t.binding.setSurfaceSize(const Size(320, 568));
     addTearDown(() => t.binding.setSurfaceSize(null));
@@ -240,36 +240,59 @@ void main() {
     final title = find.text('Backgammon Buddy');
     expect(title, findsOneWidget);
     final titleWidget = t.widget<Text>(title);
-    final titleWidth = t.getSize(title).width;
-    final measuredTitle = TextPainter(
-      text: TextSpan(text: titleWidget.data, style: titleWidget.style),
-      textDirection: TextDirection.ltr,
-      textScaler: const TextScaler.linear(2),
-    )..layout(maxWidth: titleWidth);
-    expect(measuredTitle.computeLineMetrics().every((line) => line.width <= titleWidth + 0.5), isTrue,
-        reason: 'the full product name wraps within the phone at large text');
-    measuredTitle.dispose();
+    expect(titleWidget.maxLines, 1);
+    expect(titleWidget.softWrap, isFalse);
+    expect(find.ancestor(of: title, matching: find.byType(FittedBox)), findsOneWidget);
+    for (final label in [
+      'Learn & practice',
+      'vs Computer',
+      'Two Players',
+      'Nearby',
+      'Online',
+      'History'
+    ]) {
+      final text = find.text(label);
+      expect(text.hitTestable(), findsOneWidget,
+          reason: '$label is visible without scrolling');
+      expect(t.takeException(), isNull);
+    }
+    await _tapVisible(t, find.text('Learn & practice'));
+    await t.pumpAndSettle();
+    expect(find.byType(LearningScreen), findsOneWidget);
+    await t
+        .runAsync(() => Future<void>.delayed(const Duration(milliseconds: 30)));
+    await t.pump();
+    expect(t.takeException(), isNull);
+  });
+
+  testWidgets('short phone shows all actions and one-line headings', (t) async {
+    await t.binding.setSurfaceSize(const Size(320, 568));
+    addTearDown(() => t.binding.setSurfaceSize(null));
+    await t.pumpWidget(_app());
+
     for (final label in [
       'Learning & practice',
       'Play vs Computer',
       'Two Players',
       'Play Nearby',
       'Play Online',
-      'History'
+      'History',
     ]) {
-      final text = find.text(label);
-      await t.ensureVisible(text);
-      await t.pumpAndSettle();
-      expect(text.hitTestable(), findsOneWidget,
-          reason: '$label stays reachable by scrolling');
-      expect(t.takeException(), isNull);
+      expect(find.text(label).hitTestable(), findsOneWidget,
+          reason: '$label is visible without scrolling');
     }
-    await _tapVisible(t, find.text('Learning & practice'));
-    await t.pumpAndSettle();
-    expect(find.byType(LearningScreen), findsOneWidget);
-    await t
-        .runAsync(() => Future<void>.delayed(const Duration(milliseconds: 30)));
-    await t.pump();
+
+    for (final heading in [
+      'Backgammon Buddy',
+      'Improve your game with a tutor',
+    ]) {
+      final finder = find.text(heading);
+      expect(finder, findsOneWidget);
+      final widget = t.widget<Text>(finder);
+      expect(widget.maxLines, 1, reason: '$heading stays on one line');
+      expect(widget.softWrap, isFalse);
+      expect(find.ancestor(of: finder, matching: find.byType(FittedBox)), findsOneWidget);
+    }
     expect(t.takeException(), isNull);
   });
 
@@ -480,9 +503,9 @@ void main() {
 
       final buddy = find.text('Play with Buddy');
       expect(buddy, findsOneWidget);
-      // A local mode, listed with the other two and above the remote pair.
-      expect(t.getTopLeft(find.text('Two Players')).dy,
-          lessThan(t.getTopLeft(buddy).dy));
+      // A local mode after the other local choices and before the remote pair.
+      expect(t.getTopLeft(find.text('Two Players')).dx,
+          lessThan(t.getTopLeft(buddy).dx));
       expect(t.getTopLeft(buddy).dy,
           lessThan(t.getTopLeft(find.text('Play Nearby')).dy));
 
