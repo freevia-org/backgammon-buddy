@@ -16,6 +16,20 @@ from release_build_number import resolve
 
 
 class ReleaseToolsTest(unittest.TestCase):
+    def test_android_removes_unused_advertising_permissions(self):
+        manifest = ET.parse(Path(__file__).resolve().parents[1] /
+                            'app/android/app/src/main/AndroidManifest.xml')
+        removals = {
+            node.get('{http://schemas.android.com/apk/res/android}name')
+            for node in manifest.findall('./uses-permission')
+            if node.get('{http://schemas.android.com/tools}node') == 'remove'
+        }
+        self.assertTrue({
+            'com.google.android.gms.permission.AD_ID',
+            'android.permission.ACCESS_ADSERVICES_AD_ID',
+            'android.permission.ACCESS_ADSERVICES_ATTRIBUTION',
+        }.issubset(removals))
+
     def test_android_offline_speech_engine_visibility(self):
         manifest = ET.parse(Path(__file__).resolve().parents[1] /
                             'app/android/app/src/main/AndroidManifest.xml')

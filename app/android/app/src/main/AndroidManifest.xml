@@ -18,6 +18,12 @@
          by Analytics so optional diagnostics cannot access the advertising ID. -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"
         tools:node="remove"/>
+    <!-- Measurement dependencies also contribute Privacy Sandbox capabilities.
+         Neither advertising IDs nor attribution is used by this app. -->
+    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_AD_ID"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION"
+        tools:node="remove"/>
     <!-- TWO features now, and both need this one line. Play Nearby's QR join:
          the guest points its camera at the code on the host's screen. Buddy
          Mode: the phone watches a physical board for a whole match. Same rule
