@@ -1,0 +1,30 @@
+name: Suggest an idea
+description: Suggest a feature or improvement
+title: "[Idea]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share the player need you want to solve. Please do not include passwords, personal information, private match codes, or unredacted logs.
+  - type: textarea
+    id: need
+    attributes:
+      label: What would you like to do?
+      description: What problem or learning goal should this help with?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would make it better?
+      description: Describe the change or feature you have in mind.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Extra context
+      description: Examples or alternatives you have considered.
+    validations:
+      required: false

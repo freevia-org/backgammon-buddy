@@ -1,0 +1,47 @@
+name: Bug report
+description: Report a problem with Backgammon Buddy
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do not include passwords, personal information, private match codes, or unredacted logs. For sensitive matters, use [Freevia support](https://freevia.org/backgammon-buddy/support/).
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: A clear description of the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: What did you do before the problem occurred?
+      placeholder: 1. Open ...\n2. Tap ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      placeholder: For example, 0.14.0 (10023)
+  - type: input
+    id: device
+    attributes:
+      label: Device and OS
+      placeholder: For example, Pixel 8, Android 16
+  - type: textarea
+    id: context
+    attributes:
+      label: Extra context
+      description: Add a screenshot if useful, after checking that it contains no private information.
+    validations:
+      required: false
