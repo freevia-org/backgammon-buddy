@@ -250,7 +250,14 @@ class PracticeRepository {
       try {
         final analysis = GameAnalysis.fromJson(
             (jsonDecode(row.analysisJson!) as Map).cast<String, dynamic>());
-        final match = matches[row.matchId]!;
+        // A migrated or externally damaged database can contain a game whose
+        // parent match is missing. Treat it as unavailable practice data rather
+        // than letting a null assertion fail the entire Learning screen load.
+        final match = matches[row.matchId];
+        if (match == null) {
+          missing++;
+          continue;
+        }
         if (!analysis.matchesContext(
             await matchBeforeRecordedGame(MatchRepository(db), row),
             match.cubeless)) {

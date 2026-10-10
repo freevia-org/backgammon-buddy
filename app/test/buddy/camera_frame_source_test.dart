@@ -301,6 +301,13 @@ void main() {
       expect(tracker.stillAt(kMotionSettleTime + const Duration(seconds: 1)),
           isTrue);
     });
+
+    test('a non-finite sensor sample cannot make the phone look still', () {
+      final tracker = MotionTracker()..sample(double.nan, Duration.zero);
+
+      expect(tracker.stillAt(Duration.zero), isFalse);
+      expect(tracker.stillAt(kMotionSettleTime), isTrue);
+    });
   });
 
   group('FrameGate', () {

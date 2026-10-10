@@ -20,6 +20,7 @@ import '../data/settings_repository.dart';
 import '../diagnostics/crash_log.dart';
 import '../net/net_match_controller.dart';
 import '../online/online_providers.dart';
+import '../online/online_session_store.dart';
 import 'game_screen.dart';
 
 /// The online-play entry screen: create a match (share a code, wait for an
@@ -243,6 +244,10 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
   /// claims the empty seat), so the rejoin path is a plain read plus the seat
   /// the match document already records for us.
   Future<void> _rejoin(String code) async {
+    // Capture the store before the network await. A rejoin can finish with a
+    // stale/missing match after this route has been removed; cleanup still
+    // needs to clear the persisted pointer without touching a disposed WidgetRef.
+    final sessionStore = ref.read(onlineSessionStoreProvider);
     setState(() {
       _rejoining = true;
       _rejoinError = null;
@@ -255,14 +260,14 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
         // identity was replaced). Drop the pointer rather than offering a dead
         // door — which takes the whole card with it, so the explanation has to
         // outlive it as a snackbar.
-        await _forgetResume();
+        await _forgetResume(sessionStore);
         _say('That match has finished — nothing left to rejoin.');
         return;
       }
       if (!mounted) return;
       await _launch(api, doc);
     } catch (e) {
-      if (e is NotFoundException) await _forgetResume();
+      if (e is NotFoundException) await _forgetResume(sessionStore);
       if (!mounted) return;
       setState(() => _rejoinError = _errorText(e));
     } finally {
@@ -279,8 +284,10 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
     ).showSnackBar(SnackBar(content: Text(message)));
   }
 
-  Future<void> _forgetResume() async {
-    await ref.read(onlineSessionStoreProvider).forgetMatch();
+  Future<void> _forgetResume([OnlineSessionStore? sessionStore]) async {
+    final OnlineSessionStore store =
+        sessionStore ?? ref.read(onlineSessionStoreProvider);
+    await store.forgetMatch();
     if (!mounted) return;
     setState(() => _resumeCode = null);
   }
@@ -492,14 +499,16 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
     // survive a crash or a kill mid-match, which is exactly when nothing later
     // in this method gets to run.
     final store = ref.read(onlineSessionStoreProvider);
+    // Capture provider-backed dependencies before the asynchronous store write.
+    // The route may be removed while it is pending; after that, controller
+    // readiness still needs to be awaited and the controller disposed cleanly.
+    final performance = ref.read(appPerformanceProvider);
     await store.rememberMatch(doc.code);
     if (mounted) setState(() => _resumeCode = doc.code);
     unawaited(controller.playMatch());
     // The online counterpart of the LAN connect trace: transport readiness,
     // which here means the first Firestore state has arrived and folded.
-    await ref
-        .read(appPerformanceProvider)
-        .trace(PerfTraces.onlineConnect, () => controller.ready);
+    await performance.trace(PerfTraces.onlineConnect, () => controller.ready);
     if (!mounted || _cancelled || !controller.isReady) {
       // `ready` also completes when the controller gives up — a `connect()`
       // that failed leaves isReady false with the reason on `error`. Read it

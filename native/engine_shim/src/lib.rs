@@ -1,9 +1,8 @@
 // Derived from wildbg's wildbg-c crate (MIT OR Apache-2.0), pinned at 24d26fe.
-// The body below is a verbatim copy of native/wildbg/crates/wildbg-c/src/lib.rs.
-// Two changes from upstream: `wildbg_new_with_path` is ADDED at the end of this
-// file, loading the production neural nets from a runtime directory path; and
-// upstream's `wildbg_new`, which compiles in the weak DEMO nets, is no longer
-// exported — see its own comment below.
+// This shim is derived from native/wildbg/crates/wildbg-c/src/lib.rs. It adds
+// `wildbg_new_with_path` for production nets, removes upstream's exported
+// demo-net constructor, and hardens the public C boundary against malformed
+// board arrays and Rust panics.
 
 use core::ffi::*;
 use engine::composite::CompositeEvaluator;
@@ -180,6 +179,42 @@ impl From<&CubeInfo> for CCubeInfo {
 
 type Error = &'static str;
 
+/// Prevent a Rust panic from unwinding through an `extern "C"` frame, which
+/// would abort the host process. The panic hook still records its details;
+/// the caller receives the API's normal failure value.
+fn catch_engine_panic<T>(operation: &str, call: impl FnOnce() -> T) -> Result<T, ()> {
+    std::panic::catch_unwind(std::panic::AssertUnwindSafe(call)).map_err(|_| {
+        eprintln!("{operation}: engine panicked");
+    })
+}
+
+/// Validates the C integer board before converting it to the engine's i8
+/// representation. Do this here rather than relying on Dart callers: this is
+/// a public C ABI and narrowing first can wrap an invalid board into a
+/// different, apparently legal position. The per-side total is also bounded
+/// before `Position::try_from`, whose internal sums use i8.
+fn checked_pips(pips: &[c_int; 26]) -> Result<[i8; 26], Error> {
+    let mut x_checkers = 0_i32;
+    let mut o_checkers = 0_i32;
+    for &pip in pips {
+        if !(-15..=15).contains(&pip) {
+            return Err("Each point and bar count must be between -15 and 15.");
+        }
+        if pip > 0 {
+            x_checkers += pip;
+        } else {
+            o_checkers -= pip;
+        }
+    }
+    if x_checkers > 15 || o_checkers > 15 {
+        return Err("A player cannot have more than 15 checkers on the board.");
+    }
+    if x_checkers == 0 && o_checkers == 0 {
+        return Err("A position cannot have both players borne off.");
+    }
+    Ok(pips.map(|pip| pip as i8))
+}
+
 /// Returns the best move for the given position.
 ///
 /// The player on turn always moves from pip 24 to pip 1.
@@ -197,22 +232,22 @@ pub unsafe extern "C" fn best_move(
     die2: c_uint,
     config: &BgConfig,
 ) -> CMove {
-    let pips = pips.map(|pip| pip as i8);
-    let move_result = || -> Result<BgMove, Error> {
-        let position = Position::try_from(pips)?;
+    let move_result = || -> Result<CMove, Error> {
+        let position = Position::try_from(checked_pips(pips)?)?;
         let dice = Dice::try_from((die1 as usize, die2 as usize))?;
         let score_config = ScoreConfig::try_from((config.x_away, config.o_away))?;
         unsafe {
             let bg_move = (*wildbg).api.best_move(&position, &dice, &score_config);
-            Ok(bg_move)
+            Ok(CMove::from(bg_move))
         }
     };
-    match move_result() {
-        Ok(bg_move) => CMove::from(bg_move),
-        Err(error) => {
+    match catch_engine_panic("best_move", move_result) {
+        Ok(Ok(c_move)) => c_move,
+        Ok(Err(error)) => {
             eprintln!("{error}");
             CMove::default()
         }
+        Err(_) => CMove::default(),
     }
 }
 
@@ -224,25 +259,35 @@ pub unsafe extern "C" fn best_move(
 /// Checkers of the player on turn are encoded with positive integers, the opponent's checkers with negative integers.
 #[unsafe(no_mangle)]
 pub extern "C" fn probabilities(wildbg: &Wildbg, pips: &[c_int; 26]) -> CProbabilities {
-    let pips = pips.map(|pip| pip as i8);
-    match Position::try_from(pips) {
-        Ok(position) => (&wildbg.api.probabilities(&position)).into(),
-        Err(error) => {
+    let result = catch_engine_panic("probabilities", || {
+        checked_pips(pips)
+            .and_then(Position::try_from)
+            .map(|position| CProbabilities::from(&wildbg.api.probabilities(&position)))
+    });
+    match result {
+        Ok(Ok(probabilities)) => probabilities,
+        Ok(Err(error)) => {
             eprintln!("{error}");
             CProbabilities::default()
         }
+        Err(_) => CProbabilities::default(),
     }
 }
 
 #[unsafe(no_mangle)]
 pub extern "C" fn cube_info(wildbg: &Wildbg, pips: &[c_int; 26]) -> CCubeInfo {
-    let pips = pips.map(|pip| pip as i8);
-    match Position::try_from(pips) {
-        Ok(position) => (&wildbg.api.cube_info(&position)).into(),
-        Err(error) => {
+    let result = catch_engine_panic("cube_info", || {
+        checked_pips(pips)
+            .and_then(Position::try_from)
+            .map(|position| CCubeInfo::from(&wildbg.api.cube_info(&position)))
+    });
+    match result {
+        Ok(Ok(info)) => info,
+        Ok(Err(error)) => {
             eprintln!("{error}");
             CCubeInfo::default()
         }
+        Err(_) => CCubeInfo::default(),
     }
 }
 
@@ -279,24 +324,77 @@ pub unsafe extern "C" fn wildbg_new_with_path(path: *const c_char) -> *mut Wildb
     };
     let contact = format!("{dir}/contact.onnx");
     let race = format!("{dir}/race.onnx");
-    match CompositeEvaluator::from_file_paths_optimized(&contact, &race) {
-        Ok(evaluator) => {
+    let evaluator = catch_engine_panic("wildbg_new_with_path", || {
+        CompositeEvaluator::from_file_paths_optimized(&contact, &race)
+    });
+    match evaluator {
+        Ok(Ok(evaluator)) => {
             let api = WildbgApi::with_evaluator(evaluator);
             Box::into_raw(Box::new(Wildbg { api }))
         }
-        Err(e) => {
+        Ok(Err(e)) => {
             eprintln!("wildbg_new_with_path failed: {e}");
             std::ptr::null_mut()
         }
+        Err(_) => std::ptr::null_mut(),
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use crate::{best_move, wildbg_new, BgConfig, CCubeInfo, CMove, CMoveDetail, CProbabilities};
+    use crate::{
+        best_move, checked_pips, wildbg_new, BgConfig, CCubeInfo, CMove, CMoveDetail,
+        CProbabilities,
+    };
     use engine::position::X_BAR;
     use engine::{dice::Dice, pos};
     use logic::cube::CubeInfo;
+
+    #[test]
+    fn ffi_panic_guard_contains_panics() {
+        assert!(super::catch_engine_panic("test", || panic!("simulated engine failure")).is_err());
+    }
+
+    #[test]
+    fn checked_pips_rejects_values_that_would_wrap_when_narrowed() {
+        let mut pips = [0; 26];
+        pips[1] = 256;
+        assert!(checked_pips(&pips).is_err());
+
+        pips[1] = i32::MAX;
+        assert!(checked_pips(&pips).is_err());
+    }
+
+    #[test]
+    fn checked_pips_rejects_checker_totals_before_i8_sum_can_overflow() {
+        let mut pips = [0; 26];
+        pips[1] = 15;
+        pips[2] = 15;
+        assert!(checked_pips(&pips).is_err());
+
+        pips[1] = -15;
+        pips[2] = -15;
+        assert!(checked_pips(&pips).is_err());
+    }
+
+    #[test]
+    fn checked_pips_accepts_a_valid_position() {
+        let mut pips = [0; 26];
+        pips[1] = 15;
+        pips[0] = -15;
+        let checked = checked_pips(&pips).unwrap();
+        assert_eq!(
+            engine::position::Position::try_from(checked)
+                .unwrap()
+                .pip(1),
+            15
+        );
+    }
+
+    #[test]
+    fn checked_pips_rejects_both_players_borne_off() {
+        assert!(checked_pips(&[0; 26]).is_err());
+    }
 
     #[test]
     fn from_cube_info() {

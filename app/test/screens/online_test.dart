@@ -69,6 +69,19 @@ FakeMatchApi screenApi(FakeBackend backend, {int activeAfter = 1}) =>
       ..autoJoinAfterFetches = activeAfter
       ..autoSeedOpening = true;
 
+class DelayedMissingMatchApi extends FakeMatchApi {
+  DelayedMissingMatchApi(super.backend, super.uid);
+
+  final response = Completer<void>();
+
+  @override
+  Future<MatchDoc> fetchMatch(String code) async {
+    calls['fetchMatch'] = (calls['fetchMatch'] ?? 0) + 1;
+    await response.future;
+    throw NotFoundException('match $code no longer exists');
+  }
+}
+
 /// A match sitting open under [code], for the join flow to claim.
 FakeMatch _waitingMatch(FakeBackend backend, String code) {
   final m = FakeMatch(
@@ -472,6 +485,29 @@ void main() {
       await _pumpUntil(t, find.byType(GameScreen));
       expect(find.byType(GameScreen), findsOneWidget);
     });
+
+    testWidgets(
+      'a missing match after leaving the screen clears resume safely',
+      (t) async {
+        await seedResumable('RESUME12');
+        final api = DelayedMissingMatchApi(backend, 'me');
+        await t.pumpWidget(_app(api, db: db));
+        await t.pumpAndSettle();
+
+        await t.tap(find.widgetWithText(FilledButton, 'Rejoin'));
+        await t.pump();
+        expect(api.calls['fetchMatch'], 1);
+
+        // Dispose the ProviderScope while the request is in flight, then let its
+        // NotFound response arrive. The persisted pointer is still cleaned up,
+        // and no disposed WidgetRef is accessed by the completion path.
+        await t.pumpWidget(const SizedBox.shrink());
+        api.response.complete();
+        await t.pump();
+        await t.pump();
+        expect(await OnlineSessionStore(db).lastMatchCode(), isNull);
+      },
+    );
 
     testWidgets('no stored match means no card', (t) async {
       await t.binding.setSurfaceSize(surface);

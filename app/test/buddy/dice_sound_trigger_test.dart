@@ -266,6 +266,14 @@ void main() {
       expect(await listener.start(), MicOpening.unavailable);
     });
 
+    test('a stream setup failure closes a source that already opened', () async {
+      final source = _FailingAmplitudeSource();
+      final listener = DiceSoundListener(source: source, onLookNow: () {});
+
+      expect(await listener.start(), MicOpening.unavailable);
+      expect(source.closed, isTrue);
+    });
+
     test('a listening microphone turns a throw into exactly one look', () async {
       var looks = 0;
       final source = FakeMicSource();
@@ -307,4 +315,18 @@ void main() {
       await listener.stop();
     });
   });
+}
+
+class _FailingAmplitudeSource implements MicAmplitudeSource {
+  bool closed = false;
+
+  @override
+  Stream<AmplitudeSample> get amplitudes =>
+      throw StateError('stream unavailable');
+
+  @override
+  Future<MicOpening> open() async => MicOpening.listening;
+
+  @override
+  Future<void> close() async => closed = true;
 }

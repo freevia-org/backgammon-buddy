@@ -484,6 +484,16 @@ class DiceSoundListener {
       // and "there are no hints" is the same answer either way.
       if (kDebugMode) debugPrint('microphone unavailable: $error');
       _state = MicOpening.unavailable;
+      // `open` may have acquired the device before the stream getter or
+      // subscription failed. Roll it back here so this becomes an unavailable
+      // hint source, not a microphone left running for the rest of the match.
+      try {
+        await source.close();
+      } catch (closeError) {
+        if (kDebugMode) {
+          debugPrint('microphone cleanup after failed start failed: $closeError');
+        }
+      }
       return MicOpening.unavailable;
     } finally {
       _starting = false;
@@ -491,7 +501,11 @@ class DiceSoundListener {
   }
 
   Future<void> stop() async {
-    await _amplitudes?.cancel();
+    try {
+      await _amplitudes?.cancel();
+    } catch (error) {
+      if (kDebugMode) debugPrint('microphone stream cleanup failed: $error');
+    }
     _amplitudes = null;
     try {
       await source.close();

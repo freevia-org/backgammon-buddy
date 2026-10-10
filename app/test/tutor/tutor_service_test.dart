@@ -231,9 +231,24 @@ void main() {
       expect(tutor.assess(_awaitingRollState(), Move.none), throwsStateError);
     });
 
+    test(
+      'malformed played hops are rejected without indexing the board',
+      () async {
+        final before = _movingState();
+        final invalid = Move(const [CheckerMove(99, 3)]);
+        final tutor = TutorService(
+          FakeEngine(ranked: [_scored(before.legalMoves.first, .1)]),
+        );
+
+        expect(tutor.assess(before, invalid), throwsStateError);
+        expect(await tutor.assessOrNull(before, invalid), isNull);
+      },
+    );
+
     test('played == top play: loss 0, mark best', () async {
-      final top = Move([const CheckerMove(23, 20)]);
-      final other = Move([const CheckerMove(12, 9)]);
+      final legal = _movingState().legalMoves;
+      final top = legal.first;
+      final other = legal.last;
       final engine = FakeEngine(
         ranked: [_scored(top, 0.10), _scored(other, 0.04)],
       );
@@ -246,8 +261,9 @@ void main() {
     });
 
     test('played == second play: loss 0.06 -> error band', () async {
-      final top = Move([const CheckerMove(23, 20)]);
-      final other = Move([const CheckerMove(12, 9)]);
+      final legal = _movingState().legalMoves;
+      final top = legal.first;
+      final other = legal.last;
       final engine = FakeEngine(
         ranked: [_scored(top, 0.10), _scored(other, 0.04)],
       );

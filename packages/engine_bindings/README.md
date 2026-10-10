@@ -2,12 +2,13 @@
 
 Dart FFI bindings and an isolate-hosted `EngineService` over the wildbg-based
 `aigammon_engine` native library. The package loads a thin C shim
-(`native/engine_shim`, a verbatim copy of wildbg's `wildbg-c` crate plus one
-added `wildbg_new_with_path` constructor) via `dart:ffi`, wraps it in a
-synchronous `Engine` facade, and exposes an async `EngineService` that runs all
-neural-net inference in a dedicated isolate so it never blocks the caller (the
-app's UI thread). Move ranking, best-move selection, cubeless win/gammon/bg
-probabilities, and Janowski doubling-cube advice all come straight from wildbg's
+(`native/engine_shim`, derived from wildbg's `wildbg-c` crate with a production
+net-path constructor, validated C-ABI inputs, and panic containment) via
+`dart:ffi`, wraps it in a synchronous `Engine` facade, and exposes an async
+`EngineService` that runs all neural-net inference in a dedicated isolate so
+it never blocks the caller (the app's UI thread). Move ranking, best-move
+selection, cubeless win/gammon/bg probabilities, and Janowski doubling-cube
+advice all come straight from wildbg's
 tract-onnx evaluator loaded with the production nets vendored under `native/`.
 
 ## Building the native library

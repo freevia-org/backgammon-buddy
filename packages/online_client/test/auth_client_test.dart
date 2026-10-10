@@ -316,6 +316,69 @@ void main() {
       expect((await store.read())!.uid, 'uid-new');
     });
 
+    test('a transient refresh failure preserves the uid and does not sign up',
+        () async {
+      final store = InMemoryTokenStore();
+      const saved = StoredSession(uid: 'still-valid', refreshToken: 'retry');
+      await store.write(saved);
+      var calls = 0;
+      final client = MockClient((req) async {
+        calls++;
+        return http.Response(
+            '{"error":{"message":"SERVICE_UNAVAILABLE"}}', 503);
+      });
+      final auth =
+          AuthClient(OnlineConfig.emulator(), inner: client, store: store);
+
+      await expectLater(
+          auth.signInAnonymously(), throwsA(isA<OnlineException>()));
+
+      expect(calls, 1, reason: 'must not create a replacement identity');
+      expect(await store.read(), saved);
+    });
+
+    test(
+        'a disabled account preserves its uid for recovery and does not sign up',
+        () async {
+      final store = InMemoryTokenStore();
+      const saved = StoredSession(uid: 'disabled', refreshToken: 'retry');
+      await store.write(saved);
+      var calls = 0;
+      final client = MockClient((req) async {
+        calls++;
+        return http.Response('{"error":{"message":"USER_DISABLED"}}', 400);
+      });
+      final auth =
+          AuthClient(OnlineConfig.emulator(), inner: client, store: store);
+
+      await expectLater(
+          auth.signInAnonymously(), throwsA(isA<OnlineException>()));
+
+      expect(calls, 1, reason: 'must not bypass a reversible account disable');
+      expect(await store.read(), saved);
+    });
+
+    test(
+        'a malformed successful refresh preserves the uid and does not sign up',
+        () async {
+      final store = InMemoryTokenStore();
+      const saved = StoredSession(uid: 'still-valid', refreshToken: 'retry');
+      await store.write(saved);
+      var calls = 0;
+      final client = MockClient((req) async {
+        calls++;
+        return http.Response('{"id_token":42}', 200);
+      });
+      final auth =
+          AuthClient(OnlineConfig.emulator(), inner: client, store: store);
+
+      await expectLater(
+          auth.signInAnonymously(), throwsA(isA<OnlineException>()));
+
+      expect(calls, 1, reason: 'must not create a replacement identity');
+      expect(await store.read(), saved);
+    });
+
     test('an unreadable store costs a new user, never a failed launch',
         () async {
       final client = MockClient(

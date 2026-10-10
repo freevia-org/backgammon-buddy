@@ -362,7 +362,11 @@ class MotionTracker {
   /// Feeds one gyroscope reading: [magnitude] in rad/s, [at] on the frame
   /// clock.
   void sample(double magnitude, Duration at) {
-    if (magnitude >= stillRate) _lastMotion = at;
+    // Sensor plugins normally provide finite values, but a corrupt sample
+    // (especially NaN) must never be interpreted as evidence that the phone
+    // is still: every ordered comparison with NaN is false. Treat it like
+    // motion and let the ordinary settle interval recover.
+    if (!magnitude.isFinite || magnitude >= stillRate) _lastMotion = at;
   }
 
   /// Whether the phone counts as held still as of [now].

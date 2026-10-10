@@ -175,10 +175,17 @@ class TutorService {
     Move played,
     List<ScoredMove> ranked,
   ) {
+    // Never apply a submitted/replayed move directly. BoardState.applyMove
+    // intentionally assumes legality and indexes its hops without bounds
+    // checks; a malformed event can otherwise escape as RangeError here.
+    // GameState is the authority for both ordinary and transit-equivalent
+    // legal moves, and returns the generator's canonical representative.
+    final canonical = before.canonicalPlay(played);
+    if (canonical == null) return null;
     for (final sm in ranked) {
-      if (sm.move.sameAs(played)) return sm;
+      if (sm.move.sameAs(canonical)) return sm;
     }
-    final resulting = before.board.applyMove(before.turn, played);
+    final resulting = before.board.applyMove(before.turn, canonical);
     for (final sm in ranked) {
       if (before.board.applyMove(before.turn, sm.move) == resulting) {
         return sm;

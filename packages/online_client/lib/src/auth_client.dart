@@ -102,16 +102,31 @@ class AuthClient {
         expiresAt: DateTime.utc(1970),
       ));
       return _session;
-    } on OnlineException {
+    } on OnlineException catch (error) {
       // Privacy requests must retain the retry credential on any auth/network
       // failure and must not confuse a failed refresh with "no account".
       if (preserveOnError) rethrow;
+      // Only a definitive Firebase credential rejection proves this identity
+      // cannot be restored. Transient server failures and malformed responses
+      // must not silently mint a new uid: doing so strands both seats of an
+      // active match even though the stored credential may still work later.
+      if (!_isRejectedRefreshToken(error)) rethrow;
       // The refresh token is dead (revoked, or the project was reset). Drop it
       // so the next launch does not pay for the same rejection again.
       await _clearStore();
       _session = null;
       return null;
     }
+  }
+
+  bool _isRejectedRefreshToken(OnlineException error) {
+    // Identity Toolkit returns these message codes for unusable refresh
+    // credentials. Do not treat arbitrary 4xx/5xx responses as proof that the
+    // persisted uid is gone; some failures are caused by service/configuration
+    // outages and are recoverable on the next launch.
+    return error.message == 'TOKEN_EXPIRED' ||
+        error.message == 'INVALID_REFRESH_TOKEN' ||
+        error.message == 'USER_NOT_FOUND';
   }
 
   /// Sign up a fresh anonymous user, returning (and caching) the session.
