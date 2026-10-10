@@ -14,6 +14,12 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def _require(condition, message):
+    """Keep release gates active even when Python is run with optimization."""
+    if not condition:
+        raise AssertionError(message)
+
+
 def sha(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -21,19 +27,19 @@ def sha(data):
 def check_sources(root=ROOT):
     assets = root / 'app/assets/licenses'
     inventory = json.loads((root / 'native/licenses/inventory.json').read_text())
-    assert sha((root / 'native/engine_shim/Cargo.lock').read_bytes().replace(b'\r\n', b'\n')) == inventory['cargo_lock_sha256'], 'Cargo lock changed: regenerate native notices'
-    assert sha((assets / 'native-dependencies.txt').read_bytes()) == inventory['notice_sha256'], 'Native notices changed'
+    _require(sha((root / 'native/engine_shim/Cargo.lock').read_bytes().replace(b'\r\n', b'\n')) == inventory['cargo_lock_sha256'], 'Cargo lock changed: regenerate native notices')
+    _require(sha((assets / 'native-dependencies.txt').read_bytes()) == inventory['notice_sha256'], 'Native notices changed')
     for package in inventory['packages']:
         if 'bundled_source' in package:
-            assert sha((assets / package['bundled_source']).read_bytes()) == package['source_sha256'], 'Bundled MPL source changed'
+            _require(sha((assets / package['bundled_source']).read_bytes()) == package['source_sha256'], 'Bundled MPL source changed')
     for filename, expected in {
         'contact.onnx': 'fe5596b6d38640a92d2e83837ebdd9c872540320',
         'race.onnx': '09f7db7d7fb678d8837f56afe5dbc1134fccf0b7',
     }.items():
         data = (root / 'app/assets/nets' / filename).read_bytes()
         actual = hashlib.sha1(f'blob {len(data)}\0'.encode() + data).hexdigest()
-        assert actual == expected, f'{filename}: re-review model license/provenance'
-    assert (assets / 'wildbg-training-CC0.txt').read_bytes() == (root / 'native/licenses/upstream/wildbg-training-CC0.txt').read_bytes(), 'Model license differs'
+        _require(actual == expected, f'{filename}: re-review model license/provenance')
+    _require((assets / 'wildbg-training-CC0.txt').read_bytes() == (root / 'native/licenses/upstream/wildbg-training-CC0.txt').read_bytes(), 'Model license differs')
     print(f'Provenance verified: {len(inventory["packages"])} Rust components and 2 production models')
 
 
@@ -53,11 +59,11 @@ class Segment:
 
 def elf_16kb(data, label):
     """Check LOAD alignment and RELRO protection in a little-endian ELF64 object."""
-    assert data[:4] == b'\x7fELF', f'{label}: not ELF'
-    assert data[4] == 2 and data[5] == 1, f'{label}: expected little-endian ELF64'
+    _require(data[:4] == b'\x7fELF', f'{label}: not ELF')
+    _require(data[4] == 2 and data[5] == 1, f'{label}: expected little-endian ELF64')
     phoff = struct.unpack_from('<Q', data, 32)[0]
     entsize, count = struct.unpack_from('<HH', data, 54)
-    assert entsize >= 56 and count > 0, f'{label}: invalid program headers'
+    _require(entsize >= 56 and count > 0, f'{label}: invalid program headers')
     segments = []
     for index in range(count):
         offset = phoff + index * entsize
@@ -141,7 +147,7 @@ def check_android(path, expected_abis, zipalign=None):
                 subprocess.run([str(zipalign), '-v', '-c', '-P', '16', '4', str(path)], check=True)
             except (subprocess.CalledProcessError, OSError) as error:
                 errors.append(f'APK ZIP alignment check failed: {error}')
-    assert not errors, f'{path.name}: artifact validation failed:\n' + '\n'.join(errors)
+    _require(not errors, f'{path.name}: artifact validation failed:\n' + '\n'.join(errors))
     print(f'{path.name}: engine/ABI and 64-bit ELF alignment checks passed')
 
 

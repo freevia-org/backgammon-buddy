@@ -8,9 +8,11 @@ import os
 
 def resolve(run, override='', base=''):
     for value in [run, override, base]:
-        assert not value or (value.isascii() and value.isdecimal()), 'Build numbers must be decimal integers'
+        if value and not (value.isascii() and value.isdecimal()):
+            raise ValueError('Build numbers must be decimal integers')
     number = int(override) if override else int(base or '0') + int(run)
-    assert 0 < number <= 2100000000, 'Build number is outside supported Android range'
+    if not 0 < number <= 2100000000:
+        raise ValueError('Build number is outside supported Android range')
     return number, bool(override or base)
 
 

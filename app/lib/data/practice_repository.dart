@@ -138,7 +138,8 @@ class PracticeRepository {
           ..where((p) => p.id.equals(positionId)))
         .getSingle();
     final before =
-        Game.replay(_events(row.eventsJson), isCrawfordGame: row.isCrawford)
+        Game.replay(MatchRepository.decodeEventsJson(row.eventsJson),
+            isCrawfordGame: row.isCrawford)
             .state;
     final score = row.matchLength;
     final context = score == null ||
@@ -256,7 +257,7 @@ class PracticeRepository {
           missing++;
           continue;
         }
-        final events = _events(row.eventsJson);
+        final events = MatchRepository.decodeEventsJson(row.eventsJson);
         final byIndex = {
           for (final move in analysis.moves) move.eventIndex: move
         };
@@ -309,10 +310,6 @@ class PracticeRepository {
         gamesNeedingAnalysis: missing);
   }
 
-  static List<GameEvent> _events(String source) => [
-        for (final event in jsonDecode(source) as List)
-          GameEvent.fromJson((event as Map).cast<String, dynamic>())
-      ];
 }
 
 final practiceRepositoryProvider = Provider<PracticeRepository>(

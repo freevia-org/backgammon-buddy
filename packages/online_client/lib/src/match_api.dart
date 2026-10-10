@@ -192,6 +192,11 @@ class RemoteEvent {
     if (seq is! int || gameNo is! int) {
       throw MalformedDocumentException('malformed-event', 'bad seq/gameNo: $f');
     }
+    final author = f['author'];
+    if (author != null && author is! String) {
+      throw const MalformedDocumentException(
+          'malformed-event', 'author field is not a string');
+    }
     final GameEvent event;
     try {
       event = GameEvent.fromJson(
@@ -204,7 +209,7 @@ class RemoteEvent {
     return RemoteEvent(
       seq: seq,
       gameNo: gameNo,
-      author: f['author'] as String? ?? '',
+      author: author as String? ?? '',
       event: event,
     );
   }
@@ -507,6 +512,9 @@ class MatchApi {
     int afterSeq, {
     int pageSize = 100,
   }) async {
+    if (pageSize <= 0) {
+      throw ArgumentError.value(pageSize, 'pageSize', 'must be positive');
+    }
     final out = <RemoteEvent>[];
     var cursor = afterSeq;
     while (true) {
@@ -589,6 +597,9 @@ class MatchApi {
     int fromN, {
     int pageSize = 100,
   }) async {
+    if (pageSize <= 0) {
+      throw ArgumentError.value(pageSize, 'pageSize', 'must be positive');
+    }
     final out = <RollDoc>[];
     var cursor = fromN;
     while (true) {

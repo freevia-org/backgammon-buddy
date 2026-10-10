@@ -187,7 +187,7 @@ class MatchRepository {
   Future<List<GameEvent>> loadGameEvents(int gameId) async {
     final row = await (db.select(db.games)..where((g) => g.id.equals(gameId)))
         .getSingle();
-    return _decodeEvents(row.eventsJson);
+    return decodeEventsJson(row.eventsJson);
   }
 
   /// Attaches (or replaces) the cached analysis payload for [gameId].
@@ -206,7 +206,8 @@ class MatchRepository {
   static String _encodeEvents(List<GameEvent> events) =>
       jsonEncode([for (final e in events) e.toJson()]);
 
-  static List<GameEvent> _decodeEvents(String json) => [
+  /// Decodes an event log from local storage using the same schema everywhere.
+  static List<GameEvent> decodeEventsJson(String json) => [
         for (final m in jsonDecode(json) as List)
           GameEvent.fromJson((m as Map).cast<String, dynamic>()),
       ];

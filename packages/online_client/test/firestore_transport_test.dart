@@ -725,6 +725,50 @@ void main() {
       expect(t.status, TransportStatus.failed);
     });
 
+    test('a non-string event author is rejected once, not retried forever',
+        () async {
+      var queries = 0;
+      final t = await connected((req) async {
+        if (req.url.path.endsWith(':runQuery')) {
+          if (queriedCollection(req) == 'rolls') return http.Response('[]', 200);
+          queries++;
+          return http.Response(
+            jsonEncode([
+              {
+                'document': {
+                  'name': 'projects/p/databases/(default)/documents/matches/C'
+                      '/events/00000000',
+                  'fields': {
+                    'seq': {'integerValue': '0'},
+                    'gameNo': {'integerValue': '1'},
+                    'author': {'integerValue': '42'},
+                    'event': {
+                      'stringValue':
+                          jsonEncode(const OpeningRollEvent(
+                                  whiteDie: 6, blackDie: 1)
+                              .toJson()),
+                    },
+                  },
+                },
+              },
+            ]),
+            200,
+          );
+        }
+        return quiet(req);
+      }, poll: const Duration(milliseconds: 5));
+
+      final errors = <Object>[];
+      t.inbound.listen((_) {}, onError: errors.add);
+      await waitFor(() => errors.isNotEmpty, reason: 'fault never surfaced');
+      expect(errors.single, isA<TransportRejected>()
+          .having((e) => e.code, 'code', 'malformed-event'));
+      final after = queries;
+      await Future<void>.delayed(const Duration(milliseconds: 120));
+      expect(queries, after, reason: 'poll loop kept rereading bad event');
+      expect(errors, hasLength(1));
+    });
+
     test('every operation refuses to run before connect, and after dispose',
         () async {
       final api = await apiFor(quiet);

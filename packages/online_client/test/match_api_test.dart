@@ -359,6 +359,19 @@ void main() {
       expect(await api.fetchEventsSince('C', 7), isEmpty);
       expect(calls, 1);
     });
+
+    test('rejects a non-positive page size before querying', () async {
+      var calls = 0;
+      final api = await apiFor((_) async {
+        calls++;
+        return http.Response('[]', 200);
+      });
+      await expectLater(api.fetchEventsSince('C', 0, pageSize: 0),
+          throwsArgumentError);
+      await expectLater(api.fetchEventsSince('C', 0, pageSize: -1),
+          throwsArgumentError);
+      expect(calls, 0);
+    });
   });
 
   group('roll documents', () {
@@ -493,6 +506,19 @@ void main() {
       expect(rolls.map((r) => r.n), [0, 1, 2]);
       expect(cursors, [0, 2]);
     });
+
+    test('rejects a non-positive page size before querying', () async {
+      var calls = 0;
+      final api = await apiFor((_) async {
+        calls++;
+        return http.Response('[]', 200);
+      });
+      await expectLater(api.fetchRollsFrom('C', 0, pageSize: 0),
+          throwsArgumentError);
+      await expectLater(api.fetchRollsFrom('C', 0, pageSize: -1),
+          throwsArgumentError);
+      expect(calls, 0);
+    });
   });
 
   group('MatchDoc', () {
@@ -558,6 +584,17 @@ void main() {
       );
       expect(
         () => RemoteEvent.fromFields({'seq': '0', 'gameNo': 1, 'event': '{}'}),
+        throwsA(isA<OnlineException>()
+            .having((e) => e.code, 'code', 'malformed-event')),
+      );
+      expect(
+        () => RemoteEvent.fromFields({
+          'seq': 0,
+          'gameNo': 1,
+          'author': 123,
+          'event': jsonEncode(const OpeningRollEvent(
+              whiteDie: 6, blackDie: 1).toJson()),
+        }),
         throwsA(isA<OnlineException>()
             .having((e) => e.code, 'code', 'malformed-event')),
       );

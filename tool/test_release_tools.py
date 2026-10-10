@@ -4,6 +4,7 @@ from pathlib import Path
 import plistlib
 import struct
 import subprocess
+import sys
 import tempfile
 import unittest
 import xml.etree.ElementTree as ET
@@ -43,8 +44,32 @@ class ReleaseToolsTest(unittest.TestCase):
         self.assertEqual(resolve('1', base='500'), (501, True))
         self.assertEqual(resolve('1', override='600', base='500'), (600, True))
         for value in ['0', '-1', '1;echo fail', '2100000001']:
-            with self.assertRaises(AssertionError):
+            with self.assertRaises((AssertionError, ValueError)):
                 resolve('1', override=value)
+
+    def test_release_gates_stay_active_with_optimized_python(self):
+        tool_dir = Path(__file__).resolve().parent
+        script = (
+            f"import sys; sys.path.insert(0, {str(tool_dir)!r}); "
+            "from release_build_number import resolve; "
+            "resolve('1', override='-1')"
+        )
+        result = subprocess.run([sys.executable, '-O', '-c', script],
+                                capture_output=True, text=True)
+        self.assertNotEqual(result.returncode, 0)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            artifact = Path(tmp) / 'bad.aab'
+            with zipfile.ZipFile(artifact, 'w') as archive:
+                archive.writestr('base/lib/x86_64/libbad.so', b'not an ELF')
+            script = (
+                f"import sys; sys.path.insert(0, {str(tool_dir)!r}); "
+                "from pathlib import Path; from release_preflight import check_android; "
+                f"check_android(Path({str(artifact)!r}), ['arm64-v8a'])"
+            )
+            result = subprocess.run([sys.executable, '-O', '-c', script],
+                                    capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
 
     def profile(self):
         return {'ExpirationDate': datetime(2030, 1, 1), 'TeamIdentifier': ['TEAM'],

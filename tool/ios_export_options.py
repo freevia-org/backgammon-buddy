@@ -11,17 +11,23 @@ BUNDLE = 'org.freevia.backgammonbuddy'
 
 
 def export_options(profile, method, now=None):
-    assert method in ('ad-hoc', 'app-store-connect'), 'Unsupported export method'
+    if method not in ('ad-hoc', 'app-store-connect'):
+        raise AssertionError('Unsupported export method')
     now = now or datetime.now(timezone.utc)
     expiry = profile['ExpirationDate'].replace(tzinfo=timezone.utc)
-    assert expiry > now, 'Provisioning profile expired'
+    if not expiry > now:
+        raise AssertionError('Provisioning profile expired')
     team = profile['TeamIdentifier'][0]
     entitlements = profile['Entitlements']
-    assert entitlements['application-identifier'] == f'{team}.{BUNDLE}', 'Profile app identity differs'
-    assert not entitlements.get('get-task-allow', False), 'Development profile cannot sign a release'
-    assert not profile.get('ProvisionsAllDevices', False), 'Enterprise profile is not an App Store/ad-hoc profile'
+    if entitlements['application-identifier'] != f'{team}.{BUNDLE}':
+        raise AssertionError('Profile app identity differs')
+    if entitlements.get('get-task-allow', False):
+        raise AssertionError('Development profile cannot sign a release')
+    if profile.get('ProvisionsAllDevices', False):
+        raise AssertionError('Enterprise profile is not an App Store/ad-hoc profile')
     devices = profile.get('ProvisionedDevices', [])
-    assert bool(devices) == (method == 'ad-hoc'), 'Profile does not match export method'
+    if bool(devices) != (method == 'ad-hoc'):
+        raise AssertionError('Profile does not match export method')
     return {'method': method, 'destination': 'export', 'signingStyle': 'manual',
             'teamID': team, 'signingCertificate': 'Apple Distribution',
             'provisioningProfiles': {BUNDLE: profile['Name']}, 'stripSwiftSymbols': True}
