@@ -2254,6 +2254,83 @@
       {
         "artifacts": [
           {
+            "name": "jsr305-3.0.2.jar",
+            "sha256": "766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7"
+          }
+        ],
+        "declared_licenses": [
+          {
+            "distribution": "repo",
+            "name": "The Apache Software License, Version 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+          }
+        ],
+        "id": "com.google.code.findbugs:jsr305:3.0.2",
+        "notices": [
+          "Apache-2.0"
+        ],
+        "pom_evidence": [
+          {
+            "coordinate": "com.google.code.findbugs:jsr305:3.0.2",
+            "sha256": "19889dbdf1b254b2601a5ee645b8147a974644882297684c798afe5d63d78dfe",
+            "source": "https://repo.maven.apache.org/maven2/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.pom"
+          }
+        ]
+      },
+      {
+        "artifacts": [
+          {
+            "name": "gson-2.13.2.jar",
+            "sha256": "dd0ce1b55a3ed2080cb70f9c655850cda86c206862310009dcb5e5c95265a5e0"
+          }
+        ],
+        "declared_licenses": [
+          {
+            "name": "Apache-2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+          }
+        ],
+        "id": "com.google.code.gson:gson:2.13.2",
+        "notices": [
+          "Apache-2.0"
+        ],
+        "pom_evidence": [
+          {
+            "coordinate": "com.google.code.gson:gson:2.13.2",
+            "sha256": "3aa06aa7c0f9af092961a42d09578e4324be146348a0ee6ed47857f7c2677b76",
+            "source": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.13.2/gson-2.13.2.pom"
+          }
+        ]
+      },
+      {
+        "artifacts": [
+          {
+            "name": "tink-android-1.23.0.jar",
+            "sha256": "c656918451b01c45ce5b20c7b6d4c388f956f61b3a3528e769048c8944c42f9e"
+          }
+        ],
+        "declared_licenses": [
+          {
+            "distribution": "repo",
+            "name": "Apache License, Version 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+          }
+        ],
+        "id": "com.google.crypto.tink:tink-android:1.23.0",
+        "notices": [
+          "Apache-2.0"
+        ],
+        "pom_evidence": [
+          {
+            "coordinate": "com.google.crypto.tink:tink-android:1.23.0",
+            "sha256": "a2d27e7207e6a25764859b62924fc7b972f41884ce272cead9b946c15a1f410f",
+            "source": "https://repo.maven.apache.org/maven2/com/google/crypto/tink/tink-android/1.23.0/tink-android-1.23.0.pom"
+          }
+        ]
+      },
+      {
+        "artifacts": [
+          {
             "name": "dagger-2.59.jar",
             "sha256": "94d5b23812cc12fa903c9ac4a42978e7e7b2622e6b51c17f8b12037ceece43cd"
           }

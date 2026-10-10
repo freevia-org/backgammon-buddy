@@ -99,7 +99,13 @@ class MobileNoticesTests(unittest.TestCase):
         validate_manifest(manifest, EVIDENCE)
         android = render(manifest, 'android', EVIDENCE).decode('utf-8')
         apple = render(manifest, 'apple', EVIDENCE).decode('utf-8')
-        self.assertEqual(len(manifest['android']['dependencies']), 131)
+        self.assertEqual(len(manifest['android']['dependencies']), 134)
+        android_ids = {item['id'] for item in manifest['android']['dependencies']}
+        self.assertTrue({
+            'com.google.code.findbugs:jsr305:3.0.2',
+            'com.google.code.gson:gson:2.13.2',
+            'com.google.crypto.tink:tink-android:1.23.0',
+        }.issubset(android_ids))
         self.assertEqual(len(manifest['apple']['resolved_packages']), 14)
         self.assertIn('The LibYuv Project Authors', android)
         self.assertIn('Android Software Development Kit License', android)

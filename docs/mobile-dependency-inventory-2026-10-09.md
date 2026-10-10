@@ -97,7 +97,11 @@ screen. It covers the app's original code; third-party licenses stay separate.
 
 ## Native notice closure
 
-The local post-QR-change Android `releaseRuntimeClasspath` resolves 131 modules.
+The October 9 post-QR-change Android `releaseRuntimeClasspath` resolved 131
+modules. A fresh Gradle resolution on October 10 added `jsr305:3.0.2`,
+`gson:2.13.2` and `tink-android:1.23.0`; the reviewed native notice manifest
+now records all 134 modules and exact artifact hashes. The refreshed graph still
+needs to be checked against the rebuilt release artifact.
 All six ML Kit/ODML modules from the earlier 137-module graph are absent. QR
 scanning now decodes camera luminance with the pure-Dart `zxing2` package. The
 exact candidate APK must still pass the same graph/hash check; the old APK hashes

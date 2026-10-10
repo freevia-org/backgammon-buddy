@@ -353,6 +353,18 @@ com.google.auto.value:auto-value-annotations:1.6.3
 Published license declaration: Apache 2.0 — http://www.apache.org/licenses/LICENSE-2.0.txt
 Notices: Apache-2.0
 
+com.google.code.findbugs:jsr305:3.0.2
+Published license declaration: The Apache Software License, Version 2.0 — http://www.apache.org/licenses/LICENSE-2.0.txt
+Notices: Apache-2.0
+
+com.google.code.gson:gson:2.13.2
+Published license declaration: Apache-2.0 — https://www.apache.org/licenses/LICENSE-2.0.txt
+Notices: Apache-2.0
+
+com.google.crypto.tink:tink-android:1.23.0
+Published license declaration: Apache License, Version 2.0 — http://www.apache.org/licenses/LICENSE-2.0.txt
+Notices: Apache-2.0
+
 com.google.dagger:dagger:2.59
 Published license declaration: Apache 2.0 — https://www.apache.org/licenses/LICENSE-2.0.txt
 Notices: Apache-2.0
@@ -48138,6 +48150,9 @@ com.google.android.datatransport:transport-api:3.2.0
 com.google.android.datatransport:transport-backend-cct:3.3.0
 com.google.android.datatransport:transport-runtime:3.3.0
 com.google.auto.value:auto-value-annotations:1.6.3
+com.google.code.findbugs:jsr305:3.0.2
+com.google.code.gson:gson:2.13.2
+com.google.crypto.tink:tink-android:1.23.0
 com.google.dagger:dagger:2.59
 com.google.errorprone:error_prone_annotations:2.41.0
 com.google.firebase:firebase-abt:21.1.1

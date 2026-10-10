@@ -1,6 +1,6 @@
 # Mobile native dependency notices
 
-`manifest.json` records the exact 131 Android `releaseRuntimeClasspath` module
+`manifest.json` records the exact 134 Android `releaseRuntimeClasspath` module
 coordinates and artifact hashes, plus 14 Apple Swift Package Manager pins from
 the successful iOS workflow run 37855133199 (commit 426ced1). This is a
 conservative build-resolution set; it includes unlinked Firebase products,
@@ -8,6 +8,10 @@ upstream test/build helpers and Flutter architectures excluded from the final
 APK. It is not a list of enabled features or transmitted data.
 The post-QR-removal run 37856567962 (commit 1b17b39) independently reproduced
 all 14 pins and all 27 captured source-notice entries and passes the guard.
+The October 10 local dependency refresh added `jsr305:3.0.2`, `gson:2.13.2`
+and `tink-android:1.23.0`; their exact artifact hashes and published Apache-2.0
+POM declarations are recorded in the manifest. This updated resolution still
+needs to be checked against the rebuilt release artifact.
 
 `texts/` contains byte-preserved, SHA-256-named upstream license and notice
 texts. The Android entries preserve notices embedded in resolved AAR/JAR files,
