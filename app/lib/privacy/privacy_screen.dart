@@ -49,7 +49,8 @@ class PrivacyScreen extends ConsumerWidget {
                   'to remove its saved practice exercises and attempts too. '
                   'Delete individual exercises or reset practice progress in Learning; '
                   'clear local error reports in Settings → Diagnostics. Your '
-                  'device’s backup settings may also apply to app data.',
+                  'device’s backup settings may also apply to game history. Online '
+                  'sign-in credentials are kept in the device’s protected storage.',
             ),
             const _PrivacySection(
               title: 'Online and nearby play',

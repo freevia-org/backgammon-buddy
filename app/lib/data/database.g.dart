@@ -2742,7 +2742,7 @@ class OnlineSessionRow extends DataClass
   /// The anonymous Firebase uid, or null before the first sign-in.
   final String? uid;
 
-  /// The refresh token that mints new id tokens for [uid].
+  /// Legacy plaintext token, migrated and cleared on first read.
   final String? refreshToken;
 
   /// The invite code of the match this device last entered, so it can offer to

@@ -251,6 +251,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
     setState(() {
       _rejoining = true;
       _rejoinError = null;
+      _cancelled = false;
     });
     try {
       final api = await ref.read(matchApiProvider.future);
@@ -391,6 +392,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
     setState(() {
       _joining = true;
       _joinError = null;
+      _cancelled = false;
     });
     try {
       final api = await ref.read(matchApiProvider.future);
@@ -456,6 +458,21 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
     final orientation = localSide == Player.white
         ? BoardOrientationMode.fixedWhite
         : BoardOrientationMode.fixedBlack;
+    // Capture provider-backed dependencies before the asynchronous store write.
+    // The route may be removed while it is pending; never resume into a disposed
+    // WidgetRef, and never start a transport after the lobby was cancelled.
+    final store = ref.read(onlineSessionStoreProvider);
+    final performance = ref.read(appPerformanceProvider);
+    // Persist before starting any match work so a crash mid-match can still
+    // offer a rejoin. Cancellation while this write is pending must not leave a
+    // stale rejoin pointer or launch a controller the player already dismissed.
+    await store.rememberMatch(doc.code);
+    if (!mounted) return; // Keep the pointer if the app is being closed.
+    if (_cancelled) {
+      await store.forgetMatch();
+      return;
+    }
+    setState(() => _resumeCode = doc.code);
     // Create the local history row for this online match and bind persistence to
     // it. The local seat is 'human'; the opponent is 'remote'. The insert runs
     // fire-and-forget; the controller's hooks await the id before recording a
@@ -495,16 +512,6 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
       // submitting gate is sized for that, not for the push path.
       gateTimeout: transport.suggestedGateTimeout,
     );
-    // Remember the match BEFORE playing it: the point of the pointer is to
-    // survive a crash or a kill mid-match, which is exactly when nothing later
-    // in this method gets to run.
-    final store = ref.read(onlineSessionStoreProvider);
-    // Capture provider-backed dependencies before the asynchronous store write.
-    // The route may be removed while it is pending; after that, controller
-    // readiness still needs to be awaited and the controller disposed cleanly.
-    final performance = ref.read(appPerformanceProvider);
-    await store.rememberMatch(doc.code);
-    if (mounted) setState(() => _resumeCode = doc.code);
     unawaited(controller.playMatch());
     // The online counterpart of the LAN connect trace: transport readiness,
     // which here means the first Firestore state has arrived and folded.

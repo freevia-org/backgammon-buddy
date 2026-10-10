@@ -68,14 +68,31 @@ List<List<Object>> _moveToJson(Move m) => [
   for (final c in m.checkerMoves) [c.from, c.to, c.isHit],
 ];
 
-Move _moveFromJson(List<dynamic> hops) => Move([
-  for (final h in hops)
-    CheckerMove(
-      (h[0] as num).toInt(),
-      (h[1] as num).toInt(),
-      isHit: h[2] as bool,
-    ),
-]);
+Move _moveFromJson(List<dynamic> hops) {
+  int coordinate(Object? value, {required bool from}) {
+    if (value is! num || !value.isFinite || value != value.toInt()) {
+      throw const FormatException('invalid checker coordinate');
+    }
+    final index = value.toInt();
+    final valid = from
+        ? index == CheckerMove.bar || (index >= 0 && index < 24)
+        : index == CheckerMove.off || (index >= 0 && index < 24);
+    if (!valid) throw const FormatException('checker coordinate out of range');
+    return index;
+  }
+
+  return Move([
+    for (final raw in hops)
+      if (raw is List && raw.length == 3)
+        CheckerMove(
+          coordinate(raw[0], from: true),
+          coordinate(raw[1], from: false),
+          isHit: raw[2] as bool,
+        )
+      else
+        throw const FormatException('invalid checker hop'),
+  ]);
+}
 
 List<double> _probsToJson(Probabilities p) => [
   p.win,

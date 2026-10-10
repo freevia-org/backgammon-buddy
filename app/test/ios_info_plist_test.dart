@@ -59,4 +59,18 @@ void main() {
       () {
     expect(valueOf('NSLocalNetworkUsageDescription'), isNotNull);
   });
+
+  test('secure-storage keychain entitlement is wired for every app build', () {
+    final entitlements =
+        File('ios/Runner/Runner.entitlements').readAsStringSync();
+    expect(entitlements, contains('<key>keychain-access-groups</key>'));
+    expect(entitlements, contains('<array/>'));
+    final project =
+        File('ios/Runner.xcodeproj/project.pbxproj').readAsStringSync();
+    expect(
+      'CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;'.allMatches(project),
+      hasLength(3),
+      reason: 'Debug, Profile and Release must all be able to read the Keychain',
+    );
+  });
 }

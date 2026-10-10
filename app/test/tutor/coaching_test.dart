@@ -35,6 +35,54 @@ void main() {
     expect(MoveExplanation.forAssessment(before, assessment), isNotNull);
   });
 
+  test('malformed cached and in-memory moves cannot crash Explain', () {
+    final points = List<int>.filled(24, 0)..[23] = 1;
+    final before = GameState.testState(
+      board: BoardState(points: points, whiteOff: 14),
+      turn: Player.white,
+      phase: GamePhase.moving,
+      dice: Dice(4, 2),
+    );
+    final legal = before.legalMoves.first;
+    final scored = ScoredMove(
+      move: legal,
+      probabilities: const Probabilities(
+        win: .5,
+        winGammon: 0,
+        winBackgammon: 0,
+        loseGammon: 0,
+        loseBackgammon: 0,
+      ),
+    );
+    final valid = MoveAssessment(
+      played: legal,
+      best: legal,
+      equityLoss: 0,
+      ranked: [scored],
+    );
+    final corrupted = valid.toJson()
+      ..['played'] = [
+        [99, 21, false],
+      ];
+
+    expect(
+      () => MoveAssessment.fromJson(corrupted),
+      throwsA(isA<FormatException>()),
+    );
+    expect(
+      MoveExplanation.forAssessment(
+        before,
+        MoveAssessment(
+          played: Move(const [CheckerMove(99, 21)]),
+          best: legal,
+          equityLoss: 0,
+          ranked: [scored],
+        ),
+      ),
+      isNull,
+    );
+  });
+
   test('cube response and forced pass prompts precede bar instructions', () {
     final points = List<int>.filled(24, 0);
     for (var i = 18; i < 24; i++) {

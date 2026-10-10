@@ -82,6 +82,20 @@ class DelayedMissingMatchApi extends FakeMatchApi {
   }
 }
 
+class DelayedRememberStore extends OnlineSessionStore {
+  DelayedRememberStore(super.db);
+
+  final entered = Completer<void>();
+  final release = Completer<void>();
+
+  @override
+  Future<void> rememberMatch(String code) async {
+    if (!entered.isCompleted) entered.complete();
+    await release.future;
+    await super.rememberMatch(code);
+  }
+}
+
 /// A match sitting open under [code], for the join flow to claim.
 FakeMatch _waitingMatch(FakeBackend backend, String code) {
   final m = FakeMatch(
@@ -106,6 +120,7 @@ Widget _app(
   bool configured = true,
   required AppDatabase db,
   AppSettings? settings,
+  OnlineSessionStore? sessionStore,
 }) {
   return ProviderScope(
     overrides: [
@@ -120,6 +135,8 @@ Widget _app(
       listenChannelBuilderProvider.overrideWithValue((_) => null),
       engineFacadeProvider.overrideWithValue(const FakeFacade()),
       databaseProvider.overrideWithValue(db),
+      if (sessionStore != null)
+        onlineSessionStoreProvider.overrideWithValue(sessionStore),
       // Launching a game reads settingsProvider (for animation speed); serve a
       // static value so the test avoids the real drift store and its watch-timer.
       settingsProvider.overrideWith(
@@ -309,6 +326,43 @@ void main() {
     await _pumpUntil(t, find.byType(SnackBar));
     expect(find.byType(GameScreen), findsNothing);
     expect(find.textContaining('the network is gone'), findsOneWidget);
+  });
+
+  testWidgets('cancelling while the resume pointer is saved does not launch', (
+    t,
+  ) async {
+    await t.binding.setSurfaceSize(surface);
+    addTearDown(() => t.binding.setSurfaceSize(null));
+
+    final api = screenApi(backend, activeAfter: 1);
+    final store = DelayedRememberStore(db);
+    await t.pumpWidget(_app(api, db: db, sessionStore: store));
+    await t.pumpAndSettle();
+
+    await t.tap(find.widgetWithText(FilledButton, 'Create'));
+    for (var i = 0; i < 40 && !store.entered.isCompleted; i++) {
+      await t.pump(const Duration(seconds: 2));
+    }
+    expect(store.entered.isCompleted, isTrue);
+
+    // The create card still offers Cancel while the durable pointer write is
+    // pending. Release it only after cancellation to hit the lifecycle window.
+    await t.tap(find.widgetWithText(TextButton, 'Cancel'));
+    store.release.complete();
+    await t.pump();
+    await t.pumpAndSettle();
+
+    expect(find.byType(GameScreen), findsNothing);
+    expect(api.calls['fetchMatch'], 1, reason: 'no transport connection ran');
+    expect(await store.lastMatchCode(), isNull);
+    final rows = await t.runAsync(
+      () => MatchRepository(db).watchMatches().first,
+    );
+    expect(
+      rows,
+      isEmpty,
+      reason: 'cancelled launches are not added to history',
+    );
   });
 
   testWidgets('join flow persists an online match row (joiner is Black)', (

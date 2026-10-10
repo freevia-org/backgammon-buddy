@@ -36,6 +36,9 @@ dependencies:
   firebase_analytics: ^12.4.5
   firebase_performance: ^0.11.4+5
   firebase_crashlytics: ^5.2.6
+  # Firebase refresh credentials are bearer tokens. Keep them in the platform
+  # key store rather than the app's restorable SQLite history database.
+  flutter_secure_storage: ^11.2.0
   url_launcher: ^6.3.2
   # --- Buddy Mode (Plan 19) ---------------------------------------------------
   # The perception core: frames in, typed answers about a PHYSICAL board out.

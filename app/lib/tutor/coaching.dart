@@ -349,14 +349,26 @@ class MoveExplanation {
 
   static MoveExplanation? forAssessment(GameState before, MoveAssessment a) {
     if (a.ranked.isEmpty) return null;
-    final resulting = before.board.applyMove(before.turn, a.played);
+    // Cached assessments are derived data and may be stale or malformed. Map
+    // every hop back to the legal representative for this exact position before
+    // any board application; BoardState.applyMove assumes its input is legal.
+    final played = before.canonicalPlay(a.played);
+    if (played == null) return null;
+    final ranked = <ScoredMove>[];
     for (final candidate in a.ranked) {
-      if (candidate.move.sameAs(a.played) ||
-          before.board.applyMove(before.turn, candidate.move) == resulting) {
-        return forCandidate(before, candidate, a.ranked.first);
-      }
+      final canonical = before.canonicalPlay(candidate.move);
+      if (canonical == null) return null;
+      ranked.add(
+        ScoredMove(
+          move: canonical,
+          probabilities: candidate.probabilities,
+          matchWinningChance: candidate.matchWinningChance,
+        ),
+      );
     }
-    return null;
+    final selected = ranked.where((candidate) => candidate.move.sameAs(played));
+    if (selected.isEmpty) return null;
+    return forCandidate(before, selected.first, ranked.first);
   }
 
   static List<String> describeMove(GameState before, Move move) {

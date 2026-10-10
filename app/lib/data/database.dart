@@ -188,9 +188,9 @@ class Settings extends Table {
 }
 
 /// The device's anonymous online identity, and the match it was last in
-/// (schema v8). A single row, like [Settings], but kept SEPARATE from it: these
-/// are bearer credentials and a resume pointer, not user preferences, and
-/// nothing in the settings UI should be able to read or write them.
+/// (schema v8). The refresh token column is retained only to migrate installs
+/// from the original storage format; new credentials live in OS secure storage.
+/// The uid and resume pointer are not bearer credentials or user preferences.
 ///
 /// Why it has to be durable at all: the anonymous uid is the only identity the
 /// serverless model has, and `firebase/firestore.rules` gates every match
@@ -205,7 +205,7 @@ class OnlineSession extends Table {
   /// The anonymous Firebase uid, or null before the first sign-in.
   TextColumn get uid => text().nullable()();
 
-  /// The refresh token that mints new id tokens for [uid].
+  /// Legacy plaintext refresh token; migrated and cleared by OnlineSessionStore.
   TextColumn get refreshToken => text().nullable()();
 
   /// The invite code of the match this device last entered, so it can offer to

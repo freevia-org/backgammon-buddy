@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:aigammon_app/board/board_view.dart';
 import 'package:aigammon_app/data/database.dart';
 import 'package:aigammon_app/data/practice_repository.dart';
@@ -5,6 +7,7 @@ import 'package:aigammon_app/engine/engine_provider.dart';
 import 'package:aigammon_app/screens/learning_screen.dart';
 import 'package:aigammon_app/screens/practice_screen.dart';
 import 'package:aigammon_app/tutor/coaching_widgets.dart';
+import 'package:drift/drift.dart' show Value;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -93,6 +96,43 @@ void main() {
       expect(attempt.revealed, isTrue);
       expect(attempt.passed, isFalse);
     });
+  });
+
+  testWidgets('corrupt in-range saved moves show unavailable instead of crashing',
+      (t) async {
+    await t.binding.setSurfaceSize(const Size(900, 1200));
+    addTearDown(() => t.binding.setSurfaceSize(null));
+    late int positionId;
+    await t.runAsync(() async {
+      final gameId = await seedPracticeGame(db);
+      positionId = await PracticeRepository(db)
+          .saveMistake(gameId: gameId, eventIndex: 1);
+      final row = await (db.select(db.practicePositions)
+            ..where((p) => p.id.equals(positionId)))
+          .getSingle();
+      final assessment =
+          (jsonDecode(row.assessmentJson) as Map).cast<String, dynamic>();
+      // Valid coordinates, but no checker can be entered from the bar here.
+      const illegalMove = [<Object>[24, 23, false]];
+      assessment['played'] = illegalMove;
+      assessment['best'] = illegalMove;
+      for (final ranked in assessment['ranked'] as List) {
+        (ranked as Map)['move'] = illegalMove;
+      }
+      await (db.update(db.practicePositions)
+            ..where((p) => p.id.equals(positionId)))
+          .write(PracticePositionsCompanion(
+              assessmentJson: Value(jsonEncode(assessment))));
+    });
+    await t.pumpWidget(app(PracticeScreen(positionId: positionId)));
+    await _settle(t);
+    final reveal = find.text('Reveal answer (no credit)');
+    await t.ensureVisible(reveal);
+    await t.tap(reveal);
+    await _settle(t);
+    expect(find.text('This practice position is no longer available.'),
+        findsOneWidget);
+    expect(t.takeException(), isNull);
   });
 
   testWidgets(

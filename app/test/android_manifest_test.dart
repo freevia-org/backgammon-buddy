@@ -37,6 +37,26 @@ void main() {
             'the permission outright, with no prompt to the user');
   });
 
+  test('Android backups retain app data but exclude secure-token keys', () {
+    final main = File(mainManifest).readAsStringSync();
+    final flat = main.replaceAll(RegExp(r'\s+'), ' ');
+    expect(flat, contains('android:fullBackupContent="@xml/backup_rules"'));
+    expect(flat,
+        contains('android:dataExtractionRules="@xml/data_extraction_rules"'));
+    final legacy =
+        File('android/app/src/main/res/xml/backup_rules.xml').readAsStringSync();
+    final extraction = File(
+      'android/app/src/main/res/xml/data_extraction_rules.xml',
+    ).readAsStringSync();
+    for (final rules in [legacy, extraction]) {
+      expect(rules, contains('FlutterSecureStorage.xml'));
+      expect(rules, contains('FlutterSecureKeyStorage.xml'));
+      expect(rules, isNot(contains('domain="database"')));
+    }
+    expect(extraction, contains('<cloud-backup>'));
+    expect(extraction, contains('<device-transfer>'));
+  });
+
   test('v1 removes RECORD_AUDIO including plugin contributions', () {
     final main = File(mainManifest).readAsStringSync();
     final flat = main.replaceAll(RegExp(r'\s+'), ' ');

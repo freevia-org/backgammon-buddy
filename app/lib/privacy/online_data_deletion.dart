@@ -10,9 +10,11 @@ enum OnlineDeletionResult { requested, requestedLocalSignOutFailed, noIdentity }
 final requestOnlineDeletionProvider =
     Provider<Future<OnlineDeletionResult> Function()>((ref) {
       return () async {
+        final sessionStore = ref.read(onlineSessionStoreProvider);
         final store = OnlineSessionStore(
-          ref.read(onlineSessionStoreProvider).db,
+          sessionStore.db,
           strict: true,
+          secrets: sessionStore.secrets,
         );
         if (await store.read() == null) return OnlineDeletionResult.noIdentity;
         final config = ref.read(onlineConfigProvider);

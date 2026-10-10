@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- flutter_secure_storage wraps an app-generated key with Android
+         Keystore. Restoring its encrypted preferences without that device key
+         makes the stored credential unreadable. Keep the game database
+         restorable, but never transfer either secure-storage preference file. -->
+    <exclude domain="sharedpref" path="FlutterSecureStorage.xml" />
+    <exclude domain="sharedpref" path="FlutterSecureKeyStorage.xml" />
+</full-backup-content>

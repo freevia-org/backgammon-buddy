@@ -1,4 +1,5 @@
 import 'package:backgammon_core/backgammon_core.dart';
+import 'package:engine_bindings/engine_bindings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -101,14 +102,54 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
               final assessment = _answer ?? saved.original;
               final reviewedMove =
                   _showBest ? assessment.best : assessment.played;
-              final boardState =
-                  reviewed ? saved.before.play(reviewedMove) : saved.before;
-              final explanation = !reviewed
-                  ? null
-                  : _showBest && assessment.ranked.isNotEmpty
-                      ? MoveExplanation.forCandidate(saved.before,
-                          assessment.ranked.first, assessment.ranked.first)
+              // Saved analysis is derived data and may be stale or corrupted.
+              // Canonicalize against the exact position before applying it;
+              // BoardState.applyMove assumes its input is legal.
+              Move? canonicalReviewedMove;
+              ScoredMove? canonicalBest;
+              try {
+                if (reviewed) {
+                  canonicalReviewedMove =
+                      saved.before.canonicalPlay(reviewedMove);
+                  if (_showBest && assessment.ranked.isNotEmpty) {
+                    final best = assessment.ranked.first;
+                    final canonical = saved.before.canonicalPlay(best.move);
+                    if (canonical != null) {
+                      canonicalBest = ScoredMove(
+                        move: canonical,
+                        probabilities: best.probabilities,
+                        matchWinningChance: best.matchWinningChance,
+                      );
+                    }
+                  }
+                }
+              } catch (_) {
+                canonicalReviewedMove = null;
+                canonicalBest = null;
+              }
+              if (reviewed &&
+                  (canonicalReviewedMove == null ||
+                      (_showBest && canonicalBest == null))) {
+                return const Center(
+                    child: Padding(
+                        padding: EdgeInsets.all(24),
+                        child: Text(
+                            'This practice position is no longer available.')));
+              }
+              final boardState = reviewed
+                  ? saved.before.play(canonicalReviewedMove!)
+                  : saved.before;
+              MoveExplanation? explanation;
+              if (reviewed) {
+                try {
+                  explanation = _showBest
+                      ? MoveExplanation.forCandidate(
+                          saved.before, canonicalBest!, canonicalBest)
                       : MoveExplanation.forAssessment(saved.before, assessment);
+                } catch (_) {
+                  explanation = null;
+                }
+              }
               final side =
                   saved.before.turn == Player.white ? 'White' : 'Black';
               return SafeArea(
