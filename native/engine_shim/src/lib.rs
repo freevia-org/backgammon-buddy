@@ -68,16 +68,19 @@ pub extern "C" fn wildbg_new() -> *mut Wildbg {
 #[unsafe(no_mangle)]
 /// # Safety
 ///
-/// Frees the memory of the argument.
-/// Don't call it with a NULL pointer. Don't call it more than once for the same `Wildbg` pointer.
+/// Frees the memory of the argument. A NULL pointer is accepted as a no-op.
+/// Don't call it more than once for the same non-NULL `Wildbg` pointer.
 pub unsafe extern "C" fn wildbg_free(ptr: *mut Wildbg) {
+    if ptr.is_null() {
+        return;
+    }
     unsafe {
         drop(Box::from_raw(ptr));
     }
 }
 
 #[repr(C)]
-#[derive(Default)]
+#[derive(Debug, Default, PartialEq)]
 pub struct CProbabilities {
     /// Cubeless probability to win the game. This includes gammons and backgammons.
     win: c_float,
@@ -156,7 +159,7 @@ impl From<&MoveDetail> for CMoveDetail {
 }
 
 #[repr(C)]
-#[derive(Default)]
+#[derive(Debug, Default, PartialEq)]
 pub struct CCubeInfo {
     should_double: bool,
     should_accept: bool,
@@ -222,24 +225,33 @@ fn checked_pips(pips: &[c_int; 26]) -> Result<[i8; 26], Error> {
 /// Checkers of the player on turn are encoded with positive integers, the opponent's checkers with negative integers.
 ///
 /// # Safety
-/// The argument `wildbg` needs to be initialized with `wildbg_new_with_path()` and `wildbg_free()` must not be called yet.
-/// Otherwise we have random memory access here.
+/// `wildbg`, `pips`, and `config` must be non-NULL, valid pointers to readable
+/// values of their declared ABI sizes, and `wildbg` must remain live for this
+/// call. Null pointers return the default failure value; dangling or undersized
+/// non-NULL pointers remain caller errors.
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn best_move(
     wildbg: *const Wildbg,
-    pips: &[c_int; 26],
+    pips: *const c_int,
     die1: c_uint,
     die2: c_uint,
-    config: &BgConfig,
+    config: *const BgConfig,
 ) -> CMove {
+    // C callers can legally pass null even though Dart's typed FFI bindings do
+    // not. Check every pointer before creating a Rust reference: doing so after
+    // dereferencing would already be undefined behaviour and can abort the app.
+    if wildbg.is_null() || pips.is_null() || config.is_null() {
+        return CMove::default();
+    }
+    // SAFETY: non-null pointers are part of this function's documented C ABI
+    // precondition; the fixed-size board and config are read-only for the call.
+    let (wildbg, pips, config) = unsafe { (&*wildbg, &*(pips as *const [c_int; 26]), &*config) };
     let move_result = || -> Result<CMove, Error> {
         let position = Position::try_from(checked_pips(pips)?)?;
         let dice = Dice::try_from((die1 as usize, die2 as usize))?;
         let score_config = ScoreConfig::try_from((config.x_away, config.o_away))?;
-        unsafe {
-            let bg_move = (*wildbg).api.best_move(&position, &dice, &score_config);
-            Ok(CMove::from(bg_move))
-        }
+        let bg_move = wildbg.api.best_move(&position, &dice, &score_config);
+        Ok(CMove::from(bg_move))
     };
     match catch_engine_panic("best_move", move_result) {
         Ok(Ok(c_move)) => c_move,
@@ -257,8 +269,22 @@ pub unsafe extern "C" fn best_move(
 /// The player on turn always moves from pip 24 to pip 1.
 /// The array `pips` contains the player's bar in index 25, the opponent's bar in index 0.
 /// Checkers of the player on turn are encoded with positive integers, the opponent's checkers with negative integers.
+///
+/// # Safety
+/// `wildbg` and `pips` must be readable pointers to a live `Wildbg` and 26
+/// integers respectively for the duration of this call. Null pointers return
+/// the default failure value; dangling or undersized non-null pointers are UB.
 #[unsafe(no_mangle)]
-pub extern "C" fn probabilities(wildbg: &Wildbg, pips: &[c_int; 26]) -> CProbabilities {
+pub unsafe extern "C" fn probabilities(
+    wildbg: *const Wildbg,
+    pips: *const c_int,
+) -> CProbabilities {
+    if wildbg.is_null() || pips.is_null() {
+        return CProbabilities::default();
+    }
+    // SAFETY: guarded against null; callers must provide readable objects of
+    // the declared ABI sizes for the duration of this call.
+    let (wildbg, pips) = unsafe { (&*wildbg, &*(pips as *const [c_int; 26])) };
     let result = catch_engine_panic("probabilities", || {
         checked_pips(pips)
             .and_then(Position::try_from)
@@ -274,8 +300,18 @@ pub extern "C" fn probabilities(wildbg: &Wildbg, pips: &[c_int; 26]) -> CProbabi
     }
 }
 
+/// # Safety
+/// `wildbg` and `pips` must be readable pointers to a live `Wildbg` and 26
+/// integers respectively for the duration of this call. Null pointers return
+/// the default failure value; dangling or undersized non-null pointers are UB.
 #[unsafe(no_mangle)]
-pub extern "C" fn cube_info(wildbg: &Wildbg, pips: &[c_int; 26]) -> CCubeInfo {
+pub unsafe extern "C" fn cube_info(wildbg: *const Wildbg, pips: *const c_int) -> CCubeInfo {
+    if wildbg.is_null() || pips.is_null() {
+        return CCubeInfo::default();
+    }
+    // SAFETY: guarded against null; callers must provide readable objects of
+    // the declared ABI sizes for the duration of this call.
+    let (wildbg, pips) = unsafe { (&*wildbg, &*(pips as *const [c_int; 26])) };
     let result = catch_engine_panic("cube_info", || {
         checked_pips(pips)
             .and_then(Position::try_from)
@@ -397,6 +433,77 @@ mod tests {
     }
 
     #[test]
+    fn c_boundary_null_pointers_return_safe_failure_values() {
+        let pips = [0; 26];
+        let config = BgConfig {
+            x_away: 0,
+            o_away: 0,
+        };
+        assert_eq!(
+            unsafe { best_move(std::ptr::null(), pips.as_ptr(), 1, 2, &config) },
+            CMove::default()
+        );
+        assert_eq!(
+            unsafe { best_move(std::ptr::null(), pips.as_ptr(), 1, 2, std::ptr::null()) },
+            CMove::default()
+        );
+        assert_eq!(
+            unsafe { best_move(std::ptr::null(), std::ptr::null(), 1, 2, &config) },
+            CMove::default()
+        );
+        let wildbg = wildbg_new();
+        assert!(!wildbg.is_null());
+        assert_eq!(
+            unsafe { best_move(wildbg, std::ptr::null(), 1, 2, &config) },
+            CMove::default()
+        );
+        assert_eq!(
+            unsafe { best_move(wildbg, pips.as_ptr(), 1, 2, std::ptr::null()) },
+            CMove::default()
+        );
+        assert_eq!(
+            unsafe { super::probabilities(std::ptr::null(), pips.as_ptr()) },
+            CProbabilities::default()
+        );
+        assert_eq!(
+            unsafe { super::probabilities(std::ptr::null(), std::ptr::null()) },
+            CProbabilities::default()
+        );
+        assert_eq!(
+            unsafe { super::cube_info(std::ptr::null(), pips.as_ptr()) },
+            CCubeInfo::default()
+        );
+        assert_eq!(
+            unsafe { super::cube_info(std::ptr::null(), std::ptr::null()) },
+            CCubeInfo::default()
+        );
+        assert_eq!(
+            unsafe { super::probabilities(wildbg, std::ptr::null()) },
+            CProbabilities::default()
+        );
+        assert_eq!(
+            unsafe { super::cube_info(wildbg, std::ptr::null()) },
+            CCubeInfo::default()
+        );
+        // A live engine with a readable but invalid all-zero position must
+        // reach the existing validation path and return safe defaults.
+        assert_eq!(
+            unsafe { super::probabilities(wildbg, pips.as_ptr()) },
+            CProbabilities::default()
+        );
+        assert_eq!(
+            unsafe { super::cube_info(wildbg, pips.as_ptr()) },
+            CCubeInfo::default()
+        );
+        assert_eq!(
+            unsafe { best_move(wildbg, pips.as_ptr(), 1, 2, &config) },
+            CMove::default()
+        );
+        unsafe { super::wildbg_free(wildbg) };
+        unsafe { super::wildbg_free(std::ptr::null_mut()) };
+    }
+
+    #[test]
     fn from_cube_info() {
         let probs = engine::probabilities::Probabilities {
             win_normal: 0.7,
@@ -504,7 +611,7 @@ mod tests {
         // Then
         // In 1-pointers we don't run to increase the small chance of winning.
         unsafe {
-            let best_move = best_move(wildbg, &pips, die1, die2, &config);
+            let best_move = best_move(wildbg, pips.as_ptr(), die1, die2, &config);
             assert_ne!(best_move, running);
         }
 
@@ -517,7 +624,7 @@ mod tests {
         // Then
         // In money games we run to avoid gammon/bg.
         unsafe {
-            let best_move = best_move(wildbg, &pips, die1, die2, &config);
+            let best_move = best_move(wildbg, pips.as_ptr(), die1, die2, &config);
             assert_eq!(best_move, running);
         }
     }
