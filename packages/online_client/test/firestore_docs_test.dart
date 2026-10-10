@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
@@ -16,6 +17,28 @@ void main() {
       'http://127.0.0.1:8080/v1/projects/demo-aigammon/databases/(default)/documents';
 
   group('get', () {
+    test('deadline aborts a stalled document request', () async {
+      final inner = _StallingClient();
+      final docs = FirestoreDocs(
+        OnlineConfig.emulator(),
+        token: () async => 'idtok',
+        requestTimeout: const Duration(milliseconds: 20),
+        inner: inner,
+      );
+      addTearDown(docs.close);
+
+      await expectLater(
+        docs.get('matches/ABCD1234'),
+        throwsA(isA<OnlineException>().having(
+          (error) => error.code,
+          'code',
+          'request-timeout',
+        )),
+      );
+      final request = inner.request! as http.AbortableRequest;
+      await expectLater(request.abortTrigger, completes);
+    });
+
     test('GETs the document URL and decodes fields + updateTime', () async {
       late http.Request captured;
       final docs = docsFor(MockClient((req) async {
@@ -373,4 +396,14 @@ void main() {
       );
     });
   });
+}
+
+class _StallingClient extends http.BaseClient {
+  http.BaseRequest? request;
+
+  @override
+  Future<http.StreamedResponse> send(http.BaseRequest request) {
+    this.request = request;
+    return Completer<http.StreamedResponse>().future;
+  }
 }

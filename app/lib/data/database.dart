@@ -286,7 +286,7 @@ class AppDatabase extends _$AppDatabase {
           // same upsert-if-absent covers both fresh creates and upgrades.
           if (from < 2) {
             // Fresh create of the settings table. `createTable` uses the CURRENT
-            // (v9) table definition, so it already includes every gameplay
+            // (v10) table definition, so it already includes every gameplay
             // column, `drag_hint_shown`, `dice_roll_animation`,
             // `show_pass_device`, `rotate_board_hot_seat` AND the two v9 Buddy
             // columns — the version-gated `addColumn` blocks below

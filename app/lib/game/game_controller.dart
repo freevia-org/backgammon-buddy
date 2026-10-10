@@ -186,17 +186,24 @@ class GameController extends ChangeNotifier implements MatchController {
         final finishedGameNumber = _gameNumber;
         _match = _match.applyResult(result);
         _notify();
-        await _persist(() => persistence.onGameFinished(
-              gameNumber: finishedGameNumber,
-              isCrawford: finishedGame.state.isCrawfordGame,
-              events: finishedGame.events,
-              result: result,
-              matchAfter: _match,
-            ));
-        if (_match.isMatchOver) {
+        final gamePersisted = await _persist(
+          () => persistence.onGameFinished(
+            gameNumber: finishedGameNumber,
+            isCrawford: finishedGame.state.isCrawfordGame,
+            events: finishedGame.events,
+            result: result,
+            matchAfter: _match,
+          ),
+        );
+        if (_match.isMatchOver && gamePersisted) {
           await _persist(() => persistence.onMatchFinished(_match));
           break;
         }
+
+        // The match has ended in memory, but without its final game record we
+        // must not run match-level persistence that could publish a completion
+        // marker for a score/history transaction that rolled back.
+        if (_match.isMatchOver) break;
 
         _awaitingNextGame = true;
         _continueGate = Completer<void>();
@@ -473,12 +480,14 @@ class GameController extends ChangeNotifier implements MatchController {
 
   /// Runs a persistence hook, swallowing any failure into [persistenceError]
   /// so the match loop is never interrupted by the storage layer.
-  Future<void> _persist(Future<void> Function() hook) async {
+  Future<bool> _persist(Future<void> Function() hook) async {
     try {
       await hook();
+      return true;
     } catch (e) {
       _persistenceError = e;
       _notify();
+      return false;
     }
   }
 

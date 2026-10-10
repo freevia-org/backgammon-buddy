@@ -61,16 +61,22 @@ class RepositoryPersistence implements MatchPersistence {
     required MatchState matchAfter,
   }) async {
     final matchId = await matchIdFuture;
-    await repo.recordGameAndScore(matchId: matchId, gameNumber: gameNumber,
-      isCrawford: isCrawford, events: events, result: result,
-      matchAfter: matchAfter);
+    await repo.recordGameAndScore(
+      matchId: matchId,
+      gameNumber: gameNumber,
+      isCrawford: isCrawford,
+      events: events,
+      result: result,
+      matchAfter: matchAfter,
+    );
   }
 
   @override
   Future<void> onMatchFinished(MatchState finalState) async {
-    final matchId = await matchIdFuture;
-    final winner = finalState.winner;
-    if (winner == null) return;
-    await repo.completeMatch(matchId: matchId, winner: winner.name);
+    // RepositoryPersistence completes the row atomically with the final
+    // game's event log and score in MatchRepository.recordGameAndScore. Doing
+    // a second completion write here could mark a match complete after that
+    // atomic transaction failed (for example, from the online controller's
+    // independently queued hooks).
   }
 }

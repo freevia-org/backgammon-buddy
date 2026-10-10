@@ -244,7 +244,7 @@ void main() {
   });
 
   test(
-      'fresh install (onCreate) seeds v9 defaults: drag ON, dice roll animation '
+      'fresh install (onCreate) seeds current defaults: drag ON, dice roll animation '
       'ON, pass-device cover OFF, hot-seat board rotation OFF, hint not shown, '
       'Buddy terse with the mic hint available',
       () async {
@@ -272,6 +272,12 @@ void main() {
     expect(settings.buddyMicHint, isTrue,
         reason: 'the mic hint is available to be asked for as of v9 — it is '
             'latched OFF only by a refusal or by the user');
+    expect(settings.tutorBestMoves, isTrue);
+    expect(settings.tutorExplanations, isTrue);
+    expect(settings.tutorCommentary, isTrue);
+    expect(settings.tutorCubeAdvice, isTrue);
+    expect(settings.tutorTryFirst, isFalse);
+    expect(settings.telemetryEnabled, isFalse);
 
     final version = await db.customSelect('PRAGMA user_version').getSingle();
     expect(version.read<int>('user_version'), db.schemaVersion);
@@ -279,7 +285,7 @@ void main() {
     await db.close();
   });
 
-  test('1 -> 9 upgrade creates the settings table whole (v7 shape: drag ON, '
+  test('1 -> 10 upgrade creates the settings table whole (v7 shape: drag ON, '
       'drag_hint_shown + dice_roll_animation + show_pass_device + '
       'rotate_board_hot_seat present), seeds it, and preserves v1 data',
       () async {
@@ -299,8 +305,8 @@ void main() {
         "SELECT name FROM sqlite_master WHERE type='table' AND name='settings'");
     expect(before, isEmpty, reason: 'v1 has no settings table');
 
-    // 2. Open the SAME database through AppDatabase (schemaVersion 9). drift
-    //    sees user_version 1 and runs onUpgrade(1 -> 9), then beforeOpen.
+    // 2. Open the SAME database through AppDatabase (schemaVersion 10). drift
+    //    sees user_version 1 and runs onUpgrade(1 -> 10), then beforeOpen.
     final db = AppDatabase(NativeDatabase.opened(raw));
 
     // 3a. The settings table now exists with the single default row — including
@@ -348,7 +354,7 @@ void main() {
     await db.close();
   });
 
-  test('2 -> 9 upgrade adds the gameplay + drag_hint_shown + '
+  test('2 -> 10 upgrade adds the gameplay + drag_hint_shown + '
       'dice_roll_animation + show_pass_device + rotate_board_hot_seat columns, '
       'flips drag ON, and preserves the existing v2 settings row values',
       () async {
@@ -380,7 +386,7 @@ void main() {
     expect(cols, isNot(contains('rotate_board_hot_seat')),
         reason: 'nor the v7 col');
 
-    // 2. Open through AppDatabase (schemaVersion 9): drift runs onUpgrade(2 -> 9),
+    // 2. Open through AppDatabase (schemaVersion 10): drift runs onUpgrade(2 -> 10),
     //    adding the four gameplay columns + drag_hint_shown +
     //    dice_roll_animation + show_pass_device + rotate_board_hot_seat, then
     //    flipping drag.
@@ -418,7 +424,7 @@ void main() {
     await db.close();
   });
 
-  test('3 -> 9 upgrade adds drag_hint_shown (=false) + dice_roll_animation '
+  test('3 -> 10 upgrade adds drag_hint_shown (=false) + dice_roll_animation '
       '(=true) + show_pass_device (=false) + rotate_board_hot_seat (=false) and '
       'flips a user-OFF enable_drag to ON, preserving every other v3 value',
       () async {
@@ -453,7 +459,7 @@ void main() {
     expect(cols, isNot(contains('rotate_board_hot_seat')),
         reason: 'v3 predates the hot-seat rotation column');
 
-    // 2. Open through AppDatabase (schemaVersion 9): drift runs onUpgrade(3 -> 9),
+    // 2. Open through AppDatabase (schemaVersion 10): drift runs onUpgrade(3 -> 10),
     //    which addColumn's the three later columns and UPDATEs enable_drag = 1.
     final db = AppDatabase(NativeDatabase.opened(raw));
 
@@ -494,7 +500,7 @@ void main() {
     await db.close();
   });
 
-  test('4 -> 9 upgrade adds dice_roll_animation (=true) + show_pass_device '
+  test('4 -> 10 upgrade adds dice_roll_animation (=true) + show_pass_device '
       '(=false) + rotate_board_hot_seat (=false) and changes nothing else — no '
       're-run of the v4 drag flip', () async {
     // 1. Build a genuine v4 database: matches/games + the v4 settings table with
@@ -524,7 +530,7 @@ void main() {
     expect(cols, isNot(contains('show_pass_device')),
         reason: 'v4 predates the pass-device column');
 
-    // 2. Open through AppDatabase (schemaVersion 9): drift runs onUpgrade(4 -> 9),
+    // 2. Open through AppDatabase (schemaVersion 10): drift runs onUpgrade(4 -> 10),
     //    which only addColumn's the two later columns.
     final db = AppDatabase(NativeDatabase.opened(raw));
 
@@ -565,7 +571,7 @@ void main() {
 
     await db.close();
   });
-  test('5 -> 9 upgrade adds show_pass_device (=false) + rotate_board_hot_seat '
+  test('5 -> 10 upgrade adds show_pass_device (=false) + rotate_board_hot_seat '
       '(=false) and preserves every v5 value — the unreleased-but-installed '
       'shape', () async {
     // 1. Build a genuine v5 database: matches/games + the v5 settings table with
@@ -591,7 +597,7 @@ void main() {
     expect(cols, isNot(contains('show_pass_device')),
         reason: 'v5 predates the pass-device column');
 
-    // 2. Open through AppDatabase (schemaVersion 9): onUpgrade(5 -> 9).
+    // 2. Open through AppDatabase (schemaVersion 10): onUpgrade(5 -> 10).
     final db = AppDatabase(NativeDatabase.opened(raw));
 
     // 3a. The column exists at its default, so a settings SAVE no longer throws
@@ -624,7 +630,7 @@ void main() {
     await db.close();
   });
 
-  test('6 -> 9 upgrade adds rotate_board_hot_seat (=false) and preserves every '
+  test('6 -> 10 upgrade adds rotate_board_hot_seat (=false) and preserves every '
       'v6 value — the shape on every tester device today', () async {
     // 1. Build a genuine v6 database: matches/games + the v6 settings table with
     //    a row the user had already edited — including the pass-device cover
@@ -651,7 +657,7 @@ void main() {
     expect(cols, isNot(contains('rotate_board_hot_seat')),
         reason: 'v6 predates the hot-seat rotation column');
 
-    // 2. Open through AppDatabase (schemaVersion 9): onUpgrade(6 -> 9).
+    // 2. Open through AppDatabase (schemaVersion 10): onUpgrade(6 -> 10).
     final db = AppDatabase(NativeDatabase.opened(raw));
 
     // 3a. The column exists at its default — OFF, i.e. the tabletop layout an
@@ -671,7 +677,7 @@ void main() {
     expect(settings.tutorOverride, 'off');
     expect(settings.showHighlights, isTrue);
     expect(settings.enableDrag, isFalse,
-        reason: 'the one-time v4 drag flip must not re-run on a 6 -> 9 upgrade');
+        reason: 'the one-time v4 drag flip must not re-run on a 6 -> 10 upgrade');
     expect(settings.enableCombinedTaps, isTrue);
     expect(settings.showScoring, isFalse);
     expect(settings.diceRollAnimation, isTrue);
@@ -690,7 +696,7 @@ void main() {
     await db.close();
   });
 
-  test('7 -> 9 upgrade adds the online_session table and touches NOTHING else '
+  test('7 -> 10 upgrade adds the online_session table and touches NOTHING else '
       '— the path every current install takes', () async {
     // 1. Build a genuine v7 database: matches/games with a real match row, and
     //    the v7 settings table holding a thoroughly edited row. v7 is what is
@@ -718,7 +724,7 @@ void main() {
         "AND name='online_session'");
     expect(before, isEmpty, reason: 'v7 predates the online-session table');
 
-    // 2. Open through AppDatabase (schemaVersion 9): onUpgrade(7 -> 9).
+    // 2. Open through AppDatabase (schemaVersion 10): onUpgrade(7 -> 10).
     final db = AppDatabase(NativeDatabase.opened(raw));
 
     // 3a. The new table is there, seeded, and empty — the whole content of the
@@ -741,7 +747,7 @@ void main() {
     expect(settings.tutorOverride, 'off');
     expect(settings.showHighlights, isFalse);
     expect(settings.enableDrag, isFalse,
-        reason: 'the v4 drag flip must not re-run on a 7 -> 9 upgrade');
+        reason: 'the v4 drag flip must not re-run on a 7 -> 10 upgrade');
     expect(settings.enableCombinedTaps, isFalse);
     expect(settings.showScoring, isFalse);
     expect(settings.diceRollAnimation, isFalse);
@@ -766,7 +772,7 @@ void main() {
   });
 
   test(
-      '8 -> 9 upgrade adds the two Buddy columns at their defaults and touches '
+      '8 -> 10 upgrade adds Buddy and tutor columns at their defaults and touches '
       'nothing else — the path every current install takes', () async {
     // 1. A genuine v8 database: the v7 settings shape (v8 added no settings
     //    column), the online_session table, and a settings row where EVERY
@@ -803,7 +809,7 @@ void main() {
     expect(cols, isNot(contains('buddy_phrasing')));
     expect(cols, isNot(contains('buddy_mic_hint')));
 
-    // 3. Open the SAME handle through AppDatabase (schemaVersion 9).
+    // 3. Open the SAME handle through AppDatabase (schemaVersion 10).
     final db = AppDatabase(NativeDatabase.opened(raw));
 
     // 3a. Both new columns are there at their column defaults, which is what an
@@ -823,7 +829,7 @@ void main() {
     expect(settings.tutorOverride, 'off');
     expect(settings.showHighlights, isFalse);
     expect(settings.enableDrag, isFalse,
-        reason: 'the v4 drag flip must not re-run on an 8 -> 9 upgrade');
+        reason: 'the v4 drag flip must not re-run on an 8 -> 10 upgrade');
     expect(settings.enableCombinedTaps, isFalse);
     expect(settings.showScoring, isFalse);
     expect(settings.diceRollAnimation, isFalse);
@@ -855,8 +861,7 @@ void main() {
   });
 
   test(
-      'every upgrade path lands the v8 online_session table and the v9 Buddy '
-      'columns, seeded at their defaults', () async {
+      'every upgrade path lands online_session and Buddy/tutor defaults', () async {
     // The table holds the durable anonymous identity and the columns hold the
     // Buddy preferences. If a migration missed either, the failure lands on
     // exactly the installs that already had history worth keeping — so this
@@ -913,6 +918,16 @@ void main() {
           reason: '${start.label}: the Buddy voice default');
       expect(settings.buddyMicHint, isTrue,
           reason: '${start.label}: the mic hint is available until refused');
+      expect(settings.tutorBestMoves, isTrue, reason: start.label);
+      expect(settings.tutorExplanations, isTrue, reason: start.label);
+      expect(settings.tutorCommentary, isTrue, reason: start.label);
+      expect(settings.tutorCubeAdvice, isTrue, reason: start.label);
+      expect(settings.tutorTryFirst, isFalse, reason: start.label);
+      expect(settings.telemetryEnabled, isFalse, reason: start.label);
+      expect(await db.select(db.practicePositions).get(), isEmpty,
+          reason: '${start.label}: v10 practice table');
+      expect(await db.select(db.practiceAttempts).get(), isEmpty,
+          reason: '${start.label}: v10 attempts table');
 
       final version = await db
           .customSelect('PRAGMA user_version')

@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 import 'online_config.dart';
 import 'online_exception.dart';
+import 'request_deadline.dart';
 import 'token_store.dart';
 
 /// An active anonymous authentication session.
@@ -41,6 +42,7 @@ class AuthClient {
   final OnlineConfig config;
   final http.Client _http;
   final DateTime Function() _now;
+  final Duration requestTimeout;
 
   /// Where the session is remembered between launches.
   final TokenStore store;
@@ -55,6 +57,7 @@ class AuthClient {
     http.Client? inner,
     DateTime Function()? now,
     TokenStore? store,
+    this.requestTimeout = const Duration(seconds: 15),
   })  : _http = inner ?? http.Client(),
         _now = now ?? (() => DateTime.now().toUtc()),
         store = store ?? InMemoryTokenStore();
@@ -134,8 +137,11 @@ class AuthClient {
     final url = Uri.parse(
       '${config.identityToolkitBase}/accounts:signUp?key=${config.effectiveApiKey}',
     );
-    final res = await _http.post(
-      url,
+    final res = await sendWithDeadline(
+      _http,
+      method: 'POST',
+      url: url,
+      timeout: requestTimeout,
       headers: const {'Content-Type': 'application/json'},
       body: jsonEncode({'returnSecureToken': true}),
     );
@@ -168,8 +174,11 @@ class AuthClient {
     final url = Uri.parse(
       '${config.secureTokenBase}/token?key=${config.effectiveApiKey}',
     );
-    final res = await _http.post(
-      url,
+    final res = await sendWithDeadline(
+      _http,
+      method: 'POST',
+      url: url,
+      timeout: requestTimeout,
       headers: const {'Content-Type': 'application/x-www-form-urlencoded'},
       body: {
         'grant_type': 'refresh_token',

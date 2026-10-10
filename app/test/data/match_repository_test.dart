@@ -1,9 +1,22 @@
 import 'package:aigammon_app/data/database.dart';
 import 'package:aigammon_app/data/match_repository.dart';
+import 'package:aigammon_app/data/persistence_hooks.dart';
 import 'package:backgammon_core/backgammon_core.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'test_database.dart';
+
+class _FailingScoreRepository extends MatchRepository {
+  _FailingScoreRepository(super.db);
+
+  @override
+  Future<void> updateScore({
+    required int matchId,
+    required int whiteScore,
+    required int blackScore,
+  }) async =>
+      throw StateError('score write failed');
+}
 
 /// Builds a short but real, deterministic game: white opens (6,1) and plays a
 /// legal move, black doubles, white drops. Produces a genuine [GameResult]
@@ -122,6 +135,44 @@ void main() {
     row = (await repo.watchMatches().first).single;
     expect(row.completed, isTrue);
     expect(row.winner, 'white');
+  });
+
+  test('failed final-game transaction cannot be completed by match hook', () async {
+    final matchId = await repo.startMatch(
+      matchLength: 1,
+      mode: 'vsComputer',
+      whiteType: 'human',
+      blackType: 'ai:expert',
+    );
+    final game = buildSampleGame();
+    final matchAfter = const MatchState(matchLength: 1)
+        .applyResult(game.state.result!);
+    final persistence = RepositoryPersistence(
+      _FailingScoreRepository(db),
+      Future<int>.value(matchId),
+    );
+
+    await expectLater(
+      persistence.onGameFinished(
+        gameNumber: 1,
+        isCrawford: game.state.isCrawfordGame,
+        events: game.events,
+        result: game.state.result!,
+        matchAfter: matchAfter,
+      ),
+      throwsA(isA<StateError>()),
+    );
+    // Controllers may still invoke the match hook after a failed game hook;
+    // it must never create a completion marker on its own.
+    await persistence.onMatchFinished(matchAfter);
+
+    expect(await repo.gamesFor(matchId), isEmpty,
+        reason: 'the failed atomic transaction rolls back the game log');
+    final row = (await repo.watchMatches().first).single;
+    expect(row.whiteScore, 0);
+    expect(row.blackScore, 0);
+    expect(row.completed, isFalse);
+    expect(row.winner, isNull);
   });
 
   test('analysis save/load round-trip', () async {

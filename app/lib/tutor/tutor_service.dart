@@ -65,18 +65,7 @@ class TutorService {
   ) {
     for (final move in ranked) {
       final p = move.probabilities;
-      final values = [
-        p.win,
-        p.winGammon,
-        p.winBackgammon,
-        p.loseGammon,
-        p.loseBackgammon,
-      ];
-      if (values.any((v) => !v.isFinite || v < 0 || v > 1) ||
-          p.winBackgammon > p.winGammon ||
-          p.winGammon > p.win ||
-          p.loseBackgammon > p.loseGammon ||
-          p.loseGammon > 1 - p.win + 1e-6) {
+      if (!hasValidOutcomeProbabilities(p)) {
         throw StateError('The engine returned invalid outcome probabilities.');
       }
     }

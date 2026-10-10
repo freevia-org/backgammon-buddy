@@ -680,6 +680,9 @@ void main() {
       expect(c.error, isNull, reason: 'a persistence throw is not a loop error');
       expect(c.persistenceError, isNotNull);
       expect(c.persistenceError, isA<StateError>());
+      expect(persistence.finishedMatches, isEmpty,
+          reason: 'a match completion hook must not run when its final game '
+              'was not persisted');
 
       c.disposeController();
     });

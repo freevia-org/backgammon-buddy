@@ -83,6 +83,49 @@ void main() {
     );
   });
 
+  test('malformed cached evaluation numbers are rejected', () {
+    final move = Move(const [CheckerMove(23, 21), CheckerMove(21, 19)]);
+    final scored = ScoredMove(
+      move: move,
+      probabilities: const Probabilities(
+        win: .5,
+        winGammon: 0,
+        winBackgammon: 0,
+        loseGammon: 0,
+        loseBackgammon: 0,
+      ),
+      matchWinningChance: .5,
+    );
+    final assessment = MoveAssessment(
+      played: move,
+      best: move,
+      equityLoss: 0,
+      ranked: [scored],
+    );
+
+    final nonFiniteLoss = assessment.toJson()..['equityLoss'] = double.nan;
+    expect(
+      () => MoveAssessment.fromJson(nonFiniteLoss),
+      throwsA(isA<FormatException>()),
+    );
+
+    final invalidProbabilities = assessment.toJson();
+    final ranked = invalidProbabilities['ranked'] as List;
+    (ranked.first as Map<String, dynamic>)['probs'] = [.5, .8, 0, 0, 0];
+    expect(
+      () => MoveAssessment.fromJson(invalidProbabilities),
+      throwsA(isA<FormatException>()),
+    );
+
+    final invalidMwc = assessment.toJson();
+    final rankedWithMwc = invalidMwc['ranked'] as List;
+    (rankedWithMwc.first as Map<String, dynamic>)['mwc'] = 1.1;
+    expect(
+      () => MoveAssessment.fromJson(invalidMwc),
+      throwsA(isA<FormatException>()),
+    );
+  });
+
   test('cube response and forced pass prompts precede bar instructions', () {
     final points = List<int>.filled(24, 0);
     for (var i = 18; i < 24; i++) {

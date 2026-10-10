@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'firestore_value.dart';
 import 'online_config.dart';
 import 'online_exception.dart';
+import 'request_deadline.dart';
 
 /// One Firestore document as the REST API returns it.
 class FirestoreDoc {
@@ -64,11 +65,13 @@ class FirestoreDocs {
   final OnlineConfig config;
   final Future<String> Function() _token;
   final http.Client _http;
+  final Duration requestTimeout;
 
   FirestoreDocs(
     this.config, {
     required Future<String> Function() token,
     http.Client? inner,
+    this.requestTimeout = const Duration(seconds: 15),
   })  : _token = token,
         _http = inner ?? http.Client();
 
@@ -84,8 +87,11 @@ class FirestoreDocs {
   /// "absent" are deliberately NOT collapsed, because for a match code they
   /// mean very different things ("someone else's match" vs "bad code").
   Future<FirestoreDoc?> get(String path) async {
-    final res = await _http.get(
-      Uri.parse('${config.firestoreDocumentsBase}/$path'),
+    final res = await sendWithDeadline(
+      _http,
+      method: 'GET',
+      url: Uri.parse('${config.firestoreDocumentsBase}/$path'),
+      timeout: requestTimeout,
       headers: await _headers(),
     );
     if (res.statusCode == 404) return null;
@@ -116,8 +122,11 @@ class FirestoreDocs {
           {'fieldPath': field, 'setToServerValue': 'REQUEST_TIME'},
       ];
     }
-    final res = await _http.post(
-      Uri.parse('${config.firestoreDocumentsBase}:commit'),
+    final res = await sendWithDeadline(
+      _http,
+      method: 'POST',
+      url: Uri.parse('${config.firestoreDocumentsBase}:commit'),
+      timeout: requestTimeout,
       headers: await _headers(),
       body: jsonEncode({
         'writes': [write],
@@ -154,8 +163,11 @@ class FirestoreDocs {
       'updateMask.fieldPaths': updateMask,
       'currentDocument.exists': ['true'],
     });
-    final res = await _http.patch(
-      url,
+    final res = await sendWithDeadline(
+      _http,
+      method: 'PATCH',
+      url: url,
+      timeout: requestTimeout,
       headers: await _headers(),
       body: jsonEncode({'fields': encodeFields(fields)}),
     );
@@ -194,8 +206,11 @@ class FirestoreDocs {
       if (limit != null) 'limit': limit,
     };
 
-    final res = await _http.post(
-      Uri.parse('${config.firestoreDocumentsBase}/$parentPath:runQuery'),
+    final res = await sendWithDeadline(
+      _http,
+      method: 'POST',
+      url: Uri.parse('${config.firestoreDocumentsBase}/$parentPath:runQuery'),
+      timeout: requestTimeout,
       headers: await _headers(),
       body: jsonEncode({'structuredQuery': structuredQuery}),
     );

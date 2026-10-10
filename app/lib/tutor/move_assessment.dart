@@ -9,6 +9,23 @@ enum MoveMark { best, good, dubious, error, blunder }
 /// and displayed as percentage points; it is never mixed with cubeless points.
 enum AssessmentMetric { cubelessEquity, matchWinningChance }
 
+/// Whether the engine's cumulative game-outcome probabilities are internally
+/// consistent. Shared by live scoring and saved-assessment decoding.
+bool hasValidOutcomeProbabilities(Probabilities p) {
+  final values = [
+    p.win,
+    p.winGammon,
+    p.winBackgammon,
+    p.loseGammon,
+    p.loseBackgammon,
+  ];
+  return !values.any((v) => !v.isFinite || v < 0 || v > 1) &&
+      p.winBackgammon <= p.winGammon &&
+      p.winGammon <= p.win &&
+      p.loseBackgammon <= p.loseGammon &&
+      p.loseGammon <= 1 - p.win + 1e-6;
+}
+
 /// Product teaching bands, not a calibrated player rating or confidence level.
 /// MWC bands are 0.05, 0.5, 1.5 and 3 percentage points, respectively.
 MoveMark markForMetric(double loss, AssessmentMetric metric) {
@@ -102,13 +119,29 @@ List<double> _probsToJson(Probabilities p) => [
   p.loseBackgammon,
 ];
 
-Probabilities _probsFromJson(List<dynamic> l) => Probabilities(
-  win: (l[0] as num).toDouble(),
-  winGammon: (l[1] as num).toDouble(),
-  winBackgammon: (l[2] as num).toDouble(),
-  loseGammon: (l[3] as num).toDouble(),
-  loseBackgammon: (l[4] as num).toDouble(),
-);
+double _finiteUnit(Object? value, String field) {
+  if (value is! num || !value.isFinite || value < 0 || value > 1) {
+    throw FormatException('invalid $field');
+  }
+  return value.toDouble();
+}
+
+Probabilities _probsFromJson(List<dynamic> values) {
+  if (values.length != 5) {
+    throw const FormatException('invalid outcome probability count');
+  }
+  final p = Probabilities(
+    win: _finiteUnit(values[0], 'win probability'),
+    winGammon: _finiteUnit(values[1], 'win gammon probability'),
+    winBackgammon: _finiteUnit(values[2], 'win backgammon probability'),
+    loseGammon: _finiteUnit(values[3], 'lose gammon probability'),
+    loseBackgammon: _finiteUnit(values[4], 'lose backgammon probability'),
+  );
+  if (!hasValidOutcomeProbabilities(p)) {
+    throw const FormatException('inconsistent outcome probabilities');
+  }
+  return p;
+}
 
 Map<String, dynamic> _scoredToJson(ScoredMove s) => {
   'move': _moveToJson(s.move),
@@ -116,11 +149,16 @@ Map<String, dynamic> _scoredToJson(ScoredMove s) => {
   if (s.matchWinningChance != null) 'mwc': s.matchWinningChance,
 };
 
-ScoredMove _scoredFromJson(Map<String, dynamic> j) => ScoredMove(
-  move: _moveFromJson(j['move'] as List),
-  probabilities: _probsFromJson(j['probs'] as List),
-  matchWinningChance: (j['mwc'] as num?)?.toDouble(),
-);
+ScoredMove _scoredFromJson(Map<String, dynamic> j) {
+  final rawMwc = j['mwc'];
+  return ScoredMove(
+    move: _moveFromJson(j['move'] as List),
+    probabilities: _probsFromJson(j['probs'] as List),
+    matchWinningChance: rawMwc == null
+        ? null
+        : _finiteUnit(rawMwc, 'match winning chance'),
+  );
+}
 
 /// The tutor's verdict on a single played move: what was played, the best
 /// available play, the equity given up, the resulting [mark], and the full
@@ -168,19 +206,29 @@ class MoveAssessment {
 
   /// Rebuilds from [toJson]. [mark] is recomputed from [equityLoss] (the
   /// stored `mark` string is display metadata and is not trusted here).
-  factory MoveAssessment.fromJson(Map<String, dynamic> j) => MoveAssessment(
-    played: _moveFromJson(j['played'] as List),
-    best: _moveFromJson(j['best'] as List),
-    equityLoss: (j['equityLoss'] as num).toDouble(),
-    metric: AssessmentMetric.values.byName(
+  factory MoveAssessment.fromJson(Map<String, dynamic> j) {
+    final metric = AssessmentMetric.values.byName(
       j['metric'] as String? ?? 'cubelessEquity',
-    ),
-    isDecision: j['isDecision'] as bool? ?? true,
-    ranked: [
-      for (final s in (j['ranked'] as List))
-        _scoredFromJson(s as Map<String, dynamic>),
-    ],
-  );
+    );
+    final loss = j['equityLoss'];
+    if (loss is! num ||
+        !loss.isFinite ||
+        loss < 0 ||
+        (metric == AssessmentMetric.matchWinningChance && loss > 1)) {
+      throw const FormatException('invalid assessment loss');
+    }
+    return MoveAssessment(
+      played: _moveFromJson(j['played'] as List),
+      best: _moveFromJson(j['best'] as List),
+      equityLoss: loss.toDouble(),
+      metric: metric,
+      isDecision: j['isDecision'] as bool? ?? true,
+      ranked: [
+        for (final s in (j['ranked'] as List))
+          _scoredFromJson(s as Map<String, dynamic>),
+      ],
+    );
+  }
 }
 
 /// The tutor's verdict on a pre-roll cube decision: what the player did (or

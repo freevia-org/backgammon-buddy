@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
@@ -7,6 +8,28 @@ import 'package:test/test.dart';
 
 void main() {
   group('restoreExistingSession', () {
+    test('sign up deadline aborts a stalled request with retryable error',
+        () async {
+      final inner = _StallingClient();
+      final auth = AuthClient(
+        OnlineConfig.emulator(),
+        requestTimeout: const Duration(milliseconds: 20),
+        inner: inner,
+      );
+      addTearDown(auth.close);
+
+      await expectLater(
+        auth.signInAnonymously(),
+        throwsA(isA<OnlineException>().having(
+          (error) => error.code,
+          'code',
+          'request-timeout',
+        )),
+      );
+      final request = inner.request! as http.AbortableRequest;
+      await expectLater(request.abortTrigger, completes);
+    });
+
     test(
         'privacy restore surfaces unreadable storage instead of claiming no account',
         () async {
@@ -411,4 +434,14 @@ class _BrokenStore implements TokenStore {
 
   @override
   Future<void> clear() async => throw StateError('unclearable');
+}
+
+class _StallingClient extends http.BaseClient {
+  http.BaseRequest? request;
+
+  @override
+  Future<http.StreamedResponse> send(http.BaseRequest request) {
+    this.request = request;
+    return Completer<http.StreamedResponse>().future;
+  }
 }
