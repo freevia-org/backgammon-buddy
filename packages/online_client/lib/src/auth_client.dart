@@ -125,11 +125,11 @@ class AuthClient {
       body: jsonEncode({'returnSecureToken': true}),
     );
     final body = _decodeOrThrow(res);
-    final expiresIn = int.parse(body['expiresIn'] as String);
+    final expiresIn = _expiresIn(body, 'expiresIn');
     _session = AuthSession(
-      uid: body['localId'] as String,
-      idToken: body['idToken'] as String,
-      refreshToken: body['refreshToken'] as String,
+      uid: _requiredString(body, 'localId'),
+      idToken: _requiredString(body, 'idToken'),
+      refreshToken: _requiredString(body, 'refreshToken'),
       expiresAt: _now().add(Duration(seconds: expiresIn)),
     );
     await _remember();
@@ -162,14 +162,16 @@ class AuthClient {
       },
     );
     final body = _decodeOrThrow(res);
-    final expiresIn = int.parse(body['expires_in'] as String);
+    final expiresIn = _expiresIn(body, 'expires_in');
     // The secure-token endpoint echoes the user id; trust it over the one we
     // carried in, so a restored session cannot end up mislabelled.
-    final uid = body['user_id'] as String? ?? session.uid;
+    final uid = body['user_id'] == null
+        ? session.uid
+        : _requiredString(body, 'user_id');
     _session = AuthSession(
       uid: uid,
-      idToken: body['id_token'] as String,
-      refreshToken: body['refresh_token'] as String,
+      idToken: _requiredString(body, 'id_token'),
+      refreshToken: _requiredString(body, 'refresh_token'),
       expiresAt: _now().add(Duration(seconds: expiresIn)),
     );
     await _remember();
@@ -211,6 +213,25 @@ class AuthClient {
       throw OnlineException('http-${res.statusCode}', message);
     }
     return body;
+  }
+
+  /// Validate a successful auth response at the boundary. A proxy, emulator,
+  /// or upstream regression can return HTTP 200 with an error-shaped or
+  /// incomplete body; raw casts/`int.parse` here used to leak TypeError and
+  /// FormatException out of sign-in and token refresh.
+  String _requiredString(Map<String, Object?> body, String key) {
+    final value = body[key];
+    if (value is String && value.isNotEmpty) return value;
+    throw OnlineException(
+        'malformed-auth-response', 'missing or invalid "$key" field');
+  }
+
+  int _expiresIn(Map<String, Object?> body, String key) {
+    final value = body[key];
+    final seconds = value is String ? int.tryParse(value) : null;
+    if (seconds != null && seconds > 0) return seconds;
+    throw OnlineException(
+        'malformed-auth-response', 'missing or invalid "$key" field');
   }
 
   /// Close the underlying HTTP client.

@@ -20,8 +20,8 @@ Five can start independently; `online` waits on `rules`.
 | `rules` | Linux | **Emulator leg 1**, and first: the `firestore.rules` mocha suite against a firestore-only emulator. Seconds. `online` `needs:` this, so a broken rules file goes red before four toolchains are installed. |
 | `online` | Linux | `online_client` analyze + unit tests, then **emulator legs 2–4** inside one `firebase emulators:exec` (`firebase/ci-emulator-suites.sh`): the `online_client -P emulator` transport suite, the app's two-client E2E on the real-time listener path, and that same E2E once more with `AIGAMMON_E2E_LISTEN=0` so the polling fallback is actually exercised. The heaviest leg — Node + Java + Dart + Flutter. |
 
-`firebase-tools` is pinned to the same major.minor in `rules` and `online`; the
-two must not drift onto different emulator versions.
+`firebase-tools` is pinned to the same exact version (`15.25.1`) in `rules` and
+`online`; the two must not drift onto different emulator versions.
 
 All Flutter test and distribution jobs use **Flutter 3.44.8**, including the
 golden tests. Upgrade those pins together and regenerate goldens deliberately.

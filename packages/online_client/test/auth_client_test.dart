@@ -43,6 +43,24 @@ void main() {
           auth.restoreExistingSession(), throwsA(isA<OnlineException>()));
       expect((await store.read())?.uid, 'original');
     });
+
+    test('malformed HTTP 200 refresh preserves the privacy retry credential',
+        () async {
+      final store = InMemoryTokenStore();
+      await store
+          .write(const StoredSession(uid: 'original', refreshToken: 'retry'));
+      final auth = AuthClient(OnlineConfig.emulator(),
+          store: store,
+          inner: MockClient((_) async =>
+              http.Response('{"expires_in":"not-a-number"}', 200)));
+      addTearDown(auth.close);
+      await expectLater(
+        auth.restoreExistingSession(),
+        throwsA(isA<OnlineException>()
+            .having((error) => error.code, 'code', 'malformed-auth-response')),
+      );
+      expect((await store.read())?.uid, 'original');
+    });
   });
 
   group('signInAnonymously', () {
@@ -112,6 +130,23 @@ void main() {
         () => auth.signInAnonymously(),
         throwsA(isA<OnlineException>()
             .having((e) => e.message, 'message', 'CONFIGURATION_NOT_FOUND')),
+      );
+    });
+
+    test('maps an incomplete HTTP 200 sign-up response to OnlineException',
+        () async {
+      final auth = AuthClient(
+        OnlineConfig.emulator(),
+        inner: MockClient((_) async => http.Response(
+              '{"idToken":42,"refreshToken":"r","localId":"u","expiresIn":"3600"}',
+              200,
+            )),
+      );
+      addTearDown(auth.close);
+      await expectLater(
+        auth.signInAnonymously(),
+        throwsA(isA<OnlineException>()
+            .having((error) => error.code, 'code', 'malformed-auth-response')),
       );
     });
   });
