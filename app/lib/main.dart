@@ -9,6 +9,7 @@ import 'analytics/app_analytics.dart';
 import 'analytics/telemetry_controller.dart';
 import 'data/app_settings.dart';
 import 'l10n/app_localizations.dart';
+import 'l10n/localization_lookup.dart';
 import 'data/settings_repository.dart';
 import 'diagnostics/crash_log.dart';
 import 'screens/home_screen.dart';
@@ -107,9 +108,7 @@ class _AiGammonAppState extends ConsumerState<AiGammonApp> {
         ref.watch(settingsProvider).valueOrNull ?? AppSettings.defaults;
     final themeMode = settings.themeMode;
     final localeCode = settings.localeCode;
-    final locale = localeCode == null
-        ? null
-        : Locale.fromSubtags(languageCode: localeCode.split(RegExp('[-_]')).first);
+    final locale = savedAppLocale(localeCode, AppLocalizations.supportedLocales);
     return MaterialApp(
       title: 'Backgammon Buddy',
       locale: locale,
@@ -120,6 +119,8 @@ class _AiGammonAppState extends ConsumerState<AiGammonApp> {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
+      localeListResolutionCallback: (preferredLocales, supportedLocales) =>
+          resolveAppLocale(preferredLocales, supportedLocales),
       theme: _theme(Brightness.light),
       darkTheme: _theme(Brightness.dark),
       themeMode: themeMode,
