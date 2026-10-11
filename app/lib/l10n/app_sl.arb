@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Številke polj v učnih opombah se štejejo od domače deske igralca, ki je na potezi.",
   "tutorHittingRollNote": "Število metov, ki omogočajo udarec, vključuje vseh 36 urejenih izidov kock in dovoljene neposredne ali posredne udarce; to so priložnosti, ne napoved nasprotnikove izbire.",
   "tutorNoEvaluatedAlternatives": "Za to potezo ni na voljo ocenjenih alternativ.",
-  "tutorForcedPassNoDecision": "Pri prisiljeni predaji ni odločitve o premiku figur."
+  "tutorForcedPassNoDecision": "Pri prisiljeni predaji ni odločitve o premiku figur.",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "settingsReset": "Ponastavi",
+  "settingsAppLanguage": "Jezik aplikacije",
+  "settingsTheme": "Tema",
+  "settingsThemeSystem": "Sistemska",
+  "settingsThemeLight": "Svetla",
+  "settingsThemeDark": "Temna",
+  "settingsAnimationSpeed": "Hitrost animacije",
+  "settingsAnimationNone": "Brez animacije",
+  "settingsAnimationNormal": "Običajna",
+  "settingsAnimationFast": "Hitra",
+  "settingsDiceRollAnimation": "Animacija meta kock",
+  "settingsDiceRollAnimationHelp": "Pred vsakim metom zavrti kocke",
+  "settingsDefaultMatchLength": "Privzeta dolžina dvoboja",
+  "settingsDefaultDifficulty": "Privzeta težavnost",
+  "settingsDifficultyEasy": "Lahka",
+  "settingsDifficultyMedium": "Srednja",
+  "settingsDifficultyHard": "Težka",
+  "settingsDifficultyExpert": "Strokovna",
+  "settingsTutorModeDefault": "Privzeti način tutorja",
+  "settingsTutorAuto": "Samodejno",
+  "settingsTutorOn": "Vklopljeno",
+  "settingsTutorOff": "Izklopljeno",
+  "settingsTutorModeHelp": "Samodejno vklopi tutorja pri vseh težavnostih računalnika. Vklopljeno in Izklopljeno določata začetno izbiro pri lokalnih dvobojih. Pri bližnjih in spletnih dvobojih tutor ne pomaga; shranjene igre lahko pregledaš pozneje. Spodnje učne nastavitve se shranijo v tej napravi.",
+  "settingsTutorPreferences": "Nastavitve tutorja",
+  "settingsTutorPreferencesSubtitle": "Privzete nastavitve za prihodnje dvoboje",
+  "settingsTutorSaveError": "Nastavitev tutorja ni bilo mogoče shraniti.",
+  "settingsGameplay": "Igra",
+  "settingsMoveHighlights": "Označevanje potez",
+  "settingsMoveHighlightsHelp": "Obkroži figure, ki jih lahko izbereš, in osvetli možna ciljna polja",
+  "settingsDragToMove": "Povleci za premik",
+  "settingsDragToMoveHelp": "Povleci figuro na ciljno polje (dotiki vedno delujejo)",
+  "settingsCombinedMoves": "Združene poteze",
+  "settingsCombinedMovesHelp": "Z enim dotikom premakneš figuro za vrednosti obeh kock",
+  "settingsRotateBoard": "Med potezami obrni igralno ploščo",
+  "settingsRotateBoardHelp": "Igra izmenično: obrni pogled za igralca na potezi",
+  "settingsPassDevice": "Zaslon za predajo naprave",
+  "settingsPassDeviceHelp": "Med potezami pri izmenični igri prekrij igralno ploščo",
+  "settingsShowScore": "Pokaži rezultat",
+  "settingsShowScoreHelp": "V glavi prikaži trenutni rezultat dvoboja",
+  "settingsBuddyMode": "Buddyjev slog",
+  "settingsBuddyTerse": "Jedrnat",
+  "settingsBuddyFriendly": "Prijazen",
+  "settingsBuddyTerseHelp": "Kako Buddy na glas pove potezo: »13/8, 24/22« — zapis, ki ga igralci uporabljajo ob plošči.",
+  "settingsBuddyFriendlyHelp": "Kako Buddy na glas pove potezo: »Premakni eno figuro s 13 na 8 in drugo s 24 na 22.«",
+  "settingsListenForDice": "Poslušaj kocke",
+  "settingsListenForDiceHelp": "Buddy pogleda igralno ploščo prej, ko zasliši met. Izklop ne spremeni ničesar drugega.",
+  "settingsDiagnostics": "Diagnostika",
+  "settingsErrorLog": "Dnevnik napak",
+  "settingsErrorLogHelp": "Nedavne napake, pripravljene za kopiranje v prijavo napake",
+  "settingsReportBug": "Prijavi napako",
+  "settingsReportBugHelp": "Odpri vodeni obrazec za prijavo na GitHubu",
+  "settingsSuggestIdea": "Predlagaj zamisel",
+  "settingsSuggestIdeaHelp": "Pomagaj nam izboljšati tutorja in igro",
+  "settingsAbout": "O aplikaciji",
+  "settingsOpenSourceLicenses": "Licence odprtokodne programske opreme",
+  "tutorPhraseGameFinished": "Igra je končana.",
+  "tutorPhraseReviewFinishedGame": "Preglej poteze in poišči odločitev za vajo.",
+  "tutorPhraseCubeOffered": "Ponujena je bila kocka za podvojitev.",
+  "tutorPhraseCubeDecisionPrompt": "Pred načrtovanjem poteze s figurami se odloči, ali boš podvojitev sprejel ali predal.",
+  "tutorPhraseCubeScoreContext": "Rezultat dvoboja vpliva na vrednost dodatnega vložka.",
+  "tutorPhraseResignationOffered": "Ponujena je bila predaja igre.",
+  "tutorPhraseResignationDecisionPrompt": "Pred sprejetjem predaje ali nadaljevanjem primerjaj ponujene točke s položajem.",
+  "tutorPhraseNoLegalPlay": "S tem metom ni dovoljene poteze.",
+  "tutorPhraseForcedPassPrompt": "Prisilna predaja ni napaka; počakaj na naslednji met.",
+  "tutorPhraseOnlyOneResult": "Možen je samo en dovoljen končni položaj.",
+  "tutorPhraseForcedTurnPrompt": "Odigraj prisilno potezo. Pri tem metu ni izbire za ocenjevanje.",
+  "tutorPhrasePipCountsLevel": "Število pipov je izenačeno.",
+  "tutorPhrasePipCountsAhead": "{count, plural, one{Vodiš za en pip.} two{Vodiš za dva pipa.} few{Vodiš za {count} pipe.} other{Vodiš za {count} pipov.}}",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "{count, plural, one{Zaostajaš za enim pipom.} two{Zaostajaš za dvema pipoma.} few{Zaostajaš za {count} pipi.} other{Zaostajaš za {count} pipov.}}",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "{count, plural, one{Ena figura je na prečki: najprej jo moraš vrniti v igro.} two{Dve figuri sta na prečki: najprej ju moraš vrniti v igro.} few{{count} figure so na prečki: najprej jih moraš vrniti v igro.} other{{count} figur je na prečki: najprej jih moraš vrniti v igro.}}",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Najprej vrni figure s prečke, nato premikaj druge; izberi varno ciljno polje.",
+  "tutorPhraseOpponentHomePoints": "{count, plural, one{Nasprotnik ima eno zaprto polje v svojem domačem območju.} two{Nasprotnik ima dve zaprti polji v svojem domačem območju.} few{Nasprotnik ima {count} zaprta polja v svojem domačem območju.} other{Nasprotnik ima {count} zaprtih polj v svojem domačem območju.}}",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Tekma v odstranjevanju figur.",
+  "tutorPhrasePureRace": "Čista tekma.",
+  "tutorPhraseBearOffSpread": "Odstranjuj figure s plošče in ohrani uporabno razporeditev za naslednji met.",
+  "tutorPhraseBringRearCheckersHome": "Zadnje figure pripelji domov, ne da bi jih preveč naložil na isto polje.",
+  "tutorPhraseArmiesHavePassed": "Skupini figur sta se že srečali in prešli; udarci niso več mogoči.",
+  "tutorPhraseContactStillMatters": "{part} Stik je še vedno pomemben.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "{count, plural, one{Nasprotnik ima eno figuro na prečki.} two{Nasprotnik ima dve figuri na prečki.} few{Nasprotnik ima {count} figure na prečki.} other{Nasprotnik ima {count} figur na prečki.}}",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Med vračanjem preostalih figur domov ohrani polja zaprta.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Ustvari ali ohrani zaprta polja v domačem območju, medtem ko nasprotnik poskuša znova vstopiti.",
+  "tutorPhraseHomePointsCloseEntries": "{count, plural, one{V domačem območju imaš eno zaprto polje, ki zapre eno vstopno možnost.} two{V domačem območju imaš dve zaprti polji, ki zapreta dve vstopni možnosti.} few{V domačem območju imaš {count} zaprta polja; vsako zapre eno vstopno možnost.} other{V domačem območju imaš {count} zaprtih polj; vsako zapre eno vstopno možnost.}}",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Stik z nizom {count, plural, one{enega zaporednega zaprtega polja} two{dveh zaporednih zaprtih polj} few{{count} zaporednih zaprtih polj} other{{count} zaporednih zaprtih polj}}.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Primerjaj podaljšanje niza z ohranjanjem rezervnih figur, ki ga pomagajo vzdrževati.",
+  "tutorPhraseSpareCheckersCanMove": "{count, plural, one{Ena rezervna figura se lahko premakne, ne da bi takoj odprla svoje polje.} two{Dve rezervni figuri se lahko premakneta, ne da bi takoj odprli svoje polje.} few{{count} rezervne figure se lahko premaknejo, ne da bi takoj odprle svoje polje.} other{{count} rezervnih figur se lahko premakne, ne da bi takoj odprle svoje polje.}}",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Stik s sidrom na poljih {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Primerjaj vračanje zadnjih figur domov z varnostjo, ki jo daje ohranjeno sidro.",
+  "tutorPhraseCompareAnchorProgressBehind": "Med iskanjem udarca ali izboljšanjem položaja imej v mislih varno oporo.",
+  "tutorPhrasePreserveAnchorFoothold": "Sidra ni mogoče zadeti, vendar imajo te figure do doma še dolgo pot.",
+  "tutorPhraseContactThreats": "Stik še obstaja: oba igralca lahko še zagrozita z udarcem.",
+  "tutorPhraseLookForPointsAndSafety": "Poišči uporabna polja, nato oceni tveganje zaradi izpostavljenih posameznih figur.",
+  "tutorPhraseHomePointsAndBlots": "Zaprta polja v tvojem domačem območju: {count}; izpostavljene posamezne figure, ki jih puščaš: {otherCount}.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Izberi figuro za začetek poteze.",
+  "tutorPhraseLegalPlayPrompt": "Začni dovoljeno potezo, da si ogledaš komentar.",
+  "tutorPhraseStagedHit": "Zadel si {count, plural, one{eno nasprotnikovo figuro} two{dve nasprotnikovi figuri} few{{count} nasprotnikove figure} other{{count} nasprotnikovih figur}}.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "{count, plural, one{S prečke si vrnil eno figuro.} two{S prečke si vrnil dve figuri.} few{S prečke si vrnil {count} figure.} other{S prečke si vrnil {count} figur.}}",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "S plošče si odstranil {count, plural, one{eno figuro} two{dve figuri} few{{count} figure} other{{count} figur}}.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Zaprl si {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Figura na tvojem polju {point} je za zdaj izpostavljena.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "Rezervna figura na tvojem polju {point} se lahko pozneje premakne, ne da bi odprla polje.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Preden oceniš celotno potezo, uporabi še preostale kocke, ki jih lahko odigraš.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Vseh 15 figur je odstranjenih s plošče: igra je dobljena.",
+  "tutorPhraseStagedHitShortPlan": "Udar ti prinese čas, medtem ko nasprotnik znova vstopa v igro.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Učinkovito odstranjevanje figur sprosti figure in pusti uporabne vrednosti za naslednji met.",
+  "tutorPhraseStagedRaceHomePlan": "V tekmi pripelji zadnje figure domov in ohrani uporabna polja za njihovo odstranitev.",
+  "tutorPhraseStagedBearOffContactPlan": "Odstranjevanje figur prinaša napredek, vendar zaradi preostalega stika še vedno grozijo udarci.",
+  "tutorPhraseStagedReentryPlan": "Z vstopom se figura vrne v igro; nato poišči varno ciljno polje.",
+  "tutorPhraseStagedHomeBoardPlan": "Novo zaprto polje v domačem območju po morebitnem udarcu zapre eno možnost za vstop.",
+  "tutorPhraseStagedPrimePlan": "Daljši niz zapre več ciljnih polj; rezervne figure ga pomagajo ohraniti.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Zapuščanje sidra prinese napredek, vendar izgubiš varno oporo.",
+  "tutorPhraseStagedNewAnchorPlan": "Novo sidro zadnjim figuram nudi varno oporo.",
+  "tutorPhraseStagedCoverBlotPlan": "Če zaščitiš izpostavljeno figuro, nasprotnik izgubi tarčo.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Gre za ravnotežje med razvojem in varnostjo: uporabne figure za gradnjo lahko postanejo tarče.",
+  "tutorPhraseStagedCompletePrompt": "{part} Celotna poteza je pripravljena; tapni Potrdi, da jo odigraš.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Ta met ne omogoča izbire poteze s figurami, zato se ne ocenjuje kot odločitev.",
+  "tutorMoveTopVerdict": "Najboljša izbira za ta položaj.",
+  "tutorMoveAlternativeVerdict": "Ocenjevalnik v tem položaju daje prednost drugi potezi.",
+  "tutorMoveEstimateDifference": "Razlika glede na najboljšo potezo: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Po tej potezi: ocenjena možnost zmage {winPercent} %, zmage z gammonom ali bolje {winGammonPercent} %, poraza z gammonom ali slabše {loseGammonPercent} %. Ocene so z vidika igralca, ki je na potezi.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Ocenjena možnost zmage v dvoboju: {percent} %.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Vseh 15 figur je odstranjenih z igralne plošče: igra je dobljena.",
+  "tutorMovePlanHit": "Z udarcem pridobi čas, medtem ko nasprotnik znova vstopa v igro. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Ohrani zaprta polja v svojem domačem območju, da nasprotniku otežiš vstop.",
+  "tutorMovePlanHitBuild": "Zapri več polj v domačem območju, da se bo nasprotnik po prihodnjih udarcih težje pobral.",
+  "tutorMovePlanRaceBearOff": "Prizadevaj si za učinkovito odstranjevanje figur: umikaj jih s plošče in ohrani uporabne vrednosti za naslednji met.",
+  "tutorMovePlanRaceHome": "Zadnje figure pripelji domov in jih razporedi na uporabna polja za odstranjevanje.",
+  "tutorMovePlanContactBearOff": "Odstranjuj figure z igralne plošče, vendar pazi na nasprotnikove zadnje figure: dokler obstaja stik, je lahko osamljena figura pri odstranjevanju tarča.",
+  "tutorMovePlanReentry": "Vrni se v igro, nato poišči varno polje za figuro, ki je vstopila.",
+  "tutorMovePlanHomeBoard": "Okrepi svoje domače območje. Novo zaprto polje okrepi prihodnji udarec, ker zapre eno možnost za vstop.",
+  "tutorMovePlanPrime": "Ohrani povezan niz zaprtih polj. Prihrani rezervne figure, da te prihodnji meti ne bodo prisilili, da ga odpreš.",
+  "tutorMovePlanLeaveAnchor": "Če zapustiš sidro, zadnje figure napredujejo, vendar izgubiš varno oporo. Pazi, da na poti domov ne bodo izpostavljene.",
+  "tutorMovePlanNewAnchor": "Novo sidro uporabi kot varno oporo, medtem ko izboljšuješ preostali položaj.",
+  "tutorMovePlanCoverBlot": "Združi svoje figure. Če zaščitiš osamljeno izpostavljeno figuro, nasprotniku odvzameš tarčo in ohraniš uporabna ciljna polja.",
+  "tutorMovePlanSafety": "Uskladi razvoj in varnost: gradilne figure pomakni proti uporabnim poljem ter preveri, katere osamljene figure lahko nasprotnik udari.",
+  "tutorMoveObservationNoLegalPlay": "Ni dovoljene poteze s figurami: predati moraš potezo.",
+  "tutorMoveObservationHit": "Udariš {count, plural, one{eno nasprotnikovo figuro} two{dve nasprotnikovi figuri} few{{count} nasprotnikove figure} other{{count} nasprotnikovih figur}}; nasprotnik mora najprej vrniti figure s prečke, šele nato lahko premakne druge.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Število figur, ki so vstopile s prečke: {count}.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Z igralne plošče odstraniš {count, plural, one{eno figuro} two{dve figuri} few{{count} figure} other{{count} figur}}.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Zapreš polja {points}. Dve ali več figur zasedajo varno polje in nasprotniku preprečujejo pristanek na njem.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Znova odpreš zaprta polja ({pointLabel}): {points}. Ta polja nasprotniku ne preprečujejo več pristanka.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Ne puščaš osamljenih izpostavljenih figur (prej: {previousCount}). Nasprotnik nima osamljene figure, ki bi jo lahko udaril.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Puščaš {count, plural, one{eno osamljeno izpostavljeno figuro} two{dve osamljeni izpostavljeni figuri} few{{count} osamljene izpostavljene figure} other{{count} osamljenih izpostavljenih figur}} (prej: {previousCount}). Preveri, ali jih nasprotnik lahko doseže, preden namesto druge koristi izbereš varnost.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Najdaljši niz zaprtih polj: {count} (prej: {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Zidu iz šestih zaprtih polj ni mogoče prečkati, dokler ostane neprekinjen.",
+  "tutorMoveObservationPrimeBuild": "V bližini ohrani gradilne figure, če želiš ta niz podaljšati ali ohraniti.",
+  "tutorMoveObservationPrimeSpares": "Število rezervnih figur poleg dveh, ki držita polji zaprti: {count}. Premik rezervne figure lahko ohrani polje; premik ene od zadnjih dveh ga odpre.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Sidra v nasprotnikovem domačem območju: {points} (prej: {previousPoints}). Ohranjeno sidro ščiti te figure pred udarci; če ga zapustiš, varno oporo zamenjaš za napredek v tekmi.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Čista tekma: figure so se že srečale in prešle, noben igralec pa nima figure na prečki. Udarci niso več mogoči; pomembno je učinkovito odstranjevanje.",
+  "tutorMoveObservationNoReplyHit": "V tem položaju noben dovoljen naslednji met nasprotniku ne omogoča udarca tvoje figure. Stik še ostaja, zato lahko poznejše poteze ustvarijo nove priložnosti za udarec.",
+  "tutorMoveObservationReplyHit": "Nasprotnik lahko udari pri {count} od {total} metov. Na primer, {dieOne}–{dieTwo} omogoča dovoljen udarec na tvojem polju {point}. Udar je mogoč, vendar ga nasprotnik ni dolžan izbrati.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Število zaprtih polj v tvojem domačem območju: {closedPoints}. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Nasprotnik ne more znova vstopiti, dokler se katero od polj ne odpre.",
+  "tutorMoveObservationOpenEntry": "Met, ki ustreza odprtemu vstopnemu polju, lahko vrne figuro s prečke v igro.",
+  "tutorMoveComparisonDetail": "{factors} Ocenjena možnost zmage je pri najboljši potezi za {delta} odstotnih točk {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "višja",
+  "tutorMoveComparisonLower": "nižja",
+  "tutorMoveComparisonScoreContext": " Kljub temu je lahko uvrščena višje, saj imata gammon in backgammon različno vrednost glede na trenutni {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "vložek",
+  "tutorMoveComparisonMatchScore": "rezultat dvoboja",
+  "tutorMoveComparisonFactorBar": "Število nasprotnikovih figur na prečki po najboljši potezi: {bestCount}, namesto {playedCount}. Figura na prečki mora znova vstopiti, preden lahko nasprotnik premakne druge.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Število zaprtih polj v domačem območju po najboljši potezi: {bestCount}, namesto {playedCount} po odigrani potezi. Po udarcu {entryDifference}.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "je zaprtih več vstopnih številk",
+  "tutorMoveComparisonLeavingMore": "ostane odprtih več vstopnih številk",
+  "tutorMoveComparisonFactorShots": "Najboljša poteza omogoča povratni udarec pri {bestCount} od 36 metov, namesto pri {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "To zmanjša neposredno nevarnost, da te pošljejo nazaj na prečko.",
+  "tutorMoveComparisonExtraExposure": "Dodatno izpostavljenost primerjaj s koristmi poteze na drugih področjih.",
+  "tutorMoveComparisonFactorPrime": "Najdaljši niz zaprtih polj je po najboljši potezi dolg {bestCount}, po odigrani pa {playedCount}. Primerjaj blokado s številom figur, ki jo lahko ohranijo.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Sidra po najboljši potezi: {bestPoints}, namesto {playedPoints}. Ohranjeno sidro zagotavlja varno ciljno polje; če ga zapustiš, se te figure približajo domu.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Število figur, odstranjenih z igralne plošče po najboljši potezi: {bestCount}, namesto {playedCount}. Vsaka odstranjena figura je ena manj, ki jo bo treba odstraniti pozneje.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Obe potezi puščata enako neposredno tveganje udarca, enako število zaprtih polj v domačem območju, sider in odstranjenih figur. Primerjaj ciljna polja: naslednji met lahko te figure uporabi drugače.",
+  "tutorMoveComparisonSummaryBar": "Najboljša poteza pošlje več nasprotnikovih figur na prečko in odloži njegove druge poteze.",
+  "tutorMoveComparisonSummaryHomeBoard": "Najboljša poteza zapre več polj v domačem območju in oteži ponovni vstop po udarcu.",
+  "tutorMoveComparisonSummaryShots": "Najboljša poteza omogoča manj takojšnjih priložnosti za udarec, zato je nevarnost vrnitve na prečko manjša.",
+  "tutorMoveComparisonSummaryPrime": "Najboljša poteza ohrani daljši niz zaprtih polj.",
+  "tutorMoveComparisonSummaryAnchors": "Najboljša poteza ohrani več varnih sider v nasprotnikovem domačem območju.",
+  "tutorMoveComparisonSummaryBearOff": "Najboljša poteza odstrani več figur z igralne plošče, zato jih pozneje ostane manj.",
+  "tutorMoveComparisonSummaryBlots": "Ta poteza pušča {playedCount} osamljenih izpostavljenih figur; najboljša poteza jih pušča {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Najboljša poteza ohrani varno sidro na polju {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Najboljša poteza zapre več vstopnih polj za primer, da nasprotnik udari tvojo figuro.",
+  "tutorMoveComparisonSummarySimilarRisks": "Potezi puščata podobno neposredno tveganje; primerjaj, katera ciljna polja ostanejo uporabna pri naslednjem metu.",
+  "tutorMoveAssessmentEquityLoss": "Izguba equityja: {value}",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} odstotnih točk možnosti zmage v dvoboju (MWC)",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "polje",
+  "tutorMovePointPlural": "polja",
+  "tutorMoveNoPoints": "nobeno",
+  "gameTutorCommentaryOff": "Komentarji igre so izklopljeni.",
+  "gameTutorToolsAvailable": "Odpri tutorja za vključena orodja.",
+  "gameTutorNextRoll": "Vrzi še enkrat.",
+  "gameTutorNoEvaluatedReview": "Za to shranjeno potezo ni na voljo ocenjene razlage.",
+  "gameTutorAnalysisUnavailable": "analiza ni na voljo",
+  "gameTutorReviewing": "pregledovanje…",
+  "gameTutorTryYourPlayFirst": "Najprej poskusi odigrati svojo potezo.",
+  "gameTutorKeepBuilding": "Nadaljuj s sestavljanjem poteze.",
+  "gameTutorStageCompleteBeforeCoaching": "Pripravi celotno dovoljeno potezo, preden prikažeš vodenje ali namige.",
+  "gameTutorReadyToConfirm": "Pripravljeno za potrditev",
+  "gameTutorPlayTakingShape": "Tvoja poteza dobiva obliko.",
+  "gameTutorConfirmOrUndo": "Potrdi potezo ali jo razveljavi in premisli znova.",
+  "gameTutorFinishDiceOrUndo": "Porabi preostale mete ali razveljavi potezo.",
+  "gameTutorComputerConsidering": "Računalnik razmišlja o svoji potezi.",
+  "gameTutorComputerPlayReviewed": "Tukaj bo pregledana njegova zaključena poteza.",
+  "gameTutorYourPlay": "Tvoja poteza",
+  "gameTutorComputer": "Računalnik",
+  "gameTutorPlayQuality": "Tvoja poteza: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "prisilna poteza",
+  "gameTutorTopChoice": "najboljša izbira",
+  "gameTutorSoundPlay": "dobra poteza",
+  "gameTutorAnotherPlayMayFitBetter": "morda bi bila primernejša druga poteza",
+  "gameTutorAnotherPlayFitsBetter": "ta položaj bolje ustreza drugi potezi",
+  "gameTutorStrongerPlayAvailable": "na voljo je bila očitno močnejša poteza",
+  "gameTutorPositionEdge": "{side} ima po oceni prednost.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Položaj je približno izenačen.",
+  "tutorPlayedMove": "Odigrano: {move}",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorBestMove": "Najboljša poteza: {move}",
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorShowRankedPlays": "Prikaži razvrščene poteze",
+  "tutorReviewRecordedMove": "Tapnite zaključeno potezo v dnevniku, da si tukaj ogledate njeno oceno.",
+  "tutorTopPlays": "Najboljše poteze",
+  "tutorNoHintsAvailable": "Namigi niso na voljo.",
+  "tutorPreviewThenConfirm": "Tapnite potezo, da si jo ogledate na plošči, nato jo potrdite.",
+  "tutorTopChoiceForPosition": "Najboljša izbira v tem položaju",
+  "tutorAlternativePlay": "Alternativna poteza",
+  "tutorEngineEstimates": "Ocene motorja",
+  "tutorEstimateScope": "Ocena 0-ply · trenutni rezultat in vložek · brez prihodnjih odločitev o kocki",
+  "tutorEquity": "Pričakovana vrednost",
+  "tutorMwcPercent": "MWC %",
+  "tutorNearTiesNote": "Pri skoraj izenačenih potezah lahko podrobnejša analiza spremeni vrstni red.",
+  "tutorWhyThisPlay": "Zakaj ta poteza?",
+  "tutorCompareAlternative": "Primerjaj to alternativo",
+  "gameTutorCubeTake": "Tutor: sprejmi",
+  "gameTutorCubePass": "Tutor: odstopi",
+  "practiceScreenTitle": "Vadi odločitev",
+  "practiceUnavailable": "Ta vadbeni položaj ni več na voljo.",
+  "practiceSubmitError": "Poskusa ni bilo mogoče oceniti ali shraniti. Tvoj napredek se ni spremenil. Poskusi znova.",
+  "practiceTurnLabel": "Na potezi je {side} · {dice}",
+  "practiceHistoricalScoreUnavailable": "Zgodovinski rezultat ni na voljo; ocena uporablja equity brez kocke.",
+  "practiceScoreLine": "Rezultat: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, do {matchLength}",
+  "practiceCrawfordGame": " · Crawfordova igra",
+  "practiceNoDoublingCube": "Brez kocke za podvajanje.",
+  "practiceCubeValue": "Kocka {value}.",
+  "practiceHistoricalCubeUnknown": "Zgodovinska pravila kocke niso znana.",
+  "practiceAfterBestPosition": "Položaj po najboljši potezi",
+  "practiceAfterYourAnswerPosition": "Položaj po tvojem odgovoru",
+  "practiceFindYourPlayPrompt": "Odigraj svojo potezo na plošči in nato preveri odgovor. Namigi niso prikazani.",
+  "practiceUndo": "Razveljavi",
+  "practiceCheckAnswer": "Preveri odgovor",
+  "practiceRevealNoCredit": "Razkrij odgovor (brez točk)",
+  "practiceAnswerRevealedNoCredit": "Odgovor je razkrit — brez točk za priklic.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "practiceBestMoveLine": "Najbolje: {move}",
+  "practiceOriginalGameLine": "Izvirna igra: {move} · {loss}",
+  "practiceYourAnswerLine": "Tvoj odgovor: {move}",
+  "practiceYourAnswerChip": "Tvoj odgovor",
+  "practiceBestPlayChip": "Najboljša poteza",
+  "practiceNextReview": "Naslednja ponovitev: {date}.",
+  "practiceRecallCredit": "Najboljši ali dobri odgovori štejejo kot uspešen priklic. Zgodnje ponovitve ne premaknejo urnika.",
+  "practiceBackToLearning": "Nazaj k učenju",
+  "practiceMarkBest": "Najboljše",
+  "practiceMarkGood": "Dobro",
+  "practiceMarkDubious": "Vprašljivo",
+  "practiceMarkError": "Napaka",
+  "practiceMarkBlunder": "Huda napaka",
+  "practiceMarkForced": "Prisilno",
+  "newMatchYourSide": "Tvoja stran",
+  "newMatchTutorMode": "Način tutorja",
+  "newMatchTutorDescription": "Uči se z namigi, razlagami in komentarji o igri",
+  "newMatchTutoringOptions": "Možnosti tutorja",
+  "newMatchTutoringOptionsDescription": "Za to igro; prilagodiš jih lahko med igranjem",
+  "setupMatchLength": "Dolžina dvoboja",
+  "setupDifficulty": "Težavnost",
+  "setupDifficultyEasy": "Lahko",
+  "setupDifficultyMedium": "Srednja",
+  "setupDifficultyHard": "Težka",
+  "setupDifficultyExpert": "Strokovna",
+  "setupPlayWithoutCube": "Igraj brez kocke",
+  "setupNoCubeThisMatch": "V tem dvoboju ni kocke za podvajanje",
+  "analysisTitle": "Analiza",
+  "gameMatchSummary": "Povzetek dvoboja",
+  "gameAnalyzeGame": "Analiziraj igro",
+  "analysisMetricsTooltip": "Kaj pomenijo te številke?",
+  "analysisError": "Analiza igre ni uspela: {error}",
+  "analysisNoPositions": "Ta igra nima položajev za prikaz.",
+  "analysisInProgress": "Analiziranje igre…",
+  "analysisPercent": "{percent}%",
+  "analysisPlayed": "Odigrano",
+  "analysisBest": "Najboljše",
+  "analysisPrevious": "Prejšnja",
+  "analysisNext": "Naslednja",
+  "analysisPositionBeforeCube": "Položaj pred odločitvijo o kocki",
+  "analysisPositionAtPoint": "Položaj na tej točki igre",
+  "analysisShowingBestBefore": "Prikazana je najboljša poteza v položaju pred potezo",
+  "analysisShowingBefore": "Prikazan je položaj pred potezo",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "analysisMoveLoss": " −{loss}",
+  "analysisExcludedFromAverages": " · izključeno iz povprečij",
+  "analysisNoPlay": "(brez poteze)",
+  "analysisBestMoveLine": "Najboljša poteza: {move}",
+  "analysisExplain": "Pojasni",
+  "analysisSaveForPractice": "Shrani za vajo",
+  "analysisSaveError": "Te odločitve ni bilo mogoče shraniti: {error}",
+  "analysisCubeInfo": "{side}: {action} · {mark} · izguba {loss}",
+  "analysisCubeDecision": "Odločitev o kocki",
+  "analysisCubePlayed": "Odigrano: {action} (možnost za zmago v dvoboju: {percent}%).",
+  "analysisCubeBest": "Najboljše: {action} (možnost za zmago v dvoboju: {percent}%).",
+  "analysisClose": "Zapri",
+  "analysisMoves": "Poteze",
+  "analysisForced": "Prisilno",
+  "analysisMarkBest": "Najboljše",
+  "analysisMarkGood": "Dobro",
+  "analysisMarkDubious": "Vprašljivo",
+  "analysisMarkError": "Napaka",
+  "analysisMarkBlunder": "Huda napaka",
+  "analysisSummaryMeanLoss": "Povprečna izguba {loss}",
+  "analysisSummaryCheckerDecisions": "{count} odločitev o figurah",
+  "analysisSummaryBlunders": "Hude napake {count}",
+  "analysisSummaryCubeLoss": "Izguba zaradi kocke {loss}",
+  "analysisRollWithoutDoubling": "{side} meče brez podvajanja",
+  "metricExplainerTitle": "Razumevanje meritev",
+  "metricExplainerTooltip": "Kaj pomenijo te številke?",
+  "metricExplainerMwcTitle": "Možnost za zmago v dvoboju (MWC)",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "historyTitle": "Zgodovina dvobojev",
+  "historyLoadFailed": "Zgodovine ni bilo mogoče naložiti:\n{error}",
+  "historyEmpty": "Še ni odigranih dvobojev.",
+  "historyDeleteConfirmTitle": "Izbrišem ta dvoboj?",
+  "historyDeleteConfirmBody": "{scoreLine}\n\nDvoboj in vse zabeležene igre bodo trajno izbrisani. Tega ni mogoče razveljaviti.",
+  "actionCancel": "Prekliči",
+  "actionDelete": "Izbriši",
+  "historyDeleteFailed": "Dvoboja ni bilo mogoče izbrisati.",
+  "historyComplete": "Končano",
+  "historyWinner": "{side} je zmagal",
+  "historyUnfinished": "Nedokončano",
+  "historyMatchTitle": "Dvoboj",
+  "historyMatchLoadFailed": "Dvoboja ni bilo mogoče naložiti:\n{error}",
+  "historyGamesLoadFailed": "Iger ni bilo mogoče naložiti:\n{error}",
+  "historyNoGames": "Še ni zabeleženih iger.",
+  "historyGameTitle": "Igra {number}",
+  "historyCrawford": "Crawford",
+  "historyScoreLine": "Beli {whiteScore} — {blackScore} Črni (do {matchLength})",
+  "historyModeComputer": "proti računalniku",
+  "historyModeTwoPlayers": "Dva igralca",
+  "historyModeOnline": "Spletno",
+  "historyModeNearby": "Igra v bližini",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "V teku",
+  "historyGameResult": "{side} zmaga za {points} ({outcome})",
+  "historyOutcomeSingle": "ena",
+  "historyOutcomeGammon": "gammon",
+  "historyOutcomeBackgammon": "backgammon",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "onlineTitle": "Igraj prek spleta",
+  "onlineUnassistedNote": "Spletne igre nimajo sprotnega tutorja. Preglej poteze in po igri vadi napake.",
+  "onlineNotConfiguredTitle": "Spletno igranje v tej različici ni nastavljeno",
+  "onlineNotConfiguredBody": "Ta različica ni povezana s Firebase, zato ustvarjanje in pridružitev dvoboju nista na voljo.",
+  "onlineErrorNoMatch": "Dvoboj s to kodo ne obstaja. Preveri jo in poskusi znova.",
+  "onlineErrorSeatTaken": "Ta dvoboj ni več odprt — mesto je zasedeno.",
+  "onlineErrorPermission": "Do tega dvoboja nimaš dostopa.",
+  "onlineErrorGeneric": "Prišlo je do napake. Poskusi znova.",
+  "onlineMatchFinished": "Dvoboj je končan in ga ni več mogoče nadaljevati.",
+  "onlineEnterCodeError": "Vnesi kodo dvoboja.",
+  "onlineOpponentShort": "Nasprotnik",
+  "onlineMatchInProgress": "Dvoboj poteka",
+  "onlineResumePrompt": "Igral si dvoboj {code}.",
+  "onlineRejoin": "Nadaljuj",
+  "onlineForgetMatch": "Pozabi ta dvoboj",
+  "onlineCreateTitle": "Ustvari dvoboj",
+  "onlineMatchLength": "Dolžina dvoboja",
+  "onlineNoCubeTitle": "Igraj brez kocke",
+  "onlineNoCubeSubtitle": "V tem dvoboju ni kocke za podvajanje",
+  "onlineCreate": "Ustvari",
+  "onlineWaitingOpponent": "Čakanje na nasprotnika…",
+  "onlineShareCode": "Deli to kodo",
+  "onlineCopyCode": "Kopiraj kodo",
+  "onlineCodeCopied": "Koda je kopirana",
+  "onlineJoinTitle": "Pridruži se dvoboju",
+  "onlineRoomCode": "Koda dvoboja",
+  "onlineJoin": "Pridruži se",
+  "lanTitle": "Igraj v bližini",
+  "lanTabHost": "Gostitelj",
+  "lanTabJoin": "Pridruži se",
+  "lanUnassistedNote": "Lokalne igre nimajo sprotnega tutorja. Preglej poteze in po igri vadi napake.",
+  "lanGameStartFailed": "Igre ni bilo mogoče začeti. Druga naprava se lahko znova poskusi pridružiti.",
+  "lanHostPortInUse": "Gostovanja ni mogoče začeti — vrata so že zasedena. Zapri druge izvode Backgammon Buddy in poskusi znova.",
+  "lanHostStartFailed": "Gostovanja ni mogoče začeti. Preveri povezavo Wi-Fi in poskusi znova.",
+  "lanHostTitle": "Gostuj igro",
+  "lanStartHosting": "Začni gostovanje",
+  "lanHostHelp": "Obe napravi morata biti v istem omrežju Wi-Fi. Ta naprava meče kocke in vodi rezultat.",
+  "lanWaitingPlayerTitle": "Čakanje na igralca",
+  "lanRoomCodeInfo": "Povej to kodo drugemu igralcu. Omogoča mu vstop; aplikacija je nikoli ne pošlje prek omrežja.",
+  "lanWaitingPlayer": "Čakanje na igralca…",
+  "lanStopHosting": "Ustavi gostovanje",
+  "lanFindNearbyPort": "Prosi drugo napravo, naj poišče igre v bližini. Poslušanje na vratih {port}.",
+  "lanOnNetwork": "V tem omrežju",
+  "lanCopyAddress": "Kopiraj naslov",
+  "lanAddressCopied": "Naslov je kopiran",
+  "lanScanHostTitle": "Skeniraj gostitelja",
+  "lanScanHostHelp": "Druga naprava na zaslonu gostitelja prikaže QR-kodo. Skeniranje izpolni naslov in kodo sobe.",
+  "lanScanQr": "Skeniraj QR-kodo",
+  "lanScannerUnavailable": "Kamera ali dovoljenje ni na voljo. Spodaj vnesi naslov in kodo sobe.",
+  "lanInvalidQr": "Ta QR-koda ni za Backgammon Buddy. Skeniraj tisto na zaslonu gostitelja druge naprave.",
+  "lanScannerFailed": "Optičnega bralnika ni bilo mogoče odpreti. Spodaj vnesi naslov in kodo.",
+  "lanNearbyGames": "Igre v bližini",
+  "lanSearching": "Iskanje iger v bližini…",
+  "lanNoGamesFound": "Iger ni bilo mogoče najti. Preveri, ali druga naprava gosti igro in sta obe v istem omrežju Wi-Fi, ali spodaj vnesi njen naslov.",
+  "lanStillSearching": "Iskanje še poteka…",
+  "lanEnterAddress": "Vnesi naslov",
+  "lanEnterAddressHelp": "Samodejno odkrivanje ne deluje v vseh omrežjih in je lahko v sistemu iOS povsem blokirano. Zaslon gostitelja pokaže, kaj vnesti.",
+  "lanIpAddress": "Naslov IP",
+  "lanPort": "Vrata",
+  "lanInvalidPort": "Vnesi vrata med 1 in 65535.",
+  "lanEnterAddressError": "Vnesi naslov, prikazan na drugi napravi.",
+  "lanEnterRoomCodeError": "Vnesi 4-mestno kodo z druge naprave.",
+  "lanJoinWrongCode": "Napačna koda sobe. Preveri vse štiri številke.",
+  "lanJoinVersionMismatch": "Druga naprava uporablja drugo različico Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "Naprava se ni odzvala kot Backgammon Buddy. Preveri naslov in vrata.",
+  "lanJoinFailed": "Pridružitev ni uspela. Preveri naslov in kodo ter poskusi znova.",
+  "lanJoinTarget": "Pridruži se: {name}",
+  "lanJoinTargetHelp": "Vnesi 4-mestno kodo, prikazano na drugi napravi.",
+  "lanJoiningTarget": "Povezovanje z {name}",
+  "lanConnect": "Poveži",
+  "lanBack": "Nazaj",
+  "lanTryAgain": "Poskusi znova",
+  "lanStatusBusy": "Soba je zasedena — čakanje…",
+  "lanStatusReconnecting": "Povezava je prekinjena — ponovni poskus…",
+  "lanStatusConnected": "Povezano — začenjanje dvoboja…",
+  "lanStatusFailed": "Pridružitev ni uspela.",
+  "lanStatusConnecting": "Povezovanje…",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "learningRefreshTooltip": "Osveži napredek učenja",
+  "learningOptions": "Možnosti učenja",
+  "learningResetMenu": "Ponastavi napredek vaj",
+  "learningLoadFailed": "Nalaganje napredka učenja ni uspelo.",
+  "actionRetry": "Poskusi znova",
+  "learningHeading": "Uči se iz svojih odločitev",
+  "learningIntro": "Napredek ostane v tej napravi. Preglej ponavljajoče se teme, nato ponovno odigraj shranjene položaje brez prikaza odgovora. Beli in Črni strani lahko pregledaš ločeno.",
+  "learningBothSides": "Obe strani",
+  "learningHumansOnly": "Samo človeške odločitve",
+  "learningHumanOnlyHelp": "Izklopi, če želiš vključiti odločitve računalnika in oddaljenih igralcev",
+  "learningDecisionSummary": "{decisions} odločitev · {mistakes} za izboljšati · {blunders} hudih napak",
+  "learningAverageLoss": "Povprečna izguba ({decisions} odločitev): {loss}",
+  "learningForcedDisclaimer": "Prisilne poteze so izključene. To so ocene motorja, ne turnirska ocena.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Shranjena igra potrebuje analizo ali ponovno analizo.} other{Shranjene igre potrebujejo analizo ali ponovno analizo.}}",
+  "learningAnalyseSavedGames": "Analiziraj shranjene igre",
+  "learningEmptyProfile": "Odigraj in zaključi igro, da ustvariš svoj učni profil. Posamezne odločitve lahko shraniš tudi iz ponovitve.",
+  "learningOpenHistory": "Odpri zgodovino dvobojev",
+  "learningRecurringThemes": "Ponavljajoče se teme",
+  "learningNoThemes": "V tem izboru še ni ponavljajočih se tem napak.",
+  "learningThemeDecisions": "{count} odločitev za ponovni pregled. En položaj ima lahko več tem.",
+  "learningSaveMistakes": "Shrani te napake za vajo",
+  "learningSavedMistakes": "{count} odločitev je na seznamu za vajo. Že shranjene ostanejo.",
+  "learningSaveMistakesFailed": "Nekaterih odločitev ni bilo mogoče shraniti. Uspešno shranjene ostanejo; poskusi znova.",
+  "learningSpacedPractice": "Razmaknjena vaja",
+  "learningPracticeCounts": "{due} zapadlo · {saved} shranjeno · {attempts} poskusov · {successes} uspešnih priklicev",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningIntervalsHelp": "Uspešne ponovitve pridejo na vrsto po 1, 3, 7, 14 in 30 dneh. Napake ali razkriti odgovori se vrnejo po 10 minutah. Zgodnje ponovitve ne spremenijo razmika.",
+  "learningAnswerContext": "Rezultati vaje odražajo tvoje odgovore tukaj, tudi če je izvirni položaj pripadal nasprotniku.",
+  "learningNoSavedPositions": "Odločitev shrani iz ponovitve ali uporabi zgornji gumb za napake.",
+  "learningPositionTitle": "Odločitev strani {side} · igra {gameId}",
+  "learningReviewDue": "Ponovi {date}",
+  "learningReadyToReview": "Pripravljeno za ponovitev",
+  "learningSuccessStreak": "{count} uspešnih zapadlih ponovitev",
+  "learningRemoveTooltip": "Odstrani shranjeno odločitev",
+  "learningRecentPractice": "Nedavne vaje",
+  "learningAnswerRevealed": "Odgovor razkrit",
+  "learningSuccessfulRecall": "Uspešen priklic",
+  "learningTryAgain": "Ponovno poskusi to odločitev",
+  "learningAttemptSubtitle": "{date} · shranjen položaj {positionId}",
+  "learningRemoveTitle": "Odstranim to vajo?",
+  "learningRemoveBody": "S tem se odstranijo poskusi vaje. Izvirna igra ostane v zgodovini.",
+  "actionRemove": "Odstrani",
+  "learningRemoveFailed": "Te vaje ni bilo mogoče odstraniti.",
+  "learningResetTitle": "Ponastavim napredek vaj?",
+  "learningResetBody": "Vsi poskusi in razmiki ponovitev bodo odstranjeni. Shranjene vaje in zgodovina ostanejo; vse vaje bodo takoj zapadle.",
+  "learningResetAction": "Ponastavi napredek",
+  "learningResetFailed": "Napredka vaj ni bilo mogoče ponastaviti.",
+  "learningAnalysisProgress": "Analiziranih iger: {completed} · nedosegljivih: {failed}.",
+  "learningAnalysisComplete": "Analiziranih {completed} iger.",
+  "learningAnalysisCompleteWithErrors": "Analiziranih {completed} iger; {failed} ni bilo mogoče analizirati. Poskusi znova, ko bo motor pripravljen.",
+  "learningThemeHitting": "Udarjanje in tempo",
+  "learningThemeSafety": "Bloti in varnost",
+  "learningThemePointMaking": "Ustvarjanje točk",
+  "learningThemePrime": "Prime in zapore",
+  "learningThemeAnchor": "Sidra in pobeg",
+  "learningThemeRace": "Učinkovitost dirke",
+  "learningThemeBearOff": "Odlaganje figur",
+  "learningThemeBarEntry": "Vstop z bara",
+  "learningThemeCube": "Odločitve o kocki",
+  "analysisCubeNoDouble": "Brez podvajanja",
+  "analysisCubeDouble": "Podvoji",
+  "analysisCubeTake": "Vzemi",
+  "analysisCubePass": "Odstopi",
+  "learningAnalysisStarting": "Analiziranje shranjenih iger…",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorCubelessEstimateScope": "Ocena brez kocke pri 0 ply · rezultat ni na voljo",
+  "tutorLossPp": "Izguba pp",
+  "tutorLoss": "Izguba",
+  "scoreSheetNoMoves": "Še ni potez",
+  "tutorOptions": "Možnosti tutorja",
+  "tutorCollapseTooltip": "Skrči tutorja",
+  "tutorExpandTooltip": "Razširi tutorja",
+  "diagnosticsCopySuccess": "Diagnostika je kopirana",
+  "diagnosticsReviewTitle": "Preglej diagnostično poročilo",
+  "diagnosticsPrivacyNotice": "Ob odprtju osnutka bodo na GitHub poslani spodnji podatki, vključno z različico aplikacije, platformo in podrobnostmi napake. Javno poročilo ne bo objavljeno, dokler ga tam ne oddaš. Če vsebuje zasebne podatke, prekliči in jih kopiraj za lastno pripravo poročila.",
+  "diagnosticsCancel": "Prekliči",
+  "diagnosticsOpenGitHub": "Odpri GitHub",
+  "diagnosticsTitle": "Diagnostika",
+  "diagnosticsReportTooltip": "Prijavi težavo na GitHubu",
+  "diagnosticsCopyTooltip": "Kopiraj v odložišče",
+  "diagnosticsClearTooltip": "Počisti dnevnik",
+  "diagnosticsEmpty": "Ni zabeleženih napak.\n\nČe gre kaj narobe, bo zapisano tukaj. Vrni se in kopiraj podatke v prijavo napake.",
+  "cubeDouble": "Podvoji",
+  "cubeBlockedOtherPlayersTurn": "Na potezi je drugi igralec.",
+  "cubeBlockedCrawford": "Kocka v Crawfordovi igri ni na voljo.",
+  "cubeBlockedOwnedByOther": "Podvaja lahko le lastnik kocke; trenutno jo ima druga stran.",
+  "cubeBlockedUnavailable": "Podvajanje trenutno ni na voljo.",
+  "gameStatusRolling": "Metanje…",
+  "gameStatusThinking": "Razmišljanje…",
+  "cubeAdviceOpponentTake": "Podvoji — nasprotnik naj vzame",
+  "cubeAdviceOpponentPass": "Podvoji — nasprotnik naj odstopi",
+  "gameErrorBannerLabel": "Napaka: {error}",
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "analysisCubeEstimate": "Ocena 0-ply z vidika igralca, ki je na potezi. Predpostavlja optimalen odgovor: vzemi ali odstopi. Pri sprejetem podvajanju uporabi približek življenjske dobe kocke 0,7, ne pa celotnega iskanja prihodnjih ponovnih podvajanj. Poglobljena analiza lahko spremeni odgovor.",
+  "metricExplainerMwcBody": "Ko je rezultat znan, so poteze razvrščene po ocenjeni možnosti za zmago v dvoboju. Izguba je izražena v odstotnih točkah (pp): 1 pp pomeni padec z 51 % na 50 %. Upoštevani so trenutni vložek kocke ter rezultati gammon/backgammon. Prisilni odstopi in meti z enim samim dovoljenim položajem so izključeni iz povprečja.",
+  "metricExplainerSearchTitle": "Iskanje in negotovost",
+  "metricExplainerSearchBody": "Razvrstitve potez so statične ocene 0-ply po potezi, ne simulacije. Vrednosti dvoboja uporabljajo tabelo equity brez prihodnjih potez s kocko. Ocene kocke uporabljajo delni približek življenjske dobe kocke 0,7 pri sprejetem podvajanju. To ni popolno iskanje s kocko. Za zaostanke nad 25 tabela uporabi mejo 25 točk. Skoraj izenačeni rezultati se lahko pri globlji analizi spremenijo; kalibriranega intervala zaupanja ni.",
+  "metricExplainerEquityTitle": "Equity",
+  "metricExplainerEquityBody": "Če rezultat ni znan, equity brez kocke pokaže povprečno vrednost položaja v točkah pri kocki na 1. +1,0 pomeni pričakovano osvojeno točko, −0,5 pa pričakovano izgubo polovice točke.",
+  "metricExplainerEquityLossTitle": "Izguba equityja (npr. −0,016)",
+  "metricExplainerEquityLossBody": "Vsako potezo primerjamo z najboljšo potezo motorja. Izguba equityja pokaže, koliko pričakovane vrednosti si žrtvoval. −0,016 pomeni, da je bila poteza le za 0,016 točke slabša — majhna napaka. 0,000 pomeni, da si našel najboljšo potezo.",
+  "metricExplainerErrorRateTitle": "Stopnja napak",
+  "metricExplainerErrorRateBody": "Povprečna izguba povpreči ocenjene odločitve o figurah v prikazani enoti. Odločitve o kocki imajo svoje povprečje. Nižja vrednost je bližje najboljšim ocenam motorja; ne gre za kalibrirano oceno igralca.",
+  "metricExplainerMoveMarksTitle": "Ocene potez",
+  "metricExplainerMoveMarksBody": "Učne meje MWC: Najboljše < 0,05 pp, Dobro < 0,5 pp, Vprašljivo < 1,5 pp, Napaka < 3 pp, Huda napaka ≥ 3 pp. To so učne meje aplikacije, ne kalibrirana zanesljivost ali turnirska ocena.\n\nUčne meje equityja brez kocke:",
+  "metricExplainerThresholdBest": "izguba < 0,001",
+  "metricExplainerThresholdGood": "izguba < 0,020",
+  "metricExplainerThresholdDubious": "izguba < 0,050",
+  "metricExplainerThresholdError": "izguba < 0,110",
+  "metricExplainerThresholdBlunder": "izguba ≥ 0,110",
+  "metricExplainerGotIt": "Razumem",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · do {matchLength}",
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · do {matchLength}",
+  "gameHudYou": "Ti",
+  "gameHudAi": "UI",
+  "gameHudGameNumber": "Igra {number}",
+  "gameHudMatchContext": "{score} · {game}",
+  "gameHudHotSeatDetail": "{whiteLabel} proti {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "gameHudOpponentDetail": "proti {opponent} · {pipsLabel} {mine}–{theirs}",
+  "gameHudOpponentDetailWithLevel": "proti {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "gameHudPips": "Pipi",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Podvoji",
+  "gameHudMoreActions": "Več dejanj",
+  "gameHudSurrender": "Odstopi…",
+  "gameHudThinking": "Razmišljanje",
+  "gameHudDoubleBeforeRoll": "Podvojiš lahko le pred metom, ko si na potezi.",
+  "gameHudNoDoubleCrawford": "V Crawfordovi igri ni podvajanja — ta igra odloči dvoboj.",
+  "gameHudOnlyCubeOwner": "Podvaja lahko le lastnik kocke; trenutno jo ima druga stran.",
+  "gameHudDoubleUnavailable": "Podvajanje trenutno ni na voljo.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (do {matchLength})",
+  "gameDialogPlayerWon": "{winner} je zmagal v tej igri ({points}).",
+  "gameDialogPlayerWonGammon": "{winner} je zmagal v tej igri ({points}, gammon).",
+  "gameDialogPlayerWonBackgammon": "{winner} je zmagal v tej igri ({points}, backgammon).",
+  "gameDialogPlayerWonDrop": "{winner} je zmagal v tej igri ({points}) — {loser} je zavrnil podvojitev.",
+  "gameDialogPlayerWonResignation": "{winner} je zmagal v tej igri ({points}) — {loser} je odstopil.",
+  "gameDialogPassDeviceTitle": "Predaj napravo",
+  "gameDialogPlayersTurn": "Na potezi je {name}",
+  "gameDialogTapToContinue": "Tapni za nadaljevanje",
+  "gameDialogCubeOfferedTitle": "Ponujena podvojitev",
+  "gameDialogCubeOfferMessage": "{doubler} ponudi podvojitev na {value}. Vzemi ali odstopi?{tutorLine}",
+  "gameDialogPass": "Odstopi",
+  "gameDialogTake": "Vzemi",
+  "gameDialogResignationTitle": "Ponujena predaja",
+  "gameDialogResignationMessage": "{resigner} ponudi predajo za {value}. Sprejmi ali zavrni?",
+  "gameDialogResignSingle": "posamezna igra",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Zavrni",
+  "gameDialogAccept": "Sprejmi",
+  "gameDialogGameOverTitle": "Konec igre",
+  "gameDialogNextGame": "Naslednja igra",
+  "gameDialogMatchOverTitle": "Konec dvoboja",
+  "gameDialogNobody": "Nihče",
+  "gameDialogMatchWinner": "{winner} je zmagal v dvoboju.",
+  "gameDialogSavedToHistory": "Shranjeno v zgodovino",
+  "gameDialogDone": "Končano",
+  "gameTapNoLegalMove": "Te figure ni mogoče premakniti s preostalimi kockami",
+  "gameTapNoLegalMoveUndo": "Te figure ni mogoče premakniti s preostalimi kockami — poskusi razveljaviti",
+  "gameDragHint": "Namig: povleci figure ali jih tapni — spremeni v nastavitvah",
+  "commonGotIt": "Razumem",
+  "gameHintStageBeforeHint": "Najprej odigraj celotno dovoljeno potezo, nato prosi za namig.",
+  "surrenderTitle": "Predaja",
+  "surrenderNamedConcedes": "{player} preda trenutno igro.",
+  "surrenderConcedes": "Preda trenutno igro.",
+  "surrenderAvailableAtNamedTurn": "Na voljo na začetku poteze igralca {player}",
+  "surrenderAvailableAtYourTurn": "Na voljo na začetku tvoje poteze",
+  "commonCancel": "Prekliči",
+  "surrenderSingle": "Posamezna (1)",
+  "surrenderGammon": "Gammon (2)",
+  "surrenderBackgammon": "Backgammon (3)",
+  "surrenderChoosePlayer": "Kdo predaja to igro?",
+  "commonDone": "Končano",
+  "gameStatusPlayersTurn": "Na potezi je {player}",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  }
 }

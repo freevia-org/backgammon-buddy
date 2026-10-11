@@ -11,6 +11,8 @@ library;
 import 'package:engine_bindings/engine_bindings.dart';
 import 'package:flutter/material.dart';
 
+import '../l10n/localization_lookup.dart';
+
 /// A labelled setup row: a caption above its control.
 class SetupSection extends StatelessWidget {
   const SetupSection({super.key, required this.label, required this.child});
@@ -44,19 +46,19 @@ class MatchLengthOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SetupSection(
-        label: 'Match length',
-        child: SegmentedButton<int>(
-          showSelectedIcon: false,
-          segments: const [
-            ButtonSegment(value: 1, label: Text('1')),
-            ButtonSegment(value: 3, label: Text('3')),
-            ButtonSegment(value: 5, label: Text('5')),
-            ButtonSegment(value: 7, label: Text('7')),
-          ],
-          selected: {value},
-          onSelectionChanged: (s) => onChanged(s.first),
-        ),
-      );
+    label: appLocalizationsOf(context).setupMatchLength,
+    child: SegmentedButton<int>(
+      showSelectedIcon: false,
+      segments: const [
+        ButtonSegment(value: 1, label: Text('1')),
+        ButtonSegment(value: 3, label: Text('3')),
+        ButtonSegment(value: 5, label: Text('5')),
+        ButtonSegment(value: 7, label: Text('7')),
+      ],
+      selected: {value},
+      onSelectionChanged: (s) => onChanged(s.first),
+    ),
+  );
 }
 
 /// How hard the engine plays.
@@ -72,19 +74,31 @@ class DifficultyOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SetupSection(
-        label: 'Difficulty',
-        child: SegmentedButton<Difficulty>(
-          showSelectedIcon: false,
-          segments: const [
-            ButtonSegment(value: Difficulty.easy, label: Text('Easy')),
-            ButtonSegment(value: Difficulty.medium, label: Text('Medium')),
-            ButtonSegment(value: Difficulty.hard, label: Text('Hard')),
-            ButtonSegment(value: Difficulty.expert, label: Text('Expert')),
-          ],
-          selected: {value},
-          onSelectionChanged: (s) => onChanged(s.first),
+    label: appLocalizationsOf(context).setupDifficulty,
+    child: SegmentedButton<Difficulty>(
+      showSelectedIcon: false,
+      segments: [
+        ButtonSegment(
+          value: Difficulty.easy,
+          label: Text(appLocalizationsOf(context).setupDifficultyEasy),
         ),
-      );
+        ButtonSegment(
+          value: Difficulty.medium,
+          label: Text(appLocalizationsOf(context).setupDifficultyMedium),
+        ),
+        ButtonSegment(
+          value: Difficulty.hard,
+          label: Text(appLocalizationsOf(context).setupDifficultyHard),
+        ),
+        ButtonSegment(
+          value: Difficulty.expert,
+          label: Text(appLocalizationsOf(context).setupDifficultyExpert),
+        ),
+      ],
+      selected: {value},
+      onSelectionChanged: (s) => onChanged(s.first),
+    ),
+  );
 }
 
 /// Per-match: play without the doubling cube.
@@ -100,19 +114,22 @@ class CubelessSwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SwitchListTile(
-        contentPadding: EdgeInsets.zero,
-        title: const Text('Play without cube'),
-        subtitle: const Text('No doubling cube this match'),
-        value: value,
-        onChanged: onChanged,
-      );
+    contentPadding: EdgeInsets.zero,
+    title: Text(appLocalizationsOf(context).setupPlayWithoutCube),
+    subtitle: Text(appLocalizationsOf(context).setupNoCubeThisMatch),
+    value: value,
+    onChanged: onChanged,
+  );
 }
 
 /// The display name of a difficulty, matching [DifficultyOptions]'s own segment
 /// labels so a header's "vs AI · Easy" reads back exactly what was picked.
-String difficultyLabel(Difficulty d) => switch (d) {
-      Difficulty.easy => 'Easy',
-      Difficulty.medium => 'Medium',
-      Difficulty.hard => 'Hard',
-      Difficulty.expert => 'Expert',
-    };
+String difficultyLabel(BuildContext context, Difficulty d) {
+  final l10n = appLocalizationsOf(context);
+  return switch (d) {
+    Difficulty.easy => l10n.setupDifficultyEasy,
+    Difficulty.medium => l10n.setupDifficultyMedium,
+    Difficulty.hard => l10n.setupDifficultyHard,
+    Difficulty.expert => l10n.setupDifficultyExpert,
+  };
+}

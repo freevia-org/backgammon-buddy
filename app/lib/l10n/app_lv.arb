@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Mācību piezīmēs punktus skaita no tā spēlētāja mājas puses, kura kārta ir gājienam.",
   "tutorHittingRollNote": "Sitienu iespēju skaitā ietverti visi 36 sakārtotie kauliņu iznākumi un atļautie tiešie vai netiešie sitieni; tie rāda iespējas, nevis paredz pretinieka izvēli.",
   "tutorNoEvaluatedAlternatives": "Šim gājienam nav pieejamu novērtētu alternatīvu.",
-  "tutorForcedPassNoDecision": "Piespiedu gājiena izlaišana nav lēmums par spēles kauliņu pārvietošanu."
+  "tutorForcedPassNoDecision": "Piespiedu gājiena izlaišana nav lēmums par spēles kauliņu pārvietošanu.",
+  "settingsReset": "Atiestatīt",
+  "settingsAppLanguage": "Lietotnes valoda",
+  "settingsTheme": "Motīvs",
+  "settingsThemeSystem": "Kā ierīcē",
+  "settingsThemeLight": "Gaišs",
+  "settingsThemeDark": "Tumšs",
+  "settingsAnimationSpeed": "Animācijas ātrums",
+  "settingsAnimationNone": "Bez animācijas",
+  "settingsAnimationNormal": "Parasts",
+  "settingsAnimationFast": "Ātrs",
+  "settingsDiceRollAnimation": "Kauliņu mešanas animācija",
+  "settingsDiceRollAnimationHelp": "Pirms katra metiena paritināt kauliņus",
+  "settingsDefaultMatchLength": "Noklusējuma mača garums",
+  "settingsDefaultDifficulty": "Noklusējuma grūtības pakāpe",
+  "settingsDifficultyEasy": "Viegls",
+  "settingsDifficultyMedium": "Vidējs",
+  "settingsDifficultyHard": "Grūts",
+  "settingsDifficultyExpert": "Eksperts",
+  "settingsTutorModeDefault": "Noklusējuma trenera režīms",
+  "settingsTutorAuto": "Automātiski",
+  "settingsTutorOn": "Ieslēgts",
+  "settingsTutorOff": "Izslēgts",
+  "settingsTutorModeHelp": "Automātiski ieslēdz treneri visās datora grūtības pakāpēs. Ieslēgts un Izslēgts nosaka sākuma izvēli vietējās spēlēs. Tuvumā un tiešsaistē spēles notiek bez palīdzības; saglabātās spēles var pārskatīt vēlāk. Mācību preferences tiek saglabātas šajā ierīcē.",
+  "settingsTutorPreferences": "Trenera preferences",
+  "settingsTutorPreferencesSubtitle": "Saglabātie noklusējuma iestatījumi nākamajām spēlēm",
+  "settingsTutorSaveError": "Neizdevās saglabāt trenera preferences.",
+  "settingsGameplay": "Spēle",
+  "settingsMoveHighlights": "Gājienu izcelšana",
+  "settingsMoveHighlightsHelp": "Apvelc izvēlei pieejamos kauliņus un izgaismo galamērķus",
+  "settingsDragToMove": "Vilkt, lai pārvietotu",
+  "settingsDragToMoveHelp": "Velc kauliņu uz galamērķi (pieskārieni vienmēr darbojas)",
+  "settingsCombinedMoves": "Apvienoti gājieni",
+  "settingsCombinedMovesHelp": "Ar vienu pieskārienu pārvieto kauliņu atbilstoši abiem kauliņiem",
+  "settingsRotateBoard": "Pagriezt galdiņu starp gājieniem",
+  "settingsRotateBoardHelp": "Spēlējot uz vienas ierīces, pagriez skatu aktīvajam spēlētājam",
+  "settingsPassDevice": "Ierīces nodošanas ekrāns",
+  "settingsPassDeviceHelp": "Nosedz galdiņu, kamēr ierīci nodod nākamajam spēlētājam",
+  "settingsShowScore": "Rādīt rezultātu",
+  "settingsShowScoreHelp": "Galvenē rādīt mača pašreizējo rezultātu",
+  "settingsBuddyMode": "Buddy runas stils",
+  "settingsBuddyTerse": "Īss",
+  "settingsBuddyFriendly": "Draudzīgs",
+  "settingsBuddyTerseHelp": "Kā Buddy nosauc gājienu: “13/8, 24/22” — pieraksts, ko spēlētāji lieto pie galdiņa.",
+  "settingsBuddyFriendlyHelp": "Kā Buddy nosauc gājienu: “Pārvieto vienu kauliņu no 13. punkta uz 8. un otru no 24. uz 22.”",
+  "settingsListenForDice": "Klausīties kauliņus",
+  "settingsListenForDiceHelp": "Kad Buddy sadzird metienu, tas ātrāk apskata galdiņu. Izslēgšana neko citu nemaina.",
+  "settingsDiagnostics": "Diagnostika",
+  "settingsErrorLog": "Kļūdu žurnāls",
+  "settingsErrorLogHelp": "Nesenās kļūdas, ko var kopēt kļūdas ziņojumā",
+  "settingsReportBug": "Ziņot par kļūdu",
+  "settingsReportBugHelp": "Atvērt GitHub kļūdas ziņojuma vedni",
+  "settingsSuggestIdea": "Ieteikt ideju",
+  "settingsSuggestIdeaHelp": "Palīdzi uzlabot treneri un spēli",
+  "settingsAbout": "Par lietotni",
+  "settingsOpenSourceLicenses": "Atvērtā pirmkoda licences",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "gameTutorCommentaryOff": "Spēles komentāri ir izslēgti.",
+  "gameTutorToolsAvailable": "Atver treneri, lai izmantotu ieslēgtos rīkus.",
+  "gameTutorNextRoll": "Met kauliņus.",
+  "gameTutorNoEvaluatedReview": "Šim saglabātajam gājienam nav pieejams novērtēts skaidrojums.",
+  "gameTutorAnalysisUnavailable": "analīze nav pieejama",
+  "gameTutorReviewing": "pārskata…",
+  "gameTutorTryYourPlayFirst": "Vispirms izmēģini savu gājienu.",
+  "gameTutorKeepBuilding": "Turpini veidot savu gājienu.",
+  "gameTutorStageCompleteBeforeCoaching": "Pabeidz pilnu atļautu gājienu, pirms tiek rādīti padomi vai norādes.",
+  "gameTutorReadyToConfirm": "Gatavs apstiprināšanai",
+  "gameTutorPlayTakingShape": "Tavs gājiens iegūst formu.",
+  "gameTutorConfirmOrUndo": "Apstiprini, lai veiktu gājienu, vai atsauc to un pārdomā vēlreiz.",
+  "gameTutorFinishDiceOrUndo": "Izmanto atlikušos kauliņus vai atsauc gājienu.",
+  "gameTutorComputerConsidering": "Dators apsver savu gājienu.",
+  "gameTutorComputerPlayReviewed": "Pabeigtais datora gājiens tiks analizēts šeit.",
+  "gameTutorYourPlay": "Tavs gājiens",
+  "gameTutorComputer": "Dators",
+  "gameTutorPlayQuality": "Tavs gājiens: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "piespiedu gājiens",
+  "gameTutorTopChoice": "labākā izvēle",
+  "gameTutorSoundPlay": "labs gājiens",
+  "gameTutorAnotherPlayMayFitBetter": "cits gājiens varētu būt piemērotāks",
+  "gameTutorAnotherPlayFitsBetter": "šai pozīcijai labāk atbilst cits gājiens",
+  "gameTutorStrongerPlayAvailable": "bija pieejams ievērojami labāks gājiens",
+  "gameTutorPositionEdge": "Pēc novērtējuma {side} ir pārsvars.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Pozīcija ir aptuveni līdzīga.",
+  "tutorPhraseGameFinished": "Spēle ir beigusies.",
+  "tutorPhraseReviewFinishedGame": "Pārskati gājienus un atrodi lēmumu, ko vērts patrenēt.",
+  "tutorPhraseCubeOffered": "Piedāvāts dubultošanas kubs.",
+  "tutorPhraseCubeDecisionPrompt": "Pirms plāno kauliņu gājienu, izlem, vai pieņemt vai atteikties.",
+  "tutorPhraseCubeScoreContext": "Mača rezultāts maina papildu likmes vērtību.",
+  "tutorPhraseResignationOffered": "Piedāvāta padošanās.",
+  "tutorPhraseResignationDecisionPrompt": "Pirms piekrist vai turpināt, salīdzini piedāvātos punktus ar pozīciju.",
+  "tutorPhraseNoLegalPlay": "Ar šo metienu nav atļauta gājiena.",
+  "tutorPhraseForcedPassPrompt": "Piespiedu gājiena izlaišana nav kļūda; gaidi nākamo metienu.",
+  "tutorPhraseOnlyOneResult": "Ir tikai viens atļauts rezultējošais izvietojums.",
+  "tutorPhraseForcedTurnPrompt": "Veic piespiedu gājienu. Šajā metienā nav izvēles, ko novērtēt.",
+  "tutorPhrasePipCountsLevel": "Pipu skaits ir vienāds.",
+  "tutorPhrasePipCountsAhead": "Tev ir {count} pipu pārsvars.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "Tu atpaliec par {count} pipiem.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "Uz barjeras ir {count} tavi kauliņi: vispirms tie jāievada atpakaļ spēlē.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Vispirms ievadi kauliņu, tikai tad pārvieto citus; pēc tam meklē drošu galamērķi.",
+  "tutorPhraseOpponentHomePoints": "Pretinieka mājas galdiņā ir {count} slēgti punkti.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Kauliņu noņemšanas sacīkste.",
+  "tutorPhrasePureRace": "Tīra sacīkste.",
+  "tutorPhraseBearOffSpread": "Noņem kauliņus no galdiņa, saglabājot nākamajam metienam noderīgu izvietojumu.",
+  "tutorPhraseBringRearCheckersHome": "Ved aizmugurējos kauliņus mājās, nesakrājot pārāk daudz vienā punktā.",
+  "tutorPhraseArmiesHavePassed": "Spēlētāji ir viens otram pagājuši garām; vairs nevar trāpīt pretinieka kauliņiem.",
+  "tutorPhraseContactStillMatters": "{part} Kontakts joprojām ir svarīgs.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "Pretiniekam uz barjeras ir {count} kauliņi.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Turi galdiņu slēgtu, kamēr ved atlikušos kauliņus mājās.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Veido vai saglabā slēgtu mājas galdiņu, kamēr pretinieks cenšas ieiet.",
+  "tutorPhraseHomePointsCloseEntries": "Tev ir {count} mājas punkti; katrs aizver vienu ievadīšanas numuru.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Kontakts ar {count} punktu bloku.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Salīdzini bloka pagarināšanu ar rezerves kauliņu paturēšanu, lai to uzturētu.",
+  "tutorPhraseSpareCheckersCanMove": "{count} rezerves kauliņi var pārvietoties, uzreiz neatverot savu punktu.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Kontakts ar balsta punktu punktos {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Salīdzini aizmugurējo kauliņu virzīšanu mājās ar drošā balsta punkta saglabāšanu.",
+  "tutorPhraseCompareAnchorProgressBehind": "Meklējot trāpījumu vai uzlabojot pozīciju, paturi prātā drošo atbalsta punktu.",
+  "tutorPhrasePreserveAnchorFoothold": "Balsta punktu nevar izsist, taču šiem kauliņiem vēl tāls ceļš līdz mājām.",
+  "tutorPhraseContactThreats": "Kontakts: abas puses joprojām var draudēt ar trāpījumu.",
+  "tutorPhraseLookForPointsAndSafety": "Meklē noderīgus punktus un izvērtē risku atstāt atsevišķus kauliņus atklātus.",
+  "tutorPhraseHomePointsAndBlots": "Tev ir {count} mājas punkti un {otherCount} atklāti atsevišķi kauliņi.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Izvēlies kauliņu, ar ko sākt gājienu.",
+  "tutorPhraseLegalPlayPrompt": "Sāc atļautu gājienu, lai redzētu komentārus.",
+  "tutorPhraseStagedHit": "Tu izsiti {count} pretinieka kauliņus.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "Tu ievedi {count} kauliņus no barjeras.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Tu noņēmi no galdiņa {count} kauliņus.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Tu izveidoji punktus {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Tavs kauliņš {point}. punktā pašlaik ir neaizsargāts.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "Rezerves kauliņu {point}. punktā vēlāk var pārvietot, punktu neatverot.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Izmanto atlikušos pieejamos kauliņus, pirms novērtē visu gājienu.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Visi 15 kauliņi ir noņemti: spēle ir uzvarēta.",
+  "tutorPhraseStagedHitShortPlan": "Izsitot kauliņu, iegūsti laiku, kamēr pretinieks atgriežas spēlē.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Efektīva kauliņu noņemšana atstāj nākamajam metienam noderīgus skaitļus.",
+  "tutorPhraseStagedRaceHomePlan": "Aizved aizmugurējos kauliņus mājās un izvieto tos izdevīgās noņemšanas pozīcijās.",
+  "tutorPhraseStagedBearOffContactPlan": "Kauliņu noņemšana ir progress, bet atlikušais kontakts joprojām rada izsišanas risku.",
+  "tutorPhraseStagedReentryPlan": "Ievadīšana atgriež kauliņu spēlē; pēc tam meklē tam drošu punktu.",
+  "tutorPhraseStagedHomeBoardPlan": "Jaunais mājas punkts pēc turpmāka trāpījuma aizver vienu ievadīšanas numuru.",
+  "tutorPhraseStagedPrimePlan": "Garāks bloks aizver vairāk nosēšanās punktu; rezerves kauliņi palīdz to saglabāt.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Atkāpjoties no balsta punkta, tu virzies uz priekšu, bet zaudē drošu atbalstu.",
+  "tutorPhraseStagedNewAnchorPlan": "Jaunais balsta punkts sniedz drošu atbalstu aizmugurējiem kauliņiem.",
+  "tutorPhraseStagedCoverBlotPlan": "Aizsedzot atsevišķu kauliņu, pretiniekam vairs nav šī mērķa.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Jāizvēlas starp attīstību un drošību: veidojošie kauliņi var kļūt par mērķiem.",
+  "tutorPhraseStagedCompletePrompt": "{part} Gājiens ir pilnībā sagatavots; nospied Apstiprināt, lai to veiktu.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Ar šo metienu nav izvēles, kā pārvietot kauliņus; tas netiek vērtēts kā lēmums.",
+  "tutorMoveTopVerdict": "Viena no labākajām izvēlēm šajā pozīcijā.",
+  "tutorMoveAlternativeVerdict": "Dzinējs šeit dod priekšroku citam gājienam.",
+  "tutorMoveEstimateDifference": "Atšķirība no labākā gājiena: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Pēc šī gājiena: uzvaras iespēja {winPercent}%, marsa vai labākas uzvaras iespēja {winGammonPercent}%, marsa vai sliktāka zaudējuma iespēja {loseGammonPercent}%. Novērtējums ir no tā spēlētāja skatpunkta, kurš izdara gājienu.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Novērtētā mača uzvaras iespēja: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Visi 15 kauliņi ir noņemti no galdiņa: spēle ir uzvarēta.",
+  "tutorMovePlanHit": "Izmanto izsišanu, lai iegūtu laiku, kamēr pretinieks atgriežas spēlē. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Turi mājas galdiņa punktus slēgtus, lai apgrūtinātu pretinieka ievadīšanu.",
+  "tutorMovePlanHitBuild": "Izveido vairāk mājas galdiņa punktu, lai pretiniekam būtu grūtāk atgūties pēc turpmākas izsišanas.",
+  "tutorMovePlanRaceBearOff": "Tiecies uz efektīvu kauliņu noņemšanu: noņem kauliņus un atstāj nākamajam metienam noderīgus skaitļus.",
+  "tutorMovePlanRaceHome": "Ved aizmugurējos kauliņus mājās un izvieto tos noderīgos noņemšanas punktos.",
+  "tutorMovePlanContactBearOff": "Noņem kauliņus no galdiņa, bet seko pretinieka aizmugurējiem kauliņiem: kontakta situācijā neaizsargāts kauliņš var kļūt par mērķi.",
+  "tutorMovePlanReentry": "Atgriezies spēlē un pēc tam meklē drošu punktu ievadītajam kauliņam.",
+  "tutorMovePlanHomeBoard": "Stiprini mājas galdiņu. Jaunais slēgtais punkts aizver vienu ievadīšanas numuru un padara turpmāku izsišanu iedarbīgāku.",
+  "tutorMovePlanPrime": "Uzturi slēgto punktu rindu. Saglabā rezerves kauliņus, lai vēlākie metieni nepiespiestu to atvērt.",
+  "tutorMovePlanLeaveAnchor": "Atstājot balsta punktu, aizmugurējie kauliņi virzās uz priekšu, bet tu zaudē drošu atbalstu. Uzraugi to apdraudējumu ceļā uz mājām.",
+  "tutorMovePlanNewAnchor": "Izmanto jauno balsta punktu kā drošu atbalstu, vienlaikus uzlabojot pārējo pozīciju.",
+  "tutorMovePlanCoverBlot": "Sakārto kauliņus. Aizsedzot atsevišķu kauliņu, pretiniekam vairs nav šī mērķa, un saglabājas noderīgi nosēšanās punkti.",
+  "tutorMovePlanSafety": "Līdzsvaro attīstību ar drošību: virzi būvējošos kauliņus uz noderīgiem punktiem un pārbaudi, kurus atsevišķos kauliņus var izsist.",
+  "tutorMoveObservationNoLegalPlay": "Nav atļauta kauliņu gājiena: gājiens jāizlaiž.",
+  "tutorMoveObservationHit": "Tu izsit {count} pretinieka kauliņus; pretiniekam tie jāievada no barjeras, pirms viņš var pārvietot citus kauliņus.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Ievadi {count} kauliņus no barjeras.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Noņem no galdiņa {count} kauliņus.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Izveido punktus {points}. Vismaz divi kauliņi droši ieņem punktu un neļauj pretiniekam tajā nosēsties.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Tu atsakies no ieņemtajiem punktiem {pointLabel} {points}. Tie vairs nebloķē pretinieku.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Neatstāj neaizsargātus atsevišķus kauliņus (iepriekš {previousCount}). Nav viena kauliņa, ko izsist.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Atstāj neaizsargātus {count} atsevišķus kauliņus (iepriekš {previousCount}). Pirms izvēlēties drošību cita ieguvuma vietā, pārbaudi, vai pretinieks tos var sasniegt.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Garākā slēgto punktu rinda: {count} (iepriekš {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Sešu punktu bloku nevar šķērsot, kamēr tas ir slēgts.",
+  "tutorMoveObservationPrimeBuild": "Turi būvējošos kauliņus tuvumā, ja vēlies šo rindu pagarināt vai saglabāt.",
+  "tutorMoveObservationPrimeSpares": "Uz ieņemtajiem punktiem virs diviem pamata kauliņiem ir {count} rezerves kauliņi. Pārvietojot rezerves kauliņu, punktu var saglabāt; pārvietojot kādu no pēdējiem diviem, tas atveras.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Balsta punkti pretinieka mājas galdiņā: {points} (iepriekš {previousPoints}). Balsta punkts pasargā kauliņus no izsišanas; aizejot no tā, drošs atbalsts tiek mainīts pret progresu sacīkstē.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Tīra sacīkste: spēlētāji ir viens otram pagājuši garām, un nevienam nav kauliņu uz barjeras. Izsišana vairs nav iespējama; svarīga ir efektīva kauliņu noņemšana.",
+  "tutorMoveObservationNoReplyHit": "Ar nevienu atļautu nākamo metienu pretinieks šajā pozīcijā nevar izsist kauliņu. Kontakts tomēr saglabājas, tāpēc vēlākie gājieni var radīt jaunas iespējas.",
+  "tutorMoveObservationReplyHit": "Pretinieks var izsist ar {count} no {total} metieniem. Piemēram, {dieOne}–{dieTwo} ļauj atļauti izsist kauliņu tavā {point}. punktā. Izsišana ir iespējama, bet nav garantēts, ka pretinieks to izvēlēsies.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Tavā mājas galdiņā ir slēgti {closedPoints} punkti. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Pretinieks nevar atgriezties spēlē, līdz kāds punkts atveras.",
+  "tutorMoveObservationOpenEntry": "Metiens, kurā var izmantot atvērtu ievadīšanas punktu, ļauj atgriezt kauliņu no barjeras.",
+  "tutorMoveComparisonDetail": "{factors} Labākā gājiena novērtētā uzvaras iespēja ir par {delta} procentpunktiem {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "lielāka",
+  "tutorMoveComparisonLower": "mazāka",
+  "tutorMoveComparisonScoreContext": " Tas joprojām var būt augstāk novērtēts, jo marsa un bekgemona vērtība mainās atkarībā no pašreizējā {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "likme",
+  "tutorMoveComparisonMatchScore": "mača rezultāts",
+  "tutorMoveComparisonFactorBar": "Labākais gājiens uz barjeras atstāj {bestCount} pretinieka kauliņus, nevis {playedCount}. Uz barjeras esošais kauliņš jāievada atpakaļ, pirms pretinieks var pārvietot pārējos.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Labākais gājiens mājas galdiņā ieņem {bestCount} punktus, nevis {playedCount}; pēc izsišanas paliek {entryDifference} ievadīšanas punkti.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "aizver vairāk",
+  "tutorMoveComparisonLeavingMore": "atstāj vairāk atvērtu",
+  "tutorMoveComparisonFactorShots": "Labākais gājiens ļauj pretiniekam izsist ar {bestCount} no 36 metieniem, bet tavs gājiens — ar {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Tas samazina tūlītējas atsišanas risku.",
+  "tutorMoveComparisonExtraExposure": "Salīdzini šo papildu risku ar ieguvumu, ko gājiens dod citur.",
+  "tutorMoveComparisonFactorPrime": "Labākā gājiena garākajā slēgto punktu rindā ir {bestCount} punkti, bet tavējā — {playedCount}; salīdzini bloku ar pieejamajiem kauliņiem, kas vajadzīgi tā saglabāšanai.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Labākā gājiena balsta punkti ir {bestPoints}, bet tavējā — {playedPoints}. Balsta punkts saglabā drošu nosēšanās vietu; aizejot no tā, kauliņi nonāk tuvāk mājām.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Labākais gājiens noņem {bestCount} kauliņus, bet tavējais — {playedCount}. Katrs noņemtais kauliņš ir viens mazāk, kas jānoņem vēlāk.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Abos gājienos paliek vienāds tūlītējas izsišanas risks, mājas punkti, balsta punkti un noņemto kauliņu skaits. Salīdzini nosēšanās punktus: nākamais metiens var tos izmantot citādi.",
+  "tutorMoveComparisonSummaryBar": "Labākais gājiens uz barjeras novieto vairāk pretinieka kauliņu, aizkavējot citus viņa gājienus.",
+  "tutorMoveComparisonSummaryHomeBoard": "Labākais gājiens aizver vairāk mājas galdiņa punktu, apgrūtinot atgriešanos pēc izsišanas.",
+  "tutorMoveComparisonSummaryShots": "Labākais gājiens pieļauj mazāk tūlītēju izsišanas metienu un samazina risku tikt izsistam atpakaļ.",
+  "tutorMoveComparisonSummaryPrime": "Labākais gājiens saglabā garāku slēgto punktu rindu.",
+  "tutorMoveComparisonSummaryAnchors": "Labākais gājiens pretinieka mājas galdiņā saglabā vairāk drošu balsta punktu.",
+  "tutorMoveComparisonSummaryBearOff": "Labākais gājiens noņem vairāk kauliņu, tāpēc vēlāk paliek mazāk ko noņemt.",
+  "tutorMoveComparisonSummaryBlots": "Šis gājiens atstāj {playedCount} atsevišķus kauliņus; labākais gājiens atstāj {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Labākais gājiens saglabā drošu balsta punktu {point}. punktā.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Labākais gājiens aizver vairāk ievadīšanas punktu gadījumam, ja kādu tavu kauliņu izsit.",
+  "tutorMoveComparisonSummarySimilarRisks": "Gājieniem ir līdzīgs tūlītējais risks; salīdzini, kuri nosēšanās punkti būs noderīgi nākamajā metienā.",
+  "tutorMoveAssessmentEquityLoss": "{value} equity",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} MWC procentpunkti",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "punkts",
+  "tutorMovePointPlural": "punkti",
+  "tutorMoveNoPoints": "nav",
+  "tutorPlayedMove": "Izspēlēts: {move}",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorBestMove": "Labākais: {move}",
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorShowRankedPlays": "Rādīt sarindotos gājienus",
+  "tutorReviewRecordedMove": "Pieskaries pabeigtam gājienam žurnālā, lai šeit pārskatītu pieņemto lēmumu.",
+  "tutorTopPlays": "Labākie gājieni",
+  "tutorNoHintsAvailable": "Padomu nav.",
+  "tutorPreviewThenConfirm": "Pieskaries gājienam, lai to priekšskatītu uz galda, pēc tam apstiprini.",
+  "tutorTopChoiceForPosition": "Labākā izvēle šajā pozīcijā",
+  "tutorAlternativePlay": "Alternatīvs gājiens",
+  "tutorEngineEstimates": "Dzinēja aplēses",
+  "tutorEstimateScope": "0 pusgājienu aplēse — pašreizējais rezultāts un likme — bez turpmākas kuba dubultošanas",
+  "tutorEquity": "Equity",
+  "tutorMwcPercent": "Mača uzvaras varbūtība, %",
+  "tutorNearTiesNote": "Padziļināta analīze var mainīt gandrīz līdzvērtīgu gājienu secību.",
+  "tutorWhyThisPlay": "Kāpēc šis gājiens?",
+  "tutorCompareAlternative": "Salīdzināt šo alternatīvu",
+  "gameTutorCubeTake": "Treneris: pieņemt",
+  "gameTutorCubePass": "Treneris: atteikties",
+  "practiceScreenTitle": "Trenējieties gājienā",
+  "practiceUnavailable": "Šī treniņa pozīcija vairs nav pieejama.",
+  "practiceSubmitError": "Šo mēģinājumu neizdevās novērtēt vai saglabāt. Jūsu progress nav mainījies. Mēģiniet vēlreiz.",
+  "practiceTurnLabel": "{side} gājiens · {dice}",
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "practiceHistoricalScoreUnavailable": "Vēsturiskais rezultāts nav pieejams; gājiens tiek vērtēts pēc equity bez dubultošanas kuba.",
+  "practiceScoreLine": "Rezultāts: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, līdz {matchLength}",
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceCrawfordGame": " · Kroforda partija",
+  "practiceNoDoublingCube": "Bez dubultošanas kuba.",
+  "practiceCubeValue": "Kuba vērtība {value}.",
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceHistoricalCubeUnknown": "Vēsturiskie kuba noteikumi nav zināmi.",
+  "practiceAfterBestPosition": "Pozīcija pēc labākā gājiena",
+  "practiceAfterYourAnswerPosition": "Pozīcija pēc jūsu atbildes",
+  "practiceFindYourPlayPrompt": "Veiciet savu gājienu uz galdiņa un pārbaudiet atbildi. Mājienu nebūs.",
+  "practiceUndo": "Atsaukt",
+  "practiceCheckAnswer": "Pārbaudīt atbildi",
+  "practiceRevealNoCredit": "Parādīt atbildi (bez kredīta)",
+  "practiceAnswerRevealedNoCredit": "Atbilde parādīta — atcerēšanās kredīta nav.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "practiceBestMoveLine": "Labākais: {move}",
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceOriginalGameLine": "Sākotnējais spēles gājiens: {move} · {loss}",
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "practiceYourAnswerLine": "Jūsu atbilde: {move}",
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceYourAnswerChip": "Jūsu atbilde",
+  "practiceBestPlayChip": "Labākais gājiens",
+  "practiceNextReview": "Nākamā pārskatīšana: {date}.",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "practiceRecallCredit": "Labas un labākās atbildes skaitās veiksmīga atcerēšanās. Agrāka atkārtošana nepagarina intervālu.",
+  "practiceBackToLearning": "Atpakaļ pie mācībām",
+  "practiceMarkBest": "Labākais",
+  "practiceMarkGood": "Labs",
+  "practiceMarkDubious": "Apšaubāms",
+  "practiceMarkError": "Kļūda",
+  "practiceMarkBlunder": "Rupja kļūda",
+  "practiceMarkForced": "Piespiedu",
+  "newMatchYourSide": "Jūsu puse",
+  "newMatchTutorMode": "Trenera režīms",
+  "newMatchTutorDescription": "Mācieties ar mājieniem, skaidrojumiem un spēles komentāriem",
+  "newMatchTutoringOptions": "Trenera opcijas",
+  "newMatchTutoringOptionsDescription": "Šim mačam; spēles laikā var mainīt",
+  "setupMatchLength": "Mača garums",
+  "setupDifficulty": "Grūtības pakāpe",
+  "setupDifficultyEasy": "Viegli",
+  "setupDifficultyMedium": "Vidēji",
+  "setupDifficultyHard": "Grūti",
+  "setupDifficultyExpert": "Eksperts",
+  "setupPlayWithoutCube": "Spēlēt bez kuba",
+  "setupNoCubeThisMatch": "Šajā mačā nav dubultošanas kuba",
+  "diagnosticsCopySuccess": "Diagnostika kopēta starpliktuvē",
+  "diagnosticsReviewTitle": "Pārskatīt diagnostikas ziņojumu",
+  "diagnosticsPrivacyNotice": "Atverot melnrakstu, tālāk redzamā informācija tiks nosūtīta GitHub: lietotnes versija, platforma un kļūdu informācija. Publisks ziņojums netiks publicēts, kamēr to tur neiesniegsiet. Ja informācijā ir privāti dati, atceliet un izmantojiet kopēšanu, lai sagatavotu ziņojumu pats.",
+  "diagnosticsCancel": "Atcelt",
+  "diagnosticsOpenGitHub": "Atvērt GitHub",
+  "diagnosticsTitle": "Diagnostika",
+  "diagnosticsReportTooltip": "Ziņot par problēmu GitHub",
+  "diagnosticsCopyTooltip": "Kopēt starpliktuvē",
+  "diagnosticsClearTooltip": "Notīrīt žurnālu",
+  "diagnosticsEmpty": "Kļūdas nav reģistrētas.\n\nJa kaut kas noiet greizi, tas tiek reģistrēts šeit — atgriezieties un kopējiet informāciju kļūdas ziņojumā.",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · līdz {matchLength}",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · līdz {matchLength}",
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudYou": "Jūs",
+  "gameHudAi": "Dators",
+  "gameHudGameNumber": "{number}. spēle",
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudMatchContext": "{score} · {game}",
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "gameHudHotSeatDetail": "{whiteLabel} pret {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetail": "pret {opponent} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetailWithLevel": "pret {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPips": "Pipi",
+  "gameHudCrawford": "Kroforda",
+  "gameHudDouble": "Dubultot",
+  "gameHudMoreActions": "Citas darbības",
+  "gameHudSurrender": "Padoties…",
+  "gameHudThinking": "Domā",
+  "gameHudDoubleBeforeRoll": "Dubultot var tikai pirms metiena un savā gājienā.",
+  "gameHudNoDoubleCrawford": "Kroforda partijā dubultot nevar — šī viena partija izšķir maču.",
+  "gameHudOnlyCubeOwner": "Dubultot drīkst tikai kuba īpašnieks, bet pašlaik tas pieder otrai pusei.",
+  "gameHudDoubleUnavailable": "Pašlaik dubultot nevar.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (līdz {matchLength})",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogPlayerWon": "{winner} uzvar šo spēli ({points}).",
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonGammon": "{winner} uzvar šo spēli ({points}, gamons).",
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonBackgammon": "{winner} uzvar šo spēli ({points}, backgamons).",
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonDrop": "{winner} uzvar šo spēli ({points}) — {loser} atteicās no dubultošanas.",
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPlayerWonResignation": "{winner} uzvar šo spēli ({points}) — {loser} padevās.",
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPassDeviceTitle": "Nododiet ierīci",
+  "gameDialogPlayersTurn": "{name} gājiens",
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "gameDialogTapToContinue": "Pieskarieties, lai turpinātu",
+  "gameDialogCubeOfferedTitle": "Piedāvāta dubultošanas iespēja",
+  "gameDialogCubeOfferMessage": "{doubler} piedāvā dubultot līdz {value}. Pieņemt vai atteikties?{tutorLine}",
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "gameDialogPass": "Atteikties",
+  "gameDialogTake": "Pieņemt",
+  "gameDialogResignationTitle": "Piedāvāta padošanās",
+  "gameDialogResignationMessage": "{resigner} piedāvā padoties ar {value}. Pieņemt vai noraidīt?",
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "gameDialogResignSingle": "parasta spēle",
+  "gameDialogResignGammon": "gamons",
+  "gameDialogResignBackgammon": "backgamons",
+  "gameDialogDecline": "Noraidīt",
+  "gameDialogAccept": "Pieņemt",
+  "gameDialogGameOverTitle": "Spēle galā",
+  "gameDialogNextGame": "Nākamā spēle",
+  "gameDialogMatchOverTitle": "Mačs galā",
+  "gameDialogNobody": "Neviens",
+  "gameDialogMatchWinner": "{winner} uzvar maču.",
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "gameDialogSavedToHistory": "Saglabāts vēsturē",
+  "gameDialogDone": "Pabeigt",
+  "gameMatchSummary": "Mača kopsavilkums",
+  "gameAnalyzeGame": "Analizēt spēli",
+  "analysisTitle": "Analīze",
+  "analysisMetricsTooltip": "Ko šie skaitļi nozīmē?",
+  "analysisError": "Neizdevās analizēt partiju: {error}",
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisNoPositions": "Šajā partijā nav pozīciju, ko parādīt.",
+  "analysisInProgress": "Notiek analīze…",
+  "analysisPercent": "{percent}%",
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisPlayed": "Izspēlēts",
+  "analysisBest": "Labākais",
+  "analysisPrevious": "Iepriekšējais",
+  "analysisNext": "Nākamais",
+  "analysisPositionBeforeCube": "Pozīcija pirms lēmuma par kubu",
+  "analysisPositionAtPoint": "Pozīcija šajā spēles brīdī",
+  "analysisShowingBestBefore": "Rāda labāko gājienu pozīcijā pirms gājiena",
+  "analysisShowingBefore": "Rāda pozīciju pirms gājiena",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "analysisMoveLoss": " −{loss}",
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisExcludedFromAverages": " · nav iekļauts vidējos rādītājos",
+  "analysisNoPlay": "(nav gājiena)",
+  "analysisBestMoveLine": "Labākais: {move}",
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "analysisExplain": "Paskaidrot",
+  "analysisSaveForPractice": "Saglabāt treniņam",
+  "analysisSaveError": "Neizdevās saglabāt šo lēmumu: {error}",
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisCubeInfo": "{side}: {action} · {mark} · zaudējums {loss}",
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "analysisCubeDecision": "Lēmums par kubu",
+  "analysisCubePlayed": "Izspēlēts: {action} ({percent}% mača uzvara).",
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisCubeBest": "Labākais: {action} ({percent}% mača uzvara).",
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisClose": "Aizvērt",
+  "analysisMoves": "Gājieni",
+  "analysisForced": "Piespiedu",
+  "analysisMarkBest": "Labākais",
+  "analysisMarkGood": "Labs",
+  "analysisMarkDubious": "Apšaubāms",
+  "analysisMarkError": "Kļūda",
+  "analysisMarkBlunder": "Rupja kļūda",
+  "analysisSummaryMeanLoss": "Vidējais zaudējums {loss}",
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisSummaryCheckerDecisions": "{count} kauliņu lēmumi",
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryBlunders": "Rupjas kļūdas {count}",
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryCubeLoss": "Kuba zaudējums {loss}",
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisRollWithoutDoubling": "{side} met, nedubultojot",
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "analysisCubeNoDouble": "Nedubultot",
+  "analysisCubeDouble": "Dubultot",
+  "analysisCubeTake": "Pieņemt",
+  "analysisCubePass": "Padoties",
+  "tutorOptions": "Trenera iespējas",
+  "tutorCollapseTooltip": "Sakļaut treneri",
+  "tutorExpandTooltip": "Izvērst treneri",
+  "scoreSheetNoMoves": "Nav gājienu",
+  "gameTapNoLegalMove": "Pieskarieties savai kauliņai, lai redzētu atļautos gājienus.",
+  "gameTapNoLegalMoveUndo": "Pieskarieties kauliņai un pēc tam galamērķim.",
+  "gameDragHint": "Velciet kauliņu uz galamērķi.",
+  "commonGotIt": "Sapratu",
+  "gameHintStageBeforeHint": "Pirms mājiena",
+  "surrenderTitle": "Padoties partijā?",
+  "surrenderSingle": "Parasts zaudējums",
+  "surrenderGammon": "Gamona zaudējums",
+  "surrenderBackgammon": "Backgamona zaudējums",
+  "surrenderChoosePlayer": "Izvēlieties spēlētāju",
+  "cubeDouble": "Dubultot",
+  "gameStatusRolling": "Met kauliņus",
+  "gameStatusThinking": "Dators domā",
+  "gameStatusPlayersTurn": "{player} gājiens",
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "historyTitle": "Maču vēsture",
+  "historyEmpty": "Vēl nav aizvadīts neviens mačs.",
+  "historyDeleteConfirmTitle": "Dzēst šo maču?",
+  "actionCancel": "Atcelt",
+  "actionDelete": "Dzēst",
+  "historyDeleteFailed": "Neizdevās dzēst maču.",
+  "historyComplete": "Pabeigts",
+  "historyUnfinished": "Nepabeigts",
+  "historyMatchTitle": "Mačs",
+  "historyNoGames": "Vēl nav reģistrētu partiju.",
+  "historyCrawford": "Kroforda noteikums",
+  "historyModeComputer": "pret datoru",
+  "historyModeTwoPlayers": "Divi spēlētāji",
+  "historyModeOnline": "Tiešsaistē",
+  "historyModeNearby": "Spēlēt tuvumā",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "Notiek",
+  "historyOutcomeSingle": "vienkārša",
+  "historyOutcomeGammon": "gamons",
+  "historyOutcomeBackgammon": "backgamons",
+  "learningRefreshTooltip": "Atsvaidzināt mācību progresu",
+  "learningOptions": "Mācību opcijas",
+  "learningResetMenu": "Atiestatīt treniņu progresu",
+  "learningLoadFailed": "Neizdevās ielādēt mācību progresu.",
+  "actionRetry": "Mēģināt vēlreiz",
+  "learningHeading": "Mācies no saviem lēmumiem",
+  "learningBothSides": "Abas puses",
+  "learningHumansOnly": "Tikai cilvēku lēmumi",
+  "learningHumanOnlyHelp": "Izslēdzot, tiks iekļauti datora un attālo spēlētāju gājieni",
+  "learningAnalyseSavedGames": "Analizēt saglabātos mačus",
+  "learningOpenHistory": "Atvērt maču vēsturi",
+  "learningRecurringThemes": "Atkārtotas tēmas",
+  "learningNoThemes": "Šajā atlasē vēl nav atkārtotu kļūdu tēmu.",
+  "learningSaveMistakes": "Saglabāt šīs kļūdas treniņam",
+  "learningSpacedPractice": "Intervālu treniņš",
+  "learningNoSavedPositions": "Saglabā lēmumu atkārtojumā vai izmanto kļūdu pogu augstāk.",
+  "learningReadyToReview": "Gatavs pārskatīšanai",
+  "learningSuccessStreak": "Veiksmīgas pārskatīšanas pēc kārtas: {count}",
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnswerRevealed": "Atbilde parādīta",
+  "learningSuccessfulRecall": "Veiksmīga atcerēšanās",
+  "learningTryAgain": "Mēģini vēlreiz",
+  "actionRemove": "Noņemt",
+  "onlineTitle": "Spēle tiešsaistē",
+  "onlineUnassistedNote": "Treneris tiešsaistes spēlē nav pieejams.",
+  "onlineNotConfiguredTitle": "Tiešsaistes spēle nav konfigurēta",
+  "onlineNotConfiguredBody": "Tiešsaistes spēle šajā laidienā nav pieejama.",
+  "onlineErrorNoMatch": "Mačs nav atrasts.",
+  "onlineErrorSeatTaken": "Vieta jau ir aizņemta.",
+  "onlineErrorPermission": "Jums nav atļaujas veikt šo darbību.",
+  "onlineErrorGeneric": "Neizdevās izveidot savienojumu ar tiešsaistes spēli.",
+  "onlineMatchFinished": "Mačs ir beidzies.",
+  "onlineEnterCodeError": "Ievadiet derīgu kodu.",
+  "onlineOpponentShort": "Pretinieks",
+  "onlineMatchInProgress": "Mačs notiek",
+  "onlineResumePrompt": "Tu spēlēji maču {code}. Turpināt?",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Pievienoties vēlreiz",
+  "onlineForgetMatch": "Aizmirst maču",
+  "onlineCreateTitle": "Izveidot tiešsaistes maču",
+  "onlineMatchLength": "Mača ilgums",
+  "onlineNoCubeTitle": "Spēle bez kuba",
+  "onlineNoCubeSubtitle": "Spēlē bez dubultošanas kuba.",
+  "onlineCreate": "Izveidot",
+  "onlineWaitingOpponent": "Gaida pretinieku",
+  "onlineShareCode": "Kopīgot kodu",
+  "onlineCopyCode": "Kopēt kodu",
+  "onlineCodeCopied": "Kods nokopēts",
+  "onlineJoinTitle": "Pievienoties mačam",
+  "onlineRoomCode": "Istabas kods",
+  "onlineJoin": "Pievienoties",
+  "lanTitle": "Spēlēt tuvumā",
+  "lanTabHost": "Rīkot",
+  "lanTabJoin": "Pievienoties",
+  "lanHostTitle": "Rīkot spēli",
+  "lanStartHosting": "Sākt mitināšanu",
+  "lanWaitingPlayerTitle": "Gaida spēlētāju",
+  "lanWaitingPlayer": "Gaida spēlētāju…",
+  "lanStopHosting": "Pārtraukt mitināšanu",
+  "lanOnNetwork": "Šajā tīklā",
+  "lanCopyAddress": "Kopēt adresi",
+  "lanAddressCopied": "Adrese nokopēta",
+  "lanScanHostTitle": "Skenēt resursdatoru",
+  "lanScanQr": "Skenēt QR kodu",
+  "lanNearbyGames": "Tuvumā esošās spēles",
+  "lanSearching": "Meklē tuvumā esošās spēles…",
+  "lanStillSearching": "Joprojām meklē…",
+  "lanEnterAddress": "Ievadīt adresi",
+  "lanIpAddress": "IP adrese",
+  "lanPort": "Ports",
+  "lanInvalidPort": "Ievadiet portu no 1 līdz 65535.",
+  "lanJoinWrongCode": "Nepareizs istabas kods. Pārbaudiet četrus ciparus otrā ierīcē.",
+  "lanConnect": "Savienot",
+  "lanBack": "Atpakaļ",
+  "lanTryAgain": "Mēģināt vēlreiz",
+  "lanStatusBusy": "Istaba aizņemta — gaida…",
+  "lanStatusReconnecting": "Savienojums pārtrūka — mēģina vēlreiz…",
+  "lanStatusConnected": "Savienots — sāk maču…",
+  "lanStatusFailed": "Neizdevās pievienoties.",
+  "lanStatusConnecting": "Savienojas…",
+  "tutorCubelessEstimateScope": "0-ply novērtējums bez kuba · rezultāts nav zināms",
+  "tutorLossPp": "Zaudējums pp",
+  "tutorLoss": "Zaudējums",
+  "surrenderNamedConcedes": "{player} padodas šajā partijā.",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderConcedes": "Padodas šajā partijā.",
+  "surrenderAvailableAtNamedTurn": "Pieejams {player} gājiena sākumā",
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderAvailableAtYourTurn": "Pieejams tava gājiena sākumā",
+  "commonCancel": "Atcelt",
+  "commonDone": "Gatavs",
+  "cubeBlockedOtherPlayersTurn": "Tagad ir pretinieka gājiens.",
+  "cubeBlockedCrawford": "Kroforda mačā kubs nav pieejams.",
+  "cubeBlockedOwnedByOther": "Dubultot drīkst tikai kuba īpašnieks; pašlaik tas pieder otrai pusei.",
+  "cubeBlockedUnavailable": "Dubultošana pašlaik nav pieejama.",
+  "cubeAdviceOpponentTake": "Dubultot — pretiniekam vajadzētu pieņemt",
+  "cubeAdviceOpponentPass": "Dubultot — pretiniekam vajadzētu atteikt",
+  "gameErrorBannerLabel": "Kļūda: {error}",
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "metricExplainerTitle": "Metriku skaidrojums",
+  "metricExplainerTooltip": "Ko šie skaitļi nozīmē?",
+  "metricExplainerMwcTitle": "Mača uzvaras iespēja (MWC)",
+  "metricExplainerSearchTitle": "Meklēšana un nenoteiktība",
+  "metricExplainerEquityTitle": "Kapitāls",
+  "metricExplainerEquityLossTitle": "Kapitāla zudums (piem., −0,016)",
+  "metricExplainerErrorRateTitle": "Kļūdu biežums",
+  "metricExplainerMoveMarksTitle": "Gājienu atzīmes",
+  "metricExplainerGotIt": "Sapratu",
+  "metricExplainerThresholdBest": "zaudēts < 0,001",
+  "metricExplainerThresholdGood": "zaudēts < 0,020",
+  "metricExplainerThresholdDubious": "zaudēts < 0,050",
+  "metricExplainerThresholdError": "zaudēts < 0,110",
+  "metricExplainerThresholdBlunder": "zaudēts ≥ 0,110",
+  "historyLoadFailed": "Neizdevās ielādēt vēsturi:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyDeleteConfirmBody": "{scoreLine}\n\nMačs un visas tajā reģistrētās partijas tiks neatgriezeniski dzēstas. Šo darbību nevar atsaukt.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyWinner": "Uzvarēja {side}",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyMatchLoadFailed": "Neizdevās ielādēt maču:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Neizdevās ielādēt partijas:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGameTitle": "Partija {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyScoreLine": "Baltie {whiteScore} — {blackScore} Melnie  (līdz {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyGameResult": "{side} uzvar ar {points} ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "learningDecisionSummary": "{decisions} lēmumi · {mistakes} jāuzlabo · {blunders} rupjas kļūdas",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAverageLoss": "Vidējais zaudējums ({decisions} lēmumi): {loss}",
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "learningForcedDisclaimer": "Piespiedu gājieni nav iekļauti. Tie ir dzinēja aprēķini, nevis turnīra reitings.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{# saglabātajai partijai vajadzīga analīze vai tās atjauninājums.} other{# saglabātajām partijām vajadzīga analīze vai tās atjauninājums.}}",
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeDecisions": "{count} lēmumi, ko vērts pārskatīt. Vienai pozīcijai var būt vairākas tēmas.",
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSavedMistakes": "Treniņu sarakstā ir {count} lēmumi. Esošie ieraksti netiek dublēti.",
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSaveMistakesFailed": "Dažus lēmumus neizdevās saglabāt. Saglabātie ir paturēti; mēģini vēlreiz.",
+  "learningPracticeCounts": "Tagad jāatkārto: {due} · saglabāts: {saved} · mēģinājumi: {attempts} · veiksmīgi atcerēts: {successes}",
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningPositionTitle": "{side} lēmums · partija {gameId}",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningReviewDue": "Pārskatīt {date}",
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "learningAttemptSubtitle": "{date} · saglabātā pozīcija {positionId}",
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisProgress": "Analizēti mači: {completed} · nepieejami: {failed}.",
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisComplete": "Analizēti mači: {completed}.",
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisCompleteWithErrors": "Analizēti {completed} mači; neizdevās analizēt {failed}. Mēģini vēlreiz, kad dzinējs būs gatavs.",
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeHitting": "Sišana un temps",
+  "learningThemeSafety": "Atklātas kauliņas un drošība",
+  "learningThemePointMaking": "Punktu veidošana",
+  "learningThemePrime": "Bloki un šķēršļi",
+  "learningThemeAnchor": "Enkuri un izlaušanās",
+  "learningThemeRace": "Skrējiena efektivitāte",
+  "learningThemeBearOff": "Kauliņu noņemšana",
+  "learningThemeBarEntry": "Ienākšana no stieņa",
+  "learningThemeCube": "Lēmumi par kubu",
+  "learningAnalysisStarting": "Analizē saglabātos mačus…",
+  "learningIntro": "Progress tiek saglabāts šajā ierīcē. Pārskati atkārtotās tēmas un izmēģini saglabātās pozīcijas vēlreiz, neredzot atbildi. Balto un melno pusi var pārskatīt atsevišķi.",
+  "learningEmptyProfile": "Izspēlē un pabeidz maču, lai izveidotu savu mācību profilu. Atsevišķus lēmumus vari saglabāt arī no mača atkārtojuma.",
+  "learningIntervalsHelp": "Sekmīgas pārskatīšanas būs jāatkārto pēc 1, 3, 7, 14 un 30 dienām. Kļūdas vai atklātas atbildes jāatkārto pēc 10 minūtēm. Agrāki atkārtojumi intervālu nepagarina.",
+  "learningAnswerContext": "Treniņa rezultāti atspoguļo tavas atbildes šeit, pat ja sākotnējā pozīcija piederēja pretiniekam.",
+  "learningRemoveTooltip": "Noņemt saglabāto lēmumu",
+  "learningRecentPractice": "Nesenie treniņi",
+  "learningRemoveTitle": "Noņemt šo uzdevumu?",
+  "learningRemoveBody": "Tiks dzēsti tā treniņa mēģinājumi. Sākotnējais mačs paliks vēsturē.",
+  "learningRemoveFailed": "Neizdevās noņemt šo uzdevumu.",
+  "learningResetTitle": "Atiestatīt treniņu progresu?",
+  "learningResetBody": "Tiks noņemti visi treniņu mēģinājumi un pārskatīšanas intervāli. Saglabātie uzdevumi un maču vēsture paliks; visi uzdevumi būs jāatkārto tagad.",
+  "learningResetAction": "Atiestatīt progresu",
+  "learningResetFailed": "Neizdevās atiestatīt treniņu progresu.",
+  "lanUnassistedNote": "Tuvumā esošās spēles ir bez trenera. Pēc mača pārskati gājienus un trenē kļūdas.",
+  "lanGameStartFailed": "Neizdevās sākt maču. Otra ierīce var mēģināt pievienoties vēlreiz.",
+  "lanHostPortInUse": "Neizdevās sākt mitināšanu — ports jau tiek izmantots. Aizveriet citas Backgammon Buddy kopijas un mēģiniet vēlreiz.",
+  "lanHostStartFailed": "Neizdevās sākt mitināšanu. Pārbaudiet Wi-Fi savienojumu un mēģiniet vēlreiz.",
+  "lanHostHelp": "Abām ierīcēm jābūt vienā Wi-Fi tīklā. Šī ierīce met kauliņus un uztur rezultātu.",
+  "lanRoomCodeInfo": "Nosauc šo kodu otram spēlētājam. Tas nodrošina piekļuvi — lietotne to nesūta tīklā.",
+  "lanFindNearbyPort": "Palūdz otrai ierīcei meklēt tuvumā esošās spēles. Klausās portā {port}.",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "lanScanHostHelp": "Otra ierīce savā resursdatora ekrānā rāda QR kodu. Noskenējot to, tiek aizpildīta adrese un telpas kods.",
+  "lanScannerUnavailable": "Kamera vai tās atļauja nav pieejama. Tā vietā ievadi adresi un telpas kodu zemāk.",
+  "lanInvalidQr": "Šis QR kods nav Backgammon Buddy spēle. Noskenē kodu otrā ierīcē.",
+  "lanScannerFailed": "Neizdevās atvērt skeneri. Tā vietā ievadi adresi un kodu zemāk.",
+  "lanNoGamesFound": "Spēles vēl nav atrastas. Pārliecinies, ka otra ierīce mitina spēli un abas ir vienā Wi-Fi tīklā, vai ievadi adresi.",
+  "lanEnterAddressHelp": "Automātiskā atrašana nedarbojas visos tīklos (iOS tā var būt bloķēta). Mitināšanas ekrānā redzēsi, kas jāievada.",
+  "lanEnterAddressError": "Ievadi adresi, kas redzama otrā ierīcē.",
+  "lanEnterRoomCodeError": "Ievadi četrciparu kodu no otras ierīces.",
+  "lanJoinVersionMismatch": "Otra ierīce izmanto citu Backgammon Buddy versiju.",
+  "lanJoinHandshakeFailed": "Ierīce neatbildēja kā Backgammon Buddy. Pārbaudi adresi un portu.",
+  "lanJoinFailed": "Neizdevās pievienoties. Pārbaudi adresi un telpas kodu, tad mēģini vēlreiz.",
+  "lanJoinTarget": "Pievienoties: {name}",
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "lanJoinTargetHelp": "Ievadi četrciparu kodu, kas redzams otrā ierīcē.",
+  "lanJoiningTarget": "Pievienojas {name}",
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "analysisCubeEstimate": "0-ply novērtējums no spēlētāja, kuram jāveic gājiens, skatpunkta. Tiek pieņemta optimāla atbilde — pieņemt vai atteikties. Pieņemtā dubultojuma gadījumā izmanto aptuvenu 0,7 kuba mūža vērtību, nevis pilnu turpmāko atkārtoto dubultojumu meklēšanu. Padziļināta analīze var mainīt rezultātu.",
+  "metricExplainerMwcBody": "Ja rezultāts ir zināms, kauliņu gājienus sarindo pēc aptuvenās mača uzvaras iespējas. Zaudējums ir procentpunktos (pp): 1 pp nozīmē kritumu no 51 % līdz 50 %. Tiek ņemta vērā kuba likme un gamona/backgamona iznākumi. Piespiedu nodošana un metieni ar vienu likumīgu pozīciju netiek iekļauti vidējos rādītājos.",
+  "metricExplainerSearchBody": "Kauliņu gājienu vērtējumi ir statiski 0-ply aprēķini pēc gājiena, nevis simulācijas. Mača vērtībās izmanto mača kapitāla tabulu un neņem vērā nākamos kuba gājienus. Kuba pārskatā pieņemtām dubultojuma reizēm izmanto daļēju 0,7 kuba mūža aptuveno vērtību. Tā nav pilna kuba meklēšana. Ja līdz mača beigām ir vairāk par 25 punktiem, izmanto tabulas 25-away robežu. Padziļināta analīze var mainīt gandrīz vienādus vērtējumus; ticamības intervāls netiek aprēķināts.",
+  "metricExplainerEquityBody": "Ja rezultāts nav zināms, kuba neietekmēts kapitāls rāda pozīcijas vidējo vērtību punktos, ja kuba vērtība ir 1. +1,0 nozīmē gaidāmu viena punkta uzvaru, bet −0,5 — puspunktu zaudējumu.",
+  "metricExplainerEquityLossBody": "Katru gājienu salīdzinām ar dzinēja labāko gājienu. Kapitāla zudums rāda, cik paredzamās vērtības gājiens atdeva. −0,016 nozīmē, ka tas bija tikai par 0,016 punktiem sliktāks — niecīga kļūda. 0,000 nozīmē, ka atrasts labākais gājiens.",
+  "metricExplainerErrorRateBody": "Vidējais zaudējums ir novērtēto kauliņu lēmumu vidējais rādītājs izvēlētajās vienībās. Kuba lēmumiem ir atsevišķs vidējais. Mazāks skaitlis nozīmē, ka gājieni ir tuvāk dzinēja augstākajam vērtējumam; tas nav kalibrēts spēlētāja reitings.",
+  "metricExplainerMoveMarksBody": "MWC mācību robežas: labākais < 0,05 pp, labs < 0,5 pp, apšaubāms < 1,5 pp, kļūda < 3 pp, rupja kļūda ≥ 3 pp. Tās ir mācību robežas, nevis ticamības vai turnīra reitings.\n\nKuba neietekmēta kapitāla mācību robežas:"
 }

@@ -12,6 +12,9 @@ import '../game/game_record.dart';
 import '../game/match_controller.dart';
 import '../game/player_agent.dart';
 import '../l10n/localization_lookup.dart';
+import '../l10n/move_explanation_localization.dart';
+import '../l10n/tutor_phrase_localization.dart';
+import '../l10n/app_localizations.dart';
 import '../net/net_match_controller.dart';
 import '../tutor/move_assessment.dart';
 import '../tutor/tutor_service.dart';
@@ -674,9 +677,10 @@ class _GameScreenState extends State<GameScreen> {
   /// already is — so it can never reflow the board or block Undo/Confirm. A
   /// repeat tap restarts the timer instead of queueing a second hint.
   void _showNoLegalSourceHint(bool hasStagedHops) {
+    final l10n = appLocalizationsOf(context);
     final message = hasStagedHops
-        ? 'No legal move for that checker with the remaining dice — try Undo'
-        : 'No legal move for that checker with the remaining dice';
+        ? l10n.gameTapNoLegalMoveUndo
+        : l10n.gameTapNoLegalMove;
     _tapHintTimer?.cancel();
     setState(() => _tapHint = message);
     _tapHintTimer = Timer(_tapHintDuration, () {
@@ -722,12 +726,10 @@ class _GameScreenState extends State<GameScreen> {
         SnackBar(
           behavior: SnackBarBehavior.floating,
           margin: const EdgeInsets.only(bottom: 104, left: 12, right: 12),
-          content: const Text(
-            'Tip: drag checkers or tap them — change in Settings',
-          ),
+          content: Text(appLocalizationsOf(context).gameDragHint),
           duration: const Duration(seconds: 6),
           action: SnackBarAction(
-            label: 'Got it',
+            label: appLocalizationsOf(context).commonGotIt,
             onPressed: messenger.hideCurrentSnackBar,
           ),
         ),
@@ -807,10 +809,8 @@ class _GameScreenState extends State<GameScreen> {
     if (_tutor == null || !_tutorOptions.bestMoves) return;
     if (_tutorOptions.tryFirst && !_entryControl.canConfirm) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Stage a complete legal play first, then ask for a hint.',
-          ),
+        SnackBar(
+          content: Text(appLocalizationsOf(context).gameHintStageBeforeHint),
         ),
       );
       return;
@@ -1127,14 +1127,16 @@ class _GameScreenState extends State<GameScreen> {
   /// moment anything above it wants the screen, so it can never sit on top of a
   /// decision the match is waiting for.
   List<Widget> _buildModals(Player? cubeSide, Player? resignSide) {
+    final l10n = appLocalizationsOf(context);
     if (_c.matchOver) {
       return [
         matchEndDialog(
+          l10n: l10n,
           winner: _c.match.winner,
-          score: scoreLine(_c),
+          score: scoreLine(_c, l10n),
           savedToHistory: _canShowSummary,
           summaryAction: _canShowSummary
-              ? _summaryAction('Match summary')
+              ? _summaryAction(l10n.gameMatchSummary)
               : null,
           onDone: () => Navigator.of(context).maybePop(),
         ),
@@ -1143,10 +1145,11 @@ class _GameScreenState extends State<GameScreen> {
     if (_c.awaitingNextGame) {
       return [
         gameEndDialog(
+          l10n: l10n,
           result: _c.state.result!,
-          score: scoreLine(_c),
+          score: scoreLine(_c, l10n),
           summaryAction: _canShowSummary
-              ? _summaryAction('Analyze game')
+              ? _summaryAction(l10n.gameAnalyzeGame)
               : null,
           onNextGame: _c.continueToNextGame,
         ),
@@ -1167,11 +1170,12 @@ class _GameScreenState extends State<GameScreen> {
       final advice = _tutorSync.cubeResponseAdvice;
       return [
         cubeDialog(
+          l10n: l10n,
           state: state,
           tutorLine:
               _tutor == null || advice == null || !_tutorOptions.cubeAdvice
               ? ''
-              : '\nTutor: ${advice.advice.shouldTake ? 'Take' : 'Pass'}',
+              : '\n${advice.advice.shouldTake ? appLocalizationsOf(context).gameTutorCubeTake : appLocalizationsOf(context).gameTutorCubePass}',
           onPass: () => _answerCube(cubeSide, CubeAction.drop),
           onTake: () => _answerCube(cubeSide, CubeAction.take),
         ),
@@ -1181,6 +1185,7 @@ class _GameScreenState extends State<GameScreen> {
       final (state, value) = _c.pendingResignOf(resignSide).value!;
       return [
         resignDialog(
+          l10n: l10n,
           state: state,
           value: value,
           onDecline: () => _c.submitResignResponse(resignSide, false),
@@ -1337,31 +1342,39 @@ class _GameScreenState extends State<GameScreen> {
   /// the sheet does not wait that long, because the turn changing hands closes
   /// it outright (see [_closeSurrenderIfOutranked]).
   Widget _surrenderDialog() {
+    final l10n = appLocalizationsOf(context);
     // Tabletop: nothing is on offer until the sheet knows who is conceding.
     if (_surrenderFor == null) return _surrenderSideChooser();
     final ready = _surrenderReady;
     final side = _surrenderFor!;
     return ModalCard(
-      title: 'Surrender',
+      title: l10n.surrenderTitle,
       message: _surrenderNeedsSideChoice
           // Name the side back to the user: on a shared device the sheet is the
           // only place that says WHO this concession costs.
-          ? '${playerName(side)} concedes the current game.'
-          : 'Concedes the current game.',
+          ? l10n.surrenderNamedConcedes(playerName(side, l10n))
+          : l10n.surrenderConcedes,
       footnote: ready
           ? null
           : _surrenderNeedsSideChoice
-          ? "Available at the start of ${playerName(side)}'s turn"
-          : 'Available at the start of your turn',
+          ? l10n.surrenderAvailableAtNamedTurn(playerName(side, l10n))
+          : l10n.surrenderAvailableAtYourTurn,
       actions: [
-        CardAction(label: 'Cancel', onPressed: () => setState(_closeSurrender)),
+        CardAction(
+          label: l10n.commonCancel,
+          onPressed: () => setState(_closeSurrender),
+        ),
         for (final (value, label) in const [
-          (ResignValue.single, 'Single (1)'),
-          (ResignValue.gammon, 'Gammon (2)'),
-          (ResignValue.backgammon, 'Backgammon (3)'),
+          (ResignValue.single, 'single'),
+          (ResignValue.gammon, 'gammon'),
+          (ResignValue.backgammon, 'backgammon'),
         ])
           CardAction(
-            label: label,
+            label: switch (label) {
+              'single' => l10n.surrenderSingle,
+              'gammon' => l10n.surrenderGammon,
+              _ => l10n.surrenderBackgammon,
+            },
             onPressed: ready ? () => _surrender(value) : null,
           ),
       ],
@@ -1376,18 +1389,24 @@ class _GameScreenState extends State<GameScreen> {
   /// holds the values shut until THAT side's own pre-roll gate — so a choice
   /// made during the opponent's turn simply waits rather than firing against
   /// whoever happens to be on turn.
-  Widget _surrenderSideChooser() => ModalCard(
-    title: 'Surrender',
-    message: 'Who is conceding this game?',
-    actions: [
-      CardAction(label: 'Cancel', onPressed: () => setState(_closeSurrender)),
-      for (final side in [Player.white, Player.black])
+  Widget _surrenderSideChooser() {
+    final l10n = appLocalizationsOf(context);
+    return ModalCard(
+      title: l10n.surrenderTitle,
+      message: l10n.surrenderChoosePlayer,
+      actions: [
         CardAction(
-          label: playerName(side),
-          onPressed: () => setState(() => _surrenderFor = side),
+          label: l10n.commonCancel,
+          onPressed: () => setState(_closeSurrender),
         ),
-    ],
-  );
+        for (final side in [Player.white, Player.black])
+          CardAction(
+            label: playerName(side, l10n),
+            onPressed: () => setState(() => _surrenderFor = side),
+          ),
+      ],
+    );
+  }
 
   /// Offers the resignation and closes the sheet. Re-checks [_surrenderReady] AT
   /// INVOCATION for the same reason the header's Double re-checks its own
@@ -1485,28 +1504,30 @@ class _GameScreenState extends State<GameScreen> {
     return explanation;
   }
 
-  String _moveActor(Player side) => _hotSeat
-      ? playerName(side)
+  String _moveActor(Player side, AppLocalizations l10n) => _hotSeat
+      ? playerName(side, l10n)
       : _c.isLocalHuman(side)
-      ? 'Your play'
-      : 'Computer';
+      ? l10n.gameTutorYourPlay
+      : l10n.gameTutorComputer;
 
-  String _quality(MoveAssessment assessment) => !assessment.isDecision
-      ? 'forced play'
+  String _quality(MoveAssessment assessment, AppLocalizations l10n) =>
+      !assessment.isDecision
+      ? l10n.gameTutorForcedPlay
       : switch (assessment.mark) {
-          MoveMark.best => 'top choice',
-          MoveMark.good => 'sound play',
-          MoveMark.dubious => 'another play may fit better',
-          MoveMark.error => 'another play fits this position better',
-          MoveMark.blunder => 'a clearly stronger play was available',
+          MoveMark.best => l10n.gameTutorTopChoice,
+          MoveMark.good => l10n.gameTutorSoundPlay,
+          MoveMark.dubious => l10n.gameTutorAnotherPlayMayFitBetter,
+          MoveMark.error => l10n.gameTutorAnotherPlayFitsBetter,
+          MoveMark.blunder => l10n.gameTutorStrongerPlayAvailable,
         };
 
   ({String heading, String reason}) _tutorCopy() {
+    final l10n = appLocalizationsOf(context);
     final selected = _tutorPresentation.selectedEventIndex;
     if (!_tutorOptions.commentary && selected == null) {
       return (
-        heading: 'Game commentary is off.',
-        reason: 'Open the tutor for the tools you have enabled.',
+        heading: l10n.gameTutorCommentaryOff,
+        reason: l10n.gameTutorToolsAvailable,
       );
     }
     final review = _visibleReviewIndex;
@@ -1517,19 +1538,21 @@ class _GameScreenState extends State<GameScreen> {
       final explanation = assessment != null && _tutorOptions.explanations
           ? _explanation(before, assessment)
           : null;
-      final next = selected == null ? 'Roll next. ' : '';
+      final next = selected == null ? '${l10n.gameTutorNextRoll} ' : '';
       final unavailable = _tutorSync.completedAssessments.contains(review);
       final plan =
-          explanation?.summaryReason ??
-          'No evaluated explanation is available for this recorded move.';
+          (explanation?.copy == null
+              ? explanation?.summaryReason
+              : localizeMoveExplanationSummary(l10n, explanation!.copy!)) ??
+          l10n.gameTutorNoEvaluatedReview;
       return (
         heading:
-            '${selected == null ? '' : 'Review: '}${_moveActor(event.player)}: '
+            '${_moveActor(event.player, l10n)}: '
             '${assessment == null
                 ? unavailable
-                      ? 'analysis unavailable'
-                      : 'reviewing…'
-                : _quality(assessment)}',
+                      ? l10n.gameTutorAnalysisUnavailable
+                      : l10n.gameTutorReviewing
+                : _quality(assessment, l10n)}',
         reason: '$next${_tutorOptions.explanations ? plan : ''}'.trim(),
       );
     }
@@ -1540,10 +1563,9 @@ class _GameScreenState extends State<GameScreen> {
         _c.state.phase == GamePhase.moving) {
       return (
         heading: staged == null
-            ? 'Try your own play first.'
-            : 'Keep building your play.',
-        reason:
-            'Stage a complete legal play before revealing coaching or hints.',
+            ? l10n.gameTutorTryYourPlayFirst
+            : l10n.gameTutorKeepBuilding,
+        reason: l10n.gameTutorStageCompleteBeforeCoaching,
       );
     }
     if (staged != null) {
@@ -1553,32 +1575,43 @@ class _GameScreenState extends State<GameScreen> {
           : null;
       return (
         heading: assessment != null
-            ? 'Your play: ${_quality(assessment)}'
+            ? l10n.gameTutorPlayQuality(_quality(assessment, l10n))
             : complete
-            ? 'Ready to confirm'
-            : 'Your play is taking shape.',
+            ? l10n.gameTutorReadyToConfirm
+            : l10n.gameTutorPlayTakingShape,
         reason: _tutorOptions.explanations
-            ? explanation?.summaryReason ??
-                  stagedMoveCommentary(_c.state, staged, isComplete: complete)
+            ? (explanation?.copy == null
+                      ? explanation?.summaryReason
+                      : localizeMoveExplanationSummary(
+                          l10n,
+                          explanation!.copy!,
+                        )) ??
+                  localizeTutorPhrase(
+                    l10n,
+                    stagedMovePhrase(_c.state, staged, isComplete: complete),
+                  )
             : complete
-            ? 'Confirm to play it, or Undo to reconsider.'
-            : 'Finish the remaining dice, or Undo to reconsider.',
+            ? l10n.gameTutorConfirmOrUndo
+            : l10n.gameTutorFinishDiceOrUndo,
       );
     }
     if (_c.isThinking && !_c.isLocalHuman(_c.state.turn)) {
       return (
-        heading: 'The computer is considering its play.',
-        reason: 'Its completed play will be reviewed here.',
+        heading: l10n.gameTutorComputerConsidering,
+        reason: l10n.gameTutorComputerPlayReviewed,
       );
     }
     final position = PositionCoaching.forState(_c.state);
     return (
-      heading: position.summary,
+      heading: localizeTutorPhrase(l10n, position.summaryPhrase),
       reason: _tutorOptions.explanations
           ? [
-              position.plan,
+              localizeTutorPhrase(l10n, position.planPhrase),
               if (_tutorPresentation.positionAssessment != null)
-                _tutorPresentation.positionAssessment,
+                localizeMoveExplanationCopy(
+                  l10n,
+                  _tutorPresentation.positionAssessment!,
+                ),
             ].whereType<String>().join(' ')
           : '',
     );
@@ -1640,13 +1673,13 @@ class _GameScreenState extends State<GameScreen> {
           ),
         if (review != null)
           Text(
-            'Played: ${(_c.game.events[review] as MoveEvent).move}'
-            '${_tutorOptions.bestMoves && assessment != null ? '  ·  Best: ${assessment.best}' : ''}',
+            '${appLocalizationsOf(context).tutorPlayedMove((_c.game.events[review] as MoveEvent).move.toString())}'
+            '${_tutorOptions.bestMoves && assessment != null ? '  ·  ${appLocalizationsOf(context).tutorBestMove(assessment.best.toString())}' : ''}',
             key: const ValueKey('playedMoveLine'),
           ),
         if (blocked)
-          const Text(
-            'Finish your own legal play first. Coaching will then help you compare it.',
+          Text(
+            appLocalizationsOf(context).gameTutorStageCompleteBeforeCoaching,
           ),
         if (!blocked && explanation != null)
           MoveExplanationView(explanation: explanation, showOverview: false),
@@ -1655,10 +1688,14 @@ class _GameScreenState extends State<GameScreen> {
             staged == null &&
             _tutorOptions.commentary &&
             _tutorOptions.explanations)
-          for (final reason in PositionCoaching.forState(_c.state).reasons)
+          for (final phrase in PositionCoaching.forState(
+            _c.state,
+          ).reasonPhrases)
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: Text(reason),
+              child: Text(
+                localizeTutorPhrase(appLocalizationsOf(context), phrase),
+              ),
             ),
         if (!blocked &&
             review == null &&
@@ -1666,7 +1703,11 @@ class _GameScreenState extends State<GameScreen> {
             assessment != null)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Text('Best: ${assessment.best}'),
+            child: Text(
+              appLocalizationsOf(
+                context,
+              ).tutorBestMove(assessment.best.toString()),
+            ),
           ),
         if (_tutorOptions.cubeAdvice &&
             _c.awaitingHumanTurn &&
@@ -1683,38 +1724,42 @@ class _GameScreenState extends State<GameScreen> {
           TextButton.icon(
             onPressed: _openHint,
             icon: const Icon(Icons.lightbulb_outline),
-            label: const Text('Show ranked plays'),
+            label: Text(appLocalizationsOf(context).tutorShowRankedPlays),
           ),
         if (!blocked && assessment == null && !_hint.isOpen)
-          const Padding(
-            padding: EdgeInsets.only(top: 8),
-            child: Text(
-              'Tap a completed move in the log to review its decision here.',
-            ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(appLocalizationsOf(context).tutorReviewRecordedMove),
           ),
       ],
     );
   }
 
   Widget _rankedTutorDetails() {
+    final l10n = appLocalizationsOf(context);
     final moves = _hint.moves ?? const <ScoredMove>[];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Top plays', style: Theme.of(context).textTheme.titleMedium),
+        Text(
+          l10n.tutorTopPlays,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
         if (_hint.isLoading)
           const LinearProgressIndicator()
         else if (moves.isEmpty)
-          const Text('No hints available.')
+          Text(l10n.tutorNoHintsAvailable)
         else ...[
-          const Text('Tap a play to preview it on the board, then Confirm.'),
+          Text(l10n.tutorPreviewThenConfirm),
           for (var i = 0; i < moves.length && i < 5; i++) ...[
             ListTile(
               contentPadding: EdgeInsets.zero,
               leading: Text('${i + 1}.'),
               title: Text('${moves[i].move}'),
               subtitle: Text(
-                i == 0 ? 'Top choice for this position' : 'Alternative play',
+                i == 0
+                    ? l10n.tutorTopChoiceForPosition
+                    : l10n.tutorAlternativePlay,
               ),
               onTap: () => _applyHint(moves[i].move),
             ),
@@ -1728,17 +1773,19 @@ class _GameScreenState extends State<GameScreen> {
           ],
           ExpansionTile(
             tilePadding: EdgeInsets.zero,
-            title: const Text('Engine estimates'),
+            title: Text(l10n.tutorEngineEstimates),
             children: [
-              const Text(
-                '0-ply estimate · current score and stake · no future cubes',
+              Text(l10n.tutorEstimateScope),
+              Text(
+                moves.first.matchWinningChance == null
+                    ? l10n.tutorEquity
+                    : l10n.tutorMwcPercent,
               ),
-              Text(moves.first.matchWinningChance == null ? 'Equity' : 'MWC %'),
               for (final move in moves.take(5))
                 Text(
                   '${move.move}: ${move.matchWinningChance == null ? move.equity.toStringAsFixed(3) : (move.matchWinningChance! * 100).toStringAsFixed(2)}',
                 ),
-              const Text('Near ties can change with deeper analysis.'),
+              Text(l10n.tutorNearTiesNote),
             ],
           ),
         ],
@@ -1764,7 +1811,7 @@ class _GameScreenState extends State<GameScreen> {
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: Text(
-                    'Tutoring options',
+                    appLocalizationsOf(context).tutorOptions,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
@@ -1785,7 +1832,7 @@ class _GameScreenState extends State<GameScreen> {
                   padding: const EdgeInsets.all(8),
                   child: TextButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text('Done'),
+                    child: Text(appLocalizationsOf(context).commonDone),
                   ),
                 ),
               ],
@@ -1909,7 +1956,7 @@ class _GameScreenState extends State<GameScreen> {
                     ? _offerDouble
                     : null,
                 icon: const Icon(Icons.control_point_duplicate, size: 16),
-                label: const Text('Double', maxLines: 1, softWrap: false),
+                label: Text(l10n.cubeDouble, maxLines: 1, softWrap: false),
                 style: _compactButton,
               ),
             ),
@@ -2009,8 +2056,9 @@ class _GameScreenState extends State<GameScreen> {
   /// the only two ways to be blocked here are "it's the other edge's turn"
   /// and whatever [_doublingLegal] itself refuses.
   void _explainTabletopDoubleBlocked(bool live) {
+    final l10n = appLocalizationsOf(context);
     final reason = !live
-        ? "It's the other player's turn to act."
+        ? l10n.cubeBlockedOtherPlayersTurn
         : _doubleBlockedReasonFor(_c.state);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -2026,13 +2074,12 @@ class _GameScreenState extends State<GameScreen> {
   /// whose edge is asking.
   String _doubleBlockedReasonFor(GameState s) {
     if (s.isCrawfordGame) {
-      return 'The cube is unavailable for the Crawford game.';
+      return appLocalizationsOf(context).cubeBlockedCrawford;
     }
     if (s.cube.owner != null && s.cube.owner != s.turn) {
-      return 'Only the cube owner can double, and the other side owns it '
-          'right now.';
+      return appLocalizationsOf(context).cubeBlockedOwnedByOther;
     }
-    return 'Doubling is not available right now.';
+    return appLocalizationsOf(context).cubeBlockedUnavailable;
   }
 
   /// Shared compact style for secondary action-bar controls. Primary actions,
@@ -2053,10 +2100,13 @@ class _GameScreenState extends State<GameScreen> {
     // Your own roll is on screen being rolled: say so, rather than reporting
     // whatever the engine happens to be chewing on in the background.
     final presenting = _dice.presentingSide;
-    if (presenting != null && _c.isLocalHuman(presenting)) return 'Rolling…';
-    if (_c.isThinking) return 'Thinking…';
+    final l10n = appLocalizationsOf(context);
+    if (presenting != null && _c.isLocalHuman(presenting)) {
+      return l10n.gameStatusRolling;
+    }
+    if (_c.isThinking) return l10n.gameStatusThinking;
     if (_c.matchOver || _c.awaitingNextGame) return '';
-    return "${playerName(_c.state.turn)}'s turn";
+    return l10n.gameStatusPlayersTurn(playerName(_c.state.turn, l10n));
   }
 
   // --- Score sheet -----------------------------------------------------------
@@ -2119,8 +2169,10 @@ class _GameScreenState extends State<GameScreen> {
   Widget _cubeAdviceLine(CubeAssessment a) {
     final advice = a.advice;
     if (!advice.shouldDouble) return const SizedBox.shrink();
-    final text =
-        'Double — opponent should ${advice.shouldTake ? 'take' : 'pass'}';
+    final l10n = appLocalizationsOf(context);
+    final text = advice.shouldTake
+        ? l10n.cubeAdviceOpponentTake
+        : l10n.cubeAdviceOpponentPass;
     final scheme = Theme.of(context).colorScheme;
     return Align(
       alignment: Alignment.centerLeft,
@@ -2171,21 +2223,26 @@ class _InlineCandidateExplanationState
   }
 
   @override
-  Widget build(BuildContext context) => ExpansionTile(
-    tilePadding: EdgeInsets.zero,
-    title: Text(widget.top ? 'Why this play?' : 'Compare this alternative'),
-    onExpansionChanged: (value) => setState(() => _expanded = value),
-    children: [
-      if (_expanded)
-        MoveExplanationView(
-          explanation: _explanation ??= MoveExplanation.forCandidate(
-            widget.position,
-            widget.candidate,
-            widget.best,
+  Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
+    return ExpansionTile(
+      tilePadding: EdgeInsets.zero,
+      title: Text(
+        widget.top ? l10n.tutorWhyThisPlay : l10n.tutorCompareAlternative,
+      ),
+      onExpansionChanged: (value) => setState(() => _expanded = value),
+      children: [
+        if (_expanded)
+          MoveExplanationView(
+            explanation: _explanation ??= MoveExplanation.forCandidate(
+              widget.position,
+              widget.candidate,
+              widget.best,
+            ),
           ),
-        ),
-    ],
-  );
+      ],
+    );
+  }
 }
 
 class _ErrorBanner extends StatelessWidget {
@@ -2204,7 +2261,7 @@ class _ErrorBanner extends StatelessWidget {
       container: true,
       liveRegion: true,
       excludeSemantics: true,
-      label: 'Error: $error',
+      label: appLocalizationsOf(context).gameErrorBannerLabel('$error'),
       child: Material(
         color: scheme.errorContainer,
         child: Padding(

@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Õppemärkmete punktinumbreid loetakse käigul oleva mängija kodulaua poolt.",
   "tutorHittingRollNote": "Löögivõimaluste arv hõlmab kõiki 36 järjestatud täringutulemust ning lubatud otseseid ja kaudseid lööke; need on võimalused, mitte vastase valiku ennustus.",
   "tutorNoEvaluatedAlternatives": "Selle käigu kohta pole hinnatud alternatiive.",
-  "tutorForcedPassNoDecision": "Sunnitud pass ei hõlma nuppude käiguvalikut."
+  "tutorForcedPassNoDecision": "Sunnitud pass ei hõlma nuppude käiguvalikut.",
+  "settingsReset": "Lähtesta",
+  "settingsAppLanguage": "Rakenduse keel",
+  "settingsTheme": "Välimus",
+  "settingsThemeSystem": "Süsteemi järgi",
+  "settingsThemeLight": "Hele",
+  "settingsThemeDark": "Tume",
+  "settingsAnimationSpeed": "Animatsiooni kiirus",
+  "settingsAnimationNone": "Puudub",
+  "settingsAnimationNormal": "Tavaline",
+  "settingsAnimationFast": "Kiire",
+  "settingsDiceRollAnimation": "Täringuviske animatsioon",
+  "settingsDiceRollAnimationHelp": "Täringud veerevad enne iga viset",
+  "settingsDefaultMatchLength": "Matši vaikepikkus",
+  "settingsDefaultDifficulty": "Vaikeraskus",
+  "settingsDifficultyEasy": "Kerge",
+  "settingsDifficultyMedium": "Keskmine",
+  "settingsDifficultyHard": "Raske",
+  "settingsDifficultyExpert": "Ekspert",
+  "settingsTutorModeDefault": "Juhendaja vaikeseade",
+  "settingsTutorAuto": "Automaatne",
+  "settingsTutorOn": "Sees",
+  "settingsTutorOff": "Väljas",
+  "settingsTutorModeHelp": "Automaatne lülitab juhendaja sisse igal arvuti raskusastmel. Sees ja väljas määravad kohalike matšide algse valiku. Läheduses ja võrgus mängides abi ei anta; salvestatud mänge saab hiljem üle vaadata. Õpetamiseelistused salvestatakse selles seadmes.",
+  "settingsTutorPreferences": "Juhendaja eelistused",
+  "settingsTutorPreferencesSubtitle": "Vaikesätted tulevaste matšide jaoks",
+  "settingsTutorSaveError": "Juhendaja eelistusi ei saanud salvestada.",
+  "settingsGameplay": "Mängimine",
+  "settingsMoveHighlights": "Käigu esiletõstmine",
+  "settingsMoveHighlightsHelp": "Ümbritse valitavad nupud ja tõsta sihtkohad esile",
+  "settingsDragToMove": "Lohista liigutamiseks",
+  "settingsDragToMoveHelp": "Lohista nupp sihtkohta (puudutamine töötab alati)",
+  "settingsCombinedMoves": "Ühendatud käigud",
+  "settingsCombinedMovesHelp": "Ühe puudutusega liigub nupp mõlema täringu järgi",
+  "settingsRotateBoard": "Pööra lauda käikude vahel",
+  "settingsRotateBoardHelp": "Mitmekesi ühel seadmel: pööra vaade aktiivse mängija järgi",
+  "settingsPassDevice": "Anna seade edasi",
+  "settingsPassDeviceHelp": "Peida laud kordamööda mängijate vahetumisel",
+  "settingsShowScore": "Näita skoori",
+  "settingsShowScoreHelp": "Kuva päises matši jooksev skoor",
+  "settingsBuddyMode": "Buddy kõneviis",
+  "settingsBuddyTerse": "Lühike",
+  "settingsBuddyFriendly": "Sõbralik",
+  "settingsBuddyTerseHelp": "Kuidas Buddy käiku ette loeb: „13/8, 24/22” – märgistus, mida mängijad laua taga kasutavad.",
+  "settingsBuddyFriendlyHelp": "Kuidas Buddy käiku ette loeb: „Liiguta üks nupp 13-lt 8-le ja teine 24-lt 22-le.”",
+  "settingsListenForDice": "Kuula täringuid",
+  "settingsListenForDiceHelp": "Buddy reageerib lauale kiiremini, kui kuuleb viset. Väljalülitamine ei muuda muud.",
+  "settingsDiagnostics": "Diagnostika",
+  "settingsErrorLog": "Tõrkelogi",
+  "settingsErrorLogHelp": "Hiljutised tõrked, mida saab veateatesse kopeerida",
+  "settingsReportBug": "Teata veast",
+  "settingsReportBugHelp": "Ava GitHubis juhendatud veateade",
+  "settingsSuggestIdea": "Paku ideed",
+  "settingsSuggestIdeaHelp": "Aita meil juhendajat ja mängu paremaks teha",
+  "settingsAbout": "Teave",
+  "settingsOpenSourceLicenses": "Avatud lähtekoodi litsentsid",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "gameTutorCommentaryOff": "Mängukommentaarid on väljas.",
+  "gameTutorToolsAvailable": "Ava juhendaja, et kasutada lubatud tööriistu.",
+  "gameTutorNextRoll": "Viska järgmisena.",
+  "gameTutorNoEvaluatedReview": "Selle salvestatud käigu kohta pole hinnatud selgitust.",
+  "gameTutorAnalysisUnavailable": "analüüs pole saadaval",
+  "gameTutorReviewing": "vaatab üle…",
+  "gameTutorTryYourPlayFirst": "Proovi kõigepealt ise käia.",
+  "gameTutorKeepBuilding": "Jätka käigu koostamist.",
+  "gameTutorStageCompleteBeforeCoaching": "Koosta täielik lubatud käik, enne kui näed juhiseid või vihjeid.",
+  "gameTutorReadyToConfirm": "Valmis kinnitamiseks",
+  "gameTutorPlayTakingShape": "Sinu käik on kujunemas.",
+  "gameTutorConfirmOrUndo": "Käigu tegemiseks kinnita või mõtle ümber ja võta tagasi.",
+  "gameTutorFinishDiceOrUndo": "Kasuta ülejäänud täringut või võta käik tagasi.",
+  "gameTutorComputerConsidering": "Arvuti mõtleb oma käigu üle.",
+  "gameTutorComputerPlayReviewed": "Valminud käik vaadatakse siin üle.",
+  "gameTutorYourPlay": "Sinu käik",
+  "gameTutorComputer": "Arvuti",
+  "gameTutorPlayQuality": "Sinu käik: {quality}",
+  "gameTutorForcedPlay": "sunnitud käik",
+  "gameTutorTopChoice": "parim valik",
+  "gameTutorSoundPlay": "hea käik",
+  "gameTutorAnotherPlayMayFitBetter": "mõni teine käik võib sobida paremini",
+  "gameTutorAnotherPlayFitsBetter": "mõni teine käik sobib sellesse seisu paremini",
+  "gameTutorStrongerPlayAvailable": "saadaval oli selgelt parem käik",
+  "gameTutorPositionEdge": "Seis annab hinnanguliselt eelise poolele {side}.",
+  "gameTutorPositionEven": "Seis on ligikaudu võrdne.",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "tutorPhraseGameFinished": "Mäng on läbi.",
+  "tutorPhraseReviewFinishedGame": "Vaata käigud üle ja leia harjutamist vääriv otsus.",
+  "tutorPhraseCubeOffered": "Kahekordistamiskuup on pakutud.",
+  "tutorPhraseCubeDecisionPrompt": "Otsusta, kas võtta või loobuda, enne kui kavandad nuppude käiku.",
+  "tutorPhraseCubeScoreContext": "Matši skoor muudab lisapanuse väärtust.",
+  "tutorPhraseResignationOffered": "Loobumist on pakutud.",
+  "tutorPhraseResignationDecisionPrompt": "Võrdle pakutud punkte seisuga, enne kui loobumise vastu võtad või jätkad.",
+  "tutorPhraseNoLegalPlay": "Selle viskega pole lubatud käiku.",
+  "tutorPhraseForcedPassPrompt": "Sunnitud pass pole viga; oota järgmist viset.",
+  "tutorPhraseOnlyOneResult": "Ainult üks lubatud lõppseis.",
+  "tutorPhraseForcedTurnPrompt": "Tee sunnitud käik. Selle viske eest pole valikut hinnata.",
+  "tutorPhrasePipCountsLevel": "Pipide arv on võrdne.",
+  "tutorPhrasePipCountsAhead": "Sul on {count} pipi edumaa.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "Jääd maha {count} pipiga.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "Laual on {count} nuppu: kõigepealt tuleb need sisse tuua.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Too nupp enne teisi käike sisse ja otsi siis turvalist maandumiskohta.",
+  "tutorPhraseOpponentHomePoints": "Vastasel on kodulaual {count} suletud punkti.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Mahavõtmise võidujooks.",
+  "tutorPhrasePureRace": "Puhas võidujooks.",
+  "tutorPhraseBearOffSpread": "Vii nuppe maha, jättes järgmise viske jaoks kasuliku jaotuse.",
+  "tutorPhraseBringRearCheckersHome": "Too tagumised nupud koju, kuhjamata neid liigselt ühele punktile.",
+  "tutorPhraseArmiesHavePassed": "Mängijad on teineteisest möödunud; rohkem lüüa ei saa.",
+  "tutorPhraseContactStillMatters": "{part} Kontakt on endiselt oluline.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "Vastasel on {count} nuppu laual.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Hoia laud suletuna, tuues ülejäänud nupud koju.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Ehita või hoia kodulaud suletuna, kuni vastane püüab siseneda.",
+  "tutorPhraseHomePointsCloseEntries": "Sul on kodulaual {count} punkti; igaüks neist sulgeb ühe sisenemiskoha.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Kontakt {count}-punktise tõkkega.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Võrdle tõkke pikendamist varunuppude hoidmisega, et seda säilitada.",
+  "tutorPhraseSpareCheckersCanMove": "{count} varunuppu saavad liikuda oma punkti kohe avamata.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Kontakt tugipunktiga punktidel {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Võrdle taganuppe koju toomist turvalise tugipunkti hoidmisega.",
+  "tutorPhraseCompareAnchorProgressBehind": "Pea turvalist tugipunkti meeles, otsides lööki või võimalust lauda parandada.",
+  "tutorPhrasePreserveAnchorFoothold": "Tugipunkti ei saa lüüa, kuid nendel nuppudel on veel pikk tee koju.",
+  "tutorPhraseContactThreats": "Kontakt: mõlemad pooled võivad endiselt lüüa.",
+  "tutorPhraseLookForPointsAndSafety": "Otsi kasulikke punkte ja võrdle siis üksikute nuppude paljastamise riski.",
+  "tutorPhraseHomePointsAndBlots": "Sul on kodulaual {count} punkti ning laual {otherCount} üksikut nuppu.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Vali nupp, millega käiku alustada.",
+  "tutorPhraseLegalPlayPrompt": "Kommentaari nägemiseks alusta lubatud käiku.",
+  "tutorPhraseStagedHit": "Lõid vastase {count} {count, plural, one{nupu} other{nuppu}}.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "Tõid laualt sisse {count} nuppu.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Võtsid maha {count} {count, plural, one{nupu} other{nuppu}}.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Tegid punktid {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Sinu {point}. punktis olev nupp on praegu löögile avatud.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "Sinu {point}. punkti varunuppu saab hiljem liigutada punkti avamata.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Kasuta ülejäänud kasutatavad täringud enne, kui kogu käiku hinnatakse.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Kõik 15 nuppu on maas: mäng on võidetud.",
+  "tutorPhraseStagedHitShortPlan": "Löök võidab aega, kuni vastane üritab laualt siseneda.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Tõhus mahavõtmine eemaldab nuppe ja jätab järgmise viske jaoks kasulikud arvud.",
+  "tutorPhraseStagedRaceHomePlan": "Võidujooksus too tagumised nupud koju ja jäta neile head mahavõtmiskohad.",
+  "tutorPhraseStagedBearOffContactPlan": "Mahavõtmine viib edasi, kuid allesjäänud kontakt jätab löögiohu.",
+  "tutorPhraseStagedReentryPlan": "Sisenemine toob nupu tagasi mängu; järgmiseks otsi sellele turvalist kohta.",
+  "tutorPhraseStagedHomeBoardPlan": "Uus kodulauapunkt sulgeb pärast võimalikku lööki ühe sisenemisnumbri.",
+  "tutorPhraseStagedPrimePlan": "Pikem tõke sulgeb rohkem maandumiskohti; varunupud aitavad seda hoida.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Tugipunktist lahkumine viib edasi, kuid loobub turvalisest jalgealusest.",
+  "tutorPhraseStagedNewAnchorPlan": "Uus tugipunkt annab taganupule turvalise koha.",
+  "tutorPhraseStagedCoverBlotPlan": "Üksiku nupu katmine eemaldab vastase sihtmärgi.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Valik on arendamise ja ohutuse vahel: ehitajad on ka võimalikud sihtmärgid.",
+  "tutorPhraseStagedCompletePrompt": "{part} Kogu käik on koostatud; selle kinnitamiseks vajuta Kinnita.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Selle viskega ei saa nuppude käiku valida; seda otsusena ei hinnata.",
+  "tutorMoveTopVerdict": "Selle seisu üks parimaid valikuid.",
+  "tutorMoveAlternativeVerdict": "Mootor eelistab siin teist käiku.",
+  "tutorMoveEstimateDifference": "Erinevus parimast käigust: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Pärast seda käiku: võidutõenäosus {winPercent}%, marsi või parem võit {winGammonPercent}%, marsi või hullem kaotus {loseGammonPercent}%. Hinnang on käija vaatenurgast.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Matši võidu hinnanguline tõenäosus: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Kõik 15 nuppu on maha võetud: mäng on võidetud.",
+  "tutorMovePlanHit": "Kasuta lööki aja võitmiseks, kuni vastane siseneb. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Hoia kodulaua punktid suletuna, et sisenemine oleks raskem.",
+  "tutorMovePlanHitBuild": "Tee kodulaual veel punkte, et vastasel oleks raskem pärast lööki taastuda.",
+  "tutorMovePlanRaceBearOff": "Püüa nuppe tõhusalt maha võtta, jättes järgmise viske jaoks kasulikud arvud.",
+  "tutorMovePlanRaceHome": "Too tagumised nupud koju ja jaota need kasulikele mahavõtmiskohtadele.",
+  "tutorMovePlanContactBearOff": "Võta nuppe maha, kuid jälgi vastase taganuppe: kontaktis võib hooletu nupp saada sihtmärgiks.",
+  "tutorMovePlanReentry": "Too nupp mängu tagasi ning otsi sisenenud nupule turvalist punkti.",
+  "tutorMovePlanHomeBoard": "Tugevda kodulauda. Uus suletud punkt võtab vastaselt ühe sisenemisnumbri ja muudab tulevase löögi mõjusamaks.",
+  "tutorMovePlanPrime": "Hoia suletud punktide rida koos. Säilita varunupud, et hilisem vise ei sunniks seda avama.",
+  "tutorMovePlanLeaveAnchor": "Tugipunktist lahkumine toob taganupud edasi, kuid kaotad turvalise jalgealuse. Jälgi nende ohustatust teel koju.",
+  "tutorMovePlanNewAnchor": "Kasuta uut tugipunkti turvalise alusena, parandades samal ajal muud seisu.",
+  "tutorMovePlanCoverBlot": "Koonda nupud. Üksiku katmine eemaldab sihtmärgi ja jätab alles kasulikud maandumiskohad.",
+  "tutorMovePlanSafety": "Tasakaalusta edenemist ohutusega: too ehitajad heade punktide suunas ja kontrolli, milliseid üksikuid nuppe saab lüüa.",
+  "tutorMoveObservationNoLegalPlay": "Ükski nupukäik pole lubatud: käik tuleb vahele jätta.",
+  "tutorMoveObservationHit": "Lööd vastase {count} {count, plural, one{nupu} other{nuppu}}; vastane peab need enne teiste liigutamist laualt sisse tooma.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Too laualt sisse {count} nuppu.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Võta maha {count} {count, plural, one{nupu} other{nuppu}}.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Moodustad punktid {points}. Vähemalt kaks nuppu hoiavad punkti ja takistavad vastasel sinna maanduda.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Loobud suletud punktidest {pointLabel} {points}. Need ei takista enam vastase liikumist.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Üksikuid ohustatud nuppe ei jää (enne {previousCount}). Midagi pole üksikult lüüa.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Jätad {count} paljastatud üksikut {count, plural, one{nuppu} other{nuppu}} (enne {previousCount}). Enne ohutuse eelistamist kontrolli, kas vastane ulatub nendeni.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Pikim suletud punktide rida: {count} (enne {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Kuue punkti pikkust tõket ei saa ületada, kuni see on suletud.",
+  "tutorMoveObservationPrimeBuild": "Hoia ehitajad lähedal, kui soovid seda rida pikendada või säilitada.",
+  "tutorMoveObservationPrimeSpares": "Suletud punktidel on üle kahe nupu {count} varunuppu. Varunupu liigutamine võib punkti säilitada; kahe viimase liigutamine avab selle.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Tugipunktid vastase kodulaual: {points} (enne {previousPoints}). Tugipunkt kaitseb nuppe löökide eest; sellest lahkumine vahetab turvalise toe võidujooksus edenemise vastu.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Puhas võidujooks: pooled on teineteisest möödunud ja kummalgi pole nuppu laual. Enam lüüa ei saa; loeb tõhus mahavõtmine.",
+  "tutorMoveObservationNoReplyHit": "Vastane ei saa selle seisu ühegi lubatud järgmise viskega nuppu lüüa. Kontakt on siiski alles ja hilisemad käigud võivad uusi võimalusi luua.",
+  "tutorMoveObservationReplyHit": "Vastane saab lüüa {count} viskega {total}-st. Näiteks {dieOne}–{dieTwo} võimaldab sinu {point}. punkti lüüa. Löömisvõimalus ei tähenda, et vastane selle valib.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Sinu kodulaual on suletud {closedPoints} punkti. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Vastane ei saa siseneda enne, kui mõni punkt avaneb.",
+  "tutorMoveObservationOpenEntry": "Avatud sisenemispunkti kasutav vise võimaldab laual oleva nupu tagasi tuua.",
+  "tutorMoveComparisonDetail": "{factors} Parima käigu hinnanguline võiduvõimalus on {delta} protsendipunkti võrra {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "suurem",
+  "tutorMoveComparisonLower": "väiksem",
+  "tutorMoveComparisonScoreContext": " See võib siiski olla kõrgemal kohal, sest marsi ja tagamarsi väärtus sõltub praegusest {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "panus",
+  "tutorMoveComparisonMatchScore": "matši skoor",
+  "tutorMoveComparisonFactorBar": "Parim käik jätab lauale {bestCount} vastase nuppu, sinu käik {playedCount}. Laual olev nupp peab enne teiste liigutamist sisenema.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Parim käik hoiab kodulaual {bestCount} punkti, sinu käik {playedCount}; pärast lööki on {entryDifference} sisenemispunkti.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "sulgeb rohkem",
+  "tutorMoveComparisonLeavingMore": "jätab rohkem avatuks",
+  "tutorMoveComparisonFactorShots": "Parim käik lubab vastusel lüüa {bestCount} viskega 36-st, sinu käik {playedCount}-ga. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "See vähendab kohest tagasilöömise ohtu.",
+  "tutorMoveComparisonExtraExposure": "Võrdle lisariski sellega, mida käik mujal saavutab.",
+  "tutorMoveComparisonFactorPrime": "Parima käigu pikim suletud punktide rida on {bestCount}, sinu käigul {playedCount}; võrdle tõket selle hoidmiseks saadaolevate nuppudega.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Parimal käigul on tugipunktid {bestPoints}, sinu käigul {playedPoints}. Tugipunkt jätab ohutu maandumiskoha; sellest lahkumine toob nupud koju lähemale.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Parim käik on maha võtnud {bestCount} nuppu, sinu käik {playedCount}. Iga maas nupp on üks vähem, mida hiljem eemaldada.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Mõlemad käigud jätavad samasuguse löögiohu, kodulaua, tugipunktid ja maas olevate nuppude arvu. Võrdle maandumiskohti: järgmisel viskel saab neid nuppe kasutada erinevalt.",
+  "tutorMoveComparisonSummaryBar": "Parim käik saadab rohkem vastase nuppe lauale ja viivitab tema teiste käikudega.",
+  "tutorMoveComparisonSummaryHomeBoard": "Parim käik sulgeb rohkem kodulaua punkte, raskendades pärast lööki sisenemist.",
+  "tutorMoveComparisonSummaryShots": "Parim käik lubab vähem koheseid lööke ja vähendab tagasilöömise ohtu.",
+  "tutorMoveComparisonSummaryPrime": "Parim käik säilitab pikema suletud punktide rea.",
+  "tutorMoveComparisonSummaryAnchors": "Parim käik hoiab vastase kodulaual rohkem turvalisi tugipunkte.",
+  "tutorMoveComparisonSummaryBearOff": "Parim käik võtab rohkem nuppe maha ja jätab hilisemaks vähem tööd.",
+  "tutorMoveComparisonSummaryBlots": "See käik jätab {playedCount} üksikut nuppu; parim käik jätab {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Parim käik hoiab punktis {point} turvalist tugipunkti.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Parim käik sulgeb rohkem sisenemispunkte juhuks, kui sinu nupp lüüakse.",
+  "tutorMoveComparisonSummarySimilarRisks": "Käikudel on sarnane kohene risk; võrdle, millised maandumiskohad jäävad järgmisel viskel kasulikuks.",
+  "tutorMoveAssessmentEquityLoss": "{value} equity",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} protsendipunkti MWC",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "punkt",
+  "tutorMovePointPlural": "punkti",
+  "tutorMoveNoPoints": "puudub",
+  "gameTapNoLegalMove": "Selle nupuga ei saa ülejäänud täringutega käia",
+  "gameTapNoLegalMoveUndo": "Selle nupuga ei saa ülejäänud täringutega käia — proovi käik tagasi võtta",
+  "gameDragHint": "Nõuanne: lohista nuppe või puuduta neid — muuda seda seadetes",
+  "commonGotIt": "Selge",
+  "gameHintStageBeforeHint": "Tee kõigepealt täielik seaduslik käik ja küsi siis vihjet.",
+  "surrenderTitle": "Loobu",
+  "surrenderNamedConcedes": "{player} loobub käimasolevast partiist.",
+  "surrenderConcedes": "Loobud käimasolevast partiist.",
+  "surrenderAvailableAtNamedTurn": "Saadaval {player} käigu alguses",
+  "surrenderAvailableAtYourTurn": "Saadaval sinu käigu alguses",
+  "commonCancel": "Tühista",
+  "surrenderSingle": "Üksik (1)",
+  "surrenderGammon": "Gammon (2)",
+  "surrenderBackgammon": "Backgammon (3)",
+  "surrenderChoosePlayer": "Kes sellest partiist loobub?",
+  "commonDone": "Valmis",
+  "cubeDouble": "Kahekordista",
+  "cubeBlockedOtherPlayersTurn": "Praegu on teise mängija käik.",
+  "cubeBlockedCrawford": "Crawfordi partiis ei saa kahekordistamiskuubikut kasutada.",
+  "cubeBlockedOwnedByOther": "Kahekordistada saab ainult kuubiku omanik, kelleks on praegu vastane.",
+  "cubeBlockedUnavailable": "Praegu ei saa kahekordistada.",
+  "gameStatusRolling": "Veeretab…",
+  "gameStatusThinking": "Mõtleb…",
+  "gameStatusPlayersTurn": "{player} käik",
+  "cubeAdviceOpponentTake": "Kahekordista — vastane peaks võtma",
+  "cubeAdviceOpponentPass": "Kahekordista — vastane peaks loobuma",
+  "gameErrorBannerLabel": "Viga: {error}",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "gameMatchSummary": "Matši kokkuvõte",
+  "gameAnalyzeGame": "Analüüsi partiid",
+  "gameTutorCubeTake": "Tutor: võta vastu",
+  "gameTutorCubePass": "Tutor: loobu",
+  "tutorPlayedMove": "Käidud: {move}",
+  "tutorBestMove": "Parim käik: {move}",
+  "tutorShowRankedPlays": "Näita järjestatud käike",
+  "tutorReviewRecordedMove": "Puuduta logis lõpetatud käiku, et vaadata siin selle otsuse analüüsi.",
+  "tutorTopPlays": "Parimad käigud",
+  "tutorNoHintsAvailable": "Vihjeid pole saadaval.",
+  "tutorPreviewThenConfirm": "Puuduta käiku, et seda laual eelvaadata, seejärel kinnita.",
+  "tutorTopChoiceForPosition": "Selle seisu parim valik",
+  "tutorAlternativePlay": "Alternatiivne käik",
+  "tutorEngineEstimates": "Mootori hinnangud",
+  "tutorEstimateScope": "0-ply hinnang · praegune tulemus ja panus · tulevasi kahekordistamisi ei arvestata",
+  "tutorEquity": "Oodatav punktisaak",
+  "tutorMwcPercent": "Matši võidutõenäosus %",
+  "tutorNearTiesNote": "Väga lähedased hinnangud võivad põhjalikuma analüüsi käigus muutuda.",
+  "tutorWhyThisPlay": "Miks see käik?",
+  "tutorCompareAlternative": "Võrdle seda varianti",
+  "tutorCubelessEstimateScope": "0-ply hinnang ilma kuubikuta · skoor pole saadaval",
+  "tutorLossPp": "Kaotus protsendipunktides",
+  "tutorLoss": "Kaotus",
+  "tutorOptions": "Tutori seaded",
+  "tutorCollapseTooltip": "Ahenda tutor",
+  "tutorExpandTooltip": "Laienda tutor",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · {matchLength} punktini",
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · {matchLength} punktini",
+  "gameHudYou": "Sina",
+  "gameHudAi": "Arvuti",
+  "gameHudGameNumber": "Partii {number}",
+  "gameHudMatchContext": "{score} · {game}",
+  "gameHudHotSeatDetail": "{whiteLabel} vs {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "gameHudOpponentDetail": "vs {opponent} · {pipsLabel} {mine}–{theirs}",
+  "gameHudOpponentDetailWithLevel": "vs {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "gameHudPips": "Pipsid",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Kahekordista",
+  "gameHudMoreActions": "Veel toiminguid",
+  "gameHudSurrender": "Loobu…",
+  "gameHudThinking": "Mõtleb",
+  "gameHudDoubleBeforeRoll": "Kahekordistada saab ainult enne veeretamist ja enda käigu ajal.",
+  "gameHudNoDoubleCrawford": "Crawfordi partiis ei saa kahekordistada — see üks partii otsustab matši.",
+  "gameHudOnlyCubeOwner": "Kahekordistada saab ainult kuubiku omanik, kelleks on praegu vastane.",
+  "gameHudDoubleUnavailable": "Praegu ei saa kahekordistada.",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (matšini {matchLength} punktini)",
+  "gameDialogPlayerWon": "{winner} võidab selle partii ({points}).",
+  "gameDialogPlayerWonGammon": "{winner} võidab selle partii ({points}, gammon).",
+  "gameDialogPlayerWonBackgammon": "{winner} võidab selle partii ({points}, backgammon).",
+  "gameDialogPlayerWonDrop": "{winner} võidab selle partii ({points}) — {loser} keeldus kahekordistamisest.",
+  "gameDialogPlayerWonResignation": "{winner} võidab selle partii ({points}) — {loser} loobus.",
+  "gameDialogPassDeviceTitle": "Anna seade edasi",
+  "gameDialogPlayersTurn": "{name} käik",
+  "gameDialogTapToContinue": "Jätkamiseks puuduta",
+  "gameDialogCubeOfferedTitle": "Pakuti kahekordistamist",
+  "gameDialogCubeOfferMessage": "{doubler} pakub kahekordistamist väärtuseni {value}. Kas võtad vastu või loobud?{tutorLine}",
+  "gameDialogPass": "Loobu",
+  "gameDialogTake": "Võta vastu",
+  "gameDialogResignationTitle": "Pakuti loobumist",
+  "gameDialogResignationMessage": "{resigner} pakub loobumist väärtuse {value} eest. Kas nõustud?",
+  "gameDialogResignSingle": "üksik partii",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Keeldu",
+  "gameDialogAccept": "Nõustu",
+  "gameDialogGameOverTitle": "Partii läbi",
+  "gameDialogNextGame": "Järgmine partii",
+  "gameDialogMatchOverTitle": "Matš läbi",
+  "gameDialogNobody": "Mitte keegi",
+  "gameDialogMatchWinner": "{winner} võidab matši.",
+  "gameDialogSavedToHistory": "Salvestatud ajalukku",
+  "gameDialogDone": "Valmis",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "newMatchYourSide": "Sinu pool",
+  "newMatchTutorMode": "Tutori režiim",
+  "newMatchTutorDescription": "Õpi vihjete, selgituste ja mängukommentaaride abil",
+  "newMatchTutoringOptions": "Õpetamise valikud",
+  "newMatchTutoringOptionsDescription": "Selle matši jaoks; muudetav ka mängu ajal",
+  "setupMatchLength": "Matši pikkus",
+  "setupDifficulty": "Raskusaste",
+  "setupDifficultyEasy": "Lihtne",
+  "setupDifficultyMedium": "Keskmine",
+  "setupDifficultyHard": "Raske",
+  "setupDifficultyExpert": "Ekspert",
+  "setupPlayWithoutCube": "Mängi ilma kuubikuta",
+  "setupNoCubeThisMatch": "Selles matšis pole kahekordistamiskuubikut",
+  "actionCancel": "Tühista",
+  "actionDelete": "Kustuta",
+  "actionRetry": "Proovi uuesti",
+  "actionRemove": "Eemalda",
+  "diagnosticsCopySuccess": "Diagnostika kopeeriti lõikelauale",
+  "diagnosticsReviewTitle": "Diagnostikaaruande ülevaade",
+  "diagnosticsPrivacyNotice": "Mustandi avamisel saadetakse allolevad üksikasjad GitHubi, sh rakenduse versioon, platvorm ja veateave. Avalikku probleemi ei postitata enne, kui selle ise esitad. Kui andmed sisaldavad isiklikku teavet, tühista ja kasuta kopeerimist, et aruanne ise ette valmistada.",
+  "diagnosticsCancel": "Tühista",
+  "diagnosticsOpenGitHub": "Ava GitHub",
+  "diagnosticsTitle": "Diagnostika",
+  "diagnosticsReportTooltip": "Teata probleemist GitHubis",
+  "diagnosticsCopyTooltip": "Kopeeri lõikelauale",
+  "diagnosticsClearTooltip": "Tühjenda logi",
+  "diagnosticsEmpty": "Vigu pole salvestatud.\n\nKui midagi läheb valesti, salvestatakse see siia. Tule tagasi ja kopeeri üksikasjad veateatesse.",
+  "historyTitle": "Matšide ajalugu",
+  "historyLoadFailed": "Ajaloo laadimine ebaõnnestus:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyEmpty": "Matše pole veel mängitud.",
+  "historyDeleteConfirmTitle": "Kas kustutada see matš?",
+  "historyDeleteConfirmBody": "{scoreLine}\n\nMatš ja kõik sellesse salvestatud partiid kustutatakse jäädavalt. Seda ei saa tagasi võtta.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyDeleteFailed": "Matši kustutamine ebaõnnestus.",
+  "historyComplete": "Lõppenud",
+  "historyWinner": "{side} võitis",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyUnfinished": "Pooleli",
+  "historyMatchTitle": "Matš",
+  "historyMatchLoadFailed": "Matši laadimine ebaõnnestus:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Partiide laadimine ebaõnnestus:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyNoGames": "Partiisid pole veel salvestatud.",
+  "historyGameTitle": "Partii {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyCrawford": "Crawford",
+  "historyScoreLine": "Valge {whiteScore} — {blackScore} Must (matšini {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyModeComputer": "arvuti vastu",
+  "historyModeTwoPlayers": "Kaks mängijat",
+  "historyModeOnline": "Võrgus",
+  "historyModeNearby": "Mängi läheduses",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "Käib",
+  "historyGameResult": "{side} võidab {points} punktiga ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "historyOutcomeSingle": "üksik",
+  "historyOutcomeGammon": "gammon",
+  "historyOutcomeBackgammon": "backgammon",
+  "onlineTitle": "Mängi võrgus",
+  "onlineUnassistedNote": "Võrgumängudes tutor ei aita. Vaata käigud üle ja harjuta vigu pärast matši.",
+  "onlineNotConfiguredTitle": "Võrgumäng pole selles versioonis seadistatud",
+  "onlineNotConfiguredBody": "Sellel versioonil pole Firebase’i taustateenust, seega matši loomine ega sellega liitumine pole võimalik.",
+  "onlineErrorNoMatch": "Selle koodiga matši ei leitud. Kontrolli koodi ja proovi uuesti.",
+  "onlineErrorSeatTaken": "See matš pole enam avatud — koht on hõivatud.",
+  "onlineErrorPermission": "Sul pole sellele matšile ligipääsu.",
+  "onlineErrorGeneric": "Midagi läks valesti. Proovi uuesti.",
+  "onlineMatchFinished": "See matš on lõppenud — sellega ei saa enam liituda.",
+  "onlineEnterCodeError": "Sisesta matši kood.",
+  "onlineOpponentShort": "Vast.",
+  "onlineMatchInProgress": "Matš käib",
+  "onlineResumePrompt": "Mängisid matšis {code}.",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Liitu uuesti",
+  "onlineForgetMatch": "Unusta see matš",
+  "onlineCreateTitle": "Loo matš",
+  "onlineMatchLength": "Matši pikkus",
+  "onlineNoCubeTitle": "Mängi kuubikuta",
+  "onlineNoCubeSubtitle": "Selles matšis pole kahekordistamiskuubikut",
+  "onlineCreate": "Loo",
+  "onlineWaitingOpponent": "Ootan vastast…",
+  "onlineShareCode": "Jaga seda koodi",
+  "onlineCopyCode": "Kopeeri kood",
+  "onlineCodeCopied": "Kood kopeeritud",
+  "onlineJoinTitle": "Liitu matšiga",
+  "onlineRoomCode": "Matši kood",
+  "onlineJoin": "Liitu",
+  "lanTitle": "Mängi läheduses",
+  "lanTabHost": "Host",
+  "lanTabJoin": "Liitu",
+  "lanUnassistedNote": "Läheduses mängitavad mängud on ilma abita. Vaata käigud üle ja harjuta vigu pärast matši.",
+  "lanGameStartFailed": "Mängu ei saanud alustada. Teine seade võib uuesti liituda proovida.",
+  "lanHostPortInUse": "Hostimist ei saanud alustada — port on juba kasutusel. Sulge Backgammon Buddy teine koopia.",
+  "lanHostStartFailed": "Hostimist ei saanud alustada. Kontrolli Wi-Fi ühendust.",
+  "lanHostTitle": "Hosti mäng",
+  "lanStartHosting": "Alusta hostimist",
+  "lanHostHelp": "Mõlemad seadmed peavad olema samas Wi-Fi võrgus. See seade veeretab täringuid ja hoiab skoori.",
+  "lanWaitingPlayerTitle": "Ootan mängijat",
+  "lanRoomCodeInfo": "Anna see kood teisele mängijale. See lubab tal liituda — rakendus ei saada koodi võrku.",
+  "lanWaitingPlayer": "Ootan mängijat…",
+  "lanStopHosting": "Lõpeta hostimine",
+  "lanFindNearbyPort": "Palu teisel seadmel läheduses mänge otsida. Kuulan pordil {port}.",
+  "lanOnNetwork": "Selles võrgus",
+  "lanCopyAddress": "Kopeeri aadress",
+  "lanAddressCopied": "Aadress kopeeritud",
+  "lanScanHostTitle": "Skanni hosti",
+  "lanScanHostHelp": "Teine seade näitab oma Host-ekraanil QR-koodi. Skannimine täidab aadressi ja ruumi koodi.",
+  "lanScanQr": "Skanni QR-kood",
+  "lanScannerUnavailable": "Kaamera või selle luba pole saadaval. Sisesta aadress ja ruumi kood allpool.",
+  "lanInvalidQr": "See QR-kood pole Backgammon Buddy mängu jaoks. Skanni teise seadme Host-ekraanil olevat koodi.",
+  "lanScannerFailed": "Skannerit ei saanud avada. Sisesta selle asemel aadress ja kood.",
+  "lanNearbyGames": "Läheduses mängud",
+  "lanSearching": "Otsin läheduses mänge…",
+  "lanNoGamesFound": "Mänge pole veel leitud. Veendu, et teine seade hostib ja mõlemad on samas Wi-Fi võrgus — või sisesta selle aadress.",
+  "lanStillSearching": "Otsin ikka…",
+  "lanEnterAddress": "Sisesta aadress",
+  "lanEnterAddressHelp": "Automaatne avastamine ei tööta kõigis võrkudes (iOS võib selle täielikult blokeerida). Hosti ekraan näitab, mida sisestada.",
+  "lanIpAddress": "IP-aadress",
+  "lanPort": "Port",
+  "lanInvalidPort": "Sisesta port vahemikus 1–65535.",
+  "lanEnterAddressError": "Sisesta teises seadmes kuvatud aadress.",
+  "lanEnterRoomCodeError": "Sisesta teisest seadmest saadud 4-kohaline kood.",
+  "lanJoinWrongCode": "Vale ruumi kood. Kontrolli teises seadmes nelja numbrit.",
+  "lanJoinVersionMismatch": "Teises seadmes töötab Backgammon Buddy teine versioon.",
+  "lanJoinHandshakeFailed": "Seade ei vastanud nagu Backgammon Buddy. Kontrolli aadressi ja porti.",
+  "lanJoinFailed": "Liitumine ei õnnestunud. Kontrolli aadressi ja ruumi koodi ning proovi uuesti.",
+  "lanJoinTarget": "Liitu mänguga {name}",
+  "lanJoinTargetHelp": "Sisesta teises seadmes näidatud 4-kohaline kood.",
+  "lanJoiningTarget": "Liitun mänguga {name}",
+  "lanConnect": "Ühenda",
+  "lanBack": "Tagasi",
+  "lanTryAgain": "Proovi uuesti",
+  "lanStatusBusy": "Ruum on kasutusel — ootan…",
+  "lanStatusReconnecting": "Ühendus katkes — proovin uuesti…",
+  "lanStatusConnected": "Ühendatud — matš algab…",
+  "lanStatusFailed": "Liitumine ebaõnnestus.",
+  "lanStatusConnecting": "Ühendan…",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "analysisTitle": "Analüüs",
+  "analysisMetricsTooltip": "Mida need arvud tähendavad?",
+  "analysisError": "Mängu analüüsimine ebaõnnestus: {error}",
+  "analysisNoPositions": "Selles mängus pole kuvatavaid seise.",
+  "analysisInProgress": "Mängu analüüs…",
+  "analysisPercent": "{percent}%",
+  "analysisPlayed": "Mängitud",
+  "analysisBest": "Parim",
+  "analysisPrevious": "Eelmine",
+  "analysisNext": "Järgmine",
+  "analysisPositionBeforeCube": "Seis enne kuubikuotsust",
+  "analysisPositionAtPoint": "Seis selles mängu punktis",
+  "analysisShowingBestBefore": "Kuvatakse parimat käiku enne käiku",
+  "analysisShowingBefore": "Kuvatakse seis enne käiku",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "analysisMoveLoss": "  −{loss}",
+  "analysisExcludedFromAverages": " · ei arvestata keskmisesse",
+  "analysisNoPlay": "(käik puudub)",
+  "analysisBestMoveLine": "Parim: {move}",
+  "analysisExplain": "Selgita",
+  "analysisSaveForPractice": "Salvesta harjutamiseks",
+  "analysisSaveError": "Otsust ei saanud salvestada: {error}",
+  "analysisCubeInfo": "{side}: {action} · {mark} · kaotus {loss}",
+  "analysisCubeDecision": "Kuubikuotsus",
+  "analysisCubePlayed": "Mängitud: {action} ({percent}% matši võidutõenäosus).",
+  "analysisCubeBest": "Parim: {action} ({percent}% matši võidutõenäosus).",
+  "analysisCubeEstimate": "0-ply hinnang käigu tegija vaatenurgast. Eeldab optimaalset vastust võtmise või loobumise kohta. Kahekordistamise vastuvõtmisel kasutatakse kuubiku eluea ligikaudset tegurit 0,7; tulevaste ümberkahekordistamiste täielikku otsingut ei tehta. Põhjalikum analüüs võib tulemust muuta.",
+  "analysisClose": "Sulge",
+  "analysisMoves": "Käigud",
+  "analysisForced": "Sunnitud",
+  "analysisMarkBest": "Parim",
+  "analysisMarkGood": "Hea",
+  "analysisMarkDubious": "Kahtlane",
+  "analysisMarkError": "Viga",
+  "analysisMarkBlunder": "Jäme viga",
+  "analysisSummaryMeanLoss": "Keskmine kaotus {loss}",
+  "analysisSummaryCheckerDecisions": "{count} nupukäiguotsust",
+  "analysisSummaryBlunders": "Jämedaid vigu {count}",
+  "analysisSummaryCubeLoss": "Kuubikukaotus {loss}",
+  "analysisRollWithoutDoubling": "{side} veeretab kahekordistamata",
+  "metricExplainerTitle": "Mõõdikute mõistmine",
+  "metricExplainerTooltip": "Mida need arvud tähendavad?",
+  "metricExplainerMwcTitle": "Matši võidutõenäosus (MWC)",
+  "metricExplainerMwcBody": "Kui skoor on teada, reastatakse nupukäigud hinnangulise matši võidutõenäosuse järgi. Kaotus on protsendipunktides (pp): 1 pp tähendab langust 51%-lt 50%-le. Arvesse lähevad praegune kuubiku panus ning gammoni ja backgammoni tulemused. Sunnitud passid ja veeretused, mille järel on ainult üks seaduslik seis, jäetakse keskmisest välja.",
+  "metricExplainerSearchTitle": "Otsing ja ebakindlus",
+  "metricExplainerSearchBody": "Nupukäikude järjestus põhineb staatilisel 0-ply hinnangul pärast käiku, mitte rolloutidel. Matši väärtused kasutavad matši võrdustabelit ega arvesta tulevaste kuubikukäikudega. Kuubiku ülevaates kasutatakse vastuvõetud duublil osalist 0,7 kuubiku eluea lähendit. Kumbki pole täielik kuubikuga otsing. Üle 25 punkti taga olevate skooride puhul kasutatakse tabeli 25-punkti piiri. Lähedased tulemused võivad põhjalikuma analüüsiga muutuda; kalibreeritud usaldusvahemikku ei ole.",
+  "metricExplainerEquityTitle": "Oodatav punktisaak",
+  "metricExplainerEquityBody": "Kui skoor pole teada, näitab kuubikuta oodatav punktisaak, mitu punkti seis keskmiselt väärt on — eeldatav tulemus kuubikuga väärtusel 1. +1,0 tähendab, et eeldad ühe punkti võitu; −0,5 tähendab poole punkti kaotust.",
+  "metricExplainerEquityLossTitle": "Punktisaagi kaotus (nt −0,016)",
+  "metricExplainerEquityLossBody": "Iga käigu puhul võrdleme sinu käiku mootori parima käiguga. Punktisaagi kaotus näitab, kui palju oodatavat väärtust käik kaotas. −0,016 tähendab, et käik oli parimast vaid 0,016 punkti võrra halvem — väike eksimus. 0,000 tähendab, et leidsid parima käigu.",
+  "metricExplainerErrorRateTitle": "Vigade määr",
+  "metricExplainerErrorRateBody": "Keskmine kaotus arvutab kuvatud ühikus hinnatud nupukäikude keskmise. Kuubikuotsuseid arvestatakse eraldi. Väiksem väärtus tähendab, et käigud olid mootori hinnangutele lähemal; see pole kalibreeritud mängijareiting.",
+  "metricExplainerMoveMarksTitle": "Käikude hinnangud",
+  "metricExplainerMoveMarksBody": "MWC õppepiirid: parim < 0,05 pp, hea < 0,5 pp, kahtlane < 1,5 pp, viga < 3 pp, jäme viga ≥ 3 pp. Need on õppepiirid, mitte kalibreeritud kindlus ega turniirireiting.\n\nKuubikuta oodatava punktisaagi piirid:",
+  "metricExplainerThresholdBest": "kaotus < 0,001",
+  "metricExplainerThresholdGood": "kaotus < 0,020",
+  "metricExplainerThresholdDubious": "kaotus < 0,050",
+  "metricExplainerThresholdError": "kaotus < 0,110",
+  "metricExplainerThresholdBlunder": "kaotus ≥ 0,110",
+  "metricExplainerGotIt": "Selge",
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "analysisCubeNoDouble": "Ära kahekordista",
+  "analysisCubeDouble": "Kahekordista",
+  "analysisCubeTake": "Võta vastu",
+  "analysisCubePass": "Loobu",
+  "scoreSheetNoMoves": "Käike veel pole",
+  "learningRefreshTooltip": "Värskenda õppetulemusi",
+  "learningOptions": "Õppimise valikud",
+  "learningResetMenu": "Lähtesta harjutuste edenemine",
+  "learningLoadFailed": "Õppimise edenemist ei saanud laadida.",
+  "learningHeading": "Õpi oma otsustest",
+  "learningIntro": "Edenemine salvestatakse selles seadmes. Vaata korduvaid teemasid ja proovi salvestatud seise uuesti ilma vastust nägemata. Valget ja musta poolt saab vaadata eraldi.",
+  "learningBothSides": "Mõlemad pooled",
+  "learningHumansOnly": "Ainult inimeste otsused",
+  "learningHumanOnlyHelp": "Lülita välja, et kaasata arvuti ja kaugmängija otsused",
+  "learningDecisionSummary": "{decisions} otsust · {mistakes} vajavad parandamist · {blunders} jämedat viga",
+  "learningAverageLoss": "Keskmine kaotus ({decisions} otsust): {loss}",
+  "learningForcedDisclaimer": "Sunnitud käike ei arvestata. Need on mootori hinnangud, mitte turniirireiting.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Üks salvestatud partii vajab analüüsi või uut analüüsi.} other{# salvestatud partiid vajavad analüüsi või uut analüüsi.}}",
+  "learningAnalyseSavedGames": "Analüüsi salvestatud partiid",
+  "learningEmptyProfile": "Õppeprofiili loomiseks mängi ja lõpeta partii. Üksikuid otsuseid saab salvestada ka mängu kordusesitusest.",
+  "learningOpenHistory": "Ava matšide ajalugu",
+  "learningRecurringThemes": "Korduvad teemad",
+  "learningNoThemes": "Selles valikus pole veel korduvaid veateemasid.",
+  "learningThemeDecisions": "{count} otsust tasub uuesti vaadata. Ühes seisus võib olla mitu teemat.",
+  "learningSaveMistakes": "Salvesta vead harjutamiseks",
+  "learningSavedMistakes": "{count} otsust on harjutuste loendis. Olemasolevad salvestused jäetakse alles.",
+  "learningSaveMistakesFailed": "Mõnda otsust ei saanud salvestada. Valmis salvestused jäid alles; proovi uuesti.",
+  "learningSpacedPractice": "Jaotatud kordamine",
+  "learningPracticeCounts": "{due} nüüd ootel · {saved} salvestatud · {attempts} katset · {successes} edukat meenutamist",
+  "learningIntervalsHelp": "Edukalt läbitud kordused ilmuvad uuesti 1, 3, 7, 14 ja 30 päeva pärast. Vigade või avatud vastustega harjutused tulevad tagasi 10 minuti pärast. Varajased kordused intervalli ei pikenda.",
+  "learningAnswerContext": "Harjutuse tulemus kajastab sinu siin antud vastuseid ka siis, kui algne seis kuulus vastasele.",
+  "learningNoSavedPositions": "Salvesta kordusesitusest mõni otsus või kasuta ülal olevat vigade nuppu.",
+  "learningPositionTitle": "{side} otsus · partii {gameId}",
+  "learningReviewDue": "Vaata üle {date}",
+  "learningReadyToReview": "Ülevaatuseks valmis",
+  "learningSuccessStreak": "{count} edukat kordust õigel ajal",
+  "learningRemoveTooltip": "Eemalda salvestatud otsus",
+  "learningRecentPractice": "Hiljutised harjutused",
+  "learningAnswerRevealed": "Vastus avati",
+  "learningSuccessfulRecall": "Edukas meenutamine",
+  "learningTryAgain": "Proovi seda otsust uuesti",
+  "learningAttemptSubtitle": "{date} · salvestatud seis {positionId}",
+  "learningRemoveTitle": "Kas eemaldada see harjutus?",
+  "learningRemoveBody": "Selle harjutuse katsed eemaldatakse. Algne partii jääb ajalukku.",
+  "learningRemoveFailed": "Seda harjutust ei saanud eemaldada.",
+  "learningResetTitle": "Kas lähtestada harjutuste edenemine?",
+  "learningResetBody": "Kõik harjutuskatsed ja ülevaatuste intervallid eemaldatakse. Salvestatud harjutused ja matšide ajalugu jäävad alles; kõik harjutused muutuvad kohe ootel harjutusteks.",
+  "learningResetAction": "Lähtesta edenemine",
+  "learningResetFailed": "Harjutuste edenemist ei saanud lähtestada.",
+  "learningAnalysisProgress": "Analüüsitud {completed} partiid · {failed} pole saadaval.",
+  "learningAnalysisComplete": "Analüüsitud {completed} partiid.",
+  "learningAnalysisCompleteWithErrors": "Analüüsitud {completed} partiid; {failed} analüüs ebaõnnestus. Proovi uuesti, kui mootor on valmis.",
+  "learningThemeHitting": "Löömine ja tempo",
+  "learningThemeSafety": "Üksikud nupud ja kaitse",
+  "learningThemePointMaking": "Punktide sulgemine",
+  "learningThemePrime": "Prime’id ja tõkked",
+  "learningThemeAnchor": "Ankrud ja põgenemine",
+  "learningThemeRace": "Võidujooksu tõhusus",
+  "learningThemeBearOff": "Nuppude ärakorjamine",
+  "learningThemeBarEntry": "Laualt sisenemine",
+  "learningThemeCube": "Kuubikuotsused",
+  "learningAnalysisStarting": "Salvestatud partiide analüüsimine…",
+  "practiceScreenTitle": "Harjuta otsust",
+  "practiceUnavailable": "See harjutusseis pole enam saadaval.",
+  "practiceSubmitError": "Seda katset ei saanud hinnata ega salvestada. Edenemine ei muutunud. Proovi uuesti.",
+  "practiceTurnLabel": "{side} käib · {dice}",
+  "practiceHistoricalScoreUnavailable": "Ajalooline skoor pole saadaval; hinnang põhineb kuubikuta punktisaagil.",
+  "practiceScoreLine": "Skoor: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, matšini {matchLength}",
+  "practiceCrawfordGame": " · Crawfordi partii",
+  "practiceNoDoublingCube": "Kahekordistamiskuubik puudub.",
+  "practiceCubeValue": "Kuubik {value}.",
+  "practiceHistoricalCubeUnknown": "Ajaloolised kuubikureeglid pole teada.",
+  "practiceAfterBestPosition": "Seis pärast parimat käiku",
+  "practiceAfterYourAnswerPosition": "Seis pärast sinu vastust",
+  "practiceFindYourPlayPrompt": "Leia laual oma käik ja kontrolli siis vastust. Vihjeid ei näidata.",
+  "practiceUndo": "Võta tagasi",
+  "practiceCheckAnswer": "Kontrolli vastust",
+  "practiceRevealNoCredit": "Näita vastust (punkte ei saa)",
+  "practiceAnswerRevealedNoCredit": "Vastus avati — meenutamise eest punkte ei saa.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "practiceBestMoveLine": "Parim: {move}",
+  "practiceOriginalGameLine": "Algne partii: {move} · {loss}",
+  "practiceYourAnswerLine": "Sinu vastus: {move}",
+  "practiceYourAnswerChip": "Sinu vastus",
+  "practiceBestPlayChip": "Parim käik",
+  "practiceNextReview": "Järgmine kordus: {date}.",
+  "practiceRecallCredit": "Parimad ja head vastused loetakse edukaks meenutamiseks. Enneaegne kordamine ajakava edasi ei vii.",
+  "practiceBackToLearning": "Tagasi õppimise juurde",
+  "practiceMarkBest": "Parim",
+  "practiceMarkGood": "Hea",
+  "practiceMarkDubious": "Kahtlane",
+  "practiceMarkError": "Viga",
+  "practiceMarkBlunder": "Jäme viga",
+  "practiceMarkForced": "Sunnitud",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  }
 }

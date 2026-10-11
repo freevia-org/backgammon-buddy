@@ -586,7 +586,10 @@ void main() {
         // (1) The failure reaches the user. Before, the spinner simply stopped
         //     and the host was left looking at a room code that would never open
         //     a board, with nothing said about why.
-        expect(find.textContaining('the guest went away'), findsOneWidget);
+        expect(
+          find.textContaining('The game could not be started'),
+          findsOneWidget,
+        );
         expect(find.byType(GameScreen), findsNothing);
 
         // (2) …and the launch guard is CLEAR, so the next presence flap launches.
@@ -1063,7 +1066,10 @@ void main() {
       await pumpUntil(t, find.textContaining('not a Backgammon Buddy game'));
 
       expect(transport.joins, isEmpty);
-      expect(find.textContaining('not a Backgammon Buddy game'), findsOneWidget);
+      expect(
+        find.textContaining('not a Backgammon Buddy game'),
+        findsOneWidget,
+      );
       // Still on the browsing form, with every other way in intact.
       expect(find.text('Enter address'), findsOneWidget);
       expect(find.widgetWithText(FilledButton, 'Scan QR code'), findsOneWidget);
@@ -1082,10 +1088,13 @@ void main() {
       await t.pump();
       await openJoinTab(t);
       await t.tap(find.widgetWithText(FilledButton, 'Scan QR code'));
-      await pumpUntil(t, find.textContaining('permission to use the camera'));
+      await pumpUntil(
+        t,
+        find.textContaining('camera or its permission is unavailable'),
+      );
 
       expect(
-        find.textContaining('permission to use the camera'),
+        find.textContaining('camera or its permission is unavailable'),
         findsOneWidget,
       );
       expect(transport.joins, isEmpty);
@@ -1133,7 +1142,10 @@ void main() {
       await openJoinTab(t);
       await t.tap(find.widgetWithText(FilledButton, 'Scan QR code'));
       await pumpUntil(t, find.textContaining('not a Backgammon Buddy game'));
-      expect(find.textContaining('not a Backgammon Buddy game'), findsOneWidget);
+      expect(
+        find.textContaining('not a Backgammon Buddy game'),
+        findsOneWidget,
+      );
 
       // Second attempt, backed out of. The complaint about the FIRST scan is
       // about a scan that is over, and must not sit under the button.

@@ -4,9 +4,6 @@ import 'package:backgammon_core/backgammon_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// `online_client` deliberately does not re-export the transport surface, and
-// the only transport type this screen names is the failure a launch reports.
-import 'package:match_transport/match_transport.dart' show TransportException;
 import 'package:online_client/online_client.dart';
 
 import '../analytics/analytics_events.dart';
@@ -18,6 +15,7 @@ import '../data/match_repository.dart';
 import '../data/persistence_hooks.dart';
 import '../data/settings_repository.dart';
 import '../diagnostics/crash_log.dart';
+import '../l10n/localization_lookup.dart';
 import '../net/net_match_controller.dart';
 import '../online/online_providers.dart';
 import '../online/online_session_store.dart';
@@ -46,9 +44,10 @@ class OnlineScreen extends ConsumerWidget {
   );
 
   Widget _build(BuildContext context, WidgetRef ref) {
+    final l10n = appLocalizationsOf(context);
     final config = ref.watch(onlineConfigProvider);
     return Scaffold(
-      appBar: AppBar(title: const Text('Play Online')),
+      appBar: AppBar(title: Text(l10n.onlineTitle)),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -58,14 +57,11 @@ class OnlineScreen extends ConsumerWidget {
                 padding: const EdgeInsets.all(24),
                 child: config == null
                     ? const _NotConfiguredCard()
-                    : const Column(
+                    : Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
-                            'Live online games are unassisted. Review your '
-                            'moves and practise mistakes after the match.',
-                          ),
-                          SizedBox(height: 16),
+                          Text(l10n.onlineUnassistedNote),
+                          const SizedBox(height: 16),
                           _OnlineBody(),
                         ],
                       ),
@@ -84,6 +80,7 @@ class _NotConfiguredCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     final theme = Theme.of(context);
     return Card(
       child: Padding(
@@ -98,14 +95,13 @@ class _NotConfiguredCard extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              'Online play isn’t configured in this build',
+              l10n.onlineNotConfiguredTitle,
               style: theme.textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             Text(
-              'This build has no Firebase backend wired up, so create/join '
-              'matches are unavailable.',
+              l10n.onlineNotConfiguredBody,
               style: theme.textTheme.bodyMedium?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
@@ -210,28 +206,26 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
     _pollTimer = null;
   }
 
-  /// User-facing copy for a transport failure.
+  /// User-facing copy for an online match failure.
   ///
   /// The typed exceptions carry developer-shaped messages (they name document
   /// paths and statuses), so the three the user can actually hit get their own
   /// line: a mistyped code, a seat someone else took, and a match that is not
   /// ours to look at.
   String _errorText(Object e) {
+    final l10n = appLocalizationsOf(context);
     if (e is NotFoundException) {
-      return 'No match with that code. Check it and try again.';
+      return l10n.onlineErrorNoMatch;
     }
     if (e is FailedPreconditionException) {
-      return 'That match is no longer open — the seat has been taken.';
+      return l10n.onlineErrorSeatTaken;
     }
     if (e is PermissionDeniedException) {
-      return 'That match is not open to you.';
+      return l10n.onlineErrorPermission;
     }
-    if (e is OnlineException) return e.message;
-    // A launch that never connected reports the transport's own reason (the
-    // REST failure, wrapped): more use than "something went wrong", and this is
-    // the only place a transport exception reaches this screen.
-    if (e is TransportException) return e.message;
-    return 'Something went wrong. Please try again.';
+    // Exceptions outside the known cases carry technical details that are not
+    // useful to players and may expose backend internals.
+    return l10n.onlineErrorGeneric;
   }
 
   // --- Rejoin flow -----------------------------------------------------------
@@ -262,7 +256,8 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
         // door — which takes the whole card with it, so the explanation has to
         // outlive it as a snackbar.
         await _forgetResume(sessionStore);
-        _say('That match has finished — nothing left to rejoin.');
+        if (!mounted) return;
+        _say(appLocalizationsOf(context).onlineMatchFinished);
         return;
       }
       if (!mounted) return;
@@ -386,7 +381,9 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
   Future<void> _join() async {
     final code = _codeController.text.trim().toUpperCase();
     if (code.isEmpty) {
-      setState(() => _joinError = 'Enter a match code.');
+      setState(
+        () => _joinError = appLocalizationsOf(context).onlineEnterCodeError,
+      );
       return;
     }
     setState(() {
@@ -542,7 +539,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
           analyticsMode: AnalyticsModes.online,
           // The header names the sides "You … Opp" online (the remote player is
           // not the AI); see GameScreen.opponentLabel.
-          opponentLabel: 'Opp',
+          opponentLabel: appLocalizationsOf(context).onlineOpponentShort,
           persistedMatchId: matchIdFuture,
           timings: settings.timings,
           interactionOptions: BoardInteractionOptions(
@@ -595,12 +592,13 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
   /// Offered only when this device is still carrying a match pointer. The uid
   /// behind it is durable now, so the seat named in that match is still ours.
   Widget _rejoinCard(String code) {
+    final l10n = appLocalizationsOf(context);
     final theme = Theme.of(context);
     return _SectionCard(
-      title: 'Match in progress',
+      title: l10n.onlineMatchInProgress,
       children: [
         Text(
-          'You were playing match $code.',
+          l10n.onlineResumePrompt(code),
           style: theme.textTheme.bodyMedium,
           textAlign: TextAlign.center,
         ),
@@ -616,11 +614,11 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
                   width: 20,
                   child: CircularProgressIndicator(strokeWidth: 2),
                 )
-              : const Text('Rejoin'),
+              : Text(l10n.onlineRejoin),
         ),
         TextButton(
           onPressed: _rejoining ? null : _forgetResume,
-          child: const Text('Forget this match'),
+          child: Text(l10n.onlineForgetMatch),
         ),
         if (_rejoinError != null) _errorRow(_rejoinError!),
       ],
@@ -628,12 +626,13 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
   }
 
   Widget _createCard() {
+    final l10n = appLocalizationsOf(context);
     final theme = Theme.of(context);
     if (_createdCode != null) return _waitingCard();
     return _SectionCard(
-      title: 'Create match',
+      title: l10n.onlineCreateTitle,
       children: [
-        Text('Match length', style: theme.textTheme.titleSmall),
+        Text(l10n.onlineMatchLength, style: theme.textTheme.titleSmall),
         const SizedBox(height: 8),
         SegmentedButton<int>(
           showSelectedIcon: false,
@@ -653,8 +652,8 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
         // server-mediated and there was no online choice to make).
         SwitchListTile(
           contentPadding: EdgeInsets.zero,
-          title: const Text('Play without cube'),
-          subtitle: const Text('No doubling cube this match'),
+          title: Text(l10n.onlineNoCubeTitle),
+          subtitle: Text(l10n.onlineNoCubeSubtitle),
           value: _cubeless,
           onChanged: _creating ? null : (v) => setState(() => _cubeless = v),
         ),
@@ -670,7 +669,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
                   width: 20,
                   child: CircularProgressIndicator(strokeWidth: 2),
                 )
-              : const Text('Create'),
+              : Text(l10n.onlineCreate),
         ),
         if (_createError != null) _errorRow(_createError!),
       ],
@@ -678,11 +677,12 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
   }
 
   Widget _waitingCard() {
+    final l10n = appLocalizationsOf(context);
     final theme = Theme.of(context);
     return _SectionCard(
-      title: 'Waiting for opponent',
+      title: l10n.onlineWaitingOpponent,
       children: [
-        Text('Share this code', style: theme.textTheme.titleSmall),
+        Text(l10n.onlineShareCode, style: theme.textTheme.titleSmall),
         const SizedBox(height: 8),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -695,20 +695,20 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
               ),
             ),
             IconButton(
-              tooltip: 'Copy code',
+              tooltip: l10n.onlineCopyCode,
               icon: const Icon(Icons.copy),
               onPressed: () async {
                 await Clipboard.setData(ClipboardData(text: _createdCode!));
                 if (!mounted) return;
                 ScaffoldMessenger.of(
                   context,
-                ).showSnackBar(const SnackBar(content: Text('Code copied')));
+                ).showSnackBar(SnackBar(content: Text(l10n.onlineCodeCopied)));
               },
             ),
           ],
         ),
         const SizedBox(height: 16),
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
@@ -717,7 +717,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
               child: CircularProgressIndicator(strokeWidth: 2),
             ),
             SizedBox(width: 12),
-            Text('Waiting for opponent…'),
+            Text(l10n.onlineWaitingOpponent),
           ],
         ),
         const SizedBox(height: 8),
@@ -729,7 +729,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
               _createError = null;
             });
           },
-          child: const Text('Cancel'),
+          child: Text(l10n.actionCancel),
         ),
         if (_createError != null) _errorRow(_createError!),
       ],
@@ -737,8 +737,9 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
   }
 
   Widget _joinCard() {
+    final l10n = appLocalizationsOf(context);
     return _SectionCard(
-      title: 'Join match',
+      title: l10n.onlineJoinTitle,
       children: [
         TextField(
           controller: _codeController,
@@ -747,8 +748,8 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
           // The code IS the match document id: [kCodeLength] characters from
           // [kCodeAlphabet].
           maxLength: kCodeLength,
-          decoration: const InputDecoration(
-            labelText: 'Match code',
+          decoration: InputDecoration(
+            labelText: l10n.onlineRoomCode,
             counterText: '',
             border: OutlineInputBorder(),
           ),
@@ -767,7 +768,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
                   width: 20,
                   child: CircularProgressIndicator(strokeWidth: 2),
                 )
-              : const Text('Join'),
+              : Text(l10n.onlineJoin),
         ),
         if (_joinError != null) _errorRow(_joinError!),
       ],

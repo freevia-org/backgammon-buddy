@@ -158,4 +158,2311 @@ class AppLocalizationsSr extends AppLocalizations {
   @override
   String get tutorForcedPassNoDecision =>
       'Prinudno preskakanje ne uključuje odluku o pomeranju figura.';
+
+  @override
+  String get settingsReset => 'Resetuj';
+
+  @override
+  String get settingsAppLanguage => 'Jezik aplikacije';
+
+  @override
+  String get settingsTheme => 'Tema';
+
+  @override
+  String get settingsThemeSystem => 'Sistemska';
+
+  @override
+  String get settingsThemeLight => 'Svetla';
+
+  @override
+  String get settingsThemeDark => 'Tamna';
+
+  @override
+  String get settingsAnimationSpeed => 'Brzina animacije';
+
+  @override
+  String get settingsAnimationNone => 'Bez animacije';
+
+  @override
+  String get settingsAnimationNormal => 'Uobičajena';
+
+  @override
+  String get settingsAnimationFast => 'Brza';
+
+  @override
+  String get settingsDiceRollAnimation => 'Animacija bacanja kockica';
+
+  @override
+  String get settingsDiceRollAnimationHelp =>
+      'Zavrti kockice pre svakog bacanja.';
+
+  @override
+  String get settingsDefaultMatchLength => 'Podrazumevana dužina meča';
+
+  @override
+  String get settingsDefaultDifficulty => 'Podrazumevana težina';
+
+  @override
+  String get settingsDifficultyEasy => 'Lako';
+
+  @override
+  String get settingsDifficultyMedium => 'Srednje';
+
+  @override
+  String get settingsDifficultyHard => 'Teško';
+
+  @override
+  String get settingsDifficultyExpert => 'Ekspertsko';
+
+  @override
+  String get settingsTutorModeDefault => 'Podrazumevani režim trenera';
+
+  @override
+  String get settingsTutorAuto => 'Automatski';
+
+  @override
+  String get settingsTutorOn => 'Uključeno';
+
+  @override
+  String get settingsTutorOff => 'Isključeno';
+
+  @override
+  String get settingsTutorModeHelp =>
+      'Automatski uključuje trenera na svim nivoima težine protiv računara. Uključeno i Isključeno određuju početni izbor za lokalne mečeve. U partijama u blizini i na mreži nema pomoći; sačuvane partije mogu se naknadno pregledati. Podešavanja podučavanja ispod čuvaju se na ovom uređaju.';
+
+  @override
+  String get settingsTutorPreferences => 'Podešavanja trenera';
+
+  @override
+  String get settingsTutorPreferencesSubtitle =>
+      'Sačuvane podrazumevane vrednosti za buduće mečeve';
+
+  @override
+  String get settingsTutorSaveError =>
+      'Nije moguće sačuvati podešavanja trenera.';
+
+  @override
+  String get settingsGameplay => 'Igra';
+
+  @override
+  String get settingsMoveHighlights => 'Isticanje poteza';
+
+  @override
+  String get settingsMoveHighlightsHelp =>
+      'Označi figure koje možeš da izabereš i osvetli odredišta.';
+
+  @override
+  String get settingsDragToMove => 'Prevlačenje za pomeranje';
+
+  @override
+  String get settingsDragToMoveHelp =>
+      'Prevuci figuru do odredišta (dodiri takođe rade).';
+
+  @override
+  String get settingsCombinedMoves => 'Spojeni potezi';
+
+  @override
+  String get settingsCombinedMovesHelp =>
+      'Jednim dodirom pomeri figuru prema oba bacanja.';
+
+  @override
+  String get settingsRotateBoard => 'Okreni tablu između poteza';
+
+  @override
+  String get settingsRotateBoardHelp =>
+      'Za igru udvoje naizmenično okreni prikaz aktivnom igraču.';
+
+  @override
+  String get settingsPassDevice => 'Ekran za predaju uređaja';
+
+  @override
+  String get settingsPassDeviceHelp =>
+      'Sakrij tablu između poteza u igri udvoje.';
+
+  @override
+  String get settingsShowScore => 'Prikaži rezultat';
+
+  @override
+  String get settingsShowScoreHelp =>
+      'Prikaži trenutni rezultat meča u zaglavlju.';
+
+  @override
+  String get settingsBuddyMode => 'Buddy režim';
+
+  @override
+  String get settingsBuddyTerse => 'Kratko';
+
+  @override
+  String get settingsBuddyFriendly => 'Prijateljski';
+
+  @override
+  String get settingsBuddyTerseHelp =>
+      'Kako Buddy izgovara potez: „13/8, 24/22“ – zapisom kakvim dva igrača za tablom stvarno govore.';
+
+  @override
+  String get settingsBuddyFriendlyHelp =>
+      'Kako Buddy izgovara potez: „Pomeri jednu figuru sa 13 na 8, a drugu sa 24 na 22.“';
+
+  @override
+  String get settingsListenForDice => 'Slušaj bacanje kockica';
+
+  @override
+  String get settingsListenForDiceHelp =>
+      'Buddy ranije pogleda tablu kad čuje bacanje. Isključivanje ne menja ništa drugo.';
+
+  @override
+  String get settingsDiagnostics => 'Dijagnostika';
+
+  @override
+  String get settingsErrorLog => 'Zapis grešaka';
+
+  @override
+  String get settingsErrorLogHelp =>
+      'Nedavne greške spremne za kopiranje u prijavu problema.';
+
+  @override
+  String get settingsReportBug => 'Prijavi grešku';
+
+  @override
+  String get settingsReportBugHelp =>
+      'Otvori vođeni obrazac za prijavu na GitHubu.';
+
+  @override
+  String get settingsSuggestIdea => 'Predloži ideju';
+
+  @override
+  String get settingsSuggestIdeaHelp =>
+      'Pomozi nam da unapredimo trenera i igru.';
+
+  @override
+  String get settingsAbout => 'O aplikaciji';
+
+  @override
+  String get settingsOpenSourceLicenses => 'Licence otvorenog koda';
+
+  @override
+  String settingsAppVersion(Object version) {
+    return 'Backgammon Buddy $version';
+  }
+
+  @override
+  String get tutorPhraseGameFinished => 'Partija je završena.';
+
+  @override
+  String get tutorPhraseReviewFinishedGame =>
+      'Pregledaj poteze i pronađi odluku za vežbanje.';
+
+  @override
+  String get tutorPhraseCubeOffered => 'Ponuđena je kocka za dupliranje.';
+
+  @override
+  String get tutorPhraseCubeDecisionPrompt =>
+      'Odluči da li ćeš prihvatiti dupliranje ili odustati pre nego što planiraš potez figurama.';
+
+  @override
+  String get tutorPhraseCubeScoreContext =>
+      'Rezultat meča menja vrednost dodatnog uloga.';
+
+  @override
+  String get tutorPhraseResignationOffered => 'Ponuđeno je odustajanje.';
+
+  @override
+  String get tutorPhraseResignationDecisionPrompt =>
+      'Uporedi ponuđene poene sa pozicijom pre nego što prihvatiš ili nastaviš.';
+
+  @override
+  String get tutorPhraseNoLegalPlay => 'Nema legalnog poteza za ovo bacanje.';
+
+  @override
+  String get tutorPhraseForcedPassPrompt =>
+      'Prinudno preskakanje nije greška; sačekaj sledeće bacanje.';
+
+  @override
+  String get tutorPhraseOnlyOneResult =>
+      'Postoji samo jedan legalan završni raspored.';
+
+  @override
+  String get tutorPhraseForcedTurnPrompt =>
+      'Odigraj prinudni potez. Ovo bacanje ne nudi izbor koji bi se ocenjivao.';
+
+  @override
+  String get tutorPhrasePipCountsLevel => 'Broj pipova je izjednačen.';
+
+  @override
+  String tutorPhrasePipCountsAhead(int count) {
+    return 'Imaš prednost od $count pipova.';
+  }
+
+  @override
+  String tutorPhrasePipCountsBehind(int count) {
+    return 'Zaostaješ $count pipova.';
+  }
+
+  @override
+  String tutorPhrasePlayerHasCheckersOnBar(int count) {
+    return '$count figura je na baru: prvo ih vrati u igru.';
+  }
+
+  @override
+  String get tutorPhraseEnterBeforeMoving =>
+      'Prvo uđi u igru, pa potraži bezbedno mesto za sletanje.';
+
+  @override
+  String tutorPhraseOpponentHomePoints(int count) {
+    return 'Protivnik ima $count zatvorenih poena u kućici.';
+  }
+
+  @override
+  String get tutorPhraseBearOffRace => 'Trka u skidanju figura.';
+
+  @override
+  String get tutorPhrasePureRace => 'Čista trka.';
+
+  @override
+  String get tutorPhraseBearOffSpread =>
+      'Skidaj figure, ali ostavi koristan raspored za sledeće bacanje.';
+
+  @override
+  String get tutorPhraseBringRearCheckersHome =>
+      'Vrati zadnje figure kući, bez gomilanja previše njih na jednom poenu.';
+
+  @override
+  String get tutorPhraseArmiesHavePassed =>
+      'Strane su se mimoišle; dalji udarci nisu mogući.';
+
+  @override
+  String tutorPhraseContactStillMatters(Object part) {
+    return '$part Kontakt je i dalje važan.';
+  }
+
+  @override
+  String tutorPhraseOpponentHasCheckersOnBar(int count) {
+    return '$count protivničkih figura je na baru.';
+  }
+
+  @override
+  String get tutorPhraseKeepBoardClosed =>
+      'Održi tablu zatvorenom dok vraćaš preostale figure kući.';
+
+  @override
+  String get tutorPhraseBuildOrPreserveHomeBoard =>
+      'Izgradi ili sačuvaj kućicu dok protivnik pokušava da uđe.';
+
+  @override
+  String tutorPhraseHomePointsCloseEntries(int count) {
+    return 'Držiš $count poena kućice; svaki zatvara jedan broj za ulazak.';
+  }
+
+  @override
+  String tutorPhrasePrimeContact(int count) {
+    return 'Kontakt sa nizom od $count poena.';
+  }
+
+  @override
+  String get tutorPhraseExtendPrimeOrKeepSpares =>
+      'Uporedi produženje niza sa čuvanjem rezervnih figura za njegovo održavanje.';
+
+  @override
+  String tutorPhraseSpareCheckersCanMove(int count) {
+    return '$count rezervnih figura može da se pomeri, a da se poen odmah ne otvori.';
+  }
+
+  @override
+  String tutorPhraseAnchorContact(Object points) {
+    return 'Kontakt sa sidrom na poenima $points.';
+  }
+
+  @override
+  String get tutorPhraseCompareAnchorProgressAhead =>
+      'Uporedi vraćanje zadnjih figura kući sa sigurnošću koju pruža zadržavanje sidra.';
+
+  @override
+  String get tutorPhraseCompareAnchorProgressBehind =>
+      'Dok tražiš udarac ili jačaš tablu, imaj na umu sigurnost uporišta.';
+
+  @override
+  String get tutorPhrasePreserveAnchorFoothold =>
+      'Sidro se ne može udariti, ali ove figure još imaju dug put do kuće.';
+
+  @override
+  String get tutorPhraseContactThreats =>
+      'Kontakt: obe strane i dalje mogu da zaprete udarcem.';
+
+  @override
+  String get tutorPhraseLookForPointsAndSafety =>
+      'Traži korisne poene, pa uporedi rizik ostavljanja usamljenih figura izloženim.';
+
+  @override
+  String tutorPhraseHomePointsAndBlots(int count, int otherCount) {
+    return 'Držiš $count poena kućice i ostavljaš $otherCount usamljenih figura.';
+  }
+
+  @override
+  String get tutorPhraseChooseCheckerPrompt =>
+      'Izaberi figuru kojom ćeš započeti potez.';
+
+  @override
+  String get tutorPhraseLegalPlayPrompt =>
+      'Započni legalan potez da bi video komentare.';
+
+  @override
+  String tutorPhraseStagedHit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'figura',
+      one: 'figuru',
+    );
+    return 'Udario si $count protivničku $_temp0.';
+  }
+
+  @override
+  String tutorPhraseStagedEnter(int count) {
+    return 'Uveo si $count figuru sa bara.';
+  }
+
+  @override
+  String tutorPhraseStagedBearOff(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'figure',
+      one: 'figuru',
+    );
+    return 'Skinuo si $count $_temp0 sa table.';
+  }
+
+  @override
+  String tutorPhraseStagedMakePoints(Object points) {
+    return 'Zauzeo si poene $points.';
+  }
+
+  @override
+  String tutorPhraseStagedBlot(int point) {
+    return 'Figura na tvom poenu $point za sada je usamljena i izložena.';
+  }
+
+  @override
+  String tutorPhraseStagedSpare(int point) {
+    return 'Rezervnu figuru na poenu $point kasnije možeš pomeriti bez otvaranja poena.';
+  }
+
+  @override
+  String tutorPhraseStagedPartialPrompt(Object part) {
+    return '$part Iskoristi preostale igrive kockice pre nego što oceniš ceo potez.';
+  }
+
+  @override
+  String get tutorPhraseStagedAllCheckersOff =>
+      'Svih 15 figura je skinuto: partija je dobijena.';
+
+  @override
+  String get tutorPhraseStagedHitShortPlan =>
+      'Udarac donosi vreme dok protivnik pokušava da ponovo uđe.';
+
+  @override
+  String get tutorPhraseStagedEfficientBearOffPlan =>
+      'Efikasno skidanje uklanja figure i ostavlja korisne brojeve za sledeće bacanje.';
+
+  @override
+  String get tutorPhraseStagedRaceHomePlan =>
+      'Plan trke je da vratiš zadnje figure kući uz korisne poene za skidanje.';
+
+  @override
+  String get tutorPhraseStagedBearOffContactPlan =>
+      'Skidanje donosi napredak, ali preostali kontakt i dalje nosi rizik od udarca.';
+
+  @override
+  String get tutorPhraseStagedReentryPlan =>
+      'Ulaskom se figura vraća u igru; sledeće potraži sigurno mesto za sletanje.';
+
+  @override
+  String get tutorPhraseStagedHomeBoardPlan =>
+      'Novi poen u kućici uklanja jedan broj za ulazak posle budućeg udarca.';
+
+  @override
+  String get tutorPhraseStagedPrimePlan =>
+      'Duži niz zatvara više poena za sletanje; rezervne figure pomažu da ostane zatvoren.';
+
+  @override
+  String get tutorPhraseStagedLeaveAnchorPlan =>
+      'Napuštanje sidra donosi napredak, ali se odričeš sigurnog uporišta.';
+
+  @override
+  String get tutorPhraseStagedNewAnchorPlan =>
+      'Novo sidro pruža zadnjim figurama sigurno uporište.';
+
+  @override
+  String get tutorPhraseStagedCoverBlotPlan =>
+      'Pokrivanje usamljene figure uklanja protivničku metu.';
+
+  @override
+  String get tutorPhraseStagedSafetyTradeoffPlan =>
+      'Ovde biraš između razvoja i sigurnosti: korisni graditelji mogu postati i mete.';
+
+  @override
+  String tutorPhraseStagedCompletePrompt(Object part) {
+    return '$part Ceo potez je spreman; potvrdi da bi ga odigrao.';
+  }
+
+  @override
+  String get tutorMoveForcedVerdict =>
+      'Ovo bacanje ne ostavlja izbor za pomeranje figura; ne ocenjuje se kao odluka.';
+
+  @override
+  String get tutorMoveTopVerdict => 'Najbolji izbor u ovoj poziciji.';
+
+  @override
+  String get tutorMoveAlternativeVerdict =>
+      'Program u ovoj poziciji daje prednost drugom potezu.';
+
+  @override
+  String tutorMoveEstimateDifference(Object loss) {
+    return 'Razlika u odnosu na najbolji potez: $loss.';
+  }
+
+  @override
+  String tutorMoveEstimateOutcomes(
+    Object winPercent,
+    Object winGammonPercent,
+    Object loseGammonPercent,
+  ) {
+    return 'Posle ovog poteza: šansa za pobedu $winPercent%, pobedu uz gamon ili bolje $winGammonPercent%, poraz uz gamon ili gore $loseGammonPercent%. Procene su iz ugla igrača koji je na potezu.';
+  }
+
+  @override
+  String tutorMoveEstimateMatchChance(Object percent) {
+    return 'Procenjena verovatnoća pobede u meču: $percent%.';
+  }
+
+  @override
+  String get tutorMovePlanAllCheckersOff =>
+      'Svih 15 figura je skinuto sa table: partija je dobijena.';
+
+  @override
+  String tutorMovePlanHit(Object homeBoardAdvice) {
+    return 'Iskoristi udarac da dobiješ na vremenu dok se protivnik vraća sa bara. $homeBoardAdvice';
+  }
+
+  @override
+  String get tutorMovePlanHitClosed =>
+      'Zadrži zatvorene poene u svojoj kućici da bi protivniku otežao ulazak.';
+
+  @override
+  String get tutorMovePlanHitBuild =>
+      'Zatvori još poena u svojoj kućici kako bi se protivnik teže oporavio od budućih udaraca.';
+
+  @override
+  String get tutorMovePlanRaceBearOff =>
+      'Skidaj figure efikasno: uklanjaj ih sa table i sačuvaj korisne brojeve za sledeće bacanje.';
+
+  @override
+  String get tutorMovePlanRaceHome =>
+      'Vrati zaostale figure kući i rasporedi ih na korisne poene za skidanje.';
+
+  @override
+  String get tutorMovePlanContactBearOff =>
+      'Skidaj figure, ali pazi na zaostale protivničke figure: dok postoji kontakt, nezaštićena figura može postati meta.';
+
+  @override
+  String get tutorMovePlanReentry =>
+      'Vrati se u igru, pa potraži siguran poen za figuru koja je upravo ušla.';
+
+  @override
+  String get tutorMovePlanHomeBoard =>
+      'Ojačaj svoju kućicu. Novi zatvoreni poen čini budući udarac jačim jer uklanja jedan broj za ulazak.';
+
+  @override
+  String get tutorMovePlanPrime =>
+      'Očuvaj niz zatvorenih poena. Sačuvaj rezervne figure da te kasnije bacanje ne primora da ga otvoriš.';
+
+  @override
+  String get tutorMovePlanLeaveAnchor =>
+      'Napuštanjem sidra pomeraš zaostale figure, ali gubiš sigurno uporište. Pazi na njihovu izloženost dok se vraćaju kući.';
+
+  @override
+  String get tutorMovePlanNewAnchor =>
+      'Koristi novo sidro kao sigurno uporište dok popravljaš ostatak pozicije.';
+
+  @override
+  String get tutorMovePlanCoverBlot =>
+      'Grupiši figure. Pokrivanjem usamljene figure uklanjaš metu i čuvaš buduće mogućnosti za zauzimanje poena.';
+
+  @override
+  String get tutorMovePlanSafety =>
+      'Uravnoteži razvoj i sigurnost: približi graditelje korisnim poenima i proveri koje usamljene figure mogu biti udarene.';
+
+  @override
+  String get tutorMoveObservationNoLegalPlay =>
+      'Nema legalnog poteza figurama: moraš da preskočiš potez.';
+
+  @override
+  String tutorMoveObservationHit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'figura',
+      one: 'figuru',
+    );
+    return 'Udara $count protivničku $_temp0; protivnik mora da uđe sa bara pre nego što pomeri ostale figure.';
+  }
+
+  @override
+  String tutorMoveObservationEntry(int count) {
+    return 'Uvodi $count figure sa bara.';
+  }
+
+  @override
+  String tutorMoveObservationBearOff(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'figure',
+      one: 'figuru',
+    );
+    return 'Skida $count $_temp0 sa table.';
+  }
+
+  @override
+  String tutorMoveObservationMadePoints(Object points) {
+    return 'Zauzima poene $points. Dve ili više figura drže siguran poen i blokiraju protivniku sletanje na njega.';
+  }
+
+  @override
+  String tutorMoveObservationBrokenPoints(Object pointLabel, Object points) {
+    return 'Oslobađa zauzete $pointLabel $points. Ti poeni više ne blokiraju protivnika.';
+  }
+
+  @override
+  String tutorMoveObservationNoBlots(int previousCount) {
+    return 'Ne ostavlja usamljene izložene figure (ranije $previousCount). Nema pojedinačnih figura koje protivnik može da udari.';
+  }
+
+  @override
+  String tutorMoveObservationBlots(int count, int previousCount) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'figura',
+      one: 'figuru',
+    );
+    return 'Ostavlja $count usamljenih izloženih $_temp0 (ranije $previousCount). Proveri može li protivnik da ih dosegne pre nego što izabereš sigurnost umesto druge koristi.';
+  }
+
+  @override
+  String tutorMoveObservationPrimeRun(
+    int count,
+    int previousCount,
+    Object primeAdvice,
+  ) {
+    return 'Najduži niz zauzetih poena: $count (ranije $previousCount). $primeAdvice';
+  }
+
+  @override
+  String get tutorMoveObservationPrimeSix =>
+      'Prime od šest poena ne može se preći dok je zatvoren.';
+
+  @override
+  String get tutorMoveObservationPrimeBuild =>
+      'Drži graditelje u blizini ako želiš da produžiš ili sačuvaš ovaj niz.';
+
+  @override
+  String tutorMoveObservationPrimeSpares(int count) {
+    return 'Iznad dve figure koje drže zauzete poene ima $count rezervnih figura. Pomeranje rezervne može sačuvati poen; pomeranje jedne od poslednje dve ga otvara.';
+  }
+
+  @override
+  String tutorMoveObservationAnchors(Object points, Object previousPoints) {
+    return 'Sidra u protivničkoj kućici: $points (ranije $previousPoints). Sidro štiti ove figure od udaraca; napuštanjem menjaš sigurno uporište za napredak u trci.';
+  }
+
+  @override
+  String get tutorMoveObservationPureRace =>
+      'Čista trka: strane su se mimoišle i nijedna nema figure na baru. Udaranje više nije moguće; važno je efikasno skidanje figura.';
+
+  @override
+  String get tutorMoveObservationNoReplyHit =>
+      'Nijedno legalno sledeće bacanje ne omogućava protivniku da udari figuru u ovoj poziciji. Kontakt i dalje postoji, pa kasniji potezi mogu otvoriti nove šanse.';
+
+  @override
+  String tutorMoveObservationReplyHit(
+    int count,
+    int total,
+    int dieOne,
+    int dieTwo,
+    int point,
+  ) {
+    return 'Protivnik može da udari u $count od $total bacanja. Na primer, $dieOne–$dieTwo omogućava legalan udar na tvoju figuru na poenu $point. To što udar postoji ne znači da će ga protivnik izabrati.';
+  }
+
+  @override
+  String tutorMoveObservationOpponentBarHome(
+    int closedPoints,
+    Object entryAdvice,
+  ) {
+    return 'U tvojoj kućici je zatvoreno $closedPoints poena. $entryAdvice';
+  }
+
+  @override
+  String get tutorMoveObservationAllEntriesClosed =>
+      'Protivnik ne može da uđe dok se neki poen ne otvori.';
+
+  @override
+  String get tutorMoveObservationOpenEntry =>
+      'Bacanje koje odgovara otvorenom ulaznom poenu može vratiti figuru sa bara.';
+
+  @override
+  String tutorMoveComparisonDetail(
+    Object factors,
+    Object delta,
+    Object direction,
+    Object scoreContext,
+  ) {
+    return '$factors Procenjena šansa za pobedu najboljim potezom je $delta procentnih poena $direction.$scoreContext';
+  }
+
+  @override
+  String get tutorMoveComparisonHigher => 'veća';
+
+  @override
+  String get tutorMoveComparisonLower => 'manja';
+
+  @override
+  String tutorMoveComparisonScoreContext(Object scoreContext) {
+    return ' Ipak može biti bolje rangiran jer se vrednost gamona i bek-gamona razlikuje prema trenutnom $scoreContext.';
+  }
+
+  @override
+  String get tutorMoveComparisonStake => 'rezultatu';
+
+  @override
+  String get tutorMoveComparisonMatchScore => 'rezultatu meča';
+
+  @override
+  String tutorMoveComparisonFactorBar(int bestCount, int playedCount) {
+    return 'Najbolji potez ostavlja $bestCount protivničkih figura na baru umesto $playedCount. Figura na baru mora da uđe pre nego što protivnik pomeri ostale.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorHomeBoard(
+    int bestCount,
+    int playedCount,
+    Object entryDifference,
+  ) {
+    return 'Najbolji potez drži zatvorenim $bestCount poena u kućici umesto $playedCount, odnosno $entryDifference ulaznih poena posle udarca.';
+  }
+
+  @override
+  String get tutorMoveComparisonClosingMore => 'zatvaranjem više poena';
+
+  @override
+  String get tutorMoveComparisonLeavingMore =>
+      'ostavljanjem više otvorenih poena';
+
+  @override
+  String tutorMoveComparisonFactorShots(
+    int bestCount,
+    int playedCount,
+    Object riskDifference,
+  ) {
+    return 'Najbolji potez dopušta protivnički udar u $bestCount od 36 bacanja umesto $playedCount. $riskDifference';
+  }
+
+  @override
+  String get tutorMoveComparisonReducesRisk =>
+      'To smanjuje neposredan rizik da budeš vraćen na bar.';
+
+  @override
+  String get tutorMoveComparisonExtraExposure =>
+      'Uporedi tu dodatnu izloženost sa onim što potez dobija na drugoj strani.';
+
+  @override
+  String tutorMoveComparisonFactorPrime(int bestCount, int playedCount) {
+    return 'Najduži niz zatvorenih poena kod najboljeg poteza ima $bestCount poena, a ne $playedCount; uporedi blokadu sa figurama kojima možeš da je održiš.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorAnchors(
+    Object bestPoints,
+    Object playedPoints,
+  ) {
+    return 'Najbolji potez čuva $bestPoints sidara umesto $playedPoints. Sidro čuva siguran poen; napuštanjem se figure približavaju kući.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorBearOff(int bestCount, int playedCount) {
+    return 'Najbolji potez skida $bestCount figura umesto $playedCount. Svaka skinuta figura je jedna manje za kasnije uklanjanje.';
+  }
+
+  @override
+  String get tutorMoveComparisonFactorSimilarRisks =>
+      'Oba poteza ostavljaju isti neposredni rizik od udarca, poene kućice, sidra i broj skinutih figura. Uporedi mesta sletanja: sledeće bacanje može drugačije da iskoristi te figure.';
+
+  @override
+  String get tutorMoveComparisonSummaryBar =>
+      'Najbolji potez šalje više protivničkih figura na bar i odlaže njihove ostale poteze.';
+
+  @override
+  String get tutorMoveComparisonSummaryHomeBoard =>
+      'Najbolji potez zatvara više poena kućice i otežava ulazak posle udarca.';
+
+  @override
+  String get tutorMoveComparisonSummaryShots =>
+      'Najbolji potez dopušta manje neposrednih prilika za udar i smanjuje rizik od uzvratnog udarca.';
+
+  @override
+  String get tutorMoveComparisonSummaryPrime =>
+      'Najbolji potez čuva duži niz zatvorenih poena.';
+
+  @override
+  String get tutorMoveComparisonSummaryAnchors =>
+      'Najbolji potez čuva više sigurnih sidara u protivničkoj kućici.';
+
+  @override
+  String get tutorMoveComparisonSummaryBearOff =>
+      'Najbolji potez skida više figura, pa ih kasnije ostaje manje za skidanje.';
+
+  @override
+  String tutorMoveComparisonSummaryBlots(int playedCount, int bestCount) {
+    return 'Ovaj potez ostavlja $playedCount usamljenih figura; najbolji potez ostavlja $bestCount.';
+  }
+
+  @override
+  String tutorMoveComparisonSummarySafeAnchor(int point) {
+    return 'Najbolji potez čuva sigurno sidro na poenu $point.';
+  }
+
+  @override
+  String get tutorMoveComparisonSummaryEntry =>
+      'Najbolji potez zatvara više ulaznih poena za slučaj da ti protivnik udari figuru.';
+
+  @override
+  String get tutorMoveComparisonSummarySimilarRisks =>
+      'Neposredni rizici su slični; uporedi koji će poeni za sletanje ostati korisni pri sledećem bacanju.';
+
+  @override
+  String tutorMoveAssessmentEquityLoss(Object value) {
+    return '$value ekvitija';
+  }
+
+  @override
+  String tutorMoveAssessmentMwcLoss(Object value) {
+    return '$value procentnih poena šanse za pobedu u meču';
+  }
+
+  @override
+  String get tutorMovePointSingular => 'poen';
+
+  @override
+  String get tutorMovePointPlural => 'poeni';
+
+  @override
+  String get tutorMoveNoPoints => 'nema';
+
+  @override
+  String get gameTutorCommentaryOff => 'Komentari partije su isključeni.';
+
+  @override
+  String get gameTutorToolsAvailable =>
+      'Otvori trenera da pristupiš uključenim alatima.';
+
+  @override
+  String get gameTutorNextRoll => 'Sada baci kockice.';
+
+  @override
+  String get gameTutorNoEvaluatedReview =>
+      'Za ovaj zabeleženi potez nije dostupno ocenjeno objašnjenje.';
+
+  @override
+  String get gameTutorAnalysisUnavailable => 'analiza nije dostupna';
+
+  @override
+  String get gameTutorReviewing => 'Analiza je u toku…';
+
+  @override
+  String get gameTutorTryYourPlayFirst => 'Prvo pokušaj sam da odigraš.';
+
+  @override
+  String get gameTutorKeepBuilding => 'Nastavi da sastavljaš svoj potez.';
+
+  @override
+  String get gameTutorStageCompleteBeforeCoaching =>
+      'Završi ceo legalan potez pre nego što otkriješ savete ili nagoveštaje.';
+
+  @override
+  String get gameTutorReadyToConfirm => 'Spremno za potvrdu';
+
+  @override
+  String get gameTutorPlayTakingShape => 'Tvoj potez dobija oblik.';
+
+  @override
+  String get gameTutorConfirmOrUndo =>
+      'Potvrdi potez ili ga poništi i razmisli ponovo.';
+
+  @override
+  String get gameTutorFinishDiceOrUndo =>
+      'Iskoristi preostale kockice ili poništi potez.';
+
+  @override
+  String get gameTutorComputerConsidering => 'Računar razmatra svoj potez.';
+
+  @override
+  String get gameTutorComputerPlayReviewed =>
+      'Završen potez računara biće analiziran ovde.';
+
+  @override
+  String get gameTutorYourPlay => 'Tvoj potez';
+
+  @override
+  String get gameTutorComputer => 'Računar';
+
+  @override
+  String gameTutorPlayQuality(Object quality) {
+    return 'Tvoj potez: $quality';
+  }
+
+  @override
+  String get gameTutorForcedPlay => 'prinudan potez';
+
+  @override
+  String get gameTutorTopChoice => 'najbolji izbor';
+
+  @override
+  String get gameTutorSoundPlay => 'dobar potez';
+
+  @override
+  String get gameTutorAnotherPlayMayFitBetter =>
+      'Možda bi drugi potez bolje odgovarao.';
+
+  @override
+  String get gameTutorAnotherPlayFitsBetter =>
+      'Drugi potez bolje odgovara ovoj poziciji.';
+
+  @override
+  String get gameTutorStrongerPlayAvailable =>
+      'Bio je dostupan znatno jači potez.';
+
+  @override
+  String gameTutorPositionEdge(Object side) {
+    return 'Prema proceni, $side ima prednost.';
+  }
+
+  @override
+  String get gameTutorPositionEven => 'Pozicija je približno izjednačena.';
+
+  @override
+  String tutorPlayedMove(Object move) {
+    return 'Odigrano: $move';
+  }
+
+  @override
+  String tutorBestMove(Object move) {
+    return 'Najbolje: $move';
+  }
+
+  @override
+  String get tutorShowRankedPlays => 'Prikaži rangirane poteze';
+
+  @override
+  String get tutorReviewRecordedMove =>
+      'Dodirni završen potez u zapisniku da bi ovde pregledao odluku.';
+
+  @override
+  String get tutorTopPlays => 'Najbolji potezi';
+
+  @override
+  String get tutorNoHintsAvailable => 'Nema dostupnih nagoveštaja.';
+
+  @override
+  String get tutorPreviewThenConfirm =>
+      'Dodirni potez da ga vidiš na tabli, pa potvrdi.';
+
+  @override
+  String get tutorTopChoiceForPosition => 'Najbolji izbor za ovu poziciju';
+
+  @override
+  String get tutorAlternativePlay => 'Alternativni potez';
+
+  @override
+  String get tutorEngineEstimates => 'Procene programa';
+
+  @override
+  String get tutorEstimateScope =>
+      'Procena na 0 polupoteza – trenutni rezultat i ulog – bez budućih dupliranja';
+
+  @override
+  String get tutorEquity => 'Ekvitija';
+
+  @override
+  String get tutorMwcPercent => 'Verovatnoća pobede u meču, %';
+
+  @override
+  String get tutorNearTiesNote =>
+      'Dublja analiza može promeniti redosled skoro izjednačenih poteza.';
+
+  @override
+  String get tutorWhyThisPlay => 'Zašto ovaj potez?';
+
+  @override
+  String get tutorCompareAlternative => 'Uporedi ovu alternativu';
+
+  @override
+  String get gameTutorCubeTake => 'Savet trenera: prihvati';
+
+  @override
+  String get gameTutorCubePass => 'Savet trenera: odbij';
+
+  @override
+  String get practiceScreenTitle => 'Vežbajte odluku';
+
+  @override
+  String get practiceUnavailable => 'Ova pozicija za vežbu više nije dostupna.';
+
+  @override
+  String get practiceSubmitError =>
+      'Potez nije mogao da se proceni ili sačuva. Vaš napredak nije promenjen. Pokušajte ponovo.';
+
+  @override
+  String practiceTurnLabel(Object side, Object dice) {
+    return '$side je na potezu · $dice';
+  }
+
+  @override
+  String get practiceHistoricalScoreUnavailable =>
+      'Istorijski rezultat nije dostupan; potez se ocenjuje bez kocke, prema equity vrednosti.';
+
+  @override
+  String practiceScoreLine(
+    Object whiteLabel,
+    int whiteScore,
+    Object blackLabel,
+    int blackScore,
+    int matchLength,
+  ) {
+    return 'Rezultat: $whiteLabel $whiteScore – $blackLabel $blackScore, do $matchLength';
+  }
+
+  @override
+  String get practiceCrawfordGame => ' · Krofordova partija';
+
+  @override
+  String get practiceNoDoublingCube => 'Bez kocke za dupliranje.';
+
+  @override
+  String practiceCubeValue(int value) {
+    return 'Vrednost kocke $value.';
+  }
+
+  @override
+  String get practiceHistoricalCubeUnknown =>
+      'Istorijska pravila za kocku nisu poznata.';
+
+  @override
+  String get practiceAfterBestPosition => 'Pozicija posle najboljeg poteza';
+
+  @override
+  String get practiceAfterYourAnswerPosition => 'Pozicija posle vašeg odgovora';
+
+  @override
+  String get practiceFindYourPlayPrompt =>
+      'Odigrate potez na tabli, pa proverite odgovor. Nema nagoveštaja.';
+
+  @override
+  String get practiceUndo => 'Poništi';
+
+  @override
+  String get practiceCheckAnswer => 'Proveri odgovor';
+
+  @override
+  String get practiceRevealNoCredit => 'Otkrij odgovor (bez poena)';
+
+  @override
+  String get practiceAnswerRevealedNoCredit =>
+      'Odgovor je otkriven — nema poena za prisećanje.';
+
+  @override
+  String practiceGradeLine(Object verdict, Object loss) {
+    return '$verdict · $loss';
+  }
+
+  @override
+  String practiceBestMoveLine(Object move) {
+    return 'Najbolje: $move';
+  }
+
+  @override
+  String practiceOriginalGameLine(Object move, Object loss) {
+    return 'Potez iz prvobitne partije: $move · $loss';
+  }
+
+  @override
+  String practiceYourAnswerLine(Object move) {
+    return 'Vaš odgovor: $move';
+  }
+
+  @override
+  String get practiceYourAnswerChip => 'Vaš odgovor';
+
+  @override
+  String get practiceBestPlayChip => 'Najbolji potez';
+
+  @override
+  String practiceNextReview(Object date) {
+    return 'Sledeća vežba: $date.';
+  }
+
+  @override
+  String get practiceRecallCredit =>
+      'Dobri i najbolji odgovori računaju se kao uspešno prisećanje. Rano ponavljanje ne produžava interval.';
+
+  @override
+  String get practiceBackToLearning => 'Nazad na učenje';
+
+  @override
+  String get practiceMarkBest => 'Najbolji';
+
+  @override
+  String get practiceMarkGood => 'Dobar';
+
+  @override
+  String get practiceMarkDubious => 'Sumnjiv';
+
+  @override
+  String get practiceMarkError => 'Greška';
+
+  @override
+  String get practiceMarkBlunder => 'Veliki previd';
+
+  @override
+  String get practiceMarkForced => 'Prinudan';
+
+  @override
+  String get newMatchYourSide => 'Vaša strana';
+
+  @override
+  String get newMatchTutorMode => 'Režim tutora';
+
+  @override
+  String get newMatchTutorDescription =>
+      'Učite uz nagoveštaje, objašnjenja i komentare o partiji';
+
+  @override
+  String get newMatchTutoringOptions => 'Opcije podučavanja';
+
+  @override
+  String get newMatchTutoringOptionsDescription =>
+      'Za ovu partiju; mogu se menjati tokom igre';
+
+  @override
+  String get setupMatchLength => 'Dužina meča';
+
+  @override
+  String get setupDifficulty => 'Težina';
+
+  @override
+  String get setupDifficultyEasy => 'Lako';
+
+  @override
+  String get setupDifficultyMedium => 'Srednje';
+
+  @override
+  String get setupDifficultyHard => 'Teško';
+
+  @override
+  String get setupDifficultyExpert => 'Ekspert';
+
+  @override
+  String get setupPlayWithoutCube => 'Igraj bez kocke';
+
+  @override
+  String get setupNoCubeThisMatch => 'Bez kocke za dupliranje u ovoj partiji';
+
+  @override
+  String get analysisTitle => 'Analiza';
+
+  @override
+  String get gameMatchSummary => 'Pregled meča';
+
+  @override
+  String get gameAnalyzeGame => 'Analiziraj partiju';
+
+  @override
+  String get analysisMetricsTooltip => 'Šta znače ovi brojevi?';
+
+  @override
+  String analysisError(Object error) {
+    return 'Analiza partije nije uspela: $error';
+  }
+
+  @override
+  String get analysisNoPositions => 'Ova partija nema pozicije za prikaz.';
+
+  @override
+  String get analysisInProgress => 'Analiza u toku…';
+
+  @override
+  String analysisPercent(int percent) {
+    return '$percent%';
+  }
+
+  @override
+  String get analysisPlayed => 'Odigrano';
+
+  @override
+  String get analysisBest => 'Najbolje';
+
+  @override
+  String get analysisPrevious => 'Prethodno';
+
+  @override
+  String get analysisNext => 'Sledeće';
+
+  @override
+  String get analysisPositionBeforeCube => 'Pozicija pre odluke o kocki';
+
+  @override
+  String get analysisPositionAtPoint => 'Pozicija u ovom trenutku partije';
+
+  @override
+  String get analysisShowingBestBefore =>
+      'Prikazuje se najbolji potez u poziciji pre poteza';
+
+  @override
+  String get analysisShowingBefore => 'Prikazuje se pozicija pre poteza';
+
+  @override
+  String analysisVerdictLine(Object side, Object verdict, Object loss) {
+    return '$side: $verdict$loss';
+  }
+
+  @override
+  String analysisMoveLoss(Object loss) {
+    return ' −$loss';
+  }
+
+  @override
+  String get analysisExcludedFromAverages => ' · isključeno iz proseka';
+
+  @override
+  String get analysisNoPlay => '(nema poteza)';
+
+  @override
+  String analysisBestMoveLine(Object move) {
+    return 'Najbolje: $move';
+  }
+
+  @override
+  String get analysisExplain => 'Objasni';
+
+  @override
+  String get analysisSaveForPractice => 'Sačuvaj za vežbu';
+
+  @override
+  String analysisSaveError(Object error) {
+    return 'Ovu odluku nije moguće sačuvati: $error';
+  }
+
+  @override
+  String analysisCubeInfo(
+    Object side,
+    Object action,
+    Object mark,
+    Object loss,
+  ) {
+    return '$side: $action · $mark · gubitak $loss';
+  }
+
+  @override
+  String get analysisCubeDecision => 'Odluka o kocki';
+
+  @override
+  String analysisCubePlayed(Object action, Object percent) {
+    return 'Odigrano: $action ($percent% šanse za pobedu u meču).';
+  }
+
+  @override
+  String analysisCubeBest(Object action, Object percent) {
+    return 'Najbolje: $action ($percent% šanse za pobedu u meču).';
+  }
+
+  @override
+  String get analysisCubeEstimate =>
+      '0-ply procena iz perspektive igrača koji je na potezu. Pretpostavlja optimalan odgovor — prihvatanje ili predaju. Za granu prihvaćenog dupliranja koristi približnu vrednost od 0,7 životnog veka kocke, a ne potpunu pretragu budućih ponovnih dupliranja. Dublja analiza može promeniti odgovor.';
+
+  @override
+  String get analysisClose => 'Zatvori';
+
+  @override
+  String get analysisMoves => 'Potezi';
+
+  @override
+  String get analysisForced => 'Prinudno';
+
+  @override
+  String get analysisMarkBest => 'Najbolje';
+
+  @override
+  String get analysisMarkGood => 'Dobro';
+
+  @override
+  String get analysisMarkDubious => 'Sumnjivo';
+
+  @override
+  String get analysisMarkError => 'Greška';
+
+  @override
+  String get analysisMarkBlunder => 'Velika greška';
+
+  @override
+  String analysisSummaryMeanLoss(Object loss) {
+    return 'Prosečan gubitak $loss';
+  }
+
+  @override
+  String analysisSummaryCheckerDecisions(int count) {
+    return '$count odluka o figurama';
+  }
+
+  @override
+  String analysisSummaryBlunders(int count) {
+    return 'Velike greške $count';
+  }
+
+  @override
+  String analysisSummaryCubeLoss(Object loss) {
+    return 'Gubitak na kocki $loss';
+  }
+
+  @override
+  String analysisRollWithoutDoubling(Object side) {
+    return '$side baca bez dupliranja';
+  }
+
+  @override
+  String get metricExplainerTitle => 'Razumevanje metrika';
+
+  @override
+  String get metricExplainerTooltip => 'Šta znače ovi brojevi?';
+
+  @override
+  String get metricExplainerMwcTitle => 'Šansa za pobedu u meču (MWC)';
+
+  @override
+  String get metricExplainerMwcBody =>
+      'Kada je rezultat poznat, potezi figurama se rangiraju prema procenjenoj šansi za pobedu u meču. Gubitak je izražen u procentnim poenima (pp): 1 pp znači pad sa 51% na 50%. Uračunati su ulog kocke i ishodi gamona/bekgemona. Prinudni pasovi i bacanja sa jednom legalnom pozicijom izostavljaju se iz proseka.';
+
+  @override
+  String get metricExplainerSearchTitle => 'Pretraga i neizvesnost';
+
+  @override
+  String get metricExplainerSearchBody =>
+      'Rangiranje poteza figurama su statičke 0-ply procene nakon poteza, a ne simulacije. Vrednosti meča koriste tabelu meč-ekvitija bez budućih poteza kockom. Analiza kocke koristi delimičnu aproksimaciju 0,7 životnog veka kocke kod prihvaćenih dupliranja; to nije potpuna cubeful pretraga. Za rezultat više od 25 koristi se granica 25-away iz tabele. Dublja analiza može promeniti bliske rezultate; kalibrisan interval pouzdanosti se ne računa.';
+
+  @override
+  String get metricExplainerEquityTitle => 'Ekvitij';
+
+  @override
+  String get metricExplainerEquityBody =>
+      'Ako rezultat nije dostupan, ekvitij bez kocke pokazuje prosečnu vrednost pozicije u poenima kada je kocka na 1. +1,0 znači očekivan dobitak jednog poena, a −0,5 gubitak pola poena.';
+
+  @override
+  String get metricExplainerEquityLossTitle => 'Gubitak ekvitija (npr. −0,016)';
+
+  @override
+  String get metricExplainerEquityLossBody =>
+      'Poredi se odigrani potez sa najboljim potezom motora. Gubitak ekvitija pokazuje koliko je očekivane vrednosti potez prepustio. −0,016 znači da je bio samo 0,016 poena slabiji — sitan propust. 0,000 znači da si pronašao najbolji potez.';
+
+  @override
+  String get metricExplainerErrorRateTitle => 'Stopa grešaka';
+
+  @override
+  String get metricExplainerErrorRateBody =>
+      'Prosečan gubitak računa prosek ocenjenih odluka figurama u prikazanoj jedinici. Odluke kockom imaju poseban prosek. Manja vrednost znači da su potezi bliži najboljim procenama motora; to nije kalibrisan rejting igrača.';
+
+  @override
+  String get metricExplainerMoveMarksTitle => 'Ocene poteza';
+
+  @override
+  String get metricExplainerMoveMarksBody =>
+      'MWC granice za učenje: Najbolje < 0,05 pp, Dobro < 0,5 pp, Sumnjivo < 1,5 pp, Greška < 3 pp, Velika greška ≥ 3 pp. To su granice za učenje, a ne kalibrisana pouzdanost ili turnirski rejting.\n\nGranice ekvitija bez kocke za učenje:';
+
+  @override
+  String get metricExplainerThresholdBest => 'gubitak < 0,001';
+
+  @override
+  String get metricExplainerThresholdGood => 'gubitak < 0,020';
+
+  @override
+  String get metricExplainerThresholdDubious => 'gubitak < 0,050';
+
+  @override
+  String get metricExplainerThresholdError => 'gubitak < 0,110';
+
+  @override
+  String get metricExplainerThresholdBlunder => 'gubitak ≥ 0,110';
+
+  @override
+  String get metricExplainerGotIt => 'Razumem';
+
+  @override
+  String get historyTitle => 'Istorija mečeva';
+
+  @override
+  String historyLoadFailed(Object error) {
+    return 'Istorija nije mogla da se učita:\n$error';
+  }
+
+  @override
+  String get historyEmpty => 'Još nema odigranih mečeva.';
+
+  @override
+  String get historyDeleteConfirmTitle => 'Obrisati ovaj meč?';
+
+  @override
+  String historyDeleteConfirmBody(Object scoreLine) {
+    return '$scoreLine\n\nMeč i sve zabeležene partije u njemu biće trajno uklonjeni. Ovo ne može da se opozove.';
+  }
+
+  @override
+  String get actionCancel => 'Otkaži';
+
+  @override
+  String get actionDelete => 'Obriši';
+
+  @override
+  String get historyDeleteFailed => 'Meč nije mogao da se obriše.';
+
+  @override
+  String get historyComplete => 'Završen';
+
+  @override
+  String historyWinner(Object side) {
+    return 'Pobedio je $side';
+  }
+
+  @override
+  String get historyUnfinished => 'Nedovršen';
+
+  @override
+  String get historyMatchTitle => 'Meč';
+
+  @override
+  String historyMatchLoadFailed(Object error) {
+    return 'Meč nije mogao da se učita:\n$error';
+  }
+
+  @override
+  String historyGamesLoadFailed(Object error) {
+    return 'Partije nisu mogle da se učitaju:\n$error';
+  }
+
+  @override
+  String get historyNoGames => 'Još nema zabeleženih partija.';
+
+  @override
+  String historyGameTitle(int number) {
+    return 'Partija $number';
+  }
+
+  @override
+  String get historyCrawford => 'Krofordovo pravilo';
+
+  @override
+  String historyScoreLine(int whiteScore, int blackScore, int matchLength) {
+    return 'Beli $whiteScore — $blackScore Crni  (do $matchLength)';
+  }
+
+  @override
+  String get historyModeComputer => 'protiv računara';
+
+  @override
+  String get historyModeTwoPlayers => 'Dva igrača';
+
+  @override
+  String get historyModeOnline => 'Online';
+
+  @override
+  String get historyModeNearby => 'Igraj u blizini';
+
+  @override
+  String get historyModeBuddy => 'Buddy';
+
+  @override
+  String get historyGameInProgress => 'U toku';
+
+  @override
+  String historyGameResult(Object side, int points, Object outcome) {
+    return '$side pobeđuje $points ($outcome)';
+  }
+
+  @override
+  String get historyOutcomeSingle => 'jednostruki';
+
+  @override
+  String get historyOutcomeGammon => 'gammon';
+
+  @override
+  String get historyOutcomeBackgammon => 'bekgemmon';
+
+  @override
+  String get learningRefreshTooltip => 'Osveži napredak u učenju';
+
+  @override
+  String get learningOptions => 'Opcije učenja';
+
+  @override
+  String get learningResetMenu => 'Resetuj napredak vežbanja';
+
+  @override
+  String get learningLoadFailed => 'Nije moguće učitati napredak u učenju.';
+
+  @override
+  String get actionRetry => 'Pokušaj ponovo';
+
+  @override
+  String get learningHeading => 'Uči iz svojih odluka';
+
+  @override
+  String get learningIntro =>
+      'Napredak se čuva na ovom uređaju. Pregledaj ponavljajuće teme, pa ponovo pokušaj sačuvane pozicije bez prikaza odgovora. Bele i Crne možeš pregledati odvojeno.';
+
+  @override
+  String get learningBothSides => 'Obe strane';
+
+  @override
+  String get learningHumansOnly => 'Samo ljudske odluke';
+
+  @override
+  String get learningHumanOnlyHelp =>
+      'Isključi da uključiš odluke računara i udaljenih igrača';
+
+  @override
+  String learningDecisionSummary(int decisions, int mistakes, int blunders) {
+    return '$decisions odluka · za poboljšanje: $mistakes · velikih grešaka: $blunders';
+  }
+
+  @override
+  String learningAverageLoss(int decisions, Object loss) {
+    return 'Prosečan gubitak ($decisions odluka): $loss';
+  }
+
+  @override
+  String get learningForcedDisclaimer =>
+      'Prinudni potezi su izuzeti. Ovo su procene motora, a ne turnirski rejting.';
+
+  @override
+  String learningGamesNeedingAnalysis(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Sačuvane partije (#) zahtevaju analizu ili osveženu analizu.',
+      one: 'Sačuvana partija zahteva analizu ili osveženu analizu.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get learningAnalyseSavedGames => 'Analiziraj sačuvane partije';
+
+  @override
+  String get learningEmptyProfile =>
+      'Odigraj i završi meč da napraviš profil učenja. Pojedinačne odluke možeš sačuvati i iz pregleda partije.';
+
+  @override
+  String get learningOpenHistory => 'Otvori istoriju mečeva';
+
+  @override
+  String get learningRecurringThemes => 'Ponavljajuće teme';
+
+  @override
+  String get learningNoThemes =>
+      'U ovom izboru još nema ponavljajućih tema grešaka.';
+
+  @override
+  String learningThemeDecisions(int count) {
+    return '$count odluka za ponavljanje. Jedna pozicija može imati više tema.';
+  }
+
+  @override
+  String get learningSaveMistakes => 'Sačuvaj ove greške za vežbu';
+
+  @override
+  String learningSavedMistakes(int count) {
+    return '$count odluka je na listi za vežbu. Postojeća čuvanja se ne dupliraju.';
+  }
+
+  @override
+  String get learningSaveMistakesFailed =>
+      'Neke odluke nisu mogle da se sačuvaju. Završena čuvanja su zadržana; pokušaj ponovo.';
+
+  @override
+  String get learningSpacedPractice => 'Razmaknuto vežbanje';
+
+  @override
+  String learningPracticeCounts(
+    int due,
+    int saved,
+    int attempts,
+    int successes,
+  ) {
+    return 'Za ponavljanje: $due · sačuvano: $saved · pokušaja: $attempts · uspešnih prisećanja: $successes';
+  }
+
+  @override
+  String get learningIntervalsHelp =>
+      'Uspešni pregledi ponovo dolaze posle 1, 3, 7, 14 i 30 dana. Greške ili otkriveni odgovori vraćaju se posle 10 minuta. Rano ponavljanje ne produžava interval.';
+
+  @override
+  String get learningAnswerContext =>
+      'Rezultati vežbanja odražavaju tvoje odgovore ovde, čak i kada je početna pozicija pripadala protivniku.';
+
+  @override
+  String get learningNoSavedPositions =>
+      'Sačuvaj odluku iz pregleda ili koristi dugme za greške iznad.';
+
+  @override
+  String learningPositionTitle(Object side, int gameId) {
+    return 'Odluka igrača $side · partija $gameId';
+  }
+
+  @override
+  String learningReviewDue(Object date) {
+    return 'Pregled $date';
+  }
+
+  @override
+  String get learningReadyToReview => 'Spremno za pregled';
+
+  @override
+  String learningSuccessStreak(int count) {
+    return '$count uspešnih pregleda zaredom';
+  }
+
+  @override
+  String get learningRemoveTooltip => 'Ukloni sačuvanu odluku';
+
+  @override
+  String get learningRecentPractice => 'Nedavno vežbanje';
+
+  @override
+  String get learningAnswerRevealed => 'Odgovor je otkriven';
+
+  @override
+  String get learningSuccessfulRecall => 'Uspešno prisećanje';
+
+  @override
+  String get learningTryAgain => 'Pokušaj ponovo';
+
+  @override
+  String learningAttemptSubtitle(Object date, int positionId) {
+    return '$date · sačuvana pozicija $positionId';
+  }
+
+  @override
+  String get learningRemoveTitle => 'Ukloniti ovu vežbu?';
+
+  @override
+  String get learningRemoveBody =>
+      'Ovim se uklanjaju njeni pokušaji vežbanja. Originalna partija ostaje u istoriji.';
+
+  @override
+  String get actionRemove => 'Ukloni';
+
+  @override
+  String get learningRemoveFailed => 'Vežba nije mogla da se ukloni.';
+
+  @override
+  String get learningResetTitle => 'Resetovati napredak vežbanja?';
+
+  @override
+  String get learningResetBody =>
+      'Svi pokušaji i intervali pregleda biće uklonjeni. Sačuvane vežbe i istorija mečeva ostaju; sve vežbe dospevaju odmah.';
+
+  @override
+  String get learningResetAction => 'Resetuj napredak';
+
+  @override
+  String get learningResetFailed =>
+      'Napredak vežbanja nije mogao da se resetuje.';
+
+  @override
+  String learningAnalysisProgress(int completed, int failed) {
+    return 'Analizirano partija: $completed · nedostupno: $failed.';
+  }
+
+  @override
+  String learningAnalysisComplete(int completed) {
+    return 'Analizirano partija: $completed.';
+  }
+
+  @override
+  String learningAnalysisCompleteWithErrors(int completed, int failed) {
+    return 'Analizirano $completed partija; $failed nije moglo da se analizira. Pokušaj ponovo kada motor bude spreman.';
+  }
+
+  @override
+  String get learningThemeHitting => 'Udarci i tempo';
+
+  @override
+  String get learningThemeSafety => 'Izložene figure i sigurnost';
+
+  @override
+  String get learningThemePointMaking => 'Pravljenje poena';
+
+  @override
+  String get learningThemePrime => 'Blokade i prepreke';
+
+  @override
+  String get learningThemeAnchor => 'Uporišta i bekstvo';
+
+  @override
+  String get learningThemeRace => 'Efikasnost trke';
+
+  @override
+  String get learningThemeBearOff => 'Skidanje figura';
+
+  @override
+  String get learningThemeBarEntry => 'Ulazak sa prečke';
+
+  @override
+  String get learningThemeCube => 'Odluke o kocki';
+
+  @override
+  String get analysisCubeNoDouble => 'Ne dupliraj';
+
+  @override
+  String get analysisCubeDouble => 'Dupliraj';
+
+  @override
+  String get analysisCubeTake => 'Prihvati';
+
+  @override
+  String get analysisCubePass => 'Predaj';
+
+  @override
+  String get learningAnalysisStarting => 'Analiza sačuvanih partija…';
+
+  @override
+  String get tutorCubelessEstimateScope =>
+      '0-ply procena bez kocke · rezultat nije dostupan';
+
+  @override
+  String get tutorLossPp => 'Gubitak pp';
+
+  @override
+  String get tutorLoss => 'Gubitak';
+
+  @override
+  String get scoreSheetNoMoves => 'Nema poteza';
+
+  @override
+  String get tutorOptions => 'Opcije tutora';
+
+  @override
+  String get tutorCollapseTooltip => 'Skupi tutora';
+
+  @override
+  String get tutorExpandTooltip => 'Proširi tutora';
+
+  @override
+  String get onlineTitle => 'Online igra';
+
+  @override
+  String get onlineUnassistedNote => 'Tutor nije dostupan u online igri.';
+
+  @override
+  String get onlineNotConfiguredTitle => 'Online igra nije podešena';
+
+  @override
+  String get onlineNotConfiguredBody =>
+      'Online igra nije dostupna u ovom izdanju.';
+
+  @override
+  String get onlineErrorNoMatch => 'Meč nije pronađen.';
+
+  @override
+  String get onlineErrorSeatTaken => 'Mesto je već zauzeto.';
+
+  @override
+  String get onlineErrorPermission => 'Nemaš dozvolu za ovu radnju.';
+
+  @override
+  String get onlineErrorGeneric => 'Povezivanje sa online igrom nije uspelo.';
+
+  @override
+  String get onlineMatchFinished => 'Meč je završen.';
+
+  @override
+  String get onlineEnterCodeError => 'Unesi važeći kod.';
+
+  @override
+  String get onlineOpponentShort => 'Protivnik';
+
+  @override
+  String get onlineMatchInProgress => 'Meč je u toku';
+
+  @override
+  String onlineResumePrompt(Object code) {
+    return 'Igrao/la si meč $code. Nastaviti?';
+  }
+
+  @override
+  String get onlineRejoin => 'Ponovo se pridruži';
+
+  @override
+  String get onlineForgetMatch => 'Zaboravi meč';
+
+  @override
+  String get onlineCreateTitle => 'Napravi online meč';
+
+  @override
+  String get onlineMatchLength => 'Dužina meča';
+
+  @override
+  String get onlineNoCubeTitle => 'Igra bez kocke';
+
+  @override
+  String get onlineNoCubeSubtitle => 'Igraj bez kocke za dupliranje.';
+
+  @override
+  String get onlineCreate => 'Napravi';
+
+  @override
+  String get onlineWaitingOpponent => 'Čeka se protivnik';
+
+  @override
+  String get onlineShareCode => 'Podeli kod';
+
+  @override
+  String get onlineCopyCode => 'Kopiraj kod';
+
+  @override
+  String get onlineCodeCopied => 'Kod je kopiran';
+
+  @override
+  String get onlineJoinTitle => 'Pridruži se meču';
+
+  @override
+  String get onlineRoomCode => 'Kod sobe';
+
+  @override
+  String get onlineJoin => 'Pridruži se';
+
+  @override
+  String get lanTitle => 'Igraj u blizini';
+
+  @override
+  String get lanTabHost => 'Domaćin';
+
+  @override
+  String get lanTabJoin => 'Pridruži se';
+
+  @override
+  String get lanUnassistedNote =>
+      'U igrama u blizini nema tutora. Posle meča pregledaj poteze i vežbaj greške.';
+
+  @override
+  String get lanGameStartFailed =>
+      'Partija nije mogla da počne. Drugi uređaj može ponovo da pokuša da se pridruži.';
+
+  @override
+  String get lanHostPortInUse =>
+      'Hosting nije mogao da se pokrene — port se već koristi. Zatvori druge kopije Backgammon Buddy i pokušaj ponovo.';
+
+  @override
+  String get lanHostStartFailed =>
+      'Hosting nije mogao da se pokrene. Proveri Wi-Fi vezu i pokušaj ponovo.';
+
+  @override
+  String get lanHostTitle => 'Pokreni partiju kao domaćin';
+
+  @override
+  String get lanStartHosting => 'Počni hosting';
+
+  @override
+  String get lanHostHelp =>
+      'Oba uređaja moraju biti na istoj Wi-Fi mreži. Ovaj uređaj baca kockice i vodi rezultat.';
+
+  @override
+  String get lanWaitingPlayerTitle => 'Čeka se igrač';
+
+  @override
+  String get lanRoomCodeInfo =>
+      'Reci ovaj kod drugom igraču. On mu omogućava pristup — aplikacija ga ne šalje preko mreže.';
+
+  @override
+  String get lanWaitingPlayer => 'Čeka se igrač…';
+
+  @override
+  String get lanStopHosting => 'Zaustavi hosting';
+
+  @override
+  String lanFindNearbyPort(int port) {
+    return 'Zamoli drugi uređaj da potraži igre u blizini. Sluša se na portu $port.';
+  }
+
+  @override
+  String get lanOnNetwork => 'Na ovoj mreži';
+
+  @override
+  String get lanCopyAddress => 'Kopiraj adresu';
+
+  @override
+  String get lanAddressCopied => 'Adresa je kopirana';
+
+  @override
+  String get lanScanHostTitle => 'Skeniraj domaćina';
+
+  @override
+  String get lanScanHostHelp =>
+      'Drugi uređaj prikazuje QR kod na ekranu domaćina. Skeniranje popunjava adresu i kod sobe.';
+
+  @override
+  String get lanScanQr => 'Skeniraj QR kod';
+
+  @override
+  String get lanScannerUnavailable =>
+      'Kamera ili dozvola za nju nisu dostupni. Unesi adresu i kod sobe ispod.';
+
+  @override
+  String get lanInvalidQr =>
+      'Ovaj QR kod nije Backgammon Buddy igra. Skeniraj kod na ekranu domaćina drugog uređaja.';
+
+  @override
+  String get lanScannerFailed =>
+      'Skener nije mogao da se otvori. Unesi adresu i kod ispod.';
+
+  @override
+  String get lanNearbyGames => 'Igre u blizini';
+
+  @override
+  String get lanSearching => 'Traženje igara u blizini…';
+
+  @override
+  String get lanNoGamesFound =>
+      'Igre još nisu pronađene. Proveri da li drugi uređaj hostuje i da li su oba na istom Wi-Fi-ju, ili unesi njegovu adresu.';
+
+  @override
+  String get lanStillSearching => 'Još se traži…';
+
+  @override
+  String get lanEnterAddress => 'Unesi adresu';
+
+  @override
+  String get lanEnterAddressHelp =>
+      'Automatsko otkrivanje ne radi na svakoj mreži (na iOS-u može biti blokirano). Ekran domaćina prikazuje šta treba uneti.';
+
+  @override
+  String get lanIpAddress => 'IP adresa';
+
+  @override
+  String get lanPort => 'Port';
+
+  @override
+  String get lanInvalidPort => 'Unesi port između 1 i 65535.';
+
+  @override
+  String get lanEnterAddressError =>
+      'Unesi adresu prikazanu na drugom uređaju.';
+
+  @override
+  String get lanEnterRoomCodeError =>
+      'Unesi četvorocifreni kod sa drugog uređaja.';
+
+  @override
+  String get lanJoinWrongCode =>
+      'Pogrešan kod sobe. Proveri četiri cifre na drugom uređaju.';
+
+  @override
+  String get lanJoinVersionMismatch =>
+      'Drugi uređaj koristi drugu verziju Backgammon Buddy.';
+
+  @override
+  String get lanJoinHandshakeFailed =>
+      'Uređaj nije odgovorio kao Backgammon Buddy. Proveri adresu i port.';
+
+  @override
+  String get lanJoinFailed =>
+      'Pridruživanje nije uspelo. Proveri adresu i kod sobe, pa pokušaj ponovo.';
+
+  @override
+  String lanJoinTarget(Object name) {
+    return 'Pridruži se: $name';
+  }
+
+  @override
+  String get lanJoinTargetHelp =>
+      'Unesi četvorocifreni kod prikazan na drugom uređaju.';
+
+  @override
+  String lanJoiningTarget(Object name) {
+    return 'Pridruživanje igri $name';
+  }
+
+  @override
+  String get lanConnect => 'Poveži se';
+
+  @override
+  String get lanBack => 'Nazad';
+
+  @override
+  String get lanTryAgain => 'Pokušaj ponovo';
+
+  @override
+  String get lanStatusBusy => 'Soba je zauzeta — čeka se…';
+
+  @override
+  String get lanStatusReconnecting => 'Veza je prekinuta — pokušava se ponovo…';
+
+  @override
+  String get lanStatusConnected => 'Povezano — meč počinje…';
+
+  @override
+  String get lanStatusFailed => 'Pridruživanje nije uspelo.';
+
+  @override
+  String get lanStatusConnecting => 'Povezivanje…';
+
+  @override
+  String get diagnosticsCopySuccess =>
+      'Dijagnostika je kopirana u privremenu memoriju';
+
+  @override
+  String get diagnosticsReviewTitle => 'Pregledajte dijagnostički izveštaj';
+
+  @override
+  String get diagnosticsPrivacyNotice =>
+      'Otvaranjem nacrta šalju se GitHub-u detalji ispod, uključujući verziju aplikacije, platformu i podatke o greškama. Javni problem neće biti objavljen dok ga tamo ne pošaljete. Ako detalji sadrže privatne podatke, otkažite i sami pripremite prijavu kopiranjem.';
+
+  @override
+  String get diagnosticsCancel => 'Otkaži';
+
+  @override
+  String get diagnosticsOpenGitHub => 'Otvori GitHub';
+
+  @override
+  String get diagnosticsTitle => 'Dijagnostika';
+
+  @override
+  String get diagnosticsReportTooltip => 'Prijavi problem na GitHub-u';
+
+  @override
+  String get diagnosticsCopyTooltip => 'Kopiraj u privremenu memoriju';
+
+  @override
+  String get diagnosticsClearTooltip => 'Obriši dnevnik';
+
+  @override
+  String get diagnosticsEmpty =>
+      'Nema zabeleženih grešaka.\n\nAko nešto pođe po zlu, biće zabeleženo ovde — vratite se i kopirajte detalje u prijavu greške.';
+
+  @override
+  String gameHudNeutralScore(
+    Object whiteLabel,
+    int whiteScore,
+    Object blackLabel,
+    int blackScore,
+    int matchLength,
+  ) {
+    return '$whiteLabel $whiteScore–$blackScore $blackLabel · do $matchLength';
+  }
+
+  @override
+  String gameHudPlayerScore(
+    Object you,
+    int mine,
+    int theirs,
+    Object opponent,
+    int matchLength,
+  ) {
+    return '$you $mine–$theirs $opponent · do $matchLength';
+  }
+
+  @override
+  String get gameHudYou => 'Vi';
+
+  @override
+  String get gameHudAi => 'Računar';
+
+  @override
+  String gameHudGameNumber(int number) {
+    return 'Partija $number';
+  }
+
+  @override
+  String gameHudMatchContext(Object score, Object game) {
+    return '$score · $game';
+  }
+
+  @override
+  String gameHudHotSeatDetail(
+    Object whiteLabel,
+    Object blackLabel,
+    Object pipsLabel,
+    int whitePips,
+    int blackPips,
+  ) {
+    return '$whiteLabel protiv $blackLabel · $pipsLabel $whitePips–$blackPips';
+  }
+
+  @override
+  String gameHudOpponentDetail(
+    Object opponent,
+    Object pipsLabel,
+    int mine,
+    int theirs,
+  ) {
+    return 'protiv $opponent · $pipsLabel $mine–$theirs';
+  }
+
+  @override
+  String gameHudOpponentDetailWithLevel(
+    Object opponent,
+    Object level,
+    Object pipsLabel,
+    int mine,
+    int theirs,
+  ) {
+    return 'protiv $opponent · $level · $pipsLabel $mine–$theirs';
+  }
+
+  @override
+  String get gameHudPips => 'Pipovi';
+
+  @override
+  String get gameHudCrawford => 'Krofordova';
+
+  @override
+  String get gameHudDouble => 'Dupliraj';
+
+  @override
+  String get gameHudMoreActions => 'Još radnji';
+
+  @override
+  String get gameHudSurrender => 'Predaj se…';
+
+  @override
+  String get gameHudThinking => 'Razmišlja';
+
+  @override
+  String get gameHudDoubleBeforeRoll =>
+      'Dupliranje je moguće samo pre bacanja, kada ste vi na potezu.';
+
+  @override
+  String get gameHudNoDoubleCrawford =>
+      'U Krofordovoj partiji nema dupliranja — ova partija odlučuje meč.';
+
+  @override
+  String get gameHudOnlyCubeOwner =>
+      'Samo vlasnik kocke može da duplira, a trenutno je poseduje druga strana.';
+
+  @override
+  String get gameHudDoubleUnavailable => 'Dupliranje trenutno nije dostupno.';
+
+  @override
+  String gameDialogScoreLine(
+    Object whiteLabel,
+    int whiteScore,
+    int blackScore,
+    Object blackLabel,
+    int matchLength,
+  ) {
+    return '$whiteLabel $whiteScore — $blackScore $blackLabel (do $matchLength)';
+  }
+
+  @override
+  String gameDialogPlayerWon(Object winner, Object points) {
+    return '$winner je pobedio u ovoj partiji ($points).';
+  }
+
+  @override
+  String gameDialogPlayerWonGammon(Object winner, Object points) {
+    return '$winner je pobedio u ovoj partiji ($points, gamon).';
+  }
+
+  @override
+  String gameDialogPlayerWonBackgammon(Object winner, Object points) {
+    return '$winner je pobedio u ovoj partiji ($points, bekgejmon).';
+  }
+
+  @override
+  String gameDialogPlayerWonDrop(Object winner, Object points, Object loser) {
+    return '$winner je pobedio u ovoj partiji ($points) — $loser je odbio dupliranje.';
+  }
+
+  @override
+  String gameDialogPlayerWonResignation(
+    Object winner,
+    Object points,
+    Object loser,
+  ) {
+    return '$winner je pobedio u ovoj partiji ($points) — $loser je predao.';
+  }
+
+  @override
+  String get gameDialogPassDeviceTitle => 'Predajte uređaj';
+
+  @override
+  String gameDialogPlayersTurn(Object name) {
+    return '$name je na potezu';
+  }
+
+  @override
+  String get gameDialogTapToContinue => 'Dodirnite za nastavak';
+
+  @override
+  String get gameDialogCubeOfferedTitle => 'Ponuđeno dupliranje';
+
+  @override
+  String gameDialogCubeOfferMessage(
+    Object doubler,
+    int value,
+    Object tutorLine,
+  ) {
+    return '$doubler nudi dupliranje na $value. Prihvatiti ili odbiti?$tutorLine';
+  }
+
+  @override
+  String get gameDialogPass => 'Odbij';
+
+  @override
+  String get gameDialogTake => 'Prihvati';
+
+  @override
+  String get gameDialogResignationTitle => 'Ponuđena predaja';
+
+  @override
+  String gameDialogResignationMessage(Object resigner, Object value) {
+    return '$resigner nudi predaju za $value. Prihvatiti ili odbiti?';
+  }
+
+  @override
+  String get gameDialogResignSingle => 'obična partija';
+
+  @override
+  String get gameDialogResignGammon => 'gamon';
+
+  @override
+  String get gameDialogResignBackgammon => 'bekgejmon';
+
+  @override
+  String get gameDialogDecline => 'Odbij';
+
+  @override
+  String get gameDialogAccept => 'Prihvati';
+
+  @override
+  String get gameDialogGameOverTitle => 'Partija je završena';
+
+  @override
+  String get gameDialogNextGame => 'Sledeća partija';
+
+  @override
+  String get gameDialogMatchOverTitle => 'Meč je završen';
+
+  @override
+  String get gameDialogNobody => 'Niko';
+
+  @override
+  String gameDialogMatchWinner(Object winner) {
+    return '$winner je pobedio u meču.';
+  }
+
+  @override
+  String get gameDialogSavedToHistory => 'Sačuvano u istoriji';
+
+  @override
+  String get gameDialogDone => 'Gotovo';
+
+  @override
+  String get gameTapNoLegalMove =>
+      'Dodirni svoju figuru da vidiš dozvoljene poteze.';
+
+  @override
+  String get gameTapNoLegalMoveUndo => 'Dodirni figuru, pa odredište.';
+
+  @override
+  String get gameDragHint => 'Prevuci figuru do odredišta.';
+
+  @override
+  String get commonGotIt => 'Razumem';
+
+  @override
+  String get gameHintStageBeforeHint => 'Pre saveta';
+
+  @override
+  String get surrenderTitle => 'Predati partiju?';
+
+  @override
+  String surrenderNamedConcedes(String player) {
+    return '$player predaje trenutnu partiju.';
+  }
+
+  @override
+  String get surrenderConcedes => 'Predaje trenutnu partiju.';
+
+  @override
+  String surrenderAvailableAtNamedTurn(String player) {
+    return 'Dostupno na početku poteza igrača $player';
+  }
+
+  @override
+  String get surrenderAvailableAtYourTurn => 'Dostupno na početku tvog poteza';
+
+  @override
+  String get commonCancel => 'Otkaži';
+
+  @override
+  String get surrenderSingle => 'Običan poraz';
+
+  @override
+  String get surrenderGammon => 'Gamonski poraz';
+
+  @override
+  String get surrenderBackgammon => 'Bekgemonski poraz';
+
+  @override
+  String get surrenderChoosePlayer => 'Izaberi igrača';
+
+  @override
+  String get commonDone => 'Gotovo';
+
+  @override
+  String get cubeDouble => 'Dupliraj';
+
+  @override
+  String get cubeBlockedOtherPlayersTurn => 'Sada je potez drugog igrača.';
+
+  @override
+  String get cubeBlockedCrawford =>
+      'Kocka nije dostupna u Krofordovoj partiji.';
+
+  @override
+  String get cubeBlockedOwnedByOther =>
+      'Samo vlasnik kocke može da duplira; trenutno je poseduje druga strana.';
+
+  @override
+  String get cubeBlockedUnavailable => 'Dupliranje trenutno nije dostupno.';
+
+  @override
+  String get gameStatusRolling => 'Bacanje';
+
+  @override
+  String get gameStatusThinking => 'Računar razmišlja';
+
+  @override
+  String gameStatusPlayersTurn(String player) {
+    return 'Potez igrača $player';
+  }
+
+  @override
+  String get cubeAdviceOpponentTake => 'Dupliraj — protivnik treba da prihvati';
+
+  @override
+  String get cubeAdviceOpponentPass => 'Dupliraj — protivnik treba da preda';
+
+  @override
+  String gameErrorBannerLabel(Object error) {
+    return 'Greška: $error';
+  }
 }

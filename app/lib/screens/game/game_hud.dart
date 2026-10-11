@@ -2,6 +2,8 @@ import 'package:backgammon_core/backgammon_core.dart';
 import 'package:flutter/material.dart';
 
 import '../../game/match_controller.dart';
+import '../../l10n/app_localizations.dart';
+import '../../l10n/localization_lookup.dart';
 import 'tap_when_disabled.dart';
 
 /// The compact header score, named from the local player's point of view where
@@ -11,18 +13,34 @@ import 'tap_when_disabled.dart';
 /// Falls back to the neutral "W 2–3 B · to 5" in hot-seat, where both sides are
 /// local, and for any controller with no locally-human side at all (an AI-vs-AI
 /// harness), since "You" would then be a lie.
-String _compactScore(MatchController c, String opponentLabel) {
+String _compactScore(
+  MatchController c,
+  String opponentLabel,
+  AppLocalizations l10n,
+) {
   final m = c.match;
   final localWhite = c.isLocalHuman(Player.white);
   final localBlack = c.isLocalHuman(Player.black);
   final soleLocal = localWhite != localBlack;
   if (!soleLocal) {
-    return 'W ${m.whiteScore}–${m.blackScore} B · to ${m.matchLength}';
+    return l10n.gameHudNeutralScore(
+      l10n.white,
+      m.whiteScore,
+      l10n.black,
+      m.blackScore,
+      m.matchLength,
+    );
   }
   final (mine, theirs) = localWhite
       ? (m.whiteScore, m.blackScore)
       : (m.blackScore, m.whiteScore);
-  return 'You $mine–$theirs $opponentLabel · to ${m.matchLength}';
+  return l10n.gameHudPlayerScore(
+    l10n.gameHudYou,
+    mine,
+    theirs,
+    opponentLabel,
+    m.matchLength,
+  );
 }
 
 /// Entries in the header overflow (⋮) menu — one, always available wherever
@@ -191,18 +209,16 @@ class GameHud extends StatelessWidget {
   /// did nothing — the one thing the button itself cannot say. Mirrors
   /// exactly the two halves of [_offerDouble]'s own guard, so it is only ever
   /// reached when at least one of them is false.
-  String _doubleBlockedReason(bool atGate) {
-    if (!atGate) return 'You can only double before rolling, on your turn.';
+  String _doubleBlockedReason(bool atGate, AppLocalizations l10n) {
+    if (!atGate) return l10n.gameHudDoubleBeforeRoll;
     final s = controller.state;
     if (s.isCrawfordGame) {
-      return 'No doubling in the Crawford game — this single game decides '
-          'the match.';
+      return l10n.gameHudNoDoubleCrawford;
     }
     if (s.cube.owner != null && s.cube.owner != s.turn) {
-      return 'Only the cube owner can double, and the other side owns it '
-          'right now.';
+      return l10n.gameHudOnlyCubeOwner;
     }
-    return 'Doubling is not available right now.';
+    return l10n.gameHudDoubleUnavailable;
   }
 
   void _explainDoubleBlocked(BuildContext context, bool atGate) {
@@ -210,7 +226,9 @@ class GameHud extends StatelessWidget {
       SnackBar(
         behavior: SnackBarBehavior.floating,
         margin: const EdgeInsets.only(bottom: 104, left: 12, right: 12),
-        content: Text(_doubleBlockedReason(atGate)),
+        content: Text(
+          _doubleBlockedReason(atGate, appLocalizationsOf(context)),
+        ),
       ),
     );
   }
@@ -220,10 +238,15 @@ class GameHud extends StatelessWidget {
   ///
   /// `gameNumber` is 0 until the first game starts, and the header is on screen
   /// from the first frame, so it reads "Game 1" rather than "Game 0".
-  String _contextLine() {
+  String _contextLine(AppLocalizations l10n) {
     final number = controller.gameNumber < 1 ? 1 : controller.gameNumber;
-    if (!showScoring) return 'Game $number';
-    return '${_compactScore(controller, opponentLabel)} · Game $number';
+    final game = l10n.gameHudGameNumber(number);
+    if (!showScoring) return game;
+    final opponent = opponentLabel == 'AI' ? l10n.gameHudAi : opponentLabel;
+    return l10n.gameHudMatchContext(
+      _compactScore(controller, opponent, l10n),
+      game,
+    );
   }
 
   /// Row 2's text: who is playing, and the live pip counts — "vs AI · Easy ·
@@ -237,33 +260,42 @@ class GameHud extends StatelessWidget {
   ///
   /// Pip counts come from the COMMITTED board, so they step once per move rather
   /// than flickering through a half-entered turn.
-  String _detailLine() {
+  String _detailLine(AppLocalizations l10n) {
     final board = controller.state.board;
     final white = board.pipCount(Player.white);
     final black = board.pipCount(Player.black);
     final localWhite = controller.isLocalHuman(Player.white);
     final localBlack = controller.isLocalHuman(Player.black);
     final soleLocal = localWhite != localBlack;
-    final String who;
     final int mine;
     final int theirs;
     if (!soleLocal) {
-      who = 'White vs Black';
-      (mine, theirs) = (white, black);
+      return l10n.gameHudHotSeatDetail(
+        l10n.white,
+        l10n.black,
+        l10n.gameHudPips,
+        white,
+        black,
+      );
     } else {
-      who = 'vs $opponentLabel';
       (mine, theirs) = localWhite ? (white, black) : (black, white);
     }
     final detail = opponentDetail;
-    return [
-      who,
-      if (detail != null && detail.isNotEmpty) detail,
-      'Pips $mine–$theirs',
-    ].join(' · ');
+    final opponent = opponentLabel == 'AI' ? l10n.gameHudAi : opponentLabel;
+    return detail != null && detail.isNotEmpty
+        ? l10n.gameHudOpponentDetailWithLevel(
+            opponent,
+            detail,
+            l10n.gameHudPips,
+            mine,
+            theirs,
+          )
+        : l10n.gameHudOpponentDetail(opponent, l10n.gameHudPips, mine, theirs);
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     final state = controller.state;
     final cube = state.cube;
     final scheme = Theme.of(context).colorScheme;
@@ -318,16 +350,16 @@ class GameHud extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              _contextLine(),
+                              _contextLine(l10n),
                               maxLines: 1,
                               softWrap: false,
                               style: Theme.of(context).textTheme.titleSmall,
                             ),
                             if (state.isCrawfordGame) ...[
                               const SizedBox(width: 8),
-                              const _MiniBadge(
+                              _MiniBadge(
                                 icon: Icons.star,
-                                label: 'Crawford',
+                                label: l10n.gameHudCrawford,
                               ),
                             ],
                             // The cube chip is hidden in a cubeless match.
@@ -360,8 +392,8 @@ class GameHud extends StatelessWidget {
                             Icons.control_point_duplicate,
                             size: 16,
                           ),
-                          label: const Text(
-                            'Double',
+                          label: Text(
+                            l10n.gameHudDouble,
                             maxLines: 1,
                             softWrap: false,
                           ),
@@ -380,7 +412,7 @@ class GameHud extends StatelessWidget {
                     // [_GameScreenState._surrenderDialog].
                     PopupMenuButton<_MenuAction>(
                       icon: const Icon(Icons.more_vert),
-                      tooltip: 'More actions',
+                      tooltip: l10n.gameHudMoreActions,
                       enabled: onSurrender != null,
                       onSelected: (action) {
                         switch (action) {
@@ -388,10 +420,10 @@ class GameHud extends StatelessWidget {
                             onSurrender!();
                         }
                       },
-                      itemBuilder: (context) => const [
+                      itemBuilder: (context) => [
                         PopupMenuItem(
                           value: _MenuAction.surrender,
-                          child: Text('Surrender…'),
+                          child: Text(l10n.gameHudSurrender),
                         ),
                       ],
                     ),
@@ -407,7 +439,7 @@ class GameHud extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      _detailLine(),
+                      _detailLine(l10n),
                       maxLines: 1,
                       softWrap: false,
                       style: TextStyle(
@@ -493,7 +525,7 @@ class _ThinkingDot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: 'Thinking',
+      message: appLocalizationsOf(context).gameHudThinking,
       child: Container(
         width: 10,
         height: 10,

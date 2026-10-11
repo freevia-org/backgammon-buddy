@@ -96,7 +96,7 @@ void main() {
       final turn = sheet.rows.whereType<ScoreSheetTurn>().first;
       await t.tap(find.text(turn.white!.text));
       await t.pumpAndSettle();
-      expect(_heading(t), startsWith('Review: Your'));
+      expect(_heading(t), startsWith('Your play:'));
       expect(t.widget<TutorPanel>(find.byType(TutorPanel)).expanded, isFalse);
       expect(
         t
@@ -107,7 +107,7 @@ void main() {
       );
       await t.tap(find.text(turn.black!.text));
       await t.pumpAndSettle();
-      expect(_heading(t), startsWith('Review: Computer'));
+      expect(_heading(t), startsWith('Computer:'));
       expect(
         t
             .widget<ScoreSheetPanel>(find.byType(ScoreSheetPanel))

@@ -5,6 +5,7 @@ import 'package:engine_bindings/engine_bindings.dart';
 import 'package:flutter/material.dart';
 
 import '../metric_explainer.dart';
+import '../../l10n/localization_lookup.dart';
 import '../../tutor/coaching.dart';
 import '../../tutor/coaching_widgets.dart';
 
@@ -129,6 +130,7 @@ class HintPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     final ranked = moves ?? const <ScoredMove>[];
     final bestEq = ranked.isEmpty ? 0.0 : ranked.first.rankingValue;
     final matchValue =
@@ -162,17 +164,17 @@ class HintPanel extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            'Top plays',
+                            l10n.tutorTopPlays,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ),
                         IconButton(
-                          tooltip: 'What do these numbers mean?',
+                          tooltip: l10n.metricExplainerTooltip,
                           icon: const Icon(Icons.info_outline, size: 20),
                           onPressed: () => showMetricExplainer(context),
                         ),
                         IconButton(
-                          tooltip: 'Close',
+                          tooltip: l10n.analysisClose,
                           icon: const Icon(Icons.close, size: 20),
                           onPressed: onClose,
                         ),
@@ -185,21 +187,19 @@ class HintPanel extends StatelessWidget {
                         child: Center(child: CircularProgressIndicator()),
                       )
                     else if (top.isEmpty)
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.symmetric(vertical: 12),
-                        child: Text('No hints available.'),
+                        child: Text(l10n.tutorNoHintsAvailable),
                       )
                     else ...[
-                      const Text(
-                        'Tap a play to preview it on the board, then Confirm.',
-                      ),
+                      Text(l10n.tutorPreviewThenConfirm),
                       const SizedBox(height: 8),
                       Text(
                         matchValue
-                            ? '0-ply estimate · current score and stake · no future cubes'
-                            : '0-ply cubeless estimate · score unavailable',
+                            ? l10n.tutorEstimateScope
+                            : l10n.tutorCubelessEstimateScope,
                       ),
-                      const Text('Near ties can change with deeper analysis.'),
+                      Text(l10n.tutorNearTiesNote),
                       _columnHeader(context, matchValue),
                       for (var i = 0; i < top.length; i++) ...[
                         _row(context, i, top[i], bestEq),
@@ -227,6 +227,7 @@ class HintPanel extends StatelessWidget {
   /// left for the reader to guess at. The ⓘ in the header explains what they
   /// mean.
   Widget _columnHeader(BuildContext context, bool matchValue) {
+    final l10n = appLocalizationsOf(context);
     final style = Theme.of(context).textTheme.labelSmall?.copyWith(
       color: Theme.of(context).colorScheme.onSurfaceVariant,
     );
@@ -238,7 +239,7 @@ class HintPanel extends StatelessWidget {
           SizedBox(
             width: _numberColumn,
             child: Text(
-              matchValue ? 'MWC %' : 'Equity',
+              matchValue ? l10n.tutorMwcPercent : l10n.tutorEquity,
               style: style,
               textAlign: TextAlign.right,
             ),
@@ -246,7 +247,7 @@ class HintPanel extends StatelessWidget {
           SizedBox(
             width: _numberColumn,
             child: Text(
-              matchValue ? 'Loss pp' : 'Loss',
+              matchValue ? l10n.tutorLossPp : l10n.tutorLoss,
               style: style,
               textAlign: TextAlign.right,
             ),
@@ -319,7 +320,11 @@ class _CandidateExplanationState extends State<_CandidateExplanation> {
   @override
   Widget build(BuildContext context) => ExpansionTile(
     tilePadding: EdgeInsets.zero,
-    title: Text(widget.top ? 'Why this play?' : 'Compare this alternative'),
+    title: Text(
+      widget.top
+          ? appLocalizationsOf(context).tutorWhyThisPlay
+          : appLocalizationsOf(context).tutorCompareAlternative,
+    ),
     onExpansionChanged: (value) => setState(() => _expanded = value),
     children: [
       if (_expanded)

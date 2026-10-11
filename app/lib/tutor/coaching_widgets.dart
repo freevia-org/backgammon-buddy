@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
 import '../l10n/localization_lookup.dart';
+import '../l10n/move_explanation_localization.dart';
 import 'coaching.dart';
+import 'move_explanation_copy.dart';
 
 class TutorOptionControls extends StatelessWidget {
   const TutorOptionControls({
@@ -114,32 +117,48 @@ class MoveExplanationView extends StatelessWidget {
 
   final MoveExplanation explanation;
   final bool showOverview;
-  String? get _comparison => showOverview
-      ? explanation.comparison
-      : explanation.comparison
-            ?.replaceFirst(explanation.summaryReason, '')
-            .trim();
 
   @override
   Widget build(BuildContext context) {
     final l10n = appLocalizationsOf(context);
+    final copy = explanation.copy;
+    final comparison = copy?.comparisonDetail != null
+        ? localizeMoveExplanationCopy(
+            l10n,
+            copy!.comparisonDetail!,
+            includeSummary: false,
+          )
+        : showOverview
+        ? explanation.comparison
+        : explanation.comparison
+              ?.replaceFirst(explanation.summaryReason, '')
+              .trim();
+    final verdict = copy == null
+        ? explanation.verdict
+        : localizeMoveExplanationCopy(l10n, copy.verdict);
+    final plan = copy == null
+        ? explanation.plan
+        : localizeMoveExplanationCopy(l10n, copy.plan);
+    final summaryReason = copy == null
+        ? explanation.summaryReason
+        : localizeMoveExplanationSummary(l10n, copy);
+    final observationCopy = copy?.observations;
+    final observations = observationCopy == null
+        ? _prioritizedObservations(explanation.observations)
+        : _prioritizedCopyObservations(l10n, observationCopy);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Static headings and methodological notes are localized. The strategic
-        // explanation strings themselves remain English until coaching data is
-        // separated from its presentation.
-        if (showOverview) Text(explanation.verdict),
+        if (showOverview) Text(verdict),
         if (explanation.comparison == null &&
-            explanation.plan.isNotEmpty &&
-            (showOverview ||
-                explanation.plan != explanation.summaryReason)) ...[
+            plan.isNotEmpty &&
+            (showOverview || plan != summaryReason)) ...[
           const SizedBox(height: 8),
-          Text(explanation.plan),
+          Text(plan),
         ],
-        if (_comparison != null && _comparison!.isNotEmpty) ...[
+        if (comparison != null && comparison.isNotEmpty) ...[
           const SizedBox(height: 8),
-          Text(_comparison!),
+          Text(comparison),
         ],
         const SizedBox(height: 8),
         Text(
@@ -151,22 +170,18 @@ class MoveExplanationView extends StatelessWidget {
           l10n.tutorWhatToWatchNext,
           style: Theme.of(context).textTheme.titleSmall,
         ),
-        for (final observation in _prioritizedObservations(
-          explanation.observations,
-        ).take(2))
+        for (final observation in observations.take(2))
           Padding(
             padding: const EdgeInsets.only(top: 6),
             child: Text('• $observation'),
           ),
-        if (explanation.observations.length > 2)
+        if (observations.length > 2)
           ExpansionTile(
             tilePadding: EdgeInsets.zero,
             childrenPadding: const EdgeInsets.only(bottom: 8),
             title: Text(l10n.tutorMoreBoardDetails),
             children: [
-              for (final observation in _prioritizedObservations(
-                explanation.observations,
-              ).skip(2))
+              for (final observation in observations.skip(2))
                 Padding(
                   padding: const EdgeInsets.only(bottom: 6),
                   child: Text('• $observation'),
@@ -179,7 +194,11 @@ class MoveExplanationView extends StatelessWidget {
           childrenPadding: const EdgeInsets.only(bottom: 8),
           title: Text(l10n.tutorEstimatesAndHowTheyWork),
           children: [
-            Text(explanation.estimate),
+            Text(
+              copy == null
+                  ? explanation.estimate
+                  : localizeMoveExplanationCopy(l10n, copy.estimate),
+            ),
             const SizedBox(height: 8),
             Text(
               '${l10n.tutorEstimateLimitations} ${l10n.tutorPointNumberNote} '
@@ -216,6 +235,34 @@ class MoveExplanationView extends StatelessWidget {
         return byPriority != 0 ? byPriority : a.$1.compareTo(b.$1);
       });
     return [for (final entry in ranked) entry.$2];
+  }
+
+  List<String> _prioritizedCopyObservations(
+    AppLocalizations l10n,
+    List<MoveExplanationCopy> observations,
+  ) {
+    int priority(MoveExplanationCopyId id) => switch (id) {
+      MoveExplanationCopyId.observationReplyHit ||
+      MoveExplanationCopyId.observationNoReplyHit => 5,
+      MoveExplanationCopyId.observationBlots ||
+      MoveExplanationCopyId.observationNoBlots => 4,
+      MoveExplanationCopyId.observationHit ||
+      MoveExplanationCopyId.observationEntry => 3,
+      MoveExplanationCopyId.observationBrokenPoints ||
+      MoveExplanationCopyId.observationMadePoints => 2,
+      MoveExplanationCopyId.observationAnchors ||
+      MoveExplanationCopyId.observationPrimeRun => 1,
+      _ => 0,
+    };
+
+    final ranked = observations.indexed.toList()
+      ..sort((a, b) {
+        final byPriority = priority(b.$2.id).compareTo(priority(a.$2.id));
+        return byPriority != 0 ? byPriority : a.$1.compareTo(b.$1);
+      });
+    return [
+      for (final entry in ranked) localizeMoveExplanationCopy(l10n, entry.$2),
+    ];
   }
 }
 

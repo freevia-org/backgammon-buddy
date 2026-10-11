@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Punktnumren i träningsanteckningarna räknas från spelarens hemmaplan.",
   "tutorHittingRollNote": "Antalet slag som kan träffa omfattar alla 36 ordnade tärningsutfall och lagliga direkta eller indirekta träffar; de är möjligheter, inte en förutsägelse av motståndarens val.",
   "tutorNoEvaluatedAlternatives": "Det finns inga utvärderade alternativ för det här draget.",
-  "tutorForcedPassNoDecision": "En framtvingad passning innebär inget beslut om pjäsernas drag."
+  "tutorForcedPassNoDecision": "En framtvingad passning innebär inget beslut om pjäsernas drag.",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "settingsReset": "Återställ",
+  "settingsAppLanguage": "Appspråk",
+  "settingsTheme": "Tema",
+  "settingsThemeSystem": "Följ systemet",
+  "settingsThemeLight": "Ljust",
+  "settingsThemeDark": "Mörkt",
+  "settingsAnimationSpeed": "Animationshastighet",
+  "settingsAnimationNone": "Ingen",
+  "settingsAnimationNormal": "Normal",
+  "settingsAnimationFast": "Snabb",
+  "settingsDiceRollAnimation": "Tärningsanimation",
+  "settingsDiceRollAnimationHelp": "Låt tärningarna rulla före varje kast",
+  "settingsDefaultMatchLength": "Förvald matchlängd",
+  "settingsDefaultDifficulty": "Förvald svårighetsgrad",
+  "settingsDifficultyEasy": "Lätt",
+  "settingsDifficultyMedium": "Medel",
+  "settingsDifficultyHard": "Svår",
+  "settingsDifficultyExpert": "Expert",
+  "settingsTutorModeDefault": "Standardläge för handledaren",
+  "settingsTutorAuto": "Automatiskt",
+  "settingsTutorOn": "På",
+  "settingsTutorOff": "Av",
+  "settingsTutorModeHelp": "Automatiskt aktiverar handledaren på alla datorsvårighetsgrader. På och Av anger startvalet för lokala matcher. Närspel och onlinespel saknar assistans; sparade spel kan granskas i efterhand. Undervisningsinställningarna sparas på den här enheten.",
+  "settingsTutorPreferences": "Handledarinställningar",
+  "settingsTutorPreferencesSubtitle": "Sparade standardval för kommande matcher",
+  "settingsTutorSaveError": "Det gick inte att spara handledarinställningarna.",
+  "settingsGameplay": "Spel",
+  "settingsMoveHighlights": "Markera drag",
+  "settingsMoveHighlightsHelp": "Ringa in valbara brickor och markera målpunkter",
+  "settingsDragToMove": "Dra för att flytta",
+  "settingsDragToMoveHelp": "Dra en bricka till målet (tryck fungerar alltid)",
+  "settingsCombinedMoves": "Kombinerade drag",
+  "settingsCombinedMovesHelp": "Ett tryck flyttar en bricka med båda tärningarna",
+  "settingsRotateBoard": "Rotera brädet mellan turerna",
+  "settingsRotateBoardHelp": "Spela på samma enhet: vänd vyn mot spelaren vars tur det är",
+  "settingsPassDevice": "Skärm för att lämna över enheten",
+  "settingsPassDeviceHelp": "Dölj brädet mellan turerna när ni delar enheten",
+  "settingsShowScore": "Visa poäng",
+  "settingsShowScoreHelp": "Visa matchens aktuella poäng i rubriken",
+  "settingsBuddyMode": "Buddys röstläge",
+  "settingsBuddyTerse": "Kortfattat",
+  "settingsBuddyFriendly": "Vänligt",
+  "settingsBuddyTerseHelp": "Så här läser Buddy upp ett drag: ”13/8, 24/22” – notation som används vid brädet.",
+  "settingsBuddyFriendlyHelp": "Så här läser Buddy upp ett drag: ”Flytta en bricka från 13 till 8 och en från 24 till 22.”",
+  "settingsListenForDice": "Lyssna efter tärningarna",
+  "settingsListenForDiceHelp": "Buddy tittar på brädet tidigare när ett kast hörs. Av ändrar inget annat.",
+  "settingsDiagnostics": "Diagnostik",
+  "settingsErrorLog": "Fellogg",
+  "settingsErrorLogHelp": "Senaste fel, redo att kopieras till en felrapport",
+  "settingsReportBug": "Rapportera ett fel",
+  "settingsReportBugHelp": "Öppna ett guidat ärende på GitHub",
+  "settingsSuggestIdea": "Föreslå en idé",
+  "settingsSuggestIdeaHelp": "Hjälp oss att förbättra handledaren och spelet",
+  "settingsAbout": "Om appen",
+  "settingsOpenSourceLicenses": "Licenser för öppen källkod",
+  "gameTutorCommentaryOff": "Spelkommentarer är avstängda.",
+  "gameTutorToolsAvailable": "Öppna handledaren för att använda de verktyg du har aktiverat.",
+  "gameTutorNextRoll": "Kasta tärningarna.",
+  "gameTutorNoEvaluatedReview": "Det finns ingen utvärderad förklaring till det här sparade draget.",
+  "gameTutorAnalysisUnavailable": "analys saknas",
+  "gameTutorReviewing": "granskar…",
+  "gameTutorTryYourPlayFirst": "Prova ditt eget drag först.",
+  "gameTutorKeepBuilding": "Fortsätt att planera ditt drag.",
+  "gameTutorStageCompleteBeforeCoaching": "Gör klart ett fullständigt lagligt drag innan råd eller tips visas.",
+  "gameTutorReadyToConfirm": "Redo att bekräfta",
+  "gameTutorPlayTakingShape": "Ditt drag tar form.",
+  "gameTutorConfirmOrUndo": "Bekräfta för att spela draget eller ångra och tänka om.",
+  "gameTutorFinishDiceOrUndo": "Använd de återstående tärningarna eller ångra draget.",
+  "gameTutorComputerConsidering": "Datorn funderar på sitt drag.",
+  "gameTutorComputerPlayReviewed": "Det färdiga draget granskas här.",
+  "gameTutorYourPlay": "Ditt drag",
+  "gameTutorComputer": "Dator",
+  "gameTutorPlayQuality": "Ditt drag: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "tvunget drag",
+  "gameTutorTopChoice": "bästa valet",
+  "gameTutorSoundPlay": "bra drag",
+  "gameTutorAnotherPlayMayFitBetter": "ett annat drag kan passa bättre",
+  "gameTutorAnotherPlayFitsBetter": "ett annat drag passar bättre i den här ställningen",
+  "gameTutorStrongerPlayAvailable": "ett klart starkare drag fanns tillgängligt",
+  "gameTutorPositionEdge": "{side} har ett beräknat övertag.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Ställningen är ungefär jämn.",
+  "tutorPhraseGameFinished": "Partiet är slut.",
+  "tutorPhraseReviewFinishedGame": "Gå igenom dragen och hitta ett beslut att öva på.",
+  "tutorPhraseCubeOffered": "Dubblingskuben har erbjudits.",
+  "tutorPhraseCubeDecisionPrompt": "Bestäm om du ska ta eller passa innan du planerar ett brickdrag.",
+  "tutorPhraseCubeScoreContext": "Matchställningen påverkar värdet av den extra insatsen.",
+  "tutorPhraseResignationOffered": "En uppgiven match har erbjudits.",
+  "tutorPhraseResignationDecisionPrompt": "Jämför de erbjudna poängen med ställningen innan du accepterar eller fortsätter.",
+  "tutorPhraseNoLegalPlay": "Inget lagligt drag med det här kastet.",
+  "tutorPhraseForcedPassPrompt": "En framtvingad passning är inget misstag; vänta på nästa kast.",
+  "tutorPhraseOnlyOneResult": "Det finns bara en laglig slutställning.",
+  "tutorPhraseForcedTurnPrompt": "Gör det tvingade draget. Det finns inget val att betygsätta med detta kast.",
+  "tutorPhrasePipCountsLevel": "Pip-antalet är lika.",
+  "tutorPhrasePipCountsAhead": "Du ligger {count} pip före.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "Du ligger {count} pip efter.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "Du har {count} brickor på baren: börja med att komma in igen.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Kom in med en bricka innan du flyttar någon annan; leta sedan efter en säker punkt att landa på.",
+  "tutorPhraseOpponentHomePoints": "Motståndaren har {count} stängda punkter i sitt hembräde.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Kapplöpning om att ta ut brickor.",
+  "tutorPhrasePureRace": "En ren kapplöpning.",
+  "tutorPhraseBearOffSpread": "Ta ut brickor men behåll en användbar spridning inför nästa kast.",
+  "tutorPhraseBringRearCheckersHome": "Ta hem de bakre brickorna utan att stapla för många på samma punkt.",
+  "tutorPhraseArmiesHavePassed": "Spelarna har passerat varandra; inga fler slag är möjliga.",
+  "tutorPhraseContactStillMatters": "{part} Kontakten spelar fortfarande roll.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "Motståndaren har {count} brickor på baren.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Håll brädet stängt medan du tar hem de återstående brickorna.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Bygg upp eller bevara ditt hembräde medan motståndaren försöker komma in.",
+  "tutorPhraseHomePointsCloseEntries": "Du har {count} punkter i hembrädet; var och en stänger ett ingångsnummer.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Kontakt med en {count}-punktsprime.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Jämför att förlänga primen med att behålla reservbrickor så att den kan hållas intakt.",
+  "tutorPhraseSpareCheckersCanMove": "{count} reservbrickor kan flyttas utan att punkten öppnas direkt.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Kontakt med en ankarpunkt på {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Jämför att ta hem bakbrickorna med tryggheten i att behålla ankaret.",
+  "tutorPhraseCompareAnchorProgressBehind": "Tänk på det säkra fotfästet medan du letar efter ett slag eller försöker förbättra brädet.",
+  "tutorPhrasePreserveAnchorFoothold": "Ankaret kan inte slås, men brickorna har fortfarande långt hem.",
+  "tutorPhraseContactThreats": "Kontakt: båda sidor kan fortfarande hota med slag.",
+  "tutorPhraseLookForPointsAndSafety": "Leta efter användbara punkter och jämför sedan risken med att lämna enstaka brickor oskyddade.",
+  "tutorPhraseHomePointsAndBlots": "Du har {count} punkter i hembrädet och lämnar {otherCount} blottar.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Välj en bricka för att börja ditt drag.",
+  "tutorPhraseLegalPlayPrompt": "Börja ett lagligt drag för att se kommentarer.",
+  "tutorPhraseStagedHit": "Du har slagit {count} av motståndarens brickor.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "Du har kommit in med {count} brickor från baren.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Du har tagit ut {count} brickor.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Du har gjort punkterna {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Din bricka på punkt {point} är just nu en blott.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "Reservbrickan på punkt {point} kan flyttas senare utan att punkten öppnas.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Använd de återstående spelbara tärningarna innan hela draget bedöms.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Alla 15 brickor är uttagna: du har vunnit partiet.",
+  "tutorPhraseStagedHitShortPlan": "Slaget köper tid medan motståndaren försöker komma in igen.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Ett effektivt uttag tar bort brickor och lämnar användbara tal till nästa kast.",
+  "tutorPhraseStagedRaceHomePlan": "Ta hem bakbrickorna och sprid ut dem över bra punkter för uttag.",
+  "tutorPhraseStagedBearOffContactPlan": "Uttag är framsteg, men kontakten innebär fortfarande risk för slag.",
+  "tutorPhraseStagedReentryPlan": "Återinträdet får brickan tillbaka i spelet; leta sedan efter en säker punkt för den.",
+  "tutorPhraseStagedHomeBoardPlan": "Den nya punkten i hembrädet stänger ett ingångsnummer efter ett framtida slag.",
+  "tutorPhraseStagedPrimePlan": "Den längre primen stänger fler landningspunkter; reservbrickor hjälper dig att hålla den intakt.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Att lämna ankaret ger mark men du ger upp ett säkert fotfäste.",
+  "tutorPhraseStagedNewAnchorPlan": "Det nya ankaret ger bakbrickorna ett säkert fotfäste.",
+  "tutorPhraseStagedCoverBlotPlan": "Att täcka en blott tar bort ett mål för motståndaren.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Avvägningen gäller utveckling mot säkerhet: byggbrickor kan också bli mål.",
+  "tutorPhraseStagedCompletePrompt": "{part} Hela draget är klart; tryck på Bekräfta för att spela det.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Det här kastet lämnar inget val av brickdrag; det betygsätts inte som ett beslut.",
+  "tutorMoveTopVerdict": "Ett av de bästa valen i den här ställningen.",
+  "tutorMoveAlternativeVerdict": "Motorn föredrar ett annat drag här.",
+  "tutorMoveEstimateDifference": "Skillnad från det bästa draget: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Efter draget: vinstchans {winPercent}%, gammonvinst eller bättre {winGammonPercent}%, gammonförlust eller sämre {loseGammonPercent}%. Det här är uppskattningar ur spelarens perspektiv.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Uppskattad chans att vinna matchen: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Alla 15 brickor är ute: du har vunnit partiet.",
+  "tutorMovePlanHit": "Använd slaget för att vinna tid medan motståndaren kommer in igen. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Håll dina hembrädespunkter stängda så blir det svårare att komma in.",
+  "tutorMovePlanHitBuild": "Bygg fler punkter i hembrädet så blir det svårare att återhämta sig efter framtida slag.",
+  "tutorMovePlanRaceBearOff": "Sikta på ett effektivt uttag: ta bort brickor och lämna användbara tal inför nästa kast.",
+  "tutorMovePlanRaceHome": "Ta hem bakbrickorna och sprid ut dem över användbara uttagspunkter.",
+  "tutorMovePlanContactBearOff": "Ta ut brickor, men håll koll på motståndarens bakbrickor: vid kontakt kan en ensam uttagsbricka bli ett mål.",
+  "tutorMovePlanReentry": "Kom tillbaka in i spelet och leta sedan efter en säker punkt för brickan som kom in.",
+  "tutorMovePlanHomeBoard": "Stärk hembrädet. Den nya stängda punkten tar bort ett ingångsnummer och gör ett framtida slag kraftfullare.",
+  "tutorMovePlanPrime": "Håll raden av stängda punkter intakt. Spara reservbrickor så att senare kast inte tvingar dig att öppna den.",
+  "tutorMovePlanLeaveAnchor": "Att lämna ankaret för bakbrickorna framåt men du ger upp ett säkert fotfäste. Håll koll på hur utsatta de är på vägen hem.",
+  "tutorMovePlanNewAnchor": "Använd det nya ankaret som ett säkert fotfäste medan du förbättrar resten av ställningen.",
+  "tutorMovePlanCoverBlot": "Samla brickorna. Att täcka en blotta tar bort ett mål och bevarar användbara landningspunkter.",
+  "tutorMovePlanSafety": "Balansera utveckling och säkerhet: för byggbrickor mot användbara punkter och kontrollera vilka ensamma brickor som kan slås.",
+  "tutorMoveObservationNoLegalPlay": "Inget lagligt brickdrag finns: turen måste passas.",
+  "tutorMoveObservationHit": "Du slår {count} av motståndarens brickor; motståndaren måste komma in från baren innan de andra kan flyttas.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Kom in med {count} brickor från baren.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Ta ut {count} brickor.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Du gör punkterna {points}. Minst två brickor håller punkten säkert och hindrar motståndaren från att landa där.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Du ger upp stängda punkter {pointLabel} {points}. De hindrar inte längre motståndaren.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Du lämnar inga ensamma brickor oskyddade (tidigare {previousCount}). Det finns ingen ensam bricka att slå.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Du lämnar {count} ensamma brickor oskyddade (tidigare {previousCount}). Kontrollera om motståndaren når dem innan du väljer säkerhet framför en annan vinst.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Längsta raden av stängda punkter: {count} (tidigare {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "En sexpunktsprime går inte att passera så länge den är stängd.",
+  "tutorMoveObservationPrimeBuild": "Håll byggbrickor nära om du vill förlänga eller bevara raden.",
+  "tutorMoveObservationPrimeSpares": "{count} reservbrickor finns utöver de två på stängda punkter. Att flytta en reserv kan bevara punkten; flyttar du någon av de två sista öppnas den.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Ankare i motståndarens hembräde: {points} (tidigare {previousPoints}). Ett ankare skyddar brickorna från slag; om du lämnar det byter du fotfästet mot framsteg i loppet.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Rent lopp: spelarna har passerat varandra och ingen har brickor på baren. Slag är inte längre möjliga; ett effektivt uttag spelar roll.",
+  "tutorMoveObservationNoReplyHit": "Motståndaren kan inte slå någon bricka med något lagligt nästa kast i den här ställningen. Kontakten finns kvar, så senare drag kan skapa nya chanser.",
+  "tutorMoveObservationReplyHit": "Motståndaren kan slå med {count} av {total} kast. Till exempel ger {dieOne}–{dieTwo} ett lagligt slag på din punkt {point}. Ett slag är möjligt, men motståndaren väljer det inte nödvändigtvis.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "{closedPoints} av dina hembrädespunkter är stängda. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Motståndaren kan inte komma in igen förrän en punkt öppnas.",
+  "tutorMoveObservationOpenEntry": "Ett kast som använder en öppen ingångspunkt kan få tillbaka en bricka från baren.",
+  "tutorMoveComparisonDetail": "{factors} Det bästa dragets uppskattade vinstchans är {delta} procentenheter {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "högre",
+  "tutorMoveComparisonLower": "lägre",
+  "tutorMoveComparisonScoreContext": " Det kan ändå rankas högre eftersom gammon och backgammon har olika värde vid aktuell {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "insats",
+  "tutorMoveComparisonMatchScore": "matchställning",
+  "tutorMoveComparisonFactorBar": "Det bästa draget lämnar {bestCount} av motståndarens brickor på baren i stället för {playedCount}. En bricka på baren måste komma in innan de andra kan flyttas.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Det bästa draget håller {bestCount} hembrädespunkter stängda i stället för {playedCount}; efter ett slag finns {entryDifference} ingångspunkter.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "stänger fler",
+  "tutorMoveComparisonLeavingMore": "lämnar fler öppna",
+  "tutorMoveComparisonFactorShots": "Det bästa draget tillåter ett motdrag med slag på {bestCount} av 36 kast i stället för {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Det minskar den omedelbara risken att bli slagen tillbaka.",
+  "tutorMoveComparisonExtraExposure": "Jämför den extra utsattheten med vad draget vinner på andra håll.",
+  "tutorMoveComparisonFactorPrime": "Det bästa dragets längsta rad av stängda punkter är {bestCount} i stället för {playedCount}; jämför blockaden med brickorna som kan hålla den intakt.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Det bästa dragets ankare finns på {bestPoints} i stället för {playedPoints}. Ett ankare bevarar en säker landningspunkt; om du lämnar det kommer brickorna närmare hem.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Det bästa draget har tagit ut {bestCount} brickor i stället för {playedCount}. Varje uttagen bricka är en mindre att ta ut senare.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Båda dragen lämnar samma omedelbara slagrisk, hembrädespunkter, ankare och antal uttagna brickor. Jämför landningspunkterna: nästa kast kan använda brickorna på olika sätt.",
+  "tutorMoveComparisonSummaryBar": "Det bästa draget skickar fler av motståndarens brickor till baren och fördröjer de andra dragen.",
+  "tutorMoveComparisonSummaryHomeBoard": "Det bästa draget stänger fler hembrädespunkter och gör återinträde svårare efter ett slag.",
+  "tutorMoveComparisonSummaryShots": "Det bästa draget tillåter färre omedelbara slagkast och minskar risken att bli slagen tillbaka.",
+  "tutorMoveComparisonSummaryPrime": "Det bästa draget behåller en längre rad av stängda punkter.",
+  "tutorMoveComparisonSummaryAnchors": "Det bästa draget behåller fler säkra ankare i motståndarens hembräde.",
+  "tutorMoveComparisonSummaryBearOff": "Det bästa draget tar ut fler brickor, så färre återstår att ta bort senare.",
+  "tutorMoveComparisonSummaryBlots": "Det här draget lämnar {playedCount} ensamma brickor; det bästa draget lämnar {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Det bästa draget behåller ett säkert ankare på punkt {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Det bästa draget stänger fler ingångspunkter ifall en av dina brickor blir slagen.",
+  "tutorMoveComparisonSummarySimilarRisks": "Dragen lämnar liknande omedelbara risker; jämför vilka landningspunkter som fortfarande är användbara vid nästa kast.",
+  "tutorMoveAssessmentEquityLoss": "{value} equity",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} procentenheter MWC",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "punkt",
+  "tutorMovePointPlural": "punkter",
+  "tutorMoveNoPoints": "inga",
+  "tutorPlayedMove": "Spelat: {move}",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorBestMove": "Bäst: {move}",
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorShowRankedPlays": "Visa rankade drag",
+  "tutorReviewRecordedMove": "Tryck på ett avslutat drag i loggen för att granska beslutet här.",
+  "tutorTopPlays": "Bästa dragen",
+  "tutorNoHintsAvailable": "Inga tips tillgängliga.",
+  "tutorPreviewThenConfirm": "Tryck på ett drag för att förhandsvisa det på brädet och välj sedan Bekräfta.",
+  "tutorTopChoiceForPosition": "Bästa valet i den här ställningen",
+  "tutorAlternativePlay": "Alternativt drag",
+  "tutorEngineEstimates": "Datorns uppskattningar",
+  "tutorEstimateScope": "0-ply-uppskattning – aktuell poängställning och insats – inga framtida dubbleringar",
+  "tutorEquity": "Equity",
+  "tutorMwcPercent": "Matchvinstchans, %",
+  "tutorNearTiesNote": "Djupare analys kan ändra ordningen mellan nästan jämna drag.",
+  "tutorWhyThisPlay": "Varför det här draget?",
+  "tutorCompareAlternative": "Jämför det här alternativet",
+  "gameTutorCubeTake": "Tränaren: ta",
+  "gameTutorCubePass": "Tränaren: passa",
+  "practiceScreenTitle": "Öva på ett beslut",
+  "practiceUnavailable": "Den här övningspositionen är inte längre tillgänglig.",
+  "practiceSubmitError": "Försöket kunde inte utvärderas eller sparas. Dina framsteg ändrades inte. Försök igen.",
+  "practiceTurnLabel": "{side} spelar · {dice}",
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "practiceHistoricalScoreUnavailable": "Historiskt resultat saknas; draget bedöms med cubeless equity.",
+  "practiceScoreLine": "Resultat: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, till {matchLength}",
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceCrawfordGame": " · Crawford-parti",
+  "practiceNoDoublingCube": "Utan dubbleringskub.",
+  "practiceCubeValue": "Kubvärde {value}.",
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceHistoricalCubeUnknown": "Historiska kubregler är okända.",
+  "practiceAfterBestPosition": "Position efter bästa draget",
+  "practiceAfterYourAnswerPosition": "Position efter ditt svar",
+  "practiceFindYourPlayPrompt": "Gör ditt drag på brädet och kontrollera sedan svaret. Inga ledtrådar visas.",
+  "practiceUndo": "Ångra",
+  "practiceCheckAnswer": "Kontrollera svaret",
+  "practiceRevealNoCredit": "Visa svaret (ingen poäng)",
+  "practiceAnswerRevealedNoCredit": "Svaret visades — ingen återkallningspoäng.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "practiceBestMoveLine": "Bäst: {move}",
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceOriginalGameLine": "Drag i ursprungspartiet: {move} · {loss}",
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "practiceYourAnswerLine": "Ditt svar: {move}",
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceYourAnswerChip": "Ditt svar",
+  "practiceBestPlayChip": "Bästa draget",
+  "practiceNextReview": "Nästa repetition: {date}.",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "practiceRecallCredit": "Bästa och bra svar räknas som lyckad återkallning. Tidiga repetitioner förlänger inte intervallet.",
+  "practiceBackToLearning": "Tillbaka till lärandet",
+  "practiceMarkBest": "Bäst",
+  "practiceMarkGood": "Bra",
+  "practiceMarkDubious": "Tveksamt",
+  "practiceMarkError": "Fel",
+  "practiceMarkBlunder": "Grovt misstag",
+  "practiceMarkForced": "Tvunget",
+  "newMatchYourSide": "Din sida",
+  "newMatchTutorMode": "Handledarläge",
+  "newMatchTutorDescription": "Lär dig med tips, förklaringar och kommentarer om partiet",
+  "newMatchTutoringOptions": "Handledaralternativ",
+  "newMatchTutoringOptionsDescription": "För den här matchen; kan ändras under spelet",
+  "setupMatchLength": "Matchlängd",
+  "setupDifficulty": "Svårighetsgrad",
+  "setupDifficultyEasy": "Lätt",
+  "setupDifficultyMedium": "Medel",
+  "setupDifficultyHard": "Svår",
+  "setupDifficultyExpert": "Expert",
+  "setupPlayWithoutCube": "Spela utan kub",
+  "setupNoCubeThisMatch": "Ingen dubbleringskub i den här matchen",
+  "diagnosticsCopySuccess": "Diagnostiken har kopierats till urklipp",
+  "diagnosticsReviewTitle": "Granska diagnosrapporten",
+  "diagnosticsPrivacyNotice": "När du öppnar utkastet skickas uppgifterna nedan till GitHub, inklusive appversion, plattform och eventuella feluppgifter. Ingen offentlig rapport skapas förrän du skickar in den där. Om uppgifterna innehåller privat information kan du avbryta och kopiera en rapport själv.",
+  "diagnosticsCancel": "Avbryt",
+  "diagnosticsOpenGitHub": "Öppna GitHub",
+  "diagnosticsTitle": "Diagnostik",
+  "diagnosticsReportTooltip": "Rapportera ett problem på GitHub",
+  "diagnosticsCopyTooltip": "Kopiera till urklipp",
+  "diagnosticsClearTooltip": "Rensa loggen",
+  "diagnosticsEmpty": "Inga fel har registrerats.\n\nOm något går fel loggas det här — kom tillbaka och kopiera uppgifterna till en felrapport.",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · till {matchLength}",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · till {matchLength}",
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudYou": "Du",
+  "gameHudAi": "Dator",
+  "gameHudGameNumber": "Parti {number}",
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudMatchContext": "{score} · {game}",
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "gameHudHotSeatDetail": "{whiteLabel} mot {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetail": "mot {opponent} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetailWithLevel": "mot {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPips": "Pipar",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Dubbel",
+  "gameHudMoreActions": "Fler åtgärder",
+  "gameHudSurrender": "Ge upp…",
+  "gameHudThinking": "Tänker",
+  "gameHudDoubleBeforeRoll": "Du kan bara dubbla före kastet när det är din tur.",
+  "gameHudNoDoubleCrawford": "Ingen dubblering i Crawford-partiet — det här partiet avgör matchen.",
+  "gameHudOnlyCubeOwner": "Bara kubägaren kan dubbla, och just nu äger den andra sidan kuben.",
+  "gameHudDoubleUnavailable": "Dubblering är inte tillgänglig just nu.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (till {matchLength})",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogPlayerWon": "{winner} vinner det här partiet ({points}).",
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonGammon": "{winner} vinner det här partiet ({points}, gammon).",
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonBackgammon": "{winner} vinner det här partiet ({points}, backgammon).",
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonDrop": "{winner} vinner det här partiet ({points}) — {loser} tackade nej till dubblingen.",
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPlayerWonResignation": "{winner} vinner det här partiet ({points}) — {loser} gav upp.",
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPassDeviceTitle": "Lämna över enheten",
+  "gameDialogPlayersTurn": "{name}s tur",
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "gameDialogTapToContinue": "Tryck för att fortsätta",
+  "gameDialogCubeOfferedTitle": "Dubbling erbjuden",
+  "gameDialogCubeOfferMessage": "{doubler} erbjuder att dubbla till {value}. Ta eller passa?{tutorLine}",
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "gameDialogPass": "Passa",
+  "gameDialogTake": "Ta",
+  "gameDialogResignationTitle": "Resignation erbjuden",
+  "gameDialogResignationMessage": "{resigner} erbjuder att ge upp med {value}. Acceptera eller avböj?",
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "gameDialogResignSingle": "vanligt parti",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Avböj",
+  "gameDialogAccept": "Acceptera",
+  "gameDialogGameOverTitle": "Partiet är slut",
+  "gameDialogNextGame": "Nästa parti",
+  "gameDialogMatchOverTitle": "Matchen är slut",
+  "gameDialogNobody": "Ingen",
+  "gameDialogMatchWinner": "{winner} vinner matchen.",
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "gameDialogSavedToHistory": "Sparat i historiken",
+  "gameDialogDone": "Klart",
+  "gameMatchSummary": "Matchöversikt",
+  "gameAnalyzeGame": "Analysera parti",
+  "analysisTitle": "Analys",
+  "analysisMetricsTooltip": "Vad betyder siffrorna?",
+  "analysisError": "Det gick inte att analysera partiet: {error}",
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisNoPositions": "Partiet innehåller inga positioner att visa.",
+  "analysisInProgress": "Analyserar…",
+  "analysisPercent": "{percent}%",
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisPlayed": "Spelat",
+  "analysisBest": "Bäst",
+  "analysisPrevious": "Föregående",
+  "analysisNext": "Nästa",
+  "analysisPositionBeforeCube": "Position före kubbeslutet",
+  "analysisPositionAtPoint": "Position vid den här tidpunkten i partiet",
+  "analysisShowingBestBefore": "Visar bästa draget i positionen före draget",
+  "analysisShowingBefore": "Visar positionen före draget",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "analysisMoveLoss": " −{loss}",
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisExcludedFromAverages": " · utesluts från medelvärden",
+  "analysisNoPlay": "(inget drag)",
+  "analysisBestMoveLine": "Bäst: {move}",
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "analysisExplain": "Förklara",
+  "analysisSaveForPractice": "Spara för träning",
+  "analysisSaveError": "Det gick inte att spara beslutet: {error}",
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisCubeInfo": "{side}: {action} · {mark} · förlust {loss}",
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "analysisCubeDecision": "Kubbeslut",
+  "analysisCubePlayed": "Spelat: {action} ({percent}% matchvinst).",
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisCubeBest": "Bäst: {action} ({percent}% matchvinst).",
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisClose": "Stäng",
+  "analysisMoves": "Drag",
+  "analysisForced": "Tvingat",
+  "analysisMarkBest": "Bäst",
+  "analysisMarkGood": "Bra",
+  "analysisMarkDubious": "Tveksamt",
+  "analysisMarkError": "Fel",
+  "analysisMarkBlunder": "Blunder",
+  "analysisSummaryMeanLoss": "Medelförlust {loss}",
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisSummaryCheckerDecisions": "{count} brickbeslut",
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryBlunders": "Blundrar {count}",
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryCubeLoss": "Kubförlust {loss}",
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisRollWithoutDoubling": "{side} kastar utan att dubbla",
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "analysisCubeNoDouble": "Dubbla inte",
+  "analysisCubeDouble": "Dubbla",
+  "analysisCubeTake": "Ta",
+  "analysisCubePass": "Ge upp",
+  "tutorOptions": "Handledarinställningar",
+  "tutorCollapseTooltip": "Fäll ihop handledaren",
+  "tutorExpandTooltip": "Visa handledaren",
+  "scoreSheetNoMoves": "Inga drag",
+  "gameTapNoLegalMove": "Tryck på din bricka för att se lagliga drag.",
+  "gameTapNoLegalMoveUndo": "Tryck på en bricka och sedan på målet.",
+  "gameDragHint": "Dra brickan till målet.",
+  "commonGotIt": "Jag förstår",
+  "gameHintStageBeforeHint": "Före tipset",
+  "surrenderTitle": "Ge upp partiet?",
+  "surrenderSingle": "Vanlig förlust",
+  "surrenderGammon": "Gammonförlust",
+  "surrenderBackgammon": "Backgammonförlust",
+  "surrenderChoosePlayer": "Välj spelare",
+  "cubeDouble": "Dubbla",
+  "gameStatusRolling": "Kastar tärningarna",
+  "gameStatusThinking": "Datorn tänker",
+  "gameStatusPlayersTurn": "{player}s tur",
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "historyTitle": "Matchhistorik",
+  "historyEmpty": "Inga matcher har spelats ännu.",
+  "historyDeleteConfirmTitle": "Ta bort den här matchen?",
+  "actionCancel": "Avbryt",
+  "actionDelete": "Ta bort",
+  "historyDeleteFailed": "Matchen kunde inte tas bort.",
+  "historyComplete": "Slutförd",
+  "historyUnfinished": "Oavslutad",
+  "historyMatchTitle": "Match",
+  "historyNoGames": "Inga partier har registrerats ännu.",
+  "historyCrawford": "Crawford",
+  "historyModeComputer": "mot datorn",
+  "historyModeTwoPlayers": "Två spelare",
+  "historyModeOnline": "Online",
+  "historyModeNearby": "Spela i närheten",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "Pågår",
+  "historyOutcomeSingle": "enkel",
+  "historyOutcomeGammon": "gammon",
+  "historyOutcomeBackgammon": "backgammon",
+  "learningRefreshTooltip": "Uppdatera inlärningsförlopp",
+  "learningOptions": "Inlärningsalternativ",
+  "learningResetMenu": "Återställ träningsförlopp",
+  "learningLoadFailed": "Det gick inte att läsa in inlärningsförloppet.",
+  "actionRetry": "Försök igen",
+  "learningHeading": "Lär dig av dina beslut",
+  "learningBothSides": "Båda sidor",
+  "learningHumansOnly": "Endast mänskliga beslut",
+  "learningHumanOnlyHelp": "Stäng av för att ta med datorns och fjärrspelares beslut",
+  "learningAnalyseSavedGames": "Analysera sparade matcher",
+  "learningOpenHistory": "Öppna matchhistorik",
+  "learningRecurringThemes": "Återkommande teman",
+  "learningNoThemes": "Inga återkommande misstagsteman i det här urvalet ännu.",
+  "learningSaveMistakes": "Spara misstagen för träning",
+  "learningSpacedPractice": "Utspridd träning",
+  "learningNoSavedPositions": "Spara ett beslut från reprisen eller använd felknappen ovan.",
+  "learningReadyToReview": "Redo att gå igenom",
+  "learningSuccessStreak": "{count} lyckade genomgångar i rad",
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnswerRevealed": "Svaret visades",
+  "learningSuccessfulRecall": "Lyckad återkallelse",
+  "learningTryAgain": "Försök igen",
+  "actionRemove": "Ta bort",
+  "onlineTitle": "Onlinespel",
+  "onlineUnassistedNote": "Handledaren är inte tillgänglig i onlinespel.",
+  "onlineNotConfiguredTitle": "Onlinespel är inte konfigurerat",
+  "onlineNotConfiguredBody": "Onlinespel är inte tillgängligt i den här versionen.",
+  "onlineErrorNoMatch": "Matchen hittades inte.",
+  "onlineErrorSeatTaken": "Platsen är redan upptagen.",
+  "onlineErrorPermission": "Du saknar behörighet för åtgärden.",
+  "onlineErrorGeneric": "Det gick inte att ansluta till onlinespelet.",
+  "onlineMatchFinished": "Matchen är slut.",
+  "onlineEnterCodeError": "Ange en giltig kod.",
+  "onlineOpponentShort": "Motståndare",
+  "onlineMatchInProgress": "Matchen pågår",
+  "onlineResumePrompt": "Du spelade matchen {code}. Fortsätta?",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Återanslut",
+  "onlineForgetMatch": "Glöm matchen",
+  "onlineCreateTitle": "Skapa onlinematch",
+  "onlineMatchLength": "Matchlängd",
+  "onlineNoCubeTitle": "Spel utan kub",
+  "onlineNoCubeSubtitle": "Spela utan dubblingskub.",
+  "onlineCreate": "Skapa",
+  "onlineWaitingOpponent": "Väntar på motståndare",
+  "onlineShareCode": "Dela kod",
+  "onlineCopyCode": "Kopiera kod",
+  "onlineCodeCopied": "Koden kopierades",
+  "onlineJoinTitle": "Gå med i match",
+  "onlineRoomCode": "Rumskod",
+  "onlineJoin": "Gå med",
+  "lanTitle": "Spela i närheten",
+  "lanTabHost": "Värd",
+  "lanTabJoin": "Gå med",
+  "lanHostTitle": "Värd för ett spel",
+  "lanStartHosting": "Starta värdskap",
+  "lanWaitingPlayerTitle": "Väntar på spelare",
+  "lanWaitingPlayer": "Väntar på spelare…",
+  "lanStopHosting": "Avsluta värdskap",
+  "lanOnNetwork": "I det här nätverket",
+  "lanCopyAddress": "Kopiera adress",
+  "lanAddressCopied": "Adressen kopierades",
+  "lanScanHostTitle": "Skanna värden",
+  "lanScanQr": "Skanna QR-kod",
+  "lanNearbyGames": "Spel i närheten",
+  "lanSearching": "Söker efter spel i närheten…",
+  "lanStillSearching": "Söker fortfarande…",
+  "lanEnterAddress": "Ange adress",
+  "lanIpAddress": "IP-adress",
+  "lanPort": "Port",
+  "lanInvalidPort": "Ange en port mellan 1 och 65535.",
+  "lanJoinWrongCode": "Fel rumskod. Kontrollera de fyra siffrorna på den andra enheten.",
+  "lanConnect": "Anslut",
+  "lanBack": "Tillbaka",
+  "lanTryAgain": "Försök igen",
+  "lanStatusBusy": "Rummet används — väntar…",
+  "lanStatusReconnecting": "Anslutningen bröts — försöker igen…",
+  "lanStatusConnected": "Ansluten — matchen startar…",
+  "lanStatusFailed": "Det gick inte att gå med.",
+  "lanStatusConnecting": "Ansluter…",
+  "tutorCubelessEstimateScope": "0-ply-uppskattning utan kub · poäng saknas",
+  "tutorLossPp": "Förlust pp",
+  "tutorLoss": "Förlust",
+  "surrenderNamedConcedes": "{player} ger upp det aktuella partiet.",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderConcedes": "Ger upp det aktuella partiet.",
+  "surrenderAvailableAtNamedTurn": "Tillgängligt i början av {player} tur",
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderAvailableAtYourTurn": "Tillgängligt i början av din tur",
+  "commonCancel": "Avbryt",
+  "commonDone": "Klart",
+  "cubeBlockedOtherPlayersTurn": "Det är den andra spelarens tur.",
+  "cubeBlockedCrawford": "Kuben är inte tillgänglig i Crawford-partiet.",
+  "cubeBlockedOwnedByOther": "Bara kubens ägare får dubbla, och den andra sidan äger den just nu.",
+  "cubeBlockedUnavailable": "Dubbling är inte tillgänglig just nu.",
+  "cubeAdviceOpponentTake": "Dubbla — motståndaren bör ta",
+  "cubeAdviceOpponentPass": "Dubbla — motståndaren bör passa",
+  "gameErrorBannerLabel": "Fel: {error}",
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "metricExplainerTitle": "Förstå mätvärdena",
+  "metricExplainerTooltip": "Vad betyder siffrorna?",
+  "metricExplainerMwcTitle": "Matchvinstchans (MWC)",
+  "metricExplainerSearchTitle": "Sökning och osäkerhet",
+  "metricExplainerEquityTitle": "Equity",
+  "metricExplainerEquityLossTitle": "Equityförlust (t.ex. −0,016)",
+  "metricExplainerErrorRateTitle": "Felfrekvens",
+  "metricExplainerMoveMarksTitle": "Dragmarkeringar",
+  "metricExplainerGotIt": "Klart",
+  "metricExplainerThresholdBest": "förlust < 0,001",
+  "metricExplainerThresholdGood": "förlust < 0,020",
+  "metricExplainerThresholdDubious": "förlust < 0,050",
+  "metricExplainerThresholdError": "förlust < 0,110",
+  "metricExplainerThresholdBlunder": "förlust ≥ 0,110",
+  "historyLoadFailed": "Det gick inte att läsa in historiken:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyDeleteConfirmBody": "{scoreLine}\n\nMatchen och alla registrerade partier tas bort permanent. Det går inte att ångra.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyWinner": "{side} vann",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyMatchLoadFailed": "Det gick inte att läsa in matchen:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Det gick inte att läsa in partierna:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGameTitle": "Parti {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyScoreLine": "Vita {whiteScore} — {blackScore} Svarta  (till {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyGameResult": "{side} vinner {points} ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "learningDecisionSummary": "{decisions} beslut · att förbättra: {mistakes} · blundrar: {blunders}",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAverageLoss": "Medelförlust ({decisions} beslut): {loss}",
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "learningForcedDisclaimer": "Tvingade drag utesluts. Det här är motorns uppskattningar, inte ett turneringsbetyg.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Sparat parti behöver analyseras eller analyseras på nytt.} other{Sparade partier behöver analyseras eller analyseras på nytt.}}",
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeDecisions": "{count} beslut att gå igenom. En position kan ha flera teman.",
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSavedMistakes": "{count} beslut finns i träningslistan. Befintliga sparade beslut behålls en gång.",
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSaveMistakesFailed": "Vissa beslut kunde inte sparas. Färdiga sparningar finns kvar; försök igen.",
+  "learningPracticeCounts": "Förfaller nu: {due} · sparade: {saved} · försök: {attempts} · lyckade återkallningar: {successes}",
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningPositionTitle": "{side}s beslut · parti {gameId}",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningReviewDue": "Granska {date}",
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "learningAttemptSubtitle": "{date} · sparad position {positionId}",
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisProgress": "Analyserade matcher: {completed} · otillgängliga: {failed}.",
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisComplete": "Analyserade matcher: {completed}.",
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisCompleteWithErrors": "Analyserade {completed} matcher; {failed} kunde inte analyseras. Försök igen när motorn är redo.",
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeHitting": "Slag och tempo",
+  "learningThemeSafety": "Blottor och säkerhet",
+  "learningThemePointMaking": "Bygga punkter",
+  "learningThemePrime": "Prime och blockader",
+  "learningThemeAnchor": "Ankare och flykt",
+  "learningThemeRace": "Effektivitet i kapplöpningen",
+  "learningThemeBearOff": "Bära av",
+  "learningThemeBarEntry": "Komma in från baren",
+  "learningThemeCube": "Kubbeslut",
+  "learningAnalysisStarting": "Analyserar sparade matcher…",
+  "learningIntro": "Förloppet sparas på den här enheten. Gå igenom återkommande teman och försök sedan med sparade positioner utan att se svaret. Vita och svarta kan granskas separat.",
+  "learningEmptyProfile": "Spela och slutför en match för att bygga din inlärningsprofil. Du kan också spara enskilda beslut från en repris.",
+  "learningIntervalsHelp": "Lyckade granskningar kommer tillbaka efter 1, 3, 7, 14 och 30 dagar. Misstag och visade svar kommer tillbaka efter 10 minuter. Tidiga upprepningar flyttar inte intervallet framåt.",
+  "learningAnswerContext": "Träningsresultaten speglar dina svar här, även när den ursprungliga positionen tillhörde en motståndare.",
+  "learningRemoveTooltip": "Ta bort sparat beslut",
+  "learningRecentPractice": "Senaste träningen",
+  "learningRemoveTitle": "Ta bort den här övningen?",
+  "learningRemoveBody": "Det här tar bort övningens försök. Originalpartiet finns kvar i historiken.",
+  "learningRemoveFailed": "Det gick inte att ta bort övningen.",
+  "learningResetTitle": "Återställa träningsförloppet?",
+  "learningResetBody": "Alla träningsförsök och granskningsintervall tas bort. Sparade övningar och matchhistorik finns kvar; alla övningar förfaller nu.",
+  "learningResetAction": "Återställ förlopp",
+  "learningResetFailed": "Det gick inte att återställa träningsförloppet.",
+  "lanUnassistedNote": "Spel i närheten saknar handledare. Gå igenom dragen och träna på misstagen efter matchen.",
+  "lanGameStartFailed": "Spelet kunde inte starta. Den andra enheten kan försöka gå med igen.",
+  "lanHostPortInUse": "Värdskapet kunde inte starta — porten används redan. Stäng andra kopior av Backgammon Buddy och försök igen.",
+  "lanHostStartFailed": "Värdskapet kunde inte starta. Kontrollera Wi-Fi och försök igen.",
+  "lanHostHelp": "Båda enheterna måste vara på samma Wi-Fi. Den här enheten kastar tärningarna och håller reda på poängen.",
+  "lanRoomCodeInfo": "Berätta koden för den andra spelaren. Den ger åtkomst — appen skickar den inte över nätverket.",
+  "lanFindNearbyPort": "Be den andra enheten söka efter spel i närheten. Lyssnar på port {port}.",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "lanScanHostHelp": "Den andra enheten visar en QR-kod på värdskärmen. Skanningen fyller i adressen och rumskoden.",
+  "lanScannerUnavailable": "Kameran eller dess behörighet är inte tillgänglig. Ange adressen och rumskoden nedan i stället.",
+  "lanInvalidQr": "QR-koden gäller inte ett Backgammon Buddy-spel. Skanna koden på värdskärmen på den andra enheten.",
+  "lanScannerFailed": "Skannern kunde inte öppnas. Ange adressen och koden nedan i stället.",
+  "lanNoGamesFound": "Inga spel hittades ännu. Kontrollera att den andra enheten är värd och att båda använder samma Wi-Fi, eller ange adressen.",
+  "lanEnterAddressHelp": "Automatisk upptäckt fungerar inte i alla nätverk (och kan vara helt blockerad på iOS). Värdskärmen visar vad du ska ange.",
+  "lanEnterAddressError": "Ange adressen som visas på den andra enheten.",
+  "lanEnterRoomCodeError": "Ange den fyrsiffriga koden från den andra enheten.",
+  "lanJoinVersionMismatch": "Den andra enheten kör en annan version av Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "Enheten svarade inte som Backgammon Buddy. Kontrollera adress och port.",
+  "lanJoinFailed": "Det gick inte att gå med. Kontrollera adressen och rumskoden och försök igen.",
+  "lanJoinTarget": "Gå med i {name}",
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "lanJoinTargetHelp": "Ange den fyrsiffriga koden som visas på den andra enheten.",
+  "lanJoiningTarget": "Går med i {name}",
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "analysisCubeEstimate": "0-ply-uppskattning ur den aktiva spelarens perspektiv. Förutsätter ett optimalt svar: ta eller passa. För grenen med accepterad dubbling används en approximation på 0,7 av kubens livslängd, inte en fullständig sökning av framtida redubblingar. Djupare analys kan ändra svaret.",
+  "metricExplainerMwcBody": "När poängen är känd rangordnas brickdragen efter uppskattad chans att vinna matchen. Förlust anges i procentenheter (pp): 1 pp innebär att 51 % sjunker till 50 %. Kubens insats och gammon/backgammon-resultat ingår. Tvingade pass och kast med bara en laglig position utesluts från medelvärden.",
+  "metricExplainerSearchBody": "Rangordningen av brickdrag bygger på statiska 0-ply-uppskattningar efter draget, inte simuleringar. Matchvärden använder en match equity-tabell utan framtida kubbeslut. Kubgranskning använder en partiell approximation på 0,7 av kubens livslängd vid accepterade dubblingar; det är ingen fullständig cubeful-sökning. Över 25 återstående poäng används tabellens 25-away-gräns. Djupare analys kan ändra jämna resultat; inget kalibrerat konfidensintervall beräknas.",
+  "metricExplainerEquityBody": "Om poängen saknas visar cubeless equity positionens genomsnittliga värde i poäng med kuben på 1. +1,0 betyder förväntad vinst med en poäng; −0,5 betyder förlust med en halv poäng.",
+  "metricExplainerEquityLossBody": "Vi jämför ditt drag med motorns bästa drag. Equityförlust visar hur mycket förväntat värde draget gav upp. −0,016 betyder att draget bara var 0,016 poäng sämre än det bästa — en liten miss. 0,000 betyder att du hittade bästa draget.",
+  "metricExplainerErrorRateBody": "Medelförlust är genomsnittet av bedömda brickbeslut i den visade enheten. Kubbeslut har ett eget medelvärde. Lägre betyder drag närmare motorns bästa uppskattningar; det är inget kalibrerat spelarbetyg.",
+  "metricExplainerMoveMarksBody": "MWC:s riktvärden: Bäst < 0,05 pp, Bra < 0,5 pp, Tveksamt < 1,5 pp, Fel < 3 pp, Blunder ≥ 3 pp. Det är pedagogiska gränser, inte kalibrerad säkerhet eller turneringsbetyg.\n\nRiktvärden för cubeless equity:"
 }

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../board/board_theme.dart';
 import '../../game/game_record.dart';
+import '../../l10n/app_localizations.dart';
+import '../../l10n/localization_lookup.dart';
 import '../../tutor/move_assessment.dart';
 
 /// The always-visible two-column score sheet under the board.
@@ -139,6 +141,7 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
   /// means a row (or a mark on one) actually moved — not that the dice tumbled.
   @override
   Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     final scheme = Theme.of(context).colorScheme;
     final rows = widget.rows;
     // Re-pin to the newest row when a ROW appears, but not on any other rebuild
@@ -167,7 +170,7 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
               child: rows.isEmpty
                   ? Center(
                       child: Text(
-                        'No moves yet',
+                        l10n.scoreSheetNoMoves,
                         style: TextStyle(
                           fontSize: 12,
                           color: scheme.onSurfaceVariant,
@@ -294,7 +297,10 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
     if (assessment != null &&
         assessment.isDecision &&
         assessment.ranked.isNotEmpty) {
-      final (color, label) = _markStyle(assessment.mark);
+      final (color, label) = _markStyle(
+        assessment.mark,
+        appLocalizationsOf(context),
+      );
       markColor = color;
       markLabel = label;
       final loss = assessment.equityLoss;
@@ -312,7 +318,9 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
       // A completed forced bear-off turn is still useful feedback, but it must
       // not receive a fake quality grade. Dances have no candidate ranking and
       // are identified as passes instead.
-      lossText = assessment.ranked.isEmpty ? 'Pass' : 'Forced';
+      lossText = assessment.ranked.isEmpty
+          ? appLocalizationsOf(context).analysisCubePass
+          : appLocalizationsOf(context).analysisForced;
     }
 
     final line = Row(
@@ -380,7 +388,9 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
                     assessment != null &&
                     assessment.best.checkerMoves.isNotEmpty)
                   Text(
-                    'Best: ${assessment.best}',
+                    appLocalizationsOf(
+                      context,
+                    ).tutorBestMove('${assessment.best}'),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: base.copyWith(
@@ -437,13 +447,14 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
   /// label is never PRINTED in a cell (the dot plus the loss number is all that
   /// fits in a ~180pt column) but it is what the dot's semantics node says, so
   /// the verdict is not colour-only.
-  (Color, String) _markStyle(MoveMark mark) => switch (mark) {
-    MoveMark.best => (Colors.green.shade700, 'Best'),
-    MoveMark.good => (Colors.green.shade600, 'Good'),
-    MoveMark.dubious => (Colors.amber.shade800, 'Dubious'),
-    MoveMark.error => (Colors.orange.shade800, 'Error'),
-    MoveMark.blunder => (Colors.red.shade700, 'Blunder'),
-  };
+  (Color, String) _markStyle(MoveMark mark, AppLocalizations l10n) =>
+      switch (mark) {
+        MoveMark.best => (Colors.green.shade700, l10n.analysisMarkBest),
+        MoveMark.good => (Colors.green.shade600, l10n.analysisMarkGood),
+        MoveMark.dubious => (Colors.amber.shade800, l10n.analysisMarkDubious),
+        MoveMark.error => (Colors.orange.shade800, l10n.analysisMarkError),
+        MoveMark.blunder => (Colors.red.shade700, l10n.analysisMarkBlunder),
+      };
 
   /// A small leading dot in the actor's checker colour (ivory for White, ebony
   /// for Black), or an empty transparent slot for a neutral line (the opening).

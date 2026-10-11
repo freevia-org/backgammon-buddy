@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "In-numri tal-punti fin-noti tat-tagħlim jingħaddu mill-parti tad-dar tal-plejer li jkun imiss.",
   "tutorHittingRollNote": "L-għadd tat-tfigħ li jista’ jwassal għal hit jinkludi s-36 riżultat ordnat tad-dadi kollha u hits legali diretti jew indiretti; dawn huma opportunitajiet, mhux tbassir tal-għażla tal-avversarju.",
   "tutorNoEvaluatedAlternatives": "Ma hemmx alternattivi evalwati disponibbli għal din il-mossa.",
-  "tutorForcedPassNoDecision": "Pass obbligatorju ma jinvolvix deċiżjoni dwar kif timxi l-biċċiet."
+  "tutorForcedPassNoDecision": "Pass obbligatorju ma jinvolvix deċiżjoni dwar kif timxi l-biċċiet.",
+  "settingsReset": "Irrisettja",
+  "settingsAppLanguage": "Lingwa tal-app",
+  "settingsTheme": "Tema",
+  "settingsThemeSystem": "Bħas-sistema",
+  "settingsThemeLight": "Ċar",
+  "settingsThemeDark": "Skur",
+  "settingsAnimationSpeed": "Veloċità tal-animazzjoni",
+  "settingsAnimationNone": "Ebda animazzjoni",
+  "settingsAnimationNormal": "Normali",
+  "settingsAnimationFast": "Mgħaġġla",
+  "settingsDiceRollAnimation": "Animazzjoni tat-tfigħ tad-dadi",
+  "settingsDiceRollAnimationHelp": "Dawwar id-dadi qabel kull tefgħa",
+  "settingsDefaultMatchLength": "Tul standard tal-logħba",
+  "settingsDefaultDifficulty": "Diffikultà standard",
+  "settingsDifficultyEasy": "Faċli",
+  "settingsDifficultyMedium": "Medja",
+  "settingsDifficultyHard": "Diffiċli",
+  "settingsDifficultyExpert": "Espert",
+  "settingsTutorModeDefault": "Modalità standard tat-tutur",
+  "settingsTutorAuto": "Awtomatika",
+  "settingsTutorOn": "Mixgħula",
+  "settingsTutorOff": "Mitfija",
+  "settingsTutorModeHelp": "Awtomatika tixgħel it-tutur f’kull livell ta’ diffikultà tal-kompjuter. Mixgħula u Mitfija jistabbilixxu l-għażla inizjali għal-logħob lokali. Il-logħob fil-qrib u online ma jingħatax għajnuna; tista’ terġa’ tara logħob salvat wara. Il-preferenzi tat-tagħlim jinżammu fuq dan it-tagħmir.",
+  "settingsTutorPreferences": "Preferenzi tat-tutur",
+  "settingsTutorPreferencesSubtitle": "Settings standard għal-logħob li jmiss",
+  "settingsTutorSaveError": "Ma setgħux jiġu salvati l-preferenzi tat-tutur.",
+  "settingsGameplay": "Logħob",
+  "settingsMoveHighlights": "Enfasi fuq ċaqliq",
+  "settingsMoveHighlightsHelp": "Dawwar iċ-ċekkers li tista’ tagħżel u enfasizza d-destinazzjonijiet",
+  "settingsDragToMove": "Kaxkar biex iċċaqlaq",
+  "settingsDragToMoveHelp": "Kaxkar ċekker lejn id-destinazzjoni tiegħu (it-taptip dejjem jaħdem)",
+  "settingsCombinedMoves": "Ċaqliq magħqud",
+  "settingsCombinedMovesHelp": "Taptipa waħda tmexxi ċekker skont iż-żewġ dadi",
+  "settingsRotateBoard": "Dawwar il-bord bejn turni",
+  "settingsRotateBoardHelp": "Meta tilagħbu fuq l-istess tagħmir, dawwar il-veduta lejn il-plejer li jmiss",
+  "settingsPassDevice": "Skrin biex tgħaddi t-tagħmir",
+  "settingsPassDeviceHelp": "Għatti l-bord bejn it-turni meta tgħaddi t-tagħmir lill-plejer li jmiss",
+  "settingsShowScore": "Uri r-riżultat",
+  "settingsShowScoreHelp": "Uri r-riżultat kurrenti tal-logħba fl-intestatura",
+  "settingsBuddyMode": "Mod kif jitkellem Buddy",
+  "settingsBuddyTerse": "Qasir",
+  "settingsBuddyFriendly": "Ħbiberija",
+  "settingsBuddyTerseHelp": "Kif Buddy jgħid ċaqliq b’leħen għoli: “13/8, 24/22” — in-notazzjoni li jużaw il-plejers mal-bord.",
+  "settingsBuddyFriendlyHelp": "Kif Buddy jgħid ċaqliq b’leħen għoli: “Mexxi ċekker wieħed minn 13 għal 8, u ieħor minn 24 għal 22.”",
+  "settingsListenForDice": "Isma’ d-dadi",
+  "settingsListenForDiceHelp": "Buddy jħares lejn il-bord aktar kmieni meta jisma’ tefgħa. Meta titfi din l-għażla ma jinbidel xejn aktar.",
+  "settingsDiagnostics": "Dijanjostika",
+  "settingsErrorLog": "Reġistru tal-iżbalji",
+  "settingsErrorLogHelp": "Żbalji reċenti li tista’ tikkopja f’rapport ta’ problema",
+  "settingsReportBug": "Irrapporta problema",
+  "settingsReportBugHelp": "Iftaħ rapport gwidat fuq GitHub",
+  "settingsSuggestIdea": "Issuġġerixxi idea",
+  "settingsSuggestIdeaHelp": "Għinna ntejbu t-tutur u l-logħba",
+  "settingsAbout": "Dwar",
+  "settingsOpenSourceLicenses": "Liċenzji ta’ sors miftuħ",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "gameTutorCommentaryOff": "Il-kummenti dwar il-logħba huma mitfija.",
+  "gameTutorToolsAvailable": "Iftaħ it-tutur biex tuża l-għodod li xgħelt.",
+  "gameTutorNextRoll": "Itfa’ d-dadi.",
+  "gameTutorNoEvaluatedReview": "M’hemmx spjegazzjoni evalwata għal dan iċ-ċaqliq irreġistrat.",
+  "gameTutorAnalysisUnavailable": "l-analiżi mhijiex disponibbli",
+  "gameTutorReviewing": "qed jiġi rivedut…",
+  "gameTutorTryYourPlayFirst": "L-ewwel ipprova ċ-ċaqliq tiegħek.",
+  "gameTutorKeepBuilding": "Kompli fassal iċ-ċaqliq tiegħek.",
+  "gameTutorStageCompleteBeforeCoaching": "Lesti ċaqliq legali sħiħ qabel ma jidhru l-gwida jew il-ħjiel.",
+  "gameTutorReadyToConfirm": "Lest biex tikkonferma",
+  "gameTutorPlayTakingShape": "Iċ-ċaqliq tiegħek qed jieħu forma.",
+  "gameTutorConfirmOrUndo": "Ikkonferma biex tilgħabu, jew ħassar iċ-ċaqliq u erġa’ aħsibha.",
+  "gameTutorFinishDiceOrUndo": "Uża d-dadi li fadal jew ħassar iċ-ċaqliq.",
+  "gameTutorComputerConsidering": "Il-kompjuter qed jaħseb dwar iċ-ċaqliq tiegħu.",
+  "gameTutorComputerPlayReviewed": "Iċ-ċaqliq komplut tiegħu se jiġi rivedut hawn.",
+  "gameTutorYourPlay": "Iċ-ċaqliq tiegħek",
+  "gameTutorComputer": "Kompjuter",
+  "gameTutorPlayQuality": "Iċ-ċaqliq tiegħek: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "ċaqliq obbligat",
+  "gameTutorTopChoice": "l-aħjar għażla",
+  "gameTutorSoundPlay": "ċaqliq tajjeb",
+  "gameTutorAnotherPlayMayFitBetter": "ċaqliq ieħor jista’ jkun aktar adattat",
+  "gameTutorAnotherPlayFitsBetter": "ċaqliq ieħor jaqbel aħjar ma’ din il-pożizzjoni",
+  "gameTutorStrongerPlayAvailable": "kien hemm ċaqliq ferm aħjar disponibbli",
+  "gameTutorPositionEdge": "Skont l-istima, {side} għandu vantaġġ.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Il-pożizzjoni hija bejn wieħed u ieħor indaqs.",
+  "tutorPhraseGameFinished": "Il-logħba spiċċat.",
+  "tutorPhraseReviewFinishedGame": "Erġa’ ara ċ-ċaqliq biex issib deċiżjoni li tista’ tipprattika.",
+  "tutorPhraseCubeOffered": "Ġie offrut id-dadi tad-doppju.",
+  "tutorPhraseCubeDecisionPrompt": "Iddeċiedi jekk taċċettax jew tgħaddix qabel tippjana ċaqliq taċ-ċekkers.",
+  "tutorPhraseCubeScoreContext": "Ir-riżultat tal-logħba jibdel il-valur tal-imħatra żejda.",
+  "tutorPhraseResignationOffered": "Ġiet offruta ċeduta.",
+  "tutorPhraseResignationDecisionPrompt": "Qabbel il-punti offruti mal-pożizzjoni qabel taċċetta jew tkompli.",
+  "tutorPhraseNoLegalPlay": "M’hemmx ċaqliq legali b’din it-tefgħa.",
+  "tutorPhraseForcedPassPrompt": "Li tgħaddi għax obbligat mhux żball; stenna t-tefgħa li jmiss.",
+  "tutorPhraseOnlyOneResult": "Hemm biss pożizzjoni finali legali waħda.",
+  "tutorPhraseForcedTurnPrompt": "Agħmel iċ-ċaqliq obbligat. M’hemmx għażla x’tiġi evalwata f’din it-tefgħa.",
+  "tutorPhrasePipCountsLevel": "L-għadd tal-pips huwa ndaqs.",
+  "tutorPhrasePipCountsAhead": "Għandek vantaġġ ta’ {count} pips.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "Int {count} pips lura.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "Għandek {count} ċekkers fuq il-bar: l-ewwel trid iddaħħalhom lura.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "L-ewwel daħħal ċekker, imbagħad fittex post sigur fejn jinżel.",
+  "tutorPhraseOpponentHomePoints": "L-avversarju għandu {count} punti magħluqa fil-bord ta’ daru.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Tiġrija biex tneħħi ċ-ċekkers.",
+  "tutorPhrasePureRace": "Tiġrija pura.",
+  "tutorPhraseBearOffSpread": "Neħħi ċ-ċekkers u ħalli tqassim utli għat-tefgħa li jmiss.",
+  "tutorPhraseBringRearCheckersHome": "Ġib iċ-ċekkers ta’ wara d-dar mingħajr ma tiġbor wisq fuq punt wieħed.",
+  "tutorPhraseArmiesHavePassed": "Iż-żewġ naħat għaddew minn xulxin; aktar hits ma jistgħux isiru.",
+  "tutorPhraseContactStillMatters": "{part} Il-kuntatt għadu importanti.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "L-avversarju għandu {count} ċekkers fuq il-bar.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Żomm il-bord magħluq waqt li ġġib iċ-ċekkers li fadal id-dar.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Ibni jew żomm magħluq il-bord tad-dar waqt li l-avversarju jipprova jidħol.",
+  "tutorPhraseHomePointsCloseEntries": "Għandek {count} punti fil-bord tad-dar; kull wieħed jagħlaq numru ta’ dħul.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Kuntatt ma’ serje magħluqa ta’ {count} punti.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Qabbel it-titwil tas-serje maż-żamma ta’ ċekkers żejda biex tinżamm magħluqa.",
+  "tutorPhraseSpareCheckersCanMove": "{count} ċekkers żejda jistgħu jiċċaqalqu mingħajr ma jinfetaħ il-punt tagħhom minnufih.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Kuntatt b’ankra fuq il-punti {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Qabbel li ġġib iċ-ċekkers ta’ wara d-dar maż-żamma tal-ankra sigura.",
+  "tutorPhraseCompareAnchorProgressBehind": "Żomm f’moħħok il-post sigur waqt li tfittex hit jew titjib fil-bord.",
+  "tutorPhrasePreserveAnchorFoothold": "Ma tistax tolqot l-ankra, iżda dawn iċ-ċekkers għad fadlilhom triq twila lejn id-dar.",
+  "tutorPhraseContactThreats": "Kuntatt: iż-żewġ naħat għadhom jistgħu jheddu b’hits.",
+  "tutorPhraseLookForPointsAndSafety": "Fittex punti utli, imbagħad ikkunsidra r-riskju li tħalli ċekkers waħedhom esposti.",
+  "tutorPhraseHomePointsAndBlots": "Għandek {count} punti fil-bord tad-dar u tħalli {otherCount} ċekkers waħedhom esposti.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Agħżel ċekker biex tibda ċ-ċaqliq tiegħek.",
+  "tutorPhraseLegalPlayPrompt": "Ibda ċaqliq legali biex tara l-kummenti.",
+  "tutorPhraseStagedHit": "Int laqat {count} ċekkers tal-avversarju.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "Dħalt {count} ċekkers mill-bar.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Neħħejt {count} ċekkers mill-bord.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Għamilt il-punti {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Iċ-ċekker tiegħek fuq il-punt {point} bħalissa huwa espost waħdu.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "Iċ-ċekker żejjed fuq il-punt {point} jista’ jiċċaqlaq aktar tard mingħajr ma jinfetaħ il-punt.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Uża d-dadi li għad tista’ tilgħab qabel ma tiġi evalwata l-logħba kollha.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Il-15-il ċekker kollha tneħħew: irbaħt il-logħba.",
+  "tutorPhraseStagedHitShortPlan": "Il-hit jagħtik iż-żmien waqt li l-avversarju jerġa’ jidħol.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Tneħħija effiċjenti taċ-ċekkers tħalli numri utli għat-tefgħa li jmiss.",
+  "tutorPhraseStagedRaceHomePlan": "Ġib iċ-ċekkers ta’ wara d-dar u qassamhom fuq punti tajbin għat-tneħħija.",
+  "tutorPhraseStagedBearOffContactPlan": "It-tneħħija taċ-ċekkers tavvanza l-logħba, iżda l-kuntatt li fadal xorta jġib riskju ta’ hits.",
+  "tutorPhraseStagedReentryPlan": "Id-dħul mill-ġdid jerġa’ jdaħħal iċ-ċekker fil-logħba; wara fittex punt sigur għalih.",
+  "tutorPhraseStagedHomeBoardPlan": "Il-punt il-ġdid fil-bord tad-dar jagħlaq numru ta’ dħul wara hit fil-futur.",
+  "tutorPhraseStagedPrimePlan": "Serje itwal tagħlaq aktar postijiet fejn jinżlu ċ-ċekkers; iċ-ċekkers żejda jgħinu biex tinżamm sħiħa.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Li titlaq mill-ankra tavvanza, iżda tagħti post sigur lill-avversarju.",
+  "tutorPhraseStagedNewAnchorPlan": "L-ankra l-ġdida tagħti post sigur liċ-ċekkers ta’ wara.",
+  "tutorPhraseStagedCoverBlotPlan": "Li tgħatti ċekker waħdu jneħħi mira għall-avversarju.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Il-kompromess huwa bejn l-iżvilupp u s-sigurtà: iċ-ċekkers li jibnu punti jistgħu jsiru miri wkoll.",
+  "tutorPhraseStagedCompletePrompt": "{part} Iċ-ċaqliq sħiħ ġie ppreparat; ikkonferma biex tagħmlu.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Din it-tefgħa ma tħallikx tagħżel kif tmexxi ċ-ċekkers; ma tiġix evalwata bħala deċiżjoni.",
+  "tutorMoveTopVerdict": "Waħda mill-aħjar għażliet għal din il-pożizzjoni.",
+  "tutorMoveAlternativeVerdict": "Il-magna tippreferi ċaqliq ieħor hawn.",
+  "tutorMoveEstimateDifference": "Differenza mill-aħjar ċaqliq: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Wara dan iċ-ċaqliq: ċans ta’ rebħa {winPercent}%, rebħa gammon jew aħjar {winGammonPercent}%, telf gammon jew agħar {loseGammonPercent}%. Dawn huma stimi mill-perspettiva tal-plejer li qed jilgħab.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Ċans stmat li tirbaħ il-logħba: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Il-15-il ċekker kollha tneħħew mill-bord: irbaħt il-logħba.",
+  "tutorMovePlanHit": "Uża l-hit biex tikseb iż-żmien waqt li l-avversarju jerġa’ jidħol. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Żomm il-punti magħluqa tal-bord tad-dar biex tagħmel id-dħul aktar diffiċli.",
+  "tutorMovePlanHitBuild": "Agħmel aktar punti fil-bord tad-dar biex l-avversarju jsibha aktar diffiċli jirkupra minn hit fil-futur.",
+  "tutorMovePlanRaceBearOff": "Aħdem għal tneħħija effiċjenti: neħħi ċekkers u ħalli numri utli għat-tefgħa li jmiss.",
+  "tutorMovePlanRaceHome": "Ġib iċ-ċekkers ta’ wara d-dar u qassamhom fuq punti utli għat-tneħħija.",
+  "tutorMovePlanContactBearOff": "Neħħi ċekkers mil-logħba, iżda żomm għajnejk fuq iċ-ċekkers ta’ wara tal-avversarju: b’kuntatt, ċekker waħdu jista’ jsir mira.",
+  "tutorMovePlanReentry": "Erġa’ daħal fil-logħba, imbagħad fittex punt sigur għaċ-ċekker li daħal.",
+  "tutorMovePlanHomeBoard": "Saħħaħ il-bord tad-dar tiegħek. Il-punt magħluq il-ġdid ineħħi numru tad-dħul u jagħti aktar saħħa lil hit fil-futur.",
+  "tutorMovePlanPrime": "Żomm is-serje ta’ punti magħluqa taħdem flimkien. Żomm ċekkers żejda biex tevitahom jiftħuha f’tefgħat aktar tard.",
+  "tutorMovePlanLeaveAnchor": "Li titlaq mill-ankra javvanza ċ-ċekkers ta’ wara iżda jċedi post sigur. Oqgħod attent għall-espożizzjoni tagħhom fi triqithom lejn id-dar.",
+  "tutorMovePlanNewAnchor": "Uża l-ankra l-ġdida bħala post sigur waqt li ttejjeb il-bqija tal-pożizzjoni.",
+  "tutorMovePlanCoverBlot": "Iġbor iċ-ċekkers tiegħek. Li tgħatti ċekker waħdu tneħħi mira u tħalli punti utli disponibbli għal aktar tard.",
+  "tutorMovePlanSafety": "Ibbilanċja l-iżvilupp mas-sigurtà: ressaq iċ-ċekkers li jibnu punti lejn postijiet utli u ara liema ċekkers waħedhom jistgħu jintlaqtu.",
+  "tutorMoveObservationNoLegalPlay": "M’hemmx ċaqliq legali taċ-ċekkers: imissek tgħaddi.",
+  "tutorMoveObservationHit": "Int tolqot {count} ċekkers tal-avversarju; l-avversarju jrid jerġa’ jidħol mill-bar qabel ma jċaqlaq oħrajn.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Daħħal {count} mill-bar.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Neħħi {count} ċekkers mill-bord.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Tagħmel il-punti {points}. Żewġ ċekkers jew aktar iżommu punt sigur u ma jħallux lill-avversarju jinżel fih.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Tċedi l-punti magħluqa {pointLabel} {points}. Dawn il-punti ma jibqgħux iwaqqfu lill-avversarju.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Ma tħalli ebda ċekkers waħedhom esposti (qabel {previousCount}). M’hemmx mira waħedha x’tintlaqat.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Tħalli {count} ċekkers waħedhom esposti (qabel {previousCount}). Iċċekkja jekk l-avversarju jistax jilħaqhom qabel tagħżel is-sigurtà minflok gwadann ieħor.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "L-itwal serje ta’ punti magħluqa: {count} (qabel {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Prime ta’ sitt punti ma jistax jinqasam sakemm jibqa’ magħluq.",
+  "tutorMoveObservationPrimeBuild": "Żomm ċekkers li jibnu punti fil-qrib jekk trid testendi jew iżżomm din is-serje.",
+  "tutorMoveObservationPrimeSpares": "Hemm {count} ċekkers żejda fuq il-punti magħluqa lil hinn mit-tnejn li jżommu kull punt. Ċaqliq ta’ wieħed żejjed jista’ jżomm il-punt; jekk tmexxi wieħed mill-aħħar tnejn, tiftaħ il-punt.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Ankri fil-bord tad-dar tal-avversarju: {points} (qabel {previousPoints}). L-ankra tipproteġi ċ-ċekkers milli jintlaqtu; jekk titlaq minnha, tbiddel post sigur għal progress fit-tiġrija.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Tiġrija pura: iż-żewġ naħat għaddew minn xulxin u ħadd m’għandu ċekker fuq il-bar. Ma jistgħux isiru aktar hits; importanti kemm jitneħħew iċ-ċekkers b’effiċjenza.",
+  "tutorMoveObservationNoReplyHit": "L-ebda tefgħa legali li jmiss ma tippermetti lill-avversarju jolqot ċekker f’din il-pożizzjoni. Il-kuntatt jibqa’, għalhekk ċaqliq aktar tard jista’ joħloq opportunitajiet ġodda.",
+  "tutorMoveObservationReplyHit": "L-avversarju jista’ jolqot f’{count} minn {total} tefgħat. Pereżempju, {dieOne}–{dieTwo} jippermetti hit legali fuq il-punt {point}. Hit huwa possibbli, mhux garantit li jintgħażel.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "{closedPoints} mill-punti tal-bord tad-dar tiegħek huma magħluqa. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "L-avversarju ma jistax jerġa’ jidħol sakemm jinfetaħ punt.",
+  "tutorMoveObservationOpenEntry": "Tefta li tuża punt miftuħ tad-dħul tista’ ddaħħal ċekker lura mill-bar.",
+  "tutorMoveComparisonDetail": "{factors} Iċ-ċans stmat ta’ rebħa tal-aħjar ċaqliq huwa {delta} punti perċentwali {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "ogħla",
+  "tutorMoveComparisonLower": "aktar baxx",
+  "tutorMoveComparisonScoreContext": " Xorta jista’ jiġi kklassifikat aħjar għax il-valur tal-gammon u backgammon jinbidel skont {scoreContext} attwali.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "mħatra",
+  "tutorMoveComparisonMatchScore": "riżultat tal-logħba",
+  "tutorMoveComparisonFactorBar": "L-aħjar ċaqliq iħalli {bestCount} ċekkers tal-avversarju fuq il-bar minflok {playedCount}. Ċekker fuq il-bar irid jerġa’ jidħol qabel ma l-avversarju jmexxi l-oħrajn.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "L-aħjar ċaqliq iżomm {bestCount} punti magħluqa fil-bord tad-dar minflok {playedCount}; wara hit jibqgħu {entryDifference} punti tad-dħul.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "jagħlaq aktar",
+  "tutorMoveComparisonLeavingMore": "iħalli aktar miftuħ",
+  "tutorMoveComparisonFactorShots": "L-aħjar ċaqliq jippermetti hit bi tweġiba f’{bestCount} minn 36 tefgħa minflok {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Dan inaqqas ir-riskju immedjat li tintlaqat lura.",
+  "tutorMoveComparisonExtraExposure": "Qabbel din l-espożizzjoni żejda ma’ dak li jikseb iċ-ċaqliq f’postijiet oħra.",
+  "tutorMoveComparisonFactorPrime": "L-itwal serje ta’ punti magħluqa tal-aħjar ċaqliq hija ta’ {bestCount} minflok {playedCount}; qabbel il-barriera maċ-ċekkers disponibbli biex tinżamm sħiħa.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "L-ankri tal-aħjar ċaqliq huma {bestPoints} minflok {playedPoints}. L-ankra żżomm post sigur fejn tinżel; jekk titlaq minnha, iġġib dawk iċ-ċekkers eqreb lejn id-dar.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "L-aħjar ċaqliq neħħa {bestCount} ċekkers minflok {playedCount}. Kull ċekker li jitneħħa huwa wieħed inqas li trid tneħħi aktar tard.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Iż-żewġ ċaqliq iħallu l-istess espożizzjoni immedjata għal hit, punti tal-bord tad-dar, ankri u ċekkers imneħħija. Qabbel il-punti fejn jinżlu: it-tefgħa li jmiss tista’ tuża ċ-ċekkers b’mod differenti.",
+  "tutorMoveComparisonSummaryBar": "L-aħjar ċaqliq ipoġġi aktar ċekkers tal-avversarju fuq il-bar u jdewwem iċ-ċaqliq l-ieħor tiegħu.",
+  "tutorMoveComparisonSummaryHomeBoard": "L-aħjar ċaqliq jagħlaq aktar punti fil-bord tad-dar u jagħmel id-dħul wara hit aktar diffiċli.",
+  "tutorMoveComparisonSummaryShots": "L-aħjar ċaqliq jippermetti inqas tefgħat immedjati li jistgħu joltu u jnaqqas ir-riskju ta’ hit lura.",
+  "tutorMoveComparisonSummaryPrime": "L-aħjar ċaqliq iżomm serje itwal ta’ punti magħluqa.",
+  "tutorMoveComparisonSummaryAnchors": "L-aħjar ċaqliq iżomm aktar ankri siguri fil-bord tad-dar tal-avversarju.",
+  "tutorMoveComparisonSummaryBearOff": "L-aħjar ċaqliq ineħħi aktar ċekkers, u jħalli inqas biex jitneħħew aktar tard.",
+  "tutorMoveComparisonSummaryBlots": "Dan iċ-ċaqliq iħalli {playedCount} ċekkers waħedhom; l-aħjar ċaqliq iħalli {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "L-aħjar ċaqliq iżomm ankra sigura fuq il-punt {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "L-aħjar ċaqliq jagħlaq aktar punti tad-dħul jekk wieħed miċ-ċekkers tiegħek jintlaqat.",
+  "tutorMoveComparisonSummarySimilarRisks": "Iċ-ċaqliq iħalli riskji immedjati simili; qabbel liema punti fejn jinżlu jibqgħu utli fit-tefgħa li jmiss.",
+  "tutorMoveAssessmentEquityLoss": "{value} equity",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} punti perċentwali MWC",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "punt",
+  "tutorMovePointPlural": "punti",
+  "tutorMoveNoPoints": "xejn",
+  "tutorPlayedMove": "Milgħub: {move}",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorBestMove": "L-aħjar: {move}",
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorShowRankedPlays": "Uri l-logħbiet skont il-klassifika",
+  "tutorReviewRecordedMove": "Tektek mossa kompluta fil-log biex tirrevedi d-deċiżjoni tagħha hawn.",
+  "tutorTopPlays": "L-aħjar mossi",
+  "tutorNoHintsAvailable": "M’hemmx ħjiel disponibbli.",
+  "tutorPreviewThenConfirm": "Tektek mossa biex taraha fuq il-bord, imbagħad ikkonferma.",
+  "tutorTopChoiceForPosition": "L-aħjar għażla għal din il-pożizzjoni",
+  "tutorAlternativePlay": "Mossa alternattiva",
+  "tutorEngineEstimates": "Stimi tal-magna",
+  "tutorEstimateScope": "Stima ta’ 0 ply — il-punteġġ u l-imħatra attwali — mingħajr kubi futuri",
+  "tutorEquity": "Equity",
+  "tutorMwcPercent": "Probabbiltà ta’ rebħ tal-partita, %",
+  "tutorNearTiesNote": "Analiżi aktar fil-fond tista’ tbiddel l-ordni ta’ mossi kważi ndaqs.",
+  "tutorWhyThisPlay": "Għaliex din il-mossa?",
+  "tutorCompareAlternative": "Qabbel din l-alternattiva",
+  "gameTutorCubeTake": "It-tutur: aċċetta",
+  "gameTutorCubePass": "It-tutur: irrifjuta",
+  "practiceScreenTitle": "Ipprattika l-mossa",
+  "practiceUnavailable": "Din il-pożizzjoni tal-prattika m’għadhiex disponibbli.",
+  "practiceSubmitError": "Dan it-tentattiv ma setax jiġi evalwat jew salvat. Il-progress tiegħek ma nbidilx. Erġa’ pprova.",
+  "practiceTurnLabel": "Jmiss lil {side} · {dice}",
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "practiceHistoricalScoreUnavailable": "Il-punteġġ storiku mhux disponibbli; il-mossa tiġi evalwata bl-equity mingħajr il-kubu tad-doppju.",
+  "practiceScoreLine": "Punteġġ: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, sa {matchLength}",
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceCrawfordGame": " · Logħba Crawford",
+  "practiceNoDoublingCube": "Mingħajr il-kubu tad-doppju.",
+  "practiceCubeValue": "Valur tal-kubu {value}.",
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceHistoricalCubeUnknown": "Ir-regoli storiċi tal-kubu mhumiex magħrufa.",
+  "practiceAfterBestPosition": "Pożizzjoni wara l-aħjar mossa",
+  "practiceAfterYourAnswerPosition": "Pożizzjoni wara t-tweġiba tiegħek",
+  "practiceFindYourPlayPrompt": "Agħmel il-mossa tiegħek fuq il-bord u mbagħad iċċekkja t-tweġiba. Ma jintwerew l-ebda ħjiel.",
+  "practiceUndo": "Ħoll",
+  "practiceCheckAnswer": "Iċċekkja t-tweġiba",
+  "practiceRevealNoCredit": "Uri t-tweġiba (mingħajr kreditu)",
+  "practiceAnswerRevealedNoCredit": "It-tweġiba ntweriet — ma tingħatax kreditu ta’ tifkira.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "practiceBestMoveLine": "L-aħjar: {move}",
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceOriginalGameLine": "Mossa fil-logħba oriġinali: {move} · {loss}",
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "practiceYourAnswerLine": "It-tweġiba tiegħek: {move}",
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceYourAnswerChip": "It-tweġiba tiegħek",
+  "practiceBestPlayChip": "L-aħjar mossa",
+  "practiceNextReview": "Reviżjoni li jmiss: {date}.",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "practiceRecallCredit": "Tweġibiet tajbin u l-aħjar tweġibiet jgħoddu bħala tifkira b’suċċess. Ripetizzjoni kmieni ma ttawwalx l-intervall.",
+  "practiceBackToLearning": "Lura għat-tagħlim",
+  "practiceMarkBest": "L-aħjar",
+  "practiceMarkGood": "Tajba",
+  "practiceMarkDubious": "Dubjuża",
+  "practiceMarkError": "Żball",
+  "practiceMarkBlunder": "Żball gravi",
+  "practiceMarkForced": "Imġiegħla",
+  "newMatchYourSide": "In-naħa tiegħek",
+  "newMatchTutorMode": "Modalità tutor",
+  "newMatchTutorDescription": "Tgħallem b’ħjiel, spjegazzjonijiet u kummentarju tal-logħba",
+  "newMatchTutoringOptions": "Għażliet tat-tutor",
+  "newMatchTutoringOptionsDescription": "Għal din il-logħba; jistgħu jinbidlu waqt il-logħob",
+  "setupMatchLength": "Tul il-logħba",
+  "setupDifficulty": "Diffikultà",
+  "setupDifficultyEasy": "Faċli",
+  "setupDifficultyMedium": "Medja",
+  "setupDifficultyHard": "Diffiċli",
+  "setupDifficultyExpert": "Espert",
+  "setupPlayWithoutCube": "Ilgħab mingħajr il-kubu",
+  "setupNoCubeThisMatch": "Mingħajr kubu tad-doppju f’din il-logħba",
+  "diagnosticsCopySuccess": "Id-dijanjostiċi ġew ikkupjati fil-clipboard",
+  "diagnosticsReviewTitle": "Irrevedi r-rapport dijanjostiku",
+  "diagnosticsPrivacyNotice": "Meta tiftaħ l-abbozz, id-dettalji hawn taħt jintbagħtu lil GitHub, inklużi l-verżjoni tal-app, il-pjattaforma u kwalunkwe dettalji dwar l-iżbalji. Ma tiġix ippubblikata kwistjoni pubblika qabel ma tissottomettiha hemmhekk. Jekk id-dettalji fihom informazzjoni privata, ikkanċella u uża l-kopja biex tħejji rapport int stess.",
+  "diagnosticsCancel": "Ikkanċella",
+  "diagnosticsOpenGitHub": "Iftaħ GitHub",
+  "diagnosticsTitle": "Dijanjostiċi",
+  "diagnosticsReportTooltip": "Irrapporta problema fuq GitHub",
+  "diagnosticsCopyTooltip": "Ikkopja fil-clipboard",
+  "diagnosticsClearTooltip": "Ħassar ir-reġistru",
+  "diagnosticsEmpty": "Ma ġew irreġistrati l-ebda żbalji.\n\nJekk jiġri xi ħaġa ħażina, din tiġi rreġistrata hawn — erġa’ lura u kkopja d-dettalji fir-rapport tal-bug.",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · sa {matchLength}",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · sa {matchLength}",
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudYou": "Int",
+  "gameHudAi": "AI",
+  "gameHudGameNumber": "Logħba {number}",
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudMatchContext": "{score} · {game}",
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "gameHudHotSeatDetail": "{whiteLabel} kontra {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetail": "kontra {opponent} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetailWithLevel": "kontra {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPips": "Pips",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Irdoppja",
+  "gameHudMoreActions": "Aktar azzjonijiet",
+  "gameHudSurrender": "Ċedi…",
+  "gameHudThinking": "Qed jaħseb",
+  "gameHudDoubleBeforeRoll": "Tista’ tirdoppja biss qabel it-tefgħa u meta jkun imissek.",
+  "gameHudNoDoubleCrawford": "Ma jistax jirdoppja fil-logħba Crawford — din il-logħba waħidha tiddeċiedi l-partita.",
+  "gameHudOnlyCubeOwner": "Jista’ jirdoppja biss sid il-kubu, iżda bħalissa l-kubu hu tal-parti l-oħra.",
+  "gameHudDoubleUnavailable": "Bħalissa ma tistax tirdoppja.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (sa {matchLength})",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogPlayerWon": "{winner} rebaħ din il-logħba ({points}).",
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonGammon": "{winner} rebaħ din il-logħba ({points}, gammon).",
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonBackgammon": "{winner} rebaħ din il-logħba ({points}, backgammon).",
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonDrop": "{winner} rebaħ din il-logħba ({points}) — {loser} irrifjuta d-doppju.",
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPlayerWonResignation": "{winner} rebaħ din il-logħba ({points}) — {loser} ċeda.",
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPassDeviceTitle": "Għaddi l-apparat",
+  "gameDialogPlayersTurn": "Imiss lil {name}",
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "gameDialogTapToContinue": "Tektek biex tkompli",
+  "gameDialogCubeOfferedTitle": "Ġie offrut doppju",
+  "gameDialogCubeOfferMessage": "{doubler} offra doppju għal {value}. Tieħu jew tgħaddi?{tutorLine}",
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "gameDialogPass": "Għaddi",
+  "gameDialogTake": "Ħu",
+  "gameDialogResignationTitle": "Ġiet offruta ċediment",
+  "gameDialogResignationMessage": "{resigner} qed joffri li jċedi {value}. Taċċetta jew tirrifjuta?",
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "gameDialogResignSingle": "logħba waħda",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Irrifjuta",
+  "gameDialogAccept": "Aċċetta",
+  "gameDialogGameOverTitle": "Spiċċat il-logħba",
+  "gameDialogNextGame": "Logħba li jmiss",
+  "gameDialogMatchOverTitle": "Spiċċat il-partita",
+  "gameDialogNobody": "Ħadd",
+  "gameDialogMatchWinner": "{winner} rebaħ il-partita.",
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "gameDialogSavedToHistory": "Issejvjata fl-istorja",
+  "gameDialogDone": "Lest",
+  "gameMatchSummary": "Sommarju tal-partita",
+  "gameAnalyzeGame": "Analizza l-logħba",
+  "analysisTitle": "Analiżi",
+  "analysisMetricsTooltip": "Xi jfissru dawn in-numri?",
+  "analysisError": "Ma setgħetx tiġi analizzata l-partita: {error}",
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisNoPositions": "Din il-partita ma fiha ebda pożizzjoni x’tintwera.",
+  "analysisInProgress": "Qed tiġi analizzata…",
+  "analysisPercent": "{percent}%",
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisPlayed": "Milgħub",
+  "analysisBest": "L-aħjar",
+  "analysisPrevious": "Ta’ qabel",
+  "analysisNext": "Li jmiss",
+  "analysisPositionBeforeCube": "Pożizzjoni qabel id-deċiżjoni tal-kubu",
+  "analysisPositionAtPoint": "Pożizzjoni f’dan il-punt tal-logħba",
+  "analysisShowingBestBefore": "Qed jintwera l-aħjar mossa fil-pożizzjoni ta’ qabel il-mossa",
+  "analysisShowingBefore": "Qed tintwera l-pożizzjoni ta’ qabel il-mossa",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "analysisMoveLoss": " −{loss}",
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisExcludedFromAverages": " · eskluż mill-medji",
+  "analysisNoPlay": "(ebda mossa)",
+  "analysisBestMoveLine": "L-aħjar: {move}",
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "analysisExplain": "Spjega",
+  "analysisSaveForPractice": "Issejvja għall-prattika",
+  "analysisSaveError": "Ma setax jiġi ssejvjat dan id-deċiżjoni: {error}",
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisCubeInfo": "{side}: {action} · {mark} · telf {loss}",
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "analysisCubeDecision": "Deċiżjoni tal-kubu",
+  "analysisCubePlayed": "Milgħub: {action} ({percent}% ċans li tirbaħ il-partita).",
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisCubeBest": "L-aħjar: {action} ({percent}% ċans li tirbaħ il-partita).",
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisClose": "Agħlaq",
+  "analysisMoves": "Movimenti",
+  "analysisForced": "Imġiegħel",
+  "analysisMarkBest": "L-aħjar",
+  "analysisMarkGood": "Tajjeb",
+  "analysisMarkDubious": "Dubjuż",
+  "analysisMarkError": "Żball",
+  "analysisMarkBlunder": "Żball kbir",
+  "analysisSummaryMeanLoss": "Telf medju {loss}",
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisSummaryCheckerDecisions": "{count} deċiżjonijiet tal-biċċiet",
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryBlunders": "Żbalji kbar {count}",
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryCubeLoss": "Telf tal-kubu {loss}",
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisRollWithoutDoubling": "{side} jitfa’ mingħajr ma jirdoppja",
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "analysisCubeNoDouble": "Tirdoppjax",
+  "analysisCubeDouble": "Irdoppja",
+  "analysisCubeTake": "Aċċetta",
+  "analysisCubePass": "Ċedi",
+  "tutorOptions": "Għażliet tat-tutur",
+  "tutorCollapseTooltip": "Agħlaq it-tutur",
+  "tutorExpandTooltip": "Espandi t-tutur",
+  "scoreSheetNoMoves": "Ebda mossi",
+  "gameTapNoLegalMove": "Tektek il-biċċa tiegħek biex tara l-mossi legali.",
+  "gameTapNoLegalMoveUndo": "Tektek biċċa u mbagħad id-destinazzjoni.",
+  "gameDragHint": "Iddreggja l-biċċa lejn id-destinazzjoni.",
+  "commonGotIt": "Fhimt",
+  "gameHintStageBeforeHint": "Qabel il-ħjiel",
+  "surrenderTitle": "Ċedi l-partita?",
+  "surrenderSingle": "Telf normali",
+  "surrenderGammon": "Telf b’gammon",
+  "surrenderBackgammon": "Telf b’backgammon",
+  "surrenderChoosePlayer": "Agħżel plejer",
+  "cubeDouble": "Irdoppja",
+  "gameStatusRolling": "Qed jitfa’ d-dadi",
+  "gameStatusThinking": "Il-kompjuter qed jaħseb",
+  "gameStatusPlayersTurn": "Imiss lil {player}",
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "historyTitle": "Storja tal-partiti",
+  "historyEmpty": "Għad ma ntlagħbet ebda partita.",
+  "historyDeleteConfirmTitle": "Tħassar din il-partita?",
+  "actionCancel": "Ikkanċella",
+  "actionDelete": "Ħassar",
+  "historyDeleteFailed": "Ma setgħetx titħassar il-partita.",
+  "historyComplete": "Lesta",
+  "historyUnfinished": "Mhix lesta",
+  "historyMatchTitle": "Logħba",
+  "historyNoGames": "Għad ma hemmx logħob irreġistrat.",
+  "historyCrawford": "Crawford",
+  "historyModeComputer": "kontra l-kompjuter",
+  "historyModeTwoPlayers": "Żewġ plejers",
+  "historyModeOnline": "Online",
+  "historyModeNearby": "Ilgħab fil-qrib",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "Għaddejja",
+  "historyOutcomeSingle": "waħda",
+  "historyOutcomeGammon": "gammon",
+  "historyOutcomeBackgammon": "backgammon",
+  "learningRefreshTooltip": "Aġġorna l-progress tat-tagħlim",
+  "learningOptions": "Għażliet tat-tagħlim",
+  "learningResetMenu": "Irrisettja l-progress tal-prattika",
+  "learningLoadFailed": "Ma setax jitgħabba l-progress tat-tagħlim.",
+  "actionRetry": "Erġa’ pprova",
+  "learningHeading": "Tgħallem mid-deċiżjonijiet tiegħek",
+  "learningBothSides": "Iż-żewġ naħat",
+  "learningHumansOnly": "Deċiżjonijiet tal-bnedmin biss",
+  "learningHumanOnlyHelp": "Itfi biex tinkludi deċiżjonijiet tal-kompjuter u plejers remoti",
+  "learningAnalyseSavedGames": "Analizza logħob issejvjat",
+  "learningOpenHistory": "Iftaħ l-istorja tal-partiti",
+  "learningRecurringThemes": "Temi rikorrenti",
+  "learningNoThemes": "Għad m’hemmx temi ta’ żbalji rikorrenti f’din l-għażla.",
+  "learningSaveMistakes": "Issejvja dawn l-iżbalji għall-prattika",
+  "learningSpacedPractice": "Prattika mifruxa",
+  "learningNoSavedPositions": "Issejvja deċiżjoni mir-replay jew uża l-buttuna tal-iżbalji hawn fuq.",
+  "learningReadyToReview": "Lest biex tirrevedi",
+  "learningSuccessStreak": "{count} reviżjonijiet suċċessivi",
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnswerRevealed": "It-tweġiba ġiet żvelata",
+  "learningSuccessfulRecall": "Tiftakar b’suċċess",
+  "learningTryAgain": "Erġa’ pprova",
+  "actionRemove": "Neħħi",
+  "onlineTitle": "Logħob online",
+  "onlineUnassistedNote": "It-tutur ma jkunx disponibbli fil-logħob online.",
+  "onlineNotConfiguredTitle": "Il-logħob online mhux ikkonfigurat",
+  "onlineNotConfiguredBody": "Il-logħob online mhux disponibbli f’din il-verżjoni.",
+  "onlineErrorNoMatch": "Ma nstabx il-logħob.",
+  "onlineErrorSeatTaken": "Post diġà okkupat.",
+  "onlineErrorPermission": "M’għandekx permess għal din l-azzjoni.",
+  "onlineErrorGeneric": "Ma setax isir konnessjoni mal-logħob online.",
+  "onlineMatchFinished": "Il-logħob intemm.",
+  "onlineEnterCodeError": "Daħħal kodiċi validu.",
+  "onlineOpponentShort": "Avversarju",
+  "onlineMatchInProgress": "Il-logħob għaddej",
+  "onlineResumePrompt": "Kont qed tilgħab il-logħba {code}. Tkompli?",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Erġa’ ingħaqad",
+  "onlineForgetMatch": "Tinsa l-logħob",
+  "onlineCreateTitle": "Oħloq logħob online",
+  "onlineMatchLength": "Tul tal-logħob",
+  "onlineNoCubeTitle": "Logħob mingħajr kubu",
+  "onlineNoCubeSubtitle": "Ilgħab mingħajr il-kubu tad-doppjar.",
+  "onlineCreate": "Oħloq",
+  "onlineWaitingOpponent": "Qed jistenna avversarju",
+  "onlineShareCode": "Aqsam il-kodiċi",
+  "onlineCopyCode": "Ikkopja l-kodiċi",
+  "onlineCodeCopied": "Il-kodiċi ġie kkupjat",
+  "onlineJoinTitle": "Ingħaqad mal-logħob",
+  "onlineRoomCode": "Kodiċi tal-kamra",
+  "onlineJoin": "Ingħaqad",
+  "lanTitle": "Ilgħab fil-qrib",
+  "lanTabHost": "Ospita",
+  "lanTabJoin": "Ingħaqad",
+  "lanHostTitle": "Ospita logħba",
+  "lanStartHosting": "Ibda l-ospitar",
+  "lanWaitingPlayerTitle": "Qed jistenna plejer",
+  "lanWaitingPlayer": "Qed jistenna plejer…",
+  "lanStopHosting": "Waqqaf l-ospitar",
+  "lanOnNetwork": "F’dan in-netwerk",
+  "lanCopyAddress": "Ikkopja l-indirizz",
+  "lanAddressCopied": "L-indirizz ġie kkupjat",
+  "lanScanHostTitle": "Skennja l-host",
+  "lanScanQr": "Skennja l-kodiċi QR",
+  "lanNearbyGames": "Logħob fil-qrib",
+  "lanSearching": "Qed tfittex logħob fil-qrib…",
+  "lanStillSearching": "Għadu qed ifittex…",
+  "lanEnterAddress": "Daħħal l-indirizz",
+  "lanIpAddress": "Indirizz IP",
+  "lanPort": "Port",
+  "lanInvalidPort": "Daħħal port bejn 1 u 65535.",
+  "lanJoinWrongCode": "Kodiċi tal-kamra ħażin. Iċċekkja l-erba’ ċifri fuq it-tagħmir l-ieħor.",
+  "lanConnect": "Ikkonnettja",
+  "lanBack": "Lura",
+  "lanTryAgain": "Erġa’ pprova",
+  "lanStatusBusy": "Il-kamra qed tintuża — qed tistenna…",
+  "lanStatusReconnecting": "Intilfet il-konnessjoni — qed terġa’ tipprova…",
+  "lanStatusConnected": "Konness — qed jibda l-logħob…",
+  "lanStatusFailed": "Ma setax jingħaqad.",
+  "lanStatusConnecting": "Qed jikkonnettja…",
+  "tutorCubelessEstimateScope": "Stima 0-ply mingħajr kubu · ir-riżultat mhux disponibbli",
+  "tutorLossPp": "Telf pp",
+  "tutorLoss": "Telf",
+  "surrenderNamedConcedes": "{player} iċedi l-partita attwali.",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderConcedes": "Iċedi l-partita attwali.",
+  "surrenderAvailableAtNamedTurn": "Disponibbli fil-bidu ta’ turn {player}",
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderAvailableAtYourTurn": "Disponibbli fil-bidu ta’ min-naħa tiegħek",
+  "commonCancel": "Ikkanċella",
+  "commonDone": "Lest",
+  "cubeBlockedOtherPlayersTurn": "Imiss lill-plejer l-ieħor.",
+  "cubeBlockedCrawford": "Il-kubu mhux disponibbli fil-partita ta’ Crawford.",
+  "cubeBlockedOwnedByOther": "Is-sid tal-kubu biss jista’ jirdoppja; bħalissa għandu l-kubu l-plejer l-ieħor.",
+  "cubeBlockedUnavailable": "L-irduppjar mhux disponibbli bħalissa.",
+  "cubeAdviceOpponentTake": "Irdoppja — l-avversarju għandu jaċċetta",
+  "cubeAdviceOpponentPass": "Irdoppja — l-avversarju għandu jgħaddi",
+  "gameErrorBannerLabel": "Żball: {error}",
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "metricExplainerTitle": "Fehim tal-metriċi",
+  "metricExplainerTooltip": "Xi jfissru dawn in-numri?",
+  "metricExplainerMwcTitle": "Ċans li tirbaħ il-logħba (MWC)",
+  "metricExplainerSearchTitle": "Tfittxija u inċertezza",
+  "metricExplainerEquityTitle": "Ekwità",
+  "metricExplainerEquityLossTitle": "Telf tal-ekwità (eż. −0,016)",
+  "metricExplainerErrorRateTitle": "Rata ta’ żbalji",
+  "metricExplainerMoveMarksTitle": "Marki tal-mossi",
+  "metricExplainerGotIt": "Fhimt",
+  "metricExplainerThresholdBest": "telf < 0,001",
+  "metricExplainerThresholdGood": "telf < 0,020",
+  "metricExplainerThresholdDubious": "telf < 0,050",
+  "metricExplainerThresholdError": "telf < 0,110",
+  "metricExplainerThresholdBlunder": "telf ≥ 0,110",
+  "historyLoadFailed": "Ma setgħetx titgħabba l-istorja:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyDeleteConfirmBody": "{scoreLine}\n\nIl-logħba u kull partita rreġistrata fiha jitneħħew għal dejjem. Din l-azzjoni ma tistax titneħħa.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyWinner": "{side} rebaħ",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyMatchLoadFailed": "Ma setgħetx titgħabba l-logħba:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Ma setgħux jitgħabbew il-partiti:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGameTitle": "Partita {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyScoreLine": "Abjad {whiteScore} — {blackScore} Iswed  (sa {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyGameResult": "{side} jirbaħ {points} ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "learningDecisionSummary": "{decisions} deċiżjonijiet · {mistakes} x’jitjiebu · {blunders} żbalji kbar",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAverageLoss": "Telf medju ({decisions} deċiżjoni): {loss}",
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "learningForcedDisclaimer": "Il-mossi obbligatorji huma esklużi. Dawn huma stimi tal-magna, mhux klassifikazzjoni tat-turnew.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Partita waħda ssejvjata teħtieġ analiżi jew aġġornament tal-analiżi.} other{# partiti ssejvjati jeħtieġu analiżi jew aġġornament tal-analiżi.}}",
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeDecisions": "{count} deċiżjonijiet x’tirrevedi. Pożizzjoni waħda jista’ jkollha aktar minn tema waħda.",
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSavedMistakes": "{count} deċiżjoni jinsabu fil-lista tal-prattika. Is-salvataġġi eżistenti jinżammu darba biss.",
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSaveMistakesFailed": "Xi deċiżjonijiet ma setgħux jiġu ssejvjati. Dawk li lestew inżammu; erġa’ pprova.",
+  "learningPracticeCounts": "Dovuti issa: {due} · salvati: {saved} · tentattivi: {attempts} · tifkiriet b’suċċess: {successes}",
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningPositionTitle": "Deċiżjoni ta’ {side} · partita {gameId}",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningReviewDue": "Reviżjoni {date}",
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "learningAttemptSubtitle": "{date} · pożizzjoni salvata {positionId}",
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisProgress": "Partiti analizzati: {completed} · mhux disponibbli: {failed}.",
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisComplete": "Partiti analizzati: {completed}.",
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisCompleteWithErrors": "Analizzati {completed} partiti; {failed} ma setgħux jiġu analizzati. Erġa’ pprova meta l-magna tkun lesta.",
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeHitting": "Tolqot u ritmu",
+  "learningThemeSafety": "Blots u sigurtà",
+  "learningThemePointMaking": "Tagħmel punti",
+  "learningThemePrime": "Primi u imblokki",
+  "learningThemeAnchor": "Anchors u ħarba",
+  "learningThemeRace": "Effiċjenza fit-tiġrija",
+  "learningThemeBearOff": "Tneħħija tal-biċċiet",
+  "learningThemeBarEntry": "Dħul mill-bar",
+  "learningThemeCube": "Deċiżjonijiet tal-kubu",
+  "learningAnalysisStarting": "Qed jiġu analizzati l-partiti salvati…",
+  "learningIntro": "Il-progress jinżamm fuq dan it-tagħmir. Irrevedi temi rikorrenti, imbagħad erġa’ pprova pożizzjonijiet salvati mingħajr ma tara t-tweġiba. Tista’ tirrevedi l-Abjad u l-Iswed separatament.",
+  "learningEmptyProfile": "Ilgħab u temm partita biex tibni l-profil tat-tagħlim tiegħek. Tista’ wkoll issalva deċiżjonijiet individwali mir-replay ta’ partita.",
+  "learningIntervalsHelp": "Reviżjonijiet dovuti li jirnexxu jerġgħu jidhru wara 1, 3, 7, 14 u 30 jum. Żbalji jew tweġibiet żvelati jerġgħu jidhru wara 10 minuti. Repetizzjonijiet bikrin ma jżidux l-intervall.",
+  "learningAnswerContext": "Ir-riżultati tal-prattika jirriflettu t-tweġibiet tiegħek hawn, anki meta l-pożizzjoni oriġinali kienet tal-avversarju.",
+  "learningRemoveTooltip": "Neħħi deċiżjoni salvata",
+  "learningRecentPractice": "Prattika riċenti",
+  "learningRemoveTitle": "Tneħħi dan l-eżerċizzju?",
+  "learningRemoveBody": "Dan ineħħi t-tentattivi ta’ prattika tiegħu. Il-partita oriġinali tibqa’ fl-istorja.",
+  "learningRemoveFailed": "Ma setax jitneħħa dan l-eżerċizzju.",
+  "learningResetTitle": "Irrisettja l-progress tal-prattika?",
+  "learningResetBody": "It-tentattivi u l-intervalli kollha tar-reviżjoni jitneħħew. L-eżerċizzji salvati u l-istorja tal-partiti jinżammu; kull eżerċizzju jkun dovut issa.",
+  "learningResetAction": "Irrisettja l-progress",
+  "learningResetFailed": "Ma setax jiġi rrisettjat il-progress tal-prattika.",
+  "lanUnassistedNote": "Il-logħob fil-qrib ma jużax tutur. Wara l-partita, irrevedi l-mossi u pprattika l-iżbalji.",
+  "lanGameStartFailed": "Il-logħob ma setax jibda. It-tagħmir l-ieħor jista’ jerġa’ jipprova jingħaqad.",
+  "lanHostPortInUse": "Ma setax jibda l-ospitar — il-port diġà qed jintuża. Agħlaq kopji oħra ta’ Backgammon Buddy u erġa’ pprova.",
+  "lanHostStartFailed": "Ma setax jibda l-ospitar. Iċċekkja l-Wi-Fi u erġa’ pprova.",
+  "lanHostHelp": "Iż-żewġ tagħmir iridu jkunu fuq l-istess Wi-Fi. Dan jitfa’ d-dadi u jżomm l-iskor.",
+  "lanRoomCodeInfo": "Għid dan il-kodiċi lill-plejer l-ieħor. Jippermettilu jidħol — l-app ma tibagħtux fuq in-netwerk.",
+  "lanFindNearbyPort": "Staqsi lit-tagħmir l-ieħor ifittex logħob fil-qrib. Qed jisma’ fuq il-port {port}.",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "lanScanHostHelp": "It-tagħmir l-ieħor juri kodiċi QR fuq l-iskrin Host tiegħu. L-iskannjar jimla l-indirizz u l-kodiċi tal-kamra.",
+  "lanScannerUnavailable": "Il-kamera jew il-permess tagħha mhux disponibbli. Daħħal l-indirizz u l-kodiċi tal-kamra hawn taħt.",
+  "lanInvalidQr": "Dak il-kodiċi QR mhux logħba ta’ Backgammon Buddy. Skennja dak fuq l-iskrin Host tat-tagħmir l-ieħor.",
+  "lanScannerFailed": "L-iskaner ma setax jinfetaħ. Daħħal l-indirizz u l-kodiċi hawn taħt.",
+  "lanNoGamesFound": "Għadu ma nstab ebda logħob. Iċċekkja li t-tagħmir l-ieħor qed jospita u li t-tnejn qegħdin fuq l-istess Wi-Fi, jew daħħal l-indirizz tiegħu.",
+  "lanEnterAddressHelp": "Is-sejbien awtomatiku ma jaħdimx fuq kull netwerk (u jista’ jkun imblukkat fuq iOS). L-iskrin Host juri x’għandek iddaħħal.",
+  "lanEnterAddressError": "Daħħal l-indirizz muri fuq it-tagħmir l-ieħor.",
+  "lanEnterRoomCodeError": "Daħħal il-kodiċi ta’ 4 ċifri mit-tagħmir l-ieħor.",
+  "lanJoinVersionMismatch": "It-tagħmir l-ieħor għandu verżjoni differenti ta’ Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "Dak it-tagħmir ma weġibx kif jagħmel Backgammon Buddy. Iċċekkja l-indirizz u l-port.",
+  "lanJoinFailed": "Ma setax jingħaqad. Iċċekkja l-indirizz u l-kodiċi, imbagħad erġa’ pprova.",
+  "lanJoinTarget": "Ingħaqad ma’ {name}",
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "lanJoinTargetHelp": "Daħħal il-kodiċi ta’ 4 ċifri muri fuq it-tagħmir l-ieħor.",
+  "lanJoiningTarget": "Qed jingħaqad ma’ {name}",
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "analysisCubeEstimate": "Stima 0-ply mill-perspettiva tal-plejer li jmiss. Tassumi tweġiba ottimali ta’ aċċetta jew għaddi. Fil-każ ta’ doppju aċċettat tuża stima approssimattiva ta’ 0.7 tal-ħajja tal-kubu, mhux tfittxija sħiħa għal kubu li jerġa’ jirdoppja. Analiżi aktar profonda tista’ tbiddel ir-riżultat.",
+  "metricExplainerMwcBody": "Meta r-riżultat ikun magħruf, il-mossi tal-biċċiet jiġu kklassifikati skont iċ-ċans stmat li tirbaħ il-logħba. It-telf jingħata f’punti perċentwali (pp): 1 pp ifisser li 51% jinżel għal 50%. Jinkludi l-valur tal-kubu u r-riżultati tal-gammon/backgammon. Passi obbligatorji u throws b’pożizzjoni legali waħda ma jidħlux fil-medji.",
+  "metricExplainerSearchBody": "Il-klassifika tal-mossi tal-biċċiet hija stima statika 0-ply wara l-mossa, mhux simulazzjoni. Il-valuri tal-logħba jużaw tabella tal-ekwità tal-logħba mingħajr dawriet futuri tal-kubu. Ir-reviżjoni tal-kubu tuża approssimazzjoni parzjali ta’ 0.7 tal-ħajja tal-kubu fuq doubles aċċettati; mhijiex tfittxija sħiħa bil-kubu. Għal punteġġi li fadal ’il fuq minn 25 tintuża l-limitu 25-away tat-tabella. Analiżi aktar profonda tista’ tibdel riżultati qrib; ma jinħoloqx intervall ta’ kunfidenza kkalibrat.",
+  "metricExplainerEquityBody": "Jekk ir-riżultat mhux magħruf, l-ekwità mingħajr kubu turi l-valur medju tal-pożizzjoni f’punti bil-kubu fuq 1. +1.0 tfisser li tistenna tirbaħ punt; −0.5 tfisser li tistenna titlef nofs punt.",
+  "metricExplainerEquityLossBody": "Inqabblu l-mossa li lgħabt mal-aħjar mossa tal-magna. It-telf tal-ekwità juri kemm mill-valur mistenni ċedejt. −0.016 tfisser li l-mossa kienet biss 0.016-il punt agħar — żball żgħir. 0.000 ifisser li sibt l-aħjar mossa.",
+  "metricExplainerErrorRateBody": "It-telf medju jagħmel medja tad-deċiżjonijiet tal-biċċiet ikklassifikati fl-unità murija. Deċiżjonijiet tal-kubu għandhom medja separata. Valur aktar baxx ifisser mossi eqreb tal-aqwa stimi tal-magna; mhuwiex klassifikazzjoni kkalibrata tal-plejer.",
+  "metricExplainerMoveMarksBody": "Firxiet MWC għat-tagħlim: L-aħjar < 0.05 pp, Tajjeb < 0.5 pp, Dubjuż < 1.5 pp, Żball < 3 pp, Żball kbir ≥ 3 pp. Dawn huma firxiet ta’ tagħlim, mhux kunfidenza jew klassifikazzjonijiet tat-turnew.\n\nFirxiet tal-ekwità mingħajr kubu:"
 }

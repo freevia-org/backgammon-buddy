@@ -17,6 +17,7 @@ import '../data/match_repository.dart';
 import '../data/persistence_hooks.dart';
 import '../data/settings_repository.dart';
 import '../diagnostics/crash_log.dart';
+import '../l10n/localization_lookup.dart';
 import '../lan/join_qr_code.dart';
 import '../lan/lan_transport.dart';
 import '../lan/qr_payload.dart';
@@ -95,26 +96,24 @@ class _LanScreenState extends State<LanScreen>
       AnalyticsScreenView(name: AnalyticsScreens.lan, child: _build(context));
 
   Widget _build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Play Nearby'),
+        title: Text(l10n.lanTitle),
         bottom: TabBar(
           controller: _tabs,
-          tabs: const [
-            Tab(text: 'Host'),
-            Tab(text: 'Join'),
+          tabs: [
+            Tab(text: l10n.lanTabHost),
+            Tab(text: l10n.lanTabJoin),
           ],
         ),
       ),
       body: SafeArea(
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.fromLTRB(16, 12, 16, 8),
-              child: Text(
-                'Live nearby games are unassisted. Review your '
-                'moves and practise mistakes after the match.',
-              ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+              child: Text(l10n.lanUnassistedNote),
             ),
             Expanded(
               child: TabBarView(
@@ -310,7 +309,10 @@ class _HostTabState extends ConsumerState<_HostTab> {
       controller: controller,
       matchIdFuture: matchIdFuture,
       settings: settings,
-      opponentLabel: _shortName(session.guestName),
+      opponentLabel: _shortName(
+        session.guestName,
+        fallback: appLocalizationsOf(context).onlineOpponentShort,
+      ),
     );
     // Back from the game: the controller goes first (and takes its transport
     // with it), then the port, the beacon and the match log; the tab resets to
@@ -323,15 +325,12 @@ class _HostTabState extends ConsumerState<_HostTab> {
   /// or the guest went away again before the first state folded. The host is
   /// still hosting, so the copy points at the retry that actually exists.
   String _launchErrorText(Object e) {
-    final reason = e is TransportException ? e.message : '$e';
-    return 'The game could not be started: $reason. The other device can try '
-        'joining again.';
+    return appLocalizationsOf(context).lanGameStartFailed;
   }
 
   String _hostErrorText(Object e) => e is SocketException
-      ? 'Could not start hosting — the port is already in use. '
-            'Close any other copy of Backgammon Buddy and try again.'
-      : 'Could not start hosting. Check your Wi-Fi connection and try again.';
+      ? appLocalizationsOf(context).lanHostPortInUse
+      : appLocalizationsOf(context).lanHostStartFailed;
 
   // --- build -----------------------------------------------------------------
 
@@ -344,19 +343,19 @@ class _HostTabState extends ConsumerState<_HostTab> {
 
   List<Widget> _setup() {
     final theme = Theme.of(context);
+    final l10n = appLocalizationsOf(context);
     return [
       _SectionCard(
-        title: 'Host a game',
+        title: l10n.lanHostTitle,
         children: [
           Text(
-            'Both devices must be on the same Wi-Fi. This one deals the dice '
-            'and keeps the score.',
+            l10n.lanHostHelp,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
           ),
           const SizedBox(height: 20),
-          Text('Match length', style: theme.textTheme.titleSmall),
+          Text(l10n.onlineMatchLength, style: theme.textTheme.titleSmall),
           const SizedBox(height: 8),
           SegmentedButton<int>(
             showSelectedIcon: false,
@@ -373,8 +372,8 @@ class _HostTabState extends ConsumerState<_HostTab> {
           ),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Play without cube'),
-            subtitle: const Text('No doubling cube this match'),
+            title: Text(l10n.onlineNoCubeTitle),
+            subtitle: Text(l10n.onlineNoCubeSubtitle),
             value: _cubeless,
             onChanged: _starting ? null : (v) => setState(() => _cubeless = v),
           ),
@@ -386,7 +385,7 @@ class _HostTabState extends ConsumerState<_HostTab> {
             ),
             child: _starting
                 ? const _ButtonSpinner()
-                : const Text('Start hosting'),
+                : Text(l10n.lanStartHosting),
           ),
           if (_error != null) _ErrorRow(_error!),
         ],
@@ -396,10 +395,11 @@ class _HostTabState extends ConsumerState<_HostTab> {
 
   List<Widget> _waiting(HostSession session) {
     final theme = Theme.of(context);
+    final l10n = appLocalizationsOf(context);
     final address = _localAddress;
     return [
       _SectionCard(
-        title: 'Waiting for a player',
+        title: l10n.lanWaitingPlayerTitle,
         children: [
           // The QR code is the fast path and the text below it is the reliable
           // one. Both are shown, always: scanning needs two devices that can be
@@ -415,7 +415,7 @@ class _HostTabState extends ConsumerState<_HostTab> {
             ),
             const SizedBox(height: 20),
           ],
-          Text('Room code', style: theme.textTheme.titleSmall),
+          Text(l10n.onlineRoomCode, style: theme.textTheme.titleSmall),
           const SizedBox(height: 4),
           Center(
             child: SelectableText(
@@ -428,8 +428,7 @@ class _HostTabState extends ConsumerState<_HostTab> {
           ),
           const SizedBox(height: 4),
           Text(
-            'Tell the other player this code. It is what lets them in — the '
-            'app never sends it over the network.',
+            l10n.lanRoomCodeInfo,
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -438,7 +437,7 @@ class _HostTabState extends ConsumerState<_HostTab> {
           const SizedBox(height: 20),
           _AddressRow(address: _localAddress, port: session.port),
           const SizedBox(height: 20),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
@@ -447,14 +446,14 @@ class _HostTabState extends ConsumerState<_HostTab> {
                 child: CircularProgressIndicator(strokeWidth: 2),
               ),
               SizedBox(width: 12),
-              Text('Waiting for a player…'),
+              Text(l10n.lanWaitingPlayer),
             ],
           ),
           const SizedBox(height: 8),
           TextButton(
             onPressed: () =>
                 recordFailures(_stopHosting(), source: 'lan-stop-hosting'),
-            child: const Text('Stop hosting'),
+            child: Text(l10n.lanStopHosting),
           ),
           if (_error != null) _ErrorRow(_error!),
         ],
@@ -477,8 +476,7 @@ class _AddressRow extends StatelessWidget {
       // No address to show (no Wi-Fi answer, enumeration refused). Discovery is
       // still running, so this is a hint rather than a dead end.
       return Text(
-        'Ask the other device to look for nearby games. Listening on port '
-        '$port.',
+        appLocalizationsOf(context).lanFindNearbyPort(port),
         style: theme.textTheme.bodySmall?.copyWith(
           color: theme.colorScheme.onSurfaceVariant,
         ),
@@ -487,7 +485,10 @@ class _AddressRow extends StatelessWidget {
     }
     return Column(
       children: [
-        Text('On this network', style: theme.textTheme.titleSmall),
+        Text(
+          appLocalizationsOf(context).lanOnNetwork,
+          style: theme.textTheme.titleSmall,
+        ),
         const SizedBox(height: 4),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -497,14 +498,16 @@ class _AddressRow extends StatelessWidget {
               style: theme.textTheme.titleMedium,
             ),
             IconButton(
-              tooltip: 'Copy address',
+              tooltip: appLocalizationsOf(context).lanCopyAddress,
               icon: const Icon(Icons.copy, size: 18),
               onPressed: () async {
                 await Clipboard.setData(ClipboardData(text: '$address:$port'));
                 if (!context.mounted) return;
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(const SnackBar(content: Text('Address copied')));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(appLocalizationsOf(context).lanAddressCopied),
+                  ),
+                );
               },
             ),
           ],
@@ -681,13 +684,10 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
 
   /// Validate and start the connection for the currently picked host.
   void _connectPicked() {
+    final l10n = appLocalizationsOf(context);
     final code = _codeController.text.trim();
     if (!_validCode(code)) {
-      setState(
-        () => _formError =
-            'Enter the 4-digit code from the other '
-            'device.',
-      );
+      setState(() => _formError = l10n.lanEnterRoomCodeError);
       return;
     }
     _startConnect(_target!, code);
@@ -695,27 +695,20 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
 
   /// Validate and start the connection for the typed-in address.
   void _connectManual() {
+    final l10n = appLocalizationsOf(context);
     final address = _addressController.text.trim();
     final port = int.tryParse(_portController.text.trim());
     final code = _manualCodeController.text.trim();
     if (address.isEmpty) {
-      setState(
-        () => _formError =
-            'Enter the address shown on the other '
-            'device.',
-      );
+      setState(() => _formError = l10n.lanEnterAddressError);
       return;
     }
     if (port == null || port < 1 || port > 65535) {
-      setState(() => _formError = 'Enter a port between 1 and 65535.');
+      setState(() => _formError = l10n.lanInvalidPort);
       return;
     }
     if (!_validCode(code)) {
-      setState(
-        () => _formError =
-            'Enter the 4-digit code from the other '
-            'device.',
-      );
+      setState(() => _formError = l10n.lanEnterRoomCodeError);
       return;
     }
     _startConnect(_Target(name: address, address: address, port: port), code);
@@ -746,17 +739,18 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
           // under the button makes a deliberate cancellation look like a
           // failure.
           if (_scanError != null) setState(() => _scanError = null);
-        case QrScanUnavailable(:final message):
+        case QrScanUnavailable():
           // No camera, or no permission. The typing form below is untouched and
           // still works — that is the whole point of saying this here.
-          setState(() => _scanError = message);
+          setState(
+            () =>
+                _scanError = appLocalizationsOf(context).lanScannerUnavailable,
+          );
         case QrScanCode(:final raw):
           final payload = tryDecodeQrJoin(raw);
           if (payload == null) {
             setState(
-              () => _scanError =
-                  'That QR code is not a Backgammon Buddy game. '
-                  'Scan the one on the other device\'s Host screen.',
+              () => _scanError = appLocalizationsOf(context).lanInvalidQr,
             );
             return;
           }
@@ -783,9 +777,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
       CrashLog.instance.record(e, stack: stack, source: 'lan-scan');
       if (mounted) {
         setState(
-          () => _scanError =
-              'The scanner could not be opened. '
-              'Enter the address and code below instead.',
+          () => _scanError = appLocalizationsOf(context).lanScannerFailed,
         );
       }
     } finally {
@@ -921,7 +913,10 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
       controller: controller,
       matchIdFuture: matchIdFuture,
       settings: settings,
-      opponentLabel: _shortName(_target?.name),
+      opponentLabel: _shortName(
+        _target?.name,
+        fallback: appLocalizationsOf(context).onlineOpponentShort,
+      ),
     );
     controller.disposeController();
     _releaseSession();
@@ -931,19 +926,19 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
 
   /// Turn a handshake failure into something a person can act on.
   String _joinErrorText(Object e) {
+    final l10n = appLocalizationsOf(context);
     final reason = e is GuestHandshakeException ? e.reason : '$e';
     final lower = reason.toLowerCase();
     if (lower.contains('code')) {
-      return 'Wrong room code. Check the four digits on the other device.';
+      return l10n.lanJoinWrongCode;
     }
     if (lower.contains('version') || lower.contains('protocol')) {
-      return 'The other device is running a different version of Backgammon Buddy.';
+      return l10n.lanJoinVersionMismatch;
     }
     if (lower.contains('handshake required')) {
-      return 'That device did not answer the way Backgammon Buddy does. Check the '
-          'address and port.';
+      return l10n.lanJoinHandshakeFailed;
     }
-    return 'Could not join: $reason';
+    return l10n.lanJoinFailed;
   }
 
   // --- build -----------------------------------------------------------------
@@ -969,12 +964,12 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
   /// point the camera at it and skip both the search and the typing.
   Widget _scanCard() {
     final theme = Theme.of(context);
+    final l10n = appLocalizationsOf(context);
     return _SectionCard(
-      title: 'Scan the host',
+      title: l10n.lanScanHostTitle,
       children: [
         Text(
-          'The other device shows a QR code on its Host screen. Scanning it '
-          'fills in the address and the room code for you.',
+          l10n.lanScanHostHelp,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
@@ -983,7 +978,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
         FilledButton.icon(
           onPressed: () => recordFailures(_scan(), source: 'lan-scan'),
           icon: const Icon(Icons.qr_code_scanner),
-          label: const Text('Scan QR code'),
+          label: Text(l10n.lanScanQr),
           style: FilledButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 14),
           ),
@@ -995,15 +990,15 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
 
   Widget _hostsCard() {
     final theme = Theme.of(context);
+    final l10n = appLocalizationsOf(context);
     return _SectionCard(
-      title: 'Nearby games',
+      title: l10n.lanNearbyGames,
       children: [
         if (_hosts.isEmpty && _probing)
-          const _StatusRow(text: 'Looking for nearby games…')
+          _StatusRow(text: l10n.lanSearching)
         else if (_hosts.isEmpty)
           Text(
-            'No games found yet. Make sure the other device is hosting and '
-            'both are on the same Wi-Fi — or enter its address below.',
+            l10n.lanNoGamesFound,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
             ),
@@ -1019,9 +1014,9 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
               onTap: () => _pick(host),
             ),
         if (_hosts.isNotEmpty && _probing)
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 8),
-            child: _StatusRow(text: 'Still looking…'),
+            child: _StatusRow(text: l10n.lanStillSearching),
           ),
       ],
     );
@@ -1029,13 +1024,12 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
 
   Widget _manualCard() {
     final theme = Theme.of(context);
+    final l10n = appLocalizationsOf(context);
     return _SectionCard(
-      title: 'Enter address',
+      title: l10n.lanEnterAddress,
       children: [
         Text(
-          'Automatic discovery does not work on every network (and on iOS it '
-          'may be blocked entirely). The host screen shows this device what to '
-          'type.',
+          l10n.lanEnterAddressHelp,
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
@@ -1049,8 +1043,8 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
               child: TextField(
                 controller: _addressController,
                 keyboardType: TextInputType.text,
-                decoration: const InputDecoration(
-                  labelText: 'IP address',
+                decoration: InputDecoration(
+                  labelText: l10n.lanIpAddress,
                   hintText: '192.168.1.20',
                   border: OutlineInputBorder(),
                 ),
@@ -1062,8 +1056,8 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
                 controller: _portController,
                 keyboardType: TextInputType.number,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                decoration: const InputDecoration(
-                  labelText: 'Port',
+                decoration: InputDecoration(
+                  labelText: l10n.lanPort,
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -1076,8 +1070,8 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
           keyboardType: TextInputType.number,
           maxLength: 4,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          decoration: const InputDecoration(
-            labelText: 'Room code',
+          decoration: InputDecoration(
+            labelText: l10n.onlineRoomCode,
             counterText: '',
             border: OutlineInputBorder(),
           ),
@@ -1089,7 +1083,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
           style: FilledButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 14),
           ),
-          child: const Text('Connect'),
+          child: Text(l10n.lanConnect),
         ),
         if (_formError != null) _ErrorRow(_formError!),
       ],
@@ -1098,12 +1092,13 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
 
   Widget _codeCard() {
     final theme = Theme.of(context);
+    final l10n = appLocalizationsOf(context);
     final target = _target!;
     return _SectionCard(
-      title: 'Join ${target.name}',
+      title: l10n.lanJoinTarget(target.name),
       children: [
         Text(
-          'Enter the 4-digit code shown on the other device.',
+          l10n.lanJoinTargetHelp,
           style: theme.textTheme.bodyMedium?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
@@ -1117,8 +1112,8 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
           textAlign: TextAlign.center,
           style: theme.textTheme.headlineMedium?.copyWith(letterSpacing: 8),
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          decoration: const InputDecoration(
-            labelText: 'Room code',
+          decoration: InputDecoration(
+            labelText: l10n.onlineRoomCode,
             counterText: '',
             border: OutlineInputBorder(),
           ),
@@ -1130,9 +1125,9 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
           style: FilledButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 14),
           ),
-          child: const Text('Connect'),
+          child: Text(l10n.lanConnect),
         ),
-        TextButton(onPressed: _backToBrowsing, child: const Text('Back')),
+        TextButton(onPressed: _backToBrowsing, child: Text(l10n.lanBack)),
         if (_formError != null) _ErrorRow(_formError!),
       ],
     );
@@ -1141,8 +1136,9 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
   Widget _connectingCard() {
     final target = _target!;
     final failure = _failure;
+    final l10n = appLocalizationsOf(context);
     return _SectionCard(
-      title: 'Joining ${target.name}',
+      title: l10n.lanJoiningTarget(target.name),
       children: [
         if (failure != null) ...[
           _ErrorRow(failure),
@@ -1155,9 +1151,9 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
             style: FilledButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 14),
             ),
-            child: const Text('Try again'),
+            child: Text(l10n.lanTryAgain),
           ),
-          TextButton(onPressed: _backToBrowsing, child: const Text('Back')),
+          TextButton(onPressed: _backToBrowsing, child: Text(l10n.lanBack)),
         ] else ...[
           _StatusRow(text: _linkText()),
           const SizedBox(height: 16),
@@ -1166,7 +1162,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
               _releaseSession();
               _backToBrowsing();
             },
-            child: const Text('Cancel'),
+            child: Text(appLocalizationsOf(context).actionCancel),
           ),
         ],
       ],
@@ -1176,13 +1172,16 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
   /// What the link is doing, in the user's terms. A busy room is NOT an error:
   /// the host is mid-match (or still reaping a half-open socket from a previous
   /// guest), and the client keeps retrying on its own.
-  String _linkText() => switch (_linkState.status) {
-    GuestConnectionStatus.busy => 'Room in use — waiting…',
-    GuestConnectionStatus.reconnecting => 'Lost the connection — retrying…',
-    GuestConnectionStatus.connected => 'Connected — starting the match…',
-    GuestConnectionStatus.failed => 'Could not join.',
-    GuestConnectionStatus.connecting => 'Connecting…',
-  };
+  String _linkText() {
+    final l10n = appLocalizationsOf(context);
+    return switch (_linkState.status) {
+      GuestConnectionStatus.busy => l10n.lanStatusBusy,
+      GuestConnectionStatus.reconnecting => l10n.lanStatusReconnecting,
+      GuestConnectionStatus.connected => l10n.lanStatusConnected,
+      GuestConnectionStatus.failed => l10n.lanStatusFailed,
+      GuestConnectionStatus.connecting => l10n.lanStatusConnecting,
+    };
+  }
 }
 
 // --- shared ------------------------------------------------------------------
@@ -1232,7 +1231,7 @@ Future<void> _openGame({
         analytics: ref.read(appAnalyticsProvider),
         analyticsMode: AnalyticsModes.lan,
         opponentLabel: opponentLabel,
-        opponentDetail: 'Nearby',
+        opponentDetail: appLocalizationsOf(context).lanTitle,
         persistedMatchId: matchIdFuture,
         timings: settings.timings,
         interactionOptions: BoardInteractionOptions(
@@ -1252,9 +1251,9 @@ Future<void> _openGame({
 
 /// The header calls the other side by name where there is one, but the score
 /// line is tight — so a device name is trimmed to something that fits.
-String _shortName(String? name) {
+String _shortName(String? name, {required String fallback}) {
   final trimmed = name?.trim() ?? '';
-  if (trimmed.isEmpty) return 'Opp';
+  if (trimmed.isEmpty) return fallback;
   // Rune-safe, and ellipsised so a trimmed name reads as trimmed rather than as
   // a differently-spelled one — see [truncateForDisplay].
   return truncateForDisplay(trimmed, 10);

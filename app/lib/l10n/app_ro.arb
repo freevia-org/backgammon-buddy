@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "În notele de instruire, punctele se numără din perspectiva tablei de casă a jucătorului care mută.",
   "tutorHittingRollNote": "Numărul aruncărilor care permit lovirea include toate cele 36 de rezultate ordonate ale zarurilor și loviturile directe sau indirecte legale; sunt oportunități, nu o predicție a alegerii adversarului.",
   "tutorNoEvaluatedAlternatives": "Nu există alternative evaluate pentru această mutare.",
-  "tutorForcedPassNoDecision": "La un pas forțat nu există o decizie de mutare a pieselor."
+  "tutorForcedPassNoDecision": "La un pas forțat nu există o decizie de mutare a pieselor.",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "settingsReset": "Resetează",
+  "settingsAppLanguage": "Limba aplicației",
+  "settingsTheme": "Temă",
+  "settingsThemeSystem": "Sistem",
+  "settingsThemeLight": "Luminoasă",
+  "settingsThemeDark": "Întunecată",
+  "settingsAnimationSpeed": "Viteza animației",
+  "settingsAnimationNone": "Fără animație",
+  "settingsAnimationNormal": "Normală",
+  "settingsAnimationFast": "Rapidă",
+  "settingsDiceRollAnimation": "Animația aruncării zarurilor",
+  "settingsDiceRollAnimationHelp": "Agită zarurile înainte de fiecare aruncare",
+  "settingsDefaultMatchLength": "Durata implicită a meciului",
+  "settingsDefaultDifficulty": "Dificultatea implicită",
+  "settingsDifficultyEasy": "Ușor",
+  "settingsDifficultyMedium": "Mediu",
+  "settingsDifficultyHard": "Dificil",
+  "settingsDifficultyExpert": "Expert",
+  "settingsTutorModeDefault": "Modul implicit al tutorului",
+  "settingsTutorAuto": "Automat",
+  "settingsTutorOn": "Activat",
+  "settingsTutorOff": "Dezactivat",
+  "settingsTutorModeHelp": "Automat activează tutorul la orice nivel al calculatorului. Activat și Dezactivat stabilesc alegerea inițială pentru meciurile locale. Meciurile din apropiere și cele online nu au asistență; jocurile salvate pot fi analizate ulterior. Preferințele de învățare de mai jos se salvează pe acest dispozitiv.",
+  "settingsTutorPreferences": "Preferințele tutorului",
+  "settingsTutorPreferencesSubtitle": "Setări implicite pentru meciurile viitoare",
+  "settingsTutorSaveError": "Preferințele tutorului nu au putut fi salvate.",
+  "settingsGameplay": "Joc",
+  "settingsMoveHighlights": "Evidențierea mutărilor",
+  "settingsMoveHighlightsHelp": "Încercuiește piesele care pot fi selectate și luminează destinațiile posibile",
+  "settingsDragToMove": "Trage pentru a muta",
+  "settingsDragToMoveHelp": "Trage o piesă la destinație (atingerile funcționează întotdeauna)",
+  "settingsCombinedMoves": "Mutări combinate",
+  "settingsCombinedMovesHelp": "O atingere mută o piesă folosind ambele zaruri",
+  "settingsRotateBoard": "Rotește tabla între ture",
+  "settingsRotateBoardHelp": "Joc pe rând: întoarce perspectiva pentru jucătorul activ",
+  "settingsPassDevice": "Ecran pentru predarea dispozitivului",
+  "settingsPassDeviceHelp": "Acoperă tabla între turele jocului pe rând",
+  "settingsShowScore": "Afișează scorul",
+  "settingsShowScoreHelp": "Afișează scorul actual al meciului în antet",
+  "settingsBuddyMode": "Stilul lui Buddy",
+  "settingsBuddyTerse": "Succint",
+  "settingsBuddyFriendly": "Prietenos",
+  "settingsBuddyTerseHelp": "Cum rostește Buddy o mutare: „13/8, 24/22” — notația folosită de jucători la tablă.",
+  "settingsBuddyFriendlyHelp": "Cum rostește Buddy o mutare: „Mută o piesă de la 13 la 8 și una de la 24 la 22.”",
+  "settingsListenForDice": "Ascultă zarurile",
+  "settingsListenForDiceHelp": "Buddy privește tabla mai devreme când aude o aruncare. Dezactivarea nu schimbă nimic altceva.",
+  "settingsDiagnostics": "Diagnosticare",
+  "settingsErrorLog": "Jurnal de erori",
+  "settingsErrorLogHelp": "Erori recente, gata de copiat într-o raportare de eroare",
+  "settingsReportBug": "Raportează o problemă",
+  "settingsReportBugHelp": "Deschide un formular de raportare ghidat pe GitHub",
+  "settingsSuggestIdea": "Sugerează o idee",
+  "settingsSuggestIdeaHelp": "Ajută-ne să îmbunătățim tutorul și jocul",
+  "settingsAbout": "Despre aplicație",
+  "settingsOpenSourceLicenses": "Licențe open-source",
+  "tutorPhraseGameFinished": "Partida s-a încheiat.",
+  "tutorPhraseReviewFinishedGame": "Revezi mutările pentru a găsi o decizie pe care să o exersezi.",
+  "tutorPhraseCubeOffered": "A fost oferit cubul de dublare.",
+  "tutorPhraseCubeDecisionPrompt": "Decide dacă accepți dublarea sau pasezi înainte să planifici mutarea pieselor.",
+  "tutorPhraseCubeScoreContext": "Scorul meciului schimbă valoarea mizei suplimentare.",
+  "tutorPhraseResignationOffered": "A fost propusă renunțarea la partidă.",
+  "tutorPhraseResignationDecisionPrompt": "Compară punctele oferite cu poziția înainte să accepți sau să continui.",
+  "tutorPhraseNoLegalPlay": "Nu există mutări legale cu această aruncare.",
+  "tutorPhraseForcedPassPrompt": "Pasul forțat nu este o greșeală; așteaptă următoarea aruncare.",
+  "tutorPhraseOnlyOneResult": "Există o singură poziție finală legală.",
+  "tutorPhraseForcedTurnPrompt": "Joacă tura forțată. La această aruncare nu există nicio alegere de evaluat.",
+  "tutorPhrasePipCountsLevel": "Numărul de pip-uri este egal.",
+  "tutorPhrasePipCountsAhead": "{count, plural, one{Ai un avans de un pip.} few{Ai un avans de {count} pip-uri.} other{Ai un avans de {count} de pip-uri.}}",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "{count, plural, one{Ai un deficit de un pip.} few{Ai un deficit de {count} pip-uri.} other{Ai un deficit de {count} de pip-uri.}}",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "{count, plural, one{Ai o piesă pe bară: mai întâi trebuie să o reintroduci în joc.} few{Ai {count} piese pe bară: mai întâi trebuie să le reintroduci în joc.} other{Ai {count} de piese pe bară: mai întâi trebuie să le reintroduci în joc.}}",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Reintrodu piesele de pe bară înainte să muți altele; apoi caută un punct de aterizare sigur.",
+  "tutorPhraseOpponentHomePoints": "{count, plural, one{Adversarul are un punct închis în tabla sa interioară.} few{Adversarul are {count} puncte închise în tabla sa interioară.} other{Adversarul are {count} de puncte închise în tabla sa interioară.}}",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Cursă de scoatere a pieselor.",
+  "tutorPhrasePureRace": "O cursă pură.",
+  "tutorPhraseBearOffSpread": "Scoate piesele de pe tablă păstrând o distribuție utilă pentru următoarea aruncare.",
+  "tutorPhraseBringRearCheckersHome": "Adu piesele din spate acasă fără să înghesui prea multe pe același punct.",
+  "tutorPhraseArmiesHavePassed": "Piesele s-au depășit; nu mai sunt posibile lovituri.",
+  "tutorPhraseContactStillMatters": "{part} Contactul încă contează.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "{count, plural, one{Adversarul are o piesă pe bară.} few{Adversarul are {count} piese pe bară.} other{Adversarul are {count} de piese pe bară.}}",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Păstrează punctele închise în timp ce aduci acasă piesele rămase.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Construiește sau păstrează tabla interioară închisă în timp ce adversarul încearcă să reintre.",
+  "tutorPhraseHomePointsCloseEntries": "{count, plural, one{Ai un punct închis în tabla interioară; acesta blochează un număr de intrare.} few{Ai {count} puncte închise în tabla interioară; fiecare blochează un număr de intrare.} other{Ai {count} de puncte închise în tabla interioară; fiecare blochează un număr de intrare.}}",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Contact printr-un șir închis de {count, plural, one{un punct consecutiv} few{{count} puncte consecutive} other{{count} de puncte consecutive}}.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Compară extinderea șirului cu păstrarea pieselor de rezervă care îl mențin intact.",
+  "tutorPhraseSpareCheckersCanMove": "{count, plural, one{O piesă de rezervă se poate muta fără să-și deschidă imediat punctul.} few{{count} piese de rezervă se pot muta fără să-și deschidă imediat punctul.} other{{count} de piese de rezervă se pot muta fără să-și deschidă imediat punctul.}}",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Contact cu o ancoră pe punctele {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Compară aducerea pieselor din spate acasă cu siguranța oferită de păstrarea ancorei.",
+  "tutorPhraseCompareAnchorProgressBehind": "Ține cont de sprijinul sigur în timp ce cauți o lovitură sau îți îmbunătățești tabla.",
+  "tutorPhrasePreserveAnchorFoothold": "Ancora nu poate fi lovită, dar piesele respective mai au mult până acasă.",
+  "tutorPhraseContactThreats": "Există contact: ambii jucători încă pot amenința cu lovituri.",
+  "tutorPhraseLookForPointsAndSafety": "Caută puncte utile, apoi compară riscul de a lăsa piese izolate expuse.",
+  "tutorPhraseHomePointsAndBlots": "Puncte închise în tabla interioară: {count}; piese izolate expuse lăsate: {otherCount}.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Alege o piesă pentru a începe mutarea.",
+  "tutorPhraseLegalPlayPrompt": "Începe o mutare legală pentru a vedea comentariul.",
+  "tutorPhraseStagedHit": "Ai lovit {count, plural, one{o piesă a adversarului} few{{count} piese ale adversarului} other{{count} de piese ale adversarului}}.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "{count, plural, one{Ai reintrodus o piesă de pe bară.} few{Ai reintrodus {count} piese de pe bară.} other{Ai reintrodus {count} de piese de pe bară.}}",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Ai scos de pe tablă {count, plural, one{o piesă} few{{count} piese} other{{count} de piese}}.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Ai închis punctele {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Piesa de pe punctul tău {point} este momentan izolată și expusă.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "Piesa de rezervă de pe punctul tău {point} se poate muta mai târziu fără să deschidă punctul.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Folosește zarurile rămase care pot fi jucate înainte să evaluezi întreaga mutare.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Toate cele 15 piese au fost scoase de pe tablă: ai câștigat partida.",
+  "tutorPhraseStagedHitShortPlan": "Lovitura câștigă timp în timp ce adversarul încearcă să reintre.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Scoaterea eficientă a pieselor lasă valori utile pentru următoarea aruncare.",
+  "tutorPhraseStagedRaceHomePlan": "În cursă, adu piesele din spate acasă și păstrează puncte de aterizare utile pentru scoatere.",
+  "tutorPhraseStagedBearOffContactPlan": "Scoaterea pieselor te ajută să avansezi, dar contactul rămas încă te expune loviturilor.",
+  "tutorPhraseStagedReentryPlan": "Reintrarea readuce piesa în joc; apoi caută un punct de aterizare sigur.",
+  "tutorPhraseStagedHomeBoardPlan": "Noul punct din tabla interioară blochează un număr de intrare după o eventuală lovitură.",
+  "tutorPhraseStagedPrimePlan": "Șirul mai lung închide mai multe puncte de aterizare; piesele de rezervă îl ajută să rămână intact.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Renunțarea la ancoră câștigă teren, dar te lasă fără un sprijin sigur.",
+  "tutorPhraseStagedNewAnchorPlan": "Noua ancoră oferă pieselor din spate un sprijin sigur.",
+  "tutorPhraseStagedCoverBlotPlan": "Acoperirea unei piese expuse îi ia adversarului o țintă.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Este un compromis între dezvoltare și siguranță: piesele utile pentru construire pot deveni și ținte.",
+  "tutorPhraseStagedCompletePrompt": "{part} Mutarea completă este pregătită; apasă Confirmă pentru a o executa.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Această aruncare nu lasă nicio alegere de mutare a pieselor; nu este evaluată ca decizie.",
+  "tutorMoveTopVerdict": "Cea mai bună alegere pentru această poziție.",
+  "tutorMoveAlternativeVerdict": "Motorul preferă aici o altă mutare.",
+  "tutorMoveEstimateDifference": "Diferența față de cea mai bună mutare: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "După această mutare: {winPercent}% șanse estimate de câștig, {winGammonPercent}% de câștig cu gammon sau mai bine și {loseGammonPercent}% de pierdere cu gammon sau mai rău. Estimările sunt din perspectiva jucătorului care mută.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Șansa estimată de a câștiga meciul: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Toate cele 15 piese au fost scoase de pe tablă: partida este câștigată.",
+  "tutorMovePlanHit": "Folosește lovitura pentru a câștiga timp cât adversarul reintră în joc. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Păstrează punctele închise din tabla interioară pentru a-i îngreuna reintrarea.",
+  "tutorMovePlanHitBuild": "Închide mai multe puncte în tabla interioară, ca adversarului să-i fie mai greu să-și revină după lovituri.",
+  "tutorMovePlanRaceBearOff": "Urmărește să scoți piesele eficient: elimină-le de pe tablă păstrând valori utile pentru următoarea aruncare.",
+  "tutorMovePlanRaceHome": "Adu piesele din spate acasă și distribuie-le pe puncte utile pentru a le scoate de pe tablă.",
+  "tutorMovePlanContactBearOff": "Scoate piesele din joc, dar urmărește piesele din spate ale adversarului: cât timp există contact, o piesă rămasă singură la scoatere poate fi lovită.",
+  "tutorMovePlanReentry": "Reintră în joc, apoi caută un punct sigur pentru piesa tocmai introdusă.",
+  "tutorMovePlanHomeBoard": "Întărește-ți tabla interioară. Noul punct închis face o lovitură viitoare mai eficientă, blocând un număr de intrare.",
+  "tutorMovePlanPrime": "Păstrează șirul de puncte închise unit. Menține piese de rezervă, ca aruncările viitoare să nu te oblige să-l deschizi.",
+  "tutorMovePlanLeaveAnchor": "Renunțarea la ancoră avansează piesele din spate, dar te lasă fără un sprijin sigur. Ai grijă să nu fie lovite pe drumul spre casă.",
+  "tutorMovePlanNewAnchor": "Folosește noua ancoră ca sprijin sigur în timp ce îți îmbunătățești restul poziției.",
+  "tutorMovePlanCoverBlot": "Consolidează-ți piesele. Acoperirea unei piese expuse elimină acea țintă și păstrează disponibile puncte utile pentru mutările viitoare.",
+  "tutorMovePlanSafety": "Echilibrează dezvoltarea cu siguranța: apropie piesele care construiesc poziția de punctele utile și verifică ce piese singure pot fi lovite.",
+  "tutorMoveObservationNoLegalPlay": "Nu există nicio mutare legală cu piesele: trebuie să pasezi tura.",
+  "tutorMoveObservationHit": "Lovești {count, plural, one{o piesă a adversarului} few{{count} piese ale adversarului} other{{count} de piese ale adversarului}}; acesta trebuie să reintre cu piesele de pe bară înainte de a le muta pe celelalte.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Reintroduci {count} de pe bară.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Scoți de pe tablă {count, plural, one{o piesă} few{{count} piese} other{{count} de piese}}.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Închizi punctele {points}. Cel puțin două piese ocupă un punct sigur și îl blochează pentru adversar.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Redeschizi {pointLabel}: {points}. Aceste puncte nu-l mai blochează pe adversar.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Nu lași nicio piesă singură expusă (înainte: {previousCount}). Adversarul nu are nicio piesă izolată pe care s-o poată lovi.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Lași {count, plural, one{o piesă singură expusă} few{{count} piese singure expuse} other{{count} de piese singure expuse}} (înainte: {previousCount}). Verifică dacă adversarul le poate atinge înainte să alegi siguranța în locul unui alt câștig.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Cel mai lung șir de puncte închise: {count} (înainte: {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Un zid complet de șase puncte închise nu poate fi trecut cât timp rămâne intact.",
+  "tutorMoveObservationPrimeBuild": "Păstrează piese de construcție în apropiere dacă vrei să prelungești sau să menții acest șir.",
+  "tutorMoveObservationPrimeSpares": "Ai {count} piese de rezervă peste cele două care țin punctele închise. Mutarea unei rezerve poate păstra punctul; mutarea uneia dintre ultimele două îl deschide.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Ancore în tabla interioară a adversarului: {points} (înainte: {previousPoints}). O ancoră îți protejează piesele de lovituri; dacă renunți la ea, schimbi acest sprijin sigur pe progres în cursă.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Cursă pură: piesele s-au depășit și niciun jucător nu are piese pe bară. Loviturile nu mai sunt posibile; contează eficiența scoaterii pieselor.",
+  "tutorMoveObservationNoReplyHit": "Nicio aruncare legală la următoarea tură nu-i permite adversarului să lovească o piesă în această poziție. Contactul continuă, deci mutări ulterioare pot crea noi ocazii de lovire.",
+  "tutorMoveObservationReplyHit": "Adversarul poate lovi la {count} din {total} aruncări. De exemplu, {dieOne}–{dieTwo} permite o lovitură legală pe punctul tău {point}. Lovitura este posibilă, nu sigură: adversarul poate alege altă mutare.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Numărul de puncte închise în tabla ta interioară: {closedPoints}. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Adversarul nu poate reintra până când se deschide un punct.",
+  "tutorMoveObservationOpenEntry": "O aruncare care folosește un punct de intrare deschis poate readuce o piesă de pe bară.",
+  "tutorMoveComparisonDetail": "{factors} Șansa estimată de câștig cu mutarea optimă este cu {delta} puncte procentuale {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "mai mare",
+  "tutorMoveComparisonLower": "mai mică",
+  "tutorMoveComparisonScoreContext": " Poate totuși să fie clasată mai sus, deoarece gammons și backgammons au valori diferite în funcție de {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "miză",
+  "tutorMoveComparisonMatchScore": "scorul meciului",
+  "tutorMoveComparisonFactorBar": "Numărul pieselor adversarului de pe bară la mutarea optimă: {bestCount}, față de {playedCount}. O piesă de pe bară trebuie să reintre înainte ca adversarul să le poată muta pe celelalte.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Puncte închise în tabla ta interioară la mutarea optimă: {bestCount}, față de {playedCount} la mutarea jucată; după o lovitură, {entryDifference}.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "mai multe intrări sunt blocate",
+  "tutorMoveComparisonLeavingMore": "mai multe intrări rămân deschise",
+  "tutorMoveComparisonFactorShots": "Mutarea optimă permite o lovitură de răspuns la {bestCount} din 36 de aruncări, față de {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Astfel, riscul imediat de a fi trimis înapoi scade.",
+  "tutorMoveComparisonExtraExposure": "Compară expunerea suplimentară cu avantajele pe care le aduce mutarea în alte privințe.",
+  "tutorMoveComparisonFactorPrime": "Cel mai lung șir de puncte închise are {bestCount} la mutarea optimă, față de {playedCount} la cea jucată. Compară lungimea barierei cu numărul de piese disponibile pentru a o menține intactă.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Ancorele după mutarea optimă sunt {bestPoints}, față de {playedPoints}. Păstrarea unei ancore oferă un punct sigur de aterizare; renunțarea la ea apropie piesele respective de casă.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Mutarea optimă scoate de pe tablă {bestCount} piese, față de {playedCount}. Fiecare piesă scoasă este una mai puțin de eliminat mai târziu.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Ambele mutări lasă același risc imediat de lovire, același număr de puncte închise în tabla interioară și de ancore, precum și același număr de piese scoase. Compară punctele de aterizare: următoarea aruncare poate folosi diferit aceste piese.",
+  "tutorMoveComparisonSummaryBar": "Mutarea optimă lasă mai multe piese ale adversarului pe bară, întârziindu-i celelalte mutări.",
+  "tutorMoveComparisonSummaryHomeBoard": "Mutarea optimă închide mai multe puncte în tabla interioară, îngreunând reintrarea după o lovitură.",
+  "tutorMoveComparisonSummaryShots": "Mutarea optimă permite mai puține aruncări imediate de lovire, reducând riscul de a fi trimis înapoi.",
+  "tutorMoveComparisonSummaryPrime": "Mutarea optimă păstrează un șir mai lung de puncte închise.",
+  "tutorMoveComparisonSummaryAnchors": "Mutarea optimă păstrează mai multe ancore sigure în tabla interioară a adversarului.",
+  "tutorMoveComparisonSummaryBearOff": "Mutarea optimă scoate mai multe piese de pe tablă, așa că rămân mai puține de eliminat ulterior.",
+  "tutorMoveComparisonSummaryBlots": "Această mutare lasă {playedCount} piese singure expuse; mutarea optimă lasă {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Mutarea optimă păstrează o ancoră sigură pe punctul {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Mutarea optimă închide mai multe puncte de intrare, în cazul în care una dintre piesele tale este lovită.",
+  "tutorMoveComparisonSummarySimilarRisks": "Mutările lasă riscuri imediate asemănătoare; compară care puncte de aterizare rămân utile la următoarea aruncare.",
+  "tutorMoveAssessmentEquityLoss": "Pierdere de echitate: {value}",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} pp pentru șansa de câștig a meciului (MWC)",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "un punct",
+  "tutorMovePointPlural": "puncte",
+  "tutorMoveNoPoints": "niciunul",
+  "gameTutorCommentaryOff": "Comentariul partidei este dezactivat.",
+  "gameTutorToolsAvailable": "Deschide tutorul pentru instrumentele activate.",
+  "gameTutorNextRoll": "Aruncă zarurile.",
+  "gameTutorNoEvaluatedReview": "Nu există o explicație evaluată pentru această mutare înregistrată.",
+  "gameTutorAnalysisUnavailable": "analiza nu este disponibilă",
+  "gameTutorReviewing": "se analizează…",
+  "gameTutorTryYourPlayFirst": "Încearcă mai întâi propria mutare.",
+  "gameTutorKeepBuilding": "Continuă să-ți construiești mutarea.",
+  "gameTutorStageCompleteBeforeCoaching": "Finalizează o mutare legală înainte să afișezi îndrumări sau sugestii.",
+  "gameTutorReadyToConfirm": "Gata de confirmare",
+  "gameTutorPlayTakingShape": "Mutarea ta prinde contur.",
+  "gameTutorConfirmOrUndo": "Confirmă pentru a juca sau anulează și reconsideră.",
+  "gameTutorFinishDiceOrUndo": "Folosește zarurile rămase sau anulează mutarea.",
+  "gameTutorComputerConsidering": "Calculatorul își analizează mutarea.",
+  "gameTutorComputerPlayReviewed": "Mutarea lui completă va fi analizată aici.",
+  "gameTutorYourPlay": "Mutarea ta",
+  "gameTutorComputer": "Calculator",
+  "gameTutorPlayQuality": "Mutarea ta: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "mutare forțată",
+  "gameTutorTopChoice": "cea mai bună alegere",
+  "gameTutorSoundPlay": "mutare bună",
+  "gameTutorAnotherPlayMayFitBetter": "o altă mutare s-ar putea potrivi mai bine",
+  "gameTutorAnotherPlayFitsBetter": "o altă mutare se potrivește mai bine acestei poziții",
+  "gameTutorStrongerPlayAvailable": "era disponibilă o mutare clar mai bună",
+  "gameTutorPositionEdge": "Evaluarea indică un avantaj pentru {side}.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Poziția este aproximativ egală.",
+  "tutorPlayedMove": "Jucat: {move}",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorBestMove": "Cel mai bun: {move}",
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorShowRankedPlays": "Arată mutările ordonate",
+  "tutorReviewRecordedMove": "Atinge o mutare încheiată din jurnal pentru a-i analiza decizia aici.",
+  "tutorTopPlays": "Cele mai bune mutări",
+  "tutorNoHintsAvailable": "Nu există indicii disponibile.",
+  "tutorPreviewThenConfirm": "Atinge o mutare pentru a o previzualiza pe tablă, apoi confirmă.",
+  "tutorTopChoiceForPosition": "Cea mai bună alegere pentru această poziție",
+  "tutorAlternativePlay": "Mutare alternativă",
+  "tutorEngineEstimates": "Estimările motorului",
+  "tutorEstimateScope": "Estimare la 0 ply — scorul și miza actuală — fără dublări viitoare",
+  "tutorEquity": "Echitate",
+  "tutorMwcPercent": "Probabilitatea de a câștiga meciul, %",
+  "tutorNearTiesNote": "O analiză mai aprofundată poate schimba ordinea mutărilor aproape egale.",
+  "tutorWhyThisPlay": "De ce această mutare?",
+  "tutorCompareAlternative": "Compară această alternativă",
+  "gameTutorCubeTake": "Sfatul tutorului: acceptă",
+  "gameTutorCubePass": "Sfatul tutorului: pasează",
+  "practiceScreenTitle": "Exersează o decizie",
+  "practiceUnavailable": "Această poziție de exersare nu mai este disponibilă.",
+  "practiceSubmitError": "Încercarea nu a putut fi evaluată sau salvată. Progresul nu s-a modificat. Încearcă din nou.",
+  "practiceTurnLabel": "Mută {side} · {dice}",
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "practiceHistoricalScoreUnavailable": "Scorul istoric nu este disponibil; mutarea este evaluată fără cub, după equity.",
+  "practiceScoreLine": "Scor: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, până la {matchLength}",
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceCrawfordGame": " · Joc Crawford",
+  "practiceNoDoublingCube": "Fără cub de dublare.",
+  "practiceCubeValue": "Valoarea cubului {value}.",
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceHistoricalCubeUnknown": "Regulile istorice ale cubului sunt necunoscute.",
+  "practiceAfterBestPosition": "Poziția după cea mai bună mutare",
+  "practiceAfterYourAnswerPosition": "Poziția după răspunsul tău",
+  "practiceFindYourPlayPrompt": "Fă-ți mutarea pe tablă, apoi verifică răspunsul. Nu primești indicii.",
+  "practiceUndo": "Anulează",
+  "practiceCheckAnswer": "Verifică răspunsul",
+  "practiceRevealNoCredit": "Arată răspunsul (fără puncte)",
+  "practiceAnswerRevealedNoCredit": "Răspunsul a fost dezvăluit — fără credit de memorare.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "practiceBestMoveLine": "Cea mai bună: {move}",
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceOriginalGameLine": "Mutarea din partida inițială: {move} · {loss}",
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "practiceYourAnswerLine": "Răspunsul tău: {move}",
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceYourAnswerChip": "Răspunsul tău",
+  "practiceBestPlayChip": "Cea mai bună mutare",
+  "practiceNextReview": "Următoarea revizuire: {date}.",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "practiceRecallCredit": "Răspunsurile bune și cele mai bune contează ca reamintire reușită. Repetările timpurii nu prelungesc intervalul.",
+  "practiceBackToLearning": "Înapoi la învățare",
+  "practiceMarkBest": "Cea mai bună",
+  "practiceMarkGood": "Bună",
+  "practiceMarkDubious": "Discutabilă",
+  "practiceMarkError": "Greșeală",
+  "practiceMarkBlunder": "Gafă",
+  "practiceMarkForced": "Forțată",
+  "newMatchYourSide": "Partea ta",
+  "newMatchTutorMode": "Modul tutore",
+  "newMatchTutorDescription": "Învață cu indicii, explicații și comentarii despre partidă",
+  "newMatchTutoringOptions": "Opțiuni de îndrumare",
+  "newMatchTutoringOptionsDescription": "Pentru această partidă; le poți schimba în timpul jocului",
+  "setupMatchLength": "Lungimea partidei",
+  "setupDifficulty": "Dificultate",
+  "setupDifficultyEasy": "Ușor",
+  "setupDifficultyMedium": "Mediu",
+  "setupDifficultyHard": "Greu",
+  "setupDifficultyExpert": "Expert",
+  "setupPlayWithoutCube": "Joacă fără cub",
+  "setupNoCubeThisMatch": "Fără cub de dublare în această partidă",
+  "diagnosticsCopySuccess": "Diagnostice copiate în clipboard",
+  "diagnosticsReviewTitle": "Verifică raportul de diagnostic",
+  "diagnosticsPrivacyNotice": "Deschiderea ciornei trimite către GitHub detaliile de mai jos, inclusiv versiunea aplicației, platforma și eventualele informații despre erori. Problema nu devine publică până când nu o trimiți acolo. Dacă aceste detalii conțin informații private, anulează și folosește copierea pentru a pregăti singur un raport.",
+  "diagnosticsCancel": "Anulează",
+  "diagnosticsOpenGitHub": "Deschide GitHub",
+  "diagnosticsTitle": "Diagnosticare",
+  "diagnosticsReportTooltip": "Raportează o problemă pe GitHub",
+  "diagnosticsCopyTooltip": "Copiază în clipboard",
+  "diagnosticsClearTooltip": "Șterge jurnalul",
+  "diagnosticsEmpty": "Nu s-au înregistrat erori.\n\nDacă apare o problemă, este înregistrată aici — revino și copiază detaliile într-un raport de eroare.",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · până la {matchLength}",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · până la {matchLength}",
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudYou": "Tu",
+  "gameHudAi": "Calculator",
+  "gameHudGameNumber": "Jocul {number}",
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudMatchContext": "{score} · {game}",
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "gameHudHotSeatDetail": "{whiteLabel} contra {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetail": "contra {opponent} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetailWithLevel": "contra {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPips": "Pipuri",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Dublați",
+  "gameHudMoreActions": "Mai multe acțiuni",
+  "gameHudSurrender": "Abandonează…",
+  "gameHudThinking": "Se gândește",
+  "gameHudDoubleBeforeRoll": "Poți dubla doar înainte de zaruri, când e rândul tău.",
+  "gameHudNoDoubleCrawford": "Nu se dublează în jocul Crawford — această partidă decide meciul.",
+  "gameHudOnlyCubeOwner": "Doar proprietarul cubului poate dubla, iar acum cubul aparține celeilalte părți.",
+  "gameHudDoubleUnavailable": "Dublarea nu este disponibilă acum.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (până la {matchLength})",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogPlayerWon": "{winner} câștigă această partidă ({points}).",
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonGammon": "{winner} câștigă această partidă ({points}, gammon).",
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonBackgammon": "{winner} câștigă această partidă ({points}, backgammon).",
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonDrop": "{winner} câștigă această partidă ({points}) — {loser} a refuzat dublarea.",
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPlayerWonResignation": "{winner} câștigă această partidă ({points}) — {loser} a abandonat.",
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPassDeviceTitle": "Predă dispozitivul",
+  "gameDialogPlayersTurn": "Rândul lui {name}",
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "gameDialogTapToContinue": "Atinge pentru a continua",
+  "gameDialogCubeOfferedTitle": "Dublare oferită",
+  "gameDialogCubeOfferMessage": "{doubler} oferă dublarea la {value}. Accepți sau renunți?{tutorLine}",
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "gameDialogPass": "Renunță",
+  "gameDialogTake": "Acceptă",
+  "gameDialogResignationTitle": "Abandon oferit",
+  "gameDialogResignationMessage": "{resigner} oferă să abandoneze pentru {value}. Accepți sau refuzi?",
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "gameDialogResignSingle": "partidă simplă",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Refuză",
+  "gameDialogAccept": "Acceptă",
+  "gameDialogGameOverTitle": "Partidă încheiată",
+  "gameDialogNextGame": "Partida următoare",
+  "gameDialogMatchOverTitle": "Meci încheiat",
+  "gameDialogNobody": "Nimeni",
+  "gameDialogMatchWinner": "{winner} câștigă meciul.",
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "gameDialogSavedToHistory": "Salvat în istoric",
+  "gameDialogDone": "Gata",
+  "gameMatchSummary": "Rezumatul meciului",
+  "gameAnalyzeGame": "Analizează partida",
+  "analysisTitle": "Analiză",
+  "analysisMetricsTooltip": "Ce înseamnă aceste numere?",
+  "analysisError": "Analiza partidei a eșuat: {error}",
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisNoPositions": "Partida nu are poziții de afișat.",
+  "analysisInProgress": "Se analizează…",
+  "analysisPercent": "{percent}%",
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisPlayed": "Jucat",
+  "analysisBest": "Cel mai bun",
+  "analysisPrevious": "Anterior",
+  "analysisNext": "Următor",
+  "analysisPositionBeforeCube": "Poziția înaintea deciziei privind cubul",
+  "analysisPositionAtPoint": "Poziția în acest moment al partidei",
+  "analysisShowingBestBefore": "Se afișează cea mai bună mutare din poziția anterioară mutării",
+  "analysisShowingBefore": "Se afișează poziția de dinaintea mutării",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "analysisMoveLoss": " −{loss}",
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisExcludedFromAverages": " · exclus din medii",
+  "analysisNoPlay": "(fără mutare)",
+  "analysisBestMoveLine": "Cel mai bun: {move}",
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "analysisExplain": "Explică",
+  "analysisSaveForPractice": "Salvează pentru antrenament",
+  "analysisSaveError": "Decizia nu a putut fi salvată: {error}",
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisCubeInfo": "{side}: {action} · {mark} · pierdere {loss}",
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "analysisCubeDecision": "Decizie privind cubul",
+  "analysisCubePlayed": "Jucat: {action} ({percent}% șanse de câștig al meciului).",
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisCubeBest": "Cel mai bun: {action} ({percent}% șanse de câștig al meciului).",
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisClose": "Închide",
+  "analysisMoves": "Mutări",
+  "analysisForced": "Forțat",
+  "analysisMarkBest": "Cel mai bun",
+  "analysisMarkGood": "Bun",
+  "analysisMarkDubious": "Discutabil",
+  "analysisMarkError": "Eroare",
+  "analysisMarkBlunder": "Greșeală gravă",
+  "analysisSummaryMeanLoss": "Pierdere medie {loss}",
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisSummaryCheckerDecisions": "{count} decizii cu piesele",
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryBlunders": "Greșeli grave {count}",
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryCubeLoss": "Pierdere la cub {loss}",
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisRollWithoutDoubling": "{side} aruncă fără să dubleze",
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "analysisCubeNoDouble": "Nu dubla",
+  "analysisCubeDouble": "Dublează",
+  "analysisCubeTake": "Acceptă",
+  "analysisCubePass": "Renunță",
+  "tutorOptions": "Opțiuni tutor",
+  "tutorCollapseTooltip": "Restrânge tutorul",
+  "tutorExpandTooltip": "Extinde tutorul",
+  "scoreSheetNoMoves": "Nu există mutări",
+  "gameTapNoLegalMove": "Atinge piesa ta pentru a vedea mutările legale.",
+  "gameTapNoLegalMoveUndo": "Atinge o piesă, apoi destinația.",
+  "gameDragHint": "Trage piesa la destinație.",
+  "commonGotIt": "Am înțeles",
+  "gameHintStageBeforeHint": "Înainte de indiciu",
+  "surrenderTitle": "Renunți la partidă?",
+  "surrenderSingle": "Pierdere simplă",
+  "surrenderGammon": "Pierdere gammon",
+  "surrenderBackgammon": "Pierdere backgammon",
+  "surrenderChoosePlayer": "Alege jucătorul",
+  "cubeDouble": "Dublează",
+  "gameStatusRolling": "Se aruncă zarurile",
+  "gameStatusThinking": "Calculatorul gândește",
+  "gameStatusPlayersTurn": "Tura lui {player}",
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "historyTitle": "Istoricul meciurilor",
+  "historyEmpty": "Nu ai jucat încă niciun meci.",
+  "historyDeleteConfirmTitle": "Ștergi acest meci?",
+  "actionCancel": "Anulează",
+  "actionDelete": "Șterge",
+  "historyDeleteFailed": "Meciul nu a putut fi șters.",
+  "historyComplete": "Încheiat",
+  "historyUnfinished": "Neterminat",
+  "historyMatchTitle": "Meci",
+  "historyNoGames": "Nu există partide înregistrate încă.",
+  "historyCrawford": "Crawford",
+  "historyModeComputer": "contra calculatorului",
+  "historyModeTwoPlayers": "Doi jucători",
+  "historyModeOnline": "Online",
+  "historyModeNearby": "Joacă în apropiere",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "În desfășurare",
+  "historyOutcomeSingle": "simplă",
+  "historyOutcomeGammon": "gammon",
+  "historyOutcomeBackgammon": "backgammon",
+  "learningRefreshTooltip": "Reîmprospătează progresul",
+  "learningOptions": "Opțiuni de învățare",
+  "learningResetMenu": "Resetează progresul antrenamentului",
+  "learningLoadFailed": "Progresul nu a putut fi încărcat.",
+  "actionRetry": "Încearcă din nou",
+  "learningHeading": "Învață din deciziile tale",
+  "learningBothSides": "Ambele părți",
+  "learningHumansOnly": "Doar decizii ale oamenilor",
+  "learningHumanOnlyHelp": "Dezactivează pentru a include deciziile calculatorului și ale adversarilor de la distanță",
+  "learningAnalyseSavedGames": "Analizează partidele salvate",
+  "learningOpenHistory": "Deschide istoricul meciurilor",
+  "learningRecurringThemes": "Teme recurente",
+  "learningNoThemes": "Nu există încă teme recurente de greșeli în această selecție.",
+  "learningSaveMistakes": "Salvează aceste greșeli pentru antrenament",
+  "learningSpacedPractice": "Antrenament distribuit",
+  "learningNoSavedPositions": "Salvează o decizie din reluare sau folosește butonul de greșeli de mai sus.",
+  "learningReadyToReview": "Gata de revizuire",
+  "learningSuccessStreak": "{count} revizuiri reușite consecutive",
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnswerRevealed": "Răspunsul a fost dezvăluit",
+  "learningSuccessfulRecall": "Reamintire reușită",
+  "learningTryAgain": "Încearcă din nou",
+  "actionRemove": "Elimină",
+  "onlineTitle": "Joc online",
+  "onlineUnassistedNote": "Tutorul nu este disponibil în jocul online.",
+  "onlineNotConfiguredTitle": "Jocul online nu este configurat",
+  "onlineNotConfiguredBody": "Jocul online nu este disponibil în această versiune.",
+  "onlineErrorNoMatch": "Meciul nu a fost găsit.",
+  "onlineErrorSeatTaken": "Locul este deja ocupat.",
+  "onlineErrorPermission": "Nu ai permisiunea pentru această acțiune.",
+  "onlineErrorGeneric": "Conectarea la jocul online a eșuat.",
+  "onlineMatchFinished": "Meciul s-a încheiat.",
+  "onlineEnterCodeError": "Introdu un cod valid.",
+  "onlineOpponentShort": "Adversar",
+  "onlineMatchInProgress": "Meci în desfășurare",
+  "onlineResumePrompt": "Jucai meciul {code}. Continui?",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Reconectează-te",
+  "onlineForgetMatch": "Uită meciul",
+  "onlineCreateTitle": "Creează un meci online",
+  "onlineMatchLength": "Durata meciului",
+  "onlineNoCubeTitle": "Joc fără cub",
+  "onlineNoCubeSubtitle": "Joacă fără cubul de dublare.",
+  "onlineCreate": "Creează",
+  "onlineWaitingOpponent": "Se așteaptă adversarul",
+  "onlineShareCode": "Partajează codul",
+  "onlineCopyCode": "Copiază codul",
+  "onlineCodeCopied": "Cod copiat",
+  "onlineJoinTitle": "Alătură-te unui meci",
+  "onlineRoomCode": "Codul camerei",
+  "onlineJoin": "Alătură-te",
+  "lanTitle": "Joacă în apropiere",
+  "lanTabHost": "Găzduiește",
+  "lanTabJoin": "Alătură-te",
+  "lanHostTitle": "Găzduiește un joc",
+  "lanStartHosting": "Pornește găzduirea",
+  "lanWaitingPlayerTitle": "Se așteaptă un jucător",
+  "lanWaitingPlayer": "Se așteaptă un jucător…",
+  "lanStopHosting": "Oprește găzduirea",
+  "lanOnNetwork": "În această rețea",
+  "lanCopyAddress": "Copiază adresa",
+  "lanAddressCopied": "Adresă copiată",
+  "lanScanHostTitle": "Scanează gazda",
+  "lanScanQr": "Scanează codul QR",
+  "lanNearbyGames": "Jocuri din apropiere",
+  "lanSearching": "Se caută jocuri din apropiere…",
+  "lanStillSearching": "Se caută în continuare…",
+  "lanEnterAddress": "Introdu adresa",
+  "lanIpAddress": "Adresă IP",
+  "lanPort": "Port",
+  "lanInvalidPort": "Introdu un port între 1 și 65535.",
+  "lanJoinWrongCode": "Cod de cameră greșit. Verifică cele patru cifre de pe celălalt dispozitiv.",
+  "lanConnect": "Conectează-te",
+  "lanBack": "Înapoi",
+  "lanTryAgain": "Încearcă din nou",
+  "lanStatusBusy": "Camera este ocupată — se așteaptă…",
+  "lanStatusReconnecting": "Conexiunea s-a pierdut — se reîncearcă…",
+  "lanStatusConnected": "Conectat — începe meciul…",
+  "lanStatusFailed": "Conectarea a eșuat.",
+  "lanStatusConnecting": "Se conectează…",
+  "tutorCubelessEstimateScope": "Estimare 0-ply fără cub · scor indisponibil",
+  "tutorLossPp": "Pierdere pp",
+  "tutorLoss": "Pierdere",
+  "surrenderNamedConcedes": "{player} renunță la partida curentă.",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderConcedes": "Renunță la partida curentă.",
+  "surrenderAvailableAtNamedTurn": "Disponibil la începutul turei lui {player}",
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderAvailableAtYourTurn": "Disponibil la începutul turei tale",
+  "commonCancel": "Anulează",
+  "commonDone": "Gata",
+  "cubeBlockedOtherPlayersTurn": "Este rândul celuilalt jucător.",
+  "cubeBlockedCrawford": "Cubul nu este disponibil în partida Crawford.",
+  "cubeBlockedOwnedByOther": "Doar proprietarul cubului poate dubla, iar acum cubul aparține celeilalte părți.",
+  "cubeBlockedUnavailable": "Dublarea nu este disponibilă acum.",
+  "cubeAdviceOpponentTake": "Dublează — adversarul ar trebui să accepte",
+  "cubeAdviceOpponentPass": "Dublează — adversarul ar trebui să renunțe",
+  "gameErrorBannerLabel": "Eroare: {error}",
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "metricExplainerTitle": "Înțelegerea indicatorilor",
+  "metricExplainerTooltip": "Ce înseamnă aceste numere?",
+  "metricExplainerMwcTitle": "Șanse de câștig al meciului (MWC)",
+  "metricExplainerSearchTitle": "Căutare și incertitudine",
+  "metricExplainerEquityTitle": "Echitate",
+  "metricExplainerEquityLossTitle": "Pierdere de echitate (ex. −0,016)",
+  "metricExplainerErrorRateTitle": "Rata erorilor",
+  "metricExplainerMoveMarksTitle": "Marcajele mutărilor",
+  "metricExplainerGotIt": "Am înțeles",
+  "metricExplainerThresholdBest": "pierdut < 0,001",
+  "metricExplainerThresholdGood": "pierdut < 0,020",
+  "metricExplainerThresholdDubious": "pierdut < 0,050",
+  "metricExplainerThresholdError": "pierdut < 0,110",
+  "metricExplainerThresholdBlunder": "pierdut ≥ 0,110",
+  "historyLoadFailed": "Istoricul nu a putut fi încărcat:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyDeleteConfirmBody": "{scoreLine}\n\nMeciul și toate partidele înregistrate în el vor fi șterse definitiv. Acțiunea nu poate fi anulată.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyWinner": "{side} a câștigat",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyMatchLoadFailed": "Meciul nu a putut fi încărcat:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Partidele nu au putut fi încărcate:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGameTitle": "Partida {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyScoreLine": "Albe {whiteScore} — {blackScore} Negre  (până la {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyGameResult": "{side} câștigă {points} ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "learningDecisionSummary": "{decisions} decizii · {mistakes} de îmbunătățit · {blunders} greșeli grave",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAverageLoss": "Pierdere medie ({decisions} decizii): {loss}",
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "learningForcedDisclaimer": "Mutările forțate sunt excluse. Acestea sunt estimări ale motorului, nu un rating de turneu.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Partida salvată are nevoie de analiză sau de o analiză actualizată.} other{# partide salvate au nevoie de analiză sau de o analiză actualizată.}}",
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeDecisions": "{count} decizii de revizuit. O poziție poate avea mai multe teme.",
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSavedMistakes": "Ai {count} decizii în lista de antrenament. Salvările existente se păstrează o singură dată.",
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSaveMistakesFailed": "Unele decizii nu au putut fi salvate. Cele finalizate sunt păstrate; încearcă din nou.",
+  "learningPracticeCounts": "Scadente acum: {due} · salvate: {saved} · încercări: {attempts} · reamintiri reușite: {successes}",
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningPositionTitle": "Decizia lui {side} · partida {gameId}",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningReviewDue": "Revizuire {date}",
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "learningAttemptSubtitle": "{date} · poziția salvată {positionId}",
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisProgress": "Partide analizate: {completed} · indisponibile: {failed}.",
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisComplete": "Partide analizate: {completed}.",
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisCompleteWithErrors": "Au fost analizate {completed} partide; {failed} nu au putut fi analizate. Încearcă din nou când motorul este gata.",
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeHitting": "Lovire și tempo",
+  "learningThemeSafety": "Piese expuse și siguranță",
+  "learningThemePointMaking": "Formarea punctelor",
+  "learningThemePrime": "Prime și blocaje",
+  "learningThemeAnchor": "Ancore și evadare",
+  "learningThemeRace": "Eficiența cursei",
+  "learningThemeBearOff": "Scoaterea pieselor",
+  "learningThemeBarEntry": "Intrarea de pe bară",
+  "learningThemeCube": "Decizii privind cubul",
+  "learningAnalysisStarting": "Se analizează partidele salvate…",
+  "learningIntro": "Progresul este păstrat pe acest dispozitiv. Revizuiește temele recurente, apoi încearcă din nou pozițiile salvate fără să vezi răspunsul. Poți revizui separat Albele și Negrele.",
+  "learningEmptyProfile": "Joacă și termină un meci pentru a-ți construi profilul de învățare. Poți salva și decizii individuale din reluarea unui meci.",
+  "learningIntervalsHelp": "Revizuirile reușite revin după 1, 3, 7, 14 și 30 de zile. Greșelile sau răspunsurile dezvăluite revin după 10 minute. Repetările timpurii nu măresc intervalul.",
+  "learningAnswerContext": "Rezultatele antrenamentului reflectă răspunsurile tale aici, chiar dacă poziția inițială aparținea adversarului.",
+  "learningRemoveTooltip": "Elimină decizia salvată",
+  "learningRecentPractice": "Antrenament recent",
+  "learningRemoveTitle": "Elimini acest exercițiu?",
+  "learningRemoveBody": "Acest lucru elimină încercările sale de antrenament. Meciul original rămâne în istoric.",
+  "learningRemoveFailed": "Exercițiul nu a putut fi eliminat.",
+  "learningResetTitle": "Resetezi progresul antrenamentului?",
+  "learningResetBody": "Toate încercările și intervalele de revizuire vor fi eliminate. Exercițiile salvate și istoricul meciurilor se păstrează; toate exercițiile devin scadente acum.",
+  "learningResetAction": "Resetează progresul",
+  "learningResetFailed": "Progresul antrenamentului nu a putut fi resetat.",
+  "lanUnassistedNote": "Jocurile locale nu au tutor. După meci, revizuiește mutările și exersează greșelile.",
+  "lanGameStartFailed": "Jocul nu a putut porni. Celălalt dispozitiv poate încerca să se conecteze din nou.",
+  "lanHostPortInUse": "Găzduirea nu a putut porni — portul este deja folosit. Închide alte copii Backgammon Buddy și încearcă din nou.",
+  "lanHostStartFailed": "Găzduirea nu a putut porni. Verifică Wi-Fi și încearcă din nou.",
+  "lanHostHelp": "Ambele dispozitive trebuie să fie în aceeași rețea Wi-Fi. Acesta aruncă zarurile și ține scorul.",
+  "lanRoomCodeInfo": "Spune-i celuilalt jucător acest cod. Îi permite accesul — aplicația nu îl trimite prin rețea.",
+  "lanFindNearbyPort": "Cere celuilalt dispozitiv să caute jocuri din apropiere. Ascultă pe portul {port}.",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "lanScanHostHelp": "Celălalt dispozitiv afișează un cod QR pe ecranul de gazdă. Scanarea completează adresa și codul camerei.",
+  "lanScannerUnavailable": "Camera sau permisiunea ei nu este disponibilă. Introdu mai jos adresa și codul camerei.",
+  "lanInvalidQr": "Acest cod QR nu este un joc Backgammon Buddy. Scanează codul de pe ecranul de gazdă al celuilalt dispozitiv.",
+  "lanScannerFailed": "Scannerul nu a putut fi deschis. Introdu mai jos adresa și codul.",
+  "lanNoGamesFound": "Nu s-au găsit jocuri încă. Asigură-te că celălalt dispozitiv găzduiește jocul și ambele folosesc aceeași rețea Wi-Fi sau introdu adresa.",
+  "lanEnterAddressHelp": "Descoperirea automată nu funcționează în toate rețelele (pe iOS poate fi blocată complet). Ecranul de gazdă arată ce trebuie introdus.",
+  "lanEnterAddressError": "Introdu adresa afișată pe celălalt dispozitiv.",
+  "lanEnterRoomCodeError": "Introdu codul de 4 cifre de pe celălalt dispozitiv.",
+  "lanJoinVersionMismatch": "Celălalt dispozitiv folosește o altă versiune Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "Dispozitivul nu a răspuns ca Backgammon Buddy. Verifică adresa și portul.",
+  "lanJoinFailed": "Conectarea a eșuat. Verifică adresa și codul camerei, apoi încearcă din nou.",
+  "lanJoinTarget": "Alătură-te: {name}",
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "lanJoinTargetHelp": "Introdu codul de 4 cifre afișat pe celălalt dispozitiv.",
+  "lanJoiningTarget": "Se alătură la {name}",
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "analysisCubeEstimate": "Estimare 0-ply din perspectiva jucătorului aflat la mutare. Presupune un răspuns optim de acceptare sau pasare. Pentru ramura unei dublări acceptate folosește o aproximație de 0,7 a duratei cubului, nu o căutare completă a redublărilor viitoare. Analiza mai profundă poate schimba răspunsul.",
+  "metricExplainerMwcBody": "Când scorul este cunoscut, mutările cu piesele sunt clasate după șansa estimată de câștig al meciului. Pierderea este în puncte procentuale (pp): 1 pp înseamnă că 51% scade la 50%. Sunt incluse miza cubului și rezultatele gammon/backgammon. Pasurile forțate și aruncările cu o singură poziție legală sunt excluse din medii.",
+  "metricExplainerSearchBody": "Clasarea mutărilor este o estimare statică 0-ply după mutare, nu o simulare. Valorile meciului folosesc un tabel de echitate și nu includ ture viitoare ale cubului. Analiza cubului folosește o aproximație parțială de 0,7 a duratei cubului pentru dublările acceptate; nu este o căutare completă cu cubul. Pentru scoruri rămase peste 25 se folosește limita 25-away a tabelului. Analiza mai profundă poate schimba rezultatele apropiate; nu există un interval de încredere calibrat.",
+  "metricExplainerEquityBody": "Dacă scorul nu este disponibil, echitatea fără cub arată valoarea medie a poziției în puncte cu cubul la 1. +1,0 înseamnă că te aștepți să câștigi un punct; −0,5, să pierzi jumătate de punct.",
+  "metricExplainerEquityLossBody": "Comparăm mutarea jucată cu cea mai bună mutare a motorului. Pierderea de echitate arată câtă valoare estimată ai cedat. −0,016 înseamnă că mutarea a fost cu doar 0,016 puncte mai slabă — o scăpare minoră. 0,000 înseamnă că ai găsit cea mai bună mutare.",
+  "metricExplainerErrorRateBody": "Pierderea medie este media deciziilor evaluate cu piesele, în unitatea afișată. Deciziile cu cubul au o medie separată. O valoare mai mică înseamnă mutări mai apropiate de estimările motorului; nu este un rating calibrat al jucătorului.",
+  "metricExplainerMoveMarksBody": "Praguri MWC pentru învățare: Cel mai bun < 0,05 pp, Bun < 0,5 pp, Discutabil < 1,5 pp, Eroare < 3 pp, Greșeală gravă ≥ 3 pp. Sunt praguri educative, nu valori calibrate de încredere sau ratinguri de turneu.\n\nPraguri educative pentru echitatea fără cub:"
 }

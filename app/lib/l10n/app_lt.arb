@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Mokomuosiuose paaiškinimuose taškai skaičiuojami nuo einančio žaidėjo namų lentos.",
   "tutorHittingRollNote": "Smūgiavimo galimybių skaičius apima visus 36 išrikiuotus kauliukų derinius ir teisėtus tiesioginius ar netiesioginius smūgius; tai galimybės, o ne priešininko pasirinkimo prognozė.",
   "tutorNoEvaluatedAlternatives": "Šiam ėjimui nėra įvertintų alternatyvų.",
-  "tutorForcedPassNoDecision": "Priverstinis ėjimo praleidimas nėra sprendimas, kaip perkelti šaškes."
+  "tutorForcedPassNoDecision": "Priverstinis ėjimo praleidimas nėra sprendimas, kaip perkelti šaškes.",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Šis metimas nepalieka pasirinkimo, kaip perkelti šaškes; jis nevertinamas kaip sprendimas.",
+  "tutorMoveTopVerdict": "Geriausias pasirinkimas šioje pozicijoje.",
+  "tutorMoveAlternativeVerdict": "Šioje pozicijoje variklis teikia pirmenybę kitam ėjimui.",
+  "tutorMoveEstimateDifference": "Skirtumas nuo geriausio ėjimo: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Po šio ėjimo: pergalės tikimybė {winPercent}%, pergalės su gamonu ar geriau {winGammonPercent}%, pralaimėjimo su gamonu ar blogiau {loseGammonPercent}%. Įverčiai pateikti ėjusio žaidėjo požiūriu.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Numatoma mačo pergalės tikimybė: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Visos 15 šaškių nuimtos nuo lentos – partija laimėta.",
+  "tutorMovePlanHit": "Smūgiuok, kad laimėtum laiko, kol varžovas grįš nuo baro. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Išlaikyk užimtus savo namų lentos punktus, kad varžovui būtų sunkiau grįžti.",
+  "tutorMovePlanHitBuild": "Užimk daugiau savo namų lentos punktų, kad varžovui būtų sunkiau atsigauti po būsimų smūgių.",
+  "tutorMovePlanRaceBearOff": "Nuimk šaškes veiksmingai: pašalink jas nuo lentos ir išsaugok palankius skaičius kitam metimui.",
+  "tutorMovePlanRaceHome": "Parvesk atsilikusias šaškes namo ir išdėliok jas patogiuose punktuose nuėmimui.",
+  "tutorMovePlanContactBearOff": "Nuiminėk šaškes, bet stebėk atsilikusias varžovo šaškes: kol yra kontaktas, neapsaugota šaškė gali tapti taikiniu.",
+  "tutorMovePlanReentry": "Grįžk į žaidimą, tada ieškok saugaus punkto įėjusiai šaškei.",
+  "tutorMovePlanHomeBoard": "Sustiprink savo namų lentą. Naujas užimtas punktas sustiprins būsimą smūgį, nes panaikins vieną įėjimo skaičių.",
+  "tutorMovePlanPrime": "Išlaikyk vientisą užimtų punktų eilę. Palik atsarginių šaškių, kad vėlesnis metimas nepriverstų jos atverti.",
+  "tutorMovePlanLeaveAnchor": "Palikęs inkarą pastumsi atsilikusias šaškes į priekį, bet prarasi saugią atramą. Stebėk jų pažeidžiamumą keliaujant namo.",
+  "tutorMovePlanNewAnchor": "Naudok naują inkarą kaip saugią atramą, kol gerini likusią poziciją.",
+  "tutorMovePlanCoverBlot": "Sutelk šaškes. Uždengęs pavienę šaškę pašalini taikinį ir išsaugai būsimų nusileidimo punktų galimybes.",
+  "tutorMovePlanSafety": "Derink plėtrą su saugumu: vesk parengiamąsias šaškes link naudingų punktų ir tikrink, kurias pavienes šaškes galima smūgiuoti.",
+  "tutorMoveObservationNoLegalPlay": "Nėra teisėto ėjimo šaškėmis – reikia praleisti ėjimą.",
+  "tutorMoveObservationHit": "Smūgiuoja į {count} {count, plural, one{varžovo šaškę} few{varžovo šaškes} other{varžovo šaškes}}; varžovas privalo grįžti nuo baro prieš judindamas kitas šaškes.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Įveda {count} šaškę(-es) nuo baro.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Nuima nuo lentos {count} {count, plural, one{šaškę} few{šaškes} other{šaškes}}.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Užima punktus {points}. Dvi ar daugiau šaškių saugiai užima punktą ir neleidžia varžovui ten nusileisti.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Atveria užimtus {pointLabel} {points}. Šie punktai nebeužblokuoja varžovo.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Nepalieka atvirų pavienių šaškių (anksčiau {previousCount}). Nėra pavienių šaškių, kurias būtų galima smūgiuoti.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Palieka {count} pavien{count, plural, one{ę atvirą šaškę} few{es atviras šaškes} other{ių atvirų šaškių}} (anksčiau {previousCount}). Patikrink, ar varžovas jas pasieks, prieš rinkdamasis saugumą vietoj kitos naudos.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Ilgiausia užimtų punktų eilė: {count} (anksčiau {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Šešių punktų blokas neperžengiamas, kol lieka užimtas.",
+  "tutorMoveObservationPrimeBuild": "Laikyk parengiamąsias šaškes netoliese, jei nori pratęsti arba išlaikyti šią eilę.",
+  "tutorMoveObservationPrimeSpares": "Virš dviejų šaškių, laikančių užimtus punktus, yra {count} atsarginių. Perkėlus atsarginę šaškę punktas gali likti užimtas; perkėlus vieną iš paskutinių dviejų jis atsivers.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Inkarai varžovo namų lentoje: {points} (anksčiau {previousPoints}). Inkaras apsaugo šias šaškes nuo smūgių; jo atsisakymas iškeičia saugią atramą į pažangą lenktynėse.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Grynos lenktynės: pusės prasilenkė ir nė viena neturi šaškių ant baro. Smūgiuoti nebegalima; svarbus veiksmingas šaškių nuėmimas.",
+  "tutorMoveObservationNoReplyHit": "Nė vienas teisėtas kitas metimas nesuteikia varžovui galimybės smūgiuoti šioje pozicijoje. Kontaktas išlieka, todėl vėlesni ėjimai gali sukurti naujų smūgio progų.",
+  "tutorMoveObservationReplyHit": "Varžovas gali smūgiuoti per {count} iš {total} metimų. Pavyzdžiui, {dieOne}–{dieTwo} leidžia teisėtai smūgiuoti tavo šaškę {point}-ame punkte. Galimybė smūgiuoti nereiškia, kad varžovas ja pasinaudos.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Tavo namų lentoje užimta {closedPoints} punktų. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Varžovas negali grįžti, kol neatsivers punktas.",
+  "tutorMoveObservationOpenEntry": "Metimas, atitinkantis atvirą įėjimo punktą, gali grąžinti šaškę nuo baro.",
+  "tutorMoveComparisonDetail": "{factors} Geriausio ėjimo numatoma pergalės tikimybė {delta} procentinio punkto {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "didesnė",
+  "tutorMoveComparisonLower": "mažesnė",
+  "tutorMoveComparisonScoreContext": " Jis vis tiek gali būti įvertintas geriau, nes gamono ir backgamono vertė priklauso nuo esamo {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "rezultato",
+  "tutorMoveComparisonMatchScore": "mačo rezultato",
+  "tutorMoveComparisonFactorBar": "Geriausias ėjimas palieka ant baro {bestCount} varžovo šaškes vietoj {playedCount}. Ant baro esanti šaškė turi grįžti, kol varžovas gali judinti kitas.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Geriausias ėjimas išlaiko užimtus {bestCount} namų lentos punktus vietoj {playedCount} – po smūgio lieka {entryDifference} įėjimo punktų.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "uždarant daugiau punktų",
+  "tutorMoveComparisonLeavingMore": "paliekant daugiau atvirų punktų",
+  "tutorMoveComparisonFactorShots": "Po geriausio ėjimo varžovas gali smūgiuoti per {bestCount} iš 36 metimų vietoj {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Taip sumažėja tiesioginė rizika, kad tavo šaškė bus numušta.",
+  "tutorMoveComparisonExtraExposure": "Palygink šį papildomą pažeidžiamumą su kita ėjimo nauda.",
+  "tutorMoveComparisonFactorPrime": "Ilgiausia užimtų punktų eilė geriausiame ėjime yra {bestCount}, o ne {playedCount}; palygink blokadą su šaškėmis, kuriomis ją galima išlaikyti.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Geriausias ėjimas išlaiko {bestPoints} inkarus vietoj {playedPoints}. Inkaras išsaugo saugų punktą; jį palikus šaškės priartėja namų link.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Geriausias ėjimas nuima {bestCount} šaškes vietoj {playedCount}. Kiekvienos nuimtos šaškės vėliau nebereikės pašalinti.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Abu ėjimai palieka tokią pačią tiesioginę smūgio riziką, namų lentos punktus, inkarus ir nuimtų šaškių skaičių. Palygink nusileidimo punktus: per kitą metimą šaškes galėsi panaudoti skirtingai.",
+  "tutorMoveComparisonSummaryBar": "Geriausias ėjimas nusiunčia ant baro daugiau varžovo šaškių ir pristabdo kitus jo ėjimus.",
+  "tutorMoveComparisonSummaryHomeBoard": "Geriausias ėjimas uždaro daugiau namų lentos punktų ir apsunkina grįžimą po smūgio.",
+  "tutorMoveComparisonSummaryShots": "Geriausias ėjimas leidžia mažiau iškart galimų smūgių ir sumažina atsakomojo smūgio riziką.",
+  "tutorMoveComparisonSummaryPrime": "Geriausias ėjimas išsaugo ilgesnę užimtų punktų eilę.",
+  "tutorMoveComparisonSummaryAnchors": "Geriausias ėjimas išlaiko daugiau saugių inkarų varžovo namų lentoje.",
+  "tutorMoveComparisonSummaryBearOff": "Geriausias ėjimas nuima daugiau šaškių, todėl vėliau liks mažiau.",
+  "tutorMoveComparisonSummaryBlots": "Šis ėjimas palieka {playedCount} pavienes šaškes; geriausias – {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Geriausias ėjimas išlaiko saugų inkarą {point}-ame punkte.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Geriausias ėjimas uždaro daugiau įėjimo punktų, jei viena tavo šaškė būtų numušta.",
+  "tutorMoveComparisonSummarySimilarRisks": "Tiesioginė ėjimų rizika panaši; palygink, kurie nusileidimo punktai liks naudingi kitą metimą.",
+  "tutorMoveAssessmentEquityLoss": "{value} ekviti",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} mačo pergalės tikimybės procentinio punkto",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "punktas",
+  "tutorMovePointPlural": "punktai",
+  "tutorMoveNoPoints": "nėra",
+  "gameTutorCommentaryOff": "Partijos komentarai išjungti.",
+  "gameTutorToolsAvailable": "Atverk trenerį, kad pasiektum įjungtus įrankius.",
+  "gameTutorNextRoll": "Dabar mesk kauliukus.",
+  "gameTutorNoEvaluatedReview": "Šiam įrašytam ėjimui nėra įvertinto paaiškinimo.",
+  "gameTutorAnalysisUnavailable": "analizė nepasiekiama",
+  "gameTutorReviewing": "analizuojama…",
+  "gameTutorTryYourPlayFirst": "Pirmiausia pabandyk atlikti ėjimą pats.",
+  "gameTutorKeepBuilding": "Toliau dėliok savo ėjimą.",
+  "gameTutorStageCompleteBeforeCoaching": "Užbaik visą teisėtą ėjimą prieš rodydamas patarimus ar užuominas.",
+  "gameTutorReadyToConfirm": "Galima patvirtinti",
+  "gameTutorPlayTakingShape": "Tavo ėjimas įgauna formą.",
+  "gameTutorConfirmOrUndo": "Patvirtink ėjimą arba atšauk ir apsvarstyk dar kartą.",
+  "gameTutorFinishDiceOrUndo": "Panaudok likusius kauliukus arba atšauk ėjimą.",
+  "gameTutorComputerConsidering": "Kompiuteris svarsto savo ėjimą.",
+  "gameTutorComputerPlayReviewed": "Užbaigtas kompiuterio ėjimas bus aptartas čia.",
+  "gameTutorYourPlay": "Tavo ėjimas",
+  "gameTutorComputer": "Kompiuteris",
+  "gameTutorPlayQuality": "Tavo ėjimas: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "priverstinis ėjimas",
+  "gameTutorTopChoice": "geriausias pasirinkimas",
+  "gameTutorSoundPlay": "geras ėjimas",
+  "gameTutorAnotherPlayMayFitBetter": "Galbūt tiktų kitas ėjimas.",
+  "gameTutorAnotherPlayFitsBetter": "Kitas ėjimas šiai pozicijai tinka geriau.",
+  "gameTutorStrongerPlayAvailable": "Buvo galimas aiškiai stipresnis ėjimas.",
+  "gameTutorPositionEdge": "Pagal įvertinimą pranašumą turi {side}.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Pozicija apylygė.",
+  "settingsReset": "Atkurti",
+  "settingsAppLanguage": "Programos kalba",
+  "settingsTheme": "Tema",
+  "settingsThemeSystem": "Sistemos",
+  "settingsThemeLight": "Šviesi",
+  "settingsThemeDark": "Tamsi",
+  "settingsAnimationSpeed": "Animacijos greitis",
+  "settingsAnimationNone": "Nėra",
+  "settingsAnimationNormal": "Įprastas",
+  "settingsAnimationFast": "Greitas",
+  "settingsDiceRollAnimation": "Kauliukų metimo animacija",
+  "settingsDiceRollAnimationHelp": "Prieš kiekvieną metimą kauliukai paridenami.",
+  "settingsDefaultMatchLength": "Numatytasis mačo ilgis",
+  "settingsDefaultDifficulty": "Numatytasis sudėtingumas",
+  "settingsDifficultyEasy": "Lengvas",
+  "settingsDifficultyMedium": "Vidutinis",
+  "settingsDifficultyHard": "Sunkus",
+  "settingsDifficultyExpert": "Ekspertas",
+  "settingsTutorModeDefault": "Numatytasis trenerio režimas",
+  "settingsTutorAuto": "Automatinis",
+  "settingsTutorOn": "Įjungta",
+  "settingsTutorOff": "Išjungta",
+  "settingsTutorModeHelp": "Automatinis režimas įjungia trenerį esant bet kokiam kompiuterio sudėtingumo lygiui. Įjungta ir Išjungta nustato vietinių mačų pradinę parinktį. Žaidžiant greta ar internetu pagalba neteikiama; išsaugotas partijas galima peržiūrėti vėliau. Toliau pateiktos mokymosi nuostatos išsaugomos šiame įrenginyje.",
+  "settingsTutorPreferences": "Trenerio nuostatos",
+  "settingsTutorPreferencesSubtitle": "Numatytosios nuostatos būsimiems mačams",
+  "settingsTutorSaveError": "Nepavyko išsaugoti trenerio nuostatų.",
+  "settingsGameplay": "Žaidimo eiga",
+  "settingsMoveHighlights": "Ėjimų paryškinimas",
+  "settingsMoveHighlightsHelp": "Pažymėk pasirenkamas šaškes ir paryškink paskirties vietas.",
+  "settingsDragToMove": "Vilkti norint perkelti",
+  "settingsDragToMoveHelp": "Vilk šaškę į paskirties vietą (bakstelėti taip pat galima).",
+  "settingsCombinedMoves": "Sujungti ėjimai",
+  "settingsCombinedMovesHelp": "Vienu bakstelėjimu perkelk šaškę pagal abu kauliukus.",
+  "settingsRotateBoard": "Pasukti lentą tarp ėjimų",
+  "settingsRotateBoardHelp": "Žaidžiant pakaitomis apversk vaizdą aktyviam žaidėjui.",
+  "settingsPassDevice": "Įrenginio perdavimo ekranas",
+  "settingsPassDeviceHelp": "Paslėpk lentą tarp ėjimų žaidžiant pakaitomis.",
+  "settingsShowScore": "Rodyti rezultatą",
+  "settingsShowScoreHelp": "Antraštėje rodyti dabartinį mačo rezultatą.",
+  "settingsBuddyMode": "Buddy režimas",
+  "settingsBuddyTerse": "Trumpai",
+  "settingsBuddyFriendly": "Draugiškai",
+  "settingsBuddyTerseHelp": "Kaip Buddy garsiai pasako ėjimą: „13/8, 24/22“ – žymėjimu, kaip prie lentos kalba du žaidėjai.",
+  "settingsBuddyFriendlyHelp": "Kaip Buddy garsiai pasako ėjimą: „Perkelk vieną šaškę iš 13 į 8, kitą – iš 24 į 22.“",
+  "settingsListenForDice": "Klausytis kauliukų",
+  "settingsListenForDiceHelp": "Išgirdęs metimą Buddy greičiau pažvelgia į lentą. Išjungus niekas kitas nesikeičia.",
+  "settingsDiagnostics": "Diagnostika",
+  "settingsErrorLog": "Klaidų žurnalas",
+  "settingsErrorLogHelp": "Naujausios klaidos, paruoštos kopijuoti į pranešimą apie riktą.",
+  "settingsReportBug": "Pranešti apie riktą",
+  "settingsReportBugHelp": "Atverti vedamą pranešimo formą GitHub svetainėje.",
+  "settingsSuggestIdea": "Pasiūlyti idėją",
+  "settingsSuggestIdeaHelp": "Padėk mums tobulinti trenerį ir žaidimą.",
+  "settingsAbout": "Apie programą",
+  "settingsOpenSourceLicenses": "Atvirojo kodo licencijos",
+  "tutorPhraseGameFinished": "Partija baigta.",
+  "tutorPhraseReviewFinishedGame": "Peržiūrėk ėjimus ir rask sprendimą, kurį verta pasitreniruoti.",
+  "tutorPhraseCubeOffered": "Pasiūlytas dvigubinimo kubas.",
+  "tutorPhraseCubeDecisionPrompt": "Prieš planuodamas šaškių ėjimą nuspręsk, ar priimti kubą, ar pasiduoti.",
+  "tutorPhraseCubeScoreContext": "Mačo rezultatas keičia papildomo statymo vertę.",
+  "tutorPhraseResignationOffered": "Pasiūlyta pasiduoti.",
+  "tutorPhraseResignationDecisionPrompt": "Prieš priimdamas ar tęsdamas palygink siūlomus taškus su pozicija.",
+  "tutorPhraseNoLegalPlay": "Su šiuo metimu nėra teisėto ėjimo.",
+  "tutorPhraseForcedPassPrompt": "Priverstinis praleidimas nėra klaida; lauk kito metimo.",
+  "tutorPhraseOnlyOneResult": "Galima tik viena teisėta galutinė pozicija.",
+  "tutorPhraseForcedTurnPrompt": "Atlik priverstinį ėjimą. Šio metimo pasirinkimo vertinti nereikia.",
+  "tutorPhrasePipCountsLevel": "Pipų skaičius vienodas.",
+  "tutorPhrasePipCountsAhead": "Turi {count} pipų persvarą.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "Atsilieki {count} pipais.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "Ant baro yra {count} šaškės: pirmiausia reikia įeiti.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Pirmiausia įeik į lentą, tada ieškok saugios vietos nusileisti.",
+  "tutorPhraseOpponentHomePoints": "Varžovas užėmęs {count} namų lentos punktų.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Šaškių nuėmimo lenktynės.",
+  "tutorPhrasePureRace": "Grynosios lenktynės.",
+  "tutorPhraseBearOffSpread": "Nuimk šaškes ir palik naudingą išsidėstymą kitam metimui.",
+  "tutorPhraseBringRearCheckersHome": "Parvesk galines šaškes namo, nesukraudamas per daug į vieną punktą.",
+  "tutorPhraseArmiesHavePassed": "Šaškės prasilenkė; daugiau smūgiuoti nebegalima.",
+  "tutorPhraseContactStillMatters": "{part} Kontaktas vis dar svarbus.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "Ant baro yra {count} varžovo šaškės.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Išlaikyk lentą uždarytą, kol parvesi likusias šaškes namo.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Stiprink arba išlaikyk savo namų lentą, kol varžovas bando įeiti.",
+  "tutorPhraseHomePointsCloseEntries": "Esi užėmęs {count} namų lentos punktų; kiekvienas uždaro vieną įėjimo skaičių.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Kontaktas su {count} punktų bloku.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Palygink bloko pratęsimą su atsarginių šaškių išsaugojimu jam palaikyti.",
+  "tutorPhraseSpareCheckersCanMove": "{count} atsargines šaškes galima perkelti iškart neatveriant punkto.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Kontaktas su inkaru punktuose {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Palygink galinių šaškių parvedimą namo su saugumu, kurį suteikia išlaikytas inkaras.",
+  "tutorPhraseCompareAnchorProgressBehind": "Ieškodamas smūgio ar stiprindamas lentą nepamiršk saugios atramos.",
+  "tutorPhrasePreserveAnchorFoothold": "Inkaro negalima smūgiuoti, tačiau šioms šaškėms dar toli iki namų.",
+  "tutorPhraseContactThreats": "Kontaktas: abi pusės vis dar gali grasinti smūgiu.",
+  "tutorPhraseLookForPointsAndSafety": "Ieškok naudingų punktų, tada įvertink pavienių atvirų šaškių riziką.",
+  "tutorPhraseHomePointsAndBlots": "Turi {count} namų lentos punktų ir palieki {otherCount} pavienes šaškes.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Pasirink šaškę, nuo kurios pradėsi ėjimą.",
+  "tutorPhraseLegalPlayPrompt": "Pradėk teisėtą ėjimą, kad matytum komentarus.",
+  "tutorPhraseStagedHit": "Smūgiavai į {count} varžovo {count, plural, one{šaškę} few{šaškes} other{šaškes}}.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "Įvedei {count} šaškę(-es) nuo baro.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Nuėmei nuo lentos {count} {count, plural, one{šaškę} few{šaškes} other{šaškes}}.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Užėmei punktus {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Tavo {point}-ame punkte esanti šaškė kol kas yra atvira.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "Atsarginę šaškę iš {point}-o punkto vėliau galima perkelti jo neatveriant.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Prieš vertindamas visą ėjimą panaudok likusius tinkamus kauliukus.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Visos 15 šaškių nuimtos: partija laimėta.",
+  "tutorPhraseStagedHitShortPlan": "Smūgis laimi laiko, kol varžovas bando grįžti.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Veiksmingas nuėmimas pašalina šaškes ir palieka naudingus skaičius kitam metimui.",
+  "tutorPhraseStagedRaceHomePlan": "Lenktynių planas – parvesti galines šaškes namo, paliekant patogius punktus nuėmimui.",
+  "tutorPhraseStagedBearOffContactPlan": "Nuėmimas leidžia judėti pirmyn, bet likęs kontaktas vis dar kelia smūgio riziką.",
+  "tutorPhraseStagedReentryPlan": "Sugrįžusi šaškė vėl žaidime; kitas tikslas – rasti saugų nusileidimo punktą.",
+  "tutorPhraseStagedHomeBoardPlan": "Naujasis namų lentos punktas atima vieną įėjimo skaičių po būsimo smūgio.",
+  "tutorPhraseStagedPrimePlan": "Ilgesnė eilė uždaro daugiau nusileidimo punktų; atsarginės šaškės padeda ją išlaikyti.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Palikęs inkarą įgyji erdvės, bet atsisakai saugios atramos.",
+  "tutorPhraseStagedNewAnchorPlan": "Naujasis inkaras suteikia galinėms šaškėms saugią atramą.",
+  "tutorPhraseStagedCoverBlotPlan": "Uždengęs atvirą šaškę pašalini varžovo taikinį.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Čia reikia rinktis tarp plėtros ir saugumo: naudingos parengiamosios šaškės taip pat gali tapti taikiniu.",
+  "tutorPhraseStagedCompletePrompt": "{part} Visas ėjimas paruoštas; patvirtink, kad jį atliktum.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPlayedMove": "Sužaista: {move}",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorBestMove": "Geriausias: {move}",
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorShowRankedPlays": "Rodyti įvertintus ėjimus",
+  "tutorReviewRecordedMove": "Bakstelėk užbaigtą ėjimą žurnale, kad čia peržiūrėtum jo sprendimą.",
+  "tutorTopPlays": "Geriausi ėjimai",
+  "tutorNoHintsAvailable": "Užuominų nėra.",
+  "tutorPreviewThenConfirm": "Bakstelėk ėjimą, kad peržiūrėtum jį lentoje, tada patvirtink.",
+  "tutorTopChoiceForPosition": "Geriausias pasirinkimas šioje pozicijoje",
+  "tutorAlternativePlay": "Alternatyvus ėjimas",
+  "tutorEngineEstimates": "Variklio įverčiai",
+  "tutorEstimateScope": "0 pusėjimų įvertis – dabartinis rezultatas ir statymas – be būsimų dvigubinimų",
+  "tutorEquity": "Ekviti",
+  "tutorMwcPercent": "Mačo pergalės tikimybė, %",
+  "tutorNearTiesNote": "Gilesnė analizė gali pakeisti beveik lygių variantų eilę.",
+  "tutorWhyThisPlay": "Kodėl šis ėjimas?",
+  "tutorCompareAlternative": "Palyginti šią alternatyvą",
+  "gameTutorCubeTake": "Treneris: priimti",
+  "gameTutorCubePass": "Treneris: pasiduoti",
+  "practiceScreenTitle": "Praktikuokite ėjimą",
+  "practiceUnavailable": "Ši praktikos pozicija nebepasiekiama.",
+  "practiceSubmitError": "Šio bandymo nepavyko įvertinti arba išsaugoti. Jūsų pažanga nepasikeitė. Bandykite dar kartą.",
+  "practiceTurnLabel": "{side} turi ėjimą · {dice}",
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "practiceHistoricalScoreUnavailable": "Istorinis rezultatas nežinomas; ėjimas vertinamas pagal equity be dvigubinimo kubo.",
+  "practiceScoreLine": "Rezultatas: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, iki {matchLength}",
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceCrawfordGame": " · Crawfordo partija",
+  "practiceNoDoublingCube": "Be dvigubinimo kubo.",
+  "practiceCubeValue": "Kubo vertė {value}.",
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceHistoricalCubeUnknown": "Istorinės kubo taisyklės nežinomos.",
+  "practiceAfterBestPosition": "Pozicija po geriausio ėjimo",
+  "practiceAfterYourAnswerPosition": "Pozicija po jūsų atsakymo",
+  "practiceFindYourPlayPrompt": "Atlikite ėjimą lentoje ir patikrinkite atsakymą. Užuominų nebus.",
+  "practiceUndo": "Atšaukti ėjimą",
+  "practiceCheckAnswer": "Patikrinti atsakymą",
+  "practiceRevealNoCredit": "Rodyti atsakymą (be taškų)",
+  "practiceAnswerRevealedNoCredit": "Atsakymas parodytas — prisiminimo taškų negausite.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "practiceBestMoveLine": "Geriausias: {move}",
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceOriginalGameLine": "Pradinis žaidimo ėjimas: {move} · {loss}",
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "practiceYourAnswerLine": "Jūsų atsakymas: {move}",
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceYourAnswerChip": "Jūsų atsakymas",
+  "practiceBestPlayChip": "Geriausias ėjimas",
+  "practiceNextReview": "Kita peržiūra: {date}.",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "practiceRecallCredit": "Geriausi ir geri atsakymai laikomi sėkmingu prisiminimu. Ankstyvas pakartojimas intervalo nepailgina.",
+  "practiceBackToLearning": "Grįžti į mokymąsi",
+  "practiceMarkBest": "Geriausias",
+  "practiceMarkGood": "Geras",
+  "practiceMarkDubious": "Abejotinas",
+  "practiceMarkError": "Klaida",
+  "practiceMarkBlunder": "Didelė klaida",
+  "practiceMarkForced": "Priverstinis",
+  "newMatchYourSide": "Jūsų pusė",
+  "newMatchTutorMode": "Mokytojo režimas",
+  "newMatchTutorDescription": "Mokykitės naudodami užuominas, paaiškinimus ir žaidimo komentarus",
+  "newMatchTutoringOptions": "Mokymo parinktys",
+  "newMatchTutoringOptionsDescription": "Šiam mačui; žaidžiant galima keisti",
+  "setupMatchLength": "Mačo ilgis",
+  "setupDifficulty": "Sudėtingumas",
+  "setupDifficultyEasy": "Lengvas",
+  "setupDifficultyMedium": "Vidutinis",
+  "setupDifficultyHard": "Sunkus",
+  "setupDifficultyExpert": "Ekspertas",
+  "setupPlayWithoutCube": "Žaisti be kubo",
+  "setupNoCubeThisMatch": "Šiame mače nėra dvigubinimo kubo",
+  "diagnosticsCopySuccess": "Diagnostikos nukopijuotos į iškarpinę",
+  "diagnosticsReviewTitle": "Peržiūrėti diagnostikos ataskaitą",
+  "diagnosticsPrivacyNotice": "Atidarius juodraštį, toliau pateikta informacija bus siunčiama į GitHub: programos versija, platforma ir klaidų informacija. Vieša problema nebus paskelbta, kol jos nepateiksite ten. Jei informacijoje yra privačių duomenų, atšaukite ir naudokite kopijavimą ataskaitai paruošti patys.",
+  "diagnosticsCancel": "Atšaukti",
+  "diagnosticsOpenGitHub": "Atidaryti GitHub",
+  "diagnosticsTitle": "Diagnostika",
+  "diagnosticsReportTooltip": "Pranešti apie problemą GitHub",
+  "diagnosticsCopyTooltip": "Kopijuoti į iškarpinę",
+  "diagnosticsClearTooltip": "Išvalyti žurnalą",
+  "diagnosticsEmpty": "Klaidų neužregistruota.\n\nJei kas nors nutiks, informacija bus įrašyta čia — sugrįžkite ir nukopijuokite ją į klaidos ataskaitą.",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · iki {matchLength}",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · iki {matchLength}",
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudYou": "Jūs",
+  "gameHudAi": "Kompiuteris",
+  "gameHudGameNumber": "{number} partija",
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudMatchContext": "{score} · {game}",
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "gameHudHotSeatDetail": "{whiteLabel} prieš {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetail": "prieš {opponent} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetailWithLevel": "prieš {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPips": "Pipai",
+  "gameHudCrawford": "Crawfordo",
+  "gameHudDouble": "Dvigubinti",
+  "gameHudMoreActions": "Daugiau veiksmų",
+  "gameHudSurrender": "Pasiduoti…",
+  "gameHudThinking": "Galvoja",
+  "gameHudDoubleBeforeRoll": "Dvigubinti galima tik prieš metimą, savo ėjimo metu.",
+  "gameHudNoDoubleCrawford": "Crawfordo partijoje dvigubinti negalima — ši partija nulemia mačą.",
+  "gameHudOnlyCubeOwner": "Dvigubinti gali tik kubo savininkas; šiuo metu kubas priklauso kitai pusei.",
+  "gameHudDoubleUnavailable": "Dvigubinimas dabar negalimas.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (iki {matchLength})",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogPlayerWon": "{winner} laimi šią partiją ({points}).",
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonGammon": "{winner} laimi šią partiją ({points}, gammon).",
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonBackgammon": "{winner} laimi šią partiją ({points}, backgammon).",
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonDrop": "{winner} laimi šią partiją ({points}) — {loser} atsisakė dvigubinimo.",
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPlayerWonResignation": "{winner} laimi šią partiją ({points}) — {loser} pasidavė.",
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPassDeviceTitle": "Perduokite įrenginį",
+  "gameDialogPlayersTurn": "Dabar {name} ėjimas",
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "gameDialogTapToContinue": "Palieskite, kad tęstumėte",
+  "gameDialogCubeOfferedTitle": "Pasiūlytas dvigubinimas",
+  "gameDialogCubeOfferMessage": "{doubler} siūlo padvigubinti iki {value}. Priimti ar atsisakyti?{tutorLine}",
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "gameDialogPass": "Atsisakyti",
+  "gameDialogTake": "Priimti",
+  "gameDialogResignationTitle": "Pasiūlytas pasidavimas",
+  "gameDialogResignationMessage": "{resigner} siūlo pasiduoti su {value}. Priimti ar atmesti?",
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "gameDialogResignSingle": "viena partija",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Atmesti",
+  "gameDialogAccept": "Priimti",
+  "gameDialogGameOverTitle": "Partija baigta",
+  "gameDialogNextGame": "Kita partija",
+  "gameDialogMatchOverTitle": "Mačas baigtas",
+  "gameDialogNobody": "Niekas",
+  "gameDialogMatchWinner": "{winner} laimi mačą.",
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "gameDialogSavedToHistory": "Išsaugota istorijoje",
+  "gameDialogDone": "Baigti",
+  "gameMatchSummary": "Mačo santrauka",
+  "gameAnalyzeGame": "Analizuoti partiją",
+  "analysisTitle": "Analizė",
+  "analysisMetricsTooltip": "Ką reiškia šie skaičiai?",
+  "analysisError": "Nepavyko išanalizuoti partijos: {error}",
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisNoPositions": "Šioje partijoje nėra rodomų pozicijų.",
+  "analysisInProgress": "Analizuojama…",
+  "analysisPercent": "{percent}%",
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisPlayed": "Sužaista",
+  "analysisBest": "Geriausias",
+  "analysisPrevious": "Ankstesnis",
+  "analysisNext": "Kitas",
+  "analysisPositionBeforeCube": "Pozicija prieš sprendimą dėl kubo",
+  "analysisPositionAtPoint": "Pozicija šiuo žaidimo momentu",
+  "analysisShowingBestBefore": "Rodomas geriausias ėjimas pozicijoje prieš ėjimą",
+  "analysisShowingBefore": "Rodoma pozicija prieš ėjimą",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "analysisMoveLoss": " −{loss}",
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisExcludedFromAverages": " · neįtraukta į vidurkius",
+  "analysisNoPlay": "(ėjimo nėra)",
+  "analysisBestMoveLine": "Geriausias: {move}",
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "analysisExplain": "Paaiškinti",
+  "analysisSaveForPractice": "Išsaugoti praktikai",
+  "analysisSaveError": "Nepavyko išsaugoti sprendimo: {error}",
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisCubeInfo": "{side}: {action} · {mark} · praradimas {loss}",
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "analysisCubeDecision": "Sprendimas dėl kubo",
+  "analysisCubePlayed": "Sužaista: {action} ({percent}% laimėti partiją).",
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisCubeBest": "Geriausia: {action} ({percent}% laimėti partiją).",
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisClose": "Uždaryti",
+  "analysisMoves": "Ėjimai",
+  "analysisForced": "Priverstinis",
+  "analysisMarkBest": "Geriausias",
+  "analysisMarkGood": "Geras",
+  "analysisMarkDubious": "Abejotinas",
+  "analysisMarkError": "Klaida",
+  "analysisMarkBlunder": "Grubi klaida",
+  "analysisSummaryMeanLoss": "Vidutinis praradimas {loss}",
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisSummaryCheckerDecisions": "{count} ėjimų su kauliukais",
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryBlunders": "Grubios klaidos {count}",
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryCubeLoss": "Kubo praradimas {loss}",
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisRollWithoutDoubling": "{side} meta nedvigubindamas",
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "analysisCubeNoDouble": "Nedvigubinti",
+  "analysisCubeDouble": "Dvigubinti",
+  "analysisCubeTake": "Priimti",
+  "analysisCubePass": "Pasiduoti",
+  "tutorOptions": "Mokymo parinktys",
+  "tutorCollapseTooltip": "Sutraukti mokytoją",
+  "tutorExpandTooltip": "Išplėsti mokytoją",
+  "scoreSheetNoMoves": "Ėjimų nėra",
+  "gameTapNoLegalMove": "Bakstelėkite savo šaškę, kad pamatytumėte galimus ėjimus.",
+  "gameTapNoLegalMoveUndo": "Bakstelėkite šaškę, tada paskirties vietą.",
+  "gameDragHint": "Vilkite šaškę į paskirties vietą.",
+  "commonGotIt": "Supratau",
+  "gameHintStageBeforeHint": "Prieš užuominą",
+  "surrenderTitle": "Pasiduoti partiją?",
+  "surrenderSingle": "Paprastas pralaimėjimas",
+  "surrenderGammon": "Gamono pralaimėjimas",
+  "surrenderBackgammon": "Backgammono pralaimėjimas",
+  "surrenderChoosePlayer": "Pasirinkite žaidėją",
+  "cubeDouble": "Dvigubinti",
+  "gameStatusRolling": "Metama",
+  "gameStatusThinking": "Kompiuteris mąsto",
+  "gameStatusPlayersTurn": "{player} ėjimas",
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "historyTitle": "Partijų istorija",
+  "historyEmpty": "Dar nežaidėte nė vienos partijos.",
+  "historyDeleteConfirmTitle": "Ištrinti šią partiją?",
+  "actionCancel": "Atšaukti",
+  "actionDelete": "Ištrinti",
+  "historyDeleteFailed": "Nepavyko ištrinti partijos.",
+  "historyComplete": "Baigta",
+  "historyUnfinished": "Neužbaigta",
+  "historyMatchTitle": "Mačas",
+  "historyNoGames": "Partijų dar neužfiksuota.",
+  "historyCrawford": "Krawfordo taisyklė",
+  "historyModeComputer": "prieš kompiuterį",
+  "historyModeTwoPlayers": "Du žaidėjai",
+  "historyModeOnline": "Prisijungus",
+  "historyModeNearby": "Žaisti netoliese",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "Vyksta",
+  "historyOutcomeSingle": "viengubas",
+  "historyOutcomeGammon": "gammonas",
+  "historyOutcomeBackgammon": "backgammonas",
+  "learningRefreshTooltip": "Atnaujinti mokymosi pažangą",
+  "learningOptions": "Mokymosi parinktys",
+  "learningResetMenu": "Iš naujo nustatyti praktikos pažangą",
+  "learningLoadFailed": "Nepavyko įkelti mokymosi pažangos.",
+  "actionRetry": "Bandyti dar kartą",
+  "learningHeading": "Mokykitės iš savo sprendimų",
+  "learningBothSides": "Abi pusės",
+  "learningHumansOnly": "Tik žmonių ėjimai",
+  "learningHumanOnlyHelp": "Išjungę įtrauksite kompiuterio ir nuotolinių žaidėjų ėjimus",
+  "learningAnalyseSavedGames": "Analizuoti išsaugotas partijas",
+  "learningOpenHistory": "Atverti partijų istoriją",
+  "learningRecurringThemes": "Pasikartojančios temos",
+  "learningNoThemes": "Šiame pasirinkime pasikartojančių klaidų temų dar nėra.",
+  "learningSaveMistakes": "Išsaugoti šias klaidas praktikai",
+  "learningSpacedPractice": "Intervalinė praktika",
+  "learningNoSavedPositions": "Išsaugokite sprendimą iš peržiūros arba naudokite klaidų mygtuką aukščiau.",
+  "learningReadyToReview": "Paruošta peržiūrai",
+  "learningSuccessStreak": "Sėkmingos peržiūros iš eilės: {count}",
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnswerRevealed": "Atsakymas parodytas",
+  "learningSuccessfulRecall": "Sėkmingas prisiminimas",
+  "learningTryAgain": "Bandykite dar kartą",
+  "actionRemove": "Pašalinti",
+  "onlineTitle": "Žaidimas internetu",
+  "onlineUnassistedNote": "Mokytojas nepadeda žaidžiant internetu.",
+  "onlineNotConfiguredTitle": "Internetinis žaidimas nesukonfigūruotas",
+  "onlineNotConfiguredBody": "Šiame leidime internetinis žaidimas nepasiekiamas.",
+  "onlineErrorNoMatch": "Partija nerasta.",
+  "onlineErrorSeatTaken": "Vieta jau užimta.",
+  "onlineErrorPermission": "Neturite leidimo atlikti šio veiksmo.",
+  "onlineErrorGeneric": "Nepavyko prisijungti prie internetinio žaidimo.",
+  "onlineMatchFinished": "Partija baigta.",
+  "onlineEnterCodeError": "Įveskite galiojantį kodą.",
+  "onlineOpponentShort": "Varžovas",
+  "onlineMatchInProgress": "Partija vyksta",
+  "onlineResumePrompt": "Žaidėte mačą {code}. Tęsti?",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Prisijungti iš naujo",
+  "onlineForgetMatch": "Pamiršti partiją",
+  "onlineCreateTitle": "Sukurti internetinį žaidimą",
+  "onlineMatchLength": "Mačo trukmė",
+  "onlineNoCubeTitle": "Žaidimas be kubo",
+  "onlineNoCubeSubtitle": "Žaidžiama be dvigubinimo kubo.",
+  "onlineCreate": "Sukurti",
+  "onlineWaitingOpponent": "Laukiama varžovo",
+  "onlineShareCode": "Bendrinti kodą",
+  "onlineCopyCode": "Kopijuoti kodą",
+  "onlineCodeCopied": "Kodas nukopijuotas",
+  "onlineJoinTitle": "Prisijungti prie žaidimo",
+  "onlineRoomCode": "Kambario kodas",
+  "onlineJoin": "Prisijungti",
+  "lanTitle": "Žaisti netoliese",
+  "lanTabHost": "Kurti kambarį",
+  "lanTabJoin": "Prisijungti",
+  "lanHostTitle": "Kurti žaidimą",
+  "lanStartHosting": "Pradėti prieglobą",
+  "lanWaitingPlayerTitle": "Laukiama žaidėjo",
+  "lanWaitingPlayer": "Laukiama žaidėjo…",
+  "lanStopHosting": "Baigti prieglobą",
+  "lanOnNetwork": "Šiame tinkle",
+  "lanCopyAddress": "Kopijuoti adresą",
+  "lanAddressCopied": "Adresas nukopijuotas",
+  "lanScanHostTitle": "Nuskaityti prieglobos įrenginį",
+  "lanScanQr": "Nuskaityti QR kodą",
+  "lanNearbyGames": "Netoliese esantys žaidimai",
+  "lanSearching": "Ieškoma netoliese esančių žaidimų…",
+  "lanStillSearching": "Vis dar ieškoma…",
+  "lanEnterAddress": "Įvesti adresą",
+  "lanIpAddress": "IP adresas",
+  "lanPort": "Prievadas",
+  "lanInvalidPort": "Įveskite prievadą nuo 1 iki 65535.",
+  "lanJoinWrongCode": "Neteisingas kambario kodas. Patikrinkite keturis skaitmenis kitame įrenginyje.",
+  "lanConnect": "Prisijungti",
+  "lanBack": "Atgal",
+  "lanTryAgain": "Bandyti dar kartą",
+  "lanStatusBusy": "Kambarys užimtas — laukiama…",
+  "lanStatusReconnecting": "Ryšys nutrūko — bandoma iš naujo…",
+  "lanStatusConnected": "Prisijungta — pradedamas mačas…",
+  "lanStatusFailed": "Nepavyko prisijungti.",
+  "lanStatusConnecting": "Jungiamasi…",
+  "tutorCubelessEstimateScope": "0-ply įvertis be kubo · rezultatas nežinomas",
+  "tutorLossPp": "Praradimas pp",
+  "tutorLoss": "Praradimas",
+  "surrenderNamedConcedes": "{player} pasiduoda šioje partijoje.",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderConcedes": "Pasiduoda šioje partijoje.",
+  "surrenderAvailableAtNamedTurn": "Galima pradėti {player} ėjimą",
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderAvailableAtYourTurn": "Galima pradėti jūsų ėjimą",
+  "commonCancel": "Atšaukti",
+  "commonDone": "Atlikta",
+  "cubeBlockedOtherPlayersTurn": "Dabar varžovo ėjimas.",
+  "cubeBlockedCrawford": "Krawfordo partijoje kubas negalimas.",
+  "cubeBlockedOwnedByOther": "Dvigubinti gali tik kubo savininkas; dabar jį turi varžovas.",
+  "cubeBlockedUnavailable": "Dvigubinimas dabar negalimas.",
+  "cubeAdviceOpponentTake": "Dvigubinti — varžovas turėtų priimti",
+  "cubeAdviceOpponentPass": "Dvigubinti — varžovas turėtų pasiduoti",
+  "gameErrorBannerLabel": "Klaida: {error}",
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "metricExplainerTitle": "Metrikų paaiškinimas",
+  "metricExplainerTooltip": "Ką reiškia šie skaičiai?",
+  "metricExplainerMwcTitle": "Laimėjimo mače tikimybė (MWC)",
+  "metricExplainerSearchTitle": "Paieška ir neapibrėžtumas",
+  "metricExplainerEquityTitle": "Nuosavybė",
+  "metricExplainerEquityLossTitle": "Nuosavybės praradimas (pvz., −0,016)",
+  "metricExplainerErrorRateTitle": "Klaidų dažnis",
+  "metricExplainerMoveMarksTitle": "Ėjimų įvertinimai",
+  "metricExplainerGotIt": "Supratau",
+  "metricExplainerThresholdBest": "prarasta < 0,001",
+  "metricExplainerThresholdGood": "prarasta < 0,020",
+  "metricExplainerThresholdDubious": "prarasta < 0,050",
+  "metricExplainerThresholdError": "prarasta < 0,110",
+  "metricExplainerThresholdBlunder": "prarasta ≥ 0,110",
+  "historyLoadFailed": "Nepavyko įkelti istorijos:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyDeleteConfirmBody": "{scoreLine}\n\nMačas ir visos jame užregistruotos partijos bus visam laikui pašalintos. Šio veiksmo anuliuoti negalima.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyWinner": "Laimėjo {side}",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyMatchLoadFailed": "Nepavyko įkelti mačo:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Nepavyko įkelti partijų:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGameTitle": "Partija {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyScoreLine": "Balti {whiteScore} — {blackScore} Juodi  (iki {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyGameResult": "{side} laimi {points} ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "learningDecisionSummary": "{decisions} sprendimų · {mistakes} tobulintini · {blunders} grubios klaidos",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAverageLoss": "Vidutinis praradimas ({decisions} sprendimai): {loss}",
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "learningForcedDisclaimer": "Priverstiniai ėjimai neįtraukiami. Tai variklio įverčiai, ne turnyro reitingas.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{# išsaugotai partijai reikia analizės arba atnaujintos analizės.} other{# išsaugotoms partijoms reikia analizės arba atnaujintos analizės.}}",
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeDecisions": "{count} sprendimų, kuriuos verta pakartoti. Viena pozicija gali turėti kelias temas.",
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSavedMistakes": "Praktikos sąraše yra {count} sprendimų. Esami įrašai nedubliuojami.",
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSaveMistakesFailed": "Nepavyko išsaugoti kai kurių sprendimų. Išsaugoti įrašai palikti; bandykite dar kartą.",
+  "learningPracticeCounts": "Dabar reikia: {due} · išsaugota: {saved} · bandymų: {attempts} · sėkmingai prisiminta: {successes}",
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningPositionTitle": "{side} sprendimas · partija {gameId}",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningReviewDue": "Peržiūra {date}",
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "learningAttemptSubtitle": "{date} · išsaugota pozicija {positionId}",
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisProgress": "Išanalizuota partijų: {completed} · nepasiekiama: {failed}.",
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisComplete": "Išanalizuota partijų: {completed}.",
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisCompleteWithErrors": "Išanalizuota {completed} partijų; nepavyko išanalizuoti {failed}. Bandykite dar kartą, kai variklis bus pasirengęs.",
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeHitting": "Kirtimas ir tempas",
+  "learningThemeSafety": "Paliktos šaškės ir saugumas",
+  "learningThemePointMaking": "Taškų sudarymas",
+  "learningThemePrime": "Blokai ir užtvaros",
+  "learningThemeAnchor": "Tvirtovės ir pabėgimas",
+  "learningThemeRace": "Lenktynių efektyvumas",
+  "learningThemeBearOff": "Šaškių nuėmimas",
+  "learningThemeBarEntry": "Įėjimas nuo baro",
+  "learningThemeCube": "Sprendimai dėl kubo",
+  "learningAnalysisStarting": "Analizuojamos išsaugotos partijos…",
+  "learningIntro": "Pažanga saugoma šiame įrenginyje. Peržiūrėkite pasikartojančias temas ir bandykite išsaugotas pozicijas dar kartą nematydami atsakymo. Baltųjų ir juodųjų ėjimus galima peržiūrėti atskirai.",
+  "learningEmptyProfile": "Sužaiskite ir užbaikite partiją, kad susidarytų jūsų mokymosi profilis. Taip pat galite išsaugoti atskirus sprendimus iš partijos pakartojimo.",
+  "learningIntervalsHelp": "Sėkmingos peržiūros vėl bus pateiktos po 1, 3, 7, 14 ir 30 dienų. Klaidos arba parodyti atsakymai grįš po 10 minučių. Ankstyvi pakartojimai intervalo nepailgina.",
+  "learningAnswerContext": "Praktikos rezultatai atspindi jūsų atsakymus čia, net jei pradinė pozicija priklausė varžovui.",
+  "learningRemoveTooltip": "Pašalinti išsaugotą sprendimą",
+  "learningRecentPractice": "Naujausia praktika",
+  "learningRemoveTitle": "Pašalinti šį pratimą?",
+  "learningRemoveBody": "Bus pašalinti jo praktikos bandymai. Pradinė partija liks istorijoje.",
+  "learningRemoveFailed": "Nepavyko pašalinti šio pratimo.",
+  "learningResetTitle": "Iš naujo nustatyti praktikos pažangą?",
+  "learningResetBody": "Bus pašalinti visi praktikos bandymai ir peržiūros intervalai. Išsaugoti pratimai ir partijų istorija liks; visus pratimus reikės peržiūrėti iš karto.",
+  "learningResetAction": "Nustatyti pažangą iš naujo",
+  "learningResetFailed": "Nepavyko iš naujo nustatyti praktikos pažangos.",
+  "lanUnassistedNote": "Žaidžiant vietiniame tinkle mokytojas nepadeda. Po mačo peržiūrėkite ėjimus ir pasitreniruokite klaidas.",
+  "lanGameStartFailed": "Nepavyko pradėti partijos. Kitas įrenginys gali bandyti prisijungti dar kartą.",
+  "lanHostPortInUse": "Nepavyko pradėti prieglobos — prievadas jau naudojamas. Uždarykite kitas Backgammon Buddy kopijas ir bandykite vėl.",
+  "lanHostStartFailed": "Nepavyko pradėti prieglobos. Patikrinkite „Wi-Fi“ ryšį ir bandykite dar kartą.",
+  "lanHostHelp": "Abu įrenginiai turi būti tame pačiame „Wi-Fi“ tinkle. Šis įrenginys meta kauliukus ir saugo rezultatą.",
+  "lanRoomCodeInfo": "Pasakykite šį kodą kitam žaidėjui. Jis suteikia prieigą — programėlė jo nesiunčia tinklu.",
+  "lanFindNearbyPort": "Paprašykite kito įrenginio ieškoti netoliese esančių žaidimų. Klausoma prievado {port}.",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "lanScanHostHelp": "Kitas įrenginys pagrindiniame ekrane rodo QR kodą. Jį nuskaičius automatiškai įrašomi adresas ir kambario kodas.",
+  "lanScannerUnavailable": "Kamera arba jos leidimas nepasiekiami. Vietoj to įveskite adresą ir kambario kodą žemiau.",
+  "lanInvalidQr": "Šis QR kodas nėra Backgammon Buddy žaidimas. Nuskaitykite kodą kitame įrenginyje.",
+  "lanScannerFailed": "Nepavyko atverti skaitytuvo. Įveskite adresą ir kodą žemiau.",
+  "lanNoGamesFound": "Žaidimų dar nerasta. Patikrinkite, ar kitas įrenginys kuria žaidimą ir abu naudoja tą patį „Wi-Fi“, arba įveskite jo adresą.",
+  "lanEnterAddressHelp": "Automatinė paieška veikia ne visuose tinkluose (iOS ji gali būti visiškai blokuojama). Pagrindiniame ekrane rasite adresą, kurį reikia įvesti.",
+  "lanEnterAddressError": "Įveskite kitame įrenginyje rodomą adresą.",
+  "lanEnterRoomCodeError": "Įveskite kitame įrenginyje rodomą 4 skaitmenų kodą.",
+  "lanJoinVersionMismatch": "Kitame įrenginyje veikia kita Backgammon Buddy versija.",
+  "lanJoinHandshakeFailed": "Įrenginys atsakė netinkamai. Patikrinkite adresą ir prievadą.",
+  "lanJoinFailed": "Nepavyko prisijungti. Patikrinkite adresą ir kambario kodą, tada bandykite dar kartą.",
+  "lanJoinTarget": "Prisijungti: {name}",
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "lanJoinTargetHelp": "Įveskite kitame įrenginyje rodomą 4 skaitmenų kodą.",
+  "lanJoiningTarget": "Jungiamasi prie {name}",
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "analysisCubeEstimate": "0-ply įvertis veikiančio žaidėjo požiūriu. Daroma prielaida, kad į optimalų priėmimą ar pasą bus atsakyta. Priimto dvigubinimo šakai naudojamas apytikslis 0,7 kubo gyvavimo įvertis, o ne visa būsimo pakartotinio dvigubinimo paieška. Gilesnė analizė gali pakeisti rezultatą.",
+  "metricExplainerMwcBody": "Kai rezultatas žinomas, šaškių ėjimai rikiuojami pagal apytikslę mačo laimėjimo tikimybę. Praradimas nurodomas procentiniais punktais (pp): 1 pp reiškia, kad 51 % sumažėja iki 50 %. Įskaičiuojama kubo vertė ir gamono bei backgamono baigtys. Priverstiniai pasai ir metimai, po kurių lieka viena teisėta pozicija, neįtraukiami į vidurkius.",
+  "metricExplainerSearchBody": "Šaškių ėjimų reitingai yra statiniai 0-ply įverčiai po ėjimo, o ne simuliacijos. Mačo vertėms naudojama mačo nuosavybės lentelė, neįtraukiant būsimų kubo ėjimų. Kubo analizėje priimtiems dvigubinimams naudojamas dalinis 0,7 kubo gyvavimo įvertis. Tai nėra pilna analizė su kubu. Kai iki mačo pabaigos liko daugiau nei 25 taškai, naudojama lentelės 25-away riba. Gilesnė analizė gali pakeisti artimus rezultatus; kalibruotas patikimumo intervalas neskaičiuojamas.",
+  "metricExplainerEquityBody": "Jei rezultatas nežinomas, nuosavybė be kubo rodo vidutinę pozicijos vertę taškais, kai kubas lygus 1. +1,0 reiškia tikėtiną vieno taško laimėjimą, o −0,5 – pusės taško pralaimėjimą.",
+  "metricExplainerEquityLossBody": "Kiekvieną ėjimą lyginame su geriausiu variklio ėjimu. Nuosavybės praradimas rodo, kiek tikėtinos vertės atsisakyta. −0,016 reiškia, kad ėjimas buvo tik 0,016 taško blogesnis už geriausią – tai menka klaida. 0,000 reiškia, kad radote geriausią ėjimą.",
+  "metricExplainerErrorRateBody": "Vidutinis praradimas apskaičiuojamas iš įvertintų šaškių sprendimų ir rodomas pasirinktais vienetais. Kubo sprendimai turi atskirą vidurkį. Mažesnė reikšmė reiškia, kad ėjimai artimesni geriausiems variklio įverčiams; tai nėra kalibruotas žaidėjo reitingas.",
+  "metricExplainerMoveMarksBody": "MWC mokomosios ribos: geriausias < 0,05 pp, geras < 0,5 pp, abejotinas < 1,5 pp, klaida < 3 pp, grubi klaida ≥ 3 pp. Tai mokomieji intervalai, o ne patikimumo ar turnyro reitingai.\n\nNuosavybės be kubo mokomosios ribos:"
 }

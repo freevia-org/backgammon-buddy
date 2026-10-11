@@ -160,4 +160,2325 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get tutorForcedPassNoDecision =>
       'Bij een verplichte pas is er geen keuze voor een zet met de schijven.';
+
+  @override
+  String get settingsReset => 'Herstellen';
+
+  @override
+  String get settingsAppLanguage => 'App-taal';
+
+  @override
+  String get settingsTheme => 'Thema';
+
+  @override
+  String get settingsThemeSystem => 'Systeem';
+
+  @override
+  String get settingsThemeLight => 'Licht';
+
+  @override
+  String get settingsThemeDark => 'Donker';
+
+  @override
+  String get settingsAnimationSpeed => 'Animatiesnelheid';
+
+  @override
+  String get settingsAnimationNone => 'Geen';
+
+  @override
+  String get settingsAnimationNormal => 'Normaal';
+
+  @override
+  String get settingsAnimationFast => 'Snel';
+
+  @override
+  String get settingsDiceRollAnimation => 'Dobbelsteenanimatie';
+
+  @override
+  String get settingsDiceRollAnimationHelp =>
+      'Laat de dobbelstenen rollen voordat je gooit';
+
+  @override
+  String get settingsDefaultMatchLength => 'Standaardlengte van de match';
+
+  @override
+  String get settingsDefaultDifficulty => 'Standaardniveau';
+
+  @override
+  String get settingsDifficultyEasy => 'Makkelijk';
+
+  @override
+  String get settingsDifficultyMedium => 'Gemiddeld';
+
+  @override
+  String get settingsDifficultyHard => 'Moeilijk';
+
+  @override
+  String get settingsDifficultyExpert => 'Expert';
+
+  @override
+  String get settingsTutorModeDefault => 'Standaard tutorstand';
+
+  @override
+  String get settingsTutorAuto => 'Automatisch';
+
+  @override
+  String get settingsTutorOn => 'Aan';
+
+  @override
+  String get settingsTutorOff => 'Uit';
+
+  @override
+  String get settingsTutorModeHelp =>
+      'Automatisch schakelt de tutor in bij elk computerniveau. Aan en Uit bepalen de begininstelling voor lokale matches. Bij wedstrijden in de buurt en online helpt de tutor niet; opgeslagen partijen kun je achteraf bekijken. De onderstaande leerinstellingen worden op dit apparaat bewaard.';
+
+  @override
+  String get settingsTutorPreferences => 'Tutorinstellingen';
+
+  @override
+  String get settingsTutorPreferencesSubtitle =>
+      'Standaardinstellingen voor nieuwe matches';
+
+  @override
+  String get settingsTutorSaveError =>
+      'De tutorinstellingen konden niet worden opgeslagen.';
+
+  @override
+  String get settingsGameplay => 'Spel';
+
+  @override
+  String get settingsMoveHighlights => 'Zetmarkeringen';
+
+  @override
+  String get settingsMoveHighlightsHelp =>
+      'Omcirkel speelbare schijven en licht mogelijke bestemmingen op';
+
+  @override
+  String get settingsDragToMove => 'Slepen om te zetten';
+
+  @override
+  String get settingsDragToMoveHelp =>
+      'Sleep een schijf naar de bestemming (tikken werkt ook)';
+
+  @override
+  String get settingsCombinedMoves => 'Dobbelstenen combineren';
+
+  @override
+  String get settingsCombinedMovesHelp =>
+      'Met één tik verplaats je een schijf met beide dobbelstenen';
+
+  @override
+  String get settingsRotateBoard => 'Bord draaien tussen beurten';
+
+  @override
+  String get settingsRotateBoardHelp =>
+      'Om de beurt spelen: draai het bord naar de actieve speler';
+
+  @override
+  String get settingsPassDevice => 'Scherm voor apparaat doorgeven';
+
+  @override
+  String get settingsPassDeviceHelp =>
+      'Dek het bord af tussen beurten bij om-de-beurt spelen';
+
+  @override
+  String get settingsShowScore => 'Score tonen';
+
+  @override
+  String get settingsShowScoreHelp => 'Toon de huidige matchscore bovenaan';
+
+  @override
+  String get settingsBuddyMode => 'Buddy-stijl';
+
+  @override
+  String get settingsBuddyTerse => 'Kort';
+
+  @override
+  String get settingsBuddyFriendly => 'Vriendelijk';
+
+  @override
+  String get settingsBuddyTerseHelp =>
+      'Zo spreekt Buddy een zet uit: ‘13/8, 24/22’ — de notatie die spelers aan het bord gebruiken.';
+
+  @override
+  String get settingsBuddyFriendlyHelp =>
+      'Zo spreekt Buddy een zet uit: ‘Verplaats één schijf van 13 naar 8 en één van 24 naar 22.’';
+
+  @override
+  String get settingsListenForDice => 'Naar de dobbelstenen luisteren';
+
+  @override
+  String get settingsListenForDiceHelp =>
+      'Buddy kijkt eerder naar het bord wanneer hij een worp hoort. Uit verandert verder niets.';
+
+  @override
+  String get settingsDiagnostics => 'Diagnostiek';
+
+  @override
+  String get settingsErrorLog => 'Foutenlogboek';
+
+  @override
+  String get settingsErrorLogHelp =>
+      'Recente fouten, klaar om in een bugmelding te kopiëren';
+
+  @override
+  String get settingsReportBug => 'Bug melden';
+
+  @override
+  String get settingsReportBugHelp =>
+      'Open een begeleid meldformulier op GitHub';
+
+  @override
+  String get settingsSuggestIdea => 'Idee voorstellen';
+
+  @override
+  String get settingsSuggestIdeaHelp =>
+      'Help ons de tutor en het spel te verbeteren';
+
+  @override
+  String get settingsAbout => 'Over';
+
+  @override
+  String get settingsOpenSourceLicenses => 'Open-sourcelicenties';
+
+  @override
+  String settingsAppVersion(Object version) {
+    return 'Backgammon Buddy $version';
+  }
+
+  @override
+  String get tutorPhraseGameFinished => 'Partij afgelopen.';
+
+  @override
+  String get tutorPhraseReviewFinishedGame =>
+      'Bekijk de zetten om een leerzaam beslismoment te vinden.';
+
+  @override
+  String get tutorPhraseCubeOffered => 'De verdubbelingskubus is aangeboden.';
+
+  @override
+  String get tutorPhraseCubeDecisionPrompt =>
+      'Beslis eerst of je de verdubbeling aanneemt of past, voordat je een zet met je schijven plant.';
+
+  @override
+  String get tutorPhraseCubeScoreContext =>
+      'De matchscore bepaalt hoeveel de extra inzet waard is.';
+
+  @override
+  String get tutorPhraseResignationOffered => 'Er is opgave aangeboden.';
+
+  @override
+  String get tutorPhraseResignationDecisionPrompt =>
+      'Vergelijk het aangeboden aantal punten met de positie voordat je opgeeft of verder speelt.';
+
+  @override
+  String get tutorPhraseNoLegalPlay =>
+      'Met deze worp is geen geldige zet mogelijk.';
+
+  @override
+  String get tutorPhraseForcedPassPrompt =>
+      'Verplicht passen is geen fout; wacht op de volgende worp.';
+
+  @override
+  String get tutorPhraseOnlyOneResult => 'Er is maar één geldige eindpositie.';
+
+  @override
+  String get tutorPhraseForcedTurnPrompt =>
+      'Speel de verplichte beurt. Met deze worp valt er geen keuze te beoordelen.';
+
+  @override
+  String get tutorPhrasePipCountsLevel => 'De pip-aantallen zijn gelijk.';
+
+  @override
+  String tutorPhrasePipCountsAhead(int count) {
+    return 'Je staat $count pips voor.';
+  }
+
+  @override
+  String tutorPhrasePipCountsBehind(int count) {
+    return 'Je staat $count pips achter.';
+  }
+
+  @override
+  String tutorPhrasePlayerHasCheckersOnBar(int count) {
+    return '$count schijven op de bar: eerst weer inzetten.';
+  }
+
+  @override
+  String get tutorPhraseEnterBeforeMoving =>
+      'Zet eerst schijven vanaf de bar in; zoek daarna een veilige bestemming.';
+
+  @override
+  String tutorPhraseOpponentHomePoints(int count) {
+    return 'De tegenstander heeft $count gesloten punten in zijn thuisbord.';
+  }
+
+  @override
+  String get tutorPhraseBearOffRace => 'Uitlooprace.';
+
+  @override
+  String get tutorPhrasePureRace => 'Een zuivere race.';
+
+  @override
+  String get tutorPhraseBearOffSpread =>
+      'Haal schijven van het bord en behoud een nuttige spreiding voor de volgende worp.';
+
+  @override
+  String get tutorPhraseBringRearCheckersHome =>
+      'Breng je achterste schijven naar huis zonder er te veel op één punt te stapelen.';
+
+  @override
+  String get tutorPhraseArmiesHavePassed =>
+      'De legers zijn elkaar gepasseerd; slaan is niet meer mogelijk.';
+
+  @override
+  String tutorPhraseContactStillMatters(Object part) {
+    return '$part Er is nog steeds contact.';
+  }
+
+  @override
+  String tutorPhraseOpponentHasCheckersOnBar(int count) {
+    return 'De tegenstander heeft $count schijven op de bar.';
+  }
+
+  @override
+  String get tutorPhraseKeepBoardClosed =>
+      'Houd je punten gesloten terwijl je de resterende schijven naar huis brengt.';
+
+  @override
+  String get tutorPhraseBuildOrPreserveHomeBoard =>
+      'Bouw je thuisbord op of houd het intact terwijl de tegenstander probeert in te zetten.';
+
+  @override
+  String tutorPhraseHomePointsCloseEntries(int count) {
+    return 'Je hebt $count punten in je thuisbord; elk daarvan sluit een inzetnummer af.';
+  }
+
+  @override
+  String tutorPhrasePrimeContact(int count) {
+    return 'Contact met een reeks van $count aaneengesloten punten.';
+  }
+
+  @override
+  String get tutorPhraseExtendPrimeOrKeepSpares =>
+      'Vergelijk het verlengen van de gesloten reeks met het bewaren van reserves om die reeks in stand te houden.';
+
+  @override
+  String tutorPhraseSpareCheckersCanMove(int count) {
+    return '$count reserves kunnen bewegen zonder hun punt meteen open te breken.';
+  }
+
+  @override
+  String tutorPhraseAnchorContact(Object points) {
+    return 'Contact met een anker op $points.';
+  }
+
+  @override
+  String get tutorPhraseCompareAnchorProgressAhead =>
+      'Vergelijk de voortgang van je achterste schijven met de veiligheid van het behouden van je anker.';
+
+  @override
+  String get tutorPhraseCompareAnchorProgressBehind =>
+      'Houd je veilige steunpunt in gedachten terwijl je een slagkans zoekt of je bord verbetert.';
+
+  @override
+  String get tutorPhrasePreserveAnchorFoothold =>
+      'Het anker kan niet worden geslagen, maar die schijven hebben nog een lange weg naar huis.';
+
+  @override
+  String get tutorPhraseContactThreats =>
+      'Er is nog contact: beide kanten kunnen met een slag dreigen.';
+
+  @override
+  String get tutorPhraseLookForPointsAndSafety =>
+      'Zoek naar nuttige punten en weeg daarna het risico af van losse schijven die kunnen worden geslagen.';
+
+  @override
+  String tutorPhraseHomePointsAndBlots(int count, int otherCount) {
+    return 'Je hebt $count punten in je thuisbord en laat $otherCount blots open.';
+  }
+
+  @override
+  String get tutorPhraseChooseCheckerPrompt =>
+      'Kies een schijf om je beurt te beginnen.';
+
+  @override
+  String get tutorPhraseLegalPlayPrompt =>
+      'Begin een geldige zet om commentaar te zien.';
+
+  @override
+  String tutorPhraseStagedHit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count schijven van de tegenstander geslagen',
+      one: 'één schijf van de tegenstander geslagen',
+    );
+    return 'Je hebt $_temp0.';
+  }
+
+  @override
+  String tutorPhraseStagedEnter(int count) {
+    return 'Je hebt $count schijven vanaf de bar ingezet.';
+  }
+
+  @override
+  String tutorPhraseStagedBearOff(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count schijven van het bord gehaald',
+      one: 'één schijf van het bord gehaald',
+    );
+    return 'Je hebt $_temp0.';
+  }
+
+  @override
+  String tutorPhraseStagedMakePoints(Object points) {
+    return 'Je hebt $points gesloten.';
+  }
+
+  @override
+  String tutorPhraseStagedBlot(int point) {
+    return 'De schijf op jouw punt $point is voorlopig een blot.';
+  }
+
+  @override
+  String tutorPhraseStagedSpare(int point) {
+    return 'De reserves op jouw punt $point kunnen later bewegen zonder dat het punt openvalt.';
+  }
+
+  @override
+  String tutorPhraseStagedPartialPrompt(Object part) {
+    return '$part Gebruik de overige speelbare dobbelstenen voordat je de hele zet beoordeelt.';
+  }
+
+  @override
+  String get tutorPhraseStagedAllCheckersOff =>
+      'Alle 15 schijven zijn van het bord: je hebt gewonnen.';
+
+  @override
+  String get tutorPhraseStagedHitShortPlan =>
+      'De slag levert tijd op terwijl de tegenstander opnieuw probeert in te zetten.';
+
+  @override
+  String get tutorPhraseStagedEfficientBearOffPlan =>
+      'Efficiënt afvoeren haalt schijven weg en laat bruikbare getallen over voor de volgende worp.';
+
+  @override
+  String get tutorPhraseStagedRaceHomePlan =>
+      'In de race breng je de achterste schijven naar huis en houd je bruikbare punten om af te voeren.';
+
+  @override
+  String get tutorPhraseStagedBearOffContactPlan =>
+      'Schijven afvoeren is vooruitgang, maar door het resterende contact kun je nog worden geslagen.';
+
+  @override
+  String get tutorPhraseStagedReentryPlan =>
+      'Door opnieuw in te zetten komt de schijf terug in het spel; zoek daarna een veilige bestemming.';
+
+  @override
+  String get tutorPhraseStagedHomeBoardPlan =>
+      'Het nieuwe punt in je thuisbord sluit na een eventuele slag een inzetnummer af.';
+
+  @override
+  String get tutorPhraseStagedPrimePlan =>
+      'De langere gesloten reeks blokkeert meer landingspunten; reserves helpen haar intact te houden.';
+
+  @override
+  String get tutorPhraseStagedLeaveAnchorPlan =>
+      'Het anker verlaten levert terreinwinst op, maar je geeft een veilig steunpunt op.';
+
+  @override
+  String get tutorPhraseStagedNewAnchorPlan =>
+      'Het nieuwe anker geeft je achterste schijven een veilig steunpunt.';
+
+  @override
+  String get tutorPhraseStagedCoverBlotPlan =>
+      'Door de blot te dekken, haal je een doelwit voor de tegenstander weg.';
+
+  @override
+  String get tutorPhraseStagedSafetyTradeoffPlan =>
+      'De afweging is ontwikkeling tegenover veiligheid: nuttige bouwschijven kunnen ook doelwitten worden.';
+
+  @override
+  String tutorPhraseStagedCompletePrompt(Object part) {
+    return '$part De volledige zet staat klaar; tik op Bevestigen om hem uit te voeren.';
+  }
+
+  @override
+  String get tutorMoveForcedVerdict =>
+      'Met deze worp is er geen keuze in de zetten; daarom wordt hij niet als beslissing beoordeeld.';
+
+  @override
+  String get tutorMoveTopVerdict => 'De beste keuze in deze positie.';
+
+  @override
+  String get tutorMoveAlternativeVerdict =>
+      'De engine geeft hier de voorkeur aan een andere zet.';
+
+  @override
+  String tutorMoveEstimateDifference(Object loss) {
+    return 'Verschil met de beste zet: $loss.';
+  }
+
+  @override
+  String tutorMoveEstimateOutcomes(
+    Object winPercent,
+    Object winGammonPercent,
+    Object loseGammonPercent,
+  ) {
+    return 'Na deze zet: geschat $winPercent% kans op winst, $winGammonPercent% op winst met gammon of beter, en $loseGammonPercent% op verlies met gammon of erger. Dit zijn schattingen vanuit het perspectief van de speler die aan zet is.';
+  }
+
+  @override
+  String tutorMoveEstimateMatchChance(Object percent) {
+    return 'Geschatte kans om de match te winnen: $percent%.';
+  }
+
+  @override
+  String get tutorMovePlanAllCheckersOff =>
+      'Alle 15 schijven zijn van het bord: de partij is gewonnen.';
+
+  @override
+  String tutorMovePlanHit(Object homeBoardAdvice) {
+    return 'Gebruik de slag om tijd te winnen terwijl de tegenstander opnieuw inzet. $homeBoardAdvice';
+  }
+
+  @override
+  String get tutorMovePlanHitClosed =>
+      'Houd punten in je thuisbord gesloten om opnieuw inzetten moeilijker te maken.';
+
+  @override
+  String get tutorMovePlanHitBuild =>
+      'Sluit meer punten in je thuisbord om herstel na toekomstige slagen moeilijker te maken.';
+
+  @override
+  String get tutorMovePlanRaceBearOff =>
+      'Werk toe naar een efficiënte bear-off: haal schijven van het bord en houd bruikbare getallen over voor de volgende worp.';
+
+  @override
+  String get tutorMovePlanRaceHome =>
+      'Breng je achterste schijven naar huis en spreid ze over bruikbare punten om ze straks van het bord te halen.';
+
+  @override
+  String get tutorMovePlanContactBearOff =>
+      'Haal schijven van het bord, maar houd de achterste schijven van je tegenstander in de gaten: zolang er contact is, kan een losse schijf bij het afvoeren een doelwit worden.';
+
+  @override
+  String get tutorMovePlanReentry =>
+      'Kom weer in het spel en zoek daarna een veilig punt voor de schijf die is ingezet.';
+
+  @override
+  String get tutorMovePlanHomeBoard =>
+      'Versterk je thuisbord. Het nieuwe gesloten punt maakt een toekomstige slag krachtiger doordat het een inzetnummer blokkeert.';
+
+  @override
+  String get tutorMovePlanPrime =>
+      'Houd de reeks gesloten punten intact. Bewaar reserves zodat volgende worpen je niet dwingen de reeks open te breken.';
+
+  @override
+  String get tutorMovePlanLeaveAnchor =>
+      'Als je een anker verlaat, komen je achterste schijven vooruit, maar verlies je een veilige uitvalsbasis. Let op hun kwetsbaarheid onderweg naar huis.';
+
+  @override
+  String get tutorMovePlanNewAnchor =>
+      'Gebruik het nieuwe anker als veilige uitvalsbasis terwijl je de rest van je positie verbetert.';
+
+  @override
+  String get tutorMovePlanCoverBlot =>
+      'Breng je schijven samen. Door een blot af te dekken, neem je een doelwit weg en blijven bruikbare landingspunten beschikbaar.';
+
+  @override
+  String get tutorMovePlanSafety =>
+      'Zoek een balans tussen ontwikkeling en veiligheid: breng bouwschijven naar nuttige punten en kijk welke losse schijven kunnen worden geslagen.';
+
+  @override
+  String get tutorMoveObservationNoLegalPlay =>
+      'Geen geldige zet met de schijven mogelijk: je moet passen.';
+
+  @override
+  String tutorMoveObservationHit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count schijven van de tegenstander',
+      one: 'één schijf van de tegenstander',
+    );
+    return 'Je slaat $_temp0; de tegenstander moet eerst opnieuw inzetten voordat die andere schijven kan verplaatsen.';
+  }
+
+  @override
+  String tutorMoveObservationEntry(int count) {
+    return 'Je zet $count vanaf de bar opnieuw in.';
+  }
+
+  @override
+  String tutorMoveObservationBearOff(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count schijven',
+      one: 'één schijf',
+    );
+    return 'Je haalt $_temp0 van het bord.';
+  }
+
+  @override
+  String tutorMoveObservationMadePoints(Object points) {
+    return 'Je sluit $points. Twee of meer schijven bezetten een veilig punt en blokkeren daar de landing van de tegenstander.';
+  }
+
+  @override
+  String tutorMoveObservationBrokenPoints(Object pointLabel, Object points) {
+    return 'Je geeft gesloten punten op ($pointLabel): $points. Die punten blokkeren de tegenstander daar niet langer.';
+  }
+
+  @override
+  String tutorMoveObservationNoBlots(int previousCount) {
+    return 'Je laat geen losse schijven onbeschermd achter (eerder: $previousCount). Er zijn geen losse schijven om te slaan.';
+  }
+
+  @override
+  String tutorMoveObservationBlots(int count, int previousCount) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count losse schijven onbeschermd',
+      one: 'één losse schijf onbeschermd',
+    );
+    return 'Je laat $_temp0 achter (eerder: $previousCount). Kijk of de tegenstander ze kan bereiken voordat je veiligheid verkiest boven een ander voordeel.';
+  }
+
+  @override
+  String tutorMoveObservationPrimeRun(
+    int count,
+    int previousCount,
+    Object primeAdvice,
+  ) {
+    return 'Langste reeks gesloten punten: $count (eerder: $previousCount). $primeAdvice';
+  }
+
+  @override
+  String get tutorMoveObservationPrimeSix =>
+      'Een gesloten reeks van zes punten kan niet worden overgestoken zolang die intact blijft.';
+
+  @override
+  String get tutorMoveObservationPrimeBuild =>
+      'Houd bouwschijven in de buurt als je deze reeks wilt verlengen of behouden.';
+
+  @override
+  String tutorMoveObservationPrimeSpares(int count) {
+    return 'Er zijn $count reserves boven op de twee schijven die punten gesloten houden. Een reserve verplaatsen kan het punt behouden; een van de laatste twee verplaatsen maakt het open.';
+  }
+
+  @override
+  String tutorMoveObservationAnchors(Object points, Object previousPoints) {
+    return 'Ankers in het thuisbord van de tegenstander: $points (eerder: $previousPoints). Een anker beschermt die schijven tegen slagen; het verlaten ervan ruilt die veilige uitvalsbasis in voor vooruitgang in de race.';
+  }
+
+  @override
+  String get tutorMoveObservationPureRace =>
+      'Een zuivere race: de legers zijn elkaar gepasseerd en niemand staat op de bar. Slaan kan niet meer; efficiënt schijven afvoeren is nu belangrijk.';
+
+  @override
+  String get tutorMoveObservationNoReplyHit =>
+      'In deze positie kan de tegenstander met geen enkele geldige volgende worp een schijf slaan. Er is nog contact, dus latere zetten kunnen nieuwe kansen om te slaan opleveren.';
+
+  @override
+  String tutorMoveObservationReplyHit(
+    int count,
+    int total,
+    int dieOne,
+    int dieTwo,
+    int point,
+  ) {
+    return 'De tegenstander kan slaan met $count van de $total worpen. Bijvoorbeeld: met $dieOne–$dieTwo kan die legaal op jouw punt $point slaan. De kans is er, maar de tegenstander hoeft die niet te benutten.';
+  }
+
+  @override
+  String tutorMoveObservationOpponentBarHome(
+    int closedPoints,
+    Object entryAdvice,
+  ) {
+    return 'Gesloten punten in je thuisbord: $closedPoints. $entryAdvice';
+  }
+
+  @override
+  String get tutorMoveObservationAllEntriesClosed =>
+      'De tegenstander kan pas opnieuw inzetten als er een punt opengaat.';
+
+  @override
+  String get tutorMoveObservationOpenEntry =>
+      'Met een worp die op een open inzetpunt uitkomt, kan een schijf vanaf de bar terugkomen.';
+
+  @override
+  String tutorMoveComparisonDetail(
+    Object factors,
+    Object delta,
+    Object direction,
+    Object scoreContext,
+  ) {
+    return '$factors De geschatte winstkans bij de beste zet is $delta procentpunt $direction.$scoreContext';
+  }
+
+  @override
+  String get tutorMoveComparisonHigher => 'hoger';
+
+  @override
+  String get tutorMoveComparisonLower => 'lager';
+
+  @override
+  String tutorMoveComparisonScoreContext(Object scoreContext) {
+    return ' Die kan toch hoger eindigen, omdat gammons en backgammons een andere waarde hebben bij de huidige $scoreContext.';
+  }
+
+  @override
+  String get tutorMoveComparisonStake => 'inzet';
+
+  @override
+  String get tutorMoveComparisonMatchScore => 'matchscore';
+
+  @override
+  String tutorMoveComparisonFactorBar(int bestCount, int playedCount) {
+    return 'Aantal schijven van de tegenstander op de bar na de beste zet: $bestCount, tegenover $playedCount. Een schijf op de bar moet eerst opnieuw inzetten voordat de tegenstander de andere kan verplaatsen.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorHomeBoard(
+    int bestCount,
+    int playedCount,
+    Object entryDifference,
+  ) {
+    return 'Aantal gesloten punten in je thuisbord bij de beste zet: $bestCount, tegenover $playedCount bij je zet. Na een slag kun je $entryDifference.';
+  }
+
+  @override
+  String get tutorMoveComparisonClosingMore => 'meer inzetnummers afsluiten';
+
+  @override
+  String get tutorMoveComparisonLeavingMore => 'meer inzetnummers openlaten';
+
+  @override
+  String tutorMoveComparisonFactorShots(
+    int bestCount,
+    int playedCount,
+    Object riskDifference,
+  ) {
+    return 'De beste zet geeft een kans op terugslaan bij $bestCount van de 36 worpen, tegenover $playedCount. $riskDifference';
+  }
+
+  @override
+  String get tutorMoveComparisonReducesRisk =>
+      'Dat verlaagt het directe risico dat je wordt teruggeslagen.';
+
+  @override
+  String get tutorMoveComparisonExtraExposure =>
+      'Weeg die extra kwetsbaarheid af tegen wat de zet verder oplevert.';
+
+  @override
+  String tutorMoveComparisonFactorPrime(int bestCount, int playedCount) {
+    return 'De langste reeks gesloten punten is $bestCount bij de beste zet, tegenover $playedCount. Vergelijk de blokkade met het aantal schijven dat je hebt om haar intact te houden.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorAnchors(
+    Object bestPoints,
+    Object playedPoints,
+  ) {
+    return 'Ankers bij de beste zet: $bestPoints, tegenover $playedPoints. Een anker behouden geeft een veilige landingsplek; het verlaten ervan brengt die schijven dichter bij huis.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorBearOff(int bestCount, int playedCount) {
+    return 'Aantal schijven van het bord bij de beste zet: $bestCount, tegenover $playedCount. Elke schijf die eraf is, hoef je later niet meer af te voeren.';
+  }
+
+  @override
+  String get tutorMoveComparisonFactorSimilarRisks =>
+      'Beide zetten laten hetzelfde directe risico op slagen, evenveel gesloten punten in het thuisbord en dezelfde aantallen ankers en afgevoerde schijven. Vergelijk de landingspunten: de volgende worp kan die schijven anders benutten.';
+
+  @override
+  String get tutorMoveComparisonSummaryBar =>
+      'De beste zet stuurt meer schijven van de tegenstander naar de bar en vertraagt zo diens andere zetten.';
+
+  @override
+  String get tutorMoveComparisonSummaryHomeBoard =>
+      'De beste zet sluit meer punten in het thuisbord, waardoor opnieuw inzetten na een slag moeilijker wordt.';
+
+  @override
+  String get tutorMoveComparisonSummaryShots =>
+      'De beste zet laat minder directe kansen om te slaan toe en verkleint zo het risico op een terugslag.';
+
+  @override
+  String get tutorMoveComparisonSummaryPrime =>
+      'De beste zet behoudt een langere reeks gesloten punten.';
+
+  @override
+  String get tutorMoveComparisonSummaryAnchors =>
+      'De beste zet behoudt meer veilige ankers in het thuisbord van de tegenstander.';
+
+  @override
+  String get tutorMoveComparisonSummaryBearOff =>
+      'De beste zet haalt meer schijven van het bord, zodat er later minder overblijven.';
+
+  @override
+  String tutorMoveComparisonSummaryBlots(int playedCount, int bestCount) {
+    return 'Deze zet laat $playedCount losse schijven onbeschermd; de beste zet laat er $bestCount achter.';
+  }
+
+  @override
+  String tutorMoveComparisonSummarySafeAnchor(int point) {
+    return 'De beste zet behoudt een veilig anker op punt $point.';
+  }
+
+  @override
+  String get tutorMoveComparisonSummaryEntry =>
+      'De beste zet sluit meer inzetpunten voor het geval een van je schijven wordt geslagen.';
+
+  @override
+  String get tutorMoveComparisonSummarySimilarRisks =>
+      'De zetten laten vergelijkbare directe risico’s achter; vergelijk welke landingspunten bij de volgende worp bruikbaar blijven.';
+
+  @override
+  String tutorMoveAssessmentEquityLoss(Object value) {
+    return '$value verlies aan equity';
+  }
+
+  @override
+  String tutorMoveAssessmentMwcLoss(Object value) {
+    return '$value procentpunt matchwinstkans (MWC)';
+  }
+
+  @override
+  String get tutorMovePointSingular => 'punt';
+
+  @override
+  String get tutorMovePointPlural => 'punten';
+
+  @override
+  String get tutorMoveNoPoints => 'geen';
+
+  @override
+  String get gameTutorCommentaryOff => 'Spelcommentaar staat uit.';
+
+  @override
+  String get gameTutorToolsAvailable =>
+      'Open de tutor voor de functies die je hebt ingeschakeld.';
+
+  @override
+  String get gameTutorNextRoll => 'Gooi opnieuw.';
+
+  @override
+  String get gameTutorNoEvaluatedReview =>
+      'Voor deze opgeslagen zet is geen beoordeelde uitleg beschikbaar.';
+
+  @override
+  String get gameTutorAnalysisUnavailable => 'analyse niet beschikbaar';
+
+  @override
+  String get gameTutorReviewing => 'wordt bekeken…';
+
+  @override
+  String get gameTutorTryYourPlayFirst => 'Probeer eerst zelf een zet.';
+
+  @override
+  String get gameTutorKeepBuilding => 'Maak je zet verder af.';
+
+  @override
+  String get gameTutorStageCompleteBeforeCoaching =>
+      'Speel eerst een volledige geldige zet voordat je coaching of hints bekijkt.';
+
+  @override
+  String get gameTutorReadyToConfirm => 'Klaar om te bevestigen';
+
+  @override
+  String get gameTutorPlayTakingShape => 'Je zet krijgt vorm.';
+
+  @override
+  String get gameTutorConfirmOrUndo =>
+      'Bevestig om de zet uit te voeren of maak hem ongedaan om opnieuw te kiezen.';
+
+  @override
+  String get gameTutorFinishDiceOrUndo =>
+      'Gebruik de resterende dobbelstenen of maak de zet ongedaan.';
+
+  @override
+  String get gameTutorComputerConsidering =>
+      'De computer denkt na over zijn zet.';
+
+  @override
+  String get gameTutorComputerPlayReviewed =>
+      'De voltooide zet wordt hier besproken.';
+
+  @override
+  String get gameTutorYourPlay => 'Jouw zet';
+
+  @override
+  String get gameTutorComputer => 'Computer';
+
+  @override
+  String gameTutorPlayQuality(Object quality) {
+    return 'Jouw zet: $quality';
+  }
+
+  @override
+  String get gameTutorForcedPlay => 'verplichte zet';
+
+  @override
+  String get gameTutorTopChoice => 'beste keuze';
+
+  @override
+  String get gameTutorSoundPlay => 'goede zet';
+
+  @override
+  String get gameTutorAnotherPlayMayFitBetter =>
+      'een andere zet past misschien beter';
+
+  @override
+  String get gameTutorAnotherPlayFitsBetter =>
+      'een andere zet past beter bij deze positie';
+
+  @override
+  String get gameTutorStrongerPlayAvailable =>
+      'er was duidelijk een sterkere zet beschikbaar';
+
+  @override
+  String gameTutorPositionEdge(Object side) {
+    return '$side heeft naar schatting voordeel.';
+  }
+
+  @override
+  String get gameTutorPositionEven => 'De positie is ongeveer gelijk.';
+
+  @override
+  String tutorPlayedMove(Object move) {
+    return 'Gespeeld: $move';
+  }
+
+  @override
+  String tutorBestMove(Object move) {
+    return 'Beste zet: $move';
+  }
+
+  @override
+  String get tutorShowRankedPlays => 'Gerangschikte zetten tonen';
+
+  @override
+  String get tutorReviewRecordedMove =>
+      'Tik in het logboek op een voltooide zet om de beslissing hier te bekijken.';
+
+  @override
+  String get tutorTopPlays => 'Beste zetten';
+
+  @override
+  String get tutorNoHintsAvailable => 'Geen hints beschikbaar.';
+
+  @override
+  String get tutorPreviewThenConfirm =>
+      'Tik op een zet om deze op het bord te bekijken en bevestig daarna.';
+
+  @override
+  String get tutorTopChoiceForPosition => 'Beste keuze voor deze positie';
+
+  @override
+  String get tutorAlternativePlay => 'Alternatieve zet';
+
+  @override
+  String get tutorEngineEstimates => 'Engine-inschattingen';
+
+  @override
+  String get tutorEstimateScope =>
+      '0-ply-inschatting · huidige score en inzet · geen toekomstige cube-beslissingen';
+
+  @override
+  String get tutorEquity => 'Verwachtingswaarde';
+
+  @override
+  String get tutorMwcPercent => 'MWC %';
+
+  @override
+  String get tutorNearTiesNote =>
+      'Bij bijna gelijke zetten kan een diepere analyse de volgorde veranderen.';
+
+  @override
+  String get tutorWhyThisPlay => 'Waarom deze zet?';
+
+  @override
+  String get tutorCompareAlternative => 'Vergelijk dit alternatief';
+
+  @override
+  String get gameTutorCubeTake => 'Tutor: aannemen';
+
+  @override
+  String get gameTutorCubePass => 'Tutor: passen';
+
+  @override
+  String get practiceScreenTitle => 'Oefen een beslissing';
+
+  @override
+  String get practiceUnavailable =>
+      'Deze oefenpositie is niet meer beschikbaar.';
+
+  @override
+  String get practiceSubmitError =>
+      'Deze poging kon niet worden beoordeeld of opgeslagen. Je voortgang is niet gewijzigd. Probeer het opnieuw.';
+
+  @override
+  String practiceTurnLabel(Object side, Object dice) {
+    return '$side is aan zet · $dice';
+  }
+
+  @override
+  String get practiceHistoricalScoreUnavailable =>
+      'Historische score niet beschikbaar; de beoordeling gebruikt equity zonder verdubbelingsdobbelsteen.';
+
+  @override
+  String practiceScoreLine(
+    Object whiteLabel,
+    int whiteScore,
+    Object blackLabel,
+    int blackScore,
+    int matchLength,
+  ) {
+    return 'Score: $whiteLabel $whiteScore – $blackLabel $blackScore, tot $matchLength';
+  }
+
+  @override
+  String get practiceCrawfordGame => ' · Crawfordpartij';
+
+  @override
+  String get practiceNoDoublingCube => 'Geen verdubbelingsdobbelsteen.';
+
+  @override
+  String practiceCubeValue(int value) {
+    return 'Dobbelsteen $value.';
+  }
+
+  @override
+  String get practiceHistoricalCubeUnknown =>
+      'Historische dobbelsteenregels onbekend.';
+
+  @override
+  String get practiceAfterBestPosition => 'Positie na de beste zet';
+
+  @override
+  String get practiceAfterYourAnswerPosition => 'Positie na jouw antwoord';
+
+  @override
+  String get practiceFindYourPlayPrompt =>
+      'Speel je zet op het bord en controleer daarna je antwoord. Er worden geen hints getoond.';
+
+  @override
+  String get practiceUndo => 'Ongedaan maken';
+
+  @override
+  String get practiceCheckAnswer => 'Antwoord controleren';
+
+  @override
+  String get practiceRevealNoCredit => 'Antwoord tonen (zonder punt)';
+
+  @override
+  String get practiceAnswerRevealedNoCredit =>
+      'Antwoord getoond — geen herinneringspunt.';
+
+  @override
+  String practiceGradeLine(Object verdict, Object loss) {
+    return '$verdict · $loss';
+  }
+
+  @override
+  String practiceBestMoveLine(Object move) {
+    return 'Beste: $move';
+  }
+
+  @override
+  String practiceOriginalGameLine(Object move, Object loss) {
+    return 'Oorspronkelijke partij: $move · $loss';
+  }
+
+  @override
+  String practiceYourAnswerLine(Object move) {
+    return 'Jouw antwoord: $move';
+  }
+
+  @override
+  String get practiceYourAnswerChip => 'Jouw antwoord';
+
+  @override
+  String get practiceBestPlayChip => 'Beste zet';
+
+  @override
+  String practiceNextReview(Object date) {
+    return 'Volgende herhaling: $date.';
+  }
+
+  @override
+  String get practiceRecallCredit =>
+      'Beste of goede antwoorden tellen als succesvol herinnerd. Vroege herhalingen verschuiven het schema niet.';
+
+  @override
+  String get practiceBackToLearning => 'Terug naar leren';
+
+  @override
+  String get practiceMarkBest => 'Beste';
+
+  @override
+  String get practiceMarkGood => 'Goed';
+
+  @override
+  String get practiceMarkDubious => 'Twijfelachtig';
+
+  @override
+  String get practiceMarkError => 'Fout';
+
+  @override
+  String get practiceMarkBlunder => 'Blunder';
+
+  @override
+  String get practiceMarkForced => 'Gedwongen';
+
+  @override
+  String get newMatchYourSide => 'Jouw kant';
+
+  @override
+  String get newMatchTutorMode => 'Tutormodus';
+
+  @override
+  String get newMatchTutorDescription =>
+      'Leer met hints, uitleg en commentaar op het spel';
+
+  @override
+  String get newMatchTutoringOptions => 'Tutoropties';
+
+  @override
+  String get newMatchTutoringOptionsDescription =>
+      'Voor deze partij; tijdens het spel aan te passen';
+
+  @override
+  String get setupMatchLength => 'Partijlengte';
+
+  @override
+  String get setupDifficulty => 'Moeilijkheid';
+
+  @override
+  String get setupDifficultyEasy => 'Makkelijk';
+
+  @override
+  String get setupDifficultyMedium => 'Gemiddeld';
+
+  @override
+  String get setupDifficultyHard => 'Moeilijk';
+
+  @override
+  String get setupDifficultyExpert => 'Expert';
+
+  @override
+  String get setupPlayWithoutCube => 'Spelen zonder verdubbelingsdobbelsteen';
+
+  @override
+  String get setupNoCubeThisMatch =>
+      'Geen verdubbelingsdobbelsteen in deze partij';
+
+  @override
+  String get analysisTitle => 'Analyse';
+
+  @override
+  String get gameMatchSummary => 'Partijoverzicht';
+
+  @override
+  String get gameAnalyzeGame => 'Partij analyseren';
+
+  @override
+  String get analysisMetricsTooltip => 'Wat betekenen deze cijfers?';
+
+  @override
+  String analysisError(Object error) {
+    return 'Analyse van de partij mislukt: $error';
+  }
+
+  @override
+  String get analysisNoPositions =>
+      'Deze partij bevat geen posities om te tonen.';
+
+  @override
+  String get analysisInProgress => 'Partij analyseren…';
+
+  @override
+  String analysisPercent(int percent) {
+    return '$percent%';
+  }
+
+  @override
+  String get analysisPlayed => 'Gespeeld';
+
+  @override
+  String get analysisBest => 'Beste';
+
+  @override
+  String get analysisPrevious => 'Vorige';
+
+  @override
+  String get analysisNext => 'Volgende';
+
+  @override
+  String get analysisPositionBeforeCube =>
+      'Positie vóór de dobbelsteenbeslissing';
+
+  @override
+  String get analysisPositionAtPoint => 'Positie op dit punt in de partij';
+
+  @override
+  String get analysisShowingBestBefore =>
+      'Beste zet getoond op de positie vóór de zet';
+
+  @override
+  String get analysisShowingBefore => 'Positie vóór de zet tonen';
+
+  @override
+  String analysisVerdictLine(Object side, Object verdict, Object loss) {
+    return '$side: $verdict$loss';
+  }
+
+  @override
+  String analysisMoveLoss(Object loss) {
+    return ' −$loss';
+  }
+
+  @override
+  String get analysisExcludedFromAverages => ' · uitgesloten van gemiddelden';
+
+  @override
+  String get analysisNoPlay => '(geen zet)';
+
+  @override
+  String analysisBestMoveLine(Object move) {
+    return 'Beste zet: $move';
+  }
+
+  @override
+  String get analysisExplain => 'Uitleggen';
+
+  @override
+  String get analysisSaveForPractice => 'Opslaan om te oefenen';
+
+  @override
+  String analysisSaveError(Object error) {
+    return 'Deze beslissing kon niet worden opgeslagen: $error';
+  }
+
+  @override
+  String analysisCubeInfo(
+    Object side,
+    Object action,
+    Object mark,
+    Object loss,
+  ) {
+    return '$side: $action · $mark · verlies $loss';
+  }
+
+  @override
+  String get analysisCubeDecision => 'Dobbelsteenbeslissing';
+
+  @override
+  String analysisCubePlayed(Object action, Object percent) {
+    return 'Gespeeld: $action (winstkans partij: $percent%).';
+  }
+
+  @override
+  String analysisCubeBest(Object action, Object percent) {
+    return 'Beste: $action (winstkans partij: $percent%).';
+  }
+
+  @override
+  String get analysisCubeEstimate =>
+      'Schatting op 0 ply vanuit het perspectief van de speler die aan zet is. Gaat uit van een optimale aanname- of pasreactie. Gebruikt een benadering van 0,7 voor de levensduur van de dobbelsteen bij een aangenomen double, geen volledige zoekactie naar toekomstige redoubles. Een diepere analyse kan de uitkomst veranderen.';
+
+  @override
+  String get analysisClose => 'Sluiten';
+
+  @override
+  String get analysisMoves => 'Zetten';
+
+  @override
+  String get analysisForced => 'Gedwongen';
+
+  @override
+  String get analysisMarkBest => 'Beste';
+
+  @override
+  String get analysisMarkGood => 'Goed';
+
+  @override
+  String get analysisMarkDubious => 'Twijfelachtig';
+
+  @override
+  String get analysisMarkError => 'Fout';
+
+  @override
+  String get analysisMarkBlunder => 'Blunder';
+
+  @override
+  String analysisSummaryMeanLoss(Object loss) {
+    return 'Gemiddeld verlies $loss';
+  }
+
+  @override
+  String analysisSummaryCheckerDecisions(int count) {
+    return '$count beslissingen over stenen';
+  }
+
+  @override
+  String analysisSummaryBlunders(int count) {
+    return 'Blunders $count';
+  }
+
+  @override
+  String analysisSummaryCubeLoss(Object loss) {
+    return 'Verlies door dobbelsteen $loss';
+  }
+
+  @override
+  String analysisRollWithoutDoubling(Object side) {
+    return '$side gooit zonder te verdubbelen';
+  }
+
+  @override
+  String get metricExplainerTitle => 'De statistieken begrijpen';
+
+  @override
+  String get metricExplainerTooltip => 'Wat betekenen deze cijfers?';
+
+  @override
+  String get metricExplainerMwcTitle => 'Kans om de partij te winnen (MWC)';
+
+  @override
+  String get metricExplainerMwcBody =>
+      'Als de score bekend is, worden zetten gerangschikt op de geschatte kans om de partij te winnen. Verlies staat in procentpunten (pp): 1 pp betekent een daling van 51% naar 50%. De huidige inzet van de dobbelsteen en gammon/backgammon-uitkomsten tellen mee. Gedwongen passen en worpen met maar één legale positie tellen niet mee in gemiddelden.';
+
+  @override
+  String get metricExplainerSearchTitle => 'Zoekdiepte en onzekerheid';
+
+  @override
+  String get metricExplainerSearchBody =>
+      'Zetrangschikkingen zijn statische 0-ply-schattingen na de zet, geen rollouts. Partijwaarden gebruiken een match-equitytabel zonder toekomstige dobbelsteenbeurten. Dobbelsteenbeoordelingen gebruiken een gedeeltelijke 0,7-benadering van de dobbelsteenlevensduur bij aangenomen doubles. Dit is geen volledige cubeful zoekactie. Achterstanden boven 25 gebruiken de grens van 25 uit de tabel. Bijna gelijke uitkomsten kunnen veranderen bij diepere analyse; er is geen gekalibreerd betrouwbaarheidsinterval.';
+
+  @override
+  String get metricExplainerEquityTitle => 'Equity';
+
+  @override
+  String get metricExplainerEquityBody =>
+      'Als de score ontbreekt, is cubeloze equity de gemiddelde puntenwaarde van een positie bij een dobbelsteen op 1. +1,0 betekent dat je gemiddeld één punt wint; −0,5 dat je een half punt verliest.';
+
+  @override
+  String get metricExplainerEquityLossTitle => 'Equityverlies (bijv. −0,016)';
+
+  @override
+  String get metricExplainerEquityLossBody =>
+      'We vergelijken elke zet met de beste zet van de engine. Equityverlies is de verwachte waarde die je met je zet hebt opgegeven. −0,016 betekent dat de zet slechts 0,016 punt slechter was — een klein foutje. 0,000 betekent dat je de beste zet vond.';
+
+  @override
+  String get metricExplainerErrorRateTitle => 'Foutpercentage';
+
+  @override
+  String get metricExplainerErrorRateBody =>
+      'Gemiddeld verlies is het gemiddelde van je beoordeelde beslissingen over stenen, in de weergegeven eenheid. Beslissingen over de dobbelsteen hebben een eigen gemiddelde. Lager betekent dichter bij de beste schattingen van deze engine; het is geen gekalibreerde spelersrating.';
+
+  @override
+  String get metricExplainerMoveMarksTitle => 'Zetbeoordelingen';
+
+  @override
+  String get metricExplainerMoveMarksBody =>
+      'MWC-leerbanden: Beste < 0,05 pp, Goed < 0,5 pp, Twijfelachtig < 1,5 pp, Fout < 3 pp, Blunder ≥ 3 pp. Dit zijn productbanden voor leren, geen gekalibreerde zekerheid of toernooirating.\n\nLeerbanden voor cubeloze equity:';
+
+  @override
+  String get metricExplainerThresholdBest => 'verlies < 0,001';
+
+  @override
+  String get metricExplainerThresholdGood => 'verlies < 0,020';
+
+  @override
+  String get metricExplainerThresholdDubious => 'verlies < 0,050';
+
+  @override
+  String get metricExplainerThresholdError => 'verlies < 0,110';
+
+  @override
+  String get metricExplainerThresholdBlunder => 'verlies ≥ 0,110';
+
+  @override
+  String get metricExplainerGotIt => 'Begrepen';
+
+  @override
+  String get historyTitle => 'Partijgeschiedenis';
+
+  @override
+  String historyLoadFailed(Object error) {
+    return 'Geschiedenis laden mislukt:\n$error';
+  }
+
+  @override
+  String get historyEmpty => 'Nog geen partijen gespeeld.';
+
+  @override
+  String get historyDeleteConfirmTitle => 'Deze partij verwijderen?';
+
+  @override
+  String historyDeleteConfirmBody(Object scoreLine) {
+    return '$scoreLine\n\nDe partij en alle geregistreerde spellen worden definitief verwijderd. Dit kan niet ongedaan worden gemaakt.';
+  }
+
+  @override
+  String get actionCancel => 'Annuleren';
+
+  @override
+  String get actionDelete => 'Verwijderen';
+
+  @override
+  String get historyDeleteFailed => 'Deze partij kon niet worden verwijderd.';
+
+  @override
+  String get historyComplete => 'Voltooid';
+
+  @override
+  String historyWinner(Object side) {
+    return '$side heeft gewonnen';
+  }
+
+  @override
+  String get historyUnfinished => 'Niet voltooid';
+
+  @override
+  String get historyMatchTitle => 'Partij';
+
+  @override
+  String historyMatchLoadFailed(Object error) {
+    return 'Partij laden mislukt:\n$error';
+  }
+
+  @override
+  String historyGamesLoadFailed(Object error) {
+    return 'Spellen laden mislukt:\n$error';
+  }
+
+  @override
+  String get historyNoGames => 'Nog geen spellen vastgelegd.';
+
+  @override
+  String historyGameTitle(int number) {
+    return 'Spel $number';
+  }
+
+  @override
+  String get historyCrawford => 'Crawford';
+
+  @override
+  String historyScoreLine(int whiteScore, int blackScore, int matchLength) {
+    return 'Wit $whiteScore — $blackScore Zwart (tot $matchLength)';
+  }
+
+  @override
+  String get historyModeComputer => 'tegen computer';
+
+  @override
+  String get historyModeTwoPlayers => 'Twee spelers';
+
+  @override
+  String get historyModeOnline => 'Online';
+
+  @override
+  String get historyModeNearby => 'Spelen in de buurt';
+
+  @override
+  String get historyModeBuddy => 'Buddy';
+
+  @override
+  String get historyGameInProgress => 'Bezig';
+
+  @override
+  String historyGameResult(Object side, int points, Object outcome) {
+    return '$side wint $points ($outcome)';
+  }
+
+  @override
+  String get historyOutcomeSingle => 'enkel';
+
+  @override
+  String get historyOutcomeGammon => 'gammon';
+
+  @override
+  String get historyOutcomeBackgammon => 'backgammon';
+
+  @override
+  String get learningRefreshTooltip => 'Leer voortgang vernieuwen';
+
+  @override
+  String get learningOptions => 'Leeropties';
+
+  @override
+  String get learningResetMenu => 'Oefenvoortgang resetten';
+
+  @override
+  String get learningLoadFailed => 'Leer voortgang laden is mislukt.';
+
+  @override
+  String get actionRetry => 'Opnieuw proberen';
+
+  @override
+  String get learningHeading => 'Leer van je beslissingen';
+
+  @override
+  String get learningIntro =>
+      'Je voortgang blijft op dit apparaat. Bekijk terugkerende thema’s en speel opgeslagen posities opnieuw zonder het antwoord te zien. Wit en Zwart kun je apart bekijken.';
+
+  @override
+  String get learningBothSides => 'Beide kanten';
+
+  @override
+  String get learningHumansOnly => 'Alleen menselijke beslissingen';
+
+  @override
+  String get learningHumanOnlyHelp =>
+      'Schakel uit om beslissingen van de computer en externe spelers mee te nemen';
+
+  @override
+  String learningDecisionSummary(int decisions, int mistakes, int blunders) {
+    return '$decisions beslissingen · $mistakes verbeterpunten · $blunders blunders';
+  }
+
+  @override
+  String learningAverageLoss(int decisions, Object loss) {
+    return 'Gemiddeld verlies ($decisions beslissingen): $loss';
+  }
+
+  @override
+  String get learningForcedDisclaimer =>
+      'Gedwongen zetten tellen niet mee. Dit zijn engine-inschattingen, geen toernooirating.';
+
+  @override
+  String learningGamesNeedingAnalysis(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          '# opgeslagen partijen moeten worden geanalyseerd of opnieuw geanalyseerd.',
+      one:
+          '# opgeslagen partij moet worden geanalyseerd of opnieuw geanalyseerd.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get learningAnalyseSavedGames => 'Opgeslagen partijen analyseren';
+
+  @override
+  String get learningEmptyProfile =>
+      'Speel en voltooi een partij om je leerprofiel op te bouwen. Je kunt ook losse beslissingen opslaan vanuit de herhaling.';
+
+  @override
+  String get learningOpenHistory => 'Partijgeschiedenis openen';
+
+  @override
+  String get learningRecurringThemes => 'Terugkerende thema’s';
+
+  @override
+  String get learningNoThemes =>
+      'In deze selectie zijn nog geen terugkerende foutthema’s.';
+
+  @override
+  String learningThemeDecisions(int count) {
+    return '$count beslissingen om opnieuw te bekijken. Een positie kan meerdere thema’s hebben.';
+  }
+
+  @override
+  String get learningSaveMistakes => 'Deze fouten opslaan om te oefenen';
+
+  @override
+  String learningSavedMistakes(int count) {
+    return '$count beslissingen staan op je oefenlijst. Eerder opgeslagen items blijven behouden.';
+  }
+
+  @override
+  String get learningSaveMistakesFailed =>
+      'Sommige beslissingen konden niet worden opgeslagen. De voltooide opslag blijft behouden; probeer het opnieuw.';
+
+  @override
+  String get learningSpacedPractice => 'Gespreid oefenen';
+
+  @override
+  String learningPracticeCounts(
+    int due,
+    int saved,
+    int attempts,
+    int successes,
+  ) {
+    return '$due nu aan de beurt · $saved opgeslagen · $attempts pogingen · $successes succesvol herinnerd';
+  }
+
+  @override
+  String get learningIntervalsHelp =>
+      'Succesvolle beoordelingen komen na 1, 3, 7, 14 en 30 dagen terug. Fouten of getoonde antwoorden komen na 10 minuten terug. Vroege herhalingen wijzigen het interval niet.';
+
+  @override
+  String get learningAnswerContext =>
+      'De oefenresultaten zijn gebaseerd op jouw antwoorden hier, ook als de oorspronkelijke positie van een tegenstander was.';
+
+  @override
+  String get learningNoSavedPositions =>
+      'Sla een beslissing op vanuit de herhaling of gebruik hierboven de foutknop.';
+
+  @override
+  String learningPositionTitle(Object side, int gameId) {
+    return 'Beslissing van $side · spel $gameId';
+  }
+
+  @override
+  String learningReviewDue(Object date) {
+    return 'Herhalen op $date';
+  }
+
+  @override
+  String get learningReadyToReview => 'Klaar om te herhalen';
+
+  @override
+  String learningSuccessStreak(int count) {
+    return '$count succesvolle beoordelingen die aan de beurt zijn';
+  }
+
+  @override
+  String get learningRemoveTooltip => 'Opgeslagen beslissing verwijderen';
+
+  @override
+  String get learningRecentPractice => 'Recente oefeningen';
+
+  @override
+  String get learningAnswerRevealed => 'Antwoord getoond';
+
+  @override
+  String get learningSuccessfulRecall => 'Succesvol herinnerd';
+
+  @override
+  String get learningTryAgain => 'Probeer deze beslissing opnieuw';
+
+  @override
+  String learningAttemptSubtitle(Object date, int positionId) {
+    return '$date · opgeslagen positie $positionId';
+  }
+
+  @override
+  String get learningRemoveTitle => 'Deze oefening verwijderen?';
+
+  @override
+  String get learningRemoveBody =>
+      'Hiermee worden de oefenpogingen verwijderd. De oorspronkelijke partij blijft in de geschiedenis.';
+
+  @override
+  String get actionRemove => 'Verwijderen';
+
+  @override
+  String get learningRemoveFailed =>
+      'Deze oefening kon niet worden verwijderd.';
+
+  @override
+  String get learningResetTitle => 'Oefenvoortgang resetten?';
+
+  @override
+  String get learningResetBody =>
+      'Alle pogingen en herhaalintervallen worden verwijderd. Je opgeslagen oefeningen en partijgeschiedenis blijven behouden; elke oefening is meteen aan de beurt.';
+
+  @override
+  String get learningResetAction => 'Voortgang resetten';
+
+  @override
+  String get learningResetFailed => 'Oefenvoortgang resetten is mislukt.';
+
+  @override
+  String learningAnalysisProgress(int completed, int failed) {
+    return '$completed partijen geanalyseerd · $failed niet beschikbaar.';
+  }
+
+  @override
+  String learningAnalysisComplete(int completed) {
+    return '$completed partijen geanalyseerd.';
+  }
+
+  @override
+  String learningAnalysisCompleteWithErrors(int completed, int failed) {
+    return '$completed partijen geanalyseerd; $failed konden niet worden geanalyseerd. Probeer het opnieuw zodra de engine klaar is.';
+  }
+
+  @override
+  String get learningThemeHitting => 'Slaan en tempo';
+
+  @override
+  String get learningThemeSafety => 'Blots en veiligheid';
+
+  @override
+  String get learningThemePointMaking => 'Punten maken';
+
+  @override
+  String get learningThemePrime => 'Primes en blokkades';
+
+  @override
+  String get learningThemeAnchor => 'Ankers en ontsnappen';
+
+  @override
+  String get learningThemeRace => 'Efficiënt racen';
+
+  @override
+  String get learningThemeBearOff => 'Stenen uitspelen';
+
+  @override
+  String get learningThemeBarEntry => 'Binnenkomen vanaf de bar';
+
+  @override
+  String get learningThemeCube => 'Dobbelsteenbeslissingen';
+
+  @override
+  String get analysisCubeNoDouble => 'Niet verdubbelen';
+
+  @override
+  String get analysisCubeDouble => 'Verdubbelen';
+
+  @override
+  String get analysisCubeTake => 'Aannemen';
+
+  @override
+  String get analysisCubePass => 'Passen';
+
+  @override
+  String get learningAnalysisStarting => 'Opgeslagen partijen analyseren…';
+
+  @override
+  String get tutorCubelessEstimateScope =>
+      'Cubeloze schatting op 0 ply · score niet beschikbaar';
+
+  @override
+  String get tutorLossPp => 'Verlies pp';
+
+  @override
+  String get tutorLoss => 'Verlies';
+
+  @override
+  String get scoreSheetNoMoves => 'Nog geen zetten';
+
+  @override
+  String get tutorOptions => 'Tutoropties';
+
+  @override
+  String get tutorCollapseTooltip => 'Tutor inklappen';
+
+  @override
+  String get tutorExpandTooltip => 'Tutor uitklappen';
+
+  @override
+  String get onlineTitle => 'Online spelen';
+
+  @override
+  String get onlineUnassistedNote =>
+      'Live onlinepartijen hebben geen tutor. Bekijk je zetten en oefen fouten na de partij.';
+
+  @override
+  String get onlineNotConfiguredTitle =>
+      'Online spelen is in deze build niet ingesteld';
+
+  @override
+  String get onlineNotConfiguredBody =>
+      'Deze build heeft geen Firebase-backend, dus je kunt geen partijen maken of eraan deelnemen.';
+
+  @override
+  String get onlineErrorNoMatch =>
+      'Geen partij met die code. Controleer de code en probeer het opnieuw.';
+
+  @override
+  String get onlineErrorSeatTaken =>
+      'Die partij is niet meer open; de plek is al ingenomen.';
+
+  @override
+  String get onlineErrorPermission => 'Je hebt geen toegang tot die partij.';
+
+  @override
+  String get onlineErrorGeneric => 'Er is iets misgegaan. Probeer het opnieuw.';
+
+  @override
+  String get onlineMatchFinished =>
+      'Deze partij is afgelopen en kan niet meer worden hervat.';
+
+  @override
+  String get onlineEnterCodeError => 'Voer een partijcode in.';
+
+  @override
+  String get onlineOpponentShort => 'Tegenstander';
+
+  @override
+  String get onlineMatchInProgress => 'Partij bezig';
+
+  @override
+  String onlineResumePrompt(Object code) {
+    return 'Je speelde partij $code.';
+  }
+
+  @override
+  String get onlineRejoin => 'Hervatten';
+
+  @override
+  String get onlineForgetMatch => 'Deze partij vergeten';
+
+  @override
+  String get onlineCreateTitle => 'Partij maken';
+
+  @override
+  String get onlineMatchLength => 'Partijlengte';
+
+  @override
+  String get onlineNoCubeTitle => 'Spelen zonder verdubbelingsdobbelsteen';
+
+  @override
+  String get onlineNoCubeSubtitle =>
+      'Geen verdubbelingsdobbelsteen in deze partij';
+
+  @override
+  String get onlineCreate => 'Maken';
+
+  @override
+  String get onlineWaitingOpponent => 'Wachten op tegenstander…';
+
+  @override
+  String get onlineShareCode => 'Deze code delen';
+
+  @override
+  String get onlineCopyCode => 'Code kopiëren';
+
+  @override
+  String get onlineCodeCopied => 'Code gekopieerd';
+
+  @override
+  String get onlineJoinTitle => 'Deelnemen aan partij';
+
+  @override
+  String get onlineRoomCode => 'Partijcode';
+
+  @override
+  String get onlineJoin => 'Deelnemen';
+
+  @override
+  String get lanTitle => 'Spelen in de buurt';
+
+  @override
+  String get lanTabHost => 'Hosten';
+
+  @override
+  String get lanTabJoin => 'Deelnemen';
+
+  @override
+  String get lanUnassistedNote =>
+      'Lokale partijen hebben geen live tutor. Bekijk je zetten en oefen fouten na de partij.';
+
+  @override
+  String get lanGameStartFailed =>
+      'De partij kon niet worden gestart. Het andere apparaat kan opnieuw proberen deel te nemen.';
+
+  @override
+  String get lanHostPortInUse =>
+      'Hosten lukt niet: de poort is al in gebruik. Sluit andere exemplaren van Backgammon Buddy en probeer het opnieuw.';
+
+  @override
+  String get lanHostStartFailed =>
+      'Hosten lukt niet. Controleer je wifi en probeer het opnieuw.';
+
+  @override
+  String get lanHostTitle => 'Partij hosten';
+
+  @override
+  String get lanStartHosting => 'Hosten starten';
+
+  @override
+  String get lanHostHelp =>
+      'Beide apparaten moeten op hetzelfde wifi-netwerk zitten. Dit apparaat gooit de dobbelstenen en houdt de score bij.';
+
+  @override
+  String get lanWaitingPlayerTitle => 'Wachten op een speler';
+
+  @override
+  String get lanRoomCodeInfo =>
+      'Geef deze code aan de andere speler. Daarmee krijgt die toegang; de app verstuurt de code nooit via het netwerk.';
+
+  @override
+  String get lanWaitingPlayer => 'Wachten op een speler…';
+
+  @override
+  String get lanStopHosting => 'Stoppen met hosten';
+
+  @override
+  String lanFindNearbyPort(int port) {
+    return 'Laat het andere apparaat zoeken naar partijen in de buurt. Luistert op poort $port.';
+  }
+
+  @override
+  String get lanOnNetwork => 'Op dit netwerk';
+
+  @override
+  String get lanCopyAddress => 'Adres kopiëren';
+
+  @override
+  String get lanAddressCopied => 'Adres gekopieerd';
+
+  @override
+  String get lanScanHostTitle => 'Host scannen';
+
+  @override
+  String get lanScanHostHelp =>
+      'Het andere apparaat toont een QR-code op het Host-scherm. Scannen vult het adres en de kamercode in.';
+
+  @override
+  String get lanScanQr => 'QR-code scannen';
+
+  @override
+  String get lanScannerUnavailable =>
+      'Camera of toestemming niet beschikbaar. Voer hieronder het adres en de kamercode in.';
+
+  @override
+  String get lanInvalidQr =>
+      'Deze QR-code is niet van Backgammon Buddy. Scan de code op het Host-scherm van het andere apparaat.';
+
+  @override
+  String get lanScannerFailed =>
+      'De scanner kon niet worden geopend. Voer hieronder het adres en de code in.';
+
+  @override
+  String get lanNearbyGames => 'Partijen in de buurt';
+
+  @override
+  String get lanSearching => 'Zoeken naar partijen in de buurt…';
+
+  @override
+  String get lanNoGamesFound =>
+      'Geen partijen gevonden. Controleer of het andere apparaat host en beide apparaten op dezelfde wifi zitten, of voer hieronder het adres in.';
+
+  @override
+  String get lanStillSearching => 'Verder zoeken…';
+
+  @override
+  String get lanEnterAddress => 'Adres invoeren';
+
+  @override
+  String get lanEnterAddressHelp =>
+      'Automatisch zoeken werkt niet op elk netwerk en kan op iOS volledig geblokkeerd zijn. Het Host-scherm laat zien wat je moet invoeren.';
+
+  @override
+  String get lanIpAddress => 'IP-adres';
+
+  @override
+  String get lanPort => 'Poort';
+
+  @override
+  String get lanInvalidPort => 'Voer een poort tussen 1 en 65535 in.';
+
+  @override
+  String get lanEnterAddressError =>
+      'Voer het adres in dat op het andere apparaat staat.';
+
+  @override
+  String get lanEnterRoomCodeError =>
+      'Voer de viercijferige code van het andere apparaat in.';
+
+  @override
+  String get lanJoinWrongCode =>
+      'Onjuiste kamercode. Controleer de vier cijfers.';
+
+  @override
+  String get lanJoinVersionMismatch =>
+      'Op het andere apparaat staat een andere versie van Backgammon Buddy.';
+
+  @override
+  String get lanJoinHandshakeFailed =>
+      'Dit apparaat antwoordde niet zoals Backgammon Buddy. Controleer adres en poort.';
+
+  @override
+  String get lanJoinFailed =>
+      'Deelnemen mislukt. Controleer het adres en de kamercode en probeer het opnieuw.';
+
+  @override
+  String lanJoinTarget(Object name) {
+    return 'Deelnemen aan $name';
+  }
+
+  @override
+  String get lanJoinTargetHelp =>
+      'Voer de viercijferige code in die op het andere apparaat staat.';
+
+  @override
+  String lanJoiningTarget(Object name) {
+    return 'Verbinden met $name';
+  }
+
+  @override
+  String get lanConnect => 'Verbinden';
+
+  @override
+  String get lanBack => 'Terug';
+
+  @override
+  String get lanTryAgain => 'Opnieuw proberen';
+
+  @override
+  String get lanStatusBusy => 'Kamer bezet — wachten…';
+
+  @override
+  String get lanStatusReconnecting => 'Verbinding verloren — opnieuw proberen…';
+
+  @override
+  String get lanStatusConnected => 'Verbonden — partij starten…';
+
+  @override
+  String get lanStatusFailed => 'Deelnemen mislukt.';
+
+  @override
+  String get lanStatusConnecting => 'Verbinden…';
+
+  @override
+  String get diagnosticsCopySuccess => 'Diagnostiek gekopieerd';
+
+  @override
+  String get diagnosticsReviewTitle => 'Diagnostisch rapport bekijken';
+
+  @override
+  String get diagnosticsPrivacyNotice =>
+      'Als je het concept opent, worden de onderstaande gegevens naar GitHub gestuurd, waaronder de appversie, het platform en foutdetails. Er wordt niets openbaar geplaatst totdat je het daar indient. Bevat dit privégegevens, annuleer dan en gebruik Kopiëren om zelf een rapport samen te stellen.';
+
+  @override
+  String get diagnosticsCancel => 'Annuleren';
+
+  @override
+  String get diagnosticsOpenGitHub => 'GitHub openen';
+
+  @override
+  String get diagnosticsTitle => 'Diagnostiek';
+
+  @override
+  String get diagnosticsReportTooltip => 'Probleem melden op GitHub';
+
+  @override
+  String get diagnosticsCopyTooltip => 'Kopiëren naar klembord';
+
+  @override
+  String get diagnosticsClearTooltip => 'Log wissen';
+
+  @override
+  String get diagnosticsEmpty =>
+      'Geen fouten geregistreerd.\n\nAls er iets misgaat, wordt dat hier vastgelegd. Kom terug om de gegevens naar een bugrapport te kopiëren.';
+
+  @override
+  String gameHudNeutralScore(
+    Object whiteLabel,
+    int whiteScore,
+    Object blackLabel,
+    int blackScore,
+    int matchLength,
+  ) {
+    return '$whiteLabel $whiteScore–$blackScore $blackLabel · tot $matchLength';
+  }
+
+  @override
+  String gameHudPlayerScore(
+    Object you,
+    int mine,
+    int theirs,
+    Object opponent,
+    int matchLength,
+  ) {
+    return '$you $mine–$theirs $opponent · tot $matchLength';
+  }
+
+  @override
+  String get gameHudYou => 'Jij';
+
+  @override
+  String get gameHudAi => 'AI';
+
+  @override
+  String gameHudGameNumber(int number) {
+    return 'Spel $number';
+  }
+
+  @override
+  String gameHudMatchContext(Object score, Object game) {
+    return '$score · $game';
+  }
+
+  @override
+  String gameHudHotSeatDetail(
+    Object whiteLabel,
+    Object blackLabel,
+    Object pipsLabel,
+    int whitePips,
+    int blackPips,
+  ) {
+    return '$whiteLabel tegen $blackLabel · $pipsLabel $whitePips–$blackPips';
+  }
+
+  @override
+  String gameHudOpponentDetail(
+    Object opponent,
+    Object pipsLabel,
+    int mine,
+    int theirs,
+  ) {
+    return 'tegen $opponent · $pipsLabel $mine–$theirs';
+  }
+
+  @override
+  String gameHudOpponentDetailWithLevel(
+    Object opponent,
+    Object level,
+    Object pipsLabel,
+    int mine,
+    int theirs,
+  ) {
+    return 'tegen $opponent · $level · $pipsLabel $mine–$theirs';
+  }
+
+  @override
+  String get gameHudPips => 'Pips';
+
+  @override
+  String get gameHudCrawford => 'Crawford';
+
+  @override
+  String get gameHudDouble => 'Verdubbelen';
+
+  @override
+  String get gameHudMoreActions => 'Meer acties';
+
+  @override
+  String get gameHudSurrender => 'Opgeven…';
+
+  @override
+  String get gameHudThinking => 'Denkt na';
+
+  @override
+  String get gameHudDoubleBeforeRoll =>
+      'Je kunt alleen verdubbelen vóór je gooit, tijdens je beurt.';
+
+  @override
+  String get gameHudNoDoubleCrawford =>
+      'Verdubbelen kan niet in de Crawfordpartij; dit spel beslist de partij.';
+
+  @override
+  String get gameHudOnlyCubeOwner =>
+      'Alleen de eigenaar van de dobbelsteen mag verdubbelen; nu is de andere kant eigenaar.';
+
+  @override
+  String get gameHudDoubleUnavailable => 'Verdubbelen is nu niet beschikbaar.';
+
+  @override
+  String gameDialogScoreLine(
+    Object whiteLabel,
+    int whiteScore,
+    int blackScore,
+    Object blackLabel,
+    int matchLength,
+  ) {
+    return '$whiteLabel $whiteScore — $blackScore $blackLabel (tot $matchLength)';
+  }
+
+  @override
+  String gameDialogPlayerWon(Object winner, Object points) {
+    return '$winner wint dit spel ($points).';
+  }
+
+  @override
+  String gameDialogPlayerWonGammon(Object winner, Object points) {
+    return '$winner wint dit spel ($points, gammon).';
+  }
+
+  @override
+  String gameDialogPlayerWonBackgammon(Object winner, Object points) {
+    return '$winner wint dit spel ($points, backgammon).';
+  }
+
+  @override
+  String gameDialogPlayerWonDrop(Object winner, Object points, Object loser) {
+    return '$winner wint dit spel ($points) — $loser weigerde de double.';
+  }
+
+  @override
+  String gameDialogPlayerWonResignation(
+    Object winner,
+    Object points,
+    Object loser,
+  ) {
+    return '$winner wint dit spel ($points) — $loser gaf op.';
+  }
+
+  @override
+  String get gameDialogPassDeviceTitle => 'Geef het apparaat door';
+
+  @override
+  String gameDialogPlayersTurn(Object name) {
+    return '$name is aan zet';
+  }
+
+  @override
+  String get gameDialogTapToContinue => 'Tik om door te gaan';
+
+  @override
+  String get gameDialogCubeOfferedTitle => 'Double aangeboden';
+
+  @override
+  String gameDialogCubeOfferMessage(
+    Object doubler,
+    int value,
+    Object tutorLine,
+  ) {
+    return '$doubler biedt een double naar $value. Aannemen of passen?$tutorLine';
+  }
+
+  @override
+  String get gameDialogPass => 'Passen';
+
+  @override
+  String get gameDialogTake => 'Aannemen';
+
+  @override
+  String get gameDialogResignationTitle => 'Opgeven aangeboden';
+
+  @override
+  String gameDialogResignationMessage(Object resigner, Object value) {
+    return '$resigner biedt opgeven voor $value punten aan. Aannemen of weigeren?';
+  }
+
+  @override
+  String get gameDialogResignSingle => 'enkel spel';
+
+  @override
+  String get gameDialogResignGammon => 'gammon';
+
+  @override
+  String get gameDialogResignBackgammon => 'backgammon';
+
+  @override
+  String get gameDialogDecline => 'Weigeren';
+
+  @override
+  String get gameDialogAccept => 'Aannemen';
+
+  @override
+  String get gameDialogGameOverTitle => 'Spel afgelopen';
+
+  @override
+  String get gameDialogNextGame => 'Volgende spel';
+
+  @override
+  String get gameDialogMatchOverTitle => 'Partij afgelopen';
+
+  @override
+  String get gameDialogNobody => 'Niemand';
+
+  @override
+  String gameDialogMatchWinner(Object winner) {
+    return '$winner wint de partij.';
+  }
+
+  @override
+  String get gameDialogSavedToHistory => 'Opgeslagen in geschiedenis';
+
+  @override
+  String get gameDialogDone => 'Klaar';
+
+  @override
+  String get gameTapNoLegalMove =>
+      'Deze steen kan niet met de resterende dobbelstenen worden verplaatst';
+
+  @override
+  String get gameTapNoLegalMoveUndo =>
+      'Deze steen kan niet met de resterende dobbelstenen worden verplaatst — probeer Ongedaan maken';
+
+  @override
+  String get gameDragHint =>
+      'Tip: sleep stenen of tik erop — wijzig dit in Instellingen';
+
+  @override
+  String get commonGotIt => 'Begrepen';
+
+  @override
+  String get gameHintStageBeforeHint =>
+      'Speel eerst een volledige legale zet voordat je om een hint vraagt.';
+
+  @override
+  String get surrenderTitle => 'Opgeven';
+
+  @override
+  String surrenderNamedConcedes(String player) {
+    return '$player geeft de huidige partij op.';
+  }
+
+  @override
+  String get surrenderConcedes => 'Geeft de huidige partij op.';
+
+  @override
+  String surrenderAvailableAtNamedTurn(String player) {
+    return 'Beschikbaar aan het begin van de beurt van $player';
+  }
+
+  @override
+  String get surrenderAvailableAtYourTurn =>
+      'Beschikbaar aan het begin van je beurt';
+
+  @override
+  String get commonCancel => 'Annuleren';
+
+  @override
+  String get surrenderSingle => 'Enkel (1)';
+
+  @override
+  String get surrenderGammon => 'Gammon (2)';
+
+  @override
+  String get surrenderBackgammon => 'Backgammon (3)';
+
+  @override
+  String get surrenderChoosePlayer => 'Wie geeft dit spel op?';
+
+  @override
+  String get commonDone => 'Klaar';
+
+  @override
+  String get cubeDouble => 'Verdubbelen';
+
+  @override
+  String get cubeBlockedOtherPlayersTurn => 'De andere speler is aan zet.';
+
+  @override
+  String get cubeBlockedCrawford =>
+      'Verdubbelen kan niet in een Crawfordpartij.';
+
+  @override
+  String get cubeBlockedOwnedByOther =>
+      'Alleen de eigenaar van de dobbelsteen mag verdubbelen; de andere kant is nu eigenaar.';
+
+  @override
+  String get cubeBlockedUnavailable => 'Verdubbelen is nu niet beschikbaar.';
+
+  @override
+  String get gameStatusRolling => 'Gooien…';
+
+  @override
+  String get gameStatusThinking => 'Denkt na…';
+
+  @override
+  String gameStatusPlayersTurn(String player) {
+    return '$player is aan zet';
+  }
+
+  @override
+  String get cubeAdviceOpponentTake => 'Verdubbel — tegenstander moet aannemen';
+
+  @override
+  String get cubeAdviceOpponentPass => 'Verdubbel — tegenstander moet passen';
+
+  @override
+  String gameErrorBannerLabel(Object error) {
+    return 'Fout: $error';
+  }
 }

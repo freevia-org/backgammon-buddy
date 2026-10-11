@@ -101,7 +101,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Afficher les coups classés pendant votre décision';
 
   @override
-  String get tutorMoveExplanations => 'Explications des coups';
+  String get tutorMoveExplanations => 'Explications du coup';
 
   @override
   String get tutorCompareEstimates =>
@@ -160,4 +160,2327 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get tutorForcedPassNoDecision =>
       'Une passe forcée n’implique pas de décision de déplacement des pions.';
+
+  @override
+  String get settingsReset => 'Réinitialiser';
+
+  @override
+  String get settingsAppLanguage => 'Langue de l’application';
+
+  @override
+  String get settingsTheme => 'Thème';
+
+  @override
+  String get settingsThemeSystem => 'Système';
+
+  @override
+  String get settingsThemeLight => 'Clair';
+
+  @override
+  String get settingsThemeDark => 'Sombre';
+
+  @override
+  String get settingsAnimationSpeed => 'Vitesse des animations';
+
+  @override
+  String get settingsAnimationNone => 'Aucune';
+
+  @override
+  String get settingsAnimationNormal => 'Normale';
+
+  @override
+  String get settingsAnimationFast => 'Rapide';
+
+  @override
+  String get settingsDiceRollAnimation => 'Animation des dés';
+
+  @override
+  String get settingsDiceRollAnimationHelp =>
+      'Faites rouler les dés avant chaque lancer';
+
+  @override
+  String get settingsDefaultMatchLength => 'Durée de match par défaut';
+
+  @override
+  String get settingsDefaultDifficulty => 'Difficulté par défaut';
+
+  @override
+  String get settingsDifficultyEasy => 'Facile';
+
+  @override
+  String get settingsDifficultyMedium => 'Moyenne';
+
+  @override
+  String get settingsDifficultyHard => 'Difficile';
+
+  @override
+  String get settingsDifficultyExpert => 'Expert';
+
+  @override
+  String get settingsTutorModeDefault => 'Mode tutoriel par défaut';
+
+  @override
+  String get settingsTutorAuto => 'Auto';
+
+  @override
+  String get settingsTutorOn => 'Activé';
+
+  @override
+  String get settingsTutorOff => 'Désactivé';
+
+  @override
+  String get settingsTutorModeHelp =>
+      'Auto active le tutoriel à tous les niveaux de difficulté de l’ordinateur. Activé et Désactivé définissent le choix initial des matchs locaux. Les matchs à proximité et en ligne se jouent sans aide ; leurs parties sauvegardées peuvent être analysées ensuite. Les préférences pédagogiques ci-dessous sont enregistrées sur cet appareil.';
+
+  @override
+  String get settingsTutorPreferences => 'Préférences du tutoriel';
+
+  @override
+  String get settingsTutorPreferencesSubtitle =>
+      'Valeurs par défaut enregistrées pour les prochains matchs';
+
+  @override
+  String get settingsTutorSaveError =>
+      'Impossible d’enregistrer les préférences du tutoriel.';
+
+  @override
+  String get settingsGameplay => 'Jeu';
+
+  @override
+  String get settingsMoveHighlights => 'Surlignage des coups';
+
+  @override
+  String get settingsMoveHighlightsHelp =>
+      'Entoure les pions sélectionnables et illumine les destinations';
+
+  @override
+  String get settingsDragToMove => 'Glisser pour déplacer';
+
+  @override
+  String get settingsDragToMoveHelp =>
+      'Faites glisser un pion vers sa destination (les appuis fonctionnent toujours)';
+
+  @override
+  String get settingsCombinedMoves => 'Coups combinés';
+
+  @override
+  String get settingsCombinedMovesHelp =>
+      'Un appui déplace un pion avec les deux dés';
+
+  @override
+  String get settingsRotateBoard => 'Faire pivoter le plateau entre les tours';
+
+  @override
+  String get settingsRotateBoardHelp =>
+      'Jeu à plusieurs sur le même appareil : inverse la vue du joueur actif';
+
+  @override
+  String get settingsPassDevice => 'Écran de passage de l’appareil';
+
+  @override
+  String get settingsPassDeviceHelp =>
+      'Masquer le plateau entre les tours en jeu à plusieurs';
+
+  @override
+  String get settingsShowScore => 'Afficher le score';
+
+  @override
+  String get settingsShowScoreHelp =>
+      'Afficher le score actuel du match dans l’en-tête';
+
+  @override
+  String get settingsBuddyMode => 'Mode Buddy';
+
+  @override
+  String get settingsBuddyTerse => 'Bref';
+
+  @override
+  String get settingsBuddyFriendly => 'Convivial';
+
+  @override
+  String get settingsBuddyTerseHelp =>
+      'Comment Buddy annonce un coup à voix haute : « 13/8, 24/22 », la notation réellement utilisée par deux joueurs devant le plateau.';
+
+  @override
+  String get settingsBuddyFriendlyHelp =>
+      'Comment Buddy annonce un coup à voix haute : « Déplace un pion de 13 à 8, puis un autre de 24 à 22. »';
+
+  @override
+  String get settingsListenForDice => 'Écouter les dés';
+
+  @override
+  String get settingsListenForDiceHelp =>
+      'Buddy examine le plateau plus tôt lorsqu’il entend un lancer. Désactivé ne change rien d’autre.';
+
+  @override
+  String get settingsDiagnostics => 'Diagnostic';
+
+  @override
+  String get settingsErrorLog => 'Journal des erreurs';
+
+  @override
+  String get settingsErrorLogHelp =>
+      'Erreurs récentes, prêtes à être copiées dans un signalement';
+
+  @override
+  String get settingsReportBug => 'Signaler un bug';
+
+  @override
+  String get settingsReportBugHelp => 'Ouvrir un signalement guidé sur GitHub';
+
+  @override
+  String get settingsSuggestIdea => 'Suggérer une idée';
+
+  @override
+  String get settingsSuggestIdeaHelp =>
+      'Aidez-nous à améliorer le tutoriel et le jeu';
+
+  @override
+  String get settingsAbout => 'À propos';
+
+  @override
+  String get settingsOpenSourceLicenses => 'Licences open source';
+
+  @override
+  String settingsAppVersion(Object version) {
+    return 'Backgammon Buddy $version';
+  }
+
+  @override
+  String get tutorPhraseGameFinished => 'Partie terminée.';
+
+  @override
+  String get tutorPhraseReviewFinishedGame =>
+      'Rejouez les coups pour trouver une décision à travailler.';
+
+  @override
+  String get tutorPhraseCubeOffered => 'Le videau a été proposé.';
+
+  @override
+  String get tutorPhraseCubeDecisionPrompt =>
+      'Décidez de prendre ou de passer avant de préparer un coup de pions.';
+
+  @override
+  String get tutorPhraseCubeScoreContext =>
+      'Le score du match change la valeur de l’enjeu supplémentaire.';
+
+  @override
+  String get tutorPhraseResignationOffered =>
+      'Une proposition d’abandon a été faite.';
+
+  @override
+  String get tutorPhraseResignationDecisionPrompt =>
+      'Comparez les points proposés à la position avant d’accepter ou de continuer.';
+
+  @override
+  String get tutorPhraseNoLegalPlay => 'Aucun coup légal avec ce lancer.';
+
+  @override
+  String get tutorPhraseForcedPassPrompt =>
+      'Un passe forcé n’est pas une erreur ; attendez le prochain lancer.';
+
+  @override
+  String get tutorPhraseOnlyOneResult =>
+      'Une seule position finale légale est possible.';
+
+  @override
+  String get tutorPhraseForcedTurnPrompt =>
+      'Jouez le tour forcé. Ce lancer ne comporte aucun choix à évaluer.';
+
+  @override
+  String get tutorPhrasePipCountsLevel => 'Les comptes de pips sont à égalité.';
+
+  @override
+  String tutorPhrasePipCountsAhead(int count) {
+    return 'Vous avez $count pips d’avance.';
+  }
+
+  @override
+  String tutorPhrasePipCountsBehind(int count) {
+    return 'Vous avez $count pips de retard.';
+  }
+
+  @override
+  String tutorPhrasePlayerHasCheckersOnBar(int count) {
+    return 'Vous avez $count pions sur la barre : la réentrée passe d’abord.';
+  }
+
+  @override
+  String get tutorPhraseEnterBeforeMoving =>
+      'Rentrez un pion avant d’en déplacer un autre, puis cherchez une case sûre.';
+
+  @override
+  String tutorPhraseOpponentHomePoints(int count) {
+    return 'L’adversaire a $count cases fermées dans son jan intérieur.';
+  }
+
+  @override
+  String get tutorPhraseBearOffRace => 'Course à la sortie.';
+
+  @override
+  String get tutorPhrasePureRace => 'Une course sans contact.';
+
+  @override
+  String get tutorPhraseBearOffSpread =>
+      'Sortez des pions tout en gardant une répartition utile pour le prochain lancer.';
+
+  @override
+  String get tutorPhraseBringRearCheckersHome =>
+      'Ramenez les pions de derrière sans en entasser trop sur une case.';
+
+  @override
+  String get tutorPhraseArmiesHavePassed =>
+      'Les camps se sont croisés ; aucun coup ne peut plus être frappé.';
+
+  @override
+  String tutorPhraseContactStillMatters(Object part) {
+    return '$part Le contact compte toujours.';
+  }
+
+  @override
+  String tutorPhraseOpponentHasCheckersOnBar(int count) {
+    return 'L’adversaire a $count pions sur la barre.';
+  }
+
+  @override
+  String get tutorPhraseKeepBoardClosed =>
+      'Gardez le plateau fermé pendant que vous ramenez les pions restants à la maison.';
+
+  @override
+  String get tutorPhraseBuildOrPreserveHomeBoard =>
+      'Construisez ou préservez votre jan intérieur pendant que l’adversaire tente de rentrer.';
+
+  @override
+  String tutorPhraseHomePointsCloseEntries(int count) {
+    return 'Vous tenez $count cases de votre jan intérieur ; chacune bloque un numéro de rentrée.';
+  }
+
+  @override
+  String tutorPhrasePrimeContact(int count) {
+    return 'Contact avec une prime de $count cases.';
+  }
+
+  @override
+  String get tutorPhraseExtendPrimeOrKeepSpares =>
+      'Comparez l’allongement de la prime au maintien de pions en réserve pour la garder.';
+
+  @override
+  String tutorPhraseSpareCheckersCanMove(int count) {
+    return '$count pions en réserve peuvent bouger sans ouvrir immédiatement leur case.';
+  }
+
+  @override
+  String tutorPhraseAnchorContact(Object points) {
+    return 'Contact avec un ancrage sur $points.';
+  }
+
+  @override
+  String get tutorPhraseCompareAnchorProgressAhead =>
+      'Comparez le retour des pions arrière à la sécurité de conserver votre ancrage.';
+
+  @override
+  String get tutorPhraseCompareAnchorProgressBehind =>
+      'Gardez ce point d’appui sûr en tête tout en cherchant à frapper ou à améliorer votre plateau.';
+
+  @override
+  String get tutorPhrasePreserveAnchorFoothold =>
+      'L’ancrage ne peut pas être frappé, mais ces pions ont encore un long chemin à parcourir.';
+
+  @override
+  String get tutorPhraseContactThreats =>
+      'Le contact persiste : chaque camp peut encore menacer de frapper.';
+
+  @override
+  String get tutorPhraseLookForPointsAndSafety =>
+      'Cherchez des cases utiles, puis évaluez le risque de laisser des pions seuls exposés.';
+
+  @override
+  String tutorPhraseHomePointsAndBlots(int count, int otherCount) {
+    return 'Vous tenez $count cases de votre jan intérieur et laissez $otherCount blots exposés.';
+  }
+
+  @override
+  String get tutorPhraseChooseCheckerPrompt =>
+      'Choisissez un pion pour commencer votre coup.';
+
+  @override
+  String get tutorPhraseLegalPlayPrompt =>
+      'Jouez un coup légal pour obtenir un commentaire.';
+
+  @override
+  String tutorPhraseStagedHit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'pions adverses',
+      one: 'pion adverse',
+    );
+    return 'Vous avez frappé $count $_temp0.';
+  }
+
+  @override
+  String tutorPhraseStagedEnter(int count) {
+    return 'Vous avez rentré $count pion(s) depuis la barre.';
+  }
+
+  @override
+  String tutorPhraseStagedBearOff(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'pions',
+      one: 'pion',
+    );
+    return 'Vous avez sorti $count $_temp0.';
+  }
+
+  @override
+  String tutorPhraseStagedMakePoints(Object points) {
+    return 'Vous avez fait $points.';
+  }
+
+  @override
+  String tutorPhraseStagedBlot(int point) {
+    return 'Le pion sur votre case $point est un blot pour le moment.';
+  }
+
+  @override
+  String tutorPhraseStagedSpare(int point) {
+    return 'Le pion en réserve sur votre case $point pourra bouger plus tard sans ouvrir la case.';
+  }
+
+  @override
+  String tutorPhraseStagedPartialPrompt(Object part) {
+    return '$part Utilisez les dés encore jouables avant d’évaluer le coup complet.';
+  }
+
+  @override
+  String get tutorPhraseStagedAllCheckersOff =>
+      'Les 15 pions sont sortis : la partie est gagnée.';
+
+  @override
+  String get tutorPhraseStagedHitShortPlan =>
+      'Frapper fait gagner du temps pendant que l’adversaire tente de rentrer.';
+
+  @override
+  String get tutorPhraseStagedEfficientBearOffPlan =>
+      'Une sortie efficace retire des pions tout en laissant des nombres utiles pour le prochain lancer.';
+
+  @override
+  String get tutorPhraseStagedRaceHomePlan =>
+      'Le plan de course consiste à ramener les pions arrière et à préparer de bonnes cases de sortie.';
+
+  @override
+  String get tutorPhraseStagedBearOffContactPlan =>
+      'Sortir des pions fait avancer, mais le contact restant laisse un risque de frappe.';
+
+  @override
+  String get tutorPhraseStagedReentryPlan =>
+      'La rentrée remet le pion en jeu ; cherchez ensuite une case d’arrivée sûre.';
+
+  @override
+  String get tutorPhraseStagedHomeBoardPlan =>
+      'La nouvelle case de votre jan intérieur bloque un numéro de rentrée après une future frappe.';
+
+  @override
+  String get tutorPhraseStagedPrimePlan =>
+      'Une prime plus longue ferme davantage de cases d’arrivée ; les pions en réserve aident à la garder.';
+
+  @override
+  String get tutorPhraseStagedLeaveAnchorPlan =>
+      'Quitter l’ancrage fait avancer, mais vous perdez un point d’appui sûr.';
+
+  @override
+  String get tutorPhraseStagedNewAnchorPlan =>
+      'Le nouvel ancrage offre un point d’appui sûr aux pions arrière.';
+
+  @override
+  String get tutorPhraseStagedCoverBlotPlan =>
+      'Couvrir un blot retire une cible à l’adversaire.';
+
+  @override
+  String get tutorPhraseStagedSafetyTradeoffPlan =>
+      'Le compromis oppose développement et sécurité : les pions utiles à la construction peuvent aussi devenir des cibles.';
+
+  @override
+  String tutorPhraseStagedCompletePrompt(Object part) {
+    return '$part Le coup complet est prêt ; « Confirmer » le joue.';
+  }
+
+  @override
+  String get tutorMoveForcedVerdict =>
+      'Ce lancer ne laisse aucun choix de déplacement ; il n’est pas noté comme une décision.';
+
+  @override
+  String get tutorMoveTopVerdict =>
+      'C’est le meilleur choix dans cette position.';
+
+  @override
+  String get tutorMoveAlternativeVerdict =>
+      'Le moteur préfère un autre coup ici.';
+
+  @override
+  String tutorMoveEstimateDifference(Object loss) {
+    return 'Écart par rapport au meilleur coup : $loss.';
+  }
+
+  @override
+  String tutorMoveEstimateOutcomes(
+    Object winPercent,
+    Object winGammonPercent,
+    Object loseGammonPercent,
+  ) {
+    return 'Après ce coup : $winPercent% de victoires, $winGammonPercent% de victoires par gammon ou mieux, et $loseGammonPercent% de défaites par gammon ou pire. Estimations du point de vue du joueur qui joue.';
+  }
+
+  @override
+  String tutorMoveEstimateMatchChance(Object percent) {
+    return 'Probabilité estimée de gagner le match : $percent%.';
+  }
+
+  @override
+  String get tutorMovePlanAllCheckersOff =>
+      'Les 15 pions sont sortis : la partie est gagnée.';
+
+  @override
+  String tutorMovePlanHit(Object homeBoardAdvice) {
+    return 'Profite du coup frappé pour gagner du temps pendant que l’adversaire rentre. $homeBoardAdvice';
+  }
+
+  @override
+  String get tutorMovePlanHitClosed =>
+      'Garde fermés les points de ta maison pour rendre la rentrée plus difficile.';
+
+  @override
+  String get tutorMovePlanHitBuild =>
+      'Ferme d’autres points dans ta maison pour compliquer la reprise après de futurs coups frappés.';
+
+  @override
+  String get tutorMovePlanRaceBearOff =>
+      'Vise une sortie efficace : sors des pions tout en gardant des nombres utiles pour le prochain lancer.';
+
+  @override
+  String get tutorMovePlanRaceHome =>
+      'Ramène les pions arrière dans ta maison et répartis-les sur des points utiles pour la sortie.';
+
+  @override
+  String get tutorMovePlanContactBearOff =>
+      'Sors des pions, mais surveille les pions arrière adverses : tant qu’il y a contact, un pion découvert peut devenir une cible.';
+
+  @override
+  String get tutorMovePlanReentry =>
+      'Rentre en jeu, puis cherche un point sûr pour le pion qui vient de rentrer.';
+
+  @override
+  String get tutorMovePlanHomeBoard =>
+      'Renforce ta maison. Le nouveau point fermé rendra un futur coup frappé plus efficace en supprimant un nombre de rentrée.';
+
+  @override
+  String get tutorMovePlanPrime =>
+      'Garde alignée ta rangée de points fermés. Conserve des pions de réserve pour ne pas devoir l’ouvrir sur un prochain lancer.';
+
+  @override
+  String get tutorMovePlanLeaveAnchor =>
+      'Abandonner un ancrage fait avancer tes pions arrière, mais leur enlève un appui sûr. Surveille leur exposition pendant le retour.';
+
+  @override
+  String get tutorMovePlanNewAnchor =>
+      'Utilise le nouvel ancrage comme appui sûr pendant que tu améliores le reste de ta position.';
+
+  @override
+  String get tutorMovePlanCoverBlot =>
+      'Regroupe tes pions. Couvrir un blot supprime une cible tout en gardant des points d’arrivée possibles.';
+
+  @override
+  String get tutorMovePlanSafety =>
+      'Trouve l’équilibre entre développement et sécurité : rapproche les bâtisseurs de points utiles et vérifie quels pions isolés peuvent être frappés.';
+
+  @override
+  String get tutorMoveObservationNoLegalPlay =>
+      'Aucun déplacement légal de pion : il faut passer.';
+
+  @override
+  String tutorMoveObservationHit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 's adverses',
+      one: ' adverse',
+    );
+    return 'Frappe $count pion$_temp0 ; l’adversaire doit rentrer depuis la barre avant de déplacer ses autres pions.';
+  }
+
+  @override
+  String tutorMoveObservationEntry(int count) {
+    return 'Fait rentrer $count pion(s) depuis la barre.';
+  }
+
+  @override
+  String tutorMoveObservationBearOff(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 's',
+      one: '',
+    );
+    return 'Sort $count pion$_temp0.';
+  }
+
+  @override
+  String tutorMoveObservationMadePoints(Object points) {
+    return 'Forme $points. Au moins deux pions sécurisent un point et empêchent l’adversaire d’y atterrir.';
+  }
+
+  @override
+  String tutorMoveObservationBrokenPoints(Object pointLabel, Object points) {
+    return 'Abandonne les points formés $pointLabel $points. Ils ne bloquent plus l’adversaire.';
+  }
+
+  @override
+  String tutorMoveObservationNoBlots(int previousCount) {
+    return 'Ne laisse aucun pion isolé exposé (contre $previousCount auparavant). Il n’y a aucun pion seul à frapper.';
+  }
+
+  @override
+  String tutorMoveObservationBlots(int count, int previousCount) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 's isolés exposés',
+      one: ' isolé exposé',
+    );
+    return 'Laisse $count pion$_temp0 (contre $previousCount auparavant). Vérifie si l’adversaire peut les atteindre avant de privilégier la sécurité à un autre avantage.';
+  }
+
+  @override
+  String tutorMoveObservationPrimeRun(
+    int count,
+    int previousCount,
+    Object primeAdvice,
+  ) {
+    return 'Plus longue rangée de points formés : $count (contre $previousCount auparavant). $primeAdvice';
+  }
+
+  @override
+  String get tutorMoveObservationPrimeSix =>
+      'Une prime de six points ne peut pas être franchie tant qu’elle reste fermée.';
+
+  @override
+  String get tutorMoveObservationPrimeBuild =>
+      'Garde des bâtisseurs à proximité pour prolonger ou préserver cette rangée.';
+
+  @override
+  String tutorMoveObservationPrimeSpares(int count) {
+    return '$count pions de réserve se trouvent au-delà des deux pions sur les points formés. Déplacer une réserve peut préserver le point ; déplacer l’un des deux derniers l’ouvre.';
+  }
+
+  @override
+  String tutorMoveObservationAnchors(Object points, Object previousPoints) {
+    return 'Ancrages dans la maison adverse : $points (contre $previousPoints auparavant). Garder un ancrage protège ces pions des coups frappés ; l’abandonner échange cet appui contre une progression dans la course.';
+  }
+
+  @override
+  String get tutorMoveObservationPureRace =>
+      'Course pure : les armées se sont dépassées et aucun camp n’est sur la barre. On ne peut plus frapper ; l’efficacité de la sortie compte.';
+
+  @override
+  String get tutorMoveObservationNoReplyHit =>
+      'Aucun lancer légal suivant ne permet à l’adversaire de frapper un pion dans cette position. Le contact demeure, donc les prochains coups peuvent créer de nouvelles occasions.';
+
+  @override
+  String tutorMoveObservationReplyHit(
+    int count,
+    int total,
+    int dieOne,
+    int dieTwo,
+    int point,
+  ) {
+    return 'L’adversaire peut frapper avec $count lancers sur $total. Par exemple, $dieOne–$dieTwo permet de frapper légalement ton point $point. La possibilité existe, sans garantie qu’elle soit choisie.';
+  }
+
+  @override
+  String tutorMoveObservationOpponentBarHome(
+    int closedPoints,
+    Object entryAdvice,
+  ) {
+    return '$closedPoints points de ta maison sont fermés. $entryAdvice';
+  }
+
+  @override
+  String get tutorMoveObservationAllEntriesClosed =>
+      'L’adversaire ne peut pas rentrer tant qu’un point ne s’ouvre pas.';
+
+  @override
+  String get tutorMoveObservationOpenEntry =>
+      'Un lancer utilisant un point d’entrée libre peut faire rentrer un pion depuis la barre.';
+
+  @override
+  String tutorMoveComparisonDetail(
+    Object factors,
+    Object delta,
+    Object direction,
+    Object scoreContext,
+  ) {
+    return '$factors La probabilité estimée de victoire du meilleur coup est de $delta points de pourcentage $direction.$scoreContext';
+  }
+
+  @override
+  String get tutorMoveComparisonHigher => 'plus élevée';
+
+  @override
+  String get tutorMoveComparisonLower => 'plus basse';
+
+  @override
+  String tutorMoveComparisonScoreContext(Object scoreContext) {
+    return ' Il peut tout de même être mieux classé, car les gammons et backgammons ont une valeur différente avec le $scoreContext actuel.';
+  }
+
+  @override
+  String get tutorMoveComparisonStake => 'score';
+
+  @override
+  String get tutorMoveComparisonMatchScore => 'score du match';
+
+  @override
+  String tutorMoveComparisonFactorBar(int bestCount, int playedCount) {
+    return 'Le meilleur coup laisse $bestCount pions adverses sur la barre, contre $playedCount. Un pion sur la barre doit rentrer avant que l’adversaire puisse déplacer les autres.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorHomeBoard(
+    int bestCount,
+    int playedCount,
+    Object entryDifference,
+  ) {
+    return 'Le meilleur coup garde $bestCount points de maison fermés, contre $playedCount, soit $entryDifference points d’entrée après un coup frappé.';
+  }
+
+  @override
+  String get tutorMoveComparisonClosingMore => 'en fermant davantage';
+
+  @override
+  String get tutorMoveComparisonLeavingMore => 'en laissant davantage ouverts';
+
+  @override
+  String tutorMoveComparisonFactorShots(
+    int bestCount,
+    int playedCount,
+    Object riskDifference,
+  ) {
+    return 'Le meilleur coup permet une frappe en réponse avec $bestCount lancers sur 36, contre $playedCount. $riskDifference';
+  }
+
+  @override
+  String get tutorMoveComparisonReducesRisk =>
+      'Cela réduit le risque immédiat d’être renvoyé sur la barre.';
+
+  @override
+  String get tutorMoveComparisonExtraExposure =>
+      'Compare cette exposition supplémentaire aux gains du coup par ailleurs.';
+
+  @override
+  String tutorMoveComparisonFactorPrime(int bestCount, int playedCount) {
+    return 'La plus longue rangée de points fermés du meilleur coup compte $bestCount points, contre $playedCount ; compare le blocage aux pions disponibles pour le préserver.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorAnchors(
+    Object bestPoints,
+    Object playedPoints,
+  ) {
+    return 'Le meilleur coup conserve $bestPoints ancrages, contre $playedPoints. Un ancrage garde un point d’arrivée sûr ; l’abandonner rapproche ces pions de la maison.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorBearOff(int bestCount, int playedCount) {
+    return 'Le meilleur coup sort $bestCount pions, contre $playedCount. Chaque pion sorti est un pion de moins à enlever ensuite.';
+  }
+
+  @override
+  String get tutorMoveComparisonFactorSimilarRisks =>
+      'Les deux coups laissent la même exposition immédiate aux frappes, les mêmes points de maison, ancrages et pions sortis. Compare les points d’arrivée : au prochain lancer, ces pions pourraient servir autrement.';
+
+  @override
+  String get tutorMoveComparisonSummaryBar =>
+      'Le meilleur coup envoie davantage de pions adverses sur la barre et retarde ses autres déplacements.';
+
+  @override
+  String get tutorMoveComparisonSummaryHomeBoard =>
+      'Le meilleur coup ferme davantage de points de maison et rend la rentrée plus difficile après une frappe.';
+
+  @override
+  String get tutorMoveComparisonSummaryShots =>
+      'Le meilleur coup offre moins de possibilités de frappe immédiate et réduit le risque d’être renvoyé sur la barre.';
+
+  @override
+  String get tutorMoveComparisonSummaryPrime =>
+      'Le meilleur coup garde une rangée plus longue de points fermés.';
+
+  @override
+  String get tutorMoveComparisonSummaryAnchors =>
+      'Le meilleur coup conserve davantage d’ancrages sûrs dans la maison adverse.';
+
+  @override
+  String get tutorMoveComparisonSummaryBearOff =>
+      'Le meilleur coup sort davantage de pions, il en reste donc moins à enlever.';
+
+  @override
+  String tutorMoveComparisonSummaryBlots(int playedCount, int bestCount) {
+    return 'Ce coup laisse $playedCount pions isolés ; le meilleur coup en laisse $bestCount.';
+  }
+
+  @override
+  String tutorMoveComparisonSummarySafeAnchor(int point) {
+    return 'Le meilleur coup garde un ancrage sûr au point $point.';
+  }
+
+  @override
+  String get tutorMoveComparisonSummaryEntry =>
+      'Le meilleur coup ferme davantage de points d’entrée au cas où un de tes pions serait frappé.';
+
+  @override
+  String get tutorMoveComparisonSummarySimilarRisks =>
+      'Les coups laissent des risques immédiats similaires ; compare les points d’arrivée qui resteront utiles au prochain lancer.';
+
+  @override
+  String tutorMoveAssessmentEquityLoss(Object value) {
+    return '$value d’équité';
+  }
+
+  @override
+  String tutorMoveAssessmentMwcLoss(Object value) {
+    return '$value points de pourcentage de chances de gagner le match';
+  }
+
+  @override
+  String get tutorMovePointSingular => 'point';
+
+  @override
+  String get tutorMovePointPlural => 'points';
+
+  @override
+  String get tutorMoveNoPoints => 'aucun';
+
+  @override
+  String get gameTutorCommentaryOff =>
+      'Les commentaires de la partie sont désactivés.';
+
+  @override
+  String get gameTutorToolsAvailable =>
+      'Ouvre le tuteur pour accéder aux outils activés.';
+
+  @override
+  String get gameTutorNextRoll => 'Lance les dés.';
+
+  @override
+  String get gameTutorNoEvaluatedReview =>
+      'Aucune explication évaluée n’est disponible pour ce coup enregistré.';
+
+  @override
+  String get gameTutorAnalysisUnavailable => 'analyse indisponible';
+
+  @override
+  String get gameTutorReviewing => 'analyse en cours…';
+
+  @override
+  String get gameTutorTryYourPlayFirst => 'Essaie d’abord ton propre coup.';
+
+  @override
+  String get gameTutorKeepBuilding => 'Continue à préparer ton coup.';
+
+  @override
+  String get gameTutorStageCompleteBeforeCoaching =>
+      'Termine un coup légal avant d’afficher les conseils ou les indices.';
+
+  @override
+  String get gameTutorReadyToConfirm => 'Prêt à confirmer';
+
+  @override
+  String get gameTutorPlayTakingShape => 'Ton coup prend forme.';
+
+  @override
+  String get gameTutorConfirmOrUndo =>
+      'Confirme pour jouer ou annule pour revoir ton choix.';
+
+  @override
+  String get gameTutorFinishDiceOrUndo =>
+      'Joue les dés restants ou annule pour revoir ton choix.';
+
+  @override
+  String get gameTutorComputerConsidering =>
+      'L’ordinateur réfléchit à son coup.';
+
+  @override
+  String get gameTutorComputerPlayReviewed =>
+      'Son coup terminé sera analysé ici.';
+
+  @override
+  String get gameTutorYourPlay => 'Ton coup';
+
+  @override
+  String get gameTutorComputer => 'Ordinateur';
+
+  @override
+  String gameTutorPlayQuality(Object quality) {
+    return 'Ton coup : $quality';
+  }
+
+  @override
+  String get gameTutorForcedPlay => 'coup forcé';
+
+  @override
+  String get gameTutorTopChoice => 'meilleur choix';
+
+  @override
+  String get gameTutorSoundPlay => 'bon coup';
+
+  @override
+  String get gameTutorAnotherPlayMayFitBetter =>
+      'Un autre coup pourrait mieux convenir.';
+
+  @override
+  String get gameTutorAnotherPlayFitsBetter =>
+      'Un autre coup convient mieux à cette position.';
+
+  @override
+  String get gameTutorStrongerPlayAvailable =>
+      'Un coup nettement meilleur était disponible.';
+
+  @override
+  String gameTutorPositionEdge(Object side) {
+    return '$side a l’avantage selon l’estimation.';
+  }
+
+  @override
+  String get gameTutorPositionEven => 'La position est à peu près équilibrée.';
+
+  @override
+  String tutorPlayedMove(Object move) {
+    return 'Joué : $move';
+  }
+
+  @override
+  String tutorBestMove(Object move) {
+    return 'Meilleur coup : $move';
+  }
+
+  @override
+  String get tutorShowRankedPlays => 'Afficher les coups classés';
+
+  @override
+  String get tutorReviewRecordedMove =>
+      'Touchez un coup terminé dans le journal pour revoir ici la décision.';
+
+  @override
+  String get tutorTopPlays => 'Meilleurs coups';
+
+  @override
+  String get tutorNoHintsAvailable => 'Aucune suggestion disponible.';
+
+  @override
+  String get tutorPreviewThenConfirm =>
+      'Touchez un coup pour le prévisualiser sur le plateau, puis confirmez.';
+
+  @override
+  String get tutorTopChoiceForPosition => 'Meilleur choix dans cette position';
+
+  @override
+  String get tutorAlternativePlay => 'Coup alternatif';
+
+  @override
+  String get tutorEngineEstimates => 'Estimations du moteur';
+
+  @override
+  String get tutorEstimateScope =>
+      'Estimation à 0 pli · score et mise actuels · sans décisions de cube futures';
+
+  @override
+  String get tutorEquity => 'Équité';
+
+  @override
+  String get tutorMwcPercent => 'MWC %';
+
+  @override
+  String get tutorNearTiesNote =>
+      'Une analyse plus approfondie peut départager des coups presque à égalité.';
+
+  @override
+  String get tutorWhyThisPlay => 'Pourquoi ce coup ?';
+
+  @override
+  String get tutorCompareAlternative => 'Comparer cette alternative';
+
+  @override
+  String get gameTutorCubeTake => 'Conseil : accepter';
+
+  @override
+  String get gameTutorCubePass => 'Conseil : passer';
+
+  @override
+  String get practiceScreenTitle => 'S’exercer sur une décision';
+
+  @override
+  String get practiceUnavailable =>
+      'Cette position d’exercice n’est plus disponible.';
+
+  @override
+  String get practiceSubmitError =>
+      'Cette tentative n’a pas pu être évaluée ou enregistrée. Ta progression n’a pas changé. Réessaie.';
+
+  @override
+  String practiceTurnLabel(Object side, Object dice) {
+    return 'À $side de jouer · $dice';
+  }
+
+  @override
+  String get practiceHistoricalScoreUnavailable =>
+      'Score historique indisponible ; l’évaluation utilise l’équité sans cube.';
+
+  @override
+  String practiceScoreLine(
+    Object whiteLabel,
+    int whiteScore,
+    Object blackLabel,
+    int blackScore,
+    int matchLength,
+  ) {
+    return 'Score : $whiteLabel $whiteScore – $blackLabel $blackScore, en $matchLength';
+  }
+
+  @override
+  String get practiceCrawfordGame => ' · partie de Crawford';
+
+  @override
+  String get practiceNoDoublingCube => 'Sans videau.';
+
+  @override
+  String practiceCubeValue(int value) {
+    return 'Videau $value.';
+  }
+
+  @override
+  String get practiceHistoricalCubeUnknown =>
+      'Règles historiques du videau inconnues.';
+
+  @override
+  String get practiceAfterBestPosition => 'Position après le meilleur coup';
+
+  @override
+  String get practiceAfterYourAnswerPosition => 'Position après ta réponse';
+
+  @override
+  String get practiceFindYourPlayPrompt =>
+      'Joue ton coup sur le plateau, puis vérifie ta réponse. Aucun indice ne sera affiché.';
+
+  @override
+  String get practiceUndo => 'Annuler';
+
+  @override
+  String get practiceCheckAnswer => 'Vérifier la réponse';
+
+  @override
+  String get practiceRevealNoCredit => 'Révéler la réponse (sans crédit)';
+
+  @override
+  String get practiceAnswerRevealedNoCredit =>
+      'Réponse révélée — aucun crédit de mémorisation.';
+
+  @override
+  String practiceGradeLine(Object verdict, Object loss) {
+    return '$verdict · $loss';
+  }
+
+  @override
+  String practiceBestMoveLine(Object move) {
+    return 'Meilleur : $move';
+  }
+
+  @override
+  String practiceOriginalGameLine(Object move, Object loss) {
+    return 'Partie d’origine : $move · $loss';
+  }
+
+  @override
+  String practiceYourAnswerLine(Object move) {
+    return 'Ta réponse : $move';
+  }
+
+  @override
+  String get practiceYourAnswerChip => 'Ta réponse';
+
+  @override
+  String get practiceBestPlayChip => 'Meilleur coup';
+
+  @override
+  String practiceNextReview(Object date) {
+    return 'Prochaine révision : $date.';
+  }
+
+  @override
+  String get practiceRecallCredit =>
+      'Les réponses bonnes ou meilleures comptent comme un rappel réussi. Les répétitions anticipées ne rapprochent pas la prochaine révision.';
+
+  @override
+  String get practiceBackToLearning => 'Retour à l’apprentissage';
+
+  @override
+  String get practiceMarkBest => 'Meilleur';
+
+  @override
+  String get practiceMarkGood => 'Bon';
+
+  @override
+  String get practiceMarkDubious => 'Douteux';
+
+  @override
+  String get practiceMarkError => 'Erreur';
+
+  @override
+  String get practiceMarkBlunder => 'Gaffe';
+
+  @override
+  String get practiceMarkForced => 'Forcé';
+
+  @override
+  String get newMatchYourSide => 'Ton côté';
+
+  @override
+  String get newMatchTutorMode => 'Mode tuteur';
+
+  @override
+  String get newMatchTutorDescription =>
+      'Apprends avec des indices, des explications et des commentaires sur la partie';
+
+  @override
+  String get newMatchTutoringOptions => 'Options de tutorat';
+
+  @override
+  String get newMatchTutoringOptionsDescription =>
+      'Pour cette partie ; modifiable en cours de jeu';
+
+  @override
+  String get setupMatchLength => 'Longueur du match';
+
+  @override
+  String get setupDifficulty => 'Difficulté';
+
+  @override
+  String get setupDifficultyEasy => 'Facile';
+
+  @override
+  String get setupDifficultyMedium => 'Moyenne';
+
+  @override
+  String get setupDifficultyHard => 'Difficile';
+
+  @override
+  String get setupDifficultyExpert => 'Expert';
+
+  @override
+  String get setupPlayWithoutCube => 'Jouer sans videau';
+
+  @override
+  String get setupNoCubeThisMatch => 'Pas de videau pour ce match';
+
+  @override
+  String get analysisTitle => 'Analyse';
+
+  @override
+  String get gameMatchSummary => 'Résumé du match';
+
+  @override
+  String get gameAnalyzeGame => 'Analyser la partie';
+
+  @override
+  String get analysisMetricsTooltip => 'Que signifient ces chiffres ?';
+
+  @override
+  String analysisError(Object error) {
+    return 'Échec de l’analyse de la partie : $error';
+  }
+
+  @override
+  String get analysisNoPositions =>
+      'Aucune position à afficher dans cette partie.';
+
+  @override
+  String get analysisInProgress => 'Analyse de la partie…';
+
+  @override
+  String analysisPercent(int percent) {
+    return '$percent %';
+  }
+
+  @override
+  String get analysisPlayed => 'Joué';
+
+  @override
+  String get analysisBest => 'Meilleur';
+
+  @override
+  String get analysisPrevious => 'Précédent';
+
+  @override
+  String get analysisNext => 'Suivant';
+
+  @override
+  String get analysisPositionBeforeCube =>
+      'Position avant la décision du videau';
+
+  @override
+  String get analysisPositionAtPoint => 'Position à ce moment de la partie';
+
+  @override
+  String get analysisShowingBestBefore =>
+      'Meilleur coup affiché dans la position précédant le coup';
+
+  @override
+  String get analysisShowingBefore => 'Position avant le coup affichée';
+
+  @override
+  String analysisVerdictLine(Object side, Object verdict, Object loss) {
+    return '$side : $verdict$loss';
+  }
+
+  @override
+  String analysisMoveLoss(Object loss) {
+    return ' −$loss';
+  }
+
+  @override
+  String get analysisExcludedFromAverages => ' · exclu des moyennes';
+
+  @override
+  String get analysisNoPlay => '(aucun coup)';
+
+  @override
+  String analysisBestMoveLine(Object move) {
+    return 'Meilleur coup : $move';
+  }
+
+  @override
+  String get analysisExplain => 'Expliquer';
+
+  @override
+  String get analysisSaveForPractice => 'Enregistrer pour s’exercer';
+
+  @override
+  String analysisSaveError(Object error) {
+    return 'Impossible d’enregistrer cette décision : $error';
+  }
+
+  @override
+  String analysisCubeInfo(
+    Object side,
+    Object action,
+    Object mark,
+    Object loss,
+  ) {
+    return '$side : $action · $mark · perte $loss';
+  }
+
+  @override
+  String get analysisCubeDecision => 'Décision sur le videau';
+
+  @override
+  String analysisCubePlayed(Object action, Object percent) {
+    return 'Joué : $action (chance de gagner le match : $percent %).';
+  }
+
+  @override
+  String analysisCubeBest(Object action, Object percent) {
+    return 'Meilleur : $action (chance de gagner le match : $percent %).';
+  }
+
+  @override
+  String get analysisCubeEstimate =>
+      'Estimation à 0 pli du point de vue du joueur au trait. Suppose une réponse optimale de prise ou de passe. Utilise une approximation de durée de vie du videau de 0,7 sur la branche où le double est pris, sans rechercher tous les futurs redoubles. Une analyse plus approfondie peut changer le résultat.';
+
+  @override
+  String get analysisClose => 'Fermer';
+
+  @override
+  String get analysisMoves => 'Coups';
+
+  @override
+  String get analysisForced => 'Forcé';
+
+  @override
+  String get analysisMarkBest => 'Meilleur';
+
+  @override
+  String get analysisMarkGood => 'Bon';
+
+  @override
+  String get analysisMarkDubious => 'Douteux';
+
+  @override
+  String get analysisMarkError => 'Erreur';
+
+  @override
+  String get analysisMarkBlunder => 'Gaffe';
+
+  @override
+  String analysisSummaryMeanLoss(Object loss) {
+    return 'Perte moyenne $loss';
+  }
+
+  @override
+  String analysisSummaryCheckerDecisions(int count) {
+    return '$count décisions de pions';
+  }
+
+  @override
+  String analysisSummaryBlunders(int count) {
+    return 'Gaffes $count';
+  }
+
+  @override
+  String analysisSummaryCubeLoss(Object loss) {
+    return 'Perte au videau $loss';
+  }
+
+  @override
+  String analysisRollWithoutDoubling(Object side) {
+    return '$side lance sans doubler';
+  }
+
+  @override
+  String get metricExplainerTitle => 'Comprendre les indicateurs';
+
+  @override
+  String get metricExplainerTooltip => 'Que signifient ces chiffres ?';
+
+  @override
+  String get metricExplainerMwcTitle => 'Chance de gagner le match (MWC)';
+
+  @override
+  String get metricExplainerMwcBody =>
+      'Lorsque le score est connu, les coups sont classés selon leur chance estimée de gagner le match. La perte est exprimée en points de pourcentage (pp) : 1 pp fait passer de 51 % à 50 %. La mise actuelle du videau et les gammons/backgammons sont pris en compte. Les passes forcées et les lancers avec une seule position légale sont exclus des moyennes.';
+
+  @override
+  String get metricExplainerSearchTitle => 'Recherche et incertitude';
+
+  @override
+  String get metricExplainerSearchBody =>
+      'Le classement des coups est une estimation statique à 0 pli après le coup, pas une simulation. Les valeurs de match utilisent une table d’équité sans futurs tours de videau. Les évaluations du videau utilisent une approximation partielle de durée de vie de 0,7 après une prise. Ce n’est pas une recherche complète avec videau. Les scores avec plus de 25 points de retard utilisent la limite de 25 de la table. Une analyse plus profonde peut modifier les résultats serrés ; aucun intervalle de confiance n’est calibré.';
+
+  @override
+  String get metricExplainerEquityTitle => 'Équité';
+
+  @override
+  String get metricExplainerEquityBody =>
+      'Si le score est indisponible, l’équité sans videau indique la valeur moyenne d’une position, avec le videau à 1. +1,0 signifie un point attendu ; −0,5, une perte moyenne d’un demi-point.';
+
+  @override
+  String get metricExplainerEquityLossTitle => 'Perte d’équité (ex. −0,016)';
+
+  @override
+  String get metricExplainerEquityLossBody =>
+      'Pour chaque coup, nous comparons ton choix au meilleur coup du moteur. La perte d’équité mesure la valeur attendue abandonnée. −0,016 signifie que le coup n’était que de 0,016 point inférieur au meilleur — un petit écart. 0,000 signifie que tu as trouvé le meilleur coup.';
+
+  @override
+  String get metricExplainerErrorRateTitle => 'Taux d’erreur';
+
+  @override
+  String get metricExplainerErrorRateBody =>
+      'La perte moyenne regroupe tes décisions de pions évaluées dans l’unité affichée. Les décisions de videau ont leur propre moyenne. Un score plus bas se rapproche des meilleures estimations de ce moteur ; ce n’est pas une note de joueur calibrée.';
+
+  @override
+  String get metricExplainerMoveMarksTitle => 'Évaluation des coups';
+
+  @override
+  String get metricExplainerMoveMarksBody =>
+      'Seuils pédagogiques MWC : Meilleur < 0,05 pp, Bon < 0,5 pp, Douteux < 1,5 pp, Erreur < 3 pp, Gaffe ≥ 3 pp. Ces seuils sont propres au produit, pas une mesure calibrée ni une note de tournoi.\n\nSeuils pédagogiques d’équité sans videau :';
+
+  @override
+  String get metricExplainerThresholdBest => 'perte < 0,001';
+
+  @override
+  String get metricExplainerThresholdGood => 'perte < 0,020';
+
+  @override
+  String get metricExplainerThresholdDubious => 'perte < 0,050';
+
+  @override
+  String get metricExplainerThresholdError => 'perte < 0,110';
+
+  @override
+  String get metricExplainerThresholdBlunder => 'perte ≥ 0,110';
+
+  @override
+  String get metricExplainerGotIt => 'Compris';
+
+  @override
+  String get historyTitle => 'Historique des matchs';
+
+  @override
+  String historyLoadFailed(Object error) {
+    return 'Impossible de charger l’historique :\n$error';
+  }
+
+  @override
+  String get historyEmpty => 'Aucun match joué pour le moment.';
+
+  @override
+  String get historyDeleteConfirmTitle => 'Supprimer ce match ?';
+
+  @override
+  String historyDeleteConfirmBody(Object scoreLine) {
+    return '$scoreLine\n\nLe match et toutes les parties qu’il contient seront supprimés définitivement. Cette action est irréversible.';
+  }
+
+  @override
+  String get actionCancel => 'Annuler';
+
+  @override
+  String get actionDelete => 'Supprimer';
+
+  @override
+  String get historyDeleteFailed => 'Impossible de supprimer ce match.';
+
+  @override
+  String get historyComplete => 'Terminé';
+
+  @override
+  String historyWinner(Object side) {
+    return '$side a gagné';
+  }
+
+  @override
+  String get historyUnfinished => 'Inachevé';
+
+  @override
+  String get historyMatchTitle => 'Match';
+
+  @override
+  String historyMatchLoadFailed(Object error) {
+    return 'Impossible de charger le match :\n$error';
+  }
+
+  @override
+  String historyGamesLoadFailed(Object error) {
+    return 'Impossible de charger les parties :\n$error';
+  }
+
+  @override
+  String get historyNoGames => 'Aucune partie enregistrée pour le moment.';
+
+  @override
+  String historyGameTitle(int number) {
+    return 'Partie $number';
+  }
+
+  @override
+  String get historyCrawford => 'Crawford';
+
+  @override
+  String historyScoreLine(int whiteScore, int blackScore, int matchLength) {
+    return 'Blancs $whiteScore — $blackScore Noirs (en $matchLength)';
+  }
+
+  @override
+  String get historyModeComputer => 'contre l’ordinateur';
+
+  @override
+  String get historyModeTwoPlayers => 'Deux joueurs';
+
+  @override
+  String get historyModeOnline => 'En ligne';
+
+  @override
+  String get historyModeNearby => 'Jouer à proximité';
+
+  @override
+  String get historyModeBuddy => 'Buddy';
+
+  @override
+  String get historyGameInProgress => 'En cours';
+
+  @override
+  String historyGameResult(Object side, int points, Object outcome) {
+    return '$side gagne $points ($outcome)';
+  }
+
+  @override
+  String get historyOutcomeSingle => 'simple';
+
+  @override
+  String get historyOutcomeGammon => 'gammon';
+
+  @override
+  String get historyOutcomeBackgammon => 'backgammon';
+
+  @override
+  String get learningRefreshTooltip => 'Actualiser la progression';
+
+  @override
+  String get learningOptions => 'Options d’apprentissage';
+
+  @override
+  String get learningResetMenu => 'Réinitialiser la progression des exercices';
+
+  @override
+  String get learningLoadFailed => 'Impossible de charger la progression.';
+
+  @override
+  String get actionRetry => 'Réessayer';
+
+  @override
+  String get learningHeading => 'Apprends de tes décisions';
+
+  @override
+  String get learningIntro =>
+      'Ta progression reste sur cet appareil. Repère les thèmes récurrents, puis rejoue les positions enregistrées sans voir la réponse. Les Blancs et les Noirs peuvent être étudiés séparément.';
+
+  @override
+  String get learningBothSides => 'Les deux côtés';
+
+  @override
+  String get learningHumansOnly => 'Décisions humaines uniquement';
+
+  @override
+  String get learningHumanOnlyHelp =>
+      'Désactive pour inclure les décisions de l’ordinateur et des adversaires à distance';
+
+  @override
+  String learningDecisionSummary(int decisions, int mistakes, int blunders) {
+    return '$decisions décisions · $mistakes à améliorer · $blunders gaffes';
+  }
+
+  @override
+  String learningAverageLoss(int decisions, Object loss) {
+    return 'Perte moyenne ($decisions décisions) : $loss';
+  }
+
+  @override
+  String get learningForcedDisclaimer =>
+      'Les coups forcés sont exclus. Ce sont des estimations du moteur, pas une note de tournoi.';
+
+  @override
+  String learningGamesNeedingAnalysis(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other:
+          'Les # parties enregistrées doivent être analysées ou réanalysées.',
+      one: 'La partie enregistrée doit être analysée ou réanalysée.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get learningAnalyseSavedGames => 'Analyser les parties enregistrées';
+
+  @override
+  String get learningEmptyProfile =>
+      'Joue et termine une partie pour créer ton profil d’apprentissage. Tu peux aussi enregistrer des décisions depuis la relecture.';
+
+  @override
+  String get learningOpenHistory => 'Ouvrir l’historique';
+
+  @override
+  String get learningRecurringThemes => 'Thèmes récurrents';
+
+  @override
+  String get learningNoThemes =>
+      'Aucun thème d’erreur récurrent dans cette sélection pour le moment.';
+
+  @override
+  String learningThemeDecisions(int count) {
+    return '$count décisions à revoir. Une position peut relever de plusieurs thèmes.';
+  }
+
+  @override
+  String get learningSaveMistakes => 'Enregistrer ces erreurs pour s’exercer';
+
+  @override
+  String learningSavedMistakes(int count) {
+    return '$count décisions dans ta liste d’exercices. Les éléments déjà enregistrés sont conservés.';
+  }
+
+  @override
+  String get learningSaveMistakesFailed =>
+      'Certaines décisions n’ont pas pu être enregistrées. Les enregistrements réussis sont conservés ; réessaie.';
+
+  @override
+  String get learningSpacedPractice => 'Entraînement espacé';
+
+  @override
+  String learningPracticeCounts(
+    int due,
+    int saved,
+    int attempts,
+    int successes,
+  ) {
+    return '$due à réviser · $saved enregistrées · $attempts tentatives · $successes rappels réussis';
+  }
+
+  @override
+  String get learningIntervalsHelp =>
+      'Les révisions dues réussies reviennent après 1, 3, 7, 14 et 30 jours. Les erreurs ou réponses révélées reviennent après 10 minutes. Les répétitions anticipées ne changent pas l’intervalle.';
+
+  @override
+  String get learningAnswerContext =>
+      'Les résultats reflètent tes réponses ici, même si la position d’origine appartenait à un adversaire.';
+
+  @override
+  String get learningNoSavedPositions =>
+      'Enregistre une décision depuis la relecture ou utilise le bouton des erreurs ci-dessus.';
+
+  @override
+  String learningPositionTitle(Object side, int gameId) {
+    return 'Décision de $side · partie $gameId';
+  }
+
+  @override
+  String learningReviewDue(Object date) {
+    return 'À réviser le $date';
+  }
+
+  @override
+  String get learningReadyToReview => 'Prêt à réviser';
+
+  @override
+  String learningSuccessStreak(int count) {
+    return '$count révisions dues réussies';
+  }
+
+  @override
+  String get learningRemoveTooltip => 'Retirer la décision enregistrée';
+
+  @override
+  String get learningRecentPractice => 'Exercices récents';
+
+  @override
+  String get learningAnswerRevealed => 'Réponse révélée';
+
+  @override
+  String get learningSuccessfulRecall => 'Rappel réussi';
+
+  @override
+  String get learningTryAgain => 'Réessayer cette décision';
+
+  @override
+  String learningAttemptSubtitle(Object date, int positionId) {
+    return '$date · position enregistrée $positionId';
+  }
+
+  @override
+  String get learningRemoveTitle => 'Supprimer cet exercice ?';
+
+  @override
+  String get learningRemoveBody =>
+      'Cela supprime ses tentatives. La partie d’origine reste dans l’historique.';
+
+  @override
+  String get actionRemove => 'Retirer';
+
+  @override
+  String get learningRemoveFailed => 'Impossible de supprimer cet exercice.';
+
+  @override
+  String get learningResetTitle =>
+      'Réinitialiser la progression des exercices ?';
+
+  @override
+  String get learningResetBody =>
+      'Toutes les tentatives et les intervalles seront supprimés. Les exercices enregistrés et l’historique restent ; tous les exercices seront dus immédiatement.';
+
+  @override
+  String get learningResetAction => 'Réinitialiser la progression';
+
+  @override
+  String get learningResetFailed =>
+      'Impossible de réinitialiser la progression.';
+
+  @override
+  String learningAnalysisProgress(int completed, int failed) {
+    return '$completed parties analysées · $failed indisponibles.';
+  }
+
+  @override
+  String learningAnalysisComplete(int completed) {
+    return '$completed parties analysées.';
+  }
+
+  @override
+  String learningAnalysisCompleteWithErrors(int completed, int failed) {
+    return '$completed parties analysées ; $failed n’ont pas pu l’être. Réessaie quand le moteur sera prêt.';
+  }
+
+  @override
+  String get learningThemeHitting => 'Attaque et tempo';
+
+  @override
+  String get learningThemeSafety => 'Pions isolés et sécurité';
+
+  @override
+  String get learningThemePointMaking => 'Construire des points';
+
+  @override
+  String get learningThemePrime => 'Primes et barrages';
+
+  @override
+  String get learningThemeAnchor => 'Ancres et échappée';
+
+  @override
+  String get learningThemeRace => 'Efficacité de course';
+
+  @override
+  String get learningThemeBearOff => 'Sortie des pions';
+
+  @override
+  String get learningThemeBarEntry => 'Entrée depuis la barre';
+
+  @override
+  String get learningThemeCube => 'Décisions sur le videau';
+
+  @override
+  String get analysisCubeNoDouble => 'Pas de double';
+
+  @override
+  String get analysisCubeDouble => 'Doubler';
+
+  @override
+  String get analysisCubeTake => 'Prendre';
+
+  @override
+  String get analysisCubePass => 'Passer';
+
+  @override
+  String get learningAnalysisStarting => 'Analyse des parties enregistrées…';
+
+  @override
+  String get tutorCubelessEstimateScope =>
+      'Estimation sans cube à 0 pli · score indisponible';
+
+  @override
+  String get tutorLossPp => 'Perte en pp';
+
+  @override
+  String get tutorLoss => 'Perte';
+
+  @override
+  String get scoreSheetNoMoves => 'Aucun coup pour le moment';
+
+  @override
+  String get tutorOptions => 'Options de tutorat';
+
+  @override
+  String get tutorCollapseTooltip => 'Réduire le tuteur';
+
+  @override
+  String get tutorExpandTooltip => 'Développer le tuteur';
+
+  @override
+  String get onlineTitle => 'Jouer en ligne';
+
+  @override
+  String get onlineUnassistedNote =>
+      'Les parties en ligne ne sont pas accompagnées par le tuteur. Analyse tes coups et entraîne-toi après la partie.';
+
+  @override
+  String get onlineNotConfiguredTitle =>
+      'Le jeu en ligne n’est pas configuré dans cette version';
+
+  @override
+  String get onlineNotConfiguredBody =>
+      'Cette version ne dispose pas de backend Firebase ; création et accès aux matchs sont indisponibles.';
+
+  @override
+  String get onlineErrorNoMatch =>
+      'Aucun match ne correspond à ce code. Vérifie-le et réessaie.';
+
+  @override
+  String get onlineErrorSeatTaken =>
+      'Ce match n’est plus ouvert : la place a été prise.';
+
+  @override
+  String get onlineErrorPermission => 'Tu n’as pas accès à ce match.';
+
+  @override
+  String get onlineErrorGeneric => 'Une erreur s’est produite. Réessaie.';
+
+  @override
+  String get onlineMatchFinished =>
+      'Ce match est terminé ; il n’y a plus rien à reprendre.';
+
+  @override
+  String get onlineEnterCodeError => 'Saisis un code de match.';
+
+  @override
+  String get onlineOpponentShort => 'Adversaire';
+
+  @override
+  String get onlineMatchInProgress => 'Match en cours';
+
+  @override
+  String onlineResumePrompt(Object code) {
+    return 'Tu jouais le match $code.';
+  }
+
+  @override
+  String get onlineRejoin => 'Reprendre';
+
+  @override
+  String get onlineForgetMatch => 'Oublier ce match';
+
+  @override
+  String get onlineCreateTitle => 'Créer un match';
+
+  @override
+  String get onlineMatchLength => 'Longueur du match';
+
+  @override
+  String get onlineNoCubeTitle => 'Jouer sans videau';
+
+  @override
+  String get onlineNoCubeSubtitle => 'Pas de videau pour ce match';
+
+  @override
+  String get onlineCreate => 'Créer';
+
+  @override
+  String get onlineWaitingOpponent => 'En attente d’un adversaire…';
+
+  @override
+  String get onlineShareCode => 'Partager ce code';
+
+  @override
+  String get onlineCopyCode => 'Copier le code';
+
+  @override
+  String get onlineCodeCopied => 'Code copié';
+
+  @override
+  String get onlineJoinTitle => 'Rejoindre un match';
+
+  @override
+  String get onlineRoomCode => 'Code du match';
+
+  @override
+  String get onlineJoin => 'Rejoindre';
+
+  @override
+  String get lanTitle => 'Jouer à proximité';
+
+  @override
+  String get lanTabHost => 'Héberger';
+
+  @override
+  String get lanTabJoin => 'Rejoindre';
+
+  @override
+  String get lanUnassistedNote =>
+      'Les parties locales ne sont pas accompagnées par le tuteur. Analyse tes coups et entraîne-toi après la partie.';
+
+  @override
+  String get lanGameStartFailed =>
+      'Impossible de démarrer la partie. L’autre appareil peut réessayer de rejoindre.';
+
+  @override
+  String get lanHostPortInUse =>
+      'Hébergement impossible : le port est déjà utilisé. Ferme toute autre instance de Backgammon Buddy et réessaie.';
+
+  @override
+  String get lanHostStartFailed =>
+      'Impossible d’héberger. Vérifie ta connexion Wi-Fi et réessaie.';
+
+  @override
+  String get lanHostTitle => 'Héberger une partie';
+
+  @override
+  String get lanStartHosting => 'Démarrer l’hébergement';
+
+  @override
+  String get lanHostHelp =>
+      'Les deux appareils doivent être sur le même Wi-Fi. Celui-ci lance les dés et tient le score.';
+
+  @override
+  String get lanWaitingPlayerTitle => 'En attente d’un joueur';
+
+  @override
+  String get lanRoomCodeInfo =>
+      'Donne ce code à l’autre joueur. Il lui permet d’entrer ; l’application ne l’envoie jamais sur le réseau.';
+
+  @override
+  String get lanWaitingPlayer => 'En attente d’un joueur…';
+
+  @override
+  String get lanStopHosting => 'Arrêter l’hébergement';
+
+  @override
+  String lanFindNearbyPort(int port) {
+    return 'Demande à l’autre appareil de chercher des parties proches. Écoute sur le port $port.';
+  }
+
+  @override
+  String get lanOnNetwork => 'Sur ce réseau';
+
+  @override
+  String get lanCopyAddress => 'Copier l’adresse';
+
+  @override
+  String get lanAddressCopied => 'Adresse copiée';
+
+  @override
+  String get lanScanHostTitle => 'Scanner l’hôte';
+
+  @override
+  String get lanScanHostHelp =>
+      'L’autre appareil affiche un QR code sur son écran d’hôte. Le scanner renseigne l’adresse et le code de la salle.';
+
+  @override
+  String get lanScanQr => 'Scanner le QR code';
+
+  @override
+  String get lanScannerUnavailable =>
+      'Caméra ou autorisation indisponible. Saisis plutôt l’adresse et le code de salle ci-dessous.';
+
+  @override
+  String get lanInvalidQr =>
+      'Ce QR code ne correspond pas à Backgammon Buddy. Scanne celui affiché sur l’écran d’hôte de l’autre appareil.';
+
+  @override
+  String get lanScannerFailed =>
+      'Impossible d’ouvrir le scanner. Saisis l’adresse et le code ci-dessous.';
+
+  @override
+  String get lanNearbyGames => 'Parties à proximité';
+
+  @override
+  String get lanSearching => 'Recherche de parties à proximité…';
+
+  @override
+  String get lanNoGamesFound =>
+      'Aucune partie trouvée. Vérifie que l’autre appareil héberge une partie et que les deux sont sur le même Wi-Fi, ou saisis son adresse.';
+
+  @override
+  String get lanStillSearching => 'Recherche en cours…';
+
+  @override
+  String get lanEnterAddress => 'Saisir une adresse';
+
+  @override
+  String get lanEnterAddressHelp =>
+      'La découverte automatique ne fonctionne pas sur tous les réseaux et peut être entièrement bloquée sur iOS. L’écran d’hôte indique quoi saisir.';
+
+  @override
+  String get lanIpAddress => 'Adresse IP';
+
+  @override
+  String get lanPort => 'Port';
+
+  @override
+  String get lanInvalidPort => 'Saisis un port entre 1 et 65535.';
+
+  @override
+  String get lanEnterAddressError =>
+      'Saisis l’adresse affichée sur l’autre appareil.';
+
+  @override
+  String get lanEnterRoomCodeError =>
+      'Saisis le code à 4 chiffres de l’autre appareil.';
+
+  @override
+  String get lanJoinWrongCode =>
+      'Code de salle incorrect. Vérifie les quatre chiffres.';
+
+  @override
+  String get lanJoinVersionMismatch =>
+      'L’autre appareil utilise une version différente de Backgammon Buddy.';
+
+  @override
+  String get lanJoinHandshakeFailed =>
+      'Cet appareil ne répond pas comme Backgammon Buddy. Vérifie l’adresse et le port.';
+
+  @override
+  String get lanJoinFailed =>
+      'Impossible de rejoindre. Vérifie l’adresse et le code, puis réessaie.';
+
+  @override
+  String lanJoinTarget(Object name) {
+    return 'Rejoindre $name';
+  }
+
+  @override
+  String get lanJoinTargetHelp =>
+      'Saisis le code à 4 chiffres affiché sur l’autre appareil.';
+
+  @override
+  String lanJoiningTarget(Object name) {
+    return 'Connexion à $name';
+  }
+
+  @override
+  String get lanConnect => 'Se connecter';
+
+  @override
+  String get lanBack => 'Retour';
+
+  @override
+  String get lanTryAgain => 'Réessayer';
+
+  @override
+  String get lanStatusBusy => 'Salle occupée — en attente…';
+
+  @override
+  String get lanStatusReconnecting => 'Connexion perdue — nouvelle tentative…';
+
+  @override
+  String get lanStatusConnected => 'Connecté — démarrage du match…';
+
+  @override
+  String get lanStatusFailed => 'Impossible de rejoindre.';
+
+  @override
+  String get lanStatusConnecting => 'Connexion…';
+
+  @override
+  String get diagnosticsCopySuccess => 'Diagnostics copiés';
+
+  @override
+  String get diagnosticsReviewTitle => 'Vérifier le rapport de diagnostic';
+
+  @override
+  String get diagnosticsPrivacyNotice =>
+      'L’ouverture du brouillon enverra à GitHub les informations ci-dessous : version de l’application, plateforme et détails de l’erreur. Aucun problème public ne sera publié avant l’envoi. Si ces informations sont privées, annule et copie le rapport pour le préparer toi-même.';
+
+  @override
+  String get diagnosticsCancel => 'Annuler';
+
+  @override
+  String get diagnosticsOpenGitHub => 'Ouvrir GitHub';
+
+  @override
+  String get diagnosticsTitle => 'Diagnostics';
+
+  @override
+  String get diagnosticsReportTooltip => 'Signaler un problème sur GitHub';
+
+  @override
+  String get diagnosticsCopyTooltip => 'Copier dans le presse-papiers';
+
+  @override
+  String get diagnosticsClearTooltip => 'Effacer le journal';
+
+  @override
+  String get diagnosticsEmpty =>
+      'Aucune erreur enregistrée.\n\nEn cas de problème, il sera consigné ici. Reviens copier les détails dans un rapport.';
+
+  @override
+  String gameHudNeutralScore(
+    Object whiteLabel,
+    int whiteScore,
+    Object blackLabel,
+    int blackScore,
+    int matchLength,
+  ) {
+    return '$whiteLabel $whiteScore–$blackScore $blackLabel · en $matchLength';
+  }
+
+  @override
+  String gameHudPlayerScore(
+    Object you,
+    int mine,
+    int theirs,
+    Object opponent,
+    int matchLength,
+  ) {
+    return '$you $mine–$theirs $opponent · en $matchLength';
+  }
+
+  @override
+  String get gameHudYou => 'Toi';
+
+  @override
+  String get gameHudAi => 'IA';
+
+  @override
+  String gameHudGameNumber(int number) {
+    return 'Partie $number';
+  }
+
+  @override
+  String gameHudMatchContext(Object score, Object game) {
+    return '$score · $game';
+  }
+
+  @override
+  String gameHudHotSeatDetail(
+    Object whiteLabel,
+    Object blackLabel,
+    Object pipsLabel,
+    int whitePips,
+    int blackPips,
+  ) {
+    return '$whiteLabel contre $blackLabel · $pipsLabel $whitePips–$blackPips';
+  }
+
+  @override
+  String gameHudOpponentDetail(
+    Object opponent,
+    Object pipsLabel,
+    int mine,
+    int theirs,
+  ) {
+    return 'contre $opponent · $pipsLabel $mine–$theirs';
+  }
+
+  @override
+  String gameHudOpponentDetailWithLevel(
+    Object opponent,
+    Object level,
+    Object pipsLabel,
+    int mine,
+    int theirs,
+  ) {
+    return 'contre $opponent · $level · $pipsLabel $mine–$theirs';
+  }
+
+  @override
+  String get gameHudPips => 'Pips';
+
+  @override
+  String get gameHudCrawford => 'Crawford';
+
+  @override
+  String get gameHudDouble => 'Doubler';
+
+  @override
+  String get gameHudMoreActions => 'Autres actions';
+
+  @override
+  String get gameHudSurrender => 'Abandonner…';
+
+  @override
+  String get gameHudThinking => 'Réflexion';
+
+  @override
+  String get gameHudDoubleBeforeRoll =>
+      'Tu ne peux doubler qu’avant de lancer les dés, à ton tour.';
+
+  @override
+  String get gameHudNoDoubleCrawford =>
+      'Pas de double pendant la partie de Crawford : elle décide le match.';
+
+  @override
+  String get gameHudOnlyCubeOwner =>
+      'Seul le propriétaire du videau peut doubler ; il appartient à l’autre côté.';
+
+  @override
+  String get gameHudDoubleUnavailable =>
+      'Le double est indisponible pour le moment.';
+
+  @override
+  String gameDialogScoreLine(
+    Object whiteLabel,
+    int whiteScore,
+    int blackScore,
+    Object blackLabel,
+    int matchLength,
+  ) {
+    return '$whiteLabel $whiteScore — $blackScore $blackLabel (en $matchLength)';
+  }
+
+  @override
+  String gameDialogPlayerWon(Object winner, Object points) {
+    return '$winner gagne cette partie ($points).';
+  }
+
+  @override
+  String gameDialogPlayerWonGammon(Object winner, Object points) {
+    return '$winner gagne cette partie ($points, gammon).';
+  }
+
+  @override
+  String gameDialogPlayerWonBackgammon(Object winner, Object points) {
+    return '$winner gagne cette partie ($points, backgammon).';
+  }
+
+  @override
+  String gameDialogPlayerWonDrop(Object winner, Object points, Object loser) {
+    return '$winner gagne cette partie ($points) — $loser a refusé le double.';
+  }
+
+  @override
+  String gameDialogPlayerWonResignation(
+    Object winner,
+    Object points,
+    Object loser,
+  ) {
+    return '$winner gagne cette partie ($points) — $loser a abandonné.';
+  }
+
+  @override
+  String get gameDialogPassDeviceTitle => 'Passer l’appareil';
+
+  @override
+  String gameDialogPlayersTurn(Object name) {
+    return 'Au tour de $name';
+  }
+
+  @override
+  String get gameDialogTapToContinue => 'Appuie pour continuer';
+
+  @override
+  String get gameDialogCubeOfferedTitle => 'Double proposé';
+
+  @override
+  String gameDialogCubeOfferMessage(
+    Object doubler,
+    int value,
+    Object tutorLine,
+  ) {
+    return '$doubler propose un double à $value. Prendre ou passer ?$tutorLine';
+  }
+
+  @override
+  String get gameDialogPass => 'Passer';
+
+  @override
+  String get gameDialogTake => 'Prendre';
+
+  @override
+  String get gameDialogResignationTitle => 'Abandon proposé';
+
+  @override
+  String gameDialogResignationMessage(Object resigner, Object value) {
+    return '$resigner propose d’abandonner pour $value. Accepter ou refuser ?';
+  }
+
+  @override
+  String get gameDialogResignSingle => 'partie simple';
+
+  @override
+  String get gameDialogResignGammon => 'gammon';
+
+  @override
+  String get gameDialogResignBackgammon => 'backgammon';
+
+  @override
+  String get gameDialogDecline => 'Refuser';
+
+  @override
+  String get gameDialogAccept => 'Accepter';
+
+  @override
+  String get gameDialogGameOverTitle => 'Partie terminée';
+
+  @override
+  String get gameDialogNextGame => 'Partie suivante';
+
+  @override
+  String get gameDialogMatchOverTitle => 'Match terminé';
+
+  @override
+  String get gameDialogNobody => 'Personne';
+
+  @override
+  String gameDialogMatchWinner(Object winner) {
+    return '$winner gagne le match.';
+  }
+
+  @override
+  String get gameDialogSavedToHistory => 'Enregistré dans l’historique';
+
+  @override
+  String get gameDialogDone => 'Terminé';
+
+  @override
+  String get gameTapNoLegalMove =>
+      'Ce pion ne peut pas jouer avec les dés restants';
+
+  @override
+  String get gameTapNoLegalMoveUndo =>
+      'Ce pion ne peut pas jouer avec les dés restants — essaie Annuler';
+
+  @override
+  String get gameDragHint =>
+      'Conseil : fais glisser les pions ou touche-les — modifie ce réglage dans les paramètres';
+
+  @override
+  String get commonGotIt => 'Compris';
+
+  @override
+  String get gameHintStageBeforeHint =>
+      'Joue d’abord un coup légal complet, puis demande un indice.';
+
+  @override
+  String get surrenderTitle => 'Abandonner';
+
+  @override
+  String surrenderNamedConcedes(String player) {
+    return '$player abandonne la partie en cours.';
+  }
+
+  @override
+  String get surrenderConcedes => 'Abandonne la partie en cours.';
+
+  @override
+  String surrenderAvailableAtNamedTurn(String player) {
+    return 'Disponible au début du tour de $player';
+  }
+
+  @override
+  String get surrenderAvailableAtYourTurn => 'Disponible au début de ton tour';
+
+  @override
+  String get commonCancel => 'Annuler';
+
+  @override
+  String get surrenderSingle => 'Simple (1)';
+
+  @override
+  String get surrenderGammon => 'Gammon (2)';
+
+  @override
+  String get surrenderBackgammon => 'Backgammon (3)';
+
+  @override
+  String get surrenderChoosePlayer => 'Qui abandonne cette partie ?';
+
+  @override
+  String get commonDone => 'Terminé';
+
+  @override
+  String get cubeDouble => 'Doubler';
+
+  @override
+  String get cubeBlockedOtherPlayersTurn => 'C’est au tour de l’autre joueur.';
+
+  @override
+  String get cubeBlockedCrawford =>
+      'Le videau est désactivé pendant une partie de Crawford.';
+
+  @override
+  String get cubeBlockedOwnedByOther =>
+      'Seul le propriétaire du videau peut doubler ; il appartient actuellement à l’autre côté.';
+
+  @override
+  String get cubeBlockedUnavailable =>
+      'Le double n’est pas disponible pour le moment.';
+
+  @override
+  String get gameStatusRolling => 'Lancement des dés…';
+
+  @override
+  String get gameStatusThinking => 'Réflexion…';
+
+  @override
+  String gameStatusPlayersTurn(String player) {
+    return 'Au tour de $player';
+  }
+
+  @override
+  String get cubeAdviceOpponentTake => 'Doubler — l’adversaire devrait prendre';
+
+  @override
+  String get cubeAdviceOpponentPass => 'Doubler — l’adversaire devrait passer';
+
+  @override
+  String gameErrorBannerLabel(Object error) {
+    return 'Erreur : $error';
+  }
 }

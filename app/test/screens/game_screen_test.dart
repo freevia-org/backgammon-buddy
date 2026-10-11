@@ -1619,7 +1619,7 @@ void main() {
           t, () => c.awaitingHumanTurn && c.state.turn == Player.black);
       // Actor changed White → Black: overlay gates the reveal.
       expect(find.text('Pass the device'), findsOneWidget);
-      expect(find.textContaining("Black's turn"), findsOneWidget);
+      expect(find.textContaining('Black’s turn'), findsOneWidget);
 
       c.disposeController();
     });
@@ -2220,7 +2220,7 @@ void main() {
         await t.tap(bottomDouble);
         await t.pump();
 
-        expect(find.text("It's the other player's turn to act."),
+        expect(find.text("It’s the other player’s turn to act."),
             findsOneWidget);
         c.disposeController();
       });
@@ -2327,7 +2327,7 @@ void main() {
         await t.pump();
 
         expect(find.text('White concedes the current game.'), findsOneWidget);
-        expect(find.text("Available at the start of White's turn"),
+        expect(find.text("Available at the start of White’s turn"),
             findsOneWidget);
         expect(
             isButtonEnabled(
@@ -4732,7 +4732,7 @@ void main() {
       await pumpUntil(t, () => c.awaitingHumanTurn || c.isThinking);
       await t.pump();
 
-      expect(_inHud(find.textContaining('W 0–0 B · to 5')), findsOneWidget,
+      expect(_inHud(find.textContaining('White 0–0 Black · to 5')), findsOneWidget,
           reason: 'neither of two local players is "you"');
       expect(find.textContaining('You'), findsNothing);
 
