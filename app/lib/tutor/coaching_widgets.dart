@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/localization_lookup.dart';
 import 'coaching.dart';
 
 class TutorOptionControls extends StatelessWidget {
@@ -13,75 +14,81 @@ class TutorOptionControls extends StatelessWidget {
   final ValueChanged<TutorOptions> onChanged;
 
   @override
-  Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-        child: Text(
-          'Tutoring style',
-          style: Theme.of(context).textTheme.titleSmall,
+  Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+          child: Text(
+            l10n.tutoringStyle,
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Wrap(
-          spacing: 8,
-          runSpacing: 0,
-          children: [
-            _styleChoice(context, TutorStyle.coach, 'Coach'),
-            _styleChoice(context, TutorStyle.hintsOnly, 'Hints only'),
-            _styleChoice(context, TutorStyle.tryFirst, 'Try first'),
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Wrap(
+            spacing: 8,
+            runSpacing: 0,
+            children: [
+              _styleChoice(context, TutorStyle.coach, l10n.tutorStyleCoach),
+              _styleChoice(
+                context,
+                TutorStyle.hintsOnly,
+                l10n.tutorStyleHintsOnly,
+              ),
+              _styleChoice(
+                context,
+                TutorStyle.tryFirst,
+                l10n.tutorStyleTryFirst,
+              ),
+            ],
+          ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-        child: Text(switch (options.style) {
-          TutorStyle.coach =>
-            'Position prompts, move feedback, hints, and cube advice.',
-          TutorStyle.hintsOnly =>
-            'Ranked plays on request. Live position prompts and automatic move feedback stay off.',
-          TutorStyle.tryFirst =>
-            'Stage your current play before seeing ranked hints or its grade; board guidance stays on.',
-          null => 'Custom mix. Adjust any of the options below.',
-        }, style: Theme.of(context).textTheme.bodySmall),
-      ),
-      const Divider(height: 1),
-      SwitchListTile(
-        title: const Text('Best-move hints'),
-        subtitle: const Text('Reveal ranked plays while you decide'),
-        value: options.bestMoves,
-        onChanged: (v) => onChanged(options.copyWith(bestMoves: v)),
-      ),
-      SwitchListTile(
-        title: const Text('Move explanations'),
-        subtitle: const Text('Compare estimates and changes on the board'),
-        value: options.explanations,
-        onChanged: (v) => onChanged(options.copyWith(explanations: v)),
-      ),
-      SwitchListTile(
-        title: const Text('Game commentary'),
-        subtitle: const Text('Position prompts and feedback after each play'),
-        value: options.commentary,
-        onChanged: (v) => onChanged(options.copyWith(commentary: v)),
-      ),
-      SwitchListTile(
-        title: const Text('Cube advice'),
-        subtitle: const Text('Match-aware double, take, and pass suggestions'),
-        value: options.cubeAdvice,
-        onChanged: (v) => onChanged(options.copyWith(cubeAdvice: v)),
-      ),
-      SwitchListTile(
-        title: const Text('Try a move first'),
-        subtitle: const Text(
-          'Stage your current play before revealing hints or its grade',
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+          child: Text(switch (options.style) {
+            TutorStyle.coach => l10n.tutorCoachDescription,
+            TutorStyle.hintsOnly => l10n.tutorHintsDescription,
+            TutorStyle.tryFirst => l10n.tutorTryFirstDescription,
+            null => l10n.tutorCustomDescription,
+          }, style: Theme.of(context).textTheme.bodySmall),
         ),
-        value: options.tryFirst,
-        onChanged: (v) => onChanged(options.copyWith(tryFirst: v)),
-      ),
-    ],
-  );
+        const Divider(height: 1),
+        SwitchListTile(
+          title: Text(l10n.tutorBestMoveHints),
+          subtitle: Text(l10n.tutorRevealRankedPlays),
+          value: options.bestMoves,
+          onChanged: (v) => onChanged(options.copyWith(bestMoves: v)),
+        ),
+        SwitchListTile(
+          title: Text(l10n.tutorMoveExplanations),
+          subtitle: Text(l10n.tutorCompareEstimates),
+          value: options.explanations,
+          onChanged: (v) => onChanged(options.copyWith(explanations: v)),
+        ),
+        SwitchListTile(
+          title: Text(l10n.tutorGameCommentary),
+          subtitle: Text(l10n.tutorPositionPrompts),
+          value: options.commentary,
+          onChanged: (v) => onChanged(options.copyWith(commentary: v)),
+        ),
+        SwitchListTile(
+          title: Text(l10n.tutorCubeAdvice),
+          subtitle: Text(l10n.tutorMatchAwareCubeAdvice),
+          value: options.cubeAdvice,
+          onChanged: (v) => onChanged(options.copyWith(cubeAdvice: v)),
+        ),
+        SwitchListTile(
+          title: Text(l10n.tutorTryMoveFirst),
+          subtitle: Text(l10n.tutorStageBeforeHints),
+          value: options.tryFirst,
+          onChanged: (v) => onChanged(options.copyWith(tryFirst: v)),
+        ),
+      ],
+    );
+  }
 
   Widget _styleChoice(BuildContext context, TutorStyle style, String label) =>
       ChoiceChip(
@@ -114,68 +121,76 @@ class MoveExplanationView extends StatelessWidget {
             .trim();
 
   @override
-  Widget build(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      if (showOverview) Text(explanation.verdict),
-      if (explanation.comparison == null &&
-          explanation.plan.isNotEmpty &&
-          (showOverview || explanation.plan != explanation.summaryReason)) ...[
+  Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Static headings and methodological notes are localized. The strategic
+        // explanation strings themselves remain English until coaching data is
+        // separated from its presentation.
+        if (showOverview) Text(explanation.verdict),
+        if (explanation.comparison == null &&
+            explanation.plan.isNotEmpty &&
+            (showOverview ||
+                explanation.plan != explanation.summaryReason)) ...[
+          const SizedBox(height: 8),
+          Text(explanation.plan),
+        ],
+        if (_comparison != null && _comparison!.isNotEmpty) ...[
+          const SizedBox(height: 8),
+          Text(_comparison!),
+        ],
         const SizedBox(height: 8),
-        Text(explanation.plan),
-      ],
-      if (_comparison != null && _comparison!.isNotEmpty) ...[
-        const SizedBox(height: 8),
-        Text(_comparison!),
-      ],
-      const SizedBox(height: 8),
-      Text(
-        'Quick static estimate (0-ply, no rollouts); notes describe board changes and possible replies, not a promise of what happens next.',
-        style: Theme.of(context).textTheme.bodySmall,
-      ),
-      const SizedBox(height: 12),
-      Text('What to watch next', style: Theme.of(context).textTheme.titleSmall),
-      for (final observation in _prioritizedObservations(
-        explanation.observations,
-      ).take(2))
-        Padding(
-          padding: const EdgeInsets.only(top: 6),
-          child: Text('• $observation'),
+        Text(
+          l10n.tutorStaticEstimateNote,
+          style: Theme.of(context).textTheme.bodySmall,
         ),
-      if (explanation.observations.length > 2)
+        const SizedBox(height: 12),
+        Text(
+          l10n.tutorWhatToWatchNext,
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
+        for (final observation in _prioritizedObservations(
+          explanation.observations,
+        ).take(2))
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Text('• $observation'),
+          ),
+        if (explanation.observations.length > 2)
+          ExpansionTile(
+            tilePadding: EdgeInsets.zero,
+            childrenPadding: const EdgeInsets.only(bottom: 8),
+            title: Text(l10n.tutorMoreBoardDetails),
+            children: [
+              for (final observation in _prioritizedObservations(
+                explanation.observations,
+              ).skip(2))
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: Text('• $observation'),
+                ),
+            ],
+          ),
+        const SizedBox(height: 12),
         ExpansionTile(
           tilePadding: EdgeInsets.zero,
           childrenPadding: const EdgeInsets.only(bottom: 8),
-          title: const Text('More board details'),
+          title: Text(l10n.tutorEstimatesAndHowTheyWork),
           children: [
-            for (final observation in _prioritizedObservations(
-              explanation.observations,
-            ).skip(2))
-              Padding(
-                padding: const EdgeInsets.only(bottom: 6),
-                child: Text('• $observation'),
-              ),
+            Text(explanation.estimate),
+            const SizedBox(height: 8),
+            Text(
+              '${l10n.tutorEstimateLimitations} ${l10n.tutorPointNumberNote} '
+              '${l10n.tutorHittingRollNote}',
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ],
         ),
-      const SizedBox(height: 12),
-      ExpansionTile(
-        tilePadding: EdgeInsets.zero,
-        childrenPadding: const EdgeInsets.only(bottom: 8),
-        title: const Text('Estimates and how they work'),
-        children: [
-          Text(explanation.estimate),
-          const SizedBox(height: 8),
-          Text(
-            '${MoveExplanation.limitations} Point numbers in the teaching notes '
-            'are counted from the mover’s home board. Hitting-roll counts include '
-            'all 36 ordered dice outcomes and legal direct or indirect hits; '
-            'they are opportunities, not a prediction of the opponent’s choice.',
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ],
-      ),
-    ],
-  );
+      ],
+    );
+  }
 
   List<String> _prioritizedObservations(List<String> observations) {
     int priority(String text) {
@@ -228,9 +243,9 @@ Future<void> showMoveExplanation(
               if (explanation != null)
                 MoveExplanationView(explanation: explanation)
               else
-                const Text(
-                  'No evaluated alternatives are available for this play. '
-                  'A forced pass does not involve a checker-play decision.',
+                Text(
+                  '${appLocalizationsOf(context).tutorNoEvaluatedAlternatives} '
+                  '${appLocalizationsOf(context).tutorForcedPassNoDecision}',
                 ),
             ],
           ),

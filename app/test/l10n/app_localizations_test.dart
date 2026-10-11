@@ -1,4 +1,5 @@
 import 'package:aigammon_app/l10n/app_localizations.dart';
+import 'package:aigammon_app/l10n/localization_lookup.dart';
 import 'package:flutter/widgets.dart' show Locale;
 import 'package:flutter_test/flutter_test.dart';
 
@@ -12,6 +13,11 @@ void main() {
       expect(strings.playOnline, isNotEmpty, reason: locale.toString());
       expect(strings.confirm, isNotEmpty, reason: locale.toString());
       expect(strings.noMovesPass, isNotEmpty, reason: locale.toString());
+      expect(strings.tutoringStyle, isNotEmpty, reason: locale.toString());
+      expect(strings.tutorCoachDescription, isNotEmpty, reason: locale.toString());
+      expect(strings.tutorMoreBoardDetails, isNotEmpty, reason: locale.toString());
+      expect(strings.tutorEstimateLimitations, isNotEmpty, reason: locale.toString());
+      expect(strings.tutorForcedPassNoDecision, isNotEmpty, reason: locale.toString());
     }
   });
 
@@ -23,5 +29,26 @@ void main() {
 
     expect(french.homeTagline, isNot(english.homeTagline));
     expect(ukrainian.homeTagline, isNot(english.homeTagline));
+  });
+
+  test('unsupported system languages fall back to English', () {
+    expect(
+      resolveAppLocale(
+        const [Locale('ar'), Locale('en', 'GB')],
+        AppLocalizations.supportedLocales,
+      ),
+      const Locale('en'),
+    );
+    expect(
+      resolveAppLocale(const [Locale('ar')], AppLocalizations.supportedLocales),
+      const Locale('en'),
+    );
+  });
+
+  test('stale saved language choices safely return to system locale', () {
+    expect(savedAppLocale(null, AppLocalizations.supportedLocales), isNull);
+    expect(savedAppLocale('uk', AppLocalizations.supportedLocales),
+        const Locale('uk'));
+    expect(savedAppLocale('xx', AppLocalizations.supportedLocales), isNull);
   });
 }

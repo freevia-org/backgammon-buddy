@@ -263,6 +263,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hint'**
   String get hint;
+
+  /// No description provided for @tutoringStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tutoring style'**
+  String get tutoringStyle;
+
+  /// No description provided for @tutorStyleCoach.
+  ///
+  /// In en, this message translates to:
+  /// **'Coach'**
+  String get tutorStyleCoach;
+
+  /// No description provided for @tutorStyleHintsOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Hints only'**
+  String get tutorStyleHintsOnly;
+
+  /// No description provided for @tutorStyleTryFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Try first'**
+  String get tutorStyleTryFirst;
+
+  /// No description provided for @tutorCoachDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Position prompts, move feedback, hints, and cube advice.'**
+  String get tutorCoachDescription;
+
+  /// No description provided for @tutorHintsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Ranked plays on request. Live position prompts and automatic move feedback stay off.'**
+  String get tutorHintsDescription;
+
+  /// No description provided for @tutorTryFirstDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Stage your current play before seeing ranked hints or its grade; board guidance stays on.'**
+  String get tutorTryFirstDescription;
+
+  /// No description provided for @tutorCustomDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom mix. Adjust any of the options below.'**
+  String get tutorCustomDescription;
+
+  /// No description provided for @tutorBestMoveHints.
+  ///
+  /// In en, this message translates to:
+  /// **'Best-move hints'**
+  String get tutorBestMoveHints;
+
+  /// No description provided for @tutorRevealRankedPlays.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal ranked plays while you decide'**
+  String get tutorRevealRankedPlays;
+
+  /// No description provided for @tutorMoveExplanations.
+  ///
+  /// In en, this message translates to:
+  /// **'Move explanations'**
+  String get tutorMoveExplanations;
+
+  /// No description provided for @tutorCompareEstimates.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare estimates and changes on the board'**
+  String get tutorCompareEstimates;
+
+  /// No description provided for @tutorGameCommentary.
+  ///
+  /// In en, this message translates to:
+  /// **'Game commentary'**
+  String get tutorGameCommentary;
+
+  /// No description provided for @tutorPositionPrompts.
+  ///
+  /// In en, this message translates to:
+  /// **'Position prompts and feedback after each play'**
+  String get tutorPositionPrompts;
+
+  /// No description provided for @tutorCubeAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'Cube advice'**
+  String get tutorCubeAdvice;
+
+  /// No description provided for @tutorMatchAwareCubeAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'Match-aware double, take, and pass suggestions'**
+  String get tutorMatchAwareCubeAdvice;
+
+  /// No description provided for @tutorTryMoveFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a move first'**
+  String get tutorTryMoveFirst;
+
+  /// No description provided for @tutorStageBeforeHints.
+  ///
+  /// In en, this message translates to:
+  /// **'Stage your current play before revealing hints or its grade'**
+  String get tutorStageBeforeHints;
+
+  /// No description provided for @tutorStaticEstimateNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick static estimate (0-ply, no rollouts); notes describe board changes and possible replies, not a promise of what happens next.'**
+  String get tutorStaticEstimateNote;
+
+  /// No description provided for @tutorWhatToWatchNext.
+  ///
+  /// In en, this message translates to:
+  /// **'What to watch next'**
+  String get tutorWhatToWatchNext;
+
+  /// No description provided for @tutorMoreBoardDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'More board details'**
+  String get tutorMoreBoardDetails;
+
+  /// No description provided for @tutorEstimatesAndHowTheyWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimates and how they work'**
+  String get tutorEstimatesAndHowTheyWork;
+
+  /// No description provided for @tutorEstimateLimitations.
+  ///
+  /// In en, this message translates to:
+  /// **'Depth: static neural evaluation after each legal play (0-ply), without rollouts or a search of future replies. Score-aware MWC weights those outcome estimates by the match score and current cube; it does not model future cube actions. Cubeless equity is expected points at cube 1 when score is unavailable. Board observations describe the play, not the neural engine’s internal reasoning. Near ties are not a claim of certainty; there is no calibrated confidence interval.'**
+  String get tutorEstimateLimitations;
+
+  /// No description provided for @tutorPointNumberNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Point numbers in teaching notes are counted from the mover’s home board.'**
+  String get tutorPointNumberNote;
+
+  /// No description provided for @tutorHittingRollNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Hitting-roll counts include all 36 ordered dice outcomes and legal direct or indirect hits; they are opportunities, not a prediction of the opponent’s choice.'**
+  String get tutorHittingRollNote;
+
+  /// No description provided for @tutorNoEvaluatedAlternatives.
+  ///
+  /// In en, this message translates to:
+  /// **'No evaluated alternatives are available for this play.'**
+  String get tutorNoEvaluatedAlternatives;
+
+  /// No description provided for @tutorForcedPassNoDecision.
+  ///
+  /// In en, this message translates to:
+  /// **'A forced pass does not involve a checker-play decision.'**
+  String get tutorForcedPassNoDecision;
 }
 
 class _AppLocalizationsDelegate
