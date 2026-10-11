@@ -1,0 +1,22 @@
+{
+  "@@locale": "el",
+  "homeTagline": "Βελτιώστε το παιχνίδι σας με προπονητή",
+  "settings": "Ρυθμίσεις",
+  "playVsComputer": "Παίξτε εναντίον υπολογιστή",
+  "twoPlayers": "Δύο παίκτες",
+  "playNearby": "Παίξτε κοντά",
+  "playOnline": "Παίξτε online",
+  "learningPractice": "Μάθηση και εξάσκηση",
+  "gamesArchive": "Αρχείο παιχνιδιών",
+  "followSystem": "Γλώσσα συσκευής",
+  "white": "Λευκά",
+  "black": "Μαύρα",
+  "random": "Τυχαία",
+  "startMatch": "Έναρξη παιχνιδιού",
+  "tutor": "Προπονητής",
+  "noMovesPass": "Δεν υπάρχουν κινήσεις — πάσο",
+  "undo": "Αναίρεση",
+  "confirm": "Επιβεβαίωση",
+  "roll": "Ρίψη",
+  "hint": "Υπόδειξη"
+}

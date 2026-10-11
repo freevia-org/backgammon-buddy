@@ -1,0 +1,22 @@
+{
+  "@@locale": "ro",
+  "homeTagline": "Îmbunătățește-ți jocul cu un antrenor",
+  "settings": "Setări",
+  "playVsComputer": "Joacă împotriva calculatorului",
+  "twoPlayers": "Doi jucători",
+  "playNearby": "Joacă în apropiere",
+  "playOnline": "Joacă online",
+  "learningPractice": "Învață și exersează",
+  "gamesArchive": "Arhiva jocurilor",
+  "followSystem": "Limba dispozitivului",
+  "white": "Albe",
+  "black": "Negre",
+  "random": "Aleatoriu",
+  "startMatch": "Începe jocul",
+  "tutor": "Antrenor",
+  "noMovesPass": "Nu există mutări — pasează",
+  "undo": "Anulează",
+  "confirm": "Confirmă",
+  "roll": "Aruncă",
+  "hint": "Indiciu"
+}

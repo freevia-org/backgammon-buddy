@@ -1,0 +1,22 @@
+{
+  "@@locale": "et",
+  "homeTagline": "Arenda oma mängu juhendajaga",
+  "settings": "Seaded",
+  "playVsComputer": "Mängi arvuti vastu",
+  "twoPlayers": "Kaks mängijat",
+  "playNearby": "Mängi läheduses",
+  "playOnline": "Mängi võrgus",
+  "learningPractice": "Õpi ja harjuta",
+  "gamesArchive": "Mängude arhiiv",
+  "followSystem": "Kasuta seadme keelt",
+  "white": "Valge",
+  "black": "Must",
+  "random": "Juhuslik",
+  "startMatch": "Alusta mängu",
+  "tutor": "Juhendaja",
+  "noMovesPass": "Käike pole — jäta vahele",
+  "undo": "Võta tagasi",
+  "confirm": "Kinnita",
+  "roll": "Viska",
+  "hint": "Vihje"
+}

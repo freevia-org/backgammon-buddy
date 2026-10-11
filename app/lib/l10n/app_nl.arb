@@ -1,0 +1,22 @@
+{
+  "@@locale": "nl",
+  "homeTagline": "Verbeter je spel met een tutor",
+  "settings": "Instellingen",
+  "playVsComputer": "Tegen de computer spelen",
+  "twoPlayers": "Twee spelers",
+  "playNearby": "Spelen in de buurt",
+  "playOnline": "Online spelen",
+  "learningPractice": "Leren en oefenen",
+  "gamesArchive": "Spellenarchief",
+  "followSystem": "Taal van apparaat volgen",
+  "white": "Wit",
+  "black": "Zwart",
+  "random": "Willekeurig",
+  "startMatch": "Start spel",
+  "tutor": "Tutor",
+  "noMovesPass": "Geen zetten — passen",
+  "undo": "Ongedaan maken",
+  "confirm": "Bevestigen",
+  "roll": "Gooien",
+  "hint": "Hint"
+}

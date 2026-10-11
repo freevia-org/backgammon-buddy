@@ -7,6 +7,7 @@ import '../analytics/analytics_events.dart';
 import '../analytics/analytics_screen_view.dart';
 import '../branding/app_mark.dart';
 import '../branding/app_version.dart';
+import '../l10n/localization_lookup.dart';
 import 'buddy/buddy_game_screen.dart';
 import 'buddy/buddy_setup_screen.dart';
 import 'history_screen.dart';
@@ -38,6 +39,7 @@ class HomeScreen extends ConsumerWidget {
 
   Widget _build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = appLocalizationsOf(context);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -47,7 +49,7 @@ class HomeScreen extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: IconButton(
-                  tooltip: 'Settings',
+                  tooltip: l10n.settings,
                   icon: const Icon(Icons.settings_outlined),
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
@@ -64,14 +66,14 @@ class HomeScreen extends ConsumerWidget {
                   final compact = constraints.maxHeight < 570 || textScale > 1.3;
                   final actions = <Widget>[
                     _ModeButton(
-                      label: 'Play vs Computer',
-                      compactLabel: 'vs Computer',
+                      label: l10n.playVsComputer,
+                      compactLabel: l10n.playVsComputer,
                       icon: Icons.smart_toy_outlined,
                       onPressed: () => _open(context, vsComputer: true),
                     ),
                     _ModeButton(
-                      label: 'Two Players',
-                      compactLabel: 'Two Players',
+                      label: l10n.twoPlayers,
+                      compactLabel: l10n.twoPlayers,
                       icon: Icons.people_outline,
                       onPressed: () => _open(context, vsComputer: false),
                     ),
@@ -92,32 +94,32 @@ class HomeScreen extends ConsumerWidget {
                         ),
                       ),
                     _ModeButton(
-                      label: 'Play Nearby',
-                      compactLabel: 'Nearby',
+                      label: l10n.playNearby,
+                      compactLabel: l10n.playNearby,
                       icon: Icons.wifi_tethering,
                       onPressed: () => Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => const LanScreen()),
                       ),
                     ),
                     _ModeButton(
-                      label: 'Play Online',
-                      compactLabel: 'Online',
+                      label: l10n.playOnline,
+                      compactLabel: l10n.playOnline,
                       icon: Icons.public,
                       onPressed: () => Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => const OnlineScreen()),
                       ),
                     ),
                     _ModeButton(
-                      label: 'Learning & practice',
-                      compactLabel: 'Learn & practice',
+                      label: l10n.learningPractice,
+                      compactLabel: l10n.learningPractice,
                       icon: Icons.school_outlined,
                       onPressed: () => Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => const LearningScreen()),
                       ),
                     ),
                     _ModeButton(
-                      label: 'Games Archive',
-                      compactLabel: 'Games Archive',
+                      label: l10n.gamesArchive,
+                      compactLabel: l10n.gamesArchive,
                       icon: Icons.history,
                       onPressed: () => Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => const HistoryScreen()),
@@ -156,7 +158,7 @@ class HomeScreen extends ConsumerWidget {
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
-                                  'Improve your game with a tutor',
+                                  l10n.homeTagline,
                                   style: theme.textTheme.titleMedium?.copyWith(
                                     color: theme.colorScheme.onSurfaceVariant,
                                   ),

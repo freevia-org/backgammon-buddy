@@ -1,0 +1,22 @@
+{
+  "@@locale": "sv",
+  "homeTagline": "Förbättra ditt spel med en handledare",
+  "settings": "Inställningar",
+  "playVsComputer": "Spela mot datorn",
+  "twoPlayers": "Två spelare",
+  "playNearby": "Spela i närheten",
+  "playOnline": "Spela online",
+  "learningPractice": "Lär dig och öva",
+  "gamesArchive": "Spelarkiv",
+  "followSystem": "Följ enhetens språk",
+  "white": "Vit",
+  "black": "Svart",
+  "random": "Slumpmässig",
+  "startMatch": "Starta spel",
+  "tutor": "Handledare",
+  "noMovesPass": "Inga drag — passa",
+  "undo": "Ångra",
+  "confirm": "Bekräfta",
+  "roll": "Kasta",
+  "hint": "Tips"
+}

@@ -166,6 +166,7 @@ class AppSettings {
     this.buddyMicHint = true,
     this.tutorOptions = const TutorOptions(),
     this.telemetryEnabled = false,
+    this.localeCode,
   });
 
   /// The out-of-the-box defaults, matching the `Settings` table's column
@@ -263,6 +264,9 @@ class AppSettings {
   /// Explicit opt-in to remote diagnostics and usage collection.
   final bool telemetryEnabled;
 
+  /// Selected app locale tag; null means follow the system locale.
+  final String? localeCode;
+
   /// Whether a NETWORKED match (LAN or online) starts with live tutor mode.
   ///
   /// [tutorOverride] rules when the user set it explicitly; Auto (null) keeps
@@ -307,6 +311,7 @@ class AppSettings {
     bool? buddyMicHint,
     TutorOptions? tutorOptions,
     bool? telemetryEnabled,
+    Object? localeCode = _unset,
   }) {
     return AppSettings(
       themeMode: themeMode ?? this.themeMode,
@@ -328,6 +333,9 @@ class AppSettings {
       buddyMicHint: buddyMicHint ?? this.buddyMicHint,
       tutorOptions: tutorOptions ?? this.tutorOptions,
       telemetryEnabled: telemetryEnabled ?? this.telemetryEnabled,
+      localeCode: identical(localeCode, _unset)
+          ? this.localeCode
+          : localeCode as String?,
     );
   }
 
@@ -350,7 +358,8 @@ class AppSettings {
       other.buddyPhrasing == buddyPhrasing &&
       other.buddyMicHint == buddyMicHint &&
       other.tutorOptions == tutorOptions &&
-      other.telemetryEnabled == telemetryEnabled;
+      other.telemetryEnabled == telemetryEnabled &&
+      other.localeCode == localeCode;
 
   @override
   int get hashCode => Object.hash(
@@ -370,7 +379,8 @@ class AppSettings {
       buddyPhrasing,
       buddyMicHint,
       tutorOptions,
-      telemetryEnabled);
+      telemetryEnabled,
+      localeCode);
 
   @override
   String toString() => 'AppSettings(themeMode: $themeMode, '
@@ -388,7 +398,8 @@ class AppSettings {
       'dragHintShown: $dragHintShown, '
       'buddyPhrasing: $buddyPhrasing, '
       'buddyMicHint: $buddyMicHint, '
-      'tutorOptions: $tutorOptions, telemetryEnabled: $telemetryEnabled)';
+      'tutorOptions: $tutorOptions, telemetryEnabled: $telemetryEnabled, '
+      'localeCode: $localeCode)';
 }
 
 /// Sentinel marking an un-passed [AppSettings.copyWith] argument (so a caller

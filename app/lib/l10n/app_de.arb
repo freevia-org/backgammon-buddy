@@ -1,0 +1,22 @@
+{
+  "@@locale": "de",
+  "homeTagline": "Verbessere dein Spiel mit einem Trainer",
+  "settings": "Einstellungen",
+  "playVsComputer": "Gegen den Computer spielen",
+  "twoPlayers": "Zwei Spieler",
+  "playNearby": "In der Nähe spielen",
+  "playOnline": "Online spielen",
+  "learningPractice": "Lernen & üben",
+  "gamesArchive": "Spielearchiv",
+  "followSystem": "Gerätesprache verwenden",
+  "white": "Weiß",
+  "black": "Schwarz",
+  "random": "Zufall",
+  "startMatch": "Spiel starten",
+  "tutor": "Tutor",
+  "noMovesPass": "Keine Züge – passen",
+  "undo": "Rückgängig",
+  "confirm": "Bestätigen",
+  "roll": "Würfeln",
+  "hint": "Tipp"
+}

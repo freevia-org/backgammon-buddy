@@ -1,0 +1,22 @@
+{
+  "@@locale": "lt",
+  "homeTagline": "Tobulinkite žaidimą su treneriu",
+  "settings": "Nustatymai",
+  "playVsComputer": "Žaisti prieš kompiuterį",
+  "twoPlayers": "Du žaidėjai",
+  "playNearby": "Žaisti netoliese",
+  "playOnline": "Žaisti internetu",
+  "learningPractice": "Mokymasis ir praktika",
+  "gamesArchive": "Žaidimų archyvas",
+  "followSystem": "Įrenginio kalba",
+  "white": "Balti",
+  "black": "Juodi",
+  "random": "Atsitiktinai",
+  "startMatch": "Pradėti žaidimą",
+  "tutor": "Treneris",
+  "noMovesPass": "Ėjimų nėra — praleisti",
+  "undo": "Atšaukti",
+  "confirm": "Patvirtinti",
+  "roll": "Mesti",
+  "hint": "Patarimas"
+}

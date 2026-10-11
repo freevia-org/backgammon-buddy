@@ -1,0 +1,22 @@
+{
+  "@@locale": "sk",
+  "homeTagline": "Zlepšite svoju hru s trénerom",
+  "settings": "Nastavenia",
+  "playVsComputer": "Hrať proti počítaču",
+  "twoPlayers": "Dvaja hráči",
+  "playNearby": "Hrať nablízku",
+  "playOnline": "Hrať online",
+  "learningPractice": "Učenie a tréning",
+  "gamesArchive": "Archív hier",
+  "followSystem": "Jazyk zariadenia",
+  "white": "Biely",
+  "black": "Čierny",
+  "random": "Náhodne",
+  "startMatch": "Začať hru",
+  "tutor": "Tréner",
+  "noMovesPass": "Žiadne ťahy — pas",
+  "undo": "Späť",
+  "confirm": "Potvrdiť",
+  "roll": "Hodiť",
+  "hint": "Rada"
+}

@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'analytics/analytics_events.dart';
 import 'analytics/app_analytics.dart';
 import 'analytics/telemetry_controller.dart';
 import 'data/app_settings.dart';
+import 'l10n/app_localizations.dart';
 import 'data/settings_repository.dart';
 import 'diagnostics/crash_log.dart';
 import 'screens/home_screen.dart';
@@ -101,11 +103,23 @@ class _AiGammonAppState extends ConsumerState<AiGammonApp> {
   Widget build(BuildContext context) {
     // Follow the persisted theme preference; fall back to system while the
     // (sub-frame) initial load resolves.
-    final themeMode =
-        ref.watch(settingsProvider).valueOrNull?.themeMode ??
-        AppSettings.defaults.themeMode;
+    final settings =
+        ref.watch(settingsProvider).valueOrNull ?? AppSettings.defaults;
+    final themeMode = settings.themeMode;
+    final localeCode = settings.localeCode;
+    final locale = localeCode == null
+        ? null
+        : Locale.fromSubtags(languageCode: localeCode.split(RegExp('[-_]')).first);
     return MaterialApp(
       title: 'Backgammon Buddy',
+      locale: locale,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: _theme(Brightness.light),
       darkTheme: _theme(Brightness.dark),
       themeMode: themeMode,

@@ -1,0 +1,22 @@
+{
+  "@@locale": "lv",
+  "homeTagline": "Uzlabojiet savu spēli ar trenera palīdzību",
+  "settings": "Iestatījumi",
+  "playVsComputer": "Spēlēt pret datoru",
+  "twoPlayers": "Divi spēlētāji",
+  "playNearby": "Spēlēt tuvumā",
+  "playOnline": "Spēlēt tiešsaistē",
+  "learningPractice": "Mācības un prakse",
+  "gamesArchive": "Spēļu arhīvs",
+  "followSystem": "Ierīces valoda",
+  "white": "Baltie",
+  "black": "Melnie",
+  "random": "Nejauši",
+  "startMatch": "Sākt spēli",
+  "tutor": "Treneris",
+  "noMovesPass": "Nav gājienu — izlaist",
+  "undo": "Atsaukt",
+  "confirm": "Apstiprināt",
+  "roll": "Mest",
+  "hint": "Padoms"
+}

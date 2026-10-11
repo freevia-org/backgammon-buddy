@@ -1,0 +1,22 @@
+{
+  "@@locale": "sr",
+  "homeTagline": "Unapredite igru uz trenera",
+  "settings": "Podešavanja",
+  "playVsComputer": "Igraj protiv računara",
+  "twoPlayers": "Dva igrača",
+  "playNearby": "Igraj u blizini",
+  "playOnline": "Igraj onlajn",
+  "learningPractice": "Učenje i vežbanje",
+  "gamesArchive": "Arhiva partija",
+  "followSystem": "Jezik uređaja",
+  "white": "Beli",
+  "black": "Crni",
+  "random": "Nasumično",
+  "startMatch": "Započni partiju",
+  "tutor": "Trener",
+  "noMovesPass": "Nema poteza — preskoči",
+  "undo": "Poništi",
+  "confirm": "Potvrdi",
+  "roll": "Baci",
+  "hint": "Savet"
+}

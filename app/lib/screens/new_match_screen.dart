@@ -15,6 +15,7 @@ import '../data/settings_repository.dart';
 import '../engine/engine_provider.dart';
 import '../game/game_controller.dart';
 import '../game/player_agent.dart';
+import '../l10n/localization_lookup.dart';
 import '../tutor/tutor_service.dart';
 import '../tutor/coaching.dart';
 import '../tutor/coaching_widgets.dart';
@@ -87,9 +88,10 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
       );
 
   Widget _build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.vsComputer ? 'Play vs Computer' : 'Two Players'),
+        title: Text(widget.vsComputer ? l10n.playVsComputer : l10n.twoPlayers),
       ),
       body: SafeArea(
         // Top-aligned under the app bar: a setup form reads as a list of
@@ -130,14 +132,14 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
                         label: 'Your side',
                         child: SegmentedButton<_SideChoice>(
                           showSelectedIcon: false,
-                          segments: const [
+                          segments: [
                             ButtonSegment(
-                                value: _SideChoice.white, label: Text('White')),
+                                value: _SideChoice.white, label: Text(l10n.white)),
                             ButtonSegment(
-                                value: _SideChoice.black, label: Text('Black')),
+                                value: _SideChoice.black, label: Text(l10n.black)),
                             ButtonSegment(
                                 value: _SideChoice.random,
-                                label: Text('Random')),
+                                label: Text(l10n.random)),
                           ],
                           selected: {_side},
                           onSelectionChanged: (s) =>
@@ -189,7 +191,7 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
                         style: FilledButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 18),
                         ),
-                        child: const Text('Start match'),
+                        child: Text(l10n.startMatch),
                       ),
                     ),
                   ],

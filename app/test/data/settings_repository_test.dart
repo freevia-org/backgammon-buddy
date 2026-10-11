@@ -126,6 +126,19 @@ void main() {
     expect((await repo.load()).tutorOverride, isNull);
   });
 
+  test('language choice persists and can return to device language', () async {
+    final selected = AppSettings.defaults.copyWith(localeCode: 'uk');
+    await repo.save(selected);
+    expect((await repo.load()).localeCode, 'uk');
+
+    // copyWith distinguishes omitted from explicit null so the settings UI can
+    // switch back to following the operating system.
+    final followsDevice = selected.copyWith(localeCode: null);
+    expect(followsDevice.localeCode, isNull);
+    await repo.save(followsDevice);
+    expect((await repo.load()).localeCode, isNull);
+  });
+
   group('markDragHintShown', () {
     test('latches the flag', () async {
       expect((await repo.load()).dragHintShown, isFalse);

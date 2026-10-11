@@ -1,0 +1,22 @@
+{
+  "@@locale": "it",
+  "homeTagline": "Migliora il tuo gioco con un tutor",
+  "settings": "Impostazioni",
+  "playVsComputer": "Gioca contro il computer",
+  "twoPlayers": "Due giocatori",
+  "playNearby": "Gioca nelle vicinanze",
+  "playOnline": "Gioca online",
+  "learningPractice": "Impara e fai pratica",
+  "gamesArchive": "Archivio partite",
+  "followSystem": "Segui la lingua del dispositivo",
+  "white": "Bianco",
+  "black": "Nero",
+  "random": "Casuale",
+  "startMatch": "Inizia partita",
+  "tutor": "Tutor",
+  "noMovesPass": "Nessuna mossa: passa",
+  "undo": "Annulla",
+  "confirm": "Conferma",
+  "roll": "Lancia",
+  "hint": "Suggerimento"
+}

@@ -1,0 +1,22 @@
+{
+  "@@locale": "fr",
+  "homeTagline": "Progressez avec un tuteur",
+  "settings": "Paramètres",
+  "playVsComputer": "Jouer contre l’ordinateur",
+  "twoPlayers": "Deux joueurs",
+  "playNearby": "Jouer à proximité",
+  "playOnline": "Jouer en ligne",
+  "learningPractice": "Apprendre et s’entraîner",
+  "gamesArchive": "Archives des parties",
+  "followSystem": "Suivre la langue de l’appareil",
+  "white": "Blancs",
+  "black": "Noirs",
+  "random": "Aléatoire",
+  "startMatch": "Démarrer la partie",
+  "tutor": "Tuteur",
+  "noMovesPass": "Aucun coup : passer",
+  "undo": "Annuler",
+  "confirm": "Confirmer",
+  "roll": "Lancer",
+  "hint": "Indice"
+}

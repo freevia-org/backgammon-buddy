@@ -1,0 +1,22 @@
+{
+  "@@locale": "ga",
+  "homeTagline": "Feabhsaigh do chluiche le cóitseálaí",
+  "settings": "Socruithe",
+  "playVsComputer": "Imir in aghaidh an ríomhaire",
+  "twoPlayers": "Beirt imreoirí",
+  "playNearby": "Imir in aice láimhe",
+  "playOnline": "Imir ar líne",
+  "learningPractice": "Foghlaim agus cleachtadh",
+  "gamesArchive": "Cartlann cluichí",
+  "followSystem": "Teanga an ghléis",
+  "white": "Bán",
+  "black": "Dubh",
+  "random": "Randamach",
+  "startMatch": "Tosaigh cluiche",
+  "tutor": "Cóitseálaí",
+  "noMovesPass": "Gan ghluaiseacht — pas",
+  "undo": "Cealaigh",
+  "confirm": "Deimhnigh",
+  "roll": "Caith",
+  "hint": "Leid"
+}
