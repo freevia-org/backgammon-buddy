@@ -1,0 +1,22 @@
+{
+  "@@locale": "hu",
+  "homeTagline": "Fejleszd a játékod egy edzővel",
+  "settings": "Beállítások",
+  "playVsComputer": "Játék a számítógép ellen",
+  "twoPlayers": "Két játékos",
+  "playNearby": "Játék a közelben",
+  "playOnline": "Online játék",
+  "learningPractice": "Tanulás és gyakorlás",
+  "gamesArchive": "Játékarchívum",
+  "followSystem": "Eszköz nyelve",
+  "white": "Fehér",
+  "black": "Fekete",
+  "random": "Véletlenszerű",
+  "startMatch": "Játék indítása",
+  "tutor": "Edző",
+  "noMovesPass": "Nincs lépés — passz",
+  "undo": "Visszavonás",
+  "confirm": "Megerősítés",
+  "roll": "Dobás",
+  "hint": "Tipp"
+}

@@ -1,0 +1,22 @@
+{
+  "@@locale": "mt",
+  "homeTagline": "Ittejjeb il-logħba tiegħek ma’ kowċ",
+  "settings": "Settings",
+  "playVsComputer": "Ilgħab kontra l-kompjuter",
+  "twoPlayers": "Żewġ plejers",
+  "playNearby": "Ilgħab fil-qrib",
+  "playOnline": "Ilgħab online",
+  "learningPractice": "Tgħallem u pprattika",
+  "gamesArchive": "Arkivju tal-logħob",
+  "followSystem": "Lingwa tat-tagħmir",
+  "white": "Abjad",
+  "black": "Iswed",
+  "random": "Każwali",
+  "startMatch": "Ibda l-logħba",
+  "tutor": "Kowċ",
+  "noMovesPass": "Ebda mossa — għaddi",
+  "undo": "Ħoll",
+  "confirm": "Ikkonferma",
+  "roll": "Itfa’",
+  "hint": "Ħjiel"
+}

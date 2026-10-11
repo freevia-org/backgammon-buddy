@@ -1573,6 +1573,17 @@ class $SettingsTable extends Settings
     ),
     defaultValue: const Constant(false),
   );
+  static const VerificationMeta _localeCodeMeta = const VerificationMeta(
+    'localeCode',
+  );
+  @override
+  late final GeneratedColumn<String> localeCode = GeneratedColumn<String>(
+    'locale_code',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -1597,6 +1608,7 @@ class $SettingsTable extends Settings
     tutorCubeAdvice,
     tutorTryFirst,
     telemetryEnabled,
+    localeCode,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1796,6 +1808,12 @@ class $SettingsTable extends Settings
         ),
       );
     }
+    if (data.containsKey('locale_code')) {
+      context.handle(
+        _localeCodeMeta,
+        localeCode.isAcceptableOrUnknown(data['locale_code']!, _localeCodeMeta),
+      );
+    }
     return context;
   }
 
@@ -1893,6 +1911,10 @@ class $SettingsTable extends Settings
         DriftSqlType.bool,
         data['${effectivePrefix}telemetry_enabled'],
       )!,
+      localeCode: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}locale_code'],
+      ),
     );
   }
 
@@ -1999,6 +2021,9 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
 
   /// Optional remote analytics/performance/crash reporting is opt-in.
   final bool telemetryEnabled;
+
+  /// Optional BCP-47 language override; null follows the device locale (v11).
+  final String? localeCode;
   const SettingsRow({
     required this.id,
     required this.themeMode,
@@ -2022,6 +2047,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     required this.tutorCubeAdvice,
     required this.tutorTryFirst,
     required this.telemetryEnabled,
+    this.localeCode,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -2050,6 +2076,9 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     map['tutor_cube_advice'] = Variable<bool>(tutorCubeAdvice);
     map['tutor_try_first'] = Variable<bool>(tutorTryFirst);
     map['telemetry_enabled'] = Variable<bool>(telemetryEnabled);
+    if (!nullToAbsent || localeCode != null) {
+      map['locale_code'] = Variable<String>(localeCode);
+    }
     return map;
   }
 
@@ -2079,6 +2108,9 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       tutorCubeAdvice: Value(tutorCubeAdvice),
       tutorTryFirst: Value(tutorTryFirst),
       telemetryEnabled: Value(telemetryEnabled),
+      localeCode: localeCode == null && nullToAbsent
+          ? const Value.absent()
+          : Value(localeCode),
     );
   }
 
@@ -2110,6 +2142,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       tutorCubeAdvice: serializer.fromJson<bool>(json['tutorCubeAdvice']),
       tutorTryFirst: serializer.fromJson<bool>(json['tutorTryFirst']),
       telemetryEnabled: serializer.fromJson<bool>(json['telemetryEnabled']),
+      localeCode: serializer.fromJson<String?>(json['localeCode']),
     );
   }
   @override
@@ -2138,6 +2171,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       'tutorCubeAdvice': serializer.toJson<bool>(tutorCubeAdvice),
       'tutorTryFirst': serializer.toJson<bool>(tutorTryFirst),
       'telemetryEnabled': serializer.toJson<bool>(telemetryEnabled),
+      'localeCode': serializer.toJson<String?>(localeCode),
     };
   }
 
@@ -2164,6 +2198,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     bool? tutorCubeAdvice,
     bool? tutorTryFirst,
     bool? telemetryEnabled,
+    Value<String?> localeCode = const Value.absent(),
   }) => SettingsRow(
     id: id ?? this.id,
     themeMode: themeMode ?? this.themeMode,
@@ -2189,6 +2224,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     tutorCubeAdvice: tutorCubeAdvice ?? this.tutorCubeAdvice,
     tutorTryFirst: tutorTryFirst ?? this.tutorTryFirst,
     telemetryEnabled: telemetryEnabled ?? this.telemetryEnabled,
+    localeCode: localeCode.present ? localeCode.value : this.localeCode,
   );
   SettingsRow copyWithCompanion(SettingsCompanion data) {
     return SettingsRow(
@@ -2254,6 +2290,9 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       telemetryEnabled: data.telemetryEnabled.present
           ? data.telemetryEnabled.value
           : this.telemetryEnabled,
+      localeCode: data.localeCode.present
+          ? data.localeCode.value
+          : this.localeCode,
     );
   }
 
@@ -2281,7 +2320,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           ..write('tutorCommentary: $tutorCommentary, ')
           ..write('tutorCubeAdvice: $tutorCubeAdvice, ')
           ..write('tutorTryFirst: $tutorTryFirst, ')
-          ..write('telemetryEnabled: $telemetryEnabled')
+          ..write('telemetryEnabled: $telemetryEnabled, ')
+          ..write('localeCode: $localeCode')
           ..write(')'))
         .toString();
   }
@@ -2310,6 +2350,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     tutorCubeAdvice,
     tutorTryFirst,
     telemetryEnabled,
+    localeCode,
   ]);
   @override
   bool operator ==(Object other) =>
@@ -2336,7 +2377,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           other.tutorCommentary == this.tutorCommentary &&
           other.tutorCubeAdvice == this.tutorCubeAdvice &&
           other.tutorTryFirst == this.tutorTryFirst &&
-          other.telemetryEnabled == this.telemetryEnabled);
+          other.telemetryEnabled == this.telemetryEnabled &&
+          other.localeCode == this.localeCode);
 }
 
 class SettingsCompanion extends UpdateCompanion<SettingsRow> {
@@ -2362,6 +2404,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
   final Value<bool> tutorCubeAdvice;
   final Value<bool> tutorTryFirst;
   final Value<bool> telemetryEnabled;
+  final Value<String?> localeCode;
   const SettingsCompanion({
     this.id = const Value.absent(),
     this.themeMode = const Value.absent(),
@@ -2385,6 +2428,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     this.tutorCubeAdvice = const Value.absent(),
     this.tutorTryFirst = const Value.absent(),
     this.telemetryEnabled = const Value.absent(),
+    this.localeCode = const Value.absent(),
   });
   SettingsCompanion.insert({
     this.id = const Value.absent(),
@@ -2409,6 +2453,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     this.tutorCubeAdvice = const Value.absent(),
     this.tutorTryFirst = const Value.absent(),
     this.telemetryEnabled = const Value.absent(),
+    this.localeCode = const Value.absent(),
   });
   static Insertable<SettingsRow> custom({
     Expression<int>? id,
@@ -2433,6 +2478,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Expression<bool>? tutorCubeAdvice,
     Expression<bool>? tutorTryFirst,
     Expression<bool>? telemetryEnabled,
+    Expression<String>? localeCode,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -2460,6 +2506,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
       if (tutorCubeAdvice != null) 'tutor_cube_advice': tutorCubeAdvice,
       if (tutorTryFirst != null) 'tutor_try_first': tutorTryFirst,
       if (telemetryEnabled != null) 'telemetry_enabled': telemetryEnabled,
+      if (localeCode != null) 'locale_code': localeCode,
     });
   }
 
@@ -2486,6 +2533,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Value<bool>? tutorCubeAdvice,
     Value<bool>? tutorTryFirst,
     Value<bool>? telemetryEnabled,
+    Value<String?>? localeCode,
   }) {
     return SettingsCompanion(
       id: id ?? this.id,
@@ -2510,6 +2558,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
       tutorCubeAdvice: tutorCubeAdvice ?? this.tutorCubeAdvice,
       tutorTryFirst: tutorTryFirst ?? this.tutorTryFirst,
       telemetryEnabled: telemetryEnabled ?? this.telemetryEnabled,
+      localeCode: localeCode ?? this.localeCode,
     );
   }
 
@@ -2582,6 +2631,9 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     if (telemetryEnabled.present) {
       map['telemetry_enabled'] = Variable<bool>(telemetryEnabled.value);
     }
+    if (localeCode.present) {
+      map['locale_code'] = Variable<String>(localeCode.value);
+    }
     return map;
   }
 
@@ -2609,7 +2661,8 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
           ..write('tutorCommentary: $tutorCommentary, ')
           ..write('tutorCubeAdvice: $tutorCubeAdvice, ')
           ..write('tutorTryFirst: $tutorTryFirst, ')
-          ..write('telemetryEnabled: $telemetryEnabled')
+          ..write('telemetryEnabled: $telemetryEnabled, ')
+          ..write('localeCode: $localeCode')
           ..write(')'))
         .toString();
   }
@@ -2742,7 +2795,7 @@ class OnlineSessionRow extends DataClass
   /// The anonymous Firebase uid, or null before the first sign-in.
   final String? uid;
 
-  /// Legacy plaintext token, migrated and cleared on first read.
+  /// Legacy plaintext refresh token; migrated and cleared by OnlineSessionStore.
   final String? refreshToken;
 
   /// The invite code of the match this device last entered, so it can offer to
@@ -5375,6 +5428,7 @@ typedef $$SettingsTableCreateCompanionBuilder =
       Value<bool> tutorCubeAdvice,
       Value<bool> tutorTryFirst,
       Value<bool> telemetryEnabled,
+      Value<String?> localeCode,
     });
 typedef $$SettingsTableUpdateCompanionBuilder =
     SettingsCompanion Function({
@@ -5400,6 +5454,7 @@ typedef $$SettingsTableUpdateCompanionBuilder =
       Value<bool> tutorCubeAdvice,
       Value<bool> tutorTryFirst,
       Value<bool> telemetryEnabled,
+      Value<String?> localeCode,
     });
 
 class $$SettingsTableFilterComposer
@@ -5518,6 +5573,11 @@ class $$SettingsTableFilterComposer
 
   ColumnFilters<bool> get telemetryEnabled => $composableBuilder(
     column: $table.telemetryEnabled,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get localeCode => $composableBuilder(
+    column: $table.localeCode,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -5640,6 +5700,11 @@ class $$SettingsTableOrderingComposer
     column: $table.telemetryEnabled,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get localeCode => $composableBuilder(
+    column: $table.localeCode,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$SettingsTableAnnotationComposer
@@ -5756,6 +5821,11 @@ class $$SettingsTableAnnotationComposer
     column: $table.telemetryEnabled,
     builder: (column) => column,
   );
+
+  GeneratedColumn<String> get localeCode => $composableBuilder(
+    column: $table.localeCode,
+    builder: (column) => column,
+  );
 }
 
 class $$SettingsTableTableManager
@@ -5811,6 +5881,7 @@ class $$SettingsTableTableManager
                 Value<bool> tutorCubeAdvice = const Value.absent(),
                 Value<bool> tutorTryFirst = const Value.absent(),
                 Value<bool> telemetryEnabled = const Value.absent(),
+                Value<String?> localeCode = const Value.absent(),
               }) => SettingsCompanion(
                 id: id,
                 themeMode: themeMode,
@@ -5834,6 +5905,7 @@ class $$SettingsTableTableManager
                 tutorCubeAdvice: tutorCubeAdvice,
                 tutorTryFirst: tutorTryFirst,
                 telemetryEnabled: telemetryEnabled,
+                localeCode: localeCode,
               ),
           createCompanionCallback:
               ({
@@ -5859,6 +5931,7 @@ class $$SettingsTableTableManager
                 Value<bool> tutorCubeAdvice = const Value.absent(),
                 Value<bool> tutorTryFirst = const Value.absent(),
                 Value<bool> telemetryEnabled = const Value.absent(),
+                Value<String?> localeCode = const Value.absent(),
               }) => SettingsCompanion.insert(
                 id: id,
                 themeMode: themeMode,
@@ -5882,6 +5955,7 @@ class $$SettingsTableTableManager
                 tutorCubeAdvice: tutorCubeAdvice,
                 tutorTryFirst: tutorTryFirst,
                 telemetryEnabled: telemetryEnabled,
+                localeCode: localeCode,
               ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))

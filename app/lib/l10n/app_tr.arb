@@ -1,0 +1,22 @@
+{
+  "@@locale": "tr",
+  "homeTagline": "Bir eğitmenle oyununuzu geliştirin",
+  "settings": "Ayarlar",
+  "playVsComputer": "Bilgisayara karşı oyna",
+  "twoPlayers": "İki oyuncu",
+  "playNearby": "Yakındaki oyuncularla oyna",
+  "playOnline": "Çevrimiçi oyna",
+  "learningPractice": "Öğren ve pratik yap",
+  "gamesArchive": "Oyun arşivi",
+  "followSystem": "Cihaz dilini kullan",
+  "white": "Beyaz",
+  "black": "Siyah",
+  "random": "Rastgele",
+  "startMatch": "Oyunu başlat",
+  "tutor": "Eğitmen",
+  "noMovesPass": "Hamle yok — pas geç",
+  "undo": "Geri al",
+  "confirm": "Onayla",
+  "roll": "Zar at",
+  "hint": "İpucu"
+}

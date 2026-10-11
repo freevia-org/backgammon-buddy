@@ -15,6 +15,8 @@ import '../data/settings_repository.dart';
 import '../diagnostics/crash_log.dart';
 import '../feedback/feedback_link.dart';
 import '../licensing/third_party_licenses.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/localization_lookup.dart';
 import '../privacy/privacy_settings_section.dart';
 import '../tutor/coaching_widgets.dart';
 import 'diagnostics_screen.dart';
@@ -43,6 +45,7 @@ class SettingsScreen extends ConsumerWidget {
     // defaults so the controls always have a concrete selection.
     final settings = ref.watch(settingsProvider).valueOrNull ?? AppSettings.defaults;
     final repo = ref.read(settingsRepositoryProvider);
+    final l10n = appLocalizationsOf(context);
 
     void update(AppSettings Function(AppSettings current) change) =>
         recordFailures(repo.update(change), source: 'settings-autosave');
@@ -52,7 +55,7 @@ class SettingsScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text(l10n.settings),
         actions: [
           TextButton(
             onPressed: reset,
@@ -71,6 +74,21 @@ class SettingsScreen extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    _Section(
+                      label: 'App language',
+                      child: DropdownButtonFormField<String>(
+                        initialValue: settings.localeCode ?? 'system',
+                        isExpanded: true,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                        ),
+                        items: _languageOptions(l10n),
+                        onChanged: (locale) => update((current) =>
+                            current.copyWith(
+                                localeCode: locale == 'system' ? null : locale)),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
                     _Section(
                       label: 'Theme',
                       child: SegmentedButton<ThemeMode>(
@@ -416,6 +434,29 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 }
+
+List<DropdownMenuItem<String>> _languageOptions(AppLocalizations l10n) => [
+      DropdownMenuItem<String>(
+        value: 'system',
+        child: Text(l10n.followSystem),
+      ),
+      for (final (code, name) in const <(String, String)>[
+        ('en', 'English'), ('bg', 'Български'), ('hr', 'Hrvatski'),
+        ('cs', 'Čeština'), ('da', 'Dansk'), ('nl', 'Nederlands'),
+        ('et', 'Eesti'), ('fi', 'Suomi'), ('fr', 'Français'),
+        ('de', 'Deutsch'), ('el', 'Ελληνικά'), ('hu', 'Magyar'),
+        ('ga', 'Gaeilge'), ('it', 'Italiano'), ('lv', 'Latviešu'),
+        ('lt', 'Lietuvių'), ('mt', 'Malti'), ('pl', 'Polski'),
+        ('pt', 'Português'), ('ro', 'Română'), ('sk', 'Slovenčina'),
+        ('sl', 'Slovenščina'), ('es', 'Español'), ('sv', 'Svenska'),
+        ('uk', 'Українська'), ('ru', 'Русский'), ('tr', 'Türkçe'),
+        ('sr', 'Српски'),
+      ])
+        DropdownMenuItem<String>(
+          value: code,
+          child: Text(name),
+        ),
+    ];
 
 /// Opens the pre-filled GitHub issue form.
 ///

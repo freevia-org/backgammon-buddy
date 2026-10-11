@@ -180,6 +180,9 @@ class Settings extends Table {
   /// Optional remote analytics/performance/crash reporting is opt-in.
   BoolColumn get telemetryEnabled => boolean().withDefault(const Constant(false))();
 
+  /// Optional BCP-47 language override; null follows the device locale (v11).
+  TextColumn get localeCode => text().nullable()();
+
   @override
   Set<Column> get primaryKey => {id};
 
@@ -267,7 +270,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 10;
+  int get schemaVersion => 11;
 
   // Games.matchId is a SQL-level foreign key with ON DELETE CASCADE, but SQLite
   // only ENFORCES foreign keys when the per-connection `foreign_keys` pragma is
@@ -390,6 +393,9 @@ class AppDatabase extends _$AppDatabase {
             await m.addColumn(matches, matches.cubeless);
             await m.createTable(practicePositions);
             await m.createTable(practiceAttempts);
+          }
+          if (from >= 2 && from < 11) {
+            await m.addColumn(settings, settings.localeCode);
           }
         },
         beforeOpen: (details) async {

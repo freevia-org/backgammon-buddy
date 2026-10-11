@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import '../../l10n/localization_lookup.dart';
 
 /// One continuous tutor surface, bottom-anchored by its caller.
 ///
@@ -71,6 +72,7 @@ class _TutorPanelState extends State<TutorPanel> {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final tutorLabel = '${appLocalizationsOf(context).tutor}:';
     return LayoutBuilder(
       builder: (context, constraints) {
         final available = constraints.maxHeight;
@@ -118,7 +120,7 @@ class _TutorPanelState extends State<TutorPanel> {
                             children: [
                               Semantics(
                                 key: const ValueKey('tutorPanelToggle'),
-                                label: 'Tutor:',
+                                label: tutorLabel,
                                 button: true,
                                 expanded: widget.expanded,
                                 onTap: _toggle,
@@ -137,7 +139,7 @@ class _TutorPanelState extends State<TutorPanel> {
                                           ),
                                           const SizedBox(width: 6),
                                           Text(
-                                            'Tutor:',
+                                            tutorLabel,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelLarge

@@ -1,0 +1,22 @@
+{
+  "@@locale": "pl",
+  "homeTagline": "Popraw swoją grę z trenerem",
+  "settings": "Ustawienia",
+  "playVsComputer": "Graj z komputerem",
+  "twoPlayers": "Dwóch graczy",
+  "playNearby": "Graj w pobliżu",
+  "playOnline": "Graj online",
+  "learningPractice": "Nauka i trening",
+  "gamesArchive": "Archiwum gier",
+  "followSystem": "Język urządzenia",
+  "white": "Białe",
+  "black": "Czarne",
+  "random": "Losowo",
+  "startMatch": "Rozpocznij grę",
+  "tutor": "Trener",
+  "noMovesPass": "Brak ruchów — pas",
+  "undo": "Cofnij",
+  "confirm": "Zatwierdź",
+  "roll": "Rzuć",
+  "hint": "Podpowiedź"
+}

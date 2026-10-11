@@ -112,6 +112,7 @@ class SettingsRepository {
           explanations: row.tutorExplanations, commentary: row.tutorCommentary,
           cubeAdvice: row.tutorCubeAdvice, tryFirst: row.tutorTryFirst),
         telemetryEnabled: row.telemetryEnabled,
+        localeCode: row.localeCode,
       );
 
   static SettingsCompanion _toCompanion(AppSettings s) => SettingsCompanion(
@@ -137,6 +138,7 @@ class SettingsRepository {
         tutorCubeAdvice: Value(s.tutorOptions.cubeAdvice),
         tutorTryFirst: Value(s.tutorOptions.tryFirst),
         telemetryEnabled: Value(s.telemetryEnabled),
+        localeCode: Value(s.localeCode),
       );
 
   // --- Enum <-> string codecs (tolerant of unknown values) -------------------

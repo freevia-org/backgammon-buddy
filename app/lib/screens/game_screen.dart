@@ -11,6 +11,7 @@ import '../data/app_settings.dart';
 import '../game/game_record.dart';
 import '../game/match_controller.dart';
 import '../game/player_agent.dart';
+import '../l10n/localization_lookup.dart';
 import '../net/net_match_controller.dart';
 import '../tutor/move_assessment.dart';
 import '../tutor/tutor_service.dart';
@@ -1854,6 +1855,7 @@ class _GameScreenState extends State<GameScreen> {
     Key key = const ValueKey('actionBar'),
   }) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = appLocalizationsOf(context);
     // Whether THIS bar's owner is the one who may act right now.
     final live = owner == null || _actingSide(moveSide) == owner;
     final showHint =
@@ -1866,7 +1868,7 @@ class _GameScreenState extends State<GameScreen> {
           const Spacer(),
           FilledButton(
             onPressed: live ? _entryControl.pass : null,
-            child: const Text('No moves — pass'),
+            child: Text(l10n.noMovesPass),
           ),
         ],
       );
@@ -1880,14 +1882,14 @@ class _GameScreenState extends State<GameScreen> {
                 ? _entryControl.undo
                 : null,
             style: _compactButton,
-            child: const Text('Undo'),
+            child: Text(l10n.undo),
           ),
           const SizedBox(width: 8),
           FilledButton(
             onPressed: live && _entryControl.canConfirm
                 ? _entryControl.confirm
                 : null,
-            child: const Text('Confirm'),
+            child: Text(l10n.confirm),
           ),
         ],
       );
@@ -1915,7 +1917,7 @@ class _GameScreenState extends State<GameScreen> {
           FilledButton(
             key: const ValueKey('tutorRoll'),
             onPressed: live ? _rollDice : null,
-            child: const Text('Roll'),
+            child: Text(l10n.roll),
           ),
         ],
       );
@@ -2043,7 +2045,7 @@ class _GameScreenState extends State<GameScreen> {
   Widget _hintButton([bool enabled = true]) => OutlinedButton.icon(
     onPressed: enabled ? _openHint : null,
     icon: const Icon(Icons.lightbulb_outline, size: 18),
-    label: const Text('Hint'),
+    label: Text(appLocalizationsOf(context).hint),
   );
 
   /// The idle-bar status line: what the game is waiting on.

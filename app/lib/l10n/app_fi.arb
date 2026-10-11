@@ -1,0 +1,22 @@
+{
+  "@@locale": "fi",
+  "homeTagline": "Kehitä peliäsi valmentajan avulla",
+  "settings": "Asetukset",
+  "playVsComputer": "Pelaa tietokonetta vastaan",
+  "twoPlayers": "Kaksi pelaajaa",
+  "playNearby": "Pelaa lähistöllä",
+  "playOnline": "Pelaa verkossa",
+  "learningPractice": "Opi ja harjoittele",
+  "gamesArchive": "Peliarkisto",
+  "followSystem": "Käytä laitteen kieltä",
+  "white": "Valkoinen",
+  "black": "Musta",
+  "random": "Satunnainen",
+  "startMatch": "Aloita peli",
+  "tutor": "Valmentaja",
+  "noMovesPass": "Ei siirtoja — ohita",
+  "undo": "Kumoa",
+  "confirm": "Vahvista",
+  "roll": "Heitä",
+  "hint": "Vihje"
+}

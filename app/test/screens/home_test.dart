@@ -246,11 +246,11 @@ void main() {
     expect(titleWidget.softWrap, isFalse);
     expect(find.ancestor(of: title, matching: find.byType(FittedBox)), findsOneWidget);
     for (final label in [
-      'Learn & practice',
-      'vs Computer',
+      'Learning & practice',
+      'Play vs Computer',
       'Two Players',
-      'Nearby',
-      'Online',
+      'Play Nearby',
+      'Play Online',
       'Games Archive'
     ]) {
       final text = find.text(label);
@@ -258,7 +258,7 @@ void main() {
           reason: '$label is visible without scrolling');
       expect(t.takeException(), isNull);
     }
-    await _tapVisible(t, find.text('Learn & practice'));
+    await _tapVisible(t, find.text('Learning & practice'));
     await t.pumpAndSettle();
     expect(find.byType(LearningScreen), findsOneWidget);
     await t

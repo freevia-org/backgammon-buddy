@@ -1,0 +1,22 @@
+{
+  "@@locale": "ru",
+  "homeTagline": "Улучшайте игру с тренером",
+  "settings": "Настройки",
+  "playVsComputer": "Играть против компьютера",
+  "twoPlayers": "Два игрока",
+  "playNearby": "Играть рядом",
+  "playOnline": "Играть онлайн",
+  "learningPractice": "Обучение и практика",
+  "gamesArchive": "Архив партий",
+  "followSystem": "Язык устройства",
+  "white": "Белые",
+  "black": "Чёрные",
+  "random": "Случайно",
+  "startMatch": "Начать игру",
+  "tutor": "Тренер",
+  "noMovesPass": "Нет ходов — пас",
+  "undo": "Отменить",
+  "confirm": "Подтвердить",
+  "roll": "Бросить",
+  "hint": "Подсказка"
+}

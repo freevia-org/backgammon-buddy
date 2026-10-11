@@ -1,0 +1,22 @@
+{
+  "@@locale": "bg",
+  "homeTagline": "Подобрете играта си с наставник",
+  "settings": "Настройки",
+  "playVsComputer": "Игра срещу компютъра",
+  "twoPlayers": "Двама играчи",
+  "playNearby": "Игра наблизо",
+  "playOnline": "Игра онлайн",
+  "learningPractice": "Учене и практика",
+  "gamesArchive": "Архив с игри",
+  "followSystem": "Езикът на устройството",
+  "white": "Бели",
+  "black": "Черни",
+  "random": "Случайно",
+  "startMatch": "Започни игра",
+  "tutor": "Треньор",
+  "noMovesPass": "Няма ходове — пас",
+  "undo": "Отмяна",
+  "confirm": "Потвърди",
+  "roll": "Хвърли",
+  "hint": "Подсказка"
+}

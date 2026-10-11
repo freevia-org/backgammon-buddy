@@ -1,0 +1,22 @@
+{
+  "@@locale": "hr",
+  "homeTagline": "Poboljšajte igru uz trenera",
+  "settings": "Postavke",
+  "playVsComputer": "Igraj protiv računala",
+  "twoPlayers": "Dva igrača",
+  "playNearby": "Igraj u blizini",
+  "playOnline": "Igraj na mreži",
+  "learningPractice": "Učenje i vježba",
+  "gamesArchive": "Arhiva igara",
+  "followSystem": "Jezik uređaja",
+  "white": "Bijeli",
+  "black": "Crni",
+  "random": "Nasumično",
+  "startMatch": "Započni igru",
+  "tutor": "Trener",
+  "noMovesPass": "Nema poteza — preskoči",
+  "undo": "Poništi",
+  "confirm": "Potvrdi",
+  "roll": "Baci",
+  "hint": "Savjet"
+}

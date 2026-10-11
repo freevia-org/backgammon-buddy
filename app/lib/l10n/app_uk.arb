@@ -1,0 +1,22 @@
+{
+  "@@locale": "uk",
+  "homeTagline": "Покращуйте гру з тренером",
+  "settings": "Налаштування",
+  "playVsComputer": "Грати проти комп’ютера",
+  "twoPlayers": "Двоє гравців",
+  "playNearby": "Грати поруч",
+  "playOnline": "Грати онлайн",
+  "learningPractice": "Навчання й практика",
+  "gamesArchive": "Архів партій",
+  "followSystem": "Мова пристрою",
+  "white": "Білі",
+  "black": "Чорні",
+  "random": "Випадково",
+  "startMatch": "Почати гру",
+  "tutor": "Тьютор",
+  "noMovesPass": "Немає ходів — пас",
+  "undo": "Скасувати",
+  "confirm": "Підтвердити",
+  "roll": "Кинути",
+  "hint": "Підказка"
+}

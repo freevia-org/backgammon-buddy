@@ -1,0 +1,22 @@
+{
+  "@@locale": "da",
+  "homeTagline": "Bliv bedre med en tutor",
+  "settings": "Indstillinger",
+  "playVsComputer": "Spil mod computeren",
+  "twoPlayers": "To spillere",
+  "playNearby": "Spil i nærheden",
+  "playOnline": "Spil online",
+  "learningPractice": "Lær og øv",
+  "gamesArchive": "Spilarkiv",
+  "followSystem": "Følg enhedens sprog",
+  "white": "Hvid",
+  "black": "Sort",
+  "random": "Tilfældig",
+  "startMatch": "Start spil",
+  "tutor": "Tutor",
+  "noMovesPass": "Ingen træk — pas",
+  "undo": "Fortryd",
+  "confirm": "Bekræft",
+  "roll": "Kast",
+  "hint": "Tip"
+}

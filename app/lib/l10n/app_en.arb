@@ -1,0 +1,22 @@
+{
+  "@@locale": "en",
+  "homeTagline": "Improve your game with a tutor",
+  "settings": "Settings",
+  "playVsComputer": "Play vs Computer",
+  "twoPlayers": "Two Players",
+  "playNearby": "Play Nearby",
+  "playOnline": "Play Online",
+  "learningPractice": "Learning & practice",
+  "gamesArchive": "Games Archive",
+  "followSystem": "Follow device language",
+  "white": "White",
+  "black": "Black",
+  "random": "Random",
+  "startMatch": "Start match",
+  "tutor": "Tutor",
+  "noMovesPass": "No moves — pass",
+  "undo": "Undo",
+  "confirm": "Confirm",
+  "roll": "Roll",
+  "hint": "Hint"
+}
