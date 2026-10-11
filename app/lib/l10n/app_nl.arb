@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Puntnummers in de lesnotities worden geteld vanaf het thuisveld van de speler die aan zet is.",
   "tutorHittingRollNote": "Het aantal slagkansen omvat alle 36 geordende dobbelsteenuitkomsten en legale directe of indirecte slagen; het zijn kansen, geen voorspelling van de keuze van de tegenstander.",
   "tutorNoEvaluatedAlternatives": "Er zijn geen beoordeelde alternatieven voor deze zet.",
-  "tutorForcedPassNoDecision": "Bij een verplichte pas is er geen keuze voor een zet met de schijven."
+  "tutorForcedPassNoDecision": "Bij een verplichte pas is er geen keuze voor een zet met de schijven.",
+  "settingsReset": "Herstellen",
+  "settingsAppLanguage": "App-taal",
+  "settingsTheme": "Thema",
+  "settingsThemeSystem": "Systeem",
+  "settingsThemeLight": "Licht",
+  "settingsThemeDark": "Donker",
+  "settingsAnimationSpeed": "Animatiesnelheid",
+  "settingsAnimationNone": "Geen",
+  "settingsAnimationNormal": "Normaal",
+  "settingsAnimationFast": "Snel",
+  "settingsDiceRollAnimation": "Dobbelsteenanimatie",
+  "settingsDiceRollAnimationHelp": "Laat de dobbelstenen rollen voordat je gooit",
+  "settingsDefaultMatchLength": "Standaardlengte van de match",
+  "settingsDefaultDifficulty": "Standaardniveau",
+  "settingsDifficultyEasy": "Makkelijk",
+  "settingsDifficultyMedium": "Gemiddeld",
+  "settingsDifficultyHard": "Moeilijk",
+  "settingsDifficultyExpert": "Expert",
+  "settingsTutorModeDefault": "Standaard tutorstand",
+  "settingsTutorAuto": "Automatisch",
+  "settingsTutorOn": "Aan",
+  "settingsTutorOff": "Uit",
+  "settingsTutorModeHelp": "Automatisch schakelt de tutor in bij elk computerniveau. Aan en Uit bepalen de begininstelling voor lokale matches. Bij wedstrijden in de buurt en online helpt de tutor niet; opgeslagen partijen kun je achteraf bekijken. De onderstaande leerinstellingen worden op dit apparaat bewaard.",
+  "settingsTutorPreferences": "Tutorinstellingen",
+  "settingsTutorPreferencesSubtitle": "Standaardinstellingen voor nieuwe matches",
+  "settingsTutorSaveError": "De tutorinstellingen konden niet worden opgeslagen.",
+  "settingsGameplay": "Spel",
+  "settingsMoveHighlights": "Zetmarkeringen",
+  "settingsMoveHighlightsHelp": "Omcirkel speelbare schijven en licht mogelijke bestemmingen op",
+  "settingsDragToMove": "Slepen om te zetten",
+  "settingsDragToMoveHelp": "Sleep een schijf naar de bestemming (tikken werkt ook)",
+  "settingsCombinedMoves": "Dobbelstenen combineren",
+  "settingsCombinedMovesHelp": "Met één tik verplaats je een schijf met beide dobbelstenen",
+  "settingsRotateBoard": "Bord draaien tussen beurten",
+  "settingsRotateBoardHelp": "Om de beurt spelen: draai het bord naar de actieve speler",
+  "settingsPassDevice": "Scherm voor apparaat doorgeven",
+  "settingsPassDeviceHelp": "Dek het bord af tussen beurten bij om-de-beurt spelen",
+  "settingsShowScore": "Score tonen",
+  "settingsShowScoreHelp": "Toon de huidige matchscore bovenaan",
+  "settingsBuddyMode": "Buddy-stijl",
+  "settingsBuddyTerse": "Kort",
+  "settingsBuddyFriendly": "Vriendelijk",
+  "settingsBuddyTerseHelp": "Zo spreekt Buddy een zet uit: ‘13/8, 24/22’ — de notatie die spelers aan het bord gebruiken.",
+  "settingsBuddyFriendlyHelp": "Zo spreekt Buddy een zet uit: ‘Verplaats één schijf van 13 naar 8 en één van 24 naar 22.’",
+  "settingsListenForDice": "Naar de dobbelstenen luisteren",
+  "settingsListenForDiceHelp": "Buddy kijkt eerder naar het bord wanneer hij een worp hoort. Uit verandert verder niets.",
+  "settingsDiagnostics": "Diagnostiek",
+  "settingsErrorLog": "Foutenlogboek",
+  "settingsErrorLogHelp": "Recente fouten, klaar om in een bugmelding te kopiëren",
+  "settingsReportBug": "Bug melden",
+  "settingsReportBugHelp": "Open een begeleid meldformulier op GitHub",
+  "settingsSuggestIdea": "Idee voorstellen",
+  "settingsSuggestIdeaHelp": "Help ons de tutor en het spel te verbeteren",
+  "settingsAbout": "Over",
+  "settingsOpenSourceLicenses": "Open-sourcelicenties",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "tutorPhraseGameFinished": "Partij afgelopen.",
+  "tutorPhraseReviewFinishedGame": "Bekijk de zetten om een leerzaam beslismoment te vinden.",
+  "tutorPhraseCubeOffered": "De verdubbelingskubus is aangeboden.",
+  "tutorPhraseCubeDecisionPrompt": "Beslis eerst of je de verdubbeling aanneemt of past, voordat je een zet met je schijven plant.",
+  "tutorPhraseCubeScoreContext": "De matchscore bepaalt hoeveel de extra inzet waard is.",
+  "tutorPhraseResignationOffered": "Er is opgave aangeboden.",
+  "tutorPhraseResignationDecisionPrompt": "Vergelijk het aangeboden aantal punten met de positie voordat je opgeeft of verder speelt.",
+  "tutorPhraseNoLegalPlay": "Met deze worp is geen geldige zet mogelijk.",
+  "tutorPhraseForcedPassPrompt": "Verplicht passen is geen fout; wacht op de volgende worp.",
+  "tutorPhraseOnlyOneResult": "Er is maar één geldige eindpositie.",
+  "tutorPhraseForcedTurnPrompt": "Speel de verplichte beurt. Met deze worp valt er geen keuze te beoordelen.",
+  "tutorPhrasePipCountsLevel": "De pip-aantallen zijn gelijk.",
+  "tutorPhrasePipCountsAhead": "Je staat {count} pips voor.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "Je staat {count} pips achter.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "{count} schijven op de bar: eerst weer inzetten.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Zet eerst schijven vanaf de bar in; zoek daarna een veilige bestemming.",
+  "tutorPhraseOpponentHomePoints": "De tegenstander heeft {count} gesloten punten in zijn thuisbord.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Uitlooprace.",
+  "tutorPhrasePureRace": "Een zuivere race.",
+  "tutorPhraseBearOffSpread": "Haal schijven van het bord en behoud een nuttige spreiding voor de volgende worp.",
+  "tutorPhraseBringRearCheckersHome": "Breng je achterste schijven naar huis zonder er te veel op één punt te stapelen.",
+  "tutorPhraseArmiesHavePassed": "De legers zijn elkaar gepasseerd; slaan is niet meer mogelijk.",
+  "tutorPhraseContactStillMatters": "{part} Er is nog steeds contact.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "De tegenstander heeft {count} schijven op de bar.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Houd je punten gesloten terwijl je de resterende schijven naar huis brengt.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Bouw je thuisbord op of houd het intact terwijl de tegenstander probeert in te zetten.",
+  "tutorPhraseHomePointsCloseEntries": "Je hebt {count} punten in je thuisbord; elk daarvan sluit een inzetnummer af.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Contact met een reeks van {count} aaneengesloten punten.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Vergelijk het verlengen van de gesloten reeks met het bewaren van reserves om die reeks in stand te houden.",
+  "tutorPhraseSpareCheckersCanMove": "{count} reserves kunnen bewegen zonder hun punt meteen open te breken.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Contact met een anker op {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Vergelijk de voortgang van je achterste schijven met de veiligheid van het behouden van je anker.",
+  "tutorPhraseCompareAnchorProgressBehind": "Houd je veilige steunpunt in gedachten terwijl je een slagkans zoekt of je bord verbetert.",
+  "tutorPhrasePreserveAnchorFoothold": "Het anker kan niet worden geslagen, maar die schijven hebben nog een lange weg naar huis.",
+  "tutorPhraseContactThreats": "Er is nog contact: beide kanten kunnen met een slag dreigen.",
+  "tutorPhraseLookForPointsAndSafety": "Zoek naar nuttige punten en weeg daarna het risico af van losse schijven die kunnen worden geslagen.",
+  "tutorPhraseHomePointsAndBlots": "Je hebt {count} punten in je thuisbord en laat {otherCount} blots open.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Kies een schijf om je beurt te beginnen.",
+  "tutorPhraseLegalPlayPrompt": "Begin een geldige zet om commentaar te zien.",
+  "tutorPhraseStagedHit": "Je hebt {count, plural, one{één schijf van de tegenstander geslagen} other{{count} schijven van de tegenstander geslagen}}.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "Je hebt {count} schijven vanaf de bar ingezet.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Je hebt {count, plural, one{één schijf van het bord gehaald} other{{count} schijven van het bord gehaald}}.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Je hebt {points} gesloten.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "De schijf op jouw punt {point} is voorlopig een blot.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "De reserves op jouw punt {point} kunnen later bewegen zonder dat het punt openvalt.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Gebruik de overige speelbare dobbelstenen voordat je de hele zet beoordeelt.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Alle 15 schijven zijn van het bord: je hebt gewonnen.",
+  "tutorPhraseStagedHitShortPlan": "De slag levert tijd op terwijl de tegenstander opnieuw probeert in te zetten.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Efficiënt afvoeren haalt schijven weg en laat bruikbare getallen over voor de volgende worp.",
+  "tutorPhraseStagedRaceHomePlan": "In de race breng je de achterste schijven naar huis en houd je bruikbare punten om af te voeren.",
+  "tutorPhraseStagedBearOffContactPlan": "Schijven afvoeren is vooruitgang, maar door het resterende contact kun je nog worden geslagen.",
+  "tutorPhraseStagedReentryPlan": "Door opnieuw in te zetten komt de schijf terug in het spel; zoek daarna een veilige bestemming.",
+  "tutorPhraseStagedHomeBoardPlan": "Het nieuwe punt in je thuisbord sluit na een eventuele slag een inzetnummer af.",
+  "tutorPhraseStagedPrimePlan": "De langere gesloten reeks blokkeert meer landingspunten; reserves helpen haar intact te houden.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Het anker verlaten levert terreinwinst op, maar je geeft een veilig steunpunt op.",
+  "tutorPhraseStagedNewAnchorPlan": "Het nieuwe anker geeft je achterste schijven een veilig steunpunt.",
+  "tutorPhraseStagedCoverBlotPlan": "Door de blot te dekken, haal je een doelwit voor de tegenstander weg.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "De afweging is ontwikkeling tegenover veiligheid: nuttige bouwschijven kunnen ook doelwitten worden.",
+  "tutorPhraseStagedCompletePrompt": "{part} De volledige zet staat klaar; tik op Bevestigen om hem uit te voeren.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Met deze worp is er geen keuze in de zetten; daarom wordt hij niet als beslissing beoordeeld.",
+  "tutorMoveTopVerdict": "De beste keuze in deze positie.",
+  "tutorMoveAlternativeVerdict": "De engine geeft hier de voorkeur aan een andere zet.",
+  "tutorMoveEstimateDifference": "Verschil met de beste zet: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Na deze zet: geschat {winPercent}% kans op winst, {winGammonPercent}% op winst met gammon of beter, en {loseGammonPercent}% op verlies met gammon of erger. Dit zijn schattingen vanuit het perspectief van de speler die aan zet is.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Geschatte kans om de match te winnen: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Alle 15 schijven zijn van het bord: de partij is gewonnen.",
+  "tutorMovePlanHit": "Gebruik de slag om tijd te winnen terwijl de tegenstander opnieuw inzet. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Houd punten in je thuisbord gesloten om opnieuw inzetten moeilijker te maken.",
+  "tutorMovePlanHitBuild": "Sluit meer punten in je thuisbord om herstel na toekomstige slagen moeilijker te maken.",
+  "tutorMovePlanRaceBearOff": "Werk toe naar een efficiënte bear-off: haal schijven van het bord en houd bruikbare getallen over voor de volgende worp.",
+  "tutorMovePlanRaceHome": "Breng je achterste schijven naar huis en spreid ze over bruikbare punten om ze straks van het bord te halen.",
+  "tutorMovePlanContactBearOff": "Haal schijven van het bord, maar houd de achterste schijven van je tegenstander in de gaten: zolang er contact is, kan een losse schijf bij het afvoeren een doelwit worden.",
+  "tutorMovePlanReentry": "Kom weer in het spel en zoek daarna een veilig punt voor de schijf die is ingezet.",
+  "tutorMovePlanHomeBoard": "Versterk je thuisbord. Het nieuwe gesloten punt maakt een toekomstige slag krachtiger doordat het een inzetnummer blokkeert.",
+  "tutorMovePlanPrime": "Houd de reeks gesloten punten intact. Bewaar reserves zodat volgende worpen je niet dwingen de reeks open te breken.",
+  "tutorMovePlanLeaveAnchor": "Als je een anker verlaat, komen je achterste schijven vooruit, maar verlies je een veilige uitvalsbasis. Let op hun kwetsbaarheid onderweg naar huis.",
+  "tutorMovePlanNewAnchor": "Gebruik het nieuwe anker als veilige uitvalsbasis terwijl je de rest van je positie verbetert.",
+  "tutorMovePlanCoverBlot": "Breng je schijven samen. Door een blot af te dekken, neem je een doelwit weg en blijven bruikbare landingspunten beschikbaar.",
+  "tutorMovePlanSafety": "Zoek een balans tussen ontwikkeling en veiligheid: breng bouwschijven naar nuttige punten en kijk welke losse schijven kunnen worden geslagen.",
+  "tutorMoveObservationNoLegalPlay": "Geen geldige zet met de schijven mogelijk: je moet passen.",
+  "tutorMoveObservationHit": "Je slaat {count, plural, one{één schijf van de tegenstander} other{{count} schijven van de tegenstander}}; de tegenstander moet eerst opnieuw inzetten voordat die andere schijven kan verplaatsen.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Je zet {count} vanaf de bar opnieuw in.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Je haalt {count, plural, one{één schijf} other{{count} schijven}} van het bord.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Je sluit {points}. Twee of meer schijven bezetten een veilig punt en blokkeren daar de landing van de tegenstander.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Je geeft gesloten punten op ({pointLabel}): {points}. Die punten blokkeren de tegenstander daar niet langer.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Je laat geen losse schijven onbeschermd achter (eerder: {previousCount}). Er zijn geen losse schijven om te slaan.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Je laat {count, plural, one{één losse schijf onbeschermd} other{{count} losse schijven onbeschermd}} achter (eerder: {previousCount}). Kijk of de tegenstander ze kan bereiken voordat je veiligheid verkiest boven een ander voordeel.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Langste reeks gesloten punten: {count} (eerder: {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Een gesloten reeks van zes punten kan niet worden overgestoken zolang die intact blijft.",
+  "tutorMoveObservationPrimeBuild": "Houd bouwschijven in de buurt als je deze reeks wilt verlengen of behouden.",
+  "tutorMoveObservationPrimeSpares": "Er zijn {count} reserves boven op de twee schijven die punten gesloten houden. Een reserve verplaatsen kan het punt behouden; een van de laatste twee verplaatsen maakt het open.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Ankers in het thuisbord van de tegenstander: {points} (eerder: {previousPoints}). Een anker beschermt die schijven tegen slagen; het verlaten ervan ruilt die veilige uitvalsbasis in voor vooruitgang in de race.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Een zuivere race: de legers zijn elkaar gepasseerd en niemand staat op de bar. Slaan kan niet meer; efficiënt schijven afvoeren is nu belangrijk.",
+  "tutorMoveObservationNoReplyHit": "In deze positie kan de tegenstander met geen enkele geldige volgende worp een schijf slaan. Er is nog contact, dus latere zetten kunnen nieuwe kansen om te slaan opleveren.",
+  "tutorMoveObservationReplyHit": "De tegenstander kan slaan met {count} van de {total} worpen. Bijvoorbeeld: met {dieOne}–{dieTwo} kan die legaal op jouw punt {point} slaan. De kans is er, maar de tegenstander hoeft die niet te benutten.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Gesloten punten in je thuisbord: {closedPoints}. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "De tegenstander kan pas opnieuw inzetten als er een punt opengaat.",
+  "tutorMoveObservationOpenEntry": "Met een worp die op een open inzetpunt uitkomt, kan een schijf vanaf de bar terugkomen.",
+  "tutorMoveComparisonDetail": "{factors} De geschatte winstkans bij de beste zet is {delta} procentpunt {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "hoger",
+  "tutorMoveComparisonLower": "lager",
+  "tutorMoveComparisonScoreContext": " Die kan toch hoger eindigen, omdat gammons en backgammons een andere waarde hebben bij de huidige {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "inzet",
+  "tutorMoveComparisonMatchScore": "matchscore",
+  "tutorMoveComparisonFactorBar": "Aantal schijven van de tegenstander op de bar na de beste zet: {bestCount}, tegenover {playedCount}. Een schijf op de bar moet eerst opnieuw inzetten voordat de tegenstander de andere kan verplaatsen.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Aantal gesloten punten in je thuisbord bij de beste zet: {bestCount}, tegenover {playedCount} bij je zet. Na een slag kun je {entryDifference}.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "meer inzetnummers afsluiten",
+  "tutorMoveComparisonLeavingMore": "meer inzetnummers openlaten",
+  "tutorMoveComparisonFactorShots": "De beste zet geeft een kans op terugslaan bij {bestCount} van de 36 worpen, tegenover {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Dat verlaagt het directe risico dat je wordt teruggeslagen.",
+  "tutorMoveComparisonExtraExposure": "Weeg die extra kwetsbaarheid af tegen wat de zet verder oplevert.",
+  "tutorMoveComparisonFactorPrime": "De langste reeks gesloten punten is {bestCount} bij de beste zet, tegenover {playedCount}. Vergelijk de blokkade met het aantal schijven dat je hebt om haar intact te houden.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Ankers bij de beste zet: {bestPoints}, tegenover {playedPoints}. Een anker behouden geeft een veilige landingsplek; het verlaten ervan brengt die schijven dichter bij huis.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Aantal schijven van het bord bij de beste zet: {bestCount}, tegenover {playedCount}. Elke schijf die eraf is, hoef je later niet meer af te voeren.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Beide zetten laten hetzelfde directe risico op slagen, evenveel gesloten punten in het thuisbord en dezelfde aantallen ankers en afgevoerde schijven. Vergelijk de landingspunten: de volgende worp kan die schijven anders benutten.",
+  "tutorMoveComparisonSummaryBar": "De beste zet stuurt meer schijven van de tegenstander naar de bar en vertraagt zo diens andere zetten.",
+  "tutorMoveComparisonSummaryHomeBoard": "De beste zet sluit meer punten in het thuisbord, waardoor opnieuw inzetten na een slag moeilijker wordt.",
+  "tutorMoveComparisonSummaryShots": "De beste zet laat minder directe kansen om te slaan toe en verkleint zo het risico op een terugslag.",
+  "tutorMoveComparisonSummaryPrime": "De beste zet behoudt een langere reeks gesloten punten.",
+  "tutorMoveComparisonSummaryAnchors": "De beste zet behoudt meer veilige ankers in het thuisbord van de tegenstander.",
+  "tutorMoveComparisonSummaryBearOff": "De beste zet haalt meer schijven van het bord, zodat er later minder overblijven.",
+  "tutorMoveComparisonSummaryBlots": "Deze zet laat {playedCount} losse schijven onbeschermd; de beste zet laat er {bestCount} achter.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "De beste zet behoudt een veilig anker op punt {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "De beste zet sluit meer inzetpunten voor het geval een van je schijven wordt geslagen.",
+  "tutorMoveComparisonSummarySimilarRisks": "De zetten laten vergelijkbare directe risico’s achter; vergelijk welke landingspunten bij de volgende worp bruikbaar blijven.",
+  "tutorMoveAssessmentEquityLoss": "{value} verlies aan equity",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} procentpunt matchwinstkans (MWC)",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "punt",
+  "tutorMovePointPlural": "punten",
+  "tutorMoveNoPoints": "geen",
+  "gameTutorCommentaryOff": "Spelcommentaar staat uit.",
+  "gameTutorToolsAvailable": "Open de tutor voor de functies die je hebt ingeschakeld.",
+  "gameTutorNextRoll": "Gooi opnieuw.",
+  "gameTutorNoEvaluatedReview": "Voor deze opgeslagen zet is geen beoordeelde uitleg beschikbaar.",
+  "gameTutorAnalysisUnavailable": "analyse niet beschikbaar",
+  "gameTutorReviewing": "wordt bekeken…",
+  "gameTutorTryYourPlayFirst": "Probeer eerst zelf een zet.",
+  "gameTutorKeepBuilding": "Maak je zet verder af.",
+  "gameTutorStageCompleteBeforeCoaching": "Speel eerst een volledige geldige zet voordat je coaching of hints bekijkt.",
+  "gameTutorReadyToConfirm": "Klaar om te bevestigen",
+  "gameTutorPlayTakingShape": "Je zet krijgt vorm.",
+  "gameTutorConfirmOrUndo": "Bevestig om de zet uit te voeren of maak hem ongedaan om opnieuw te kiezen.",
+  "gameTutorFinishDiceOrUndo": "Gebruik de resterende dobbelstenen of maak de zet ongedaan.",
+  "gameTutorComputerConsidering": "De computer denkt na over zijn zet.",
+  "gameTutorComputerPlayReviewed": "De voltooide zet wordt hier besproken.",
+  "gameTutorYourPlay": "Jouw zet",
+  "gameTutorComputer": "Computer",
+  "gameTutorPlayQuality": "Jouw zet: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "verplichte zet",
+  "gameTutorTopChoice": "beste keuze",
+  "gameTutorSoundPlay": "goede zet",
+  "gameTutorAnotherPlayMayFitBetter": "een andere zet past misschien beter",
+  "gameTutorAnotherPlayFitsBetter": "een andere zet past beter bij deze positie",
+  "gameTutorStrongerPlayAvailable": "er was duidelijk een sterkere zet beschikbaar",
+  "gameTutorPositionEdge": "{side} heeft naar schatting voordeel.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "De positie is ongeveer gelijk.",
+  "tutorPlayedMove": "Gespeeld: {move}",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorBestMove": "Beste zet: {move}",
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorShowRankedPlays": "Gerangschikte zetten tonen",
+  "tutorReviewRecordedMove": "Tik in het logboek op een voltooide zet om de beslissing hier te bekijken.",
+  "tutorTopPlays": "Beste zetten",
+  "tutorNoHintsAvailable": "Geen hints beschikbaar.",
+  "tutorPreviewThenConfirm": "Tik op een zet om deze op het bord te bekijken en bevestig daarna.",
+  "tutorTopChoiceForPosition": "Beste keuze voor deze positie",
+  "tutorAlternativePlay": "Alternatieve zet",
+  "tutorEngineEstimates": "Engine-inschattingen",
+  "tutorEstimateScope": "0-ply-inschatting · huidige score en inzet · geen toekomstige cube-beslissingen",
+  "tutorEquity": "Verwachtingswaarde",
+  "tutorMwcPercent": "MWC %",
+  "tutorNearTiesNote": "Bij bijna gelijke zetten kan een diepere analyse de volgorde veranderen.",
+  "tutorWhyThisPlay": "Waarom deze zet?",
+  "tutorCompareAlternative": "Vergelijk dit alternatief",
+  "gameTutorCubeTake": "Tutor: aannemen",
+  "gameTutorCubePass": "Tutor: passen",
+  "practiceScreenTitle": "Oefen een beslissing",
+  "practiceUnavailable": "Deze oefenpositie is niet meer beschikbaar.",
+  "practiceSubmitError": "Deze poging kon niet worden beoordeeld of opgeslagen. Je voortgang is niet gewijzigd. Probeer het opnieuw.",
+  "practiceTurnLabel": "{side} is aan zet · {dice}",
+  "practiceHistoricalScoreUnavailable": "Historische score niet beschikbaar; de beoordeling gebruikt equity zonder verdubbelingsdobbelsteen.",
+  "practiceScoreLine": "Score: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, tot {matchLength}",
+  "practiceCrawfordGame": " · Crawfordpartij",
+  "practiceNoDoublingCube": "Geen verdubbelingsdobbelsteen.",
+  "practiceCubeValue": "Dobbelsteen {value}.",
+  "practiceHistoricalCubeUnknown": "Historische dobbelsteenregels onbekend.",
+  "practiceAfterBestPosition": "Positie na de beste zet",
+  "practiceAfterYourAnswerPosition": "Positie na jouw antwoord",
+  "practiceFindYourPlayPrompt": "Speel je zet op het bord en controleer daarna je antwoord. Er worden geen hints getoond.",
+  "practiceUndo": "Ongedaan maken",
+  "practiceCheckAnswer": "Antwoord controleren",
+  "practiceRevealNoCredit": "Antwoord tonen (zonder punt)",
+  "practiceAnswerRevealedNoCredit": "Antwoord getoond — geen herinneringspunt.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "practiceBestMoveLine": "Beste: {move}",
+  "practiceOriginalGameLine": "Oorspronkelijke partij: {move} · {loss}",
+  "practiceYourAnswerLine": "Jouw antwoord: {move}",
+  "practiceYourAnswerChip": "Jouw antwoord",
+  "practiceBestPlayChip": "Beste zet",
+  "practiceNextReview": "Volgende herhaling: {date}.",
+  "practiceRecallCredit": "Beste of goede antwoorden tellen als succesvol herinnerd. Vroege herhalingen verschuiven het schema niet.",
+  "practiceBackToLearning": "Terug naar leren",
+  "practiceMarkBest": "Beste",
+  "practiceMarkGood": "Goed",
+  "practiceMarkDubious": "Twijfelachtig",
+  "practiceMarkError": "Fout",
+  "practiceMarkBlunder": "Blunder",
+  "practiceMarkForced": "Gedwongen",
+  "newMatchYourSide": "Jouw kant",
+  "newMatchTutorMode": "Tutormodus",
+  "newMatchTutorDescription": "Leer met hints, uitleg en commentaar op het spel",
+  "newMatchTutoringOptions": "Tutoropties",
+  "newMatchTutoringOptionsDescription": "Voor deze partij; tijdens het spel aan te passen",
+  "setupMatchLength": "Partijlengte",
+  "setupDifficulty": "Moeilijkheid",
+  "setupDifficultyEasy": "Makkelijk",
+  "setupDifficultyMedium": "Gemiddeld",
+  "setupDifficultyHard": "Moeilijk",
+  "setupDifficultyExpert": "Expert",
+  "setupPlayWithoutCube": "Spelen zonder verdubbelingsdobbelsteen",
+  "setupNoCubeThisMatch": "Geen verdubbelingsdobbelsteen in deze partij",
+  "analysisTitle": "Analyse",
+  "gameMatchSummary": "Partijoverzicht",
+  "gameAnalyzeGame": "Partij analyseren",
+  "analysisMetricsTooltip": "Wat betekenen deze cijfers?",
+  "analysisError": "Analyse van de partij mislukt: {error}",
+  "analysisNoPositions": "Deze partij bevat geen posities om te tonen.",
+  "analysisInProgress": "Partij analyseren…",
+  "analysisPercent": "{percent}%",
+  "analysisPlayed": "Gespeeld",
+  "analysisBest": "Beste",
+  "analysisPrevious": "Vorige",
+  "analysisNext": "Volgende",
+  "analysisPositionBeforeCube": "Positie vóór de dobbelsteenbeslissing",
+  "analysisPositionAtPoint": "Positie op dit punt in de partij",
+  "analysisShowingBestBefore": "Beste zet getoond op de positie vóór de zet",
+  "analysisShowingBefore": "Positie vóór de zet tonen",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "analysisMoveLoss": " −{loss}",
+  "analysisExcludedFromAverages": " · uitgesloten van gemiddelden",
+  "analysisNoPlay": "(geen zet)",
+  "analysisBestMoveLine": "Beste zet: {move}",
+  "analysisExplain": "Uitleggen",
+  "analysisSaveForPractice": "Opslaan om te oefenen",
+  "analysisSaveError": "Deze beslissing kon niet worden opgeslagen: {error}",
+  "analysisCubeInfo": "{side}: {action} · {mark} · verlies {loss}",
+  "analysisCubeDecision": "Dobbelsteenbeslissing",
+  "analysisCubePlayed": "Gespeeld: {action} (winstkans partij: {percent}%).",
+  "analysisCubeBest": "Beste: {action} (winstkans partij: {percent}%).",
+  "analysisClose": "Sluiten",
+  "analysisMoves": "Zetten",
+  "analysisForced": "Gedwongen",
+  "analysisMarkBest": "Beste",
+  "analysisMarkGood": "Goed",
+  "analysisMarkDubious": "Twijfelachtig",
+  "analysisMarkError": "Fout",
+  "analysisMarkBlunder": "Blunder",
+  "analysisSummaryMeanLoss": "Gemiddeld verlies {loss}",
+  "analysisSummaryCheckerDecisions": "{count} beslissingen over stenen",
+  "analysisSummaryBlunders": "Blunders {count}",
+  "analysisSummaryCubeLoss": "Verlies door dobbelsteen {loss}",
+  "analysisRollWithoutDoubling": "{side} gooit zonder te verdubbelen",
+  "metricExplainerTitle": "De statistieken begrijpen",
+  "metricExplainerTooltip": "Wat betekenen deze cijfers?",
+  "metricExplainerMwcTitle": "Kans om de partij te winnen (MWC)",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "historyTitle": "Partijgeschiedenis",
+  "historyLoadFailed": "Geschiedenis laden mislukt:\n{error}",
+  "historyEmpty": "Nog geen partijen gespeeld.",
+  "historyDeleteConfirmTitle": "Deze partij verwijderen?",
+  "historyDeleteConfirmBody": "{scoreLine}\n\nDe partij en alle geregistreerde spellen worden definitief verwijderd. Dit kan niet ongedaan worden gemaakt.",
+  "actionCancel": "Annuleren",
+  "actionDelete": "Verwijderen",
+  "historyDeleteFailed": "Deze partij kon niet worden verwijderd.",
+  "historyComplete": "Voltooid",
+  "historyWinner": "{side} heeft gewonnen",
+  "historyUnfinished": "Niet voltooid",
+  "historyMatchTitle": "Partij",
+  "historyMatchLoadFailed": "Partij laden mislukt:\n{error}",
+  "historyGamesLoadFailed": "Spellen laden mislukt:\n{error}",
+  "historyNoGames": "Nog geen spellen vastgelegd.",
+  "historyGameTitle": "Spel {number}",
+  "historyCrawford": "Crawford",
+  "historyScoreLine": "Wit {whiteScore} — {blackScore} Zwart (tot {matchLength})",
+  "historyModeComputer": "tegen computer",
+  "historyModeTwoPlayers": "Twee spelers",
+  "historyModeOnline": "Online",
+  "historyModeNearby": "Spelen in de buurt",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "Bezig",
+  "historyGameResult": "{side} wint {points} ({outcome})",
+  "historyOutcomeSingle": "enkel",
+  "historyOutcomeGammon": "gammon",
+  "historyOutcomeBackgammon": "backgammon",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "onlineTitle": "Online spelen",
+  "onlineUnassistedNote": "Live onlinepartijen hebben geen tutor. Bekijk je zetten en oefen fouten na de partij.",
+  "onlineNotConfiguredTitle": "Online spelen is in deze build niet ingesteld",
+  "onlineNotConfiguredBody": "Deze build heeft geen Firebase-backend, dus je kunt geen partijen maken of eraan deelnemen.",
+  "onlineErrorNoMatch": "Geen partij met die code. Controleer de code en probeer het opnieuw.",
+  "onlineErrorSeatTaken": "Die partij is niet meer open; de plek is al ingenomen.",
+  "onlineErrorPermission": "Je hebt geen toegang tot die partij.",
+  "onlineErrorGeneric": "Er is iets misgegaan. Probeer het opnieuw.",
+  "onlineMatchFinished": "Deze partij is afgelopen en kan niet meer worden hervat.",
+  "onlineEnterCodeError": "Voer een partijcode in.",
+  "onlineOpponentShort": "Tegenstander",
+  "onlineMatchInProgress": "Partij bezig",
+  "onlineResumePrompt": "Je speelde partij {code}.",
+  "onlineRejoin": "Hervatten",
+  "onlineForgetMatch": "Deze partij vergeten",
+  "onlineCreateTitle": "Partij maken",
+  "onlineMatchLength": "Partijlengte",
+  "onlineNoCubeTitle": "Spelen zonder verdubbelingsdobbelsteen",
+  "onlineNoCubeSubtitle": "Geen verdubbelingsdobbelsteen in deze partij",
+  "onlineCreate": "Maken",
+  "onlineWaitingOpponent": "Wachten op tegenstander…",
+  "onlineShareCode": "Deze code delen",
+  "onlineCopyCode": "Code kopiëren",
+  "onlineCodeCopied": "Code gekopieerd",
+  "onlineJoinTitle": "Deelnemen aan partij",
+  "onlineRoomCode": "Partijcode",
+  "onlineJoin": "Deelnemen",
+  "lanTitle": "Spelen in de buurt",
+  "lanTabHost": "Hosten",
+  "lanTabJoin": "Deelnemen",
+  "lanUnassistedNote": "Lokale partijen hebben geen live tutor. Bekijk je zetten en oefen fouten na de partij.",
+  "lanGameStartFailed": "De partij kon niet worden gestart. Het andere apparaat kan opnieuw proberen deel te nemen.",
+  "lanHostPortInUse": "Hosten lukt niet: de poort is al in gebruik. Sluit andere exemplaren van Backgammon Buddy en probeer het opnieuw.",
+  "lanHostStartFailed": "Hosten lukt niet. Controleer je wifi en probeer het opnieuw.",
+  "lanHostTitle": "Partij hosten",
+  "lanStartHosting": "Hosten starten",
+  "lanHostHelp": "Beide apparaten moeten op hetzelfde wifi-netwerk zitten. Dit apparaat gooit de dobbelstenen en houdt de score bij.",
+  "lanWaitingPlayerTitle": "Wachten op een speler",
+  "lanRoomCodeInfo": "Geef deze code aan de andere speler. Daarmee krijgt die toegang; de app verstuurt de code nooit via het netwerk.",
+  "lanWaitingPlayer": "Wachten op een speler…",
+  "lanStopHosting": "Stoppen met hosten",
+  "lanFindNearbyPort": "Laat het andere apparaat zoeken naar partijen in de buurt. Luistert op poort {port}.",
+  "lanOnNetwork": "Op dit netwerk",
+  "lanCopyAddress": "Adres kopiëren",
+  "lanAddressCopied": "Adres gekopieerd",
+  "lanScanHostTitle": "Host scannen",
+  "lanScanHostHelp": "Het andere apparaat toont een QR-code op het Host-scherm. Scannen vult het adres en de kamercode in.",
+  "lanScanQr": "QR-code scannen",
+  "lanScannerUnavailable": "Camera of toestemming niet beschikbaar. Voer hieronder het adres en de kamercode in.",
+  "lanInvalidQr": "Deze QR-code is niet van Backgammon Buddy. Scan de code op het Host-scherm van het andere apparaat.",
+  "lanScannerFailed": "De scanner kon niet worden geopend. Voer hieronder het adres en de code in.",
+  "lanNearbyGames": "Partijen in de buurt",
+  "lanSearching": "Zoeken naar partijen in de buurt…",
+  "lanNoGamesFound": "Geen partijen gevonden. Controleer of het andere apparaat host en beide apparaten op dezelfde wifi zitten, of voer hieronder het adres in.",
+  "lanStillSearching": "Verder zoeken…",
+  "lanEnterAddress": "Adres invoeren",
+  "lanEnterAddressHelp": "Automatisch zoeken werkt niet op elk netwerk en kan op iOS volledig geblokkeerd zijn. Het Host-scherm laat zien wat je moet invoeren.",
+  "lanIpAddress": "IP-adres",
+  "lanPort": "Poort",
+  "lanInvalidPort": "Voer een poort tussen 1 en 65535 in.",
+  "lanEnterAddressError": "Voer het adres in dat op het andere apparaat staat.",
+  "lanEnterRoomCodeError": "Voer de viercijferige code van het andere apparaat in.",
+  "lanJoinWrongCode": "Onjuiste kamercode. Controleer de vier cijfers.",
+  "lanJoinVersionMismatch": "Op het andere apparaat staat een andere versie van Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "Dit apparaat antwoordde niet zoals Backgammon Buddy. Controleer adres en poort.",
+  "lanJoinFailed": "Deelnemen mislukt. Controleer het adres en de kamercode en probeer het opnieuw.",
+  "lanJoinTarget": "Deelnemen aan {name}",
+  "lanJoinTargetHelp": "Voer de viercijferige code in die op het andere apparaat staat.",
+  "lanJoiningTarget": "Verbinden met {name}",
+  "lanConnect": "Verbinden",
+  "lanBack": "Terug",
+  "lanTryAgain": "Opnieuw proberen",
+  "lanStatusBusy": "Kamer bezet — wachten…",
+  "lanStatusReconnecting": "Verbinding verloren — opnieuw proberen…",
+  "lanStatusConnected": "Verbonden — partij starten…",
+  "lanStatusFailed": "Deelnemen mislukt.",
+  "lanStatusConnecting": "Verbinden…",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "learningRefreshTooltip": "Leer voortgang vernieuwen",
+  "learningOptions": "Leeropties",
+  "learningResetMenu": "Oefenvoortgang resetten",
+  "learningLoadFailed": "Leer voortgang laden is mislukt.",
+  "actionRetry": "Opnieuw proberen",
+  "learningHeading": "Leer van je beslissingen",
+  "learningIntro": "Je voortgang blijft op dit apparaat. Bekijk terugkerende thema’s en speel opgeslagen posities opnieuw zonder het antwoord te zien. Wit en Zwart kun je apart bekijken.",
+  "learningBothSides": "Beide kanten",
+  "learningHumansOnly": "Alleen menselijke beslissingen",
+  "learningHumanOnlyHelp": "Schakel uit om beslissingen van de computer en externe spelers mee te nemen",
+  "learningDecisionSummary": "{decisions} beslissingen · {mistakes} verbeterpunten · {blunders} blunders",
+  "learningAverageLoss": "Gemiddeld verlies ({decisions} beslissingen): {loss}",
+  "learningForcedDisclaimer": "Gedwongen zetten tellen niet mee. Dit zijn engine-inschattingen, geen toernooirating.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{# opgeslagen partij moet worden geanalyseerd of opnieuw geanalyseerd.} other{# opgeslagen partijen moeten worden geanalyseerd of opnieuw geanalyseerd.}}",
+  "learningAnalyseSavedGames": "Opgeslagen partijen analyseren",
+  "learningEmptyProfile": "Speel en voltooi een partij om je leerprofiel op te bouwen. Je kunt ook losse beslissingen opslaan vanuit de herhaling.",
+  "learningOpenHistory": "Partijgeschiedenis openen",
+  "learningRecurringThemes": "Terugkerende thema’s",
+  "learningNoThemes": "In deze selectie zijn nog geen terugkerende foutthema’s.",
+  "learningThemeDecisions": "{count} beslissingen om opnieuw te bekijken. Een positie kan meerdere thema’s hebben.",
+  "learningSaveMistakes": "Deze fouten opslaan om te oefenen",
+  "learningSavedMistakes": "{count} beslissingen staan op je oefenlijst. Eerder opgeslagen items blijven behouden.",
+  "learningSaveMistakesFailed": "Sommige beslissingen konden niet worden opgeslagen. De voltooide opslag blijft behouden; probeer het opnieuw.",
+  "learningSpacedPractice": "Gespreid oefenen",
+  "learningPracticeCounts": "{due} nu aan de beurt · {saved} opgeslagen · {attempts} pogingen · {successes} succesvol herinnerd",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningIntervalsHelp": "Succesvolle beoordelingen komen na 1, 3, 7, 14 en 30 dagen terug. Fouten of getoonde antwoorden komen na 10 minuten terug. Vroege herhalingen wijzigen het interval niet.",
+  "learningAnswerContext": "De oefenresultaten zijn gebaseerd op jouw antwoorden hier, ook als de oorspronkelijke positie van een tegenstander was.",
+  "learningNoSavedPositions": "Sla een beslissing op vanuit de herhaling of gebruik hierboven de foutknop.",
+  "learningPositionTitle": "Beslissing van {side} · spel {gameId}",
+  "learningReviewDue": "Herhalen op {date}",
+  "learningReadyToReview": "Klaar om te herhalen",
+  "learningSuccessStreak": "{count} succesvolle beoordelingen die aan de beurt zijn",
+  "learningRemoveTooltip": "Opgeslagen beslissing verwijderen",
+  "learningRecentPractice": "Recente oefeningen",
+  "learningAnswerRevealed": "Antwoord getoond",
+  "learningSuccessfulRecall": "Succesvol herinnerd",
+  "learningTryAgain": "Probeer deze beslissing opnieuw",
+  "learningAttemptSubtitle": "{date} · opgeslagen positie {positionId}",
+  "learningRemoveTitle": "Deze oefening verwijderen?",
+  "learningRemoveBody": "Hiermee worden de oefenpogingen verwijderd. De oorspronkelijke partij blijft in de geschiedenis.",
+  "actionRemove": "Verwijderen",
+  "learningRemoveFailed": "Deze oefening kon niet worden verwijderd.",
+  "learningResetTitle": "Oefenvoortgang resetten?",
+  "learningResetBody": "Alle pogingen en herhaalintervallen worden verwijderd. Je opgeslagen oefeningen en partijgeschiedenis blijven behouden; elke oefening is meteen aan de beurt.",
+  "learningResetAction": "Voortgang resetten",
+  "learningResetFailed": "Oefenvoortgang resetten is mislukt.",
+  "learningAnalysisProgress": "{completed} partijen geanalyseerd · {failed} niet beschikbaar.",
+  "learningAnalysisComplete": "{completed} partijen geanalyseerd.",
+  "learningAnalysisCompleteWithErrors": "{completed} partijen geanalyseerd; {failed} konden niet worden geanalyseerd. Probeer het opnieuw zodra de engine klaar is.",
+  "learningThemeHitting": "Slaan en tempo",
+  "learningThemeSafety": "Blots en veiligheid",
+  "learningThemePointMaking": "Punten maken",
+  "learningThemePrime": "Primes en blokkades",
+  "learningThemeAnchor": "Ankers en ontsnappen",
+  "learningThemeRace": "Efficiënt racen",
+  "learningThemeBearOff": "Stenen uitspelen",
+  "learningThemeBarEntry": "Binnenkomen vanaf de bar",
+  "learningThemeCube": "Dobbelsteenbeslissingen",
+  "analysisCubeNoDouble": "Niet verdubbelen",
+  "analysisCubeDouble": "Verdubbelen",
+  "analysisCubeTake": "Aannemen",
+  "analysisCubePass": "Passen",
+  "learningAnalysisStarting": "Opgeslagen partijen analyseren…",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorCubelessEstimateScope": "Cubeloze schatting op 0 ply · score niet beschikbaar",
+  "tutorLossPp": "Verlies pp",
+  "tutorLoss": "Verlies",
+  "scoreSheetNoMoves": "Nog geen zetten",
+  "tutorOptions": "Tutoropties",
+  "tutorCollapseTooltip": "Tutor inklappen",
+  "tutorExpandTooltip": "Tutor uitklappen",
+  "diagnosticsCopySuccess": "Diagnostiek gekopieerd",
+  "diagnosticsReviewTitle": "Diagnostisch rapport bekijken",
+  "diagnosticsPrivacyNotice": "Als je het concept opent, worden de onderstaande gegevens naar GitHub gestuurd, waaronder de appversie, het platform en foutdetails. Er wordt niets openbaar geplaatst totdat je het daar indient. Bevat dit privégegevens, annuleer dan en gebruik Kopiëren om zelf een rapport samen te stellen.",
+  "diagnosticsCancel": "Annuleren",
+  "diagnosticsOpenGitHub": "GitHub openen",
+  "diagnosticsTitle": "Diagnostiek",
+  "diagnosticsReportTooltip": "Probleem melden op GitHub",
+  "diagnosticsCopyTooltip": "Kopiëren naar klembord",
+  "diagnosticsClearTooltip": "Log wissen",
+  "diagnosticsEmpty": "Geen fouten geregistreerd.\n\nAls er iets misgaat, wordt dat hier vastgelegd. Kom terug om de gegevens naar een bugrapport te kopiëren.",
+  "cubeDouble": "Verdubbelen",
+  "cubeBlockedOtherPlayersTurn": "De andere speler is aan zet.",
+  "cubeBlockedCrawford": "Verdubbelen kan niet in een Crawfordpartij.",
+  "cubeBlockedOwnedByOther": "Alleen de eigenaar van de dobbelsteen mag verdubbelen; de andere kant is nu eigenaar.",
+  "cubeBlockedUnavailable": "Verdubbelen is nu niet beschikbaar.",
+  "gameStatusRolling": "Gooien…",
+  "gameStatusThinking": "Denkt na…",
+  "cubeAdviceOpponentTake": "Verdubbel — tegenstander moet aannemen",
+  "cubeAdviceOpponentPass": "Verdubbel — tegenstander moet passen",
+  "gameErrorBannerLabel": "Fout: {error}",
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "analysisCubeEstimate": "Schatting op 0 ply vanuit het perspectief van de speler die aan zet is. Gaat uit van een optimale aanname- of pasreactie. Gebruikt een benadering van 0,7 voor de levensduur van de dobbelsteen bij een aangenomen double, geen volledige zoekactie naar toekomstige redoubles. Een diepere analyse kan de uitkomst veranderen.",
+  "metricExplainerMwcBody": "Als de score bekend is, worden zetten gerangschikt op de geschatte kans om de partij te winnen. Verlies staat in procentpunten (pp): 1 pp betekent een daling van 51% naar 50%. De huidige inzet van de dobbelsteen en gammon/backgammon-uitkomsten tellen mee. Gedwongen passen en worpen met maar één legale positie tellen niet mee in gemiddelden.",
+  "metricExplainerSearchTitle": "Zoekdiepte en onzekerheid",
+  "metricExplainerSearchBody": "Zetrangschikkingen zijn statische 0-ply-schattingen na de zet, geen rollouts. Partijwaarden gebruiken een match-equitytabel zonder toekomstige dobbelsteenbeurten. Dobbelsteenbeoordelingen gebruiken een gedeeltelijke 0,7-benadering van de dobbelsteenlevensduur bij aangenomen doubles. Dit is geen volledige cubeful zoekactie. Achterstanden boven 25 gebruiken de grens van 25 uit de tabel. Bijna gelijke uitkomsten kunnen veranderen bij diepere analyse; er is geen gekalibreerd betrouwbaarheidsinterval.",
+  "metricExplainerEquityTitle": "Equity",
+  "metricExplainerEquityBody": "Als de score ontbreekt, is cubeloze equity de gemiddelde puntenwaarde van een positie bij een dobbelsteen op 1. +1,0 betekent dat je gemiddeld één punt wint; −0,5 dat je een half punt verliest.",
+  "metricExplainerEquityLossTitle": "Equityverlies (bijv. −0,016)",
+  "metricExplainerEquityLossBody": "We vergelijken elke zet met de beste zet van de engine. Equityverlies is de verwachte waarde die je met je zet hebt opgegeven. −0,016 betekent dat de zet slechts 0,016 punt slechter was — een klein foutje. 0,000 betekent dat je de beste zet vond.",
+  "metricExplainerErrorRateTitle": "Foutpercentage",
+  "metricExplainerErrorRateBody": "Gemiddeld verlies is het gemiddelde van je beoordeelde beslissingen over stenen, in de weergegeven eenheid. Beslissingen over de dobbelsteen hebben een eigen gemiddelde. Lager betekent dichter bij de beste schattingen van deze engine; het is geen gekalibreerde spelersrating.",
+  "metricExplainerMoveMarksTitle": "Zetbeoordelingen",
+  "metricExplainerMoveMarksBody": "MWC-leerbanden: Beste < 0,05 pp, Goed < 0,5 pp, Twijfelachtig < 1,5 pp, Fout < 3 pp, Blunder ≥ 3 pp. Dit zijn productbanden voor leren, geen gekalibreerde zekerheid of toernooirating.\n\nLeerbanden voor cubeloze equity:",
+  "metricExplainerThresholdBest": "verlies < 0,001",
+  "metricExplainerThresholdGood": "verlies < 0,020",
+  "metricExplainerThresholdDubious": "verlies < 0,050",
+  "metricExplainerThresholdError": "verlies < 0,110",
+  "metricExplainerThresholdBlunder": "verlies ≥ 0,110",
+  "metricExplainerGotIt": "Begrepen",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · tot {matchLength}",
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · tot {matchLength}",
+  "gameHudYou": "Jij",
+  "gameHudAi": "AI",
+  "gameHudGameNumber": "Spel {number}",
+  "gameHudMatchContext": "{score} · {game}",
+  "gameHudHotSeatDetail": "{whiteLabel} tegen {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "gameHudOpponentDetail": "tegen {opponent} · {pipsLabel} {mine}–{theirs}",
+  "gameHudOpponentDetailWithLevel": "tegen {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "gameHudPips": "Pips",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Verdubbelen",
+  "gameHudMoreActions": "Meer acties",
+  "gameHudSurrender": "Opgeven…",
+  "gameHudThinking": "Denkt na",
+  "gameHudDoubleBeforeRoll": "Je kunt alleen verdubbelen vóór je gooit, tijdens je beurt.",
+  "gameHudNoDoubleCrawford": "Verdubbelen kan niet in de Crawfordpartij; dit spel beslist de partij.",
+  "gameHudOnlyCubeOwner": "Alleen de eigenaar van de dobbelsteen mag verdubbelen; nu is de andere kant eigenaar.",
+  "gameHudDoubleUnavailable": "Verdubbelen is nu niet beschikbaar.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (tot {matchLength})",
+  "gameDialogPlayerWon": "{winner} wint dit spel ({points}).",
+  "gameDialogPlayerWonGammon": "{winner} wint dit spel ({points}, gammon).",
+  "gameDialogPlayerWonBackgammon": "{winner} wint dit spel ({points}, backgammon).",
+  "gameDialogPlayerWonDrop": "{winner} wint dit spel ({points}) — {loser} weigerde de double.",
+  "gameDialogPlayerWonResignation": "{winner} wint dit spel ({points}) — {loser} gaf op.",
+  "gameDialogPassDeviceTitle": "Geef het apparaat door",
+  "gameDialogPlayersTurn": "{name} is aan zet",
+  "gameDialogTapToContinue": "Tik om door te gaan",
+  "gameDialogCubeOfferedTitle": "Double aangeboden",
+  "gameDialogCubeOfferMessage": "{doubler} biedt een double naar {value}. Aannemen of passen?{tutorLine}",
+  "gameDialogPass": "Passen",
+  "gameDialogTake": "Aannemen",
+  "gameDialogResignationTitle": "Opgeven aangeboden",
+  "gameDialogResignationMessage": "{resigner} biedt opgeven voor {value} punten aan. Aannemen of weigeren?",
+  "gameDialogResignSingle": "enkel spel",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Weigeren",
+  "gameDialogAccept": "Aannemen",
+  "gameDialogGameOverTitle": "Spel afgelopen",
+  "gameDialogNextGame": "Volgende spel",
+  "gameDialogMatchOverTitle": "Partij afgelopen",
+  "gameDialogNobody": "Niemand",
+  "gameDialogMatchWinner": "{winner} wint de partij.",
+  "gameDialogSavedToHistory": "Opgeslagen in geschiedenis",
+  "gameDialogDone": "Klaar",
+  "gameTapNoLegalMove": "Deze steen kan niet met de resterende dobbelstenen worden verplaatst",
+  "gameTapNoLegalMoveUndo": "Deze steen kan niet met de resterende dobbelstenen worden verplaatst — probeer Ongedaan maken",
+  "gameDragHint": "Tip: sleep stenen of tik erop — wijzig dit in Instellingen",
+  "commonGotIt": "Begrepen",
+  "gameHintStageBeforeHint": "Speel eerst een volledige legale zet voordat je om een hint vraagt.",
+  "surrenderTitle": "Opgeven",
+  "surrenderNamedConcedes": "{player} geeft de huidige partij op.",
+  "surrenderConcedes": "Geeft de huidige partij op.",
+  "surrenderAvailableAtNamedTurn": "Beschikbaar aan het begin van de beurt van {player}",
+  "surrenderAvailableAtYourTurn": "Beschikbaar aan het begin van je beurt",
+  "commonCancel": "Annuleren",
+  "surrenderSingle": "Enkel (1)",
+  "surrenderGammon": "Gammon (2)",
+  "surrenderBackgammon": "Backgammon (3)",
+  "surrenderChoosePlayer": "Wie geeft dit spel op?",
+  "commonDone": "Klaar",
+  "gameStatusPlayersTurn": "{player} is aan zet",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  }
 }

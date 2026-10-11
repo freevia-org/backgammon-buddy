@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:aigammon_app/game/player_agent.dart';
 import 'package:aigammon_app/screens/game/tutor_presentation.dart';
 import 'package:aigammon_app/tutor/coaching.dart';
+import 'package:aigammon_app/tutor/move_explanation_copy.dart';
 import 'package:aigammon_app/tutor/tutor_service.dart';
 import 'package:backgammon_core/backgammon_core.dart';
 import 'package:engine_bindings/engine_bindings.dart';
@@ -99,7 +100,11 @@ void main() {
       expect(h.engine.evaluations, hasLength(1));
       h.engine.evaluations.single.complete(_probs(.7));
       await _settle();
-      expect(h.model.positionAssessment, 'White has the estimated edge.');
+      expect(
+        h.model.positionAssessment?.id,
+        MoveExplanationCopyId.positionSideEdge,
+      );
+      expect(h.model.positionAssessment?.arguments['side'], Player.white);
       h.sync(staged: full, complete: true);
       expect(h.model.assessingStage, isTrue);
       expect(h.engine.evaluations, hasLength(1));
@@ -148,7 +153,11 @@ void main() {
       expect(h.engine.evaluatedSides, [Player.white, Player.black]);
       h.engine.evaluations[1].complete(_probs(.8));
       await _settle();
-      expect(h.model.positionAssessment, 'Black has the estimated edge.');
+      expect(
+        h.model.positionAssessment?.id,
+        MoveExplanationCopyId.positionSideEdge,
+      );
+      expect(h.model.positionAssessment?.arguments['side'], Player.black);
     },
   );
 
@@ -168,7 +177,10 @@ void main() {
       expect(h.model.positionAssessment, isNull);
       h.engine.evaluations[1].complete(_probs(.5));
       await _settle();
-      expect(h.model.positionAssessment, 'The position is roughly even.');
+      expect(
+        h.model.positionAssessment?.id,
+        MoveExplanationCopyId.positionEven,
+      );
     },
   );
 
@@ -195,7 +207,10 @@ void main() {
       await _settle();
       expect(h.model.selectedEventIndex, isNull);
       expect(h.model.stagedAssessment?.played.sameAs(full), isTrue);
-      expect(h.model.positionAssessment, 'The position is roughly even.');
+      expect(
+        h.model.positionAssessment?.id,
+        MoveExplanationCopyId.positionEven,
+      );
     },
   );
 

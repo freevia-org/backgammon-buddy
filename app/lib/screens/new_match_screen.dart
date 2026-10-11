@@ -83,9 +83,9 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
   @override
   // See [HomeScreen] for why every screen splits build/_build.
   Widget build(BuildContext context) => AnalyticsScreenView(
-        name: AnalyticsScreens.newMatch,
-        child: _build(context),
-      );
+    name: AnalyticsScreens.newMatch,
+    child: _build(context),
+  );
 
   Widget _build(BuildContext context) {
     final l10n = appLocalizationsOf(context);
@@ -122,24 +122,30 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
                           // Live-update the default until the user overrides
                           // the toggle — but only when settings don't force a
                           // fixed tutor default.
-                          if (!_tutorTouched && _settingsTutorOverride == null) {
+                          if (!_tutorTouched &&
+                              _settingsTutorOverride == null) {
                             _tutorEnabled = _defaultTutor(_difficulty);
                           }
                         }),
                       ),
                       const SizedBox(height: 24),
                       SetupSection(
-                        label: 'Your side',
+                        label: l10n.newMatchYourSide,
                         child: SegmentedButton<_SideChoice>(
                           showSelectedIcon: false,
                           segments: [
                             ButtonSegment(
-                                value: _SideChoice.white, label: Text(l10n.white)),
+                              value: _SideChoice.white,
+                              label: Text(l10n.white),
+                            ),
                             ButtonSegment(
-                                value: _SideChoice.black, label: Text(l10n.black)),
+                              value: _SideChoice.black,
+                              label: Text(l10n.black),
+                            ),
                             ButtonSegment(
-                                value: _SideChoice.random,
-                                label: Text(l10n.random)),
+                              value: _SideChoice.random,
+                              label: Text(l10n.random),
+                            ),
                           ],
                           selected: {_side},
                           onSelectionChanged: (s) =>
@@ -155,10 +161,8 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
                     const SizedBox(height: 8),
                     SwitchListTile(
                       contentPadding: EdgeInsets.zero,
-                      title: const Text('Tutor mode'),
-                      subtitle: const Text(
-                        'Learn with hints, explanations, and game commentary',
-                      ),
+                      title: Text(l10n.newMatchTutorMode),
+                      subtitle: Text(l10n.newMatchTutorDescription),
                       value: _tutorEnabled,
                       onChanged: (v) => setState(() {
                         _tutorEnabled = v;
@@ -168,10 +172,8 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
                     if (_tutorEnabled)
                       ExpansionTile(
                         tilePadding: EdgeInsets.zero,
-                        title: const Text('Tutoring options'),
-                        subtitle: const Text(
-                          'For this match; adjustable during play',
-                        ),
+                        title: Text(l10n.newMatchTutoringOptions),
+                        subtitle: Text(l10n.newMatchTutoringOptionsDescription),
                         children: [
                           TutorOptionControls(
                             options: _tutorOptions,
@@ -217,7 +219,9 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
     final mode = widget.vsComputer
         ? AnalyticsModes.vsComputer
         : AnalyticsModes.hotSeat;
-    ref.read(appAnalyticsProvider).logMatchStarted(
+    ref
+        .read(appAnalyticsProvider)
+        .logMatchStarted(
           mode: mode,
           matchLength: _matchLength,
           // Only meaningful vs the computer; omitted (null) for hot-seat, where
@@ -240,8 +244,9 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
           analyticsMode: mode,
           // The header's detail row names the level you chose ("vs AI · Easy ·
           // Pips …"). Only meaningful against the computer.
-          opponentDetail:
-              widget.vsComputer ? difficultyLabel(_difficulty) : null,
+          opponentDetail: widget.vsComputer
+              ? difficultyLabel(context, _difficulty)
+              : null,
           persistedMatchId: matchIdFuture,
           timings: settings.timings,
           interactionOptions: BoardInteractionOptions(
@@ -277,7 +282,8 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
   /// stays pinned at the bottom for the whole match (the tabletop layout — see
   /// [GameScreen.tabletop]). vs-AI always pins the human's side at the bottom.
   (GameController, BoardOrientationMode, Future<int>) _buildController(
-      AppSettings settings) {
+    AppSettings settings,
+  ) {
     if (!widget.vsComputer) {
       final (persistence, matchIdFuture) = _persistenceFor(
         mode: 'hotSeat',
@@ -348,4 +354,3 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
     return (RepositoryPersistence(repo, matchIdFuture), matchIdFuture);
   }
 }
-

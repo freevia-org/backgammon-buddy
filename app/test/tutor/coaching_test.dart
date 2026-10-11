@@ -1,5 +1,7 @@
 import 'package:aigammon_app/tutor/coaching.dart';
 import 'package:aigammon_app/tutor/move_assessment.dart';
+import 'package:aigammon_app/tutor/move_explanation_copy.dart';
+import 'package:aigammon_app/tutor/tutor_phrase.dart';
 import 'package:backgammon_core/backgammon_core.dart';
 import 'package:engine_bindings/engine_bindings.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -259,8 +261,39 @@ void main() {
       expect(a.summary, contains('anchor on 19'));
       expect(a.plan, contains('safe foothold'));
       expect(a.reasons.join(' '), isNot(contains('%')));
+      expect(a.summaryPhrase.id, TutorPhraseId.anchorContact);
+      expect(a.summaryPhrase.points, [19]);
+      expect(a.summaryPhrase.id, b.summaryPhrase.id);
+      expect(a.summaryPhrase.points, b.summaryPhrase.points);
+      expect(a.planPhrase.id, b.planPhrase.id);
+      expect(
+        a.reasonPhrases.map((phrase) => phrase.id).toList(),
+        b.reasonPhrases.map((phrase) => phrase.id).toList(),
+      );
     },
   );
+
+  test('position phrases preserve the legacy English compatibility output', () {
+    final coaching = PositionCoaching.forState(
+      position(BoardState.initial(), Player.white),
+    );
+    expect(coaching.summary, 'Contact with an anchor on 24.');
+    expect(
+      coaching.plan,
+      'Keep the safe foothold in mind while looking for a hit or improving your board.',
+    );
+    expect(coaching.reasons, [
+      'The pip counts are level.',
+      'The anchor cannot be hit, but those checkers still have a long way home.',
+    ]);
+    expect(
+      positionCommentary(position(BoardState.initial(), Player.white)),
+      coaching.reasons.fold(
+        '${coaching.summary} ${coaching.plan}',
+        (text, reason) => '$text $reason',
+      ),
+    );
+  });
 
   test('a sole legal result is forced rather than praised as best', () {
     final board = BoardState(
@@ -304,6 +337,13 @@ void main() {
       final move = state.legalMoves.first;
       final prefix = Move([move.checkerMoves.first]);
       for (final claimedComplete in [false, true]) {
+        final phrase = stagedMovePhrase(
+          state,
+          prefix,
+          isComplete: claimedComplete,
+        );
+        expect(phrase.id, TutorPhraseId.stagedPartialPrompt);
+        expect(phrase.parts, hasLength(1));
         final text = stagedMoveCommentary(
           state,
           prefix,
@@ -314,9 +354,12 @@ void main() {
         expect(text, isNot(contains('top choice')));
         expect(text, isNot(contains('Confirm commits')));
       }
+      final completePhrase = stagedMovePhrase(state, move, isComplete: true);
+      expect(completePhrase.id, TutorPhraseId.stagedCompletePrompt);
+      expect(completePhrase.parts, hasLength(1));
       expect(
         stagedMoveCommentary(state, move, isComplete: true),
-        contains('full play is staged; Confirm commits'),
+        '${completePhrase.parts.single.english} The full play is staged; Confirm commits it.',
       );
       expect(
         stagedMoveCommentary(
@@ -438,4 +481,71 @@ void main() {
     expect(best.summaryReason, isNot(best.plan));
     expect(explanation.observations.join(' '), contains('For example'));
   });
+
+  test(
+    'move explanation copy keeps typed data aligned with legacy English',
+    () {
+      final state = position(BoardState.initial(), Player.white);
+      final makeFive = state.legalMoves.firstWhere(
+        (move) => state.board.applyMove(Player.white, move).points[4] == 2,
+      );
+      final split = state.legalMoves.firstWhere(
+        (move) => state.board.applyMove(Player.white, move).points[22] == 1,
+      );
+      ScoredMove scored(Move move, double win) => ScoredMove(
+        move: move,
+        probabilities: Probabilities(
+          win: win,
+          winGammon: 0,
+          winBackgammon: 0,
+          loseGammon: 0,
+          loseBackgammon: 0,
+        ),
+      );
+      final played = scored(split, .5);
+      final best = scored(makeFive, .6);
+      final legacy = MoveExplanation.forCandidate(state, played, best);
+      expect(legacy.copy, isNotNull);
+      expect(legacy.copy!.verdict.id, MoveExplanationCopyId.alternativeVerdict);
+      final copy = MoveExplanationCopySet.forCandidate(state, played, best);
+
+      expect(copy.verdict.id, MoveExplanationCopyId.alternativeVerdict);
+      expect(legacy.verdict, 'The engine prefers another play here.');
+      expect(
+        copy.estimate.arguments['metric'],
+        AssessmentMetric.cubelessEquity,
+      );
+      expect(copy.estimate.arguments['win'], .5);
+      expect(
+        copy.estimate.arguments['loss'],
+        closeTo(best.rankingValue - played.rankingValue, 1e-9),
+      );
+      expect(copy.plan.id, MoveExplanationCopyId.leaveAnchorPlan);
+      expect(legacy.plan, contains('anchor'));
+      expect(legacy.comparisonReason, contains('home-board points'));
+      expect(legacy.comparison, contains('percentage points higher'));
+      expect(copy.comparisonSummary?.id, isNotNull);
+      expect(copy.summaryReason.id, copy.comparisonSummary?.id);
+      expect(
+        copy.observations.map((part) => part.id),
+        contains(MoveExplanationCopyId.observationAnchors),
+      );
+      expect(
+        copy.observations.every((part) => !part.arguments.containsKey('text')),
+        isTrue,
+      );
+      final replyExample = copy.observations.firstWhere(
+        (part) => part.id == MoveExplanationCopyId.observationReplyHit,
+      );
+      expect(replyExample.arguments['exampleDieOne'], isA<int>());
+      expect(replyExample.arguments['exampleDieTwo'], isA<int>());
+      expect(replyExample.arguments['examplePoint'], isA<int>());
+      expect(
+        copy.comparisonDetail?.arguments['winChanceDeltaPercentagePoints'],
+        closeTo(10, 1e-9),
+      );
+      expect(copy.comparisonDetail?.arguments['winChanceIsHigher'], isTrue);
+      expect(copy.comparisonDetail?.parts.first.id, copy.comparisonSummary?.id);
+    },
+  );
 }

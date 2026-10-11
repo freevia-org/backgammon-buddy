@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Numery pól w uwagach szkoleniowych liczy się od pola domowego gracza wykonującego ruch.",
   "tutorHittingRollNote": "Liczba rzutów umożliwiających zbicie obejmuje wszystkie 36 uporządkowanych wyników kości oraz legalne zbicia bezpośrednie i pośrednie; są to możliwości, a nie prognoza wyboru przeciwnika.",
   "tutorNoEvaluatedAlternatives": "Brak ocenionych alternatyw dla tego ruchu.",
-  "tutorForcedPassNoDecision": "Przymusowe pasowanie nie wiąże się z wyborem ruchu pionkami."
+  "tutorForcedPassNoDecision": "Przymusowe pasowanie nie wiąże się z wyborem ruchu pionkami.",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "settingsReset": "Resetuj",
+  "settingsAppLanguage": "Język aplikacji",
+  "settingsTheme": "Motyw",
+  "settingsThemeSystem": "Systemowy",
+  "settingsThemeLight": "Jasny",
+  "settingsThemeDark": "Ciemny",
+  "settingsAnimationSpeed": "Szybkość animacji",
+  "settingsAnimationNone": "Brak",
+  "settingsAnimationNormal": "Normalna",
+  "settingsAnimationFast": "Szybka",
+  "settingsDiceRollAnimation": "Animacja rzutu kośćmi",
+  "settingsDiceRollAnimationHelp": "Poturlaj kości przed każdym rzutem",
+  "settingsDefaultMatchLength": "Domyślna długość meczu",
+  "settingsDefaultDifficulty": "Domyślny poziom trudności",
+  "settingsDifficultyEasy": "Łatwy",
+  "settingsDifficultyMedium": "Średni",
+  "settingsDifficultyHard": "Trudny",
+  "settingsDifficultyExpert": "Ekspert",
+  "settingsTutorModeDefault": "Domyślny tryb tutora",
+  "settingsTutorAuto": "Automatycznie",
+  "settingsTutorOn": "Włączony",
+  "settingsTutorOff": "Wyłączony",
+  "settingsTutorModeHelp": "Tryb automatyczny włącza tutora przy każdym poziomie trudności komputera. Opcje Włączony i Wyłączony określają początkowy wybór w lokalnych meczach. Mecze w pobliżu i online nie są wspomagane; zapisane partie można później przejrzeć. Poniższe preferencje nauki są zapisywane na tym urządzeniu.",
+  "settingsTutorPreferences": "Preferencje tutora",
+  "settingsTutorPreferencesSubtitle": "Domyślne ustawienia przyszłych meczów",
+  "settingsTutorSaveError": "Nie udało się zapisać preferencji tutora.",
+  "settingsGameplay": "Rozgrywka",
+  "settingsMoveHighlights": "Podświetlanie ruchów",
+  "settingsMoveHighlightsHelp": "Obrysowuje pionki, którymi można ruszyć, i podświetla pola docelowe",
+  "settingsDragToMove": "Przeciągnij, aby przesunąć",
+  "settingsDragToMoveHelp": "Przeciągnij pionek na pole docelowe (stuknięcia też działają)",
+  "settingsCombinedMoves": "Łączenie ruchów",
+  "settingsCombinedMovesHelp": "Jedno stuknięcie przesuwa pionek o wartości z obu kości",
+  "settingsRotateBoard": "Obracaj planszę między turami",
+  "settingsRotateBoardHelp": "Gra na zmianę: obróć widok dla aktywnego gracza",
+  "settingsPassDevice": "Ekran przekazania urządzenia",
+  "settingsPassDeviceHelp": "Zasłoń planszę między turami w grze na zmianę",
+  "settingsShowScore": "Pokaż wynik",
+  "settingsShowScoreHelp": "Wyświetlaj bieżący wynik meczu w nagłówku",
+  "settingsBuddyMode": "Styl Buddy’ego",
+  "settingsBuddyTerse": "Zwięzły",
+  "settingsBuddyFriendly": "Przyjazny",
+  "settingsBuddyTerseHelp": "Jak Buddy wypowiada ruch: „13/8, 24/22” — zapis, którym posługują się gracze przy planszy.",
+  "settingsBuddyFriendlyHelp": "Jak Buddy wypowiada ruch: „Przesuń jeden pionek z 13 na 8, a drugi z 24 na 22”.",
+  "settingsListenForDice": "Nasłuchuj kości",
+  "settingsListenForDiceHelp": "Buddy szybciej analizuje planszę, gdy usłyszy rzut. Wyłączenie tej opcji nie zmienia niczego innego.",
+  "settingsDiagnostics": "Diagnostyka",
+  "settingsErrorLog": "Dziennik błędów",
+  "settingsErrorLogHelp": "Ostatnie błędy, gotowe do skopiowania do zgłoszenia błędu",
+  "settingsReportBug": "Zgłoś błąd",
+  "settingsReportBugHelp": "Otwórz formularz zgłoszenia na GitHubie",
+  "settingsSuggestIdea": "Zaproponuj pomysł",
+  "settingsSuggestIdeaHelp": "Pomóż nam ulepszyć tutora i grę",
+  "settingsAbout": "Informacje",
+  "settingsOpenSourceLicenses": "Licencje open source",
+  "tutorPhraseGameFinished": "Partia zakończona.",
+  "tutorPhraseReviewFinishedGame": "Przejrzyj ruchy, aby znaleźć decyzję do przećwiczenia.",
+  "tutorPhraseCubeOffered": "Zaproponowano podwojenie stawki.",
+  "tutorPhraseCubeDecisionPrompt": "Zdecyduj, czy przyjąć podwojenie, czy spasować, zanim zaplanujesz ruch pionkami.",
+  "tutorPhraseCubeScoreContext": "Wynik meczu wpływa na wartość dodatkowej stawki.",
+  "tutorPhraseResignationOffered": "Przeciwnik zaproponował poddanie partii.",
+  "tutorPhraseResignationDecisionPrompt": "Przed przyjęciem poddania lub dalszą grą porównaj proponowaną liczbę punktów z pozycją.",
+  "tutorPhraseNoLegalPlay": "Przy tym rzucie nie ma legalnego ruchu.",
+  "tutorPhraseForcedPassPrompt": "Przymusowe pasowanie nie jest błędem; poczekaj na kolejny rzut.",
+  "tutorPhraseOnlyOneResult": "Możliwa jest tylko jedna legalna pozycja po ruchu.",
+  "tutorPhraseForcedTurnPrompt": "Wykonaj wymuszony ruch. Przy tym rzucie nie ma wyboru do oceny.",
+  "tutorPhrasePipCountsLevel": "Liczba pipów jest taka sama.",
+  "tutorPhrasePipCountsAhead": "Masz przewagę {count} pipów.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "Masz stratę {count} pipów.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "{count} pionków na barze: najpierw musisz je wprowadzić do gry.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Najpierw wprowadź pionki z baru, a dopiero potem ruszaj pozostałymi; wybierz bezpieczne pole docelowe.",
+  "tutorPhraseOpponentHomePoints": "Przeciwnik ma {count} zamkniętych pól w swojej bazie.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Wyścig do zdjęcia pionków z planszy.",
+  "tutorPhrasePureRace": "Czysty wyścig.",
+  "tutorPhraseBearOffSpread": "Zdejmuj pionki z planszy, zachowując przydatne rozłożenie na następny rzut.",
+  "tutorPhraseBringRearCheckersHome": "Przesuwaj tylne pionki do bazy, nie gromadząc zbyt wielu na jednym polu.",
+  "tutorPhraseArmiesHavePassed": "Pionki minęły się; nie można już nikogo zbić.",
+  "tutorPhraseContactStillMatters": "{part} Kontakt nadal ma znaczenie.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "Przeciwnik ma {count} pionków na barze.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Utrzymuj zamknięte pola, sprowadzając pozostałe pionki do bazy.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Buduj lub utrzymuj zamkniętą bazę, gdy przeciwnik próbuje wprowadzić pionki.",
+  "tutorPhraseHomePointsCloseEntries": "Masz {count} zamkniętych pól w bazie; każde blokuje jedną możliwość wejścia.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Kontakt z ciągiem {count} kolejnych zamkniętych pól.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Rozważ, czy przedłużyć blokadę, czy zachować zapasowe pionki, które pomogą ją utrzymać.",
+  "tutorPhraseSpareCheckersCanMove": "{count} zapasowych pionków może się ruszyć bez natychmiastowego otwierania pola.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Kontakt z kotwicą na polach {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Porównaj sprowadzanie tylnych pionków do bazy z bezpieczeństwem, jakie daje utrzymanie kotwicy.",
+  "tutorPhraseCompareAnchorProgressBehind": "Pamiętaj o bezpiecznym przyczółku, szukając możliwości zbicia lub poprawy swojej bazy.",
+  "tutorPhrasePreserveAnchorFoothold": "Kotwicy nie można zbić, ale pionki nadal mają daleką drogę do bazy.",
+  "tutorPhraseContactThreats": "Jest kontakt: obaj gracze nadal mogą grozić zbiciem.",
+  "tutorPhraseLookForPointsAndSafety": "Szukaj przydatnych zamkniętych pól, a potem oceń ryzyko pozostawienia odsłoniętych pojedynczych pionków.",
+  "tutorPhraseHomePointsAndBlots": "Masz {count} zamkniętych pól w bazie i pozostawiasz {otherCount} odsłoniętych pionków.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Wybierz pionek, aby rozpocząć ruch.",
+  "tutorPhraseLegalPlayPrompt": "Rozpocznij legalny ruch, aby zobaczyć komentarz.",
+  "tutorPhraseStagedHit": "Zbijasz {count, plural, one{jeden pionek przeciwnika} few{{count} pionki przeciwnika} many{{count} pionków przeciwnika} other{{count} pionka przeciwnika}}.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "{count, plural, one{Wprowadzasz z baru jeden pionek} few{Wprowadzasz z baru {count} pionki} many{Wprowadzasz z baru {count} pionków} other{Wprowadzasz z baru {count} pionka}}.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Zdejmujesz z planszy {count, plural, one{jeden pionek} few{{count} pionki} many{{count} pionków} other{{count} pionka}}.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Zamykasz pola {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Pojedynczy pionek na twoim polu {point} jest teraz odsłonięty.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "Zapasowy pionek na twoim polu {point} może ruszyć się później bez otwierania tego pola.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Wykorzystaj pozostałe możliwe do zagrania kości, zanim ocenisz cały ruch.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Wszystkie 15 pionków jest już zdjętych z planszy: wygrywasz partię.",
+  "tutorPhraseStagedHitShortPlan": "Zbicie zyskuje czas, gdy przeciwnik próbuje ponownie wejść do gry.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Efektywne zdejmowanie pionków z planszy zostawia przydatne wartości na kolejny rzut.",
+  "tutorPhraseStagedRaceHomePlan": "W wyścigu sprowadzaj tylne pionki do bazy i zachowuj przydatne pola do zdejmowania pionków.",
+  "tutorPhraseStagedBearOffContactPlan": "Zdejmowanie pionków z planszy daje postęp, ale pozostały kontakt nadal grozi zbiciem.",
+  "tutorPhraseStagedReentryPlan": "Wejście z baru przywraca pionek do gry; potem poszukaj bezpiecznego pola docelowego.",
+  "tutorPhraseStagedHomeBoardPlan": "Nowe zamknięte pole w twojej bazie blokuje jedną możliwość wejścia po ewentualnym zbiciu.",
+  "tutorPhraseStagedPrimePlan": "Dłuższa blokada zamyka więcej pól do lądowania; zapasowe pionki pomagają ją utrzymać.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Opuszczenie kotwicy daje postęp, ale odbiera bezpieczny przyczółek.",
+  "tutorPhraseStagedNewAnchorPlan": "Nowa kotwica daje tylnym pionkom bezpieczny przyczółek.",
+  "tutorPhraseStagedCoverBlotPlan": "Osłonięcie odsłoniętego pionka odbiera przeciwnikowi cel.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "To kompromis między rozwojem a bezpieczeństwem: przydatne pionki budujące pozycję mogą stać się celem.",
+  "tutorPhraseStagedCompletePrompt": "{part} Cały ruch jest gotowy; naciśnij Potwierdź, aby go wykonać.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Przy tym rzucie nie ma wyboru ruchu pionkami, więc nie jest on oceniany jako decyzja.",
+  "tutorMoveTopVerdict": "Najlepszy wybór w tej pozycji.",
+  "tutorMoveAlternativeVerdict": "Silnik w tej pozycji preferuje inny ruch.",
+  "tutorMoveEstimateDifference": "Różnica względem najlepszego ruchu: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Po tym ruchu: szacunkowa szansa na wygraną {winPercent}%, na wygraną z gammonem lub lepiej {winGammonPercent}%, a na przegraną z gammonem lub gorzej {loseGammonPercent}%. To szacunki z perspektywy wykonującego ruch.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Szacowana szansa na wygranie meczu: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Wszystkie 15 pionków jest zdjętych z planszy: partia wygrana.",
+  "tutorMovePlanHit": "Wykorzystaj zbicie, aby zyskać czas, gdy przeciwnik wraca do gry. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Utrzymuj zamknięte pola w swojej bazie, by utrudnić przeciwnikowi wejście.",
+  "tutorMovePlanHitBuild": "Zamknij więcej pól w swojej bazie, aby trudniej było przeciwnikowi odrobić straty po kolejnych zbiciach.",
+  "tutorMovePlanRaceBearOff": "Dąż do sprawnego zdjęcia pionków: zdejmuj je z planszy, zachowując przydatne wyniki na następny rzut.",
+  "tutorMovePlanRaceHome": "Przesuń tylne pionki do bazy i rozstaw je na polach przydatnych do zdejmowania.",
+  "tutorMovePlanContactBearOff": "Zdejmuj pionki z planszy, ale pilnuj tylnych pionków przeciwnika: dopóki jest kontakt, samotny pionek podczas zdejmowania może stać się celem.",
+  "tutorMovePlanReentry": "Wróć do gry, a potem poszukaj bezpiecznego pola dla wprowadzonego pionka.",
+  "tutorMovePlanHomeBoard": "Wzmocnij swoją bazę. Nowe zamknięte pole zwiększy skuteczność przyszłego zbicia, blokując jedną możliwość wejścia.",
+  "tutorMovePlanPrime": "Utrzymuj spójny ciąg zamkniętych pól. Zachowaj zapasowe pionki, aby kolejne rzuty nie zmusiły cię do otwarcia blokady.",
+  "tutorMovePlanLeaveAnchor": "Opuszczenie kotwicy przesuwa tylne pionki do przodu, ale odbiera bezpieczny przyczółek. Uważaj, by nie zostały zbite po drodze do bazy.",
+  "tutorMovePlanNewAnchor": "Wykorzystaj nową kotwicę jako bezpieczny przyczółek, poprawiając resztę pozycji.",
+  "tutorMovePlanCoverBlot": "Zbierz pionki. Osłonięcie odsłoniętego pionka usuwa go z celownika przeciwnika i zachowuje przydatne pola lądowania na przyszłość.",
+  "tutorMovePlanSafety": "Równoważ rozwój i bezpieczeństwo: przesuwaj pionki budujące pozycję w stronę przydatnych pól i sprawdzaj, które pojedyncze pionki można zbić.",
+  "tutorMoveObservationNoLegalPlay": "Brak legalnego ruchu pionkiem: musisz spasować.",
+  "tutorMoveObservationHit": "Zbijasz {count, plural, one{jeden pionek przeciwnika} few{{count} pionki przeciwnika} many{{count} pionków przeciwnika} other{{count} pionka przeciwnika}}; przeciwnik musi najpierw wejść pionkami z baru, zanim ruszy pozostałe.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "{count, plural, one{Wprowadzasz jeden pionek z baru.} few{Wprowadzasz {count} pionki z baru.} many{Wprowadzasz {count} pionków z baru.} other{Wprowadzasz {count} pionka z baru.}}",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Zdejmujesz z planszy {count, plural, one{jeden pionek} few{{count} pionki} many{{count} pionków} other{{count} pionka}}.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Zamykasz pola {points}. Co najmniej dwa pionki zajmują bezpieczne pole i blokują tam lądowanie przeciwnika.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Otwierasz zamknięte pola ({pointLabel}): {points}. Nie blokują już przeciwnikowi lądowania.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Nie zostawiasz odsłoniętych pojedynczych pionków (wcześniej: {previousCount}). Przeciwnik nie ma pionków do zbicia.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Zostawiasz {count, plural, one{jeden odsłonięty pionek} few{{count} odsłonięte pionki} many{{count} odsłoniętych pionków} other{{count} odsłoniętego pionka}} (wcześniej: {previousCount}). Sprawdź, czy przeciwnik może do nich dotrzeć, zanim wybierzesz bezpieczeństwo zamiast innej korzyści.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Najdłuższy ciąg zamkniętych pól: {count} (wcześniej: {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Nie da się przekroczyć ściany z sześciu zamkniętych pól, dopóki pozostaje nienaruszona.",
+  "tutorMoveObservationPrimeBuild": "Trzymaj pionki do budowania pozycji w pobliżu, jeśli chcesz przedłużyć lub zachować ten ciąg.",
+  "tutorMoveObservationPrimeSpares": "Liczba zapasowych pionków poza dwoma utrzymującymi zamknięte pola: {count}. Ruch zapasowym pionkiem może zachować pole; ruch jednym z dwóch ostatnich je otworzy.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Kotwice w bazie przeciwnika: {points} (wcześniej: {previousPoints}). Zachowanie kotwicy chroni te pionki przed zbiciem; jej opuszczenie zamienia bezpieczny przyczółek na postęp w wyścigu.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Czysty wyścig: pionki minęły się i żaden gracz nie ma pionków na barze. Zbijanie nie jest już możliwe; liczy się sprawne zdejmowanie pionków.",
+  "tutorMoveObservationNoReplyHit": "W tej pozycji żaden legalny następny rzut nie pozwala przeciwnikowi zbić pionka. Kontakt nadal istnieje, więc kolejne ruchy mogą stworzyć nowe okazje do zbicia.",
+  "tutorMoveObservationReplyHit": "Przeciwnik może zbić pionek przy {count} z {total} rzutów. Na przykład {dieOne}–{dieTwo} pozwala legalnie zbić pionek na twoim polu {point}. To tylko możliwość, nie pewność, że przeciwnik ją wybierze.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Zamknięte pola w twojej bazie: {closedPoints}. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Przeciwnik nie może wejść, dopóki któreś pole się nie otworzy.",
+  "tutorMoveObservationOpenEntry": "Rzut pozwalający wejść na otwarte pole może sprowadzić pionek z baru do gry.",
+  "tutorMoveComparisonDetail": "{factors} Szansa na wygraną przy najlepszym ruchu jest {direction} o {delta} punktów procentowych.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "większa",
+  "tutorMoveComparisonLower": "mniejsza",
+  "tutorMoveComparisonScoreContext": " Może mimo to być oceniany wyżej, ponieważ gammon i backgammon mają inną wartość zależnie od {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "wysokości stawki",
+  "tutorMoveComparisonMatchScore": "wyniku meczu",
+  "tutorMoveComparisonFactorBar": "Liczba pionków przeciwnika na barze po najlepszym ruchu: {bestCount}, zamiast {playedCount}. Pionek na barze musi wejść, zanim przeciwnik będzie mógł ruszyć pozostałe.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Liczba zamkniętych pól w twojej bazie po najlepszym ruchu: {bestCount}, zamiast {playedCount}. Po zbiciu {entryDifference}.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "więcej możliwości wejścia będzie zablokowanych",
+  "tutorMoveComparisonLeavingMore": "więcej możliwości wejścia pozostanie otwartych",
+  "tutorMoveComparisonFactorShots": "Najlepszy ruch pozwala na zbicie w odpowiedzi przy {bestCount} z 36 rzutów, zamiast {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "To zmniejsza bezpośrednie ryzyko odesłania pionka na bar.",
+  "tutorMoveComparisonExtraExposure": "Porównaj dodatkowe ryzyko odsłonięcia z korzyściami, jakie ruch przynosi w innych aspektach.",
+  "tutorMoveComparisonFactorPrime": "Najdłuższy ciąg zamkniętych pól ma {bestCount} po najlepszym ruchu, zamiast {playedCount}. Porównaj długość blokady z liczbą pionków, które mogą ją utrzymać.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Kotwice po najlepszym ruchu: {bestPoints}, zamiast {playedPoints}. Zachowanie kotwicy daje bezpieczne pole lądowania; jej opuszczenie przybliża te pionki do bazy.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Liczba pionków zdjętych z planszy po najlepszym ruchu: {bestCount}, zamiast {playedCount}. Każdy zdjęty pionek to jeden mniej do zdjęcia później.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Oba ruchy pozostawiają takie samo bezpośrednie ryzyko zbicia, tyle samo zamkniętych pól w bazie, kotwic i zdjętych pionków. Porównaj pola lądowania: kolejny rzut może inaczej wykorzystać te pionki.",
+  "tutorMoveComparisonSummaryBar": "Najlepszy ruch umieszcza więcej pionków przeciwnika na barze, opóźniając jego pozostałe ruchy.",
+  "tutorMoveComparisonSummaryHomeBoard": "Najlepszy ruch zamyka więcej pól w bazie i utrudnia wejście po zbiciu.",
+  "tutorMoveComparisonSummaryShots": "Najlepszy ruch dopuszcza mniej natychmiastowych okazji do zbicia, zmniejszając ryzyko odesłania pionka.",
+  "tutorMoveComparisonSummaryPrime": "Najlepszy ruch zachowuje dłuższy ciąg zamkniętych pól.",
+  "tutorMoveComparisonSummaryAnchors": "Najlepszy ruch zachowuje więcej bezpiecznych kotwic w bazie przeciwnika.",
+  "tutorMoveComparisonSummaryBearOff": "Najlepszy ruch zdejmuje więcej pionków z planszy, więc później zostaje ich mniej.",
+  "tutorMoveComparisonSummaryBlots": "Liczba odsłoniętych pojedynczych pionków: {playedCount} po tym ruchu, {bestCount} po najlepszym.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Najlepszy ruch zachowuje bezpieczną kotwicę na polu {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Najlepszy ruch zamyka więcej pól wejścia na wypadek zbicia twojego pionka.",
+  "tutorMoveComparisonSummarySimilarRisks": "Ruchy pozostawiają podobne bezpośrednie ryzyko; porównaj, które pola lądowania pozostaną przydatne przy następnym rzucie.",
+  "tutorMoveAssessmentEquityLoss": "Utrata equity: {value}",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} pp szansy na wygranie meczu (MWC)",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "pole",
+  "tutorMovePointPlural": "pola",
+  "tutorMoveNoPoints": "żadne",
+  "gameTutorCommentaryOff": "Komentarz do gry jest wyłączony.",
+  "gameTutorToolsAvailable": "Otwórz tutora, aby skorzystać z włączonych narzędzi.",
+  "gameTutorNextRoll": "Rzuć ponownie.",
+  "gameTutorNoEvaluatedReview": "Brak ocenionego wyjaśnienia dla tego zapisanego ruchu.",
+  "gameTutorAnalysisUnavailable": "analiza niedostępna",
+  "gameTutorReviewing": "analiza w toku…",
+  "gameTutorTryYourPlayFirst": "Najpierw spróbuj wykonać własny ruch.",
+  "gameTutorKeepBuilding": "Dokończ swój ruch.",
+  "gameTutorStageCompleteBeforeCoaching": "Przygotuj pełny legalny ruch, zanim odkryjesz wskazówki lub podpowiedzi.",
+  "gameTutorReadyToConfirm": "Gotowe do potwierdzenia",
+  "gameTutorPlayTakingShape": "Twój ruch nabiera kształtu.",
+  "gameTutorConfirmOrUndo": "Potwierdź, aby wykonać ruch, albo cofnij go i zastanów się ponownie.",
+  "gameTutorFinishDiceOrUndo": "Wykorzystaj pozostałe kości albo cofnij ruch.",
+  "gameTutorComputerConsidering": "Komputer zastanawia się nad swoim ruchem.",
+  "gameTutorComputerPlayReviewed": "Ukończony ruch komputera zostanie omówiony tutaj.",
+  "gameTutorYourPlay": "Twój ruch",
+  "gameTutorComputer": "Komputer",
+  "gameTutorPlayQuality": "Twój ruch: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "wymuszony ruch",
+  "gameTutorTopChoice": "najlepszy wybór",
+  "gameTutorSoundPlay": "dobry ruch",
+  "gameTutorAnotherPlayMayFitBetter": "inny ruch może lepiej pasować",
+  "gameTutorAnotherPlayFitsBetter": "inny ruch lepiej pasuje do tej pozycji",
+  "gameTutorStrongerPlayAvailable": "dostępny był zdecydowanie lepszy ruch",
+  "gameTutorPositionEdge": "{side} ma szacowaną przewagę.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Pozycja jest mniej więcej wyrównana.",
+  "tutorPlayedMove": "Zagrano: {move}",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorBestMove": "Najlepszy ruch: {move}",
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorShowRankedPlays": "Pokaż ranking ruchów",
+  "tutorReviewRecordedMove": "Dotknij zakończonego ruchu w dzienniku, aby przejrzeć tutaj tę decyzję.",
+  "tutorTopPlays": "Najlepsze ruchy",
+  "tutorNoHintsAvailable": "Brak podpowiedzi.",
+  "tutorPreviewThenConfirm": "Dotknij ruchu, aby wyświetlić go na planszy, a następnie zatwierdź.",
+  "tutorTopChoiceForPosition": "Najlepszy wybór w tej pozycji",
+  "tutorAlternativePlay": "Alternatywny ruch",
+  "tutorEngineEstimates": "Oceny silnika",
+  "tutorEstimateScope": "Szacunek 0-ply · aktualny wynik i stawka · bez przyszłych decyzji o podwojeniu",
+  "tutorEquity": "Oczekiwana wartość",
+  "tutorMwcPercent": "MWC %",
+  "tutorNearTiesNote": "Przy niemal równych ruchach głębsza analiza może zmienić kolejność.",
+  "tutorWhyThisPlay": "Dlaczego ten ruch?",
+  "tutorCompareAlternative": "Porównaj tę alternatywę",
+  "gameTutorCubeTake": "Tutor: przyjmij",
+  "gameTutorCubePass": "Tutor: pasuj",
+  "practiceScreenTitle": "Ćwicz decyzję",
+  "practiceUnavailable": "Ta pozycja treningowa nie jest już dostępna.",
+  "practiceSubmitError": "Nie udało się ocenić ani zapisać tej próby. Twój postęp się nie zmienił. Spróbuj ponownie.",
+  "practiceTurnLabel": "Ruch wykonuje {side} · {dice}",
+  "practiceHistoricalScoreUnavailable": "Brak historycznego wyniku; ocena używa equity bez kostki.",
+  "practiceScoreLine": "Wynik: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, do {matchLength}",
+  "practiceCrawfordGame": " · partia Crawforda",
+  "practiceNoDoublingCube": "Bez kostki podwajającej.",
+  "practiceCubeValue": "Kostka {value}.",
+  "practiceHistoricalCubeUnknown": "Nieznane historyczne zasady kostki.",
+  "practiceAfterBestPosition": "Pozycja po najlepszym ruchu",
+  "practiceAfterYourAnswerPosition": "Pozycja po twojej odpowiedzi",
+  "practiceFindYourPlayPrompt": "Wykonaj ruch na planszy, a potem sprawdź odpowiedź. Podpowiedzi nie są wyświetlane.",
+  "practiceUndo": "Cofnij",
+  "practiceCheckAnswer": "Sprawdź odpowiedź",
+  "practiceRevealNoCredit": "Pokaż odpowiedź (bez punktów)",
+  "practiceAnswerRevealedNoCredit": "Odpowiedź ujawniona — bez punktów za przypomnienie.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "practiceBestMoveLine": "Najlepszy: {move}",
+  "practiceOriginalGameLine": "Oryginalna partia: {move} · {loss}",
+  "practiceYourAnswerLine": "Twoja odpowiedź: {move}",
+  "practiceYourAnswerChip": "Twoja odpowiedź",
+  "practiceBestPlayChip": "Najlepszy ruch",
+  "practiceNextReview": "Następna powtórka: {date}.",
+  "practiceRecallCredit": "Najlepsze i dobre odpowiedzi liczą się jako skuteczne przypomnienie. Wcześniejsze powtórki nie przyspieszają harmonogramu.",
+  "practiceBackToLearning": "Wróć do nauki",
+  "practiceMarkBest": "Najlepszy",
+  "practiceMarkGood": "Dobry",
+  "practiceMarkDubious": "Wątpliwy",
+  "practiceMarkError": "Błąd",
+  "practiceMarkBlunder": "Rażący błąd",
+  "practiceMarkForced": "Wymuszony",
+  "newMatchYourSide": "Twoja strona",
+  "newMatchTutorMode": "Tryb tutora",
+  "newMatchTutorDescription": "Ucz się dzięki podpowiedziom, wyjaśnieniom i komentarzom do partii",
+  "newMatchTutoringOptions": "Opcje nauki z tutorem",
+  "newMatchTutoringOptionsDescription": "Dla tej partii; można je zmienić podczas gry",
+  "setupMatchLength": "Długość meczu",
+  "setupDifficulty": "Poziom trudności",
+  "setupDifficultyEasy": "Łatwy",
+  "setupDifficultyMedium": "Średni",
+  "setupDifficultyHard": "Trudny",
+  "setupDifficultyExpert": "Ekspert",
+  "setupPlayWithoutCube": "Graj bez kostki",
+  "setupNoCubeThisMatch": "W tym meczu nie ma kostki podwajającej",
+  "analysisTitle": "Analiza",
+  "gameMatchSummary": "Podsumowanie meczu",
+  "gameAnalyzeGame": "Analizuj partię",
+  "analysisMetricsTooltip": "Co oznaczają te liczby?",
+  "analysisError": "Nie udało się przeanalizować partii: {error}",
+  "analysisNoPositions": "Brak pozycji do wyświetlenia w tej partii.",
+  "analysisInProgress": "Analizowanie partii…",
+  "analysisPercent": "{percent}%",
+  "analysisPlayed": "Zagrano",
+  "analysisBest": "Najlepszy",
+  "analysisPrevious": "Poprzednia",
+  "analysisNext": "Następna",
+  "analysisPositionBeforeCube": "Pozycja przed decyzją o kostce",
+  "analysisPositionAtPoint": "Pozycja w tym momencie partii",
+  "analysisShowingBestBefore": "Najlepszy ruch na pozycji przed ruchem",
+  "analysisShowingBefore": "Pozycja przed ruchem",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "analysisMoveLoss": " −{loss}",
+  "analysisExcludedFromAverages": " · pominięte w średniej",
+  "analysisNoPlay": "(brak ruchu)",
+  "analysisBestMoveLine": "Najlepszy ruch: {move}",
+  "analysisExplain": "Wyjaśnij",
+  "analysisSaveForPractice": "Zapisz do ćwiczeń",
+  "analysisSaveError": "Nie udało się zapisać tej decyzji: {error}",
+  "analysisCubeInfo": "{side}: {action} · {mark} · strata {loss}",
+  "analysisCubeDecision": "Decyzja o kostce",
+  "analysisCubePlayed": "Zagrano: {action} (szansa wygrania meczu: {percent}%).",
+  "analysisCubeBest": "Najlepszy: {action} (szansa wygrania meczu: {percent}%).",
+  "analysisClose": "Zamknij",
+  "analysisMoves": "Ruchy",
+  "analysisForced": "Wymuszony",
+  "analysisMarkBest": "Najlepszy",
+  "analysisMarkGood": "Dobry",
+  "analysisMarkDubious": "Wątpliwy",
+  "analysisMarkError": "Błąd",
+  "analysisMarkBlunder": "Rażący błąd",
+  "analysisSummaryMeanLoss": "Średnia strata {loss}",
+  "analysisSummaryCheckerDecisions": "{count} decyzji o ruchu",
+  "analysisSummaryBlunders": "Rażące błędy {count}",
+  "analysisSummaryCubeLoss": "Strata kostki {loss}",
+  "analysisRollWithoutDoubling": "{side} rzuca bez podwajania",
+  "metricExplainerTitle": "Jak rozumieć statystyki",
+  "metricExplainerTooltip": "Co oznaczają te liczby?",
+  "metricExplainerMwcTitle": "Szansa na wygranie meczu (MWC)",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "historyTitle": "Historia meczów",
+  "historyLoadFailed": "Nie udało się wczytać historii:\n{error}",
+  "historyEmpty": "Nie rozegrano jeszcze żadnego meczu.",
+  "historyDeleteConfirmTitle": "Usunąć ten mecz?",
+  "historyDeleteConfirmBody": "{scoreLine}\n\nMecz i wszystkie zapisane w nim partie zostaną trwale usunięte. Tej operacji nie można cofnąć.",
+  "actionCancel": "Anuluj",
+  "actionDelete": "Usuń",
+  "historyDeleteFailed": "Nie udało się usunąć meczu.",
+  "historyComplete": "Zakończony",
+  "historyWinner": "Wygrywa {side}",
+  "historyUnfinished": "Niezakończony",
+  "historyMatchTitle": "Mecz",
+  "historyMatchLoadFailed": "Nie udało się wczytać meczu:\n{error}",
+  "historyGamesLoadFailed": "Nie udało się wczytać partii:\n{error}",
+  "historyNoGames": "Nie zapisano jeszcze żadnej partii.",
+  "historyGameTitle": "Partia {number}",
+  "historyCrawford": "Crawford",
+  "historyScoreLine": "Białe {whiteScore} — {blackScore} Czarne (do {matchLength})",
+  "historyModeComputer": "z komputerem",
+  "historyModeTwoPlayers": "Dwóch graczy",
+  "historyModeOnline": "Online",
+  "historyModeNearby": "Gra w pobliżu",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "W toku",
+  "historyGameResult": "{side} wygrywa {points} ({outcome})",
+  "historyOutcomeSingle": "pojedyncza",
+  "historyOutcomeGammon": "gammon",
+  "historyOutcomeBackgammon": "backgammon",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "onlineTitle": "Graj online",
+  "onlineUnassistedNote": "Rozgrywki online nie mają bieżącego wsparcia tutora. Przejrzyj ruchy i poćwicz błędy po meczu.",
+  "onlineNotConfiguredTitle": "Gra online nie jest skonfigurowana w tej wersji",
+  "onlineNotConfiguredBody": "Ta wersja nie ma podłączonego Firebase, więc tworzenie i dołączanie do meczów jest niedostępne.",
+  "onlineErrorNoMatch": "Brak meczu o tym kodzie. Sprawdź go i spróbuj ponownie.",
+  "onlineErrorSeatTaken": "Ten mecz nie jest już otwarty — miejsce zostało zajęte.",
+  "onlineErrorPermission": "Nie masz dostępu do tego meczu.",
+  "onlineErrorGeneric": "Coś poszło nie tak. Spróbuj ponownie.",
+  "onlineMatchFinished": "Mecz się zakończył i nie można go wznowić.",
+  "onlineEnterCodeError": "Wpisz kod meczu.",
+  "onlineOpponentShort": "Przeciwnik",
+  "onlineMatchInProgress": "Mecz w toku",
+  "onlineResumePrompt": "Rozgrywasz mecz {code}.",
+  "onlineRejoin": "Wznów",
+  "onlineForgetMatch": "Zapomnij o tym meczu",
+  "onlineCreateTitle": "Utwórz mecz",
+  "onlineMatchLength": "Długość meczu",
+  "onlineNoCubeTitle": "Graj bez kostki",
+  "onlineNoCubeSubtitle": "W tym meczu nie ma kostki podwajającej",
+  "onlineCreate": "Utwórz",
+  "onlineWaitingOpponent": "Oczekiwanie na przeciwnika…",
+  "onlineShareCode": "Udostępnij kod",
+  "onlineCopyCode": "Kopiuj kod",
+  "onlineCodeCopied": "Kod skopiowany",
+  "onlineJoinTitle": "Dołącz do meczu",
+  "onlineRoomCode": "Kod meczu",
+  "onlineJoin": "Dołącz",
+  "lanTitle": "Graj w pobliżu",
+  "lanTabHost": "Hostuj",
+  "lanTabJoin": "Dołącz",
+  "lanUnassistedNote": "Lokalne rozgrywki nie mają bieżącego wsparcia tutora. Przejrzyj ruchy i poćwicz błędy po meczu.",
+  "lanGameStartFailed": "Nie udało się rozpocząć gry. Drugie urządzenie może spróbować dołączyć ponownie.",
+  "lanHostPortInUse": "Nie udało się uruchomić hosta — port jest już zajęty. Zamknij inne kopie Backgammon Buddy i spróbuj ponownie.",
+  "lanHostStartFailed": "Nie udało się uruchomić hosta. Sprawdź Wi-Fi i spróbuj ponownie.",
+  "lanHostTitle": "Hostuj grę",
+  "lanStartHosting": "Rozpocznij hostowanie",
+  "lanHostHelp": "Oba urządzenia muszą być w tej samej sieci Wi-Fi. To urządzenie rzuca kośćmi i prowadzi wynik.",
+  "lanWaitingPlayerTitle": "Oczekiwanie na gracza",
+  "lanRoomCodeInfo": "Podaj ten kod drugiemu graczowi. Umożliwia dołączenie; aplikacja nigdy nie wysyła go przez sieć.",
+  "lanWaitingPlayer": "Oczekiwanie na gracza…",
+  "lanStopHosting": "Zatrzymaj hostowanie",
+  "lanFindNearbyPort": "Poproś drugie urządzenie o wyszukanie gier w pobliżu. Nasłuchiwanie na porcie {port}.",
+  "lanOnNetwork": "W tej sieci",
+  "lanCopyAddress": "Kopiuj adres",
+  "lanAddressCopied": "Adres skopiowany",
+  "lanScanHostTitle": "Skanuj hosta",
+  "lanScanHostHelp": "Drugie urządzenie pokazuje kod QR na ekranie hosta. Skanowanie uzupełni adres i kod pokoju.",
+  "lanScanQr": "Skanuj kod QR",
+  "lanScannerUnavailable": "Aparat lub uprawnienie jest niedostępne. Wpisz poniżej adres i kod pokoju.",
+  "lanInvalidQr": "Ten kod QR nie pochodzi z Backgammon Buddy. Zeskanuj kod z ekranu hosta drugiego urządzenia.",
+  "lanScannerFailed": "Nie udało się otworzyć skanera. Wpisz poniżej adres i kod.",
+  "lanNearbyGames": "Gry w pobliżu",
+  "lanSearching": "Wyszukiwanie gier w pobliżu…",
+  "lanNoGamesFound": "Nie znaleziono gier. Upewnij się, że drugie urządzenie hostuje, a oba są w tej samej sieci Wi-Fi, albo wpisz poniżej jego adres.",
+  "lanStillSearching": "Wyszukiwanie trwa…",
+  "lanEnterAddress": "Wpisz adres",
+  "lanEnterAddressHelp": "Automatyczne wykrywanie nie działa w każdej sieci i może być całkowicie zablokowane w iOS. Ekran hosta pokazuje, co wpisać.",
+  "lanIpAddress": "Adres IP",
+  "lanPort": "Port",
+  "lanInvalidPort": "Wpisz port z zakresu od 1 do 65535.",
+  "lanEnterAddressError": "Wpisz adres wyświetlony na drugim urządzeniu.",
+  "lanEnterRoomCodeError": "Wpisz 4-cyfrowy kod z drugiego urządzenia.",
+  "lanJoinWrongCode": "Nieprawidłowy kod pokoju. Sprawdź cztery cyfry.",
+  "lanJoinVersionMismatch": "Drugie urządzenie ma inną wersję Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "To urządzenie nie odpowiada jak Backgammon Buddy. Sprawdź adres i port.",
+  "lanJoinFailed": "Nie udało się dołączyć. Sprawdź adres i kod, a następnie spróbuj ponownie.",
+  "lanJoinTarget": "Dołącz do {name}",
+  "lanJoinTargetHelp": "Wpisz 4-cyfrowy kod wyświetlony na drugim urządzeniu.",
+  "lanJoiningTarget": "Łączenie z {name}",
+  "lanConnect": "Połącz",
+  "lanBack": "Wstecz",
+  "lanTryAgain": "Spróbuj ponownie",
+  "lanStatusBusy": "Pokój zajęty — oczekiwanie…",
+  "lanStatusReconnecting": "Połączenie utracone — ponawianie…",
+  "lanStatusConnected": "Połączono — uruchamianie meczu…",
+  "lanStatusFailed": "Nie udało się dołączyć.",
+  "lanStatusConnecting": "Łączenie…",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "learningRefreshTooltip": "Odśwież postępy nauki",
+  "learningOptions": "Opcje nauki",
+  "learningResetMenu": "Zresetuj postępy ćwiczeń",
+  "learningLoadFailed": "Nie udało się wczytać postępów nauki.",
+  "actionRetry": "Spróbuj ponownie",
+  "learningHeading": "Ucz się na podstawie swoich decyzji",
+  "learningIntro": "Postępy są przechowywane na tym urządzeniu. Przejrzyj powtarzające się tematy, a potem ponownie rozegraj zapisane pozycje bez podglądania odpowiedzi. Białe i Czarne możesz przeglądać osobno.",
+  "learningBothSides": "Obie strony",
+  "learningHumansOnly": "Tylko decyzje ludzi",
+  "learningHumanOnlyHelp": "Wyłącz, aby uwzględnić decyzje komputera i graczy zdalnych",
+  "learningDecisionSummary": "{decisions} decyzji · {mistakes} do poprawy · {blunders} rażących błędów",
+  "learningAverageLoss": "Średnia strata ({decisions} decyzji): {loss}",
+  "learningForcedDisclaimer": "Wymuszone ruchy są pomijane. To szacunki silnika, a nie ranking turniejowy.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Zapisana partia wymaga analizy lub ponownej analizy.} other{Zapisane partie wymagają analizy lub ponownej analizy.}}",
+  "learningAnalyseSavedGames": "Analizuj zapisane partie",
+  "learningEmptyProfile": "Rozegraj i ukończ partię, aby zbudować profil nauki. Możesz też zapisywać pojedyncze decyzje z powtórki.",
+  "learningOpenHistory": "Otwórz historię meczów",
+  "learningRecurringThemes": "Powtarzające się tematy",
+  "learningNoThemes": "W tym wyborze nie ma jeszcze powtarzających się tematów błędów.",
+  "learningThemeDecisions": "{count} decyzji do ponownego przejrzenia. Jedna pozycja może mieć kilka tematów.",
+  "learningSaveMistakes": "Zapisz te błędy do ćwiczeń",
+  "learningSavedMistakes": "{count} decyzji znajduje się na liście ćwiczeń. Wcześniej zapisane pozycje pozostają.",
+  "learningSaveMistakesFailed": "Nie udało się zapisać części decyzji. Zapisane pozycje pozostają; spróbuj ponownie.",
+  "learningSpacedPractice": "Nauka rozłożona w czasie",
+  "learningPracticeCounts": "{due} do powtórki · {saved} zapisanych · {attempts} prób · {successes} poprawnych przypomnień",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningIntervalsHelp": "Udane powtórki wracają po 1, 3, 7, 14 i 30 dniach. Błędy i ujawnione odpowiedzi wracają po 10 minutach. Wcześniejsze powtórki nie zmieniają odstępu.",
+  "learningAnswerContext": "Wyniki ćwiczeń odzwierciedlają twoje odpowiedzi tutaj, nawet jeśli pierwotna pozycja należała do przeciwnika.",
+  "learningNoSavedPositions": "Zapisz decyzję z powtórki albo użyj przycisku błędów powyżej.",
+  "learningPositionTitle": "Decyzja strony {side} · partia {gameId}",
+  "learningReviewDue": "Powtórka {date}",
+  "learningReadyToReview": "Gotowe do powtórki",
+  "learningSuccessStreak": "{count} udanych powtórek w terminie",
+  "learningRemoveTooltip": "Usuń zapisaną decyzję",
+  "learningRecentPractice": "Ostatnie ćwiczenia",
+  "learningAnswerRevealed": "Odpowiedź ujawniona",
+  "learningSuccessfulRecall": "Poprawne przypomnienie",
+  "learningTryAgain": "Spróbuj ponownie tej decyzji",
+  "learningAttemptSubtitle": "{date} · zapisana pozycja {positionId}",
+  "learningRemoveTitle": "Usunąć to ćwiczenie?",
+  "learningRemoveBody": "Usunie to próby ćwiczenia. Oryginalna partia pozostanie w historii.",
+  "actionRemove": "Usuń",
+  "learningRemoveFailed": "Nie udało się usunąć ćwiczenia.",
+  "learningResetTitle": "Zresetować postępy ćwiczeń?",
+  "learningResetBody": "Wszystkie próby i odstępy powtórek zostaną usunięte. Zapisane ćwiczenia i historia meczów pozostaną; każde ćwiczenie będzie od razu do powtórki.",
+  "learningResetAction": "Zresetuj postępy",
+  "learningResetFailed": "Nie udało się zresetować postępów.",
+  "learningAnalysisProgress": "Przeanalizowano partii: {completed} · niedostępnych: {failed}.",
+  "learningAnalysisComplete": "Przeanalizowano {completed} partii.",
+  "learningAnalysisCompleteWithErrors": "Przeanalizowano {completed} partii; nie udało się przeanalizować {failed}. Spróbuj ponownie, gdy silnik będzie gotowy.",
+  "learningThemeHitting": "Bicie i tempo",
+  "learningThemeSafety": "Bloty i bezpieczeństwo",
+  "learningThemePointMaking": "Tworzenie punktów",
+  "learningThemePrime": "Prime’y i blokady",
+  "learningThemeAnchor": "Kotwice i ucieczka",
+  "learningThemeRace": "Efektywność wyścigu",
+  "learningThemeBearOff": "Zdejmowanie pionów",
+  "learningThemeBarEntry": "Wejście z baru",
+  "learningThemeCube": "Decyzje o kostce",
+  "analysisCubeNoDouble": "Nie podwajaj",
+  "analysisCubeDouble": "Podwój",
+  "analysisCubeTake": "Przyjmij",
+  "analysisCubePass": "Pasuj",
+  "learningAnalysisStarting": "Analizowanie zapisanych partii…",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorCubelessEstimateScope": "Szacunek bez kostki 0-ply · wynik niedostępny",
+  "tutorLossPp": "Strata pp",
+  "tutorLoss": "Strata",
+  "scoreSheetNoMoves": "Brak ruchów",
+  "tutorOptions": "Opcje nauki z tutorem",
+  "tutorCollapseTooltip": "Zwiń tutora",
+  "tutorExpandTooltip": "Rozwiń tutora",
+  "diagnosticsCopySuccess": "Diagnostyka skopiowana",
+  "diagnosticsReviewTitle": "Przejrzyj raport diagnostyczny",
+  "diagnosticsPrivacyNotice": "Otwarcie wersji roboczej wyśle do GitHuba poniższe dane: wersję aplikacji, platformę i szczegóły błędu. Zgłoszenie nie będzie publiczne, dopóki go tam nie wyślesz. Jeśli dane zawierają informacje prywatne, anuluj i skopiuj je, aby przygotować raport samodzielnie.",
+  "diagnosticsCancel": "Anuluj",
+  "diagnosticsOpenGitHub": "Otwórz GitHub",
+  "diagnosticsTitle": "Diagnostyka",
+  "diagnosticsReportTooltip": "Zgłoś problem w GitHubie",
+  "diagnosticsCopyTooltip": "Kopiuj do schowka",
+  "diagnosticsClearTooltip": "Wyczyść dziennik",
+  "diagnosticsEmpty": "Nie zapisano błędów.\n\nJeśli coś pójdzie nie tak, informacja pojawi się tutaj. Wróć, aby skopiować szczegóły do zgłoszenia.",
+  "cubeDouble": "Podwój",
+  "cubeBlockedOtherPlayersTurn": "Ruch przeciwnika.",
+  "cubeBlockedCrawford": "Kostka jest niedostępna w partii Crawforda.",
+  "cubeBlockedOwnedByOther": "Podwajać może tylko właściciel kostki; teraz należy ona do drugiej strony.",
+  "cubeBlockedUnavailable": "Podwajanie jest teraz niedostępne.",
+  "gameStatusRolling": "Rzut…",
+  "gameStatusThinking": "Myślenie…",
+  "cubeAdviceOpponentTake": "Podwój — przeciwnik powinien przyjąć",
+  "cubeAdviceOpponentPass": "Podwój — przeciwnik powinien spasować",
+  "gameErrorBannerLabel": "Błąd: {error}",
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "analysisCubeEstimate": "Szacunek 0-ply z perspektywy gracza wykonującego ruch. Zakłada optymalną odpowiedź: przyjęcie lub pas. W gałęzi przyjętego podwojenia stosuje przybliżenie żywotności kostki 0,7, a nie pełne przeszukiwanie przyszłych ponownych podwojeń. Głębsza analiza może zmienić wynik.",
+  "metricExplainerMwcBody": "Gdy wynik jest znany, ruchy pionami są oceniane według szacowanej szansy wygrania meczu. Strata jest podawana w punktach procentowych (pp): 1 pp oznacza spadek z 51% do 50%. Uwzględniane są bieżąca stawka kostki i wyniki gammon/backgammon. Wymuszone pasy i rzuty z jedną legalną pozycją nie są wliczane do średniej.",
+  "metricExplainerSearchTitle": "Przeszukiwanie i niepewność",
+  "metricExplainerSearchBody": "Rankingi ruchów to statyczne oceny 0-ply po ruchu, a nie symulacje. Wartości meczu korzystają z tabeli equity bez przyszłych tur kostki. Oceny kostki używają częściowego przybliżenia żywotności kostki 0,7 przy przyjętym podwojeniu. To nie jest pełne przeszukiwanie z kostką. Dla strat powyżej 25 tabela stosuje granicę 25 punktów. Niewielkie różnice mogą się zmienić przy głębszej analizie; nie ma skalibrowanego przedziału ufności.",
+  "metricExplainerEquityTitle": "Equity",
+  "metricExplainerEquityBody": "Jeśli wynik jest niedostępny, equity bez kostki pokazuje średnią wartość pozycji w punktach przy kostce ustawionej na 1. +1,0 oznacza oczekiwany zysk jednego punktu, a −0,5 oczekiwaną stratę pół punktu.",
+  "metricExplainerEquityLossTitle": "Strata equity (np. −0,016)",
+  "metricExplainerEquityLossBody": "Każdy ruch porównujemy z najlepszym ruchem silnika. Strata equity pokazuje oddaną wartość oczekiwaną. −0,016 oznacza, że ruch był gorszy od najlepszego tylko o 0,016 punktu — to drobna pomyłka. 0,000 oznacza znalezienie najlepszego ruchu.",
+  "metricExplainerErrorRateTitle": "Wskaźnik błędów",
+  "metricExplainerErrorRateBody": "Średnia strata obejmuje ocenione decyzje dotyczące pionów w wyświetlanej jednostce. Decyzje kostki mają osobną średnią. Niższa wartość oznacza wynik bliższy najlepszym ocenom silnika; to nie jest skalibrowana ocena gracza.",
+  "metricExplainerMoveMarksTitle": "Oceny ruchów",
+  "metricExplainerMoveMarksBody": "Progi edukacyjne MWC: Najlepszy < 0,05 pp, Dobry < 0,5 pp, Wątpliwy < 1,5 pp, Błąd < 3 pp, Rażący błąd ≥ 3 pp. To progi produktu do nauki, a nie skalibrowana pewność lub ranking turniejowy.\n\nProgi equity bez kostki:",
+  "metricExplainerThresholdBest": "strata < 0,001",
+  "metricExplainerThresholdGood": "strata < 0,020",
+  "metricExplainerThresholdDubious": "strata < 0,050",
+  "metricExplainerThresholdError": "strata < 0,110",
+  "metricExplainerThresholdBlunder": "strata ≥ 0,110",
+  "metricExplainerGotIt": "Rozumiem",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · do {matchLength}",
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · do {matchLength}",
+  "gameHudYou": "Ty",
+  "gameHudAi": "SI",
+  "gameHudGameNumber": "Partia {number}",
+  "gameHudMatchContext": "{score} · {game}",
+  "gameHudHotSeatDetail": "{whiteLabel} kontra {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "gameHudOpponentDetail": "kontra {opponent} · {pipsLabel} {mine}–{theirs}",
+  "gameHudOpponentDetailWithLevel": "kontra {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "gameHudPips": "Pipsy",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Podwój",
+  "gameHudMoreActions": "Więcej działań",
+  "gameHudSurrender": "Poddaj…",
+  "gameHudThinking": "Myślenie",
+  "gameHudDoubleBeforeRoll": "Możesz podwoić tylko przed rzutem, w swojej turze.",
+  "gameHudNoDoubleCrawford": "W partii Crawforda nie można podwajać — ta partia rozstrzyga mecz.",
+  "gameHudOnlyCubeOwner": "Podwajać może tylko właściciel kostki; teraz należy ona do drugiej strony.",
+  "gameHudDoubleUnavailable": "Podwajanie jest teraz niedostępne.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (do {matchLength})",
+  "gameDialogPlayerWon": "{winner} wygrywa tę partię ({points}).",
+  "gameDialogPlayerWonGammon": "{winner} wygrywa tę partię ({points}, gammon).",
+  "gameDialogPlayerWonBackgammon": "{winner} wygrywa tę partię ({points}, backgammon).",
+  "gameDialogPlayerWonDrop": "{winner} wygrywa tę partię ({points}) — {loser} odrzuca podwojenie.",
+  "gameDialogPlayerWonResignation": "{winner} wygrywa tę partię ({points}) — {loser} poddaje się.",
+  "gameDialogPassDeviceTitle": "Przekaż urządzenie",
+  "gameDialogPlayersTurn": "Ruch wykonuje {name}",
+  "gameDialogTapToContinue": "Dotknij, aby kontynuować",
+  "gameDialogCubeOfferedTitle": "Zaproponowano podwojenie",
+  "gameDialogCubeOfferMessage": "{doubler} proponuje podwojenie do {value}. Przyjąć czy pasować?{tutorLine}",
+  "gameDialogPass": "Pas",
+  "gameDialogTake": "Weź",
+  "gameDialogResignationTitle": "Zapropnowano poddanie",
+  "gameDialogResignationMessage": "{resigner} proponuje poddanie za {value}. Przyjąć czy odrzucić?",
+  "gameDialogResignSingle": "pojedyncza partia",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Odrzuć",
+  "gameDialogAccept": "Przyjmij",
+  "gameDialogGameOverTitle": "Koniec partii",
+  "gameDialogNextGame": "Następna partia",
+  "gameDialogMatchOverTitle": "Koniec meczu",
+  "gameDialogNobody": "Nikt",
+  "gameDialogMatchWinner": "{winner} wygrywa mecz.",
+  "gameDialogSavedToHistory": "Zapisano w historii",
+  "gameDialogDone": "Gotowe",
+  "gameTapNoLegalMove": "Tym pionem nie można wykonać ruchu pozostałymi kośćmi",
+  "gameTapNoLegalMoveUndo": "Tym pionem nie można wykonać ruchu pozostałymi kośćmi — spróbuj cofnąć",
+  "gameDragHint": "Wskazówka: przeciągnij piony lub je dotknij — zmień to w ustawieniach",
+  "commonGotIt": "Rozumiem",
+  "gameHintStageBeforeHint": "Najpierw wykonaj pełny legalny ruch, a potem poproś o podpowiedź.",
+  "surrenderTitle": "Poddaj się",
+  "surrenderNamedConcedes": "{player} poddaje bieżącą partię.",
+  "surrenderConcedes": "Poddaje bieżącą partię.",
+  "surrenderAvailableAtNamedTurn": "Dostępne na początku tury {player}",
+  "surrenderAvailableAtYourTurn": "Dostępne na początku twojej tury",
+  "commonCancel": "Anuluj",
+  "surrenderSingle": "Pojedyncza (1)",
+  "surrenderGammon": "Gammon (2)",
+  "surrenderBackgammon": "Backgammon (3)",
+  "surrenderChoosePlayer": "Kto poddaje tę partię?",
+  "commonDone": "Gotowe",
+  "gameStatusPlayersTurn": "Ruch wykonuje {player}",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  }
 }

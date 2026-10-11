@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Точките в учебните бележки се броят от домашното поле на играча, който е на ход.",
   "tutorHittingRollNote": "Броят на възможностите за удар включва всичките 36 подредени резултата от заровете и законните преки или непреки удари; това са възможности, а не прогноза за избора на противника.",
   "tutorNoEvaluatedAlternatives": "Няма оценени алтернативи за този ход.",
-  "tutorForcedPassNoDecision": "Принудителното подаване не включва избор на ход с пуловете."
+  "tutorForcedPassNoDecision": "Принудителното подаване не включва избор на ход с пуловете.",
+  "settingsReset": "Нулиране",
+  "settingsAppLanguage": "Език на приложението",
+  "settingsTheme": "Тема",
+  "settingsThemeSystem": "Системна",
+  "settingsThemeLight": "Светла",
+  "settingsThemeDark": "Тъмна",
+  "settingsAnimationSpeed": "Скорост на анимацията",
+  "settingsAnimationNone": "Без анимация",
+  "settingsAnimationNormal": "Нормална",
+  "settingsAnimationFast": "Бърза",
+  "settingsDiceRollAnimation": "Анимация при хвърляне на заровете",
+  "settingsDiceRollAnimationHelp": "Заровете се завъртат преди всяко хвърляне",
+  "settingsDefaultMatchLength": "Дължина на мача по подразбиране",
+  "settingsDefaultDifficulty": "Трудност по подразбиране",
+  "settingsDifficultyEasy": "Лесна",
+  "settingsDifficultyMedium": "Средна",
+  "settingsDifficultyHard": "Трудна",
+  "settingsDifficultyExpert": "Експертна",
+  "settingsTutorModeDefault": "Режим на наставника по подразбиране",
+  "settingsTutorAuto": "Автоматично",
+  "settingsTutorOn": "Вкл.",
+  "settingsTutorOff": "Изкл.",
+  "settingsTutorModeHelp": "В режим „Автоматично“ наставникът е включен при всяка трудност на компютъра. „Вкл.“ и „Изкл.“ задават началния избор за локални мачове. Игрите наблизо и онлайн са без помощ; запазените партии могат да бъдат прегледани след това. Предпочитанията за обучение по-долу се запазват на това устройство.",
+  "settingsTutorPreferences": "Предпочитания за наставника",
+  "settingsTutorPreferencesSubtitle": "Запазени настройки по подразбиране за бъдещи мачове",
+  "settingsTutorSaveError": "Предпочитанията за наставника не бяха запазени.",
+  "settingsGameplay": "Игра",
+  "settingsMoveHighlights": "Осветяване на ходовете",
+  "settingsMoveHighlightsHelp": "Очертава пуловете, които могат да се местят, и осветява целевите полета",
+  "settingsDragToMove": "Плъзгане за местене",
+  "settingsDragToMoveHelp": "Плъзнете пул до целевото поле (докосването също работи)",
+  "settingsCombinedMoves": "Комбинирани ходове",
+  "settingsCombinedMovesHelp": "С едно докосване местите пул с двата зара",
+  "settingsRotateBoard": "Завъртане на дъската между ходовете",
+  "settingsRotateBoardHelp": "При игра на едно устройство: обръща изгледа към играча на ход",
+  "settingsPassDevice": "Екран при предаване на устройството",
+  "settingsPassDeviceHelp": "Скрива дъската, докато устройството се предава между играчите",
+  "settingsShowScore": "Показване на резултата",
+  "settingsShowScoreHelp": "Показва текущия резултат от мача в заглавната лента",
+  "settingsBuddyMode": "Режим Buddy",
+  "settingsBuddyTerse": "Кратък",
+  "settingsBuddyFriendly": "Разговорен",
+  "settingsBuddyTerseHelp": "Как Buddy произнася хода: „13/8, 24/22“ — краткият запис, който играчите използват пред дъската.",
+  "settingsBuddyFriendlyHelp": "Как Buddy произнася хода: „Премести един пул от 13 на 8 и един от 24 на 22.“",
+  "settingsListenForDice": "Слушане за заровете",
+  "settingsListenForDiceHelp": "Когато чуе хвърляне, Buddy проверява дъската по-рано. Изключването не променя нищо друго.",
+  "settingsDiagnostics": "Диагностика",
+  "settingsErrorLog": "Дневник на грешките",
+  "settingsErrorLogHelp": "Последните грешки, готови за копиране в сигнал за проблем",
+  "settingsReportBug": "Съобщаване за проблем",
+  "settingsReportBugHelp": "Отваря форма за сигнал в GitHub",
+  "settingsSuggestIdea": "Предложение за идея",
+  "settingsSuggestIdeaHelp": "Помогнете ни да подобрим наставника и играта",
+  "settingsAbout": "За приложението",
+  "settingsOpenSourceLicenses": "Лицензи за софтуер с отворен код",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "tutorPhraseGameFinished": "Партията приключи.",
+  "tutorPhraseReviewFinishedGame": "Прегледайте ходовете, за да откриете решение, което да упражните.",
+  "tutorPhraseCubeOffered": "Предложено е удвояване на залога.",
+  "tutorPhraseCubeDecisionPrompt": "Решете дали да приемете удвояването или да се откажете, преди да планирате ход с пуловете.",
+  "tutorPhraseCubeScoreContext": "Резултатът от мача променя стойността на допълнителния залог.",
+  "tutorPhraseResignationOffered": "Предложено е предаване на партията.",
+  "tutorPhraseResignationDecisionPrompt": "Сравнете предложените точки с позицията, преди да приемете или да продължите.",
+  "tutorPhraseNoLegalPlay": "При това хвърляне няма разрешен ход.",
+  "tutorPhraseForcedPassPrompt": "Принудителното подаване не е грешка; изчакайте следващото хвърляне.",
+  "tutorPhraseOnlyOneResult": "Има само един разрешен краен вариант на позицията.",
+  "tutorPhraseForcedTurnPrompt": "Направете принудителния ход. При това хвърляне няма избор, който да бъде оценен.",
+  "tutorPhrasePipCountsLevel": "Броят пипсове е равен.",
+  "tutorPhrasePipCountsAhead": "Преднина по пипсове: {count}.",
+  "tutorPhrasePipCountsBehind": "Изоставане по пипсове: {count}.",
+  "tutorPhrasePlayerHasCheckersOnBar": "Първо трябва да вкарате пуловете от бара. Там са: {count}.",
+  "tutorPhraseEnterBeforeMoving": "Първо вкарайте пул от бара, после потърсете безопасно поле за него.",
+  "tutorPhraseOpponentHomePoints": "Противникът има затворени полета в своя дом: {count}.",
+  "tutorPhraseBearOffRace": "Надпревара за извеждане на пуловете.",
+  "tutorPhrasePureRace": "Чиста надпревара.",
+  "tutorPhraseBearOffSpread": "Извеждайте пулове, като оставяте удобно разпределение за следващото хвърляне.",
+  "tutorPhraseBringRearCheckersHome": "Приберете задните пулове към дома, без да струпвате твърде много на едно поле.",
+  "tutorPhraseArmiesHavePassed": "Играчите се разминаха; повече не могат да се удрят пулове.",
+  "tutorPhraseContactStillMatters": "{part} Контактът все още има значение.",
+  "tutorPhraseOpponentHasCheckersOnBar": "На бара на противника има пулове: {count}.",
+  "tutorPhraseKeepBoardClosed": "Запазете затворените полета, докато прибирате останалите пулове към дома.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Изградете или запазете своя дом, докато противникът се опитва да влезе от бара.",
+  "tutorPhraseHomePointsCloseEntries": "Във вашия дом са затворени полета: {count}; всяко блокира едно число за влизане.",
+  "tutorPhrasePrimeContact": "Контакт с поредица от {count} затворени полета.",
+  "tutorPhraseExtendPrimeOrKeepSpares": "Сравнете удължаването на поредицата със запазването на резервни пулове, които да я поддържат.",
+  "tutorPhraseSpareCheckersCanMove": "Резервни пулове: {count}. Можете да ги местите, без веднага да отваряте полето.",
+  "tutorPhraseAnchorContact": "Контакт с опорна позиция на полета {points}.",
+  "tutorPhraseCompareAnchorProgressAhead": "Сравнете прибирането на задните пулове към дома със сигурността на запазената опора.",
+  "tutorPhraseCompareAnchorProgressBehind": "Имайте предвид безопасната опора, докато търсите удар или подобрявате позицията си.",
+  "tutorPhrasePreserveAnchorFoothold": "Опорната позиция не може да бъде ударена, но тези пулове още имат дълъг път до дома.",
+  "tutorPhraseContactThreats": "Контактът остава: и двамата играчи могат да заплашват с удар.",
+  "tutorPhraseLookForPointsAndSafety": "Търсете полезни затворени полета и преценявайте риска да оставите единични пулове открити.",
+  "tutorPhraseHomePointsAndBlots": "Затворени полета във вашия дом: {count}. Оставени открити пулове: {otherCount}.",
+  "tutorPhraseChooseCheckerPrompt": "Изберете пул, за да започнете хода си.",
+  "tutorPhraseLegalPlayPrompt": "Направете разрешен ход, за да видите коментар.",
+  "tutorPhraseStagedHit": "Ударихте {count, plural, one{един пул на противника} other{# пула на противника}}.",
+  "tutorPhraseStagedEnter": "Вкарани от бара пулове: {count}.",
+  "tutorPhraseStagedBearOff": "Изведохте от дъската {count, plural, one{един пул} other{# пула}}.",
+  "tutorPhraseStagedMakePoints": "Затворихте полета {points}.",
+  "tutorPhraseStagedBlot": "Пулът на поле {point} засега остава открит за удар.",
+  "tutorPhraseStagedSpare": "Резервният пул на поле {point} може да се премести по-късно, без да се отваря полето.",
+  "tutorPhraseStagedPartialPrompt": "{part} Използвайте останалите достъпни зарове, преди да оцените целия ход.",
+  "tutorPhraseStagedAllCheckersOff": "И 15-те пула са изведени: партията е спечелена.",
+  "tutorPhraseStagedHitShortPlan": "Ударът печели време, докато противникът се връща от бара.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Ефективното извеждане премахва пулове и оставя удобни числа за следващото хвърляне.",
+  "tutorPhraseStagedRaceHomePlan": "В надпреварата приберете задните пулове към дома и оставете удобни полета за извеждане.",
+  "tutorPhraseStagedBearOffContactPlan": "Извеждането ви приближава до победата, но докато има контакт, открит пул може да бъде ударен.",
+  "tutorPhraseStagedReentryPlan": "Влизането връща пула в играта; сега потърсете безопасно поле за него.",
+  "tutorPhraseStagedHomeBoardPlan": "Новото затворено поле във вашия дом ще премахне една възможност за влизане след бъдещ удар.",
+  "tutorPhraseStagedPrimePlan": "По-дългата поредица затваря повече полета, на които противникът може да стъпи; резервните пулове помагат да я запазите.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Отказът от опорната позиция придвижва пуловете напред, но отнема безопасната им опора.",
+  "tutorPhraseStagedNewAnchorPlan": "Новата опорна позиция дава безопасна опора на задните пулове.",
+  "tutorPhraseStagedCoverBlotPlan": "Прикриването на открит пул премахва цел за противника.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Тук има компромис между развитие и сигурност: пуловете, които помагат да изградите позицията, също могат да станат цели.",
+  "tutorPhraseStagedCompletePrompt": "{part} Целият ход е подготвен. Натиснете „Потвърди“, за да го изпълните.",
+  "tutorMoveForcedVerdict": "При това хвърляне няма избор на ход с пуловете; не се оценява като решение.",
+  "tutorMoveTopVerdict": "Един от най-добрите ходове в тази позиция.",
+  "tutorMoveAlternativeVerdict": "Енджинът предпочита друг ход тук.",
+  "tutorMoveEstimateDifference": "Разлика спрямо най-добрия ход: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "След този ход: {winPercent}% вероятност за победа, {winGammonPercent}% победи с марс или бекгемън, {loseGammonPercent}% загуби с марс или бекгемън. Това са оценки от гледната точка на играча на ход.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Изчислен шанс за спечелване на мача: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "И 15-те пула са изведени: партията е спечелена.",
+  "tutorMovePlanHit": "Използвайте удара, за да спечелите време, докато противникът влиза от бара. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Запазете затворените полета в своя дом, за да затрудните влизането.",
+  "tutorMovePlanHitBuild": "Затворете още полета в своя дом, за да направите бъдещото влизане след удар по-трудно.",
+  "tutorMovePlanRaceBearOff": "Стремете се към ефективно извеждане: сваляйте пулове, като оставяте удобни числа за следващото хвърляне.",
+  "tutorMovePlanRaceHome": "Приберете задните пулове към дома и ги разпределете по удобни полета за извеждане.",
+  "tutorMovePlanContactBearOff": "Изведете пулове от играта, но следете задните пулове на противника: при запазен контакт незащитен пул за извеждане може да стане цел.",
+  "tutorMovePlanReentry": "Върнете се в играта, после потърсете безопасно поле за влезлия пул.",
+  "tutorMovePlanHomeBoard": "Укрепете своя дом. Новото затворено поле прави бъдещия удар по-силен, защото премахва една възможност за влизане.",
+  "tutorMovePlanPrime": "Поддържайте поредицата от затворени полета. Запазете резервни пулове, за да не се налага да я отваряте при следващи хвърляния.",
+  "tutorMovePlanLeaveAnchor": "Напускането на опорната позиция придвижва задните ви пулове, но отнема безопасното им място. Внимавайте да не останат открити по пътя към дома.",
+  "tutorMovePlanNewAnchor": "Използвайте новата опорна позиция като безопасно място, докато подобрявате останалата част от позицията си.",
+  "tutorMovePlanCoverBlot": "Съберете пуловете си. Прикриването на открит пул премахва тази цел и запазва възможностите за следващи ходове.",
+  "tutorMovePlanSafety": "Съчетавайте развитието със сигурността: придвижвайте строителните пулове към полезни полета и проверявайте кои единични пулове могат да бъдат ударени.",
+  "tutorMoveObservationNoLegalPlay": "Няма разрешен ход с пуловете: ред е на противника.",
+  "tutorMoveObservationHit": "Ударихте {count, plural, one{# пул на противника} other{# пула на противника}}; противникът трябва първо да влезе от бара, преди да мести другите пулове.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Вкарани от бара пулове: {count}.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Изведени от дъската: {count, plural, one{# пул} other{# пула}}.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Затворени полета: {points}. Два или повече пула пазят сигурно поле и не позволяват на противника да стъпи на него.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Отворени отново затворени {pointLabel}: {points}. Тези полета вече не спират противника да стъпи там.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Не остават открити единични пулове (преди: {previousCount}). Няма пулове, които противникът да удари сега.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Остават открити единични пулове: {count, plural, one{# пул} other{# пула}} (преди: {previousCount}). Проверете дали противникът може да ги достигне, преди да изберете сигурността пред друга придобивка.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Най-дългата поредица от затворени полета: {count} (преди: {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Поредица от шест затворени полета не може да бъде премината, докато остава затворена.",
+  "tutorMoveObservationPrimeBuild": "Дръжте строителните пулове наблизо, ако искате да удължите или запазите тази поредица.",
+  "tutorMoveObservationPrimeSpares": "Пулове в запас над нужните два за затваряне на полетата: {count}. Преместването на резервен пул може да запази полето; преместването на един от последните два го отваря.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Опорни позиции в дома на противника: {points} (преди: {previousPoints}). Запазената опора предпазва тези пулове от удар; напускането ѝ заменя тази сигурност с напредък в надпреварата.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Чиста надпревара: играчите се разминаха и никой няма пул на бара. Вече не може да има удари; важно е пуловете да се извеждат ефективно.",
+  "tutorMoveObservationNoReplyHit": "Няма разрешено следващо хвърляне, с което противникът да удари пул в тази позиция. Контактът обаче остава и по-късни ходове могат да открият нови възможности за удар.",
+  "tutorMoveObservationReplyHit": "Противникът може да удари при {count} от общо {total} хвърляния. Например {dieOne}–{dieTwo} позволява разрешен удар по вашия пул на поле {point}. Възможността за удар не означава, че противникът непременно ще я избере.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Затворени полета във вашия дом: {closedPoints}. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Противникът не може да влезе, докато някое поле не се отвори.",
+  "tutorMoveObservationOpenEntry": "Хвърляне, което използва отворено поле за влизане, може да върне пул от бара.",
+  "tutorMoveComparisonDetail": "{factors} Оцененият шанс за победа при най-добрия ход е с {delta} процентни пункта {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "по-висок",
+  "tutorMoveComparisonLower": "по-нисък",
+  "tutorMoveComparisonScoreContext": " Той пак може да е класиран по-високо, защото марсът и бекгемънът имат различна стойност при текущия {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "залог",
+  "tutorMoveComparisonMatchScore": "резултат от мача",
+  "tutorMoveComparisonFactorBar": "Пулове на противника на бара при най-добрия ход: {bestCount}; при избрания ход: {playedCount}. Пулът на бара трябва първо да влезе, преди противникът да мести останалите.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Затворени полета във вашия дом при най-добрия ход: {bestCount}; при избрания ход: {playedCount}. Това са {entryDifference} входни полета разлика след удар.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "затваря повече",
+  "tutorMoveComparisonLeavingMore": "оставя повече отворени",
+  "tutorMoveComparisonFactorShots": "При най-добрия ход противникът може да удари при {bestCount} от 36 хвърляния вместо при {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Така непосредственият риск да бъдете върнати назад намалява.",
+  "tutorMoveComparisonExtraExposure": "Сравнете допълнителния риск с ползата, която ходът носи другаде.",
+  "tutorMoveComparisonFactorPrime": "Най-дългата поредица от затворени полета при най-добрия ход е {bestCount}, а не {playedCount}; сравнете блокадата с броя пулове, с които можете да я поддържате.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "При най-добрия ход опорните ви позиции са {bestPoints}, а не {playedPoints}. Запазеният пункт е безопасно място за стъпване; напускането му приближава пуловете към дома.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Изведени пулове при най-добрия ход: {bestCount}; при избрания ход: {playedCount}. Всеки изведен пул е един по-малко за сваляне по-късно.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "И двата хода оставят еднакъв непосредствен риск от удар, брой затворени полета в дома, опорни позиции и изведени пулове. Сравнете полетата, на които остават пуловете: следващото хвърляне може да позволи различни ходове.",
+  "tutorMoveComparisonSummaryBar": "При най-добрия ход повече пулове на противника остават на бара и забавят другите му ходове.",
+  "tutorMoveComparisonSummaryHomeBoard": "При най-добрия ход са затворени повече полета в дома, което затруднява влизането след удар.",
+  "tutorMoveComparisonSummaryShots": "При най-добрия ход има по-малко възможности за незабавен удар, което намалява риска да бъдете върнати назад.",
+  "tutorMoveComparisonSummaryPrime": "При най-добрия ход се запазва по-дълга поредица от затворени полета.",
+  "tutorMoveComparisonSummaryAnchors": "При най-добрия ход се запазват повече безопасни опорни позиции в дома на противника.",
+  "tutorMoveComparisonSummaryBearOff": "При най-добрия ход се извеждат повече пулове и остават по-малко за сваляне.",
+  "tutorMoveComparisonSummaryBlots": "Открити единични пулове след този ход: {playedCount}; след най-добрия ход: {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "При най-добрия ход се запазва безопасна опорна позиция на поле {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "При най-добрия ход се затварят повече полета за влизане, в случай че ваш пул бъде ударен.",
+  "tutorMoveComparisonSummarySimilarRisks": "Ходовете оставят сходен непосредствен риск; сравнете кои полета ще са полезни при следващото хвърляне.",
+  "tutorMoveAssessmentEquityLoss": "{value} очаквана стойност",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} пр.п. шанс за победа в мача",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "поле",
+  "tutorMovePointPlural": "полета",
+  "tutorMoveNoPoints": "няма",
+  "gameTutorCommentaryOff": "Коментарите за играта са изключени.",
+  "gameTutorToolsAvailable": "Отворете наставника, за да използвате включените инструменти.",
+  "gameTutorNextRoll": "Хвърлете заровете.",
+  "gameTutorNoEvaluatedReview": "Няма оценено обяснение за този записан ход.",
+  "gameTutorAnalysisUnavailable": "анализът не е наличен",
+  "gameTutorReviewing": "преглед…",
+  "gameTutorTryYourPlayFirst": "Първо опитайте свой ход.",
+  "gameTutorKeepBuilding": "Продължете да съставяте хода си.",
+  "gameTutorStageCompleteBeforeCoaching": "Съставете пълен разрешен ход, преди да видите съвети или подсказки.",
+  "gameTutorReadyToConfirm": "Готов за потвърждение",
+  "gameTutorPlayTakingShape": "Ходът ви се оформя.",
+  "gameTutorConfirmOrUndo": "Потвърдете, за да изиграете хода, или го отменете и обмислете отново.",
+  "gameTutorFinishDiceOrUndo": "Използвайте оставащите зарове или отменете хода.",
+  "gameTutorComputerConsidering": "Компютърът обмисля своя ход.",
+  "gameTutorComputerPlayReviewed": "Завършеният му ход ще бъде прегледан тук.",
+  "gameTutorYourPlay": "Вашият ход",
+  "gameTutorComputer": "Компютър",
+  "gameTutorPlayQuality": "Вашият ход: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "принудителен ход",
+  "gameTutorTopChoice": "най-добър избор",
+  "gameTutorSoundPlay": "добър ход",
+  "gameTutorAnotherPlayMayFitBetter": "възможно е друг ход да е по-подходящ",
+  "gameTutorAnotherPlayFitsBetter": "друг ход пасва по-добре на тази позиция",
+  "gameTutorStrongerPlayAvailable": "имало е значително по-силен ход",
+  "gameTutorPositionEdge": "Според оценката {side} има предимство.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Позицията е приблизително равна.",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "gameTapNoLegalMove": "Няма законен ход за тази пулка с оставащите зарове",
+  "gameTapNoLegalMoveUndo": "Няма законен ход за тази пулка с оставащите зарове — опитайте „Отмяна“",
+  "gameDragHint": "Съвет: плъзнете пуловете или ги докоснете — променете това в „Настройки“",
+  "commonGotIt": "Разбрах",
+  "gameHintStageBeforeHint": "Първо изпълнете напълно законен ход, после поискайте подсказка.",
+  "surrenderTitle": "Отказване",
+  "surrenderNamedConcedes": "{player} отстъпва текущата партия.",
+  "surrenderConcedes": "Отстъпвате текущата партия.",
+  "surrenderAvailableAtNamedTurn": "Достъпно в началото на хода на {player}",
+  "surrenderAvailableAtYourTurn": "Достъпно в началото на вашия ход",
+  "commonCancel": "Отказ",
+  "surrenderSingle": "Единична (1)",
+  "surrenderGammon": "Гамон (2)",
+  "surrenderBackgammon": "Бекгемон (3)",
+  "surrenderChoosePlayer": "Кой отстъпва тази партия?",
+  "commonDone": "Готово",
+  "cubeDouble": "Удвояване",
+  "cubeBlockedOtherPlayersTurn": "Сега е ред на другия играч.",
+  "cubeBlockedCrawford": "Удвояващият куб не е наличен в партията на Крофорд.",
+  "cubeBlockedOwnedByOther": "Само притежателят на куба може да удвои, а той е другият играч.",
+  "cubeBlockedUnavailable": "Удвояването не е възможно в момента.",
+  "gameStatusRolling": "Хвърляне…",
+  "gameStatusThinking": "Обмисля…",
+  "gameStatusPlayersTurn": "Ред е на {player}",
+  "cubeAdviceOpponentTake": "Удвояване — противникът трябва да приеме",
+  "cubeAdviceOpponentPass": "Удвояване — противникът трябва да откаже",
+  "gameErrorBannerLabel": "Грешка: {error}",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "gameMatchSummary": "Обобщение на мача",
+  "gameAnalyzeGame": "Анализ на партията",
+  "gameTutorCubeTake": "Тутор: приемете",
+  "gameTutorCubePass": "Тутор: откажете",
+  "tutorPlayedMove": "Изиграно: {move}",
+  "tutorBestMove": "Най-добър ход: {move}",
+  "tutorShowRankedPlays": "Покажи подредените ходове",
+  "tutorReviewRecordedMove": "Докоснете завършен ход в дневника, за да прегледате решението си тук.",
+  "tutorTopPlays": "Най-добри ходове",
+  "tutorNoHintsAvailable": "Няма налични подсказки.",
+  "tutorPreviewThenConfirm": "Докоснете ход, за да го пробвате на дъската, после го потвърдете.",
+  "tutorTopChoiceForPosition": "Най-добър избор за тази позиция",
+  "tutorAlternativePlay": "Алтернативен ход",
+  "tutorEngineEstimates": "Оценки на енджина",
+  "tutorEstimateScope": "Оценка на 0 полухода · текущ резултат и залог · без бъдещи удвоявания",
+  "tutorEquity": "Еквити",
+  "tutorMwcPercent": "Шанс за победа в мача %",
+  "tutorNearTiesNote": "Близките оценки може да се променят при по-задълбочен анализ.",
+  "tutorWhyThisPlay": "Защо този ход?",
+  "tutorCompareAlternative": "Сравни този вариант",
+  "tutorCubelessEstimateScope": "Оценка без куба, 0 полухода · резултатът не е наличен",
+  "tutorLossPp": "Загуба в процентни пункта",
+  "tutorLoss": "Загуба",
+  "tutorOptions": "Настройки на тутора",
+  "tutorCollapseTooltip": "Свий тутора",
+  "tutorExpandTooltip": "Разгъни тутора",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · до {matchLength}",
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · до {matchLength}",
+  "gameHudYou": "Вие",
+  "gameHudAi": "Компютър",
+  "gameHudGameNumber": "Партия {number}",
+  "gameHudMatchContext": "{score} · {game}",
+  "gameHudHotSeatDetail": "{whiteLabel} срещу {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "gameHudOpponentDetail": "срещу {opponent} · {pipsLabel} {mine}–{theirs}",
+  "gameHudOpponentDetailWithLevel": "срещу {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "gameHudPips": "Пипсове",
+  "gameHudCrawford": "Крофорд",
+  "gameHudDouble": "Удвояване",
+  "gameHudMoreActions": "Още действия",
+  "gameHudSurrender": "Отказване…",
+  "gameHudThinking": "Обмисля",
+  "gameHudDoubleBeforeRoll": "Можете да удвоите само преди хвърлянето и когато сте на ход.",
+  "gameHudNoDoubleCrawford": "В партията на Крофорд няма удвояване — тя решава мача.",
+  "gameHudOnlyCubeOwner": "Само притежателят на куба може да удвои, а сега това е другият играч.",
+  "gameHudDoubleUnavailable": "Удвояването не е налично в момента.",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (до {matchLength})",
+  "gameDialogPlayerWon": "{winner} печели тази партия ({points}).",
+  "gameDialogPlayerWonGammon": "{winner} печели тази партия ({points}, гамон).",
+  "gameDialogPlayerWonBackgammon": "{winner} печели тази партия ({points}, бекгемон).",
+  "gameDialogPlayerWonDrop": "{winner} печели тази партия ({points}) — {loser} отказа удвояването.",
+  "gameDialogPlayerWonResignation": "{winner} печели тази партия ({points}) — {loser} се отказа.",
+  "gameDialogPassDeviceTitle": "Предайте устройството",
+  "gameDialogPlayersTurn": "Ред е на {name}",
+  "gameDialogTapToContinue": "Докоснете, за да продължите",
+  "gameDialogCubeOfferedTitle": "Предложено удвояване",
+  "gameDialogCubeOfferMessage": "{doubler} предлага удвояване до {value}. Приемате ли?{tutorLine}",
+  "gameDialogPass": "Отказ",
+  "gameDialogTake": "Приемане",
+  "gameDialogResignationTitle": "Предложен отказ",
+  "gameDialogResignationMessage": "{resigner} предлага да се откаже при {value}. Приемате ли?",
+  "gameDialogResignSingle": "единична партия",
+  "gameDialogResignGammon": "гамон",
+  "gameDialogResignBackgammon": "бекгемон",
+  "gameDialogDecline": "Откажи",
+  "gameDialogAccept": "Приеми",
+  "gameDialogGameOverTitle": "Край на партията",
+  "gameDialogNextGame": "Следваща партия",
+  "gameDialogMatchOverTitle": "Край на мача",
+  "gameDialogNobody": "Никой",
+  "gameDialogMatchWinner": "{winner} печели мача.",
+  "gameDialogSavedToHistory": "Запазено в историята",
+  "gameDialogDone": "Готово",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "newMatchYourSide": "Вашата страна",
+  "newMatchTutorMode": "Режим на тутора",
+  "newMatchTutorDescription": "Учете с подсказки, обяснения и коментари за играта",
+  "newMatchTutoringOptions": "Настройки за обучение",
+  "newMatchTutoringOptionsDescription": "За този мач; променят се и по време на игра",
+  "setupMatchLength": "Дължина на мача",
+  "setupDifficulty": "Трудност",
+  "setupDifficultyEasy": "Лесно",
+  "setupDifficultyMedium": "Средно",
+  "setupDifficultyHard": "Трудно",
+  "setupDifficultyExpert": "Експерт",
+  "setupPlayWithoutCube": "Игра без куб",
+  "setupNoCubeThisMatch": "Без удвояващ куб в този мач",
+  "actionCancel": "Отказ",
+  "actionDelete": "Изтриване",
+  "actionRetry": "Опитай пак",
+  "actionRemove": "Премахване",
+  "diagnosticsCopySuccess": "Диагностиката е копирана в клипборда",
+  "diagnosticsReviewTitle": "Преглед на диагностичния доклад",
+  "diagnosticsPrivacyNotice": "Отварянето на черновата изпраща показаните подробности до GitHub, включително версията на приложението, платформата и данните за грешки. Публичен проблем не се публикува, докато не го изпратите там. Ако данните съдържат лична информация, отменете и използвайте „Копирай“, за да подготвите доклада сами.",
+  "diagnosticsCancel": "Отказ",
+  "diagnosticsOpenGitHub": "Отвори GitHub",
+  "diagnosticsTitle": "Диагностика",
+  "diagnosticsReportTooltip": "Съобщи за проблем в GitHub",
+  "diagnosticsCopyTooltip": "Копирай в клипборда",
+  "diagnosticsClearTooltip": "Изчисти дневника",
+  "diagnosticsEmpty": "Няма записани грешки.\n\nАко възникне проблем, той ще се запише тук. Върнете се и копирайте подробностите в доклад за грешка.",
+  "historyTitle": "История на мачовете",
+  "historyLoadFailed": "Историята не може да се зареди:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyEmpty": "Все още няма изиграни мачове.",
+  "historyDeleteConfirmTitle": "Да изтрия ли този мач?",
+  "historyDeleteConfirmBody": "{scoreLine}\n\nМачът и всички записани в него партии ще бъдат изтрити завинаги. Това не може да се отмени.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyDeleteFailed": "Мачът не можа да бъде изтрит.",
+  "historyComplete": "Завършен",
+  "historyWinner": "{side} спечели",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyUnfinished": "Незавършен",
+  "historyMatchTitle": "Мач",
+  "historyMatchLoadFailed": "Мачът не може да се зареди:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Партиите не могат да се заредят:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyNoGames": "Все още няма записани партии.",
+  "historyGameTitle": "Партия {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyCrawford": "Крофорд",
+  "historyScoreLine": "Бели {whiteScore} — {blackScore} Черни (до {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyModeComputer": "срещу компютър",
+  "historyModeTwoPlayers": "Двама играчи",
+  "historyModeOnline": "Онлайн",
+  "historyModeNearby": "Игра наблизо",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "В ход",
+  "historyGameResult": "{side} печели с {points} ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "historyOutcomeSingle": "единична",
+  "historyOutcomeGammon": "гамон",
+  "historyOutcomeBackgammon": "бекгемон",
+  "onlineTitle": "Игра онлайн",
+  "onlineUnassistedNote": "Онлайн игрите на живо са без помощ от тутора. Прегледайте ходовете си и упражнете грешките след мача.",
+  "onlineNotConfiguredTitle": "Онлайн играта не е настроена в тази версия",
+  "onlineNotConfiguredBody": "Тази версия не е свързана с Firebase, затова не можете да създавате или да се присъединявате към мачове.",
+  "onlineErrorNoMatch": "Няма мач с този код. Проверете го и опитайте пак.",
+  "onlineErrorSeatTaken": "Този мач вече не е отворен — мястото е заето.",
+  "onlineErrorPermission": "Нямате достъп до този мач.",
+  "onlineErrorGeneric": "Възникна проблем. Опитайте отново.",
+  "onlineMatchFinished": "Този мач приключи — няма към какво да се присъедините отново.",
+  "onlineEnterCodeError": "Въведете код на мача.",
+  "onlineOpponentShort": "Прот.",
+  "onlineMatchInProgress": "Мачът продължава",
+  "onlineResumePrompt": "Играехте в мач {code}.",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Присъедини се отново",
+  "onlineForgetMatch": "Забрави този мач",
+  "onlineCreateTitle": "Създай мач",
+  "onlineMatchLength": "Дължина на мача",
+  "onlineNoCubeTitle": "Игра без куб",
+  "onlineNoCubeSubtitle": "Без удвояващ куб в този мач",
+  "onlineCreate": "Създай",
+  "onlineWaitingOpponent": "Изчакване на противник…",
+  "onlineShareCode": "Сподели този код",
+  "onlineCopyCode": "Копирай кода",
+  "onlineCodeCopied": "Кодът е копиран",
+  "onlineJoinTitle": "Присъедини се към мач",
+  "onlineRoomCode": "Код на мача",
+  "onlineJoin": "Присъедини се",
+  "lanTitle": "Игра наблизо",
+  "lanTabHost": "Домакин",
+  "lanTabJoin": "Присъединяване",
+  "lanUnassistedNote": "Игрите наблизо не са с помощ от тутора. След мача прегледайте ходовете и упражнете грешките.",
+  "lanGameStartFailed": "Играта не можа да започне. Другото устройство може да опита да се присъедини отново.",
+  "lanHostPortInUse": "Не може да се стартира хостването — портът вече се използва. Затворете другото копие на Backgammon Buddy.",
+  "lanHostStartFailed": "Хостването не може да започне. Проверете Wi-Fi връзката.",
+  "lanHostTitle": "Хостване на игра",
+  "lanStartHosting": "Започни хостване",
+  "lanHostHelp": "Двете устройства трябва да са в една Wi-Fi мрежа. Това устройство хвърля заровете и пази резултата.",
+  "lanWaitingPlayerTitle": "Изчакване на играч",
+  "lanRoomCodeInfo": "Кажете този код на другия играч. С него той влиза — приложението не го изпраща по мрежата.",
+  "lanWaitingPlayer": "Изчакване на играч…",
+  "lanStopHosting": "Спри хостването",
+  "lanFindNearbyPort": "Помолете другото устройство да потърси игри наблизо. Слушане на порт {port}.",
+  "lanOnNetwork": "В тази мрежа",
+  "lanCopyAddress": "Копирай адреса",
+  "lanAddressCopied": "Адресът е копиран",
+  "lanScanHostTitle": "Сканирай домакина",
+  "lanScanHostHelp": "Другото устройство показва QR код на екрана за хостване. Сканирането попълва адреса и кода на стаята.",
+  "lanScanQr": "Сканирай QR код",
+  "lanScannerUnavailable": "Камерата или разрешението ѝ не е налично. Вместо това въведете адреса и кода на стаята по-долу.",
+  "lanInvalidQr": "Този QR код не е за игра на Backgammon Buddy. Сканирайте кода от екрана за хостване на другото устройство.",
+  "lanScannerFailed": "Скенерът не можа да се отвори. Вместо това въведете адреса и кода.",
+  "lanNearbyGames": "Игри наблизо",
+  "lanSearching": "Търсене на игри наблизо…",
+  "lanNoGamesFound": "Все още няма намерени игри. Уверете се, че другото устройство хоства и двете са в една Wi-Fi мрежа — или въведете адреса му.",
+  "lanStillSearching": "Търсенето продължава…",
+  "lanEnterAddress": "Въведи адрес",
+  "lanEnterAddressHelp": "Автоматичното откриване не работи във всяка мрежа (а в iOS може да е блокирано). Екранът на домакина показва какъв адрес да въведете.",
+  "lanIpAddress": "IP адрес",
+  "lanPort": "Порт",
+  "lanInvalidPort": "Въведете порт от 1 до 65535.",
+  "lanEnterAddressError": "Въведете адреса, показан на другото устройство.",
+  "lanEnterRoomCodeError": "Въведете 4-цифрения код от другото устройство.",
+  "lanJoinWrongCode": "Грешен код на стаята. Проверете четирите цифри на другото устройство.",
+  "lanJoinVersionMismatch": "Другото устройство използва друга версия на Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "Другото устройство не отговори като Backgammon Buddy. Проверете адреса и порта.",
+  "lanJoinFailed": "Неуспешно присъединяване. Проверете адреса и кода на стаята и опитайте отново.",
+  "lanJoinTarget": "Присъединяване към {name}",
+  "lanJoinTargetHelp": "Въведете 4-цифрения код от другото устройство.",
+  "lanJoiningTarget": "Присъединяване към {name}",
+  "lanConnect": "Свържи се",
+  "lanBack": "Назад",
+  "lanTryAgain": "Опитай отново",
+  "lanStatusBusy": "Стаята се използва — изчакване…",
+  "lanStatusReconnecting": "Връзката е изгубена — повторно свързване…",
+  "lanStatusConnected": "Свързано — играта започва…",
+  "lanStatusFailed": "Присъединяването не бе успешно.",
+  "lanStatusConnecting": "Свързване…",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "practiceScreenTitle": "Упражни решение",
+  "practiceUnavailable": "Тази тренировъчна позиция вече не е налична.",
+  "practiceSubmitError": "Опитът не можа да бъде оценен или запазен. Напредъкът ви не е променен. Опитайте отново.",
+  "practiceTurnLabel": "На ход е {side} · {dice}",
+  "practiceHistoricalScoreUnavailable": "Историческият резултат не е наличен; оценяването използва equity без куб.",
+  "practiceScoreLine": "Резултат: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, до {matchLength}",
+  "practiceCrawfordGame": " · партия на Крофорд",
+  "practiceNoDoublingCube": "Без удвояващ куб.",
+  "practiceCubeValue": "Куб {value}.",
+  "practiceHistoricalCubeUnknown": "Неизвестни исторически правила за куба.",
+  "practiceAfterBestPosition": "Позиция след най-добрия ход",
+  "practiceAfterYourAnswerPosition": "Позиция след вашия отговор",
+  "practiceFindYourPlayPrompt": "Направете хода си на дъската, после проверете отговора. Не се показват подсказки.",
+  "practiceUndo": "Отмяна",
+  "practiceCheckAnswer": "Проверка на отговора",
+  "practiceRevealNoCredit": "Покажи отговора (без кредит)",
+  "practiceAnswerRevealedNoCredit": "Отговорът е показан — няма кредит за припомняне.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "practiceBestMoveLine": "Най-добър: {move}",
+  "practiceOriginalGameLine": "Оригинална партия: {move} · {loss}",
+  "practiceYourAnswerLine": "Вашият отговор: {move}",
+  "practiceYourAnswerChip": "Вашият отговор",
+  "practiceBestPlayChip": "Най-добър ход",
+  "practiceNextReview": "Следващ преглед: {date}.",
+  "practiceRecallCredit": "Най-добрите и добрите отговори се броят за успешно припомняне. Ранните повторения не променят графика.",
+  "practiceBackToLearning": "Назад към обучението",
+  "practiceMarkBest": "Най-добър",
+  "practiceMarkGood": "Добър",
+  "practiceMarkDubious": "Съмнителен",
+  "practiceMarkError": "Грешка",
+  "practiceMarkBlunder": "Голяма грешка",
+  "practiceMarkForced": "Принудителен",
+  "analysisTitle": "Анализ",
+  "analysisMetricsTooltip": "Какво означават тези числа?",
+  "analysisError": "Неуспешен анализ на партията: {error}",
+  "analysisNoPositions": "Няма позиции за показване в тази партия.",
+  "analysisInProgress": "Анализ на партията…",
+  "analysisPercent": "{percent}%",
+  "analysisPlayed": "Изигран",
+  "analysisBest": "Най-добър",
+  "analysisPrevious": "Предишен",
+  "analysisNext": "Следващ",
+  "analysisPositionBeforeCube": "Позиция преди решението за куба",
+  "analysisPositionAtPoint": "Позиция в този момент от партията",
+  "analysisShowingBestBefore": "Показва се най-добрият ход в позицията преди хода",
+  "analysisShowingBefore": "Показва се позицията преди хода",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "analysisMoveLoss": " −{loss}",
+  "analysisExcludedFromAverages": " · изключено от средните стойности",
+  "analysisNoPlay": "(няма ход)",
+  "analysisBestMoveLine": "Най-добър ход: {move}",
+  "analysisExplain": "Обясни",
+  "analysisSaveForPractice": "Запази за упражнение",
+  "analysisSaveError": "Решението не можа да бъде запазено: {error}",
+  "analysisCubeInfo": "{side}: {action} · {mark} · загуба {loss}",
+  "analysisCubeDecision": "Решение за куба",
+  "analysisCubePlayed": "Изиграно: {action} ({percent}% шанс за победа в мача).",
+  "analysisCubeBest": "Най-добро: {action} ({percent}% шанс за победа в мача).",
+  "analysisCubeEstimate": "Оценка 0-ply от гледната точка на играча на ход. Приема оптимален отговор вземи/пас. Използва приближение 0,7 за живота на куба при приет дубъл, а не пълно търсене на бъдещи повторни удвоявания. По-задълбочен анализ може да промени отговора.",
+  "analysisClose": "Затвори",
+  "analysisMoves": "Ходове",
+  "analysisForced": "Принудителен",
+  "analysisMarkBest": "Най-добър",
+  "analysisMarkGood": "Добър",
+  "analysisMarkDubious": "Съмнителен",
+  "analysisMarkError": "Грешка",
+  "analysisMarkBlunder": "Голяма грешка",
+  "analysisSummaryMeanLoss": "Средна загуба {loss}",
+  "analysisSummaryCheckerDecisions": "{count} решения с пуловете",
+  "analysisSummaryBlunders": "Големи грешки {count}",
+  "analysisSummaryCubeLoss": "Загуба от куба {loss}",
+  "analysisRollWithoutDoubling": "{side} хвърля без удвояване",
+  "metricExplainerTitle": "Разбиране на показателите",
+  "metricExplainerTooltip": "Какво означават тези числа?",
+  "metricExplainerMwcTitle": "Шанс за победа в мача (MWC)",
+  "metricExplainerMwcBody": "Когато резултатът е известен, ходовете с пуловете се подреждат по оценения шанс за победа в мача. Загубата е в процентни пунктове (pp): 1 pp е спад от 51% на 50%. Включени са текущият залог на куба и резултатите гамон/бекгамон. Принудителните пасове и хвърлянията с една законна позиция не влизат в средните стойности.",
+  "metricExplainerSearchTitle": "Търсене и несигурност",
+  "metricExplainerSearchBody": "Оценките на ходовете са статични 0-ply оценки след хода, а не симулации. Стойностите за мача използват таблица за equity на мача без бъдещи ходове с куба. Анализът на куба използва частично приближение 0,7 за живота на куба при приет дубъл. Това не е пълно търсене с куба. За изоставане над 25 се използва границата 25 от таблицата. Близки резултати може да се променят при по-дълбок анализ; няма калибриран интервал на доверие.",
+  "metricExplainerEquityTitle": "Equity",
+  "metricExplainerEquityBody": "Ако резултатът липсва, equity без куб показва средната точкова стойност на позицията при куб на 1. +1,0 означава очаквана печалба от точка; −0,5 означава очаквана загуба от половин точка.",
+  "metricExplainerEquityLossTitle": "Загуба на equity (напр. −0,016)",
+  "metricExplainerEquityLossBody": "Сравняваме всеки ход с най-добрия ход на двигателя. Загубата на equity е очакваната стойност, от която ходът се отказва. −0,016 означава, че ходът е само с 0,016 точки по-лош — малка грешка. 0,000 означава, че сте намерили най-добрия ход.",
+  "metricExplainerErrorRateTitle": "Честота на грешките",
+  "metricExplainerErrorRateBody": "Средната загуба усреднява оценените решения за пуловете в показаната единица. Решенията за куба имат отделна средна стойност. По-ниска стойност означава по-близо до най-добрите оценки на двигателя; това не е калибриран рейтинг на играча.",
+  "metricExplainerMoveMarksTitle": "Оценки на ходовете",
+  "metricExplainerMoveMarksBody": "Обучителни диапазони MWC: Най-добър < 0,05 pp, Добър < 0,5 pp, Съмнителен < 1,5 pp, Грешка < 3 pp, Голям пропуск ≥ 3 pp. Това са продуктови учебни граници, не калибрирана увереност или турнирна оценка.\n\nУчебни граници за equity без куб:",
+  "metricExplainerThresholdBest": "загуба < 0,001",
+  "metricExplainerThresholdGood": "загуба < 0,020",
+  "metricExplainerThresholdDubious": "загуба < 0,050",
+  "metricExplainerThresholdError": "загуба < 0,110",
+  "metricExplainerThresholdBlunder": "загуба ≥ 0,110",
+  "metricExplainerGotIt": "Разбрах",
+  "learningRefreshTooltip": "Опресни напредъка в обучението",
+  "learningOptions": "Опции за обучение",
+  "learningResetMenu": "Нулирай напредъка от упражненията",
+  "learningLoadFailed": "Неуспешно зареждане на обучението.",
+  "learningHeading": "Учи от решенията си",
+  "learningIntro": "Напредъкът се пази на това устройство. Преглеждай повтарящите се теми и опитвай отново запазени позиции, без да виждаш отговора. Белите и черните могат да се преглеждат поотделно.",
+  "learningBothSides": "И двете страни",
+  "learningHumansOnly": "Само решения на хора",
+  "learningHumanOnlyHelp": "Изключи, за да включиш решенията на компютъра и отдалечените играчи",
+  "learningDecisionSummary": "{decisions} решения · {mistakes} за подобрение · {blunders} големи грешки",
+  "learningAverageLoss": "Средна загуба ({decisions} решения): {loss}",
+  "learningForcedDisclaimer": "Принудителните ходове са изключени. Това са оценки на двигателя, не турнирна оценка.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{# запазена партия се нуждае от анализ или повторен анализ.} other{# запазени партии се нуждаят от анализ или повторен анализ.}}",
+  "learningAnalyseSavedGames": "Анализирай запазените партии",
+  "learningEmptyProfile": "Изиграй и завърши партия, за да изградиш профила си за обучение. Можеш да запазваш и отделни решения от прегледа на партия.",
+  "learningOpenHistory": "Отвори историята на мачовете",
+  "learningRecurringThemes": "Повтарящи се теми",
+  "learningNoThemes": "Все още няма повтарящи се теми с грешки в този избор.",
+  "learningThemeDecisions": "{count} решения за преглед. Една позиция може да има повече от една тема.",
+  "learningSaveMistakes": "Запази тези грешки за упражнения",
+  "learningSavedMistakes": "{count} решения са в списъка ти за упражнения. Вече запазените остават.",
+  "learningSaveMistakesFailed": "Някои решения не можаха да бъдат запазени. Успешно запазените остават; опитай отново.",
+  "learningSpacedPractice": "Разпределено във времето упражняване",
+  "learningPracticeCounts": "{due} сега · {saved} запазени · {attempts} опита · {successes} успешни припомняния",
+  "learningIntervalsHelp": "Успешните навременни прегледи се повтарят след 1, 3, 7, 14 и 30 дни. Грешките или показаните отговори се връщат след 10 минути. Ранните повторения не променят интервала.",
+  "learningAnswerContext": "Резултатите от упражненията отразяват твоите отговори тук, дори ако първоначалната позиция е била на противник.",
+  "learningNoSavedPositions": "Запази решение от прегледа на партията или използвай бутона за грешки по-горе.",
+  "learningPositionTitle": "Решение на {side} · партия {gameId}",
+  "learningReviewDue": "Преглед на {date}",
+  "learningReadyToReview": "Готово за преглед",
+  "learningSuccessStreak": "{count} успешни навременни прегледа",
+  "learningRemoveTooltip": "Премахни запазеното решение",
+  "learningRecentPractice": "Последни упражнения",
+  "learningAnswerRevealed": "Отговорът е показан",
+  "learningSuccessfulRecall": "Успешно припомняне",
+  "learningTryAgain": "Опитай това решение отново",
+  "learningAttemptSubtitle": "{date} · запазена позиция {positionId}",
+  "learningRemoveTitle": "Премахване на това упражнение?",
+  "learningRemoveBody": "Това премахва опитите за упражнение. Оригиналната партия остава в историята.",
+  "learningRemoveFailed": "Неуспешно премахване на упражнението.",
+  "learningResetTitle": "Нулиране на напредъка от упражненията?",
+  "learningResetBody": "Всички опити и интервали за преглед ще бъдат премахнати. Запазените упражнения и историята остават; всички упражнения ще станат дължими сега.",
+  "learningResetAction": "Нулирай напредъка",
+  "learningResetFailed": "Неуспешно нулиране на напредъка.",
+  "learningAnalysisProgress": "Анализирани партии: {completed} · недостъпни: {failed}.",
+  "learningAnalysisComplete": "Анализирани са {completed} партии.",
+  "learningAnalysisCompleteWithErrors": "Анализирани са {completed} партии; {failed} не можаха да бъдат анализирани. Опитай отново, когато двигателят е готов.",
+  "learningThemeHitting": "Удар и темпо",
+  "learningThemeSafety": "Открити пулове и сигурност",
+  "learningThemePointMaking": "Изграждане на пунктове",
+  "learningThemePrime": "Праймове и блокади",
+  "learningThemeAnchor": "Котви и бягство",
+  "learningThemeRace": "Ефективност в надпреварата",
+  "learningThemeBearOff": "Извеждане на пуловете",
+  "learningThemeBarEntry": "Влизане от бара",
+  "learningThemeCube": "Решения за куба",
+  "analysisCubeNoDouble": "Без дубъл",
+  "analysisCubeDouble": "Дубъл",
+  "analysisCubeTake": "Вземи",
+  "analysisCubePass": "Пас",
+  "learningAnalysisStarting": "Анализ на запазените партии…",
+  "scoreSheetNoMoves": "Все още няма ходове",
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  }
 }

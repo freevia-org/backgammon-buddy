@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Opetusmuistiinpanojen pisteet lasketaan vuorossa olevan pelaajan kotilaudasta.",
   "tutorHittingRollNote": "Lyöntimahdollisuuksien määrä sisältää kaikki 36 järjestettyä noppatulosta ja lailliset suorat tai epäsuorat lyönnit; kyse on mahdollisuuksista, ei ennusteesta vastustajan valinnasta.",
   "tutorNoEvaluatedAlternatives": "Tälle siirrolle ei ole arvioituja vaihtoehtoja.",
-  "tutorForcedPassNoDecision": "Pakotettu ohitus ei sisällä nappuloiden siirtopäätöstä."
+  "tutorForcedPassNoDecision": "Pakotettu ohitus ei sisällä nappuloiden siirtopäätöstä.",
+  "settingsReset": "Palauta oletukset",
+  "settingsAppLanguage": "Sovelluksen kieli",
+  "settingsTheme": "Teema",
+  "settingsThemeSystem": "Järjestelmän mukaan",
+  "settingsThemeLight": "Vaalea",
+  "settingsThemeDark": "Tumma",
+  "settingsAnimationSpeed": "Animaation nopeus",
+  "settingsAnimationNone": "Ei mitään",
+  "settingsAnimationNormal": "Tavallinen",
+  "settingsAnimationFast": "Nopea",
+  "settingsDiceRollAnimation": "Nopanheiton animaatio",
+  "settingsDiceRollAnimationHelp": "Pyöräytä noppia ennen jokaista heittoa",
+  "settingsDefaultMatchLength": "Ottelun oletuspituus",
+  "settingsDefaultDifficulty": "Oletusvaikeustaso",
+  "settingsDifficultyEasy": "Helppo",
+  "settingsDifficultyMedium": "Keskitaso",
+  "settingsDifficultyHard": "Vaikea",
+  "settingsDifficultyExpert": "Asiantuntija",
+  "settingsTutorModeDefault": "Ohjaajan oletustila",
+  "settingsTutorAuto": "Automaattinen",
+  "settingsTutorOn": "Käytössä",
+  "settingsTutorOff": "Pois käytöstä",
+  "settingsTutorModeHelp": "Automaattinen ottaa ohjaajan käyttöön kaikilla tietokoneen vaikeustasoilla. Käytössä ja Pois määrittävät paikallisten otteluiden aloitusvalinnan. Lähi- ja verkkopeleissä ei ole avustusta; tallennetut pelit voi tarkistaa jälkikäteen. Opetusasetukset tallennetaan tälle laitteelle.",
+  "settingsTutorPreferences": "Ohjaajan asetukset",
+  "settingsTutorPreferencesSubtitle": "Tallennetut oletukset tuleville otteluille",
+  "settingsTutorSaveError": "Ohjaajan asetusten tallennus epäonnistui.",
+  "settingsGameplay": "Pelaaminen",
+  "settingsMoveHighlights": "Siirtojen korostus",
+  "settingsMoveHighlightsHelp": "Ympyröi valittavat nappulat ja korosta kohderuudut",
+  "settingsDragToMove": "Siirrä vetämällä",
+  "settingsDragToMoveHelp": "Vedä nappula kohteeseen (napautus toimii aina)",
+  "settingsCombinedMoves": "Yhdistetyt siirrot",
+  "settingsCombinedMovesHelp": "Yksi napautus siirtää nappulaa molempien noppien mukaan",
+  "settingsRotateBoard": "Käännä lautaa vuorojen välillä",
+  "settingsRotateBoardHelp": "Yhdellä laitteella pelattaessa: käännä näkymä vuorossa olevalle pelaajalle",
+  "settingsPassDevice": "Laitteen luovutusnäyttö",
+  "settingsPassDeviceHelp": "Peitä lauta pelaajien välissä, kun laitetta kierrätetään",
+  "settingsShowScore": "Näytä pisteet",
+  "settingsShowScoreHelp": "Näytä ottelun tämänhetkinen pistetilanne otsakkeessa",
+  "settingsBuddyMode": "Buddyn puhetapa",
+  "settingsBuddyTerse": "Tiivis",
+  "settingsBuddyFriendly": "Ystävällinen",
+  "settingsBuddyTerseHelp": "Näin Buddy lukee siirron ääneen: ”13/8, 24/22” – lautapelissä käytetty merkintätapa.",
+  "settingsBuddyFriendlyHelp": "Näin Buddy lukee siirron ääneen: ”Siirrä yksi nappula pisteestä 13 pisteeseen 8 ja toinen pisteestä 24 pisteeseen 22.”",
+  "settingsListenForDice": "Kuuntele noppia",
+  "settingsListenForDiceHelp": "Buddy reagoi lautaan nopeammin kuullessaan heiton. Pois käytöstä ei muuta muuta.",
+  "settingsDiagnostics": "Diagnostiikka",
+  "settingsErrorLog": "Virheloki",
+  "settingsErrorLogHelp": "Viimeisimmät virheet, jotka voi kopioida vikailmoitukseen",
+  "settingsReportBug": "Ilmoita virheestä",
+  "settingsReportBugHelp": "Avaa ohjattu vikailmoitus GitHubissa",
+  "settingsSuggestIdea": "Ehdota ideaa",
+  "settingsSuggestIdeaHelp": "Auta meitä kehittämään ohjaajaa ja peliä",
+  "settingsAbout": "Tietoja",
+  "settingsOpenSourceLicenses": "Avoimen lähdekoodin lisenssit",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "gameTutorCommentaryOff": "Pelin kommentointi ei ole käytössä.",
+  "gameTutorToolsAvailable": "Avaa ohjaaja käyttääksesi valitsemiasi työkaluja.",
+  "gameTutorNextRoll": "Heitä seuraavaksi.",
+  "gameTutorNoEvaluatedReview": "Tästä tallennetusta siirrosta ei ole arvioitua selitystä.",
+  "gameTutorAnalysisUnavailable": "analyysi ei ole saatavilla",
+  "gameTutorReviewing": "tarkistetaan…",
+  "gameTutorTryYourPlayFirst": "Kokeile ensin omaa siirtoasi.",
+  "gameTutorKeepBuilding": "Jatka siirtosi rakentamista.",
+  "gameTutorStageCompleteBeforeCoaching": "Tee kokonainen laillinen siirto ennen ohjeiden tai vihjeiden näyttämistä.",
+  "gameTutorReadyToConfirm": "Valmis vahvistettavaksi",
+  "gameTutorPlayTakingShape": "Siirtosi on muotoutumassa.",
+  "gameTutorConfirmOrUndo": "Vahvista siirto tai kumoa se ja mieti uudelleen.",
+  "gameTutorFinishDiceOrUndo": "Käytä jäljellä olevat nopat tai kumoa siirto.",
+  "gameTutorComputerConsidering": "Tietokone miettii siirtoaan.",
+  "gameTutorComputerPlayReviewed": "Valmis siirto käydään läpi tässä.",
+  "gameTutorYourPlay": "Sinun siirtosi",
+  "gameTutorComputer": "Tietokone",
+  "gameTutorPlayQuality": "Sinun siirtosi: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "pakotettu siirto",
+  "gameTutorTopChoice": "paras valinta",
+  "gameTutorSoundPlay": "hyvä siirto",
+  "gameTutorAnotherPlayMayFitBetter": "toinen siirto voi sopia paremmin",
+  "gameTutorAnotherPlayFitsBetter": "toinen siirto sopii tähän asemaan paremmin",
+  "gameTutorStrongerPlayAvailable": "selvästi vahvempi siirto oli mahdollinen",
+  "gameTutorPositionEdge": "{side} on arvion mukaan etulyöntiasemassa.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Asema on suunnilleen tasan.",
+  "tutorPhraseGameFinished": "Peli päättyi.",
+  "tutorPhraseReviewFinishedGame": "Käy siirrot läpi ja etsi harjoittelua vaativa päätös.",
+  "tutorPhraseCubeOffered": "Tuplauskuutiota on tarjottu.",
+  "tutorPhraseCubeDecisionPrompt": "Päätä otatko vai luovutko ennen nappuloiden siirron suunnittelua.",
+  "tutorPhraseCubeScoreContext": "Ottelun pistetilanne muuttaa lisäpanoksen arvoa.",
+  "tutorPhraseResignationOffered": "Luovutusta on tarjottu.",
+  "tutorPhraseResignationDecisionPrompt": "Vertaa tarjottuja pisteitä asemaan ennen kuin hyväksyt luovutuksen tai jatkat.",
+  "tutorPhraseNoLegalPlay": "Tällä heitolla ei ole laillista siirtoa.",
+  "tutorPhraseForcedPassPrompt": "Pakotettu ohi jättäminen ei ole virhe; odota seuraavaa heittoa.",
+  "tutorPhraseOnlyOneResult": "Vain yksi laillinen lopputilanne.",
+  "tutorPhraseForcedTurnPrompt": "Tee pakotettu siirto. Tällä heitolla ei ole arvioitavaa valintaa.",
+  "tutorPhrasePipCountsLevel": "Pip-määrät ovat tasan.",
+  "tutorPhrasePipCountsAhead": "Olet {count} pippiä edellä.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "Olet {count} pippiä jäljessä.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "Sinulla on {count} nappulaa baarilla: tuo ne ensin takaisin peliin.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Tuo nappula ensin sisään ja etsi sitten turvallinen laskeutumispaikka.",
+  "tutorPhraseOpponentHomePoints": "Vastustajalla on kotilaudallaan {count} suljettua pistettä.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Nappuloiden poisottokilpailu.",
+  "tutorPhrasePureRace": "Puhdas kilpajuoksu.",
+  "tutorPhraseBearOffSpread": "Ota nappuloita pois ja jätä seuraavaa heittoa varten hyödyllinen jakauma.",
+  "tutorPhraseBringRearCheckersHome": "Tuo takanappulat kotiin kasaamatta liikaa samalle pisteelle.",
+  "tutorPhraseArmiesHavePassed": "Pelaajat ovat ohittaneet toisensa; uusia osumia ei voi enää tehdä.",
+  "tutorPhraseContactStillMatters": "{part} Kontakti on edelleen tärkeä.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "Vastustajalla on {count} nappulaa baarilla.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Pidä lautasi suljettuna, kun tuot loput nappulat kotiin.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Rakenna tai säilytä kotilautasi suljettuna vastustajan yrittäessä päästä sisään.",
+  "tutorPhraseHomePointsCloseEntries": "Sinulla on {count} kotilautapistettä; kukin sulkee yhden sisääntulonumeron.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Kontakti {count} pisteen sulkujonolla.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Vertaa sulkujonon pidentämistä varanappuloiden säilyttämiseen sen ylläpitämiseksi.",
+  "tutorPhraseSpareCheckersCanMove": "{count} varanappulaa voi liikkua avaamatta pistettä heti.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Kontakti ankkurin kanssa pisteissä {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Vertaa takanappuloiden kotiintuontia turvallisen ankkurin säilyttämiseen.",
+  "tutorPhraseCompareAnchorProgressBehind": "Pidä turvallinen jalansija mielessä etsiessäsi osumaa tai parempaa asemaa.",
+  "tutorPhrasePreserveAnchorFoothold": "Ankkuria ei voi lyödä, mutta nappuloilla on vielä pitkä matka kotiin.",
+  "tutorPhraseContactThreats": "Kontakti: molemmat puolet voivat yhä uhata osumalla.",
+  "tutorPhraseLookForPointsAndSafety": "Etsi hyödyllisiä pisteitä ja arvioi sitten yksittäisten nappuloiden jättämisen riski.",
+  "tutorPhraseHomePointsAndBlots": "Sinulla on {count} kotilautapistettä ja jätät {otherCount} yksittäistä nappulaa alttiiksi.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Valitse nappula aloittaaksesi siirron.",
+  "tutorPhraseLegalPlayPrompt": "Aloita laillinen siirto nähdäksesi kommentit.",
+  "tutorPhraseStagedHit": "Osuit {count} vastustajan nappulaan.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "Toit {count} nappulaa sisään baarilta.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Otit {count} nappulaa pois laudalta.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Teit pisteet {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Nappulasi pisteessä {point} on nyt yksin ja lyötävissä.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "Pisteen {point} ylimääräinen nappula voi liikkua myöhemmin avaamatta pistettä.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Käytä jäljellä olevat nopat ennen koko siirron arviointia.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Kaikki 15 nappulaa ovat pois: voitit pelin.",
+  "tutorPhraseStagedHitShortPlan": "Osuma voittaa aikaa, kun vastustaja yrittää tulla takaisin laudalle.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Tehokas poisotto vähentää nappuloita ja jättää hyödyllisiä lukuja seuraavaan heittoon.",
+  "tutorPhraseStagedRaceHomePlan": "Tuo takimmaiset nappulat kotiin ja sijoita ne hyödyllisille poisottopaikoille.",
+  "tutorPhraseStagedBearOffContactPlan": "Poisotto edistää peliä, mutta kontakti jättää vielä osumavaaran.",
+  "tutorPhraseStagedReentryPlan": "Sisääntulo palauttaa nappulan peliin; etsi sille seuraavaksi turvallinen piste.",
+  "tutorPhraseStagedHomeBoardPlan": "Uusi kotilautapiste sulkee yhden sisääntulonumeron mahdollisen osuman jälkeen.",
+  "tutorPhraseStagedPrimePlan": "Pidempi sulkujono sulkee lisää laskeutumispaikkoja; varanappulat auttavat pitämään sen ehjänä.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Ankkurista luopuminen vie eteenpäin mutta luovuttaa turvallisen jalansijan.",
+  "tutorPhraseStagedNewAnchorPlan": "Uusi ankkuri antaa takanappuloille turvallisen jalansijan.",
+  "tutorPhraseStagedCoverBlotPlan": "Yksinäisen nappulan suojaaminen poistaa vastustajalta kohteen.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Valinta on kehityksen ja turvallisuuden välillä: rakentavat nappulat voivat myös joutua kohteiksi.",
+  "tutorPhraseStagedCompletePrompt": "{part} Koko siirto on valmis; vahvista se napauttamalla Vahvista.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Tällä heitolla ei ole nappulasiirtovaihtoehtoa, joten sitä ei arvioida päätöksenä.",
+  "tutorMoveTopVerdict": "Tämän aseman paras valinta.",
+  "tutorMoveAlternativeVerdict": "Moottori suosii tässä toista siirtoa.",
+  "tutorMoveEstimateDifference": "Ero parhaaseen siirtoon: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Tämän siirron jälkeen: voiton todennäköisyys {winPercent} %, gammon tai parempi voitto {winGammonPercent} %, gammon tai pahempi tappio {loseGammonPercent} %. Arviot ovat siirtovuorossa olevan näkökulmasta.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Arvioitu otteluvoiton todennäköisyys: {percent} %.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Kaikki 15 nappulaa ovat poissa laudalta: voitit pelin.",
+  "tutorMovePlanHit": "Käytä osumaa ajan voittamiseen vastustajan palatessa laudalle. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Pidä kotilautapisteesi suljettuina, jotta sisääntulo vaikeutuu.",
+  "tutorMovePlanHitBuild": "Rakenna lisää kotilautapisteitä, jotta tulevasta osumasta toipuminen on vastustajalle vaikeampaa.",
+  "tutorMovePlanRaceBearOff": "Pyri tehokkaaseen poisottoon: poista nappuloita ja jätä hyödyllisiä lukuja seuraavaan heittoon.",
+  "tutorMovePlanRaceHome": "Tuo takanappulat kotiin ja jaa ne hyödyllisille poisottopaikoille.",
+  "tutorMovePlanContactBearOff": "Ota nappuloita pois, mutta tarkkaile vastustajan takanappuloita: kontaktissa irrallinen poisotettava nappula voi joutua kohteeksi.",
+  "tutorMovePlanReentry": "Palaa peliin ja etsi sitten turvallinen piste sisään tulleelle nappulalle.",
+  "tutorMovePlanHomeBoard": "Vahvista kotilautaasi. Uusi suljettu piste vie yhden sisääntulonumeron ja tekee tulevasta osumasta tehokkaamman.",
+  "tutorMovePlanPrime": "Pidä suljettujen pisteiden jono yhtenäisenä. Säilytä varanappulat, jotta myöhemmät heitot eivät pakota avaamaan sitä.",
+  "tutorMovePlanLeaveAnchor": "Ankkurista luopuminen vie takanappuloita eteenpäin mutta luovuttaa turvallisen jalansijan. Seuraa niiden alttiutta matkalla kotiin.",
+  "tutorMovePlanNewAnchor": "Käytä uutta ankkuria turvallisena jalansijana ja paranna samalla muuta asemaasi.",
+  "tutorMovePlanCoverBlot": "Kokoa nappulasi. Yksittäisen nappulan suojaaminen poistaa kohteen ja säilyttää käyttökelpoisia laskeutumispaikkoja.",
+  "tutorMovePlanSafety": "Tasapainota kehitys ja turvallisuus: siirrä rakentajia hyödyllisille pisteille ja tarkista, mitkä yksittäiset nappulat voi lyödä.",
+  "tutorMoveObservationNoLegalPlay": "Laillista nappulasiirtoa ei ole: vuoro on ohitettava.",
+  "tutorMoveObservationHit": "Lyöt {count} vastustajan {count, plural, one{nappulan} other{nappulaa}}; vastustajan on tultava baarilta sisään ennen muiden nappuloiden liikuttamista.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Tuo {count} nappulaa sisään baarilta.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Ota {count} {count, plural, one{nappula} other{nappulaa}} pois laudalta.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Teet pisteet {points}. Vähintään kaksi nappulaa pitää pisteen hallussa ja estää vastustajan laskeutumisen siihen.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Luovut suljetuista pisteistä {pointLabel} {points}. Ne eivät enää estä vastustajaa.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Et jätä yksittäisiä nappuloita alttiiksi (ennen {previousCount}). Lyötävää yksinäistä nappulaa ei ole.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Jätät {count} yksinäistä nappulaa alttiiksi (ennen {previousCount}). Tarkista, yltääkö vastustaja niihin, ennen kuin valitset turvallisuuden muun hyödyn sijaan.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Pisin suljettujen pisteiden jono: {count} (ennen {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Kuuden pisteen primeä ei voi ylittää, kun se pysyy suljettuna.",
+  "tutorMoveObservationPrimeBuild": "Pidä rakentajia lähellä, jos haluat jatkaa tai säilyttää tämän jonon.",
+  "tutorMoveObservationPrimeSpares": "Suljetuilla pisteillä on {count} varanappulaa kahden perusnappulan lisäksi. Varanappulan siirtäminen voi säilyttää pisteen; jommankumman kahdesta siirtäminen avaa sen.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Ankkurit vastustajan kotilaudalla: {points} (ennen {previousPoints}). Ankkuri suojaa nappuloita osumilta; siitä luopuminen vaihtaa turvapaikan kilpajuoksussa etenemiseen.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Puhdas kilpajuoksu: pelaajat ovat ohittaneet toisensa eikä kummallakaan ole nappulaa baarilla. Osumia ei enää voi tehdä; tehokas poisotto ratkaisee.",
+  "tutorMoveObservationNoReplyHit": "Vastustaja ei voi lyödä nappulaa tällä asemalla millään laillisella seuraavalla heitolla. Kontakti jatkuu, joten myöhemmät siirrot voivat luoda uusia osumapaikkoja.",
+  "tutorMoveObservationReplyHit": "Vastustaja voi lyödä {count} heitolla {total}:sta. Esimerkiksi {dieOne}–{dieTwo} antaa laillisen osuman pisteeseen {point}. Osuma on mahdollinen, ei varma valinta.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Kotilaudallasi on {closedPoints} suljettua pistettä. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Vastustaja ei voi tulla laudalle ennen kuin jokin piste avautuu.",
+  "tutorMoveObservationOpenEntry": "Avoimen sisääntulopisteen sisältävä heitto voi tuoda nappulan takaisin baarilta.",
+  "tutorMoveComparisonDetail": "{factors} Parhaan siirron arvioitu voittomahdollisuus on {delta} prosenttiyksikköä {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "suurempi",
+  "tutorMoveComparisonLower": "pienempi",
+  "tutorMoveComparisonScoreContext": " Se voi silti sijoittua korkeammalle, koska gammonin ja backgammonin arvo riippuu nykyisestä {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "panos",
+  "tutorMoveComparisonMatchScore": "ottelun pistetilanne",
+  "tutorMoveComparisonFactorBar": "Paras siirto jättää baarille {bestCount} vastustajan nappulaa sinun {playedCount} nappulasi sijaan. Baarilla olevan nappulan on tultava sisään ennen kuin muut liikkuvat.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Paras siirto pitää kotilaudalla {bestCount} pistettä sinun {playedCount} pisteesi sijaan; osuman jälkeen {entryDifference} sisääntulopistettä.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "sulkee enemmän",
+  "tutorMoveComparisonLeavingMore": "jättää enemmän avoimeksi",
+  "tutorMoveComparisonFactorShots": "Paras siirto sallii vastustajan osuman {bestCount} heitolla 36:sta, sinun siirtosi {playedCount} heitolla. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Tämä pienentää välitöntä takaisinlyönnin riskiä.",
+  "tutorMoveComparisonExtraExposure": "Vertaa lisäaltistusta siihen, mitä siirto voittaa muualla.",
+  "tutorMoveComparisonFactorPrime": "Parhaan siirron pisin suljettujen pisteiden jono on {bestCount}, sinun siirrossasi {playedCount}; vertaa muuria sen ylläpitämiseen käytettävissä oleviin nappuloihin.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Parhaan siirron ankkurit ovat {bestPoints}, sinun siirrossasi {playedPoints}. Ankkuri säilyttää turvallisen laskeutumispaikan; siitä luopuminen tuo nappulat lähemmäs kotia.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Paras siirto on ottanut pois {bestCount} nappulaa sinun {playedCount} nappulasi sijaan. Jokainen poistettu nappula on yksi vähemmän myöhemmin otettavana.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Molemmissa siirroissa välitön osumariski, kotilautapisteet, ankkurit ja pois otetut nappulat ovat samat. Vertaa laskeutumispaikkoja: seuraava heitto voi käyttää nappuloita eri tavoin.",
+  "tutorMoveComparisonSummaryBar": "Paras siirto lähettää enemmän vastustajan nappuloita baarille ja viivästyttää tämän muita siirtoja.",
+  "tutorMoveComparisonSummaryHomeBoard": "Paras siirto sulkee enemmän kotilautapisteitä ja vaikeuttaa sisääntuloa osuman jälkeen.",
+  "tutorMoveComparisonSummaryShots": "Paras siirto sallii vähemmän välittömiä osumaheittoja ja pienentää takaisinlyönnin vaaraa.",
+  "tutorMoveComparisonSummaryPrime": "Paras siirto pitää pidemmän suljettujen pisteiden jonon.",
+  "tutorMoveComparisonSummaryAnchors": "Paras siirto säilyttää enemmän turvallisia ankkureita vastustajan kotilaudalla.",
+  "tutorMoveComparisonSummaryBearOff": "Paras siirto ottaa enemmän nappuloita pois, joten myöhemmin on vähemmän poistettavaa.",
+  "tutorMoveComparisonSummaryBlots": "Tämä siirto jättää {playedCount} yksittäistä nappulaa; paras siirto jättää {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Paras siirto säilyttää turvallisen ankkurin pisteessä {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Paras siirto sulkee enemmän sisääntulopisteitä siltä varalta, että nappulasi lyödään.",
+  "tutorMoveComparisonSummarySimilarRisks": "Siirtojen välittömät riskit ovat samankaltaiset; vertaa, mitkä laskeutumispaikat pysyvät hyödyllisinä seuraavalla heitolla.",
+  "tutorMoveAssessmentEquityLoss": "{value} equity",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} MWC-prosenttiyksikköä",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "piste",
+  "tutorMovePointPlural": "pistettä",
+  "tutorMoveNoPoints": "ei mitään",
+  "gameTapNoLegalMove": "Tällä nappulalla ei voi tehdä laillista siirtoa jäljellä olevilla nopilla",
+  "gameTapNoLegalMoveUndo": "Tällä nappulalla ei voi tehdä laillista siirtoa jäljellä olevilla nopilla — kokeile perumista",
+  "gameDragHint": "Vinkki: vedä nappuloita tai napauta niitä — muuta tätä asetuksista",
+  "commonGotIt": "Selvä",
+  "gameHintStageBeforeHint": "Tee ensin kokonainen laillinen siirto ja pyydä sitten vihjettä.",
+  "surrenderTitle": "Luovuta",
+  "surrenderNamedConcedes": "{player} luovuttaa tämän pelin.",
+  "surrenderConcedes": "Luovutat tämän pelin.",
+  "surrenderAvailableAtNamedTurn": "Käytettävissä {player}n vuoron alussa",
+  "surrenderAvailableAtYourTurn": "Käytettävissä vuorosi alussa",
+  "commonCancel": "Peruuta",
+  "surrenderSingle": "Yksittäinen (1)",
+  "surrenderGammon": "Gammon (2)",
+  "surrenderBackgammon": "Backgammon (3)",
+  "surrenderChoosePlayer": "Kumpi luovuttaa tämän pelin?",
+  "commonDone": "Valmis",
+  "cubeDouble": "Tuplaa",
+  "cubeBlockedOtherPlayersTurn": "Nyt on vastustajan vuoro.",
+  "cubeBlockedCrawford": "Tuplauskuutio ei ole käytössä Crawford-pelissä.",
+  "cubeBlockedOwnedByOther": "Vain kuution omistaja voi tuplata, ja nyt se on vastustajalla.",
+  "cubeBlockedUnavailable": "Tuplaus ei ole juuri nyt mahdollinen.",
+  "gameStatusRolling": "Heittää…",
+  "gameStatusThinking": "Miettii…",
+  "gameStatusPlayersTurn": "{player}n vuoro",
+  "cubeAdviceOpponentTake": "Tuplaa — vastustajan kannattaa ottaa",
+  "cubeAdviceOpponentPass": "Tuplaa — vastustajan kannattaa passata",
+  "gameErrorBannerLabel": "Virhe: {error}",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "gameMatchSummary": "Ottelun yhteenveto",
+  "gameAnalyzeGame": "Analysoi peli",
+  "gameTutorCubeTake": "Tutor: ota",
+  "gameTutorCubePass": "Tutor: passaa",
+  "tutorPlayedMove": "Pelattu: {move}",
+  "tutorBestMove": "Paras siirto: {move}",
+  "tutorShowRankedPlays": "Näytä siirrot paremmuusjärjestyksessä",
+  "tutorReviewRecordedMove": "Napauta lokissa olevaa valmista siirtoa, niin näet sen analyysin tässä.",
+  "tutorTopPlays": "Parhaat siirrot",
+  "tutorNoHintsAvailable": "Vihjeitä ei ole saatavilla.",
+  "tutorPreviewThenConfirm": "Napauta siirtoa, niin näet sen laudalla. Vahvista sitten siirto.",
+  "tutorTopChoiceForPosition": "Aseman paras vaihtoehto",
+  "tutorAlternativePlay": "Vaihtoehtoinen siirto",
+  "tutorEngineEstimates": "Pelimoottorin arviot",
+  "tutorEstimateScope": "0-ply-arvio · nykyinen tulos ja panos · tulevia tuplauksia ei huomioida",
+  "tutorEquity": "Odotusarvo",
+  "tutorMwcPercent": "Ottelun voittotodennäköisyys %",
+  "tutorNearTiesNote": "Lähes tasaiset arviot voivat muuttua tarkemmassa analyysissä.",
+  "tutorWhyThisPlay": "Miksi tämä siirto?",
+  "tutorCompareAlternative": "Vertaa tätä vaihtoehtoa",
+  "tutorCubelessEstimateScope": "0-ply-arvio ilman kuutiota · tulos ei ole saatavilla",
+  "tutorLossPp": "Tappio prosenttiyksikköinä",
+  "tutorLoss": "Tappio",
+  "tutorOptions": "Tutorin asetukset",
+  "tutorCollapseTooltip": "Pienennä tutor",
+  "tutorExpandTooltip": "Laajenna tutor",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · {matchLength} pisteeseen",
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · {matchLength} pisteeseen",
+  "gameHudYou": "Sinä",
+  "gameHudAi": "Tietokone",
+  "gameHudGameNumber": "Peli {number}",
+  "gameHudMatchContext": "{score} · {game}",
+  "gameHudHotSeatDetail": "{whiteLabel} vs. {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "gameHudOpponentDetail": "vs. {opponent} · {pipsLabel} {mine}–{theirs}",
+  "gameHudOpponentDetailWithLevel": "vs. {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "gameHudPips": "Pipsit",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Tuplaa",
+  "gameHudMoreActions": "Lisää toimintoja",
+  "gameHudSurrender": "Luovuta…",
+  "gameHudThinking": "Miettii",
+  "gameHudDoubleBeforeRoll": "Voit tuplata vain ennen heittoa omalla vuorollasi.",
+  "gameHudNoDoubleCrawford": "Crawford-pelissä ei voi tuplata — tämä yksittäinen peli ratkaisee ottelun.",
+  "gameHudOnlyCubeOwner": "Vain kuution omistaja voi tuplata, ja nyt kuutio on vastustajalla.",
+  "gameHudDoubleUnavailable": "Tuplaus ei ole juuri nyt mahdollinen.",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (otteluun {matchLength})",
+  "gameDialogPlayerWon": "{winner} voittaa tämän pelin ({points}).",
+  "gameDialogPlayerWonGammon": "{winner} voittaa tämän pelin ({points}, gammon).",
+  "gameDialogPlayerWonBackgammon": "{winner} voittaa tämän pelin ({points}, backgammon).",
+  "gameDialogPlayerWonDrop": "{winner} voittaa tämän pelin ({points}) — {loser} kieltäytyi tuplauksesta.",
+  "gameDialogPlayerWonResignation": "{winner} voittaa tämän pelin ({points}) — {loser} luovutti.",
+  "gameDialogPassDeviceTitle": "Anna laite seuraavalle",
+  "gameDialogPlayersTurn": "{name}n vuoro",
+  "gameDialogTapToContinue": "Jatka napauttamalla",
+  "gameDialogCubeOfferedTitle": "Tuplausta tarjotaan",
+  "gameDialogCubeOfferMessage": "{doubler} tarjoaa tuplausta arvoon {value}. Otatko vai passaatko?{tutorLine}",
+  "gameDialogPass": "Passaa",
+  "gameDialogTake": "Ota",
+  "gameDialogResignationTitle": "Luovutusta tarjotaan",
+  "gameDialogResignationMessage": "{resigner} tarjoaa luovutusta arvolla {value}. Hyväksytkö?",
+  "gameDialogResignSingle": "yksittäinen peli",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Hylkää",
+  "gameDialogAccept": "Hyväksy",
+  "gameDialogGameOverTitle": "Peli päättyi",
+  "gameDialogNextGame": "Seuraava peli",
+  "gameDialogMatchOverTitle": "Ottelu päättyi",
+  "gameDialogNobody": "Ei kukaan",
+  "gameDialogMatchWinner": "{winner} voittaa ottelun.",
+  "gameDialogSavedToHistory": "Tallennettu historiaan",
+  "gameDialogDone": "Valmis",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "newMatchYourSide": "Sinun puolesi",
+  "newMatchTutorMode": "Tutoritila",
+  "newMatchTutorDescription": "Opi vihjeiden, selitysten ja pelikommenttien avulla",
+  "newMatchTutoringOptions": "Tutorin asetukset",
+  "newMatchTutoringOptionsDescription": "Tätä ottelua varten; muutettavissa pelin aikana",
+  "setupMatchLength": "Ottelun pituus",
+  "setupDifficulty": "Vaikeustaso",
+  "setupDifficultyEasy": "Helppo",
+  "setupDifficultyMedium": "Keskitaso",
+  "setupDifficultyHard": "Vaikea",
+  "setupDifficultyExpert": "Asiantuntija",
+  "setupPlayWithoutCube": "Pelaa ilman kuutiota",
+  "setupNoCubeThisMatch": "Tässä ottelussa ei ole tuplauskuutiota",
+  "actionCancel": "Peruuta",
+  "actionDelete": "Poista",
+  "actionRetry": "Yritä uudelleen",
+  "actionRemove": "Poista",
+  "diagnosticsCopySuccess": "Diagnostiikka kopioitiin leikepöydälle",
+  "diagnosticsReviewTitle": "Tarkista diagnostiikkaraportti",
+  "diagnosticsPrivacyNotice": "Luonnoksen avaaminen lähettää alla olevat tiedot GitHubiin, kuten sovelluksen version, alustan ja virhetiedot. Julkista ongelmaa ei julkaista ennen kuin lähetät sen siellä. Jos tiedot sisältävät yksityisiä tietoja, peruuta ja valmistele raportti itse Kopioi-toiminnolla.",
+  "diagnosticsCancel": "Peruuta",
+  "diagnosticsOpenGitHub": "Avaa GitHub",
+  "diagnosticsTitle": "Diagnostiikka",
+  "diagnosticsReportTooltip": "Ilmoita ongelmasta GitHubissa",
+  "diagnosticsCopyTooltip": "Kopioi leikepöydälle",
+  "diagnosticsClearTooltip": "Tyhjennä loki",
+  "diagnosticsEmpty": "Virheitä ei ole tallennettu.\n\nJos jokin menee pieleen, tiedot tallennetaan tänne. Palaa myöhemmin ja kopioi ne virheraporttiin.",
+  "historyTitle": "Otteluhistoria",
+  "historyLoadFailed": "Historian lataaminen epäonnistui:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyEmpty": "Otteluita ei ole vielä pelattu.",
+  "historyDeleteConfirmTitle": "Poistetaanko tämä ottelu?",
+  "historyDeleteConfirmBody": "{scoreLine}\n\nOttelu ja kaikki siihen tallennetut pelit poistetaan pysyvästi. Tätä ei voi kumota.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyDeleteFailed": "Ottelua ei voitu poistaa.",
+  "historyComplete": "Valmis",
+  "historyWinner": "{side} voitti",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyUnfinished": "Kesken",
+  "historyMatchTitle": "Ottelu",
+  "historyMatchLoadFailed": "Ottelun lataaminen epäonnistui:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Pelien lataaminen epäonnistui:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyNoGames": "Pelejä ei ole vielä tallennettu.",
+  "historyGameTitle": "Peli {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyCrawford": "Crawford",
+  "historyScoreLine": "Valkoinen {whiteScore} — {blackScore} Musta (otteluun {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyModeComputer": "tietokonetta vastaan",
+  "historyModeTwoPlayers": "Kaksi pelaajaa",
+  "historyModeOnline": "Verkossa",
+  "historyModeNearby": "Pelaa lähellä",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "Kesken",
+  "historyGameResult": "{side} voitti {points} ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "historyOutcomeSingle": "yksittäinen",
+  "historyOutcomeGammon": "gammon",
+  "historyOutcomeBackgammon": "backgammon",
+  "onlineTitle": "Pelaa verkossa",
+  "onlineUnassistedNote": "Verkko-otteluissa ei ole tutorin apua. Tarkastele siirtojasi ja harjoittele virheitä ottelun jälkeen.",
+  "onlineNotConfiguredTitle": "Verkkopeliä ei ole määritetty tässä versiossa",
+  "onlineNotConfiguredBody": "Tähän versioon ei ole yhdistetty Firebase-taustapalvelua, joten otteluiden luominen ja niihin liittyminen ei ole käytettävissä.",
+  "onlineErrorNoMatch": "Tällä koodilla ei löytynyt ottelua. Tarkista koodi ja yritä uudelleen.",
+  "onlineErrorSeatTaken": "Ottelu ei ole enää avoin — paikka on jo varattu.",
+  "onlineErrorPermission": "Sinulla ei ole pääsyä tähän otteluun.",
+  "onlineErrorGeneric": "Jokin meni pieleen. Yritä uudelleen.",
+  "onlineMatchFinished": "Ottelu on päättynyt — siihen ei voi enää liittyä uudelleen.",
+  "onlineEnterCodeError": "Anna ottelukoodi.",
+  "onlineOpponentShort": "Vast.",
+  "onlineMatchInProgress": "Ottelu käynnissä",
+  "onlineResumePrompt": "Pelit ottelua {code}.",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Liity uudelleen",
+  "onlineForgetMatch": "Unohda tämä ottelu",
+  "onlineCreateTitle": "Luo ottelu",
+  "onlineMatchLength": "Ottelun pituus",
+  "onlineNoCubeTitle": "Pelaa ilman kuutiota",
+  "onlineNoCubeSubtitle": "Tässä ottelussa ei ole tuplauskuutiota",
+  "onlineCreate": "Luo",
+  "onlineWaitingOpponent": "Odotetaan vastustajaa…",
+  "onlineShareCode": "Jaa tämä koodi",
+  "onlineCopyCode": "Kopioi koodi",
+  "onlineCodeCopied": "Koodi kopioitu",
+  "onlineJoinTitle": "Liity otteluun",
+  "onlineRoomCode": "Ottelukoodi",
+  "onlineJoin": "Liity",
+  "lanTitle": "Pelaa lähellä",
+  "lanTabHost": "Isännöi",
+  "lanTabJoin": "Liity",
+  "lanUnassistedNote": "Lähipelit pelataan ilman tutorin apua. Tarkastele siirtojasi ja harjoittele virheitä ottelun jälkeen.",
+  "lanGameStartFailed": "Peliä ei voitu aloittaa. Toinen laite voi yrittää liittyä uudelleen.",
+  "lanHostPortInUse": "Isännöinti ei käynnistynyt — portti on jo käytössä. Sulje Backgammon Buddyn toinen kopio.",
+  "lanHostStartFailed": "Isännöinti ei käynnistynyt. Tarkista Wi-Fi-yhteys.",
+  "lanHostTitle": "Isännöi peliä",
+  "lanStartHosting": "Aloita isännöinti",
+  "lanHostHelp": "Molempien laitteiden on oltava samassa Wi-Fi-verkossa. Tämä laite heittää noppaa ja pitää kirjaa tuloksesta.",
+  "lanWaitingPlayerTitle": "Odotetaan pelaajaa",
+  "lanRoomCodeInfo": "Kerro tämä koodi toiselle pelaajalle. Sen avulla hän pääsee mukaan — sovellus ei lähetä sitä verkon kautta.",
+  "lanWaitingPlayer": "Odotetaan pelaajaa…",
+  "lanStopHosting": "Lopeta isännöinti",
+  "lanFindNearbyPort": "Pyydä toista laitetta etsimään lähipelit. Kuunnellaan porttia {port}.",
+  "lanOnNetwork": "Tässä verkossa",
+  "lanCopyAddress": "Kopioi osoite",
+  "lanAddressCopied": "Osoite kopioitu",
+  "lanScanHostTitle": "Skannaa isäntä",
+  "lanScanHostHelp": "Toinen laite näyttää QR-koodin isäntänäytöllään. Skannaamalla osoite ja huonekoodi täyttyvät puolestasi.",
+  "lanScanQr": "Skannaa QR-koodi",
+  "lanScannerUnavailable": "Kamera tai sen käyttöoikeus ei ole saatavilla. Syötä osoite ja huonekoodi alla.",
+  "lanInvalidQr": "Tämä QR-koodi ei ole Backgammon Buddy -peliä varten. Skannaa toisessa laitteessa isäntänäytöllä näkyvä koodi.",
+  "lanScannerFailed": "Skanneria ei voitu avata. Syötä osoite ja koodi sen sijaan.",
+  "lanNearbyGames": "Lähipelit",
+  "lanSearching": "Etsitään lähipelejä…",
+  "lanNoGamesFound": "Pelejä ei löytynyt vielä. Varmista, että toinen laite isännöi ja molemmat ovat samassa Wi-Fi-verkossa — tai syötä sen osoite.",
+  "lanStillSearching": "Etsitään yhä…",
+  "lanEnterAddress": "Anna osoite",
+  "lanEnterAddressHelp": "Automaattinen haku ei toimi kaikissa verkoissa (ja iOS voi estää sen kokonaan). Isäntänäyttö kertoo, mitä pitää kirjoittaa.",
+  "lanIpAddress": "IP-osoite",
+  "lanPort": "Portti",
+  "lanInvalidPort": "Anna portti väliltä 1–65535.",
+  "lanEnterAddressError": "Anna toisessa laitteessa näkyvä osoite.",
+  "lanEnterRoomCodeError": "Anna toisessa laitteessa näkyvä nelinumeroinen koodi.",
+  "lanJoinWrongCode": "Väärä huonekoodi. Tarkista toisen laitteen neljä numeroa.",
+  "lanJoinVersionMismatch": "Toisessa laitteessa on eri Backgammon Buddy -versio.",
+  "lanJoinHandshakeFailed": "Laite ei vastannut Backgammon Buddyn tavoin. Tarkista osoite ja portti.",
+  "lanJoinFailed": "Liittyminen epäonnistui. Tarkista osoite ja huonekoodi ja yritä uudelleen.",
+  "lanJoinTarget": "Liity peliin {name}",
+  "lanJoinTargetHelp": "Anna toisessa laitteessa näkyvä nelinumeroinen koodi.",
+  "lanJoiningTarget": "Liitytään peliin {name}",
+  "lanConnect": "Yhdistä",
+  "lanBack": "Takaisin",
+  "lanTryAgain": "Yritä uudelleen",
+  "lanStatusBusy": "Huone käytössä — odotetaan…",
+  "lanStatusReconnecting": "Yhteys katkesi — yritetään uudelleen…",
+  "lanStatusConnected": "Yhdistetty — ottelu alkaa…",
+  "lanStatusFailed": "Liittyminen epäonnistui.",
+  "lanStatusConnecting": "Yhdistetään…",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "analysisTitle": "Analyysi",
+  "analysisMetricsTooltip": "Mitä nämä luvut tarkoittavat?",
+  "analysisError": "Pelin analysointi epäonnistui: {error}",
+  "analysisNoPositions": "Tässä pelissä ei ole näytettäviä asemia.",
+  "analysisInProgress": "Analysoidaan peliä…",
+  "analysisPercent": "{percent}%",
+  "analysisPlayed": "Pelattu",
+  "analysisBest": "Paras",
+  "analysisPrevious": "Edellinen",
+  "analysisNext": "Seuraava",
+  "analysisPositionBeforeCube": "Asema ennen kuutiopäätöstä",
+  "analysisPositionAtPoint": "Asema tässä pelin vaiheessa",
+  "analysisShowingBestBefore": "Näytetään paras siirto ennen siirtoa",
+  "analysisShowingBefore": "Näytetään asema ennen siirtoa",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "analysisMoveLoss": "  −{loss}",
+  "analysisExcludedFromAverages": " · ei mukana keskiarvoissa",
+  "analysisNoPlay": "(ei siirtoa)",
+  "analysisBestMoveLine": "Paras: {move}",
+  "analysisExplain": "Selitä",
+  "analysisSaveForPractice": "Tallenna harjoitteluun",
+  "analysisSaveError": "Päätöstä ei voitu tallentaa: {error}",
+  "analysisCubeInfo": "{side}: {action} · {mark} · tappio {loss}",
+  "analysisCubeDecision": "Kuutiopäätös",
+  "analysisCubePlayed": "Pelattu: {action} (ottelun voittotodennäköisyys {percent} %).",
+  "analysisCubeBest": "Paras: {action} (ottelun voittotodennäköisyys {percent} %).",
+  "analysisCubeEstimate": "0-ply-arvio vuorossa olevan pelaajan näkökulmasta. Olettaa optimaalisen otto- tai passausvastauksen. Tuplan hyväksymisen haarassa käytetään kuution eliniän likimääräistä kerrointa 0,7, eikä tulevien tuplausmahdollisuuksien koko hakua tehdä. Syvempi analyysi voi muuttaa tulosta.",
+  "analysisClose": "Sulje",
+  "analysisMoves": "Siirrot",
+  "analysisForced": "Pakotettu",
+  "analysisMarkBest": "Paras",
+  "analysisMarkGood": "Hyvä",
+  "analysisMarkDubious": "Kyseenalainen",
+  "analysisMarkError": "Virhe",
+  "analysisMarkBlunder": "Karkea virhe",
+  "analysisSummaryMeanLoss": "Keskimääräinen tappio {loss}",
+  "analysisSummaryCheckerDecisions": "{count} nappulasiirtopäätöstä",
+  "analysisSummaryBlunders": "Karkeita virheitä {count}",
+  "analysisSummaryCubeLoss": "Kuutiotappio {loss}",
+  "analysisRollWithoutDoubling": "{side} heittää tuplaamatta",
+  "metricExplainerTitle": "Mittarien ymmärtäminen",
+  "metricExplainerTooltip": "Mitä nämä luvut tarkoittavat?",
+  "metricExplainerMwcTitle": "Ottelun voittotodennäköisyys (MWC)",
+  "metricExplainerMwcBody": "Kun tulos on tiedossa, siirrot järjestetään arvioidun otteluvoiton todennäköisyyden mukaan. Tappio ilmoitetaan prosenttiyksikköinä (pp): 1 pp tarkoittaa, että 51 % laskee 50 %:iin. Mukana ovat nykyinen kuution panos sekä gammon- ja backgammon-tulokset. Pakotettuja passeja ja heittoja, joista seuraa vain yksi laillinen asema, ei lasketa keskiarvoon.",
+  "metricExplainerSearchTitle": "Haku ja epävarmuus",
+  "metricExplainerSearchBody": "Nappulasiirtojen järjestys perustuu staattiseen 0-ply-arvioon siirron jälkeen, ei rollouteihin. Otteluarvoissa käytetään ottelun equity-taulukkoa eikä huomioida tulevia kuutioita. Kuutioarvioissa hyväksytyn tuplan haarassa käytetään osittaista 0,7 kuution elinikäarviota. Kumpikaan ei ole täysi kuutiollinen haku. Yli 25 pisteen takamatkoissa käytetään taulukon 25 pisteen rajaa. Lähes tasaiset tulokset voivat muuttua syvemmässä analyysissä; kalibroitua luottamusväliä ei ole.",
+  "metricExplainerEquityTitle": "Equity",
+  "metricExplainerEquityBody": "Jos tulosta ei ole saatavilla, kuutioton equity kertoo, kuinka monta pistettä asema on keskimäärin arvoltaan — odotettu tulos kuution ollessa arvossa 1. +1,0 tarkoittaa odotettua yhden pisteen voittoa; −0,5 puolen pisteen tappiota.",
+  "metricExplainerEquityLossTitle": "Equity-tappio (esim. −0,016)",
+  "metricExplainerEquityLossBody": "Vertaamme jokaista pelaamaasi siirtoa pelimoottorin parhaaseen siirtoon. Equity-tappio kertoo, kuinka paljon odotusarvoa siirto menetti. −0,016 tarkoittaa, että siirto oli vain 0,016 pistettä parasta heikompi — pieni lipsahdus. 0,000 tarkoittaa, että löysit parhaan siirron.",
+  "metricExplainerErrorRateTitle": "Virheprosentti",
+  "metricExplainerErrorRateBody": "Keskimääräinen tappio laskee arvioitujen nappulapäätösten keskiarvon näytetyssä yksikössä. Kuutiopäätöksille lasketaan oma keskiarvo. Pienempi luku tarkoittaa, että siirrot ovat lähempänä tämän moottorin parhaita arvioita; kyse ei ole kalibroidusta pelaaja-arviosta.",
+  "metricExplainerMoveMarksTitle": "Siirtoluokitukset",
+  "metricExplainerMoveMarksBody": "MWC:n opetusrajat: paras < 0,05 pp, hyvä < 0,5 pp, kyseenalainen < 1,5 pp, virhe < 3 pp, karkea virhe ≥ 3 pp. Nämä ovat opetuskäyttöön tarkoitettuja rajoja, eivät kalibroituja varmuusarvioita tai turnausluokituksia.\n\nKuutiottoman equityn opetusrajat:",
+  "metricExplainerThresholdBest": "tappio < 0,001",
+  "metricExplainerThresholdGood": "tappio < 0,020",
+  "metricExplainerThresholdDubious": "tappio < 0,050",
+  "metricExplainerThresholdError": "tappio < 0,110",
+  "metricExplainerThresholdBlunder": "tappio ≥ 0,110",
+  "metricExplainerGotIt": "Selvä",
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "analysisCubeNoDouble": "Älä tuplaa",
+  "analysisCubeDouble": "Tuplaa",
+  "analysisCubeTake": "Ota",
+  "analysisCubePass": "Passaa",
+  "scoreSheetNoMoves": "Ei vielä siirtoja",
+  "learningRefreshTooltip": "Päivitä oppimistiedot",
+  "learningOptions": "Oppimisen asetukset",
+  "learningResetMenu": "Nollaa harjoittelun edistyminen",
+  "learningLoadFailed": "Oppimistietoja ei voitu ladata.",
+  "learningHeading": "Opi päätöksistäsi",
+  "learningIntro": "Edistyminen tallentuu tähän laitteeseen. Tarkastele toistuvia teemoja ja yritä tallennettuja asemia uudelleen näkemättä vastausta. Valkoista ja mustaa voi tarkastella erikseen.",
+  "learningBothSides": "Molemmat puolet",
+  "learningHumansOnly": "Vain ihmispelaajien päätökset",
+  "learningHumanOnlyHelp": "Poista käytöstä, jos haluat mukaan tietokoneen ja etäpelaajan päätökset",
+  "learningDecisionSummary": "{decisions} päätöstä · {mistakes} parannettavaa · {blunders} karkeaa virhettä",
+  "learningAverageLoss": "Keskimääräinen tappio ({decisions} päätöstä): {loss}",
+  "learningForcedDisclaimer": "Pakotettuja siirtoja ei huomioida. Nämä ovat pelimoottorin arvioita, eivät turnausluokitus.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Yksi tallennettu peli tarvitsee analyysin tai päivitetyn analyysin.} other{{count} tallennettua peliä tarvitsee analyysin tai päivitetyn analyysin.}}",
+  "learningAnalyseSavedGames": "Analysoi tallennetut pelit",
+  "learningEmptyProfile": "Kehitä oppimisprofiiliasi pelaamalla ja päättämällä peli. Voit myös tallentaa yksittäisiä päätöksiä pelin uusinnasta.",
+  "learningOpenHistory": "Avaa otteluhistoria",
+  "learningRecurringThemes": "Toistuvat teemat",
+  "learningNoThemes": "Tässä valinnassa ei ole vielä toistuvia virheteemoja.",
+  "learningThemeDecisions": "{count} päätöstä kannattaa tarkastella uudelleen. Yhdessä asemassa voi olla useita teemoja.",
+  "learningSaveMistakes": "Tallenna virheet harjoitteluun",
+  "learningSavedMistakes": "{count} päätöstä on harjoituslistallasi. Aiemmat tallennukset säilyvät.",
+  "learningSaveMistakesFailed": "Osaa päätöksistä ei voitu tallentaa. Valmiit tallennukset säilyvät; yritä uudelleen.",
+  "learningSpacedPractice": "Jaksotettu harjoittelu",
+  "learningPracticeCounts": "{due} erääntynyt nyt · {saved} tallennettu · {attempts} yritystä · {successes} onnistunutta muistamista",
+  "learningIntervalsHelp": "Onnistunut ajallaan tehty kertaus tulee uudelleen 1, 3, 7, 14 ja 30 päivän kuluttua. Virhe tai paljastettu vastaus palautuu 10 minuutin päästä. Ennenaikaiset kertaukset eivät pidennä väliä.",
+  "learningAnswerContext": "Harjoitustulos perustuu tässä antamiisi vastauksiin, vaikka alkuperäinen asema olisi ollut vastustajalla.",
+  "learningNoSavedPositions": "Tallenna päätös uusinnasta tai käytä yllä olevaa virhetallennusta.",
+  "learningPositionTitle": "{side}n päätös · peli {gameId}",
+  "learningReviewDue": "Kertaus {date}",
+  "learningReadyToReview": "Valmis kerrattavaksi",
+  "learningSuccessStreak": "{count} onnistunutta ajallaan tehtyä kertausta",
+  "learningRemoveTooltip": "Poista tallennettu päätös",
+  "learningRecentPractice": "Viimeisimmät harjoitukset",
+  "learningAnswerRevealed": "Vastaus näytetty",
+  "learningSuccessfulRecall": "Onnistunut muistaminen",
+  "learningTryAgain": "Yritä tätä päätöstä uudelleen",
+  "learningAttemptSubtitle": "{date} · tallennettu asema {positionId}",
+  "learningRemoveTitle": "Poistetaanko tämä harjoitus?",
+  "learningRemoveBody": "Tämän harjoituksen yritykset poistetaan. Alkuperäinen peli säilyy historiassa.",
+  "learningRemoveFailed": "Harjoitusta ei voitu poistaa.",
+  "learningResetTitle": "Nollataanko harjoittelun edistyminen?",
+  "learningResetBody": "Kaikki harjoitusyritykset ja kertausvälit poistetaan. Tallennetut tehtävät ja otteluhistoria säilyvät; kaikki tehtävät erääntyvät heti.",
+  "learningResetAction": "Nollaa edistyminen",
+  "learningResetFailed": "Harjoittelun edistymistä ei voitu nollata.",
+  "learningAnalysisProgress": "Analysoitu {completed} peliä · {failed} ei saatavilla.",
+  "learningAnalysisComplete": "Analysoitu {completed} peliä.",
+  "learningAnalysisCompleteWithErrors": "Analysoitu {completed} peliä; {failed} analysointi epäonnistui. Yritä uudelleen, kun pelimoottori on valmis.",
+  "learningThemeHitting": "Lyöminen ja tempo",
+  "learningThemeSafety": "Blotit ja suojaaminen",
+  "learningThemePointMaking": "Pisteiden tekeminen",
+  "learningThemePrime": "Primet ja sulut",
+  "learningThemeAnchor": "Ankkurit ja pakoon pääsy",
+  "learningThemeRace": "Kilpajuoksun tehokkuus",
+  "learningThemeBearOff": "Nappuloiden poisotto",
+  "learningThemeBarEntry": "Palaaminen baarilta",
+  "learningThemeCube": "Kuutiopäätökset",
+  "learningAnalysisStarting": "Analysoidaan tallennettuja pelejä…",
+  "practiceScreenTitle": "Harjoittele päätöstä",
+  "practiceUnavailable": "Tämä harjoitusasema ei ole enää saatavilla.",
+  "practiceSubmitError": "Tätä yritystä ei voitu arvioida tai tallentaa. Edistymisesi ei muuttunut. Yritä uudelleen.",
+  "practiceTurnLabel": "{side} siirtää · {dice}",
+  "practiceHistoricalScoreUnavailable": "Historiallista tulosta ei ole saatavilla; arviointi käyttää kuutiotonta equityä.",
+  "practiceScoreLine": "Tulos: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, otteluun {matchLength}",
+  "practiceCrawfordGame": " · Crawford-peli",
+  "practiceNoDoublingCube": "Ei tuplauskuutiota.",
+  "practiceCubeValue": "Kuution arvo {value}.",
+  "practiceHistoricalCubeUnknown": "Kuution aiemmat säännöt eivät ole tiedossa.",
+  "practiceAfterBestPosition": "Asema parhaan siirron jälkeen",
+  "practiceAfterYourAnswerPosition": "Asema vastauksesi jälkeen",
+  "practiceFindYourPlayPrompt": "Etsi siirtosi laudalta ja tarkista vastaus. Vihjeitä ei näytetä.",
+  "practiceUndo": "Kumoa",
+  "practiceCheckAnswer": "Tarkista vastaus",
+  "practiceRevealNoCredit": "Näytä vastaus (ei pisteitä)",
+  "practiceAnswerRevealedNoCredit": "Vastaus näytetty — muistamisesta ei saa pisteitä.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "practiceBestMoveLine": "Paras: {move}",
+  "practiceOriginalGameLine": "Alkuperäinen peli: {move} · {loss}",
+  "practiceYourAnswerLine": "Vastauksesi: {move}",
+  "practiceYourAnswerChip": "Vastauksesi",
+  "practiceBestPlayChip": "Paras siirto",
+  "practiceNextReview": "Seuraava kertaus: {date}.",
+  "practiceRecallCredit": "Parhaat ja hyvät vastaukset lasketaan onnistuneiksi muistamisiksi. Ennenaikaiset toistot eivät siirrä aikataulua eteenpäin.",
+  "practiceBackToLearning": "Takaisin oppimiseen",
+  "practiceMarkBest": "Paras",
+  "practiceMarkGood": "Hyvä",
+  "practiceMarkDubious": "Kyseenalainen",
+  "practiceMarkError": "Virhe",
+  "practiceMarkBlunder": "Karkea virhe",
+  "practiceMarkForced": "Pakotettu",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  }
 }

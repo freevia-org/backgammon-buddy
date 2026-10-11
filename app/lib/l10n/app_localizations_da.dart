@@ -160,4 +160,2319 @@ class AppLocalizationsDa extends AppLocalizations {
   @override
   String get tutorForcedPassNoDecision =>
       'Et tvunget pas indebærer ikke et valg af briktræk.';
+
+  @override
+  String get settingsReset => 'Nulstil';
+
+  @override
+  String get settingsAppLanguage => 'Appens sprog';
+
+  @override
+  String get settingsTheme => 'Tema';
+
+  @override
+  String get settingsThemeSystem => 'System';
+
+  @override
+  String get settingsThemeLight => 'Lyst';
+
+  @override
+  String get settingsThemeDark => 'Mørkt';
+
+  @override
+  String get settingsAnimationSpeed => 'Animationshastighed';
+
+  @override
+  String get settingsAnimationNone => 'Ingen';
+
+  @override
+  String get settingsAnimationNormal => 'Normal';
+
+  @override
+  String get settingsAnimationFast => 'Hurtig';
+
+  @override
+  String get settingsDiceRollAnimation => 'Animation af terningkast';
+
+  @override
+  String get settingsDiceRollAnimationHelp =>
+      'Terningerne ruller før hvert kast';
+
+  @override
+  String get settingsDefaultMatchLength => 'Standardlængde for match';
+
+  @override
+  String get settingsDefaultDifficulty => 'Standard sværhedsgrad';
+
+  @override
+  String get settingsDifficultyEasy => 'Let';
+
+  @override
+  String get settingsDifficultyMedium => 'Middel';
+
+  @override
+  String get settingsDifficultyHard => 'Svær';
+
+  @override
+  String get settingsDifficultyExpert => 'Ekspert';
+
+  @override
+  String get settingsTutorModeDefault => 'Standard for tutortilstand';
+
+  @override
+  String get settingsTutorAuto => 'Automatisk';
+
+  @override
+  String get settingsTutorOn => 'Til';
+
+  @override
+  String get settingsTutorOff => 'Fra';
+
+  @override
+  String get settingsTutorModeHelp =>
+      'Automatisk slår tutoren til ved alle computerens sværhedsgrader. Til og Fra vælger startindstillingen for lokale kampe. Nærspil og onlinespil er uden hjælp; gemte partier kan gennemgås bagefter. Undervisningsindstillingerne nedenfor gemmes på denne enhed.';
+
+  @override
+  String get settingsTutorPreferences => 'Tutorindstillinger';
+
+  @override
+  String get settingsTutorPreferencesSubtitle =>
+      'Gemte standardindstillinger til kommende kampe';
+
+  @override
+  String get settingsTutorSaveError =>
+      'Tutorindstillingerne kunne ikke gemmes.';
+
+  @override
+  String get settingsGameplay => 'Spil';
+
+  @override
+  String get settingsMoveHighlights => 'Fremhæv træk';
+
+  @override
+  String get settingsMoveHighlightsHelp =>
+      'Markér brikker, der kan flyttes, og fremhæv felterne, de kan lande på';
+
+  @override
+  String get settingsDragToMove => 'Træk for at flytte';
+
+  @override
+  String get settingsDragToMoveHelp =>
+      'Træk en brik til feltet, den skal lande på (tryk virker også)';
+
+  @override
+  String get settingsCombinedMoves => 'Kombinerede træk';
+
+  @override
+  String get settingsCombinedMovesHelp =>
+      'Et tryk flytter en brik med begge terninger';
+
+  @override
+  String get settingsRotateBoard => 'Drej brættet mellem ture';
+
+  @override
+  String get settingsRotateBoardHelp =>
+      'Ved spil på samme enhed vendes brættet mod spilleren, der er i tur';
+
+  @override
+  String get settingsPassDevice => 'Skærm ved overdragelse af enhed';
+
+  @override
+  String get settingsPassDeviceHelp =>
+      'Skjul brættet, når enheden gives videre mellem spillere';
+
+  @override
+  String get settingsShowScore => 'Vis score';
+
+  @override
+  String get settingsShowScoreHelp =>
+      'Viser den løbende matchscore i overskriften';
+
+  @override
+  String get settingsBuddyMode => 'Buddy-tilstand';
+
+  @override
+  String get settingsBuddyTerse => 'Kort';
+
+  @override
+  String get settingsBuddyFriendly => 'Venlig';
+
+  @override
+  String get settingsBuddyTerseHelp =>
+      'Sådan siger Buddy et træk højt: “13/8, 24/22” — den korte notation, som spillere ved brættet bruger.';
+
+  @override
+  String get settingsBuddyFriendlyHelp =>
+      'Sådan siger Buddy et træk højt: “Flyt en brik fra 13 til 8 og en fra 24 til 22.”';
+
+  @override
+  String get settingsListenForDice => 'Lyt efter terningerne';
+
+  @override
+  String get settingsListenForDiceHelp =>
+      'Buddy ser tidligere på brættet, når den hører et kast. Fra ændrer ikke andet.';
+
+  @override
+  String get settingsDiagnostics => 'Diagnostik';
+
+  @override
+  String get settingsErrorLog => 'Fejllog';
+
+  @override
+  String get settingsErrorLogHelp =>
+      'Seneste fejl, klar til at blive kopieret ind i en fejlrapport';
+
+  @override
+  String get settingsReportBug => 'Rapportér en fejl';
+
+  @override
+  String get settingsReportBugHelp => 'Åbner en guidet fejlrapport på GitHub';
+
+  @override
+  String get settingsSuggestIdea => 'Foreslå en idé';
+
+  @override
+  String get settingsSuggestIdeaHelp =>
+      'Hjælp os med at forbedre tutoren og spillet';
+
+  @override
+  String get settingsAbout => 'Om';
+
+  @override
+  String get settingsOpenSourceLicenses => 'Open source-licenser';
+
+  @override
+  String settingsAppVersion(Object version) {
+    return 'Backgammon Buddy $version';
+  }
+
+  @override
+  String get tutorPhraseGameFinished => 'Partiet er slut.';
+
+  @override
+  String get tutorPhraseReviewFinishedGame =>
+      'Gennemgå trækkene for at finde en beslutning, du kan øve dig på.';
+
+  @override
+  String get tutorPhraseCubeOffered =>
+      'Der er tilbudt en fordobling af indsatsen.';
+
+  @override
+  String get tutorPhraseCubeDecisionPrompt =>
+      'Beslut, om du vil tage imod fordoblingen eller passe, før du planlægger et træk med brikkerne.';
+
+  @override
+  String get tutorPhraseCubeScoreContext =>
+      'Matchscoren ændrer værdien af den ekstra indsats.';
+
+  @override
+  String get tutorPhraseResignationOffered =>
+      'Modstanderen har tilbudt at opgive partiet.';
+
+  @override
+  String get tutorPhraseResignationDecisionPrompt =>
+      'Sammenlign de tilbudte point med stillingen, før du accepterer opgivelsen eller fortsætter.';
+
+  @override
+  String get tutorPhraseNoLegalPlay =>
+      'Dette kast giver ikke noget lovligt træk.';
+
+  @override
+  String get tutorPhraseForcedPassPrompt =>
+      'Et tvunget pas er ikke en fejl; vent på næste kast.';
+
+  @override
+  String get tutorPhraseOnlyOneResult => 'Der er kun én lovlig slutstilling.';
+
+  @override
+  String get tutorPhraseForcedTurnPrompt =>
+      'Udfør det tvungne træk. Der er ikke noget valg at bedømme ved dette kast.';
+
+  @override
+  String get tutorPhrasePipCountsLevel => 'Pip-antallet er lige.';
+
+  @override
+  String tutorPhrasePipCountsAhead(int count) {
+    return 'Du er $count pip foran.';
+  }
+
+  @override
+  String tutorPhrasePipCountsBehind(int count) {
+    return 'Du er $count pip bagud.';
+  }
+
+  @override
+  String tutorPhrasePlayerHasCheckersOnBar(int count) {
+    return 'Brikkerne på baren skal først ind igen. Antal: $count.';
+  }
+
+  @override
+  String get tutorPhraseEnterBeforeMoving =>
+      'Få først en brik ind fra baren, og find derefter et sikkert felt til den.';
+
+  @override
+  String tutorPhraseOpponentHomePoints(int count) {
+    return 'Modstanderen har $count lukkede felter i sit hjembræt.';
+  }
+
+  @override
+  String get tutorPhraseBearOffRace => 'Kapløb om at få brikkerne af brættet.';
+
+  @override
+  String get tutorPhrasePureRace => 'Et rent kapløb.';
+
+  @override
+  String get tutorPhraseBearOffSpread =>
+      'Tag brikker af brættet, men behold en nyttig fordeling til næste kast.';
+
+  @override
+  String get tutorPhraseBringRearCheckersHome =>
+      'Få de bageste brikker hjem uden at samle for mange på ét felt.';
+
+  @override
+  String get tutorPhraseArmiesHavePassed =>
+      'Spillerne er kommet forbi hinanden; flere slag er ikke mulige.';
+
+  @override
+  String tutorPhraseContactStillMatters(Object part) {
+    return '$part Kontakten er stadig vigtig.';
+  }
+
+  @override
+  String tutorPhraseOpponentHasCheckersOnBar(int count) {
+    return 'Modstanderen har $count brikker på baren.';
+  }
+
+  @override
+  String get tutorPhraseKeepBoardClosed =>
+      'Hold felterne lukkede, mens du får de resterende brikker hjem.';
+
+  @override
+  String get tutorPhraseBuildOrPreserveHomeBoard =>
+      'Byg eller bevar dit hjembræt, mens modstanderen forsøger at komme ind fra baren.';
+
+  @override
+  String tutorPhraseHomePointsCloseEntries(int count) {
+    return 'Du har $count lukkede felter i hjembrættet; hvert felt lukker et indgangsnummer.';
+  }
+
+  @override
+  String tutorPhrasePrimeContact(int count) {
+    return 'Kontakt med en række på $count lukkede felter.';
+  }
+
+  @override
+  String get tutorPhraseExtendPrimeOrKeepSpares =>
+      'Overvej, om rækken skal forlænges, eller om du skal beholde ekstra brikker til at holde den lukket.';
+
+  @override
+  String tutorPhraseSpareCheckersCanMove(int count) {
+    return 'Ekstra brikker: $count. De kan flyttes uden straks at åbne feltet.';
+  }
+
+  @override
+  String tutorPhraseAnchorContact(Object points) {
+    return 'Kontakt med et anker på felterne $points.';
+  }
+
+  @override
+  String get tutorPhraseCompareAnchorProgressAhead =>
+      'Sammenlign det at få de bageste brikker hjem med sikkerheden ved at beholde dit anker.';
+
+  @override
+  String get tutorPhraseCompareAnchorProgressBehind =>
+      'Husk den sikre støtte, mens du leder efter et slag eller forbedrer din stilling.';
+
+  @override
+  String get tutorPhrasePreserveAnchorFoothold =>
+      'Ankeret kan ikke slås, men brikkerne har stadig lang vej hjem.';
+
+  @override
+  String get tutorPhraseContactThreats =>
+      'Der er stadig kontakt: begge spillere kan true med slag.';
+
+  @override
+  String get tutorPhraseLookForPointsAndSafety =>
+      'Se efter nyttige lukkede felter, og vurder risikoen ved at efterlade enlige brikker ubeskyttede.';
+
+  @override
+  String tutorPhraseHomePointsAndBlots(int count, int otherCount) {
+    return 'Du har $count lukkede felter i hjembrættet og efterlader $otherCount ubeskyttede brikker.';
+  }
+
+  @override
+  String get tutorPhraseChooseCheckerPrompt =>
+      'Vælg en brik for at begynde dit træk.';
+
+  @override
+  String get tutorPhraseLegalPlayPrompt =>
+      'Udfør et lovligt træk for at få en kommentar.';
+
+  @override
+  String tutorPhraseStagedHit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# modstanderbrikker',
+      one: '# modstanderbrik',
+    );
+    return 'Du har slået $_temp0 hjem.';
+  }
+
+  @override
+  String tutorPhraseStagedEnter(int count) {
+    return 'Brikker ført ind fra baren: $count.';
+  }
+
+  @override
+  String tutorPhraseStagedBearOff(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# brikker',
+      one: '# brik',
+    );
+    return 'Brikker taget af brættet: $_temp0.';
+  }
+
+  @override
+  String tutorPhraseStagedMakePoints(Object points) {
+    return 'Du har lukket felterne $points.';
+  }
+
+  @override
+  String tutorPhraseStagedBlot(int point) {
+    return 'Brikken på felt $point er stadig ubeskyttet.';
+  }
+
+  @override
+  String tutorPhraseStagedSpare(int point) {
+    return 'Den ekstra brik på felt $point kan flyttes senere uden at åbne feltet.';
+  }
+
+  @override
+  String tutorPhraseStagedPartialPrompt(Object part) {
+    return '$part Brug de resterende brugbare terninger, før du vurderer hele trækket.';
+  }
+
+  @override
+  String get tutorPhraseStagedAllCheckersOff =>
+      'Alle 15 brikker er taget af: du har vundet partiet.';
+
+  @override
+  String get tutorPhraseStagedHitShortPlan =>
+      'Slaget vinder tid, mens modstanderen kommer ind fra baren igen.';
+
+  @override
+  String get tutorPhraseStagedEfficientBearOffPlan =>
+      'Effektiv afbæring fjerner brikker og efterlader nyttige tal til næste kast.';
+
+  @override
+  String get tutorPhraseStagedRaceHomePlan =>
+      'I kapløbet skal de bageste brikker hjem, mens du bevarer nyttige felter til afbæringen.';
+
+  @override
+  String get tutorPhraseStagedBearOffContactPlan =>
+      'Afbæring bringer dig nærmere sejren, men så længe der er kontakt, kan en ubeskyttet brik blive slået.';
+
+  @override
+  String get tutorPhraseStagedReentryPlan =>
+      'Indgangen får brikken tilbage i spil; find nu et sikkert felt til den.';
+
+  @override
+  String get tutorPhraseStagedHomeBoardPlan =>
+      'Det nye lukkede felt i dit hjembræt fjerner et indgangsnummer, hvis du senere bliver slået.';
+
+  @override
+  String get tutorPhraseStagedPrimePlan =>
+      'Den længere række lukker flere felter, modstanderen kan lande på; ekstra brikker hjælper med at bevare den.';
+
+  @override
+  String get tutorPhraseStagedLeaveAnchorPlan =>
+      'Når du forlader ankeret, kommer brikkerne fremad, men mister en sikker støtte.';
+
+  @override
+  String get tutorPhraseStagedNewAnchorPlan =>
+      'Det nye anker giver de bageste brikker et sikkert holdepunkt.';
+
+  @override
+  String get tutorPhraseStagedCoverBlotPlan =>
+      'Når du dækker en ubeskyttet brik, fjerner du et mål for modstanderen.';
+
+  @override
+  String get tutorPhraseStagedSafetyTradeoffPlan =>
+      'Her skal du afveje udvikling mod sikkerhed: brikker, der bygger stillingen op, kan også selv blive mål.';
+
+  @override
+  String tutorPhraseStagedCompletePrompt(Object part) {
+    return '$part Hele trækket er klar. Tryk på Bekræft for at udføre det.';
+  }
+
+  @override
+  String get tutorMoveForcedVerdict =>
+      'Dette kast giver ikke noget valg af brikketræk, så det vurderes ikke som en beslutning.';
+
+  @override
+  String get tutorMoveTopVerdict => 'Et af de bedste valg i denne stilling.';
+
+  @override
+  String get tutorMoveAlternativeVerdict =>
+      'Motoren foretrækker et andet træk her.';
+
+  @override
+  String tutorMoveEstimateDifference(Object loss) {
+    return 'Forskel fra det bedste træk: $loss.';
+  }
+
+  @override
+  String tutorMoveEstimateOutcomes(
+    Object winPercent,
+    Object winGammonPercent,
+    Object loseGammonPercent,
+  ) {
+    return 'Efter dette træk: $winPercent% chance for sejr, $winGammonPercent% chance for gammon eller bedre og $loseGammonPercent% chance for at tabe med gammon eller værre. Det er estimater set fra spilleren, der er i tur.';
+  }
+
+  @override
+  String tutorMoveEstimateMatchChance(Object percent) {
+    return 'Anslået chance for at vinde matchen: $percent%.';
+  }
+
+  @override
+  String get tutorMovePlanAllCheckersOff =>
+      'Alle 15 brikker er taget af: du har vundet partiet.';
+
+  @override
+  String tutorMovePlanHit(Object homeBoardAdvice) {
+    return 'Brug slaget til at vinde tid, mens modstanderen kommer ind fra baren. $homeBoardAdvice';
+  }
+
+  @override
+  String get tutorMovePlanHitClosed =>
+      'Hold felterne i dit hjembræt lukkede, så det bliver sværere at komme ind.';
+
+  @override
+  String get tutorMovePlanHitBuild =>
+      'Luk flere felter i dit hjembræt, så fremtidige slag bliver sværere at komme sig over.';
+
+  @override
+  String get tutorMovePlanRaceBearOff =>
+      'Gå efter en effektiv afbæring: tag brikker af, og behold nyttige tal til næste kast.';
+
+  @override
+  String get tutorMovePlanRaceHome =>
+      'Få de bageste brikker hjem, og fordel dem på nyttige felter til afbæringen.';
+
+  @override
+  String get tutorMovePlanContactBearOff =>
+      'Tag brikker af brættet, men hold øje med modstanderens bageste brikker: så længe der er kontakt, kan en ubeskyttet brik under afbæring blive et mål.';
+
+  @override
+  String get tutorMovePlanReentry =>
+      'Kom ind i spillet igen, og find derefter et sikkert felt til brikken, der kom ind.';
+
+  @override
+  String get tutorMovePlanHomeBoard =>
+      'Styrk dit hjembræt. Det nye lukkede felt gør et fremtidigt slag stærkere ved at fjerne et indgangstal.';
+
+  @override
+  String get tutorMovePlanPrime =>
+      'Hold rækken af lukkede felter sammen. Behold ekstra brikker, så senere kast ikke tvinger dig til at åbne den.';
+
+  @override
+  String get tutorMovePlanLeaveAnchor =>
+      'Hvis du forlader et anker, kommer dine bageste brikker frem, men mister en sikker støtte. Pas på, at de ikke bliver udsat på vejen hjem.';
+
+  @override
+  String get tutorMovePlanNewAnchor =>
+      'Brug det nye anker som en sikker støtte, mens du forbedrer resten af stillingen.';
+
+  @override
+  String get tutorMovePlanCoverBlot =>
+      'Saml dine brikker. Når du dækker en ubeskyttet brik, fjerner du det mål og bevarer muligheder for næste kast.';
+
+  @override
+  String get tutorMovePlanSafety =>
+      'Afvej udvikling og sikkerhed: flyt byggesten mod nyttige felter, og se efter enlige brikker, der kan slås.';
+
+  @override
+  String get tutorMoveObservationNoLegalPlay =>
+      'Intet lovligt brikketræk: turen skal passes.';
+
+  @override
+  String tutorMoveObservationHit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# modstanderbrikker',
+      one: '# modstanderbrik',
+    );
+    return 'Du slår $_temp0; modstanderen skal først ind fra baren, før de andre brikker kan flyttes.';
+  }
+
+  @override
+  String tutorMoveObservationEntry(int count) {
+    return 'Brikker ført ind fra baren: $count.';
+  }
+
+  @override
+  String tutorMoveObservationBearOff(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# brikker',
+      one: '# brik',
+    );
+    return 'Brikker taget af brættet: $_temp0.';
+  }
+
+  @override
+  String tutorMoveObservationMadePoints(Object points) {
+    return 'Lukkede felter: $points. To eller flere brikker holder et sikkert felt og forhindrer modstanderen i at lande der.';
+  }
+
+  @override
+  String tutorMoveObservationBrokenPoints(Object pointLabel, Object points) {
+    return 'Du åbner tidligere lukkede $pointLabel: $points. De felter blokerer ikke længere modstanderen.';
+  }
+
+  @override
+  String tutorMoveObservationNoBlots(int previousCount) {
+    return 'Du efterlader ingen enlige brikker ubeskyttede (før: $previousCount). Der er ingen brikker, modstanderen kan slå lige nu.';
+  }
+
+  @override
+  String tutorMoveObservationBlots(int count, int previousCount) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# brikker',
+      one: '# brik',
+    );
+    return 'Ubeskyttede enlige brikker: $_temp0 (før: $previousCount). Undersøg, om modstanderen kan nå dem, før du vælger sikkerhed frem for en anden gevinst.';
+  }
+
+  @override
+  String tutorMoveObservationPrimeRun(
+    int count,
+    int previousCount,
+    Object primeAdvice,
+  ) {
+    return 'Længste række af lukkede felter: $count (før: $previousCount). $primeAdvice';
+  }
+
+  @override
+  String get tutorMoveObservationPrimeSix =>
+      'En seksfelters mur kan ikke krydses, så længe den er lukket.';
+
+  @override
+  String get tutorMoveObservationPrimeBuild =>
+      'Behold byggesten i nærheden, hvis du vil forlænge eller bevare rækken.';
+
+  @override
+  String tutorMoveObservationPrimeSpares(int count) {
+    return 'Ekstra brikker ud over de to, der lukker felterne: $count. En ekstra brik kan flyttes uden at åbne feltet; flyttes en af de sidste to, åbnes det.';
+  }
+
+  @override
+  String tutorMoveObservationAnchors(Object points, Object previousPoints) {
+    return 'Ankre i modstanderens hjembræt: $points (før: $previousPoints). Et anker beskytter brikkerne mod slag; at forlade det bytter sikker støtte for fremgang i kapløbet.';
+  }
+
+  @override
+  String get tutorMoveObservationPureRace =>
+      'Rent kapløb: spillerne er kommet forbi hinanden, og ingen har en brik på baren. Slag er ikke længere mulige; effektiv afbæring er vigtig.';
+
+  @override
+  String get tutorMoveObservationNoReplyHit =>
+      'Der findes ikke noget lovligt næste kast, hvor modstanderen kan slå en brik i denne stilling. Der er stadig kontakt, så senere træk kan skabe nye slagmuligheder.';
+
+  @override
+  String tutorMoveObservationReplyHit(
+    int count,
+    int total,
+    int dieOne,
+    int dieTwo,
+    int point,
+  ) {
+    return 'Modstanderen kan slå på $count af $total kast. For eksempel giver $dieOne–$dieTwo mulighed for et lovligt slag på din brik på felt $point. Muligheden for et slag betyder ikke, at modstanderen vælger det.';
+  }
+
+  @override
+  String tutorMoveObservationOpponentBarHome(
+    int closedPoints,
+    Object entryAdvice,
+  ) {
+    return 'Du har $closedPoints lukkede felter i dit hjembræt. $entryAdvice';
+  }
+
+  @override
+  String get tutorMoveObservationAllEntriesClosed =>
+      'Modstanderen kan ikke komme ind, før et felt åbnes.';
+
+  @override
+  String get tutorMoveObservationOpenEntry =>
+      'Et kast, der bruger et åbent indgangsfelt, kan få en brik ind fra baren.';
+
+  @override
+  String tutorMoveComparisonDetail(
+    Object factors,
+    Object delta,
+    Object direction,
+    Object scoreContext,
+  ) {
+    return '$factors Det bedste træks anslåede vinderchance er $delta procentpoint $direction.$scoreContext';
+  }
+
+  @override
+  String get tutorMoveComparisonHigher => 'højere';
+
+  @override
+  String get tutorMoveComparisonLower => 'lavere';
+
+  @override
+  String tutorMoveComparisonScoreContext(Object scoreContext) {
+    return ' Det kan stadig være rangeret højere, fordi gammon og backgammon vægtes forskelligt ved $scoreContext.';
+  }
+
+  @override
+  String get tutorMoveComparisonStake => 'den aktuelle indsats';
+
+  @override
+  String get tutorMoveComparisonMatchScore => 'den aktuelle matchscore';
+
+  @override
+  String tutorMoveComparisonFactorBar(int bestCount, int playedCount) {
+    return 'Det bedste træk efterlader $bestCount af modstanderens brikker på baren mod $playedCount. En brik på baren skal først ind, før modstanderen kan flytte de andre.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorHomeBoard(
+    int bestCount,
+    int playedCount,
+    Object entryDifference,
+  ) {
+    return 'Det bedste træk lukker $bestCount felter i dit hjembræt mod $playedCount, altså en forskel på $entryDifference indgangsfelter efter et slag.';
+  }
+
+  @override
+  String get tutorMoveComparisonClosingMore => 'lukker flere';
+
+  @override
+  String get tutorMoveComparisonLeavingMore => 'efterlader flere åbne';
+
+  @override
+  String tutorMoveComparisonFactorShots(
+    int bestCount,
+    int playedCount,
+    Object riskDifference,
+  ) {
+    return 'Det bedste træk giver modstanderen mulighed for et slag på $bestCount af 36 kast mod $playedCount. $riskDifference';
+  }
+
+  @override
+  String get tutorMoveComparisonReducesRisk =>
+      'Det sænker den umiddelbare risiko for at blive sendt tilbage.';
+
+  @override
+  String get tutorMoveComparisonExtraExposure =>
+      'Sammenlign den ekstra udsathed med det, trækket vinder andre steder.';
+
+  @override
+  String tutorMoveComparisonFactorPrime(int bestCount, int playedCount) {
+    return 'Det bedste træks længste række af lukkede felter er $bestCount i stedet for $playedCount; sammenlign blokaden med antallet af brikker, der kan holde den lukket.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorAnchors(
+    Object bestPoints,
+    Object playedPoints,
+  ) {
+    return 'Det bedste træk har ankre på $bestPoints i stedet for $playedPoints. Et bevaret anker giver et sikkert landingsfelt; forlader du det, kommer brikkerne tættere på hjem.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorBearOff(int bestCount, int playedCount) {
+    return 'Det bedste træk har $bestCount brikker af brættet mod $playedCount. Hver brik, du har taget af, er én mindre, du skal tage af senere.';
+  }
+
+  @override
+  String get tutorMoveComparisonFactorSimilarRisks =>
+      'Begge træk giver samme umiddelbare risiko for slag, samme antal lukkede felter i hjembrættet, ankre og brikker af brættet. Sammenlign landingsfelterne: næste kast kan give forskellige muligheder for brikkerne.';
+
+  @override
+  String get tutorMoveComparisonSummaryBar =>
+      'Det bedste træk efterlader flere af modstanderens brikker på baren og forsinker de øvrige træk.';
+
+  @override
+  String get tutorMoveComparisonSummaryHomeBoard =>
+      'Det bedste træk lukker flere felter i hjembrættet, så modstanderen får sværere ved at komme ind efter et slag.';
+
+  @override
+  String get tutorMoveComparisonSummaryShots =>
+      'Det bedste træk giver færre umiddelbare slagmuligheder og mindsker risikoen for at blive sendt tilbage.';
+
+  @override
+  String get tutorMoveComparisonSummaryPrime =>
+      'Det bedste træk bevarer en længere række af lukkede felter.';
+
+  @override
+  String get tutorMoveComparisonSummaryAnchors =>
+      'Det bedste træk bevarer flere sikre ankre i modstanderens hjembræt.';
+
+  @override
+  String get tutorMoveComparisonSummaryBearOff =>
+      'Det bedste træk tager flere brikker af, så der er færre tilbage senere.';
+
+  @override
+  String tutorMoveComparisonSummaryBlots(int playedCount, int bestCount) {
+    return 'Ubeskyttede enlige brikker efter dette træk: $playedCount; efter det bedste træk: $bestCount.';
+  }
+
+  @override
+  String tutorMoveComparisonSummarySafeAnchor(int point) {
+    return 'Det bedste træk bevarer et sikkert anker på felt $point.';
+  }
+
+  @override
+  String get tutorMoveComparisonSummaryEntry =>
+      'Det bedste træk lukker flere indgangsfelter, hvis en af dine brikker bliver slået.';
+
+  @override
+  String get tutorMoveComparisonSummarySimilarRisks =>
+      'Trækkene giver omtrent samme umiddelbare risiko; sammenlign, hvilke felter der er nyttige ved næste kast.';
+
+  @override
+  String tutorMoveAssessmentEquityLoss(Object value) {
+    return '$value forventet værdi';
+  }
+
+  @override
+  String tutorMoveAssessmentMwcLoss(Object value) {
+    return '$value procentpoint vinderchance i matchen';
+  }
+
+  @override
+  String get tutorMovePointSingular => 'felt';
+
+  @override
+  String get tutorMovePointPlural => 'felter';
+
+  @override
+  String get tutorMoveNoPoints => 'ingen';
+
+  @override
+  String get gameTutorCommentaryOff => 'Spilkommentarer er slået fra.';
+
+  @override
+  String get gameTutorToolsAvailable =>
+      'Åbn tutoren for at bruge de værktøjer, du har slået til.';
+
+  @override
+  String get gameTutorNextRoll => 'Kast igen.';
+
+  @override
+  String get gameTutorNoEvaluatedReview =>
+      'Der findes ingen vurderet forklaring på dette gemte træk.';
+
+  @override
+  String get gameTutorAnalysisUnavailable => 'analyse ikke tilgængelig';
+
+  @override
+  String get gameTutorReviewing => 'gennemgår…';
+
+  @override
+  String get gameTutorTryYourPlayFirst => 'Prøv dit eget træk først.';
+
+  @override
+  String get gameTutorKeepBuilding => 'Fortsæt med at bygge dit træk.';
+
+  @override
+  String get gameTutorStageCompleteBeforeCoaching =>
+      'Lav et helt lovligt træk, før du viser undervisning eller hints.';
+
+  @override
+  String get gameTutorReadyToConfirm => 'Klar til at bekræfte';
+
+  @override
+  String get gameTutorPlayTakingShape => 'Dit træk tager form.';
+
+  @override
+  String get gameTutorConfirmOrUndo =>
+      'Bekræft for at udføre trækket, eller fortryd for at overveje igen.';
+
+  @override
+  String get gameTutorFinishDiceOrUndo =>
+      'Brug de resterende terninger, eller fortryd for at overveje igen.';
+
+  @override
+  String get gameTutorComputerConsidering => 'Computeren overvejer sit træk.';
+
+  @override
+  String get gameTutorComputerPlayReviewed =>
+      'Computerens færdige træk bliver gennemgået her.';
+
+  @override
+  String get gameTutorYourPlay => 'Dit træk';
+
+  @override
+  String get gameTutorComputer => 'Computer';
+
+  @override
+  String gameTutorPlayQuality(Object quality) {
+    return 'Dit træk: $quality';
+  }
+
+  @override
+  String get gameTutorForcedPlay => 'tvunget træk';
+
+  @override
+  String get gameTutorTopChoice => 'bedste valg';
+
+  @override
+  String get gameTutorSoundPlay => 'solidt træk';
+
+  @override
+  String get gameTutorAnotherPlayMayFitBetter =>
+      'et andet træk passer måske bedre';
+
+  @override
+  String get gameTutorAnotherPlayFitsBetter =>
+      'et andet træk passer bedre til denne stilling';
+
+  @override
+  String get gameTutorStrongerPlayAvailable => 'der var et klart stærkere træk';
+
+  @override
+  String gameTutorPositionEdge(Object side) {
+    return '$side har en beregnet fordel.';
+  }
+
+  @override
+  String get gameTutorPositionEven => 'Stillingen er omtrent lige.';
+
+  @override
+  String tutorPlayedMove(Object move) {
+    return 'Spillet: $move';
+  }
+
+  @override
+  String tutorBestMove(Object move) {
+    return 'Bedste træk: $move';
+  }
+
+  @override
+  String get tutorShowRankedPlays => 'Vis rangerede træk';
+
+  @override
+  String get tutorReviewRecordedMove =>
+      'Tryk på et afsluttet træk i loggen for at se analysen her.';
+
+  @override
+  String get tutorTopPlays => 'Bedste træk';
+
+  @override
+  String get tutorNoHintsAvailable => 'Ingen tip tilgængelige.';
+
+  @override
+  String get tutorPreviewThenConfirm =>
+      'Tryk på et træk for at forhåndsvise det på brættet, og bekræft derefter.';
+
+  @override
+  String get tutorTopChoiceForPosition => 'Bedste valg i denne stilling';
+
+  @override
+  String get tutorAlternativePlay => 'Alternativt træk';
+
+  @override
+  String get tutorEngineEstimates => 'Motorens vurderinger';
+
+  @override
+  String get tutorEstimateScope =>
+      '0-ply-vurdering · aktuel score og indsats · ingen fremtidige doblinger';
+
+  @override
+  String get tutorEquity => 'Equity';
+
+  @override
+  String get tutorMwcPercent => 'Matchvindende chance %';
+
+  @override
+  String get tutorNearTiesNote =>
+      'Næsten lige vurderinger kan ændre sig ved dybere analyse.';
+
+  @override
+  String get tutorWhyThisPlay => 'Hvorfor dette træk?';
+
+  @override
+  String get tutorCompareAlternative => 'Sammenlign dette alternativ';
+
+  @override
+  String get gameTutorCubeTake => 'Tutor: tag imod';
+
+  @override
+  String get gameTutorCubePass => 'Tutor: pas';
+
+  @override
+  String get practiceScreenTitle => 'Træn en beslutning';
+
+  @override
+  String get practiceUnavailable =>
+      'Denne øvelsesposition er ikke længere tilgængelig.';
+
+  @override
+  String get practiceSubmitError =>
+      'Forsøget kunne ikke vurderes eller gemmes. Din fremgang er uændret. Prøv igen.';
+
+  @override
+  String practiceTurnLabel(Object side, Object dice) {
+    return '$side skal trække · $dice';
+  }
+
+  @override
+  String get practiceHistoricalScoreUnavailable =>
+      'Historisk stilling er ikke tilgængelig; bedømmelsen bruger cubeless equity.';
+
+  @override
+  String practiceScoreLine(
+    Object whiteLabel,
+    int whiteScore,
+    Object blackLabel,
+    int blackScore,
+    int matchLength,
+  ) {
+    return 'Stilling: $whiteLabel $whiteScore – $blackLabel $blackScore, til $matchLength';
+  }
+
+  @override
+  String get practiceCrawfordGame => ' · Crawford-parti';
+
+  @override
+  String get practiceNoDoublingCube => 'Ingen doublingterning.';
+
+  @override
+  String practiceCubeValue(int value) {
+    return 'Terning $value.';
+  }
+
+  @override
+  String get practiceHistoricalCubeUnknown =>
+      'Historiske terningregler er ukendte.';
+
+  @override
+  String get practiceAfterBestPosition => 'Position efter det bedste træk';
+
+  @override
+  String get practiceAfterYourAnswerPosition => 'Position efter dit svar';
+
+  @override
+  String get practiceFindYourPlayPrompt =>
+      'Spil dit træk på brættet, og kontrollér derefter svaret. Der vises ingen hints.';
+
+  @override
+  String get practiceUndo => 'Fortryd';
+
+  @override
+  String get practiceCheckAnswer => 'Kontrollér svar';
+
+  @override
+  String get practiceRevealNoCredit => 'Vis svar (uden point)';
+
+  @override
+  String get practiceAnswerRevealedNoCredit =>
+      'Svar vist — ingen point for genkaldelse.';
+
+  @override
+  String practiceGradeLine(Object verdict, Object loss) {
+    return '$verdict · $loss';
+  }
+
+  @override
+  String practiceBestMoveLine(Object move) {
+    return 'Bedst: $move';
+  }
+
+  @override
+  String practiceOriginalGameLine(Object move, Object loss) {
+    return 'Oprindeligt parti: $move · $loss';
+  }
+
+  @override
+  String practiceYourAnswerLine(Object move) {
+    return 'Dit svar: $move';
+  }
+
+  @override
+  String get practiceYourAnswerChip => 'Dit svar';
+
+  @override
+  String get practiceBestPlayChip => 'Bedste træk';
+
+  @override
+  String practiceNextReview(Object date) {
+    return 'Næste gennemgang: $date.';
+  }
+
+  @override
+  String get practiceRecallCredit =>
+      'Bedste eller gode svar tæller som korrekt genkaldelse. Tidlige gentagelser ændrer ikke planen.';
+
+  @override
+  String get practiceBackToLearning => 'Tilbage til læring';
+
+  @override
+  String get practiceMarkBest => 'Bedst';
+
+  @override
+  String get practiceMarkGood => 'Godt';
+
+  @override
+  String get practiceMarkDubious => 'Tvivlsomt';
+
+  @override
+  String get practiceMarkError => 'Fejl';
+
+  @override
+  String get practiceMarkBlunder => 'Større fejl';
+
+  @override
+  String get practiceMarkForced => 'Tvunget';
+
+  @override
+  String get newMatchYourSide => 'Din side';
+
+  @override
+  String get newMatchTutorMode => 'Tutortilstand';
+
+  @override
+  String get newMatchTutorDescription =>
+      'Lær med tip, forklaringer og kommentarer til spillet';
+
+  @override
+  String get newMatchTutoringOptions => 'Tutorindstillinger';
+
+  @override
+  String get newMatchTutoringOptionsDescription =>
+      'For denne kamp; kan ændres under spillet';
+
+  @override
+  String get setupMatchLength => 'Kampens længde';
+
+  @override
+  String get setupDifficulty => 'Sværhedsgrad';
+
+  @override
+  String get setupDifficultyEasy => 'Let';
+
+  @override
+  String get setupDifficultyMedium => 'Middel';
+
+  @override
+  String get setupDifficultyHard => 'Svær';
+
+  @override
+  String get setupDifficultyExpert => 'Ekspert';
+
+  @override
+  String get setupPlayWithoutCube => 'Spil uden kube';
+
+  @override
+  String get setupNoCubeThisMatch => 'Ingen dobleterning i denne kamp';
+
+  @override
+  String get analysisTitle => 'Analyse';
+
+  @override
+  String get gameMatchSummary => 'Matchoversigt';
+
+  @override
+  String get gameAnalyzeGame => 'Analyser spil';
+
+  @override
+  String get analysisMetricsTooltip => 'Hvad betyder tallene?';
+
+  @override
+  String analysisError(Object error) {
+    return 'Partiet kunne ikke analyseres: $error';
+  }
+
+  @override
+  String get analysisNoPositions => 'Dette parti har ingen positioner at vise.';
+
+  @override
+  String get analysisInProgress => 'Analyserer parti…';
+
+  @override
+  String analysisPercent(int percent) {
+    return '$percent%';
+  }
+
+  @override
+  String get analysisPlayed => 'Spillet';
+
+  @override
+  String get analysisBest => 'Bedst';
+
+  @override
+  String get analysisPrevious => 'Forrige';
+
+  @override
+  String get analysisNext => 'Næste';
+
+  @override
+  String get analysisPositionBeforeCube => 'Position før terningbeslutningen';
+
+  @override
+  String get analysisPositionAtPoint => 'Position på dette sted i partiet';
+
+  @override
+  String get analysisShowingBestBefore =>
+      'Viser det bedste træk i positionen før trækket';
+
+  @override
+  String get analysisShowingBefore => 'Viser positionen før trækket';
+
+  @override
+  String analysisVerdictLine(Object side, Object verdict, Object loss) {
+    return '$side: $verdict$loss';
+  }
+
+  @override
+  String analysisMoveLoss(Object loss) {
+    return ' −$loss';
+  }
+
+  @override
+  String get analysisExcludedFromAverages => ' · udeladt fra gennemsnit';
+
+  @override
+  String get analysisNoPlay => '(intet træk)';
+
+  @override
+  String analysisBestMoveLine(Object move) {
+    return 'Bedste træk: $move';
+  }
+
+  @override
+  String get analysisExplain => 'Forklar';
+
+  @override
+  String get analysisSaveForPractice => 'Gem til træning';
+
+  @override
+  String analysisSaveError(Object error) {
+    return 'Denne beslutning kunne ikke gemmes: $error';
+  }
+
+  @override
+  String analysisCubeInfo(
+    Object side,
+    Object action,
+    Object mark,
+    Object loss,
+  ) {
+    return '$side: $action · $mark · tab $loss';
+  }
+
+  @override
+  String get analysisCubeDecision => 'Terningbeslutning';
+
+  @override
+  String analysisCubePlayed(Object action, Object percent) {
+    return 'Spillet: $action ($percent% chance for at vinde partiet).';
+  }
+
+  @override
+  String analysisCubeBest(Object action, Object percent) {
+    return 'Bedst: $action ($percent% chance for at vinde partiet).';
+  }
+
+  @override
+  String get analysisCubeEstimate =>
+      '0-ply-estimat set fra spilleren, der er i træk. Antager et optimalt tag eller pas. Bruger en 0,7-tilnærmelse af terningens levetid ved accepteret dobling, ikke en fuld søgning efter fremtidige redoblinger. En dybere analyse kan ændre svaret.';
+
+  @override
+  String get analysisClose => 'Luk';
+
+  @override
+  String get analysisMoves => 'Træk';
+
+  @override
+  String get analysisForced => 'Tvunget';
+
+  @override
+  String get analysisMarkBest => 'Bedst';
+
+  @override
+  String get analysisMarkGood => 'Godt';
+
+  @override
+  String get analysisMarkDubious => 'Tvivlsomt';
+
+  @override
+  String get analysisMarkError => 'Fejl';
+
+  @override
+  String get analysisMarkBlunder => 'Større fejl';
+
+  @override
+  String analysisSummaryMeanLoss(Object loss) {
+    return 'Gennemsnitligt tab $loss';
+  }
+
+  @override
+  String analysisSummaryCheckerDecisions(int count) {
+    return '$count brikbeslutninger';
+  }
+
+  @override
+  String analysisSummaryBlunders(int count) {
+    return 'Større fejl $count';
+  }
+
+  @override
+  String analysisSummaryCubeLoss(Object loss) {
+    return 'Terningtab $loss';
+  }
+
+  @override
+  String analysisRollWithoutDoubling(Object side) {
+    return '$side kaster uden at doble';
+  }
+
+  @override
+  String get metricExplainerTitle => 'Forstå målingerne';
+
+  @override
+  String get metricExplainerTooltip => 'Hvad betyder tallene?';
+
+  @override
+  String get metricExplainerMwcTitle => 'Chance for at vinde kampen (MWC)';
+
+  @override
+  String get metricExplainerMwcBody =>
+      'Når stillingen er kendt, rangeres briktræk efter den anslåede chance for at vinde kampen. Tab angives i procentpoint (pp): 1 pp er et fald fra 51 % til 50 %. Den aktuelle terningindsats samt gammon- og backgammonresultater indgår. Tvungne pas og kast med kun én lovlig slutposition tæller ikke med i gennemsnittet.';
+
+  @override
+  String get metricExplainerSearchTitle => 'Søgning og usikkerhed';
+
+  @override
+  String get metricExplainerSearchBody =>
+      'Trækrangeringer er statiske 0-ply-estimater efter trækket, ikke rollouts. Kampværdier bruger en match equity-tabel uden fremtidige terningbeslutninger. Terninganalyser bruger en delvis 0,7-tilnærmelse af terningens levetid ved accepteret dobling. Det er ikke en fuld cubeful søgning. Stillinger mere end 25 point bagud bruger tabellens 25-away-grænse. Tætte resultater kan ændre sig ved dybere analyse; der findes intet kalibreret konfidensinterval.';
+
+  @override
+  String get metricExplainerEquityTitle => 'Equity';
+
+  @override
+  String get metricExplainerEquityBody =>
+      'Hvis stillingen ikke er tilgængelig, er cubeless equity en positions gennemsnitlige pointværdi med terningen på 1. +1,0 betyder forventet gevinst på ét point; −0,5 betyder forventet tab af et halvt point.';
+
+  @override
+  String get metricExplainerEquityLossTitle => 'Equitytab (f.eks. −0,016)';
+
+  @override
+  String get metricExplainerEquityLossBody =>
+      'Vi sammenligner hvert træk med engineets bedste træk. Equitytab er den forventede værdi, trækket gav afkald på. −0,016 betyder, at trækket kun var 0,016 point dårligere — en lille fejl. 0,000 betyder, at du fandt det bedste træk.';
+
+  @override
+  String get metricExplainerErrorRateTitle => 'Fejlrate';
+
+  @override
+  String get metricExplainerErrorRateBody =>
+      'Gennemsnitligt tab beregner gennemsnittet af dine vurderede brikbeslutninger i den viste enhed. Terningbeslutninger har deres eget gennemsnit. Lavere betyder tættere på engineets bedste estimater; det er ikke en kalibreret spillervurdering.';
+
+  @override
+  String get metricExplainerMoveMarksTitle => 'Trækvurderinger';
+
+  @override
+  String get metricExplainerMoveMarksBody =>
+      'MWC-undervisningsniveauer: Bedst < 0,05 pp, Godt < 0,5 pp, Tvivlsomt < 1,5 pp, Fejl < 3 pp, Større fejl ≥ 3 pp. Det er produktets læringsniveauer, ikke kalibreret sikkerhed eller turneringsvurderinger.\n\nCubeless equity-niveauer:';
+
+  @override
+  String get metricExplainerThresholdBest => 'tab < 0,001';
+
+  @override
+  String get metricExplainerThresholdGood => 'tab < 0,020';
+
+  @override
+  String get metricExplainerThresholdDubious => 'tab < 0,050';
+
+  @override
+  String get metricExplainerThresholdError => 'tab < 0,110';
+
+  @override
+  String get metricExplainerThresholdBlunder => 'tab ≥ 0,110';
+
+  @override
+  String get metricExplainerGotIt => 'Forstået';
+
+  @override
+  String get historyTitle => 'Kampoversigt';
+
+  @override
+  String historyLoadFailed(Object error) {
+    return 'Kampoversigten kunne ikke indlæses:\n$error';
+  }
+
+  @override
+  String get historyEmpty => 'Du har ikke spillet nogen kampe endnu.';
+
+  @override
+  String get historyDeleteConfirmTitle => 'Slet denne kamp?';
+
+  @override
+  String historyDeleteConfirmBody(Object scoreLine) {
+    return '$scoreLine\n\nKampen og alle registrerede spil i den slettes permanent. Dette kan ikke fortrydes.';
+  }
+
+  @override
+  String get actionCancel => 'Annuller';
+
+  @override
+  String get actionDelete => 'Slet';
+
+  @override
+  String get historyDeleteFailed => 'Kampen kunne ikke slettes.';
+
+  @override
+  String get historyComplete => 'Færdig';
+
+  @override
+  String historyWinner(Object side) {
+    return '$side vandt';
+  }
+
+  @override
+  String get historyUnfinished => 'Ikke færdig';
+
+  @override
+  String get historyMatchTitle => 'Kamp';
+
+  @override
+  String historyMatchLoadFailed(Object error) {
+    return 'Kampen kunne ikke indlæses:\n$error';
+  }
+
+  @override
+  String historyGamesLoadFailed(Object error) {
+    return 'Spillene kunne ikke indlæses:\n$error';
+  }
+
+  @override
+  String get historyNoGames => 'Ingen spil er registreret endnu.';
+
+  @override
+  String historyGameTitle(int number) {
+    return 'Spil $number';
+  }
+
+  @override
+  String get historyCrawford => 'Crawford';
+
+  @override
+  String historyScoreLine(int whiteScore, int blackScore, int matchLength) {
+    return 'Hvid $whiteScore — $blackScore Sort (til $matchLength)';
+  }
+
+  @override
+  String get historyModeComputer => 'mod computer';
+
+  @override
+  String get historyModeTwoPlayers => 'To spillere';
+
+  @override
+  String get historyModeOnline => 'Online';
+
+  @override
+  String get historyModeNearby => 'Spil i nærheden';
+
+  @override
+  String get historyModeBuddy => 'Buddy';
+
+  @override
+  String get historyGameInProgress => 'I gang';
+
+  @override
+  String historyGameResult(Object side, int points, Object outcome) {
+    return '$side vinder med $points ($outcome)';
+  }
+
+  @override
+  String get historyOutcomeSingle => 'enkelt';
+
+  @override
+  String get historyOutcomeGammon => 'gammon';
+
+  @override
+  String get historyOutcomeBackgammon => 'backgammon';
+
+  @override
+  String get learningRefreshTooltip => 'Opdater læringsforløb';
+
+  @override
+  String get learningOptions => 'Læringsindstillinger';
+
+  @override
+  String get learningResetMenu => 'Nulstil træningsforløb';
+
+  @override
+  String get learningLoadFailed => 'Læringsforløbet kunne ikke indlæses.';
+
+  @override
+  String get actionRetry => 'Prøv igen';
+
+  @override
+  String get learningHeading => 'Lær af dine beslutninger';
+
+  @override
+  String get learningIntro =>
+      'Din fremgang gemmes på denne enhed. Gennemgå tilbagevendende temaer, og prøv gemte positioner igen uden at se svaret. Hvid og sort kan gennemgås hver for sig.';
+
+  @override
+  String get learningBothSides => 'Begge sider';
+
+  @override
+  String get learningHumansOnly => 'Kun menneskelige beslutninger';
+
+  @override
+  String get learningHumanOnlyHelp =>
+      'Slå fra for også at medtage computerens og fjernspilleres beslutninger';
+
+  @override
+  String learningDecisionSummary(int decisions, int mistakes, int blunders) {
+    return '$decisions beslutninger · $mistakes at forbedre · $blunders større fejl';
+  }
+
+  @override
+  String learningAverageLoss(int decisions, Object loss) {
+    return 'Gennemsnitligt tab ($decisions beslutninger): $loss';
+  }
+
+  @override
+  String get learningForcedDisclaimer =>
+      'Tvungne træk er udeladt. Det er engineestimater, ikke en turneringsrating.';
+
+  @override
+  String learningGamesNeedingAnalysis(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# gemte partier skal analyseres eller analyseres igen.',
+      one: '# gemt parti skal analyseres eller analyseres igen.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get learningAnalyseSavedGames => 'Analysér gemte partier';
+
+  @override
+  String get learningEmptyProfile =>
+      'Spil og afslut et parti for at opbygge din læringsprofil. Du kan også gemme enkelte beslutninger fra en gennemgang.';
+
+  @override
+  String get learningOpenHistory => 'Åbn kamphistorik';
+
+  @override
+  String get learningRecurringThemes => 'Tilbagevendende temaer';
+
+  @override
+  String get learningNoThemes =>
+      'Der er endnu ingen tilbagevendende fejltendenser i dette udvalg.';
+
+  @override
+  String learningThemeDecisions(int count) {
+    return '$count beslutninger til gennemgang. En position kan have flere temaer.';
+  }
+
+  @override
+  String get learningSaveMistakes => 'Gem disse fejl til træning';
+
+  @override
+  String learningSavedMistakes(int count) {
+    return '$count beslutninger er på din træningsliste. Allerede gemte beslutninger beholdes.';
+  }
+
+  @override
+  String get learningSaveMistakesFailed =>
+      'Nogle beslutninger kunne ikke gemmes. De gemte beholdes; prøv igen.';
+
+  @override
+  String get learningSpacedPractice => 'Spredt træning';
+
+  @override
+  String learningPracticeCounts(
+    int due,
+    int saved,
+    int attempts,
+    int successes,
+  ) {
+    return '$due klar nu · $saved gemt · $attempts forsøg · $successes vellykkede genkaldelser';
+  }
+
+  @override
+  String get learningIntervalsHelp =>
+      'Vellykkede rettidige gennemgange vender tilbage efter 1, 3, 7, 14 og 30 dage. Fejl eller viste svar vender tilbage efter 10 minutter. Tidlige gentagelser ændrer ikke intervallet.';
+
+  @override
+  String get learningAnswerContext =>
+      'Træningsresultaterne afspejler dine svar her, også når den oprindelige position tilhørte en modstander.';
+
+  @override
+  String get learningNoSavedPositions =>
+      'Gem en beslutning fra gennemgangen, eller brug fejlknappen ovenfor.';
+
+  @override
+  String learningPositionTitle(Object side, int gameId) {
+    return '${side}s beslutning · parti $gameId';
+  }
+
+  @override
+  String learningReviewDue(Object date) {
+    return 'Gennemgå $date';
+  }
+
+  @override
+  String get learningReadyToReview => 'Klar til gennemgang';
+
+  @override
+  String learningSuccessStreak(int count) {
+    return '$count vellykkede rettidige gennemgange';
+  }
+
+  @override
+  String get learningRemoveTooltip => 'Fjern gemt beslutning';
+
+  @override
+  String get learningRecentPractice => 'Seneste træning';
+
+  @override
+  String get learningAnswerRevealed => 'Svar vist';
+
+  @override
+  String get learningSuccessfulRecall => 'Vellykket genkaldelse';
+
+  @override
+  String get learningTryAgain => 'Prøv beslutningen igen';
+
+  @override
+  String learningAttemptSubtitle(Object date, int positionId) {
+    return '$date · gemt position $positionId';
+  }
+
+  @override
+  String get learningRemoveTitle => 'Fjern denne øvelse?';
+
+  @override
+  String get learningRemoveBody =>
+      'Dette fjerner dens træningsforsøg. Det oprindelige parti bliver i historikken.';
+
+  @override
+  String get actionRemove => 'Fjern';
+
+  @override
+  String get learningRemoveFailed => 'Øvelsen kunne ikke fjernes.';
+
+  @override
+  String get learningResetTitle => 'Nulstil træningsforløb?';
+
+  @override
+  String get learningResetBody =>
+      'Alle træningsforsøg og gennemgangsintervaller fjernes. Dine gemte øvelser og kamphistorik bevares; alle øvelser skal gennemgås nu.';
+
+  @override
+  String get learningResetAction => 'Nulstil forløb';
+
+  @override
+  String get learningResetFailed => 'Træningsforløbet kunne ikke nulstilles.';
+
+  @override
+  String learningAnalysisProgress(int completed, int failed) {
+    return 'Analyserede partier: $completed · utilgængelige: $failed.';
+  }
+
+  @override
+  String learningAnalysisComplete(int completed) {
+    return 'Analyserede $completed partier.';
+  }
+
+  @override
+  String learningAnalysisCompleteWithErrors(int completed, int failed) {
+    return 'Analyserede $completed partier; $failed kunne ikke analyseres. Prøv igen, når engine er klar.';
+  }
+
+  @override
+  String get learningThemeHitting => 'Slag og tempo';
+
+  @override
+  String get learningThemeSafety => 'Blots og sikkerhed';
+
+  @override
+  String get learningThemePointMaking => 'Byg punkter';
+
+  @override
+  String get learningThemePrime => 'Prime og blokader';
+
+  @override
+  String get learningThemeAnchor => 'Ankre og flugt';
+
+  @override
+  String get learningThemeRace => 'Effektivitet i løbet';
+
+  @override
+  String get learningThemeBearOff => 'Bære af';
+
+  @override
+  String get learningThemeBarEntry => 'Indgang fra baren';
+
+  @override
+  String get learningThemeCube => 'Terningbeslutninger';
+
+  @override
+  String get analysisCubeNoDouble => 'Ingen dobling';
+
+  @override
+  String get analysisCubeDouble => 'Dobl';
+
+  @override
+  String get analysisCubeTake => 'Tag';
+
+  @override
+  String get analysisCubePass => 'Pas';
+
+  @override
+  String get learningAnalysisStarting => 'Analyserer gemte partier…';
+
+  @override
+  String get tutorCubelessEstimateScope =>
+      '0-ply-vurdering uden kube · score ikke tilgængelig';
+
+  @override
+  String get tutorLossPp => 'Tab i procentpoint';
+
+  @override
+  String get tutorLoss => 'Tab';
+
+  @override
+  String get scoreSheetNoMoves => 'Ingen træk endnu';
+
+  @override
+  String get tutorOptions => 'Tutorindstillinger';
+
+  @override
+  String get tutorCollapseTooltip => 'Fold tutor sammen';
+
+  @override
+  String get tutorExpandTooltip => 'Fold tutor ud';
+
+  @override
+  String get onlineTitle => 'Spil online';
+
+  @override
+  String get onlineUnassistedNote =>
+      'Live online-spil er uden hjælp. Gennemgå dine træk og øv fejl efter kampen.';
+
+  @override
+  String get onlineNotConfiguredTitle =>
+      'Onlinespil er ikke konfigureret i denne version';
+
+  @override
+  String get onlineNotConfiguredBody =>
+      'Denne version har ingen tilkoblet Firebase-backend, så oprettelse og deltagelse i kampe er ikke tilgængelig.';
+
+  @override
+  String get onlineErrorNoMatch =>
+      'Der findes ingen kamp med den kode. Kontrollér den, og prøv igen.';
+
+  @override
+  String get onlineErrorSeatTaken =>
+      'Kampen er ikke længere åben — pladsen er optaget.';
+
+  @override
+  String get onlineErrorPermission => 'Du har ikke adgang til den kamp.';
+
+  @override
+  String get onlineErrorGeneric => 'Noget gik galt. Prøv igen.';
+
+  @override
+  String get onlineMatchFinished =>
+      'Kampen er slut — der er ikke noget at vende tilbage til.';
+
+  @override
+  String get onlineEnterCodeError => 'Indtast en kampkode.';
+
+  @override
+  String get onlineOpponentShort => 'Modst.';
+
+  @override
+  String get onlineMatchInProgress => 'Kamp i gang';
+
+  @override
+  String onlineResumePrompt(Object code) {
+    return 'Du spillede kampen $code.';
+  }
+
+  @override
+  String get onlineRejoin => 'Deltag igen';
+
+  @override
+  String get onlineForgetMatch => 'Glem denne kamp';
+
+  @override
+  String get onlineCreateTitle => 'Opret kamp';
+
+  @override
+  String get onlineMatchLength => 'Kampens længde';
+
+  @override
+  String get onlineNoCubeTitle => 'Spil uden kube';
+
+  @override
+  String get onlineNoCubeSubtitle => 'Ingen dobleterning i denne kamp';
+
+  @override
+  String get onlineCreate => 'Opret';
+
+  @override
+  String get onlineWaitingOpponent => 'Venter på modstander…';
+
+  @override
+  String get onlineShareCode => 'Del denne kode';
+
+  @override
+  String get onlineCopyCode => 'Kopiér kode';
+
+  @override
+  String get onlineCodeCopied => 'Kode kopieret';
+
+  @override
+  String get onlineJoinTitle => 'Deltag i kamp';
+
+  @override
+  String get onlineRoomCode => 'Kampkode';
+
+  @override
+  String get onlineJoin => 'Deltag';
+
+  @override
+  String get lanTitle => 'Spil i nærheden';
+
+  @override
+  String get lanTabHost => 'Vært';
+
+  @override
+  String get lanTabJoin => 'Deltag';
+
+  @override
+  String get lanUnassistedNote =>
+      'Live-spil i nærheden er uden hjælp. Gennemgå dine træk, og øv fejl efter kampen.';
+
+  @override
+  String get lanGameStartFailed =>
+      'Spillet kunne ikke startes. Den anden enhed kan prøve at deltage igen.';
+
+  @override
+  String get lanHostPortInUse =>
+      'Kunne ikke starte værtstilstand — porten er allerede i brug. Luk en anden kopi af Backgammon Buddy.';
+
+  @override
+  String get lanHostStartFailed =>
+      'Kunne ikke starte værtstilstand. Kontrollér din Wi-Fi-forbindelse.';
+
+  @override
+  String get lanHostTitle => 'Vær vært for et spil';
+
+  @override
+  String get lanStartHosting => 'Start værtstilstand';
+
+  @override
+  String get lanHostHelp =>
+      'Begge enheder skal være på samme Wi-Fi. Denne enhed slår terningerne og holder styr på scoren.';
+
+  @override
+  String get lanWaitingPlayerTitle => 'Venter på en spiller';
+
+  @override
+  String get lanRoomCodeInfo =>
+      'Giv den anden spiller denne kode. Den giver adgang — appen sender den ikke over netværket.';
+
+  @override
+  String get lanWaitingPlayer => 'Venter på en spiller…';
+
+  @override
+  String get lanStopHosting => 'Stop værtstilstand';
+
+  @override
+  String lanFindNearbyPort(int port) {
+    return 'Bed den anden enhed om at søge efter spil i nærheden. Lytter på port $port.';
+  }
+
+  @override
+  String get lanOnNetwork => 'På dette netværk';
+
+  @override
+  String get lanCopyAddress => 'Kopiér adresse';
+
+  @override
+  String get lanAddressCopied => 'Adresse kopieret';
+
+  @override
+  String get lanScanHostTitle => 'Scan værten';
+
+  @override
+  String get lanScanHostHelp =>
+      'Den anden enhed viser en QR-kode på værtsskærmen. Scan den for at udfylde adresse og rumkode.';
+
+  @override
+  String get lanScanQr => 'Scan QR-kode';
+
+  @override
+  String get lanScannerUnavailable =>
+      'Kameraet eller dets tilladelse er ikke tilgængelig. Indtast adresse og rumkode nedenfor i stedet.';
+
+  @override
+  String get lanInvalidQr =>
+      'Denne QR-kode er ikke til et Backgammon Buddy-spil. Scan koden på værtens skærm på den anden enhed.';
+
+  @override
+  String get lanScannerFailed =>
+      'Scanneren kunne ikke åbnes. Indtast adressen og koden i stedet.';
+
+  @override
+  String get lanNearbyGames => 'Spil i nærheden';
+
+  @override
+  String get lanSearching => 'Søger efter spil i nærheden…';
+
+  @override
+  String get lanNoGamesFound =>
+      'Ingen spil fundet endnu. Sørg for, at den anden enhed er vært, og at begge er på samme Wi-Fi — eller indtast adressen.';
+
+  @override
+  String get lanStillSearching => 'Søger stadig…';
+
+  @override
+  String get lanEnterAddress => 'Indtast adresse';
+
+  @override
+  String get lanEnterAddressHelp =>
+      'Automatisk søgning virker ikke på alle netværk (og iOS kan blokere den helt). Værtsskærmen viser, hvad du skal indtaste.';
+
+  @override
+  String get lanIpAddress => 'IP-adresse';
+
+  @override
+  String get lanPort => 'Port';
+
+  @override
+  String get lanInvalidPort => 'Indtast en port mellem 1 og 65535.';
+
+  @override
+  String get lanEnterAddressError =>
+      'Indtast adressen, der vises på den anden enhed.';
+
+  @override
+  String get lanEnterRoomCodeError =>
+      'Indtast den firecifrede kode fra den anden enhed.';
+
+  @override
+  String get lanJoinWrongCode =>
+      'Forkert rumkode. Kontrollér de fire cifre på den anden enhed.';
+
+  @override
+  String get lanJoinVersionMismatch =>
+      'Den anden enhed kører en anden version af Backgammon Buddy.';
+
+  @override
+  String get lanJoinHandshakeFailed =>
+      'Enheden svarede ikke som Backgammon Buddy. Kontrollér adresse og port.';
+
+  @override
+  String get lanJoinFailed =>
+      'Kunne ikke deltage. Kontrollér adresse og rumkode, og prøv igen.';
+
+  @override
+  String lanJoinTarget(Object name) {
+    return 'Deltag i $name';
+  }
+
+  @override
+  String get lanJoinTargetHelp =>
+      'Indtast den firecifrede kode, der vises på den anden enhed.';
+
+  @override
+  String lanJoiningTarget(Object name) {
+    return 'Deltager i $name';
+  }
+
+  @override
+  String get lanConnect => 'Opret forbindelse';
+
+  @override
+  String get lanBack => 'Tilbage';
+
+  @override
+  String get lanTryAgain => 'Prøv igen';
+
+  @override
+  String get lanStatusBusy => 'Rummet er optaget — venter…';
+
+  @override
+  String get lanStatusReconnecting => 'Forbindelsen gik tabt — prøver igen…';
+
+  @override
+  String get lanStatusConnected => 'Forbundet — kampen starter…';
+
+  @override
+  String get lanStatusFailed => 'Kunne ikke deltage.';
+
+  @override
+  String get lanStatusConnecting => 'Opretter forbindelse…';
+
+  @override
+  String get diagnosticsCopySuccess =>
+      'Diagnostik kopieret til udklipsholderen';
+
+  @override
+  String get diagnosticsReviewTitle => 'Gennemgå diagnostikrapport';
+
+  @override
+  String get diagnosticsPrivacyNotice =>
+      'Når du åbner udkastet, sendes oplysningerne nedenfor til GitHub, herunder appversion, platform og eventuelle fejloplysninger. Der oprettes ikke en offentlig sag, før du indsender den. Hvis oplysningerne indeholder private data, skal du annullere og bruge Kopiér til selv at klargøre en rapport.';
+
+  @override
+  String get diagnosticsCancel => 'Annuller';
+
+  @override
+  String get diagnosticsOpenGitHub => 'Åbn GitHub';
+
+  @override
+  String get diagnosticsTitle => 'Diagnostik';
+
+  @override
+  String get diagnosticsReportTooltip => 'Rapportér et problem på GitHub';
+
+  @override
+  String get diagnosticsCopyTooltip => 'Kopiér til udklipsholder';
+
+  @override
+  String get diagnosticsClearTooltip => 'Ryd log';
+
+  @override
+  String get diagnosticsEmpty =>
+      'Ingen fejl registreret.\n\nHvis noget går galt, gemmes det her. Vend tilbage og kopiér oplysningerne til en fejlrapport.';
+
+  @override
+  String gameHudNeutralScore(
+    Object whiteLabel,
+    int whiteScore,
+    Object blackLabel,
+    int blackScore,
+    int matchLength,
+  ) {
+    return '$whiteLabel $whiteScore–$blackScore $blackLabel · til $matchLength';
+  }
+
+  @override
+  String gameHudPlayerScore(
+    Object you,
+    int mine,
+    int theirs,
+    Object opponent,
+    int matchLength,
+  ) {
+    return '$you $mine–$theirs $opponent · til $matchLength';
+  }
+
+  @override
+  String get gameHudYou => 'Dig';
+
+  @override
+  String get gameHudAi => 'Computer';
+
+  @override
+  String gameHudGameNumber(int number) {
+    return 'Spil $number';
+  }
+
+  @override
+  String gameHudMatchContext(Object score, Object game) {
+    return '$score · $game';
+  }
+
+  @override
+  String gameHudHotSeatDetail(
+    Object whiteLabel,
+    Object blackLabel,
+    Object pipsLabel,
+    int whitePips,
+    int blackPips,
+  ) {
+    return '$whiteLabel mod $blackLabel · $pipsLabel $whitePips–$blackPips';
+  }
+
+  @override
+  String gameHudOpponentDetail(
+    Object opponent,
+    Object pipsLabel,
+    int mine,
+    int theirs,
+  ) {
+    return 'mod $opponent · $pipsLabel $mine–$theirs';
+  }
+
+  @override
+  String gameHudOpponentDetailWithLevel(
+    Object opponent,
+    Object level,
+    Object pipsLabel,
+    int mine,
+    int theirs,
+  ) {
+    return 'mod $opponent · $level · $pipsLabel $mine–$theirs';
+  }
+
+  @override
+  String get gameHudPips => 'Pips';
+
+  @override
+  String get gameHudCrawford => 'Crawford';
+
+  @override
+  String get gameHudDouble => 'Dobl';
+
+  @override
+  String get gameHudMoreActions => 'Flere handlinger';
+
+  @override
+  String get gameHudSurrender => 'Opgiv…';
+
+  @override
+  String get gameHudThinking => 'Tænker';
+
+  @override
+  String get gameHudDoubleBeforeRoll =>
+      'Du kan kun doble før du slår, og når det er din tur.';
+
+  @override
+  String get gameHudNoDoubleCrawford =>
+      'Der kan ikke dobles i Crawford-spillet — dette ene spil afgør kampen.';
+
+  @override
+  String get gameHudOnlyCubeOwner =>
+      'Kun ejeren af dobleterningen kan doble, og den tilhører modstanderen lige nu.';
+
+  @override
+  String get gameHudDoubleUnavailable => 'Det er ikke muligt at doble lige nu.';
+
+  @override
+  String gameDialogScoreLine(
+    Object whiteLabel,
+    int whiteScore,
+    int blackScore,
+    Object blackLabel,
+    int matchLength,
+  ) {
+    return '$whiteLabel $whiteScore — $blackScore $blackLabel (til $matchLength)';
+  }
+
+  @override
+  String gameDialogPlayerWon(Object winner, Object points) {
+    return '$winner vinder dette spil ($points).';
+  }
+
+  @override
+  String gameDialogPlayerWonGammon(Object winner, Object points) {
+    return '$winner vinder dette spil ($points, gammon).';
+  }
+
+  @override
+  String gameDialogPlayerWonBackgammon(Object winner, Object points) {
+    return '$winner vinder dette spil ($points, backgammon).';
+  }
+
+  @override
+  String gameDialogPlayerWonDrop(Object winner, Object points, Object loser) {
+    return '$winner vinder dette spil ($points) — $loser afslog doblingen.';
+  }
+
+  @override
+  String gameDialogPlayerWonResignation(
+    Object winner,
+    Object points,
+    Object loser,
+  ) {
+    return '$winner vinder dette spil ($points) — $loser opgav.';
+  }
+
+  @override
+  String get gameDialogPassDeviceTitle => 'Giv enheden videre';
+
+  @override
+  String gameDialogPlayersTurn(Object name) {
+    return '$name har tur';
+  }
+
+  @override
+  String get gameDialogTapToContinue => 'Tryk for at fortsætte';
+
+  @override
+  String get gameDialogCubeOfferedTitle => 'Dobl foreslået';
+
+  @override
+  String gameDialogCubeOfferMessage(
+    Object doubler,
+    int value,
+    Object tutorLine,
+  ) {
+    return '$doubler tilbyder at doble til $value. Vil du tage imod eller passe?$tutorLine';
+  }
+
+  @override
+  String get gameDialogPass => 'Pas';
+
+  @override
+  String get gameDialogTake => 'Tag imod';
+
+  @override
+  String get gameDialogResignationTitle => 'Opgivelse tilbudt';
+
+  @override
+  String gameDialogResignationMessage(Object resigner, Object value) {
+    return '$resigner tilbyder at opgive ved $value. Vil du acceptere eller afslå?';
+  }
+
+  @override
+  String get gameDialogResignSingle => 'enkelt spil';
+
+  @override
+  String get gameDialogResignGammon => 'gammon';
+
+  @override
+  String get gameDialogResignBackgammon => 'backgammon';
+
+  @override
+  String get gameDialogDecline => 'Afslå';
+
+  @override
+  String get gameDialogAccept => 'Acceptér';
+
+  @override
+  String get gameDialogGameOverTitle => 'Spillet er slut';
+
+  @override
+  String get gameDialogNextGame => 'Næste spil';
+
+  @override
+  String get gameDialogMatchOverTitle => 'Kampen er slut';
+
+  @override
+  String get gameDialogNobody => 'Ingen';
+
+  @override
+  String gameDialogMatchWinner(Object winner) {
+    return '$winner vinder kampen.';
+  }
+
+  @override
+  String get gameDialogSavedToHistory => 'Gemt i historik';
+
+  @override
+  String get gameDialogDone => 'Færdig';
+
+  @override
+  String get gameTapNoLegalMove =>
+      'Denne brik kan ikke flyttes med de resterende terninger';
+
+  @override
+  String get gameTapNoLegalMoveUndo =>
+      'Denne brik kan ikke flyttes med de resterende terninger — prøv at fortryde';
+
+  @override
+  String get gameDragHint =>
+      'Tip: træk brikkerne, eller tryk på dem — skift dette i Indstillinger';
+
+  @override
+  String get commonGotIt => 'Forstået';
+
+  @override
+  String get gameHintStageBeforeHint =>
+      'Lav først et helt lovligt træk, og bed derefter om et tip.';
+
+  @override
+  String get surrenderTitle => 'Opgiv';
+
+  @override
+  String surrenderNamedConcedes(String player) {
+    return '$player opgiver det aktuelle spil.';
+  }
+
+  @override
+  String get surrenderConcedes => 'Du opgiver det aktuelle spil.';
+
+  @override
+  String surrenderAvailableAtNamedTurn(String player) {
+    return 'Tilgængelig ved starten af ${player}s tur';
+  }
+
+  @override
+  String get surrenderAvailableAtYourTurn =>
+      'Tilgængelig ved starten af din tur';
+
+  @override
+  String get commonCancel => 'Annuller';
+
+  @override
+  String get surrenderSingle => 'Enkelt (1)';
+
+  @override
+  String get surrenderGammon => 'Gammon (2)';
+
+  @override
+  String get surrenderBackgammon => 'Backgammon (3)';
+
+  @override
+  String get surrenderChoosePlayer => 'Hvem opgiver dette spil?';
+
+  @override
+  String get commonDone => 'Færdig';
+
+  @override
+  String get cubeDouble => 'Dobl';
+
+  @override
+  String get cubeBlockedOtherPlayersTurn => 'Det er den anden spillers tur.';
+
+  @override
+  String get cubeBlockedCrawford =>
+      'Dobleterningen er ikke tilgængelig i Crawford-spillet.';
+
+  @override
+  String get cubeBlockedOwnedByOther =>
+      'Kun ejeren af dobleterningen kan doble, og den tilhører modstanderen.';
+
+  @override
+  String get cubeBlockedUnavailable => 'Det er ikke muligt at doble lige nu.';
+
+  @override
+  String get gameStatusRolling => 'Slår…';
+
+  @override
+  String get gameStatusThinking => 'Tænker…';
+
+  @override
+  String gameStatusPlayersTurn(String player) {
+    return '$player har tur';
+  }
+
+  @override
+  String get cubeAdviceOpponentTake => 'Dobl — modstanderen bør tage imod';
+
+  @override
+  String get cubeAdviceOpponentPass => 'Dobl — modstanderen bør passe';
+
+  @override
+  String gameErrorBannerLabel(Object error) {
+    return 'Fejl: $error';
+  }
 }

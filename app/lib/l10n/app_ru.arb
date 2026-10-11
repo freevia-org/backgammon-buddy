@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Номера пунктов в обучающих заметках отсчитываются от домашней доски игрока, который ходит.",
   "tutorHittingRollNote": "Подсчёт бросков, позволяющих побить шашку, включает все 36 упорядоченных комбинаций кубиков и допустимые прямые и непрямые удары; это возможности, а не прогноз выбора соперника.",
   "tutorNoEvaluatedAlternatives": "Для этого хода нет оценённых альтернатив.",
-  "tutorForcedPassNoDecision": "При вынужденном пропуске выбирать ход шашками не нужно."
+  "tutorForcedPassNoDecision": "При вынужденном пропуске выбирать ход шашками не нужно.",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "settingsReset": "Сбросить",
+  "settingsAppLanguage": "Язык приложения",
+  "settingsTheme": "Тема",
+  "settingsThemeSystem": "Системная",
+  "settingsThemeLight": "Светлая",
+  "settingsThemeDark": "Тёмная",
+  "settingsAnimationSpeed": "Скорость анимации",
+  "settingsAnimationNone": "Нет",
+  "settingsAnimationNormal": "Обычная",
+  "settingsAnimationFast": "Быстрая",
+  "settingsDiceRollAnimation": "Анимация броска костей",
+  "settingsDiceRollAnimationHelp": "Кости перекатываются перед каждым броском",
+  "settingsDefaultMatchLength": "Длина матча по умолчанию",
+  "settingsDefaultDifficulty": "Сложность по умолчанию",
+  "settingsDifficultyEasy": "Лёгкая",
+  "settingsDifficultyMedium": "Средняя",
+  "settingsDifficultyHard": "Сложная",
+  "settingsDifficultyExpert": "Экспертная",
+  "settingsTutorModeDefault": "Режим наставника по умолчанию",
+  "settingsTutorAuto": "Авто",
+  "settingsTutorOn": "Вкл.",
+  "settingsTutorOff": "Выкл.",
+  "settingsTutorModeHelp": "В режиме «Авто» наставник включён при любой сложности компьютера. «Вкл.» и «Выкл.» задают начальный выбор для локальных матчей. В игре рядом и онлайн-партиях подсказок нет; сохранённые партии можно разобрать позже. Настройки обучения ниже сохраняются на этом устройстве.",
+  "settingsTutorPreferences": "Настройки наставника",
+  "settingsTutorPreferencesSubtitle": "Значения по умолчанию для новых матчей",
+  "settingsTutorSaveError": "Не удалось сохранить настройки наставника.",
+  "settingsGameplay": "Игра",
+  "settingsMoveHighlights": "Подсветка ходов",
+  "settingsMoveHighlightsHelp": "Обводить доступные шашки и подсвечивать пункты назначения",
+  "settingsDragToMove": "Перетаскивание шашек",
+  "settingsDragToMoveHelp": "Перетащите шашку в пункт назначения (нажатия тоже работают)",
+  "settingsCombinedMoves": "Ход обеими костями",
+  "settingsCombinedMovesHelp": "Одно нажатие перемещает шашку с учётом обеих костей",
+  "settingsRotateBoard": "Поворачивать доску между ходами",
+  "settingsRotateBoardHelp": "Для игры за одним устройством: разворачивать доску к игроку, чей ход",
+  "settingsPassDevice": "Экран передачи устройства",
+  "settingsPassDeviceHelp": "Скрывать доску при передаче устройства другому игроку",
+  "settingsShowScore": "Показывать счёт",
+  "settingsShowScoreHelp": "Показывать текущий счёт матча в заголовке",
+  "settingsBuddyMode": "Режим Buddy",
+  "settingsBuddyTerse": "Кратко",
+  "settingsBuddyFriendly": "Подробно",
+  "settingsBuddyTerseHelp": "Как Buddy озвучивает ход: «13/8, 24/22» — краткая запись, которой пользуются игроки за доской.",
+  "settingsBuddyFriendlyHelp": "Как Buddy озвучивает ход: «Переместить одну шашку с 13 на 8, а другую — с 24 на 22».",
+  "settingsListenForDice": "Распознавать бросок костей",
+  "settingsListenForDiceHelp": "Услышав бросок, Buddy раньше проверяет положение на доске. Отключение не влияет на другие функции.",
+  "settingsDiagnostics": "Диагностика",
+  "settingsErrorLog": "Журнал ошибок",
+  "settingsErrorLogHelp": "Последние ошибки — их можно скопировать в сообщение об ошибке",
+  "settingsReportBug": "Сообщить об ошибке",
+  "settingsReportBugHelp": "Открыть форму сообщения об ошибке на GitHub",
+  "settingsSuggestIdea": "Предложить идею",
+  "settingsSuggestIdeaHelp": "Помогите улучшить наставника и игру",
+  "settingsAbout": "О приложении",
+  "settingsOpenSourceLicenses": "Лицензии открытого ПО",
+  "tutorPhraseGameFinished": "Партия завершена.",
+  "tutorPhraseReviewFinishedGame": "Просмотрите ходы и найдите решение, которое стоит потренировать.",
+  "tutorPhraseCubeOffered": "Предложено удвоение ставки.",
+  "tutorPhraseCubeDecisionPrompt": "Решите, принять удвоение или отказаться, прежде чем планировать ход шашками.",
+  "tutorPhraseCubeScoreContext": "Счёт матча влияет на ценность дополнительной ставки.",
+  "tutorPhraseResignationOffered": "Предложена сдача партии.",
+  "tutorPhraseResignationDecisionPrompt": "Сравните предложенные очки с положением на доске, прежде чем принять сдачу или продолжить.",
+  "tutorPhraseNoLegalPlay": "При этом броске нет допустимого хода.",
+  "tutorPhraseForcedPassPrompt": "Вынужденный пропуск — не ошибка. Дождитесь следующего броска.",
+  "tutorPhraseOnlyOneResult": "Есть только один допустимый вариант позиции.",
+  "tutorPhraseForcedTurnPrompt": "Сделайте вынужденный ход. При этом броске нет выбора, который можно оценить.",
+  "tutorPhrasePipCountsLevel": "Количество пипсов у игроков одинаковое.",
+  "tutorPhrasePipCountsAhead": "Преимущество по пипсам: {count}.",
+  "tutorPhrasePipCountsBehind": "Отставание по пипсам: {count}.",
+  "tutorPhrasePlayerHasCheckersOnBar": "Сначала введите шашки с бара. Сейчас там: {count}.",
+  "tutorPhraseEnterBeforeMoving": "Сначала введите шашку с бара, затем найдите для неё безопасный пункт.",
+  "tutorPhraseOpponentHomePoints": "В доме соперника закрыто пунктов: {count}.",
+  "tutorPhraseBearOffRace": "Гонка на вывод шашек.",
+  "tutorPhrasePureRace": "Чистая гонка.",
+  "tutorPhraseBearOffSpread": "Выводите шашки, сохраняя удобное распределение для следующего броска.",
+  "tutorPhraseBringRearCheckersHome": "Переведите дальние шашки домой и не собирайте слишком много на одном пункте.",
+  "tutorPhraseArmiesHavePassed": "Игроки прошли друг друга; побить шашки больше нельзя.",
+  "tutorPhraseContactStillMatters": "{part} Контакт всё ещё важен.",
+  "tutorPhraseOpponentHasCheckersOnBar": "На баре у соперника шашек: {count}.",
+  "tutorPhraseKeepBoardClosed": "Сохраняйте закрытые пункты, пока переводите оставшиеся шашки домой.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Создавайте или сохраняйте свой дом, пока соперник пытается войти с бара.",
+  "tutorPhraseHomePointsCloseEntries": "В вашем доме закрыто пунктов: {count}; каждый такой пункт убирает один номер для входа.",
+  "tutorPhrasePrimeContact": "Контакт с цепочкой закрытых пунктов длиной {count}.",
+  "tutorPhraseExtendPrimeOrKeepSpares": "Сравните, что лучше: удлинить цепочку или оставить запасные шашки, чтобы поддержать её.",
+  "tutorPhraseSpareCheckersCanMove": "Запасные шашки: {count}. Их можно передвинуть, не открывая пункт.",
+  "tutorPhraseAnchorContact": "Контакт с якорем на пунктах {points}.",
+  "tutorPhraseCompareAnchorProgressAhead": "Сравните продвижение дальних шашек домой с безопасностью сохранённого якоря.",
+  "tutorPhraseCompareAnchorProgressBehind": "Помните о безопасной опоре, пока ищете возможность побить шашку или укрепить позицию.",
+  "tutorPhrasePreserveAnchorFoothold": "Якорь нельзя побить, но этим шашкам ещё далеко до дома.",
+  "tutorPhraseContactThreats": "Контакт сохраняется: обе стороны могут угрожать побитием.",
+  "tutorPhraseLookForPointsAndSafety": "Ищите полезные закрытые пункты и оценивайте риск оставить одиночные шашки под ударом.",
+  "tutorPhraseHomePointsAndBlots": "Закрыто пунктов в вашем доме: {count}. Открытых шашек оставлено: {otherCount}.",
+  "tutorPhraseChooseCheckerPrompt": "Выберите шашку, чтобы начать ход.",
+  "tutorPhraseLegalPlayPrompt": "Сделайте допустимый ход, чтобы увидеть комментарий.",
+  "tutorPhraseStagedHit": "Вы побили шашек соперника: {count}.",
+  "tutorPhraseStagedEnter": "Ввод с бара: {count}.",
+  "tutorPhraseStagedBearOff": "Сняли с доски шашек: {count}.",
+  "tutorPhraseStagedMakePoints": "Вы закрыли пункты {points}.",
+  "tutorPhraseStagedBlot": "Шашка на пункте {point} пока остаётся открытой для удара.",
+  "tutorPhraseStagedSpare": "Запасную шашку на пункте {point} можно передвинуть позже, не открывая пункт.",
+  "tutorPhraseStagedPartialPrompt": "{part} Используйте остальные доступные кости, прежде чем оценивать ход целиком.",
+  "tutorPhraseStagedAllCheckersOff": "Все 15 шашек выведены: партия выиграна.",
+  "tutorPhraseStagedHitShortPlan": "Побитие выигрывает время, пока соперник возвращается с бара.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Эффективный вывод убирает шашки и оставляет удобные числа для следующего броска.",
+  "tutorPhraseStagedRaceHomePlan": "В гонке важно перевести дальние шашки домой и оставить удобные пункты для вывода.",
+  "tutorPhraseStagedBearOffContactPlan": "Вывод шашек продвигает вас к победе, но пока сохраняется контакт, открытые шашки могут побить.",
+  "tutorPhraseStagedReentryPlan": "Ввод возвращает шашку в игру; теперь найдите для неё безопасный пункт.",
+  "tutorPhraseStagedHomeBoardPlan": "Новый закрытый пункт в вашем доме уберёт один из номеров входа после будущего побития.",
+  "tutorPhraseStagedPrimePlan": "Длинная цепочка закрывает больше пунктов для посадки; запасные шашки помогут её сохранить.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Отказ от якоря продвигает шашки вперёд, но лишает их безопасной опоры.",
+  "tutorPhraseStagedNewAnchorPlan": "Новый якорь даёт дальним шашкам безопасную опору.",
+  "tutorPhraseStagedCoverBlotPlan": "Прикрытие открытой шашки лишает соперника удобной цели.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Здесь приходится выбирать между развитием и безопасностью: шашки, строящие позицию, сами могут стать целью.",
+  "tutorPhraseStagedCompletePrompt": "{part} Ход полностью подготовлен. Нажмите «Подтвердить», чтобы выполнить его.",
+  "tutorMoveForcedVerdict": "При этом броске нет выбора хода шашками; такое решение не оценивается.",
+  "tutorMoveTopVerdict": "Лучший выбор для этой позиции.",
+  "tutorMoveAlternativeVerdict": "В этой позиции движок предпочитает другой ход.",
+  "tutorMoveEstimateDifference": "Отставание от лучшего хода: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "После этого хода: вероятность победы {winPercent}%, победы с гаммоном или лучше {winGammonPercent}%, поражения с гаммоном или хуже {loseGammonPercent}%. Оценка дана с точки зрения игрока, который ходит.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Оценочная вероятность победы в матче: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Все 15 шашек сняты с доски — партия выиграна.",
+  "tutorMovePlanHit": "Используй удар, чтобы выиграть время, пока соперник возвращается с бара. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Сохраняй закрытые пункты в своём доме, чтобы затруднить вход соперника.",
+  "tutorMovePlanHitBuild": "Закрой больше пунктов в своём доме, чтобы сопернику было сложнее восстановиться после будущих ударов.",
+  "tutorMovePlanRaceBearOff": "Снимай шашки эффективно: убирай их с доски, сохраняя удобные числа для следующего броска.",
+  "tutorMovePlanRaceHome": "Приведи отставшие шашки домой и расставь их по удобным пунктам для снятия.",
+  "tutorMovePlanContactBearOff": "Снимай шашки, но следи за отставшими шашками соперника: пока есть контакт, незащищённая шашка при снятии может стать целью.",
+  "tutorMovePlanReentry": "Вернись в игру, затем найди безопасный пункт для вошедшей шашки.",
+  "tutorMovePlanHomeBoard": "Укрепи свой дом. Новый закрытый пункт усилит будущий удар, убрав одно из чисел входа.",
+  "tutorMovePlanPrime": "Сохраняй непрерывную линию закрытых пунктов. Оставляй запасные шашки, чтобы будущий бросок не вынудил открыть её.",
+  "tutorMovePlanLeaveAnchor": "Уход с якоря продвинет отставшие шашки, но лишит их безопасной опоры. Следи, насколько они уязвимы по пути домой.",
+  "tutorMovePlanNewAnchor": "Используй новый якорь как безопасную опору, улучшая остальную позицию.",
+  "tutorMovePlanCoverBlot": "Собери шашки в безопасные группы. Закрывая одиночную шашку, ты убираешь цель и сохраняешь варианты будущих пунктов.",
+  "tutorMovePlanSafety": "Сочетай развитие с безопасностью: подводи строителей к полезным пунктам и проверяй, какие одиночные шашки можно побить.",
+  "tutorMoveObservationNoLegalPlay": "Нет допустимого хода шашкой — нужно пропустить ход.",
+  "tutorMoveObservationHit": "Бьёт {count} {count, plural, one{шашку соперника} few{шашки соперника} many{шашек соперника} other{шашки соперника}}; соперник должен войти с бара, прежде чем сможет двигать остальные шашки.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Вводит {count} шашек с бара.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Снимает с доски {count} {count, plural, one{шашку} few{шашки} many{шашек} other{шашки}}.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Создаёт пункты {points}. Две или более шашки закрепляют пункт и блокируют посадку соперника.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Открывает закрытые {pointLabel} {points}. Теперь эти пункты не блокируют соперника.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Не оставляет одиночных уязвимых шашек (до хода было {previousCount}). Бить нечего.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Оставляет {count} одиночных уязвимых {count, plural, one{шашку} few{шашки} many{шашек} other{шашки}} (до хода было {previousCount}). Проверь, сможет ли соперник до них добраться, прежде чем предпочесть безопасность другой выгоде.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Самая длинная линия закрытых пунктов: {count} (до хода было {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Шестипунктовый прайм нельзя пересечь, пока он остаётся закрытым.",
+  "tutorMoveObservationPrimeBuild": "Оставляй строителей поблизости, чтобы продлить или сохранить эту линию.",
+  "tutorMoveObservationPrimeSpares": "На закрытых пунктах сверх двух удерживающих их шашек есть {count} запасных. Перемещение запасной шашки может сохранить пункт; ход одной из последних двух откроет его.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Якоря в доме соперника: {points} (до хода было {previousPoints}). Якорь защищает эти шашки от ударов; отказ от него меняет безопасную опору на продвижение в гонке.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Чистая гонка: стороны прошли друг мимо друга, и ни у кого нет шашек на баре. Бить уже нельзя — важна эффективность снятия шашек.",
+  "tutorMoveObservationNoReplyHit": "Ни один допустимый следующий бросок не позволяет сопернику побить шашку в этой позиции. Контакт сохраняется, поэтому позже могут появиться новые возможности для удара.",
+  "tutorMoveObservationReplyHit": "Соперник может побить при {count} из {total} бросков. Например, {dieOne}–{dieTwo} позволяет законно побить твою шашку на {point}-м пункте. Возможность удара не означает, что соперник обязательно ей воспользуется.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "В твоём доме закрыто пунктов: {closedPoints}. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Соперник не сможет войти, пока не откроется пункт.",
+  "tutorMoveObservationOpenEntry": "Бросок с подходящим открытым пунктом входа может вернуть шашку с бара.",
+  "tutorMoveComparisonDetail": "{factors} Оценочная вероятность победы для лучшего хода на {delta} процентных пункта {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "выше",
+  "tutorMoveComparisonLower": "ниже",
+  "tutorMoveComparisonScoreContext": " Он всё же может быть лучше, поскольку ценность гаммона и бэкгаммона зависит от текущего {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "счёте",
+  "tutorMoveComparisonMatchScore": "счёте матча",
+  "tutorMoveComparisonFactorBar": "Лучший ход оставляет на баре {bestCount} шашек соперника вместо {playedCount}. Шашка на баре должна войти, прежде чем соперник сможет двигать остальные.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Лучший ход закрывает {bestCount} пунктов дома вместо {playedCount}, на {entryDifference} пунктов входа после удара.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "закрывая больше пунктов",
+  "tutorMoveComparisonLeavingMore": "оставляя больше открытых",
+  "tutorMoveComparisonFactorShots": "После лучшего хода соперник может побить при {bestCount} из 36 бросков вместо {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Это снижает непосредственный риск удара по твоей шашке.",
+  "tutorMoveComparisonExtraExposure": "Сопоставь дополнительную уязвимость с другой выгодой этого хода.",
+  "tutorMoveComparisonFactorPrime": "Самая длинная линия закрытых пунктов в лучшем ходе — {bestCount} вместо {playedCount}; сравни силу блокады с шашками, которыми её можно поддерживать.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "В лучшем ходе остаётся {bestPoints} якорей вместо {playedPoints}. Якорь сохраняет безопасный пункт; отказ от него приближает шашки к дому.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "В лучшем ходе снято {bestCount} шашек вместо {playedCount}. Каждую снятую шашку больше не нужно убирать с доски.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Оба хода оставляют одинаковый немедленный риск удара, пункты дома, якоря и число снятых шашек. Сравни точки приземления: на следующем броске эти шашки можно будет использовать по-разному.",
+  "tutorMoveComparisonSummaryBar": "Лучший ход отправляет на бар больше шашек соперника и задерживает его остальные ходы.",
+  "tutorMoveComparisonSummaryHomeBoard": "Лучший ход закрывает больше пунктов дома и затрудняет вход после удара.",
+  "tutorMoveComparisonSummaryShots": "Лучший ход оставляет меньше немедленных возможностей для удара и снижает риск ответного удара.",
+  "tutorMoveComparisonSummaryPrime": "Лучший ход сохраняет более длинную линию закрытых пунктов.",
+  "tutorMoveComparisonSummaryAnchors": "Лучший ход сохраняет больше безопасных якорей в доме соперника.",
+  "tutorMoveComparisonSummaryBearOff": "Лучший ход снимает больше шашек — позднее останется снять меньше.",
+  "tutorMoveComparisonSummaryBlots": "Этот ход оставляет {playedCount} одиночных шашек; лучший ход оставляет {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Лучший ход сохраняет безопасный якорь на пункте {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Лучший ход закрывает больше пунктов входа на случай, если твою шашку побьют.",
+  "tutorMoveComparisonSummarySimilarRisks": "Непосредственные риски у ходов похожи; сравни, какие пункты приземления останутся полезными при следующем броске.",
+  "tutorMoveAssessmentEquityLoss": "{value} эквити",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} п. п. вероятности победы в матче",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "пункт",
+  "tutorMovePointPlural": "пункты",
+  "tutorMoveNoPoints": "нет",
+  "gameTutorCommentaryOff": "Комментарии к партии выключены.",
+  "gameTutorToolsAvailable": "Открой тренера, чтобы воспользоваться включёнными инструментами.",
+  "gameTutorNextRoll": "Теперь бросай кости.",
+  "gameTutorNoEvaluatedReview": "Для этой записи хода нет оценённого объяснения.",
+  "gameTutorAnalysisUnavailable": "анализ недоступен",
+  "gameTutorReviewing": "идёт анализ…",
+  "gameTutorTryYourPlayFirst": "Сначала попробуй сделать ход сам.",
+  "gameTutorKeepBuilding": "Продолжай составлять свой ход.",
+  "gameTutorStageCompleteBeforeCoaching": "Заверши полный допустимый ход, прежде чем открывать подсказки и советы.",
+  "gameTutorReadyToConfirm": "Можно подтвердить",
+  "gameTutorPlayTakingShape": "Твой ход складывается.",
+  "gameTutorConfirmOrUndo": "Подтверди ход или отмени его, чтобы подумать ещё.",
+  "gameTutorFinishDiceOrUndo": "Используй оставшиеся кости или отмени ход.",
+  "gameTutorComputerConsidering": "Компьютер обдумывает свой ход.",
+  "gameTutorComputerPlayReviewed": "Завершённый ход компьютера будет разобран здесь.",
+  "gameTutorYourPlay": "Твой ход",
+  "gameTutorComputer": "Компьютер",
+  "gameTutorPlayQuality": "Твой ход: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "вынужденный ход",
+  "gameTutorTopChoice": "лучший выбор",
+  "gameTutorSoundPlay": "хороший ход",
+  "gameTutorAnotherPlayMayFitBetter": "Возможно, другой ход подойдёт лучше.",
+  "gameTutorAnotherPlayFitsBetter": "Другой ход лучше подходит к этой позиции.",
+  "gameTutorStrongerPlayAvailable": "Был доступен заметно более сильный ход.",
+  "gameTutorPositionEdge": "По оценке преимущество у стороны {side}.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Позиция примерно равная.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPlayedMove": "Сыграно: {move}",
+  "tutorBestMove": "Лучший ход: {move}",
+  "tutorShowRankedPlays": "Показать ходы по рейтингу",
+  "tutorReviewRecordedMove": "Нажми на завершённый ход в журнале, чтобы разобрать его решение здесь.",
+  "tutorTopPlays": "Лучшие ходы",
+  "tutorNoHintsAvailable": "Подсказок нет.",
+  "tutorPreviewThenConfirm": "Нажми на ход, чтобы увидеть его на доске, затем подтверди.",
+  "tutorTopChoiceForPosition": "Лучший выбор для этой позиции",
+  "tutorAlternativePlay": "Альтернативный ход",
+  "tutorEngineEstimates": "Оценки движка",
+  "tutorEstimateScope": "Оценка на 0 полуходов — текущий счёт и ставка — без будущих удвоений",
+  "tutorEquity": "Эквити",
+  "tutorMwcPercent": "Вероятность победы в матче, %",
+  "tutorNearTiesNote": "При более глубоком анализе близкие варианты могут поменяться местами.",
+  "tutorWhyThisPlay": "Почему этот ход?",
+  "tutorCompareAlternative": "Сравнить этот альтернативный ход",
+  "gameTutorCubeTake": "Совет тренера: принять",
+  "gameTutorCubePass": "Совет тренера: сбросить",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceScreenTitle": "Практика хода",
+  "practiceUnavailable": "Эта учебная позиция больше недоступна.",
+  "practiceSubmitError": "Не удалось оценить или сохранить попытку. Ваш прогресс не изменился. Попробуйте ещё раз.",
+  "practiceTurnLabel": "Ход {side} · {dice}",
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "practiceHistoricalScoreUnavailable": "Исторический счёт недоступен; оценка выполняется по equity без куба удвоения.",
+  "practiceScoreLine": "Счёт: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, до {matchLength}",
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceCrawfordGame": " · партия Кроуфорда",
+  "practiceNoDoublingCube": "Без куба удвоения.",
+  "practiceCubeValue": "Значение куба: {value}.",
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceHistoricalCubeUnknown": "Исторические правила куба неизвестны.",
+  "practiceAfterBestPosition": "Позиция после лучшего хода",
+  "practiceAfterYourAnswerPosition": "Позиция после вашего ответа",
+  "practiceFindYourPlayPrompt": "Сделайте ход на доске, затем проверьте ответ. Подсказок не будет.",
+  "practiceUndo": "Отменить",
+  "practiceCheckAnswer": "Проверить ответ",
+  "practiceRevealNoCredit": "Показать ответ (без зачёта)",
+  "practiceAnswerRevealedNoCredit": "Ответ показан — повторение не засчитывается.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "practiceBestMoveLine": "Лучший ход: {move}",
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceOriginalGameLine": "Ход в исходной партии: {move} · {loss}",
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "practiceYourAnswerLine": "Ваш ответ: {move}",
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceYourAnswerChip": "Ваш ответ",
+  "practiceBestPlayChip": "Лучший ход",
+  "practiceNextReview": "Следующий повтор: {date}.",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "practiceRecallCredit": "Лучшие и хорошие ответы засчитываются как успешное повторение. Ранние повторы не увеличивают интервал.",
+  "practiceBackToLearning": "К обучению",
+  "practiceMarkBest": "Лучший",
+  "practiceMarkGood": "Хорошо",
+  "practiceMarkDubious": "Сомнительно",
+  "practiceMarkError": "Ошибка",
+  "practiceMarkBlunder": "Грубая ошибка",
+  "practiceMarkForced": "Вынужденный ход",
+  "newMatchYourSide": "Ваша сторона",
+  "newMatchTutorMode": "Режим наставника",
+  "newMatchTutorDescription": "Учитесь с подсказками, объяснениями и комментариями к игре",
+  "newMatchTutoringOptions": "Настройки обучения",
+  "newMatchTutoringOptionsDescription": "Для этой партии; можно менять во время игры",
+  "setupMatchLength": "Длина матча",
+  "setupDifficulty": "Сложность",
+  "setupDifficultyEasy": "Лёгкая",
+  "setupDifficultyMedium": "Средняя",
+  "setupDifficultyHard": "Сложная",
+  "setupDifficultyExpert": "Эксперт",
+  "setupPlayWithoutCube": "Играть без куба",
+  "setupNoCubeThisMatch": "В этой партии нет куба удвоения",
+  "diagnosticsCopySuccess": "Диагностика скопирована в буфер обмена",
+  "diagnosticsReviewTitle": "Проверьте диагностический отчёт",
+  "diagnosticsPrivacyNotice": "При открытии черновика на GitHub будут отправлены указанные ниже сведения: версия приложения, платформа и данные об ошибках. Публичная проблема не будет создана, пока вы не отправите её там. Если в этих данных есть личная информация, отмените действие и подготовьте отчёт самостоятельно через копирование.",
+  "diagnosticsCancel": "Отмена",
+  "diagnosticsOpenGitHub": "Открыть GitHub",
+  "diagnosticsTitle": "Диагностика",
+  "diagnosticsReportTooltip": "Сообщить о проблеме на GitHub",
+  "diagnosticsCopyTooltip": "Копировать в буфер обмена",
+  "diagnosticsClearTooltip": "Очистить журнал",
+  "diagnosticsEmpty": "Ошибок пока нет.\n\nЕсли что-то пойдёт не так, сведения появятся здесь — вернитесь и скопируйте их в сообщение об ошибке.",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · до {matchLength}",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · до {matchLength}",
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudYou": "Вы",
+  "gameHudAi": "Компьютер",
+  "gameHudGameNumber": "Игра {number}",
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudMatchContext": "{score} · {game}",
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "gameHudHotSeatDetail": "{whiteLabel} против {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetail": "против {opponent} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetailWithLevel": "против {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPips": "Пипсы",
+  "gameHudCrawford": "Кроуфорд",
+  "gameHudDouble": "Удвоить",
+  "gameHudMoreActions": "Другие действия",
+  "gameHudSurrender": "Сдаться…",
+  "gameHudThinking": "Думает",
+  "gameHudDoubleBeforeRoll": "Удваивать можно только перед броском в свой ход.",
+  "gameHudNoDoubleCrawford": "В партии Кроуфорда удвоение запрещено — эта единственная партия решает исход матча.",
+  "gameHudOnlyCubeOwner": "Удваивать может только владелец куба, но сейчас он у другой стороны.",
+  "gameHudDoubleUnavailable": "Сейчас удвоение недоступно.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (до {matchLength})",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogPlayerWon": "{winner} выиграл эту партию ({points}).",
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonGammon": "{winner} выиграл эту партию ({points}, гаммон).",
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonBackgammon": "{winner} выиграл эту партию ({points}, бэкгэммон).",
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonDrop": "{winner} выиграл эту партию ({points}) — {loser} отказался от удвоения.",
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPlayerWonResignation": "{winner} выиграл эту партию ({points}) — {loser} сдался.",
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPassDeviceTitle": "Передайте устройство",
+  "gameDialogPlayersTurn": "Ход {name}",
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "gameDialogTapToContinue": "Нажмите, чтобы продолжить",
+  "gameDialogCubeOfferedTitle": "Предложено удвоение",
+  "gameDialogCubeOfferMessage": "{doubler} предлагает удвоить до {value}. Принять или сбросить?{tutorLine}",
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "gameDialogPass": "Сбросить",
+  "gameDialogTake": "Принять",
+  "gameDialogResignationTitle": "Предложена сдача",
+  "gameDialogResignationMessage": "{resigner} предлагает сдаться с результатом {value}. Принять или отклонить?",
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "gameDialogResignSingle": "обычная партия",
+  "gameDialogResignGammon": "гаммон",
+  "gameDialogResignBackgammon": "бэкгэммон",
+  "gameDialogDecline": "Отклонить",
+  "gameDialogAccept": "Принять",
+  "gameDialogGameOverTitle": "Партия окончена",
+  "gameDialogNextGame": "Следующая партия",
+  "gameDialogMatchOverTitle": "Матч завершён",
+  "gameDialogNobody": "Никто",
+  "gameDialogMatchWinner": "{winner} выиграл матч.",
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "gameDialogSavedToHistory": "Сохранено в истории",
+  "gameDialogDone": "Готово",
+  "gameMatchSummary": "Итоги матча",
+  "gameAnalyzeGame": "Анализ партии",
+  "analysisTitle": "Анализ",
+  "analysisMetricsTooltip": "Что означают эти числа?",
+  "analysisError": "Не удалось проанализировать партию: {error}",
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisNoPositions": "В этой партии нет позиций для показа.",
+  "analysisInProgress": "Идёт анализ…",
+  "analysisPercent": "{percent}%",
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisPlayed": "Сыграно",
+  "analysisBest": "Лучший",
+  "analysisPrevious": "Предыдущий",
+  "analysisNext": "Следующий",
+  "analysisPositionBeforeCube": "Позиция до решения о кубе",
+  "analysisPositionAtPoint": "Позиция в этот момент партии",
+  "analysisShowingBestBefore": "Показан лучший ход в позиции до хода",
+  "analysisShowingBefore": "Показана позиция до хода",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "analysisMoveLoss": " −{loss}",
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisExcludedFromAverages": " · не учитывается в средних значениях",
+  "analysisNoPlay": "(нет хода)",
+  "analysisBestMoveLine": "Лучший: {move}",
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "analysisExplain": "Объяснить",
+  "analysisSaveForPractice": "Сохранить для тренировки",
+  "analysisSaveError": "Не удалось сохранить это решение: {error}",
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisCubeInfo": "{side}: {action} · {mark} · потеря {loss}",
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "analysisCubeDecision": "Решение по кубу",
+  "analysisCubePlayed": "Сыграно: {action} (шанс выиграть матч — {percent}%).",
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisCubeBest": "Лучшее: {action} (шанс выиграть матч — {percent}%).",
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisClose": "Закрыть",
+  "analysisMoves": "Ходы",
+  "analysisForced": "Вынужденный",
+  "analysisMarkBest": "Лучший",
+  "analysisMarkGood": "Хороший",
+  "analysisMarkDubious": "Сомнительный",
+  "analysisMarkError": "Ошибка",
+  "analysisMarkBlunder": "Грубая ошибка",
+  "analysisSummaryMeanLoss": "Средняя потеря {loss}",
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisSummaryCheckerDecisions": "{count} решений по шашкам",
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryBlunders": "Грубые ошибки {count}",
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryCubeLoss": "Потеря из-за куба {loss}",
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisRollWithoutDoubling": "{side} бросает без удвоения",
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "analysisCubeNoDouble": "Не удваивать",
+  "analysisCubeDouble": "Удвоить",
+  "analysisCubeTake": "Принять",
+  "analysisCubePass": "Сдаться",
+  "tutorOptions": "Настройки тренера",
+  "tutorCollapseTooltip": "Свернуть тренера",
+  "tutorExpandTooltip": "Развернуть тренера",
+  "scoreSheetNoMoves": "Нет ходов",
+  "gameTapNoLegalMove": "Коснитесь своей шашки, чтобы увидеть допустимые ходы.",
+  "gameTapNoLegalMoveUndo": "Коснитесь шашки, затем пункта назначения.",
+  "gameDragHint": "Перетащите шашку в пункт назначения.",
+  "commonGotIt": "Понятно",
+  "gameHintStageBeforeHint": "До подсказки",
+  "surrenderTitle": "Сдаться в партии?",
+  "surrenderSingle": "Обычное поражение",
+  "surrenderGammon": "Гаммонное поражение",
+  "surrenderBackgammon": "Бэкгэммонное поражение",
+  "surrenderChoosePlayer": "Выберите игрока",
+  "cubeDouble": "Удвоить",
+  "gameStatusRolling": "Бросок кубиков",
+  "gameStatusThinking": "Компьютер думает",
+  "gameStatusPlayersTurn": "Ход игрока {player}",
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "historyTitle": "История матчей",
+  "historyEmpty": "Вы ещё не сыграли ни одного матча.",
+  "historyDeleteConfirmTitle": "Удалить этот матч?",
+  "actionCancel": "Отмена",
+  "actionDelete": "Удалить",
+  "historyDeleteFailed": "Не удалось удалить матч.",
+  "historyComplete": "Завершён",
+  "historyUnfinished": "Не завершён",
+  "historyMatchTitle": "Матч",
+  "historyNoGames": "Записанных партий пока нет.",
+  "historyCrawford": "Правило Кроуфорда",
+  "historyModeComputer": "против компьютера",
+  "historyModeTwoPlayers": "Два игрока",
+  "historyModeOnline": "Онлайн",
+  "historyModeNearby": "Игра рядом",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "В процессе",
+  "historyOutcomeSingle": "одиночная",
+  "historyOutcomeGammon": "гаммон",
+  "historyOutcomeBackgammon": "бэкгэммон",
+  "learningRefreshTooltip": "Обновить прогресс обучения",
+  "learningOptions": "Параметры обучения",
+  "learningResetMenu": "Сбросить прогресс тренировок",
+  "learningLoadFailed": "Не удалось загрузить прогресс обучения.",
+  "actionRetry": "Повторить",
+  "learningHeading": "Учитесь на своих решениях",
+  "learningBothSides": "Обе стороны",
+  "learningHumansOnly": "Только решения людей",
+  "learningHumanOnlyHelp": "Отключите, чтобы включить решения компьютера и удалённых игроков",
+  "learningAnalyseSavedGames": "Анализировать сохранённые партии",
+  "learningOpenHistory": "Открыть историю матчей",
+  "learningRecurringThemes": "Повторяющиеся темы",
+  "learningNoThemes": "В этом наборе пока нет повторяющихся ошибок.",
+  "learningSaveMistakes": "Сохранить эти ошибки для тренировки",
+  "learningSpacedPractice": "Интервальная практика",
+  "learningNoSavedPositions": "Сохраните решение из повтора или нажмите кнопку ошибок выше.",
+  "learningReadyToReview": "Готово к повторению",
+  "learningSuccessStreak": "Успешных повторений подряд: {count}",
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnswerRevealed": "Ответ показан",
+  "learningSuccessfulRecall": "Успешное воспоминание",
+  "learningTryAgain": "Попробовать ещё раз",
+  "actionRemove": "Убрать",
+  "onlineTitle": "Игра онлайн",
+  "onlineUnassistedNote": "Тренер недоступен в онлайн-игре.",
+  "onlineNotConfiguredTitle": "Онлайн-игра не настроена",
+  "onlineNotConfiguredBody": "Онлайн-игра недоступна в этой версии.",
+  "onlineErrorNoMatch": "Матч не найден.",
+  "onlineErrorSeatTaken": "Место уже занято.",
+  "onlineErrorPermission": "У вас нет разрешения на это действие.",
+  "onlineErrorGeneric": "Не удалось подключиться к онлайн-игре.",
+  "onlineMatchFinished": "Матч завершён.",
+  "onlineEnterCodeError": "Введите действительный код.",
+  "onlineOpponentShort": "Соперник",
+  "onlineMatchInProgress": "Матч продолжается",
+  "onlineResumePrompt": "Вы играли матч {code}. Продолжить?",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Подключиться снова",
+  "onlineForgetMatch": "Забыть матч",
+  "onlineCreateTitle": "Создать онлайн-матч",
+  "onlineMatchLength": "Длина матча",
+  "onlineNoCubeTitle": "Игра без куба",
+  "onlineNoCubeSubtitle": "Играйте без удваивающего куба.",
+  "onlineCreate": "Создать",
+  "onlineWaitingOpponent": "Ожидание соперника",
+  "onlineShareCode": "Поделиться кодом",
+  "onlineCopyCode": "Скопировать код",
+  "onlineCodeCopied": "Код скопирован",
+  "onlineJoinTitle": "Присоединиться к матчу",
+  "onlineRoomCode": "Код комнаты",
+  "onlineJoin": "Присоединиться",
+  "lanTitle": "Игра рядом",
+  "lanTabHost": "Создать комнату",
+  "lanTabJoin": "Присоединиться",
+  "lanHostTitle": "Создать игру",
+  "lanStartHosting": "Начать хостинг",
+  "lanWaitingPlayerTitle": "Ожидание игрока",
+  "lanWaitingPlayer": "Ожидание игрока…",
+  "lanStopHosting": "Остановить хостинг",
+  "lanOnNetwork": "В этой сети",
+  "lanCopyAddress": "Скопировать адрес",
+  "lanAddressCopied": "Адрес скопирован",
+  "lanScanHostTitle": "Сканировать хост",
+  "lanScanQr": "Сканировать QR-код",
+  "lanNearbyGames": "Игры поблизости",
+  "lanSearching": "Поиск игр поблизости…",
+  "lanStillSearching": "Всё ещё идёт поиск…",
+  "lanEnterAddress": "Ввести адрес",
+  "lanIpAddress": "IP-адрес",
+  "lanPort": "Порт",
+  "lanInvalidPort": "Введите порт от 1 до 65535.",
+  "lanJoinWrongCode": "Неверный код комнаты. Проверьте четыре цифры на другом устройстве.",
+  "lanConnect": "Подключиться",
+  "lanBack": "Назад",
+  "lanTryAgain": "Повторить",
+  "lanStatusBusy": "Комната занята — ожидание…",
+  "lanStatusReconnecting": "Соединение потеряно — повторное подключение…",
+  "lanStatusConnected": "Подключено — запуск матча…",
+  "lanStatusFailed": "Не удалось присоединиться.",
+  "lanStatusConnecting": "Подключение…",
+  "tutorCubelessEstimateScope": "Оценка 0-ply без куба · счёт неизвестен",
+  "tutorLossPp": "Потеря п.п.",
+  "tutorLoss": "Потеря",
+  "surrenderNamedConcedes": "{player} сдаётся в текущей партии.",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderConcedes": "Сдаться в текущей партии.",
+  "surrenderAvailableAtNamedTurn": "Доступно в начале хода игрока {player}",
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderAvailableAtYourTurn": "Доступно в начале вашего хода",
+  "commonCancel": "Отмена",
+  "commonDone": "Готово",
+  "cubeBlockedOtherPlayersTurn": "Сейчас ход другого игрока.",
+  "cubeBlockedCrawford": "В партии Кроуфорда куб недоступен.",
+  "cubeBlockedOwnedByOther": "Удваивать может только владелец куба; сейчас он у другой стороны.",
+  "cubeBlockedUnavailable": "Сейчас удвоение недоступно.",
+  "cubeAdviceOpponentTake": "Удвоить — сопернику следует принять",
+  "cubeAdviceOpponentPass": "Удвоить — сопернику следует пасовать",
+  "gameErrorBannerLabel": "Ошибка: {error}",
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "metricExplainerTitle": "Пояснение показателей",
+  "metricExplainerTooltip": "Что означают эти числа?",
+  "metricExplainerMwcTitle": "Шанс выиграть матч (MWC)",
+  "metricExplainerSearchTitle": "Поиск и неопределённость",
+  "metricExplainerEquityTitle": "Эквити",
+  "metricExplainerEquityLossTitle": "Потеря эквити (например, −0,016)",
+  "metricExplainerErrorRateTitle": "Частота ошибок",
+  "metricExplainerMoveMarksTitle": "Оценки ходов",
+  "metricExplainerGotIt": "Понятно",
+  "metricExplainerThresholdBest": "потеря < 0,001",
+  "metricExplainerThresholdGood": "потеря < 0,020",
+  "metricExplainerThresholdDubious": "потеря < 0,050",
+  "metricExplainerThresholdError": "потеря < 0,110",
+  "metricExplainerThresholdBlunder": "потеря ≥ 0,110",
+  "historyLoadFailed": "Не удалось загрузить историю:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyDeleteConfirmBody": "{scoreLine}\n\nМатч и все записанные в нём партии будут удалены навсегда. Это действие нельзя отменить.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyWinner": "Победил {side}",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyMatchLoadFailed": "Не удалось загрузить матч:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Не удалось загрузить партии:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGameTitle": "Партия {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyScoreLine": "Белые {whiteScore} — {blackScore} Чёрные  (до {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyGameResult": "{side} выигрывает {points} ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "learningDecisionSummary": "{decisions} решений · улучшить: {mistakes} · грубых ошибок: {blunders}",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAverageLoss": "Средняя потеря ({decisions} решений): {loss}",
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "learningForcedDisclaimer": "Вынужденные ходы исключены. Это оценки движка, а не турнирный рейтинг.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Сохранённой партии нужен анализ или обновлённый анализ.} other{Сохранённым партиям (#) нужен анализ или обновлённый анализ.}}",
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeDecisions": "Решений для повторения: {count}. У одной позиции может быть несколько тем.",
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSavedMistakes": "В списке тренировки решений: {count}. Существующие сохранения не дублируются.",
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSaveMistakesFailed": "Некоторые решения не удалось сохранить. Готовые сохранения оставлены; попробуйте ещё раз.",
+  "learningPracticeCounts": "К повторению: {due} · сохранено: {saved} · попыток: {attempts} · успешных воспоминаний: {successes}",
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningPositionTitle": "Решение {side} · партия {gameId}",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningReviewDue": "Повторить {date}",
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "learningAttemptSubtitle": "{date} · сохранённая позиция {positionId}",
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisProgress": "Проанализировано партий: {completed} · недоступно: {failed}.",
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisComplete": "Проанализировано партий: {completed}.",
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisCompleteWithErrors": "Проанализировано {completed} партий; не удалось: {failed}. Повторите, когда движок будет готов.",
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeHitting": "Удары и темп",
+  "learningThemeSafety": "Открытые шашки и безопасность",
+  "learningThemePointMaking": "Создание пунктов",
+  "learningThemePrime": "Блоки и заслоны",
+  "learningThemeAnchor": "Якоря и выход",
+  "learningThemeRace": "Эффективность гонки",
+  "learningThemeBearOff": "Снятие шашек",
+  "learningThemeBarEntry": "Вход с бара",
+  "learningThemeCube": "Решения по кубу",
+  "learningAnalysisStarting": "Анализ сохранённых партий…",
+  "learningIntro": "Прогресс хранится на этом устройстве. Изучайте повторяющиеся темы, а затем повторяйте сохранённые позиции, не видя ответа. Белые и чёрные решения можно просматривать отдельно.",
+  "learningEmptyProfile": "Сыграйте и завершите матч, чтобы создать профиль обучения. Вы также можете сохранять отдельные решения из повтора партии.",
+  "learningIntervalsHelp": "Успешные повторения возвращаются через 1, 3, 7, 14 и 30 дней. Ошибки и показанные ответы повторяются через 10 минут. Ранние повторы не увеличивают интервал.",
+  "learningAnswerContext": "Результаты тренировки учитывают ваши ответы здесь, даже если исходная позиция принадлежала сопернику.",
+  "learningRemoveTooltip": "Удалить сохранённое решение",
+  "learningRecentPractice": "Недавняя тренировка",
+  "learningRemoveTitle": "Удалить это упражнение?",
+  "learningRemoveBody": "Будут удалены его попытки тренировки. Исходная партия останется в истории.",
+  "learningRemoveFailed": "Не удалось удалить упражнение.",
+  "learningResetTitle": "Сбросить прогресс тренировок?",
+  "learningResetBody": "Все попытки и интервалы повторения будут удалены. Сохранённые упражнения и история матчей останутся; все упражнения станут доступны для повторения сейчас.",
+  "learningResetAction": "Сбросить прогресс",
+  "learningResetFailed": "Не удалось сбросить прогресс тренировок.",
+  "lanUnassistedNote": "В локальной игре тренер не помогает. После матча просмотрите ходы и потренируйте ошибки.",
+  "lanGameStartFailed": "Не удалось начать игру. Второе устройство может попробовать подключиться ещё раз.",
+  "lanHostPortInUse": "Не удалось запустить хостинг — порт уже используется. Закройте другие копии Backgammon Buddy и повторите попытку.",
+  "lanHostStartFailed": "Не удалось запустить хостинг. Проверьте Wi-Fi и повторите попытку.",
+  "lanHostHelp": "Оба устройства должны быть в одной сети Wi-Fi. Это устройство бросает кубики и ведёт счёт.",
+  "lanRoomCodeInfo": "Сообщите этот код сопернику. Он даёт доступ — приложение не передаёт его по сети.",
+  "lanFindNearbyPort": "Попросите второе устройство найти игры поблизости. Прослушивается порт {port}.",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "lanScanHostHelp": "На экране хоста второго устройства отображается QR-код. После сканирования адрес и код комнаты заполнятся автоматически.",
+  "lanScannerUnavailable": "Камера или разрешение на её использование недоступны. Введите адрес и код комнаты ниже.",
+  "lanInvalidQr": "Это не QR-код игры Backgammon Buddy. Отсканируйте код с экрана хоста второго устройства.",
+  "lanScannerFailed": "Не удалось открыть сканер. Введите адрес и код ниже.",
+  "lanNoGamesFound": "Игр пока нет. Убедитесь, что второе устройство запустило хостинг, оба устройства в одной сети Wi-Fi, или введите адрес вручную.",
+  "lanEnterAddressHelp": "Автоматический поиск работает не во всех сетях (на iOS он может быть полностью заблокирован). Экран хоста показывает, что нужно ввести.",
+  "lanEnterAddressError": "Введите адрес, показанный на втором устройстве.",
+  "lanEnterRoomCodeError": "Введите 4-значный код со второго устройства.",
+  "lanJoinVersionMismatch": "На втором устройстве установлена другая версия Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "Устройство ответило не так, как Backgammon Buddy. Проверьте адрес и порт.",
+  "lanJoinFailed": "Не удалось подключиться. Проверьте адрес и код комнаты и повторите попытку.",
+  "lanJoinTarget": "Присоединиться: {name}",
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "lanJoinTargetHelp": "Введите 4-значный код с другого устройства.",
+  "lanJoiningTarget": "Подключение к {name}",
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "analysisCubeEstimate": "Оценка 0-ply с точки зрения игрока, который ходит. Предполагается оптимальный ответ — принять или пасовать. Для ветки с принятым удвоением используется приближение 0,7 срока жизни куба, а не полный поиск будущих повторных удвоений. Более глубокий анализ может изменить ответ.",
+  "metricExplainerMwcBody": "Если счёт известен, ходы шашками оцениваются по примерному шансу выиграть матч. Потеря указывается в процентных пунктах (п.п.): 1 п.п. — это снижение с 51% до 50%. Учитываются ставка куба и результаты с гаммоном/бэкгэммоном. Вынужденные пассы и броски с одной допустимой позицией не входят в среднее.",
+  "metricExplainerSearchBody": "Рейтинг ходов шашками — статические оценки 0-ply после хода, а не симуляции. Для матчевых значений используется таблица эквити матча без будущих ходов куба. Анализ куба применяет частичное приближение 0,7 срока жизни куба при принятых удвоениях; это не полный поиск с кубом. Для остатка более 25 используется граница таблицы 25-away. Углублённый анализ может изменить близкие результаты; калиброванный доверительный интервал не рассчитывается.",
+  "metricExplainerEquityBody": "Если счёт неизвестен, эквити без куба показывает среднюю ценность позиции в очках при кубе 1. +1,0 означает ожидаемый выигрыш одного очка, −0,5 — проигрыш половины очка.",
+  "metricExplainerEquityLossBody": "Мы сравниваем ваш ход с лучшим ходом движка. Потеря эквити показывает, сколько ожидаемой ценности было упущено. −0,016 означает, что ход хуже лучшего всего на 0,016 очка — небольшая неточность. 0,000 означает, что выбран лучший ход.",
+  "metricExplainerErrorRateBody": "Средняя потеря — это среднее по оценённым решениям шашками в отображаемых единицах. Для решений с кубом считается отдельное среднее. Чем меньше значение, тем ближе ходы к лучшим оценкам движка; это не калиброванный рейтинг игрока.",
+  "metricExplainerMoveMarksBody": "Учебные границы MWC: Лучший < 0,05 п.п., Хороший < 0,5 п.п., Сомнительный < 1,5 п.п., Ошибка < 3 п.п., Грубая ошибка ≥ 3 п.п. Это учебные границы, а не калиброванная уверенность или турнирный рейтинг.\n\nУчебные границы эквити без куба:"
 }

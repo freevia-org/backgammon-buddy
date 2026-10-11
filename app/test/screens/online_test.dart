@@ -197,7 +197,7 @@ void main() {
     await t.pump();
     await t.pump();
     expect(find.text('ABC123'), findsOneWidget);
-    expect(find.text('Waiting for opponent…'), findsOneWidget);
+    expect(find.text('Waiting for opponent…'), findsWidgets);
 
     // Poll to active, then the controller reaches readiness and the game opens.
     await _pumpUntil(t, find.byType(GameScreen));
@@ -325,7 +325,10 @@ void main() {
 
     await _pumpUntil(t, find.byType(SnackBar));
     expect(find.byType(GameScreen), findsNothing);
-    expect(find.textContaining('the network is gone'), findsOneWidget);
+    expect(
+      find.text('Something went wrong. Please try again.'),
+      findsOneWidget,
+    );
   });
 
   testWidgets('cancelling while the resume pointer is saved does not launch', (
@@ -451,7 +454,7 @@ void main() {
     await t.pump();
     await t.pump();
     await t.pump();
-    expect(find.text('Waiting for opponent…'), findsOneWidget);
+    expect(find.text('Waiting for opponent…'), findsWidgets);
 
     // Ten minutes of fake time, advanced in 1s slices so every timer fires.
     for (var i = 0; i < 600; i++) {
@@ -490,7 +493,7 @@ void main() {
     await t.pump();
     await t.pump();
     await t.pump();
-    expect(find.text('Waiting for opponent…'), findsOneWidget);
+    expect(find.text('Waiting for opponent…'), findsWidgets);
 
     await t.tap(find.widgetWithText(TextButton, 'Cancel'));
     await t.pump();

@@ -160,4 +160,2322 @@ class AppLocalizationsBg extends AppLocalizations {
   @override
   String get tutorForcedPassNoDecision =>
       'Принудителното подаване не включва избор на ход с пуловете.';
+
+  @override
+  String get settingsReset => 'Нулиране';
+
+  @override
+  String get settingsAppLanguage => 'Език на приложението';
+
+  @override
+  String get settingsTheme => 'Тема';
+
+  @override
+  String get settingsThemeSystem => 'Системна';
+
+  @override
+  String get settingsThemeLight => 'Светла';
+
+  @override
+  String get settingsThemeDark => 'Тъмна';
+
+  @override
+  String get settingsAnimationSpeed => 'Скорост на анимацията';
+
+  @override
+  String get settingsAnimationNone => 'Без анимация';
+
+  @override
+  String get settingsAnimationNormal => 'Нормална';
+
+  @override
+  String get settingsAnimationFast => 'Бърза';
+
+  @override
+  String get settingsDiceRollAnimation => 'Анимация при хвърляне на заровете';
+
+  @override
+  String get settingsDiceRollAnimationHelp =>
+      'Заровете се завъртат преди всяко хвърляне';
+
+  @override
+  String get settingsDefaultMatchLength => 'Дължина на мача по подразбиране';
+
+  @override
+  String get settingsDefaultDifficulty => 'Трудност по подразбиране';
+
+  @override
+  String get settingsDifficultyEasy => 'Лесна';
+
+  @override
+  String get settingsDifficultyMedium => 'Средна';
+
+  @override
+  String get settingsDifficultyHard => 'Трудна';
+
+  @override
+  String get settingsDifficultyExpert => 'Експертна';
+
+  @override
+  String get settingsTutorModeDefault => 'Режим на наставника по подразбиране';
+
+  @override
+  String get settingsTutorAuto => 'Автоматично';
+
+  @override
+  String get settingsTutorOn => 'Вкл.';
+
+  @override
+  String get settingsTutorOff => 'Изкл.';
+
+  @override
+  String get settingsTutorModeHelp =>
+      'В режим „Автоматично“ наставникът е включен при всяка трудност на компютъра. „Вкл.“ и „Изкл.“ задават началния избор за локални мачове. Игрите наблизо и онлайн са без помощ; запазените партии могат да бъдат прегледани след това. Предпочитанията за обучение по-долу се запазват на това устройство.';
+
+  @override
+  String get settingsTutorPreferences => 'Предпочитания за наставника';
+
+  @override
+  String get settingsTutorPreferencesSubtitle =>
+      'Запазени настройки по подразбиране за бъдещи мачове';
+
+  @override
+  String get settingsTutorSaveError =>
+      'Предпочитанията за наставника не бяха запазени.';
+
+  @override
+  String get settingsGameplay => 'Игра';
+
+  @override
+  String get settingsMoveHighlights => 'Осветяване на ходовете';
+
+  @override
+  String get settingsMoveHighlightsHelp =>
+      'Очертава пуловете, които могат да се местят, и осветява целевите полета';
+
+  @override
+  String get settingsDragToMove => 'Плъзгане за местене';
+
+  @override
+  String get settingsDragToMoveHelp =>
+      'Плъзнете пул до целевото поле (докосването също работи)';
+
+  @override
+  String get settingsCombinedMoves => 'Комбинирани ходове';
+
+  @override
+  String get settingsCombinedMovesHelp =>
+      'С едно докосване местите пул с двата зара';
+
+  @override
+  String get settingsRotateBoard => 'Завъртане на дъската между ходовете';
+
+  @override
+  String get settingsRotateBoardHelp =>
+      'При игра на едно устройство: обръща изгледа към играча на ход';
+
+  @override
+  String get settingsPassDevice => 'Екран при предаване на устройството';
+
+  @override
+  String get settingsPassDeviceHelp =>
+      'Скрива дъската, докато устройството се предава между играчите';
+
+  @override
+  String get settingsShowScore => 'Показване на резултата';
+
+  @override
+  String get settingsShowScoreHelp =>
+      'Показва текущия резултат от мача в заглавната лента';
+
+  @override
+  String get settingsBuddyMode => 'Режим Buddy';
+
+  @override
+  String get settingsBuddyTerse => 'Кратък';
+
+  @override
+  String get settingsBuddyFriendly => 'Разговорен';
+
+  @override
+  String get settingsBuddyTerseHelp =>
+      'Как Buddy произнася хода: „13/8, 24/22“ — краткият запис, който играчите използват пред дъската.';
+
+  @override
+  String get settingsBuddyFriendlyHelp =>
+      'Как Buddy произнася хода: „Премести един пул от 13 на 8 и един от 24 на 22.“';
+
+  @override
+  String get settingsListenForDice => 'Слушане за заровете';
+
+  @override
+  String get settingsListenForDiceHelp =>
+      'Когато чуе хвърляне, Buddy проверява дъската по-рано. Изключването не променя нищо друго.';
+
+  @override
+  String get settingsDiagnostics => 'Диагностика';
+
+  @override
+  String get settingsErrorLog => 'Дневник на грешките';
+
+  @override
+  String get settingsErrorLogHelp =>
+      'Последните грешки, готови за копиране в сигнал за проблем';
+
+  @override
+  String get settingsReportBug => 'Съобщаване за проблем';
+
+  @override
+  String get settingsReportBugHelp => 'Отваря форма за сигнал в GitHub';
+
+  @override
+  String get settingsSuggestIdea => 'Предложение за идея';
+
+  @override
+  String get settingsSuggestIdeaHelp =>
+      'Помогнете ни да подобрим наставника и играта';
+
+  @override
+  String get settingsAbout => 'За приложението';
+
+  @override
+  String get settingsOpenSourceLicenses => 'Лицензи за софтуер с отворен код';
+
+  @override
+  String settingsAppVersion(Object version) {
+    return 'Backgammon Buddy $version';
+  }
+
+  @override
+  String get tutorPhraseGameFinished => 'Партията приключи.';
+
+  @override
+  String get tutorPhraseReviewFinishedGame =>
+      'Прегледайте ходовете, за да откриете решение, което да упражните.';
+
+  @override
+  String get tutorPhraseCubeOffered => 'Предложено е удвояване на залога.';
+
+  @override
+  String get tutorPhraseCubeDecisionPrompt =>
+      'Решете дали да приемете удвояването или да се откажете, преди да планирате ход с пуловете.';
+
+  @override
+  String get tutorPhraseCubeScoreContext =>
+      'Резултатът от мача променя стойността на допълнителния залог.';
+
+  @override
+  String get tutorPhraseResignationOffered =>
+      'Предложено е предаване на партията.';
+
+  @override
+  String get tutorPhraseResignationDecisionPrompt =>
+      'Сравнете предложените точки с позицията, преди да приемете или да продължите.';
+
+  @override
+  String get tutorPhraseNoLegalPlay => 'При това хвърляне няма разрешен ход.';
+
+  @override
+  String get tutorPhraseForcedPassPrompt =>
+      'Принудителното подаване не е грешка; изчакайте следващото хвърляне.';
+
+  @override
+  String get tutorPhraseOnlyOneResult =>
+      'Има само един разрешен краен вариант на позицията.';
+
+  @override
+  String get tutorPhraseForcedTurnPrompt =>
+      'Направете принудителния ход. При това хвърляне няма избор, който да бъде оценен.';
+
+  @override
+  String get tutorPhrasePipCountsLevel => 'Броят пипсове е равен.';
+
+  @override
+  String tutorPhrasePipCountsAhead(int count) {
+    return 'Преднина по пипсове: $count.';
+  }
+
+  @override
+  String tutorPhrasePipCountsBehind(int count) {
+    return 'Изоставане по пипсове: $count.';
+  }
+
+  @override
+  String tutorPhrasePlayerHasCheckersOnBar(int count) {
+    return 'Първо трябва да вкарате пуловете от бара. Там са: $count.';
+  }
+
+  @override
+  String get tutorPhraseEnterBeforeMoving =>
+      'Първо вкарайте пул от бара, после потърсете безопасно поле за него.';
+
+  @override
+  String tutorPhraseOpponentHomePoints(int count) {
+    return 'Противникът има затворени полета в своя дом: $count.';
+  }
+
+  @override
+  String get tutorPhraseBearOffRace => 'Надпревара за извеждане на пуловете.';
+
+  @override
+  String get tutorPhrasePureRace => 'Чиста надпревара.';
+
+  @override
+  String get tutorPhraseBearOffSpread =>
+      'Извеждайте пулове, като оставяте удобно разпределение за следващото хвърляне.';
+
+  @override
+  String get tutorPhraseBringRearCheckersHome =>
+      'Приберете задните пулове към дома, без да струпвате твърде много на едно поле.';
+
+  @override
+  String get tutorPhraseArmiesHavePassed =>
+      'Играчите се разминаха; повече не могат да се удрят пулове.';
+
+  @override
+  String tutorPhraseContactStillMatters(Object part) {
+    return '$part Контактът все още има значение.';
+  }
+
+  @override
+  String tutorPhraseOpponentHasCheckersOnBar(int count) {
+    return 'На бара на противника има пулове: $count.';
+  }
+
+  @override
+  String get tutorPhraseKeepBoardClosed =>
+      'Запазете затворените полета, докато прибирате останалите пулове към дома.';
+
+  @override
+  String get tutorPhraseBuildOrPreserveHomeBoard =>
+      'Изградете или запазете своя дом, докато противникът се опитва да влезе от бара.';
+
+  @override
+  String tutorPhraseHomePointsCloseEntries(int count) {
+    return 'Във вашия дом са затворени полета: $count; всяко блокира едно число за влизане.';
+  }
+
+  @override
+  String tutorPhrasePrimeContact(int count) {
+    return 'Контакт с поредица от $count затворени полета.';
+  }
+
+  @override
+  String get tutorPhraseExtendPrimeOrKeepSpares =>
+      'Сравнете удължаването на поредицата със запазването на резервни пулове, които да я поддържат.';
+
+  @override
+  String tutorPhraseSpareCheckersCanMove(int count) {
+    return 'Резервни пулове: $count. Можете да ги местите, без веднага да отваряте полето.';
+  }
+
+  @override
+  String tutorPhraseAnchorContact(Object points) {
+    return 'Контакт с опорна позиция на полета $points.';
+  }
+
+  @override
+  String get tutorPhraseCompareAnchorProgressAhead =>
+      'Сравнете прибирането на задните пулове към дома със сигурността на запазената опора.';
+
+  @override
+  String get tutorPhraseCompareAnchorProgressBehind =>
+      'Имайте предвид безопасната опора, докато търсите удар или подобрявате позицията си.';
+
+  @override
+  String get tutorPhrasePreserveAnchorFoothold =>
+      'Опорната позиция не може да бъде ударена, но тези пулове още имат дълъг път до дома.';
+
+  @override
+  String get tutorPhraseContactThreats =>
+      'Контактът остава: и двамата играчи могат да заплашват с удар.';
+
+  @override
+  String get tutorPhraseLookForPointsAndSafety =>
+      'Търсете полезни затворени полета и преценявайте риска да оставите единични пулове открити.';
+
+  @override
+  String tutorPhraseHomePointsAndBlots(int count, int otherCount) {
+    return 'Затворени полета във вашия дом: $count. Оставени открити пулове: $otherCount.';
+  }
+
+  @override
+  String get tutorPhraseChooseCheckerPrompt =>
+      'Изберете пул, за да започнете хода си.';
+
+  @override
+  String get tutorPhraseLegalPlayPrompt =>
+      'Направете разрешен ход, за да видите коментар.';
+
+  @override
+  String tutorPhraseStagedHit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# пула на противника',
+      one: 'един пул на противника',
+    );
+    return 'Ударихте $_temp0.';
+  }
+
+  @override
+  String tutorPhraseStagedEnter(int count) {
+    return 'Вкарани от бара пулове: $count.';
+  }
+
+  @override
+  String tutorPhraseStagedBearOff(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# пула',
+      one: 'един пул',
+    );
+    return 'Изведохте от дъската $_temp0.';
+  }
+
+  @override
+  String tutorPhraseStagedMakePoints(Object points) {
+    return 'Затворихте полета $points.';
+  }
+
+  @override
+  String tutorPhraseStagedBlot(int point) {
+    return 'Пулът на поле $point засега остава открит за удар.';
+  }
+
+  @override
+  String tutorPhraseStagedSpare(int point) {
+    return 'Резервният пул на поле $point може да се премести по-късно, без да се отваря полето.';
+  }
+
+  @override
+  String tutorPhraseStagedPartialPrompt(Object part) {
+    return '$part Използвайте останалите достъпни зарове, преди да оцените целия ход.';
+  }
+
+  @override
+  String get tutorPhraseStagedAllCheckersOff =>
+      'И 15-те пула са изведени: партията е спечелена.';
+
+  @override
+  String get tutorPhraseStagedHitShortPlan =>
+      'Ударът печели време, докато противникът се връща от бара.';
+
+  @override
+  String get tutorPhraseStagedEfficientBearOffPlan =>
+      'Ефективното извеждане премахва пулове и оставя удобни числа за следващото хвърляне.';
+
+  @override
+  String get tutorPhraseStagedRaceHomePlan =>
+      'В надпреварата приберете задните пулове към дома и оставете удобни полета за извеждане.';
+
+  @override
+  String get tutorPhraseStagedBearOffContactPlan =>
+      'Извеждането ви приближава до победата, но докато има контакт, открит пул може да бъде ударен.';
+
+  @override
+  String get tutorPhraseStagedReentryPlan =>
+      'Влизането връща пула в играта; сега потърсете безопасно поле за него.';
+
+  @override
+  String get tutorPhraseStagedHomeBoardPlan =>
+      'Новото затворено поле във вашия дом ще премахне една възможност за влизане след бъдещ удар.';
+
+  @override
+  String get tutorPhraseStagedPrimePlan =>
+      'По-дългата поредица затваря повече полета, на които противникът може да стъпи; резервните пулове помагат да я запазите.';
+
+  @override
+  String get tutorPhraseStagedLeaveAnchorPlan =>
+      'Отказът от опорната позиция придвижва пуловете напред, но отнема безопасната им опора.';
+
+  @override
+  String get tutorPhraseStagedNewAnchorPlan =>
+      'Новата опорна позиция дава безопасна опора на задните пулове.';
+
+  @override
+  String get tutorPhraseStagedCoverBlotPlan =>
+      'Прикриването на открит пул премахва цел за противника.';
+
+  @override
+  String get tutorPhraseStagedSafetyTradeoffPlan =>
+      'Тук има компромис между развитие и сигурност: пуловете, които помагат да изградите позицията, също могат да станат цели.';
+
+  @override
+  String tutorPhraseStagedCompletePrompt(Object part) {
+    return '$part Целият ход е подготвен. Натиснете „Потвърди“, за да го изпълните.';
+  }
+
+  @override
+  String get tutorMoveForcedVerdict =>
+      'При това хвърляне няма избор на ход с пуловете; не се оценява като решение.';
+
+  @override
+  String get tutorMoveTopVerdict =>
+      'Един от най-добрите ходове в тази позиция.';
+
+  @override
+  String get tutorMoveAlternativeVerdict => 'Енджинът предпочита друг ход тук.';
+
+  @override
+  String tutorMoveEstimateDifference(Object loss) {
+    return 'Разлика спрямо най-добрия ход: $loss.';
+  }
+
+  @override
+  String tutorMoveEstimateOutcomes(
+    Object winPercent,
+    Object winGammonPercent,
+    Object loseGammonPercent,
+  ) {
+    return 'След този ход: $winPercent% вероятност за победа, $winGammonPercent% победи с марс или бекгемън, $loseGammonPercent% загуби с марс или бекгемън. Това са оценки от гледната точка на играча на ход.';
+  }
+
+  @override
+  String tutorMoveEstimateMatchChance(Object percent) {
+    return 'Изчислен шанс за спечелване на мача: $percent%.';
+  }
+
+  @override
+  String get tutorMovePlanAllCheckersOff =>
+      'И 15-те пула са изведени: партията е спечелена.';
+
+  @override
+  String tutorMovePlanHit(Object homeBoardAdvice) {
+    return 'Използвайте удара, за да спечелите време, докато противникът влиза от бара. $homeBoardAdvice';
+  }
+
+  @override
+  String get tutorMovePlanHitClosed =>
+      'Запазете затворените полета в своя дом, за да затрудните влизането.';
+
+  @override
+  String get tutorMovePlanHitBuild =>
+      'Затворете още полета в своя дом, за да направите бъдещото влизане след удар по-трудно.';
+
+  @override
+  String get tutorMovePlanRaceBearOff =>
+      'Стремете се към ефективно извеждане: сваляйте пулове, като оставяте удобни числа за следващото хвърляне.';
+
+  @override
+  String get tutorMovePlanRaceHome =>
+      'Приберете задните пулове към дома и ги разпределете по удобни полета за извеждане.';
+
+  @override
+  String get tutorMovePlanContactBearOff =>
+      'Изведете пулове от играта, но следете задните пулове на противника: при запазен контакт незащитен пул за извеждане може да стане цел.';
+
+  @override
+  String get tutorMovePlanReentry =>
+      'Върнете се в играта, после потърсете безопасно поле за влезлия пул.';
+
+  @override
+  String get tutorMovePlanHomeBoard =>
+      'Укрепете своя дом. Новото затворено поле прави бъдещия удар по-силен, защото премахва една възможност за влизане.';
+
+  @override
+  String get tutorMovePlanPrime =>
+      'Поддържайте поредицата от затворени полета. Запазете резервни пулове, за да не се налага да я отваряте при следващи хвърляния.';
+
+  @override
+  String get tutorMovePlanLeaveAnchor =>
+      'Напускането на опорната позиция придвижва задните ви пулове, но отнема безопасното им място. Внимавайте да не останат открити по пътя към дома.';
+
+  @override
+  String get tutorMovePlanNewAnchor =>
+      'Използвайте новата опорна позиция като безопасно място, докато подобрявате останалата част от позицията си.';
+
+  @override
+  String get tutorMovePlanCoverBlot =>
+      'Съберете пуловете си. Прикриването на открит пул премахва тази цел и запазва възможностите за следващи ходове.';
+
+  @override
+  String get tutorMovePlanSafety =>
+      'Съчетавайте развитието със сигурността: придвижвайте строителните пулове към полезни полета и проверявайте кои единични пулове могат да бъдат ударени.';
+
+  @override
+  String get tutorMoveObservationNoLegalPlay =>
+      'Няма разрешен ход с пуловете: ред е на противника.';
+
+  @override
+  String tutorMoveObservationHit(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# пула на противника',
+      one: '# пул на противника',
+    );
+    return 'Ударихте $_temp0; противникът трябва първо да влезе от бара, преди да мести другите пулове.';
+  }
+
+  @override
+  String tutorMoveObservationEntry(int count) {
+    return 'Вкарани от бара пулове: $count.';
+  }
+
+  @override
+  String tutorMoveObservationBearOff(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# пула',
+      one: '# пул',
+    );
+    return 'Изведени от дъската: $_temp0.';
+  }
+
+  @override
+  String tutorMoveObservationMadePoints(Object points) {
+    return 'Затворени полета: $points. Два или повече пула пазят сигурно поле и не позволяват на противника да стъпи на него.';
+  }
+
+  @override
+  String tutorMoveObservationBrokenPoints(Object pointLabel, Object points) {
+    return 'Отворени отново затворени $pointLabel: $points. Тези полета вече не спират противника да стъпи там.';
+  }
+
+  @override
+  String tutorMoveObservationNoBlots(int previousCount) {
+    return 'Не остават открити единични пулове (преди: $previousCount). Няма пулове, които противникът да удари сега.';
+  }
+
+  @override
+  String tutorMoveObservationBlots(int count, int previousCount) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# пула',
+      one: '# пул',
+    );
+    return 'Остават открити единични пулове: $_temp0 (преди: $previousCount). Проверете дали противникът може да ги достигне, преди да изберете сигурността пред друга придобивка.';
+  }
+
+  @override
+  String tutorMoveObservationPrimeRun(
+    int count,
+    int previousCount,
+    Object primeAdvice,
+  ) {
+    return 'Най-дългата поредица от затворени полета: $count (преди: $previousCount). $primeAdvice';
+  }
+
+  @override
+  String get tutorMoveObservationPrimeSix =>
+      'Поредица от шест затворени полета не може да бъде премината, докато остава затворена.';
+
+  @override
+  String get tutorMoveObservationPrimeBuild =>
+      'Дръжте строителните пулове наблизо, ако искате да удължите или запазите тази поредица.';
+
+  @override
+  String tutorMoveObservationPrimeSpares(int count) {
+    return 'Пулове в запас над нужните два за затваряне на полетата: $count. Преместването на резервен пул може да запази полето; преместването на един от последните два го отваря.';
+  }
+
+  @override
+  String tutorMoveObservationAnchors(Object points, Object previousPoints) {
+    return 'Опорни позиции в дома на противника: $points (преди: $previousPoints). Запазената опора предпазва тези пулове от удар; напускането ѝ заменя тази сигурност с напредък в надпреварата.';
+  }
+
+  @override
+  String get tutorMoveObservationPureRace =>
+      'Чиста надпревара: играчите се разминаха и никой няма пул на бара. Вече не може да има удари; важно е пуловете да се извеждат ефективно.';
+
+  @override
+  String get tutorMoveObservationNoReplyHit =>
+      'Няма разрешено следващо хвърляне, с което противникът да удари пул в тази позиция. Контактът обаче остава и по-късни ходове могат да открият нови възможности за удар.';
+
+  @override
+  String tutorMoveObservationReplyHit(
+    int count,
+    int total,
+    int dieOne,
+    int dieTwo,
+    int point,
+  ) {
+    return 'Противникът може да удари при $count от общо $total хвърляния. Например $dieOne–$dieTwo позволява разрешен удар по вашия пул на поле $point. Възможността за удар не означава, че противникът непременно ще я избере.';
+  }
+
+  @override
+  String tutorMoveObservationOpponentBarHome(
+    int closedPoints,
+    Object entryAdvice,
+  ) {
+    return 'Затворени полета във вашия дом: $closedPoints. $entryAdvice';
+  }
+
+  @override
+  String get tutorMoveObservationAllEntriesClosed =>
+      'Противникът не може да влезе, докато някое поле не се отвори.';
+
+  @override
+  String get tutorMoveObservationOpenEntry =>
+      'Хвърляне, което използва отворено поле за влизане, може да върне пул от бара.';
+
+  @override
+  String tutorMoveComparisonDetail(
+    Object factors,
+    Object delta,
+    Object direction,
+    Object scoreContext,
+  ) {
+    return '$factors Оцененият шанс за победа при най-добрия ход е с $delta процентни пункта $direction.$scoreContext';
+  }
+
+  @override
+  String get tutorMoveComparisonHigher => 'по-висок';
+
+  @override
+  String get tutorMoveComparisonLower => 'по-нисък';
+
+  @override
+  String tutorMoveComparisonScoreContext(Object scoreContext) {
+    return ' Той пак може да е класиран по-високо, защото марсът и бекгемънът имат различна стойност при текущия $scoreContext.';
+  }
+
+  @override
+  String get tutorMoveComparisonStake => 'залог';
+
+  @override
+  String get tutorMoveComparisonMatchScore => 'резултат от мача';
+
+  @override
+  String tutorMoveComparisonFactorBar(int bestCount, int playedCount) {
+    return 'Пулове на противника на бара при най-добрия ход: $bestCount; при избрания ход: $playedCount. Пулът на бара трябва първо да влезе, преди противникът да мести останалите.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorHomeBoard(
+    int bestCount,
+    int playedCount,
+    Object entryDifference,
+  ) {
+    return 'Затворени полета във вашия дом при най-добрия ход: $bestCount; при избрания ход: $playedCount. Това са $entryDifference входни полета разлика след удар.';
+  }
+
+  @override
+  String get tutorMoveComparisonClosingMore => 'затваря повече';
+
+  @override
+  String get tutorMoveComparisonLeavingMore => 'оставя повече отворени';
+
+  @override
+  String tutorMoveComparisonFactorShots(
+    int bestCount,
+    int playedCount,
+    Object riskDifference,
+  ) {
+    return 'При най-добрия ход противникът може да удари при $bestCount от 36 хвърляния вместо при $playedCount. $riskDifference';
+  }
+
+  @override
+  String get tutorMoveComparisonReducesRisk =>
+      'Така непосредственият риск да бъдете върнати назад намалява.';
+
+  @override
+  String get tutorMoveComparisonExtraExposure =>
+      'Сравнете допълнителния риск с ползата, която ходът носи другаде.';
+
+  @override
+  String tutorMoveComparisonFactorPrime(int bestCount, int playedCount) {
+    return 'Най-дългата поредица от затворени полета при най-добрия ход е $bestCount, а не $playedCount; сравнете блокадата с броя пулове, с които можете да я поддържате.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorAnchors(
+    Object bestPoints,
+    Object playedPoints,
+  ) {
+    return 'При най-добрия ход опорните ви позиции са $bestPoints, а не $playedPoints. Запазеният пункт е безопасно място за стъпване; напускането му приближава пуловете към дома.';
+  }
+
+  @override
+  String tutorMoveComparisonFactorBearOff(int bestCount, int playedCount) {
+    return 'Изведени пулове при най-добрия ход: $bestCount; при избрания ход: $playedCount. Всеки изведен пул е един по-малко за сваляне по-късно.';
+  }
+
+  @override
+  String get tutorMoveComparisonFactorSimilarRisks =>
+      'И двата хода оставят еднакъв непосредствен риск от удар, брой затворени полета в дома, опорни позиции и изведени пулове. Сравнете полетата, на които остават пуловете: следващото хвърляне може да позволи различни ходове.';
+
+  @override
+  String get tutorMoveComparisonSummaryBar =>
+      'При най-добрия ход повече пулове на противника остават на бара и забавят другите му ходове.';
+
+  @override
+  String get tutorMoveComparisonSummaryHomeBoard =>
+      'При най-добрия ход са затворени повече полета в дома, което затруднява влизането след удар.';
+
+  @override
+  String get tutorMoveComparisonSummaryShots =>
+      'При най-добрия ход има по-малко възможности за незабавен удар, което намалява риска да бъдете върнати назад.';
+
+  @override
+  String get tutorMoveComparisonSummaryPrime =>
+      'При най-добрия ход се запазва по-дълга поредица от затворени полета.';
+
+  @override
+  String get tutorMoveComparisonSummaryAnchors =>
+      'При най-добрия ход се запазват повече безопасни опорни позиции в дома на противника.';
+
+  @override
+  String get tutorMoveComparisonSummaryBearOff =>
+      'При най-добрия ход се извеждат повече пулове и остават по-малко за сваляне.';
+
+  @override
+  String tutorMoveComparisonSummaryBlots(int playedCount, int bestCount) {
+    return 'Открити единични пулове след този ход: $playedCount; след най-добрия ход: $bestCount.';
+  }
+
+  @override
+  String tutorMoveComparisonSummarySafeAnchor(int point) {
+    return 'При най-добрия ход се запазва безопасна опорна позиция на поле $point.';
+  }
+
+  @override
+  String get tutorMoveComparisonSummaryEntry =>
+      'При най-добрия ход се затварят повече полета за влизане, в случай че ваш пул бъде ударен.';
+
+  @override
+  String get tutorMoveComparisonSummarySimilarRisks =>
+      'Ходовете оставят сходен непосредствен риск; сравнете кои полета ще са полезни при следващото хвърляне.';
+
+  @override
+  String tutorMoveAssessmentEquityLoss(Object value) {
+    return '$value очаквана стойност';
+  }
+
+  @override
+  String tutorMoveAssessmentMwcLoss(Object value) {
+    return '$value пр.п. шанс за победа в мача';
+  }
+
+  @override
+  String get tutorMovePointSingular => 'поле';
+
+  @override
+  String get tutorMovePointPlural => 'полета';
+
+  @override
+  String get tutorMoveNoPoints => 'няма';
+
+  @override
+  String get gameTutorCommentaryOff => 'Коментарите за играта са изключени.';
+
+  @override
+  String get gameTutorToolsAvailable =>
+      'Отворете наставника, за да използвате включените инструменти.';
+
+  @override
+  String get gameTutorNextRoll => 'Хвърлете заровете.';
+
+  @override
+  String get gameTutorNoEvaluatedReview =>
+      'Няма оценено обяснение за този записан ход.';
+
+  @override
+  String get gameTutorAnalysisUnavailable => 'анализът не е наличен';
+
+  @override
+  String get gameTutorReviewing => 'преглед…';
+
+  @override
+  String get gameTutorTryYourPlayFirst => 'Първо опитайте свой ход.';
+
+  @override
+  String get gameTutorKeepBuilding => 'Продължете да съставяте хода си.';
+
+  @override
+  String get gameTutorStageCompleteBeforeCoaching =>
+      'Съставете пълен разрешен ход, преди да видите съвети или подсказки.';
+
+  @override
+  String get gameTutorReadyToConfirm => 'Готов за потвърждение';
+
+  @override
+  String get gameTutorPlayTakingShape => 'Ходът ви се оформя.';
+
+  @override
+  String get gameTutorConfirmOrUndo =>
+      'Потвърдете, за да изиграете хода, или го отменете и обмислете отново.';
+
+  @override
+  String get gameTutorFinishDiceOrUndo =>
+      'Използвайте оставащите зарове или отменете хода.';
+
+  @override
+  String get gameTutorComputerConsidering => 'Компютърът обмисля своя ход.';
+
+  @override
+  String get gameTutorComputerPlayReviewed =>
+      'Завършеният му ход ще бъде прегледан тук.';
+
+  @override
+  String get gameTutorYourPlay => 'Вашият ход';
+
+  @override
+  String get gameTutorComputer => 'Компютър';
+
+  @override
+  String gameTutorPlayQuality(Object quality) {
+    return 'Вашият ход: $quality';
+  }
+
+  @override
+  String get gameTutorForcedPlay => 'принудителен ход';
+
+  @override
+  String get gameTutorTopChoice => 'най-добър избор';
+
+  @override
+  String get gameTutorSoundPlay => 'добър ход';
+
+  @override
+  String get gameTutorAnotherPlayMayFitBetter =>
+      'възможно е друг ход да е по-подходящ';
+
+  @override
+  String get gameTutorAnotherPlayFitsBetter =>
+      'друг ход пасва по-добре на тази позиция';
+
+  @override
+  String get gameTutorStrongerPlayAvailable =>
+      'имало е значително по-силен ход';
+
+  @override
+  String gameTutorPositionEdge(Object side) {
+    return 'Според оценката $side има предимство.';
+  }
+
+  @override
+  String get gameTutorPositionEven => 'Позицията е приблизително равна.';
+
+  @override
+  String tutorPlayedMove(Object move) {
+    return 'Изиграно: $move';
+  }
+
+  @override
+  String tutorBestMove(Object move) {
+    return 'Най-добър ход: $move';
+  }
+
+  @override
+  String get tutorShowRankedPlays => 'Покажи подредените ходове';
+
+  @override
+  String get tutorReviewRecordedMove =>
+      'Докоснете завършен ход в дневника, за да прегледате решението си тук.';
+
+  @override
+  String get tutorTopPlays => 'Най-добри ходове';
+
+  @override
+  String get tutorNoHintsAvailable => 'Няма налични подсказки.';
+
+  @override
+  String get tutorPreviewThenConfirm =>
+      'Докоснете ход, за да го пробвате на дъската, после го потвърдете.';
+
+  @override
+  String get tutorTopChoiceForPosition => 'Най-добър избор за тази позиция';
+
+  @override
+  String get tutorAlternativePlay => 'Алтернативен ход';
+
+  @override
+  String get tutorEngineEstimates => 'Оценки на енджина';
+
+  @override
+  String get tutorEstimateScope =>
+      'Оценка на 0 полухода · текущ резултат и залог · без бъдещи удвоявания';
+
+  @override
+  String get tutorEquity => 'Еквити';
+
+  @override
+  String get tutorMwcPercent => 'Шанс за победа в мача %';
+
+  @override
+  String get tutorNearTiesNote =>
+      'Близките оценки може да се променят при по-задълбочен анализ.';
+
+  @override
+  String get tutorWhyThisPlay => 'Защо този ход?';
+
+  @override
+  String get tutorCompareAlternative => 'Сравни този вариант';
+
+  @override
+  String get gameTutorCubeTake => 'Тутор: приемете';
+
+  @override
+  String get gameTutorCubePass => 'Тутор: откажете';
+
+  @override
+  String get practiceScreenTitle => 'Упражни решение';
+
+  @override
+  String get practiceUnavailable =>
+      'Тази тренировъчна позиция вече не е налична.';
+
+  @override
+  String get practiceSubmitError =>
+      'Опитът не можа да бъде оценен или запазен. Напредъкът ви не е променен. Опитайте отново.';
+
+  @override
+  String practiceTurnLabel(Object side, Object dice) {
+    return 'На ход е $side · $dice';
+  }
+
+  @override
+  String get practiceHistoricalScoreUnavailable =>
+      'Историческият резултат не е наличен; оценяването използва equity без куб.';
+
+  @override
+  String practiceScoreLine(
+    Object whiteLabel,
+    int whiteScore,
+    Object blackLabel,
+    int blackScore,
+    int matchLength,
+  ) {
+    return 'Резултат: $whiteLabel $whiteScore – $blackLabel $blackScore, до $matchLength';
+  }
+
+  @override
+  String get practiceCrawfordGame => ' · партия на Крофорд';
+
+  @override
+  String get practiceNoDoublingCube => 'Без удвояващ куб.';
+
+  @override
+  String practiceCubeValue(int value) {
+    return 'Куб $value.';
+  }
+
+  @override
+  String get practiceHistoricalCubeUnknown =>
+      'Неизвестни исторически правила за куба.';
+
+  @override
+  String get practiceAfterBestPosition => 'Позиция след най-добрия ход';
+
+  @override
+  String get practiceAfterYourAnswerPosition => 'Позиция след вашия отговор';
+
+  @override
+  String get practiceFindYourPlayPrompt =>
+      'Направете хода си на дъската, после проверете отговора. Не се показват подсказки.';
+
+  @override
+  String get practiceUndo => 'Отмяна';
+
+  @override
+  String get practiceCheckAnswer => 'Проверка на отговора';
+
+  @override
+  String get practiceRevealNoCredit => 'Покажи отговора (без кредит)';
+
+  @override
+  String get practiceAnswerRevealedNoCredit =>
+      'Отговорът е показан — няма кредит за припомняне.';
+
+  @override
+  String practiceGradeLine(Object verdict, Object loss) {
+    return '$verdict · $loss';
+  }
+
+  @override
+  String practiceBestMoveLine(Object move) {
+    return 'Най-добър: $move';
+  }
+
+  @override
+  String practiceOriginalGameLine(Object move, Object loss) {
+    return 'Оригинална партия: $move · $loss';
+  }
+
+  @override
+  String practiceYourAnswerLine(Object move) {
+    return 'Вашият отговор: $move';
+  }
+
+  @override
+  String get practiceYourAnswerChip => 'Вашият отговор';
+
+  @override
+  String get practiceBestPlayChip => 'Най-добър ход';
+
+  @override
+  String practiceNextReview(Object date) {
+    return 'Следващ преглед: $date.';
+  }
+
+  @override
+  String get practiceRecallCredit =>
+      'Най-добрите и добрите отговори се броят за успешно припомняне. Ранните повторения не променят графика.';
+
+  @override
+  String get practiceBackToLearning => 'Назад към обучението';
+
+  @override
+  String get practiceMarkBest => 'Най-добър';
+
+  @override
+  String get practiceMarkGood => 'Добър';
+
+  @override
+  String get practiceMarkDubious => 'Съмнителен';
+
+  @override
+  String get practiceMarkError => 'Грешка';
+
+  @override
+  String get practiceMarkBlunder => 'Голяма грешка';
+
+  @override
+  String get practiceMarkForced => 'Принудителен';
+
+  @override
+  String get newMatchYourSide => 'Вашата страна';
+
+  @override
+  String get newMatchTutorMode => 'Режим на тутора';
+
+  @override
+  String get newMatchTutorDescription =>
+      'Учете с подсказки, обяснения и коментари за играта';
+
+  @override
+  String get newMatchTutoringOptions => 'Настройки за обучение';
+
+  @override
+  String get newMatchTutoringOptionsDescription =>
+      'За този мач; променят се и по време на игра';
+
+  @override
+  String get setupMatchLength => 'Дължина на мача';
+
+  @override
+  String get setupDifficulty => 'Трудност';
+
+  @override
+  String get setupDifficultyEasy => 'Лесно';
+
+  @override
+  String get setupDifficultyMedium => 'Средно';
+
+  @override
+  String get setupDifficultyHard => 'Трудно';
+
+  @override
+  String get setupDifficultyExpert => 'Експерт';
+
+  @override
+  String get setupPlayWithoutCube => 'Игра без куб';
+
+  @override
+  String get setupNoCubeThisMatch => 'Без удвояващ куб в този мач';
+
+  @override
+  String get analysisTitle => 'Анализ';
+
+  @override
+  String get gameMatchSummary => 'Обобщение на мача';
+
+  @override
+  String get gameAnalyzeGame => 'Анализ на партията';
+
+  @override
+  String get analysisMetricsTooltip => 'Какво означават тези числа?';
+
+  @override
+  String analysisError(Object error) {
+    return 'Неуспешен анализ на партията: $error';
+  }
+
+  @override
+  String get analysisNoPositions => 'Няма позиции за показване в тази партия.';
+
+  @override
+  String get analysisInProgress => 'Анализ на партията…';
+
+  @override
+  String analysisPercent(int percent) {
+    return '$percent%';
+  }
+
+  @override
+  String get analysisPlayed => 'Изигран';
+
+  @override
+  String get analysisBest => 'Най-добър';
+
+  @override
+  String get analysisPrevious => 'Предишен';
+
+  @override
+  String get analysisNext => 'Следващ';
+
+  @override
+  String get analysisPositionBeforeCube => 'Позиция преди решението за куба';
+
+  @override
+  String get analysisPositionAtPoint => 'Позиция в този момент от партията';
+
+  @override
+  String get analysisShowingBestBefore =>
+      'Показва се най-добрият ход в позицията преди хода';
+
+  @override
+  String get analysisShowingBefore => 'Показва се позицията преди хода';
+
+  @override
+  String analysisVerdictLine(Object side, Object verdict, Object loss) {
+    return '$side: $verdict$loss';
+  }
+
+  @override
+  String analysisMoveLoss(Object loss) {
+    return ' −$loss';
+  }
+
+  @override
+  String get analysisExcludedFromAverages =>
+      ' · изключено от средните стойности';
+
+  @override
+  String get analysisNoPlay => '(няма ход)';
+
+  @override
+  String analysisBestMoveLine(Object move) {
+    return 'Най-добър ход: $move';
+  }
+
+  @override
+  String get analysisExplain => 'Обясни';
+
+  @override
+  String get analysisSaveForPractice => 'Запази за упражнение';
+
+  @override
+  String analysisSaveError(Object error) {
+    return 'Решението не можа да бъде запазено: $error';
+  }
+
+  @override
+  String analysisCubeInfo(
+    Object side,
+    Object action,
+    Object mark,
+    Object loss,
+  ) {
+    return '$side: $action · $mark · загуба $loss';
+  }
+
+  @override
+  String get analysisCubeDecision => 'Решение за куба';
+
+  @override
+  String analysisCubePlayed(Object action, Object percent) {
+    return 'Изиграно: $action ($percent% шанс за победа в мача).';
+  }
+
+  @override
+  String analysisCubeBest(Object action, Object percent) {
+    return 'Най-добро: $action ($percent% шанс за победа в мача).';
+  }
+
+  @override
+  String get analysisCubeEstimate =>
+      'Оценка 0-ply от гледната точка на играча на ход. Приема оптимален отговор вземи/пас. Използва приближение 0,7 за живота на куба при приет дубъл, а не пълно търсене на бъдещи повторни удвоявания. По-задълбочен анализ може да промени отговора.';
+
+  @override
+  String get analysisClose => 'Затвори';
+
+  @override
+  String get analysisMoves => 'Ходове';
+
+  @override
+  String get analysisForced => 'Принудителен';
+
+  @override
+  String get analysisMarkBest => 'Най-добър';
+
+  @override
+  String get analysisMarkGood => 'Добър';
+
+  @override
+  String get analysisMarkDubious => 'Съмнителен';
+
+  @override
+  String get analysisMarkError => 'Грешка';
+
+  @override
+  String get analysisMarkBlunder => 'Голяма грешка';
+
+  @override
+  String analysisSummaryMeanLoss(Object loss) {
+    return 'Средна загуба $loss';
+  }
+
+  @override
+  String analysisSummaryCheckerDecisions(int count) {
+    return '$count решения с пуловете';
+  }
+
+  @override
+  String analysisSummaryBlunders(int count) {
+    return 'Големи грешки $count';
+  }
+
+  @override
+  String analysisSummaryCubeLoss(Object loss) {
+    return 'Загуба от куба $loss';
+  }
+
+  @override
+  String analysisRollWithoutDoubling(Object side) {
+    return '$side хвърля без удвояване';
+  }
+
+  @override
+  String get metricExplainerTitle => 'Разбиране на показателите';
+
+  @override
+  String get metricExplainerTooltip => 'Какво означават тези числа?';
+
+  @override
+  String get metricExplainerMwcTitle => 'Шанс за победа в мача (MWC)';
+
+  @override
+  String get metricExplainerMwcBody =>
+      'Когато резултатът е известен, ходовете с пуловете се подреждат по оценения шанс за победа в мача. Загубата е в процентни пунктове (pp): 1 pp е спад от 51% на 50%. Включени са текущият залог на куба и резултатите гамон/бекгамон. Принудителните пасове и хвърлянията с една законна позиция не влизат в средните стойности.';
+
+  @override
+  String get metricExplainerSearchTitle => 'Търсене и несигурност';
+
+  @override
+  String get metricExplainerSearchBody =>
+      'Оценките на ходовете са статични 0-ply оценки след хода, а не симулации. Стойностите за мача използват таблица за equity на мача без бъдещи ходове с куба. Анализът на куба използва частично приближение 0,7 за живота на куба при приет дубъл. Това не е пълно търсене с куба. За изоставане над 25 се използва границата 25 от таблицата. Близки резултати може да се променят при по-дълбок анализ; няма калибриран интервал на доверие.';
+
+  @override
+  String get metricExplainerEquityTitle => 'Equity';
+
+  @override
+  String get metricExplainerEquityBody =>
+      'Ако резултатът липсва, equity без куб показва средната точкова стойност на позицията при куб на 1. +1,0 означава очаквана печалба от точка; −0,5 означава очаквана загуба от половин точка.';
+
+  @override
+  String get metricExplainerEquityLossTitle =>
+      'Загуба на equity (напр. −0,016)';
+
+  @override
+  String get metricExplainerEquityLossBody =>
+      'Сравняваме всеки ход с най-добрия ход на двигателя. Загубата на equity е очакваната стойност, от която ходът се отказва. −0,016 означава, че ходът е само с 0,016 точки по-лош — малка грешка. 0,000 означава, че сте намерили най-добрия ход.';
+
+  @override
+  String get metricExplainerErrorRateTitle => 'Честота на грешките';
+
+  @override
+  String get metricExplainerErrorRateBody =>
+      'Средната загуба усреднява оценените решения за пуловете в показаната единица. Решенията за куба имат отделна средна стойност. По-ниска стойност означава по-близо до най-добрите оценки на двигателя; това не е калибриран рейтинг на играча.';
+
+  @override
+  String get metricExplainerMoveMarksTitle => 'Оценки на ходовете';
+
+  @override
+  String get metricExplainerMoveMarksBody =>
+      'Обучителни диапазони MWC: Най-добър < 0,05 pp, Добър < 0,5 pp, Съмнителен < 1,5 pp, Грешка < 3 pp, Голям пропуск ≥ 3 pp. Това са продуктови учебни граници, не калибрирана увереност или турнирна оценка.\n\nУчебни граници за equity без куб:';
+
+  @override
+  String get metricExplainerThresholdBest => 'загуба < 0,001';
+
+  @override
+  String get metricExplainerThresholdGood => 'загуба < 0,020';
+
+  @override
+  String get metricExplainerThresholdDubious => 'загуба < 0,050';
+
+  @override
+  String get metricExplainerThresholdError => 'загуба < 0,110';
+
+  @override
+  String get metricExplainerThresholdBlunder => 'загуба ≥ 0,110';
+
+  @override
+  String get metricExplainerGotIt => 'Разбрах';
+
+  @override
+  String get historyTitle => 'История на мачовете';
+
+  @override
+  String historyLoadFailed(Object error) {
+    return 'Историята не може да се зареди:\n$error';
+  }
+
+  @override
+  String get historyEmpty => 'Все още няма изиграни мачове.';
+
+  @override
+  String get historyDeleteConfirmTitle => 'Да изтрия ли този мач?';
+
+  @override
+  String historyDeleteConfirmBody(Object scoreLine) {
+    return '$scoreLine\n\nМачът и всички записани в него партии ще бъдат изтрити завинаги. Това не може да се отмени.';
+  }
+
+  @override
+  String get actionCancel => 'Отказ';
+
+  @override
+  String get actionDelete => 'Изтриване';
+
+  @override
+  String get historyDeleteFailed => 'Мачът не можа да бъде изтрит.';
+
+  @override
+  String get historyComplete => 'Завършен';
+
+  @override
+  String historyWinner(Object side) {
+    return '$side спечели';
+  }
+
+  @override
+  String get historyUnfinished => 'Незавършен';
+
+  @override
+  String get historyMatchTitle => 'Мач';
+
+  @override
+  String historyMatchLoadFailed(Object error) {
+    return 'Мачът не може да се зареди:\n$error';
+  }
+
+  @override
+  String historyGamesLoadFailed(Object error) {
+    return 'Партиите не могат да се заредят:\n$error';
+  }
+
+  @override
+  String get historyNoGames => 'Все още няма записани партии.';
+
+  @override
+  String historyGameTitle(int number) {
+    return 'Партия $number';
+  }
+
+  @override
+  String get historyCrawford => 'Крофорд';
+
+  @override
+  String historyScoreLine(int whiteScore, int blackScore, int matchLength) {
+    return 'Бели $whiteScore — $blackScore Черни (до $matchLength)';
+  }
+
+  @override
+  String get historyModeComputer => 'срещу компютър';
+
+  @override
+  String get historyModeTwoPlayers => 'Двама играчи';
+
+  @override
+  String get historyModeOnline => 'Онлайн';
+
+  @override
+  String get historyModeNearby => 'Игра наблизо';
+
+  @override
+  String get historyModeBuddy => 'Buddy';
+
+  @override
+  String get historyGameInProgress => 'В ход';
+
+  @override
+  String historyGameResult(Object side, int points, Object outcome) {
+    return '$side печели с $points ($outcome)';
+  }
+
+  @override
+  String get historyOutcomeSingle => 'единична';
+
+  @override
+  String get historyOutcomeGammon => 'гамон';
+
+  @override
+  String get historyOutcomeBackgammon => 'бекгемон';
+
+  @override
+  String get learningRefreshTooltip => 'Опресни напредъка в обучението';
+
+  @override
+  String get learningOptions => 'Опции за обучение';
+
+  @override
+  String get learningResetMenu => 'Нулирай напредъка от упражненията';
+
+  @override
+  String get learningLoadFailed => 'Неуспешно зареждане на обучението.';
+
+  @override
+  String get actionRetry => 'Опитай пак';
+
+  @override
+  String get learningHeading => 'Учи от решенията си';
+
+  @override
+  String get learningIntro =>
+      'Напредъкът се пази на това устройство. Преглеждай повтарящите се теми и опитвай отново запазени позиции, без да виждаш отговора. Белите и черните могат да се преглеждат поотделно.';
+
+  @override
+  String get learningBothSides => 'И двете страни';
+
+  @override
+  String get learningHumansOnly => 'Само решения на хора';
+
+  @override
+  String get learningHumanOnlyHelp =>
+      'Изключи, за да включиш решенията на компютъра и отдалечените играчи';
+
+  @override
+  String learningDecisionSummary(int decisions, int mistakes, int blunders) {
+    return '$decisions решения · $mistakes за подобрение · $blunders големи грешки';
+  }
+
+  @override
+  String learningAverageLoss(int decisions, Object loss) {
+    return 'Средна загуба ($decisions решения): $loss';
+  }
+
+  @override
+  String get learningForcedDisclaimer =>
+      'Принудителните ходове са изключени. Това са оценки на двигателя, не турнирна оценка.';
+
+  @override
+  String learningGamesNeedingAnalysis(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '# запазени партии се нуждаят от анализ или повторен анализ.',
+      one: '# запазена партия се нуждае от анализ или повторен анализ.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get learningAnalyseSavedGames => 'Анализирай запазените партии';
+
+  @override
+  String get learningEmptyProfile =>
+      'Изиграй и завърши партия, за да изградиш профила си за обучение. Можеш да запазваш и отделни решения от прегледа на партия.';
+
+  @override
+  String get learningOpenHistory => 'Отвори историята на мачовете';
+
+  @override
+  String get learningRecurringThemes => 'Повтарящи се теми';
+
+  @override
+  String get learningNoThemes =>
+      'Все още няма повтарящи се теми с грешки в този избор.';
+
+  @override
+  String learningThemeDecisions(int count) {
+    return '$count решения за преглед. Една позиция може да има повече от една тема.';
+  }
+
+  @override
+  String get learningSaveMistakes => 'Запази тези грешки за упражнения';
+
+  @override
+  String learningSavedMistakes(int count) {
+    return '$count решения са в списъка ти за упражнения. Вече запазените остават.';
+  }
+
+  @override
+  String get learningSaveMistakesFailed =>
+      'Някои решения не можаха да бъдат запазени. Успешно запазените остават; опитай отново.';
+
+  @override
+  String get learningSpacedPractice => 'Разпределено във времето упражняване';
+
+  @override
+  String learningPracticeCounts(
+    int due,
+    int saved,
+    int attempts,
+    int successes,
+  ) {
+    return '$due сега · $saved запазени · $attempts опита · $successes успешни припомняния';
+  }
+
+  @override
+  String get learningIntervalsHelp =>
+      'Успешните навременни прегледи се повтарят след 1, 3, 7, 14 и 30 дни. Грешките или показаните отговори се връщат след 10 минути. Ранните повторения не променят интервала.';
+
+  @override
+  String get learningAnswerContext =>
+      'Резултатите от упражненията отразяват твоите отговори тук, дори ако първоначалната позиция е била на противник.';
+
+  @override
+  String get learningNoSavedPositions =>
+      'Запази решение от прегледа на партията или използвай бутона за грешки по-горе.';
+
+  @override
+  String learningPositionTitle(Object side, int gameId) {
+    return 'Решение на $side · партия $gameId';
+  }
+
+  @override
+  String learningReviewDue(Object date) {
+    return 'Преглед на $date';
+  }
+
+  @override
+  String get learningReadyToReview => 'Готово за преглед';
+
+  @override
+  String learningSuccessStreak(int count) {
+    return '$count успешни навременни прегледа';
+  }
+
+  @override
+  String get learningRemoveTooltip => 'Премахни запазеното решение';
+
+  @override
+  String get learningRecentPractice => 'Последни упражнения';
+
+  @override
+  String get learningAnswerRevealed => 'Отговорът е показан';
+
+  @override
+  String get learningSuccessfulRecall => 'Успешно припомняне';
+
+  @override
+  String get learningTryAgain => 'Опитай това решение отново';
+
+  @override
+  String learningAttemptSubtitle(Object date, int positionId) {
+    return '$date · запазена позиция $positionId';
+  }
+
+  @override
+  String get learningRemoveTitle => 'Премахване на това упражнение?';
+
+  @override
+  String get learningRemoveBody =>
+      'Това премахва опитите за упражнение. Оригиналната партия остава в историята.';
+
+  @override
+  String get actionRemove => 'Премахване';
+
+  @override
+  String get learningRemoveFailed => 'Неуспешно премахване на упражнението.';
+
+  @override
+  String get learningResetTitle => 'Нулиране на напредъка от упражненията?';
+
+  @override
+  String get learningResetBody =>
+      'Всички опити и интервали за преглед ще бъдат премахнати. Запазените упражнения и историята остават; всички упражнения ще станат дължими сега.';
+
+  @override
+  String get learningResetAction => 'Нулирай напредъка';
+
+  @override
+  String get learningResetFailed => 'Неуспешно нулиране на напредъка.';
+
+  @override
+  String learningAnalysisProgress(int completed, int failed) {
+    return 'Анализирани партии: $completed · недостъпни: $failed.';
+  }
+
+  @override
+  String learningAnalysisComplete(int completed) {
+    return 'Анализирани са $completed партии.';
+  }
+
+  @override
+  String learningAnalysisCompleteWithErrors(int completed, int failed) {
+    return 'Анализирани са $completed партии; $failed не можаха да бъдат анализирани. Опитай отново, когато двигателят е готов.';
+  }
+
+  @override
+  String get learningThemeHitting => 'Удар и темпо';
+
+  @override
+  String get learningThemeSafety => 'Открити пулове и сигурност';
+
+  @override
+  String get learningThemePointMaking => 'Изграждане на пунктове';
+
+  @override
+  String get learningThemePrime => 'Праймове и блокади';
+
+  @override
+  String get learningThemeAnchor => 'Котви и бягство';
+
+  @override
+  String get learningThemeRace => 'Ефективност в надпреварата';
+
+  @override
+  String get learningThemeBearOff => 'Извеждане на пуловете';
+
+  @override
+  String get learningThemeBarEntry => 'Влизане от бара';
+
+  @override
+  String get learningThemeCube => 'Решения за куба';
+
+  @override
+  String get analysisCubeNoDouble => 'Без дубъл';
+
+  @override
+  String get analysisCubeDouble => 'Дубъл';
+
+  @override
+  String get analysisCubeTake => 'Вземи';
+
+  @override
+  String get analysisCubePass => 'Пас';
+
+  @override
+  String get learningAnalysisStarting => 'Анализ на запазените партии…';
+
+  @override
+  String get tutorCubelessEstimateScope =>
+      'Оценка без куба, 0 полухода · резултатът не е наличен';
+
+  @override
+  String get tutorLossPp => 'Загуба в процентни пункта';
+
+  @override
+  String get tutorLoss => 'Загуба';
+
+  @override
+  String get scoreSheetNoMoves => 'Все още няма ходове';
+
+  @override
+  String get tutorOptions => 'Настройки на тутора';
+
+  @override
+  String get tutorCollapseTooltip => 'Свий тутора';
+
+  @override
+  String get tutorExpandTooltip => 'Разгъни тутора';
+
+  @override
+  String get onlineTitle => 'Игра онлайн';
+
+  @override
+  String get onlineUnassistedNote =>
+      'Онлайн игрите на живо са без помощ от тутора. Прегледайте ходовете си и упражнете грешките след мача.';
+
+  @override
+  String get onlineNotConfiguredTitle =>
+      'Онлайн играта не е настроена в тази версия';
+
+  @override
+  String get onlineNotConfiguredBody =>
+      'Тази версия не е свързана с Firebase, затова не можете да създавате или да се присъединявате към мачове.';
+
+  @override
+  String get onlineErrorNoMatch =>
+      'Няма мач с този код. Проверете го и опитайте пак.';
+
+  @override
+  String get onlineErrorSeatTaken =>
+      'Този мач вече не е отворен — мястото е заето.';
+
+  @override
+  String get onlineErrorPermission => 'Нямате достъп до този мач.';
+
+  @override
+  String get onlineErrorGeneric => 'Възникна проблем. Опитайте отново.';
+
+  @override
+  String get onlineMatchFinished =>
+      'Този мач приключи — няма към какво да се присъедините отново.';
+
+  @override
+  String get onlineEnterCodeError => 'Въведете код на мача.';
+
+  @override
+  String get onlineOpponentShort => 'Прот.';
+
+  @override
+  String get onlineMatchInProgress => 'Мачът продължава';
+
+  @override
+  String onlineResumePrompt(Object code) {
+    return 'Играехте в мач $code.';
+  }
+
+  @override
+  String get onlineRejoin => 'Присъедини се отново';
+
+  @override
+  String get onlineForgetMatch => 'Забрави този мач';
+
+  @override
+  String get onlineCreateTitle => 'Създай мач';
+
+  @override
+  String get onlineMatchLength => 'Дължина на мача';
+
+  @override
+  String get onlineNoCubeTitle => 'Игра без куб';
+
+  @override
+  String get onlineNoCubeSubtitle => 'Без удвояващ куб в този мач';
+
+  @override
+  String get onlineCreate => 'Създай';
+
+  @override
+  String get onlineWaitingOpponent => 'Изчакване на противник…';
+
+  @override
+  String get onlineShareCode => 'Сподели този код';
+
+  @override
+  String get onlineCopyCode => 'Копирай кода';
+
+  @override
+  String get onlineCodeCopied => 'Кодът е копиран';
+
+  @override
+  String get onlineJoinTitle => 'Присъедини се към мач';
+
+  @override
+  String get onlineRoomCode => 'Код на мача';
+
+  @override
+  String get onlineJoin => 'Присъедини се';
+
+  @override
+  String get lanTitle => 'Игра наблизо';
+
+  @override
+  String get lanTabHost => 'Домакин';
+
+  @override
+  String get lanTabJoin => 'Присъединяване';
+
+  @override
+  String get lanUnassistedNote =>
+      'Игрите наблизо не са с помощ от тутора. След мача прегледайте ходовете и упражнете грешките.';
+
+  @override
+  String get lanGameStartFailed =>
+      'Играта не можа да започне. Другото устройство може да опита да се присъедини отново.';
+
+  @override
+  String get lanHostPortInUse =>
+      'Не може да се стартира хостването — портът вече се използва. Затворете другото копие на Backgammon Buddy.';
+
+  @override
+  String get lanHostStartFailed =>
+      'Хостването не може да започне. Проверете Wi-Fi връзката.';
+
+  @override
+  String get lanHostTitle => 'Хостване на игра';
+
+  @override
+  String get lanStartHosting => 'Започни хостване';
+
+  @override
+  String get lanHostHelp =>
+      'Двете устройства трябва да са в една Wi-Fi мрежа. Това устройство хвърля заровете и пази резултата.';
+
+  @override
+  String get lanWaitingPlayerTitle => 'Изчакване на играч';
+
+  @override
+  String get lanRoomCodeInfo =>
+      'Кажете този код на другия играч. С него той влиза — приложението не го изпраща по мрежата.';
+
+  @override
+  String get lanWaitingPlayer => 'Изчакване на играч…';
+
+  @override
+  String get lanStopHosting => 'Спри хостването';
+
+  @override
+  String lanFindNearbyPort(int port) {
+    return 'Помолете другото устройство да потърси игри наблизо. Слушане на порт $port.';
+  }
+
+  @override
+  String get lanOnNetwork => 'В тази мрежа';
+
+  @override
+  String get lanCopyAddress => 'Копирай адреса';
+
+  @override
+  String get lanAddressCopied => 'Адресът е копиран';
+
+  @override
+  String get lanScanHostTitle => 'Сканирай домакина';
+
+  @override
+  String get lanScanHostHelp =>
+      'Другото устройство показва QR код на екрана за хостване. Сканирането попълва адреса и кода на стаята.';
+
+  @override
+  String get lanScanQr => 'Сканирай QR код';
+
+  @override
+  String get lanScannerUnavailable =>
+      'Камерата или разрешението ѝ не е налично. Вместо това въведете адреса и кода на стаята по-долу.';
+
+  @override
+  String get lanInvalidQr =>
+      'Този QR код не е за игра на Backgammon Buddy. Сканирайте кода от екрана за хостване на другото устройство.';
+
+  @override
+  String get lanScannerFailed =>
+      'Скенерът не можа да се отвори. Вместо това въведете адреса и кода.';
+
+  @override
+  String get lanNearbyGames => 'Игри наблизо';
+
+  @override
+  String get lanSearching => 'Търсене на игри наблизо…';
+
+  @override
+  String get lanNoGamesFound =>
+      'Все още няма намерени игри. Уверете се, че другото устройство хоства и двете са в една Wi-Fi мрежа — или въведете адреса му.';
+
+  @override
+  String get lanStillSearching => 'Търсенето продължава…';
+
+  @override
+  String get lanEnterAddress => 'Въведи адрес';
+
+  @override
+  String get lanEnterAddressHelp =>
+      'Автоматичното откриване не работи във всяка мрежа (а в iOS може да е блокирано). Екранът на домакина показва какъв адрес да въведете.';
+
+  @override
+  String get lanIpAddress => 'IP адрес';
+
+  @override
+  String get lanPort => 'Порт';
+
+  @override
+  String get lanInvalidPort => 'Въведете порт от 1 до 65535.';
+
+  @override
+  String get lanEnterAddressError =>
+      'Въведете адреса, показан на другото устройство.';
+
+  @override
+  String get lanEnterRoomCodeError =>
+      'Въведете 4-цифрения код от другото устройство.';
+
+  @override
+  String get lanJoinWrongCode =>
+      'Грешен код на стаята. Проверете четирите цифри на другото устройство.';
+
+  @override
+  String get lanJoinVersionMismatch =>
+      'Другото устройство използва друга версия на Backgammon Buddy.';
+
+  @override
+  String get lanJoinHandshakeFailed =>
+      'Другото устройство не отговори като Backgammon Buddy. Проверете адреса и порта.';
+
+  @override
+  String get lanJoinFailed =>
+      'Неуспешно присъединяване. Проверете адреса и кода на стаята и опитайте отново.';
+
+  @override
+  String lanJoinTarget(Object name) {
+    return 'Присъединяване към $name';
+  }
+
+  @override
+  String get lanJoinTargetHelp =>
+      'Въведете 4-цифрения код от другото устройство.';
+
+  @override
+  String lanJoiningTarget(Object name) {
+    return 'Присъединяване към $name';
+  }
+
+  @override
+  String get lanConnect => 'Свържи се';
+
+  @override
+  String get lanBack => 'Назад';
+
+  @override
+  String get lanTryAgain => 'Опитай отново';
+
+  @override
+  String get lanStatusBusy => 'Стаята се използва — изчакване…';
+
+  @override
+  String get lanStatusReconnecting =>
+      'Връзката е изгубена — повторно свързване…';
+
+  @override
+  String get lanStatusConnected => 'Свързано — играта започва…';
+
+  @override
+  String get lanStatusFailed => 'Присъединяването не бе успешно.';
+
+  @override
+  String get lanStatusConnecting => 'Свързване…';
+
+  @override
+  String get diagnosticsCopySuccess => 'Диагностиката е копирана в клипборда';
+
+  @override
+  String get diagnosticsReviewTitle => 'Преглед на диагностичния доклад';
+
+  @override
+  String get diagnosticsPrivacyNotice =>
+      'Отварянето на черновата изпраща показаните подробности до GitHub, включително версията на приложението, платформата и данните за грешки. Публичен проблем не се публикува, докато не го изпратите там. Ако данните съдържат лична информация, отменете и използвайте „Копирай“, за да подготвите доклада сами.';
+
+  @override
+  String get diagnosticsCancel => 'Отказ';
+
+  @override
+  String get diagnosticsOpenGitHub => 'Отвори GitHub';
+
+  @override
+  String get diagnosticsTitle => 'Диагностика';
+
+  @override
+  String get diagnosticsReportTooltip => 'Съобщи за проблем в GitHub';
+
+  @override
+  String get diagnosticsCopyTooltip => 'Копирай в клипборда';
+
+  @override
+  String get diagnosticsClearTooltip => 'Изчисти дневника';
+
+  @override
+  String get diagnosticsEmpty =>
+      'Няма записани грешки.\n\nАко възникне проблем, той ще се запише тук. Върнете се и копирайте подробностите в доклад за грешка.';
+
+  @override
+  String gameHudNeutralScore(
+    Object whiteLabel,
+    int whiteScore,
+    Object blackLabel,
+    int blackScore,
+    int matchLength,
+  ) {
+    return '$whiteLabel $whiteScore–$blackScore $blackLabel · до $matchLength';
+  }
+
+  @override
+  String gameHudPlayerScore(
+    Object you,
+    int mine,
+    int theirs,
+    Object opponent,
+    int matchLength,
+  ) {
+    return '$you $mine–$theirs $opponent · до $matchLength';
+  }
+
+  @override
+  String get gameHudYou => 'Вие';
+
+  @override
+  String get gameHudAi => 'Компютър';
+
+  @override
+  String gameHudGameNumber(int number) {
+    return 'Партия $number';
+  }
+
+  @override
+  String gameHudMatchContext(Object score, Object game) {
+    return '$score · $game';
+  }
+
+  @override
+  String gameHudHotSeatDetail(
+    Object whiteLabel,
+    Object blackLabel,
+    Object pipsLabel,
+    int whitePips,
+    int blackPips,
+  ) {
+    return '$whiteLabel срещу $blackLabel · $pipsLabel $whitePips–$blackPips';
+  }
+
+  @override
+  String gameHudOpponentDetail(
+    Object opponent,
+    Object pipsLabel,
+    int mine,
+    int theirs,
+  ) {
+    return 'срещу $opponent · $pipsLabel $mine–$theirs';
+  }
+
+  @override
+  String gameHudOpponentDetailWithLevel(
+    Object opponent,
+    Object level,
+    Object pipsLabel,
+    int mine,
+    int theirs,
+  ) {
+    return 'срещу $opponent · $level · $pipsLabel $mine–$theirs';
+  }
+
+  @override
+  String get gameHudPips => 'Пипсове';
+
+  @override
+  String get gameHudCrawford => 'Крофорд';
+
+  @override
+  String get gameHudDouble => 'Удвояване';
+
+  @override
+  String get gameHudMoreActions => 'Още действия';
+
+  @override
+  String get gameHudSurrender => 'Отказване…';
+
+  @override
+  String get gameHudThinking => 'Обмисля';
+
+  @override
+  String get gameHudDoubleBeforeRoll =>
+      'Можете да удвоите само преди хвърлянето и когато сте на ход.';
+
+  @override
+  String get gameHudNoDoubleCrawford =>
+      'В партията на Крофорд няма удвояване — тя решава мача.';
+
+  @override
+  String get gameHudOnlyCubeOwner =>
+      'Само притежателят на куба може да удвои, а сега това е другият играч.';
+
+  @override
+  String get gameHudDoubleUnavailable => 'Удвояването не е налично в момента.';
+
+  @override
+  String gameDialogScoreLine(
+    Object whiteLabel,
+    int whiteScore,
+    int blackScore,
+    Object blackLabel,
+    int matchLength,
+  ) {
+    return '$whiteLabel $whiteScore — $blackScore $blackLabel (до $matchLength)';
+  }
+
+  @override
+  String gameDialogPlayerWon(Object winner, Object points) {
+    return '$winner печели тази партия ($points).';
+  }
+
+  @override
+  String gameDialogPlayerWonGammon(Object winner, Object points) {
+    return '$winner печели тази партия ($points, гамон).';
+  }
+
+  @override
+  String gameDialogPlayerWonBackgammon(Object winner, Object points) {
+    return '$winner печели тази партия ($points, бекгемон).';
+  }
+
+  @override
+  String gameDialogPlayerWonDrop(Object winner, Object points, Object loser) {
+    return '$winner печели тази партия ($points) — $loser отказа удвояването.';
+  }
+
+  @override
+  String gameDialogPlayerWonResignation(
+    Object winner,
+    Object points,
+    Object loser,
+  ) {
+    return '$winner печели тази партия ($points) — $loser се отказа.';
+  }
+
+  @override
+  String get gameDialogPassDeviceTitle => 'Предайте устройството';
+
+  @override
+  String gameDialogPlayersTurn(Object name) {
+    return 'Ред е на $name';
+  }
+
+  @override
+  String get gameDialogTapToContinue => 'Докоснете, за да продължите';
+
+  @override
+  String get gameDialogCubeOfferedTitle => 'Предложено удвояване';
+
+  @override
+  String gameDialogCubeOfferMessage(
+    Object doubler,
+    int value,
+    Object tutorLine,
+  ) {
+    return '$doubler предлага удвояване до $value. Приемате ли?$tutorLine';
+  }
+
+  @override
+  String get gameDialogPass => 'Отказ';
+
+  @override
+  String get gameDialogTake => 'Приемане';
+
+  @override
+  String get gameDialogResignationTitle => 'Предложен отказ';
+
+  @override
+  String gameDialogResignationMessage(Object resigner, Object value) {
+    return '$resigner предлага да се откаже при $value. Приемате ли?';
+  }
+
+  @override
+  String get gameDialogResignSingle => 'единична партия';
+
+  @override
+  String get gameDialogResignGammon => 'гамон';
+
+  @override
+  String get gameDialogResignBackgammon => 'бекгемон';
+
+  @override
+  String get gameDialogDecline => 'Откажи';
+
+  @override
+  String get gameDialogAccept => 'Приеми';
+
+  @override
+  String get gameDialogGameOverTitle => 'Край на партията';
+
+  @override
+  String get gameDialogNextGame => 'Следваща партия';
+
+  @override
+  String get gameDialogMatchOverTitle => 'Край на мача';
+
+  @override
+  String get gameDialogNobody => 'Никой';
+
+  @override
+  String gameDialogMatchWinner(Object winner) {
+    return '$winner печели мача.';
+  }
+
+  @override
+  String get gameDialogSavedToHistory => 'Запазено в историята';
+
+  @override
+  String get gameDialogDone => 'Готово';
+
+  @override
+  String get gameTapNoLegalMove =>
+      'Няма законен ход за тази пулка с оставащите зарове';
+
+  @override
+  String get gameTapNoLegalMoveUndo =>
+      'Няма законен ход за тази пулка с оставащите зарове — опитайте „Отмяна“';
+
+  @override
+  String get gameDragHint =>
+      'Съвет: плъзнете пуловете или ги докоснете — променете това в „Настройки“';
+
+  @override
+  String get commonGotIt => 'Разбрах';
+
+  @override
+  String get gameHintStageBeforeHint =>
+      'Първо изпълнете напълно законен ход, после поискайте подсказка.';
+
+  @override
+  String get surrenderTitle => 'Отказване';
+
+  @override
+  String surrenderNamedConcedes(String player) {
+    return '$player отстъпва текущата партия.';
+  }
+
+  @override
+  String get surrenderConcedes => 'Отстъпвате текущата партия.';
+
+  @override
+  String surrenderAvailableAtNamedTurn(String player) {
+    return 'Достъпно в началото на хода на $player';
+  }
+
+  @override
+  String get surrenderAvailableAtYourTurn => 'Достъпно в началото на вашия ход';
+
+  @override
+  String get commonCancel => 'Отказ';
+
+  @override
+  String get surrenderSingle => 'Единична (1)';
+
+  @override
+  String get surrenderGammon => 'Гамон (2)';
+
+  @override
+  String get surrenderBackgammon => 'Бекгемон (3)';
+
+  @override
+  String get surrenderChoosePlayer => 'Кой отстъпва тази партия?';
+
+  @override
+  String get commonDone => 'Готово';
+
+  @override
+  String get cubeDouble => 'Удвояване';
+
+  @override
+  String get cubeBlockedOtherPlayersTurn => 'Сега е ред на другия играч.';
+
+  @override
+  String get cubeBlockedCrawford =>
+      'Удвояващият куб не е наличен в партията на Крофорд.';
+
+  @override
+  String get cubeBlockedOwnedByOther =>
+      'Само притежателят на куба може да удвои, а той е другият играч.';
+
+  @override
+  String get cubeBlockedUnavailable => 'Удвояването не е възможно в момента.';
+
+  @override
+  String get gameStatusRolling => 'Хвърляне…';
+
+  @override
+  String get gameStatusThinking => 'Обмисля…';
+
+  @override
+  String gameStatusPlayersTurn(String player) {
+    return 'Ред е на $player';
+  }
+
+  @override
+  String get cubeAdviceOpponentTake =>
+      'Удвояване — противникът трябва да приеме';
+
+  @override
+  String get cubeAdviceOpponentPass =>
+      'Удвояване — противникът трябва да откаже';
+
+  @override
+  String gameErrorBannerLabel(Object error) {
+    return 'Грешка: $error';
+  }
 }

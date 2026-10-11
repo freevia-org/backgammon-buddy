@@ -2,6 +2,8 @@ import 'package:backgammon_core/backgammon_core.dart';
 import 'package:engine_bindings/engine_bindings.dart';
 
 import 'move_assessment.dart';
+import 'move_explanation_copy.dart';
+import 'tutor_phrase.dart';
 
 /// Local, per-match choices. Turning off hints still permits reviewing a move
 /// after it has been committed.
@@ -171,6 +173,7 @@ class MoveExplanation {
     this.plan = '',
     this.comparisonReason,
     this.shortReason,
+    this.copy,
   });
 
   final String verdict;
@@ -180,6 +183,7 @@ class MoveExplanation {
   final String plan;
   final String? comparisonReason;
   final String? shortReason;
+  final MoveExplanationCopySet? copy;
   String get summaryReason => shortReason ?? comparisonReason ?? plan;
 
   static const limitations =
@@ -231,6 +235,7 @@ class MoveExplanation {
       shortReason:
           comparison?.summary ??
           _shortPlanAfter(before.board, after, before.turn),
+      copy: MoveExplanationCopySet.forCandidate(before, candidate, best),
     );
   }
 
@@ -506,41 +511,45 @@ class MoveExplanation {
 String _points(List<int> points) => points.isEmpty ? 'none' : points.join(', ');
 
 String _shortPlanAfter(BoardState before, BoardState after, Player side) {
+  return shortPlanPhrase(before, after, side).english;
+}
+
+TutorPhrase shortPlanPhrase(BoardState before, BoardState after, Player side) {
   final old = PositionFeatures(before, side);
   final next = PositionFeatures(after, side);
   if (next.board.whiteOff == 15) {
-    return 'All 15 checkers are off: the game is won.';
+    return TutorPhrase(TutorPhraseId.stagedAllCheckersOff);
   }
   if (next.board.blackBar > old.board.blackBar) {
-    return 'The hit gains time while the opponent works to re-enter.';
+    return TutorPhrase(TutorPhraseId.stagedHitShortPlan);
   }
   if (next.isRace) {
     return next.allHome
-        ? 'An efficient bear-off removes checkers and leaves useful numbers for the next roll.'
-        : 'The race plan is to bring the rear checkers home with useful bear-off landing points.';
+        ? TutorPhrase(TutorPhraseId.stagedEfficientBearOffPlan)
+        : TutorPhrase(TutorPhraseId.stagedRaceHomePlan);
   }
   if (next.board.whiteOff > old.board.whiteOff) {
-    return 'Bearing off makes progress, but the remaining contact still leaves a risk of hits.';
+    return TutorPhrase(TutorPhraseId.stagedBearOffContactPlan);
   }
   if (next.board.whiteBar < old.board.whiteBar) {
-    return 'Re-entry gets the checker back in play; finding a safe landing comes next.';
+    return TutorPhrase(TutorPhraseId.stagedReentryPlan);
   }
   if (next.homePoints > old.homePoints) {
-    return 'The new home-board point takes away an entry number after a future hit.';
+    return TutorPhrase(TutorPhraseId.stagedHomeBoardPlan);
   }
   if (next.longestPrime >= 3 && next.longestPrime > old.longestPrime) {
-    return 'The longer run closes more landing points; spare checkers help keep it intact.';
+    return TutorPhrase(TutorPhraseId.stagedPrimePlan);
   }
   if (old.anchors.any((point) => !next.anchors.contains(point))) {
-    return 'Leaving the anchor gains ground but gives up a safe foothold.';
+    return TutorPhrase(TutorPhraseId.stagedLeaveAnchorPlan);
   }
   if (next.anchors.any((point) => !old.anchors.contains(point))) {
-    return 'The new anchor gives the back checkers a safe foothold.';
+    return TutorPhrase(TutorPhraseId.stagedNewAnchorPlan);
   }
   if (next.blots < old.blots) {
-    return 'Covering a blot removes a target for the opponent.';
+    return TutorPhrase(TutorPhraseId.stagedCoverBlotPlan);
   }
-  return 'The tradeoff is development versus safety: useful builders can also become targets.';
+  return TutorPhrase(TutorPhraseId.stagedSafetyTradeoffPlan);
 }
 
 String _planAfter(BoardState before, BoardState after, Player side) {
@@ -586,121 +595,158 @@ String _planAfter(BoardState before, BoardState after, Player side) {
 /// A short, factual assessment from the player-to-move's perspective. It does
 /// not reveal a best move or infer a winning probability from a pip lead.
 class PositionCoaching {
-  const PositionCoaching({
-    required this.summary,
-    required this.plan,
-    this.reasons = const [],
+  PositionCoaching({
+    required this.summaryPhrase,
+    required this.planPhrase,
+    this.reasonPhrases = const [],
   });
-  final String summary;
-  final String plan;
-  final List<String> reasons;
+  final TutorPhrase summaryPhrase;
+  final TutorPhrase planPhrase;
+  final List<TutorPhrase> reasonPhrases;
+
+  /// English compatibility views. UI localization should render the phrase
+  /// descriptors with the active locale instead.
+  String get summary => summaryPhrase.english;
+  String get plan => planPhrase.english;
+  List<String> get reasons => [
+    for (final phrase in reasonPhrases) phrase.english,
+  ];
 
   factory PositionCoaching.forState(GameState state) {
     if (state.phase == GamePhase.gameOver) {
-      return const PositionCoaching(
-        summary: 'Game finished.',
-        plan: 'Review the moves to find a decision to practise.',
+      return PositionCoaching(
+        summaryPhrase: TutorPhrase(TutorPhraseId.gameFinished),
+        planPhrase: TutorPhrase(TutorPhraseId.reviewFinishedGame),
       );
     }
     if (state.phase == GamePhase.cubeOffered) {
-      return const PositionCoaching(
-        summary: 'The cube has been offered.',
-        plan: 'Decide whether to take or pass before planning a checker play.',
-        reasons: ['The match score changes what the extra stake is worth.'],
+      return PositionCoaching(
+        summaryPhrase: TutorPhrase(TutorPhraseId.cubeOffered),
+        planPhrase: TutorPhrase(TutorPhraseId.cubeDecisionPrompt),
+        reasonPhrases: [TutorPhrase(TutorPhraseId.cubeScoreContext)],
       );
     }
     if (state.phase == GamePhase.resignOffered) {
-      return const PositionCoaching(
-        summary: 'A resignation has been offered.',
-        plan:
-            'Compare the offered points with the position before accepting or continuing.',
+      return PositionCoaching(
+        summaryPhrase: TutorPhrase(TutorPhraseId.resignationOffered),
+        planPhrase: TutorPhrase(TutorPhraseId.resignationDecisionPrompt),
       );
     }
     if (state.phase == GamePhase.moving) {
       final count = state.legalMoves.length;
       if (count == 0) {
-        return const PositionCoaching(
-          summary: 'No legal play with this roll.',
-          plan: 'A forced pass is not a mistake; wait for the next roll.',
+        return PositionCoaching(
+          summaryPhrase: TutorPhrase(TutorPhraseId.noLegalPlay),
+          planPhrase: TutorPhrase(TutorPhraseId.forcedPassPrompt),
         );
       }
       if (count == 1) {
-        return const PositionCoaching(
-          summary: 'Only one legal resulting position.',
-          plan:
-              'Play the forced turn. There is no choice to grade on this roll.',
+        return PositionCoaching(
+          summaryPhrase: TutorPhrase(TutorPhraseId.onlyOneResult),
+          planPhrase: TutorPhrase(TutorPhraseId.forcedTurnPrompt),
         );
       }
     }
     final features = PositionFeatures(state.board, state.turn);
     final board = features.board;
     final lead = board.pipCount(Player.black) - board.pipCount(Player.white);
-    final race = lead == 0
-        ? 'The pip counts are level.'
-        : 'You are ${lead.abs()} pips ${lead > 0 ? 'ahead' : 'behind'}.';
+    final race = TutorPhrase(
+      lead == 0
+          ? TutorPhraseId.pipCountsLevel
+          : lead > 0
+          ? TutorPhraseId.pipCountsAhead
+          : TutorPhraseId.pipCountsBehind,
+      count: lead.abs(),
+    );
     if (board.whiteBar > 0) {
       return PositionCoaching(
-        summary: '${board.whiteBar} on the bar: re-entry comes first.',
-        plan:
-            'Enter before moving any other checker; then look for a safe landing.',
-        reasons: [
-          'The opponent has ${features.opponentHomePoints} closed home-board points.',
+        summaryPhrase: TutorPhrase(
+          TutorPhraseId.playerHasCheckersOnBar,
+          count: board.whiteBar,
+        ),
+        planPhrase: TutorPhrase(TutorPhraseId.enterBeforeMoving),
+        reasonPhrases: [
+          TutorPhrase(
+            TutorPhraseId.opponentHomePoints,
+            count: features.opponentHomePoints,
+          ),
         ],
       );
     }
     if (features.isRace) {
       return PositionCoaching(
-        summary: features.allHome ? 'Bear-off race.' : 'A pure race.',
-        plan: features.allHome
-            ? 'Remove checkers while leaving a useful spread for the next roll.'
-            : 'Bring the back checkers home without piling too many on one point.',
-        reasons: [
-          race,
-          'The armies have passed each other; no further hits are possible.',
-        ],
+        summaryPhrase: TutorPhrase(
+          features.allHome ? TutorPhraseId.bearOffRace : TutorPhraseId.pureRace,
+        ),
+        planPhrase: TutorPhrase(
+          features.allHome
+              ? TutorPhraseId.bearOffSpread
+              : TutorPhraseId.bringRearCheckersHome,
+        ),
+        reasonPhrases: [race, TutorPhrase(TutorPhraseId.armiesHavePassed)],
       );
     }
     if (board.blackBar > 0) {
       return PositionCoaching(
-        summary: 'The opponent has ${board.blackBar} on the bar.',
-        plan: features.homePoints == 6
-            ? 'Keep the board closed while bringing the remaining checkers home.'
-            : 'Build or preserve your home board while the opponent tries to enter.',
-        reasons: [
-          'You hold ${features.homePoints} home-board points; each closes an entry number.',
+        summaryPhrase: TutorPhrase(
+          TutorPhraseId.opponentHasCheckersOnBar,
+          count: board.blackBar,
+        ),
+        planPhrase: TutorPhrase(
+          features.homePoints == 6
+              ? TutorPhraseId.keepBoardClosed
+              : TutorPhraseId.buildOrPreserveHomeBoard,
+        ),
+        reasonPhrases: [
+          TutorPhrase(
+            TutorPhraseId.homePointsCloseEntries,
+            count: features.homePoints,
+          ),
         ],
       );
     }
     if (features.longestPrime >= 3) {
       return PositionCoaching(
-        summary: 'Contact with a ${features.longestPrime}-point run.',
-        plan:
-            'Compare extending the run with keeping spare checkers to maintain it.',
-        reasons: [
-          '$race Contact still matters.',
-          '${features.spares} spares can move without immediately opening their point.',
+        summaryPhrase: TutorPhrase(
+          TutorPhraseId.primeContact,
+          count: features.longestPrime,
+        ),
+        planPhrase: TutorPhrase(TutorPhraseId.extendPrimeOrKeepSpares),
+        reasonPhrases: [
+          TutorPhrase(TutorPhraseId.contactStillMatters, parts: [race]),
+          TutorPhrase(
+            TutorPhraseId.spareCheckersCanMove,
+            count: features.spares,
+          ),
         ],
       );
     }
     if (features.anchors.isNotEmpty) {
       return PositionCoaching(
-        summary: 'Contact with an anchor on ${_points(features.anchors)}.',
-        plan: lead > 0
-            ? 'Compare bringing the back checkers home with the safety of keeping your anchor.'
-            : 'Keep the safe foothold in mind while looking for a hit or improving your board.',
-        reasons: [
+        summaryPhrase: TutorPhrase(
+          TutorPhraseId.anchorContact,
+          points: features.anchors,
+        ),
+        planPhrase: TutorPhrase(
+          TutorPhraseId.compareAnchorProgress,
+          ahead: lead > 0,
+        ),
+        reasonPhrases: [
           race,
-          'The anchor cannot be hit, but those checkers still have a long way home.',
+          TutorPhrase(TutorPhraseId.preserveAnchorFoothold),
         ],
       );
     }
     return PositionCoaching(
-      summary: 'Contact: both sides can still threaten hits.',
-      plan:
-          'Look for useful points, then compare the risk of leaving single checkers exposed.',
-      reasons: [
+      summaryPhrase: TutorPhrase(TutorPhraseId.contactThreats),
+      planPhrase: TutorPhrase(TutorPhraseId.lookForPointsAndSafety),
+      reasonPhrases: [
         race,
-        'You hold ${features.homePoints} home-board points and leave ${features.blots} blots.',
+        TutorPhrase(
+          TutorPhraseId.homePointsAndBlots,
+          count: features.homePoints,
+          otherCount: features.blots,
+        ),
       ],
     );
   }
@@ -718,9 +764,18 @@ String stagedMoveCommentary(
   GameState before,
   Move staged, {
   required bool isComplete,
+}) => stagedMovePhrase(before, staged, isComplete: isComplete).english;
+
+/// Structured counterpart to [stagedMoveCommentary]. It reports only facts
+/// observed in the staged checker hops. An incomplete sequence gets no
+/// full-play plan or quality verdict.
+TutorPhrase stagedMovePhrase(
+  GameState before,
+  Move staged, {
+  required bool isComplete,
 }) {
   if (staged.checkerMoves.isEmpty) {
-    return 'Choose a checker to start your play.';
+    return TutorPhrase(TutorPhraseId.chooseCheckerPrompt);
   }
   final builder = MoveBuilder.forState(before);
   try {
@@ -728,48 +783,51 @@ String stagedMoveCommentary(
       builder.addHop(hop.from, hop.to);
     }
   } on StateError {
-    return 'Start a legal play to see commentary.';
+    return TutorPhrase(TutorPhraseId.legalPlayPrompt);
   } on ArgumentError {
-    return 'Start a legal play to see commentary.';
+    return TutorPhrase(TutorPhraseId.legalPlayPrompt);
   }
   final complete = isComplete && builder.isComplete;
   final after = before.board.applyMove(before.turn, staged);
   final old = PositionFeatures(before.board, before.turn).board;
   final next = PositionFeatures(after, before.turn).board;
-  final facts = <String>[];
+  final facts = <TutorPhrase>[];
   final hits = next.blackBar - old.blackBar;
   final entered = old.whiteBar - next.whiteBar;
   final off = next.whiteOff - old.whiteOff;
   if (hits > 0) {
-    facts.add(
-      'You have hit $hits opposing ${hits == 1 ? 'checker' : 'checkers'}.',
-    );
+    facts.add(TutorPhrase(TutorPhraseId.stagedHit, count: hits));
   }
-  if (entered > 0) facts.add('You have entered $entered from the bar.');
+  if (entered > 0) {
+    facts.add(TutorPhrase(TutorPhraseId.stagedEnter, count: entered));
+  }
   if (off > 0) {
-    facts.add('You have borne off $off ${off == 1 ? 'checker' : 'checkers'}.');
+    facts.add(TutorPhrase(TutorPhraseId.stagedBearOff, count: off));
   }
   final made = [
     for (var i = 0; i < 24; i++)
       if (next.points[i] >= 2 && old.points[i] < 2) i + 1,
   ];
-  if (made.isNotEmpty) facts.add('You have made ${made.join(', ')}.');
+  if (made.isNotEmpty) {
+    facts.add(TutorPhrase(TutorPhraseId.stagedMakePoints, points: made));
+  }
   final landing = staged.checkerMoves.last.to;
   if (landing != CheckerMove.off) {
     final point = before.turn == Player.white ? landing : 23 - landing;
     if (next.points[point] == 1) {
-      facts.add('The checker on your ${point + 1}-point is a blot for now.');
+      facts.add(TutorPhrase(TutorPhraseId.stagedBlot, point: point));
     } else if (next.points[point] > 2 && !made.contains(point + 1)) {
-      facts.add(
-        'The spare on your ${point + 1}-point can move later without opening the point.',
-      );
+      facts.add(TutorPhrase(TutorPhraseId.stagedSpare, point: point));
     }
   }
   if (!complete) {
-    return '${facts.take(1).join(' ')} Use the remaining playable dice before judging the whole play.'
-        .trim();
+    return TutorPhrase(
+      TutorPhraseId.stagedPartialPrompt,
+      parts: facts.take(1).toList(growable: false),
+    );
   }
-  return '${_shortPlanAfter(before.board, after, before.turn)} '
-          'The full play is staged; Confirm commits it.'
-      .trim();
+  return TutorPhrase(
+    TutorPhraseId.stagedCompletePrompt,
+    parts: [shortPlanPhrase(before.board, after, before.turn)],
+  );
 }

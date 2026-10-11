@@ -12,6 +12,8 @@ import '../data/recorded_match_context.dart';
 import '../data/practice_repository.dart';
 import '../engine/engine_provider.dart';
 import '../game/game_record.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/localization_lookup.dart';
 import '../tutor/game_analyzer.dart';
 import '../tutor/move_assessment.dart';
 import '../tutor/tutor_service.dart';
@@ -162,7 +164,9 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
         if (cube.action == CubeDecisionKind.noDouble) {
           lines.add(
             RecordLine(
-              '${_sideLabel(cube.player)} rolls without doubling',
+              appLocalizationsOf(context).analysisRollWithoutDoubling(
+                _sideLabel(cube.player, appLocalizationsOf(context)),
+              ),
               actor: cube.player,
               eventIndex: cube.eventIndex,
             ),
@@ -261,12 +265,13 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   );
 
   Widget _build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Analysis'),
+        title: Text(l10n.analysisTitle),
         actions: [
           IconButton(
-            tooltip: 'What do these numbers mean?',
+            tooltip: l10n.analysisMetricsTooltip,
             icon: const Icon(Icons.info_outline),
             onPressed: () => showMetricExplainer(context),
           ),
@@ -277,33 +282,35 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   }
 
   Widget _body() {
+    final l10n = appLocalizationsOf(context);
     if (_error != null) {
-      return Center(child: Text('Failed to analyse game:\n$_error'));
+      return Center(child: Text(l10n.analysisError('$_error')));
     }
     if (_loading) {
       return _loadingView();
     }
     final states = _states!;
     if (states.isEmpty) {
-      return const Center(child: Text('This game has no positions to show.'));
+      return Center(child: Text(l10n.analysisNoPositions));
     }
     return _loaded(states);
   }
 
   Widget _loadingView() {
+    final l10n = appLocalizationsOf(context);
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           if (_analyzing) ...[
-            const Text('Analysing game…'),
+            Text(l10n.analysisInProgress),
             const SizedBox(height: 16),
             SizedBox(
               width: 220,
               child: LinearProgressIndicator(value: _progress),
             ),
             const SizedBox(height: 8),
-            Text('${(_progress * 100).round()}%'),
+            Text(l10n.analysisPercent((_progress * 100).round())),
           ] else
             const CircularProgressIndicator(),
         ],
@@ -312,6 +319,7 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   }
 
   Widget _loaded(List<GameState> states) {
+    final l10n = appLocalizationsOf(context);
     final analysis = _analysis!;
     final current = _byEventIndex[_cursor];
     final cube = _cubeByEventIndex[_cursor];
@@ -392,13 +400,13 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
         _reserved(
           _captionSlotHeight,
           cube != null
-              ? _caption('Position before the cube decision')
+              ? _caption(l10n.analysisPositionBeforeCube)
               : preMove
               ? _preMoveCaption(showingBest: _showBest && hasBest)
               // A bare step (the opening, a roll, a cube/resign event) has no
               // move to frame; the slot still says what the board is showing
               // rather than sitting visibly blank.
-              : _caption('Position at this point in the game'),
+              : _caption(l10n.analysisPositionAtPoint),
         ),
         _reserved(_toggleSlotHeight, hasBest ? _playedBestToggle() : null),
         _reserved(
@@ -412,8 +420,10 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
         // Interactive controls must not inherit the verdict's scale-down
         // transform. Reserve their own full-sized strip at every cursor step.
         _reserved(
-          (MediaQuery.textScalerOf(context).scale(20) + 24)
-              .clamp(48.0, double.infinity),
+          (MediaQuery.textScalerOf(context).scale(20) + 24).clamp(
+            48.0,
+            double.infinity,
+          ),
           current == null && cube == null
               ? null
               : _decisionActions(current, cube),
@@ -454,11 +464,12 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
     Alignment alignment = Alignment.center,
   }) => FittedBox(fit: BoxFit.scaleDown, alignment: alignment, child: child);
 
-  Widget _preMoveCaption({required bool showingBest}) => _caption(
-    showingBest
-        ? 'Showing the best move on the position before the move'
-        : 'Showing position before the move',
-  );
+  Widget _preMoveCaption({required bool showingBest}) {
+    final l10n = appLocalizationsOf(context);
+    return _caption(
+      showingBest ? l10n.analysisShowingBestBefore : l10n.analysisShowingBefore,
+    );
+  }
 
   /// One eye-icon caption line, sized to fit the reserved slot.
   Widget _caption(String text) {
@@ -494,14 +505,15 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   /// keeps its size when the toggle comes and goes. Vertical padding is left to
   /// the reserved slot so the button can never overflow it.
   Widget _playedBestToggle() {
+    final l10n = appLocalizationsOf(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: _scaleToFit(
         SegmentedButton<bool>(
           showSelectedIcon: false,
-          segments: const [
-            ButtonSegment(value: false, label: Text('Played')),
-            ButtonSegment(value: true, label: Text('Best')),
+          segments: [
+            ButtonSegment(value: false, label: Text(l10n.analysisPlayed)),
+            ButtonSegment(value: true, label: Text(l10n.analysisBest)),
           ],
           selected: {_showBest},
           onSelectionChanged: (s) => setState(() => _showBest = s.first),
@@ -511,19 +523,20 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   }
 
   Widget _cursorBar(int length) {
+    final l10n = appLocalizationsOf(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           IconButton(
-            tooltip: 'Previous',
+            tooltip: l10n.analysisPrevious,
             icon: const Icon(Icons.chevron_left),
             onPressed: _cursor > 0 ? () => _setCursor(_cursor - 1) : null,
           ),
           Text('${_cursor + 1} / $length'),
           IconButton(
-            tooltip: 'Next',
+            tooltip: l10n.analysisNext,
             icon: const Icon(Icons.chevron_right),
             onPressed: _cursor < length - 1
                 ? () => _setCursor(_cursor + 1)
@@ -535,12 +548,15 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   }
 
   Widget _moveInfo(MoveAnalysis m) {
+    final l10n = appLocalizationsOf(context);
     final a = m.assessment;
-    final (color, label) = _markStyle(a.mark);
+    final (color, label) = _markStyle(a.mark, l10n);
     final lossText = a.isDecision
-        ? '  −${a.lossLabel}'
-        : ' · excluded from averages';
-    final best = a.best.checkerMoves.isEmpty ? '(no play)' : '${a.best}';
+        ? l10n.analysisMoveLoss(a.lossLabel)
+        : l10n.analysisExcludedFromAverages;
+    final best = a.best.checkerMoves.isEmpty
+        ? l10n.analysisNoPlay
+        : '${a.best}';
     return Material(
       color: Theme.of(context).colorScheme.surfaceContainerHighest,
       // The bar keeps its full width (it is a coloured band) while its CONTENT
@@ -559,13 +575,21 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
                 Icon(Icons.circle, size: 12, color: color),
                 const SizedBox(width: 8),
                 Text(
-                  '${_sideLabel(m.player)}: ${a.isDecision ? label : 'Forced'}$lossText',
+                  l10n.analysisVerdictLine(
+                    _sideLabel(m.player, l10n),
+                    a.isDecision ? label : l10n.analysisForced,
+                    lossText,
+                  ),
                   maxLines: 1,
                   softWrap: false,
                   style: TextStyle(color: color, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(width: 12),
-                Text('Best: $best', maxLines: 1, softWrap: false),
+                Text(
+                  l10n.analysisBestMoveLine(best),
+                  maxLines: 1,
+                  softWrap: false,
+                ),
               ],
             ),
             alignment: Alignment.centerLeft,
@@ -576,6 +600,7 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   }
 
   Widget _decisionActions(MoveAnalysis? move, CubeDecisionAnalysis? cube) {
+    final l10n = appLocalizationsOf(context);
     final buttonStyle = TextButton.styleFrom(
       minimumSize: const Size(48, 48),
       tapTargetSize: MaterialTapTargetSize.padded,
@@ -592,14 +617,17 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
               style: buttonStyle,
               onPressed: () => showMoveExplanation(
                 context,
-                title: '${_sideLabel(move.player)}: ${move.assessment.played}',
+                title:
+                    '${_sideLabel(move.player, l10n)}: ${move.assessment.played}',
                 explanation: move.eventIndex > 0
                     ? MoveExplanation.forAssessment(
-                        _states![move.eventIndex - 1], move.assessment)
+                        _states![move.eventIndex - 1],
+                        move.assessment,
+                      )
                     : null,
               ),
               icon: const Icon(Icons.school_outlined, size: 16),
-              label: const Text('Explain'),
+              label: Text(l10n.analysisExplain),
             ),
             if (move.assessment.isDecision && move.assessment.ranked.isNotEmpty)
               TextButton.icon(
@@ -607,7 +635,7 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
                 style: buttonStyle,
                 onPressed: () => _savePractice(move.eventIndex),
                 icon: const Icon(Icons.bookmark_add_outlined, size: 16),
-                label: const Text('Save for practice'),
+                label: Text(l10n.analysisSaveForPractice),
               ),
           ],
           if (cube != null) _cubeExplanationButton(cube, buttonStyle),
@@ -627,57 +655,73 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
       );
     } catch (error) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Could not save this decision: $error')),
-      );
+      final l10n = appLocalizationsOf(context);
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.analysisSaveError('$error'))));
     }
   }
 
-  Widget _cubeInfo(CubeDecisionAnalysis cube) => _scaleToFit(
-    Text(
-      '${_sideLabel(cube.player)}: ${CubeDecisionAnalysis.label(cube.action)} · '
-      '${cube.mark.name} · ${cube.lossLabel} loss',
+  Widget _cubeInfo(CubeDecisionAnalysis cube) {
+    final l10n = appLocalizationsOf(context);
+    return _scaleToFit(
+      Text(
+        l10n.analysisCubeInfo(
+          _sideLabel(cube.player, l10n),
+          _cubeActionLabel(cube.action, l10n),
+          _markStyle(cube.mark, l10n).$2,
+          cube.lossLabel,
+        ),
+      ),
+    );
+  }
+
+  Widget _cubeExplanationButton(
+    CubeDecisionAnalysis cube,
+    ButtonStyle style,
+  ) => TextButton(
+    style: style,
+    onPressed: () => showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(appLocalizationsOf(context).analysisCubeDecision),
+        content: Text(
+          '${appLocalizationsOf(context).analysisCubePlayed(_cubeActionLabel(cube.action, appLocalizationsOf(context)), (cube.chosenValue * 100).toStringAsFixed(2))}\n'
+          '${appLocalizationsOf(context).analysisCubeBest(_cubeActionLabel(cube.bestAction, appLocalizationsOf(context)), (cube.bestValue * 100).toStringAsFixed(2))}\n\n'
+          '${appLocalizationsOf(context).analysisCubeEstimate}',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(appLocalizationsOf(context).analysisClose),
+          ),
+        ],
+      ),
+    ),
+    child: Builder(
+      builder: (context) {
+        final l10n = appLocalizationsOf(context);
+        return Text(
+          l10n.analysisBestMoveLine(_cubeActionLabel(cube.bestAction, l10n)),
+        );
+      },
     ),
   );
-
-  Widget _cubeExplanationButton(CubeDecisionAnalysis cube, ButtonStyle style) =>
-      TextButton(
-        style: style,
-        onPressed: () => showDialog<void>(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Cube decision'),
-            content: Text(
-              'Played: ${CubeDecisionAnalysis.label(cube.action)} '
-              '(${(cube.chosenValue * 100).toStringAsFixed(2)}% match win).\n'
-              'Best: ${CubeDecisionAnalysis.label(cube.bestAction)} '
-              '(${(cube.bestValue * 100).toStringAsFixed(2)}% match win).\n\n'
-              '0-ply estimate from the acting player’s perspective. Assumes an '
-              'optimal take/pass response. Uses a 0.7 cube-life approximation '
-              'on the taken-double branch, not a full future-recube search. '
-              'Deeper analysis can change the answer.',
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Close'),
-              ),
-            ],
-          ),
-        ),
-        child: Text('Best: ${CubeDecisionAnalysis.label(cube.bestAction)}'),
-      );
 
   /// The scrollable full move history: every recorded line, with its mark dot +
   /// word + equity loss for assessed moves. The current step is highlighted and
   /// kept in view; any row taps to jump the cursor to that event.
   Widget _moveList() {
+    final l10n = appLocalizationsOf(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-          child: Text('Moves', style: Theme.of(context).textTheme.titleSmall),
+          child: Text(
+            l10n.analysisMoves,
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
         ),
         Expanded(
           child: ListView.builder(
@@ -691,6 +735,7 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   }
 
   Widget _moveRow(RecordLine line) {
+    final l10n = appLocalizationsOf(context);
     final index = line.eventIndex;
     final analysis = index == null ? null : _byEventIndex[index];
     final cube = index == null ? null : _cubeByEventIndex[index];
@@ -728,9 +773,9 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
               if (cube != null)
                 Flexible(
                   child: Text(
-                    '${cube.mark.name} −${cube.lossLabel}',
+                    '${_markStyle(cube.mark, l10n).$2} −${cube.lossLabel}',
                     style: TextStyle(
-                      color: _markStyle(cube.mark).$1,
+                      color: _markStyle(cube.mark, l10n).$1,
                       fontSize: 12,
                     ),
                   ),
@@ -745,10 +790,11 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   /// A mark-coloured dot + word (+ loss) for a move-list row — the shared P8
   /// idiom, so the mark reads without relying on colour alone.
   Widget _markChip(MoveAssessment a) {
+    final l10n = appLocalizationsOf(context);
     if (!a.isDecision) {
-      return const Text('Forced', style: TextStyle(fontSize: 12));
+      return Text(l10n.analysisForced, style: const TextStyle(fontSize: 12));
     }
-    final (color, label) = _markStyle(a.mark);
+    final (color, label) = _markStyle(a.mark, l10n);
     final lossText = a.mark == MoveMark.best ? '' : ' −${a.lossLabel}';
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -770,13 +816,14 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
     );
   }
 
-  (Color, String) _markStyle(MoveMark mark) => switch (mark) {
-    MoveMark.best => (Colors.green.shade700, 'Best'),
-    MoveMark.good => (Colors.green.shade600, 'Good'),
-    MoveMark.dubious => (Colors.amber.shade800, 'Dubious'),
-    MoveMark.error => (Colors.orange.shade800, 'Error'),
-    MoveMark.blunder => (Colors.red.shade700, 'Blunder'),
-  };
+  (Color, String) _markStyle(MoveMark mark, AppLocalizations l10n) =>
+      switch (mark) {
+        MoveMark.best => (Colors.green.shade700, l10n.analysisMarkBest),
+        MoveMark.good => (Colors.green.shade600, l10n.analysisMarkGood),
+        MoveMark.dubious => (Colors.amber.shade800, l10n.analysisMarkDubious),
+        MoveMark.error => (Colors.orange.shade800, l10n.analysisMarkError),
+        MoveMark.blunder => (Colors.red.shade700, l10n.analysisMarkBlunder),
+      };
 }
 
 /// The per-player summary: error rate (mean equity loss) and blunder count.
@@ -787,15 +834,16 @@ class _SummaryHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     return Material(
       color: Theme.of(context).colorScheme.surfaceContainerHighest,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: Row(
           children: [
-            Expanded(child: _sideSummary(context, Player.white, 'White')),
+            Expanded(child: _sideSummary(context, Player.white, l10n.white)),
             const SizedBox(width: 12),
-            Expanded(child: _sideSummary(context, Player.black, 'Black')),
+            Expanded(child: _sideSummary(context, Player.black, l10n.black)),
           ],
         ),
       ),
@@ -803,25 +851,44 @@ class _SummaryHeader extends StatelessWidget {
   }
 
   Widget _sideSummary(BuildContext context, Player p, String label) {
+    final l10n = appLocalizationsOf(context);
     final rate = analysis.errorRate(p);
     final blunders = analysis.blunderCount(p);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label, style: Theme.of(context).textTheme.titleSmall),
-        Text('Mean loss ${formatAssessmentLoss(rate, analysis.metric)}'),
-        Text('${analysis.decisionCount(p)} checker decisions'),
-        Text('Blunders $blunders'),
+        Text(
+          l10n.analysisSummaryMeanLoss(
+            formatAssessmentLoss(rate, analysis.metric),
+          ),
+        ),
+        Text(l10n.analysisSummaryCheckerDecisions(analysis.decisionCount(p))),
+        Text(l10n.analysisSummaryBlunders(blunders)),
         if (analysis.cubeDecisions.isNotEmpty)
           Text(
-            'Cube loss ${formatAssessmentLoss(analysis.cubeErrorRate(p), AssessmentMetric.matchWinningChance)}',
+            l10n.analysisSummaryCubeLoss(
+              formatAssessmentLoss(
+                analysis.cubeErrorRate(p),
+                AssessmentMetric.matchWinningChance,
+              ),
+            ),
           ),
       ],
     );
   }
 }
 
-String _sideLabel(Player p) => p == Player.white ? 'White' : 'Black';
+String _sideLabel(Player p, AppLocalizations l10n) =>
+    p == Player.white ? l10n.white : l10n.black;
+
+String _cubeActionLabel(CubeDecisionKind action, AppLocalizations l10n) =>
+    switch (action) {
+      CubeDecisionKind.noDouble => l10n.analysisCubeNoDouble,
+      CubeDecisionKind.double => l10n.analysisCubeDouble,
+      CubeDecisionKind.take => l10n.analysisCubeTake,
+      CubeDecisionKind.pass => l10n.analysisCubePass,
+    };
 
 /// The origin (source-ring) and FINAL-landing (destination-highlight) point sets
 /// for a recorded [move], derived by following same-checker chains.

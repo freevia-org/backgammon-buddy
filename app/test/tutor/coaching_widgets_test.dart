@@ -1,9 +1,69 @@
 import 'package:aigammon_app/tutor/coaching.dart';
 import 'package:aigammon_app/tutor/coaching_widgets.dart';
+import 'package:aigammon_app/tutor/move_assessment.dart';
+import 'package:aigammon_app/tutor/move_explanation_copy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  testWidgets('move explanation view renders localized structured copy', (
+    tester,
+  ) async {
+    final copy = MoveExplanationCopySet(
+      verdict: MoveExplanationCopy(MoveExplanationCopyId.topVerdict),
+      estimate: MoveExplanationCopy(
+        MoveExplanationCopyId.outcomeEstimate,
+        arguments: {
+          'loss': 0.0,
+          'metric': AssessmentMetric.cubelessEquity,
+          'win': .6,
+          'winGammon': .2,
+          'loseGammon': .1,
+          'matchWinningChance': null,
+          'forced': true,
+        },
+      ),
+      observations: [
+        MoveExplanationCopy(
+          MoveExplanationCopyId.observationHit,
+          arguments: {'count': 1},
+        ),
+      ],
+      plan: MoveExplanationCopy(MoveExplanationCopyId.homeBoardPlan),
+      comparisonSummary: null,
+      comparisonDetail: null,
+      summaryReason: MoveExplanationCopy(MoveExplanationCopyId.homeBoardPlan),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SingleChildScrollView(
+            child: MoveExplanationView(
+              explanation: MoveExplanation(
+                verdict: 'legacy verdict',
+                estimate: 'legacy estimate',
+                observations: [],
+                comparison: null,
+                plan: 'legacy plan',
+                shortReason: 'legacy summary',
+                copy: copy,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('A top choice for this position.'), findsOneWidget);
+    expect(find.textContaining('Strengthen your home board.'), findsOneWidget);
+    expect(find.textContaining('Hits 1 opposing checker'), findsOneWidget);
+    expect(find.text('legacy verdict'), findsNothing);
+    await tester.tap(find.text('Estimates and how they work'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('After this play: 60.0% wins'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('tutoring styles apply presets and switches become Custom', (
     tester,
   ) async {

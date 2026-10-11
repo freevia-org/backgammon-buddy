@@ -9,6 +9,8 @@ import '../data/match_repository.dart';
 import '../data/practice_repository.dart';
 import '../data/recorded_match_context.dart';
 import '../engine/engine_provider.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/localization_lookup.dart';
 import '../tutor/coaching.dart';
 import '../tutor/game_analyzer.dart';
 import '../tutor/move_assessment.dart';
@@ -39,9 +41,10 @@ class _LearningScreenState extends ConsumerState<LearningScreen> {
   }
 
   Future<void> _analyse() async {
+    final l10n = appLocalizationsOf(context);
     setState(() {
       _busy = true;
-      _status = 'Analysing saved games…';
+      _status = l10n.learningAnalysisStarting;
     });
     var completed = 0, failed = 0;
     try {
@@ -50,8 +53,9 @@ class _LearningScreenState extends ConsumerState<LearningScreen> {
           .read(databaseProvider)
           .select(ref.read(databaseProvider).games)
           .get();
-      final analyzer =
-          GameAnalyzer(TutorService(ref.read(engineFacadeProvider)));
+      final analyzer = GameAnalyzer(
+        TutorService(ref.read(engineFacadeProvider)),
+      );
       for (final row in games) {
         if (!mounted) return;
         final match = await repo.loadMatch(row.matchId);
@@ -59,11 +63,16 @@ class _LearningScreenState extends ConsumerState<LearningScreen> {
         if (row.analysisJson != null) {
           try {
             final cached = GameAnalysis.fromJson(
-                (jsonDecode(row.analysisJson!) as Map).cast<String, dynamic>());
+              (jsonDecode(row.analysisJson!) as Map).cast<String, dynamic>(),
+            );
             if (cached.matchesContext(score, match.cubeless)) continue;
-          } on FormatException {/* Stale cache: recompute. */} on TypeError {
+          } on FormatException {
+            /* Stale cache: recompute. */
+          } on TypeError {
             /* Malformed derived cache: recompute. */
-          } on ArgumentError {/* Invalid enum values: recompute. */}
+          } on ArgumentError {
+            /* Invalid enum values: recompute. */
+          }
         }
         try {
           final analysis = await analyzer.analyze(
@@ -79,8 +88,11 @@ class _LearningScreenState extends ConsumerState<LearningScreen> {
           failed++;
         }
         if (mounted) {
-          setState(() => _status =
-              'Analysed $completed games${failed == 0 ? '' : ' · $failed unavailable'}.');
+          setState(
+            () => _status = failed == 0
+                ? l10n.learningAnalysisComplete(completed)
+                : l10n.learningAnalysisProgress(completed, failed),
+          );
         }
       }
     } catch (_) {
@@ -90,13 +102,15 @@ class _LearningScreenState extends ConsumerState<LearningScreen> {
       setState(() {
         _busy = false;
         _reload();
-        _status =
-            'Analysed $completed games${failed == 0 ? '.' : '; $failed could not be analysed. Try again when the engine is ready.'}';
+        _status = failed == 0
+            ? l10n.learningAnalysisComplete(completed)
+            : l10n.learningAnalysisCompleteWithErrors(completed, failed);
       });
     }
   }
 
   Future<void> _saveMistakes(List<LearningDecision> decisions) async {
+    final l10n = appLocalizationsOf(context);
     setState(() {
       _busy = true;
       _status = null;
@@ -104,18 +118,20 @@ class _LearningScreenState extends ConsumerState<LearningScreen> {
     var saved = 0;
     try {
       for (final decision in decisions.where((d) => d.isMistake)) {
-        await ref.read(practiceRepositoryProvider).saveMistake(
-            gameId: decision.gameId, eventIndex: decision.eventIndex);
+        await ref
+            .read(practiceRepositoryProvider)
+            .saveMistake(
+              gameId: decision.gameId,
+              eventIndex: decision.eventIndex,
+            );
         saved++;
       }
       if (mounted) {
-        setState(() => _status =
-            '$saved decisions are in your practice list. Existing saves are kept once.');
+        setState(() => _status = l10n.learningSavedMistakes(saved));
       }
     } catch (_) {
       if (mounted) {
-        setState(() => _status =
-            'Some decisions could not be saved. Completed saves are kept; retry safely.');
+        setState(() => _status = l10n.learningSaveMistakesFailed);
       }
     } finally {
       if (mounted) {
@@ -128,297 +144,375 @@ class _LearningScreenState extends ConsumerState<LearningScreen> {
   }
 
   Future<void> _practice(int id) async {
-    await Navigator.of(context).push(MaterialPageRoute<void>(
-        builder: (_) => PracticeScreen(positionId: id)));
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => PracticeScreen(positionId: id)),
+    );
     if (mounted) setState(_reload);
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: const Text('Learning & practice'), actions: [
+  Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n.learningPractice),
+        actions: [
           IconButton(
-              tooltip: 'Refresh learning progress',
-              onPressed: _busy ? null : () => setState(_reload),
-              icon: const Icon(Icons.refresh)),
+            tooltip: l10n.learningRefreshTooltip,
+            onPressed: _busy ? null : () => setState(_reload),
+            icon: const Icon(Icons.refresh),
+          ),
           PopupMenuButton<String>(
-              tooltip: 'Learning options',
-              onSelected: (_) => _resetProgress(),
-              itemBuilder: (_) => [
-                    PopupMenuItem(
-                        enabled: !_busy,
-                        value: 'reset',
-                        child: const Text('Reset practice progress'))
-                  ]),
-        ]),
-        body: FutureBuilder<LearningSnapshot>(
-            future: _snapshot,
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Center(
-                    child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  const Text('Could not load learning progress.'),
+            tooltip: l10n.learningOptions,
+            onSelected: (_) => _resetProgress(),
+            itemBuilder: (_) => [
+              PopupMenuItem(
+                enabled: !_busy,
+                value: 'reset',
+                child: Text(l10n.learningResetMenu),
+              ),
+            ],
+          ),
+        ],
+      ),
+      body: FutureBuilder<LearningSnapshot>(
+        future: _snapshot,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(l10n.learningLoadFailed),
                   TextButton(
-                      onPressed: () => setState(_reload),
-                      child: const Text('Retry')),
-                ]));
-              }
-              if (!snapshot.hasData) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              final data = snapshot.data!;
-              final decisions = data.decisions
-                  .where((d) =>
-                      (_side == null || d.player == _side) &&
-                      (!_humansOnly || d.human))
-                  .toList();
-              final mistakeCount = decisions.where((d) => d.isMistake).length;
-              final positions = data.positions
-                  .where((p) => _side == null || p.player == _side!.name)
-                  .toList();
-              final positionIds = positions.map((p) => p.id).toSet();
-              final attempts = data.attempts
-                  .where((a) => positionIds.contains(a.positionId))
-                  .toList();
-              final due = positions
-                  .where((p) => !p.dueAt.isAfter(DateTime.now()))
-                  .toList();
-              final themes = <CoachingTheme, int>{};
-              for (final d in decisions.where((d) => d.isMistake)) {
-                for (final theme in d.themes) {
-                  themes.update(theme, (n) => n + 1, ifAbsent: () => 1);
-                }
-              }
-              final orderedThemes = themes.entries.toList()
-                ..sort((a, b) => b.value.compareTo(a.value));
-              return SafeArea(
-                  child: SingleChildScrollView(
-                padding: const EdgeInsets.all(20),
-                child: Center(
-                    child: ConstrainedBox(
+                    onPressed: () => setState(_reload),
+                    child: Text(l10n.actionRetry),
+                  ),
+                ],
+              ),
+            );
+          }
+          if (!snapshot.hasData) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          final data = snapshot.data!;
+          final decisions = data.decisions
+              .where(
+                (d) =>
+                    (_side == null || d.player == _side) &&
+                    (!_humansOnly || d.human),
+              )
+              .toList();
+          final mistakeCount = decisions.where((d) => d.isMistake).length;
+          final positions = data.positions
+              .where((p) => _side == null || p.player == _side!.name)
+              .toList();
+          final positionIds = positions.map((p) => p.id).toSet();
+          final attempts = data.attempts
+              .where((a) => positionIds.contains(a.positionId))
+              .toList();
+          final due = positions
+              .where((p) => !p.dueAt.isAfter(DateTime.now()))
+              .toList();
+          final themes = <CoachingTheme, int>{};
+          for (final d in decisions.where((d) => d.isMistake)) {
+            for (final theme in d.themes) {
+              themes.update(theme, (n) => n + 1, ifAbsent: () => 1);
+            }
+          }
+          final orderedThemes = themes.entries.toList()
+            ..sort((a, b) => b.value.compareTo(a.value));
+          return SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(20),
+              child: Center(
+                child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 720),
                   child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Learn from your decisions',
-                            style: Theme.of(context).textTheme.headlineSmall),
-                        const SizedBox(height: 8),
-                        const Text(
-                            'Progress stays on this device. Review recurring themes, then retry saved positions '
-                            'without seeing the answer. White and Black can be reviewed separately.'),
-                        const SizedBox(height: 12),
-                        Wrap(spacing: 8, children: [
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.learningHeading,
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(l10n.learningIntro),
+                      const SizedBox(height: 12),
+                      Wrap(
+                        spacing: 8,
+                        children: [
                           for (final side in <Player?>[
                             null,
                             Player.white,
-                            Player.black
+                            Player.black,
                           ])
                             ChoiceChip(
-                                label: Text(side == null
-                                    ? 'Both sides'
+                              label: Text(
+                                side == null
+                                    ? l10n.learningBothSides
                                     : side == Player.white
-                                        ? 'White'
-                                        : 'Black'),
-                                selected: _side == side,
-                                onSelected: (_) =>
-                                    setState(() => _side = side)),
-                        ]),
-                        SwitchListTile(
-                            contentPadding: EdgeInsets.zero,
-                            title: const Text('Human decisions only'),
-                            subtitle: const Text(
-                                'Turn off to include computer and remote-player decisions'),
-                            value: _humansOnly,
-                            onChanged: (v) => setState(() => _humansOnly = v)),
-                        Text(
-                            '${decisions.length} decisions · $mistakeCount to improve · '
-                            '${decisions.where((d) => d.assessment.mark == MoveMark.blunder).length} blunders'),
-                        for (final metric in AssessmentMetric.values) ...[
-                          if (decisions
-                              .any((d) => d.assessment.metric == metric))
-                            Text(_averageLabel(
-                                decisions
-                                    .where((d) => d.assessment.metric == metric)
-                                    .toList(),
-                                metric)),
+                                    ? l10n.white
+                                    : l10n.black,
+                              ),
+                              selected: _side == side,
+                              onSelected: (_) => setState(() => _side = side),
+                            ),
                         ],
-                        const Text(
-                            'Forced plays are excluded. These are engine estimates, not a tournament rating.'),
-                        const SizedBox(height: 16),
-                        if (_busy) const LinearProgressIndicator(),
-                        if (_status != null)
-                          Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 8),
-                              child: Text(_status!)),
-                        if (data.gamesNeedingAnalysis > 0) ...[
+                      ),
+                      SwitchListTile(
+                        contentPadding: EdgeInsets.zero,
+                        title: Text(l10n.learningHumansOnly),
+                        subtitle: Text(l10n.learningHumanOnlyHelp),
+                        value: _humansOnly,
+                        onChanged: (v) => setState(() => _humansOnly = v),
+                      ),
+                      Text(
+                        l10n.learningDecisionSummary(
+                          decisions.length,
+                          mistakeCount,
+                          decisions
+                              .where(
+                                (d) => d.assessment.mark == MoveMark.blunder,
+                              )
+                              .length,
+                        ),
+                      ),
+                      for (final metric in AssessmentMetric.values) ...[
+                        if (decisions.any((d) => d.assessment.metric == metric))
                           Text(
-                              '${data.gamesNeedingAnalysis} saved games need analysis or refreshed analysis.'),
-                          FilledButton.icon(
-                              onPressed: _busy ? null : _analyse,
-                              icon: const Icon(Icons.analytics_outlined),
-                              label: const Text('Analyse saved games')),
-                        ],
-                        if (data.decisions.isEmpty &&
-                            data.gamesNeedingAnalysis == 0)
-                          const Text(
-                              'Play and finish a game to build your learning profile. You can also save individual '
-                              'decisions from a game’s replay.'),
-                        OutlinedButton.icon(
-                            onPressed: () async {
-                              await Navigator.of(context).push(
-                                  MaterialPageRoute<void>(
-                                      builder: (_) => const HistoryScreen()));
-                              if (mounted) setState(_reload);
-                            },
-                            icon: const Icon(Icons.history),
-                            label: const Text('Open match history')),
-                        const SizedBox(height: 20),
-                        Text('Recurring themes',
-                            style: Theme.of(context).textTheme.titleLarge),
-                        const SizedBox(height: 8),
-                        if (orderedThemes.isEmpty)
-                          const Text(
-                              'No recurring mistake themes in this selection yet.'),
-                        for (final theme in orderedThemes.take(6))
-                          ListTile(
-                              contentPadding: EdgeInsets.zero,
-                              title: Text(_themeLabel(theme.key)),
-                              subtitle: Text(
-                                  '${theme.value} decisions to revisit. A position can have more than one theme.')),
-                        FilledButton(
-                            onPressed: _busy || mistakeCount == 0
-                                ? null
-                                : () => _saveMistakes(decisions),
-                            child:
-                                const Text('Save these mistakes for practice')),
-                        const SizedBox(height: 24),
-                        Text('Spaced practice',
-                            style: Theme.of(context).textTheme.titleLarge),
-                        const SizedBox(height: 8),
+                            _averageLabel(
+                              decisions
+                                  .where((d) => d.assessment.metric == metric)
+                                  .toList(),
+                              metric,
+                              l10n,
+                            ),
+                          ),
+                      ],
+                      Text(l10n.learningForcedDisclaimer),
+                      const SizedBox(height: 16),
+                      if (_busy) const LinearProgressIndicator(),
+                      if (_status != null)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Text(_status!),
+                        ),
+                      if (data.gamesNeedingAnalysis > 0) ...[
                         Text(
-                            '${due.length} due now · ${positions.length} saved · ${attempts.length} attempts · '
-                            '${attempts.where((a) => a.passed).length} successful recalls'),
-                        const Text(
-                            'Successful due reviews return after 1, 3, 7, 14 and 30 days. '
-                            'Mistakes or revealed answers return after 10 minutes. Early repeats do not advance the interval.'),
-                        const Text(
-                            'Practice results reflect your answers here, even when the original position belonged to an opponent.'),
-                        if (positions.isEmpty)
-                          const Padding(
-                              padding: EdgeInsets.only(top: 12),
-                              child: Text(
-                                  'Save a decision from replay, or use the mistake button above.')),
-                        for (final position in positions)
-                          Card(
-                              child: ListTile(
+                          l10n.learningGamesNeedingAnalysis(
+                            data.gamesNeedingAnalysis,
+                          ),
+                        ),
+                        FilledButton.icon(
+                          onPressed: _busy ? null : _analyse,
+                          icon: const Icon(Icons.analytics_outlined),
+                          label: Text(l10n.learningAnalyseSavedGames),
+                        ),
+                      ],
+                      if (data.decisions.isEmpty &&
+                          data.gamesNeedingAnalysis == 0)
+                        Text(l10n.learningEmptyProfile),
+                      OutlinedButton.icon(
+                        onPressed: () async {
+                          await Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (_) => const HistoryScreen(),
+                            ),
+                          );
+                          if (mounted) setState(_reload);
+                        },
+                        icon: const Icon(Icons.history),
+                        label: Text(l10n.learningOpenHistory),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        l10n.learningRecurringThemes,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 8),
+                      if (orderedThemes.isEmpty) Text(l10n.learningNoThemes),
+                      for (final theme in orderedThemes.take(6))
+                        ListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(_themeLabel(theme.key, l10n)),
+                          subtitle: Text(
+                            l10n.learningThemeDecisions(theme.value),
+                          ),
+                        ),
+                      FilledButton(
+                        onPressed: _busy || mistakeCount == 0
+                            ? null
+                            : () => _saveMistakes(decisions),
+                        child: Text(l10n.learningSaveMistakes),
+                      ),
+                      const SizedBox(height: 24),
+                      Text(
+                        l10n.learningSpacedPractice,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        l10n.learningPracticeCounts(
+                          due.length,
+                          positions.length,
+                          attempts.length,
+                          attempts.where((a) => a.passed).length,
+                        ),
+                      ),
+                      Text(l10n.learningIntervalsHelp),
+                      Text(l10n.learningAnswerContext),
+                      if (positions.isEmpty)
+                        Padding(
+                          padding: EdgeInsets.only(top: 12),
+                          child: Text(l10n.learningNoSavedPositions),
+                        ),
+                      for (final position in positions)
+                        Card(
+                          child: ListTile(
                             title: Text(
-                                '${position.player == 'white' ? 'White' : 'Black'} decision · game ${position.gameId}'),
+                              l10n.learningPositionTitle(
+                                position.player == 'white'
+                                    ? l10n.white
+                                    : l10n.black,
+                                position.gameId,
+                              ),
+                            ),
                             subtitle: Text(
-                                '${position.dueAt.isAfter(DateTime.now()) ? 'Review ${_date(position.dueAt)}' : 'Ready to review'}'
-                                ' · ${position.successStreak} successful due reviews'),
+                              '${position.dueAt.isAfter(DateTime.now()) ? l10n.learningReviewDue(_date(context, position.dueAt)) : l10n.learningReadyToReview}'
+                              ' · ${l10n.learningSuccessStreak(position.successStreak)}',
+                            ),
                             onTap: _busy ? null : () => _practice(position.id),
                             trailing: IconButton(
-                                tooltip: 'Remove saved decision',
-                                icon: const Icon(Icons.delete_outline),
-                                onPressed:
-                                    _busy ? null : () => _delete(position)),
-                          )),
-                        if (attempts.isNotEmpty) ...[
-                          const SizedBox(height: 20),
-                          Text('Recent practice',
-                              style: Theme.of(context).textTheme.titleLarge),
-                          for (final attempt in attempts.take(8))
-                            ListTile(
-                                contentPadding: EdgeInsets.zero,
-                                title: Text(attempt.revealed
-                                    ? 'Answer revealed'
-                                    : attempt.passed
-                                        ? 'Successful recall'
-                                        : 'Try this decision again'),
-                                subtitle: Text(
-                                    '${_date(attempt.attemptedAt)} · saved position ${attempt.positionId}')),
-                        ],
-                      ]),
-                )),
-              ));
-            }),
-      );
+                              tooltip: l10n.learningRemoveTooltip,
+                              icon: const Icon(Icons.delete_outline),
+                              onPressed: _busy ? null : () => _delete(position),
+                            ),
+                          ),
+                        ),
+                      if (attempts.isNotEmpty) ...[
+                        const SizedBox(height: 20),
+                        Text(
+                          l10n.learningRecentPractice,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        for (final attempt in attempts.take(8))
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            title: Text(
+                              attempt.revealed
+                                  ? l10n.learningAnswerRevealed
+                                  : attempt.passed
+                                  ? l10n.learningSuccessfulRecall
+                                  : l10n.learningTryAgain,
+                            ),
+                            subtitle: Text(
+                              l10n.learningAttemptSubtitle(
+                                _date(context, attempt.attemptedAt),
+                                attempt.positionId,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
 
   Future<void> _delete(PracticePositionRow row) async {
+    final l10n = appLocalizationsOf(context);
     final confirmed = await showDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: const Text('Remove this exercise?'),
-              content: const Text(
-                  'This removes its practice attempts. The original game remains in history.'),
-              actions: [
-                TextButton(
-                    onPressed: () => Navigator.pop(context, false),
-                    child: const Text('Cancel')),
-                TextButton(
-                    onPressed: () => Navigator.pop(context, true),
-                    child: const Text('Remove'))
-              ],
-            ));
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.learningRemoveTitle),
+        content: Text(l10n.learningRemoveBody),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(l10n.actionCancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(l10n.actionRemove),
+          ),
+        ],
+      ),
+    );
     if (confirmed != true) return;
     try {
       await ref.read(practiceRepositoryProvider).delete(row.id);
       if (mounted) setState(_reload);
     } catch (_) {
-      if (mounted) setState(() => _status = 'Could not remove this exercise.');
+      if (mounted) setState(() => _status = l10n.learningRemoveFailed);
     }
   }
 
   Future<void> _resetProgress() async {
+    final l10n = appLocalizationsOf(context);
     final confirmed = await showDialog<bool>(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: const Text('Reset practice progress?'),
-              content: const Text(
-                  'All practice attempts and review intervals will be removed. '
-                  'Your saved exercises and match history are kept; every exercise becomes due now.'),
-              actions: [
-                TextButton(
-                    onPressed: () => Navigator.pop(context, false),
-                    child: const Text('Cancel')),
-                TextButton(
-                    onPressed: () => Navigator.pop(context, true),
-                    child: const Text('Reset progress'))
-              ],
-            ));
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.learningResetTitle),
+        content: Text(l10n.learningResetBody),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(l10n.actionCancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(l10n.learningResetAction),
+          ),
+        ],
+      ),
+    );
     if (confirmed != true) return;
     try {
       await ref.read(practiceRepositoryProvider).resetProgress();
       if (mounted) setState(_reload);
     } catch (_) {
       if (mounted) {
-        setState(() => _status = 'Could not reset practice progress.');
+        setState(() => _status = l10n.learningResetFailed);
       }
     }
   }
 }
 
 String _averageLabel(
-    List<LearningDecision> decisions, AssessmentMetric metric) {
+  List<LearningDecision> decisions,
+  AssessmentMetric metric,
+  AppLocalizations l10n,
+) {
   final average =
       decisions.fold<double>(0, (sum, d) => sum + d.assessment.equityLoss) /
-          decisions.length;
-  return 'Average loss (${decisions.length} decisions): ${formatAssessmentLoss(average, metric)}';
+      decisions.length;
+  return l10n.learningAverageLoss(
+    decisions.length,
+    formatAssessmentLoss(average, metric),
+  );
 }
 
-String _themeLabel(CoachingTheme theme) => switch (theme) {
-      CoachingTheme.hitting => 'Hitting and tempo',
-      CoachingTheme.safety => 'Blots and safety',
-      CoachingTheme.pointMaking => 'Making points',
-      CoachingTheme.prime => 'Primes and blockades',
-      CoachingTheme.anchor => 'Anchors and escape',
-      CoachingTheme.race => 'Racing efficiency',
-      CoachingTheme.bearOff => 'Bearing off',
-      CoachingTheme.barEntry => 'Entering from the bar',
-      CoachingTheme.cube => 'Cube decisions',
+String _themeLabel(CoachingTheme theme, AppLocalizations l10n) =>
+    switch (theme) {
+      CoachingTheme.hitting => l10n.learningThemeHitting,
+      CoachingTheme.safety => l10n.learningThemeSafety,
+      CoachingTheme.pointMaking => l10n.learningThemePointMaking,
+      CoachingTheme.prime => l10n.learningThemePrime,
+      CoachingTheme.anchor => l10n.learningThemeAnchor,
+      CoachingTheme.race => l10n.learningThemeRace,
+      CoachingTheme.bearOff => l10n.learningThemeBearOff,
+      CoachingTheme.barEntry => l10n.learningThemeBarEntry,
+      CoachingTheme.cube => l10n.learningThemeCube,
     };
 
-String _date(DateTime date) {
-  final d = date.toLocal();
-  return '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')} '
-      '${d.hour.toString().padLeft(2, '0')}:${d.minute.toString().padLeft(2, '0')}';
+String _date(BuildContext context, DateTime date) {
+  final local = date.toLocal();
+  final material = MaterialLocalizations.of(context);
+  return '${material.formatMediumDate(local)} '
+      '${material.formatTimeOfDay(TimeOfDay.fromDateTime(local), alwaysUse24HourFormat: MediaQuery.alwaysUse24HourFormatOf(context))}';
 }

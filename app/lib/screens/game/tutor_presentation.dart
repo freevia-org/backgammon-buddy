@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import '../../game/player_agent.dart';
 import '../../tutor/coaching.dart';
 import '../../tutor/move_assessment.dart';
+import '../../tutor/move_explanation_copy.dart';
 import '../../tutor/tutor_service.dart';
 
 /// The visible tutor decision, separate from background historical grading.
@@ -21,7 +22,7 @@ class TutorPresentation extends ChangeNotifier {
   int _sequence = 0;
   bool _disposed = false;
   int _positionSequence = 0;
-  String? positionAssessment;
+  MoveExplanationCopy? positionAssessment;
 
   int? selectedEventIndex;
   MoveAssessment? stagedAssessment;
@@ -75,13 +76,21 @@ class TutorPresentation extends ChangeNotifier {
                 value == null) {
               return;
             }
-            final side = position.turn == Player.white ? 'White' : 'Black';
-            final opponent = position.turn == Player.white ? 'Black' : 'White';
             positionAssessment = value.win > .57
-                ? '$side has the estimated edge.'
+                ? MoveExplanationCopy(
+                    MoveExplanationCopyId.positionSideEdge,
+                    arguments: {'side': position.turn},
+                  )
                 : value.win < .43
-                ? '$opponent has the estimated edge.'
-                : 'The position is roughly even.';
+                ? MoveExplanationCopy(
+                    MoveExplanationCopyId.positionSideEdge,
+                    arguments: {
+                      'side': position.turn == Player.white
+                          ? Player.black
+                          : Player.white,
+                    },
+                  )
+                : MoveExplanationCopy(MoveExplanationCopyId.positionEven);
             notifyListeners();
           }),
         );

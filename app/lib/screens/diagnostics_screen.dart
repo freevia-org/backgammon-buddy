@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import '../branding/app_version.dart';
 import '../diagnostics/crash_log.dart';
 import '../feedback/feedback_link.dart';
+import '../l10n/localization_lookup.dart';
 
 /// Shows the rolling on-device error log and lets the user get it OUT.
 ///
@@ -41,7 +42,9 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
     await Clipboard.setData(ClipboardData(text: _log.asText()));
     if (!mounted) return;
     messenger.showSnackBar(
-      const SnackBar(content: Text('Diagnostics copied to clipboard')),
+      SnackBar(
+        content: Text(appLocalizationsOf(context).diagnosticsCopySuccess),
+      ),
     );
   }
 
@@ -62,35 +65,32 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
     try {
       final confirmed = await showDialog<bool>(
         context: context,
-        builder: (context) => AlertDialog(
-          scrollable: true,
-          title: const Text('Review diagnostic report'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Opening the draft sends the details below to GitHub, '
-                'including the app version, platform and any error details. '
-                'No public issue is posted until you submit it there. '
-                'If these details contain private information, cancel and '
-                'use Copy to prepare a report yourself.',
+        builder: (context) {
+          final l10n = appLocalizationsOf(context);
+          return AlertDialog(
+            scrollable: true,
+            title: Text(l10n.diagnosticsReviewTitle),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(l10n.diagnosticsPrivacyNotice),
+                const SizedBox(height: 16),
+                SelectableText(feedbackDraftPreviewText(uri)),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context, false),
+                child: Text(l10n.diagnosticsCancel),
               ),
-              const SizedBox(height: 16),
-              SelectableText(feedbackDraftPreviewText(uri)),
+              FilledButton(
+                onPressed: () => Navigator.pop(context, true),
+                child: Text(l10n.diagnosticsOpenGitHub),
+              ),
             ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: const Text('Cancel'),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: const Text('Open GitHub'),
-            ),
-          ],
-        ),
+          );
+        },
       );
       if (confirmed != true || !mounted) return;
       final open = widget.openUrl ?? openExternally;
@@ -107,12 +107,13 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     final entries = _log.entries.reversed.toList(growable: false);
     final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Diagnostics'),
+        title: Text(l10n.diagnosticsTitle),
         actions: [
           // Always enabled, unlike Copy and Clear: "there is nothing in the log
           // and the app is still misbehaving" is a report worth sending, and
@@ -120,17 +121,17 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
           IconButton(
             onPressed: _reporting ? null : _reportIssue,
             icon: const Icon(Icons.outgoing_mail),
-            tooltip: 'Report an issue on GitHub',
+            tooltip: l10n.diagnosticsReportTooltip,
           ),
           IconButton(
             onPressed: entries.isEmpty ? null : _copy,
             icon: const Icon(Icons.copy_all),
-            tooltip: 'Copy to clipboard',
+            tooltip: l10n.diagnosticsCopyTooltip,
           ),
           IconButton(
             onPressed: entries.isEmpty ? null : _clear,
             icon: const Icon(Icons.delete_outline),
-            tooltip: 'Clear log',
+            tooltip: l10n.diagnosticsClearTooltip,
           ),
         ],
       ),
@@ -140,12 +141,11 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(32),
                   child: Text(
-                    'No errors recorded.\n\nIf something goes wrong, it is '
-                    'logged here — come back and copy the details into a bug '
-                    'report.',
+                    l10n.diagnosticsEmpty,
                     textAlign: TextAlign.center,
-                    style: theme.textTheme.bodyMedium
-                        ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
                   ),
                 ),
               )
@@ -161,11 +161,14 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
                       Text(
                         '${e.time.toIso8601String()}  ·  ${e.source}',
                         style: theme.textTheme.labelSmall?.copyWith(
-                            color: theme.colorScheme.onSurfaceVariant),
+                          color: theme.colorScheme.onSurfaceVariant,
+                        ),
                       ),
                       const SizedBox(height: 4),
-                      SelectableText(e.error,
-                          style: theme.textTheme.bodyMedium),
+                      SelectableText(
+                        e.error,
+                        style: theme.textTheme.bodyMedium,
+                      ),
                       if (e.stack != null) ...[
                         const SizedBox(height: 8),
                         // Stacks are wide; let them scroll sideways rather

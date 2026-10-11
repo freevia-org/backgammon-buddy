@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Οι αριθμοί των σημείων στις εκπαιδευτικές σημειώσεις μετρώνται από την περιοχή του παίκτη που κινείται.",
   "tutorHittingRollNote": "Οι μετρήσεις ζαριών που επιτρέπουν χτύπημα περιλαμβάνουν και τις 36 διατεταγμένες εκβάσεις και νόμιμα άμεσα ή έμμεσα χτυπήματα· δείχνουν ευκαιρίες, όχι πρόβλεψη της επιλογής του αντιπάλου.",
   "tutorNoEvaluatedAlternatives": "Δεν υπάρχουν αξιολογημένες εναλλακτικές για αυτή την κίνηση.",
-  "tutorForcedPassNoDecision": "Το υποχρεωτικό πάσο δεν περιλαμβάνει επιλογή κίνησης πιονιών."
+  "tutorForcedPassNoDecision": "Το υποχρεωτικό πάσο δεν περιλαμβάνει επιλογή κίνησης πιονιών.",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "settingsReset": "Επαναφορά",
+  "settingsAppLanguage": "Γλώσσα εφαρμογής",
+  "settingsTheme": "Θέμα",
+  "settingsThemeSystem": "Σύστημα",
+  "settingsThemeLight": "Ανοιχτό",
+  "settingsThemeDark": "Σκούρο",
+  "settingsAnimationSpeed": "Ταχύτητα κινούμενων εικόνων",
+  "settingsAnimationNone": "Καμία",
+  "settingsAnimationNormal": "Κανονική",
+  "settingsAnimationFast": "Γρήγορη",
+  "settingsDiceRollAnimation": "Κίνηση ρίψης ζαριών",
+  "settingsDiceRollAnimationHelp": "Τα ζάρια κυλούν πριν από κάθε ρίψη",
+  "settingsDefaultMatchLength": "Προεπιλεγμένη διάρκεια αγώνα",
+  "settingsDefaultDifficulty": "Προεπιλεγμένη δυσκολία",
+  "settingsDifficultyEasy": "Εύκολη",
+  "settingsDifficultyMedium": "Μεσαία",
+  "settingsDifficultyHard": "Δύσκολη",
+  "settingsDifficultyExpert": "Έμπειρη",
+  "settingsTutorModeDefault": "Προεπιλεγμένη λειτουργία προπονητή",
+  "settingsTutorAuto": "Αυτόματα",
+  "settingsTutorOn": "Ενεργό",
+  "settingsTutorOff": "Ανενεργό",
+  "settingsTutorModeHelp": "Η επιλογή Αυτόματα ενεργοποιεί τον προπονητή σε κάθε επίπεδο δυσκολίας του υπολογιστή. Οι επιλογές Ενεργό και Ανενεργό ορίζουν την αρχική ρύθμιση για τοπικούς αγώνες. Τα κοντινά και online παιχνίδια είναι χωρίς βοήθεια· μπορείτε να αναλύσετε τις αποθηκευμένες παρτίδες αργότερα. Οι παρακάτω προτιμήσεις εκμάθησης αποθηκεύονται σε αυτή τη συσκευή.",
+  "settingsTutorPreferences": "Προτιμήσεις προπονητή",
+  "settingsTutorPreferencesSubtitle": "Αποθηκευμένες προεπιλογές για μελλοντικούς αγώνες",
+  "settingsTutorSaveError": "Δεν ήταν δυνατή η αποθήκευση των προτιμήσεων προπονητή.",
+  "settingsGameplay": "Παιχνίδι",
+  "settingsMoveHighlights": "Επισήμανση κινήσεων",
+  "settingsMoveHighlightsHelp": "Κυκλώνει τα πούλια που μπορούν να μετακινηθούν και φωτίζει τους προορισμούς",
+  "settingsDragToMove": "Μετακίνηση με σύρσιμο",
+  "settingsDragToMoveHelp": "Σύρετε ένα πούλι στον προορισμό του (λειτουργούν και τα πατήματα)",
+  "settingsCombinedMoves": "Συνδυασμένες κινήσεις",
+  "settingsCombinedMovesHelp": "Με ένα πάτημα, μετακινείται ένα πούλι με βάση και τα δύο ζάρια",
+  "settingsRotateBoard": "Περιστροφή ταμπλό ανά σειρά",
+  "settingsRotateBoardHelp": "Σε παιχνίδι με μία συσκευή, γυρίζει το ταμπλό προς τον παίκτη που παίζει",
+  "settingsPassDevice": "Οθόνη παράδοσης συσκευής",
+  "settingsPassDeviceHelp": "Κρύβει το ταμπλό όταν παραδίδετε τη συσκευή στον άλλο παίκτη",
+  "settingsShowScore": "Εμφάνιση σκορ",
+  "settingsShowScoreHelp": "Εμφανίζει το τρέχον σκορ αγώνα στην κεφαλίδα",
+  "settingsBuddyMode": "Λειτουργία Buddy",
+  "settingsBuddyTerse": "Σύντομη",
+  "settingsBuddyFriendly": "Φιλική",
+  "settingsBuddyTerseHelp": "Πώς εκφωνεί ο Buddy μια κίνηση: «13/8, 24/22» — η σύντομη σημειογραφία που χρησιμοποιούν οι παίκτες στο ταμπλό.",
+  "settingsBuddyFriendlyHelp": "Πώς εκφωνεί ο Buddy μια κίνηση: «Μετακίνησε ένα πούλι από το 13 στο 8 και ένα από το 24 στο 22».",
+  "settingsListenForDice": "Ακρόαση για τα ζάρια",
+  "settingsListenForDiceHelp": "Όταν ακούσει ρίψη, ο Buddy ελέγχει νωρίτερα το ταμπλό. Η απενεργοποίηση δεν αλλάζει κάτι άλλο.",
+  "settingsDiagnostics": "Διαγνωστικά",
+  "settingsErrorLog": "Καταγραφή σφαλμάτων",
+  "settingsErrorLogHelp": "Πρόσφατα σφάλματα, έτοιμα για αντιγραφή σε αναφορά προβλήματος",
+  "settingsReportBug": "Αναφορά σφάλματος",
+  "settingsReportBugHelp": "Ανοίγει οδηγό αναφοράς προβλήματος στο GitHub",
+  "settingsSuggestIdea": "Πρόταση ιδέας",
+  "settingsSuggestIdeaHelp": "Βοηθήστε μας να βελτιώσουμε τον προπονητή και το παιχνίδι",
+  "settingsAbout": "Σχετικά",
+  "settingsOpenSourceLicenses": "Άδειες λογισμικού ανοικτού κώδικα",
+  "tutorPhraseGameFinished": "Η παρτίδα ολοκληρώθηκε.",
+  "tutorPhraseReviewFinishedGame": "Εξετάστε τις κινήσεις για να βρείτε μια απόφαση που αξίζει να εξασκήσετε.",
+  "tutorPhraseCubeOffered": "Προσφέρθηκε διπλασιασμός του στοιχήματος.",
+  "tutorPhraseCubeDecisionPrompt": "Αποφασίστε αν θα δεχτείτε ή θα απορρίψετε τον διπλασιασμό πριν σχεδιάσετε κίνηση για τα πούλια.",
+  "tutorPhraseCubeScoreContext": "Το σκορ του αγώνα αλλάζει την αξία του επιπλέον στοιχήματος.",
+  "tutorPhraseResignationOffered": "Προσφέρθηκε παραίτηση από την παρτίδα.",
+  "tutorPhraseResignationDecisionPrompt": "Συγκρίνετε τους προσφερόμενους πόντους με τη θέση πριν αποδεχτείτε την παραίτηση ή συνεχίσετε.",
+  "tutorPhraseNoLegalPlay": "Δεν υπάρχει νόμιμη κίνηση με αυτή τη ζαριά.",
+  "tutorPhraseForcedPassPrompt": "Το αναγκαστικό πάσο δεν είναι λάθος· περιμένετε την επόμενη ζαριά.",
+  "tutorPhraseOnlyOneResult": "Υπάρχει μόνο μία νόμιμη τελική θέση.",
+  "tutorPhraseForcedTurnPrompt": "Κάντε την αναγκαστική κίνηση. Δεν υπάρχει επιλογή προς αξιολόγηση σε αυτή τη ζαριά.",
+  "tutorPhrasePipCountsLevel": "Οι μονάδες απόστασης είναι ίσες.",
+  "tutorPhrasePipCountsAhead": "Έχετε προβάδισμα {count} μονάδων απόστασης.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "Υστερείτε κατά {count} μονάδες απόστασης.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "Πρώτα πρέπει να επαναφέρετε τα πούλια από τη μπάρα. Εκεί βρίσκονται: {count}.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Πρώτα επαναφέρετε ένα πούλι από τη μπάρα και μετά αναζητήστε ασφαλές σημείο για να προσγειωθεί.",
+  "tutorPhraseOpponentHomePoints": "Ο αντίπαλος έχει κλειστά σημεία στην εσωτερική του περιοχή: {count}.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Αγώνας εξόδου των πουλιών.",
+  "tutorPhrasePureRace": "Καθαρός αγώνας δρόμου.",
+  "tutorPhraseBearOffSpread": "Βγάλτε πούλια από το παιχνίδι, διατηρώντας χρήσιμη διάταξη για την επόμενη ζαριά.",
+  "tutorPhraseBringRearCheckersHome": "Φέρτε τα πίσω πούλια στην εσωτερική σας περιοχή χωρίς να στοιβάζετε πολλά στο ίδιο σημείο.",
+  "tutorPhraseArmiesHavePassed": "Οι παίκτες προσπέρασαν ο ένας τον άλλον· δεν μπορούν πλέον να χτυπηθούν πούλια.",
+  "tutorPhraseContactStillMatters": "{part} Η επαφή εξακολουθεί να έχει σημασία.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "Ο αντίπαλος έχει πούλια στη μπάρα: {count}.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Κρατήστε τα σημεία κλειστά καθώς φέρνετε τα υπόλοιπα πούλια στην εσωτερική σας περιοχή.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Χτίστε ή διατηρήστε την εσωτερική σας περιοχή όσο ο αντίπαλος προσπαθεί να μπει από τη μπάρα.",
+  "tutorPhraseHomePointsCloseEntries": "Έχετε κλειστά σημεία στην εσωτερική σας περιοχή: {count}· καθένα κλείνει έναν αριθμό εισόδου.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Επαφή με σειρά {count} κλειστών σημείων.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Συγκρίνετε την επέκταση της σειράς με τη διατήρηση εφεδρικών πουλιών για να παραμείνει κλειστή.",
+  "tutorPhraseSpareCheckersCanMove": "Εφεδρικά πούλια: {count}. Μπορούν να μετακινηθούν χωρίς να ανοίξει αμέσως το σημείο τους.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Επαφή με άγκυρα στα σημεία {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Συγκρίνετε την επιστροφή των πίσω πουλιών με την ασφάλεια που προσφέρει η άγκυρά σας.",
+  "tutorPhraseCompareAnchorProgressBehind": "Έχετε κατά νου την ασφαλή βάση σας όσο αναζητάτε χτύπημα ή βελτιώνετε τη θέση σας.",
+  "tutorPhrasePreserveAnchorFoothold": "Η άγκυρα δεν μπορεί να χτυπηθεί, αλλά αυτά τα πούλια έχουν ακόμη δρόμο μέχρι την εσωτερική περιοχή.",
+  "tutorPhraseContactThreats": "Η επαφή συνεχίζεται: και οι δύο πλευρές μπορούν ακόμη να απειλήσουν με χτύπημα.",
+  "tutorPhraseLookForPointsAndSafety": "Αναζητήστε χρήσιμα κλειστά σημεία και εξετάστε τον κίνδυνο να αφήσετε μεμονωμένα πούλια εκτεθειμένα.",
+  "tutorPhraseHomePointsAndBlots": "Κλειστά σημεία στην εσωτερική σας περιοχή: {count}. Εκτεθειμένα πούλια που αφήνετε: {otherCount}.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Επιλέξτε ένα πούλι για να ξεκινήσετε την κίνησή σας.",
+  "tutorPhraseLegalPlayPrompt": "Κάντε μια νόμιμη κίνηση για να δείτε σχόλια.",
+  "tutorPhraseStagedHit": "Χτυπήσατε {count, plural, one{# αντίπαλο πούλι} other{# αντίπαλα πούλια}}.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "Πούλια που επαναφέρατε από τη μπάρα: {count}.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Πούλια που βγάλατε από το παιχνίδι: {count, plural, one{# πούλι} other{# πούλια}}.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Κλείσατε τα σημεία {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Το πούλι στο σημείο {point} παραμένει εκτεθειμένο προς το παρόν.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "Το εφεδρικό πούλι στο σημείο {point} μπορεί να μετακινηθεί αργότερα χωρίς να ανοίξει το σημείο.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Χρησιμοποιήστε και τα υπόλοιπα διαθέσιμα ζάρια πριν αξιολογήσετε ολόκληρη την κίνηση.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Και τα 15 πούλια έχουν βγει από το ταμπλό: κερδίσατε την παρτίδα.",
+  "tutorPhraseStagedHitShortPlan": "Το χτύπημα κερδίζει χρόνο όσο ο αντίπαλος επιστρέφει από τη μπάρα.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Η αποτελεσματική έξοδος αφαιρεί πούλια και αφήνει χρήσιμους αριθμούς για την επόμενη ζαριά.",
+  "tutorPhraseStagedRaceHomePlan": "Στον αγώνα δρόμου, φέρτε τα πίσω πούλια στην εσωτερική περιοχή και κρατήστε χρήσιμα σημεία για την έξοδο.",
+  "tutorPhraseStagedBearOffContactPlan": "Η έξοδος προχωρά προς τη νίκη, αλλά όσο υπάρχει επαφή, ένα εκτεθειμένο πούλι μπορεί να γίνει στόχος.",
+  "tutorPhraseStagedReentryPlan": "Η είσοδος επαναφέρει το πούλι στο παιχνίδι· στη συνέχεια βρείτε ένα ασφαλές σημείο.",
+  "tutorPhraseStagedHomeBoardPlan": "Το νέο κλειστό σημείο στην εσωτερική σας περιοχή αφαιρεί έναν αριθμό εισόδου μετά από μελλοντικό χτύπημα.",
+  "tutorPhraseStagedPrimePlan": "Η μεγαλύτερη σειρά κλείνει περισσότερα σημεία προσγείωσης· τα εφεδρικά πούλια βοηθούν να τη διατηρήσετε.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Αφήνοντας την άγκυρα προωθείτε τα πίσω πούλια, αλλά χάνετε μια ασφαλή βάση.",
+  "tutorPhraseStagedNewAnchorPlan": "Η νέα άγκυρα προσφέρει ασφαλή βάση στα πίσω πούλια.",
+  "tutorPhraseStagedCoverBlotPlan": "Καλύπτοντας ένα εκτεθειμένο πούλι, αφαιρείτε έναν στόχο για τον αντίπαλο.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Εδώ υπάρχει ισορροπία ανάμεσα στην ανάπτυξη και την ασφάλεια: τα πούλια που χτίζουν τη θέση μπορούν και τα ίδια να γίνουν στόχοι.",
+  "tutorPhraseStagedCompletePrompt": "{part} Η κίνηση είναι πλήρως έτοιμη. Πατήστε «Επιβεβαίωση» για να την εκτελέσετε.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Αυτή η ζαριά δεν αφήνει επιλογή κίνησης για τα πούλια, επομένως δεν αξιολογείται ως απόφαση.",
+  "tutorMoveTopVerdict": "Κορυφαία επιλογή για αυτή τη θέση.",
+  "tutorMoveAlternativeVerdict": "Η μηχανή προτιμά άλλη κίνηση εδώ.",
+  "tutorMoveEstimateDifference": "Διαφορά από την κορυφαία κίνηση: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Μετά από αυτή την κίνηση: {winPercent}% πιθανότητα νίκης, {winGammonPercent}% πιθανότητα νίκης με γκέμον ή μπακγκέμον, {loseGammonPercent}% πιθανότητα ήττας με γκέμον ή μπακγκέμον. Πρόκειται για εκτιμήσεις από την πλευρά του παίκτη που παίζει.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Εκτιμώμενη πιθανότητα νίκης στον αγώνα: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Και τα 15 πούλια έχουν βγει από το ταμπλό: κερδίσατε την παρτίδα.",
+  "tutorMovePlanHit": "Χρησιμοποιήστε το χτύπημα για να κερδίσετε χρόνο όσο ο αντίπαλος μπαίνει από τη μπάρα. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Κρατήστε κλειστά τα σημεία στην εσωτερική σας περιοχή για να δυσκολέψετε την είσοδο.",
+  "tutorMovePlanHitBuild": "Κλείστε περισσότερα σημεία στην εσωτερική σας περιοχή, ώστε τα μελλοντικά χτυπήματα να δυσκολεύουν την επιστροφή του αντιπάλου.",
+  "tutorMovePlanRaceBearOff": "Στοχεύστε σε αποτελεσματική έξοδο: βγάλτε πούλια διατηρώντας χρήσιμους αριθμούς για την επόμενη ζαριά.",
+  "tutorMovePlanRaceHome": "Φέρτε τα πίσω πούλια στην εσωτερική περιοχή και απλώστε τα σε χρήσιμα σημεία για την έξοδο.",
+  "tutorMovePlanContactBearOff": "Βγάλτε πούλια από το παιχνίδι, αλλά προσέχετε τα πίσω πούλια του αντιπάλου: όσο υπάρχει επαφή, ένα εκτεθειμένο πούλι μπορεί να γίνει στόχος.",
+  "tutorMovePlanReentry": "Επιστρέψτε στο παιχνίδι και μετά αναζητήστε ένα ασφαλές σημείο για το πούλι που μπήκε.",
+  "tutorMovePlanHomeBoard": "Ενισχύστε την εσωτερική σας περιοχή. Το νέο κλειστό σημείο κάνει πιο αποτελεσματικό ένα μελλοντικό χτύπημα, αφαιρώντας έναν αριθμό εισόδου.",
+  "tutorMovePlanPrime": "Κρατήστε ενωμένη τη σειρά των κλειστών σημείων. Διατηρήστε εφεδρικά πούλια ώστε οι επόμενες ζαριές να μη σας αναγκάσουν να την ανοίξετε.",
+  "tutorMovePlanLeaveAnchor": "Αν αφήσετε την άγκυρα, τα πίσω πούλια προχωρούν, αλλά χάνουν μια ασφαλή βάση. Προσέξτε να μην εκτεθούν στον δρόμο προς την εσωτερική περιοχή.",
+  "tutorMovePlanNewAnchor": "Χρησιμοποιήστε τη νέα άγκυρα ως ασφαλή βάση ενώ βελτιώνετε την υπόλοιπη θέση σας.",
+  "tutorMovePlanCoverBlot": "Συγκεντρώστε τα πούλια σας. Καλύπτοντας ένα εκτεθειμένο πούλι αφαιρείτε αυτόν τον στόχο και διατηρείτε διαθέσιμες επιλογές για την επόμενη ζαριά.",
+  "tutorMovePlanSafety": "Ισορροπήστε την ανάπτυξη με την ασφάλεια: φέρτε τα πούλια που χτίζουν τη θέση σε χρήσιμα σημεία και ελέγξτε ποια μεμονωμένα πούλια μπορεί να χτυπηθούν.",
+  "tutorMoveObservationNoLegalPlay": "Δεν υπάρχει νόμιμη κίνηση για τα πούλια: πρέπει να πάτε πάσο.",
+  "tutorMoveObservationHit": "Χτυπάτε {count, plural, one{# αντίπαλο πούλι} other{# αντίπαλα πούλια}}· ο αντίπαλος πρέπει πρώτα να μπει από τη μπάρα πριν μετακινήσει τα υπόλοιπα πούλια.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Πούλια που μπήκαν από τη μπάρα: {count}.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Πούλια που βγήκαν από το ταμπλό: {count, plural, one{# πούλι} other{# πούλια}}.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Κλείνετε τα σημεία {points}. Δύο ή περισσότερα πούλια κρατούν ένα ασφαλές σημείο και εμποδίζουν τον αντίπαλο να προσγειωθεί εκεί.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Ανοίγετε ξανά τα κλειστά {pointLabel}: {points}. Αυτά τα σημεία δεν εμποδίζουν πλέον τον αντίπαλο να προσγειωθεί εκεί.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Δεν αφήνετε μεμονωμένα πούλια εκτεθειμένα (προηγουμένως {previousCount}). Δεν υπάρχει πούλι που να μπορεί να χτυπηθεί τώρα.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Αφήνετε {count, plural, one{# μεμονωμένο πούλι εκτεθειμένο} other{# μεμονωμένα πούλια εκτεθειμένα}} (προηγουμένως {previousCount}). Εξετάστε αν ο αντίπαλος μπορεί να τα φτάσει πριν προτιμήσετε την ασφάλεια από κάποιο άλλο όφελος.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Μεγαλύτερη συνεχόμενη σειρά κλειστών σημείων: {count} (προηγουμένως {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Μια σειρά έξι κλειστών σημείων δεν μπορεί να διασχιστεί όσο παραμένει κλειστή.",
+  "tutorMoveObservationPrimeBuild": "Κρατήστε κοντά πούλια που μπορούν να στηρίξουν την επέκταση ή τη διατήρηση αυτής της σειράς.",
+  "tutorMoveObservationPrimeSpares": "Εφεδρικά πούλια πέρα από τα δύο που κρατούν κλειστό κάθε σημείο: {count}. Μετακινώντας ένα εφεδρικό πούλι μπορείτε να διατηρήσετε το σημείο· αν μετακινήσετε ένα από τα δύο τελευταία, θα ανοίξει.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Άγκυρες στην εσωτερική περιοχή του αντιπάλου: {points} (προηγουμένως {previousPoints}). Η άγκυρα προστατεύει αυτά τα πούλια από χτυπήματα· αν την αφήσετε, ανταλλάσσετε αυτή την ασφαλή βάση με πρόοδο στον αγώνα.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Καθαρός αγώνας δρόμου: οι παίκτες προσπέρασαν ο ένας τον άλλον και καμία πλευρά δεν έχει πούλι στη μπάρα. Δεν είναι πλέον δυνατά τα χτυπήματα· μετρά η αποτελεσματική έξοδος.",
+  "tutorMoveObservationNoReplyHit": "Δεν υπάρχει νόμιμη επόμενη ζαριά με την οποία ο αντίπαλος να μπορεί να χτυπήσει πούλι σε αυτή τη θέση. Η επαφή παραμένει, οπότε μελλοντικές κινήσεις μπορεί να δημιουργήσουν νέες ευκαιρίες χτυπήματος.",
+  "tutorMoveObservationReplyHit": "Ο αντίπαλος μπορεί να χτυπήσει σε {count} από {total} ζαριές. Για παράδειγμα, το {dieOne}–{dieTwo} επιτρέπει νόμιμο χτύπημα στο πούλι σας στο σημείο {point}. Το χτύπημα είναι δυνατό, αλλά δεν είναι βέβαιο ότι θα επιλεγεί.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Κλειστά σημεία στην εσωτερική σας περιοχή: {closedPoints}. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Ο αντίπαλος δεν μπορεί να μπει μέχρι να ανοίξει κάποιο σημείο.",
+  "tutorMoveObservationOpenEntry": "Μια ζαριά που χρησιμοποιεί ανοιχτό σημείο εισόδου μπορεί να επαναφέρει ένα πούλι από τη μπάρα.",
+  "tutorMoveComparisonDetail": "{factors} Η εκτιμώμενη πιθανότητα νίκης της κορυφαίας κίνησης είναι {delta} ποσοστιαίες μονάδες {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "υψηλότερη",
+  "tutorMoveComparisonLower": "χαμηλότερη",
+  "tutorMoveComparisonScoreContext": " Μπορεί παρ’ όλα αυτά να κατατάσσεται υψηλότερα, επειδή τα γκέμον και τα μπακγκέμον έχουν διαφορετική αξία με το τρέχον {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "στοίχημα",
+  "tutorMoveComparisonMatchScore": "σκορ αγώνα",
+  "tutorMoveComparisonFactorBar": "Με την κορυφαία κίνηση μένουν στη μπάρα {bestCount} αντίπαλα πούλια αντί για {playedCount}. Ένα πούλι στη μπάρα πρέπει πρώτα να μπει πριν μετακινηθούν τα υπόλοιπα.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Η κορυφαία κίνηση κρατά κλειστά {bestCount} σημεία στην εσωτερική σας περιοχή αντί για {playedCount}, δηλαδή διαφορά {entryDifference} σημείων εισόδου μετά από χτύπημα.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "κλείνει περισσότερα",
+  "tutorMoveComparisonLeavingMore": "αφήνει περισσότερα ανοιχτά",
+  "tutorMoveComparisonFactorShots": "Η κορυφαία κίνηση επιτρέπει χτύπημα από τον αντίπαλο σε {bestCount} από τις 36 ζαριές αντί για {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Έτσι μειώνεται ο άμεσος κίνδυνος να σας στείλουν πίσω στη μπάρα.",
+  "tutorMoveComparisonExtraExposure": "Συγκρίνετε αυτή την επιπλέον έκθεση με όσα κερδίζει η κίνηση σε άλλα σημεία.",
+  "tutorMoveComparisonFactorPrime": "Η μεγαλύτερη σειρά κλειστών σημείων είναι {bestCount} στην κορυφαία κίνηση αντί για {playedCount}· συγκρίνετε την ισχύ του φραγμού με τα πούλια που έχετε για να τον διατηρήσετε.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Οι άγκυρες της κορυφαίας κίνησης είναι στα σημεία {bestPoints} αντί για {playedPoints}. Η διατήρηση άγκυρας κρατά ένα ασφαλές σημείο προσγείωσης· αν την αφήσετε, τα πούλια πλησιάζουν στην εσωτερική περιοχή σας.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Με την κορυφαία κίνηση έχετε βγάλει {bestCount} πούλια αντί για {playedCount}. Κάθε πούλι που βγαίνει είναι ένα λιγότερο που θα χρειαστεί να βγάλετε αργότερα.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Και οι δύο κινήσεις αφήνουν τον ίδιο άμεσο κίνδυνο χτυπήματος, τα ίδια κλειστά σημεία στην εσωτερική περιοχή, τις ίδιες άγκυρες και τον ίδιο αριθμό πουλιών εκτός ταμπλό. Συγκρίνετε τα σημεία όπου μένουν τα πούλια: η επόμενη ζαριά μπορεί να αξιοποιήσει διαφορετικά το καθένα.",
+  "tutorMoveComparisonSummaryBar": "Η κορυφαία κίνηση αφήνει περισσότερα πούλια του αντιπάλου στη μπάρα, καθυστερώντας τις υπόλοιπες κινήσεις του.",
+  "tutorMoveComparisonSummaryHomeBoard": "Η κορυφαία κίνηση κλείνει περισσότερα σημεία στην εσωτερική περιοχή, δυσκολεύοντας την είσοδο μετά από χτύπημα.",
+  "tutorMoveComparisonSummaryShots": "Η κορυφαία κίνηση επιτρέπει λιγότερες άμεσες ζαριές για χτύπημα, μειώνοντας τον κίνδυνο να σας στείλουν πίσω.",
+  "tutorMoveComparisonSummaryPrime": "Η κορυφαία κίνηση διατηρεί μεγαλύτερη σειρά κλειστών σημείων.",
+  "tutorMoveComparisonSummaryAnchors": "Η κορυφαία κίνηση διατηρεί περισσότερες ασφαλείς άγκυρες στην εσωτερική περιοχή του αντιπάλου.",
+  "tutorMoveComparisonSummaryBearOff": "Η κορυφαία κίνηση βγάζει περισσότερα πούλια, αφήνοντας λιγότερα για αργότερα.",
+  "tutorMoveComparisonSummaryBlots": "Εκτεθειμένα μεμονωμένα πούλια μετά από αυτή την κίνηση: {playedCount}· μετά την κορυφαία: {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Η κορυφαία κίνηση διατηρεί ασφαλή άγκυρα στο σημείο {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Η κορυφαία κίνηση κλείνει περισσότερα σημεία εισόδου, σε περίπτωση που χτυπηθεί κάποιο πούλι σας.",
+  "tutorMoveComparisonSummarySimilarRisks": "Οι κινήσεις αφήνουν παρόμοιο άμεσο κίνδυνο· συγκρίνετε ποια σημεία θα είναι χρήσιμα στην επόμενη ζαριά.",
+  "tutorMoveAssessmentEquityLoss": "{value} αναμενόμενη αξία",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} π.μ. πιθανότητας νίκης αγώνα",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "σημείο",
+  "tutorMovePointPlural": "σημεία",
+  "tutorMoveNoPoints": "κανένα",
+  "gameTutorCommentaryOff": "Τα σχόλια για την παρτίδα είναι απενεργοποιημένα.",
+  "gameTutorToolsAvailable": "Ανοίξτε τον εκπαιδευτή για τα εργαλεία που έχετε ενεργοποιήσει.",
+  "gameTutorNextRoll": "Ρίξτε τα ζάρια.",
+  "gameTutorNoEvaluatedReview": "Δεν υπάρχει αξιολογημένη εξήγηση για αυτή την καταγεγραμμένη κίνηση.",
+  "gameTutorAnalysisUnavailable": "η ανάλυση δεν είναι διαθέσιμη",
+  "gameTutorReviewing": "γίνεται έλεγχος…",
+  "gameTutorTryYourPlayFirst": "Δοκιμάστε πρώτα τη δική σας κίνηση.",
+  "gameTutorKeepBuilding": "Συνεχίστε να διαμορφώνετε την κίνησή σας.",
+  "gameTutorStageCompleteBeforeCoaching": "Ολοκληρώστε μια πλήρη νόμιμη κίνηση πριν δείτε καθοδήγηση ή υποδείξεις.",
+  "gameTutorReadyToConfirm": "Έτοιμο για επιβεβαίωση",
+  "gameTutorPlayTakingShape": "Η κίνησή σας διαμορφώνεται.",
+  "gameTutorConfirmOrUndo": "Επιβεβαιώστε για να παίξετε ή αναιρέστε και ξανασκεφτείτε την κίνηση.",
+  "gameTutorFinishDiceOrUndo": "Χρησιμοποιήστε τα ζάρια που απομένουν ή αναιρέστε την κίνηση.",
+  "gameTutorComputerConsidering": "Ο υπολογιστής σκέφτεται την κίνησή του.",
+  "gameTutorComputerPlayReviewed": "Η ολοκληρωμένη κίνησή του θα αξιολογηθεί εδώ.",
+  "gameTutorYourPlay": "Η κίνησή σας",
+  "gameTutorComputer": "Υπολογιστής",
+  "gameTutorPlayQuality": "Η κίνησή σας: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "αναγκαστική κίνηση",
+  "gameTutorTopChoice": "καλύτερη επιλογή",
+  "gameTutorSoundPlay": "καλή κίνηση",
+  "gameTutorAnotherPlayMayFitBetter": "ίσως ταιριάζει καλύτερα μια άλλη κίνηση",
+  "gameTutorAnotherPlayFitsBetter": "μια άλλη κίνηση ταιριάζει καλύτερα σε αυτή τη θέση",
+  "gameTutorStrongerPlayAvailable": "υπήρχε σαφώς ισχυρότερη κίνηση",
+  "gameTutorPositionEdge": "Η εκτίμηση δίνει πλεονέκτημα στον/στην {side}.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Η θέση είναι περίπου ισόπαλη.",
+  "gameTapNoLegalMove": "Δεν υπάρχει νόμιμη κίνηση για αυτό το πούλι με τα ζάρια που απομένουν",
+  "gameTapNoLegalMoveUndo": "Δεν υπάρχει νόμιμη κίνηση για αυτό το πούλι με τα ζάρια που απομένουν — δοκιμάστε αναίρεση",
+  "gameDragHint": "Συμβουλή: σύρετε τα πούλια ή πατήστε τα — αλλάξτε το στις Ρυθμίσεις",
+  "commonGotIt": "Εντάξει",
+  "gameHintStageBeforeHint": "Ολοκληρώστε πρώτα μια νόμιμη κίνηση και μετά ζητήστε υπόδειξη.",
+  "surrenderTitle": "Παραίτηση",
+  "surrenderNamedConcedes": "Ο/Η {player} παραιτείται από την τρέχουσα παρτίδα.",
+  "surrenderConcedes": "Παραιτείστε από την τρέχουσα παρτίδα.",
+  "surrenderAvailableAtNamedTurn": "Διαθέσιμο στην αρχή της σειράς του/της {player}",
+  "surrenderAvailableAtYourTurn": "Διαθέσιμο στην αρχή της σειράς σας",
+  "commonCancel": "Άκυρο",
+  "surrenderSingle": "Μονή (1)",
+  "surrenderGammon": "Γκάμον (2)",
+  "surrenderBackgammon": "Μπακγκάμον (3)",
+  "surrenderChoosePlayer": "Ποιος παραιτείται από αυτή την παρτίδα;",
+  "commonDone": "Τέλος",
+  "cubeDouble": "Διπλασιασμός",
+  "cubeBlockedOtherPlayersTurn": "Είναι η σειρά του άλλου παίκτη.",
+  "cubeBlockedCrawford": "Ο κύβος διπλασιασμού δεν είναι διαθέσιμος στην παρτίδα Crawford.",
+  "cubeBlockedOwnedByOther": "Μόνο ο κάτοχος του κύβου μπορεί να διπλασιάσει, και τώρα τον έχει ο αντίπαλος.",
+  "cubeBlockedUnavailable": "Δεν μπορείτε να διπλασιάσετε αυτή τη στιγμή.",
+  "gameStatusRolling": "Ρίχνει…",
+  "gameStatusThinking": "Σκέφτεται…",
+  "gameStatusPlayersTurn": "Σειρά του/της {player}",
+  "cubeAdviceOpponentTake": "Διπλασιασμός — ο αντίπαλος πρέπει να δεχτεί",
+  "cubeAdviceOpponentPass": "Διπλασιασμός — ο αντίπαλος πρέπει να αρνηθεί",
+  "gameErrorBannerLabel": "Σφάλμα: {error}",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "gameMatchSummary": "Σύνοψη αγώνα",
+  "gameAnalyzeGame": "Ανάλυση παρτίδας",
+  "gameTutorCubeTake": "Tutor: αποδοχή",
+  "gameTutorCubePass": "Tutor: πάσο",
+  "tutorPlayedMove": "Παίχτηκε: {move}",
+  "tutorBestMove": "Καλύτερη κίνηση: {move}",
+  "tutorShowRankedPlays": "Εμφάνιση ταξινομημένων κινήσεων",
+  "tutorReviewRecordedMove": "Πατήστε μια ολοκληρωμένη κίνηση στο αρχείο για να δείτε εδώ την αξιολόγησή της.",
+  "tutorTopPlays": "Καλύτερες κινήσεις",
+  "tutorNoHintsAvailable": "Δεν υπάρχουν διαθέσιμες υποδείξεις.",
+  "tutorPreviewThenConfirm": "Πατήστε μια κίνηση για προεπισκόπηση στη σκακιέρα και έπειτα επιβεβαιώστε την.",
+  "tutorTopChoiceForPosition": "Καλύτερη επιλογή για αυτή τη θέση",
+  "tutorAlternativePlay": "Εναλλακτική κίνηση",
+  "tutorEngineEstimates": "Εκτιμήσεις μηχανής",
+  "tutorEstimateScope": "Εκτίμηση 0 ημι-κινήσεων · τρέχον σκορ και ποντάρισμα · χωρίς μελλοντικούς διπλασιασμούς",
+  "tutorEquity": "Αξία θέσης",
+  "tutorMwcPercent": "Πιθανότητα νίκης αγώνα %",
+  "tutorNearTiesNote": "Οι σχεδόν ισοδύναμες επιλογές μπορεί να αλλάξουν με βαθύτερη ανάλυση.",
+  "tutorWhyThisPlay": "Γιατί αυτή η κίνηση;",
+  "tutorCompareAlternative": "Σύγκριση αυτής της εναλλακτικής",
+  "tutorCubelessEstimateScope": "Εκτίμηση χωρίς κύβο, 0 ημι-κινήσεων · το σκορ δεν είναι διαθέσιμο",
+  "tutorLossPp": "Απώλεια σε ποσοστιαίες μονάδες",
+  "tutorLoss": "Απώλεια",
+  "tutorOptions": "Ρυθμίσεις tutor",
+  "tutorCollapseTooltip": "Σύμπτυξη tutor",
+  "tutorExpandTooltip": "Ανάπτυξη tutor",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · έως {matchLength}",
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · έως {matchLength}",
+  "gameHudYou": "Εσείς",
+  "gameHudAi": "Υπολογιστής",
+  "gameHudGameNumber": "Παρτίδα {number}",
+  "gameHudMatchContext": "{score} · {game}",
+  "gameHudHotSeatDetail": "{whiteLabel} έναντι {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "gameHudOpponentDetail": "έναντι {opponent} · {pipsLabel} {mine}–{theirs}",
+  "gameHudOpponentDetailWithLevel": "έναντι {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "gameHudPips": "Πιπ",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Διπλασιασμός",
+  "gameHudMoreActions": "Περισσότερες ενέργειες",
+  "gameHudSurrender": "Παραίτηση…",
+  "gameHudThinking": "Σκέφτεται",
+  "gameHudDoubleBeforeRoll": "Μπορείτε να διπλασιάσετε μόνο πριν ρίξετε τα ζάρια και στη σειρά σας.",
+  "gameHudNoDoubleCrawford": "Δεν υπάρχει διπλασιασμός στην παρτίδα Crawford — αυτή η μοναδική παρτίδα κρίνει τον αγώνα.",
+  "gameHudOnlyCubeOwner": "Μόνο ο κάτοχος του κύβου μπορεί να διπλασιάσει, και τώρα τον έχει ο αντίπαλος.",
+  "gameHudDoubleUnavailable": "Δεν μπορείτε να διπλασιάσετε αυτή τη στιγμή.",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (στους {matchLength})",
+  "gameDialogPlayerWon": "Ο/Η {winner} κερδίζει αυτή την παρτίδα ({points}).",
+  "gameDialogPlayerWonGammon": "Ο/Η {winner} κερδίζει αυτή την παρτίδα ({points}, γκάμον).",
+  "gameDialogPlayerWonBackgammon": "Ο/Η {winner} κερδίζει αυτή την παρτίδα ({points}, μπακγκάμον).",
+  "gameDialogPlayerWonDrop": "Ο/Η {winner} κερδίζει αυτή την παρτίδα ({points}) — ο/η {loser} αρνήθηκε τον διπλασιασμό.",
+  "gameDialogPlayerWonResignation": "Ο/Η {winner} κερδίζει αυτή την παρτίδα ({points}) — ο/η {loser} παραιτήθηκε.",
+  "gameDialogPassDeviceTitle": "Δώστε τη συσκευή",
+  "gameDialogPlayersTurn": "Σειρά του/της {name}",
+  "gameDialogTapToContinue": "Πατήστε για συνέχεια",
+  "gameDialogCubeOfferedTitle": "Προσφέρθηκε διπλασιασμός",
+  "gameDialogCubeOfferMessage": "Ο/Η {doubler} προτείνει διπλασιασμό στο {value}. Αποδοχή ή πάσο;{tutorLine}",
+  "gameDialogPass": "Πάσο",
+  "gameDialogTake": "Αποδοχή",
+  "gameDialogResignationTitle": "Προσφέρθηκε παραίτηση",
+  "gameDialogResignationMessage": "Ο/Η {resigner} προτείνει παραίτηση για {value}. Αποδοχή ή απόρριψη;",
+  "gameDialogResignSingle": "μονή παρτίδα",
+  "gameDialogResignGammon": "γκάμον",
+  "gameDialogResignBackgammon": "μπακγκάμον",
+  "gameDialogDecline": "Απόρριψη",
+  "gameDialogAccept": "Αποδοχή",
+  "gameDialogGameOverTitle": "Τέλος παρτίδας",
+  "gameDialogNextGame": "Επόμενη παρτίδα",
+  "gameDialogMatchOverTitle": "Τέλος αγώνα",
+  "gameDialogNobody": "Κανείς",
+  "gameDialogMatchWinner": "Ο/Η {winner} κερδίζει τον αγώνα.",
+  "gameDialogSavedToHistory": "Αποθηκεύτηκε στο Ιστορικό",
+  "gameDialogDone": "Τέλος",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "newMatchYourSide": "Η πλευρά σας",
+  "newMatchTutorMode": "Λειτουργία tutor",
+  "newMatchTutorDescription": "Μάθετε με υποδείξεις, εξηγήσεις και σχόλια για την παρτίδα",
+  "newMatchTutoringOptions": "Επιλογές tutor",
+  "newMatchTutoringOptionsDescription": "Για αυτή την παρτίδα· αλλάζουν και κατά τη διάρκεια του παιχνιδιού",
+  "setupMatchLength": "Μήκος αγώνα",
+  "setupDifficulty": "Δυσκολία",
+  "setupDifficultyEasy": "Εύκολη",
+  "setupDifficultyMedium": "Μέτρια",
+  "setupDifficultyHard": "Δύσκολη",
+  "setupDifficultyExpert": "Ειδικός",
+  "setupPlayWithoutCube": "Παίξτε χωρίς κύβο",
+  "setupNoCubeThisMatch": "Χωρίς κύβο διπλασιασμού σε αυτόν τον αγώνα",
+  "actionCancel": "Άκυρο",
+  "actionDelete": "Διαγραφή",
+  "actionRetry": "Δοκιμάστε ξανά",
+  "actionRemove": "Αφαίρεση",
+  "diagnosticsCopySuccess": "Τα διαγνωστικά αντιγράφηκαν στο πρόχειρο",
+  "diagnosticsReviewTitle": "Έλεγχος αναφοράς διαγνωστικών",
+  "diagnosticsPrivacyNotice": "Ανοίγοντας το προσχέδιο, στέλνετε στο GitHub τα παρακάτω στοιχεία, όπως την έκδοση της εφαρμογής, την πλατφόρμα και τυχόν λεπτομέρειες σφάλματος. Δεν δημοσιεύεται δημόσιο ζήτημα πριν το υποβάλετε εκεί. Αν τα στοιχεία περιέχουν ιδιωτικές πληροφορίες, ακυρώστε και χρησιμοποιήστε την Αντιγραφή για να ετοιμάσετε μόνοι σας μια αναφορά.",
+  "diagnosticsCancel": "Άκυρο",
+  "diagnosticsOpenGitHub": "Άνοιγμα GitHub",
+  "diagnosticsTitle": "Διαγνωστικά",
+  "diagnosticsReportTooltip": "Αναφορά προβλήματος στο GitHub",
+  "diagnosticsCopyTooltip": "Αντιγραφή στο πρόχειρο",
+  "diagnosticsClearTooltip": "Εκκαθάριση αρχείου καταγραφής",
+  "diagnosticsEmpty": "Δεν έχουν καταγραφεί σφάλματα.\n\nΑν προκύψει πρόβλημα, θα καταγραφεί εδώ. Επιστρέψτε και αντιγράψτε τις λεπτομέρειες σε μια αναφορά σφάλματος.",
+  "historyTitle": "Ιστορικό αγώνων",
+  "historyLoadFailed": "Αποτυχία φόρτωσης ιστορικού:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyEmpty": "Δεν έχετε παίξει ακόμη αγώνες.",
+  "historyDeleteConfirmTitle": "Διαγραφή αυτού του αγώνα;",
+  "historyDeleteConfirmBody": "{scoreLine}\n\nΟ αγώνας και όλες οι καταγεγραμμένες παρτίδες του θα διαγραφούν οριστικά. Δεν είναι δυνατή η αναίρεση.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyDeleteFailed": "Δεν ήταν δυνατή η διαγραφή του αγώνα.",
+  "historyComplete": "Ολοκληρώθηκε",
+  "historyWinner": "Κέρδισε ο/η {side}",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyUnfinished": "Σε εξέλιξη",
+  "historyMatchTitle": "Αγώνας",
+  "historyMatchLoadFailed": "Αποτυχία φόρτωσης αγώνα:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Αποτυχία φόρτωσης παρτίδων:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyNoGames": "Δεν έχουν καταγραφεί ακόμη παρτίδες.",
+  "historyGameTitle": "Παρτίδα {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyCrawford": "Crawford",
+  "historyScoreLine": "Λευκός {whiteScore} — {blackScore} Μαύρος (στους {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyModeComputer": "έναντι υπολογιστή",
+  "historyModeTwoPlayers": "Δύο παίκτες",
+  "historyModeOnline": "Online",
+  "historyModeNearby": "Παίξτε κοντά",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "Σε εξέλιξη",
+  "historyGameResult": "Ο/Η {side} κερδίζει {points} ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "historyOutcomeSingle": "μονή",
+  "historyOutcomeGammon": "γκάμον",
+  "historyOutcomeBackgammon": "μπακγκάμον",
+  "onlineTitle": "Παίξτε online",
+  "onlineUnassistedNote": "Οι ζωντανές online παρτίδες δεν έχουν βοήθεια. Αναλύστε τις κινήσεις σας και εξασκηθείτε στα λάθη μετά τον αγώνα.",
+  "onlineNotConfiguredTitle": "Το online παιχνίδι δεν έχει ρυθμιστεί σε αυτή την έκδοση",
+  "onlineNotConfiguredBody": "Αυτή η έκδοση δεν είναι συνδεδεμένη με Firebase, επομένως δεν μπορείτε να δημιουργήσετε ή να συμμετάσχετε σε αγώνες.",
+  "onlineErrorNoMatch": "Δεν υπάρχει αγώνας με αυτόν τον κωδικό. Ελέγξτε τον και δοκιμάστε ξανά.",
+  "onlineErrorSeatTaken": "Ο αγώνας δεν είναι πλέον ανοιχτός — η θέση έχει καταληφθεί.",
+  "onlineErrorPermission": "Δεν έχετε πρόσβαση σε αυτόν τον αγώνα.",
+  "onlineErrorGeneric": "Κάτι πήγε στραβά. Δοκιμάστε ξανά.",
+  "onlineMatchFinished": "Ο αγώνας τελείωσε — δεν μπορείτε να επανέλθετε.",
+  "onlineEnterCodeError": "Εισαγάγετε κωδικό αγώνα.",
+  "onlineOpponentShort": "Αντίπ.",
+  "onlineMatchInProgress": "Ο αγώνας βρίσκεται σε εξέλιξη",
+  "onlineResumePrompt": "Παίζατε στον αγώνα {code}.",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Επανένωση",
+  "onlineForgetMatch": "Ξεχάστε αυτόν τον αγώνα",
+  "onlineCreateTitle": "Δημιουργία αγώνα",
+  "onlineMatchLength": "Μήκος αγώνα",
+  "onlineNoCubeTitle": "Παίξτε χωρίς κύβο",
+  "onlineNoCubeSubtitle": "Χωρίς κύβο διπλασιασμού σε αυτόν τον αγώνα",
+  "onlineCreate": "Δημιουργία",
+  "onlineWaitingOpponent": "Αναμονή αντιπάλου…",
+  "onlineShareCode": "Κοινοποίηση κωδικού",
+  "onlineCopyCode": "Αντιγραφή κωδικού",
+  "onlineCodeCopied": "Ο κωδικός αντιγράφηκε",
+  "onlineJoinTitle": "Συμμετοχή σε αγώνα",
+  "onlineRoomCode": "Κωδικός αγώνα",
+  "onlineJoin": "Συμμετοχή",
+  "lanTitle": "Παίξτε κοντά",
+  "lanTabHost": "Φιλοξενία",
+  "lanTabJoin": "Συμμετοχή",
+  "lanUnassistedNote": "Οι ζωντανές κοντινές παρτίδες δεν έχουν βοήθεια. Αναλύστε τις κινήσεις σας και εξασκηθείτε στα λάθη μετά τον αγώνα.",
+  "lanGameStartFailed": "Δεν ήταν δυνατή η έναρξη. Η άλλη συσκευή μπορεί να δοκιμάσει ξανά.",
+  "lanHostPortInUse": "Δεν ήταν δυνατή η φιλοξενία — η θύρα χρησιμοποιείται ήδη. Κλείστε άλλη εκτέλεση του Backgammon Buddy.",
+  "lanHostStartFailed": "Δεν ήταν δυνατή η φιλοξενία. Ελέγξτε τη σύνδεση Wi-Fi.",
+  "lanHostTitle": "Φιλοξενία παρτίδας",
+  "lanStartHosting": "Έναρξη φιλοξενίας",
+  "lanHostHelp": "Και οι δύο συσκευές πρέπει να είναι στο ίδιο Wi-Fi. Αυτή ρίχνει τα ζάρια και κρατά το σκορ.",
+  "lanWaitingPlayerTitle": "Αναμονή παίκτη",
+  "lanRoomCodeInfo": "Δώστε αυτόν τον κωδικό στον άλλο παίκτη. Επιτρέπει την είσοδο — η εφαρμογή δεν τον στέλνει μέσω δικτύου.",
+  "lanWaitingPlayer": "Αναμονή παίκτη…",
+  "lanStopHosting": "Διακοπή φιλοξενίας",
+  "lanFindNearbyPort": "Ζητήστε από την άλλη συσκευή να αναζητήσει κοντινές παρτίδες. Ακρόαση στη θύρα {port}.",
+  "lanOnNetwork": "Σε αυτό το δίκτυο",
+  "lanCopyAddress": "Αντιγραφή διεύθυνσης",
+  "lanAddressCopied": "Η διεύθυνση αντιγράφηκε",
+  "lanScanHostTitle": "Σάρωση οικοδεσπότη",
+  "lanScanHostHelp": "Η άλλη συσκευή εμφανίζει QR στην οθόνη φιλοξενίας. Η σάρωση συμπληρώνει τη διεύθυνση και τον κωδικό δωματίου.",
+  "lanScanQr": "Σάρωση κωδικού QR",
+  "lanScannerUnavailable": "Η κάμερα ή η άδειά της δεν είναι διαθέσιμη. Πληκτρολογήστε παρακάτω τη διεύθυνση και τον κωδικό δωματίου.",
+  "lanInvalidQr": "Αυτός ο QR δεν είναι για παιχνίδι Backgammon Buddy. Σαρώστε τον κωδικό στην οθόνη φιλοξενίας της άλλης συσκευής.",
+  "lanScannerFailed": "Δεν ήταν δυνατό το άνοιγμα του σαρωτή. Πληκτρολογήστε τη διεύθυνση και τον κωδικό.",
+  "lanNearbyGames": "Κοντινές παρτίδες",
+  "lanSearching": "Αναζήτηση κοντινών παρτίδων…",
+  "lanNoGamesFound": "Δεν βρέθηκαν παρτίδες ακόμη. Βεβαιωθείτε ότι η άλλη συσκευή φιλοξενεί και ότι είστε στο ίδιο Wi-Fi — ή πληκτρολογήστε τη διεύθυνσή της.",
+  "lanStillSearching": "Συνεχίζεται η αναζήτηση…",
+  "lanEnterAddress": "Εισαγωγή διεύθυνσης",
+  "lanEnterAddressHelp": "Η αυτόματη ανακάλυψη δεν λειτουργεί σε κάθε δίκτυο (και το iOS μπορεί να την αποκλείσει). Η οθόνη φιλοξενίας δείχνει τι πρέπει να πληκτρολογήσετε.",
+  "lanIpAddress": "Διεύθυνση IP",
+  "lanPort": "Θύρα",
+  "lanInvalidPort": "Εισαγάγετε θύρα από 1 έως 65535.",
+  "lanEnterAddressError": "Εισαγάγετε τη διεύθυνση που εμφανίζεται στην άλλη συσκευή.",
+  "lanEnterRoomCodeError": "Εισαγάγετε τον τετραψήφιο κωδικό από την άλλη συσκευή.",
+  "lanJoinWrongCode": "Λάθος κωδικός δωματίου. Ελέγξτε τα τέσσερα ψηφία στην άλλη συσκευή.",
+  "lanJoinVersionMismatch": "Η άλλη συσκευή εκτελεί διαφορετική έκδοση του Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "Η συσκευή δεν απάντησε όπως το Backgammon Buddy. Ελέγξτε διεύθυνση και θύρα.",
+  "lanJoinFailed": "Δεν ήταν δυνατή η συμμετοχή. Ελέγξτε τη διεύθυνση και τον κωδικό και δοκιμάστε ξανά.",
+  "lanJoinTarget": "Συμμετοχή στο {name}",
+  "lanJoinTargetHelp": "Πληκτρολογήστε τον τετραψήφιο κωδικό που εμφανίζεται στην άλλη συσκευή.",
+  "lanJoiningTarget": "Σύνδεση στο {name}",
+  "lanConnect": "Σύνδεση",
+  "lanBack": "Πίσω",
+  "lanTryAgain": "Δοκιμάστε ξανά",
+  "lanStatusBusy": "Το δωμάτιο χρησιμοποιείται — αναμονή…",
+  "lanStatusReconnecting": "Η σύνδεση χάθηκε — νέα προσπάθεια…",
+  "lanStatusConnected": "Συνδέθηκε — ξεκινά ο αγώνας…",
+  "lanStatusFailed": "Δεν ήταν δυνατή η συμμετοχή.",
+  "lanStatusConnecting": "Σύνδεση…",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "practiceScreenTitle": "Εξασκήσου σε μια απόφαση",
+  "practiceUnavailable": "Αυτή η θέση εξάσκησης δεν είναι πλέον διαθέσιμη.",
+  "practiceSubmitError": "Δεν ήταν δυνατή η αξιολόγηση ή η αποθήκευση αυτής της προσπάθειας. Η πρόοδός σου δεν άλλαξε. Δοκίμασε ξανά.",
+  "practiceTurnLabel": "Παίζει ο/η {side} · {dice}",
+  "practiceHistoricalScoreUnavailable": "Το ιστορικό σκορ δεν είναι διαθέσιμο· η αξιολόγηση χρησιμοποιεί equity χωρίς κύβο.",
+  "practiceScoreLine": "Σκορ: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, έως {matchLength}",
+  "practiceCrawfordGame": " · παρτίδα Crawford",
+  "practiceNoDoublingCube": "Χωρίς κύβο διπλασιασμού.",
+  "practiceCubeValue": "Κύβος {value}.",
+  "practiceHistoricalCubeUnknown": "Άγνωστοι ιστορικοί κανόνες κύβου.",
+  "practiceAfterBestPosition": "Θέση μετά την καλύτερη κίνηση",
+  "practiceAfterYourAnswerPosition": "Θέση μετά την απάντησή σου",
+  "practiceFindYourPlayPrompt": "Παίξε την κίνησή σου στο ταμπλό και έλεγξε την απάντησή σου. Δεν εμφανίζονται υποδείξεις.",
+  "practiceUndo": "Αναίρεση",
+  "practiceCheckAnswer": "Έλεγχος απάντησης",
+  "practiceRevealNoCredit": "Αποκάλυψη απάντησης (χωρίς βαθμό)",
+  "practiceAnswerRevealedNoCredit": "Η απάντηση αποκαλύφθηκε — χωρίς βαθμό ανάκλησης.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "practiceBestMoveLine": "Καλύτερη: {move}",
+  "practiceOriginalGameLine": "Αρχική παρτίδα: {move} · {loss}",
+  "practiceYourAnswerLine": "Η απάντησή σου: {move}",
+  "practiceYourAnswerChip": "Η απάντησή σου",
+  "practiceBestPlayChip": "Καλύτερη κίνηση",
+  "practiceNextReview": "Επόμενη επανάληψη: {date}.",
+  "practiceRecallCredit": "Οι καλύτερες ή καλές απαντήσεις μετρούν ως επιτυχής ανάκληση. Οι πρόωρες επαναλήψεις δεν αλλάζουν το πρόγραμμα.",
+  "practiceBackToLearning": "Πίσω στη μάθηση",
+  "practiceMarkBest": "Καλύτερη",
+  "practiceMarkGood": "Καλή",
+  "practiceMarkDubious": "Αμφίβολη",
+  "practiceMarkError": "Λάθος",
+  "practiceMarkBlunder": "Μεγάλο λάθος",
+  "practiceMarkForced": "Αναγκαστική",
+  "analysisTitle": "Ανάλυση",
+  "analysisMetricsTooltip": "Τι σημαίνουν αυτοί οι αριθμοί;",
+  "analysisError": "Η ανάλυση της παρτίδας απέτυχε: {error}",
+  "analysisNoPositions": "Δεν υπάρχουν θέσεις για εμφάνιση σε αυτή την παρτίδα.",
+  "analysisInProgress": "Ανάλυση παρτίδας…",
+  "analysisPercent": "{percent}%",
+  "analysisPlayed": "Παίχτηκε",
+  "analysisBest": "Καλύτερη",
+  "analysisPrevious": "Προηγούμενη",
+  "analysisNext": "Επόμενη",
+  "analysisPositionBeforeCube": "Θέση πριν από την απόφαση για τον κύβο",
+  "analysisPositionAtPoint": "Θέση σε αυτό το σημείο της παρτίδας",
+  "analysisShowingBestBefore": "Εμφανίζεται η καλύτερη κίνηση στη θέση πριν από την κίνηση",
+  "analysisShowingBefore": "Εμφανίζεται η θέση πριν από την κίνηση",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "analysisMoveLoss": " −{loss}",
+  "analysisExcludedFromAverages": " · εξαιρείται από τους μέσους όρους",
+  "analysisNoPlay": "(χωρίς κίνηση)",
+  "analysisBestMoveLine": "Καλύτερη κίνηση: {move}",
+  "analysisExplain": "Εξήγηση",
+  "analysisSaveForPractice": "Αποθήκευση για εξάσκηση",
+  "analysisSaveError": "Δεν ήταν δυνατή η αποθήκευση αυτής της απόφασης: {error}",
+  "analysisCubeInfo": "{side}: {action} · {mark} · απώλεια {loss}",
+  "analysisCubeDecision": "Απόφαση για τον κύβο",
+  "analysisCubePlayed": "Παίχτηκε: {action} (πιθανότητα νίκης στην αναμέτρηση {percent}%).",
+  "analysisCubeBest": "Καλύτερη: {action} (πιθανότητα νίκης στην αναμέτρηση {percent}%).",
+  "analysisCubeEstimate": "Εκτίμηση 0-ply από την πλευρά του παίκτη που έχει σειρά. Υποθέτει βέλτιστη απάντηση αποδοχής ή πάσου. Χρησιμοποιεί προσέγγιση ζωής κύβου 0,7 στον κλάδο αποδεκτού διπλασιασμού, όχι πλήρη αναζήτηση μελλοντικών επαναδιπλασιασμών. Η βαθύτερη ανάλυση μπορεί να αλλάξει την απάντηση.",
+  "analysisClose": "Κλείσιμο",
+  "analysisMoves": "Κινήσεις",
+  "analysisForced": "Αναγκαστική",
+  "analysisMarkBest": "Καλύτερη",
+  "analysisMarkGood": "Καλή",
+  "analysisMarkDubious": "Αμφίβολη",
+  "analysisMarkError": "Λάθος",
+  "analysisMarkBlunder": "Μεγάλο λάθος",
+  "analysisSummaryMeanLoss": "Μέση απώλεια {loss}",
+  "analysisSummaryCheckerDecisions": "{count} αποφάσεις για πούλια",
+  "analysisSummaryBlunders": "Μεγάλα λάθη {count}",
+  "analysisSummaryCubeLoss": "Απώλεια κύβου {loss}",
+  "analysisRollWithoutDoubling": "Ο/Η {side} ρίχνει χωρίς διπλασιασμό",
+  "metricExplainerTitle": "Κατανόηση των μετρήσεων",
+  "metricExplainerTooltip": "Τι σημαίνουν αυτοί οι αριθμοί;",
+  "metricExplainerMwcTitle": "Πιθανότητα νίκης στην αναμέτρηση (MWC)",
+  "metricExplainerMwcBody": "Όταν είναι γνωστό το σκορ, οι κινήσεις των πουλιών ταξινομούνται με βάση την εκτιμώμενη πιθανότητα νίκης στην αναμέτρηση. Η απώλεια εκφράζεται σε ποσοστιαίες μονάδες (pp): 1 pp σημαίνει πτώση από 51% σε 50%. Συνυπολογίζονται το τρέχον ποντάρισμα του κύβου και τα gammon/backgammon. Τα αναγκαστικά πάσα και οι ζαριές με μία νόμιμη τελική θέση εξαιρούνται από τους μέσους όρους.",
+  "metricExplainerSearchTitle": "Αναζήτηση και αβεβαιότητα",
+  "metricExplainerSearchBody": "Οι κατατάξεις κινήσεων είναι στατικές εκτιμήσεις 0-ply μετά την κίνηση, όχι προσομοιώσεις. Οι τιμές αναμέτρησης χρησιμοποιούν πίνακα equity χωρίς μελλοντικές σειρές κύβου. Οι αναλύσεις κύβου χρησιμοποιούν μερική προσέγγιση ζωής κύβου 0,7 σε αποδεκτά διπλασιάσματα. Δεν πρόκειται για πλήρη αναζήτηση με κύβο. Για διαφορές πάνω από 25 χρησιμοποιείται το όριο 25 του πίνακα. Οι σχεδόν ισόπαλες εκτιμήσεις μπορεί να αλλάξουν με βαθύτερη ανάλυση· δεν υπάρχει βαθμονομημένο διάστημα εμπιστοσύνης.",
+  "metricExplainerEquityTitle": "Equity",
+  "metricExplainerEquityBody": "Αν το σκορ δεν είναι διαθέσιμο, το equity χωρίς κύβο δείχνει τη μέση αξία μιας θέσης σε πόντους με τον κύβο στο 1. +1,0 σημαίνει ότι αναμένεται κέρδος ενός πόντου· −0,5 ότι αναμένεται απώλεια μισού πόντου.",
+  "metricExplainerEquityLossTitle": "Απώλεια equity (π.χ. −0,016)",
+  "metricExplainerEquityLossBody": "Για κάθε κίνηση συγκρίνουμε την επιλογή σου με την καλύτερη του κινητήρα. Η απώλεια equity δείχνει την αναμενόμενη αξία που έχασες. −0,016 σημαίνει ότι η κίνηση ήταν μόλις 0,016 πόντους χειρότερη — ένα μικρό λάθος. 0,000 σημαίνει ότι βρήκες την καλύτερη κίνηση.",
+  "metricExplainerErrorRateTitle": "Ποσοστό λαθών",
+  "metricExplainerErrorRateBody": "Η μέση απώλεια υπολογίζει τον μέσο όρο των αξιολογημένων αποφάσεων για πούλια στη μονάδα που εμφανίζεται. Οι αποφάσεις κύβου έχουν ξεχωριστό μέσο όρο. Μικρότερη τιμή σημαίνει πιο κοντά στις κορυφαίες εκτιμήσεις του κινητήρα· δεν είναι βαθμονομημένη αξιολόγηση παίκτη.",
+  "metricExplainerMoveMarksTitle": "Βαθμοί κινήσεων",
+  "metricExplainerMoveMarksBody": "Εκπαιδευτικές ζώνες MWC: Καλύτερη < 0,05 pp, Καλή < 0,5 pp, Αμφίβολη < 1,5 pp, Λάθος < 3 pp, Μεγάλο λάθος ≥ 3 pp. Είναι εκπαιδευτικές ζώνες της εφαρμογής, όχι βαθμονομημένη βεβαιότητα ή τουρνουά αξιολόγηση.\n\nΕκπαιδευτικές ζώνες equity χωρίς κύβο:",
+  "metricExplainerThresholdBest": "απώλεια < 0,001",
+  "metricExplainerThresholdGood": "απώλεια < 0,020",
+  "metricExplainerThresholdDubious": "απώλεια < 0,050",
+  "metricExplainerThresholdError": "απώλεια < 0,110",
+  "metricExplainerThresholdBlunder": "απώλεια ≥ 0,110",
+  "metricExplainerGotIt": "Έγινε",
+  "learningRefreshTooltip": "Ανανέωση προόδου μάθησης",
+  "learningOptions": "Επιλογές μάθησης",
+  "learningResetMenu": "Επαναφορά προόδου εξάσκησης",
+  "learningLoadFailed": "Δεν ήταν δυνατή η φόρτωση της προόδου μάθησης.",
+  "learningHeading": "Μάθε από τις αποφάσεις σου",
+  "learningIntro": "Η πρόοδός σου αποθηκεύεται σε αυτή τη συσκευή. Δες τα επαναλαμβανόμενα θέματα και δοκίμασε ξανά τις αποθηκευμένες θέσεις χωρίς να δεις την απάντηση. Μπορείς να εξετάζεις τα Λευκά και τα Μαύρα ξεχωριστά.",
+  "learningBothSides": "Και οι δύο πλευρές",
+  "learningHumansOnly": "Μόνο αποφάσεις ανθρώπων",
+  "learningHumanOnlyHelp": "Απενεργοποίησέ το για να συμπεριλάβεις αποφάσεις του υπολογιστή και απομακρυσμένων παικτών",
+  "learningDecisionSummary": "{decisions} αποφάσεις · {mistakes} για βελτίωση · {blunders} μεγάλα λάθη",
+  "learningAverageLoss": "Μέση απώλεια ({decisions} αποφάσεις): {loss}",
+  "learningForcedDisclaimer": "Οι αναγκαστικές κινήσεις εξαιρούνται. Αυτές είναι εκτιμήσεις του κινητήρα, όχι βαθμολογία τουρνουά.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Η αποθηκευμένη παρτίδα χρειάζεται ανάλυση ή νέα ανάλυση.} other{Οι αποθηκευμένες παρτίδες χρειάζονται ανάλυση ή νέα ανάλυση.}}",
+  "learningAnalyseSavedGames": "Ανάλυση αποθηκευμένων παρτίδων",
+  "learningEmptyProfile": "Παίξε και ολοκλήρωσε μια παρτίδα για να δημιουργήσεις το προφίλ μάθησής σου. Μπορείς επίσης να αποθηκεύσεις αποφάσεις από την ανασκόπηση.",
+  "learningOpenHistory": "Άνοιγμα ιστορικού αγώνων",
+  "learningRecurringThemes": "Επαναλαμβανόμενα θέματα",
+  "learningNoThemes": "Δεν υπάρχουν ακόμη επαναλαμβανόμενα θέματα λαθών σε αυτή την επιλογή.",
+  "learningThemeDecisions": "{count} αποφάσεις για επανάληψη. Μια θέση μπορεί να έχει περισσότερα από ένα θέματα.",
+  "learningSaveMistakes": "Αποθήκευση αυτών των λαθών για εξάσκηση",
+  "learningSavedMistakes": "{count} αποφάσεις βρίσκονται στη λίστα εξάσκησης. Οι ήδη αποθηκευμένες διατηρούνται.",
+  "learningSaveMistakesFailed": "Δεν ήταν δυνατή η αποθήκευση ορισμένων αποφάσεων. Οι επιτυχημένες αποθηκεύσεις διατηρούνται· δοκίμασε ξανά.",
+  "learningSpacedPractice": "Εξάσκηση με διαστήματα",
+  "learningPracticeCounts": "{due} τώρα · {saved} αποθηκευμένες · {attempts} προσπάθειες · {successes} επιτυχείς ανακλήσεις",
+  "learningIntervalsHelp": "Οι επιτυχημένες επαναλήψεις επιστρέφουν μετά από 1, 3, 7, 14 και 30 ημέρες. Τα λάθη ή οι αποκαλυμμένες απαντήσεις επιστρέφουν μετά από 10 λεπτά. Οι πρόωρες επαναλήψεις δεν αλλάζουν το διάστημα.",
+  "learningAnswerContext": "Τα αποτελέσματα εξάσκησης βασίζονται στις απαντήσεις σου εδώ, ακόμη κι αν η αρχική θέση ανήκε σε αντίπαλο.",
+  "learningNoSavedPositions": "Αποθήκευσε μια απόφαση από την ανασκόπηση ή χρησιμοποίησε το κουμπί λαθών παραπάνω.",
+  "learningPositionTitle": "Απόφαση των {side} · παρτίδα {gameId}",
+  "learningReviewDue": "Επανάληψη {date}",
+  "learningReadyToReview": "Έτοιμο για επανάληψη",
+  "learningSuccessStreak": "{count} επιτυχείς επαναλήψεις στην ώρα τους",
+  "learningRemoveTooltip": "Αφαίρεση αποθηκευμένης απόφασης",
+  "learningRecentPractice": "Πρόσφατη εξάσκηση",
+  "learningAnswerRevealed": "Η απάντηση αποκαλύφθηκε",
+  "learningSuccessfulRecall": "Επιτυχής ανάκληση",
+  "learningTryAgain": "Δοκίμασε ξανά αυτή την απόφαση",
+  "learningAttemptSubtitle": "{date} · αποθηκευμένη θέση {positionId}",
+  "learningRemoveTitle": "Να αφαιρεθεί αυτή η άσκηση;",
+  "learningRemoveBody": "Αυτό αφαιρεί τις προσπάθειες εξάσκησης. Η αρχική παρτίδα παραμένει στο ιστορικό.",
+  "learningRemoveFailed": "Δεν ήταν δυνατή η αφαίρεση της άσκησης.",
+  "learningResetTitle": "Να γίνει επαναφορά της προόδου εξάσκησης;",
+  "learningResetBody": "Θα αφαιρεθούν όλες οι προσπάθειες και τα διαστήματα επανάληψης. Οι αποθηκευμένες ασκήσεις και το ιστορικό παραμένουν· όλες οι ασκήσεις θα είναι άμεσα διαθέσιμες.",
+  "learningResetAction": "Επαναφορά προόδου",
+  "learningResetFailed": "Δεν ήταν δυνατή η επαναφορά της προόδου.",
+  "learningAnalysisProgress": "Αναλύθηκαν {completed} παρτίδες · {failed} μη διαθέσιμες.",
+  "learningAnalysisComplete": "Αναλύθηκαν {completed} παρτίδες.",
+  "learningAnalysisCompleteWithErrors": "Αναλύθηκαν {completed} παρτίδες· δεν ήταν δυνατή η ανάλυση {failed}. Δοκίμασε ξανά όταν είναι έτοιμος ο κινητήρας.",
+  "learningThemeHitting": "Χτύπημα και τέμπο",
+  "learningThemeSafety": "Blots και ασφάλεια",
+  "learningThemePointMaking": "Δημιουργία πόντων",
+  "learningThemePrime": "Prime και αποκλεισμοί",
+  "learningThemeAnchor": "Άγκυρες και διαφυγή",
+  "learningThemeRace": "Αποδοτικότητα αγώνα δρόμου",
+  "learningThemeBearOff": "Μάζεμα πούλιων",
+  "learningThemeBarEntry": "Είσοδος από τη μπάρα",
+  "learningThemeCube": "Αποφάσεις κύβου",
+  "analysisCubeNoDouble": "Χωρίς διπλασιασμό",
+  "analysisCubeDouble": "Διπλασιασμός",
+  "analysisCubeTake": "Πάρε",
+  "analysisCubePass": "Πάσο",
+  "learningAnalysisStarting": "Ανάλυση αποθηκευμένων παρτίδων…",
+  "scoreSheetNoMoves": "Δεν υπάρχουν ακόμη κινήσεις",
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  }
 }

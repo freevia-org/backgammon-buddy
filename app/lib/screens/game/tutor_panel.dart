@@ -206,8 +206,8 @@ class _TutorPanelState extends State<TutorPanel> {
                     key: const ValueKey('tutorPanelHandle'),
                     child: Semantics(
                       label: widget.expanded
-                          ? 'Collapse tutor'
-                          : 'Expand tutor',
+                          ? appLocalizationsOf(context).tutorCollapseTooltip
+                          : appLocalizationsOf(context).tutorExpandTooltip,
                       button: true,
                       onTap: _toggle,
                       child: GestureDetector(
@@ -242,7 +242,7 @@ class _TutorPanelState extends State<TutorPanel> {
                     right: 12,
                     child: IconButton(
                       key: const ValueKey('tutorPanelSettings'),
-                      tooltip: 'Tutoring options',
+                      tooltip: appLocalizationsOf(context).tutorOptions,
                       onPressed: widget.onOpenSettings,
                       icon: const Icon(Icons.settings_outlined),
                       constraints: const BoxConstraints.tightFor(

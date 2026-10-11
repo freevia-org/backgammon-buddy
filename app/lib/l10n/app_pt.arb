@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Os números dos pontos nas notas de aprendizagem são contados a partir do campo interno do jogador que está a jogar.",
   "tutorHittingRollNote": "A contagem de lançamentos que permitem bater inclui os 36 resultados ordenados dos dados e as batidas legais diretas ou indiretas; são oportunidades, não uma previsão da escolha do adversário.",
   "tutorNoEvaluatedAlternatives": "Não há alternativas avaliadas disponíveis para esta jogada.",
-  "tutorForcedPassNoDecision": "Uma passagem forçada não implica uma decisão sobre o movimento das peças."
+  "tutorForcedPassNoDecision": "Uma passagem forçada não implica uma decisão sobre o movimento das peças.",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "settingsReset": "Repor",
+  "settingsAppLanguage": "Idioma da aplicação",
+  "settingsTheme": "Tema",
+  "settingsThemeSystem": "Sistema",
+  "settingsThemeLight": "Claro",
+  "settingsThemeDark": "Escuro",
+  "settingsAnimationSpeed": "Velocidade da animação",
+  "settingsAnimationNone": "Nenhuma",
+  "settingsAnimationNormal": "Normal",
+  "settingsAnimationFast": "Rápida",
+  "settingsDiceRollAnimation": "Animação do lançamento dos dados",
+  "settingsDiceRollAnimationHelp": "Agite os dados antes de cada lançamento",
+  "settingsDefaultMatchLength": "Duração predefinida da partida",
+  "settingsDefaultDifficulty": "Dificuldade predefinida",
+  "settingsDifficultyEasy": "Fácil",
+  "settingsDifficultyMedium": "Média",
+  "settingsDifficultyHard": "Difícil",
+  "settingsDifficultyExpert": "Especialista",
+  "settingsTutorModeDefault": "Modo de tutor predefinido",
+  "settingsTutorAuto": "Automático",
+  "settingsTutorOn": "Ativado",
+  "settingsTutorOff": "Desativado",
+  "settingsTutorModeHelp": "Automático ativa o tutor em qualquer nível do computador. Ativado e Desativado definem a opção inicial para partidas locais. As partidas próximas e online não têm assistência; pode rever as partidas guardadas mais tarde. As preferências de aprendizagem abaixo são guardadas neste dispositivo.",
+  "settingsTutorPreferences": "Preferências do tutor",
+  "settingsTutorPreferencesSubtitle": "Predefinições para futuras partidas",
+  "settingsTutorSaveError": "Não foi possível guardar as preferências do tutor.",
+  "settingsGameplay": "Jogo",
+  "settingsMoveHighlights": "Realce das jogadas",
+  "settingsMoveHighlightsHelp": "Circunda as peças que pode selecionar e ilumina os destinos possíveis",
+  "settingsDragToMove": "Arrastar para mover",
+  "settingsDragToMoveHelp": "Arraste uma peça até ao destino (os toques também funcionam)",
+  "settingsCombinedMoves": "Jogadas combinadas",
+  "settingsCombinedMovesHelp": "Com um toque, uma peça percorre os valores dos dois dados",
+  "settingsRotateBoard": "Rodar o tabuleiro entre turnos",
+  "settingsRotateBoardHelp": "Jogo por turnos no mesmo dispositivo: vira a vista para o jogador ativo",
+  "settingsPassDevice": "Ecrã para passar o dispositivo",
+  "settingsPassDeviceHelp": "Oculte o tabuleiro entre turnos no jogo por turnos no mesmo dispositivo",
+  "settingsShowScore": "Mostrar pontuação",
+  "settingsShowScoreHelp": "Mostra a pontuação atual da partida no cabeçalho",
+  "settingsBuddyMode": "Estilo do Buddy",
+  "settingsBuddyTerse": "Sucinto",
+  "settingsBuddyFriendly": "Amigável",
+  "settingsBuddyTerseHelp": "Como o Buddy diz uma jogada em voz alta: «13/8, 24/22» — a notação usada pelos jogadores ao tabuleiro.",
+  "settingsBuddyFriendlyHelp": "Como o Buddy diz uma jogada em voz alta: «Move uma peça de 13 para 8 e outra de 24 para 22.»",
+  "settingsListenForDice": "Ouvir os dados",
+  "settingsListenForDiceHelp": "O Buddy observa o tabuleiro mais cedo quando ouve um lançamento. Desativar esta opção não altera mais nada.",
+  "settingsDiagnostics": "Diagnóstico",
+  "settingsErrorLog": "Registo de erros",
+  "settingsErrorLogHelp": "Erros recentes, prontos a copiar para uma comunicação de erro",
+  "settingsReportBug": "Comunicar um erro",
+  "settingsReportBugHelp": "Abre um formulário orientado no GitHub",
+  "settingsSuggestIdea": "Sugerir uma ideia",
+  "settingsSuggestIdeaHelp": "Ajude-nos a melhorar o tutor e o jogo",
+  "settingsAbout": "Sobre",
+  "settingsOpenSourceLicenses": "Licenças de código aberto",
+  "tutorPhraseGameFinished": "Partida terminada.",
+  "tutorPhraseReviewFinishedGame": "Reveja as jogadas para encontrar uma decisão que possa treinar.",
+  "tutorPhraseCubeOffered": "Foi proposto o cubo de dobragem.",
+  "tutorPhraseCubeDecisionPrompt": "Decida se aceita a dobragem ou passa antes de planear uma jogada com as peças.",
+  "tutorPhraseCubeScoreContext": "A pontuação da partida altera o valor da aposta adicional.",
+  "tutorPhraseResignationOffered": "Foi proposta a desistência.",
+  "tutorPhraseResignationDecisionPrompt": "Compare os pontos oferecidos com a posição antes de aceitar ou continuar.",
+  "tutorPhraseNoLegalPlay": "Não há jogada legal com este lançamento.",
+  "tutorPhraseForcedPassPrompt": "Passar por obrigação não é um erro; aguarde pelo próximo lançamento.",
+  "tutorPhraseOnlyOneResult": "Só existe uma posição final legal.",
+  "tutorPhraseForcedTurnPrompt": "Faça a jogada obrigatória. Este lançamento não permite escolher entre jogadas.",
+  "tutorPhrasePipCountsLevel": "As contagens de pips estão empatadas.",
+  "tutorPhrasePipCountsAhead": "Está {count} pips à frente.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "Está {count} pips atrás.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "Tem {count} peças na barra: primeiro, tem de as reentrar.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Reentre as peças da barra antes de mover outras; depois procure uma casa segura para aterrar.",
+  "tutorPhraseOpponentHomePoints": "O adversário tem {count} casas fechadas no seu tabuleiro interno.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Corrida para retirar as peças.",
+  "tutorPhrasePureRace": "Uma corrida pura.",
+  "tutorPhraseBearOffSpread": "Retire peças do tabuleiro sem perder uma distribuição útil para o próximo lançamento.",
+  "tutorPhraseBringRearCheckersHome": "Traga as peças mais atrasadas para casa sem acumular demasiadas numa só casa.",
+  "tutorPhraseArmiesHavePassed": "As peças já se cruzaram; não é possível fazer mais capturas.",
+  "tutorPhraseContactStillMatters": "{part} Ainda há contacto.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "O adversário tem {count} peças na barra.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Mantenha as casas fechadas enquanto traz as restantes peças para casa.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Construa ou mantenha fechado o seu tabuleiro interno enquanto o adversário tenta reentrar.",
+  "tutorPhraseHomePointsCloseEntries": "Tem {count} casas no tabuleiro interno; cada uma bloqueia um número de entrada.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Contacto com uma sequência de {count} casas consecutivas.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Compare prolongar a sequência com guardar peças de reserva para a manter.",
+  "tutorPhraseSpareCheckersCanMove": "Pode mover {count} peças de reserva sem abrir imediatamente a respetiva casa.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Contacto com um ponto de ancoragem em {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Compare o avanço das peças atrasadas com a segurança de manter o seu ponto de ancoragem.",
+  "tutorPhraseCompareAnchorProgressBehind": "Tenha em conta o ponto seguro enquanto procura uma captura ou melhora o tabuleiro.",
+  "tutorPhrasePreserveAnchorFoothold": "O ponto de ancoragem não pode ser capturado, mas essas peças ainda têm um longo caminho até casa.",
+  "tutorPhraseContactThreats": "Ainda há contacto: ambos os lados podem ameaçar capturas.",
+  "tutorPhraseLookForPointsAndSafety": "Procure casas úteis e depois avalie o risco de deixar peças isoladas expostas.",
+  "tutorPhraseHomePointsAndBlots": "Tem {count} casas no tabuleiro interno e deixa {otherCount} peças isoladas expostas.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Escolha uma peça para iniciar a sua jogada.",
+  "tutorPhraseLegalPlayPrompt": "Faça uma jogada legal para ver os comentários.",
+  "tutorPhraseStagedHit": "Capturou {count, plural, one{uma peça do adversário} other{{count} peças do adversário}}.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "Reentrou {count} peças a partir da barra.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Retirou {count, plural, one{uma peça do tabuleiro} other{{count} peças do tabuleiro}}.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Fechou {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Por agora, a peça na sua casa {point} está isolada e exposta.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "A peça de reserva na sua casa {point} poderá mover-se mais tarde sem abrir a casa.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Use os restantes dados que ainda pode jogar antes de avaliar a jogada completa.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Já retirou as 15 peças: ganhou a partida.",
+  "tutorPhraseStagedHitShortPlan": "A captura ganha tempo enquanto o adversário tenta reentrar.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Retirar peças com eficiência deixa valores úteis para o próximo lançamento.",
+  "tutorPhraseStagedRaceHomePlan": "Na corrida, traga para casa as peças atrasadas e mantenha casas úteis para as retirar.",
+  "tutorPhraseStagedBearOffContactPlan": "Retirar peças faz avançar, mas o contacto restante ainda permite capturas.",
+  "tutorPhraseStagedReentryPlan": "A reentrada põe a peça novamente em jogo; depois, procure uma casa segura para aterrar.",
+  "tutorPhraseStagedHomeBoardPlan": "A nova casa no tabuleiro interno bloqueia um número de entrada se houver uma captura mais tarde.",
+  "tutorPhraseStagedPrimePlan": "A sequência mais longa fecha mais casas de aterragem; as peças de reserva ajudam a mantê-la.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Abandonar o ponto de ancoragem faz avançar, mas perde um apoio seguro.",
+  "tutorPhraseStagedNewAnchorPlan": "O novo ponto de ancoragem dá às peças atrasadas um apoio seguro.",
+  "tutorPhraseStagedCoverBlotPlan": "Cobrir uma peça exposta retira um alvo ao adversário.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "É um equilíbrio entre desenvolvimento e segurança: peças úteis para construir também podem tornar-se alvos.",
+  "tutorPhraseStagedCompletePrompt": "{part} A jogada completa está preparada; toque em Confirmar para a executar.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Este lançamento não permite escolher uma jogada com as peças; não é avaliado como uma decisão.",
+  "tutorMoveTopVerdict": "A melhor escolha para esta posição.",
+  "tutorMoveAlternativeVerdict": "O motor prefere outra jogada nesta posição.",
+  "tutorMoveEstimateDifference": "Diferença em relação à melhor jogada: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Depois desta jogada: {winPercent}% de hipóteses estimadas de vitória, {winGammonPercent}% de vitória por gamão ou melhor e {loseGammonPercent}% de derrota por gamão ou pior. São estimativas do ponto de vista de quem joga.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Probabilidade estimada de vencer o encontro: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "As 15 peças já saíram do tabuleiro: ganhou a partida.",
+  "tutorMovePlanHit": "Use a captura para ganhar tempo enquanto o adversário reentra. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Mantenha fechadas as casas do seu tabuleiro interno para dificultar a reentrada.",
+  "tutorMovePlanHitBuild": "Feche mais casas no seu tabuleiro interno para tornar mais difícil recuperar de capturas futuras.",
+  "tutorMovePlanRaceBearOff": "Procure retirar as peças com eficiência: tire-as do tabuleiro e deixe valores úteis para o próximo lançamento.",
+  "tutorMovePlanRaceHome": "Traga as peças mais atrasadas para casa e distribua-as por casas úteis para as retirar.",
+  "tutorMovePlanContactBearOff": "Retire peças do jogo, mas vigie as peças atrasadas do adversário: enquanto houver contacto, uma peça isolada durante a saída pode tornar-se um alvo.",
+  "tutorMovePlanReentry": "Volte ao jogo e procure uma casa segura para a peça que reentrou.",
+  "tutorMovePlanHomeBoard": "Reforce o seu tabuleiro interno. A nova casa fechada torna uma futura captura mais forte, bloqueando um número de entrada.",
+  "tutorMovePlanPrime": "Mantenha unida a sequência de casas fechadas. Guarde peças de reserva para que os próximos lançamentos não o obriguem a abri-la.",
+  "tutorMovePlanLeaveAnchor": "Abandonar uma âncora faz avançar as peças atrasadas, mas perde um apoio seguro. Proteja-as enquanto regressam a casa.",
+  "tutorMovePlanNewAnchor": "Use a nova âncora como apoio seguro enquanto melhora o resto da posição.",
+  "tutorMovePlanCoverBlot": "Junte as suas peças. Cobrir uma peça isolada exposta elimina esse alvo e mantém disponíveis casas úteis para as próximas jogadas.",
+  "tutorMovePlanSafety": "Equilibre desenvolvimento e segurança: aproxime as peças de construção das casas úteis e verifique quais as peças isoladas que podem ser capturadas.",
+  "tutorMoveObservationNoLegalPlay": "Não há jogada legal com as peças: tem de passar a vez.",
+  "tutorMoveObservationHit": "Captura {count, plural, one{uma peça do adversário} other{{count} peças do adversário}}; o adversário tem de reentrar as peças da barra antes de mover as restantes.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "{count, plural, one{Reentra uma peça a partir da barra.} other{Reentra {count} peças a partir da barra.}}",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Retira {count, plural, one{uma peça} other{{count} peças}} do tabuleiro.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Fecha {points}. Duas ou mais peças ocupam uma casa segura e impedem o adversário de aterrar nela.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Abre casas que estavam fechadas ({pointLabel}): {points}. Essas casas deixam de impedir o adversário de aterrar nelas.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Não deixa peças isoladas expostas (antes: {previousCount}). O adversário não tem peças isoladas para capturar.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Deixa {count, plural, one{uma peça isolada exposta} other{{count} peças isoladas expostas}} (antes: {previousCount}). Veja se o adversário as consegue alcançar antes de preferir segurança a outro ganho.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Maior sequência de casas fechadas: {count} (antes: {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Uma sequência de seis casas fechadas não pode ser atravessada enquanto se mantiver intacta.",
+  "tutorMoveObservationPrimeBuild": "Mantenha peças de construção por perto se quiser prolongar ou preservar esta sequência.",
+  "tutorMoveObservationPrimeSpares": "Há {count} peças de reserva além das duas que mantêm as casas fechadas. Mover uma reserva pode preservar a casa; mover uma das duas últimas abre-a.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Âncoras no tabuleiro interno do adversário: {points} (antes: {previousPoints}). Manter uma âncora protege essas peças de capturas; abandoná-la troca esse apoio seguro por avanço na corrida.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Corrida pura: as peças já se cruzaram e nenhum jogador tem peças na barra. Já não é possível capturar; importa retirar as peças com eficiência.",
+  "tutorMoveObservationNoReplyHit": "Nesta posição, nenhum lançamento legal seguinte permite ao adversário capturar uma peça sua. Ainda há contacto, por isso jogadas futuras podem criar novas oportunidades de captura.",
+  "tutorMoveObservationReplyHit": "O adversário pode capturar em {count} de {total} lançamentos. Por exemplo, {dieOne}–{dieTwo} permite uma captura legal na sua casa {point}. A captura é possível, mas não é certo que o adversário a escolha.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Casas fechadas no seu tabuleiro interno: {closedPoints}. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "O adversário não pode reentrar até uma casa ficar aberta.",
+  "tutorMoveObservationOpenEntry": "Um lançamento que use uma casa de entrada aberta pode trazer uma peça da barra de volta ao jogo.",
+  "tutorMoveComparisonDetail": "{factors} A probabilidade estimada de vitória da melhor jogada é {delta} pontos percentuais {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "mais alta",
+  "tutorMoveComparisonLower": "mais baixa",
+  "tutorMoveComparisonScoreContext": " Ainda pode ficar melhor classificada porque gamões e backgamões têm valores diferentes com o {scoreContext} atual.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "valor da aposta",
+  "tutorMoveComparisonMatchScore": "resultado do encontro",
+  "tutorMoveComparisonFactorBar": "Peças do adversário na barra com a melhor jogada: {bestCount}, em vez de {playedCount}. Uma peça na barra tem de reentrar antes de o adversário poder mover as restantes.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Casas fechadas no seu tabuleiro interno com a melhor jogada: {bestCount}, em vez de {playedCount} na jogada feita. Depois de uma captura, {entryDifference}.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "há menos números de entrada disponíveis",
+  "tutorMoveComparisonLeavingMore": "há mais números de entrada disponíveis",
+  "tutorMoveComparisonFactorShots": "A melhor jogada permite uma captura de resposta em {bestCount} dos 36 lançamentos, em vez de {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Isso reduz o risco imediato de voltar à barra.",
+  "tutorMoveComparisonExtraExposure": "Compare essa exposição adicional com o que a jogada ganha noutros aspetos.",
+  "tutorMoveComparisonFactorPrime": "A maior sequência de casas fechadas tem {bestCount} pontos com a melhor jogada, em vez de {playedCount}. Compare a barreira com as peças disponíveis para a manter intacta.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Âncoras com a melhor jogada: {bestPoints}, em vez de {playedPoints}. Manter uma âncora preserva uma casa segura para aterrar; abandoná-la aproxima essas peças de casa.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Número de peças já retiradas com a melhor jogada: {bestCount}, em vez de {playedCount}. Cada peça retirada é menos uma para tirar mais tarde.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "As duas jogadas deixam o mesmo risco imediato de captura, o mesmo número de casas fechadas no tabuleiro interno e as mesmas âncoras e peças retiradas. Compare as casas de aterragem: o próximo lançamento pode usar essas peças de outra forma.",
+  "tutorMoveComparisonSummaryBar": "A melhor jogada deixa mais peças do adversário na barra e atrasa as restantes jogadas.",
+  "tutorMoveComparisonSummaryHomeBoard": "A melhor jogada fecha mais casas no tabuleiro interno, dificultando a reentrada depois de uma captura.",
+  "tutorMoveComparisonSummaryShots": "A melhor jogada permite menos lançamentos imediatos de captura, reduzindo o risco de voltar à barra.",
+  "tutorMoveComparisonSummaryPrime": "A melhor jogada mantém uma sequência mais longa de casas fechadas.",
+  "tutorMoveComparisonSummaryAnchors": "A melhor jogada mantém mais âncoras seguras no tabuleiro interno do adversário.",
+  "tutorMoveComparisonSummaryBearOff": "A melhor jogada retira mais peças, deixando menos para tirar depois.",
+  "tutorMoveComparisonSummaryBlots": "Esta jogada deixa {playedCount} peças isoladas expostas; a melhor deixa {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "A melhor jogada mantém uma âncora segura na casa {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "A melhor jogada fecha mais casas de entrada caso uma das suas peças seja capturada.",
+  "tutorMoveComparisonSummarySimilarRisks": "As jogadas deixam riscos imediatos semelhantes; compare quais as casas de aterragem que continuam úteis no próximo lançamento.",
+  "tutorMoveAssessmentEquityLoss": "{value} de equidade perdida",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} pp de probabilidade de vencer o encontro (MWC)",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "casa",
+  "tutorMovePointPlural": "casas",
+  "tutorMoveNoPoints": "nenhuma",
+  "gameTutorCommentaryOff": "Os comentários sobre a partida estão desativados.",
+  "gameTutorToolsAvailable": "Abra o tutor para aceder às ferramentas ativadas.",
+  "gameTutorNextRoll": "Lance os dados novamente.",
+  "gameTutorNoEvaluatedReview": "Não há uma explicação avaliada disponível para esta jogada guardada.",
+  "gameTutorAnalysisUnavailable": "análise indisponível",
+  "gameTutorReviewing": "a analisar…",
+  "gameTutorTryYourPlayFirst": "Experimente primeiro a sua jogada.",
+  "gameTutorKeepBuilding": "Continue a preparar a sua jogada.",
+  "gameTutorStageCompleteBeforeCoaching": "Prepare uma jogada legal completa antes de revelar comentários ou sugestões.",
+  "gameTutorReadyToConfirm": "Pronto para confirmar",
+  "gameTutorPlayTakingShape": "A sua jogada está a ganhar forma.",
+  "gameTutorConfirmOrUndo": "Confirme para jogar ou anule para voltar a pensar.",
+  "gameTutorFinishDiceOrUndo": "Jogue os dados restantes ou anule para voltar a pensar.",
+  "gameTutorComputerConsidering": "O computador está a pensar na própria jogada.",
+  "gameTutorComputerPlayReviewed": "A jogada completa será analisada aqui.",
+  "gameTutorYourPlay": "A sua jogada",
+  "gameTutorComputer": "Computador",
+  "gameTutorPlayQuality": "A sua jogada: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "jogada obrigatória",
+  "gameTutorTopChoice": "melhor escolha",
+  "gameTutorSoundPlay": "boa jogada",
+  "gameTutorAnotherPlayMayFitBetter": "talvez outra jogada se adapte melhor",
+  "gameTutorAnotherPlayFitsBetter": "outra jogada adapta-se melhor a esta posição",
+  "gameTutorStrongerPlayAvailable": "havia uma jogada claramente melhor",
+  "gameTutorPositionEdge": "{side} tem a vantagem estimada.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "A posição está aproximadamente equilibrada.",
+  "tutorPlayedMove": "Jogada realizada: {move}",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorBestMove": "Melhor jogada: {move}",
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorShowRankedPlays": "Mostrar jogadas classificadas",
+  "tutorReviewRecordedMove": "Toque numa jogada concluída no registo para rever aqui a decisão.",
+  "tutorTopPlays": "Melhores jogadas",
+  "tutorNoHintsAvailable": "Sem sugestões disponíveis.",
+  "tutorPreviewThenConfirm": "Toque numa jogada para a pré-visualizar no tabuleiro e, em seguida, confirme.",
+  "tutorTopChoiceForPosition": "Melhor escolha para esta posição",
+  "tutorAlternativePlay": "Jogada alternativa",
+  "tutorEngineEstimates": "Estimativas do motor",
+  "tutorEstimateScope": "Estimativa de 0-ply · pontuação e aposta atuais · sem futuras decisões do cubo",
+  "tutorEquity": "Equidade",
+  "tutorMwcPercent": "MWC %",
+  "tutorNearTiesNote": "Uma análise mais profunda pode alterar a ordem entre jogadas quase empatadas.",
+  "tutorWhyThisPlay": "Porquê esta jogada?",
+  "tutorCompareAlternative": "Comparar esta alternativa",
+  "gameTutorCubeTake": "Tutor: aceitar",
+  "gameTutorCubePass": "Tutor: passar",
+  "practiceScreenTitle": "Pratica uma decisão",
+  "practiceUnavailable": "Esta posição de treino já não está disponível.",
+  "practiceSubmitError": "Não foi possível avaliar nem guardar esta tentativa. O teu progresso não foi alterado. Tenta novamente.",
+  "practiceTurnLabel": "Vez de {side} · {dice}",
+  "practiceHistoricalScoreUnavailable": "Pontuação histórica indisponível; a avaliação usa equity sem cubo.",
+  "practiceScoreLine": "Resultado: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, até {matchLength}",
+  "practiceCrawfordGame": " · partida Crawford",
+  "practiceNoDoublingCube": "Sem cubo de dobragem.",
+  "practiceCubeValue": "Cubo {value}.",
+  "practiceHistoricalCubeUnknown": "Regras históricas do cubo desconhecidas.",
+  "practiceAfterBestPosition": "Posição após a melhor jogada",
+  "practiceAfterYourAnswerPosition": "Posição após a tua resposta",
+  "practiceFindYourPlayPrompt": "Faz a tua jogada no tabuleiro e verifica a resposta. Não são mostradas dicas.",
+  "practiceUndo": "Anular",
+  "practiceCheckAnswer": "Verificar resposta",
+  "practiceRevealNoCredit": "Revelar resposta (sem crédito)",
+  "practiceAnswerRevealedNoCredit": "Resposta revelada — sem crédito de recordação.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "practiceBestMoveLine": "Melhor: {move}",
+  "practiceOriginalGameLine": "Partida original: {move} · {loss}",
+  "practiceYourAnswerLine": "A tua resposta: {move}",
+  "practiceYourAnswerChip": "A tua resposta",
+  "practiceBestPlayChip": "Melhor jogada",
+  "practiceNextReview": "Próxima revisão: {date}.",
+  "practiceRecallCredit": "As respostas boas ou melhores contam como recordação bem-sucedida. As repetições antecipadas não avançam o calendário.",
+  "practiceBackToLearning": "Voltar à aprendizagem",
+  "practiceMarkBest": "Melhor",
+  "practiceMarkGood": "Boa",
+  "practiceMarkDubious": "Duvidosa",
+  "practiceMarkError": "Erro",
+  "practiceMarkBlunder": "Erro grave",
+  "practiceMarkForced": "Forçada",
+  "newMatchYourSide": "O teu lado",
+  "newMatchTutorMode": "Modo tutor",
+  "newMatchTutorDescription": "Aprende com dicas, explicações e comentários sobre a partida",
+  "newMatchTutoringOptions": "Opções de tutoria",
+  "newMatchTutoringOptionsDescription": "Para esta partida; ajustáveis durante o jogo",
+  "setupMatchLength": "Duração da partida",
+  "setupDifficulty": "Dificuldade",
+  "setupDifficultyEasy": "Fácil",
+  "setupDifficultyMedium": "Média",
+  "setupDifficultyHard": "Difícil",
+  "setupDifficultyExpert": "Especialista",
+  "setupPlayWithoutCube": "Jogar sem cubo",
+  "setupNoCubeThisMatch": "Sem cubo de dobragem nesta partida",
+  "analysisTitle": "Análise",
+  "gameMatchSummary": "Resumo da partida",
+  "gameAnalyzeGame": "Analisar partida",
+  "analysisMetricsTooltip": "O que significam estes números?",
+  "analysisError": "Falha ao analisar a partida: {error}",
+  "analysisNoPositions": "Esta partida não tem posições para mostrar.",
+  "analysisInProgress": "A analisar a partida…",
+  "analysisPercent": "{percent}%",
+  "analysisPlayed": "Jogada",
+  "analysisBest": "Melhor",
+  "analysisPrevious": "Anterior",
+  "analysisNext": "Seguinte",
+  "analysisPositionBeforeCube": "Posição antes da decisão do cubo",
+  "analysisPositionAtPoint": "Posição neste ponto da partida",
+  "analysisShowingBestBefore": "A mostrar a melhor jogada na posição anterior ao lance",
+  "analysisShowingBefore": "A mostrar a posição antes da jogada",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "analysisMoveLoss": " −{loss}",
+  "analysisExcludedFromAverages": " · excluído das médias",
+  "analysisNoPlay": "(sem jogada)",
+  "analysisBestMoveLine": "Melhor jogada: {move}",
+  "analysisExplain": "Explicar",
+  "analysisSaveForPractice": "Guardar para praticar",
+  "analysisSaveError": "Não foi possível guardar esta decisão: {error}",
+  "analysisCubeInfo": "{side}: {action} · {mark} · perda {loss}",
+  "analysisCubeDecision": "Decisão do cubo",
+  "analysisCubePlayed": "Jogada: {action} (probabilidade de ganhar a partida: {percent}%).",
+  "analysisCubeBest": "Melhor: {action} (probabilidade de ganhar a partida: {percent}%).",
+  "analysisClose": "Fechar",
+  "analysisMoves": "Jogadas",
+  "analysisForced": "Forçada",
+  "analysisMarkBest": "Melhor",
+  "analysisMarkGood": "Boa",
+  "analysisMarkDubious": "Duvidosa",
+  "analysisMarkError": "Erro",
+  "analysisMarkBlunder": "Erro grave",
+  "analysisSummaryMeanLoss": "Perda média {loss}",
+  "analysisSummaryCheckerDecisions": "{count} decisões de peças",
+  "analysisSummaryBlunders": "Erros graves {count}",
+  "analysisSummaryCubeLoss": "Perda do cubo {loss}",
+  "analysisRollWithoutDoubling": "{side} lança sem dobrar",
+  "metricExplainerTitle": "Compreender as métricas",
+  "metricExplainerTooltip": "O que significam estes números?",
+  "metricExplainerMwcTitle": "Probabilidade de ganhar a partida (MWC)",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "historyTitle": "Histórico de partidas",
+  "historyLoadFailed": "Não foi possível carregar o histórico:\n{error}",
+  "historyEmpty": "Ainda não jogaste nenhuma partida.",
+  "historyDeleteConfirmTitle": "Eliminar esta partida?",
+  "historyDeleteConfirmBody": "{scoreLine}\n\nA partida e todos os jogos registados serão eliminados permanentemente. Esta ação não pode ser anulada.",
+  "actionCancel": "Cancelar",
+  "actionDelete": "Eliminar",
+  "historyDeleteFailed": "Não foi possível eliminar a partida.",
+  "historyComplete": "Concluída",
+  "historyWinner": "{side} ganhou",
+  "historyUnfinished": "Inacabada",
+  "historyMatchTitle": "Partida",
+  "historyMatchLoadFailed": "Não foi possível carregar a partida:\n{error}",
+  "historyGamesLoadFailed": "Não foi possível carregar os jogos:\n{error}",
+  "historyNoGames": "Ainda não há jogos registados.",
+  "historyGameTitle": "Jogo {number}",
+  "historyCrawford": "Crawford",
+  "historyScoreLine": "Brancas {whiteScore} — {blackScore} Pretas (até {matchLength})",
+  "historyModeComputer": "contra o computador",
+  "historyModeTwoPlayers": "Dois jogadores",
+  "historyModeOnline": "Online",
+  "historyModeNearby": "Jogar nas proximidades",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "Em curso",
+  "historyGameResult": "{side} ganha {points} ({outcome})",
+  "historyOutcomeSingle": "simples",
+  "historyOutcomeGammon": "gamão",
+  "historyOutcomeBackgammon": "backgamão",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "onlineTitle": "Jogar online",
+  "onlineUnassistedNote": "As partidas online não têm tutor em direto. Revê as jogadas e pratica os erros depois da partida.",
+  "onlineNotConfiguredTitle": "O jogo online não está configurado nesta versão",
+  "onlineNotConfiguredBody": "Esta versão não tem um backend Firebase ligado, por isso não é possível criar ou entrar em partidas.",
+  "onlineErrorNoMatch": "Não existe nenhuma partida com esse código. Verifica-o e tenta novamente.",
+  "onlineErrorSeatTaken": "A partida já não está aberta — o lugar foi ocupado.",
+  "onlineErrorPermission": "Não tens acesso a esta partida.",
+  "onlineErrorGeneric": "Ocorreu um erro. Tenta novamente.",
+  "onlineMatchFinished": "A partida terminou e já não pode ser retomada.",
+  "onlineEnterCodeError": "Introduz o código da partida.",
+  "onlineOpponentShort": "Adversário",
+  "onlineMatchInProgress": "Partida em curso",
+  "onlineResumePrompt": "Estavas a jogar a partida {code}.",
+  "onlineRejoin": "Retomar",
+  "onlineForgetMatch": "Esquecer esta partida",
+  "onlineCreateTitle": "Criar partida",
+  "onlineMatchLength": "Duração da partida",
+  "onlineNoCubeTitle": "Jogar sem cubo",
+  "onlineNoCubeSubtitle": "Sem cubo de dobragem nesta partida",
+  "onlineCreate": "Criar",
+  "onlineWaitingOpponent": "À espera do adversário…",
+  "onlineShareCode": "Partilhar este código",
+  "onlineCopyCode": "Copiar código",
+  "onlineCodeCopied": "Código copiado",
+  "onlineJoinTitle": "Entrar numa partida",
+  "onlineRoomCode": "Código da partida",
+  "onlineJoin": "Entrar",
+  "lanTitle": "Jogar nas proximidades",
+  "lanTabHost": "Alojar",
+  "lanTabJoin": "Entrar",
+  "lanUnassistedNote": "As partidas locais não têm tutor em direto. Revê as jogadas e pratica os erros depois da partida.",
+  "lanGameStartFailed": "Não foi possível iniciar o jogo. O outro dispositivo pode tentar entrar novamente.",
+  "lanHostPortInUse": "Não foi possível alojar: a porta já está a ser usada. Fecha outras cópias do Backgammon Buddy e tenta novamente.",
+  "lanHostStartFailed": "Não foi possível alojar. Verifica o Wi-Fi e tenta novamente.",
+  "lanHostTitle": "Alojar uma partida",
+  "lanStartHosting": "Começar a alojar",
+  "lanHostHelp": "Os dois dispositivos têm de estar na mesma rede Wi-Fi. Este lança os dados e mantém o resultado.",
+  "lanWaitingPlayerTitle": "À espera de um jogador",
+  "lanRoomCodeInfo": "Diz este código ao outro jogador. Permite-lhe entrar e a aplicação nunca o envia pela rede.",
+  "lanWaitingPlayer": "À espera de um jogador…",
+  "lanStopHosting": "Parar alojamento",
+  "lanFindNearbyPort": "Pede ao outro dispositivo que procure partidas próximas. À escuta na porta {port}.",
+  "lanOnNetwork": "Nesta rede",
+  "lanCopyAddress": "Copiar endereço",
+  "lanAddressCopied": "Endereço copiado",
+  "lanScanHostTitle": "Digitalizar o anfitrião",
+  "lanScanHostHelp": "O outro dispositivo apresenta um código QR no ecrã de anfitrião. Ao digitalizá-lo, o endereço e o código da sala são preenchidos.",
+  "lanScanQr": "Digitalizar código QR",
+  "lanScannerUnavailable": "Câmara ou permissão indisponível. Introduz abaixo o endereço e o código da sala.",
+  "lanInvalidQr": "Este código QR não é do Backgammon Buddy. Digitaliza o que aparece no ecrã de anfitrião do outro dispositivo.",
+  "lanScannerFailed": "Não foi possível abrir o leitor. Introduz abaixo o endereço e o código.",
+  "lanNearbyGames": "Partidas próximas",
+  "lanSearching": "A procurar partidas próximas…",
+  "lanNoGamesFound": "Não foram encontradas partidas. Confirma que o outro dispositivo está a alojar e que ambos usam a mesma rede Wi-Fi, ou introduz o endereço abaixo.",
+  "lanStillSearching": "À procura…",
+  "lanEnterAddress": "Introduzir endereço",
+  "lanEnterAddressHelp": "A deteção automática não funciona em todas as redes e pode estar totalmente bloqueada no iOS. O ecrã de anfitrião indica o que tens de escrever.",
+  "lanIpAddress": "Endereço IP",
+  "lanPort": "Porta",
+  "lanInvalidPort": "Introduz uma porta entre 1 e 65535.",
+  "lanEnterAddressError": "Introduz o endereço apresentado no outro dispositivo.",
+  "lanEnterRoomCodeError": "Introduz o código de 4 dígitos do outro dispositivo.",
+  "lanJoinWrongCode": "Código da sala incorreto. Confirma os quatro dígitos.",
+  "lanJoinVersionMismatch": "O outro dispositivo está a executar uma versão diferente do Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "O dispositivo não respondeu como o Backgammon Buddy. Verifica o endereço e a porta.",
+  "lanJoinFailed": "Não foi possível entrar. Verifica o endereço e o código e tenta novamente.",
+  "lanJoinTarget": "Entrar em {name}",
+  "lanJoinTargetHelp": "Introduz o código de 4 dígitos apresentado no outro dispositivo.",
+  "lanJoiningTarget": "A ligar a {name}",
+  "lanConnect": "Ligar",
+  "lanBack": "Voltar",
+  "lanTryAgain": "Tentar novamente",
+  "lanStatusBusy": "Sala ocupada — a aguardar…",
+  "lanStatusReconnecting": "Ligação perdida — a tentar novamente…",
+  "lanStatusConnected": "Ligado — a iniciar a partida…",
+  "lanStatusFailed": "Não foi possível entrar.",
+  "lanStatusConnecting": "A ligar…",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "learningRefreshTooltip": "Atualizar progresso de aprendizagem",
+  "learningOptions": "Opções de aprendizagem",
+  "learningResetMenu": "Repor progresso dos exercícios",
+  "learningLoadFailed": "Não foi possível carregar o progresso de aprendizagem.",
+  "actionRetry": "Tentar novamente",
+  "learningHeading": "Aprende com as tuas decisões",
+  "learningIntro": "O progresso fica neste dispositivo. Revê temas recorrentes e tenta novamente as posições guardadas sem veres a resposta. Podes rever Brancas e Pretas separadamente.",
+  "learningBothSides": "Ambos os lados",
+  "learningHumansOnly": "Só decisões humanas",
+  "learningHumanOnlyHelp": "Desativa para incluir decisões do computador e de jogadores remotos",
+  "learningDecisionSummary": "{decisions} decisões · {mistakes} a melhorar · {blunders} erros graves",
+  "learningAverageLoss": "Perda média ({decisions} decisões): {loss}",
+  "learningForcedDisclaimer": "As jogadas forçadas são excluídas. São estimativas do motor, não uma classificação de torneio.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{O jogo guardado precisa de análise ou de uma nova análise.} other{Os # jogos guardados precisam de análise ou de uma nova análise.}}",
+  "learningAnalyseSavedGames": "Analisar jogos guardados",
+  "learningEmptyProfile": "Joga e termina uma partida para criar o teu perfil de aprendizagem. Também podes guardar decisões individuais a partir da revisão.",
+  "learningOpenHistory": "Abrir histórico de partidas",
+  "learningRecurringThemes": "Temas recorrentes",
+  "learningNoThemes": "Ainda não existem temas de erro recorrentes nesta seleção.",
+  "learningThemeDecisions": "{count} decisões a rever. Uma posição pode ter mais de um tema.",
+  "learningSaveMistakes": "Guardar estes erros para praticar",
+  "learningSavedMistakes": "{count} decisões estão na tua lista de prática. As que já estavam guardadas são mantidas.",
+  "learningSaveMistakesFailed": "Não foi possível guardar algumas decisões. As guardadas com sucesso são mantidas; tenta novamente.",
+  "learningSpacedPractice": "Prática espaçada",
+  "learningPracticeCounts": "{due} para rever agora · {saved} guardadas · {attempts} tentativas · {successes} recordações bem-sucedidas",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningIntervalsHelp": "As revisões devidas e bem-sucedidas regressam após 1, 3, 7, 14 e 30 dias. Erros ou respostas reveladas regressam após 10 minutos. Repetições antecipadas não alteram o intervalo.",
+  "learningAnswerContext": "Os resultados refletem as tuas respostas aqui, mesmo quando a posição original pertencia a um adversário.",
+  "learningNoSavedPositions": "Guarda uma decisão a partir da revisão ou usa o botão de erros acima.",
+  "learningPositionTitle": "Decisão de {side} · jogo {gameId}",
+  "learningReviewDue": "Rever {date}",
+  "learningReadyToReview": "Pronto para rever",
+  "learningSuccessStreak": "{count} revisões devidas bem-sucedidas",
+  "learningRemoveTooltip": "Remover decisão guardada",
+  "learningRecentPractice": "Prática recente",
+  "learningAnswerRevealed": "Resposta revelada",
+  "learningSuccessfulRecall": "Recordação bem-sucedida",
+  "learningTryAgain": "Tentar novamente esta decisão",
+  "learningAttemptSubtitle": "{date} · posição guardada {positionId}",
+  "learningRemoveTitle": "Remover este exercício?",
+  "learningRemoveBody": "Isto remove as tentativas de prática. A partida original continua no histórico.",
+  "actionRemove": "Remover",
+  "learningRemoveFailed": "Não foi possível remover este exercício.",
+  "learningResetTitle": "Repor o progresso da prática?",
+  "learningResetBody": "Todas as tentativas e intervalos de revisão serão removidos. Os exercícios guardados e o histórico mantêm-se; todos os exercícios ficam devidos agora.",
+  "learningResetAction": "Repor progresso",
+  "learningResetFailed": "Não foi possível repor o progresso.",
+  "learningAnalysisProgress": "Partidas analisadas: {completed} · indisponíveis: {failed}.",
+  "learningAnalysisComplete": "{completed} partidas analisadas.",
+  "learningAnalysisCompleteWithErrors": "Foram analisadas {completed} partidas; não foi possível analisar {failed}. Tenta novamente quando o motor estiver pronto.",
+  "learningThemeHitting": "Ataque e ritmo",
+  "learningThemeSafety": "Blots e segurança",
+  "learningThemePointMaking": "Construção de pontos",
+  "learningThemePrime": "Primas e bloqueios",
+  "learningThemeAnchor": "Âncoras e fuga",
+  "learningThemeRace": "Eficiência na corrida",
+  "learningThemeBearOff": "Retirar peças",
+  "learningThemeBarEntry": "Entrada da barra",
+  "learningThemeCube": "Decisões do cubo",
+  "analysisCubeNoDouble": "Não dobrar",
+  "analysisCubeDouble": "Dobrar",
+  "analysisCubeTake": "Aceitar",
+  "analysisCubePass": "Passar",
+  "learningAnalysisStarting": "A analisar partidas guardadas…",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorCubelessEstimateScope": "Estimativa sem cubo a 0 ply · pontuação indisponível",
+  "tutorLossPp": "Perda pp",
+  "tutorLoss": "Perda",
+  "scoreSheetNoMoves": "Ainda sem jogadas",
+  "tutorOptions": "Opções de tutoria",
+  "tutorCollapseTooltip": "Recolher tutor",
+  "tutorExpandTooltip": "Expandir tutor",
+  "diagnosticsCopySuccess": "Diagnóstico copiado",
+  "diagnosticsReviewTitle": "Rever relatório de diagnóstico",
+  "diagnosticsPrivacyNotice": "Ao abrir o rascunho, os dados abaixo serão enviados para o GitHub, incluindo a versão da aplicação, a plataforma e detalhes do erro. Nenhum problema público será publicado até o enviares. Se estes dados forem privados, cancela e usa Copiar para preparar o relatório.",
+  "diagnosticsCancel": "Cancelar",
+  "diagnosticsOpenGitHub": "Abrir GitHub",
+  "diagnosticsTitle": "Diagnóstico",
+  "diagnosticsReportTooltip": "Comunicar um problema no GitHub",
+  "diagnosticsCopyTooltip": "Copiar para a área de transferência",
+  "diagnosticsClearTooltip": "Limpar registo",
+  "diagnosticsEmpty": "Não há erros registados.\n\nSe algo correr mal, ficará registado aqui. Volta para copiar os detalhes para um relatório de erro.",
+  "cubeDouble": "Dobrar",
+  "cubeBlockedOtherPlayersTurn": "É a vez do outro jogador.",
+  "cubeBlockedCrawford": "O cubo não está disponível na partida Crawford.",
+  "cubeBlockedOwnedByOther": "Só o dono do cubo pode dobrar e, neste momento, pertence ao outro lado.",
+  "cubeBlockedUnavailable": "Não é possível dobrar agora.",
+  "gameStatusRolling": "A lançar…",
+  "gameStatusThinking": "A pensar…",
+  "cubeAdviceOpponentTake": "Dobrar — o adversário deve aceitar",
+  "cubeAdviceOpponentPass": "Dobrar — o adversário deve passar",
+  "gameErrorBannerLabel": "Erro: {error}",
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "analysisCubeEstimate": "Estimativa 0-ply na perspetiva do jogador que tem a vez. Pressupõe uma resposta ideal de aceitar ou passar. Usa uma aproximação de vida do cubo de 0,7 no ramo de duplo aceite, não uma pesquisa completa de redobramentos futuros. Uma análise mais profunda pode alterar a resposta.",
+  "metricExplainerMwcBody": "Quando o resultado é conhecido, as jogadas são classificadas pela probabilidade estimada de ganhar a partida. A perda é expressa em pontos percentuais (pp): 1 pp significa passar de 51% para 50%. Inclui a aposta atual do cubo e os resultados de gamão/backgamão. Passes forçados e lançamentos com uma única posição legal são excluídos das médias.",
+  "metricExplainerSearchTitle": "Pesquisa e incerteza",
+  "metricExplainerSearchBody": "As classificações das jogadas são estimativas estáticas a 0-ply após a jogada, não simulações. Os valores da partida usam uma tabela de equidade sem turnos futuros do cubo. As análises do cubo usam uma aproximação parcial de vida do cubo de 0,7 nos duplos aceites. Não é uma pesquisa completa com cubo. Desvantagens acima de 25 usam o limite de 25 da tabela. Resultados muito próximos podem mudar com uma análise mais profunda; não existe um intervalo de confiança calibrado.",
+  "metricExplainerEquityTitle": "Equidade",
+  "metricExplainerEquityBody": "Se o resultado não estiver disponível, a equidade sem cubo indica quantos pontos vale uma posição em média, com o cubo em 1. +1,0 significa esperar ganhar um ponto; −0,5 significa esperar perder meio ponto.",
+  "metricExplainerEquityLossTitle": "Perda de equidade (ex.: −0,016)",
+  "metricExplainerEquityLossBody": "Comparamos cada jogada com a melhor jogada do motor. A perda de equidade é o valor esperado que a tua jogada deixou escapar. −0,016 significa que foi apenas 0,016 pontos pior — um pequeno deslize. 0,000 significa que encontraste a melhor jogada.",
+  "metricExplainerErrorRateTitle": "Taxa de erro",
+  "metricExplainerErrorRateBody": "A perda média calcula a média das decisões de peças avaliadas na unidade apresentada. As decisões do cubo têm uma média própria. Um valor menor aproxima-se das melhores estimativas do motor; não é uma classificação calibrada do jogador.",
+  "metricExplainerMoveMarksTitle": "Classificação das jogadas",
+  "metricExplainerMoveMarksBody": "Escalões didáticos de MWC: Melhor < 0,05 pp, Boa < 0,5 pp, Duvidosa < 1,5 pp, Erro < 3 pp, Erro grave ≥ 3 pp. São escalões de aprendizagem do produto, não uma medida calibrada nem uma classificação de torneio.\n\nEscalões didáticos de equidade sem cubo:",
+  "metricExplainerThresholdBest": "perda < 0,001",
+  "metricExplainerThresholdGood": "perda < 0,020",
+  "metricExplainerThresholdDubious": "perda < 0,050",
+  "metricExplainerThresholdError": "perda < 0,110",
+  "metricExplainerThresholdBlunder": "perda ≥ 0,110",
+  "metricExplainerGotIt": "Percebi",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · até {matchLength}",
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · até {matchLength}",
+  "gameHudYou": "Tu",
+  "gameHudAi": "IA",
+  "gameHudGameNumber": "Jogo {number}",
+  "gameHudMatchContext": "{score} · {game}",
+  "gameHudHotSeatDetail": "{whiteLabel} contra {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "gameHudOpponentDetail": "contra {opponent} · {pipsLabel} {mine}–{theirs}",
+  "gameHudOpponentDetailWithLevel": "contra {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "gameHudPips": "Pips",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Dobrar",
+  "gameHudMoreActions": "Mais ações",
+  "gameHudSurrender": "Desistir…",
+  "gameHudThinking": "A pensar",
+  "gameHudDoubleBeforeRoll": "Só podes dobrar antes de lançar, na tua vez.",
+  "gameHudNoDoubleCrawford": "Não há dobragens no jogo Crawford — este jogo decide a partida.",
+  "gameHudOnlyCubeOwner": "Só o dono do cubo pode dobrar e, neste momento, pertence ao outro lado.",
+  "gameHudDoubleUnavailable": "Não é possível dobrar agora.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (até {matchLength})",
+  "gameDialogPlayerWon": "{winner} ganha este jogo ({points}).",
+  "gameDialogPlayerWonGammon": "{winner} ganha este jogo ({points}, gamão).",
+  "gameDialogPlayerWonBackgammon": "{winner} ganha este jogo ({points}, backgamão).",
+  "gameDialogPlayerWonDrop": "{winner} ganha este jogo ({points}) — {loser} recusou o duplo.",
+  "gameDialogPlayerWonResignation": "{winner} ganha este jogo ({points}) — {loser} desistiu.",
+  "gameDialogPassDeviceTitle": "Passa o dispositivo",
+  "gameDialogPlayersTurn": "Vez de {name}",
+  "gameDialogTapToContinue": "Toca para continuar",
+  "gameDialogCubeOfferedTitle": "Duplo oferecido",
+  "gameDialogCubeOfferMessage": "{doubler} propõe dobrar para {value}. Aceitar ou passar?{tutorLine}",
+  "gameDialogPass": "Passar",
+  "gameDialogTake": "Aceitar",
+  "gameDialogResignationTitle": "Desistência proposta",
+  "gameDialogResignationMessage": "{resigner} propõe desistir por {value}. Aceitar ou recusar?",
+  "gameDialogResignSingle": "jogo simples",
+  "gameDialogResignGammon": "gamão",
+  "gameDialogResignBackgammon": "backgamão",
+  "gameDialogDecline": "Recusar",
+  "gameDialogAccept": "Aceitar",
+  "gameDialogGameOverTitle": "Fim do jogo",
+  "gameDialogNextGame": "Jogo seguinte",
+  "gameDialogMatchOverTitle": "Fim da partida",
+  "gameDialogNobody": "Ninguém",
+  "gameDialogMatchWinner": "{winner} ganha a partida.",
+  "gameDialogSavedToHistory": "Guardado no histórico",
+  "gameDialogDone": "Concluído",
+  "gameTapNoLegalMove": "Esta peça não pode mover-se com os dados restantes",
+  "gameTapNoLegalMoveUndo": "Esta peça não pode mover-se com os dados restantes — tenta anular",
+  "gameDragHint": "Dica: arrasta as peças ou toca nelas — altera isto nas Definições",
+  "commonGotIt": "Percebi",
+  "gameHintStageBeforeHint": "Faz primeiro uma jogada legal completa e depois pede uma dica.",
+  "surrenderTitle": "Desistir",
+  "surrenderNamedConcedes": "{player} desiste do jogo atual.",
+  "surrenderConcedes": "Desiste do jogo atual.",
+  "surrenderAvailableAtNamedTurn": "Disponível no início da vez de {player}",
+  "surrenderAvailableAtYourTurn": "Disponível no início da tua vez",
+  "commonCancel": "Cancelar",
+  "surrenderSingle": "Simples (1)",
+  "surrenderGammon": "Gamão (2)",
+  "surrenderBackgammon": "Backgamão (3)",
+  "surrenderChoosePlayer": "Quem desiste deste jogo?",
+  "commonDone": "Concluído",
+  "gameStatusPlayersTurn": "Vez de {player}",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Punktnumre i undervisningsnoterne tælles fra den aktive spillers hjemmebræt.",
   "tutorHittingRollNote": "Antallet af slagmuligheder omfatter alle 36 ordnede terningeudfald og lovlige direkte eller indirekte slag; det er muligheder, ikke en forudsigelse af modstanderens valg.",
   "tutorNoEvaluatedAlternatives": "Der er ingen vurderede alternativer til dette træk.",
-  "tutorForcedPassNoDecision": "Et tvunget pas indebærer ikke et valg af briktræk."
+  "tutorForcedPassNoDecision": "Et tvunget pas indebærer ikke et valg af briktræk.",
+  "settingsReset": "Nulstil",
+  "settingsAppLanguage": "Appens sprog",
+  "settingsTheme": "Tema",
+  "settingsThemeSystem": "System",
+  "settingsThemeLight": "Lyst",
+  "settingsThemeDark": "Mørkt",
+  "settingsAnimationSpeed": "Animationshastighed",
+  "settingsAnimationNone": "Ingen",
+  "settingsAnimationNormal": "Normal",
+  "settingsAnimationFast": "Hurtig",
+  "settingsDiceRollAnimation": "Animation af terningkast",
+  "settingsDiceRollAnimationHelp": "Terningerne ruller før hvert kast",
+  "settingsDefaultMatchLength": "Standardlængde for match",
+  "settingsDefaultDifficulty": "Standard sværhedsgrad",
+  "settingsDifficultyEasy": "Let",
+  "settingsDifficultyMedium": "Middel",
+  "settingsDifficultyHard": "Svær",
+  "settingsDifficultyExpert": "Ekspert",
+  "settingsTutorModeDefault": "Standard for tutortilstand",
+  "settingsTutorAuto": "Automatisk",
+  "settingsTutorOn": "Til",
+  "settingsTutorOff": "Fra",
+  "settingsTutorModeHelp": "Automatisk slår tutoren til ved alle computerens sværhedsgrader. Til og Fra vælger startindstillingen for lokale kampe. Nærspil og onlinespil er uden hjælp; gemte partier kan gennemgås bagefter. Undervisningsindstillingerne nedenfor gemmes på denne enhed.",
+  "settingsTutorPreferences": "Tutorindstillinger",
+  "settingsTutorPreferencesSubtitle": "Gemte standardindstillinger til kommende kampe",
+  "settingsTutorSaveError": "Tutorindstillingerne kunne ikke gemmes.",
+  "settingsGameplay": "Spil",
+  "settingsMoveHighlights": "Fremhæv træk",
+  "settingsMoveHighlightsHelp": "Markér brikker, der kan flyttes, og fremhæv felterne, de kan lande på",
+  "settingsDragToMove": "Træk for at flytte",
+  "settingsDragToMoveHelp": "Træk en brik til feltet, den skal lande på (tryk virker også)",
+  "settingsCombinedMoves": "Kombinerede træk",
+  "settingsCombinedMovesHelp": "Et tryk flytter en brik med begge terninger",
+  "settingsRotateBoard": "Drej brættet mellem ture",
+  "settingsRotateBoardHelp": "Ved spil på samme enhed vendes brættet mod spilleren, der er i tur",
+  "settingsPassDevice": "Skærm ved overdragelse af enhed",
+  "settingsPassDeviceHelp": "Skjul brættet, når enheden gives videre mellem spillere",
+  "settingsShowScore": "Vis score",
+  "settingsShowScoreHelp": "Viser den løbende matchscore i overskriften",
+  "settingsBuddyMode": "Buddy-tilstand",
+  "settingsBuddyTerse": "Kort",
+  "settingsBuddyFriendly": "Venlig",
+  "settingsBuddyTerseHelp": "Sådan siger Buddy et træk højt: “13/8, 24/22” — den korte notation, som spillere ved brættet bruger.",
+  "settingsBuddyFriendlyHelp": "Sådan siger Buddy et træk højt: “Flyt en brik fra 13 til 8 og en fra 24 til 22.”",
+  "settingsListenForDice": "Lyt efter terningerne",
+  "settingsListenForDiceHelp": "Buddy ser tidligere på brættet, når den hører et kast. Fra ændrer ikke andet.",
+  "settingsDiagnostics": "Diagnostik",
+  "settingsErrorLog": "Fejllog",
+  "settingsErrorLogHelp": "Seneste fejl, klar til at blive kopieret ind i en fejlrapport",
+  "settingsReportBug": "Rapportér en fejl",
+  "settingsReportBugHelp": "Åbner en guidet fejlrapport på GitHub",
+  "settingsSuggestIdea": "Foreslå en idé",
+  "settingsSuggestIdeaHelp": "Hjælp os med at forbedre tutoren og spillet",
+  "settingsAbout": "Om",
+  "settingsOpenSourceLicenses": "Open source-licenser",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "tutorPhraseGameFinished": "Partiet er slut.",
+  "tutorPhraseReviewFinishedGame": "Gennemgå trækkene for at finde en beslutning, du kan øve dig på.",
+  "tutorPhraseCubeOffered": "Der er tilbudt en fordobling af indsatsen.",
+  "tutorPhraseCubeDecisionPrompt": "Beslut, om du vil tage imod fordoblingen eller passe, før du planlægger et træk med brikkerne.",
+  "tutorPhraseCubeScoreContext": "Matchscoren ændrer værdien af den ekstra indsats.",
+  "tutorPhraseResignationOffered": "Modstanderen har tilbudt at opgive partiet.",
+  "tutorPhraseResignationDecisionPrompt": "Sammenlign de tilbudte point med stillingen, før du accepterer opgivelsen eller fortsætter.",
+  "tutorPhraseNoLegalPlay": "Dette kast giver ikke noget lovligt træk.",
+  "tutorPhraseForcedPassPrompt": "Et tvunget pas er ikke en fejl; vent på næste kast.",
+  "tutorPhraseOnlyOneResult": "Der er kun én lovlig slutstilling.",
+  "tutorPhraseForcedTurnPrompt": "Udfør det tvungne træk. Der er ikke noget valg at bedømme ved dette kast.",
+  "tutorPhrasePipCountsLevel": "Pip-antallet er lige.",
+  "tutorPhrasePipCountsAhead": "Du er {count} pip foran.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "Du er {count} pip bagud.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "Brikkerne på baren skal først ind igen. Antal: {count}.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Få først en brik ind fra baren, og find derefter et sikkert felt til den.",
+  "tutorPhraseOpponentHomePoints": "Modstanderen har {count} lukkede felter i sit hjembræt.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Kapløb om at få brikkerne af brættet.",
+  "tutorPhrasePureRace": "Et rent kapløb.",
+  "tutorPhraseBearOffSpread": "Tag brikker af brættet, men behold en nyttig fordeling til næste kast.",
+  "tutorPhraseBringRearCheckersHome": "Få de bageste brikker hjem uden at samle for mange på ét felt.",
+  "tutorPhraseArmiesHavePassed": "Spillerne er kommet forbi hinanden; flere slag er ikke mulige.",
+  "tutorPhraseContactStillMatters": "{part} Kontakten er stadig vigtig.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "Modstanderen har {count} brikker på baren.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Hold felterne lukkede, mens du får de resterende brikker hjem.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Byg eller bevar dit hjembræt, mens modstanderen forsøger at komme ind fra baren.",
+  "tutorPhraseHomePointsCloseEntries": "Du har {count} lukkede felter i hjembrættet; hvert felt lukker et indgangsnummer.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Kontakt med en række på {count} lukkede felter.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Overvej, om rækken skal forlænges, eller om du skal beholde ekstra brikker til at holde den lukket.",
+  "tutorPhraseSpareCheckersCanMove": "Ekstra brikker: {count}. De kan flyttes uden straks at åbne feltet.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Kontakt med et anker på felterne {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Sammenlign det at få de bageste brikker hjem med sikkerheden ved at beholde dit anker.",
+  "tutorPhraseCompareAnchorProgressBehind": "Husk den sikre støtte, mens du leder efter et slag eller forbedrer din stilling.",
+  "tutorPhrasePreserveAnchorFoothold": "Ankeret kan ikke slås, men brikkerne har stadig lang vej hjem.",
+  "tutorPhraseContactThreats": "Der er stadig kontakt: begge spillere kan true med slag.",
+  "tutorPhraseLookForPointsAndSafety": "Se efter nyttige lukkede felter, og vurder risikoen ved at efterlade enlige brikker ubeskyttede.",
+  "tutorPhraseHomePointsAndBlots": "Du har {count} lukkede felter i hjembrættet og efterlader {otherCount} ubeskyttede brikker.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Vælg en brik for at begynde dit træk.",
+  "tutorPhraseLegalPlayPrompt": "Udfør et lovligt træk for at få en kommentar.",
+  "tutorPhraseStagedHit": "Du har slået {count, plural, one{# modstanderbrik} other{# modstanderbrikker}} hjem.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "Brikker ført ind fra baren: {count}.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Brikker taget af brættet: {count, plural, one{# brik} other{# brikker}}.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Du har lukket felterne {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Brikken på felt {point} er stadig ubeskyttet.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "Den ekstra brik på felt {point} kan flyttes senere uden at åbne feltet.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Brug de resterende brugbare terninger, før du vurderer hele trækket.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Alle 15 brikker er taget af: du har vundet partiet.",
+  "tutorPhraseStagedHitShortPlan": "Slaget vinder tid, mens modstanderen kommer ind fra baren igen.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Effektiv afbæring fjerner brikker og efterlader nyttige tal til næste kast.",
+  "tutorPhraseStagedRaceHomePlan": "I kapløbet skal de bageste brikker hjem, mens du bevarer nyttige felter til afbæringen.",
+  "tutorPhraseStagedBearOffContactPlan": "Afbæring bringer dig nærmere sejren, men så længe der er kontakt, kan en ubeskyttet brik blive slået.",
+  "tutorPhraseStagedReentryPlan": "Indgangen får brikken tilbage i spil; find nu et sikkert felt til den.",
+  "tutorPhraseStagedHomeBoardPlan": "Det nye lukkede felt i dit hjembræt fjerner et indgangsnummer, hvis du senere bliver slået.",
+  "tutorPhraseStagedPrimePlan": "Den længere række lukker flere felter, modstanderen kan lande på; ekstra brikker hjælper med at bevare den.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Når du forlader ankeret, kommer brikkerne fremad, men mister en sikker støtte.",
+  "tutorPhraseStagedNewAnchorPlan": "Det nye anker giver de bageste brikker et sikkert holdepunkt.",
+  "tutorPhraseStagedCoverBlotPlan": "Når du dækker en ubeskyttet brik, fjerner du et mål for modstanderen.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Her skal du afveje udvikling mod sikkerhed: brikker, der bygger stillingen op, kan også selv blive mål.",
+  "tutorPhraseStagedCompletePrompt": "{part} Hele trækket er klar. Tryk på Bekræft for at udføre det.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "gameTutorCommentaryOff": "Spilkommentarer er slået fra.",
+  "gameTutorToolsAvailable": "Åbn tutoren for at bruge de værktøjer, du har slået til.",
+  "gameTutorNextRoll": "Kast igen.",
+  "gameTutorNoEvaluatedReview": "Der findes ingen vurderet forklaring på dette gemte træk.",
+  "gameTutorAnalysisUnavailable": "analyse ikke tilgængelig",
+  "gameTutorReviewing": "gennemgår…",
+  "gameTutorTryYourPlayFirst": "Prøv dit eget træk først.",
+  "gameTutorKeepBuilding": "Fortsæt med at bygge dit træk.",
+  "gameTutorStageCompleteBeforeCoaching": "Lav et helt lovligt træk, før du viser undervisning eller hints.",
+  "gameTutorReadyToConfirm": "Klar til at bekræfte",
+  "gameTutorPlayTakingShape": "Dit træk tager form.",
+  "gameTutorConfirmOrUndo": "Bekræft for at udføre trækket, eller fortryd for at overveje igen.",
+  "gameTutorFinishDiceOrUndo": "Brug de resterende terninger, eller fortryd for at overveje igen.",
+  "gameTutorComputerConsidering": "Computeren overvejer sit træk.",
+  "gameTutorComputerPlayReviewed": "Computerens færdige træk bliver gennemgået her.",
+  "gameTutorYourPlay": "Dit træk",
+  "gameTutorComputer": "Computer",
+  "gameTutorPlayQuality": "Dit træk: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "tvunget træk",
+  "gameTutorTopChoice": "bedste valg",
+  "gameTutorSoundPlay": "solidt træk",
+  "gameTutorAnotherPlayMayFitBetter": "et andet træk passer måske bedre",
+  "gameTutorAnotherPlayFitsBetter": "et andet træk passer bedre til denne stilling",
+  "gameTutorStrongerPlayAvailable": "der var et klart stærkere træk",
+  "gameTutorPositionEdge": "{side} har en beregnet fordel.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Stillingen er omtrent lige.",
+  "tutorMoveForcedVerdict": "Dette kast giver ikke noget valg af brikketræk, så det vurderes ikke som en beslutning.",
+  "tutorMoveTopVerdict": "Et af de bedste valg i denne stilling.",
+  "tutorMoveAlternativeVerdict": "Motoren foretrækker et andet træk her.",
+  "tutorMoveEstimateDifference": "Forskel fra det bedste træk: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Efter dette træk: {winPercent}% chance for sejr, {winGammonPercent}% chance for gammon eller bedre og {loseGammonPercent}% chance for at tabe med gammon eller værre. Det er estimater set fra spilleren, der er i tur.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Anslået chance for at vinde matchen: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Alle 15 brikker er taget af: du har vundet partiet.",
+  "tutorMovePlanHit": "Brug slaget til at vinde tid, mens modstanderen kommer ind fra baren. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Hold felterne i dit hjembræt lukkede, så det bliver sværere at komme ind.",
+  "tutorMovePlanHitBuild": "Luk flere felter i dit hjembræt, så fremtidige slag bliver sværere at komme sig over.",
+  "tutorMovePlanRaceBearOff": "Gå efter en effektiv afbæring: tag brikker af, og behold nyttige tal til næste kast.",
+  "tutorMovePlanRaceHome": "Få de bageste brikker hjem, og fordel dem på nyttige felter til afbæringen.",
+  "tutorMovePlanContactBearOff": "Tag brikker af brættet, men hold øje med modstanderens bageste brikker: så længe der er kontakt, kan en ubeskyttet brik under afbæring blive et mål.",
+  "tutorMovePlanReentry": "Kom ind i spillet igen, og find derefter et sikkert felt til brikken, der kom ind.",
+  "tutorMovePlanHomeBoard": "Styrk dit hjembræt. Det nye lukkede felt gør et fremtidigt slag stærkere ved at fjerne et indgangstal.",
+  "tutorMovePlanPrime": "Hold rækken af lukkede felter sammen. Behold ekstra brikker, så senere kast ikke tvinger dig til at åbne den.",
+  "tutorMovePlanLeaveAnchor": "Hvis du forlader et anker, kommer dine bageste brikker frem, men mister en sikker støtte. Pas på, at de ikke bliver udsat på vejen hjem.",
+  "tutorMovePlanNewAnchor": "Brug det nye anker som en sikker støtte, mens du forbedrer resten af stillingen.",
+  "tutorMovePlanCoverBlot": "Saml dine brikker. Når du dækker en ubeskyttet brik, fjerner du det mål og bevarer muligheder for næste kast.",
+  "tutorMovePlanSafety": "Afvej udvikling og sikkerhed: flyt byggesten mod nyttige felter, og se efter enlige brikker, der kan slås.",
+  "tutorMoveObservationNoLegalPlay": "Intet lovligt brikketræk: turen skal passes.",
+  "tutorMoveObservationHit": "Du slår {count, plural, one{# modstanderbrik} other{# modstanderbrikker}}; modstanderen skal først ind fra baren, før de andre brikker kan flyttes.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Brikker ført ind fra baren: {count}.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Brikker taget af brættet: {count, plural, one{# brik} other{# brikker}}.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Lukkede felter: {points}. To eller flere brikker holder et sikkert felt og forhindrer modstanderen i at lande der.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Du åbner tidligere lukkede {pointLabel}: {points}. De felter blokerer ikke længere modstanderen.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Du efterlader ingen enlige brikker ubeskyttede (før: {previousCount}). Der er ingen brikker, modstanderen kan slå lige nu.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Ubeskyttede enlige brikker: {count, plural, one{# brik} other{# brikker}} (før: {previousCount}). Undersøg, om modstanderen kan nå dem, før du vælger sikkerhed frem for en anden gevinst.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Længste række af lukkede felter: {count} (før: {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "En seksfelters mur kan ikke krydses, så længe den er lukket.",
+  "tutorMoveObservationPrimeBuild": "Behold byggesten i nærheden, hvis du vil forlænge eller bevare rækken.",
+  "tutorMoveObservationPrimeSpares": "Ekstra brikker ud over de to, der lukker felterne: {count}. En ekstra brik kan flyttes uden at åbne feltet; flyttes en af de sidste to, åbnes det.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Ankre i modstanderens hjembræt: {points} (før: {previousPoints}). Et anker beskytter brikkerne mod slag; at forlade det bytter sikker støtte for fremgang i kapløbet.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Rent kapløb: spillerne er kommet forbi hinanden, og ingen har en brik på baren. Slag er ikke længere mulige; effektiv afbæring er vigtig.",
+  "tutorMoveObservationNoReplyHit": "Der findes ikke noget lovligt næste kast, hvor modstanderen kan slå en brik i denne stilling. Der er stadig kontakt, så senere træk kan skabe nye slagmuligheder.",
+  "tutorMoveObservationReplyHit": "Modstanderen kan slå på {count} af {total} kast. For eksempel giver {dieOne}–{dieTwo} mulighed for et lovligt slag på din brik på felt {point}. Muligheden for et slag betyder ikke, at modstanderen vælger det.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Du har {closedPoints} lukkede felter i dit hjembræt. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Modstanderen kan ikke komme ind, før et felt åbnes.",
+  "tutorMoveObservationOpenEntry": "Et kast, der bruger et åbent indgangsfelt, kan få en brik ind fra baren.",
+  "tutorMoveComparisonDetail": "{factors} Det bedste træks anslåede vinderchance er {delta} procentpoint {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "højere",
+  "tutorMoveComparisonLower": "lavere",
+  "tutorMoveComparisonScoreContext": " Det kan stadig være rangeret højere, fordi gammon og backgammon vægtes forskelligt ved {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "den aktuelle indsats",
+  "tutorMoveComparisonMatchScore": "den aktuelle matchscore",
+  "tutorMoveComparisonFactorBar": "Det bedste træk efterlader {bestCount} af modstanderens brikker på baren mod {playedCount}. En brik på baren skal først ind, før modstanderen kan flytte de andre.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Det bedste træk lukker {bestCount} felter i dit hjembræt mod {playedCount}, altså en forskel på {entryDifference} indgangsfelter efter et slag.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "lukker flere",
+  "tutorMoveComparisonLeavingMore": "efterlader flere åbne",
+  "tutorMoveComparisonFactorShots": "Det bedste træk giver modstanderen mulighed for et slag på {bestCount} af 36 kast mod {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Det sænker den umiddelbare risiko for at blive sendt tilbage.",
+  "tutorMoveComparisonExtraExposure": "Sammenlign den ekstra udsathed med det, trækket vinder andre steder.",
+  "tutorMoveComparisonFactorPrime": "Det bedste træks længste række af lukkede felter er {bestCount} i stedet for {playedCount}; sammenlign blokaden med antallet af brikker, der kan holde den lukket.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Det bedste træk har ankre på {bestPoints} i stedet for {playedPoints}. Et bevaret anker giver et sikkert landingsfelt; forlader du det, kommer brikkerne tættere på hjem.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Det bedste træk har {bestCount} brikker af brættet mod {playedCount}. Hver brik, du har taget af, er én mindre, du skal tage af senere.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Begge træk giver samme umiddelbare risiko for slag, samme antal lukkede felter i hjembrættet, ankre og brikker af brættet. Sammenlign landingsfelterne: næste kast kan give forskellige muligheder for brikkerne.",
+  "tutorMoveComparisonSummaryBar": "Det bedste træk efterlader flere af modstanderens brikker på baren og forsinker de øvrige træk.",
+  "tutorMoveComparisonSummaryHomeBoard": "Det bedste træk lukker flere felter i hjembrættet, så modstanderen får sværere ved at komme ind efter et slag.",
+  "tutorMoveComparisonSummaryShots": "Det bedste træk giver færre umiddelbare slagmuligheder og mindsker risikoen for at blive sendt tilbage.",
+  "tutorMoveComparisonSummaryPrime": "Det bedste træk bevarer en længere række af lukkede felter.",
+  "tutorMoveComparisonSummaryAnchors": "Det bedste træk bevarer flere sikre ankre i modstanderens hjembræt.",
+  "tutorMoveComparisonSummaryBearOff": "Det bedste træk tager flere brikker af, så der er færre tilbage senere.",
+  "tutorMoveComparisonSummaryBlots": "Ubeskyttede enlige brikker efter dette træk: {playedCount}; efter det bedste træk: {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Det bedste træk bevarer et sikkert anker på felt {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Det bedste træk lukker flere indgangsfelter, hvis en af dine brikker bliver slået.",
+  "tutorMoveComparisonSummarySimilarRisks": "Trækkene giver omtrent samme umiddelbare risiko; sammenlign, hvilke felter der er nyttige ved næste kast.",
+  "tutorMoveAssessmentEquityLoss": "{value} forventet værdi",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} procentpoint vinderchance i matchen",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "felt",
+  "tutorMovePointPlural": "felter",
+  "tutorMoveNoPoints": "ingen",
+  "gameTapNoLegalMove": "Denne brik kan ikke flyttes med de resterende terninger",
+  "gameTapNoLegalMoveUndo": "Denne brik kan ikke flyttes med de resterende terninger — prøv at fortryde",
+  "gameDragHint": "Tip: træk brikkerne, eller tryk på dem — skift dette i Indstillinger",
+  "commonGotIt": "Forstået",
+  "gameHintStageBeforeHint": "Lav først et helt lovligt træk, og bed derefter om et tip.",
+  "surrenderTitle": "Opgiv",
+  "surrenderNamedConcedes": "{player} opgiver det aktuelle spil.",
+  "surrenderConcedes": "Du opgiver det aktuelle spil.",
+  "surrenderAvailableAtNamedTurn": "Tilgængelig ved starten af {player}s tur",
+  "surrenderAvailableAtYourTurn": "Tilgængelig ved starten af din tur",
+  "commonCancel": "Annuller",
+  "surrenderSingle": "Enkelt (1)",
+  "surrenderGammon": "Gammon (2)",
+  "surrenderBackgammon": "Backgammon (3)",
+  "surrenderChoosePlayer": "Hvem opgiver dette spil?",
+  "commonDone": "Færdig",
+  "cubeDouble": "Dobl",
+  "cubeBlockedOtherPlayersTurn": "Det er den anden spillers tur.",
+  "cubeBlockedCrawford": "Dobleterningen er ikke tilgængelig i Crawford-spillet.",
+  "cubeBlockedOwnedByOther": "Kun ejeren af dobleterningen kan doble, og den tilhører modstanderen.",
+  "cubeBlockedUnavailable": "Det er ikke muligt at doble lige nu.",
+  "gameStatusRolling": "Slår…",
+  "gameStatusThinking": "Tænker…",
+  "gameStatusPlayersTurn": "{player} har tur",
+  "cubeAdviceOpponentTake": "Dobl — modstanderen bør tage imod",
+  "cubeAdviceOpponentPass": "Dobl — modstanderen bør passe",
+  "gameErrorBannerLabel": "Fejl: {error}",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "gameMatchSummary": "Matchoversigt",
+  "gameAnalyzeGame": "Analyser spil",
+  "gameTutorCubeTake": "Tutor: tag imod",
+  "gameTutorCubePass": "Tutor: pas",
+  "tutorPlayedMove": "Spillet: {move}",
+  "tutorBestMove": "Bedste træk: {move}",
+  "tutorShowRankedPlays": "Vis rangerede træk",
+  "tutorReviewRecordedMove": "Tryk på et afsluttet træk i loggen for at se analysen her.",
+  "tutorTopPlays": "Bedste træk",
+  "tutorNoHintsAvailable": "Ingen tip tilgængelige.",
+  "tutorPreviewThenConfirm": "Tryk på et træk for at forhåndsvise det på brættet, og bekræft derefter.",
+  "tutorTopChoiceForPosition": "Bedste valg i denne stilling",
+  "tutorAlternativePlay": "Alternativt træk",
+  "tutorEngineEstimates": "Motorens vurderinger",
+  "tutorEstimateScope": "0-ply-vurdering · aktuel score og indsats · ingen fremtidige doblinger",
+  "tutorEquity": "Equity",
+  "tutorMwcPercent": "Matchvindende chance %",
+  "tutorNearTiesNote": "Næsten lige vurderinger kan ændre sig ved dybere analyse.",
+  "tutorWhyThisPlay": "Hvorfor dette træk?",
+  "tutorCompareAlternative": "Sammenlign dette alternativ",
+  "tutorCubelessEstimateScope": "0-ply-vurdering uden kube · score ikke tilgængelig",
+  "tutorLossPp": "Tab i procentpoint",
+  "tutorLoss": "Tab",
+  "tutorOptions": "Tutorindstillinger",
+  "tutorCollapseTooltip": "Fold tutor sammen",
+  "tutorExpandTooltip": "Fold tutor ud",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · til {matchLength}",
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · til {matchLength}",
+  "gameHudYou": "Dig",
+  "gameHudAi": "Computer",
+  "gameHudGameNumber": "Spil {number}",
+  "gameHudMatchContext": "{score} · {game}",
+  "gameHudHotSeatDetail": "{whiteLabel} mod {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "gameHudOpponentDetail": "mod {opponent} · {pipsLabel} {mine}–{theirs}",
+  "gameHudOpponentDetailWithLevel": "mod {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "gameHudPips": "Pips",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Dobl",
+  "gameHudMoreActions": "Flere handlinger",
+  "gameHudSurrender": "Opgiv…",
+  "gameHudThinking": "Tænker",
+  "gameHudDoubleBeforeRoll": "Du kan kun doble før du slår, og når det er din tur.",
+  "gameHudNoDoubleCrawford": "Der kan ikke dobles i Crawford-spillet — dette ene spil afgør kampen.",
+  "gameHudOnlyCubeOwner": "Kun ejeren af dobleterningen kan doble, og den tilhører modstanderen lige nu.",
+  "gameHudDoubleUnavailable": "Det er ikke muligt at doble lige nu.",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (til {matchLength})",
+  "gameDialogPlayerWon": "{winner} vinder dette spil ({points}).",
+  "gameDialogPlayerWonGammon": "{winner} vinder dette spil ({points}, gammon).",
+  "gameDialogPlayerWonBackgammon": "{winner} vinder dette spil ({points}, backgammon).",
+  "gameDialogPlayerWonDrop": "{winner} vinder dette spil ({points}) — {loser} afslog doblingen.",
+  "gameDialogPlayerWonResignation": "{winner} vinder dette spil ({points}) — {loser} opgav.",
+  "gameDialogPassDeviceTitle": "Giv enheden videre",
+  "gameDialogPlayersTurn": "{name} har tur",
+  "gameDialogTapToContinue": "Tryk for at fortsætte",
+  "gameDialogCubeOfferedTitle": "Dobl foreslået",
+  "gameDialogCubeOfferMessage": "{doubler} tilbyder at doble til {value}. Vil du tage imod eller passe?{tutorLine}",
+  "gameDialogPass": "Pas",
+  "gameDialogTake": "Tag imod",
+  "gameDialogResignationTitle": "Opgivelse tilbudt",
+  "gameDialogResignationMessage": "{resigner} tilbyder at opgive ved {value}. Vil du acceptere eller afslå?",
+  "gameDialogResignSingle": "enkelt spil",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Afslå",
+  "gameDialogAccept": "Acceptér",
+  "gameDialogGameOverTitle": "Spillet er slut",
+  "gameDialogNextGame": "Næste spil",
+  "gameDialogMatchOverTitle": "Kampen er slut",
+  "gameDialogNobody": "Ingen",
+  "gameDialogMatchWinner": "{winner} vinder kampen.",
+  "gameDialogSavedToHistory": "Gemt i historik",
+  "gameDialogDone": "Færdig",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "newMatchYourSide": "Din side",
+  "newMatchTutorMode": "Tutortilstand",
+  "newMatchTutorDescription": "Lær med tip, forklaringer og kommentarer til spillet",
+  "newMatchTutoringOptions": "Tutorindstillinger",
+  "newMatchTutoringOptionsDescription": "For denne kamp; kan ændres under spillet",
+  "setupMatchLength": "Kampens længde",
+  "setupDifficulty": "Sværhedsgrad",
+  "setupDifficultyEasy": "Let",
+  "setupDifficultyMedium": "Middel",
+  "setupDifficultyHard": "Svær",
+  "setupDifficultyExpert": "Ekspert",
+  "setupPlayWithoutCube": "Spil uden kube",
+  "setupNoCubeThisMatch": "Ingen dobleterning i denne kamp",
+  "actionCancel": "Annuller",
+  "actionDelete": "Slet",
+  "actionRetry": "Prøv igen",
+  "actionRemove": "Fjern",
+  "diagnosticsCopySuccess": "Diagnostik kopieret til udklipsholderen",
+  "diagnosticsReviewTitle": "Gennemgå diagnostikrapport",
+  "diagnosticsPrivacyNotice": "Når du åbner udkastet, sendes oplysningerne nedenfor til GitHub, herunder appversion, platform og eventuelle fejloplysninger. Der oprettes ikke en offentlig sag, før du indsender den. Hvis oplysningerne indeholder private data, skal du annullere og bruge Kopiér til selv at klargøre en rapport.",
+  "diagnosticsCancel": "Annuller",
+  "diagnosticsOpenGitHub": "Åbn GitHub",
+  "diagnosticsTitle": "Diagnostik",
+  "diagnosticsReportTooltip": "Rapportér et problem på GitHub",
+  "diagnosticsCopyTooltip": "Kopiér til udklipsholder",
+  "diagnosticsClearTooltip": "Ryd log",
+  "diagnosticsEmpty": "Ingen fejl registreret.\n\nHvis noget går galt, gemmes det her. Vend tilbage og kopiér oplysningerne til en fejlrapport.",
+  "historyTitle": "Kampoversigt",
+  "historyLoadFailed": "Kampoversigten kunne ikke indlæses:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyEmpty": "Du har ikke spillet nogen kampe endnu.",
+  "historyDeleteConfirmTitle": "Slet denne kamp?",
+  "historyDeleteConfirmBody": "{scoreLine}\n\nKampen og alle registrerede spil i den slettes permanent. Dette kan ikke fortrydes.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyDeleteFailed": "Kampen kunne ikke slettes.",
+  "historyComplete": "Færdig",
+  "historyWinner": "{side} vandt",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyUnfinished": "Ikke færdig",
+  "historyMatchTitle": "Kamp",
+  "historyMatchLoadFailed": "Kampen kunne ikke indlæses:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Spillene kunne ikke indlæses:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyNoGames": "Ingen spil er registreret endnu.",
+  "historyGameTitle": "Spil {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyCrawford": "Crawford",
+  "historyScoreLine": "Hvid {whiteScore} — {blackScore} Sort (til {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyModeComputer": "mod computer",
+  "historyModeTwoPlayers": "To spillere",
+  "historyModeOnline": "Online",
+  "historyModeNearby": "Spil i nærheden",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "I gang",
+  "historyGameResult": "{side} vinder med {points} ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "historyOutcomeSingle": "enkelt",
+  "historyOutcomeGammon": "gammon",
+  "historyOutcomeBackgammon": "backgammon",
+  "onlineTitle": "Spil online",
+  "onlineUnassistedNote": "Live online-spil er uden hjælp. Gennemgå dine træk og øv fejl efter kampen.",
+  "onlineNotConfiguredTitle": "Onlinespil er ikke konfigureret i denne version",
+  "onlineNotConfiguredBody": "Denne version har ingen tilkoblet Firebase-backend, så oprettelse og deltagelse i kampe er ikke tilgængelig.",
+  "onlineErrorNoMatch": "Der findes ingen kamp med den kode. Kontrollér den, og prøv igen.",
+  "onlineErrorSeatTaken": "Kampen er ikke længere åben — pladsen er optaget.",
+  "onlineErrorPermission": "Du har ikke adgang til den kamp.",
+  "onlineErrorGeneric": "Noget gik galt. Prøv igen.",
+  "onlineMatchFinished": "Kampen er slut — der er ikke noget at vende tilbage til.",
+  "onlineEnterCodeError": "Indtast en kampkode.",
+  "onlineOpponentShort": "Modst.",
+  "onlineMatchInProgress": "Kamp i gang",
+  "onlineResumePrompt": "Du spillede kampen {code}.",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Deltag igen",
+  "onlineForgetMatch": "Glem denne kamp",
+  "onlineCreateTitle": "Opret kamp",
+  "onlineMatchLength": "Kampens længde",
+  "onlineNoCubeTitle": "Spil uden kube",
+  "onlineNoCubeSubtitle": "Ingen dobleterning i denne kamp",
+  "onlineCreate": "Opret",
+  "onlineWaitingOpponent": "Venter på modstander…",
+  "onlineShareCode": "Del denne kode",
+  "onlineCopyCode": "Kopiér kode",
+  "onlineCodeCopied": "Kode kopieret",
+  "onlineJoinTitle": "Deltag i kamp",
+  "onlineRoomCode": "Kampkode",
+  "onlineJoin": "Deltag",
+  "lanTitle": "Spil i nærheden",
+  "lanTabHost": "Vært",
+  "lanTabJoin": "Deltag",
+  "lanUnassistedNote": "Live-spil i nærheden er uden hjælp. Gennemgå dine træk, og øv fejl efter kampen.",
+  "lanGameStartFailed": "Spillet kunne ikke startes. Den anden enhed kan prøve at deltage igen.",
+  "lanHostPortInUse": "Kunne ikke starte værtstilstand — porten er allerede i brug. Luk en anden kopi af Backgammon Buddy.",
+  "lanHostStartFailed": "Kunne ikke starte værtstilstand. Kontrollér din Wi-Fi-forbindelse.",
+  "lanHostTitle": "Vær vært for et spil",
+  "lanStartHosting": "Start værtstilstand",
+  "lanHostHelp": "Begge enheder skal være på samme Wi-Fi. Denne enhed slår terningerne og holder styr på scoren.",
+  "lanWaitingPlayerTitle": "Venter på en spiller",
+  "lanRoomCodeInfo": "Giv den anden spiller denne kode. Den giver adgang — appen sender den ikke over netværket.",
+  "lanWaitingPlayer": "Venter på en spiller…",
+  "lanStopHosting": "Stop værtstilstand",
+  "lanFindNearbyPort": "Bed den anden enhed om at søge efter spil i nærheden. Lytter på port {port}.",
+  "lanOnNetwork": "På dette netværk",
+  "lanCopyAddress": "Kopiér adresse",
+  "lanAddressCopied": "Adresse kopieret",
+  "lanScanHostTitle": "Scan værten",
+  "lanScanHostHelp": "Den anden enhed viser en QR-kode på værtsskærmen. Scan den for at udfylde adresse og rumkode.",
+  "lanScanQr": "Scan QR-kode",
+  "lanScannerUnavailable": "Kameraet eller dets tilladelse er ikke tilgængelig. Indtast adresse og rumkode nedenfor i stedet.",
+  "lanInvalidQr": "Denne QR-kode er ikke til et Backgammon Buddy-spil. Scan koden på værtens skærm på den anden enhed.",
+  "lanScannerFailed": "Scanneren kunne ikke åbnes. Indtast adressen og koden i stedet.",
+  "lanNearbyGames": "Spil i nærheden",
+  "lanSearching": "Søger efter spil i nærheden…",
+  "lanNoGamesFound": "Ingen spil fundet endnu. Sørg for, at den anden enhed er vært, og at begge er på samme Wi-Fi — eller indtast adressen.",
+  "lanStillSearching": "Søger stadig…",
+  "lanEnterAddress": "Indtast adresse",
+  "lanEnterAddressHelp": "Automatisk søgning virker ikke på alle netværk (og iOS kan blokere den helt). Værtsskærmen viser, hvad du skal indtaste.",
+  "lanIpAddress": "IP-adresse",
+  "lanPort": "Port",
+  "lanInvalidPort": "Indtast en port mellem 1 og 65535.",
+  "lanEnterAddressError": "Indtast adressen, der vises på den anden enhed.",
+  "lanEnterRoomCodeError": "Indtast den firecifrede kode fra den anden enhed.",
+  "lanJoinWrongCode": "Forkert rumkode. Kontrollér de fire cifre på den anden enhed.",
+  "lanJoinVersionMismatch": "Den anden enhed kører en anden version af Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "Enheden svarede ikke som Backgammon Buddy. Kontrollér adresse og port.",
+  "lanJoinFailed": "Kunne ikke deltage. Kontrollér adresse og rumkode, og prøv igen.",
+  "lanJoinTarget": "Deltag i {name}",
+  "lanJoinTargetHelp": "Indtast den firecifrede kode, der vises på den anden enhed.",
+  "lanJoiningTarget": "Deltager i {name}",
+  "lanConnect": "Opret forbindelse",
+  "lanBack": "Tilbage",
+  "lanTryAgain": "Prøv igen",
+  "lanStatusBusy": "Rummet er optaget — venter…",
+  "lanStatusReconnecting": "Forbindelsen gik tabt — prøver igen…",
+  "lanStatusConnected": "Forbundet — kampen starter…",
+  "lanStatusFailed": "Kunne ikke deltage.",
+  "lanStatusConnecting": "Opretter forbindelse…",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "practiceScreenTitle": "Træn en beslutning",
+  "practiceUnavailable": "Denne øvelsesposition er ikke længere tilgængelig.",
+  "practiceSubmitError": "Forsøget kunne ikke vurderes eller gemmes. Din fremgang er uændret. Prøv igen.",
+  "practiceTurnLabel": "{side} skal trække · {dice}",
+  "practiceHistoricalScoreUnavailable": "Historisk stilling er ikke tilgængelig; bedømmelsen bruger cubeless equity.",
+  "practiceScoreLine": "Stilling: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, til {matchLength}",
+  "practiceCrawfordGame": " · Crawford-parti",
+  "practiceNoDoublingCube": "Ingen doublingterning.",
+  "practiceCubeValue": "Terning {value}.",
+  "practiceHistoricalCubeUnknown": "Historiske terningregler er ukendte.",
+  "practiceAfterBestPosition": "Position efter det bedste træk",
+  "practiceAfterYourAnswerPosition": "Position efter dit svar",
+  "practiceFindYourPlayPrompt": "Spil dit træk på brættet, og kontrollér derefter svaret. Der vises ingen hints.",
+  "practiceUndo": "Fortryd",
+  "practiceCheckAnswer": "Kontrollér svar",
+  "practiceRevealNoCredit": "Vis svar (uden point)",
+  "practiceAnswerRevealedNoCredit": "Svar vist — ingen point for genkaldelse.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "practiceBestMoveLine": "Bedst: {move}",
+  "practiceOriginalGameLine": "Oprindeligt parti: {move} · {loss}",
+  "practiceYourAnswerLine": "Dit svar: {move}",
+  "practiceYourAnswerChip": "Dit svar",
+  "practiceBestPlayChip": "Bedste træk",
+  "practiceNextReview": "Næste gennemgang: {date}.",
+  "practiceRecallCredit": "Bedste eller gode svar tæller som korrekt genkaldelse. Tidlige gentagelser ændrer ikke planen.",
+  "practiceBackToLearning": "Tilbage til læring",
+  "practiceMarkBest": "Bedst",
+  "practiceMarkGood": "Godt",
+  "practiceMarkDubious": "Tvivlsomt",
+  "practiceMarkError": "Fejl",
+  "practiceMarkBlunder": "Større fejl",
+  "practiceMarkForced": "Tvunget",
+  "analysisTitle": "Analyse",
+  "analysisMetricsTooltip": "Hvad betyder tallene?",
+  "analysisError": "Partiet kunne ikke analyseres: {error}",
+  "analysisNoPositions": "Dette parti har ingen positioner at vise.",
+  "analysisInProgress": "Analyserer parti…",
+  "analysisPercent": "{percent}%",
+  "analysisPlayed": "Spillet",
+  "analysisBest": "Bedst",
+  "analysisPrevious": "Forrige",
+  "analysisNext": "Næste",
+  "analysisPositionBeforeCube": "Position før terningbeslutningen",
+  "analysisPositionAtPoint": "Position på dette sted i partiet",
+  "analysisShowingBestBefore": "Viser det bedste træk i positionen før trækket",
+  "analysisShowingBefore": "Viser positionen før trækket",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "analysisMoveLoss": " −{loss}",
+  "analysisExcludedFromAverages": " · udeladt fra gennemsnit",
+  "analysisNoPlay": "(intet træk)",
+  "analysisBestMoveLine": "Bedste træk: {move}",
+  "analysisExplain": "Forklar",
+  "analysisSaveForPractice": "Gem til træning",
+  "analysisSaveError": "Denne beslutning kunne ikke gemmes: {error}",
+  "analysisCubeInfo": "{side}: {action} · {mark} · tab {loss}",
+  "analysisCubeDecision": "Terningbeslutning",
+  "analysisCubePlayed": "Spillet: {action} ({percent}% chance for at vinde partiet).",
+  "analysisCubeBest": "Bedst: {action} ({percent}% chance for at vinde partiet).",
+  "analysisCubeEstimate": "0-ply-estimat set fra spilleren, der er i træk. Antager et optimalt tag eller pas. Bruger en 0,7-tilnærmelse af terningens levetid ved accepteret dobling, ikke en fuld søgning efter fremtidige redoblinger. En dybere analyse kan ændre svaret.",
+  "analysisClose": "Luk",
+  "analysisMoves": "Træk",
+  "analysisForced": "Tvunget",
+  "analysisMarkBest": "Bedst",
+  "analysisMarkGood": "Godt",
+  "analysisMarkDubious": "Tvivlsomt",
+  "analysisMarkError": "Fejl",
+  "analysisMarkBlunder": "Større fejl",
+  "analysisSummaryMeanLoss": "Gennemsnitligt tab {loss}",
+  "analysisSummaryCheckerDecisions": "{count} brikbeslutninger",
+  "analysisSummaryBlunders": "Større fejl {count}",
+  "analysisSummaryCubeLoss": "Terningtab {loss}",
+  "analysisRollWithoutDoubling": "{side} kaster uden at doble",
+  "metricExplainerTitle": "Forstå målingerne",
+  "metricExplainerTooltip": "Hvad betyder tallene?",
+  "metricExplainerMwcTitle": "Chance for at vinde kampen (MWC)",
+  "metricExplainerMwcBody": "Når stillingen er kendt, rangeres briktræk efter den anslåede chance for at vinde kampen. Tab angives i procentpoint (pp): 1 pp er et fald fra 51 % til 50 %. Den aktuelle terningindsats samt gammon- og backgammonresultater indgår. Tvungne pas og kast med kun én lovlig slutposition tæller ikke med i gennemsnittet.",
+  "metricExplainerSearchTitle": "Søgning og usikkerhed",
+  "metricExplainerSearchBody": "Trækrangeringer er statiske 0-ply-estimater efter trækket, ikke rollouts. Kampværdier bruger en match equity-tabel uden fremtidige terningbeslutninger. Terninganalyser bruger en delvis 0,7-tilnærmelse af terningens levetid ved accepteret dobling. Det er ikke en fuld cubeful søgning. Stillinger mere end 25 point bagud bruger tabellens 25-away-grænse. Tætte resultater kan ændre sig ved dybere analyse; der findes intet kalibreret konfidensinterval.",
+  "metricExplainerEquityTitle": "Equity",
+  "metricExplainerEquityBody": "Hvis stillingen ikke er tilgængelig, er cubeless equity en positions gennemsnitlige pointværdi med terningen på 1. +1,0 betyder forventet gevinst på ét point; −0,5 betyder forventet tab af et halvt point.",
+  "metricExplainerEquityLossTitle": "Equitytab (f.eks. −0,016)",
+  "metricExplainerEquityLossBody": "Vi sammenligner hvert træk med engineets bedste træk. Equitytab er den forventede værdi, trækket gav afkald på. −0,016 betyder, at trækket kun var 0,016 point dårligere — en lille fejl. 0,000 betyder, at du fandt det bedste træk.",
+  "metricExplainerErrorRateTitle": "Fejlrate",
+  "metricExplainerErrorRateBody": "Gennemsnitligt tab beregner gennemsnittet af dine vurderede brikbeslutninger i den viste enhed. Terningbeslutninger har deres eget gennemsnit. Lavere betyder tættere på engineets bedste estimater; det er ikke en kalibreret spillervurdering.",
+  "metricExplainerMoveMarksTitle": "Trækvurderinger",
+  "metricExplainerMoveMarksBody": "MWC-undervisningsniveauer: Bedst < 0,05 pp, Godt < 0,5 pp, Tvivlsomt < 1,5 pp, Fejl < 3 pp, Større fejl ≥ 3 pp. Det er produktets læringsniveauer, ikke kalibreret sikkerhed eller turneringsvurderinger.\n\nCubeless equity-niveauer:",
+  "metricExplainerThresholdBest": "tab < 0,001",
+  "metricExplainerThresholdGood": "tab < 0,020",
+  "metricExplainerThresholdDubious": "tab < 0,050",
+  "metricExplainerThresholdError": "tab < 0,110",
+  "metricExplainerThresholdBlunder": "tab ≥ 0,110",
+  "metricExplainerGotIt": "Forstået",
+  "learningRefreshTooltip": "Opdater læringsforløb",
+  "learningOptions": "Læringsindstillinger",
+  "learningResetMenu": "Nulstil træningsforløb",
+  "learningLoadFailed": "Læringsforløbet kunne ikke indlæses.",
+  "learningHeading": "Lær af dine beslutninger",
+  "learningIntro": "Din fremgang gemmes på denne enhed. Gennemgå tilbagevendende temaer, og prøv gemte positioner igen uden at se svaret. Hvid og sort kan gennemgås hver for sig.",
+  "learningBothSides": "Begge sider",
+  "learningHumansOnly": "Kun menneskelige beslutninger",
+  "learningHumanOnlyHelp": "Slå fra for også at medtage computerens og fjernspilleres beslutninger",
+  "learningDecisionSummary": "{decisions} beslutninger · {mistakes} at forbedre · {blunders} større fejl",
+  "learningAverageLoss": "Gennemsnitligt tab ({decisions} beslutninger): {loss}",
+  "learningForcedDisclaimer": "Tvungne træk er udeladt. Det er engineestimater, ikke en turneringsrating.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{# gemt parti skal analyseres eller analyseres igen.} other{# gemte partier skal analyseres eller analyseres igen.}}",
+  "learningAnalyseSavedGames": "Analysér gemte partier",
+  "learningEmptyProfile": "Spil og afslut et parti for at opbygge din læringsprofil. Du kan også gemme enkelte beslutninger fra en gennemgang.",
+  "learningOpenHistory": "Åbn kamphistorik",
+  "learningRecurringThemes": "Tilbagevendende temaer",
+  "learningNoThemes": "Der er endnu ingen tilbagevendende fejltendenser i dette udvalg.",
+  "learningThemeDecisions": "{count} beslutninger til gennemgang. En position kan have flere temaer.",
+  "learningSaveMistakes": "Gem disse fejl til træning",
+  "learningSavedMistakes": "{count} beslutninger er på din træningsliste. Allerede gemte beslutninger beholdes.",
+  "learningSaveMistakesFailed": "Nogle beslutninger kunne ikke gemmes. De gemte beholdes; prøv igen.",
+  "learningSpacedPractice": "Spredt træning",
+  "learningPracticeCounts": "{due} klar nu · {saved} gemt · {attempts} forsøg · {successes} vellykkede genkaldelser",
+  "learningIntervalsHelp": "Vellykkede rettidige gennemgange vender tilbage efter 1, 3, 7, 14 og 30 dage. Fejl eller viste svar vender tilbage efter 10 minutter. Tidlige gentagelser ændrer ikke intervallet.",
+  "learningAnswerContext": "Træningsresultaterne afspejler dine svar her, også når den oprindelige position tilhørte en modstander.",
+  "learningNoSavedPositions": "Gem en beslutning fra gennemgangen, eller brug fejlknappen ovenfor.",
+  "learningPositionTitle": "{side}s beslutning · parti {gameId}",
+  "learningReviewDue": "Gennemgå {date}",
+  "learningReadyToReview": "Klar til gennemgang",
+  "learningSuccessStreak": "{count} vellykkede rettidige gennemgange",
+  "learningRemoveTooltip": "Fjern gemt beslutning",
+  "learningRecentPractice": "Seneste træning",
+  "learningAnswerRevealed": "Svar vist",
+  "learningSuccessfulRecall": "Vellykket genkaldelse",
+  "learningTryAgain": "Prøv beslutningen igen",
+  "learningAttemptSubtitle": "{date} · gemt position {positionId}",
+  "learningRemoveTitle": "Fjern denne øvelse?",
+  "learningRemoveBody": "Dette fjerner dens træningsforsøg. Det oprindelige parti bliver i historikken.",
+  "learningRemoveFailed": "Øvelsen kunne ikke fjernes.",
+  "learningResetTitle": "Nulstil træningsforløb?",
+  "learningResetBody": "Alle træningsforsøg og gennemgangsintervaller fjernes. Dine gemte øvelser og kamphistorik bevares; alle øvelser skal gennemgås nu.",
+  "learningResetAction": "Nulstil forløb",
+  "learningResetFailed": "Træningsforløbet kunne ikke nulstilles.",
+  "learningAnalysisProgress": "Analyserede partier: {completed} · utilgængelige: {failed}.",
+  "learningAnalysisComplete": "Analyserede {completed} partier.",
+  "learningAnalysisCompleteWithErrors": "Analyserede {completed} partier; {failed} kunne ikke analyseres. Prøv igen, når engine er klar.",
+  "learningThemeHitting": "Slag og tempo",
+  "learningThemeSafety": "Blots og sikkerhed",
+  "learningThemePointMaking": "Byg punkter",
+  "learningThemePrime": "Prime og blokader",
+  "learningThemeAnchor": "Ankre og flugt",
+  "learningThemeRace": "Effektivitet i løbet",
+  "learningThemeBearOff": "Bære af",
+  "learningThemeBarEntry": "Indgang fra baren",
+  "learningThemeCube": "Terningbeslutninger",
+  "analysisCubeNoDouble": "Ingen dobling",
+  "analysisCubeDouble": "Dobl",
+  "analysisCubeTake": "Tag",
+  "analysisCubePass": "Pas",
+  "learningAnalysisStarting": "Analyserer gemte partier…",
+  "scoreSheetNoMoves": "Ingen træk endnu",
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  }
 }

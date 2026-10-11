@@ -2,6 +2,8 @@ import 'package:backgammon_core/backgammon_core.dart';
 import 'package:flutter/material.dart';
 
 import '../../game/match_controller.dart';
+import '../../l10n/app_localizations.dart';
+import '../../l10n/localization_lookup.dart';
 
 /// The game screen's declarative modals and the vocabulary they are written in.
 ///
@@ -13,13 +15,14 @@ import '../../game/match_controller.dart';
 
 // --- Shared formatting -------------------------------------------------------
 
-String playerName(Player p) => p == Player.white ? 'White' : 'Black';
+String playerName(Player p, AppLocalizations l10n) =>
+    p == Player.white ? l10n.white : l10n.black;
 
-String _resignName(ResignValue v) => switch (v) {
-      ResignValue.single => 'single',
-      ResignValue.gammon => 'gammon',
-      ResignValue.backgammon => 'backgammon',
-    };
+String _resignName(ResignValue v, AppLocalizations l10n) => switch (v) {
+  ResignValue.single => l10n.gameDialogResignSingle,
+  ResignValue.gammon => l10n.gameDialogResignGammon,
+  ResignValue.backgammon => l10n.gameDialogResignBackgammon,
+};
 
 /// The game-end dialog's one-line summary, in plain language.
 ///
@@ -28,25 +31,35 @@ String _resignName(ResignValue v) => switch (v) {
 /// "Black wins this game (+1) — White declined the double." / "White wins this
 /// game (+2, gammon)." Terse by design — the running match score follows on the
 /// next line.
-String gameEndSummary(GameResult result) {
-  final winner = playerName(result.winner);
-  final loser = playerName(result.winner.opponent);
+String gameEndSummary(GameResult result, AppLocalizations l10n) {
+  final winner = playerName(result.winner, l10n);
+  final loser = playerName(result.winner.opponent, l10n);
   final points = '+${result.points}';
   return switch (result.outcome) {
-    GameOutcome.single => '$winner wins this game ($points).',
-    GameOutcome.gammon => '$winner wins this game ($points, gammon).',
-    GameOutcome.backgammon =>
-      '$winner wins this game ($points, backgammon).',
-    GameOutcome.drop =>
-      '$winner wins this game ($points) — $loser declined the double.',
-    GameOutcome.resignation =>
-      '$winner wins this game ($points) — $loser resigned.',
+    GameOutcome.single => l10n.gameDialogPlayerWon(winner, points),
+    GameOutcome.gammon => l10n.gameDialogPlayerWonGammon(winner, points),
+    GameOutcome.backgammon => l10n.gameDialogPlayerWonBackgammon(
+      winner,
+      points,
+    ),
+    GameOutcome.drop => l10n.gameDialogPlayerWonDrop(winner, points, loser),
+    GameOutcome.resignation => l10n.gameDialogPlayerWonResignation(
+      winner,
+      points,
+      loser,
+    ),
   };
 }
 
-String scoreLine(MatchController c) {
+String scoreLine(MatchController c, AppLocalizations l10n) {
   final m = c.match;
-  return 'White ${m.whiteScore} — ${m.blackScore} Black  (to ${m.matchLength})';
+  return l10n.gameDialogScoreLine(
+    l10n.white,
+    m.whiteScore,
+    m.blackScore,
+    l10n.black,
+    m.matchLength,
+  );
 }
 
 // --- Dialogs -----------------------------------------------------------------
@@ -58,9 +71,11 @@ Widget passDeviceOverlay(
   required Player turn,
   required VoidCallback onDismiss,
 }) {
+  final l10n = appLocalizationsOf(context);
   final titleStyle =
-      Theme.of(context).textTheme.headlineSmall ?? const TextStyle(fontSize: 20);
-  final name = playerName(turn);
+      Theme.of(context).textTheme.headlineSmall ??
+      const TextStyle(fontSize: 20);
+  final name = playerName(turn, l10n);
   return Positioned.fill(
     child: GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -71,11 +86,11 @@ Widget passDeviceOverlay(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Pass the device', style: titleStyle),
+              Text(l10n.gameDialogPassDeviceTitle, style: titleStyle),
               const SizedBox(height: 12),
-              Text("$name's turn", style: titleStyle),
+              Text(l10n.gameDialogPlayersTurn(name), style: titleStyle),
               const SizedBox(height: 24),
-              const Text('Tap to continue'),
+              Text(l10n.gameDialogTapToContinue),
             ],
           ),
         ),
@@ -90,38 +105,46 @@ Widget passDeviceOverlay(
 /// [tutorLine] is the caller's already-formatted take/pass advice, appended to
 /// the message — empty where there is no tutor or the advice has not landed.
 Widget cubeDialog({
+  required AppLocalizations l10n,
   required GameState state,
   String tutorLine = '',
   required VoidCallback onPass,
   required VoidCallback onTake,
 }) {
-  final doubler = playerName(state.turn.opponent);
+  final doubler = playerName(state.turn.opponent, l10n);
   final newValue = state.cube.value * 2;
   return ModalCard(
-    title: 'Double offered',
-    message: '$doubler offers a double to $newValue. Take or pass?$tutorLine',
+    title: l10n.gameDialogCubeOfferedTitle,
+    message: l10n.gameDialogCubeOfferMessage(doubler, newValue, tutorLine),
     actions: [
-      CardAction(label: 'Pass', onPressed: onPass),
-      CardAction(label: 'Take', filled: true, onPressed: onTake),
+      CardAction(label: l10n.gameDialogPass, onPressed: onPass),
+      CardAction(label: l10n.gameDialogTake, filled: true, onPressed: onTake),
     ],
   );
 }
 
 /// A human's answer to an opponent's resignation offer.
 Widget resignDialog({
+  required AppLocalizations l10n,
   required GameState state,
   required ResignValue value,
   required VoidCallback onDecline,
   required VoidCallback onAccept,
 }) {
-  final resigner = playerName(state.turn.opponent);
+  final resigner = playerName(state.turn.opponent, l10n);
   return ModalCard(
-    title: 'Resignation offered',
-    message: '$resigner offers to resign a ${_resignName(value)}. '
-        'Accept or decline?',
+    title: l10n.gameDialogResignationTitle,
+    message: l10n.gameDialogResignationMessage(
+      resigner,
+      _resignName(value, l10n),
+    ),
     actions: [
-      CardAction(label: 'Decline', onPressed: onDecline),
-      CardAction(label: 'Accept', filled: true, onPressed: onAccept),
+      CardAction(label: l10n.gameDialogDecline, onPressed: onDecline),
+      CardAction(
+        label: l10n.gameDialogAccept,
+        filled: true,
+        onPressed: onAccept,
+      ),
     ],
   );
 }
@@ -130,44 +153,44 @@ Widget resignDialog({
 /// on. [summaryAction] is the optional "Analyze game" link, present only for a
 /// persisted match.
 Widget gameEndDialog({
+  required AppLocalizations l10n,
   required GameResult result,
   required String score,
   CardAction? summaryAction,
   required VoidCallback onNextGame,
-}) =>
-    ModalCard(
-      title: 'Game over',
-      message: '${gameEndSummary(result)}\n$score',
-      actions: [
-        ?summaryAction,
-        CardAction(
-          label: 'Next game',
-          filled: true,
-          onPressed: onNextGame,
-        ),
-      ],
-    );
+}) => ModalCard(
+  title: l10n.gameDialogGameOverTitle,
+  message: '${gameEndSummary(result, l10n)}\n$score',
+  actions: [
+    ?summaryAction,
+    CardAction(
+      label: l10n.gameDialogNextGame,
+      filled: true,
+      onPressed: onNextGame,
+    ),
+  ],
+);
 
 /// The end-of-match card. [savedToHistory] adds the subtle reassurance that a
 /// finished match can be revisited later from the home screen's History, even
 /// after this dialog is dismissed.
 Widget matchEndDialog({
+  required AppLocalizations l10n,
   required Player? winner,
   required String score,
   required bool savedToHistory,
   CardAction? summaryAction,
   required VoidCallback onDone,
-}) =>
-    ModalCard(
-      title: 'Match over',
-      message: '${winner == null ? 'Nobody' : playerName(winner)} wins the '
-          'match.\n$score',
-      footnote: savedToHistory ? 'Saved to History' : null,
-      actions: [
-        ?summaryAction,
-        CardAction(label: 'Done', filled: true, onPressed: onDone),
-      ],
-    );
+}) => ModalCard(
+  title: l10n.gameDialogMatchOverTitle,
+  message:
+      '${l10n.gameDialogMatchWinner(winner == null ? l10n.gameDialogNobody : playerName(winner, l10n))}\n$score',
+  footnote: savedToHistory ? l10n.gameDialogSavedToHistory : null,
+  actions: [
+    ?summaryAction,
+    CardAction(label: l10n.gameDialogDone, filled: true, onPressed: onDone),
+  ],
+);
 
 // --- Declarative modal card --------------------------------------------------
 
@@ -241,8 +264,7 @@ class ModalCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(title,
-                        style: Theme.of(context).textTheme.titleLarge),
+                    Text(title, style: Theme.of(context).textTheme.titleLarge),
                     const SizedBox(height: 12),
                     Text(message),
                     if (footnote != null) ...[
@@ -250,9 +272,8 @@ class ModalCard extends StatelessWidget {
                       Text(
                         footnote!,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color:
-                                  Theme.of(context).colorScheme.onSurfaceVariant,
-                            ),
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
                       ),
                     ],
                     const SizedBox(height: 24),

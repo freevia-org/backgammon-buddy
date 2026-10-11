@@ -29,7 +29,7 @@
   "tutorCustomDescription": "Individuelle Mischung. Passe die Optionen unten an.",
   "tutorBestMoveHints": "Hinweise zum besten Zug",
   "tutorRevealRankedPlays": "Ranglisten der Züge beim Entscheiden anzeigen",
-  "tutorMoveExplanations": "Zugerklärungen",
+  "tutorMoveExplanations": "Erklärungen zum Zug",
   "tutorCompareEstimates": "Bewertungen und Änderungen auf dem Brett vergleichen",
   "tutorGameCommentary": "Spielkommentar",
   "tutorPositionPrompts": "Positionshinweise und Feedback nach jedem Zug",
@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Punktnummern in den Lernhinweisen werden vom Heimfeld des ziehenden Spielers aus gezählt.",
   "tutorHittingRollNote": "Die Anzahl der Schlagmöglichkeiten umfasst alle 36 geordneten Würfelergebnisse und legale direkte oder indirekte Schläge; sie sind Möglichkeiten, keine Vorhersage der gegnerischen Wahl.",
   "tutorNoEvaluatedAlternatives": "Für diesen Zug liegen keine bewerteten Alternativen vor.",
-  "tutorForcedPassNoDecision": "Ein erzwungenes Passen beinhaltet keine Entscheidung über einen Zug mit den Steinen."
+  "tutorForcedPassNoDecision": "Ein erzwungenes Passen beinhaltet keine Entscheidung über einen Zug mit den Steinen.",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "settingsReset": "Zurücksetzen",
+  "settingsAppLanguage": "App-Sprache",
+  "settingsTheme": "Design",
+  "settingsThemeSystem": "System",
+  "settingsThemeLight": "Hell",
+  "settingsThemeDark": "Dunkel",
+  "settingsAnimationSpeed": "Animationstempo",
+  "settingsAnimationNone": "Keine",
+  "settingsAnimationNormal": "Normal",
+  "settingsAnimationFast": "Schnell",
+  "settingsDiceRollAnimation": "Würfelanimation",
+  "settingsDiceRollAnimationHelp": "Lass die Würfel vor jedem Wurf rollen",
+  "settingsDefaultMatchLength": "Standard-Matchlänge",
+  "settingsDefaultDifficulty": "Standardschwierigkeit",
+  "settingsDifficultyEasy": "Leicht",
+  "settingsDifficultyMedium": "Mittel",
+  "settingsDifficultyHard": "Schwer",
+  "settingsDifficultyExpert": "Experte",
+  "settingsTutorModeDefault": "Standard für den Tutor-Modus",
+  "settingsTutorAuto": "Automatisch",
+  "settingsTutorOn": "Ein",
+  "settingsTutorOff": "Aus",
+  "settingsTutorModeHelp": "Automatisch aktiviert den Tutor bei jeder Computer-Schwierigkeit. Ein und Aus legen die Startauswahl für lokale Matches fest. Spiele in der Nähe und online werden ohne Hilfen gespielt; gespeicherte Partien lassen sich später ansehen. Die Tutor-Einstellungen unten werden auf diesem Gerät gespeichert.",
+  "settingsTutorPreferences": "Tutor-Einstellungen",
+  "settingsTutorPreferencesSubtitle": "Gespeicherte Standardwerte für künftige Matches",
+  "settingsTutorSaveError": "Tutor-Einstellungen konnten nicht gespeichert werden.",
+  "settingsGameplay": "Spiel",
+  "settingsMoveHighlights": "Zugmarkierungen",
+  "settingsMoveHighlightsHelp": "Wählbare Steine werden eingekreist und mögliche Zielfelder hervorgehoben",
+  "settingsDragToMove": "Ziehen zum Bewegen",
+  "settingsDragToMoveHelp": "Ziehe einen Stein auf sein Zielfeld (Tippen funktioniert immer)",
+  "settingsCombinedMoves": "Züge kombinieren",
+  "settingsCombinedMovesHelp": "Ein Tippen bewegt einen Stein mit beiden Würfeln",
+  "settingsRotateBoard": "Brett zwischen den Zügen drehen",
+  "settingsRotateBoardHelp": "Mehrspieler am selben Gerät: Ansicht für den aktiven Spieler umdrehen",
+  "settingsPassDevice": "Übergabebildschirm",
+  "settingsPassDeviceHelp": "Brett zwischen den Zügen am selben Gerät ausblenden",
+  "settingsShowScore": "Punktestand anzeigen",
+  "settingsShowScoreHelp": "Laufenden Matchstand in der Kopfzeile anzeigen",
+  "settingsBuddyMode": "Buddy-Modus",
+  "settingsBuddyTerse": "Kurz",
+  "settingsBuddyFriendly": "Freundlich",
+  "settingsBuddyTerseHelp": "So sagt Buddy einen Zug an: „13/8, 24/22“ – die Notation, die zwei Spieler am Brett tatsächlich verwenden.",
+  "settingsBuddyFriendlyHelp": "So sagt Buddy einen Zug an: „Ziehe einen Stein von 13 nach 8 und einen von 24 nach 22.“",
+  "settingsListenForDice": "Auf die Würfel hören",
+  "settingsListenForDiceHelp": "Buddy prüft das Brett früher, wenn es einen Wurf hört. Aus ändert sonst nichts.",
+  "settingsDiagnostics": "Diagnose",
+  "settingsErrorLog": "Fehlerprotokoll",
+  "settingsErrorLogHelp": "Letzte Fehler, bereit zum Kopieren in eine Fehlermeldung",
+  "settingsReportBug": "Fehler melden",
+  "settingsReportBugHelp": "Geführten Fehlerbericht auf GitHub öffnen",
+  "settingsSuggestIdea": "Idee vorschlagen",
+  "settingsSuggestIdeaHelp": "Hilf uns, Tutor und Spiel zu verbessern",
+  "settingsAbout": "Über",
+  "settingsOpenSourceLicenses": "Open-Source-Lizenzen",
+  "tutorPhraseGameFinished": "Spiel beendet.",
+  "tutorPhraseReviewFinishedGame": "Sieh dir die Züge an und finde eine Entscheidung zum Üben.",
+  "tutorPhraseCubeOffered": "Der Dopplerwürfel wurde angeboten.",
+  "tutorPhraseCubeDecisionPrompt": "Entscheide, ob du annimmst oder ablehnst, bevor du einen Zug mit Steinen planst.",
+  "tutorPhraseCubeScoreContext": "Der Matchstand verändert, wie viel der zusätzliche Einsatz wert ist.",
+  "tutorPhraseResignationOffered": "Eine Aufgabe wurde angeboten.",
+  "tutorPhraseResignationDecisionPrompt": "Vergleiche die angebotenen Punkte mit der Stellung, bevor du annimmst oder weiterspielst.",
+  "tutorPhraseNoLegalPlay": "Mit diesem Wurf ist kein Zug möglich.",
+  "tutorPhraseForcedPassPrompt": "Ein erzwungenes Aussetzen ist kein Fehler. Warte auf den nächsten Wurf.",
+  "tutorPhraseOnlyOneResult": "Es gibt nur eine mögliche Stellung nach dem Zug.",
+  "tutorPhraseForcedTurnPrompt": "Spiele den erzwungenen Zug. Bei diesem Wurf gibt es keine Entscheidung zu bewerten.",
+  "tutorPhrasePipCountsLevel": "Die Pip-Zahlen sind gleich.",
+  "tutorPhrasePipCountsAhead": "Du hast bei der Laufdistanz {count} Pips Vorsprung.",
+  "tutorPhrasePipCountsBehind": "Du hast bei der Laufdistanz {count} Pips Rückstand.",
+  "tutorPhrasePlayerHasCheckersOnBar": "{count} eigene Steine auf der Bar: zuerst wieder ins Spiel kommen.",
+  "tutorPhraseEnterBeforeMoving": "Ziehe zuerst einen Stein von der Bar ins Spiel und suche dann ein sicheres Zielfeld.",
+  "tutorPhraseOpponentHomePoints": "Der Gegner hat {count} geschlossene Felder im Heimfeld.",
+  "tutorPhraseBearOffRace": "Ausspielrennen.",
+  "tutorPhrasePureRace": "Ein Rennen ohne Kontakt.",
+  "tutorPhraseBearOffSpread": "Nimm Steine heraus und behalte eine nützliche Verteilung für den nächsten Wurf.",
+  "tutorPhraseBringRearCheckersHome": "Bringe die hinteren Steine nach Hause, ohne zu viele auf einem Feld zu stapeln.",
+  "tutorPhraseArmiesHavePassed": "Die Spieler sind aneinander vorbeigezogen; weitere Schläge sind nicht möglich.",
+  "tutorPhraseContactStillMatters": "{part} Der Kontakt bleibt wichtig.",
+  "tutorPhraseOpponentHasCheckersOnBar": "Der Gegner hat {count} Steine auf der Bar.",
+  "tutorPhraseKeepBoardClosed": "Halte das Brett geschlossen, während du die übrigen Steine nach Hause bringst.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Baue dein Heimfeld auf oder erhalte es, während der Gegner versucht einzutreten.",
+  "tutorPhraseHomePointsCloseEntries": "Du hältst {count} Heimfeldpunkte; jeder davon sperrt eine Eintrittszahl.",
+  "tutorPhrasePrimeContact": "Kontakt mit einer {count}-Punkte-Mauer.",
+  "tutorPhraseExtendPrimeOrKeepSpares": "Vergleiche, ob du die Mauer verlängerst oder Reserve-Steine behältst, um sie zu halten.",
+  "tutorPhraseSpareCheckersCanMove": "{count} Reserve-Steine können ziehen, ohne ihr Feld sofort zu öffnen.",
+  "tutorPhraseAnchorContact": "Kontakt mit einem Anker auf {points}.",
+  "tutorPhraseCompareAnchorProgressAhead": "Vergleiche den Heimweg deiner hinteren Steine damit, den sicheren Anker zu behalten.",
+  "tutorPhraseCompareAnchorProgressBehind": "Behalte den sicheren Stützpunkt im Blick und suche nach einem Schlag oder einer Verbesserung deines Bretts.",
+  "tutorPhrasePreserveAnchorFoothold": "Der Anker kann nicht geschlagen werden, aber diese Steine haben noch einen weiten Heimweg.",
+  "tutorPhraseContactThreats": "Kontakt: Beide Seiten können noch Schläge androhen.",
+  "tutorPhraseLookForPointsAndSafety": "Suche nach nützlichen Punkten und vergleiche dann das Risiko einzelner offener Steine.",
+  "tutorPhraseHomePointsAndBlots": "Du hältst {count} Heimfeldpunkte und lässt {otherCount} Blots offen.",
+  "tutorPhraseChooseCheckerPrompt": "Wähle einen Stein, um deinen Zug zu beginnen.",
+  "tutorPhraseLegalPlayPrompt": "Beginne einen legalen Zug, um einen Kommentar zu sehen.",
+  "tutorPhraseStagedHit": "Du hast {count} gegnerische {count, plural, one{Stein} other{Steine}} geschlagen.",
+  "tutorPhraseStagedEnter": "Du hast {count} Steine von der Bar ins Spiel gebracht.",
+  "tutorPhraseStagedBearOff": "Du hast {count} {count, plural, one{Stein} other{Steine}} herausgenommen.",
+  "tutorPhraseStagedMakePoints": "Du hast {points} gemacht.",
+  "tutorPhraseStagedBlot": "Der Stein auf deinem {point}-Punkt ist vorerst ein einzelner offener Stein.",
+  "tutorPhraseStagedSpare": "Der Reserve-Stein auf deinem {point}-Punkt kann später ziehen, ohne das Feld zu öffnen.",
+  "tutorPhraseStagedPartialPrompt": "{part} Nutze die übrigen spielbaren Würfel, bevor du den ganzen Zug bewertest.",
+  "tutorPhraseStagedAllCheckersOff": "Alle 15 Steine sind herausgenommen: Das Spiel ist gewonnen.",
+  "tutorPhraseStagedHitShortPlan": "Der Schlag bringt Zeit, während der Gegner wieder ins Spiel kommen muss.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Effizientes Herausnehmen entfernt Steine und lässt nützliche Zahlen für den nächsten Wurf übrig.",
+  "tutorPhraseStagedRaceHomePlan": "Der Rennplan: die hinteren Steine nach Hause bringen und gute Felder zum Herausnehmen schaffen.",
+  "tutorPhraseStagedBearOffContactPlan": "Herausnehmen bringt Fortschritt, aber durch den verbleibenden Kontakt sind Schläge weiter möglich.",
+  "tutorPhraseStagedReentryPlan": "Der Wiedereintritt bringt den Stein zurück ins Spiel; als Nächstes suchst du ein sicheres Zielfeld.",
+  "tutorPhraseStagedHomeBoardPlan": "Der neue Heimfeldpunkt sperrt nach einem künftigen Schlag eine Eintrittszahl.",
+  "tutorPhraseStagedPrimePlan": "Die längere Mauer sperrt mehr Zielfelder; Reserve-Steine helfen, sie geschlossen zu halten.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Den Anker zu verlassen bringt dich voran, kostet aber den sicheren Stützpunkt.",
+  "tutorPhraseStagedNewAnchorPlan": "Der neue Anker bietet den hinteren Steinen einen sicheren Stützpunkt.",
+  "tutorPhraseStagedCoverBlotPlan": "Ein Blot abzudecken nimmt dem Gegner ein Ziel.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Der Zielkonflikt: Entwicklung gegen Sicherheit. Nützliche Aufbausteine können auch zum Ziel werden.",
+  "tutorPhraseStagedCompletePrompt": "{part} Der ganze Zug ist bereit; mit „Bestätigen“ wird er ausgeführt.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Bei diesem Wurf gibt es keine Wahl beim Ziehen; er wird nicht als Entscheidung bewertet.",
+  "tutorMoveTopVerdict": "Für diese Stellung ist das die beste Wahl.",
+  "tutorMoveAlternativeVerdict": "Der Rechner bevorzugt hier einen anderen Zug.",
+  "tutorMoveEstimateDifference": "Abweichung vom besten Zug: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Nach diesem Zug: {winPercent}% Gewinnchance, {winGammonPercent}% für Gammon oder besser und {loseGammonPercent}% für Gammon oder schlimmer. Die Schätzungen gelten aus Sicht des ziehenden Spielers.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Geschätzte Match-Gewinnchance: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Alle 15 Steine sind herausgenommen: Das Spiel ist gewonnen.",
+  "tutorMovePlanHit": "Nutze den Schlag, um Zeit zu gewinnen, während der Gegner wieder eintritt. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Halte deine geschlossenen Heimfeldpunkte, damit der Wiedereintritt schwieriger wird.",
+  "tutorMovePlanHitBuild": "Baue weitere Punkte im Heimfeld, damit sich der Gegner von künftigen Schlägen schwerer erholt.",
+  "tutorMovePlanRaceBearOff": "Arbeite auf ein effizientes Ausspielen hin: Nimm Steine heraus und behalte günstige Zahlen für den nächsten Wurf.",
+  "tutorMovePlanRaceHome": "Bring die hinteren Steine nach Hause und verteile sie auf günstige Punkte fürs Ausspielen.",
+  "tutorMovePlanContactBearOff": "Nimm Steine aus dem Spiel, behalte aber die hinteren gegnerischen Steine im Blick: Bei Kontakt kann ein ungeschützter Stein zum Ziel werden.",
+  "tutorMovePlanReentry": "Komm zurück ins Spiel und suche dann einen sicheren Punkt für den wiedereingetretenen Stein.",
+  "tutorMovePlanHomeBoard": "Stärke dein Heimfeld. Der neu geschlossene Punkt macht einen künftigen Schlag wirkungsvoller, weil eine Eintrittszahl wegfällt.",
+  "tutorMovePlanPrime": "Halte die geschlossene Punktreihe zusammen. Bewahre Reservesteine, damit spätere Würfe dich nicht zwingen, sie zu öffnen.",
+  "tutorMovePlanLeaveAnchor": "Wenn du den Anker aufgibst, kommen deine hinteren Steine voran, verlieren aber ihren sicheren Halt. Achte auf ihre Gefährdung auf dem Heimweg.",
+  "tutorMovePlanNewAnchor": "Nutze den neuen Anker als sicheren Halt, während du den Rest deiner Stellung verbesserst.",
+  "tutorMovePlanCoverBlot": "Sichere deine Steine ab. Das Abdecken eines Blots beseitigt ein Ziel und lässt künftige Landepunkte offen.",
+  "tutorMovePlanSafety": "Finde die Balance zwischen Entwicklung und Sicherheit: Bring Aufbausteine zu nützlichen Punkten und prüfe, welche Einzelsteine geschlagen werden können.",
+  "tutorMoveObservationNoLegalPlay": "Kein legaler Zug mit einem Stein möglich: Der Zug muss aussetzen.",
+  "tutorMoveObservationHit": "Schlägt {count} {count, plural, one{gegnerischen Stein} other{gegnerische Steine}}; der Gegner muss zuerst vom Bar eintreten, bevor er andere Steine ziehen kann.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Zieht {count, plural, one{Stein} other{Steine}} vom Bar ins Spiel.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Spielt {count, plural, one{Stein} other{Steine}} heraus.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Macht {points}. Zwei oder mehr Steine sichern einen Punkt und blockieren dort die Landung des Gegners.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Gibt gemachte {pointLabel} {points} auf. Diese Punkte blockieren den Gegner nun nicht mehr.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Lässt keine einzelnen Steine ungedeckt (zuvor {previousCount}). Es gibt keine einzelnen Steine, die geschlagen werden können.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Lässt {count} ungedeckte {count, plural, one{einzelnen Stein} other{einzelne Steine}} zurück (zuvor {previousCount}). Prüfe, ob der Gegner sie erreichen kann, bevor du Sicherheit einem anderen Vorteil vorziehst.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Längste Reihe geschlossener Punkte: {count} (zuvor {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Eine Sechserreihe geschlossener Punkte kann nicht übersprungen werden, solange sie geschlossen bleibt.",
+  "tutorMoveObservationPrimeBuild": "Halte Aufbausteine in der Nähe, wenn du diese Reihe verlängern oder erhalten willst.",
+  "tutorMoveObservationPrimeSpares": "{count} Reservesteine liegen über den zwei Steinen auf geschlossenen Punkten. Ein Reservezug kann den Punkt erhalten; einer der letzten beiden öffnet ihn.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Anker im gegnerischen Heimfeld: {points} (zuvor {previousPoints}). Ein Anker schützt die Steine vor Schlägen; ihn aufzugeben bringt sie im Rennen voran, kostet aber diesen sicheren Halt.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Reines Rennen: Beide Parteien sind aneinander vorbei und niemand steht auf dem Bar. Schlagen ist nicht mehr möglich; effizientes Ausspielen zählt.",
+  "tutorMoveObservationNoReplyHit": "Mit keinem legalen nächsten Wurf kann der Gegner in dieser Stellung schlagen. Kontakt besteht jedoch weiter; spätere Züge können neue Schlagmöglichkeiten schaffen.",
+  "tutorMoveObservationReplyHit": "Der Gegner kann bei {count} von {total} Würfen schlagen. Zum Beispiel ermöglicht {dieOne}–{dieTwo} einen legalen Schlag auf deinem {point}-Punkt. Eine Schlagchance bedeutet nicht, dass der Gegner sie nutzt.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "{closedPoints} deiner Heimfeldpunkte sind geschlossen. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Der Gegner kann erst wieder eintreten, wenn ein Punkt frei wird.",
+  "tutorMoveObservationOpenEntry": "Ein Wurf mit einer offenen Eintrittszahl kann einen Stein vom Bar zurückbringen.",
+  "tutorMoveComparisonDetail": "{factors} Die geschätzte Gewinnchance des besten Zugs liegt {delta} Prozentpunkte {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "höher",
+  "tutorMoveComparisonLower": "niedriger",
+  "tutorMoveComparisonScoreContext": " Er kann trotzdem besser bewertet sein, weil Gammons und Backgammons beim aktuellen {scoreContext} unterschiedlich zählen.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "Spielstand",
+  "tutorMoveComparisonMatchScore": "Matchstand",
+  "tutorMoveComparisonFactorBar": "Der beste Zug lässt {bestCount} gegnerische Steine auf dem Bar statt {playedCount}. Ein Stein auf dem Bar muss erst eintreten, bevor der Gegner die anderen ziehen kann.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Der beste Zug hält {bestCount} Heimfeldpunkte statt {playedCount} geschlossen und damit {entryDifference} Eintrittspunkte nach einem Schlag.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "mehr schließen",
+  "tutorMoveComparisonLeavingMore": "mehr offen lassen",
+  "tutorMoveComparisonFactorShots": "Der beste Zug erlaubt einen Gegenschlag bei {bestCount} von 36 Würfen statt bei {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Das senkt das unmittelbare Risiko, geschlagen zu werden.",
+  "tutorMoveComparisonExtraExposure": "Wäge diese zusätzliche Gefährdung gegen den sonstigen Gewinn des Zugs ab.",
+  "tutorMoveComparisonFactorPrime": "Die längste Reihe geschlossener Punkte des besten Zugs ist {bestCount} statt {playedCount}; vergleiche die Blockade mit den verfügbaren Steinen, um sie zu halten.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Der beste Zug hält {bestPoints} Anker statt {playedPoints}. Ein Anker bewahrt einen sicheren Landepunkt; ihn aufzugeben bringt die Steine näher nach Hause.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Beim besten Zug sind {bestCount} statt {playedCount} Steine ausgespielt. Jeder entfernte Stein muss später nicht mehr herausgenommen werden.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Beide Züge lassen dieselbe unmittelbare Schlaggefahr, Heimfeldpunkte, Anker und Anzahl ausgespielter Steine. Vergleiche die Landepunkte: Beim nächsten Wurf können sich die Steine anders nutzen lassen.",
+  "tutorMoveComparisonSummaryBar": "Der beste Zug setzt mehr gegnerische Steine auf den Bar und verzögert damit deren übrige Züge.",
+  "tutorMoveComparisonSummaryHomeBoard": "Der beste Zug schließt mehr Heimfeldpunkte und erschwert so den Wiedereintritt nach einem Schlag.",
+  "tutorMoveComparisonSummaryShots": "Der beste Zug erlaubt weniger unmittelbare Schlagwürfe und verringert das Risiko, zurückgeschlagen zu werden.",
+  "tutorMoveComparisonSummaryPrime": "Der beste Zug hält eine längere Reihe geschlossener Punkte.",
+  "tutorMoveComparisonSummaryAnchors": "Der beste Zug behält mehr sichere Anker im gegnerischen Heimfeld.",
+  "tutorMoveComparisonSummaryBearOff": "Der beste Zug spielt mehr Steine heraus; später müssen weniger entfernt werden.",
+  "tutorMoveComparisonSummaryBlots": "Dieser Zug lässt {playedCount} einzelne Steine offen; der beste Zug lässt {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Der beste Zug behält einen sicheren Anker auf Punkt {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Der beste Zug schließt mehr Eintrittspunkte für den Fall, dass einer deiner Steine geschlagen wird.",
+  "tutorMoveComparisonSummarySimilarRisks": "Die Züge haben ein ähnliches unmittelbares Risiko. Vergleiche, welche Landepunkte beim nächsten Wurf nützlich bleiben.",
+  "tutorMoveAssessmentEquityLoss": "{value} Equity",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} Prozentpunkte Match-Gewinnchance",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "Punkt",
+  "tutorMovePointPlural": "Punkte",
+  "tutorMoveNoPoints": "keine",
+  "gameTutorCommentaryOff": "Spielkommentar ist ausgeschaltet.",
+  "gameTutorToolsAvailable": "Öffne den Tutor für die aktivierten Werkzeuge.",
+  "gameTutorNextRoll": "Als Nächstes würfeln.",
+  "gameTutorNoEvaluatedReview": "Für diesen aufgezeichneten Zug liegt keine bewertete Erklärung vor.",
+  "gameTutorAnalysisUnavailable": "Analyse nicht verfügbar",
+  "gameTutorReviewing": "Wird analysiert …",
+  "gameTutorTryYourPlayFirst": "Probiere zuerst deinen eigenen Zug.",
+  "gameTutorKeepBuilding": "Führe deinen Zug weiter aus.",
+  "gameTutorStageCompleteBeforeCoaching": "Führe einen vollständigen legalen Zug aus, bevor du Coaching oder Tipps aufrufst.",
+  "gameTutorReadyToConfirm": "Bereit zum Bestätigen",
+  "gameTutorPlayTakingShape": "Dein Zug nimmt Gestalt an.",
+  "gameTutorConfirmOrUndo": "Bestätige den Zug oder mache ihn rückgängig.",
+  "gameTutorFinishDiceOrUndo": "Führe die übrigen Würfel aus oder mache den Zug rückgängig.",
+  "gameTutorComputerConsidering": "Der Computer überlegt seinen Zug.",
+  "gameTutorComputerPlayReviewed": "Sein abgeschlossener Zug wird hier analysiert.",
+  "gameTutorYourPlay": "Dein Zug",
+  "gameTutorComputer": "Computer",
+  "gameTutorPlayQuality": "Dein Zug: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "erzwungener Zug",
+  "gameTutorTopChoice": "beste Wahl",
+  "gameTutorSoundPlay": "guter Zug",
+  "gameTutorAnotherPlayMayFitBetter": "Ein anderer Zug könnte besser passen.",
+  "gameTutorAnotherPlayFitsBetter": "Ein anderer Zug passt besser zu dieser Stellung.",
+  "gameTutorStrongerPlayAvailable": "Es gab einen deutlich stärkeren Zug.",
+  "gameTutorPositionEdge": "{side} hat laut Einschätzung einen Vorteil.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Die Stellung ist ungefähr ausgeglichen.",
+  "tutorPlayedMove": "Gespielt: {move}",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorBestMove": "Bester Zug: {move}",
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorShowRankedPlays": "Beste Züge anzeigen",
+  "tutorReviewRecordedMove": "Tippe im Protokoll auf einen abgeschlossenen Zug, um die Entscheidung hier zu prüfen.",
+  "tutorTopPlays": "Beste Züge",
+  "tutorNoHintsAvailable": "Keine Hinweise verfügbar.",
+  "tutorPreviewThenConfirm": "Tippe auf einen Zug, um ihn auf dem Brett vorzuspielen, und bestätige dann.",
+  "tutorTopChoiceForPosition": "Beste Wahl für diese Stellung",
+  "tutorAlternativePlay": "Alternativer Zug",
+  "tutorEngineEstimates": "Engine-Schätzungen",
+  "tutorEstimateScope": "0-Ply-Schätzung · aktueller Spielstand und Einsatz · keine zukünftigen Dopplerentscheidungen",
+  "tutorEquity": "Erwartungswert",
+  "tutorMwcPercent": "MWC %",
+  "tutorNearTiesNote": "Bei knappen Bewertungen kann eine tiefere Analyse die Reihenfolge ändern.",
+  "tutorWhyThisPlay": "Warum dieser Zug?",
+  "tutorCompareAlternative": "Diese Alternative vergleichen",
+  "gameTutorCubeTake": "Trainer: Annehmen",
+  "gameTutorCubePass": "Trainer: Passen",
+  "practiceScreenTitle": "Entscheidung üben",
+  "practiceUnavailable": "Diese Übungsposition ist nicht mehr verfügbar.",
+  "practiceSubmitError": "Dieser Versuch konnte nicht ausgewertet oder gespeichert werden. Dein Fortschritt blieb unverändert. Versuch es noch einmal.",
+  "practiceTurnLabel": "{side} am Zug · {dice}",
+  "practiceHistoricalScoreUnavailable": "Historischer Spielstand nicht verfügbar; die Bewertung nutzt Cube-less-Equity.",
+  "practiceScoreLine": "Spielstand: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, bis {matchLength}",
+  "practiceCrawfordGame": " · Crawford-Partie",
+  "practiceNoDoublingCube": "Kein Verdopplungswürfel.",
+  "practiceCubeValue": "Würfel {value}.",
+  "practiceHistoricalCubeUnknown": "Historische Würfelregeln unbekannt.",
+  "practiceAfterBestPosition": "Stellung nach dem besten Zug",
+  "practiceAfterYourAnswerPosition": "Stellung nach deiner Antwort",
+  "practiceFindYourPlayPrompt": "Finde deinen Zug auf dem Brett und prüfe dann deine Antwort. Es gibt keine Hinweise.",
+  "practiceUndo": "Rückgängig",
+  "practiceCheckAnswer": "Antwort prüfen",
+  "practiceRevealNoCredit": "Antwort aufdecken (ohne Wertung)",
+  "practiceAnswerRevealedNoCredit": "Antwort aufgedeckt – keine Anerkennung für Erinnerungsleistung.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "practiceBestMoveLine": "Am besten: {move}",
+  "practiceOriginalGameLine": "Ursprüngliche Partie: {move} · {loss}",
+  "practiceYourAnswerLine": "Deine Antwort: {move}",
+  "practiceYourAnswerChip": "Deine Antwort",
+  "practiceBestPlayChip": "Bester Zug",
+  "practiceNextReview": "Nächste Wiederholung: {date}.",
+  "practiceRecallCredit": "Beste oder gute Antworten zählen als erfolgreich erinnert. Vorzeitige Wiederholungen verlängern den Abstand nicht.",
+  "practiceBackToLearning": "Zurück zum Lernen",
+  "practiceMarkBest": "Am besten",
+  "practiceMarkGood": "Gut",
+  "practiceMarkDubious": "Fragwürdig",
+  "practiceMarkError": "Fehler",
+  "practiceMarkBlunder": "Patzer",
+  "practiceMarkForced": "Erzwungen",
+  "newMatchYourSide": "Deine Seite",
+  "newMatchTutorMode": "Tutor-Modus",
+  "newMatchTutorDescription": "Lerne mit Hinweisen, Erklärungen und Spielkommentaren",
+  "newMatchTutoringOptions": "Tutoring-Optionen",
+  "newMatchTutoringOptionsDescription": "Für diese Partie; während des Spiels anpassbar",
+  "setupMatchLength": "Matchlänge",
+  "setupDifficulty": "Schwierigkeit",
+  "setupDifficultyEasy": "Leicht",
+  "setupDifficultyMedium": "Mittel",
+  "setupDifficultyHard": "Schwer",
+  "setupDifficultyExpert": "Experte",
+  "setupPlayWithoutCube": "Ohne Verdopplungswürfel spielen",
+  "setupNoCubeThisMatch": "In diesem Match kein Verdopplungswürfel",
+  "analysisTitle": "Analyse",
+  "gameMatchSummary": "Matchübersicht",
+  "gameAnalyzeGame": "Partie analysieren",
+  "analysisMetricsTooltip": "Was bedeuten diese Zahlen?",
+  "analysisError": "Partie konnte nicht analysiert werden: {error}",
+  "analysisNoPositions": "Diese Partie enthält keine Stellungen.",
+  "analysisInProgress": "Partie wird analysiert…",
+  "analysisPercent": "{percent}%",
+  "analysisPlayed": "Gespielt",
+  "analysisBest": "Beste",
+  "analysisPrevious": "Zurück",
+  "analysisNext": "Weiter",
+  "analysisPositionBeforeCube": "Stellung vor der Cube-Entscheidung",
+  "analysisPositionAtPoint": "Stellung an diesem Punkt der Partie",
+  "analysisShowingBestBefore": "Bester Zug vor dem Zug wird angezeigt",
+  "analysisShowingBefore": "Stellung vor dem Zug wird angezeigt",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "analysisMoveLoss": " −{loss}",
+  "analysisExcludedFromAverages": " · nicht im Durchschnitt enthalten",
+  "analysisNoPlay": "(kein Zug)",
+  "analysisBestMoveLine": "Bester Zug: {move}",
+  "analysisExplain": "Erklären",
+  "analysisSaveForPractice": "Zum Üben speichern",
+  "analysisSaveError": "Diese Entscheidung konnte nicht gespeichert werden: {error}",
+  "analysisCubeInfo": "{side}: {action} · {mark} · Verlust {loss}",
+  "analysisCubeDecision": "Cube-Entscheidung",
+  "analysisCubePlayed": "Gespielt: {action} ({percent}% Matchchance).",
+  "analysisCubeBest": "Am besten: {action} ({percent}% Matchchance).",
+  "analysisClose": "Schließen",
+  "analysisMoves": "Züge",
+  "analysisForced": "Erzwungen",
+  "analysisMarkBest": "Beste",
+  "analysisMarkGood": "Gut",
+  "analysisMarkDubious": "Fragwürdig",
+  "analysisMarkError": "Fehler",
+  "analysisMarkBlunder": "Patzer",
+  "analysisSummaryMeanLoss": "Durchschnittlicher Verlust {loss}",
+  "analysisSummaryCheckerDecisions": "{count} Zugentscheidungen",
+  "analysisSummaryBlunders": "Patzer {count}",
+  "analysisSummaryCubeLoss": "Cube-Verlust {loss}",
+  "analysisRollWithoutDoubling": "{side} würfelt ohne zu verdoppeln",
+  "metricExplainerTitle": "Die Kennzahlen verstehen",
+  "metricExplainerTooltip": "Was bedeuten diese Zahlen?",
+  "metricExplainerMwcTitle": "Matchgewinnchance (MWC)",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "historyTitle": "Spielverlauf",
+  "historyLoadFailed": "Spielverlauf konnte nicht geladen werden:\n{error}",
+  "historyEmpty": "Noch keine Matches gespielt.",
+  "historyDeleteConfirmTitle": "Dieses Match löschen?",
+  "historyDeleteConfirmBody": "{scoreLine}\n\nDas Match und alle darin gespeicherten Partien werden dauerhaft gelöscht. Das kann nicht rückgängig gemacht werden.",
+  "actionCancel": "Abbrechen",
+  "actionDelete": "Löschen",
+  "historyDeleteFailed": "Dieses Match konnte nicht gelöscht werden.",
+  "historyComplete": "Abgeschlossen",
+  "historyWinner": "{side} hat gewonnen",
+  "historyUnfinished": "Nicht beendet",
+  "historyMatchTitle": "Match",
+  "historyMatchLoadFailed": "Match konnte nicht geladen werden:\n{error}",
+  "historyGamesLoadFailed": "Partien konnten nicht geladen werden:\n{error}",
+  "historyNoGames": "Noch keine Partien gespeichert.",
+  "historyGameTitle": "Partie {number}",
+  "historyCrawford": "Crawford",
+  "historyScoreLine": "Weiß {whiteScore} — {blackScore} Schwarz (bis {matchLength})",
+  "historyModeComputer": "gegen Computer",
+  "historyModeTwoPlayers": "Zwei Spieler",
+  "historyModeOnline": "Online",
+  "historyModeNearby": "Lokal spielen",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "Läuft",
+  "historyGameResult": "{side} gewinnt {points} ({outcome})",
+  "historyOutcomeSingle": "einfach",
+  "historyOutcomeGammon": "Gammon",
+  "historyOutcomeBackgammon": "Backgammon",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "onlineTitle": "Online spielen",
+  "onlineUnassistedNote": "Online-Partien werden nicht vom Tutor begleitet. Überprüfe deine Züge und übe Fehler nach dem Match.",
+  "onlineNotConfiguredTitle": "Online-Spiel ist in diesem Build nicht eingerichtet",
+  "onlineNotConfiguredBody": "In diesem Build ist kein Firebase-Backend eingerichtet; Matches können nicht erstellt oder beigetreten werden.",
+  "onlineErrorNoMatch": "Kein Match mit diesem Code. Prüfe ihn und versuche es erneut.",
+  "onlineErrorSeatTaken": "Dieses Match ist nicht mehr offen – der Platz wurde bereits belegt.",
+  "onlineErrorPermission": "Du hast keinen Zugriff auf dieses Match.",
+  "onlineErrorGeneric": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+  "onlineMatchFinished": "Dieses Match ist beendet – es kann nicht mehr fortgesetzt werden.",
+  "onlineEnterCodeError": "Matchcode eingeben.",
+  "onlineOpponentShort": "Gegner",
+  "onlineMatchInProgress": "Match läuft",
+  "onlineResumePrompt": "Du hast Match {code} gespielt.",
+  "onlineRejoin": "Fortsetzen",
+  "onlineForgetMatch": "Dieses Match vergessen",
+  "onlineCreateTitle": "Match erstellen",
+  "onlineMatchLength": "Matchlänge",
+  "onlineNoCubeTitle": "Ohne Verdopplungswürfel spielen",
+  "onlineNoCubeSubtitle": "In diesem Match kein Verdopplungswürfel",
+  "onlineCreate": "Erstellen",
+  "onlineWaitingOpponent": "Warte auf Gegner…",
+  "onlineShareCode": "Diesen Code teilen",
+  "onlineCopyCode": "Code kopieren",
+  "onlineCodeCopied": "Code kopiert",
+  "onlineJoinTitle": "Match beitreten",
+  "onlineRoomCode": "Matchcode",
+  "onlineJoin": "Beitreten",
+  "lanTitle": "Lokal spielen",
+  "lanTabHost": "Host",
+  "lanTabJoin": "Beitreten",
+  "lanUnassistedNote": "Lokale Partien werden nicht vom Tutor begleitet. Überprüfe deine Züge und übe Fehler nach dem Match.",
+  "lanGameStartFailed": "Das Spiel konnte nicht gestartet werden. Das andere Gerät kann erneut beitreten.",
+  "lanHostPortInUse": "Hosting nicht möglich – der Port wird bereits verwendet. Schließe andere Backgammon-Buddy-Instanzen und versuche es erneut.",
+  "lanHostStartFailed": "Hosting nicht möglich. Prüfe deine WLAN-Verbindung und versuche es erneut.",
+  "lanHostTitle": "Partie hosten",
+  "lanStartHosting": "Hosting starten",
+  "lanHostHelp": "Beide Geräte müssen im selben WLAN sein. Dieses Gerät würfelt und führt den Spielstand.",
+  "lanWaitingPlayerTitle": "Warte auf einen Spieler",
+  "lanRoomCodeInfo": "Teile dem anderen Spieler diesen Code mit. Er ermöglicht den Beitritt – die App sendet ihn nie über das Netzwerk.",
+  "lanWaitingPlayer": "Warte auf einen Spieler…",
+  "lanStopHosting": "Hosting beenden",
+  "lanFindNearbyPort": "Bitte das andere Gerät, nach lokalen Spielen zu suchen. Lausche auf Port {port}.",
+  "lanOnNetwork": "In diesem Netzwerk",
+  "lanCopyAddress": "Adresse kopieren",
+  "lanAddressCopied": "Adresse kopiert",
+  "lanScanHostTitle": "Host scannen",
+  "lanScanHostHelp": "Das andere Gerät zeigt auf seinem Host-Bildschirm einen QR-Code. Durch das Scannen werden Adresse und Raumcode übernommen.",
+  "lanScanQr": "QR-Code scannen",
+  "lanScannerUnavailable": "Kamera oder Berechtigung nicht verfügbar. Gib stattdessen unten Adresse und Raumcode ein.",
+  "lanInvalidQr": "Dieser QR-Code gehört nicht zu Backgammon Buddy. Scanne den Code auf dem Host-Bildschirm des anderen Geräts.",
+  "lanScannerFailed": "Scanner konnte nicht geöffnet werden. Gib stattdessen unten Adresse und Code ein.",
+  "lanNearbyGames": "Spiele in der Nähe",
+  "lanSearching": "Suche nach Spielen in der Nähe…",
+  "lanNoGamesFound": "Keine Spiele gefunden. Stelle sicher, dass das andere Gerät hostet und beide im selben WLAN sind – oder gib unten seine Adresse ein.",
+  "lanStillSearching": "Suche läuft weiter…",
+  "lanEnterAddress": "Adresse eingeben",
+  "lanEnterAddressHelp": "Die automatische Suche funktioniert nicht in jedem Netzwerk und kann unter iOS ganz blockiert sein. Auf dem Host-Bildschirm siehst du, was du eingeben musst.",
+  "lanIpAddress": "IP-Adresse",
+  "lanPort": "Port",
+  "lanInvalidPort": "Portnummer zwischen 1 und 65535 eingeben.",
+  "lanEnterAddressError": "Gib die auf dem anderen Gerät angezeigte Adresse ein.",
+  "lanEnterRoomCodeError": "Gib den vierstelligen Code des anderen Geräts ein.",
+  "lanJoinWrongCode": "Falscher Raumcode. Prüfe die vier Ziffern auf dem anderen Gerät.",
+  "lanJoinVersionMismatch": "Auf dem anderen Gerät läuft eine andere Backgammon-Buddy-Version.",
+  "lanJoinHandshakeFailed": "Das Gerät antwortet nicht wie Backgammon Buddy. Prüfe Adresse und Port.",
+  "lanJoinFailed": "Beitritt nicht möglich. Prüfe Adresse und Raumcode und versuche es erneut.",
+  "lanJoinTarget": "{name} beitreten",
+  "lanJoinTargetHelp": "Gib den vierstelligen Code ein, der auf dem anderen Gerät angezeigt wird.",
+  "lanJoiningTarget": "Verbindung zu {name} wird hergestellt",
+  "lanConnect": "Verbinden",
+  "lanBack": "Zurück",
+  "lanTryAgain": "Erneut versuchen",
+  "lanStatusBusy": "Raum belegt – warte…",
+  "lanStatusReconnecting": "Verbindung verloren – neuer Versuch…",
+  "lanStatusConnected": "Verbunden – Partie wird gestartet…",
+  "lanStatusFailed": "Beitritt nicht möglich.",
+  "lanStatusConnecting": "Verbindung wird hergestellt…",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "learningRefreshTooltip": "Lernfortschritt aktualisieren",
+  "learningOptions": "Lernoptionen",
+  "learningResetMenu": "Übungsfortschritt zurücksetzen",
+  "learningLoadFailed": "Lernfortschritt konnte nicht geladen werden.",
+  "actionRetry": "Erneut versuchen",
+  "learningHeading": "Lerne aus deinen Entscheidungen",
+  "learningIntro": "Dein Fortschritt bleibt auf diesem Gerät. Sieh dir wiederkehrende Themen an und übe gespeicherte Stellungen erneut, ohne die Antwort zu sehen. Weiß und Schwarz kannst du getrennt überprüfen.",
+  "learningBothSides": "Beide Seiten",
+  "learningHumansOnly": "Nur menschliche Entscheidungen",
+  "learningHumanOnlyHelp": "Deaktivieren, um Entscheidungen des Computers und entfernter Spieler einzubeziehen",
+  "learningDecisionSummary": "{decisions} Entscheidungen · {mistakes} verbesserungswürdig · {blunders} Patzer",
+  "learningAverageLoss": "Durchschnittlicher Verlust ({decisions} Entscheidungen): {loss}",
+  "learningForcedDisclaimer": "Erzwungene Züge sind ausgeschlossen. Dies sind Engine-Schätzungen, keine Turnierwertung.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{# gespeicherte Partie muss analysiert oder erneut analysiert werden.} other{# gespeicherte Partien müssen analysiert oder erneut analysiert werden.}}",
+  "learningAnalyseSavedGames": "Gespeicherte Partien analysieren",
+  "learningEmptyProfile": "Spiele und beende eine Partie, um dein Lernprofil aufzubauen. Du kannst auch einzelne Entscheidungen aus einer Partie-Wiederholung speichern.",
+  "learningOpenHistory": "Spielverlauf öffnen",
+  "learningRecurringThemes": "Wiederkehrende Themen",
+  "learningNoThemes": "In dieser Auswahl gibt es noch keine wiederkehrenden Fehlerthemen.",
+  "learningThemeDecisions": "{count} Entscheidungen zum Wiederholen. Eine Stellung kann mehrere Themen haben.",
+  "learningSaveMistakes": "Diese Fehler zum Üben speichern",
+  "learningSavedMistakes": "{count} Entscheidungen sind in deiner Übungsliste. Bereits gespeicherte bleiben erhalten.",
+  "learningSaveMistakesFailed": "Einige Entscheidungen konnten nicht gespeichert werden. Erfolgreiche Speicherungen bleiben erhalten; du kannst es erneut versuchen.",
+  "learningSpacedPractice": "Verteiltes Üben",
+  "learningPracticeCounts": "{due} jetzt fällig · {saved} gespeichert · {attempts} Versuche · {successes} erfolgreiche Erinnerungen",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningIntervalsHelp": "Erfolgreiche fällige Wiederholungen erfolgen nach 1, 3, 7, 14 und 30 Tagen. Fehler oder aufgedeckte Antworten kommen nach 10 Minuten zurück. Vorzeitige Wiederholungen ändern den Abstand nicht.",
+  "learningAnswerContext": "Die Übungsergebnisse spiegeln deine Antworten hier wider, auch wenn die ursprüngliche Stellung einem Gegner gehörte.",
+  "learningNoSavedPositions": "Speichere eine Entscheidung aus einer Wiederholung oder nutze oben die Schaltfläche für Fehler.",
+  "learningPositionTitle": "Entscheidung von {side} · Partie {gameId}",
+  "learningReviewDue": "Wiederholen: {date}",
+  "learningReadyToReview": "Bereit zur Wiederholung",
+  "learningSuccessStreak": "{count} erfolgreiche fällige Wiederholungen",
+  "learningRemoveTooltip": "Gespeicherte Entscheidung entfernen",
+  "learningRecentPractice": "Letzte Übungen",
+  "learningAnswerRevealed": "Antwort aufgedeckt",
+  "learningSuccessfulRecall": "Erfolgreich erinnert",
+  "learningTryAgain": "Diese Entscheidung erneut versuchen",
+  "learningAttemptSubtitle": "{date} · gespeicherte Stellung {positionId}",
+  "learningRemoveTitle": "Diese Übung entfernen?",
+  "learningRemoveBody": "Dadurch werden die Übungsversuche gelöscht. Die ursprüngliche Partie bleibt im Verlauf.",
+  "actionRemove": "Entfernen",
+  "learningRemoveFailed": "Diese Übung konnte nicht entfernt werden.",
+  "learningResetTitle": "Übungsfortschritt zurücksetzen?",
+  "learningResetBody": "Alle Übungsversuche und Wiederholungsabstände werden gelöscht. Gespeicherte Übungen und dein Spielverlauf bleiben erhalten; alle Übungen sind danach sofort fällig.",
+  "learningResetAction": "Fortschritt zurücksetzen",
+  "learningResetFailed": "Übungsfortschritt konnte nicht zurückgesetzt werden.",
+  "learningAnalysisProgress": "{completed} Partien analysiert · {failed} nicht verfügbar.",
+  "learningAnalysisComplete": "{completed} Partien analysiert.",
+  "learningAnalysisCompleteWithErrors": "{completed} Partien analysiert; {failed} konnten nicht analysiert werden. Versuche es erneut, wenn die Engine bereit ist.",
+  "learningThemeHitting": "Schlagen und Tempo",
+  "learningThemeSafety": "Einzelne Steine und Sicherheit",
+  "learningThemePointMaking": "Punkte bilden",
+  "learningThemePrime": "Prim und Blockade",
+  "learningThemeAnchor": "Anker und Ausbruch",
+  "learningThemeRace": "Rennspiel-Effizienz",
+  "learningThemeBearOff": "Abtragen",
+  "learningThemeBarEntry": "Vom Brett eintreten",
+  "learningThemeCube": "Cube-Entscheidungen",
+  "analysisCubeNoDouble": "Kein Double",
+  "analysisCubeDouble": "Double",
+  "analysisCubeTake": "Annehmen",
+  "analysisCubePass": "Passen",
+  "learningAnalysisStarting": "Gespeicherte Partien werden analysiert…",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorCubelessEstimateScope": "Cube-less-Schätzung ohne Rollouts · Spielstand nicht verfügbar",
+  "tutorLossPp": "Verlust pp",
+  "tutorLoss": "Verlust",
+  "scoreSheetNoMoves": "Noch keine Züge",
+  "tutorOptions": "Tutoring-Optionen",
+  "tutorCollapseTooltip": "Tutor einklappen",
+  "tutorExpandTooltip": "Tutor ausklappen",
+  "diagnosticsCopySuccess": "Diagnoseinformationen kopiert",
+  "diagnosticsReviewTitle": "Diagnosebericht prüfen",
+  "diagnosticsPrivacyNotice": "Der Entwurf enthält die folgenden Angaben und wird an GitHub gesendet: App-Version, Plattform und Fehlerdetails. Es wird kein öffentliches Problem erstellt, bevor du es dort absendest. Wenn die Angaben private Informationen enthalten, brich ab und kopiere den Bericht zur eigenen Bearbeitung.",
+  "diagnosticsCancel": "Abbrechen",
+  "diagnosticsOpenGitHub": "GitHub öffnen",
+  "diagnosticsTitle": "Diagnose",
+  "diagnosticsReportTooltip": "Problem auf GitHub melden",
+  "diagnosticsCopyTooltip": "In Zwischenablage kopieren",
+  "diagnosticsClearTooltip": "Protokoll löschen",
+  "diagnosticsEmpty": "Keine Fehler protokolliert.\n\nWenn etwas schiefgeht, wird es hier festgehalten. Kopiere die Angaben in einen Fehlerbericht.",
+  "cubeDouble": "Verdoppeln",
+  "cubeBlockedOtherPlayersTurn": "Der andere Spieler ist am Zug.",
+  "cubeBlockedCrawford": "Im Crawford-Spiel ist der Cube gesperrt.",
+  "cubeBlockedOwnedByOther": "Nur der Cube-Besitzer darf verdoppeln; der andere Spieler besitzt ihn gerade.",
+  "cubeBlockedUnavailable": "Verdoppeln ist gerade nicht verfügbar.",
+  "gameStatusRolling": "Würfelt…",
+  "gameStatusThinking": "Denkt nach…",
+  "cubeAdviceOpponentTake": "Verdoppeln — Gegner sollte annehmen",
+  "cubeAdviceOpponentPass": "Verdoppeln — Gegner sollte passen",
+  "gameErrorBannerLabel": "Fehler: {error}",
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "analysisCubeEstimate": "0-Ply-Schätzung aus Sicht des ziehenden Spielers. Nimmt eine optimale Annahme- oder Pass-Entscheidung an. Verwendet für den angenommenen Double-Zweig eine Cube-Life-Näherung von 0,7, keine vollständige Suche nach späteren Redoubles. Eine tiefere Analyse kann das Ergebnis ändern.",
+  "metricExplainerMwcBody": "Wenn der Spielstand bekannt ist, werden Züge nach der geschätzten Matchgewinnchance bewertet. Der Verlust wird in Prozentpunkten (pp) angegeben: 1 pp bedeutet, dass 51 % auf 50 % sinken. Der aktuelle Cube-Einsatz und Gammon-/Backgammon-Ergebnisse zählen mit. Erzwungene Pässe und Würfe mit nur einer legalen Stellung fließen nicht in den Durchschnitt ein.",
+  "metricExplainerSearchTitle": "Suche und Unsicherheit",
+  "metricExplainerSearchBody": "Die Zugbewertung sind statische 0-Ply-Schätzungen nach dem Zug, keine Rollouts. Matchwerte verwenden eine Match-Equity-Tabelle ohne zukünftige Cube-Züge. Cube-Analysen verwenden bei angenommenen Doubles eine teilweise Cube-Life-Näherung von 0,7. Das ist keine vollständige Suche mit Cube. Für Rückstände über 25 verwendet die Tabelle ihre 25-away-Grenze. Enge Ergebnisse können sich bei tieferer Analyse ändern; es gibt kein kalibriertes Konfidenzintervall.",
+  "metricExplainerEquityTitle": "Equity",
+  "metricExplainerEquityBody": "Wenn der Spielstand fehlt, zeigt cubeless Equity den durchschnittlichen Punktwert einer Stellung bei Cube 1. +1,0 bedeutet einen erwarteten Punktgewinn; −0,5 einen erwarteten halben Punktverlust.",
+  "metricExplainerEquityLossTitle": "Equity-Verlust (z. B. −0,016)",
+  "metricExplainerEquityLossBody": "Für jeden Zug vergleichen wir deinen Zug mit dem besten Zug der Engine. Der Equity-Verlust zeigt den aufgegebenen Erwartungswert. −0,016 bedeutet nur 0,016 Punkte weniger als beim besten Zug – ein kleiner Fehler. 0,000 bedeutet, dass du den besten Zug gefunden hast.",
+  "metricExplainerErrorRateTitle": "Fehlerquote",
+  "metricExplainerErrorRateBody": "Der durchschnittliche Verlust fasst deine bewerteten Zugentscheidungen in der angezeigten Einheit zusammen. Cube-Entscheidungen haben einen eigenen Durchschnitt. Niedriger heißt näher an den Top-Schätzungen dieser Engine; es ist keine kalibrierte Spielerstärke.",
+  "metricExplainerMoveMarksTitle": "Zugbewertungen",
+  "metricExplainerMoveMarksBody": "MWC-Lernstufen: Beste < 0,05 pp, Gut < 0,5 pp, Fragwürdig < 1,5 pp, Fehler < 3 pp, Patzer ≥ 3 pp. Diese Produktstufen sind keine kalibrierte Sicherheit oder Turnierwertung.\n\nLernstufen für cubeless Equity:",
+  "metricExplainerThresholdBest": "Verlust < 0,001",
+  "metricExplainerThresholdGood": "Verlust < 0,020",
+  "metricExplainerThresholdDubious": "Verlust < 0,050",
+  "metricExplainerThresholdError": "Verlust < 0,110",
+  "metricExplainerThresholdBlunder": "Verlust ≥ 0,110",
+  "metricExplainerGotIt": "Verstanden",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · bis {matchLength}",
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · bis {matchLength}",
+  "gameHudYou": "Du",
+  "gameHudAi": "KI",
+  "gameHudGameNumber": "Partie {number}",
+  "gameHudMatchContext": "{score} · {game}",
+  "gameHudHotSeatDetail": "{whiteLabel} gegen {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "gameHudOpponentDetail": "gegen {opponent} · {pipsLabel} {mine}–{theirs}",
+  "gameHudOpponentDetailWithLevel": "gegen {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "gameHudPips": "Pips",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Double",
+  "gameHudMoreActions": "Weitere Aktionen",
+  "gameHudSurrender": "Aufgeben…",
+  "gameHudThinking": "Denkt nach",
+  "gameHudDoubleBeforeRoll": "Du kannst nur vor dem Wurf und während deines Zuges verdoppeln.",
+  "gameHudNoDoubleCrawford": "Im Crawford-Spiel gibt es kein Verdoppeln – diese Partie entscheidet das Match.",
+  "gameHudOnlyCubeOwner": "Nur der Cube-Besitzer darf verdoppeln; gerade gehört er der anderen Seite.",
+  "gameHudDoubleUnavailable": "Verdoppeln ist gerade nicht möglich.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (bis {matchLength})",
+  "gameDialogPlayerWon": "{winner} gewinnt diese Partie ({points}).",
+  "gameDialogPlayerWonGammon": "{winner} gewinnt diese Partie ({points}, Gammon).",
+  "gameDialogPlayerWonBackgammon": "{winner} gewinnt diese Partie ({points}, Backgammon).",
+  "gameDialogPlayerWonDrop": "{winner} gewinnt diese Partie ({points}) — {loser} hat das Double abgelehnt.",
+  "gameDialogPlayerWonResignation": "{winner} gewinnt diese Partie ({points}) — {loser} hat aufgegeben.",
+  "gameDialogPassDeviceTitle": "Gerät weitergeben",
+  "gameDialogPlayersTurn": "{name} ist am Zug",
+  "gameDialogTapToContinue": "Tippen zum Fortfahren",
+  "gameDialogCubeOfferedTitle": "Double angeboten",
+  "gameDialogCubeOfferMessage": "{doubler} bietet ein Double auf {value}. Annehmen oder passen?{tutorLine}",
+  "gameDialogPass": "Passen",
+  "gameDialogTake": "Annehmen",
+  "gameDialogResignationTitle": "Aufgabe angeboten",
+  "gameDialogResignationMessage": "{resigner} bietet an, die Partie mit {value} Punkten aufzugeben. Annehmen oder ablehnen?",
+  "gameDialogResignSingle": "einfache Partie",
+  "gameDialogResignGammon": "Gammon",
+  "gameDialogResignBackgammon": "Backgammon",
+  "gameDialogDecline": "Ablehnen",
+  "gameDialogAccept": "Annehmen",
+  "gameDialogGameOverTitle": "Partie beendet",
+  "gameDialogNextGame": "Nächste Partie",
+  "gameDialogMatchOverTitle": "Match beendet",
+  "gameDialogNobody": "Niemand",
+  "gameDialogMatchWinner": "{winner} gewinnt das Match.",
+  "gameDialogSavedToHistory": "Im Spielverlauf gespeichert",
+  "gameDialogDone": "Fertig",
+  "gameTapNoLegalMove": "Dieser Stein kann mit den verbleibenden Würfeln nicht ziehen",
+  "gameTapNoLegalMoveUndo": "Dieser Stein kann mit den verbleibenden Würfeln nicht ziehen – versuche Rückgängig",
+  "gameDragHint": "Tipp: Ziehe Steine oder tippe sie an – ändere das in den Einstellungen",
+  "commonGotIt": "Verstanden",
+  "gameHintStageBeforeHint": "Spiele zuerst einen vollständigen legalen Zug, bevor du einen Hinweis anforderst.",
+  "surrenderTitle": "Aufgeben",
+  "surrenderNamedConcedes": "{player} gibt die aktuelle Partie auf.",
+  "surrenderConcedes": "Gibt die aktuelle Partie auf.",
+  "surrenderAvailableAtNamedTurn": "Ab Beginn des Zuges von {player} verfügbar",
+  "surrenderAvailableAtYourTurn": "Ab Beginn deines Zuges verfügbar",
+  "commonCancel": "Abbrechen",
+  "surrenderSingle": "Einfach (1)",
+  "surrenderGammon": "Gammon (2)",
+  "surrenderBackgammon": "Backgammon (3)",
+  "surrenderChoosePlayer": "Wer gibt diese Partie auf?",
+  "commonDone": "Fertig",
+  "gameStatusPlayersTurn": "{player} ist am Zug",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  }
 }

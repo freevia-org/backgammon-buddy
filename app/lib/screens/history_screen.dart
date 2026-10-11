@@ -8,6 +8,8 @@ import '../analytics/analytics_screen_view.dart';
 import '../data/database.dart';
 import '../data/match_repository.dart';
 import '../diagnostics/crash_log.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/localization_lookup.dart';
 import 'analysis_screen.dart';
 
 /// The match-history list: every recorded match, newest first, tapping through
@@ -62,24 +64,26 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
   @override
   // See [HomeScreen] for why every screen splits build/_build.
   Widget build(BuildContext context) => AnalyticsScreenView(
-        name: AnalyticsScreens.history,
-        child: _build(context),
-      );
+    name: AnalyticsScreens.history,
+    child: _build(context),
+  );
 
   Widget _build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     final matches = ref.watch(matchesProvider);
     return Scaffold(
-      appBar: AppBar(title: const Text('Match history')),
+      appBar: AppBar(title: Text(l10n.historyTitle)),
       body: matches.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text('Failed to load history:\n$e')),
+        error: (e, _) =>
+            Center(child: Text(l10n.historyLoadFailed(e.toString()))),
         data: (all) {
           final rows = [
             for (final row in all)
               if (!_deleted.contains(row.id)) row,
           ];
           if (rows.isEmpty) {
-            return const Center(child: Text('No matches played yet.'));
+            return Center(child: Text(l10n.historyEmpty));
           }
           return ListView.separated(
             itemCount: rows.length,
@@ -102,23 +106,20 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
   /// still in the tree trips a framework assertion. A cancelled delete simply
   /// springs the row back.
   Future<bool> _confirmDelete(MatchRow match) async {
+    final l10n = appLocalizationsOf(context);
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Delete this match?'),
-        content: Text(
-          '${_scoreLine(match)}\n\n'
-          'The match and every game recorded in it are removed permanently. '
-          'This cannot be undone.',
-        ),
+        title: Text(l10n.historyDeleteConfirmTitle),
+        content: Text(l10n.historyDeleteConfirmBody(_scoreLine(match, l10n))),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l10n.actionCancel),
           ),
           FilledButton(
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Delete'),
+            child: Text(l10n.actionDelete),
           ),
         ],
       ),
@@ -130,12 +131,11 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
       // The user asked for this and watched the row swipe away, so a failure
       // has to be said out loud — silently leaving the match listed reads as
       // the delete not having taken.
-      CrashLog.instance
-          .record(error, stack: stack, source: 'history-delete');
+      CrashLog.instance.record(error, stack: stack, source: 'history-delete');
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Could not delete that match.')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l10n.historyDeleteFailed)));
       }
       return false;
     }
@@ -156,30 +156,32 @@ class _MatchTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     final subtitle =
-        '${_modeLabel(match.mode)} · ${_formatDate(match.createdAt)}';
+        '${_modeLabel(match.mode, l10n)} · ${_formatDate(match.createdAt)}';
     return Dismissible(
       key: ValueKey('match-${match.id}'),
       direction: DismissDirection.endToStart,
       confirmDismiss: (_) => onDeleteRequested(),
       background: const _DeleteBackground(),
       child: ListTile(
-        title: Text(_scoreLine(match)),
+        title: Text(_scoreLine(match, l10n)),
         subtitle: Text(subtitle),
         trailing: match.completed
             ? _StatusBadge(
                 label: match.winner == null
-                    ? 'Complete'
-                    : '${_sideLabel(match.winner!)} won',
+                    ? l10n.historyComplete
+                    : l10n.historyWinner(_sideLabel(match.winner!, l10n)),
                 tone: _BadgeTone.done,
               )
             // Not "In progress": nothing is in progress after the app restarts —
             // the match cannot be resumed, only its games reviewed.
-            : const _StatusBadge(label: 'Unfinished', tone: _BadgeTone.pending),
+            : _StatusBadge(
+                label: l10n.historyUnfinished,
+                tone: _BadgeTone.pending,
+              ),
         onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => MatchDetailScreen(match: match),
-          ),
+          MaterialPageRoute(builder: (_) => MatchDetailScreen(match: match)),
         ),
       ),
     );
@@ -193,6 +195,7 @@ class _DeleteBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     final scheme = Theme.of(context).colorScheme;
     return ColoredBox(
       color: scheme.errorContainer,
@@ -201,8 +204,10 @@ class _DeleteBackground extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text('Delete',
-                style: TextStyle(color: scheme.onErrorContainer, fontSize: 13)),
+            Text(
+              l10n.actionDelete,
+              style: TextStyle(color: scheme.onErrorContainer, fontSize: 13),
+            ),
             const SizedBox(width: 8),
             Icon(Icons.delete_outline, color: scheme.onErrorContainer),
           ],
@@ -221,8 +226,10 @@ class _DeleteBackground extends StatelessWidget {
 /// one of [match] / [matchId] must be provided.
 class MatchDetailScreen extends ConsumerWidget {
   const MatchDetailScreen({super.key, this.match, this.matchId})
-      : assert(match != null || matchId != null,
-            'provide a match row or a matchId');
+    : assert(
+        match != null || matchId != null,
+        'provide a match row or a matchId',
+      );
 
   /// The pre-loaded match row (from the history list), or null when only a
   /// [matchId] is known (from the post-match summary link).
@@ -233,45 +240,55 @@ class MatchDetailScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = appLocalizationsOf(context);
     final row = match;
-    if (row != null) return _detail(context, ref, row);
+    if (row != null) return _detail(context, ref, row, l10n);
     final repo = ref.watch(matchRepositoryProvider);
     return FutureBuilder<MatchRow>(
       future: repo.loadMatch(matchId!),
       builder: (context, snap) {
         if (snap.hasError) {
           return Scaffold(
-            appBar: AppBar(title: const Text('Match')),
-            body: Center(child: Text('Failed to load match:\n${snap.error}')),
+            appBar: AppBar(title: Text(l10n.historyMatchTitle)),
+            body: Center(
+              child: Text(l10n.historyMatchLoadFailed(snap.error.toString())),
+            ),
           );
         }
         if (!snap.hasData) {
           return Scaffold(
-            appBar: AppBar(title: const Text('Match')),
+            appBar: AppBar(title: Text(l10n.historyMatchTitle)),
             body: const Center(child: CircularProgressIndicator()),
           );
         }
-        return _detail(context, ref, snap.data!);
+        return _detail(context, ref, snap.data!, l10n);
       },
     );
   }
 
-  Widget _detail(BuildContext context, WidgetRef ref, MatchRow match) {
+  Widget _detail(
+    BuildContext context,
+    WidgetRef ref,
+    MatchRow match,
+    AppLocalizations l10n,
+  ) {
     final repo = ref.watch(matchRepositoryProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(_scoreLine(match))),
+      appBar: AppBar(title: Text(_scoreLine(match, l10n))),
       body: FutureBuilder<List<GameRow>>(
         future: repo.gamesFor(match.id),
         builder: (context, snap) {
           if (snap.hasError) {
-            return Center(child: Text('Failed to load games:\n${snap.error}'));
+            return Center(
+              child: Text(l10n.historyGamesLoadFailed(snap.error.toString())),
+            );
           }
           if (!snap.hasData) {
             return const Center(child: CircularProgressIndicator());
           }
           final games = snap.data!;
           if (games.isEmpty) {
-            return const Center(child: Text('No games recorded yet.'));
+            return Center(child: Text(l10n.historyNoGames));
           }
           return ListView.separated(
             itemCount: games.length,
@@ -291,17 +308,16 @@ class _GameTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     return ListTile(
       leading: CircleAvatar(child: Text('${game.gameNumber}')),
-      title: Text('Game ${game.gameNumber}'),
-      subtitle: Text(_gameResultLine(game)),
+      title: Text(l10n.historyGameTitle(game.gameNumber)),
+      subtitle: Text(_gameResultLine(game, l10n)),
       trailing: game.isCrawford
-          ? const _StatusBadge(label: 'Crawford', tone: _BadgeTone.info)
+          ? _StatusBadge(label: l10n.historyCrawford, tone: _BadgeTone.info)
           : null,
       onTap: () => Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => AnalysisScreen(gameId: game.id),
-        ),
+        MaterialPageRoute(builder: (_) => AnalysisScreen(gameId: game.id)),
       ),
     );
   }
@@ -309,8 +325,8 @@ class _GameTile extends StatelessWidget {
 
 // --- Formatting --------------------------------------------------------------
 
-String _scoreLine(MatchRow m) =>
-    'White ${m.whiteScore} — ${m.blackScore} Black  (to ${m.matchLength})';
+String _scoreLine(MatchRow m, AppLocalizations l10n) =>
+    l10n.historyScoreLine(m.whiteScore, m.blackScore, m.matchLength);
 
 /// The mode a saved match was played in, as a person would name it.
 ///
@@ -320,24 +336,31 @@ String _scoreLine(MatchRow m) =>
 /// string `MatchRepository.startMatch` is called with has a case here — see
 /// `history_screen_test.dart`, which enumerates them against the call sites so
 /// that the next mode cannot ship with its column name showing.
-String _modeLabel(String mode) => switch (mode) {
-      'vsComputer' => 'vs Computer',
-      'hotSeat' => 'Two players',
-      'online' => 'Online',
-      'lan' => 'Play Nearby',
-      'buddy' => 'Buddy',
-      final other => other,
-    };
+String _modeLabel(String mode, AppLocalizations l10n) => switch (mode) {
+  'vsComputer' => l10n.historyModeComputer,
+  'hotSeat' => l10n.historyModeTwoPlayers,
+  'online' => l10n.historyModeOnline,
+  'lan' => l10n.historyModeNearby,
+  'buddy' => l10n.historyModeBuddy,
+  final other => other,
+};
 
-String _sideLabel(String winner) =>
-    winner.isEmpty ? winner : winner[0].toUpperCase() + winner.substring(1);
+String _sideLabel(String side, AppLocalizations l10n) => switch (side) {
+  'white' => l10n.white,
+  'black' => l10n.black,
+  _ => side,
+};
 
-String _gameResultLine(GameRow g) {
+String _gameResultLine(GameRow g, AppLocalizations l10n) {
   final winner = g.resultWinner;
-  if (winner == null) return 'In progress';
+  if (winner == null) return l10n.historyGameInProgress;
   final points = g.resultPoints ?? 0;
-  final outcome = g.resultOutcome ?? 'single';
-  return '${_sideLabel(winner)} wins $points ($outcome)';
+  final outcome = switch (g.resultOutcome ?? 'single') {
+    'gammon' => l10n.historyOutcomeGammon,
+    'backgammon' => l10n.historyOutcomeBackgammon,
+    _ => l10n.historyOutcomeSingle,
+  };
+  return l10n.historyGameResult(_sideLabel(winner, l10n), points, outcome);
 }
 
 String _formatDate(DateTime d) {
@@ -361,13 +384,13 @@ class _StatusBadge extends StatelessWidget {
     final (bg, fg) = switch (tone) {
       _BadgeTone.done => (scheme.primaryContainer, scheme.onPrimaryContainer),
       _BadgeTone.pending => (
-          scheme.surfaceContainerHighest,
-          scheme.onSurfaceVariant,
-        ),
+        scheme.surfaceContainerHighest,
+        scheme.onSurfaceVariant,
+      ),
       _BadgeTone.info => (
-          scheme.secondaryContainer,
-          scheme.onSecondaryContainer,
-        ),
+        scheme.secondaryContainer,
+        scheme.onSecondaryContainer,
+      ),
     };
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),

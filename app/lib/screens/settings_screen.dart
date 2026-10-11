@@ -36,31 +36,31 @@ class SettingsScreen extends ConsumerWidget {
   @override
   // See [HomeScreen] for why every screen splits build/_build.
   Widget build(BuildContext context, WidgetRef ref) => AnalyticsScreenView(
-        name: AnalyticsScreens.settings,
-        child: _build(context, ref),
-      );
+    name: AnalyticsScreens.settings,
+    child: _build(context, ref),
+  );
 
   Widget _build(BuildContext context, WidgetRef ref) {
     // The row always exists; during the sub-frame initial load fall back to
     // defaults so the controls always have a concrete selection.
-    final settings = ref.watch(settingsProvider).valueOrNull ?? AppSettings.defaults;
+    final settings =
+        ref.watch(settingsProvider).valueOrNull ?? AppSettings.defaults;
     final repo = ref.read(settingsRepositoryProvider);
     final l10n = appLocalizationsOf(context);
 
     void update(AppSettings Function(AppSettings current) change) =>
         recordFailures(repo.update(change), source: 'settings-autosave');
 
-    void reset() =>
-        recordFailures(repo.save(AppSettings.defaults), source: 'settings-reset');
+    void reset() => recordFailures(
+      repo.save(AppSettings.defaults),
+      source: 'settings-reset',
+    );
 
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.settings),
         actions: [
-          TextButton(
-            onPressed: reset,
-            child: const Text('Reset'),
-          ),
+          TextButton(onPressed: reset, child: Text(l10n.settingsReset)),
         ],
       ),
       body: SafeArea(
@@ -75,7 +75,7 @@ class SettingsScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _Section(
-                      label: 'App language',
+                      label: l10n.settingsAppLanguage,
                       child: DropdownButtonFormField<String>(
                         initialValue: settings.localeCode ?? 'system',
                         isExpanded: true,
@@ -83,46 +83,62 @@ class SettingsScreen extends ConsumerWidget {
                           border: OutlineInputBorder(),
                         ),
                         items: _languageOptions(l10n),
-                        onChanged: (locale) => update((current) =>
-                            current.copyWith(
-                                localeCode: locale == 'system' ? null : locale)),
+                        onChanged: (locale) => update(
+                          (current) => current.copyWith(
+                            localeCode: locale == 'system' ? null : locale,
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 24),
                     _Section(
-                      label: 'Theme',
+                      label: l10n.settingsTheme,
                       child: SegmentedButton<ThemeMode>(
                         showSelectedIcon: false,
-                        segments: const [
+                        segments: [
                           ButtonSegment(
-                              value: ThemeMode.system, label: Text('System')),
+                            value: ThemeMode.system,
+                            label: Text(l10n.settingsThemeSystem),
+                          ),
                           ButtonSegment(
-                              value: ThemeMode.light, label: Text('Light')),
+                            value: ThemeMode.light,
+                            label: Text(l10n.settingsThemeLight),
+                          ),
                           ButtonSegment(
-                              value: ThemeMode.dark, label: Text('Dark')),
+                            value: ThemeMode.dark,
+                            label: Text(l10n.settingsThemeDark),
+                          ),
                         ],
                         selected: {settings.themeMode},
-                        onSelectionChanged: (s) => update((current) =>
-                            current.copyWith(themeMode: s.first)),
+                        onSelectionChanged: (s) => update(
+                          (current) => current.copyWith(themeMode: s.first),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 24),
                     _Section(
-                      label: 'Animation speed',
+                      label: l10n.settingsAnimationSpeed,
                       child: SegmentedButton<AnimationSpeed>(
                         showSelectedIcon: false,
-                        segments: const [
+                        segments: [
                           ButtonSegment(
-                              value: AnimationSpeed.off, label: Text('None')),
+                            value: AnimationSpeed.off,
+                            label: Text(l10n.settingsAnimationNone),
+                          ),
                           ButtonSegment(
-                              value: AnimationSpeed.normal,
-                              label: Text('Normal')),
+                            value: AnimationSpeed.normal,
+                            label: Text(l10n.settingsAnimationNormal),
+                          ),
                           ButtonSegment(
-                              value: AnimationSpeed.fast, label: Text('Fast')),
+                            value: AnimationSpeed.fast,
+                            label: Text(l10n.settingsAnimationFast),
+                          ),
                         ],
                         selected: {settings.animationSpeed},
-                        onSelectionChanged: (s) => update((current) =>
-                            current.copyWith(animationSpeed: s.first)),
+                        onSelectionChanged: (s) => update(
+                          (current) =>
+                              current.copyWith(animationSpeed: s.first),
+                        ),
                       ),
                     ),
                     // Sits directly under the speed control it qualifies: the
@@ -132,16 +148,16 @@ class SettingsScreen extends ConsumerWidget {
                     // preference, it simply has no beat to run.
                     SwitchListTile(
                       contentPadding: EdgeInsets.zero,
-                      title: const Text('Dice roll animation'),
-                      subtitle:
-                          const Text('Tumble the dice before each roll'),
+                      title: Text(l10n.settingsDiceRollAnimation),
+                      subtitle: Text(l10n.settingsDiceRollAnimationHelp),
                       value: settings.diceRollAnimation,
-                      onChanged: (v) => update((current) =>
-                          current.copyWith(diceRollAnimation: v)),
+                      onChanged: (v) => update(
+                        (current) => current.copyWith(diceRollAnimation: v),
+                      ),
                     ),
                     const SizedBox(height: 24),
                     _Section(
-                      label: 'Default match length',
+                      label: l10n.settingsDefaultMatchLength,
                       child: SegmentedButton<int>(
                         showSelectedIcon: false,
                         segments: const [
@@ -151,107 +167,132 @@ class SettingsScreen extends ConsumerWidget {
                           ButtonSegment(value: 7, label: Text('7')),
                         ],
                         selected: {settings.defaultMatchLength},
-                        onSelectionChanged: (s) => update((current) =>
-                            current.copyWith(defaultMatchLength: s.first)),
+                        onSelectionChanged: (s) => update(
+                          (current) =>
+                              current.copyWith(defaultMatchLength: s.first),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 24),
                     _Section(
-                      label: 'Default difficulty',
+                      label: l10n.settingsDefaultDifficulty,
                       child: SegmentedButton<Difficulty>(
                         showSelectedIcon: false,
-                        segments: const [
+                        segments: [
                           ButtonSegment(
-                              value: Difficulty.easy, label: Text('Easy')),
+                            value: Difficulty.easy,
+                            label: Text(l10n.settingsDifficultyEasy),
+                          ),
                           ButtonSegment(
-                              value: Difficulty.medium, label: Text('Medium')),
+                            value: Difficulty.medium,
+                            label: Text(l10n.settingsDifficultyMedium),
+                          ),
                           ButtonSegment(
-                              value: Difficulty.hard, label: Text('Hard')),
+                            value: Difficulty.hard,
+                            label: Text(l10n.settingsDifficultyHard),
+                          ),
                           ButtonSegment(
-                              value: Difficulty.expert, label: Text('Expert')),
+                            value: Difficulty.expert,
+                            label: Text(l10n.settingsDifficultyExpert),
+                          ),
                         ],
                         selected: {settings.defaultDifficulty},
-                        onSelectionChanged: (s) => update((current) =>
-                            current.copyWith(defaultDifficulty: s.first)),
+                        onSelectionChanged: (s) => update(
+                          (current) =>
+                              current.copyWith(defaultDifficulty: s.first),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 24),
                     _Section(
-                      label: 'Tutor mode default',
+                      label: l10n.settingsTutorModeDefault,
                       child: SegmentedButton<_TutorChoice>(
                         showSelectedIcon: false,
-                        segments: const [
+                        segments: [
                           ButtonSegment(
-                              value: _TutorChoice.auto, label: Text('Auto')),
+                            value: _TutorChoice.auto,
+                            label: Text(l10n.settingsTutorAuto),
+                          ),
                           ButtonSegment(
-                              value: _TutorChoice.on, label: Text('On')),
+                            value: _TutorChoice.on,
+                            label: Text(l10n.settingsTutorOn),
+                          ),
                           ButtonSegment(
-                              value: _TutorChoice.off, label: Text('Off')),
+                            value: _TutorChoice.off,
+                            label: Text(l10n.settingsTutorOff),
+                          ),
                         ],
-                        selected: {_TutorChoice.fromOverride(settings.tutorOverride)},
-                        onSelectionChanged: (s) => update((current) =>
-                            current.copyWith(tutorOverride: s.first.toOverride())),
+                        selected: {
+                          _TutorChoice.fromOverride(settings.tutorOverride),
+                        },
+                        onSelectionChanged: (s) => update(
+                          (current) => current.copyWith(
+                            tutorOverride: s.first.toOverride(),
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      'Auto enables the tutor at every computer difficulty. '
-                      'On and Off set the starting choice for local matches. '
-                      'Nearby and online matches are unassisted; their saved '
-                      'games can be reviewed afterwards. Teaching preferences '
-                      'below are saved on this device.',
+                      l10n.settingsTutorModeHelp,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant),
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
                     ),
                     const SizedBox(height: 24),
                     ExpansionTile(
                       tilePadding: EdgeInsets.zero,
-                      title: const Text('Tutor preferences'),
-                      subtitle: const Text('Saved defaults for future matches'),
-                      children: [TutorOptionControls(
-                        options: settings.tutorOptions,
-                        onChanged: (options) => repo.setTutorOptions(options)
-                            .catchError((Object error) {
-                          if (!context.mounted) return;
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                            content: Text('Could not save tutor preferences.')));
-                        }),
-                      )],
+                      title: Text(l10n.settingsTutorPreferences),
+                      subtitle: Text(l10n.settingsTutorPreferencesSubtitle),
+                      children: [
+                        TutorOptionControls(
+                          options: settings.tutorOptions,
+                          onChanged: (options) => repo
+                              .setTutorOptions(options)
+                              .catchError((Object error) {
+                                if (!context.mounted) return;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(l10n.settingsTutorSaveError),
+                                  ),
+                                );
+                              }),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 24),
                     _Section(
-                      label: 'Gameplay',
+                      label: l10n.settingsGameplay,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SwitchListTile(
                             contentPadding: EdgeInsets.zero,
-                            title: const Text('Move highlights'),
-                            subtitle: const Text(
-                                'Ring selectable checkers and light up '
-                                'destinations'),
+                            title: Text(l10n.settingsMoveHighlights),
+                            subtitle: Text(l10n.settingsMoveHighlightsHelp),
                             value: settings.showHighlights,
-                            onChanged: (v) => update((current) =>
-                                current.copyWith(showHighlights: v)),
+                            onChanged: (v) => update(
+                              (current) => current.copyWith(showHighlights: v),
+                            ),
                           ),
                           SwitchListTile(
                             contentPadding: EdgeInsets.zero,
-                            title: const Text('Drag to move'),
-                            subtitle: const Text(
-                                'Drag a checker to its destination (taps always '
-                                'work)'),
+                            title: Text(l10n.settingsDragToMove),
+                            subtitle: Text(l10n.settingsDragToMoveHelp),
                             value: settings.enableDrag,
-                            onChanged: (v) => update((current) =>
-                                current.copyWith(enableDrag: v)),
+                            onChanged: (v) => update(
+                              (current) => current.copyWith(enableDrag: v),
+                            ),
                           ),
                           SwitchListTile(
                             contentPadding: EdgeInsets.zero,
-                            title: const Text('Combined moves'),
-                            subtitle: const Text(
-                                'One tap runs a checker through both dice'),
+                            title: Text(l10n.settingsCombinedMoves),
+                            subtitle: Text(l10n.settingsCombinedMovesHelp),
                             value: settings.enableCombinedTaps,
-                            onChanged: (v) => update((current) =>
-                                current.copyWith(enableCombinedTaps: v)),
+                            onChanged: (v) => update(
+                              (current) =>
+                                  current.copyWith(enableCombinedTaps: v),
+                            ),
                           ),
                           // Hot-seat only, and OFF by default: "when playing
                           // person vs person, the default should be not
@@ -263,12 +304,13 @@ class SettingsScreen extends ConsumerWidget {
                           // single bottom bar follows them.
                           SwitchListTile(
                             contentPadding: EdgeInsets.zero,
-                            title: const Text('Rotate board between turns'),
-                            subtitle: const Text(
-                                'Hot-seat: flip the view for the active player'),
+                            title: Text(l10n.settingsRotateBoard),
+                            subtitle: Text(l10n.settingsRotateBoardHelp),
                             value: settings.rotateBoardHotSeat,
-                            onChanged: (v) => update((current) =>
-                                current.copyWith(rotateBoardHotSeat: v)),
+                            onChanged: (v) => update(
+                              (current) =>
+                                  current.copyWith(rotateBoardHotSeat: v),
+                            ),
                           ),
                           // Independent of the rotation above — it covers the
                           // hand-over in either layout: "do not show the pass
@@ -276,21 +318,21 @@ class SettingsScreen extends ConsumerWidget {
                           // disabled by default".
                           SwitchListTile(
                             contentPadding: EdgeInsets.zero,
-                            title: const Text('Pass-device screen'),
-                            subtitle: const Text(
-                                'Cover the board between hot-seat turns'),
+                            title: Text(l10n.settingsPassDevice),
+                            subtitle: Text(l10n.settingsPassDeviceHelp),
                             value: settings.showPassDevice,
-                            onChanged: (v) => update((current) =>
-                                current.copyWith(showPassDevice: v)),
+                            onChanged: (v) => update(
+                              (current) => current.copyWith(showPassDevice: v),
+                            ),
                           ),
                           SwitchListTile(
                             contentPadding: EdgeInsets.zero,
-                            title: const Text('Show score'),
-                            subtitle: const Text(
-                                'Display the running match score in the header'),
+                            title: Text(l10n.settingsShowScore),
+                            subtitle: Text(l10n.settingsShowScoreHelp),
                             value: settings.showScoring,
-                            onChanged: (v) => update((current) =>
-                                current.copyWith(showScoring: v)),
+                            onChanged: (v) => update(
+                              (current) => current.copyWith(showScoring: v),
+                            ),
                           ),
                         ],
                       ),
@@ -300,7 +342,7 @@ class SettingsScreen extends ConsumerWidget {
                     // controls while physical-board play is unavailable.
                     if (ref.watch(physicalBuddyEnabledProvider)) ...[
                       _Section(
-                        label: 'Buddy Mode',
+                        label: l10n.settingsBuddyMode,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -311,34 +353,33 @@ class SettingsScreen extends ConsumerWidget {
                             // one match without changing their mind for good.
                             SegmentedButton<BuddyPhrasing>(
                               showSelectedIcon: false,
-                              segments: const [
+                              segments: [
                                 ButtonSegment(
-                                    value: BuddyPhrasing.terse,
-                                    label: Text('Terse')),
+                                  value: BuddyPhrasing.terse,
+                                  label: Text(l10n.settingsBuddyTerse),
+                                ),
                                 ButtonSegment(
-                                    value: BuddyPhrasing.friendly,
-                                    label: Text('Friendly')),
+                                  value: BuddyPhrasing.friendly,
+                                  label: Text(l10n.settingsBuddyFriendly),
+                                ),
                               ],
                               selected: {settings.buddyPhrasing},
-                              onSelectionChanged: (s) => update((current) =>
-                                  current.copyWith(buddyPhrasing: s.first)),
+                              onSelectionChanged: (s) => update(
+                                (current) =>
+                                    current.copyWith(buddyPhrasing: s.first),
+                              ),
                             ),
                             const SizedBox(height: 8),
                             Text(
                               settings.buddyPhrasing == BuddyPhrasing.terse
-                                  ? 'How Buddy words a play out loud: "13/8, '
-                                      '24/22" — notation, the way two players at '
-                                      'a board actually talk.'
-                                  : 'How Buddy words a play out loud: "Move one '
-                                      'checker from 13 to 8, and one from 24 to '
-                                      '22."',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
+                                  ? l10n.settingsBuddyTerseHelp
+                                  : l10n.settingsBuddyFriendlyHelp,
+                              style: Theme.of(context).textTheme.bodySmall
                                   ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSurfaceVariant),
+                                    color: Theme.of(
+                                      context,
+                                    ).colorScheme.onSurfaceVariant,
+                                  ),
                             ),
                             // The microphone hint, and the way back from a
                             // refusal. Buddy asks for the microphone in context —
@@ -348,13 +389,12 @@ class SettingsScreen extends ConsumerWidget {
                             // granted the permission elsewhere turns back on.
                             SwitchListTile(
                               contentPadding: EdgeInsets.zero,
-                              title: const Text('Listen for the dice'),
-                              subtitle: const Text(
-                                  'Buddy looks at the board sooner when it hears '
-                                  'a throw. Off changes nothing else.'),
+                              title: Text(l10n.settingsListenForDice),
+                              subtitle: Text(l10n.settingsListenForDiceHelp),
                               value: settings.buddyMicHint,
-                              onChanged: (v) => update((current) =>
-                                  current.copyWith(buddyMicHint: v)),
+                              onChanged: (v) => update(
+                                (current) => current.copyWith(buddyMicHint: v),
+                              ),
                             ),
                           ],
                         ),
@@ -369,16 +409,15 @@ class SettingsScreen extends ConsumerWidget {
                     // errors remotely on mobile, but nothing here depends on
                     // it having been configured.
                     _Section(
-                      label: 'Diagnostics',
+                      label: l10n.settingsDiagnostics,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ListTile(
                             contentPadding: EdgeInsets.zero,
                             leading: const Icon(Icons.bug_report_outlined),
-                            title: const Text('Error log'),
-                            subtitle: const Text(
-                                'Recent errors, ready to copy into a bug report'),
+                            title: Text(l10n.settingsErrorLog),
+                            subtitle: Text(l10n.settingsErrorLogHelp),
                             trailing: const Icon(Icons.chevron_right),
                             onTap: () => Navigator.of(context).push(
                               MaterialPageRoute<void>(
@@ -394,18 +433,16 @@ class SettingsScreen extends ConsumerWidget {
                           ListTile(
                             contentPadding: EdgeInsets.zero,
                             leading: const Icon(Icons.bug_report_outlined),
-                            title: const Text('Report a bug'),
-                            subtitle: const Text(
-                                'Open a guided report on GitHub'),
+                            title: Text(l10n.settingsReportBug),
+                            subtitle: Text(l10n.settingsReportBugHelp),
                             trailing: const Icon(Icons.open_in_new, size: 18),
                             onTap: () => _sendFeedback(ref, FeedbackKind.bug),
                           ),
                           ListTile(
                             contentPadding: EdgeInsets.zero,
                             leading: const Icon(Icons.lightbulb_outline),
-                            title: const Text('Suggest an idea'),
-                            subtitle: const Text(
-                                'Help us improve the tutor and game'),
+                            title: Text(l10n.settingsSuggestIdea),
+                            subtitle: Text(l10n.settingsSuggestIdeaHelp),
                             trailing: const Icon(Icons.open_in_new, size: 18),
                             onTap: () => _sendFeedback(ref, FeedbackKind.idea),
                           ),
@@ -414,12 +451,12 @@ class SettingsScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: 24),
                     _Section(
-                      label: 'About',
+                      label: l10n.settingsAbout,
                       child: ListTile(
                         contentPadding: EdgeInsets.zero,
                         leading: const Icon(Icons.description_outlined),
-                        title: const Text('Open-source licenses'),
-                        subtitle: const Text('Backgammon Buddy $appVersion'),
+                        title: Text(l10n.settingsOpenSourceLicenses),
+                        subtitle: Text(l10n.settingsAppVersion(appVersion)),
                         trailing: const Icon(Icons.chevron_right),
                         onTap: () => showAppLicenses(context),
                       ),
@@ -436,27 +473,39 @@ class SettingsScreen extends ConsumerWidget {
 }
 
 List<DropdownMenuItem<String>> _languageOptions(AppLocalizations l10n) => [
-      DropdownMenuItem<String>(
-        value: 'system',
-        child: Text(l10n.followSystem),
-      ),
-      for (final (code, name) in const <(String, String)>[
-        ('en', 'English'), ('bg', 'Български'), ('hr', 'Hrvatski'),
-        ('cs', 'Čeština'), ('da', 'Dansk'), ('nl', 'Nederlands'),
-        ('et', 'Eesti'), ('fi', 'Suomi'), ('fr', 'Français'),
-        ('de', 'Deutsch'), ('el', 'Ελληνικά'), ('hu', 'Magyar'),
-        ('ga', 'Gaeilge'), ('it', 'Italiano'), ('lv', 'Latviešu'),
-        ('lt', 'Lietuvių'), ('mt', 'Malti'), ('pl', 'Polski'),
-        ('pt', 'Português'), ('ro', 'Română'), ('sk', 'Slovenčina'),
-        ('sl', 'Slovenščina'), ('es', 'Español'), ('sv', 'Svenska'),
-        ('uk', 'Українська'), ('ru', 'Русский'), ('tr', 'Türkçe'),
-        ('sr', 'Српски'),
-      ])
-        DropdownMenuItem<String>(
-          value: code,
-          child: Text(name),
-        ),
-    ];
+  DropdownMenuItem<String>(value: 'system', child: Text(l10n.followSystem)),
+  for (final (code, name) in const <(String, String)>[
+    ('en', 'English'),
+    ('bg', 'Български'),
+    ('hr', 'Hrvatski'),
+    ('cs', 'Čeština'),
+    ('da', 'Dansk'),
+    ('nl', 'Nederlands'),
+    ('et', 'Eesti'),
+    ('fi', 'Suomi'),
+    ('fr', 'Français'),
+    ('de', 'Deutsch'),
+    ('el', 'Ελληνικά'),
+    ('hu', 'Magyar'),
+    ('ga', 'Gaeilge'),
+    ('it', 'Italiano'),
+    ('lv', 'Latviešu'),
+    ('lt', 'Lietuvių'),
+    ('mt', 'Malti'),
+    ('pl', 'Polski'),
+    ('pt', 'Português'),
+    ('ro', 'Română'),
+    ('sk', 'Slovenčina'),
+    ('sl', 'Slovenščina'),
+    ('es', 'Español'),
+    ('sv', 'Svenska'),
+    ('uk', 'Українська'),
+    ('ru', 'Русский'),
+    ('tr', 'Türkçe'),
+    ('sr', 'Српски'),
+  ])
+    DropdownMenuItem<String>(value: code, child: Text(name)),
+];
 
 /// Opens the pre-filled GitHub issue form.
 ///
@@ -480,16 +529,16 @@ enum _TutorChoice {
   off;
 
   static _TutorChoice fromOverride(bool? override) => switch (override) {
-        true => _TutorChoice.on,
-        false => _TutorChoice.off,
-        null => _TutorChoice.auto,
-      };
+    true => _TutorChoice.on,
+    false => _TutorChoice.off,
+    null => _TutorChoice.auto,
+  };
 
   bool? toOverride() => switch (this) {
-        _TutorChoice.on => true,
-        _TutorChoice.off => false,
-        _TutorChoice.auto => null,
-      };
+    _TutorChoice.on => true,
+    _TutorChoice.off => false,
+    _TutorChoice.auto => null,
+  };
 }
 
 /// A labelled settings row: a caption above its control (mirrors the new-match

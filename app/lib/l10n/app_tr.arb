@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Öğretici notlardaki nokta numaraları, hamle sırası gelen oyuncunun kendi iç tahtasından sayılır.",
   "tutorHittingRollNote": "Vurma fırsatı veren zar sonuçlarının sayısı, sıralı 36 zar sonucunun tümünü ve yasal doğrudan ya da dolaylı vuruşları kapsar; bunlar fırsattır, rakibin tercihi hakkında tahmin değildir.",
   "tutorNoEvaluatedAlternatives": "Bu hamle için değerlendirilmiş alternatif yok.",
-  "tutorForcedPassNoDecision": "Zorunlu pas, pul oynama kararı içermez."
+  "tutorForcedPassNoDecision": "Zorunlu pas, pul oynama kararı içermez.",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "settingsReset": "Sıfırla",
+  "settingsAppLanguage": "Uygulama dili",
+  "settingsTheme": "Tema",
+  "settingsThemeSystem": "Sistem ayarı",
+  "settingsThemeLight": "Açık",
+  "settingsThemeDark": "Koyu",
+  "settingsAnimationSpeed": "Animasyon hızı",
+  "settingsAnimationNone": "Kapalı",
+  "settingsAnimationNormal": "Normal",
+  "settingsAnimationFast": "Hızlı",
+  "settingsDiceRollAnimation": "Zar atma animasyonu",
+  "settingsDiceRollAnimationHelp": "Her atıştan önce zarları yuvarla",
+  "settingsDefaultMatchLength": "Varsayılan maç uzunluğu",
+  "settingsDefaultDifficulty": "Varsayılan zorluk",
+  "settingsDifficultyEasy": "Kolay",
+  "settingsDifficultyMedium": "Orta",
+  "settingsDifficultyHard": "Zor",
+  "settingsDifficultyExpert": "Uzman",
+  "settingsTutorModeDefault": "Varsayılan eğitmen modu",
+  "settingsTutorAuto": "Otomatik",
+  "settingsTutorOn": "Açık",
+  "settingsTutorOff": "Kapalı",
+  "settingsTutorModeHelp": "Otomatik, eğitmeni tüm bilgisayar zorluklarında etkinleştirir. Açık ve Kapalı, yerel maçların başlangıç tercihini belirler. Yakındaki ve çevrimiçi maçlarda yardım verilmez; kaydedilen oyunlar daha sonra incelenebilir. Öğretim tercihleri bu cihaza kaydedilir.",
+  "settingsTutorPreferences": "Eğitmen tercihleri",
+  "settingsTutorPreferencesSubtitle": "Gelecek maçlar için kaydedilen varsayılanlar",
+  "settingsTutorSaveError": "Eğitmen tercihleri kaydedilemedi.",
+  "settingsGameplay": "Oynanış",
+  "settingsMoveHighlights": "Hamle vurguları",
+  "settingsMoveHighlightsHelp": "Seçilebilir pulları daire içine al ve hedef noktaları vurgula",
+  "settingsDragToMove": "Sürükleyerek taşı",
+  "settingsDragToMoveHelp": "Bir pulu hedef noktasına sürükle (dokunma her zaman çalışır)",
+  "settingsCombinedMoves": "Birleşik hamleler",
+  "settingsCombinedMovesHelp": "Tek dokunuş, bir pulu iki zarın toplamıyla ilerletir",
+  "settingsRotateBoard": "Turlar arasında tahtayı döndür",
+  "settingsRotateBoardHelp": "Aynı cihazda oynarken görünümü sıradaki oyuncuya çevir",
+  "settingsPassDevice": "Cihazı devretme ekranı",
+  "settingsPassDeviceHelp": "Cihazı sıradaki oyuncuya verirken tahtayı gizle",
+  "settingsShowScore": "Skoru göster",
+  "settingsShowScoreHelp": "Maçın güncel skorunu başlıkta göster",
+  "settingsBuddyMode": "Buddy konuşma tarzı",
+  "settingsBuddyTerse": "Kısa",
+  "settingsBuddyFriendly": "Samimi",
+  "settingsBuddyTerseHelp": "Buddy hamleyi böyle seslendirir: “13/8, 24/22” — oyuncuların tahta başında kullandığı gösterim.",
+  "settingsBuddyFriendlyHelp": "Buddy hamleyi şöyle seslendirir: “Bir pulu 13’ten 8’e, diğerini 24’ten 22’ye taşı.”",
+  "settingsListenForDice": "Zarları dinle",
+  "settingsListenForDiceHelp": "Buddy zar sesini duyunca tahtaya daha erken bakar. Kapalı olması başka bir şeyi değiştirmez.",
+  "settingsDiagnostics": "Tanılama",
+  "settingsErrorLog": "Hata kaydı",
+  "settingsErrorLogHelp": "Hata bildirimine kopyalanmaya hazır son hatalar",
+  "settingsReportBug": "Hata bildir",
+  "settingsReportBugHelp": "GitHub’da yönlendirmeli bir hata bildirimi aç",
+  "settingsSuggestIdea": "Fikir öner",
+  "settingsSuggestIdeaHelp": "Eğitmeni ve oyunu geliştirmemize yardım et",
+  "settingsAbout": "Hakkında",
+  "settingsOpenSourceLicenses": "Açık kaynak lisansları",
+  "gameTutorCommentaryOff": "Oyun yorumları kapalı.",
+  "gameTutorToolsAvailable": "Etkinleştirdiğin araçlar için eğitmeni aç.",
+  "gameTutorNextRoll": "Zarları at.",
+  "gameTutorNoEvaluatedReview": "Kaydedilmiş bu hamle için değerlendirilmiş bir açıklama yok.",
+  "gameTutorAnalysisUnavailable": "analiz kullanılamıyor",
+  "gameTutorReviewing": "inceleniyor…",
+  "gameTutorTryYourPlayFirst": "Önce kendi hamleni dene.",
+  "gameTutorKeepBuilding": "Hamleni oluşturmaya devam et.",
+  "gameTutorStageCompleteBeforeCoaching": "Koçluk veya ipuçlarını görmeden önce kurallara uygun tam bir hamle yap.",
+  "gameTutorReadyToConfirm": "Onaylanmaya hazır",
+  "gameTutorPlayTakingShape": "Hamlen şekilleniyor.",
+  "gameTutorConfirmOrUndo": "Oynamak için onayla ya da geri alıp yeniden düşün.",
+  "gameTutorFinishDiceOrUndo": "Kalan zarları kullan ya da hamleyi geri al.",
+  "gameTutorComputerConsidering": "Bilgisayar hamlesini düşünüyor.",
+  "gameTutorComputerPlayReviewed": "Tamamlanan hamlesi burada incelenecek.",
+  "gameTutorYourPlay": "Hamlen",
+  "gameTutorComputer": "Bilgisayar",
+  "gameTutorPlayQuality": "Hamlen: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "zorunlu hamle",
+  "gameTutorTopChoice": "en iyi seçim",
+  "gameTutorSoundPlay": "iyi hamle",
+  "gameTutorAnotherPlayMayFitBetter": "başka bir hamle daha uygun olabilir",
+  "gameTutorAnotherPlayFitsBetter": "bu konuma başka bir hamle daha iyi uyuyor",
+  "gameTutorStrongerPlayAvailable": "belirgin biçimde daha güçlü bir hamle vardı",
+  "gameTutorPositionEdge": "Tahmine göre {side} avantajlı.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Konum yaklaşık olarak dengede.",
+  "tutorPhraseGameFinished": "Oyun bitti.",
+  "tutorPhraseReviewFinishedGame": "Çalışmak için bir karar bulmak üzere hamleleri gözden geçir.",
+  "tutorPhraseCubeOffered": "Katlama küpü teklif edildi.",
+  "tutorPhraseCubeDecisionPrompt": "Pul hamlesini planlamadan önce alıp almayacağına karar ver.",
+  "tutorPhraseCubeScoreContext": "Maç skoru, ek bahsin değerini değiştirir.",
+  "tutorPhraseResignationOffered": "Pes teklifi yapıldı.",
+  "tutorPhraseResignationDecisionPrompt": "Kabul etmeden veya devam etmeden önce teklif edilen puanları konumla karşılaştır.",
+  "tutorPhraseNoLegalPlay": "Bu zarla yasal bir hamle yok.",
+  "tutorPhraseForcedPassPrompt": "Zorunlu pas bir hata değildir; sonraki zarı bekle.",
+  "tutorPhraseOnlyOneResult": "Yalnızca bir yasal sonuç konumu var.",
+  "tutorPhraseForcedTurnPrompt": "Zorunlu hamleyi yap. Bu zarda değerlendirilecek bir seçim yok.",
+  "tutorPhrasePipCountsLevel": "Pip sayıları eşit.",
+  "tutorPhrasePipCountsAhead": "{count} pip öndesin.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "{count} pip geridesin.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "Barda {count} pulun var: önce yeniden giriş yapmalısın.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Başka bir pulu hareket ettirmeden önce giriş yap; sonra güvenli bir iniş noktası ara.",
+  "tutorPhraseOpponentHomePoints": "Rakibin ev tahtasında {count} kapalı nokta var.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Pulları toplama yarışı.",
+  "tutorPhrasePureRace": "Saf bir yarış.",
+  "tutorPhraseBearOffSpread": "Pulları toplarken sonraki zar için kullanışlı bir dağılım bırak.",
+  "tutorPhraseBringRearCheckersHome": "Arkadaki pulları tek bir noktada fazla yığmadan eve getir.",
+  "tutorPhraseArmiesHavePassed": "Taraflar birbirini geçti; artık vurma mümkün değil.",
+  "tutorPhraseContactStillMatters": "{part} Temas hâlâ önemli.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "Rakibin barda {count} pulu var.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Kalan pulları eve getirirken tahtanı kapalı tut.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Rakip girmeye çalışırken ev tahtanı kur veya koru.",
+  "tutorPhraseHomePointsCloseEntries": "Ev tahtanda {count} nokta tutuyorsun; her biri bir giriş numarasını kapatır.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "{count} noktalı bir kapalı seriyle temas.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Seriyi uzatmakla onu korumak için yedek pulları tutmayı karşılaştır.",
+  "tutorPhraseSpareCheckersCanMove": "{count} yedek pul, bulunduğu noktayı hemen açmadan hareket edebilir.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "{points} noktalarında bir tutunma noktasıyla temas.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Arkadaki pulları eve getirmeyi, güvenli tutunma noktanı korumayla karşılaştır.",
+  "tutorPhraseCompareAnchorProgressBehind": "Vurma fırsatı ararken veya tahtanı geliştirirken güvenli dayanağı aklında tut.",
+  "tutorPhrasePreserveAnchorFoothold": "Tutunma noktası vurulamaz, ancak o pulların eve gitmesi hâlâ uzun sürer.",
+  "tutorPhraseContactThreats": "Temas var: iki taraf da hâlâ vurma tehdidi oluşturabilir.",
+  "tutorPhraseLookForPointsAndSafety": "Kullanışlı noktalar ara, ardından açıkta tek pul bırakma riskini değerlendir.",
+  "tutorPhraseHomePointsAndBlots": "Ev tahtanda {count} nokta tutuyor ve {otherCount} açıkta tek pul bırakıyorsun.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Hamleye başlamak için bir pul seç.",
+  "tutorPhraseLegalPlayPrompt": "Yorumları görmek için yasal bir hamle başlat.",
+  "tutorPhraseStagedHit": "Rakibin {count} pulunu vurdun.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "Bardan {count} pul soktun.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "{count} pulu topladın.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "{points} noktalarını yaptın.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "{point}. noktadaki pulun şu anda açıkta.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "{point}. noktadaki yedek pul, noktayı açmadan daha sonra hareket edebilir.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Tüm hamle değerlendirilmeden önce oynanabilir kalan zarları kullan.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "15 pulun tamamı toplandı: oyunu kazandın.",
+  "tutorPhraseStagedHitShortPlan": "Rakip yeniden giriş yapmaya çalışırken vurmak sana zaman kazandırır.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Verimli pul toplama, pulları kaldırır ve sonraki zar için kullanışlı sayılar bırakır.",
+  "tutorPhraseStagedRaceHomePlan": "Arkadaki pulları eve getir ve toplama için uygun iniş noktalarına yay.",
+  "tutorPhraseStagedBearOffContactPlan": "Pul toplamak ilerleme sağlar, ancak kalan temas vurulma riski doğurur.",
+  "tutorPhraseStagedReentryPlan": "Yeniden giriş pulu oyuna döndürür; sonra ona güvenli bir nokta bul.",
+  "tutorPhraseStagedHomeBoardPlan": "Yeni ev tahtası noktası, ileride vurulma olursa bir giriş sayısını kapatır.",
+  "tutorPhraseStagedPrimePlan": "Daha uzun seri daha fazla iniş noktasını kapatır; yedek pullar seriyi korumaya yardım eder.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Tutunma noktasını bırakmak ilerleme sağlar ama güvenli dayanağından vazgeçersin.",
+  "tutorPhraseStagedNewAnchorPlan": "Yeni tutunma noktası arkadaki pullara güvenli bir dayanak sağlar.",
+  "tutorPhraseStagedCoverBlotPlan": "Açıkta tek pulu kapatmak rakibin hedefini ortadan kaldırır.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Denge gelişim ve güvenlik arasında: kurucu pullar aynı zamanda hedef olabilir.",
+  "tutorPhraseStagedCompletePrompt": "{part} Hamlen tamamlandı; oynamak için Onayla’ya dokun.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Bu zar, pul oynama seçeneği bırakmıyor; karar olarak notlandırılmaz.",
+  "tutorMoveTopVerdict": "Bu konum için en iyi seçeneklerden biri.",
+  "tutorMoveAlternativeVerdict": "Motor burada başka bir hamleyi tercih ediyor.",
+  "tutorMoveEstimateDifference": "En iyi hamleden farkı: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Bu hamleden sonra: kazanma olasılığı {winPercent}%, gammon veya daha iyi kazanma {winGammonPercent}%, gammon veya daha kötü kaybetme {loseGammonPercent}%. Bunlar hamleyi yapan oyuncunun bakış açısından tahminlerdir.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Maçı kazanma tahmini: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "15 pulun tamamı toplandı: oyunu kazandın.",
+  "tutorMovePlanHit": "Rakip yeniden giriş yaparken zaman kazanmak için vur. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Girişi zorlaştırmak için ev tahtandaki noktaları kapalı tut.",
+  "tutorMovePlanHitBuild": "İleride vurulmanın etkisini azaltmak için ev tahtanda daha fazla nokta kur.",
+  "tutorMovePlanRaceBearOff": "Pulları verimli biçimde toplamaya çalış: pulları kaldır ve sonraki zar için kullanışlı sayılar bırak.",
+  "tutorMovePlanRaceHome": "Arkadaki pulları eve getir ve toplama için uygun noktalara dağıt.",
+  "tutorMovePlanContactBearOff": "Pulları topla ama rakibin arkadaki pullarını izle: temas sürerken açıkta kalan bir toplama pulu hedef olabilir.",
+  "tutorMovePlanReentry": "Oyuna yeniden gir, ardından giren pul için güvenli bir nokta bul.",
+  "tutorMovePlanHomeBoard": "Ev tahtanı güçlendir. Yeni kapalı nokta bir giriş sayısını kapatarak ilerideki vuruşu güçlendirir.",
+  "tutorMovePlanPrime": "Kapalı noktalar serisini birlikte çalışır halde tut. Sonraki zarların seriyi açmaya zorlamaması için yedek pulları koru.",
+  "tutorMovePlanLeaveAnchor": "Tutunma noktasını bırakmak arkadaki pullarını ilerletir ama güvenli dayanağını kaybedersin. Eve dönerken açıkta kalmalarına dikkat et.",
+  "tutorMovePlanNewAnchor": "Konumunun geri kalanını geliştirirken yeni tutunma noktasını güvenli bir dayanak olarak kullan.",
+  "tutorMovePlanCoverBlot": "Pullarını toparla. Açıkta tek pulu kapatmak hedefi ortadan kaldırırken ileride kullanışlı iniş noktalarını korur.",
+  "tutorMovePlanSafety": "Gelişimle güvenliği dengele: kurucu pulları kullanışlı noktalara yaklaştır ve hangi tek pulların vurulabileceğini kontrol et.",
+  "tutorMoveObservationNoLegalPlay": "Yasal pul hamlesi yok: sıra geçilmeli.",
+  "tutorMoveObservationHit": "Rakibin {count} pulunu vurursun; rakip diğer pulları hareket ettirmeden önce bardan yeniden giriş yapmalıdır.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Bardan {count} pul sokarsın.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "{count} pul toplarsın.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "{points} noktalarını yaparsın. İki veya daha fazla pul güvenli bir noktayı tutar ve rakibin oraya inmesini engeller.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Kapalı {pointLabel} {points} noktalarından vazgeçersin. Bu noktalar artık rakibi engellemez.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Açıkta tek pul bırakmazsın (önceden {previousCount}). Vurulacak tek pul yok.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "{count} açıkta tek pul bırakırsın (önceden {previousCount}). Başka bir kazanç yerine güvenliği seçmeden önce rakibin bunlara ulaşıp ulaşamayacağını kontrol et.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "En uzun kapalı nokta serisi: {count} (önceden {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Altı noktalı kapalı seri, kapalı kaldığı sürece geçilemez.",
+  "tutorMoveObservationPrimeBuild": "Bu seriyi uzatmak veya korumak istiyorsan kurucu pulları yakınında tut.",
+  "tutorMoveObservationPrimeSpares": "Kapalı noktalarda ikinin üzerinde {count} yedek pul var. Bir yedeği taşımak noktayı koruyabilir; son iki puldan birini taşımak noktayı açar.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Rakibin ev tahtasındaki tutunma noktaları: {points} (önceden {previousPoints}). Tutunma noktası pulları vuruştan korur; bırakmak güvenli dayanağı yarışta ilerlemeyle değiştirir.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Saf yarış: taraflar birbirini geçti ve hiçbir tarafta barda pul yok. Artık vurma mümkün değil; pulları verimli toplamak önem kazanır.",
+  "tutorMoveObservationNoReplyHit": "Rakip bu konumda yasal sonraki zarların hiçbirinde pul vuramaz. Temas sürdüğü için sonraki hamleler yeni fırsatlar yaratabilir.",
+  "tutorMoveObservationReplyHit": "Rakip {total} zar sonucunun {count} tanesinde vurabilir. Örneğin {dieOne}–{dieTwo}, {point}. noktan üzerindeki pula yasal vuruş sağlar. Vuruş mümkündür, ancak rakibin bunu seçeceği garanti değildir.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Ev tahtandaki {closedPoints} nokta kapalı. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Bir nokta açılana kadar rakip yeniden giriş yapamaz.",
+  "tutorMoveObservationOpenEntry": "Açık bir giriş noktasını kullanan zar, bardaki pulu oyuna döndürebilir.",
+  "tutorMoveComparisonDetail": "{factors} En iyi hamlenin tahmini kazanma şansı {delta} yüzde puan {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "daha yüksek",
+  "tutorMoveComparisonLower": "daha düşük",
+  "tutorMoveComparisonScoreContext": " Yine de daha üst sırada olabilir; çünkü gammon ve backgammon değerleri mevcut {scoreContext} durumuna göre değişir.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "bahis",
+  "tutorMoveComparisonMatchScore": "maç skoru",
+  "tutorMoveComparisonFactorBar": "En iyi hamle {playedCount} yerine rakibin {bestCount} pulunu barda bırakır. Barda olan pul, diğerleri hareket etmeden önce oyuna girmelidir.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "En iyi hamle {playedCount} yerine ev tahtanda {bestCount} noktayı kapalı tutar; vurulma sonrası {entryDifference} giriş noktası kalır.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "daha fazlasını kapatıyor",
+  "tutorMoveComparisonLeavingMore": "daha fazlasını açık bırakıyor",
+  "tutorMoveComparisonFactorShots": "En iyi hamle, {playedCount} yerine 36 zar sonucunun {bestCount} tanesinde karşı vuruşa izin verir. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Bu, hemen geri vurulma riskini azaltır.",
+  "tutorMoveComparisonExtraExposure": "Bu ek açıklığı, hamlenin başka yerde sağladığı kazançla karşılaştır.",
+  "tutorMoveComparisonFactorPrime": "En iyi hamlenin en uzun kapalı nokta serisi {playedCount} yerine {bestCount}; bu duvarı onu koruyabilecek pullarla karşılaştır.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "En iyi hamlenin tutunma noktaları {bestPoints}, senin hamleninki {playedPoints}. Tutunma noktası güvenli bir iniş yeri sağlar; bırakmak pulları eve yaklaştırır.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "En iyi hamlede {playedCount} yerine {bestCount} pul toplanmış. Her toplanan pul, daha sonra toplanacak bir pulun eksilmesi demektir.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "İki hamle de aynı anlık vurulma riskini, ev tahtası noktalarını, tutunma noktalarını ve toplanan pul sayısını bırakır. İniş noktalarını karşılaştır: sonraki zar pulları farklı kullanabilir.",
+  "tutorMoveComparisonSummaryBar": "En iyi hamle rakibin daha fazla pulunu bara göndererek diğer hamlelerini geciktirir.",
+  "tutorMoveComparisonSummaryHomeBoard": "En iyi hamle daha fazla ev tahtası noktasını kapatarak vurulma sonrası girişi zorlaştırır.",
+  "tutorMoveComparisonSummaryShots": "En iyi hamle daha az anlık vuruş zarı verir ve geri vurulma riskini azaltır.",
+  "tutorMoveComparisonSummaryPrime": "En iyi hamle daha uzun kapalı nokta serisini korur.",
+  "tutorMoveComparisonSummaryAnchors": "En iyi hamle rakibin ev tahtasında daha fazla güvenli tutunma noktası tutar.",
+  "tutorMoveComparisonSummaryBearOff": "En iyi hamle daha fazla pul toplar; daha sonra kaldırılacak pul sayısı azalır.",
+  "tutorMoveComparisonSummaryBlots": "Bu hamle {playedCount} tek pul bırakır; en iyi hamle {bestCount} bırakır.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "En iyi hamle {point}. noktada güvenli bir tutunma noktası korur.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "En iyi hamle, pullarından biri vurulursa diye daha fazla giriş noktasını kapatır.",
+  "tutorMoveComparisonSummarySimilarRisks": "Hamlelerin anlık riskleri benzer; sonraki zarda hangi iniş noktalarının işe yarayacağını karşılaştır.",
+  "tutorMoveAssessmentEquityLoss": "{value} equity",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} MWC yüzde puanı",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "nokta",
+  "tutorMovePointPlural": "nokta",
+  "tutorMoveNoPoints": "yok",
+  "tutorPlayedMove": "Oynanan: {move}",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorBestMove": "En iyi: {move}",
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorShowRankedPlays": "Sıralı hamleleri göster",
+  "tutorReviewRecordedMove": "Kararını burada incelemek için oyun günlüğünde tamamlanmış bir hamleye dokun.",
+  "tutorTopPlays": "En iyi hamleler",
+  "tutorNoHintsAvailable": "İpucu yok.",
+  "tutorPreviewThenConfirm": "Tahtada önizlemek için bir hamleye dokun, ardından Onayla.",
+  "tutorTopChoiceForPosition": "Bu konum için en iyi seçim",
+  "tutorAlternativePlay": "Alternatif hamle",
+  "tutorEngineEstimates": "Motor tahminleri",
+  "tutorEstimateScope": "0 ply tahmini — mevcut skor ve bahis — gelecekteki küp kararları hesaba katılmaz",
+  "tutorEquity": "Equity",
+  "tutorMwcPercent": "Maçı kazanma olasılığı, %",
+  "tutorNearTiesNote": "Daha derin analiz, birbirine yakın hamlelerin sırasını değiştirebilir.",
+  "tutorWhyThisPlay": "Bu hamle neden iyi?",
+  "tutorCompareAlternative": "Bu alternatifi karşılaştır",
+  "gameTutorCubeTake": "Eğitmen: kabul et",
+  "gameTutorCubePass": "Eğitmen: pas geç",
+  "practiceScreenTitle": "Bir kararı çalış",
+  "practiceUnavailable": "Bu çalışma pozisyonu artık kullanılamıyor.",
+  "practiceSubmitError": "Bu deneme değerlendirilemedi veya kaydedilemedi. İlerlemeniz değişmedi. Yeniden deneyin.",
+  "practiceTurnLabel": "Sıra {side} oyuncusunda · {dice}",
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "practiceHistoricalScoreUnavailable": "Geçmiş skor bilgisi yok; hamle, küp olmadan equity üzerinden değerlendiriliyor.",
+  "practiceScoreLine": "Skor: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, {matchLength} puana kadar",
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceCrawfordGame": " · Crawford oyunu",
+  "practiceNoDoublingCube": "Katlama küpü olmadan.",
+  "practiceCubeValue": "Küp değeri {value}.",
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceHistoricalCubeUnknown": "Geçmiş küp kuralları bilinmiyor.",
+  "practiceAfterBestPosition": "En iyi hamleden sonraki pozisyon",
+  "practiceAfterYourAnswerPosition": "Cevabınızdan sonraki pozisyon",
+  "practiceFindYourPlayPrompt": "Tahtada hamlenizi yapın ve ardından cevabınızı kontrol edin. İpucu gösterilmez.",
+  "practiceUndo": "Geri al",
+  "practiceCheckAnswer": "Cevabı kontrol et",
+  "practiceRevealNoCredit": "Cevabı göster (puan yok)",
+  "practiceAnswerRevealedNoCredit": "Cevap gösterildi — hatırlama puanı yok.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "practiceBestMoveLine": "En iyi: {move}",
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceOriginalGameLine": "İlk oyundaki hamle: {move} · {loss}",
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "practiceYourAnswerLine": "Cevabınız: {move}",
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceYourAnswerChip": "Cevabınız",
+  "practiceBestPlayChip": "En iyi hamle",
+  "practiceNextReview": "Sonraki tekrar: {date}.",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "practiceRecallCredit": "İyi ve en iyi cevaplar başarılı hatırlama sayılır. Erken tekrarlar aralığı uzatmaz.",
+  "practiceBackToLearning": "Öğrenmeye dön",
+  "practiceMarkBest": "En iyi",
+  "practiceMarkGood": "İyi",
+  "practiceMarkDubious": "Şüpheli",
+  "practiceMarkError": "Hata",
+  "practiceMarkBlunder": "Büyük hata",
+  "practiceMarkForced": "Zorunlu",
+  "newMatchYourSide": "Tarafınız",
+  "newMatchTutorMode": "Eğitmen modu",
+  "newMatchTutorDescription": "İpuçları, açıklamalar ve oyun yorumlarıyla öğrenin",
+  "newMatchTutoringOptions": "Eğitmen seçenekleri",
+  "newMatchTutoringOptionsDescription": "Bu maç için; oyun sırasında değiştirilebilir",
+  "setupMatchLength": "Maç uzunluğu",
+  "setupDifficulty": "Zorluk",
+  "setupDifficultyEasy": "Kolay",
+  "setupDifficultyMedium": "Orta",
+  "setupDifficultyHard": "Zor",
+  "setupDifficultyExpert": "Uzman",
+  "setupPlayWithoutCube": "Küp olmadan oyna",
+  "setupNoCubeThisMatch": "Bu maçta katlama küpü yok",
+  "diagnosticsCopySuccess": "Tanılama bilgileri panoya kopyalandı",
+  "diagnosticsReviewTitle": "Tanılama raporunu gözden geçir",
+  "diagnosticsPrivacyNotice": "Taslağı açmak, uygulama sürümü, platform ve hata ayrıntıları dâhil aşağıdaki bilgileri GitHub’a gönderir. Siz orada göndermeden herkese açık bir sorun oluşturulmaz. Bu bilgiler özel veri içeriyorsa iptal edin ve raporu kendiniz hazırlamak için kopyalama seçeneğini kullanın.",
+  "diagnosticsCancel": "İptal",
+  "diagnosticsOpenGitHub": "GitHub’ı aç",
+  "diagnosticsTitle": "Tanılama",
+  "diagnosticsReportTooltip": "GitHub’da sorun bildir",
+  "diagnosticsCopyTooltip": "Panoya kopyala",
+  "diagnosticsClearTooltip": "Günlüğü temizle",
+  "diagnosticsEmpty": "Kaydedilmiş hata yok.\n\nBir sorun oluşursa buraya kaydedilir — geri dönüp ayrıntıları hata bildirimine kopyalayın.",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · {matchLength} puana kadar",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · {matchLength} puana kadar",
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudYou": "Siz",
+  "gameHudAi": "Bilgisayar",
+  "gameHudGameNumber": "{number}. oyun",
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudMatchContext": "{score} · {game}",
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "gameHudHotSeatDetail": "{whiteLabel} – {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetail": "{opponent} rakibine karşı · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudOpponentDetailWithLevel": "{opponent} rakibine karşı · {level} · {pipsLabel} {mine}–{theirs}",
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameHudPips": "Pip",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Katla",
+  "gameHudMoreActions": "Diğer işlemler",
+  "gameHudSurrender": "Pes et…",
+  "gameHudThinking": "Düşünüyor",
+  "gameHudDoubleBeforeRoll": "Yalnızca kendi sıranızda zar atmadan önce katlayabilirsiniz.",
+  "gameHudNoDoubleCrawford": "Crawford oyununda katlama yoktur — maçı bu tek oyun belirler.",
+  "gameHudOnlyCubeOwner": "Yalnızca küpün sahibi katlayabilir; şu anda küp diğer tarafta.",
+  "gameHudDoubleUnavailable": "Katlama şu anda kullanılamıyor.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} ({matchLength} puana kadar)",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogPlayerWon": "{winner} bu oyunu kazanır ({points}).",
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonGammon": "{winner} bu oyunu kazanır ({points}, gammon).",
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonBackgammon": "{winner} bu oyunu kazanır ({points}, backgammon).",
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "gameDialogPlayerWonDrop": "{winner} bu oyunu kazanır ({points}) — {loser} katlamayı reddetti.",
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPlayerWonResignation": "{winner} bu oyunu kazanır ({points}) — {loser} pes etti.",
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "gameDialogPassDeviceTitle": "Cihazı devret",
+  "gameDialogPlayersTurn": "{name} oynuyor",
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "gameDialogTapToContinue": "Devam etmek için dokunun",
+  "gameDialogCubeOfferedTitle": "Katlama teklif edildi",
+  "gameDialogCubeOfferMessage": "{doubler}, küpü {value} yapmak istiyor. Kabul mü, pas mı?{tutorLine}",
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "gameDialogPass": "Pas",
+  "gameDialogTake": "Kabul et",
+  "gameDialogResignationTitle": "Pes etme teklifi",
+  "gameDialogResignationMessage": "{resigner}, {value} karşılığında pes etmeyi teklif ediyor. Kabul mü, ret mi?",
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "gameDialogResignSingle": "tek oyun",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Reddet",
+  "gameDialogAccept": "Kabul et",
+  "gameDialogGameOverTitle": "Oyun bitti",
+  "gameDialogNextGame": "Sonraki oyun",
+  "gameDialogMatchOverTitle": "Maç bitti",
+  "gameDialogNobody": "Hiç kimse",
+  "gameDialogMatchWinner": "{winner} maçı kazanır.",
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "gameDialogSavedToHistory": "Geçmişe kaydedildi",
+  "gameDialogDone": "Bitti",
+  "gameMatchSummary": "Maç özeti",
+  "gameAnalyzeGame": "Oyunu analiz et",
+  "analysisTitle": "Analiz",
+  "analysisMetricsTooltip": "Bu sayılar ne anlama geliyor?",
+  "analysisError": "Oyun analiz edilemedi: {error}",
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisNoPositions": "Bu oyunda gösterilecek pozisyon yok.",
+  "analysisInProgress": "Analiz ediliyor…",
+  "analysisPercent": "{percent}%",
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisPlayed": "Oynanan",
+  "analysisBest": "En iyi",
+  "analysisPrevious": "Önceki",
+  "analysisNext": "Sonraki",
+  "analysisPositionBeforeCube": "Küp kararından önceki pozisyon",
+  "analysisPositionAtPoint": "Oyunun bu anındaki pozisyon",
+  "analysisShowingBestBefore": "Hamleden önceki pozisyonda en iyi hamle gösteriliyor",
+  "analysisShowingBefore": "Hamleden önceki pozisyon gösteriliyor",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "analysisMoveLoss": " −{loss}",
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisExcludedFromAverages": " · ortalamalara dahil değil",
+  "analysisNoPlay": "(hamle yok)",
+  "analysisBestMoveLine": "En iyi: {move}",
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "analysisExplain": "Açıkla",
+  "analysisSaveForPractice": "Antrenman için kaydet",
+  "analysisSaveError": "Bu karar kaydedilemedi: {error}",
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisCubeInfo": "{side}: {action} · {mark} · kayıp {loss}",
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "analysisCubeDecision": "Küp kararı",
+  "analysisCubePlayed": "Oynanan: {action} (maçı kazanma olasılığı %{percent}).",
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisCubeBest": "En iyi: {action} (maçı kazanma olasılığı %{percent}).",
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisClose": "Kapat",
+  "analysisMoves": "Hamleler",
+  "analysisForced": "Zorunlu",
+  "analysisMarkBest": "En iyi",
+  "analysisMarkGood": "İyi",
+  "analysisMarkDubious": "Şüpheli",
+  "analysisMarkError": "Hata",
+  "analysisMarkBlunder": "Büyük hata",
+  "analysisSummaryMeanLoss": "Ortalama kayıp {loss}",
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisSummaryCheckerDecisions": "{count} pul kararı",
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryBlunders": "Büyük hatalar {count}",
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryCubeLoss": "Küp kaybı {loss}",
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisRollWithoutDoubling": "{side} ikiye katlamadan zar atıyor",
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "analysisCubeNoDouble": "Katlama",
+  "analysisCubeDouble": "Katla",
+  "analysisCubeTake": "Kabul et",
+  "analysisCubePass": "Pas geç",
+  "tutorOptions": "Eğitmen seçenekleri",
+  "tutorCollapseTooltip": "Eğitmeni daralt",
+  "tutorExpandTooltip": "Eğitmeni genişlet",
+  "scoreSheetNoMoves": "Hamle yok",
+  "gameTapNoLegalMove": "Yasal hamleleri görmek için puluna dokun.",
+  "gameTapNoLegalMoveUndo": "Önce pula, sonra hedefe dokun.",
+  "gameDragHint": "Pulu hedefe sürükle.",
+  "commonGotIt": "Anladım",
+  "gameHintStageBeforeHint": "İpucundan önce",
+  "surrenderTitle": "Oyundan çekil?",
+  "surrenderSingle": "Tekli yenilgi",
+  "surrenderGammon": "Mars yenilgisi",
+  "surrenderBackgammon": "Backgammon yenilgisi",
+  "surrenderChoosePlayer": "Oyuncu seç",
+  "cubeDouble": "Katla",
+  "gameStatusRolling": "Zar atılıyor",
+  "gameStatusThinking": "Bilgisayar düşünüyor",
+  "gameStatusPlayersTurn": "{player} sırası",
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "historyTitle": "Maç geçmişi",
+  "historyEmpty": "Henüz hiç maç oynanmadı.",
+  "historyDeleteConfirmTitle": "Bu maç silinsin mi?",
+  "actionCancel": "İptal",
+  "actionDelete": "Sil",
+  "historyDeleteFailed": "Maç silinemedi.",
+  "historyComplete": "Tamamlandı",
+  "historyUnfinished": "Tamamlanmadı",
+  "historyMatchTitle": "Maç",
+  "historyNoGames": "Henüz kaydedilmiş oyun yok.",
+  "historyCrawford": "Crawford kuralı",
+  "historyModeComputer": "Bilgisayara karşı",
+  "historyModeTwoPlayers": "İki oyuncu",
+  "historyModeOnline": "Çevrimiçi",
+  "historyModeNearby": "Yakındakilerle oyna",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "Sürüyor",
+  "historyOutcomeSingle": "tekli",
+  "historyOutcomeGammon": "mars",
+  "historyOutcomeBackgammon": "backgammon",
+  "learningRefreshTooltip": "Öğrenme ilerlemesini yenile",
+  "learningOptions": "Öğrenme seçenekleri",
+  "learningResetMenu": "Antrenman ilerlemesini sıfırla",
+  "learningLoadFailed": "Öğrenme ilerlemesi yüklenemedi.",
+  "actionRetry": "Yeniden dene",
+  "learningHeading": "Kararlarından öğren",
+  "learningBothSides": "İki taraf",
+  "learningHumansOnly": "Yalnızca insan kararları",
+  "learningHumanOnlyHelp": "Bilgisayar ve uzaktaki oyuncuların kararlarını dahil etmek için kapat",
+  "learningAnalyseSavedGames": "Kaydedilen oyunları analiz et",
+  "learningOpenHistory": "Maç geçmişini aç",
+  "learningRecurringThemes": "Tekrarlayan temalar",
+  "learningNoThemes": "Bu seçimde henüz tekrarlayan hata teması yok.",
+  "learningSaveMistakes": "Bu hataları antrenman için kaydet",
+  "learningSpacedPractice": "Aralıklı çalışma",
+  "learningNoSavedPositions": "Tekrar oynatmadan karar kaydet veya yukarıdaki hata düğmesini kullan.",
+  "learningReadyToReview": "İncelemeye hazır",
+  "learningSuccessStreak": "Arka arkaya {count} başarılı inceleme",
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnswerRevealed": "Yanıt gösterildi",
+  "learningSuccessfulRecall": "Başarılı hatırlama",
+  "learningTryAgain": "Tekrar dene",
+  "actionRemove": "Kaldır",
+  "onlineTitle": "Çevrimiçi oyun",
+  "onlineUnassistedNote": "Çevrimiçi oyunda eğitmen kullanılamaz.",
+  "onlineNotConfiguredTitle": "Çevrimiçi oyun yapılandırılmamış",
+  "onlineNotConfiguredBody": "Bu sürümde çevrimiçi oyun kullanılamıyor.",
+  "onlineErrorNoMatch": "Maç bulunamadı.",
+  "onlineErrorSeatTaken": "Koltuk zaten dolu.",
+  "onlineErrorPermission": "Bu işlem için izniniz yok.",
+  "onlineErrorGeneric": "Çevrimiçi oyuna bağlanılamadı.",
+  "onlineMatchFinished": "Maç bitti.",
+  "onlineEnterCodeError": "Geçerli bir kod girin.",
+  "onlineOpponentShort": "Rakip",
+  "onlineMatchInProgress": "Maç sürüyor",
+  "onlineResumePrompt": "{code} maçını oynuyordun. Devam edilsin mi?",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Yeniden katıl",
+  "onlineForgetMatch": "Maçı unut",
+  "onlineCreateTitle": "Çevrimiçi maç oluştur",
+  "onlineMatchLength": "Maç uzunluğu",
+  "onlineNoCubeTitle": "Küpsüz oyun",
+  "onlineNoCubeSubtitle": "Katlama küpü olmadan oyna.",
+  "onlineCreate": "Oluştur",
+  "onlineWaitingOpponent": "Rakip bekleniyor",
+  "onlineShareCode": "Kodu paylaş",
+  "onlineCopyCode": "Kodu kopyala",
+  "onlineCodeCopied": "Kod kopyalandı",
+  "onlineJoinTitle": "Maça katıl",
+  "onlineRoomCode": "Oda kodu",
+  "onlineJoin": "Katıl",
+  "lanTitle": "Yakındakilerle oyna",
+  "lanTabHost": "Sunucu ol",
+  "lanTabJoin": "Katıl",
+  "lanHostTitle": "Oyun sunucusu ol",
+  "lanStartHosting": "Sunucuyu başlat",
+  "lanWaitingPlayerTitle": "Oyuncu bekleniyor",
+  "lanWaitingPlayer": "Oyuncu bekleniyor…",
+  "lanStopHosting": "Sunuculuğu durdur",
+  "lanOnNetwork": "Bu ağda",
+  "lanCopyAddress": "Adresi kopyala",
+  "lanAddressCopied": "Adres kopyalandı",
+  "lanScanHostTitle": "Sunucuyu tara",
+  "lanScanQr": "QR kodunu tara",
+  "lanNearbyGames": "Yakındaki oyunlar",
+  "lanSearching": "Yakındaki oyunlar aranıyor…",
+  "lanStillSearching": "Aramaya devam ediliyor…",
+  "lanEnterAddress": "Adres gir",
+  "lanIpAddress": "IP adresi",
+  "lanPort": "Bağlantı noktası",
+  "lanInvalidPort": "1 ile 65535 arasında bir bağlantı noktası girin.",
+  "lanJoinWrongCode": "Oda kodu yanlış. Diğer cihazdaki dört rakamı kontrol edin.",
+  "lanConnect": "Bağlan",
+  "lanBack": "Geri",
+  "lanTryAgain": "Yeniden dene",
+  "lanStatusBusy": "Oda kullanımda — bekleniyor…",
+  "lanStatusReconnecting": "Bağlantı kesildi — yeniden deneniyor…",
+  "lanStatusConnected": "Bağlandı — maç başlıyor…",
+  "lanStatusFailed": "Katılınamadı.",
+  "lanStatusConnecting": "Bağlanıyor…",
+  "tutorCubelessEstimateScope": "0-ply küpsüz tahmin · skor bilinmiyor",
+  "tutorLossPp": "Kayıp pp",
+  "tutorLoss": "Kayıp",
+  "surrenderNamedConcedes": "{player} mevcut oyundan çekiliyor.",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderConcedes": "Mevcut oyundan çekiliyor.",
+  "surrenderAvailableAtNamedTurn": "{player} sırasının başında kullanılabilir",
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "surrenderAvailableAtYourTurn": "Sıranın başında kullanılabilir",
+  "commonCancel": "İptal",
+  "commonDone": "Tamam",
+  "cubeBlockedOtherPlayersTurn": "Şu anda diğer oyuncunun sırası.",
+  "cubeBlockedCrawford": "Crawford oyununda küp kullanılamaz.",
+  "cubeBlockedOwnedByOther": "Yalnızca küp sahibi katlayabilir; şu anda diğer tarafın elinde.",
+  "cubeBlockedUnavailable": "Şu anda katlama kullanılamıyor.",
+  "cubeAdviceOpponentTake": "Katla — rakip kabul etmeli",
+  "cubeAdviceOpponentPass": "Katla — rakip pas geçmeli",
+  "gameErrorBannerLabel": "Hata: {error}",
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "metricExplainerTitle": "Metrikleri anlama",
+  "metricExplainerTooltip": "Bu sayılar ne anlama geliyor?",
+  "metricExplainerMwcTitle": "Maç kazanma şansı (MWC)",
+  "metricExplainerSearchTitle": "Arama ve belirsizlik",
+  "metricExplainerEquityTitle": "Eşitlik değeri",
+  "metricExplainerEquityLossTitle": "Eşitlik kaybı (örn. −0,016)",
+  "metricExplainerErrorRateTitle": "Hata oranı",
+  "metricExplainerMoveMarksTitle": "Hamle işaretleri",
+  "metricExplainerGotIt": "Anladım",
+  "metricExplainerThresholdBest": "kayıp < 0,001",
+  "metricExplainerThresholdGood": "kayıp < 0,020",
+  "metricExplainerThresholdDubious": "kayıp < 0,050",
+  "metricExplainerThresholdError": "kayıp < 0,110",
+  "metricExplainerThresholdBlunder": "kayıp ≥ 0,110",
+  "historyLoadFailed": "Geçmiş yüklenemedi:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyDeleteConfirmBody": "{scoreLine}\n\nMaç ve içindeki tüm oyun kayıtları kalıcı olarak silinir. Bu işlem geri alınamaz.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyWinner": "Kazanan: {side}",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyMatchLoadFailed": "Maç yüklenemedi:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Oyunlar yüklenemedi:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGameTitle": "Oyun {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyScoreLine": "Beyaz {whiteScore} — {blackScore} Siyah  ({matchLength} puana kadar)",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyGameResult": "{side}, {points} kazanıyor ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "learningDecisionSummary": "{decisions} karar · geliştirilecek: {mistakes} · büyük hata: {blunders}",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAverageLoss": "Ortalama kayıp ({decisions} karar): {loss}",
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "learningForcedDisclaimer": "Zorunlu hamleler hariç tutulur. Bunlar motor tahminleridir, turnuva puanı değildir.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Kaydedilen oyun analiz edilmeli veya analizi yenilenmeli.} other{Kaydedilen # oyun analiz edilmeli veya analizi yenilenmeli.}}",
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeDecisions": "Tekrar incelenecek {count} karar. Bir konumun birden fazla teması olabilir.",
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSavedMistakes": "Antrenman listende {count} karar var. Mevcut kayıtlar bir kez tutulur.",
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSaveMistakesFailed": "Bazı kararlar kaydedilemedi. Tamamlanan kayıtlar korunuyor; yeniden dene.",
+  "learningPracticeCounts": "Şimdi zamanı gelen: {due} · kayıtlı: {saved} · deneme: {attempts} · başarılı hatırlama: {successes}",
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningPositionTitle": "{side} kararı · oyun {gameId}",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningReviewDue": "İncele {date}",
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "learningAttemptSubtitle": "{date} · kayıtlı konum {positionId}",
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisProgress": "Analiz edilen oyun: {completed} · kullanılamayan: {failed}.",
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisComplete": "Analiz edilen oyun: {completed}.",
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisCompleteWithErrors": "{completed} oyun analiz edildi; {failed} analiz edilemedi. Motor hazır olduğunda yeniden dene.",
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeHitting": "Vurma ve tempo",
+  "learningThemeSafety": "Açık pullar ve güvenlik",
+  "learningThemePointMaking": "Nokta yapma",
+  "learningThemePrime": "Prime ve blokajlar",
+  "learningThemeAnchor": "Çapalar ve kaçış",
+  "learningThemeRace": "Yarış verimliliği",
+  "learningThemeBearOff": "Pulları toplama",
+  "learningThemeBarEntry": "Bardan giriş",
+  "learningThemeCube": "Küp kararları",
+  "learningAnalysisStarting": "Kaydedilen oyunlar analiz ediliyor…",
+  "learningIntro": "İlerleme bu cihazda saklanır. Tekrarlayan temaları gözden geçir, ardından yanıtı görmeden kayıtlı konumları yeniden dene. Beyaz ve Siyah ayrı ayrı incelenebilir.",
+  "learningEmptyProfile": "Öğrenme profilini oluşturmak için bir oyun oyna ve bitir. Oyun tekrarından tek tek kararları da kaydedebilirsin.",
+  "learningIntervalsHelp": "Başarılı incelemeler 1, 3, 7, 14 ve 30 gün sonra yeniden gelir. Hatalar veya gösterilen yanıtlar 10 dakika sonra döner. Erken tekrarlar aralığı ilerletmez.",
+  "learningAnswerContext": "Antrenman sonuçları, başlangıç konumu rakibe ait olsa bile buradaki yanıtlarını yansıtır.",
+  "learningRemoveTooltip": "Kayıtlı kararı kaldır",
+  "learningRecentPractice": "Son antrenman",
+  "learningRemoveTitle": "Bu alıştırma kaldırılsın mı?",
+  "learningRemoveBody": "Bu işlem alıştırmanın denemelerini kaldırır. Asıl oyun geçmişte kalır.",
+  "learningRemoveFailed": "Bu alıştırma kaldırılamadı.",
+  "learningResetTitle": "Antrenman ilerlemesi sıfırlansın mı?",
+  "learningResetBody": "Tüm antrenman denemeleri ve inceleme aralıkları kaldırılır. Kayıtlı alıştırmalar ve maç geçmişi korunur; tüm alıştırmalar şimdi yeniden yapılabilir.",
+  "learningResetAction": "İlerlemeyi sıfırla",
+  "learningResetFailed": "Antrenman ilerlemesi sıfırlanamadı.",
+  "lanUnassistedNote": "Yakındaki oyunlar eğitmen içermez. Maçtan sonra hamlelerini inceleyip hatalarını çalış.",
+  "lanGameStartFailed": "Oyun başlatılamadı. Diğer cihaz yeniden katılmayı deneyebilir.",
+  "lanHostPortInUse": "Sunucu başlatılamadı — bağlantı noktası zaten kullanılıyor. Diğer Backgammon Buddy kopyalarını kapatıp yeniden dene.",
+  "lanHostStartFailed": "Sunucu başlatılamadı. Wi-Fi bağlantını kontrol edip yeniden dene.",
+  "lanHostHelp": "İki cihaz da aynı Wi-Fi ağında olmalı. Bu cihaz zarları atar ve skoru tutar.",
+  "lanRoomCodeInfo": "Bu kodu diğer oyuncuya söyle. Erişim sağlar — uygulama kodu ağ üzerinden göndermez.",
+  "lanFindNearbyPort": "Diğer cihazdan yakındaki oyunları aramasını iste. {port} bağlantı noktasında dinleniyor.",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "lanScanHostHelp": "Diğer cihaz sunucu ekranında QR kodu gösterir. Tarama, adresi ve oda kodunu doldurur.",
+  "lanScannerUnavailable": "Kamera veya kamera izni kullanılamıyor. Bunun yerine adresi ve oda kodunu aşağıya gir.",
+  "lanInvalidQr": "Bu QR kodu Backgammon Buddy oyununa ait değil. Diğer cihazın sunucu ekranındaki kodu tara.",
+  "lanScannerFailed": "Tarayıcı açılamadı. Adresi ve kodu aşağıya gir.",
+  "lanNoGamesFound": "Henüz oyun bulunamadı. Diğer cihazın sunucu olduğundan ve ikisinin aynı Wi-Fi ağında olduğundan emin ol ya da adresini gir.",
+  "lanEnterAddressHelp": "Otomatik bulma her ağda çalışmaz (iOS’ta tamamen engellenebilir). Sunucu ekranı ne yazacağını gösterir.",
+  "lanEnterAddressError": "Diğer cihazda gösterilen adresi gir.",
+  "lanEnterRoomCodeError": "Diğer cihazdaki 4 haneli kodu gir.",
+  "lanJoinVersionMismatch": "Diğer cihazda Backgammon Buddy’nin farklı sürümü var.",
+  "lanJoinHandshakeFailed": "Cihaz Backgammon Buddy gibi yanıt vermedi. Adresi ve bağlantı noktasını kontrol et.",
+  "lanJoinFailed": "Katılınamadı. Adresi ve oda kodunu kontrol edip yeniden dene.",
+  "lanJoinTarget": "{name} oyununa katıl",
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "lanJoinTargetHelp": "Diğer cihazda gösterilen 4 haneli kodu gir.",
+  "lanJoiningTarget": "{name} oyununa katılıyor",
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "analysisCubeEstimate": "Sırası gelen oyuncunun bakış açısından 0-ply tahmini. Rakibin en iyi kabul/pas yanıtını varsayar. Kabul edilen katlama dalında, gelecekteki yeniden katlamaların tam araması yerine 0,7 küp ömrü yaklaşımı kullanılır. Daha derin analiz yanıtı değiştirebilir.",
+  "metricExplainerMwcBody": "Skor biliniyorsa pul hamleleri tahmini maç kazanma şansına göre sıralanır. Kayıp yüzde puan (pp) olarak verilir: 1 pp, %51’in %50’ye düşmesi demektir. Mevcut küp bahsi ile mars/backgammon sonuçları hesaba katılır. Zorunlu paslar ve tek yasal pozisyonla sonuçlanan atışlar ortalamaya katılmaz.",
+  "metricExplainerSearchBody": "Pul hamlesi sıralamaları simülasyon değil, hamle sonrası statik 0-ply tahminleridir. Maç değerleri maç eşitlik tablosunu kullanır ve gelecekteki küp sıralarını içermez. Küp incelemesi, kabul edilen katlamalarda kısmi 0,7 küp ömrü yaklaşımı kullanır; tam küplü arama değildir. Kalan skor 25’i aşarsa tablonun 25-away sınırı kullanılır. Derin analiz yakın sonuçları değiştirebilir; kalibre edilmiş güven aralığı yoktur.",
+  "metricExplainerEquityBody": "Skor yoksa küpsüz eşitlik, küp 1 değerindeyken pozisyonun ortalama puan değerini gösterir. +1,0 ortalama bir puan kazanmayı, −0,5 yarım puan kaybetmeyi beklediğin anlamına gelir.",
+  "metricExplainerEquityLossBody": "Oynadığın hamleyi motorun en iyi hamlesiyle karşılaştırırız. Eşitlik kaybı, hamlenin vazgeçtiği beklenen değerdir. −0,016, hamlenin en iyiden yalnızca 0,016 puan kötü olduğunu, yani ufak bir hata olduğunu gösterir. 0,000 en iyi hamleyi bulduğun anlamına gelir.",
+  "metricExplainerErrorRateBody": "Ortalama kayıp, puanlanan pul kararlarının gösterilen birimdeki ortalamasıdır. Küp kararlarının ayrı ortalaması vardır. Daha düşük değer motorun en iyi tahminlerine daha yakın hamleler demektir; kalibre edilmiş oyuncu puanı değildir.",
+  "metricExplainerMoveMarksBody": "MWC öğretim aralıkları: En iyi < 0,05 pp, İyi < 0,5 pp, Şüpheli < 1,5 pp, Hata < 3 pp, Büyük hata ≥ 3 pp. Bunlar kalibre edilmiş güven ya da turnuva puanı değil, eğitim aralıklarıdır.\n\nKüpsüz eşitlik öğretim aralıkları:"
 }

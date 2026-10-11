@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/localization_lookup.dart';
+
 /// Opens the plain-language [MetricExplainerDialog].
 ///
 /// Shared by every surface that shows equity numbers: the analysis screen's
@@ -20,90 +22,75 @@ class MetricExplainerDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
+    final l10n = appLocalizationsOf(context);
     return AlertDialog(
-      title: const Text('Understanding the metrics'),
+      title: Text(l10n.metricExplainerTitle),
       content: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Match-winning chance (MWC)', style: text.titleSmall),
+            Text(l10n.metricExplainerMwcTitle, style: text.titleSmall),
             const SizedBox(height: 4),
-            const Text(
-              'When the score is known, checker plays are ranked by '
-              'estimated chance of winning the match. Loss is in percentage '
-              'points (pp): 1 pp means 51% falls to 50%. The current cube stake '
-              'and gammon/backgammon outcomes are included. Forced passes and '
-              'rolls with one legal resulting position are excluded from averages.',
-            ),
+            Text(l10n.metricExplainerMwcBody),
             const SizedBox(height: 12),
-            Text('Search and uncertainty', style: text.titleSmall),
+            Text(l10n.metricExplainerSearchTitle, style: text.titleSmall),
             const SizedBox(height: 4),
-            const Text(
-              'Checker rankings are 0-ply static after-play estimates, '
-              'not rollouts. Match values use a match equity table and no future '
-              'cube turns. Cube reviews use a partial 0.7 cube-life approximation '
-              'on taken doubles. Neither is full cubeful search. Away scores '
-              'above 25 use the table’s 25-away boundary. Near ties can change '
-              'with deeper analysis; there is no calibrated confidence interval.',
-            ),
+            Text(l10n.metricExplainerSearchBody),
             const SizedBox(height: 12),
-            Text('Equity', style: text.titleSmall),
+            Text(l10n.metricExplainerEquityTitle, style: text.titleSmall),
             const SizedBox(height: 4),
-            const Text(
-              'If the score is unavailable, cubeless equity is how many points a position is worth on average — the '
-              'expected result with the cube at 1. +1.0 means you expect to win '
-              'one point; −0.5 means you expect to lose half a point.',
-            ),
+            Text(l10n.metricExplainerEquityBody),
             const SizedBox(height: 12),
-            Text('Equity loss (e.g. −0.016)', style: text.titleSmall),
+            Text(l10n.metricExplainerEquityLossTitle, style: text.titleSmall),
             const SizedBox(height: 4),
-            const Text(
-              'For each move we compare what you played against the engine\'s '
-              'best play. The equity loss is how much expected value your move '
-              'gave up. −0.016 means the move was only 0.016 points worse than '
-              'the best — a tiny slip. 0.000 means you found the best play.',
-            ),
+            Text(l10n.metricExplainerEquityLossBody),
             const SizedBox(height: 12),
-            Text('Error rate', style: text.titleSmall),
+            Text(l10n.metricExplainerErrorRateTitle, style: text.titleSmall),
             const SizedBox(height: 4),
-            const Text(
-              'Mean loss averages your graded checker decisions in the displayed '
-              'unit. Cube decisions have their own average. Lower means closer '
-              'to this engine’s top estimates; it is not a calibrated player rating.',
-            ),
+            Text(l10n.metricExplainerErrorRateBody),
             const SizedBox(height: 12),
-            Text('Move marks', style: text.titleSmall),
+            Text(l10n.metricExplainerMoveMarksTitle, style: text.titleSmall),
             const SizedBox(height: 4),
-            const Text(
-              'MWC teaching bands: Best < 0.05 pp, Good < 0.5 pp, '
-              'Dubious < 1.5 pp, Error < 3 pp, Blunder ≥ 3 pp. These are product '
-              'teaching bands, not calibrated confidence or tournament ratings.\n\n'
-              'Cubeless equity teaching bands:',
-            ),
+            Text(l10n.metricExplainerMoveMarksBody),
             const SizedBox(height: 8),
-            _threshold(context, Colors.green.shade700, 'Best', 'lost < 0.001'),
-            _threshold(context, Colors.green.shade600, 'Good', 'lost < 0.020'),
+            _threshold(
+              context,
+              Colors.green.shade700,
+              l10n.analysisMarkBest,
+              l10n.metricExplainerThresholdBest,
+            ),
+            _threshold(
+              context,
+              Colors.green.shade600,
+              l10n.analysisMarkGood,
+              l10n.metricExplainerThresholdGood,
+            ),
             _threshold(
               context,
               Colors.amber.shade800,
-              'Dubious',
-              'lost < 0.050',
+              l10n.analysisMarkDubious,
+              l10n.metricExplainerThresholdDubious,
             ),
             _threshold(
               context,
               Colors.orange.shade800,
-              'Error',
-              'lost < 0.110',
+              l10n.analysisMarkError,
+              l10n.metricExplainerThresholdError,
             ),
-            _threshold(context, Colors.red.shade700, 'Blunder', 'lost ≥ 0.110'),
+            _threshold(
+              context,
+              Colors.red.shade700,
+              l10n.analysisMarkBlunder,
+              l10n.metricExplainerThresholdBlunder,
+            ),
           ],
         ),
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Got it'),
+          child: Text(l10n.metricExplainerGotIt),
         ),
       ],
     );

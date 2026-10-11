@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Čísla bodů v učebních poznámkách se počítají od domácí desky hráče na tahu.",
   "tutorHittingRollNote": "Počet možností zásahu zahrnuje všech 36 uspořádaných výsledků hodu a legální přímé i nepřímé zásahy; jde o příležitosti, nikoli předpověď soupeřovy volby.",
   "tutorNoEvaluatedAlternatives": "Pro tento tah nejsou k dispozici vyhodnocené alternativy.",
-  "tutorForcedPassNoDecision": "Vynucený pas neobsahuje rozhodnutí o tahu dámami."
+  "tutorForcedPassNoDecision": "Vynucený pas neobsahuje rozhodnutí o tahu dámami.",
+  "settingsReset": "Obnovit výchozí",
+  "settingsAppLanguage": "Jazyk aplikace",
+  "settingsTheme": "Motiv",
+  "settingsThemeSystem": "Podle systému",
+  "settingsThemeLight": "Světlý",
+  "settingsThemeDark": "Tmavý",
+  "settingsAnimationSpeed": "Rychlost animací",
+  "settingsAnimationNone": "Žádná",
+  "settingsAnimationNormal": "Normální",
+  "settingsAnimationFast": "Rychlá",
+  "settingsDiceRollAnimation": "Animace hodu kostkami",
+  "settingsDiceRollAnimationHelp": "Před každým hodem kostky zamíchejte",
+  "settingsDefaultMatchLength": "Výchozí délka zápasu",
+  "settingsDefaultDifficulty": "Výchozí obtížnost",
+  "settingsDifficultyEasy": "Lehká",
+  "settingsDifficultyMedium": "Střední",
+  "settingsDifficultyHard": "Těžká",
+  "settingsDifficultyExpert": "Expertní",
+  "settingsTutorModeDefault": "Výchozí režim tutora",
+  "settingsTutorAuto": "Automaticky",
+  "settingsTutorOn": "Zapnuto",
+  "settingsTutorOff": "Vypnuto",
+  "settingsTutorModeHelp": "Režim Automaticky zapne tutora při všech obtížnostech počítače. Volby Zapnuto a Vypnuto nastavují počáteční stav pro místní zápasy. Hry v okolí a online zápasy probíhají bez nápovědy; uložené partie si můžete později projít. Níže uvedené výukové předvolby se ukládají v tomto zařízení.",
+  "settingsTutorPreferences": "Předvolby tutora",
+  "settingsTutorPreferencesSubtitle": "Uložená výchozí nastavení pro budoucí zápasy",
+  "settingsTutorSaveError": "Předvolby tutora se nepodařilo uložit.",
+  "settingsGameplay": "Hra",
+  "settingsMoveHighlights": "Zvýraznění tahů",
+  "settingsMoveHighlightsHelp": "Označí kameny, kterými lze táhnout, a zvýrazní cílové body",
+  "settingsDragToMove": "Přesouvání tažením",
+  "settingsDragToMoveHelp": "Přetáhněte kámen na cílový bod (funguje i klepnutí)",
+  "settingsCombinedMoves": "Kombinované tahy",
+  "settingsCombinedMovesHelp": "Jedním klepnutím přesunete kámen pomocí obou kostek",
+  "settingsRotateBoard": "Otáčet desku mezi tahy",
+  "settingsRotateBoardHelp": "Při hře u jednoho zařízení otočí pohled k hráči, který je na tahu",
+  "settingsPassDevice": "Obrazovka předání zařízení",
+  "settingsPassDeviceHelp": "Při předávání zařízení mezi hráči zakryje desku",
+  "settingsShowScore": "Zobrazit skóre",
+  "settingsShowScoreHelp": "V záhlaví zobrazuje průběžné skóre zápasu",
+  "settingsBuddyMode": "Režim Buddy",
+  "settingsBuddyTerse": "Stručný",
+  "settingsBuddyFriendly": "Přátelský",
+  "settingsBuddyTerseHelp": "Jak Buddy vyslovuje tah: „13/8, 24/22“ — stručný zápis, který hráči u desky běžně používají.",
+  "settingsBuddyFriendlyHelp": "Jak Buddy vyslovuje tah: „Přesuň jeden kámen z 13 na 8 a jeden z 24 na 22.“",
+  "settingsListenForDice": "Naslouchat kostkám",
+  "settingsListenForDiceHelp": "Když Buddy uslyší hod, dříve zkontroluje desku. Vypnutí nemění nic dalšího.",
+  "settingsDiagnostics": "Diagnostika",
+  "settingsErrorLog": "Protokol chyb",
+  "settingsErrorLogHelp": "Nedávné chyby připravené ke zkopírování do hlášení o chybě",
+  "settingsReportBug": "Nahlásit chybu",
+  "settingsReportBugHelp": "Otevře průvodce nahlášením chyby na GitHubu",
+  "settingsSuggestIdea": "Navrhnout nápad",
+  "settingsSuggestIdeaHelp": "Pomozte nám vylepšit tutora a hru",
+  "settingsAbout": "O aplikaci",
+  "settingsOpenSourceLicenses": "Licence open-source softwaru",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "tutorPhraseGameFinished": "Partie skončila.",
+  "tutorPhraseReviewFinishedGame": "Projděte si tahy a najděte rozhodnutí, které stojí za procvičení.",
+  "tutorPhraseCubeOffered": "Bylo nabídnuto zdvojnásobení sázky.",
+  "tutorPhraseCubeDecisionPrompt": "Než naplánujete tah kamenů, rozhodněte se, zda zdvojnásobení přijmete, nebo odmítnete.",
+  "tutorPhraseCubeScoreContext": "Skóre zápasu mění hodnotu dodatečné sázky.",
+  "tutorPhraseResignationOffered": "Soupeř nabídl vzdání partie.",
+  "tutorPhraseResignationDecisionPrompt": "Před přijetím vzdání nebo pokračováním porovnejte nabídnuté body s pozicí.",
+  "tutorPhraseNoLegalPlay": "Při tomto hodu nelze provést žádný legální tah.",
+  "tutorPhraseForcedPassPrompt": "Vynucené vynechání tahu není chyba; počkejte na další hod.",
+  "tutorPhraseOnlyOneResult": "Existuje jen jedna legální výsledná pozice.",
+  "tutorPhraseForcedTurnPrompt": "Proveďte vynucený tah. Při tomto hodu není z čeho vybírat ani co hodnotit.",
+  "tutorPhrasePipCountsLevel": "Počet pipů je vyrovnaný.",
+  "tutorPhrasePipCountsAhead": "Pipový náskok: {count}.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "Ztráta na pipech: {count}.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "Nejprve musíte vrátit kameny z baru. Počet na baru: {count}.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Nejprve vraťte kámen z baru a pak hledejte bezpečný bod, kam ho umístit.",
+  "tutorPhraseOpponentHomePoints": "Soupeř má ve své domácí desce zavřených bodů: {count}.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Závod ve vyvádění kamenů.",
+  "tutorPhrasePureRace": "Čistý závod.",
+  "tutorPhraseBearOffSpread": "Vyvádějte kameny a zároveň je rozložte tak, aby se hodily pro další hod.",
+  "tutorPhraseBringRearCheckersHome": "Přesuňte zadní kameny domů a nehromaděte jich příliš mnoho na jednom bodě.",
+  "tutorPhraseArmiesHavePassed": "Hráči se minuli; další údery už nejsou možné.",
+  "tutorPhraseContactStillMatters": "{part} Kontakt je stále důležitý.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "Soupeř má na baru kamenů: {count}.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Udržujte body zavřené a přitom přivádějte zbývající kameny domů.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Budujte nebo udržujte svou domácí desku, zatímco se soupeř snaží vstoupit z baru.",
+  "tutorPhraseHomePointsCloseEntries": "Ve své domácí desce držíte zavřených bodů: {count}; každý z nich zavírá jedno vstupní číslo.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Kontakt s řadou {count} zavřených bodů.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Zvažte, zda řadu prodloužit, nebo si ponechat volné kameny, které ji pomohou udržet.",
+  "tutorPhraseSpareCheckersCanMove": "Volné kameny: {count}. Lze s nimi táhnout, aniž by se hned otevřel bod.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Kontakt s kotvou na bodech {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Porovnejte postup zadních kamenů domů s bezpečím, které vám dává zachovaná kotva.",
+  "tutorPhraseCompareAnchorProgressBehind": "Při hledání úderu nebo zlepšení pozice mějte na paměti bezpečnou oporu.",
+  "tutorPhrasePreserveAnchorFoothold": "Kotvu nelze zasáhnout, ale těmto kamenům zbývá ještě dlouhá cesta domů.",
+  "tutorPhraseContactThreats": "Kontakt přetrvává: obě strany mohou hrozit úderem.",
+  "tutorPhraseLookForPointsAndSafety": "Hledejte užitečné body a zvažte riziko ponechání osamocených kamenů vystavených úderu.",
+  "tutorPhraseHomePointsAndBlots": "Ve své domácí desce držíte zavřených bodů: {count}. Odkrytých kamenů necháváte: {otherCount}.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Vyberte kámen, kterým začnete tah.",
+  "tutorPhraseLegalPlayPrompt": "Pro komentář proveďte legální tah.",
+  "tutorPhraseStagedHit": "Zasáhli jste {count, plural, one{# soupeřův kámen} few{# soupeřovy kameny} many{# soupeřových kamenů} other{# soupeřovy kameny}}.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "Kameny vrácené z baru: {count}.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "Vyvedené kameny: {count, plural, one{# kámen} few{# kameny} many{# kamenů} other{# kameny}}.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "Zavřeli jste body {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "Kámen na bodě {point} je zatím odkrytý a může být zasažen.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "Volným kamenem na bodě {point} můžete později táhnout, aniž by se bod otevřel.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Než vyhodnotíte celý tah, využijte i zbývající hratelné kostky.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "Všech 15 kamenů je vyvedeno: vyhráli jste partii.",
+  "tutorPhraseStagedHitShortPlan": "Úder získává čas, zatímco soupeř vrací kámen z baru.",
+  "tutorPhraseStagedEfficientBearOffPlan": "Efektivním vyváděním odstraníte kameny a ponecháte si užitečná čísla pro další hod.",
+  "tutorPhraseStagedRaceHomePlan": "V závodu přesuňte zadní kameny domů a ponechte si vhodné body pro vyvádění.",
+  "tutorPhraseStagedBearOffContactPlan": "Vyvádění vás přibližuje k cíli, ale dokud trvá kontakt, může se odkrytý kámen stát terčem úderu.",
+  "tutorPhraseStagedReentryPlan": "Vstup vrací kámen do hry; teď pro něj najděte bezpečný bod.",
+  "tutorPhraseStagedHomeBoardPlan": "Nový zavřený bod ve vaší domácí desce po případném úderu odebere soupeři jedno vstupní číslo.",
+  "tutorPhraseStagedPrimePlan": "Delší řada zavírá více bodů, kam by soupeř mohl vstoupit; volné kameny vám ji pomohou udržet.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Opustíte-li kotvu, zadní kameny postoupí, ale přijdou o bezpečnou oporu.",
+  "tutorPhraseStagedNewAnchorPlan": "Nová kotva poskytuje zadním kamenům bezpečnou oporu.",
+  "tutorPhraseStagedCoverBlotPlan": "Zakrytím odkrytého kamene odeberete soupeři snadný cíl.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "Jde o rovnováhu mezi rozvojem a bezpečím: kameny, které pomáhají budovat pozici, se samy mohou stát cílem.",
+  "tutorPhraseStagedCompletePrompt": "{part} Tah je připravený celý. Potvrďte ho klepnutím na Potvrdit.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "Tento hod neumožňuje zvolit tah kamenů, takže se nerozebírá jako rozhodnutí.",
+  "tutorMoveTopVerdict": "Nejlepší volba pro tuto pozici.",
+  "tutorMoveAlternativeVerdict": "Engine zde upřednostňuje jiný tah.",
+  "tutorMoveEstimateDifference": "Rozdíl oproti nejlepšímu tahu: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "Po tomto tahu: {winPercent}% šance na výhru, {winGammonPercent}% na výhru s gammonem či backgammonem a {loseGammonPercent}% na prohru s gammonem či backgammonem. Jde o odhady z pohledu hráče na tahu.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Odhadovaná šance na výhru zápasu: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "Všech 15 kamenů je vyvedeno: partii jste vyhráli.",
+  "tutorMovePlanHit": "Zásahem získáte čas, zatímco soupeř vstupuje z baru. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Udržujte body ve své domácí desce zavřené, aby se soupeři hůře vstupovalo.",
+  "tutorMovePlanHitBuild": "Zavřete další body ve své domácí desce, aby se soupeř po případném úderu hůře vracel do hry.",
+  "tutorMovePlanRaceBearOff": "Snažte se o efektivní vyvádění: odstraňujte kameny a ponechávejte si užitečná čísla pro další hod.",
+  "tutorMovePlanRaceHome": "Přesuňte zadní kameny domů a rozložte je na vhodné body pro vyvádění.",
+  "tutorMovePlanContactBearOff": "Vyvádějte kameny ze hry, ale sledujte zadní kameny soupeře: dokud trvá kontakt, může se odkrytý kámen při vyvádění stát terčem.",
+  "tutorMovePlanReentry": "Vraťte se do hry a pak hledejte bezpečný bod pro kámen, který právě vstoupil.",
+  "tutorMovePlanHomeBoard": "Posilujte svou domácí desku. Nový zavřený bod zvýší účinnost budoucího úderu, protože soupeři odebere jedno vstupní číslo.",
+  "tutorMovePlanPrime": "Udržujte řadu zavřených bodů pohromadě. Ponechte si volné kameny, aby vás další hody nedonutily řadu otevřít.",
+  "tutorMovePlanLeaveAnchor": "Opuštění kotvy posune zadní kameny vpřed, ale připraví je o bezpečnou oporu. Dávejte pozor, aby cestou domů nebyly vystavené úderu.",
+  "tutorMovePlanNewAnchor": "Využijte novou kotvu jako bezpečnou oporu a mezitím vylepšujte zbytek pozice.",
+  "tutorMovePlanCoverBlot": "Sjednoťte své kameny. Zakrytím odkrytého kamene odstraníte soupeři cíl a zachováte si možnosti dalších tahů.",
+  "tutorMovePlanSafety": "Vyvažujte rozvoj a bezpečí: posouvejte stavební kameny k užitečným bodům a zkontrolujte, které osamocené kameny může soupeř zasáhnout.",
+  "tutorMoveObservationNoLegalPlay": "Žádný legální tah kamenů: musíte vynechat tah.",
+  "tutorMoveObservationHit": "Zasáhli jste {count, plural, one{# soupeřův kámen} few{# soupeřovy kameny} many{# soupeřových kamenů} other{# soupeřovy kameny}}; soupeř musí nejprve vstoupit z baru, než může táhnout ostatními kameny.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Kameny vrácené z baru: {count}.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Vyvedeno z desky: {count, plural, one{# kámen} few{# kameny} many{# kamenů} other{# kameny}}.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Zavřené body: {points}. Dva nebo více kamenů drží bezpečný bod a brání soupeři na něj vstoupit.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Uvolnili jste dříve zavřené {pointLabel}: {points}. Tyto body už soupeři nebrání, aby na ně vstoupil.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Nezůstaly žádné odkryté osamocené kameny (předtím {previousCount}). Soupeř teď nemá co zasáhnout.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Odkryté osamocené kameny: {count, plural, one{# kámen} few{# kameny} many{# kamenů} other{# kameny}} (předtím {previousCount}). Než dáte přednost bezpečí před jiným ziskem, zvažte, zda na ně soupeř dosáhne.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Nejdelší řada zavřených bodů: {count} (předtím {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "Šestibodovou řadu nelze překročit, dokud zůstane zavřená.",
+  "tutorMoveObservationPrimeBuild": "Chcete-li řadu prodloužit nebo udržet, ponechte poblíž stavební kameny.",
+  "tutorMoveObservationPrimeSpares": "Počet volných kamenů nad dvěma potřebnými k držení bodů: {count}. Přesun volného kamene může bod zachovat; přesun jednoho z posledních dvou ho otevře.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Kotvy v soupeřově domácí desce: {points} (předtím {previousPoints}). Kotva chrání tyto kameny před zásahem; jejím opuštěním vyměníte bezpečnou oporu za postup v závodu.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Čistý závod: hráči se minuli a žádná strana nemá kámen na baru. Zásahy už nejsou možné; záleží na efektivitě vyvádění.",
+  "tutorMoveObservationNoReplyHit": "Soupeř nemá žádný legální další hod, kterým by v této pozici mohl zasáhnout kámen. Kontakt však trvá, takže další tahy mohou vytvořit nové příležitosti k úderu.",
+  "tutorMoveObservationReplyHit": "Soupeř může zasáhnout při {count} z {total} hodů. Například {dieOne}–{dieTwo} umožňuje legálně zasáhnout váš kámen na bodě {point}. Možnost úderu neznamená, že ji soupeř určitě zvolí.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "Ve své domácí desce máte zavřených bodů: {closedPoints}. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "Soupeř nemůže vstoupit, dokud se některý bod neotevře.",
+  "tutorMoveObservationOpenEntry": "Hod, který využije otevřený vstupní bod, může vrátit kámen z baru.",
+  "tutorMoveComparisonDetail": "{factors} Odhadovaná šance na výhru je u nejlepšího tahu o {delta} procentních bodů {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "vyšší",
+  "tutorMoveComparisonLower": "nižší",
+  "tutorMoveComparisonScoreContext": " I tak může být tah hodnocen výše, protože gammony a backgammony mají při aktuálním {scoreContext} odlišnou hodnotu.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "stavu sázky",
+  "tutorMoveComparisonMatchScore": "skóre zápasu",
+  "tutorMoveComparisonFactorBar": "Po nejlepším tahu zůstane na baru {bestCount} soupeřových kamenů, oproti {playedCount}. Kámen na baru musí nejprve vstoupit, než soupeř může táhnout ostatními.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "Nejlepší tah drží ve vaší domácí desce {bestCount} zavřených bodů oproti {playedCount}, tedy rozdíl {entryDifference} vstupních bodů po úderu.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "více zavírá",
+  "tutorMoveComparisonLeavingMore": "více ponechává otevřených",
+  "tutorMoveComparisonFactorShots": "Nejlepší tah dovoluje soupeři zasáhnout při {bestCount} z 36 hodů oproti {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "Tím se snižuje bezprostřední riziko návratu na bar.",
+  "tutorMoveComparisonExtraExposure": "Zvažte toto dodatečné riziko proti tomu, co tah získá jinde.",
+  "tutorMoveComparisonFactorPrime": "Nejdelší řada zavřených bodů je u nejlepšího tahu {bestCount}, oproti {playedCount}; porovnejte sílu blokády s počtem kamenů, které ji udrží.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "Nejlepší tah ponechává kotvy {bestPoints} místo {playedPoints}. Zachovaná kotva nabízí bezpečný bod k návratu; jejím opuštěním se kameny přiblíží domů.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "Nejlepším tahem máte vyvedeno {bestCount} kamenů oproti {playedCount}. Každý vyvedený kámen je jeden, který už později nemusíte odstraňovat.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Oba tahy ponechávají stejné bezprostřední riziko zásahu, počet zavřených bodů v domácí desce, kotvy i vyvedené kameny. Porovnejte, kde kameny zůstanou: příští hod může každému bodu nabídnout jiné možnosti.",
+  "tutorMoveComparisonSummaryBar": "Nejlepší tah ponechá více soupeřových kamenů na baru a zdrží jeho další tahy.",
+  "tutorMoveComparisonSummaryHomeBoard": "Nejlepší tah zavře více bodů v domácí desce, takže se soupeři po zásahu hůře vrací.",
+  "tutorMoveComparisonSummaryShots": "Nejlepší tah dovoluje méně okamžitých úderů, a snižuje tak riziko návratu na bar.",
+  "tutorMoveComparisonSummaryPrime": "Nejlepší tah zachová delší řadu zavřených bodů.",
+  "tutorMoveComparisonSummaryAnchors": "Nejlepší tah ponechá více bezpečných kotev v soupeřově domácí desce.",
+  "tutorMoveComparisonSummaryBearOff": "Nejlepší tah vyvede více kamenů, takže jich později zbývá méně.",
+  "tutorMoveComparisonSummaryBlots": "Po tomto tahu zůstane odkrytých osamocených kamenů: {playedCount}; po nejlepším tahu: {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "Nejlepší tah ponechá bezpečnou kotvu na bodě {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "Nejlepší tah zavře více vstupních bodů pro případ, že bude některý z vašich kamenů zasažen.",
+  "tutorMoveComparisonSummarySimilarRisks": "Tahy ponechávají podobné bezprostřední riziko; porovnejte, které body budou užitečné při dalším hodu.",
+  "tutorMoveAssessmentEquityLoss": "{value} očekávané hodnoty",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} procentních bodů šance na výhru zápasu",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "bod",
+  "tutorMovePointPlural": "body",
+  "tutorMoveNoPoints": "žádné",
+  "gameTutorCommentaryOff": "Komentář k partii je vypnutý.",
+  "gameTutorToolsAvailable": "Otevřete trenéra a použijte povolené nástroje.",
+  "gameTutorNextRoll": "Hoďte kostkami.",
+  "gameTutorNoEvaluatedReview": "K tomuto zaznamenanému tahu není k dispozici hodnocené vysvětlení.",
+  "gameTutorAnalysisUnavailable": "analýza není dostupná",
+  "gameTutorReviewing": "probíhá kontrola…",
+  "gameTutorTryYourPlayFirst": "Nejprve zkuste zahrát vlastní tah.",
+  "gameTutorKeepBuilding": "Pokračujte v sestavování tahu.",
+  "gameTutorStageCompleteBeforeCoaching": "Než zobrazíte rady nebo nápovědu, sestavte celý legální tah.",
+  "gameTutorReadyToConfirm": "Připraveno k potvrzení",
+  "gameTutorPlayTakingShape": "Váš tah se rýsuje.",
+  "gameTutorConfirmOrUndo": "Potvrzením tah zahrajete, nebo jej vraťte zpět a zvažte znovu.",
+  "gameTutorFinishDiceOrUndo": "Použijte zbývající kostky, nebo tah vraťte zpět.",
+  "gameTutorComputerConsidering": "Počítač zvažuje svůj tah.",
+  "gameTutorComputerPlayReviewed": "Dokončený tah počítače se zde vyhodnotí.",
+  "gameTutorYourPlay": "Váš tah",
+  "gameTutorComputer": "Počítač",
+  "gameTutorPlayQuality": "Váš tah: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "vynucený tah",
+  "gameTutorTopChoice": "nejlepší volba",
+  "gameTutorSoundPlay": "dobrý tah",
+  "gameTutorAnotherPlayMayFitBetter": "jiný tah by mohl být vhodnější",
+  "gameTutorAnotherPlayFitsBetter": "do této pozice se lépe hodí jiný tah",
+  "gameTutorStrongerPlayAvailable": "k dispozici byl výrazně silnější tah",
+  "gameTutorPositionEdge": "Podle odhadu má {side} výhodu.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "Pozice je přibližně vyrovnaná.",
+  "gameTapNoLegalMove": "Tímto kamenem nelze se zbývajícími kostkami táhnout",
+  "gameTapNoLegalMoveUndo": "Tímto kamenem nelze se zbývajícími kostkami táhnout — zkuste tah vrátit",
+  "gameDragHint": "Tip: kameny můžete přetahovat nebo na ně klepnout — změňte to v Nastavení",
+  "commonGotIt": "Rozumím",
+  "gameHintStageBeforeHint": "Nejprve zahrajte celý platný tah a potom si vyžádejte nápovědu.",
+  "surrenderTitle": "Vzdát partii",
+  "surrenderNamedConcedes": "{player} vzdává aktuální partii.",
+  "surrenderConcedes": "Vzdáváte aktuální partii.",
+  "surrenderAvailableAtNamedTurn": "Dostupné na začátku tahu hráče {player}",
+  "surrenderAvailableAtYourTurn": "Dostupné na začátku vašeho tahu",
+  "commonCancel": "Zrušit",
+  "surrenderSingle": "Jednoduchá (1)",
+  "surrenderGammon": "Gammon (2)",
+  "surrenderBackgammon": "Backgammon (3)",
+  "surrenderChoosePlayer": "Kdo vzdává tuto partii?",
+  "commonDone": "Hotovo",
+  "cubeDouble": "Zdvojnásobit",
+  "cubeBlockedOtherPlayersTurn": "Na tahu je druhý hráč.",
+  "cubeBlockedCrawford": "V Crawfordově partii nelze použít zdvojnásobovací kostku.",
+  "cubeBlockedOwnedByOther": "Zdvojnásobit může jen vlastník kostky, kterým je nyní soupeř.",
+  "cubeBlockedUnavailable": "Nyní nelze zdvojnásobit.",
+  "gameStatusRolling": "Hází se…",
+  "gameStatusThinking": "Přemýšlí…",
+  "gameStatusPlayersTurn": "Na tahu: {player}",
+  "cubeAdviceOpponentTake": "Zdvojnásobit — soupeř by měl přijmout",
+  "cubeAdviceOpponentPass": "Zdvojnásobit — soupeř by měl odmítnout",
+  "gameErrorBannerLabel": "Chyba: {error}",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  },
+  "gameMatchSummary": "Shrnutí zápasu",
+  "gameAnalyzeGame": "Analyzovat partii",
+  "gameTutorCubeTake": "Tutor: přijmout",
+  "gameTutorCubePass": "Tutor: odmítnout",
+  "tutorPlayedMove": "Zahráno: {move}",
+  "tutorBestMove": "Nejlepší tah: {move}",
+  "tutorShowRankedPlays": "Zobrazit seřazené tahy",
+  "tutorReviewRecordedMove": "Klepnutím na dokončený tah v záznamu zde zobrazíte jeho vyhodnocení.",
+  "tutorTopPlays": "Nejlepší tahy",
+  "tutorNoHintsAvailable": "Nejsou k dispozici žádné nápovědy.",
+  "tutorPreviewThenConfirm": "Klepnutím na tah si ho zobrazíte na desce a potom ho potvrďte.",
+  "tutorTopChoiceForPosition": "Nejlepší volba pro tuto pozici",
+  "tutorAlternativePlay": "Alternativní tah",
+  "tutorEngineEstimates": "Odhady enginu",
+  "tutorEstimateScope": "Odhad 0 půltahu · aktuální skóre a sázka · bez budoucích zdvojení",
+  "tutorEquity": "Equity",
+  "tutorMwcPercent": "Šance na výhru zápasu %",
+  "tutorNearTiesNote": "Těsné výsledky se mohou při hlubší analýze změnit.",
+  "tutorWhyThisPlay": "Proč tento tah?",
+  "tutorCompareAlternative": "Porovnat tuto alternativu",
+  "tutorCubelessEstimateScope": "Odhad bez kostky, 0 půltahu · skóre není k dispozici",
+  "tutorLossPp": "Ztráta v procentních bodech",
+  "tutorLoss": "Ztráta",
+  "tutorOptions": "Nastavení tutora",
+  "tutorCollapseTooltip": "Sbalit tutora",
+  "tutorExpandTooltip": "Rozbalit tutora",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · do {matchLength}",
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · do {matchLength}",
+  "gameHudYou": "Vy",
+  "gameHudAi": "Počítač",
+  "gameHudGameNumber": "Partie {number}",
+  "gameHudMatchContext": "{score} · {game}",
+  "gameHudHotSeatDetail": "{whiteLabel} vs. {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "gameHudOpponentDetail": "vs. {opponent} · {pipsLabel} {mine}–{theirs}",
+  "gameHudOpponentDetailWithLevel": "vs. {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "gameHudPips": "Pipy",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Zdvojnásobit",
+  "gameHudMoreActions": "Další akce",
+  "gameHudSurrender": "Vzdát…",
+  "gameHudThinking": "Přemýšlí",
+  "gameHudDoubleBeforeRoll": "Zdvojnásobit můžete jen před hodem a během svého tahu.",
+  "gameHudNoDoubleCrawford": "V Crawfordově partii nelze zdvojnásobit — tato jediná partie rozhodne zápas.",
+  "gameHudOnlyCubeOwner": "Zdvojnásobit může pouze vlastník kostky, kterým je nyní soupeř.",
+  "gameHudDoubleUnavailable": "Nyní nelze zdvojnásobit.",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (do {matchLength})",
+  "gameDialogPlayerWon": "{winner} vyhrává tuto partii ({points}).",
+  "gameDialogPlayerWonGammon": "{winner} vyhrává tuto partii ({points}, gammon).",
+  "gameDialogPlayerWonBackgammon": "{winner} vyhrává tuto partii ({points}, backgammon).",
+  "gameDialogPlayerWonDrop": "{winner} vyhrává tuto partii ({points}) — {loser} odmítl zdvojnásobení.",
+  "gameDialogPlayerWonResignation": "{winner} vyhrává tuto partii ({points}) — {loser} vzdal.",
+  "gameDialogPassDeviceTitle": "Předejte zařízení",
+  "gameDialogPlayersTurn": "Na tahu je {name}",
+  "gameDialogTapToContinue": "Pokračujte klepnutím",
+  "gameDialogCubeOfferedTitle": "Nabídka zdvojnásobení",
+  "gameDialogCubeOfferMessage": "{doubler} nabízí zdvojnásobení na {value}. Přijmout, nebo odmítnout?{tutorLine}",
+  "gameDialogPass": "Odmítnout",
+  "gameDialogTake": "Přijmout",
+  "gameDialogResignationTitle": "Nabídka vzdání",
+  "gameDialogResignationMessage": "{resigner} nabízí vzdání za {value}. Přijmout, nebo odmítnout?",
+  "gameDialogResignSingle": "jednoduchou partii",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Odmítnout",
+  "gameDialogAccept": "Přijmout",
+  "gameDialogGameOverTitle": "Konec partie",
+  "gameDialogNextGame": "Další partie",
+  "gameDialogMatchOverTitle": "Konec zápasu",
+  "gameDialogNobody": "Nikdo",
+  "gameDialogMatchWinner": "{winner} vyhrává zápas.",
+  "gameDialogSavedToHistory": "Uloženo do historie",
+  "gameDialogDone": "Hotovo",
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "newMatchYourSide": "Vaše strana",
+  "newMatchTutorMode": "Režim tutora",
+  "newMatchTutorDescription": "Učte se pomocí nápověd, vysvětlení a komentářů k partii",
+  "newMatchTutoringOptions": "Možnosti tutora",
+  "newMatchTutoringOptionsDescription": "Pro tento zápas; lze upravit i během hry",
+  "setupMatchLength": "Délka zápasu",
+  "setupDifficulty": "Obtížnost",
+  "setupDifficultyEasy": "Lehká",
+  "setupDifficultyMedium": "Střední",
+  "setupDifficultyHard": "Těžká",
+  "setupDifficultyExpert": "Expertní",
+  "setupPlayWithoutCube": "Hrát bez kostky",
+  "setupNoCubeThisMatch": "V tomto zápase bez zdvojnásobovací kostky",
+  "actionCancel": "Zrušit",
+  "actionDelete": "Smazat",
+  "actionRetry": "Zkusit znovu",
+  "actionRemove": "Odebrat",
+  "diagnosticsCopySuccess": "Diagnostika zkopírována do schránky",
+  "diagnosticsReviewTitle": "Zkontrolovat diagnostický přehled",
+  "diagnosticsPrivacyNotice": "Otevřením konceptu se do GitHubu odešlou níže uvedené údaje včetně verze aplikace, platformy a podrobností o chybě. Veřejný problém se nezveřejní, dokud jej tam neodešlete. Pokud údaje obsahují soukromé informace, zrušte akci a připravte hlášení pomocí možnosti Kopírovat.",
+  "diagnosticsCancel": "Zrušit",
+  "diagnosticsOpenGitHub": "Otevřít GitHub",
+  "diagnosticsTitle": "Diagnostika",
+  "diagnosticsReportTooltip": "Nahlásit problém na GitHubu",
+  "diagnosticsCopyTooltip": "Kopírovat do schránky",
+  "diagnosticsClearTooltip": "Vymazat protokol",
+  "diagnosticsEmpty": "Nejsou zaznamenány žádné chyby.\n\nPokud se něco pokazí, záznam najdete zde. Vraťte se a zkopírujte podrobnosti do hlášení chyby.",
+  "historyTitle": "Historie zápasů",
+  "historyLoadFailed": "Nepodařilo se načíst historii:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyEmpty": "Zatím jste neodehráli žádné zápasy.",
+  "historyDeleteConfirmTitle": "Smazat tento zápas?",
+  "historyDeleteConfirmBody": "{scoreLine}\n\nZápas a všechny partie v něm budou trvale odstraněny. Tuto akci nelze vrátit.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "historyDeleteFailed": "Zápas se nepodařilo smazat.",
+  "historyComplete": "Dokončeno",
+  "historyWinner": "Vyhrál(a) {side}",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyUnfinished": "Nedokončeno",
+  "historyMatchTitle": "Zápas",
+  "historyMatchLoadFailed": "Zápas se nepodařilo načíst:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Partie se nepodařilo načíst:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyNoGames": "Zatím nejsou zaznamenány žádné partie.",
+  "historyGameTitle": "Partie {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyCrawford": "Crawford",
+  "historyScoreLine": "Bílý {whiteScore} — {blackScore} Černý (do {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyModeComputer": "proti počítači",
+  "historyModeTwoPlayers": "Dva hráči",
+  "historyModeOnline": "Online",
+  "historyModeNearby": "Hrát v okolí",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "Probíhá",
+  "historyGameResult": "{side} vyhrál(a) o {points} ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "historyOutcomeSingle": "jednoduchá",
+  "historyOutcomeGammon": "gammon",
+  "historyOutcomeBackgammon": "backgammon",
+  "onlineTitle": "Hrát online",
+  "onlineUnassistedNote": "Živé online partie jsou bez asistence. Po zápase si projděte tahy a procvičte chyby.",
+  "onlineNotConfiguredTitle": "Online hra není v tomto sestavení nakonfigurována",
+  "onlineNotConfiguredBody": "Toto sestavení nemá připojený Firebase backend, takže vytváření a připojování k zápasům není dostupné.",
+  "onlineErrorNoMatch": "Zápas s tímto kódem neexistuje. Zkontrolujte ho a zkuste to znovu.",
+  "onlineErrorSeatTaken": "Tento zápas už není otevřený — místo je obsazené.",
+  "onlineErrorPermission": "K tomuto zápasu nemáte přístup.",
+  "onlineErrorGeneric": "Něco se pokazilo. Zkuste to znovu.",
+  "onlineMatchFinished": "Tento zápas skončil — už se k němu nelze vrátit.",
+  "onlineEnterCodeError": "Zadejte kód zápasu.",
+  "onlineOpponentShort": "Soupeř",
+  "onlineMatchInProgress": "Zápas probíhá",
+  "onlineResumePrompt": "Hráli jste zápas {code}.",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Znovu se připojit",
+  "onlineForgetMatch": "Zapomenout tento zápas",
+  "onlineCreateTitle": "Vytvořit zápas",
+  "onlineMatchLength": "Délka zápasu",
+  "onlineNoCubeTitle": "Hrát bez kostky",
+  "onlineNoCubeSubtitle": "V tomto zápase bez zdvojnásobovací kostky",
+  "onlineCreate": "Vytvořit",
+  "onlineWaitingOpponent": "Čeká se na soupeře…",
+  "onlineShareCode": "Sdílet tento kód",
+  "onlineCopyCode": "Kopírovat kód",
+  "onlineCodeCopied": "Kód zkopírován",
+  "onlineJoinTitle": "Připojit se k zápasu",
+  "onlineRoomCode": "Kód zápasu",
+  "onlineJoin": "Připojit se",
+  "lanTitle": "Hrát v okolí",
+  "lanTabHost": "Hostitel",
+  "lanTabJoin": "Připojit se",
+  "lanUnassistedNote": "Živé hry v okolí jsou bez asistence. Po zápase si projděte tahy a procvičte chyby.",
+  "lanGameStartFailed": "Hru se nepodařilo spustit. Druhé zařízení se může zkusit připojit znovu.",
+  "lanHostPortInUse": "Hostování nelze spustit — port se už používá. Zavřete další kopii Backgammon Buddy.",
+  "lanHostStartFailed": "Hostování nelze spustit. Zkontrolujte připojení Wi-Fi.",
+  "lanHostTitle": "Hostovat hru",
+  "lanStartHosting": "Spustit hostování",
+  "lanHostHelp": "Obě zařízení musí být na stejné Wi-Fi. Toto zařízení hází kostky a uchovává skóre.",
+  "lanWaitingPlayerTitle": "Čeká se na hráče",
+  "lanRoomCodeInfo": "Sdělte tento kód druhému hráči. Umožní mu vstup — aplikace ho neposílá přes síť.",
+  "lanWaitingPlayer": "Čeká se na hráče…",
+  "lanStopHosting": "Zastavit hostování",
+  "lanFindNearbyPort": "Požádejte druhé zařízení o vyhledání her v okolí. Naslouchá se na portu {port}.",
+  "lanOnNetwork": "V této síti",
+  "lanCopyAddress": "Kopírovat adresu",
+  "lanAddressCopied": "Adresa zkopírována",
+  "lanScanHostTitle": "Naskenovat hostitele",
+  "lanScanHostHelp": "Druhé zařízení zobrazuje QR kód na obrazovce hostitele. Naskenováním se vyplní adresa a kód místnosti.",
+  "lanScanQr": "Naskenovat QR kód",
+  "lanScannerUnavailable": "Kamera nebo její oprávnění nejsou dostupné. Níže zadejte adresu a kód místnosti.",
+  "lanInvalidQr": "Tento QR kód není pro hru Backgammon Buddy. Naskenujte kód z obrazovky hostitele druhého zařízení.",
+  "lanScannerFailed": "Skener nelze otevřít. Zadejte adresu a kód ručně.",
+  "lanNearbyGames": "Hry v okolí",
+  "lanSearching": "Hledají se hry v okolí…",
+  "lanNoGamesFound": "Zatím nebyly nalezeny žádné hry. Ověřte, že druhé zařízení hostuje a obě jsou na stejné Wi-Fi, nebo zadejte jeho adresu.",
+  "lanStillSearching": "Stále se hledá…",
+  "lanEnterAddress": "Zadat adresu",
+  "lanEnterAddressHelp": "Automatické vyhledávání nefunguje v každé síti (a iOS ho může zcela blokovat). Obrazovka hostitele ukazuje, co máte zadat.",
+  "lanIpAddress": "IP adresa",
+  "lanPort": "Port",
+  "lanInvalidPort": "Zadejte port od 1 do 65535.",
+  "lanEnterAddressError": "Zadejte adresu zobrazenou na druhém zařízení.",
+  "lanEnterRoomCodeError": "Zadejte čtyřmístný kód z druhého zařízení.",
+  "lanJoinWrongCode": "Nesprávný kód místnosti. Zkontrolujte čtyři číslice na druhém zařízení.",
+  "lanJoinVersionMismatch": "Druhé zařízení používá jinou verzi Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "Zařízení neodpovědělo jako Backgammon Buddy. Zkontrolujte adresu a port.",
+  "lanJoinFailed": "Připojení se nezdařilo. Zkontrolujte adresu a kód místnosti a zkuste to znovu.",
+  "lanJoinTarget": "Připojit se k {name}",
+  "lanJoinTargetHelp": "Zadejte čtyřmístný kód zobrazený na druhém zařízení.",
+  "lanJoiningTarget": "Připojování k {name}",
+  "lanConnect": "Připojit",
+  "lanBack": "Zpět",
+  "lanTryAgain": "Zkusit znovu",
+  "lanStatusBusy": "Místnost se používá — čeká se…",
+  "lanStatusReconnecting": "Spojení ztraceno — znovu se připojuje…",
+  "lanStatusConnected": "Připojeno — zápas začíná…",
+  "lanStatusFailed": "Připojení se nezdařilo.",
+  "lanStatusConnecting": "Připojování…",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "practiceScreenTitle": "Procvič si rozhodnutí",
+  "practiceUnavailable": "Tato tréninková pozice už není dostupná.",
+  "practiceSubmitError": "Tento pokus se nepodařilo vyhodnotit ani uložit. Tvůj postup se nezměnil. Zkus to znovu.",
+  "practiceTurnLabel": "Na tahu je {side} · {dice}",
+  "practiceHistoricalScoreUnavailable": "Historické skóre není dostupné; hodnocení používá equity bez kostky.",
+  "practiceScoreLine": "Skóre: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, do {matchLength}",
+  "practiceCrawfordGame": " · Crawfordova hra",
+  "practiceNoDoublingCube": "Bez zdvojovací kostky.",
+  "practiceCubeValue": "Kostka {value}.",
+  "practiceHistoricalCubeUnknown": "Historická pravidla kostky nejsou známa.",
+  "practiceAfterBestPosition": "Pozice po nejlepším tahu",
+  "practiceAfterYourAnswerPosition": "Pozice po tvé odpovědi",
+  "practiceFindYourPlayPrompt": "Zahraj svůj tah na desce a pak zkontroluj odpověď. Nápověda se nezobrazí.",
+  "practiceUndo": "Zpět",
+  "practiceCheckAnswer": "Zkontrolovat odpověď",
+  "practiceRevealNoCredit": "Odhalit odpověď (bez bodů)",
+  "practiceAnswerRevealedNoCredit": "Odpověď odhalena — bez bodů za zapamatování.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "practiceBestMoveLine": "Nejlepší: {move}",
+  "practiceOriginalGameLine": "Původní partie: {move} · {loss}",
+  "practiceYourAnswerLine": "Tvoje odpověď: {move}",
+  "practiceYourAnswerChip": "Tvoje odpověď",
+  "practiceBestPlayChip": "Nejlepší tah",
+  "practiceNextReview": "Další opakování: {date}.",
+  "practiceRecallCredit": "Nejlepší a dobré odpovědi se počítají jako úspěšné zapamatování. Předčasná opakování plán neposouvají.",
+  "practiceBackToLearning": "Zpět k učení",
+  "practiceMarkBest": "Nejlepší",
+  "practiceMarkGood": "Dobrý",
+  "practiceMarkDubious": "Pochybný",
+  "practiceMarkError": "Chyba",
+  "practiceMarkBlunder": "Hrubá chyba",
+  "practiceMarkForced": "Vynucený",
+  "analysisTitle": "Analýza",
+  "analysisMetricsTooltip": "Co tato čísla znamenají?",
+  "analysisError": "Analýza partie se nezdařila: {error}",
+  "analysisNoPositions": "Tato partie nemá žádné pozice k zobrazení.",
+  "analysisInProgress": "Analýza partie…",
+  "analysisPercent": "{percent}%",
+  "analysisPlayed": "Odehráno",
+  "analysisBest": "Nejlepší",
+  "analysisPrevious": "Předchozí",
+  "analysisNext": "Další",
+  "analysisPositionBeforeCube": "Pozice před rozhodnutím o kostce",
+  "analysisPositionAtPoint": "Pozice v tomto okamžiku partie",
+  "analysisShowingBestBefore": "Zobrazuje se nejlepší tah v pozici před tahem",
+  "analysisShowingBefore": "Zobrazuje se pozice před tahem",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "analysisMoveLoss": " −{loss}",
+  "analysisExcludedFromAverages": " · nezahrnuto do průměrů",
+  "analysisNoPlay": "(bez tahu)",
+  "analysisBestMoveLine": "Nejlepší tah: {move}",
+  "analysisExplain": "Vysvětlit",
+  "analysisSaveForPractice": "Uložit k procvičení",
+  "analysisSaveError": "Toto rozhodnutí se nepodařilo uložit: {error}",
+  "analysisCubeInfo": "{side}: {action} · {mark} · ztráta {loss}",
+  "analysisCubeDecision": "Rozhodnutí o kostce",
+  "analysisCubePlayed": "Odehráno: {action} (šance na výhru zápasu {percent} %).",
+  "analysisCubeBest": "Nejlepší: {action} (šance na výhru zápasu {percent} %).",
+  "analysisCubeEstimate": "Odhad 0-ply z pohledu hráče na tahu. Předpokládá optimální přijetí nebo pas. Ve větvi přijatého zdvojení používá přibližnou životnost kostky 0,7, nikoli úplné hledání budoucích redoublů. Hlubší analýza může odpověď změnit.",
+  "analysisClose": "Zavřít",
+  "analysisMoves": "Tahy",
+  "analysisForced": "Vynucený",
+  "analysisMarkBest": "Nejlepší",
+  "analysisMarkGood": "Dobrý",
+  "analysisMarkDubious": "Pochybný",
+  "analysisMarkError": "Chyba",
+  "analysisMarkBlunder": "Hrubá chyba",
+  "analysisSummaryMeanLoss": "Průměrná ztráta {loss}",
+  "analysisSummaryCheckerDecisions": "{count} rozhodnutí o kamenech",
+  "analysisSummaryBlunders": "Hrubé chyby {count}",
+  "analysisSummaryCubeLoss": "Ztráta kostky {loss}",
+  "analysisRollWithoutDoubling": "{side} hází bez zdvojení",
+  "metricExplainerTitle": "Jak rozumět metrikám",
+  "metricExplainerTooltip": "Co tato čísla znamenají?",
+  "metricExplainerMwcTitle": "Šance na výhru zápasu (MWC)",
+  "metricExplainerMwcBody": "Je-li skóre známé, tahy kameny se řadí podle odhadované šance na výhru zápasu. Ztráta je v procentních bodech (pp): 1 pp znamená pokles z 51 % na 50 %. Zahrnuje aktuální sázku kostky i gammon/backgammon. Vynucené pasy a hody s jedinou legální výslednou pozicí se do průměru nezapočítávají.",
+  "metricExplainerSearchTitle": "Hledání a nejistota",
+  "metricExplainerSearchBody": "Řazení tahů je statický odhad 0-ply po tahu, nikoli rollout. Hodnoty zápasu používají tabulku match equity bez budoucích tahů kostkou. Hodnocení kostky používá částečné přiblížení životnosti kostky 0,7 při přijatém zdvojení. Nejde o úplné hledání s kostkou. Při ztrátě nad 25 se použije hranice 25 podle tabulky. Těsné výsledky se při hlubší analýze mohou změnit; interval spolehlivosti není kalibrovaný.",
+  "metricExplainerEquityTitle": "Equity",
+  "metricExplainerEquityBody": "Není-li skóre k dispozici, equity bez kostky ukazuje průměrnou bodovou hodnotu pozice při kostce na 1. +1,0 znamená očekávaný zisk bodu; −0,5 očekávanou ztrátu půl bodu.",
+  "metricExplainerEquityLossTitle": "Ztráta equity (např. −0,016)",
+  "metricExplainerEquityLossBody": "Každý tah porovnáváme s nejlepším tahem enginu. Ztráta equity vyjadřuje, kolik očekávané hodnoty tvůj tah obětoval. −0,016 znamená, že byl jen o 0,016 bodu horší — drobná chyba. 0,000 znamená, že jsi našel nejlepší tah.",
+  "metricExplainerErrorRateTitle": "Míra chyb",
+  "metricExplainerErrorRateBody": "Průměrná ztráta je průměrem hodnocených rozhodnutí o kamenech v zobrazené jednotce. Rozhodnutí o kostce mají vlastní průměr. Nižší hodnota znamená větší blízkost k nejlepším odhadům enginu; nejde o kalibrované hodnocení hráče.",
+  "metricExplainerMoveMarksTitle": "Hodnocení tahů",
+  "metricExplainerMoveMarksBody": "Učební pásma MWC: Nejlepší < 0,05 pp, Dobrý < 0,5 pp, Pochybný < 1,5 pp, Chyba < 3 pp, Hrubá chyba ≥ 3 pp. Jde o produktová výuková pásma, nikoli kalibrovanou jistotu nebo turnajové hodnocení.\n\nVýuková pásma equity bez kostky:",
+  "metricExplainerThresholdBest": "ztráta < 0,001",
+  "metricExplainerThresholdGood": "ztráta < 0,020",
+  "metricExplainerThresholdDubious": "ztráta < 0,050",
+  "metricExplainerThresholdError": "ztráta < 0,110",
+  "metricExplainerThresholdBlunder": "ztráta ≥ 0,110",
+  "metricExplainerGotIt": "Rozumím",
+  "learningRefreshTooltip": "Obnovit postup v učení",
+  "learningOptions": "Možnosti učení",
+  "learningResetMenu": "Resetovat postup cvičení",
+  "learningLoadFailed": "Postup v učení se nepodařilo načíst.",
+  "learningHeading": "Uč se ze svých rozhodnutí",
+  "learningIntro": "Postup se ukládá v tomto zařízení. Prohlížej opakující se témata a zkoušej uložené pozice znovu bez zobrazení odpovědi. Bílé a černé můžeš procházet zvlášť.",
+  "learningBothSides": "Obě strany",
+  "learningHumansOnly": "Jen lidská rozhodnutí",
+  "learningHumanOnlyHelp": "Vypnutím zahrneš rozhodnutí počítače a vzdálených hráčů",
+  "learningDecisionSummary": "{decisions} rozhodnutí · {mistakes} ke zlepšení · {blunders} hrubých chyb",
+  "learningAverageLoss": "Průměrná ztráta ({decisions} rozhodnutí): {loss}",
+  "learningForcedDisclaimer": "Vynucené tahy jsou vynechány. Jde o odhady enginu, ne turnajové hodnocení.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Uložená partie vyžaduje analýzu nebo novou analýzu.} other{Uložené partie vyžadují analýzu nebo novou analýzu.}}",
+  "learningAnalyseSavedGames": "Analyzovat uložené partie",
+  "learningEmptyProfile": "Zahraj a dokonči partii, aby sis vytvořil profil učení. Jednotlivá rozhodnutí můžeš uložit také z přehrávání partie.",
+  "learningOpenHistory": "Otevřít historii zápasů",
+  "learningRecurringThemes": "Opakující se témata",
+  "learningNoThemes": "V tomto výběru zatím nejsou opakující se témata chyb.",
+  "learningThemeDecisions": "{count} rozhodnutí k opakování. Jedna pozice může mít více témat.",
+  "learningSaveMistakes": "Uložit tyto chyby k procvičení",
+  "learningSavedMistakes": "{count} rozhodnutí je v seznamu procvičování. Již uložená zůstanou.",
+  "learningSaveMistakesFailed": "Některá rozhodnutí se nepodařilo uložit. Úspěšně uložená zůstanou; zkus to znovu.",
+  "learningSpacedPractice": "Rozložené procvičování",
+  "learningPracticeCounts": "{due} nyní k procvičení · {saved} uložených · {attempts} pokusů · {successes} úspěšných zapamatování",
+  "learningIntervalsHelp": "Úspěšná opakování se vrací po 1, 3, 7, 14 a 30 dnech. Chyby nebo odhalené odpovědi se vrací po 10 minutách. Předčasná opakování interval neposouvají.",
+  "learningAnswerContext": "Výsledky procvičování odrážejí tvoje odpovědi, i když původní pozice patřila soupeři.",
+  "learningNoSavedPositions": "Ulož rozhodnutí z přehrávání nebo použij výše tlačítko chyb.",
+  "learningPositionTitle": "Rozhodnutí strany {side} · partie {gameId}",
+  "learningReviewDue": "Opakovat {date}",
+  "learningReadyToReview": "Připraveno k opakování",
+  "learningSuccessStreak": "{count} úspěšných opakování v termínu",
+  "learningRemoveTooltip": "Odebrat uložené rozhodnutí",
+  "learningRecentPractice": "Nedávné procvičování",
+  "learningAnswerRevealed": "Odpověď odhalena",
+  "learningSuccessfulRecall": "Úspěšné zapamatování",
+  "learningTryAgain": "Zkus toto rozhodnutí znovu",
+  "learningAttemptSubtitle": "{date} · uložená pozice {positionId}",
+  "learningRemoveTitle": "Odebrat toto cvičení?",
+  "learningRemoveBody": "Tím se odstraní jeho pokusy. Původní partie zůstane v historii.",
+  "learningRemoveFailed": "Cvičení se nepodařilo odebrat.",
+  "learningResetTitle": "Resetovat postup procvičování?",
+  "learningResetBody": "Všechny pokusy a intervaly opakování se odstraní. Uložená cvičení i historie zápasů zůstanou; všechna cvičení budou ihned k dispozici.",
+  "learningResetAction": "Resetovat postup",
+  "learningResetFailed": "Postup procvičování se nepodařilo resetovat.",
+  "learningAnalysisProgress": "Analyzované partie: {completed} · nedostupné: {failed}.",
+  "learningAnalysisComplete": "Analyzováno partií: {completed}.",
+  "learningAnalysisCompleteWithErrors": "Analyzováno partií: {completed}; {failed} se nepodařilo analyzovat. Zkus to znovu, až bude engine připraven.",
+  "learningThemeHitting": "Údery a tempo",
+  "learningThemeSafety": "Odkryté kameny a bezpečí",
+  "learningThemePointMaking": "Vytváření bodů",
+  "learningThemePrime": "Prime a blokády",
+  "learningThemeAnchor": "Kotvy a únik",
+  "learningThemeRace": "Efektivita závodu",
+  "learningThemeBearOff": "Odkládání kamenů",
+  "learningThemeBarEntry": "Vstup z baru",
+  "learningThemeCube": "Rozhodnutí o kostce",
+  "analysisCubeNoDouble": "Nedublovat",
+  "analysisCubeDouble": "Zdvojnásobit",
+  "analysisCubeTake": "Vzít",
+  "analysisCubePass": "Pasovat",
+  "learningAnalysisStarting": "Analyzují se uložené partie…",
+  "scoreSheetNoMoves": "Zatím žádné tahy",
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  }
 }

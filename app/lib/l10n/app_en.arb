@@ -45,5 +45,1479 @@
   "tutorPointNumberNote": "Point numbers in teaching notes are counted from the mover’s home board.",
   "tutorHittingRollNote": "Hitting-roll counts include all 36 ordered dice outcomes and legal direct or indirect hits; they are opportunities, not a prediction of the opponent’s choice.",
   "tutorNoEvaluatedAlternatives": "No evaluated alternatives are available for this play.",
-  "tutorForcedPassNoDecision": "A forced pass does not involve a checker-play decision."
+  "tutorForcedPassNoDecision": "A forced pass does not involve a checker-play decision.",
+  "settingsReset": "Reset",
+  "settingsAppLanguage": "App language",
+  "settingsTheme": "Theme",
+  "settingsThemeSystem": "System",
+  "settingsThemeLight": "Light",
+  "settingsThemeDark": "Dark",
+  "settingsAnimationSpeed": "Animation speed",
+  "settingsAnimationNone": "None",
+  "settingsAnimationNormal": "Normal",
+  "settingsAnimationFast": "Fast",
+  "settingsDiceRollAnimation": "Dice roll animation",
+  "settingsDiceRollAnimationHelp": "Tumble the dice before each roll",
+  "settingsDefaultMatchLength": "Default match length",
+  "settingsDefaultDifficulty": "Default difficulty",
+  "settingsDifficultyEasy": "Easy",
+  "settingsDifficultyMedium": "Medium",
+  "settingsDifficultyHard": "Hard",
+  "settingsDifficultyExpert": "Expert",
+  "settingsTutorModeDefault": "Tutor mode default",
+  "settingsTutorAuto": "Auto",
+  "settingsTutorOn": "On",
+  "settingsTutorOff": "Off",
+  "settingsTutorModeHelp": "Auto enables the tutor at every computer difficulty. On and Off set the starting choice for local matches. Nearby and online matches are unassisted; their saved games can be reviewed afterwards. Teaching preferences below are saved on this device.",
+  "settingsTutorPreferences": "Tutor preferences",
+  "settingsTutorPreferencesSubtitle": "Saved defaults for future matches",
+  "settingsTutorSaveError": "Could not save tutor preferences.",
+  "settingsGameplay": "Gameplay",
+  "settingsMoveHighlights": "Move highlights",
+  "settingsMoveHighlightsHelp": "Ring selectable checkers and light up destinations",
+  "settingsDragToMove": "Drag to move",
+  "settingsDragToMoveHelp": "Drag a checker to its destination (taps always work)",
+  "settingsCombinedMoves": "Combined moves",
+  "settingsCombinedMovesHelp": "One tap runs a checker through both dice",
+  "settingsRotateBoard": "Rotate board between turns",
+  "settingsRotateBoardHelp": "Hot-seat: flip the view for the active player",
+  "settingsPassDevice": "Pass-device screen",
+  "settingsPassDeviceHelp": "Cover the board between hot-seat turns",
+  "settingsShowScore": "Show score",
+  "settingsShowScoreHelp": "Display the running match score in the header",
+  "settingsBuddyMode": "Buddy Mode",
+  "settingsBuddyTerse": "Terse",
+  "settingsBuddyFriendly": "Friendly",
+  "settingsBuddyTerseHelp": "How Buddy words a play out loud: \"13/8, 24/22\" — notation, the way two players at a board actually talk.",
+  "settingsBuddyFriendlyHelp": "How Buddy words a play out loud: \"Move one checker from 13 to 8, and one from 24 to 22.\"",
+  "settingsListenForDice": "Listen for the dice",
+  "settingsListenForDiceHelp": "Buddy looks at the board sooner when it hears a throw. Off changes nothing else.",
+  "settingsDiagnostics": "Diagnostics",
+  "settingsErrorLog": "Error log",
+  "settingsErrorLogHelp": "Recent errors, ready to copy into a bug report",
+  "settingsReportBug": "Report a bug",
+  "settingsReportBugHelp": "Open a guided report on GitHub",
+  "settingsSuggestIdea": "Suggest an idea",
+  "settingsSuggestIdeaHelp": "Help us improve the tutor and game",
+  "settingsAbout": "About",
+  "settingsOpenSourceLicenses": "Open-source licenses",
+  "settingsAppVersion": "Backgammon Buddy {version}",
+  "@settingsAppVersion": {
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "tutorPhraseGameFinished": "Game finished.",
+  "tutorPhraseReviewFinishedGame": "Review the moves to find a decision to practise.",
+  "tutorPhraseCubeOffered": "The cube has been offered.",
+  "tutorPhraseCubeDecisionPrompt": "Decide whether to take or pass before planning a checker play.",
+  "tutorPhraseCubeScoreContext": "The match score changes what the extra stake is worth.",
+  "tutorPhraseResignationOffered": "A resignation has been offered.",
+  "tutorPhraseResignationDecisionPrompt": "Compare the offered points with the position before accepting or continuing.",
+  "tutorPhraseNoLegalPlay": "No legal play with this roll.",
+  "tutorPhraseForcedPassPrompt": "A forced pass is not a mistake; wait for the next roll.",
+  "tutorPhraseOnlyOneResult": "Only one legal resulting position.",
+  "tutorPhraseForcedTurnPrompt": "Play the forced turn. There is no choice to grade on this roll.",
+  "tutorPhrasePipCountsLevel": "The pip counts are level.",
+  "tutorPhrasePipCountsAhead": "You are {count} pips ahead.",
+  "@tutorPhrasePipCountsAhead": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePipCountsBehind": "You are {count} pips behind.",
+  "@tutorPhrasePipCountsBehind": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePlayerHasCheckersOnBar": "{count} on the bar: re-entry comes first.",
+  "@tutorPhrasePlayerHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseEnterBeforeMoving": "Enter before moving any other checker; then look for a safe landing.",
+  "tutorPhraseOpponentHomePoints": "The opponent has {count} closed home-board points.",
+  "@tutorPhraseOpponentHomePoints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseBearOffRace": "Bear-off race.",
+  "tutorPhrasePureRace": "A pure race.",
+  "tutorPhraseBearOffSpread": "Remove checkers while leaving a useful spread for the next roll.",
+  "tutorPhraseBringRearCheckersHome": "Bring the back checkers home without piling too many on one point.",
+  "tutorPhraseArmiesHavePassed": "The armies have passed each other; no further hits are possible.",
+  "tutorPhraseContactStillMatters": "{part} Contact still matters.",
+  "@tutorPhraseContactStillMatters": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseOpponentHasCheckersOnBar": "The opponent has {count} on the bar.",
+  "@tutorPhraseOpponentHasCheckersOnBar": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseKeepBoardClosed": "Keep the board closed while bringing the remaining checkers home.",
+  "tutorPhraseBuildOrPreserveHomeBoard": "Build or preserve your home board while the opponent tries to enter.",
+  "tutorPhraseHomePointsCloseEntries": "You hold {count} home-board points; each closes an entry number.",
+  "@tutorPhraseHomePointsCloseEntries": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhrasePrimeContact": "Contact with a {count}-point run.",
+  "@tutorPhrasePrimeContact": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseExtendPrimeOrKeepSpares": "Compare extending the run with keeping spare checkers to maintain it.",
+  "tutorPhraseSpareCheckersCanMove": "{count} spares can move without immediately opening their point.",
+  "@tutorPhraseSpareCheckersCanMove": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseAnchorContact": "Contact with an anchor on {points}.",
+  "@tutorPhraseAnchorContact": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseCompareAnchorProgressAhead": "Compare bringing the back checkers home with the safety of keeping your anchor.",
+  "tutorPhraseCompareAnchorProgressBehind": "Keep the safe foothold in mind while looking for a hit or improving your board.",
+  "tutorPhrasePreserveAnchorFoothold": "The anchor cannot be hit, but those checkers still have a long way home.",
+  "tutorPhraseContactThreats": "Contact: both sides can still threaten hits.",
+  "tutorPhraseLookForPointsAndSafety": "Look for useful points, then compare the risk of leaving single checkers exposed.",
+  "tutorPhraseHomePointsAndBlots": "You hold {count} home-board points and leave {otherCount} blots.",
+  "@tutorPhraseHomePointsAndBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "otherCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseChooseCheckerPrompt": "Choose a checker to start your play.",
+  "tutorPhraseLegalPlayPrompt": "Start a legal play to see commentary.",
+  "tutorPhraseStagedHit": "You have hit {count} opposing {count, plural, one{checker} other{checkers}}.",
+  "@tutorPhraseStagedHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedEnter": "You have entered {count} from the bar.",
+  "@tutorPhraseStagedEnter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedBearOff": "You have borne off {count} {count, plural, one{checker} other{checkers}}.",
+  "@tutorPhraseStagedBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedMakePoints": "You have made {points}.",
+  "@tutorPhraseStagedMakePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorPhraseStagedBlot": "The checker on your {point}-point is a blot for now.",
+  "@tutorPhraseStagedBlot": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedSpare": "The spare on your {point}-point can move later without opening the point.",
+  "@tutorPhraseStagedSpare": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorPhraseStagedPartialPrompt": "{part} Use the remaining playable dice before judging the whole play.",
+  "@tutorPhraseStagedPartialPrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorPhraseStagedAllCheckersOff": "All 15 checkers are off: the game is won.",
+  "tutorPhraseStagedHitShortPlan": "The hit gains time while the opponent works to re-enter.",
+  "tutorPhraseStagedEfficientBearOffPlan": "An efficient bear-off removes checkers and leaves useful numbers for the next roll.",
+  "tutorPhraseStagedRaceHomePlan": "The race plan is to bring the rear checkers home with useful bear-off landing points.",
+  "tutorPhraseStagedBearOffContactPlan": "Bearing off makes progress, but the remaining contact still leaves a risk of hits.",
+  "tutorPhraseStagedReentryPlan": "Re-entry gets the checker back in play; finding a safe landing comes next.",
+  "tutorPhraseStagedHomeBoardPlan": "The new home-board point takes away an entry number after a future hit.",
+  "tutorPhraseStagedPrimePlan": "The longer run closes more landing points; spare checkers help keep it intact.",
+  "tutorPhraseStagedLeaveAnchorPlan": "Leaving the anchor gains ground but gives up a safe foothold.",
+  "tutorPhraseStagedNewAnchorPlan": "The new anchor gives the back checkers a safe foothold.",
+  "tutorPhraseStagedCoverBlotPlan": "Covering a blot removes a target for the opponent.",
+  "tutorPhraseStagedSafetyTradeoffPlan": "The tradeoff is development versus safety: useful builders can also become targets.",
+  "tutorPhraseStagedCompletePrompt": "{part} The full play is staged; Confirm commits it.",
+  "@tutorPhraseStagedCompletePrompt": {
+    "placeholders": {
+      "part": {}
+    }
+  },
+  "tutorMoveForcedVerdict": "This roll leaves no checker-play choice; it is not graded as a decision.",
+  "tutorMoveTopVerdict": "A top choice for this position.",
+  "tutorMoveAlternativeVerdict": "The engine prefers another play here.",
+  "tutorMoveEstimateDifference": "Difference from the top play: {loss}.",
+  "@tutorMoveEstimateDifference": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "tutorMoveEstimateOutcomes": "After this play: {winPercent}% wins, {winGammonPercent}% gammon-or-better wins, {loseGammonPercent}% gammon-or-worse losses. These are estimates from the mover’s perspective.",
+  "@tutorMoveEstimateOutcomes": {
+    "placeholders": {
+      "winPercent": {},
+      "winGammonPercent": {},
+      "loseGammonPercent": {}
+    }
+  },
+  "tutorMoveEstimateMatchChance": "Estimated match-winning chance: {percent}%.",
+  "@tutorMoveEstimateMatchChance": {
+    "placeholders": {
+      "percent": {}
+    }
+  },
+  "tutorMovePlanAllCheckersOff": "All 15 checkers are off: the game is won.",
+  "tutorMovePlanHit": "Use the hit to gain time while the opponent re-enters. {homeBoardAdvice}",
+  "@tutorMovePlanHit": {
+    "placeholders": {
+      "homeBoardAdvice": {}
+    }
+  },
+  "tutorMovePlanHitClosed": "Keep your closed home-board points to make entry harder.",
+  "tutorMovePlanHitBuild": "Build more home-board points to make future hits harder to recover from.",
+  "tutorMovePlanRaceBearOff": "Work toward an efficient bear-off: remove checkers while leaving useful numbers for the next roll.",
+  "tutorMovePlanRaceHome": "Bring the rear checkers home and spread them across useful landing points for the bear-off.",
+  "tutorMovePlanContactBearOff": "Take checkers out of the game, but keep watching the opponent’s back checkers: contact makes a loose bear-off checker a possible target.",
+  "tutorMovePlanReentry": "Get back into play, then look for a safe point for the checker that entered.",
+  "tutorMovePlanHomeBoard": "Strengthen your home board. The new closed point gives a future hit more force by taking away an entry number.",
+  "tutorMovePlanPrime": "Keep the run of closed points working together. Preserve spares so later rolls do not force you to open it.",
+  "tutorMovePlanLeaveAnchor": "Leaving an anchor advances your back checkers but gives up a safe foothold. Watch their exposure on the way home.",
+  "tutorMovePlanNewAnchor": "Use the new anchor as a safe foothold while you improve the rest of your position.",
+  "tutorMovePlanCoverBlot": "Consolidate your checkers. Covering a blot removes that target while keeping future landing points available.",
+  "tutorMovePlanSafety": "Balance development with safety: bring builders toward useful points and check which single checkers can be hit.",
+  "tutorMoveObservationNoLegalPlay": "No legal checker play: the turn must pass.",
+  "tutorMoveObservationHit": "Hits {count} opposing {count, plural, one{checker} other{checkers}}; the opponent must re-enter from the bar before moving other checkers.",
+  "@tutorMoveObservationHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationEntry": "Enters {count} from the bar.",
+  "@tutorMoveObservationEntry": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBearOff": "Bears off {count} {count, plural, one{checker} other{checkers}}.",
+  "@tutorMoveObservationBearOff": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationMadePoints": "Makes {points}. Two or more checkers hold a safe point and block an opponent’s landing there.",
+  "@tutorMoveObservationMadePoints": {
+    "placeholders": {
+      "points": {}
+    }
+  },
+  "tutorMoveObservationBrokenPoints": "Gives up made {pointLabel} {points}. Those points no longer block the opponent.",
+  "@tutorMoveObservationBrokenPoints": {
+    "placeholders": {
+      "pointLabel": {},
+      "points": {}
+    }
+  },
+  "tutorMoveObservationNoBlots": "Leaves no single checkers exposed (previously {previousCount}). There are no single checkers to hit.",
+  "@tutorMoveObservationNoBlots": {
+    "placeholders": {
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationBlots": "Leaves {count} exposed single {count, plural, one{checker} other{checkers}} (previously {previousCount}). Check whether the opponent can reach them before choosing safety over another gain.",
+  "@tutorMoveObservationBlots": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationPrimeRun": "Longest run of made points: {count} (previously {previousCount}). {primeAdvice}",
+  "@tutorMoveObservationPrimeRun": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "previousCount": {
+        "type": "int"
+      },
+      "primeAdvice": {}
+    }
+  },
+  "tutorMoveObservationPrimeSix": "A six-point prime cannot be crossed while it stays closed.",
+  "tutorMoveObservationPrimeBuild": "Keep builders nearby if you want to extend or preserve this run.",
+  "tutorMoveObservationPrimeSpares": "{count} spare checkers sit above two on made points. Moving a spare can preserve the point; moving one of its last two opens it.",
+  "@tutorMoveObservationPrimeSpares": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationAnchors": "Anchors in the opponent’s home board: {points} (previously {previousPoints}). Keeping an anchor protects those checkers from hits; leaving it trades that foothold for progress in the race.",
+  "@tutorMoveObservationAnchors": {
+    "placeholders": {
+      "points": {},
+      "previousPoints": {}
+    }
+  },
+  "tutorMoveObservationPureRace": "Pure race: the armies have passed each other and neither side is on the bar. Hitting is no longer possible; bear-off efficiency matters.",
+  "tutorMoveObservationNoReplyHit": "No legal next roll lets the opponent hit a checker in this position. Contact still remains, so later moves can create new shots.",
+  "tutorMoveObservationReplyHit": "The opponent can hit on {count} of {total} rolls. For example, {dieOne}–{dieTwo} allows a legal hit on your {point}-point. A hit is available, not guaranteed to be chosen.",
+  "@tutorMoveObservationReplyHit": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "dieOne": {
+        "type": "int"
+      },
+      "dieTwo": {
+        "type": "int"
+      },
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveObservationOpponentBarHome": "{closedPoints} of your home-board points are closed. {entryAdvice}",
+  "@tutorMoveObservationOpponentBarHome": {
+    "placeholders": {
+      "closedPoints": {
+        "type": "int"
+      },
+      "entryAdvice": {}
+    }
+  },
+  "tutorMoveObservationAllEntriesClosed": "The opponent cannot re-enter until a point opens.",
+  "tutorMoveObservationOpenEntry": "A roll using an open entry point can bring a checker back from the bar.",
+  "tutorMoveComparisonDetail": "{factors} The top play’s estimated win chance is {delta} percentage points {direction}.{scoreContext}",
+  "@tutorMoveComparisonDetail": {
+    "placeholders": {
+      "factors": {},
+      "delta": {},
+      "direction": {},
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonHigher": "higher",
+  "tutorMoveComparisonLower": "lower",
+  "tutorMoveComparisonScoreContext": " It can still rank higher because gammons and backgammons have different value at the current {scoreContext}.",
+  "@tutorMoveComparisonScoreContext": {
+    "placeholders": {
+      "scoreContext": {}
+    }
+  },
+  "tutorMoveComparisonStake": "stake",
+  "tutorMoveComparisonMatchScore": "match score",
+  "tutorMoveComparisonFactorBar": "The top play leaves {bestCount} opposing checkers on the bar instead of {playedCount}. A checker on the bar must re-enter before the opponent can move the others.",
+  "@tutorMoveComparisonFactorBar": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorHomeBoard": "The top play holds {bestCount} home-board points instead of {playedCount}, {entryDifference} entry points after a hit.",
+  "@tutorMoveComparisonFactorHomeBoard": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "entryDifference": {}
+    }
+  },
+  "tutorMoveComparisonClosingMore": "closing more",
+  "tutorMoveComparisonLeavingMore": "leaving more",
+  "tutorMoveComparisonFactorShots": "The top play allows a reply hit on {bestCount} of 36 rolls instead of {playedCount}. {riskDifference}",
+  "@tutorMoveComparisonFactorShots": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      },
+      "riskDifference": {}
+    }
+  },
+  "tutorMoveComparisonReducesRisk": "That reduces the immediate risk of being sent back.",
+  "tutorMoveComparisonExtraExposure": "Compare that extra exposure with what the play gains elsewhere.",
+  "tutorMoveComparisonFactorPrime": "The top play’s longest run of closed points is {bestCount} rather than {playedCount}; compare the blockade with the checkers available to keep it intact.",
+  "@tutorMoveComparisonFactorPrime": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorAnchors": "The top play’s anchors are {bestPoints} rather than {playedPoints}. Keeping an anchor preserves a safe landing point; leaving it brings those checkers nearer home.",
+  "@tutorMoveComparisonFactorAnchors": {
+    "placeholders": {
+      "bestPoints": {},
+      "playedPoints": {}
+    }
+  },
+  "tutorMoveComparisonFactorBearOff": "The top play has {bestCount} checkers off instead of {playedCount}. Each checker removed is one fewer to bear off later.",
+  "@tutorMoveComparisonFactorBearOff": {
+    "placeholders": {
+      "bestCount": {
+        "type": "int"
+      },
+      "playedCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonFactorSimilarRisks": "Both plays leave the same immediate hit exposure, home-board points, anchors and checkers off. Compare the landing points: the next roll may use those checkers differently.",
+  "tutorMoveComparisonSummaryBar": "The top play puts more checkers on the bar, delaying the opponent’s other moves.",
+  "tutorMoveComparisonSummaryHomeBoard": "The top play closes more home-board points, making re-entry harder after a hit.",
+  "tutorMoveComparisonSummaryShots": "The top play allows fewer immediate hitting rolls, reducing the risk of being sent back.",
+  "tutorMoveComparisonSummaryPrime": "The top play keeps a longer run of closed points.",
+  "tutorMoveComparisonSummaryAnchors": "The top play keeps more safe anchors in the opponent’s home board.",
+  "tutorMoveComparisonSummaryBearOff": "The top play takes more checkers off, leaving fewer to remove later.",
+  "tutorMoveComparisonSummaryBlots": "This play leaves {playedCount} single checkers; the top play leaves {bestCount}.",
+  "@tutorMoveComparisonSummaryBlots": {
+    "placeholders": {
+      "playedCount": {
+        "type": "int"
+      },
+      "bestCount": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummarySafeAnchor": "The top play keeps a safe anchor on point {point}.",
+  "@tutorMoveComparisonSummarySafeAnchor": {
+    "placeholders": {
+      "point": {
+        "type": "int"
+      }
+    }
+  },
+  "tutorMoveComparisonSummaryEntry": "The top play closes more entry points in case one of your checkers is hit.",
+  "tutorMoveComparisonSummarySimilarRisks": "The plays leave similar immediate risks; compare which landing points stay useful next roll.",
+  "tutorMoveAssessmentEquityLoss": "{value} equity",
+  "@tutorMoveAssessmentEquityLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMoveAssessmentMwcLoss": "{value} pp MWC",
+  "@tutorMoveAssessmentMwcLoss": {
+    "placeholders": {
+      "value": {}
+    }
+  },
+  "tutorMovePointSingular": "point",
+  "tutorMovePointPlural": "points",
+  "tutorMoveNoPoints": "none",
+  "gameTutorCommentaryOff": "Game commentary is off.",
+  "gameTutorToolsAvailable": "Open the tutor for the tools you have enabled.",
+  "gameTutorNextRoll": "Roll next.",
+  "gameTutorNoEvaluatedReview": "No evaluated explanation is available for this recorded move.",
+  "gameTutorAnalysisUnavailable": "analysis unavailable",
+  "gameTutorReviewing": "reviewing…",
+  "gameTutorTryYourPlayFirst": "Try your own play first.",
+  "gameTutorKeepBuilding": "Keep building your play.",
+  "gameTutorStageCompleteBeforeCoaching": "Stage a complete legal play before revealing coaching or hints.",
+  "gameTutorReadyToConfirm": "Ready to confirm",
+  "gameTutorPlayTakingShape": "Your play is taking shape.",
+  "gameTutorConfirmOrUndo": "Confirm to play it, or Undo to reconsider.",
+  "gameTutorFinishDiceOrUndo": "Finish the remaining dice, or Undo to reconsider.",
+  "gameTutorComputerConsidering": "The computer is considering its play.",
+  "gameTutorComputerPlayReviewed": "Its completed play will be reviewed here.",
+  "gameTutorYourPlay": "Your play",
+  "gameTutorComputer": "Computer",
+  "gameTutorPlayQuality": "Your play: {quality}",
+  "@gameTutorPlayQuality": {
+    "placeholders": {
+      "quality": {}
+    }
+  },
+  "gameTutorForcedPlay": "forced play",
+  "gameTutorTopChoice": "top choice",
+  "gameTutorSoundPlay": "sound play",
+  "gameTutorAnotherPlayMayFitBetter": "another play may fit better",
+  "gameTutorAnotherPlayFitsBetter": "another play fits this position better",
+  "gameTutorStrongerPlayAvailable": "a clearly stronger play was available",
+  "gameTutorPositionEdge": "{side} has the estimated edge.",
+  "@gameTutorPositionEdge": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "gameTutorPositionEven": "The position is roughly even.",
+  "tutorPlayedMove": "Played: {move}",
+  "@tutorPlayedMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorBestMove": "Best: {move}",
+  "@tutorBestMove": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "tutorShowRankedPlays": "Show ranked plays",
+  "tutorReviewRecordedMove": "Tap a completed move in the log to review its decision here.",
+  "tutorTopPlays": "Top plays",
+  "tutorNoHintsAvailable": "No hints available.",
+  "tutorPreviewThenConfirm": "Tap a play to preview it on the board, then Confirm.",
+  "tutorTopChoiceForPosition": "Top choice for this position",
+  "tutorAlternativePlay": "Alternative play",
+  "tutorEngineEstimates": "Engine estimates",
+  "tutorEstimateScope": "0-ply estimate · current score and stake · no future cubes",
+  "tutorEquity": "Equity",
+  "tutorMwcPercent": "MWC %",
+  "tutorNearTiesNote": "Near ties can change with deeper analysis.",
+  "tutorWhyThisPlay": "Why this play?",
+  "tutorCompareAlternative": "Compare this alternative",
+  "gameTutorCubeTake": "Tutor: Take",
+  "gameTutorCubePass": "Tutor: Pass",
+  "practiceScreenTitle": "Practise a decision",
+  "practiceUnavailable": "This practice position is no longer available.",
+  "practiceSubmitError": "This attempt could not be evaluated or saved. Your progress was not changed. Try again.",
+  "practiceTurnLabel": "{side} to play · {dice}",
+  "@practiceTurnLabel": {
+    "placeholders": {
+      "side": {},
+      "dice": {}
+    }
+  },
+  "practiceHistoricalScoreUnavailable": "Historical score unavailable; grading uses cubeless equity.",
+  "practiceScoreLine": "Score: {whiteLabel} {whiteScore} – {blackLabel} {blackScore}, to {matchLength}",
+  "@practiceScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceCrawfordGame": " · Crawford game",
+  "practiceNoDoublingCube": "No doubling cube.",
+  "practiceCubeValue": "Cube {value}.",
+  "@practiceCubeValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "practiceHistoricalCubeUnknown": "Historical cube rules unknown.",
+  "practiceAfterBestPosition": "Position after the best play",
+  "practiceAfterYourAnswerPosition": "Position after your answer",
+  "practiceFindYourPlayPrompt": "Find your play on the board, then check your answer. No hints are shown.",
+  "practiceUndo": "Undo",
+  "practiceCheckAnswer": "Check answer",
+  "practiceRevealNoCredit": "Reveal answer (no credit)",
+  "practiceAnswerRevealedNoCredit": "Answer revealed — no recall credit.",
+  "practiceGradeLine": "{verdict} · {loss}",
+  "@practiceGradeLine": {
+    "placeholders": {
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "practiceBestMoveLine": "Best: {move}",
+  "@practiceBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceOriginalGameLine": "Original game: {move} · {loss}",
+  "@practiceOriginalGameLine": {
+    "placeholders": {
+      "move": {},
+      "loss": {}
+    }
+  },
+  "practiceYourAnswerLine": "Your answer: {move}",
+  "@practiceYourAnswerLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "practiceYourAnswerChip": "Your answer",
+  "practiceBestPlayChip": "Best play",
+  "practiceNextReview": "Next review: {date}.",
+  "@practiceNextReview": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "practiceRecallCredit": "Best or good answers count as successful recall. Early repeats do not advance the schedule.",
+  "practiceBackToLearning": "Back to learning",
+  "practiceMarkBest": "Best",
+  "practiceMarkGood": "Good",
+  "practiceMarkDubious": "Dubious",
+  "practiceMarkError": "Error",
+  "practiceMarkBlunder": "Blunder",
+  "practiceMarkForced": "Forced",
+  "newMatchYourSide": "Your side",
+  "newMatchTutorMode": "Tutor mode",
+  "newMatchTutorDescription": "Learn with hints, explanations, and game commentary",
+  "newMatchTutoringOptions": "Tutoring options",
+  "newMatchTutoringOptionsDescription": "For this match; adjustable during play",
+  "setupMatchLength": "Match length",
+  "setupDifficulty": "Difficulty",
+  "setupDifficultyEasy": "Easy",
+  "setupDifficultyMedium": "Medium",
+  "setupDifficultyHard": "Hard",
+  "setupDifficultyExpert": "Expert",
+  "setupPlayWithoutCube": "Play without cube",
+  "setupNoCubeThisMatch": "No doubling cube this match",
+  "analysisTitle": "Analysis",
+  "gameMatchSummary": "Match summary",
+  "gameAnalyzeGame": "Analyze game",
+  "analysisMetricsTooltip": "What do these numbers mean?",
+  "analysisError": "Failed to analyse game: {error}",
+  "@analysisError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisNoPositions": "This game has no positions to show.",
+  "analysisInProgress": "Analysing game…",
+  "analysisPercent": "{percent}%",
+  "@analysisPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisPlayed": "Played",
+  "analysisBest": "Best",
+  "analysisPrevious": "Previous",
+  "analysisNext": "Next",
+  "analysisPositionBeforeCube": "Position before the cube decision",
+  "analysisPositionAtPoint": "Position at this point in the game",
+  "analysisShowingBestBefore": "Showing the best move on the position before the move",
+  "analysisShowingBefore": "Showing position before the move",
+  "analysisVerdictLine": "{side}: {verdict}{loss}",
+  "@analysisVerdictLine": {
+    "placeholders": {
+      "side": {},
+      "verdict": {},
+      "loss": {}
+    }
+  },
+  "analysisMoveLoss": "  −{loss}",
+  "@analysisMoveLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisExcludedFromAverages": " · excluded from averages",
+  "analysisNoPlay": "(no play)",
+  "analysisBestMoveLine": "Best: {move}",
+  "@analysisBestMoveLine": {
+    "placeholders": {
+      "move": {}
+    }
+  },
+  "analysisExplain": "Explain",
+  "analysisSaveForPractice": "Save for practice",
+  "analysisSaveError": "Could not save this decision: {error}",
+  "@analysisSaveError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "analysisCubeInfo": "{side}: {action} · {mark} · {loss} loss",
+  "@analysisCubeInfo": {
+    "placeholders": {
+      "side": {},
+      "action": {},
+      "mark": {},
+      "loss": {}
+    }
+  },
+  "analysisCubeDecision": "Cube decision",
+  "analysisCubePlayed": "Played: {action} ({percent}% match win).",
+  "@analysisCubePlayed": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisCubeBest": "Best: {action} ({percent}% match win).",
+  "@analysisCubeBest": {
+    "placeholders": {
+      "action": {},
+      "percent": {}
+    }
+  },
+  "analysisCubeEstimate": "0-ply estimate from the acting player’s perspective. Assumes an optimal take/pass response. Uses a 0.7 cube-life approximation on the taken-double branch, not a full future-recube search. Deeper analysis can change the answer.",
+  "analysisClose": "Close",
+  "analysisMoves": "Moves",
+  "analysisForced": "Forced",
+  "analysisMarkBest": "Best",
+  "analysisMarkGood": "Good",
+  "analysisMarkDubious": "Dubious",
+  "analysisMarkError": "Error",
+  "analysisMarkBlunder": "Blunder",
+  "analysisSummaryMeanLoss": "Mean loss {loss}",
+  "@analysisSummaryMeanLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisSummaryCheckerDecisions": "{count} checker decisions",
+  "@analysisSummaryCheckerDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryBlunders": "Blunders {count}",
+  "@analysisSummaryBlunders": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analysisSummaryCubeLoss": "Cube loss {loss}",
+  "@analysisSummaryCubeLoss": {
+    "placeholders": {
+      "loss": {}
+    }
+  },
+  "analysisRollWithoutDoubling": "{side} rolls without doubling",
+  "@analysisRollWithoutDoubling": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "metricExplainerTitle": "Understanding the metrics",
+  "metricExplainerTooltip": "What do these numbers mean?",
+  "metricExplainerMwcTitle": "Match-winning chance (MWC)",
+  "metricExplainerMwcBody": "When the score is known, checker plays are ranked by estimated chance of winning the match. Loss is in percentage points (pp): 1 pp means 51% falls to 50%. The current cube stake and gammon/backgammon outcomes are included. Forced passes and rolls with one legal resulting position are excluded from averages.",
+  "metricExplainerSearchTitle": "Search and uncertainty",
+  "metricExplainerSearchBody": "Checker rankings are 0-ply static after-play estimates, not rollouts. Match values use a match equity table and no future cube turns. Cube reviews use a partial 0.7 cube-life approximation on taken doubles. Neither is full cubeful search. Away scores above 25 use the table’s 25-away boundary. Near ties can change with deeper analysis; there is no calibrated confidence interval.",
+  "metricExplainerEquityTitle": "Equity",
+  "metricExplainerEquityBody": "If the score is unavailable, cubeless equity is how many points a position is worth on average — the expected result with the cube at 1. +1.0 means you expect to win one point; −0.5 means you expect to lose half a point.",
+  "metricExplainerEquityLossTitle": "Equity loss (e.g. −0.016)",
+  "metricExplainerEquityLossBody": "For each move we compare what you played against the engine’s best play. The equity loss is how much expected value your move gave up. −0.016 means the move was only 0.016 points worse than the best — a tiny slip. 0.000 means you found the best play.",
+  "metricExplainerErrorRateTitle": "Error rate",
+  "metricExplainerErrorRateBody": "Mean loss averages your graded checker decisions in the displayed unit. Cube decisions have their own average. Lower means closer to this engine’s top estimates; it is not a calibrated player rating.",
+  "metricExplainerMoveMarksTitle": "Move marks",
+  "metricExplainerMoveMarksBody": "MWC teaching bands: Best < 0.05 pp, Good < 0.5 pp, Dubious < 1.5 pp, Error < 3 pp, Blunder ≥ 3 pp. These are product teaching bands, not calibrated confidence or tournament ratings.\n\nCubeless equity teaching bands:",
+  "metricExplainerThresholdBest": "lost < 0.001",
+  "metricExplainerThresholdGood": "lost < 0.020",
+  "metricExplainerThresholdDubious": "lost < 0.050",
+  "metricExplainerThresholdError": "lost < 0.110",
+  "metricExplainerThresholdBlunder": "lost ≥ 0.110",
+  "metricExplainerGotIt": "Got it",
+  "historyTitle": "Match history",
+  "historyLoadFailed": "Failed to load history:\n{error}",
+  "@historyLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyEmpty": "No matches played yet.",
+  "historyDeleteConfirmTitle": "Delete this match?",
+  "historyDeleteConfirmBody": "{scoreLine}\n\nThe match and every game recorded in it are removed permanently. This cannot be undone.",
+  "@historyDeleteConfirmBody": {
+    "placeholders": {
+      "scoreLine": {}
+    }
+  },
+  "actionCancel": "Cancel",
+  "actionDelete": "Delete",
+  "historyDeleteFailed": "Could not delete that match.",
+  "historyComplete": "Complete",
+  "historyWinner": "{side} won",
+  "@historyWinner": {
+    "placeholders": {
+      "side": {}
+    }
+  },
+  "historyUnfinished": "Unfinished",
+  "historyMatchTitle": "Match",
+  "historyMatchLoadFailed": "Failed to load match:\n{error}",
+  "@historyMatchLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyGamesLoadFailed": "Failed to load games:\n{error}",
+  "@historyGamesLoadFailed": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+  "historyNoGames": "No games recorded yet.",
+  "historyGameTitle": "Game {number}",
+  "@historyGameTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "historyCrawford": "Crawford",
+  "historyScoreLine": "White {whiteScore} — {blackScore} Black  (to {matchLength})",
+  "@historyScoreLine": {
+    "placeholders": {
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "historyModeComputer": "vs Computer",
+  "historyModeTwoPlayers": "Two players",
+  "historyModeOnline": "Online",
+  "historyModeNearby": "Play Nearby",
+  "historyModeBuddy": "Buddy",
+  "historyGameInProgress": "In progress",
+  "historyGameResult": "{side} wins {points} ({outcome})",
+  "@historyGameResult": {
+    "placeholders": {
+      "side": {},
+      "points": {
+        "type": "int"
+      },
+      "outcome": {}
+    }
+  },
+  "historyOutcomeSingle": "single",
+  "historyOutcomeGammon": "gammon",
+  "historyOutcomeBackgammon": "backgammon",
+  "learningRefreshTooltip": "Refresh learning progress",
+  "learningOptions": "Learning options",
+  "learningResetMenu": "Reset practice progress",
+  "learningLoadFailed": "Could not load learning progress.",
+  "actionRetry": "Retry",
+  "learningHeading": "Learn from your decisions",
+  "learningIntro": "Progress stays on this device. Review recurring themes, then retry saved positions without seeing the answer. White and Black can be reviewed separately.",
+  "learningBothSides": "Both sides",
+  "learningHumansOnly": "Human decisions only",
+  "learningHumanOnlyHelp": "Turn off to include computer and remote-player decisions",
+  "learningDecisionSummary": "{decisions} decisions · {mistakes} to improve · {blunders} blunders",
+  "@learningDecisionSummary": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "mistakes": {
+        "type": "int"
+      },
+      "blunders": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAverageLoss": "Average loss ({decisions} decisions): {loss}",
+  "@learningAverageLoss": {
+    "placeholders": {
+      "decisions": {
+        "type": "int"
+      },
+      "loss": {}
+    }
+  },
+  "learningForcedDisclaimer": "Forced plays are excluded. These are engine estimates, not a tournament rating.",
+  "learningGamesNeedingAnalysis": "{count, plural, one{# saved game needs analysis or refreshed analysis.} other{# saved games need analysis or refreshed analysis.}}",
+  "@learningGamesNeedingAnalysis": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalyseSavedGames": "Analyse saved games",
+  "learningEmptyProfile": "Play and finish a game to build your learning profile. You can also save individual decisions from a game’s replay.",
+  "learningOpenHistory": "Open match history",
+  "learningRecurringThemes": "Recurring themes",
+  "learningNoThemes": "No recurring mistake themes in this selection yet.",
+  "learningThemeDecisions": "{count} decisions to revisit. A position can have more than one theme.",
+  "@learningThemeDecisions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSaveMistakes": "Save these mistakes for practice",
+  "learningSavedMistakes": "{count} decisions are in your practice list. Existing saves are kept once.",
+  "@learningSavedMistakes": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningSaveMistakesFailed": "Some decisions could not be saved. Completed saves are kept; retry safely.",
+  "learningSpacedPractice": "Spaced practice",
+  "learningPracticeCounts": "{due} due now · {saved} saved · {attempts} attempts · {successes} successful recalls",
+  "@learningPracticeCounts": {
+    "placeholders": {
+      "due": {
+        "type": "int"
+      },
+      "saved": {
+        "type": "int"
+      },
+      "attempts": {
+        "type": "int"
+      },
+      "successes": {
+        "type": "int"
+      }
+    }
+  },
+  "learningIntervalsHelp": "Successful due reviews return after 1, 3, 7, 14 and 30 days. Mistakes or revealed answers return after 10 minutes. Early repeats do not advance the interval.",
+  "learningAnswerContext": "Practice results reflect your answers here, even when the original position belonged to an opponent.",
+  "learningNoSavedPositions": "Save a decision from replay, or use the mistake button above.",
+  "learningPositionTitle": "{side} decision · game {gameId}",
+  "@learningPositionTitle": {
+    "placeholders": {
+      "side": {},
+      "gameId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningReviewDue": "Review {date}",
+  "@learningReviewDue": {
+    "placeholders": {
+      "date": {}
+    }
+  },
+  "learningReadyToReview": "Ready to review",
+  "learningSuccessStreak": "{count} successful due reviews",
+  "@learningSuccessStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learningRemoveTooltip": "Remove saved decision",
+  "learningRecentPractice": "Recent practice",
+  "learningAnswerRevealed": "Answer revealed",
+  "learningSuccessfulRecall": "Successful recall",
+  "learningTryAgain": "Try this decision again",
+  "learningAttemptSubtitle": "{date} · saved position {positionId}",
+  "@learningAttemptSubtitle": {
+    "placeholders": {
+      "date": {},
+      "positionId": {
+        "type": "int"
+      }
+    }
+  },
+  "learningRemoveTitle": "Remove this exercise?",
+  "learningRemoveBody": "This removes its practice attempts. The original game remains in history.",
+  "actionRemove": "Remove",
+  "learningRemoveFailed": "Could not remove this exercise.",
+  "learningResetTitle": "Reset practice progress?",
+  "learningResetBody": "All practice attempts and review intervals will be removed. Your saved exercises and match history are kept; every exercise becomes due now.",
+  "learningResetAction": "Reset progress",
+  "learningResetFailed": "Could not reset practice progress.",
+  "learningAnalysisProgress": "Analysed {completed} games · {failed} unavailable.",
+  "@learningAnalysisProgress": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisComplete": "Analysed {completed} games.",
+  "@learningAnalysisComplete": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningAnalysisCompleteWithErrors": "Analysed {completed} games; {failed} could not be analysed. Try again when the engine is ready.",
+  "@learningAnalysisCompleteWithErrors": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "failed": {
+        "type": "int"
+      }
+    }
+  },
+  "learningThemeHitting": "Hitting and tempo",
+  "learningThemeSafety": "Blots and safety",
+  "learningThemePointMaking": "Making points",
+  "learningThemePrime": "Primes and blockades",
+  "learningThemeAnchor": "Anchors and escape",
+  "learningThemeRace": "Racing efficiency",
+  "learningThemeBearOff": "Bearing off",
+  "learningThemeBarEntry": "Entering from the bar",
+  "learningThemeCube": "Cube decisions",
+  "analysisCubeNoDouble": "No double",
+  "analysisCubeDouble": "Double",
+  "analysisCubeTake": "Take",
+  "analysisCubePass": "Pass",
+  "learningAnalysisStarting": "Analysing saved games…",
+  "tutorCubelessEstimateScope": "0-ply cubeless estimate · score unavailable",
+  "tutorLossPp": "Loss pp",
+  "tutorLoss": "Loss",
+  "scoreSheetNoMoves": "No moves yet",
+  "tutorOptions": "Tutoring options",
+  "tutorCollapseTooltip": "Collapse tutor",
+  "tutorExpandTooltip": "Expand tutor",
+  "onlineTitle": "Play Online",
+  "onlineUnassistedNote": "Live online games are unassisted. Review your moves and practise mistakes after the match.",
+  "onlineNotConfiguredTitle": "Online play isn’t configured in this build",
+  "onlineNotConfiguredBody": "This build has no Firebase backend wired up, so create/join matches are unavailable.",
+  "onlineErrorNoMatch": "No match with that code. Check it and try again.",
+  "onlineErrorSeatTaken": "That match is no longer open — the seat has been taken.",
+  "onlineErrorPermission": "That match is not open to you.",
+  "onlineErrorGeneric": "Something went wrong. Please try again.",
+  "onlineMatchFinished": "That match has finished — nothing left to rejoin.",
+  "onlineEnterCodeError": "Enter a match code.",
+  "onlineOpponentShort": "Opp",
+  "onlineMatchInProgress": "Match in progress",
+  "onlineResumePrompt": "You were playing match {code}.",
+  "@onlineResumePrompt": {
+    "placeholders": {
+      "code": {}
+    }
+  },
+  "onlineRejoin": "Rejoin",
+  "onlineForgetMatch": "Forget this match",
+  "onlineCreateTitle": "Create match",
+  "onlineMatchLength": "Match length",
+  "onlineNoCubeTitle": "Play without cube",
+  "onlineNoCubeSubtitle": "No doubling cube this match",
+  "onlineCreate": "Create",
+  "onlineWaitingOpponent": "Waiting for opponent…",
+  "onlineShareCode": "Share this code",
+  "onlineCopyCode": "Copy code",
+  "onlineCodeCopied": "Code copied",
+  "onlineJoinTitle": "Join match",
+  "onlineRoomCode": "Match code",
+  "onlineJoin": "Join",
+  "lanTitle": "Play Nearby",
+  "lanTabHost": "Host",
+  "lanTabJoin": "Join",
+  "lanUnassistedNote": "Live nearby games are unassisted. Review your moves and practise mistakes after the match.",
+  "lanGameStartFailed": "The game could not be started. The other device can try joining again.",
+  "lanHostPortInUse": "Could not start hosting — the port is already in use. Close any other copy of Backgammon Buddy and try again.",
+  "lanHostStartFailed": "Could not start hosting. Check your Wi-Fi connection and try again.",
+  "lanHostTitle": "Host a game",
+  "lanStartHosting": "Start hosting",
+  "lanHostHelp": "Both devices must be on the same Wi-Fi. This one deals the dice and keeps the score.",
+  "lanWaitingPlayerTitle": "Waiting for a player",
+  "lanRoomCodeInfo": "Tell the other player this code. It is what lets them in — the app never sends it over the network.",
+  "lanWaitingPlayer": "Waiting for a player…",
+  "lanStopHosting": "Stop hosting",
+  "lanFindNearbyPort": "Ask the other device to look for nearby games. Listening on port {port}.",
+  "@lanFindNearbyPort": {
+    "placeholders": {
+      "port": {
+        "type": "int"
+      }
+    }
+  },
+  "lanOnNetwork": "On this network",
+  "lanCopyAddress": "Copy address",
+  "lanAddressCopied": "Address copied",
+  "lanScanHostTitle": "Scan the host",
+  "lanScanHostHelp": "The other device shows a QR code on its Host screen. Scanning it fills in the address and the room code for you.",
+  "lanScanQr": "Scan QR code",
+  "lanScannerUnavailable": "The camera or its permission is unavailable. Enter the address and room code below instead.",
+  "lanInvalidQr": "That QR code is not a Backgammon Buddy game. Scan the one on the other device’s Host screen.",
+  "lanScannerFailed": "The scanner could not be opened. Enter the address and code below instead.",
+  "lanNearbyGames": "Nearby games",
+  "lanSearching": "Looking for nearby games…",
+  "lanNoGamesFound": "No games found yet. Make sure the other device is hosting and both are on the same Wi-Fi — or enter its address below.",
+  "lanStillSearching": "Still looking…",
+  "lanEnterAddress": "Enter address",
+  "lanEnterAddressHelp": "Automatic discovery does not work on every network (and on iOS it may be blocked entirely). The host screen shows this device what to type.",
+  "lanIpAddress": "IP address",
+  "lanPort": "Port",
+  "lanInvalidPort": "Enter a port between 1 and 65535.",
+  "lanEnterAddressError": "Enter the address shown on the other device.",
+  "lanEnterRoomCodeError": "Enter the 4-digit code from the other device.",
+  "lanJoinWrongCode": "Wrong room code. Check the four digits on the other device.",
+  "lanJoinVersionMismatch": "The other device is running a different version of Backgammon Buddy.",
+  "lanJoinHandshakeFailed": "That device did not answer the way Backgammon Buddy does. Check the address and port.",
+  "lanJoinFailed": "Could not join. Check the address and room code, then try again.",
+  "lanJoinTarget": "Join {name}",
+  "@lanJoinTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "lanJoinTargetHelp": "Enter the 4-digit code shown on the other device.",
+  "lanJoiningTarget": "Joining {name}",
+  "@lanJoiningTarget": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "lanConnect": "Connect",
+  "lanBack": "Back",
+  "lanTryAgain": "Try again",
+  "lanStatusBusy": "Room in use — waiting…",
+  "lanStatusReconnecting": "Lost the connection — retrying…",
+  "lanStatusConnected": "Connected — starting the match…",
+  "lanStatusFailed": "Could not join.",
+  "lanStatusConnecting": "Connecting…",
+  "diagnosticsCopySuccess": "Diagnostics copied to clipboard",
+  "diagnosticsReviewTitle": "Review diagnostic report",
+  "diagnosticsPrivacyNotice": "Opening the draft sends the details below to GitHub, including the app version, platform and any error details. No public issue is posted until you submit it there. If these details contain private information, cancel and use Copy to prepare a report yourself.",
+  "diagnosticsCancel": "Cancel",
+  "diagnosticsOpenGitHub": "Open GitHub",
+  "diagnosticsTitle": "Diagnostics",
+  "diagnosticsReportTooltip": "Report an issue on GitHub",
+  "diagnosticsCopyTooltip": "Copy to clipboard",
+  "diagnosticsClearTooltip": "Clear log",
+  "diagnosticsEmpty": "No errors recorded.\n\nIf something goes wrong, it is logged here — come back and copy the details into a bug report.",
+  "gameHudNeutralScore": "{whiteLabel} {whiteScore}–{blackScore} {blackLabel} · to {matchLength}",
+  "gameHudPlayerScore": "{you} {mine}–{theirs} {opponent} · to {matchLength}",
+  "gameHudYou": "You",
+  "gameHudAi": "AI",
+  "gameHudGameNumber": "Game {number}",
+  "gameHudMatchContext": "{score} · {game}",
+  "gameHudHotSeatDetail": "{whiteLabel} vs {blackLabel} · {pipsLabel} {whitePips}–{blackPips}",
+  "gameHudOpponentDetail": "vs {opponent} · {pipsLabel} {mine}–{theirs}",
+  "gameHudOpponentDetailWithLevel": "vs {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
+  "gameHudPips": "Pips",
+  "gameHudCrawford": "Crawford",
+  "gameHudDouble": "Double",
+  "gameHudMoreActions": "More actions",
+  "gameHudSurrender": "Surrender…",
+  "gameHudThinking": "Thinking",
+  "gameHudDoubleBeforeRoll": "You can only double before rolling, on your turn.",
+  "gameHudNoDoubleCrawford": "No doubling in the Crawford game — this single game decides the match.",
+  "gameHudOnlyCubeOwner": "Only the cube owner can double, and the other side owns it right now.",
+  "gameHudDoubleUnavailable": "Doubling is not available right now.",
+  "gameDialogScoreLine": "{whiteLabel} {whiteScore} — {blackScore} {blackLabel} (to {matchLength})",
+  "gameDialogPlayerWon": "{winner} wins this game ({points}).",
+  "gameDialogPlayerWonGammon": "{winner} wins this game ({points}, gammon).",
+  "gameDialogPlayerWonBackgammon": "{winner} wins this game ({points}, backgammon).",
+  "gameDialogPlayerWonDrop": "{winner} wins this game ({points}) — {loser} declined the double.",
+  "gameDialogPlayerWonResignation": "{winner} wins this game ({points}) — {loser} resigned.",
+  "gameDialogPassDeviceTitle": "Pass the device",
+  "gameDialogPlayersTurn": "{name}’s turn",
+  "gameDialogTapToContinue": "Tap to continue",
+  "gameDialogCubeOfferedTitle": "Double offered",
+  "gameDialogCubeOfferMessage": "{doubler} offers a double to {value}. Take or pass?{tutorLine}",
+  "gameDialogPass": "Pass",
+  "gameDialogTake": "Take",
+  "gameDialogResignationTitle": "Resignation offered",
+  "gameDialogResignationMessage": "{resigner} offers to resign a {value}. Accept or decline?",
+  "gameDialogResignSingle": "single game",
+  "gameDialogResignGammon": "gammon",
+  "gameDialogResignBackgammon": "backgammon",
+  "gameDialogDecline": "Decline",
+  "gameDialogAccept": "Accept",
+  "gameDialogGameOverTitle": "Game over",
+  "gameDialogNextGame": "Next game",
+  "gameDialogMatchOverTitle": "Match over",
+  "gameDialogNobody": "Nobody",
+  "gameDialogMatchWinner": "{winner} wins the match.",
+  "gameDialogSavedToHistory": "Saved to History",
+  "gameDialogDone": "Done",
+  "@gameHudNeutralScore": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "blackScore": {
+        "type": "int"
+      },
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudPlayerScore": {
+    "placeholders": {
+      "you": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      },
+      "opponent": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudGameNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudMatchContext": {
+    "placeholders": {
+      "score": {},
+      "game": {}
+    }
+  },
+  "@gameHudHotSeatDetail": {
+    "placeholders": {
+      "whiteLabel": {},
+      "blackLabel": {},
+      "pipsLabel": {},
+      "whitePips": {
+        "type": "int"
+      },
+      "blackPips": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetail": {
+    "placeholders": {
+      "opponent": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameHudOpponentDetailWithLevel": {
+    "placeholders": {
+      "opponent": {},
+      "level": {},
+      "pipsLabel": {},
+      "mine": {
+        "type": "int"
+      },
+      "theirs": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogScoreLine": {
+    "placeholders": {
+      "whiteLabel": {},
+      "whiteScore": {
+        "type": "int"
+      },
+      "blackScore": {
+        "type": "int"
+      },
+      "blackLabel": {},
+      "matchLength": {
+        "type": "int"
+      }
+    }
+  },
+  "@gameDialogPlayerWon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonGammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonBackgammon": {
+    "placeholders": {
+      "winner": {},
+      "points": {}
+    }
+  },
+  "@gameDialogPlayerWonDrop": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayerWonResignation": {
+    "placeholders": {
+      "winner": {},
+      "points": {},
+      "loser": {}
+    }
+  },
+  "@gameDialogPlayersTurn": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "@gameDialogCubeOfferMessage": {
+    "placeholders": {
+      "doubler": {},
+      "value": {
+        "type": "int"
+      },
+      "tutorLine": {}
+    }
+  },
+  "@gameDialogResignationMessage": {
+    "placeholders": {
+      "resigner": {},
+      "value": {}
+    }
+  },
+  "@gameDialogMatchWinner": {
+    "placeholders": {
+      "winner": {}
+    }
+  },
+  "gameTapNoLegalMove": "No legal move for that checker with the remaining dice",
+  "gameTapNoLegalMoveUndo": "No legal move for that checker with the remaining dice — try Undo",
+  "gameDragHint": "Tip: drag checkers or tap them — change in Settings",
+  "commonGotIt": "Got it",
+  "gameHintStageBeforeHint": "Stage a complete legal play first, then ask for a hint.",
+  "surrenderTitle": "Surrender",
+  "surrenderNamedConcedes": "{player} concedes the current game.",
+  "surrenderConcedes": "Concedes the current game.",
+  "surrenderAvailableAtNamedTurn": "Available at the start of {player}’s turn",
+  "surrenderAvailableAtYourTurn": "Available at the start of your turn",
+  "commonCancel": "Cancel",
+  "surrenderSingle": "Single (1)",
+  "surrenderGammon": "Gammon (2)",
+  "surrenderBackgammon": "Backgammon (3)",
+  "surrenderChoosePlayer": "Who is conceding this game?",
+  "commonDone": "Done",
+  "cubeDouble": "Double",
+  "cubeBlockedOtherPlayersTurn": "It’s the other player’s turn to act.",
+  "cubeBlockedCrawford": "The cube is unavailable for the Crawford game.",
+  "cubeBlockedOwnedByOther": "Only the cube owner can double, and the other side owns it right now.",
+  "cubeBlockedUnavailable": "Doubling is not available right now.",
+  "gameStatusRolling": "Rolling…",
+  "gameStatusThinking": "Thinking…",
+  "gameStatusPlayersTurn": "{player}’s turn",
+  "cubeAdviceOpponentTake": "Double — opponent should take",
+  "cubeAdviceOpponentPass": "Double — opponent should pass",
+  "gameErrorBannerLabel": "Error: {error}",
+  "@surrenderNamedConcedes": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@surrenderAvailableAtNamedTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameStatusPlayersTurn": {
+    "placeholders": {
+      "player": {
+        "type": "String"
+      }
+    }
+  },
+  "@gameErrorBannerLabel": {
+    "placeholders": {
+      "error": {
+        "type": "Object"
+      }
+    }
+  }
 }
