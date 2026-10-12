@@ -23,7 +23,7 @@ the current build may differ. [See the screenshots on the website](https://freev
 
 ## Get the app
 
-- **Google Play — Android internal test:** [Join with an invited Google account](https://play.google.com/apps/internaltest/4701280291485247000). The latest internal build is available to invited testers only. The public release is under Google review; a general download is not available yet.
+- **Google Play — Android internal test:** [Join with an invited Google account](https://play.google.com/apps/internaltest/4701280291485247000). Version 0.14.0 (build 10061) is available to invited testers only. The production release is in Google review; the [public Play listing](https://play.google.com/store/apps/details?id=org.freevia.backgammonbuddy) may not open until approval.
 - **App Store — iOS next:** Not available yet. There is no App Store listing or release date.
 
 ## What you can do
