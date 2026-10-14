@@ -1874,5 +1874,10 @@
   "buddyDiceOpeningSecond": "Črna kocka",
   "buddyDiceRegularCaption": "Vrednosti obeh kock v poljubnem vrstnem redu.",
   "buddyDiceRegularFirst": "Ena kocka",
-  "buddyDiceRegularSecond": "Druga kocka"
+  "buddyDiceRegularSecond": "Druga kocka",
+  "evaluationEngine": "Mehanizem ocenjevanja",
+  "parallelEngineAnalysis": "Analiziraj z obema mehanizmoma",
+  "parallelEngineExplanation": "Primerjajte ločene nasvete wildbg in GNUbg v vaditelju.",
+  "engineComparison": "Primerjava mehanizmov",
+  "engineWinChance": "Možnost zmage"
 }

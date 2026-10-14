@@ -377,7 +377,9 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: aigammon-native-symbols-android-${{ github.run_number }}
-          path: app/android/app/src/main/jniLibs
+          path: |
+            app/android/app/src/main/jniLibs
+            app/build/app/intermediates/cxx/**/obj/**/libbuddy_gnubg.so
           if-no-files-found: error
 
       # Secrets can't be referenced in a step-level `if:`, so gate on an env var

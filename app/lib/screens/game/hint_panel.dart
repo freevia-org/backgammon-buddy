@@ -5,6 +5,7 @@ import 'package:engine_bindings/engine_bindings.dart';
 import 'package:flutter/material.dart';
 
 import '../metric_explainer.dart';
+import '../../game/player_agent.dart';
 import '../../l10n/localization_lookup.dart';
 import '../../tutor/coaching.dart';
 import '../../tutor/coaching_widgets.dart';
@@ -44,13 +45,16 @@ class HintController extends ChangeNotifier {
 
   GameState? get position => _position;
   GameState? _position;
+  MatchContext? matchContext;
 
   /// Opens the panel and asks [request] for the ranking to fill it with.
   void open(
     Future<List<ScoredMove>> Function() request, {
     GameState? position,
+    MatchContext? matchContext,
   }) {
     _position = position;
+    this.matchContext = matchContext;
     _open = true;
     _loading = true;
     _moves = null;

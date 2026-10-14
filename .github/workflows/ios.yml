@@ -82,6 +82,9 @@ jobs:
       # Stage the .a where Release.xcconfig's -force_load expects it
       # ($(PROJECT_DIR)/Frameworks -> app/ios/Frameworks). The dir is kept in
       # the tree by .gitkeep; the .a is git-ignored (app/ios/Frameworks/.gitignore).
+      - name: Build GNUbg headless static library
+        run: bash native/gnubg/build-ios.sh
+
       - name: Stage staticlib into app/ios/Frameworks
         run: |
           mkdir -p app/ios/Frameworks

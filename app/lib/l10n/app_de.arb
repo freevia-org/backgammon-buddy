@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Bewertungsengine",
+  "parallelEngineAnalysis": "Mit beiden Engines analysieren",
+  "parallelEngineExplanation": "Vergleiche die getrennten Empfehlungen von wildbg und GNUbg im Tutor.",
+  "engineComparison": "Engine-Vergleich",
+  "engineWinChance": "Gewinnchance"
 }

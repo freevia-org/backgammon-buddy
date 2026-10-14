@@ -98,6 +98,12 @@ android {
     // configured for another — an ABI mismatch that shows up as a runtime
     // dlopen failure on a tester's device, not as a build error here.
     ndkVersion = "28.2.13676358"
+    externalNativeBuild {
+        cmake {
+            path = file("../../../native/gnubg/CMakeLists.txt")
+            version = "3.22.1"
+        }
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -115,6 +121,12 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        externalNativeBuild {
+            cmake {
+                targets += listOf("buddy_gnubg")
+                arguments += listOf("-DCMAKE_BUILD_TYPE=Release")
+            }
+        }
     }
 
     signingConfigs {
@@ -183,6 +195,15 @@ androidComponents {
 }
 
 dependencies {
+    // Keep transitive coroutine resolution reproducible and in sync with the
+    // hash-reviewed offline notices in native/licenses/mobile/manifest.json.
+    constraints {
+        listOf("android", "core-jvm", "play-services").forEach { module ->
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-$module") {
+                version { strictly("1.11.0") }
+            }
+        }
+    }
     testImplementation("junit:junit:4.13.2")
     if (hasFirebaseConfig) {
         // `firebase-crashlytics-ndk` is the artifact that installs the native

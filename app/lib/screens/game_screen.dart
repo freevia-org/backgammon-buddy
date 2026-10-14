@@ -8,6 +8,7 @@ import '../analytics/analytics_events.dart';
 import '../analytics/app_analytics.dart';
 import '../board/board_view.dart';
 import '../data/app_settings.dart';
+import '../engine/engine_comparison_panel.dart';
 import '../game/game_record.dart';
 import '../game/match_controller.dart';
 import '../game/player_agent.dart';
@@ -889,6 +890,7 @@ class _GameScreenState extends State<GameScreen> {
           ? stageRequest.then((value) => value?.ranked ?? const [])
           : _tutor!.hintOrNone(state, context: _c.contextFor(state.turn)),
       position: state,
+      matchContext: _c.contextFor(state.turn),
     );
   }
 
@@ -1817,6 +1819,9 @@ class _GameScreenState extends State<GameScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+
+        if(_hint.position!=null && _hint.matchContext!=null)
+          EngineComparisonPanel(position:_hint.position!,context:_hint.matchContext!),
         Text(
           l10n.tutorTopPlays,
           style: Theme.of(context).textTheme.titleMedium,
@@ -1851,7 +1856,7 @@ class _GameScreenState extends State<GameScreen> {
             tilePadding: EdgeInsets.zero,
             title: Text(l10n.tutorEngineEstimates),
             children: [
-              Text(l10n.tutorEstimateScope),
+              Text(moves.first.searchPlies==null?l10n.tutorEstimateScope:'GNUbg · ${moves.first.searchPlies}-ply · ${l10n.tutorMwcPercent}'),
               Text(
                 moves.first.matchWinningChance == null
                     ? l10n.tutorEquity
@@ -1859,7 +1864,7 @@ class _GameScreenState extends State<GameScreen> {
               ),
               for (final move in moves.take(5))
                 Text(
-                  '${move.move}: ${move.matchWinningChance == null ? move.equity.toStringAsFixed(3) : (move.matchWinningChance! * 100).toStringAsFixed(2)}',
+                  '${move.move}: ${move.matchWinningChance == null ? move.equity.toStringAsFixed(3) : (move.matchWinningChance! * 100).toStringAsFixed(2)}${move.searchPlies == null ? '' : ' · ${move.searchPlies}-ply'}',
                 ),
               Text(l10n.tutorNearTiesNote),
             ],

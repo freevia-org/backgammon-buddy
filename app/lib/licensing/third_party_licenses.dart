@@ -21,6 +21,15 @@ Stream<LicenseEntry> nativeEngineLicenses() async* {
 }
 
 Stream<LicenseEntry> additionalNativeLicenses() async* {
+  for (final asset in [
+    'gnubg-NOTICES.txt',
+    'GPL-3.0.txt',
+    'expat-COPYING.txt',
+  ]) {
+    yield LicenseEntryWithLineBreaks(const [
+      'GNU Backgammon / Expat',
+    ], await rootBundle.loadString('assets/licenses/$asset'));
+  }
   yield LicenseEntryWithLineBreaks(const [
     'Backgammon Buddy (Freevia)',
   ], await rootBundle.loadString('assets/licenses/Freevia-MIT.txt'));
@@ -46,9 +55,9 @@ Stream<LicenseEntry> additionalNativeLicenses() async* {
     'MPL-2.0.txt',
     '4.12.0-source.dat',
   ]) {
-    suffixSource.add(await rootBundle.loadString(
-      'assets/licenses/okhttp-publicsuffix-$name',
-    ));
+    suffixSource.add(
+      await rootBundle.loadString('assets/licenses/okhttp-publicsuffix-$name'),
+    );
   }
   yield LicenseEntryWithLineBreaks(const [
     'OkHttp public-suffix list — license and complete source',

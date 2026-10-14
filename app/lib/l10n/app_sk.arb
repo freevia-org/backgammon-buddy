@@ -1874,5 +1874,10 @@
   "buddyDiceOpeningSecond": "Kocka čierneho",
   "buddyDiceRegularCaption": "Dve hodené hodnoty v ľubovoľnom poradí.",
   "buddyDiceRegularFirst": "Jedna kocka",
-  "buddyDiceRegularSecond": "Druhá kocka"
+  "buddyDiceRegularSecond": "Druhá kocka",
+  "evaluationEngine": "Vyhodnocovací engine",
+  "parallelEngineAnalysis": "Analyzovať oboma enginmi",
+  "parallelEngineExplanation": "Porovnajte samostatné rady wildbg a GNUbg v trénerovi.",
+  "engineComparison": "Porovnanie enginov",
+  "engineWinChance": "Šanca na výhru"
 }

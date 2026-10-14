@@ -1,4 +1,4 @@
-import 'package:engine_bindings/engine_bindings.dart' show Difficulty;
+import 'package:engine_bindings/engine_bindings.dart' show Difficulty, EvaluationEngine;
 import 'package:flutter/material.dart' show ThemeMode;
 
 import '../buddy/phrasing.dart' show BuddyPhrasing;
@@ -167,6 +167,8 @@ class AppSettings {
     this.tutorOptions = const TutorOptions(),
     this.telemetryEnabled = false,
     this.localeCode,
+    this.evaluationEngine = EvaluationEngine.wildbg,
+    this.parallelEngineAnalysis = false,
   });
 
   /// The out-of-the-box defaults, matching the `Settings` table's column
@@ -187,6 +189,8 @@ class AppSettings {
 
   /// Checker-movement animation speed.
   final AnimationSpeed animationSpeed;
+  final EvaluationEngine evaluationEngine;
+  final bool parallelEngineAnalysis;
 
   /// The match length pre-selected on the new-match screen (1/3/5/7).
   final int defaultMatchLength;
@@ -312,9 +316,13 @@ class AppSettings {
     TutorOptions? tutorOptions,
     bool? telemetryEnabled,
     Object? localeCode = _unset,
+    EvaluationEngine? evaluationEngine,
+    bool? parallelEngineAnalysis,
   }) {
     return AppSettings(
       themeMode: themeMode ?? this.themeMode,
+      evaluationEngine: evaluationEngine ?? this.evaluationEngine,
+      parallelEngineAnalysis: parallelEngineAnalysis ?? this.parallelEngineAnalysis,
       animationSpeed: animationSpeed ?? this.animationSpeed,
       defaultMatchLength: defaultMatchLength ?? this.defaultMatchLength,
       defaultDifficulty: defaultDifficulty ?? this.defaultDifficulty,
@@ -343,6 +351,8 @@ class AppSettings {
   bool operator ==(Object other) =>
       other is AppSettings &&
       other.themeMode == themeMode &&
+      other.evaluationEngine == evaluationEngine &&
+      other.parallelEngineAnalysis == parallelEngineAnalysis &&
       other.animationSpeed == animationSpeed &&
       other.defaultMatchLength == defaultMatchLength &&
       other.defaultDifficulty == defaultDifficulty &&
@@ -380,7 +390,7 @@ class AppSettings {
       buddyMicHint,
       tutorOptions,
       telemetryEnabled,
-      localeCode);
+      localeCode, evaluationEngine, parallelEngineAnalysis);
 
   @override
   String toString() => 'AppSettings(themeMode: $themeMode, '

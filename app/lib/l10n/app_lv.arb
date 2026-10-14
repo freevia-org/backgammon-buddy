@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Novērtēšanas dzinējs",
+  "parallelEngineAnalysis": "Analizēt ar abiem dzinējiem",
+  "parallelEngineExplanation": "Salīdziniet atsevišķus wildbg un GNUbg padomus pasniedzējā.",
+  "engineComparison": "Dzinēju salīdzinājums",
+  "engineWinChance": "Uzvaras iespēja"
 }

@@ -11,6 +11,9 @@ import '../analytics/app_analytics.dart';
 import '../diagnostics/crash_log.dart';
 import '../game/player_agent.dart';
 import 'nets_installer.dart';
+import 'gnubg_installer.dart';
+import '../data/app_settings.dart';
+import '../data/settings_repository.dart';
 
 /// The engine verbs [EngineManager] supervises, narrowed to an interface.
 ///
@@ -22,8 +25,13 @@ import 'nets_installer.dart';
 /// verb signatures so the adapter is a pass-through.
 abstract interface class EngineApi {
   Future<Probabilities> evaluate(BoardState board, Player mover);
-  Future<Move> bestMove(BoardState board, Player mover, Dice dice,
-      {int xAway, int oAway});
+  Future<Move> bestMove(
+    BoardState board,
+    Player mover,
+    Dice dice, {
+    int xAway,
+    int oAway,
+  });
   Future<List<ScoredMove>> rankMoves(BoardState board, Player mover, Dice dice);
   Future<CubeAdvice> cubeInfo(BoardState board, Player mover);
   void dispose();
@@ -39,14 +47,20 @@ class _EngineServiceApi implements EngineApi {
       _service.evaluate(board, mover);
 
   @override
-  Future<Move> bestMove(BoardState board, Player mover, Dice dice,
-          {int xAway = 0, int oAway = 0}) =>
-      _service.bestMove(board, mover, dice, xAway: xAway, oAway: oAway);
+  Future<Move> bestMove(
+    BoardState board,
+    Player mover,
+    Dice dice, {
+    int xAway = 0,
+    int oAway = 0,
+  }) => _service.bestMove(board, mover, dice, xAway: xAway, oAway: oAway);
 
   @override
   Future<List<ScoredMove>> rankMoves(
-          BoardState board, Player mover, Dice dice) =>
-      _service.rankMoves(board, mover, dice);
+    BoardState board,
+    Player mover,
+    Dice dice,
+  ) => _service.rankMoves(board, mover, dice);
 
   @override
   Future<CubeAdvice> cubeInfo(BoardState board, Player mover) =>
@@ -54,6 +68,179 @@ class _EngineServiceApi implements EngineApi {
 
   @override
   void dispose() => _service.dispose();
+}
+
+abstract interface class ContextualEngineApi implements EngineApi {
+  Future<Probabilities> evaluateWithContext(
+    BoardState b,
+    Player m,
+    AnalysisContext c,
+  );
+  Future<List<ScoredMove>> rankWithContext(
+    BoardState b,
+    Player m,
+    Dice d,
+    AnalysisContext c,
+  );
+  Future<CubeAdvice> cubeWithContext(BoardState b, Player m, AnalysisContext c);
+}
+
+abstract interface class AssessmentEngineApi {
+  Future<List<ScoredMove>> rankPlayed(
+    BoardState b,
+    Player mover,
+    Dice dice,
+    AnalysisContext context,
+    Move played,
+  );
+}
+
+class GnuBgServiceApi extends _EngineServiceApi
+    implements ContextualEngineApi, AssessmentEngineApi {
+  GnuBgServiceApi(this.service) : super(service);
+  final EngineService service;
+  @override
+  Future<List<ScoredMove>> rankPlayed(
+    BoardState b,
+    Player mover,
+    Dice dice,
+    AnalysisContext context,
+    Move played,
+  ) => service.rankMoves(b, mover, dice, context: context, playedMove: played);
+
+  @override
+  Future<List<ScoredMove>> rankMoves(
+    BoardState board,
+    Player mover,
+    Dice dice,
+  ) => service.rankMoves(
+    board,
+    mover,
+    dice,
+    context: const AnalysisContext(cubeless: true),
+  );
+
+  @override
+  Future<Probabilities> evaluateWithContext(
+    BoardState b,
+    Player m,
+    AnalysisContext c,
+  ) => service.evaluate(b, m, context: c);
+  @override
+  Future<List<ScoredMove>> rankWithContext(
+    BoardState b,
+    Player m,
+    Dice d,
+    AnalysisContext c,
+  ) => service.rankMoves(b, m, d, context: c);
+  @override
+  Future<CubeAdvice> cubeWithContext(
+    BoardState b,
+    Player m,
+    AnalysisContext c,
+  ) => service.cubeInfo(b, m, context: c);
+}
+
+Future<EngineApi> spawnGnuBg() async {
+  final path = await GnuBgInstaller.ensureInstalled();
+  String? library;
+  if (Platform.isAndroid) library = 'libbuddy_gnubg.so';
+  if (Platform.isWindows) {
+    var dir = Directory.current;
+    for (var i = 0; i < 5; i++) {
+      final file = File(
+        p.join(dir.path, 'native/gnubg/build/windows/libbuddy_gnubg.dll'),
+      );
+      if (file.existsSync()) {
+        library = file.path;
+        break;
+      }
+      dir = dir.parent;
+    }
+  }
+  return GnuBgServiceApi(
+    await EngineService.spawn(
+      libraryPath: library,
+      netsPath: path,
+      backend: EvaluationEngine.gnubg,
+      onIsolateError: (e, s) =>
+          CrashLog.instance.record(e, stack: s, source: 'gnubg-isolate'),
+    ),
+  );
+}
+
+final gnuBgManagerProvider = Provider<EngineManager>((ref) {
+  final manager = EngineManager(spawner: spawnGnuBg);
+  ref.onDispose(manager.disposeManager);
+  return manager;
+});
+
+/// Settings are captured once per request; each engine retains its own worker.
+class SelectedEngineFacade
+    implements EngineFacade, ContextualEngineFacade, PlayedMoveEngineFacade {
+  SelectedEngineFacade(this.wildbg, this.gnubg, this.selection);
+  final EngineManager wildbg, gnubg;
+  final EvaluationEngine Function() selection;
+  EngineManager get selected =>
+      selection() == EvaluationEngine.gnubg ? gnubg : wildbg;
+  @override
+  Future<List<ScoredMove>?> rankForAssessment(
+    GameState state,
+    Move played,
+    MatchContext? context,
+  ) async {
+    if (selection() != EvaluationEngine.gnubg) return null;
+    final analysis = context == null
+        ? const AnalysisContext(cubeless: true)
+        : analysisContextFor(state, state.turn, context);
+    return gnubg.withEngine(
+      (e) => (e as AssessmentEngineApi).rankPlayed(
+        state.board,
+        state.turn,
+        state.dice!,
+        analysis,
+        played,
+      ),
+    );
+  }
+
+  @override
+  Future<Probabilities> evaluate(BoardState b, Player m) =>
+      selected.withEngine((e) => e.evaluate(b, m));
+  @override
+  Future<List<ScoredMove>> rankMoves(BoardState b, Player m, Dice d) =>
+      selected.withEngine((e) => e.rankMoves(b, m, d));
+  @override
+  Future<CubeAdvice> cubeInfo(BoardState b, Player m) =>
+      selected.withEngine((e) => e.cubeInfo(b, m));
+  @override
+  Future<List<ScoredMove>?> rankForState(GameState s, MatchContext c) async {
+    if (selection() != EvaluationEngine.gnubg) return null;
+    return gnubg.withEngine(
+      (e) => (e as ContextualEngineApi).rankWithContext(
+        s.board,
+        s.turn,
+        s.dice!,
+        analysisContextFor(s, s.turn, c),
+      ),
+    );
+  }
+
+  @override
+  Future<CubeAdvice?> cubeForState(
+    GameState s,
+    Player mover,
+    MatchContext c,
+  ) async {
+    if (selection() != EvaluationEngine.gnubg) return null;
+    return gnubg.withEngine(
+      (e) => (e as ContextualEngineApi).cubeWithContext(
+        s.board,
+        mover,
+        analysisContextFor(s, mover, c),
+      ),
+    );
+  }
 }
 
 /// Owns the [EngineApi] (engine-isolate) lifecycle for the whole app.
@@ -71,7 +258,7 @@ class EngineManager {
   /// a real [EngineService]. Tests inject a fake to exercise the lifecycle
   /// without native code.
   EngineManager({Future<EngineApi> Function()? spawner})
-      : _spawner = spawner ?? _defaultSpawner;
+    : _spawner = spawner ?? _defaultSpawner;
 
   final Future<EngineApi> Function() _spawner;
 
@@ -140,9 +327,11 @@ class EngineManager {
   void _noteWedgedDrop() {
     _wedgedEngineDrops++;
     CrashLog.instance.record(
-      StateError('engine isolate wedged: dropped without confirmed death '
-          '(occurrence $_wedgedEngineDrops). Its worker and native engine may '
-          'still be alive — a blocked native call cannot be preempted.'),
+      StateError(
+        'engine isolate wedged: dropped without confirmed death '
+        '(occurrence $_wedgedEngineDrops). Its worker and native engine may '
+        'still be alive — a blocked native call cannot be preempted.',
+      ),
       source: 'engine-wedged',
     );
   }
@@ -159,19 +348,22 @@ class EngineManager {
     final inFlight = _spawning;
     if (inFlight != null) return inFlight;
 
-    final spawn = _spawner().then((engine) {
-      _spawning = null;
-      // A dispose() that raced the spawn must not leave a live engine dangling.
-      if (_disposed) {
-        engine.dispose();
-        throw StateError('EngineManager has been disposed');
-      }
-      _engine = engine;
-      return engine;
-    }, onError: (Object e, StackTrace s) {
-      _spawning = null;
-      throw e;
-    });
+    final spawn = _spawner().then(
+      (engine) {
+        _spawning = null;
+        // A dispose() that raced the spawn must not leave a live engine dangling.
+        if (_disposed) {
+          engine.dispose();
+          throw StateError('EngineManager has been disposed');
+        }
+        _engine = engine;
+        return engine;
+      },
+      onError: (Object e, StackTrace s) {
+        _spawning = null;
+        throw e;
+      },
+    );
     _spawning = spawn;
     return spawn;
   }
@@ -230,8 +422,11 @@ class EngineManager {
       // manager's transparent re-spawn would quietly paper over a repeating
       // native failure and the user would only notice the AI "thinking"
       // forever. Record it, then let the existing recovery run.
-      onIsolateError: (error, stack) => CrashLog.instance
-          .record(error, stack: stack, source: 'engine-isolate'),
+      onIsolateError: (error, stack) => CrashLog.instance.record(
+        error,
+        stack: stack,
+        source: 'engine-isolate',
+      ),
     );
     return _EngineServiceApi(service);
   }
@@ -286,8 +481,10 @@ class ManagedEngineFacade implements EngineFacade {
 
   @override
   Future<List<ScoredMove>> rankMoves(
-          BoardState board, Player mover, Dice dice) =>
-      _manager.withEngine((e) => e.rankMoves(board, mover, dice));
+    BoardState board,
+    Player mover,
+    Dice dice,
+  ) => _manager.withEngine((e) => e.rankMoves(board, mover, dice));
 
   @override
   Future<CubeAdvice> cubeInfo(BoardState board, Player mover) =>
@@ -307,27 +504,61 @@ class ManagedEngineFacade implements EngineFacade {
 /// bot's cube decisions and the tutor's advice, and a regression in either
 /// shows up as the same symptom (a board that sits there), so telling them
 /// apart in the dashboard is worth three trace names instead of one.
-class TracedEngineFacade implements EngineFacade {
+class TracedEngineFacade
+    implements EngineFacade, ContextualEngineFacade, PlayedMoveEngineFacade {
   TracedEngineFacade(this._inner, this._performance);
 
   final EngineFacade _inner;
   final AppPerformance _performance;
+  @override
+  Future<List<ScoredMove>?> rankForAssessment(
+    GameState state,
+    Move played,
+    MatchContext? context,
+  ) => _inner is PlayedMoveEngineFacade
+      ? _performance.trace(
+          PerfTraces.engineRankMoves,
+          () => (_inner as PlayedMoveEngineFacade).rankForAssessment(
+            state,
+            played,
+            context,
+          ),
+        )
+      : Future.value(null);
+  @override
+  Future<List<ScoredMove>?> rankForState(GameState s, MatchContext c) =>
+      _inner is ContextualEngineFacade
+      ? _performance.trace(
+          PerfTraces.engineRankMoves,
+          () => (_inner as ContextualEngineFacade).rankForState(s, c),
+        )
+      : Future.value(null);
+  @override
+  Future<CubeAdvice?> cubeForState(GameState s, Player m, MatchContext c) =>
+      _inner is ContextualEngineFacade
+      ? _performance.trace(
+          PerfTraces.engineCubeInfo,
+          () => (_inner as ContextualEngineFacade).cubeForState(s, m, c),
+        )
+      : Future.value(null);
 
   @override
-  Future<Probabilities> evaluate(BoardState board, Player mover) =>
-      _performance.trace(
-          PerfTraces.engineEvaluate, () => _inner.evaluate(board, mover));
+  Future<Probabilities> evaluate(BoardState board, Player mover) => _performance
+      .trace(PerfTraces.engineEvaluate, () => _inner.evaluate(board, mover));
 
   @override
   Future<List<ScoredMove>> rankMoves(
-          BoardState board, Player mover, Dice dice) =>
-      _performance.trace(PerfTraces.engineRankMoves,
-          () => _inner.rankMoves(board, mover, dice));
+    BoardState board,
+    Player mover,
+    Dice dice,
+  ) => _performance.trace(
+    PerfTraces.engineRankMoves,
+    () => _inner.rankMoves(board, mover, dice),
+  );
 
   @override
-  Future<CubeAdvice> cubeInfo(BoardState board, Player mover) =>
-      _performance.trace(
-          PerfTraces.engineCubeInfo, () => _inner.cubeInfo(board, mover));
+  Future<CubeAdvice> cubeInfo(BoardState board, Player mover) => _performance
+      .trace(PerfTraces.engineCubeInfo, () => _inner.cubeInfo(board, mover));
 }
 
 /// The [EngineFacade] for wiring an [AiAgent], backed by the managed engine and
@@ -338,7 +569,25 @@ class TracedEngineFacade implements EngineFacade {
 /// find. The decorator is therefore always in place and never in the way.
 final engineFacadeProvider = Provider<EngineFacade>((ref) {
   return TracedEngineFacade(
-    ManagedEngineFacade(ref.watch(engineManagerProvider)),
+    SelectedEngineFacade(
+      ref.watch(engineManagerProvider),
+      ref.watch(gnuBgManagerProvider),
+      () => (ref.read(settingsProvider).valueOrNull ?? AppSettings.defaults)
+          .evaluationEngine,
+    ),
     ref.watch(appPerformanceProvider),
   );
 });
+
+/// A fixed selection for a complete post-game analysis job and its cache identity.
+final fixedEngineFacadeProvider =
+    Provider.family<EngineFacade, EvaluationEngine>((ref, choice) {
+      return TracedEngineFacade(
+        SelectedEngineFacade(
+          ref.watch(engineManagerProvider),
+          ref.watch(gnuBgManagerProvider),
+          () => choice,
+        ),
+        ref.watch(appPerformanceProvider),
+      );
+    });

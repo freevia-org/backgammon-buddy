@@ -528,16 +528,16 @@ org.jetbrains.kotlinx:atomicfu-jvm:0.28.0
 Published license declaration: Apache-2.0 — https://www.apache.org/licenses/LICENSE-2.0.txt
 Notices: Apache-2.0
 
-org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0
-Published license declaration: The Apache Software License, Version 2.0 — https://www.apache.org/licenses/LICENSE-2.0.txt
+org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0
+Published license declaration: Apache-2.0 — https://www.apache.org/licenses/LICENSE-2.0.txt
 Notices: Apache-2.0
 
-org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0
-Published license declaration: The Apache Software License, Version 2.0 — https://www.apache.org/licenses/LICENSE-2.0.txt
+org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.11.0
+Published license declaration: Apache-2.0 — https://www.apache.org/licenses/LICENSE-2.0.txt
 Notices: Apache-2.0
 
-org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0
-Published license declaration: The Apache Software License, Version 2.0 — https://www.apache.org/licenses/LICENSE-2.0.txt
+org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.11.0
+Published license declaration: Apache-2.0 — https://www.apache.org/licenses/LICENSE-2.0.txt
 Notices: Apache-2.0
 
 org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3
@@ -48185,9 +48185,9 @@ org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10
 org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10
 org.jetbrains.kotlin:kotlin-stdlib:2.3.20
 org.jetbrains.kotlinx:atomicfu-jvm:0.28.0
-org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0
-org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0
-org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0
+org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0
+org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.11.0
+org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.11.0
 org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3
 org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.7.3
 org.jetbrains:annotations:23.0.0

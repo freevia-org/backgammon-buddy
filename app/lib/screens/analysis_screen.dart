@@ -8,6 +8,8 @@ import '../analytics/analytics_events.dart';
 import '../analytics/analytics_screen_view.dart';
 import '../board/board_view.dart';
 import '../data/match_repository.dart';
+import '../data/settings_repository.dart';
+import '../data/app_settings.dart';
 import '../data/recorded_match_context.dart';
 import '../data/practice_repository.dart';
 import '../engine/engine_provider.dart';
@@ -52,7 +54,7 @@ class AnalysisScreen extends ConsumerStatefulWidget {
   final MatchRepository? repository;
 
   /// The tutor used when analysis must be (re)computed; defaults to a
-  /// [TutorService] over [engineFacadeProvider].
+  /// [TutorService] over the persisted engine selection, fixed for the job.
   final TutorService? tutor;
 
   @override
@@ -114,6 +116,9 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   Future<void> _load() async {
     try {
       final repo = _repo;
+      final engineChoice = widget.tutor == null
+          ? (await ref.read(settingsRepositoryProvider).load()).evaluationEngine
+          : AppSettings.defaults.evaluationEngine;
       final row = await repo.loadGame(widget.gameId);
       final events = await repo.loadGameEvents(widget.gameId);
       final states = _replayPrefixes(events, row.isCrawford);
@@ -129,7 +134,8 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
           );
           // Historical records can arrive later (e.g. reconnect persistence).
           // A cache computed without the score must not survive that recovery.
-          if (!analysis.matchesContext(matchBefore, match.cubeless)) {
+          if (!analysis.matchesContext(matchBefore, match.cubeless) ||
+              analysis.engineId != engineChoice.name) {
             analysis = null;
           }
         } on FormatException {
@@ -144,16 +150,18 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
       if (analysis == null) {
         if (mounted) setState(() => _analyzing = true);
         final tutor =
-            widget.tutor ?? TutorService(ref.read(engineFacadeProvider));
-        analysis = await GameAnalyzer(tutor).analyze(
-          events,
-          isCrawford: row.isCrawford,
-          matchBefore: matchBefore,
-          cubeless: match.cubeless,
-          onProgress: (p) {
-            if (mounted) setState(() => _progress = p);
-          },
-        );
+            widget.tutor ??
+            TutorService(ref.read(fixedEngineFacadeProvider(engineChoice)));
+        analysis = await GameAnalyzer(tutor, engineId: engineChoice.name)
+            .analyze(
+              events,
+              isCrawford: row.isCrawford,
+              matchBefore: matchBefore,
+              cubeless: match.cubeless,
+              onProgress: (p) {
+                if (mounted) setState(() => _progress = p);
+              },
+            );
         await repo.saveAnalysis(widget.gameId, jsonEncode(analysis.toJson()));
       }
 

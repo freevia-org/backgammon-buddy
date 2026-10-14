@@ -1874,5 +1874,10 @@
       }
     }
   },
-  "buddyCameraGenericError": "Camera nu a putut porni. Verifică permisiunile și încearcă din nou."
+  "buddyCameraGenericError": "Camera nu a putut porni. Verifică permisiunile și încearcă din nou.",
+  "evaluationEngine": "Motor de evaluare",
+  "parallelEngineAnalysis": "Analizează cu ambele motoare",
+  "parallelEngineExplanation": "Compară sfaturile separate wildbg și GNUbg în tutor.",
+  "engineComparison": "Compararea motoarelor",
+  "engineWinChance": "Șansă de câștig"
 }

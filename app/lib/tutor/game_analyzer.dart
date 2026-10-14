@@ -99,12 +99,14 @@ class GameAnalysis {
   final List<CubeDecisionAnalysis> cubeDecisions;
   final MatchState? matchBefore;
   final bool? cubeless;
+  final String engineId;
 
   const GameAnalysis(
     this.moves, {
     this.cubeDecisions = const [],
     this.matchBefore,
     this.cubeless,
+    this.engineId = 'wildbg',
   });
 
   /// A valid schema alone does not make a cached grading current: earlier
@@ -152,6 +154,7 @@ class GameAnalysis {
     'moves': [for (final m in moves) m.toJson()],
     'cubeDecisions': [for (final c in cubeDecisions) c.toJson()],
     'cubeless': cubeless,
+    'engineId': engineId,
     if (matchBefore != null)
       'matchBefore': {
         'length': matchBefore!.matchLength,
@@ -174,6 +177,7 @@ class GameAnalysis {
           MoveAnalysis.fromJson((m as Map).cast<String, dynamic>()),
       ],
       cubeless: j['cubeless'] as bool?,
+      engineId: j['engineId'] as String? ?? 'wildbg',
       cubeDecisions: [
         for (final c in (j['cubeDecisions'] as List? ?? []))
           CubeDecisionAnalysis.fromJson((c as Map).cast<String, dynamic>()),
@@ -193,7 +197,8 @@ class GameAnalysis {
 /// Replays a recorded event log and assesses every played move with a
 /// [TutorService], producing a [GameAnalysis].
 class GameAnalyzer {
-  GameAnalyzer(this.tutor);
+  GameAnalyzer(this.tutor, {this.engineId = 'wildbg'});
+  final String engineId;
 
   final TutorService tutor;
 
@@ -217,7 +222,12 @@ class GameAnalyzer {
     onProgress?.call(0);
     if (events.isEmpty) {
       onProgress?.call(1);
-      return GameAnalysis([], matchBefore: matchBefore, cubeless: cubeless);
+      return GameAnalysis(
+        [],
+        matchBefore: matchBefore,
+        cubeless: cubeless,
+        engineId: engineId,
+      );
     }
 
     final opening = events.first as OpeningRollEvent;
@@ -239,6 +249,7 @@ class GameAnalyzer {
                     ? matchBefore.blackScore
                     : matchBefore.whiteScore),
             crawfordPlayed: matchBefore.crawfordPlayed,
+            cubeless: cubeless ?? false,
           );
     final total = events.length - 1; // events appended after the opening roll
     for (var i = 1; i < events.length; i++) {
@@ -318,6 +329,7 @@ class GameAnalyzer {
       cubeDecisions: cubes,
       matchBefore: matchBefore,
       cubeless: cubeless,
+      engineId: engineId,
     );
   }
 }

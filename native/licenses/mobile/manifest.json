@@ -3359,78 +3359,78 @@
       {
         "artifacts": [
           {
-            "name": "kotlinx-coroutines-android-1.9.0.jar",
-            "sha256": "bd783acd2f9738845d58380f46f45b5cde95d0cb03027d56725338b26bfc4d72"
+            "name": "kotlinx-coroutines-android-1.11.0.jar",
+            "sha256": "c2cb206d27017c7d1bf5ff179787397543d13748dbabb0d7237e1585e0b29044"
           }
         ],
         "declared_licenses": [
           {
-            "distribution": "repo",
-            "name": "The Apache Software License, Version 2.0",
-            "url": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+            "name": "Apache-2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+            "distribution": "repo"
           }
         ],
-        "id": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0",
+        "id": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0",
         "notices": [
           "Apache-2.0"
         ],
         "pom_evidence": [
           {
-            "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0",
-            "sha256": "be86020cd5b93b8a68ca43185a049b9b0baa345fd1be1fdaa014fdaef92d6e7c",
-            "source": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/1.9.0/kotlinx-coroutines-android-1.9.0.pom"
+            "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0",
+            "sha256": "224567420d3e0ed5fef40f789fded45dfd51b162319e28d77d3c9a8dec4821b8",
+            "source": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/1.11.0/kotlinx-coroutines-android-1.11.0.pom"
           }
         ]
       },
       {
         "artifacts": [
           {
-            "name": "kotlinx-coroutines-core-jvm-1.9.0.jar",
-            "sha256": "ad89c2892235e670f222d819cb3d81188143cb19a05b59df9889ae4269f5c70a"
+            "name": "kotlinx-coroutines-core-jvm-1.11.0.jar",
+            "sha256": "d1d75aa01dffbb4d1c520e67e4c4e7f5f6174718e7cb4632412503f2f0e604fa"
           }
         ],
         "declared_licenses": [
           {
-            "distribution": "repo",
-            "name": "The Apache Software License, Version 2.0",
-            "url": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+            "name": "Apache-2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+            "distribution": "repo"
           }
         ],
-        "id": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0",
+        "id": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.11.0",
         "notices": [
           "Apache-2.0"
         ],
         "pom_evidence": [
           {
-            "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0",
-            "sha256": "19c4889941b3aa098bd57cc64f02f9adacc654d571a12a956de4b5bb148c6499",
-            "source": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.9.0/kotlinx-coroutines-core-jvm-1.9.0.pom"
+            "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.11.0",
+            "sha256": "dd54b97aa3fab91fc24f5df2916c22be9429a339d2f45b7ff092332f6c19dc39",
+            "source": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.11.0/kotlinx-coroutines-core-jvm-1.11.0.pom"
           }
         ]
       },
       {
         "artifacts": [
           {
-            "name": "kotlinx-coroutines-play-services-1.9.0.jar",
-            "sha256": "4cb6b6321df1664b99fee756de63f6af65ccb4f68936f26cf76c211dea1b23ae"
+            "name": "kotlinx-coroutines-play-services-1.11.0.jar",
+            "sha256": "f441579409a9befc7391ae5620de773590dd6536b979d4a5a2a6e05b5f81e4d4"
           }
         ],
         "declared_licenses": [
           {
-            "distribution": "repo",
-            "name": "The Apache Software License, Version 2.0",
-            "url": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+            "name": "Apache-2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+            "distribution": "repo"
           }
         ],
-        "id": "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0",
+        "id": "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.11.0",
         "notices": [
           "Apache-2.0"
         ],
         "pom_evidence": [
           {
-            "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.9.0",
-            "sha256": "04c9253aaaab33a1034462fffee9d73a43622a948187f80348ba5cb97ab274b1",
-            "source": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-play-services/1.9.0/kotlinx-coroutines-play-services-1.9.0.pom"
+            "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.11.0",
+            "sha256": "24b135555039f77ced1353a46ce38a5a270496dbb0872a150e00a9536f1bb598",
+            "source": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-play-services/1.11.0/kotlinx-coroutines-play-services-1.11.0.pom"
           }
         ]
       },

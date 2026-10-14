@@ -3309,4 +3309,20 @@ class AppLocalizationsHr extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Drugi';
+
+  @override
+  String get evaluationEngine => 'Mehanizam procjene';
+
+  @override
+  String get parallelEngineAnalysis => 'Analiziraj s oba mehanizma';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Usporedite zasebne savjete wildbg i GNUbg u treneru.';
+
+  @override
+  String get engineComparison => 'Usporedba mehanizama';
+
+  @override
+  String get engineWinChance => 'Šansa za pobjedu';
 }

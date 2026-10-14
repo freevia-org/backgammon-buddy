@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Értékelőmotor",
+  "parallelEngineAnalysis": "Elemzés mindkét motorral",
+  "parallelEngineExplanation": "Hasonlítsa össze a wildbg és GNUbg külön tanácsait az oktatóban.",
+  "engineComparison": "Motorok összehasonlítása",
+  "engineWinChance": "Győzelmi esély"
 }

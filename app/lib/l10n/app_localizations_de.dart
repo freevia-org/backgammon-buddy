@@ -3249,4 +3249,20 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Der andere';
+
+  @override
+  String get evaluationEngine => 'Bewertungsengine';
+
+  @override
+  String get parallelEngineAnalysis => 'Mit beiden Engines analysieren';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Vergleiche die getrennten Empfehlungen von wildbg und GNUbg im Tutor.';
+
+  @override
+  String get engineComparison => 'Engine-Vergleich';
+
+  @override
+  String get engineWinChance => 'Gewinnchance';
 }

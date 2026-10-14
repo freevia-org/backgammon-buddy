@@ -4,6 +4,8 @@ import 'dart:isolate';
 import 'package:backgammon_core/backgammon_core.dart';
 
 import 'engine.dart';
+import 'gnubg_engine.dart';
+import 'analysis_context.dart';
 import 'isolate_error.dart';
 import 'scored_move.dart';
 
@@ -120,6 +122,7 @@ class EngineService {
   static Future<EngineService> spawn({
     String? libraryPath,
     required String netsPath,
+    EvaluationEngine backend = EvaluationEngine.wildbg,
     void Function(Object error, StackTrace? stack)? onIsolateError,
     Duration callTimeout = defaultCallTimeout,
     Duration startupTimeout = defaultStartupTimeout,
@@ -214,7 +217,7 @@ class EngineService {
     try {
       isolate = await Isolate.spawn(
         workerEntry ?? _workerMain,
-        [handshake.sendPort, libraryPath, netsPath],
+        [handshake.sendPort, libraryPath, netsPath, backend.index],
         errorsAreFatal: true,
         onError: deaths.sendPort,
         onExit: deaths.sendPort,
@@ -276,9 +279,8 @@ class EngineService {
   Future<Object?> _call(String verb, Map<String, Object?> payload) {
     if (_dead) {
       // Same state, two causes, two audiences: see [_diedUnexpectedly].
-      throw StateError(_diedUnexpectedly
-          ? 'engine isolate died'
-          : 'EngineService disposed');
+      throw StateError(
+          _diedUnexpectedly ? 'engine isolate died' : 'EngineService disposed');
     }
     final id = _nextId++;
     final completer = Completer<Object?>();
@@ -296,10 +298,12 @@ class EngineService {
   }
 
   /// Evaluates [board] from [mover]'s perspective. See [Engine.evaluate].
-  Future<Probabilities> evaluate(BoardState board, Player mover) async {
+  Future<Probabilities> evaluate(BoardState board, Player mover,
+      {AnalysisContext? context}) async {
     final r = await _call('evaluate', {
       'board': _encodeBoard(board),
       'mover': _encodePlayer(mover),
+      'context': context?.toWire(),
     });
     return _decodeProbs(r as List);
   }
@@ -318,21 +322,25 @@ class EngineService {
   }
 
   /// Every legal move scored, best-first. See [Engine.rankMoves].
-  Future<List<ScoredMove>> rankMoves(
-      BoardState board, Player mover, Dice dice) async {
+  Future<List<ScoredMove>> rankMoves(BoardState board, Player mover, Dice dice,
+      {AnalysisContext? context, Move? playedMove}) async {
     final r = await _call('rankMoves', {
       'board': _encodeBoard(board),
       'mover': _encodePlayer(mover),
       'dice': _encodeDice(dice),
+      'context': context?.toWire(),
+      'playedMove': playedMove == null ? null : _encodeMove(playedMove),
     });
     return _decodeScoredMoves(r as List);
   }
 
   /// Cube advice for the position. See [Engine.cubeInfo].
-  Future<CubeAdvice> cubeInfo(BoardState board, Player mover) async {
+  Future<CubeAdvice> cubeInfo(BoardState board, Player mover,
+      {AnalysisContext? context}) async {
     final r = await _call('cubeInfo', {
       'board': _encodeBoard(board),
       'mover': _encodePlayer(mover),
+      'context': context?.toWire(),
     });
     return _decodeCube(r as List);
   }
@@ -389,9 +397,11 @@ class EngineService {
     final libraryPath = args[1] as String?;
     final netsPath = args[2] as String;
 
-    final Engine engine;
+    final dynamic engine;
     try {
-      engine = Engine.open(libraryPath: libraryPath, netsPath: netsPath);
+      engine = args.length > 3 && args[3] == EvaluationEngine.gnubg.index
+          ? GnuBgEngine.open(libraryPath: libraryPath, netsPath: netsPath)
+          : Engine.open(libraryPath: libraryPath, netsPath: netsPath);
     } catch (e) {
       handshake.send(['init_error', e.toString()]);
       return;
@@ -435,13 +445,14 @@ class EngineService {
   }
 
   static Object? _dispatch(
-      Engine engine, String verb, Map<String, Object?> payload) {
+      dynamic engine, String verb, Map<String, Object?> payload) {
     switch (verb) {
       case 'evaluate':
-        final probs = engine.evaluate(
-          _decodeBoard(payload['board'] as Map),
-          _decodePlayer(payload['mover']),
-        );
+        final board = _decodeBoard(payload['board'] as Map);
+        final mover = _decodePlayer(payload['mover']);
+        final probs = engine is GnuBgEngine
+            ? engine.evaluate(board, mover, context: _decodeContext(payload))
+            : (engine as Engine).evaluate(board, mover);
         return _encodeProbs(probs);
       case 'bestMove':
         final move = engine.bestMove(
@@ -453,17 +464,23 @@ class EngineService {
         );
         return _encodeMove(move);
       case 'rankMoves':
-        final ranked = engine.rankMoves(
-          _decodeBoard(payload['board'] as Map),
-          _decodePlayer(payload['mover']),
-          _decodeDice(payload['dice'] as List),
-        );
+        final board = _decodeBoard(payload['board'] as Map);
+        final mover = _decodePlayer(payload['mover']);
+        final dice = _decodeDice(payload['dice'] as List);
+        final ranked = engine is GnuBgEngine
+            ? engine.rankMoves(board, mover, dice,
+                context: _decodeContext(payload),
+                playedMove: payload['playedMove'] == null
+                    ? null
+                    : _decodeMove(payload['playedMove'] as List))
+            : (engine as Engine).rankMoves(board, mover, dice);
         return _encodeScoredMoves(ranked);
       case 'cubeInfo':
-        final advice = engine.cubeInfo(
-          _decodeBoard(payload['board'] as Map),
-          _decodePlayer(payload['mover']),
-        );
+        final board = _decodeBoard(payload['board'] as Map);
+        final mover = _decodePlayer(payload['mover']);
+        final advice = engine is GnuBgEngine
+            ? engine.cubeInfo(board, mover, context: _decodeContext(payload))
+            : (engine as Engine).cubeInfo(board, mover);
         return _encodeCube(advice);
       default:
         throw StateError('unknown verb "$verb"');
@@ -507,8 +524,7 @@ BoardState _decodeBoard(Map board) => BoardState(
     );
 
 bool _encodePlayer(Player p) => p == Player.white;
-Player _decodePlayer(Object? v) =>
-    (v as bool) ? Player.white : Player.black;
+Player _decodePlayer(Object? v) => (v as bool) ? Player.white : Player.black;
 
 List<int> _encodeDice(Dice d) => [d.die1, d.die2];
 Dice _decodeDice(List d) => Dice(d[0] as int, d[1] as int);
@@ -542,9 +558,15 @@ Move _decodeMove(List triples) => Move([
         ),
     ]);
 
-List<List<Object>> _encodeScoredMoves(List<ScoredMove> moves) => [
+List<List<Object?>> _encodeScoredMoves(List<ScoredMove> moves) => [
       for (final s in moves)
-        [_encodeMove(s.move), _encodeProbs(s.probabilities)],
+        [
+          _encodeMove(s.move),
+          _encodeProbs(s.probabilities),
+          s.matchWinningChance,
+          s.cubefulEquity,
+          s.searchPlies
+        ],
     ];
 
 List<ScoredMove> _decodeScoredMoves(List raw) => [
@@ -552,15 +574,20 @@ List<ScoredMove> _decodeScoredMoves(List raw) => [
         ScoredMove(
           move: _decodeMove((s as List)[0] as List),
           probabilities: _decodeProbs(s[1] as List),
+          matchWinningChance: s.length > 2 ? s[2] as double? : null,
+          cubefulEquity: s.length > 3 ? s[3] as double? : null,
+          searchPlies: s.length > 4 ? s[4] as int? : null,
         ),
     ];
 
-List<Object> _encodeCube(CubeAdvice c) => [
+List<Object?> _encodeCube(CubeAdvice c) => [
       c.shouldDouble,
       c.shouldAccept,
       c.equityCubeless,
       c.equityNoDouble,
       c.equityDoubleTake,
+      c.equityDoublePass,
+      c.matchAware,
     ];
 
 CubeAdvice _decodeCube(List c) => CubeAdvice(
@@ -569,4 +596,10 @@ CubeAdvice _decodeCube(List c) => CubeAdvice(
       equityCubeless: c[2] as double,
       equityNoDouble: c[3] as double,
       equityDoubleTake: c[4] as double,
+      equityDoublePass: c.length > 5 ? c[5] as double? : null,
+      matchAware: c.length > 6 ? c[6] as bool : false,
     );
+
+AnalysisContext _decodeContext(Map<String, Object?> p) => p['context'] == null
+    ? const AnalysisContext()
+    : AnalysisContext.fromWire(p['context'] as Map);

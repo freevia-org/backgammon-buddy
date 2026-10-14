@@ -876,6 +876,7 @@ class NetMatchController extends ChangeNotifier implements MatchController {
       moverAway: _match.matchLength - actorScore,
       opponentAway: _match.matchLength - opponentScore,
       crawfordPlayed: _match.crawfordPlayed,
+      cubeless: cubeless,
     );
   }
 

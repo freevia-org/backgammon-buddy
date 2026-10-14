@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Vertinimo variklis",
+  "parallelEngineAnalysis": "Analizuoti abiem varikliais",
+  "parallelEngineExplanation": "Palyginkite atskirus wildbg ir GNUbg patarimus mokytojuje.",
+  "engineComparison": "Variklių palyginimas",
+  "engineWinChance": "Laimėjimo tikimybė"
 }

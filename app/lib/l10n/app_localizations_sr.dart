@@ -3224,4 +3224,20 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Druga kockica';
+
+  @override
+  String get evaluationEngine => 'Механизам процене';
+
+  @override
+  String get parallelEngineAnalysis => 'Анализирај оба механизма';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Упоредите одвојене савете wildbg и GNUbg у тренеру.';
+
+  @override
+  String get engineComparison => 'Поређење механизама';
+
+  @override
+  String get engineWinChance => 'Шанса за победу';
 }

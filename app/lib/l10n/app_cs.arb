@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Vyhodnocovací engine",
+  "parallelEngineAnalysis": "Analyzovat oběma enginy",
+  "parallelEngineExplanation": "Porovnejte samostatné rady wildbg a GNUbg v trenérovi.",
+  "engineComparison": "Porovnání enginů",
+  "engineWinChance": "Šance na výhru"
 }

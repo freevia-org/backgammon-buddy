@@ -7,4 +7,4 @@
 // wildbg_free) so the linker's dead-code stripping cannot drop symbols that are
 // only referenced at runtime via dart:ffi DynamicLibrary.process() lookups.
 // See native/README.md "iOS" for the -lc++ troubleshooting note.
-OTHER_LDFLAGS = $(inherited) -force_load $(PROJECT_DIR)/Frameworks/libaigammon_engine.a
+OTHER_LDFLAGS = $(inherited) -force_load $(PROJECT_DIR)/Frameworks/libaigammon_engine.a -force_load $(PROJECT_DIR)/Frameworks/libbuddy_gnubg.a -lc++ -Wl,-dead_strip

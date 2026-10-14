@@ -1,5 +1,5 @@
 import 'package:drift/drift.dart';
-import 'package:engine_bindings/engine_bindings.dart' show Difficulty;
+import 'package:engine_bindings/engine_bindings.dart' show Difficulty, EvaluationEngine;
 import 'package:flutter/material.dart' show ThemeMode;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -113,6 +113,9 @@ class SettingsRepository {
           cubeAdvice: row.tutorCubeAdvice, tryFirst: row.tutorTryFirst),
         telemetryEnabled: row.telemetryEnabled,
         localeCode: row.localeCode,
+        evaluationEngine: EvaluationEngine.values.firstWhere(
+          (e) => e.name == row.evaluationEngine, orElse: () => EvaluationEngine.wildbg),
+        parallelEngineAnalysis: row.parallelEngineAnalysis,
       );
 
   static SettingsCompanion _toCompanion(AppSettings s) => SettingsCompanion(
@@ -139,6 +142,8 @@ class SettingsRepository {
         tutorTryFirst: Value(s.tutorOptions.tryFirst),
         telemetryEnabled: Value(s.telemetryEnabled),
         localeCode: Value(s.localeCode),
+        evaluationEngine: Value(s.evaluationEngine.name),
+        parallelEngineAnalysis: Value(s.parallelEngineAnalysis),
       );
 
   // --- Enum <-> string codecs (tolerant of unknown values) -------------------

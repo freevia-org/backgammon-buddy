@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Hindamismootor",
+  "parallelEngineAnalysis": "Analüüsi mõlema mootoriga",
+  "parallelEngineExplanation": "Võrdle juhendajas wildbg ja GNUbg eraldi nõuandeid.",
+  "engineComparison": "Mootorite võrdlus",
+  "engineWinChance": "Võiduvõimalus"
 }

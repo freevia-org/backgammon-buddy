@@ -28,14 +28,17 @@ ScoredMove pickMove(List<ScoredMove> ranked, Difficulty level, Random rng) {
   if (level == Difficulty.expert || ranked.length == 1) {
     return ranked.first;
   }
-  final best = ranked.first.equity;
+  final best = ranked.first.cubefulEquity ?? ranked.first.equity;
+  final depth = ranked.first.searchPlies;
   final candidates = [
     for (final s in ranked)
-      if (best - s.equity <= level.equityWindow) s,
+      if ((depth == null || s.searchPlies == depth) &&
+          best - (s.cubefulEquity ?? s.equity) <= level.equityWindow)
+        s,
   ];
   final weights = [
     for (final s in candidates)
-      exp(-(best - s.equity) / level.temperature),
+      exp(-(best - (s.cubefulEquity ?? s.equity)) / level.temperature),
   ];
   final total = weights.reduce((a, b) => a + b);
   var roll = rng.nextDouble() * total;

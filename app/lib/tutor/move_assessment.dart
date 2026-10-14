@@ -147,12 +147,24 @@ Map<String, dynamic> _scoredToJson(ScoredMove s) => {
   'move': _moveToJson(s.move),
   'probs': _probsToJson(s.probabilities),
   if (s.matchWinningChance != null) 'mwc': s.matchWinningChance,
+  if (s.cubefulEquity != null) 'cubefulEquity': s.cubefulEquity,
+  if (s.searchPlies != null) 'searchPlies': s.searchPlies,
 };
 
 ScoredMove _scoredFromJson(Map<String, dynamic> j) {
   final rawMwc = j['mwc'];
+  final cubeful = j['cubefulEquity'];
+  final depth = j['searchPlies'];
+  if (cubeful != null && (cubeful is! num || !cubeful.isFinite)) {
+    throw const FormatException('invalid cubeful equity');
+  }
+  if (depth != null && (depth is! int || depth < 0 || depth > 2)) {
+    throw const FormatException('invalid search depth');
+  }
   return ScoredMove(
     move: _moveFromJson(j['move'] as List),
+    cubefulEquity: (cubeful as num?)?.toDouble(),
+    searchPlies: depth as int?,
     probabilities: _probsFromJson(j['probs'] as List),
     matchWinningChance: rawMwc == null
         ? null

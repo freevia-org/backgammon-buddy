@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Двигател за оценяване",
+  "parallelEngineAnalysis": "Анализ с двата двигателя",
+  "parallelEngineExplanation": "Сравнявайте отделните съвети на wildbg и GNUbg в наставника.",
+  "engineComparison": "Сравнение на двигатели",
+  "engineWinChance": "Шанс за победа"
 }

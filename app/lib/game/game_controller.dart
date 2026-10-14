@@ -287,7 +287,9 @@ class GameController extends ChangeNotifier implements MatchController {
       case GamePhase.awaitingRoll:
         await _stepPreRoll(s, agent);
       case GamePhase.moving:
-        final move = await _guard(agent.chooseMove(s));
+        final move = await _guard(agent is MatchAwareMoveAgent
+            ? (agent as MatchAwareMoveAgent).chooseMoveInMatch(s, contextFor(s.turn))
+            : agent.chooseMove(s));
         if (_cancelled) return;
         _append(MoveEvent(s.turn, move as Move));
       case GamePhase.cubeOffered:
@@ -441,6 +443,7 @@ class GameController extends ChangeNotifier implements MatchController {
       moverAway: _match.matchLength - actorScore,
       opponentAway: _match.matchLength - opponentScore,
       crawfordPlayed: _match.crawfordPlayed,
+      cubeless: cubeless,
     );
   }
 

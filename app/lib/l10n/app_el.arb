@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Μηχανή αξιολόγησης",
+  "parallelEngineAnalysis": "Ανάλυση με τις δύο μηχανές",
+  "parallelEngineExplanation": "Συγκρίνετε τις ξεχωριστές συμβουλές wildbg και GNUbg στον εκπαιδευτή.",
+  "engineComparison": "Σύγκριση μηχανών",
+  "engineWinChance": "Πιθανότητα νίκης"
 }

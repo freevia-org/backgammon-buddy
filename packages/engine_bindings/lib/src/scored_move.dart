@@ -39,34 +39,42 @@ class Probabilities {
 class ScoredMove {
   final Move move;
   final Probabilities probabilities; // mover's perspective, after the move
-  /// Optional app-layer score-aware value. Native ranking remains cubeless;
-  /// callers can attach a match value without changing the probability data.
+  /// Optional match-winning probability, supplied by native GNUbg or the
+  /// app's wildbg match adapter. It does not change the probability data.
   final double? matchWinningChance;
+  /// GNUbg's normalized selection equity (cubeful unless explicitly disabled).
+  final double? cubefulEquity;
+  /// Actual native search depth; default move filters can stop early.
+  final int? searchPlies;
   double get equity => probabilities.equity;
-  double get rankingValue => matchWinningChance ?? equity;
+  double get rankingValue => matchWinningChance ?? cubefulEquity ?? equity;
   const ScoredMove(
       {required this.move,
       required this.probabilities,
-      this.matchWinningChance});
+      this.matchWinningChance,
+      this.cubefulEquity,
+      this.searchPlies});
 }
 
-/// wildbg cube advice (Janowski-based internally, including the
-/// too-good-to-double branch). MONEY GAME ONLY: wildbg's cube_info takes no
-/// away scores, so match context (score, Crawford) is not reflected here.
-/// Match-aware cube decisions have their own path in Dart: `MatchCubeAdvisor`
-/// (Janowski cubeful equities over a match-equity table) is what the tutor
-/// consults at a match score; this type is the money-game answer.
+/// Native cube advice. wildbg's API is money-only; its match policy uses the
+/// app's MatchCubeAdvisor. GNUbg accepts full context and returns match values
+/// as MWC for no-double/take/pass when [matchAware] is true. Otherwise those
+/// values are money equity. [equityCubeless] remains normalized equity.
 class CubeAdvice {
   final bool shouldDouble;
   final bool shouldAccept;
   final double equityCubeless;
   final double equityNoDouble;
   final double equityDoubleTake;
+  final double? equityDoublePass;
+  final bool matchAware;
   const CubeAdvice({
     required this.shouldDouble,
     required this.shouldAccept,
     required this.equityCubeless,
     required this.equityNoDouble,
     required this.equityDoubleTake,
+    this.equityDoublePass,
+    this.matchAware = false,
   });
 }

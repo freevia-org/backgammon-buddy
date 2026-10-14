@@ -1874,5 +1874,10 @@
       }
     }
   },
-  "buddyCameraGenericError": "Не удалось запустить камеру. Проверьте разрешения и попробуйте ещё раз."
+  "buddyCameraGenericError": "Не удалось запустить камеру. Проверьте разрешения и попробуйте ещё раз.",
+  "evaluationEngine": "Движок оценки",
+  "parallelEngineAnalysis": "Анализировать обоими движками",
+  "parallelEngineExplanation": "Сравнивайте отдельные советы wildbg и GNUbg в наставнике.",
+  "engineComparison": "Сравнение движков",
+  "engineWinChance": "Вероятность победы"
 }

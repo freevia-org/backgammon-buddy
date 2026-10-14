@@ -3223,4 +3223,20 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Teine';
+
+  @override
+  String get evaluationEngine => 'Hindamismootor';
+
+  @override
+  String get parallelEngineAnalysis => 'Analüüsi mõlema mootoriga';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Võrdle juhendajas wildbg ja GNUbg eraldi nõuandeid.';
+
+  @override
+  String get engineComparison => 'Mootorite võrdlus';
+
+  @override
+  String get engineWinChance => 'Võiduvõimalus';
 }

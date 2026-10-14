@@ -3239,4 +3239,20 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Другият';
+
+  @override
+  String get evaluationEngine => 'Двигател за оценяване';
+
+  @override
+  String get parallelEngineAnalysis => 'Анализ с двата двигателя';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Сравнявайте отделните съвети на wildbg и GNUbg в наставника.';
+
+  @override
+  String get engineComparison => 'Сравнение на двигатели';
+
+  @override
+  String get engineWinChance => 'Шанс за победа';
 }

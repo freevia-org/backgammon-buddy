@@ -3210,4 +3210,20 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Toinen';
+
+  @override
+  String get evaluationEngine => 'Arviointimoottori';
+
+  @override
+  String get parallelEngineAnalysis => 'Analysoi molemmilla moottoreilla';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Vertaa wildbg- ja GNUbg-moottorien erillisiä neuvoja opastajassa.';
+
+  @override
+  String get engineComparison => 'Moottorien vertailu';
+
+  @override
+  String get engineWinChance => 'Voiton todennäköisyys';
 }

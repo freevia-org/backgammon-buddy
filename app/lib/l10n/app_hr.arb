@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Mehanizam procjene",
+  "parallelEngineAnalysis": "Analiziraj s oba mehanizma",
+  "parallelEngineExplanation": "Usporedite zasebne savjete wildbg i GNUbg u treneru.",
+  "engineComparison": "Usporedba mehanizama",
+  "engineWinChance": "Šansa za pobjedu"
 }

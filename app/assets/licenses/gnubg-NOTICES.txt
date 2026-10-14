@@ -1,0 +1,25 @@
+GNU Backgammon 1.08.003 (headless evaluator)
+Copyright 1996–2024 the GNU Backgammon AUTHORS, including Gary Wong,
+Joern Thyssen, Christian Anthon and Jon Kinsey. See native/gnubg/upstream/AUTHORS.
+License: GNU General Public License version 3 or, at your option, any later version.
+Full license: GPL-3.0.txt, available offline in this app's Licenses screen.
+
+This build includes GNUbg's original binary neural weights (gnubg.wd),
+one-sided and two-sided bearoff databases (gnubg_os0.bd, gnubg_ts0.bd),
+and Kazaross-XG2 match-equity XML from the official 1.08.003 distribution.
+GNUbg release sources: https://ftp.gnu.org/gnu/gnubg/gnubg-release-1.08.003-sources.tar.gz
+GNUbg model/data distribution: https://ftp.gnu.org/gnu/gnubg/gnubg-1_08_003-20240428-setup.exe
+
+Modifications by Freevia, 2026: headless portability adapter, private Expat
+XML bridge, failure-returning initialization, serialized FFI API and mobile
+build integration. Evaluator mathematics and trained networks are unchanged.
+Expat 2.7.5 is distributed under the MIT license; see expat-COPYING.txt.
+
+GNUbg-enabled Backgammon Buddy binaries are distributed under GPL-3.0-or-later.
+Original Freevia files retain their MIT notices; those permissions do not
+remove the GPL conditions on the combined binary.
+Complete corresponding application source, vendored evaluator, modifications,
+assets and build instructions must accompany every distributed version at:
+https://github.com/freevia-org/backgammon-buddy
+Use the source tag matching the app version; GNUbg sources are in native/gnubg.
+No warranty. You may copy, modify and redistribute under the GPL terms.

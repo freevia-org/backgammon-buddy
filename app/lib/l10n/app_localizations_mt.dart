@@ -3212,4 +3212,20 @@ class AppLocalizationsMt extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'L-ieħor';
+
+  @override
+  String get evaluationEngine => 'Magna ta’ evalwazzjoni';
+
+  @override
+  String get parallelEngineAnalysis => 'Analizza biż-żewġ magni';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Qabbel il-pariri separati ta’ wildbg u GNUbg fit-tutur.';
+
+  @override
+  String get engineComparison => 'Tqabbil tal-magni';
+
+  @override
+  String get engineWinChance => 'Ċans ta’ rebħa';
 }

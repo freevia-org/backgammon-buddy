@@ -3240,4 +3240,20 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Druhá';
+
+  @override
+  String get evaluationEngine => 'Vyhodnocovací engine';
+
+  @override
+  String get parallelEngineAnalysis => 'Analyzovat oběma enginy';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Porovnejte samostatné rady wildbg a GNUbg v trenérovi.';
+
+  @override
+  String get engineComparison => 'Porovnání enginů';
+
+  @override
+  String get engineWinChance => 'Šance na výhru';
 }

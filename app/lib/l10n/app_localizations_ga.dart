@@ -3239,4 +3239,20 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'An ceann eile';
+
+  @override
+  String get evaluationEngine => 'Inneall measúnaithe';
+
+  @override
+  String get parallelEngineAnalysis => 'Anailís leis an dá inneall';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Déan comparáid idir comhairle ar leith wildbg agus GNUbg sa teagascóir.';
+
+  @override
+  String get engineComparison => 'Comparáid inneall';
+
+  @override
+  String get engineWinChance => 'Seans bua';
 }

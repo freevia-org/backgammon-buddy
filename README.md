@@ -50,11 +50,15 @@ unredacted diagnostics before posting. For a private matter, use
 [Third-party notices](native/licenses/README.md)
 
 Third-party code, models and data retain their own licenses and notices.
+Builds containing GNUbg are distributed under GPL-3.0-or-later; see the
+[GNUbg source and distribution notes](native/gnubg/README.md).
 
 ## For contributors
 
 The app is built with Flutter and uses the vendored
-[wildbg](https://github.com/carsten-wenderdel/wildbg) neural-net engine.
+[wildbg](https://github.com/carsten-wenderdel/wildbg) neural-net engine and
+[GNU Backgammon](native/gnubg/README.md). Settings selects the primary engine
+and optionally enables side-by-side tutor analysis in independent workers.
 The [technical reference](docs/technical-reference.md) preserves the detailed
 repository layout, development setup, architecture and CI notes from the
 previous README. See the [release-readiness checklist](docs/release-readiness.md)
