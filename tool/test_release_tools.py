@@ -215,7 +215,8 @@ class ReleaseToolsTest(unittest.TestCase):
             with self.assertRaises(AssertionError) as failure:
                 check_android(path, ['arm64-v8a', 'armeabi-v7a'])
             self.assertIn('ABIs', str(failure.exception))
-            self.assertIn('no engine for arm64-v8a', str(failure.exception))
+            self.assertIn('no wildbg engine for arm64-v8a', str(failure.exception))
+            self.assertIn('no GNUbg engine for arm64-v8a', str(failure.exception))
 
 
 if __name__ == '__main__':
