@@ -1,7 +1,7 @@
 name: aigammon_app
-description: Backgammon Buddy — backgammon with a neural-net engine.
+description: Backgammon Buddy â€” backgammon with a neural-net engine.
 publish_to: 'none'
-version: 0.14.1+20
+version: 0.15.0+21
 
 environment:
   sdk: ^3.12.2
@@ -18,7 +18,7 @@ dependencies:
   path_provider: ^2.1.5
   drift: ^2.18.0
   # The QR code the host shows. Pure Dart (its only dependency is `qr`, the
-  # encoder) — it paints on a canvas and pulls in no platform channel, so it
+  # encoder) â€” it paints on a canvas and pulls in no platform channel, so it
   # costs the app nothing on the platforms that never scan.
   qr_flutter: ^4.1.0
   # Decode nearby join codes locally from the existing camera frame stream.
@@ -46,7 +46,7 @@ dependencies:
   url_launcher: ^6.3.2
   # --- Buddy Mode (Plan 19) ---------------------------------------------------
   # The perception core: frames in, typed answers about a PHYSICAL board out.
-  # Pure Dart on purpose — no camera, no plugin, no dart:ui — so it builds and
+  # Pure Dart on purpose â€” no camera, no plugin, no dart:ui â€” so it builds and
   # tests on this Windows dev machine against a committed corpus. The app owns
   # the camera and hands it `Frame`s; see lib/buddy/camera_frame_source.dart.
   board_vision:
@@ -59,7 +59,7 @@ dependencies:
   # because Buddy Mode as a whole is mobile-only.
   #
   # WINDOWS BUILD PREREQUISITE: this package ships a Windows plugin whose
-  # CMakeLists calls `find_program(nuget)` and FATAL_ERRORs without it — so
+  # CMakeLists calls `find_program(nuget)` and FATAL_ERRORs without it â€” so
   # `flutter run -d windows` fails with "nuget.exe not found" on a machine that
   # has no NuGet CLI, even though nothing on Windows ever calls the plugin.
   # `winget install Microsoft.NuGet` fixes it; see the toolchain section of
@@ -70,9 +70,9 @@ dependencies:
   # frame the phone was HOLDING STILL for; the accelerometer/gyro stream is the
   # cheap half of that test (the other half is an inter-frame pixel diff, which
   # costs nothing extra). Tiny plugin, event channels only, and its answer is
-  # injected into board_vision as a single bool — see `MotionHint`.
+  # injected into board_vision as a single bool â€” see `MotionHint`.
   sensors_plus: ^7.1.0
-  # The microphone Buddy listens for a throw with — an ATTENTION HINT and
+  # The microphone Buddy listens for a throw with â€” an ATTENTION HINT and
   # nothing else. The mode works identically with it absent, refused or turned
   # off; all it ever does is tell the frame gate to look sooner (see
   # lib/buddy/dice_sound_trigger.dart and `FrameGate.attend`).
@@ -94,7 +94,7 @@ dependencies:
   # NO WINDOWS BUILD PREREQUISITE, unlike flutter_tts above: `record_windows`
   # builds against the Windows SDK's own Media Foundation headers and calls no
   # `find_program`, so `flutter run -d windows` needs nothing installed for it.
-  # Verified by reading the plugin's CMakeLists rather than assumed — see the
+  # Verified by reading the plugin's CMakeLists rather than assumed â€” see the
   # toolchain section of README.md, which now says so alongside the nuget note.
   record: ^7.1.1
   share_plus: 13.3.1
@@ -113,8 +113,8 @@ dev_dependencies:
   # `CameraImageFormat`: `package:camera` re-exports a `show` list that leaves
   # those three out, so the ONLY way to hand a synthetic `CameraImage` to
   # `YuvFrame.fromCameraImage` is to build one from the platform interface
-  # directly. That conversion — the luma row stride, and iOS's two-plane NV12
-  # layout — is the most bug-prone code in lib/buddy/camera_frame_source.dart
+  # directly. That conversion â€” the luma row stride, and iOS's two-plane NV12
+  # layout â€” is the most bug-prone code in lib/buddy/camera_frame_source.dart
   # and the least likely to be caught on a device, so it is worth the entry.
   camera_platform_interface: ^2.13.1
 
@@ -127,7 +127,7 @@ flutter:
     - assets/licenses/
 
 # Launcher icons. The source PNGs are generated from the app's own brand mark
-# (lib/branding/app_mark.dart) — see tool/generate_app_icon.dart. Regenerate the
+# (lib/branding/app_mark.dart) â€” see tool/generate_app_icon.dart. Regenerate the
 # platform icons after changing the artwork:
 #
 #   flutter test tool/generate_app_icon.dart
