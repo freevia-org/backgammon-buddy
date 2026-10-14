@@ -1354,9 +1354,8 @@ class AppLocalizationsEt extends AppLocalizations {
   String get analysisSaveForPractice => 'Salvesta harjutamiseks';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Otsust ei saanud salvestada: $error';
-  }
+  String get analysisSaveError =>
+      'Seda otsust ei saanud salvestada. Proovi uuesti.';
 
   @override
   String analysisCubeInfo(
@@ -1954,7 +1953,7 @@ class AppLocalizationsEt extends AppLocalizations {
   String get lanTitle => 'Mängi läheduses';
 
   @override
-  String get lanTabHost => 'Host';
+  String get lanTabHost => 'Majutaja';
 
   @override
   String get lanTabJoin => 'Liitu';
@@ -2468,4 +2467,269 @@ class AppLocalizationsEt extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Viga: $error';
   }
+
+  @override
+  String get privacyTitle => 'Privaatsus ja andmed';
+
+  @override
+  String get privacyAppTitle => 'Freevia Backgammon Buddy';
+
+  @override
+  String get privacyIntro =>
+      'Sellel lehel kirjeldatakse, kuidas rakendus sinu andmeid kasutab.';
+
+  @override
+  String get privacyLocalTitle => 'Mängud ja juhendamine sinu seadmes';
+
+  @override
+  String get privacyLocalBody =>
+      'Kohalikud mängud, seaded, analüüsid ja harjutamise edenemine salvestatakse sellesse seadmesse. Backgammoni mängumootor ja juhendaja selgitused töötavad siin. Kustuta salvestatud mäng mängude arhiivist, et eemaldada ka selle salvestatud harjutused ja katsed. Kustuta õppimises üksikuid harjutusi või lähtesta harjutamise edenemine; kustuta kohalikud veaaruanded menüüs Seaded → Diagnostika. Seadme varundusseaded võivad kehtida ka mänguajaloole. Veebis sisselogimise andmeid hoitakse seadme kaitstud salvestusruumis.';
+
+  @override
+  String get privacyOnlineTitle => 'Võrgus ja läheduses mängimine';
+
+  @override
+  String get privacyOnlineBody =>
+      'Võrgumäng saadab Google Firebase’i anonüümse mängijatunnuse, mängu seaded, käigud ja täringute sünkroonimise kirjed, et mõlemad mängijad saaksid sama mängu mängida. Selle seadme ajaloo kustutamine ei kustuta võrgukirjeid. Majutatud mängud aeguvad 30 päeva pärast loomist; ajastatud puhastus eemaldab nende pilvelogid. Mängukirjeid hoitakse EL-is; Firebase Authentication töötleb sisselogimisandmeid Ameerika Ühendriikides. Google’i ühendused on edastuse ajal krüptitud. Läheduses mängides vahetatakse teise seadmega mänguinfot krüptimata kohaliku ühenduse kaudu; kasuta usaldatud Wi-Fi-võrku.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Valikuline kasutus- ja krahhidiagnostika';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Andmete jagamine on välja lülitatud, kuni selle seadetes sisse lülitad. Sisselülitamisel saab Google Firebase kasutussündmusi, rakenduse ja seadme teavet, jõudlusmõõdikuid ning krahhiaruandeid, et rakendust paremaks muuta. Uue valikulise andmekogumise peatamiseks saad jagamise igal ajal välja lülitada. See ei kustuta juba saadetud andmeid. Kohalik diagnostika ja võrgumängud toimivad sellest valikust sõltumatult.';
+
+  @override
+  String get privacyCameraTitle => 'Kaamera läheduses olevate QR-koodide jaoks';
+
+  @override
+  String get privacyCameraBody =>
+      'Valikuline kaamera skannib läheduses olevate mängude QR-koode. Pilte töödeldakse sinu seadmes ning neid ei salvestata ega laadita üles. Võid kaamerale juurdepääsu keelata ja sisestada korraldaja aadressi käsitsi. See versioon ei kasuta mikrofoni ega võimalda mängida füüsilise lauaga.';
+
+  @override
+  String get privacyFeedbackTitle => 'Tagasiside, mille otsustad saata';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Tagasiside avab ülevaatamiseks GitHubi probleemi mustandi. Mustandi avamisel saadetakse GitHubi rakenduse versioon ja platvorm; Diagnostikast saadetud tagasiside võib sisaldada ka vea üksikasju. Probleemi ei avaldata enne, kui selle esitad. Probleemid võivad olla avalikud, seega eemalda enne saatmist isiklik teave.';
+
+  @override
+  String get privacyContactTitle => 'Privaatsuse kontakt';
+
+  @override
+  String get privacyReadPolicy => 'Loe privaatsuspoliitikat';
+
+  @override
+  String get privacyPolicyOpenFailed => 'Privaatsuspoliitikat ei saanud avada.';
+
+  @override
+  String get privacySupportTitle => 'Abi ja tugi';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Tuge ei saanud avada. Võta ühendust aadressil support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Kas kustutada veebitunnus ja andmed?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'See lõpetab kohe mõlema mängija juurdepääsu selle tunnuse pilvemängudele ning esitab taotluse tunnuse ja jagatud võrgumängude logide kustutamiseks 30 päeva jooksul. Google’il võib pärast konto kustutamist kuluda kuni 180 päeva, et eemaldada Authenticationi andmed aktiivsetest süsteemidest ja varukoopiatest. Kohalik ajalugu ja harjutused jäävad sellesse seadmesse. Varem saadetud valikuline diagnostika on eraldi; küsi selle kohta aadressilt privacy@freevia.org. Seda taotlust ei saa tagasi võtta.';
+
+  @override
+  String get privacyRequestDeletion => 'Taotle kustutamist';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Kustuta võrguandmed';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Omandi kinnitamiseks kasuta sellesse seadmesse salvestatud sisselogimist. Mängijatunnus või kutsekood üksi ei tõesta omandiõigust. Ainult kohapeal mängijad ei vaja võrgukontot.';
+
+  @override
+  String get privacySendingRequest => 'Taotlust saadetakse…';
+
+  @override
+  String get privacyDeleteAction => 'Kustuta veebitunnus ja andmed';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Kustutamistaotlus on esitatud. Sellest veebitunnusest on välja logitud. Selle pilveandmed kustutatakse 30 päeva jooksul. Veebis uuesti mängimise alustamisel luuakse uus tunnus. Google’il võib Authenticationi andmete eemaldamiseks kuluda kuni 180 päeva. Abi saamiseks kirjuta aadressile privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Kustutamistaotlus on esitatud. Pilveandmed kustutatakse 30 päeva jooksul. Seade ei saanud salvestatud sisselogimist kustutada, kuid veebitunnus on edasistele mängudele juurdepääsuks blokeeritud. Google’il võib Authenticationi andmete eemaldamiseks kuluda kuni 180 päeva. Abi saamiseks kirjuta aadressile privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Sellesse seadmesse pole salvestatud kasutatavat veebitunnust. Uut kontot ei loodud. Kui oled varem võrgus mänginud, kirjuta abi saamiseks aadressile privacy@freevia.org; majutatud mängud aeguvad 30 päeva pärast.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Kustutamistaotlust ei õnnestunud kinnitada. Kontrolli ühendust ja proovi uuesti või võta ühendust aadressil privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle => 'Kas jagada kasutus- ja krahhiandmeid?';
+
+  @override
+  String get privacyConsentBody =>
+      'See saadab Google Firebase’ile kasutussündmusi, rakenduse ja seadme teavet, krahhiaruandeid ning jõudlusmõõdikuid. Jagamine on vabatahtlik. Mängud ja juhendamine toimivad ka ilma selleta ning saad jagamise seadetes uuesti välja lülitada.';
+
+  @override
+  String get privacyKeepOff => 'Hoia väljas';
+
+  @override
+  String get privacyShareDiagnostics => 'Jaga diagnostikat';
+
+  @override
+  String get privacySaveFailed =>
+      'Privaatsusvalikut ei saanud salvestada. Proovi uuesti.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Mis jääb sinu seadmesse ja mida jagatakse';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Jaga kasutus- ja krahhidiagnostikat';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Valikuline · vaikimisi väljas';
+
+  @override
+  String get lanScanToJoin => 'Liitumiseks skanni';
+
+  @override
+  String get lanScanHostCode => 'Skanni korraldaja koodi';
+
+  @override
+  String get lanEnterAddressInstead => 'Sisesta selle asemel aadress';
+
+  @override
+  String get lanQrAccessibilityLabel => 'QR-kood selle mänguga liitumiseks';
+
+  @override
+  String get lanJoinInstruction =>
+      'Ava teises seadmes „Mängi läheduses“, vali „Liitu“ ja skanni see QR-kood.';
+
+  @override
+  String get lanTorch => 'Taskulamp';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy ei saa kaamerat kasutada. Luba kaamerale juurdepääs seadme seadetes või sisesta teises seadmes kuvatud aadress käsitsi.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'See seade ei saa QR-koode skannida. Sisesta teises seadmes kuvatud aadress käsitsi.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Kaamerat ei saanud käivitada. Sisesta teises seadmes kuvatud aadress käsitsi.';
+
+  @override
+  String get lanPointCameraAtQr => 'Suuna kaamera teise seadme QR-koodile.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Selles versioonis ei saa mängida füüsilise lauaga. Ekraanil mängimine, juhendamine ja harjutamine on avalehel saadaval.';
+
+  @override
+  String get homePlayWithBuddy => 'Mängi Buddyga';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Backgammoni laud. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Valge kord: veereta täringuid.';
+
+  @override
+  String get boardBlackToRoll => 'Musta kord: veereta täringuid.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Valge käik, veereta $die1 ja $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Musta käik, veereta $die1 ja $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Pakuti kahekordistamist.';
+
+  @override
+  String get boardResignationOffered => 'Pakuti alistumist.';
+
+  @override
+  String get boardGameOver => 'Mäng on läbi.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Viga]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Idee]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary => 'Asenda see juhtunu lühikese kirjeldusega.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Asenda see probleemi põhjustanud sammudega.';
+
+  @override
+  String get feedbackBugExpected => 'Asenda see oodatud tulemuse kirjeldusega.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Asenda see kirjeldusega, mida soovisid teha või õppida.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Asenda see muudatusega, millest oleks sinu arvates abi.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(lühendatud — täieliku logi saamiseks kasuta diagnostikakuval valikut „Kopeeri lõikelauale“)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Valge käik.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Musta käik.';
+
+  @override
+  String get feedbackFieldVersion => 'Rakenduse versioon';
+
+  @override
+  String get feedbackFieldPlatform => 'Platvorm';
+
+  @override
+  String get feedbackFieldSummary => 'Mis juhtus';
+
+  @override
+  String get feedbackFieldReproduction => 'Taasesitamise sammud';
+
+  @override
+  String get feedbackFieldExpected => 'Oodatud tulemus';
+
+  @override
+  String get feedbackFieldNeed => 'Mida soovisid teha';
+
+  @override
+  String get feedbackFieldIdea => 'Soovitatud muudatus';
 }

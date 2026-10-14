@@ -1348,9 +1348,8 @@ class AppLocalizationsGa extends AppLocalizations {
   String get analysisSaveForPractice => 'Sábháil le cleachtadh';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Níorbh fhéidir an cinneadh seo a shábháil: $error';
-  }
+  String get analysisSaveError =>
+      'Níorbh fhéidir an cinneadh seo a shábháil. Bain triail eile as.';
 
   @override
   String analysisCubeInfo(
@@ -2475,4 +2474,274 @@ class AppLocalizationsGa extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Earráid: $error';
   }
+
+  @override
+  String get privacyTitle => 'Príobháideachas agus sonraí';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy le Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Déanann an leathanach seo cur síos ar an gcaoi a láimhseálann an aip do shonraí.';
+
+  @override
+  String get privacyLocalTitle => 'Cluichí agus teagasc ar do ghléas';
+
+  @override
+  String get privacyLocalBody =>
+      'Stóráiltear cluichí áitiúla, socruithe, anailís agus dul chun cinn cleachtaidh ar an ngléas seo. Ritheann inneall backgammon agus míniúcháin an teagascóra anseo. Scrios cluiche sábháilte ón Stair chun a chleachtaí agus a iarrachtaí sábháilte a bhaint freisin. Scrios cleachtaí aonair nó athshocraigh dul chun cinn i bhFoghlaim; glan tuairiscí earráide áitiúla i Socruithe → Diagnóisic. D’fhéadfadh socruithe cúltaca do ghléis dul i bhfeidhm ar stair na gcluichí. Coinnítear sonraí síniú isteach ar líne i stóráil chosanta an ghléis.';
+
+  @override
+  String get privacyOnlineTitle => 'Imirt ar líne agus in aice láimhe';
+
+  @override
+  String get privacyOnlineBody =>
+      'Seolann imirt ar líne aitheantas imreora gan ainm, socruithe cluiche, gluaiseachtaí agus taifid deimhniúcháin na ndísle chuig Google Firebase chun gur féidir leis an mbeirt an cluiche céanna a imirt. Ní scriosann Stair a scriosadh ar an ngléas seo taifid ar líne. Téann cluichí óstáilte in éag 30 lá tar éis a gcruthaithe; baintear a logaí néil le glanadh sceidealaithe. Stóráiltear taifid cluichí san AE; próiseálann Firebase Authentication sonraí síniú isteach sna Stáit Aontaithe. Tá naisc ar líne le Google criptithe le linn aistrithe. Malartaíonn imirt in aice láimhe sonraí cluiche leis an ngléas eile trí nasc áitiúil neamhchriptithe; úsáid Wi-Fi iontaofa.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Diagnóisic úsáide agus tuairteála roghnach';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Tá an roinnt múchta go dtí go roghnaíonn tú í i Socruithe. Má chumasaítear í, faigheann Google Firebase imeachtaí úsáide, faisnéis aipe/gléis, tomhais feidhmíochta agus tuairiscí tuairteála chun cabhrú leis an aip a fheabhsú. Múch an roinnt am ar bith chun bailiú roghnach nua a stopadh. Ní scriosann sé seo sonraí a seoladh cheana. Feidhmíonn diagnóisic áitiúil agus cluichí ar líne go neamhspleách ar an rogha seo.';
+
+  @override
+  String get privacyCameraTitle => 'Ceamara do chóid QR in aice láimhe';
+
+  @override
+  String get privacyCameraBody =>
+      'Scanann an ceamara roghnach cóid QR do chluichí in aice láimhe. Próiseáiltear íomhánna ar do ghléas agus ní shábháiltear ná ní uaslódáiltear iad. Is féidir leat rochtain ceamara a dhiúltú agus seoladh an óstaigh a chur isteach de láimh. Ní úsáideann an leagan seo an micreafón ná ní thairgeann sé imirt ar chlár fisiciúil.';
+
+  @override
+  String get privacyFeedbackTitle => 'Aiseolas a roghnaíonn tú a sheoladh';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Osclaíonn aiseolas dréacht saincheiste GitHub duit le hathbhreithniú. Nuair a osclaítear an dréacht, seoltar leagan na haipe agus an t-ardán chuig GitHub; d’fhéadfadh sonraí earráide a bheith san aiseolas ó Diagnóisic freisin. Ní fhoilsítear aon saincheist go dtí go seolann tú í. D’fhéadfadh saincheisteanna a bheith poiblí, mar sin bain faisnéis phríobháideach sula seolann tú.';
+
+  @override
+  String get privacyContactTitle => 'Teagmháil phríobháideachais';
+
+  @override
+  String get privacyReadPolicy => 'Léigh an polasaí príobháideachais';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Níorbh fhéidir an polasaí príobháideachais a oscailt.';
+
+  @override
+  String get privacySupportTitle => 'Cabhair agus tacaíocht';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Níorbh fhéidir an tacaíocht a oscailt. Déan teagmháil le support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Scrios aitheantas agus sonraí ar líne?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Cuireann sé seo deireadh láithreach le rochtain an aitheantais seo ar chluichí néil don dá imreoir agus iarrann sé scriosadh an aitheantais agus na logaí comhroinnte laistigh de 30 lá. D’fhéadfadh Google suas le 180 lá a thógáil chun sonraí Authentication a bhaint dá chórais bheo agus chúltaca tar éis scriosadh an chuntais. Fanann an Stair áitiúil agus an cleachtadh ar an ngléas seo. Tá diagnóisic roghnach a seoladh roimhe seo scartha; déan teagmháil le privacy@freevia.org fúthu. Ní féidir an t-iarratas seo a chealú.';
+
+  @override
+  String get privacyRequestDeletion => 'Iarr scriosadh';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Scrios sonraí ar líne';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Úsáid an síniú isteach atá sábháilte ar an ngléas seo chun úinéireacht a fhíorú. Ní chruthaíonn aitheantas imreora ná cód cuireadh amháin úinéireacht. Níl cuntas ar líne ag teastáil ó imreoirí áitiúla amháin.';
+
+  @override
+  String get privacySendingRequest => 'Iarratas á sheoladh…';
+
+  @override
+  String get privacyDeleteAction => 'Scrios aitheantas agus sonraí ar líne';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Iarradh an scriosadh. Síníodh amach an t-aitheantas ar líne seo. Scriosfar a shonraí néil laistigh de 30 lá. Cruthófar aitheantas nua má thosaíonn tú ag imirt ar líne arís. D’fhéadfadh sé suas le 180 lá a thógáil sonraí Authentication Google a bhaint. Déan teagmháil le privacy@freevia.org chun cabhair a fháil.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Iarradh an scriosadh agus scriosfar sonraí néil laistigh de 30 lá. Níorbh fhéidir leis an ngléas an síniú isteach sábháilte a ghlanadh, ach cuireadh bac ar an aitheantas ar líne rochtain a fháil ar chluichí eile. D’fhéadfadh sé suas le 180 lá a thógáil sonraí Authentication Google a bhaint. Déan teagmháil le privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Níl aon aitheantas ar líne inúsáidte sábháilte ar an ngléas seo. Níor cruthaíodh cuntas nua. Má d’imir tú ar líne roimhe seo, déan teagmháil le privacy@freevia.org; téann cluichí óstáilte in éag tar éis 30 lá.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Níorbh fhéidir an t-iarratas scriosta a dheimhniú. Seiceáil an nasc agus bain triail eile as, nó déan teagmháil le privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle =>
+      'A roinnfear diagnóisic úsáide agus tuairteála?';
+
+  @override
+  String get privacyConsentBody =>
+      'Seoltar imeachtaí úsáide, faisnéis aipe/gléis, tuairiscí tuairteála agus tomhais feidhmíochta chuig Google Firebase leis seo. Is roghnach an roinnt. Oibríonn cluichí agus teagasc gan é, agus is féidir leat é a mhúchadh arís i Socruithe.';
+
+  @override
+  String get privacyKeepOff => 'Fág as';
+
+  @override
+  String get privacyShareDiagnostics => 'Roinn diagnóisic';
+
+  @override
+  String get privacySaveFailed =>
+      'Níorbh fhéidir an rogha phríobháideachais a shábháil. Bain triail eile as.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Cad a fhanann ar do ghléas agus cad a roinntear';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Roinn diagnóisic úsáide agus tuairteála';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Roghnach · as de réir réamhshocraithe';
+
+  @override
+  String get lanScanToJoin => 'Scan chun páirt a ghlacadh';
+
+  @override
+  String get lanScanHostCode => 'Scan cód an óstaigh';
+
+  @override
+  String get lanEnterAddressInstead => 'Cuir an seoladh isteach ina ionad';
+
+  @override
+  String get lanQrAccessibilityLabel =>
+      'Cód QR chun páirt a ghlacadh sa chluiche seo';
+
+  @override
+  String get lanJoinInstruction =>
+      'Ar an ngléas eile, oscail Imirt in Aice Láimhe, roghnaigh Glac páirt, agus scan an cód QR seo.';
+
+  @override
+  String get lanTorch => 'Splanc';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Ní féidir le Backgammon Buddy an ceamara a úsáid. Ceadaigh rochtain sna socruithe, nó cuir isteach an seoladh ón ngléas eile.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Ní féidir leis an ngléas seo cóid QR a scanadh. Cuir isteach an seoladh ón ngléas eile.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Níorbh fhéidir an ceamara a thosú. Cuir isteach an seoladh ón ngléas eile.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Dírigh an ceamara ar an gcód QR ar an ngléas eile.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Imirt ar chlár fisiciúil';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Níl imirt ar chlár fisiciúil ar fáil sa leagan seo. Tá cluichí ar an scáileán, teagasc agus cleachtadh ar fáil ón Scáileán baile.';
+
+  @override
+  String get homePlayWithBuddy => 'Imir le Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Clár backgammon. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Is le Bán an chéad chaitheamh.';
+
+  @override
+  String get boardBlackToRoll => 'Is le Dubh an chéad chaitheamh.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Is ag Bán atá an imirt; caith $die1 agus $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Is ag Dubh atá an imirt; caith $die1 agus $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Tá dúbailt tairgthe.';
+
+  @override
+  String get boardResignationOffered => 'Tá géilleadh tairgthe.';
+
+  @override
+  String get boardGameOver => 'Tá an cluiche thart.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Fabht]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Smaoineamh]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary => 'Cuir cur síos gairid anseo ar ar tharla.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Cuir na céimeanna a chruthaigh an fhadhb anseo.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Cuir síos anseo ar an toradh a bhí tú ag súil leis.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Cuir síos anseo ar a raibh tú ag iarraidh a dhéanamh nó a fhoghlaim.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Cuir síos anseo ar an athrú a bheadh úsáideach duit.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(giorraithe — bain úsáid as Cóipeáil chuig an ngearrthaisce i Diagnóisic chun an logchomhad iomlán a fháil)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Is ag Bán atá an imirt.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Is ag Dubh atá an imirt.';
+
+  @override
+  String get feedbackFieldVersion => 'Leagan na haipe';
+
+  @override
+  String get feedbackFieldPlatform => 'Ardán';
+
+  @override
+  String get feedbackFieldSummary => 'Cad a tharla';
+
+  @override
+  String get feedbackFieldReproduction => 'Céimeanna chun é a atáirgeadh';
+
+  @override
+  String get feedbackFieldExpected => 'Toradh a raibh súil leis';
+
+  @override
+  String get feedbackFieldNeed => 'A raibh tú ag iarraidh a dhéanamh';
+
+  @override
+  String get feedbackFieldIdea => 'Athrú molta';
 }

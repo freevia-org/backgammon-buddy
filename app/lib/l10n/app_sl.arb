@@ -715,7 +715,7 @@
   "analysisBestMoveLine": "Najboljša poteza: {move}",
   "analysisExplain": "Pojasni",
   "analysisSaveForPractice": "Shrani za vajo",
-  "analysisSaveError": "Te odločitve ni bilo mogoče shraniti: {error}",
+  "analysisSaveError": "Te odločitve ni bilo mogoče shraniti. Poskusite znova.",
   "analysisCubeInfo": "{side}: {action} · {mark} · izguba {loss}",
   "analysisCubeDecision": "Odločitev o kocki",
   "analysisCubePlayed": "Odigrano: {action} (možnost za zmago v dvoboju: {percent}%).",
@@ -789,11 +789,6 @@
       "action": {},
       "mark": {},
       "loss": {}
-    }
-  },
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
     }
   },
   "@analysisCubePlayed": {
@@ -1519,5 +1514,104 @@
         "type": "String"
       }
     }
-  }
+  },
+  "privacyTitle": "Zasebnost in podatki",
+  "privacyAppTitle": "Backgammon Buddy avtorja Freevia",
+  "privacyIntro": "Na tej strani je opisano, kako trenutna aplikacija obravnava vaše podatke.",
+  "privacyLocalTitle": "Igre in poučevanje na vaši napravi",
+  "privacyLocalBody": "Lokalne tekme, nastavitve, analize in napredek pri vadbi so shranjeni v tej napravi. Tukaj delujeta igralni pogon in razlaga trenerja. Če shranjeno tekmo izbrišete iz Arhiva iger, se izbrišejo tudi shranjene vaje in poskusi za to tekmo. Posamezne vaje lahko izbrišete ali ponastavite napredek v razdelku Učenje in vadba; lokalna poročila o napakah izbrišite v Nastavitve → Diagnostika. Varnostne kopije naprave lahko vključujejo tudi zgodovino tekem. Podatki za spletno prijavo so shranjeni v zaščitenem pomnilniku naprave.",
+  "privacyOnlineTitle": "Igrajte na spletu in v bližini",
+  "privacyOnlineBody": "Spletna igra pošlje v Google Firebase anonimen identifikator igralca, nastavitve tekme, poteze in zapise protokola za usklajevanje metov kock, da lahko oba igralca igrata isto tekmo. Izbris zgodovine v tej napravi ne izbriše spletnih zapisov. Gostovane tekme potečejo 30 dni po ustvarjanju; načrtovano čiščenje odstrani njihove dnevnike iz oblaka. Zapisi tekem so shranjeni v EU; Firebase Authentication obdeluje podatke za prijavo v Združenih državah. Povezave z Googlom so med prenosom šifrirane. Pri igri v bližini si napravi izmenjujeta podatke o tekmi prek nešifrirane lokalne povezave; uporabljajte zaupanja vredno omrežje Wi-Fi.",
+  "privacyDiagnosticsTitle": "Izbirna diagnostika uporabe in zrušitev",
+  "privacyDiagnosticsBody": "Skupna raba je izklopljena, dokler je ne vklopite v nastavitvah. Če jo vklopite, Google Firebase prejema dogodke uporabe, podatke o aplikaciji in napravi, meritve zmogljivosti ter poročila o zrušitvah, da pomaga izboljšati aplikacijo. Skupno rabo lahko kadar koli izklopite in tako ustavite zbiranje novih izbirnih podatkov. Že poslanih podatkov to ne izbriše. Lokalna diagnostika in spletne tekme niso odvisne od te nastavitve.",
+  "privacyCameraTitle": "Kamera za bližnje kode QR",
+  "privacyCameraBody": "Izbirna kamera skenira kode QR za igro v bližini. Slike se obdelajo v napravi, ne shranijo in ne naložijo. Dostop do kamere lahko zavrnete in naslov gostitelja vnesete ročno. Ta različica ne uporablja mikrofona in ne omogoča igranja na fizični igralni plošči.",
+  "privacyFeedbackTitle": "Povratne informacije, ki jih želite poslati",
+  "privacyFeedbackBody": "Povratne informacije odprejo osnutek prijave na GitHubu, ki ga lahko pregledate. Ko odprete osnutek, se na GitHub pošljeta različica aplikacije in platforma; povratne informacije z zaslona Diagnostika lahko vsebujejo tudi podrobnosti o napaki. Prijava ni objavljena, dokler je ne pošljete. Prijave so lahko javne, zato pred pošiljanjem odstranite zasebne podatke.",
+  "privacyContactTitle": "Kontakt za zasebnost",
+  "privacyReadPolicy": "Preberite pravilnik o zasebnosti",
+  "privacyPolicyOpenFailed": "Ni bilo mogoče odpreti pravilnika o zasebnosti.",
+  "privacySupportTitle": "Pomoč in podpora",
+  "privacySupportOpenFailed": "Podpore ni bilo mogoče odpreti. Obrnite se na support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Želite izbrisati spletno identiteto in podatke?",
+  "privacyDeleteConfirmBody": "Dostop obeh igralcev do tekem v oblaku, povezanih s to identiteto, se takoj prekine. Zahteva se izbris identitete in skupnih dnevnikov spletnih tekem v 30 dneh. Google lahko po izbrisu računa potrebuje do 180 dni, da iz aktivnih in varnostnih sistemov odstrani podatke za preverjanje pristnosti. Lokalna zgodovina tekem in vadbene naloge ostanejo v tej napravi. Predhodno poslani izbirni diagnostični podatki se obravnavajo ločeno; glede njih se obrnite na privacy@freevia.org. Te zahteve ni mogoče preklicati.",
+  "privacyRequestDeletion": "Zahtevaj izbris",
+  "privacyDeleteSectionTitle": "Brisanje spletnih podatkov",
+  "privacyDeleteInstructions": "Za potrditev lastništva uporabite prijavne podatke, shranjene v tej napravi. Sam identifikator igralca ali koda povabila ne dokazuje lastništva. Za igranje samo v tej napravi ne potrebujete spletnega računa.",
+  "privacySendingRequest": "Pošiljanje zahteve …",
+  "privacyDeleteAction": "Izbrišite spletno identiteto in podatke",
+  "privacyDeleteRequested": "Zahteva za izbris je bila poslana. Ta spletna identiteta je odjavljena. Njeni podatki v oblaku bodo izbrisani v 30 dneh. Ko znova začnete spletno igro, bo ustvarjena nova identiteta. Google lahko za odstranitev podatkov za preverjanje pristnosti potrebuje do 180 dni. Za pomoč se obrnite na privacy@freevia.org.",
+  "privacyDeleteRequestedSignOutFailed": "Zahteva za izbris je bila poslana. Podatki v oblaku bodo izbrisani v 30 dneh. Naprava ni mogla izbrisati shranjenih podatkov za prijavo, vendar spletna identiteta nima več dostopa do tekem. Google lahko za odstranitev podatkov za preverjanje pristnosti potrebuje do 180 dni. Za pomoč se obrnite na privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "V tej napravi ni shranjenega uporabnega spletnega identifikatorja. Nov račun ni bil ustvarjen. Če ste že igrali prek spleta, za pomoč pišite na privacy@freevia.org; gostovane tekme potečejo 30 dni po ustvarjanju.",
+  "privacyDeleteRequestFailed": "Zahteve za izbris ni bilo mogoče potrditi. Preverite povezavo in poskusite znova ali pišite na privacy@freevia.org.",
+  "privacyConsentTitle": "Želite deliti diagnostiko uporabe in zrušitev?",
+  "privacyConsentBody": "Ta možnost pošilja dogodke uporabe, podatke o aplikaciji in napravi, poročila o zrušitvah ter meritve zmogljivosti v Google Firebase. Skupna raba je neobvezna. Igre in vadba delujejo tudi, ko je skupna raba izklopljena; kadar koli jo lahko izklopite v nastavitvah.",
+  "privacyKeepOff": "Naj ostane izklopljeno.",
+  "privacyShareDiagnostics": "Delite diagnostiko",
+  "privacySaveFailed": "Izbire zasebnosti ni bilo mogoče shraniti. prosim poskusite ponovno",
+  "privacySettingsSubtitle": "Kaj ostane v vaši napravi in kaj se deli",
+  "privacyDiagnosticsSettingTitle": "Delite diagnostiko uporabe in zrušitev",
+  "privacyDiagnosticsSettingSubtitle": "Izbirno · privzeto izklopljeno",
+  "lanScanToJoin": "Skeniraj, da se pridružiš",
+  "lanScanHostCode": "Skenirajte kodo gostitelja",
+  "lanEnterAddressInstead": "Namesto tega vnesite naslov",
+  "lanTorch": "Bliskavica",
+  "lanCameraPermissionDenied": "Backgammon Buddy ne more uporabljati kamere. Dovolite dostop do kamere v nastavitvah naprave ali ročno vnesite naslov, ki je prikazan na drugi napravi.",
+  "lanCameraUnsupported": "Ta naprava ne more skenirati kod QR. Ročno vnesite naslov, prikazan na drugi napravi.",
+  "lanCameraStartFailed": "Kamere ni bilo mogoče zagnati. Ročno vnesite naslov, prikazan na drugi napravi.",
+  "lanPointCameraAtQr": "Kamero usmerite proti kodi QR na drugi napravi.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "physicalBuddyUnavailableBody": "Igranje na fizični igralni plošči v tej različici ni na voljo. Zaslonske igre, učenje in vadba so na voljo na začetnem zaslonu.",
+  "boardSemanticsLabel": "Igralna plošča za backgammon. {status}",
+  "boardWhiteToRoll": "Bele figure so na potezi za met kock.",
+  "boardBlackToRoll": "Črne figure so na potezi za met kock.",
+  "boardWhiteToMove": "Bele figure so na potezi; na kockah je {die1} in {die2}.",
+  "boardBlackToMove": "Črne figure so na potezi; na kockah je {die1} in {die2}.",
+  "boardDoubleOffered": "Ponujeno je podvajanje kocke.",
+  "boardResignationOffered": "Ponujena je predaja partije.",
+  "boardGameOver": "Igra je končana.",
+  "feedbackBugTitle": "[Napaka]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Ideja]: Backgammon Buddy",
+  "feedbackBugSummary": "Zamenjajte to s kratkim opisom, kaj se je zgodilo.",
+  "feedbackBugReproduction": "Zamenjajte to s koraki, ki so pripeljali do težave.",
+  "feedbackBugExpected": "Zamenjajte to s tem, kar ste pričakovali, da se bo zgodilo.",
+  "feedbackIdeaNeed": "Nadomestite to s tem, kar ste želeli narediti ali naučiti.",
+  "feedbackIdeaSuggestion": "Zamenjajte to s spremembo, ki bi se vam zdela koristna.",
+  "feedbackExcerptTruncated": "(prirezano — uporabite Kopiraj v odložišče na diagnostičnem zaslonu za celoten dnevnik)",
+  "boardWhiteToMoveNoRoll": "Bele figure so na potezi.",
+  "boardBlackToMoveNoRoll": "Črne figure so na potezi.",
+  "feedbackFieldVersion": "Različica aplikacije",
+  "feedbackFieldPlatform": "Platforma",
+  "feedbackFieldSummary": "Kaj se je zgodilo",
+  "feedbackFieldReproduction": "Koraki za razmnoževanje",
+  "feedbackFieldExpected": "Pričakovan rezultat",
+  "feedbackFieldNeed": "Kaj ste želeli narediti?",
+  "feedbackFieldIdea": "Predlagana sprememba",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "Koda QR za pridružitev tej igri",
+  "lanJoinInstruction": "V drugi napravi odprite Igraj v bližini, izberite Pridruži se in skenirajte to kodo QR.",
+  "homePlayWithBuddy": "Igraj z Buddy",
+  "homeBuddyShort": "Buddy"
 }

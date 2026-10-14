@@ -1136,7 +1136,7 @@
   "analysisBestMoveLine": "Najlepšie: {move}",
   "analysisExplain": "Vysvetliť",
   "analysisSaveForPractice": "Uložiť na precvičenie",
-  "analysisSaveError": "Toto rozhodnutie sa nepodarilo uložiť: {error}",
+  "analysisSaveError": "Toto rozhodnutie sa nepodarilo uložiť. Skúste to znova.",
   "analysisCubeInfo": "{side}: {action} · {mark} · strata {loss}",
   "analysisCubeDecision": "Rozhodnutie o kocke",
   "analysisCubePlayed": "Odohrané: {action} ({percent}% šanca na výhru zápasu).",
@@ -1202,11 +1202,6 @@
   "@analysisBestMoveLine": {
     "placeholders": {
       "move": {}
-    }
-  },
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
     }
   },
   "@analysisCubeInfo": {
@@ -1519,5 +1514,104 @@
         "type": "int"
       }
     }
-  }
+  },
+  "privacyTitle": "Súkromie a údaje",
+  "privacyAppTitle": "Backgammon Buddy od Freevia",
+  "privacyIntro": "Táto stránka popisuje, ako aktuálna aplikácia narába s vašimi údajmi.",
+  "privacyLocalTitle": "Hry a doučovanie na vašom zariadení",
+  "privacyLocalBody": "Miestne zápasy, nastavenia, analýza a pokrok v tréningu sa ukladajú v tomto zariadení. Tu beží herný engine aj vysvetlenia trénera. Odstránením uloženého zápasu z Archívu hier sa odstránia aj uložené tréningové cvičenia a pokusy pre tento zápas. Jednotlivé cvičenia môžete odstrániť alebo resetovať pokrok v časti Učenie a tréning; miestne chybové hlásenia vymažete v Nastavenia → Diagnostika. História zápasov môže byť zahrnutá aj v zálohách zariadenia. Prihlasovacie údaje na online hranie sa uchovávajú v chránenom úložisku zariadenia.",
+  "privacyOnlineTitle": "Hrajte online a v okolí",
+  "privacyOnlineBody": "Online hra posiela do služby Google Firebase anonymný identifikátor hráča, nastavenia zápasu, ťahy a záznamy protokolu na zosúladenie hodov kockami, aby obaja hráči mohli hrať ten istý zápas. Odstránením histórie v tomto zariadení sa online záznamy neodstránia. Platnosť hostovaných zápasov vyprší 30 dní po vytvorení; plánované čistenie odstráni ich záznamy z cloudu. Záznamy zápasov sa ukladajú v EÚ; Firebase Authentication spracúva prihlasovacie údaje v Spojených štátoch. Spojenia so službami Google sú počas prenosu šifrované. Pri hre nablízku si zariadenia vymieňajú informácie o zápase cez nešifrované miestne pripojenie; používajte dôveryhodnú sieť Wi-Fi.",
+  "privacyDiagnosticsTitle": "Voliteľná diagnostika používania a pádov",
+  "privacyDiagnosticsBody": "Zdieľanie je vypnuté, kým ho nezapnete v Nastaveniach. Ak ho zapnete, Google Firebase bude prijímať udalosti používania, informácie o aplikácii a zariadení, merania výkonu a hlásenia o zlyhaní, aby pomohol zlepšiť aplikáciu. Zdieľanie môžete kedykoľvek vypnúť a zastaviť tak zhromažďovanie nových voliteľných údajov. Už odoslané údaje sa tým nevymažú. Miestna diagnostika a online zápasy fungujú nezávisle od tejto voľby.",
+  "privacyCameraTitle": "Kamera pre blízke QR kódy",
+  "privacyCameraBody": "Voliteľná kamera skenuje QR kódy na hranie v blízkosti. Obrázky sa spracúvajú v zariadení, neukladajú sa ani sa neodosielajú. Prístup ku kamere môžete odmietnuť a adresu hostiteľského zariadenia zadať ručne. Táto verzia nepoužíva mikrofón ani nepodporuje hru na fyzickej doske.",
+  "privacyFeedbackTitle": "Spätná väzba, ktorú sa rozhodnete odoslať",
+  "privacyFeedbackBody": "Spätná väzba otvorí návrh hlásenia na GitHub, ktorý si môžete skontrolovať. Otvorením návrhu sa na GitHub odošle verzia aplikácie a platforma; spätná väzba z obrazovky Diagnostika môže obsahovať aj podrobnosti o chybe. Hlásenie sa nezverejní, kým ho neodošlete. Hlásenia môžu byť verejné, preto pred odoslaním odstráňte súkromné informácie.",
+  "privacyContactTitle": "Kontakt na ochranu osobných údajov",
+  "privacyReadPolicy": "Prečítajte si zásady ochrany osobných údajov",
+  "privacyPolicyOpenFailed": "Nepodarilo sa otvoriť zásady ochrany osobných údajov.",
+  "privacySupportTitle": "Pomoc a podpora",
+  "privacySupportOpenFailed": "Nepodarilo sa otvoriť podporu. Kontaktujte support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Chcete odstrániť online identitu a údaje?",
+  "privacyDeleteConfirmBody": "Prístup oboch hráčov k zápasom v cloude prepojeným s touto identitou sa okamžite ukončí. Žiada sa o vymazanie identity a zdieľaných záznamov online zápasov do 30 dní. Google môže po odstránení účtu potrebovať až 180 dní na odstránenie autentifikačných údajov zo svojich aktívnych a záložných systémov. Miestna história zápasov a tréningové úlohy zostanú v tomto zariadení. Predtým odoslané voliteľné diagnostické údaje sa riešia samostatne; v tejto veci kontaktujte privacy@freevia.org. Túto žiadosť nemožno vziať späť.",
+  "privacyRequestDeletion": "Požiadať o vymazanie",
+  "privacyDeleteSectionTitle": "Odstránenie online údajov",
+  "privacyDeleteInstructions": "Na overenie vlastníctva použite prihlasovacie údaje uložené v tomto zariadení. Samotný identifikátor hráča ani pozývací kód vlastníctvo nepotvrdzuje. Pri hraní iba na tomto zariadení online účet nepotrebujete.",
+  "privacySendingRequest": "Odosiela sa žiadosť…",
+  "privacyDeleteAction": "Odstráňte online identitu a údaje",
+  "privacyDeleteRequested": "Žiadosť o vymazanie bola odoslaná. Táto online identita bola odhlásená. Jej cloudové údaje sa vymažú do 30 dní. Pri ďalšom spustení online hry sa vytvorí nová identita. Odstránenie autentifikačných údajov Googlom môže trvať až 180 dní. Ak potrebujete pomoc, kontaktujte privacy@freevia.org.",
+  "privacyDeleteRequestedSignOutFailed": "Žiadosť o vymazanie bola odoslaná. Cloudové údaje sa vymažú do 30 dní. Zariadeniu sa nepodarilo odstrániť uložené prihlasovacie údaje, online identita však už nemá prístup k zápasom. Odstránenie autentifikačných údajov Googlom môže trvať až 180 dní. Ak potrebujete pomoc, kontaktujte privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "V tomto zariadení nie je uložená žiadna použiteľná online identita. Nový účet sa nevytvoril. Ak ste už hrali online, požiadajte o pomoc na privacy@freevia.org; hostované zápasy vypršia 30 dní po vytvorení.",
+  "privacyDeleteRequestFailed": "Žiadosť o vymazanie sa nepodarilo potvrdiť. Skontrolujte pripojenie a skúste to znova alebo kontaktujte privacy@freevia.org.",
+  "privacyConsentTitle": "Zdieľať používanie a diagnostiku zlyhania?",
+  "privacyConsentBody": "Táto voľba odosiela do služby Google Firebase udalosti používania, informácie o aplikácii a zariadení, hlásenia o zlyhaní a merania výkonu. Zdieľanie je dobrovoľné. Hry aj tréning fungujú aj pri vypnutom zdieľaní; zdieľanie môžete kedykoľvek vypnúť v Nastaveniach.",
+  "privacyKeepOff": "Ponechať vypnuté",
+  "privacyShareDiagnostics": "Zdieľať diagnostiku",
+  "privacySaveFailed": "Nepodarilo sa uložiť voľbu ochrany osobných údajov. Skúste to znova.",
+  "privacySettingsSubtitle": "Čo zostane vo vašom zariadení a čo sa zdieľa",
+  "privacyDiagnosticsSettingTitle": "Zdieľanie používania a diagnostiky zlyhania",
+  "privacyDiagnosticsSettingSubtitle": "Voliteľné · predvolene vypnuté",
+  "lanScanToJoin": "Pripojte sa naskenovaním",
+  "lanScanHostCode": "Naskenujte kód hostiteľa",
+  "lanEnterAddressInstead": "Namiesto toho zadajte adresu",
+  "lanTorch": "Blesk",
+  "lanCameraPermissionDenied": "Backgammon Buddy nemôže používať fotoaparát. Povoľte prístup k fotoaparátu v nastaveniach zariadenia alebo zadajte adresu zobrazenú na druhom zariadení manuálne.",
+  "lanCameraUnsupported": "Toto zariadenie nedokáže skenovať QR kódy. Ručne zadajte adresu zobrazenú na druhom zariadení.",
+  "lanCameraStartFailed": "Fotoaparát sa nepodarilo spustiť. Ručne zadajte adresu zobrazenú na druhom zariadení.",
+  "lanPointCameraAtQr": "Nasmerujte fotoaparát na QR kód na druhom zariadení.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "physicalBuddyUnavailableBody": "Hra na fyzickej doske nie je v tejto verzii dostupná. Hry na obrazovke, doučovanie a tréning nájdete na domovskej obrazovke.",
+  "boardSemanticsLabel": "Doska na vrhcáby. {status}",
+  "boardWhiteToRoll": "Biely je na ťahu, aby hodil kockami.",
+  "boardBlackToRoll": "Čierny je na ťahu, aby hodil kockami.",
+  "boardWhiteToMove": "Biely je na ťahu; na kockách padlo {die1} a {die2}.",
+  "boardBlackToMove": "Čierny je na ťahu; na kockách padlo {die1} a {die2}.",
+  "boardDoubleOffered": "Bolo ponúknuté zdvojnásobenie kocky.",
+  "boardResignationOffered": "Bolo ponúknuté vzdanie partie.",
+  "boardGameOver": "Hra sa skončila.",
+  "feedbackBugTitle": "[Chyba]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Nápad]: Backgammon Buddy",
+  "feedbackBugSummary": "Nahraďte to krátkym popisom toho, čo sa stalo.",
+  "feedbackBugReproduction": "Nahraďte to krokmi, ktoré viedli k problému.",
+  "feedbackBugExpected": "Nahraďte to tým, čo ste očakávali, že sa stane.",
+  "feedbackIdeaNeed": "Nahraďte to tým, čo ste chceli robiť alebo sa učiť.",
+  "feedbackIdeaSuggestion": "Nahraďte to zmenou, ktorá by vám pomohla.",
+  "feedbackExcerptTruncated": "(skrátené – pre celý protokol použite Kopírovať do schránky na obrazovke Diagnostika)",
+  "boardWhiteToMoveNoRoll": "Biely je na ťahu.",
+  "boardBlackToMoveNoRoll": "Čierny je na ťahu.",
+  "feedbackFieldVersion": "Verzia aplikácie",
+  "feedbackFieldPlatform": "Platforma",
+  "feedbackFieldSummary": "Čo sa stalo",
+  "feedbackFieldReproduction": "Kroky na reprodukciu",
+  "feedbackFieldExpected": "Očakávaný výsledok",
+  "feedbackFieldNeed": "Čo ste chceli urobiť",
+  "feedbackFieldIdea": "Navrhovaná zmena",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "QR kód na pripojenie k tejto hre",
+  "lanJoinInstruction": "Na druhom zariadení otvorte Hrať nablízku, vyberte Pripojiť sa a naskenujte tento QR kód.",
+  "homePlayWithBuddy": "Hrať s Buddy",
+  "homeBuddyShort": "Buddy"
 }

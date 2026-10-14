@@ -1333,9 +1333,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get analysisSaveForPractice => 'Mentés gyakorláshoz';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'A döntés mentése nem sikerült: $error';
-  }
+  String get analysisSaveError =>
+      'A döntést nem sikerült menteni. Próbálja újra.';
 
   @override
   String analysisCubeInfo(
@@ -2449,4 +2448,273 @@ class AppLocalizationsHu extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Hiba: $error';
   }
+
+  @override
+  String get privacyTitle => 'Adatvédelem és adatok';
+
+  @override
+  String get privacyAppTitle => 'Freevia Backgammon Buddy';
+
+  @override
+  String get privacyIntro =>
+      'Ez az oldal ismerteti, hogyan kezeli az alkalmazás az adatait.';
+
+  @override
+  String get privacyLocalTitle => 'Játékok és oktatás az eszközén';
+
+  @override
+  String get privacyLocalBody =>
+      'A helyi játszmák, beállítások, elemzések és gyakorlási eredmények ezen az eszközön tárolódnak. A backgammon motor és az oktatói magyarázatok itt futnak. A mentett játszma törlése az Előzményekből a hozzá tartozó mentett feladatokat és próbálkozásokat is törli. Az egyes feladatokat törölheti, vagy a Tanulás részen visszaállíthatja a haladást; a helyi hibajelentéseket a Beállítások → Diagnosztika részen törölheti. Az eszköz biztonsági mentési beállításai a játszmaelõzményekre is vonatkozhatnak. Az online bejelentkezési adatok az eszköz védett tárhelyén maradnak.';
+
+  @override
+  String get privacyOnlineTitle => 'Online és közeli játék';
+
+  @override
+  String get privacyOnlineBody =>
+      'Az online játék névtelen játékosazonosítót, játszmabeállításokat, lépéseket és a kockadobások egyeztetési adatait küldi a Google Firebase szolgáltatásnak, hogy mindkét játékos ugyanazt a játszmát játszhassa. Az Előzmények törlése ezen az eszközön nem törli az online adatokat. A tárolt játszmák létrehozásuk után 30 nappal lejárnak; az ütemezett takarítás eltávolítja felhőnaplóikat. A játszmaadatokat az EU-ban tároljuk; a Firebase Authentication az Egyesült Államokban dolgozza fel a bejelentkezési adatokat. A Google felé irányuló online kapcsolat titkosított. A közeli játék titkosítatlan helyi kapcsolaton cserél adatot a másik eszközzel; használjon megbízható Wi-Fi-hálózatot.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Nem kötelező használati és összeomlási diagnosztika';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'A megosztás addig ki van kapcsolva, amíg a Beállításokban nem engedélyezi. Bekapcsolás esetén a Google Firebase használati eseményeket, alkalmazás- és eszközadatokat, teljesítményméréseket és összeomlási jelentéseket kap az alkalmazás fejlesztéséhez. Bármikor kikapcsolhatja, így leáll az új, nem kötelező adatgyűjtés. A már elküldött adatokat ez nem törli. A helyi diagnosztika és az online játszmák ettől a választástól függetlenül működnek.';
+
+  @override
+  String get privacyCameraTitle => 'Kamera közeli QR-kódokhoz';
+
+  @override
+  String get privacyCameraBody =>
+      'Az opcionális kamera a közeli játékok QR-kódjait olvassa be. A képek feldolgozása az eszközön történik; nem mentjük és nem töltjük fel őket. Megtagadhatja a kamera-hozzáférést, és kézzel is megadhatja a gazdagép címét. Ez a verzió nem használ mikrofont és nem támogat fizikai táblás játékot.';
+
+  @override
+  String get privacyFeedbackTitle => 'Az Ön által elküldött visszajelzés';
+
+  @override
+  String get privacyFeedbackBody =>
+      'A visszajelzés egy áttekinthető GitHub-issue vázlatot nyit meg. Megnyitásakor az alkalmazás verziója és platformja elküldésre kerül a GitHubnak; a Diagnosztikából küldött visszajelzés hibaadatokat is tartalmazhat. Semmi sem jelenik meg, amíg el nem küldi. Az issue-k nyilvánosak lehetnek, ezért küldés előtt távolítsa el a személyes adatokat.';
+
+  @override
+  String get privacyContactTitle => 'Adatvédelmi kapcsolat';
+
+  @override
+  String get privacyReadPolicy => 'Adatvédelmi irányelvek';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Az adatvédelmi irányelvek nem nyithatók meg.';
+
+  @override
+  String get privacySupportTitle => 'Súgó és támogatás';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'A támogatás nem nyitható meg. Lépjen kapcsolatba velünk: support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Törli az online identitást és az adatokat?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Ez azonnal megszünteti az identitás felhőben tárolt játszmáihoz való hozzáférést mindkét játékos számára, és kéri az identitás, valamint a megosztott online naplók törlését 30 napon belül. A Google-nak a fiók törlése után akár 180 napra is szüksége lehet az Authentication-adatok eltávolításához az aktív és biztonsági mentési rendszerekből. A helyi Előzmények és gyakorlás ezen az eszközön marad. A korábban elküldött opcionális diagnosztika különálló; ezekkel kapcsolatban írjon a privacy@freevia.org címre. Ez a kérés nem vonható vissza.';
+
+  @override
+  String get privacyRequestDeletion => 'Törlés kérése';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Online adatok törlése';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'A tulajdonjog igazolásához használja az eszközön mentett bejelentkezést. A játékosazonosító vagy meghívókód önmagában nem igazolja a tulajdonjogot. A csak helyben játszóknak nincs szükségük online fiókra.';
+
+  @override
+  String get privacySendingRequest => 'Kérés küldése…';
+
+  @override
+  String get privacyDeleteAction => 'Online identitás és adatok törlése';
+
+  @override
+  String get privacyDeleteRequested =>
+      'A törlést kértük. Ez az online identitás kijelentkezett. Felhőadatait 30 napon belül töröljük. Az online játék újrakezdése új identitást hoz létre. A Google Authentication-adatainak eltávolítása akár 180 napig tarthat. Segítségért írjon a privacy@freevia.org címre.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'A törlést kértük, a felhőadatokat 30 napon belül töröljük. Az eszköz nem tudta törölni a mentett bejelentkezést, de az online identitás több játszmához nem férhet hozzá. A Google Authentication-adatainak eltávolítása akár 180 napig tarthat. Írjon a privacy@freevia.org címre.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Nincs használható online identitás mentve ezen az eszközön. Új fiók nem jött létre. Ha korábban online játszott, írjon a privacy@freevia.org címre; a tárolt játszmák 30 nap után lejárnak.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'A törlési kérés nem erősíthető meg. Ellenőrizze a kapcsolatot, próbálja újra, vagy írjon a privacy@freevia.org címre.';
+
+  @override
+  String get privacyConsentTitle =>
+      'Megosztja a használati és összeomlási diagnosztikát?';
+
+  @override
+  String get privacyConsentBody =>
+      'Ez használati eseményeket, alkalmazás-/eszközadatokat, összeomlási jelentéseket és teljesítményméréseket küld a Google Firebase szolgáltatásnak. A megosztás nem kötelező. A játék és az oktatás nélküle is működik, és a Beállításokban bármikor kikapcsolhatja.';
+
+  @override
+  String get privacyKeepOff => 'Maradjon kikapcsolva';
+
+  @override
+  String get privacyShareDiagnostics => 'Diagnosztika megosztása';
+
+  @override
+  String get privacySaveFailed =>
+      'Az adatvédelmi beállítás nem menthető. Próbálja újra.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Mi marad az eszközén, és mi kerül megosztásra';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Használati és összeomlási diagnosztika megosztása';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Nem kötelező · alapértelmezés szerint ki';
+
+  @override
+  String get lanScanToJoin => 'Beolvasás a csatlakozáshoz';
+
+  @override
+  String get lanScanHostCode => 'Gazdakód beolvasása';
+
+  @override
+  String get lanEnterAddressInstead => 'Cím megadása helyette';
+
+  @override
+  String get lanQrAccessibilityLabel =>
+      'QR-kód a játszmához való csatlakozáshoz';
+
+  @override
+  String get lanJoinInstruction =>
+      'A másik eszközön nyissa meg a Közeli játékot, válassza a Csatlakozás lehetőséget, majd olvassa be ezt a QR-kódot.';
+
+  @override
+  String get lanTorch => 'Zseblámpa';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'A Backgammon Buddy nem fér hozzá a kamerához. Engedélyezze a hozzáférést az eszköz beállításaiban, vagy írja be a másik eszközön látható címet.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Ez az eszköz nem tud QR-kódot beolvasni. Írja be a másik eszközön látható címet.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'A kamera nem indítható el. Írja be a másik eszközön látható címet.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Irányítsa a kamerát a másik eszköz QR-kódjára.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Játék fizikai táblán';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'A fizikai táblás játék ebben a verzióban nem érhető el. A képernyős játékok, oktatás és gyakorlás a főképernyőről érhető el.';
+
+  @override
+  String get homePlayWithBuddy => 'Játék Buddyval';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Backgammon tábla. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'A fehér következik a dobással.';
+
+  @override
+  String get boardBlackToRoll => 'A fekete következik a dobással.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'A fehér lép, dobás: $die1 és $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'A fekete lép, dobás: $die1 és $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Duplázást ajánlottak.';
+
+  @override
+  String get boardResignationOffered => 'Feladást ajánlottak.';
+
+  @override
+  String get boardGameOver => 'A játék véget ért.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Hiba]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Ötlet]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary => 'Írja le röviden, mi történt.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Írja le a hiba előidézésének lépéseit.';
+
+  @override
+  String get feedbackBugExpected => 'Írja le, mit várt volna eredményként.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Írja le, mit szeretett volna tenni vagy megtanulni.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Írja le, milyen változást találna hasznosnak.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(rövidítve — a teljes naplóért használja a Diagnosztika képernyő Vágólapra másolás funkcióját)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'A fehér következik.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'A fekete következik.';
+
+  @override
+  String get feedbackFieldVersion => 'Alkalmazás verziója';
+
+  @override
+  String get feedbackFieldPlatform => 'Platform';
+
+  @override
+  String get feedbackFieldSummary => 'Mi történt';
+
+  @override
+  String get feedbackFieldReproduction => 'A reprodukálás lépései';
+
+  @override
+  String get feedbackFieldExpected => 'Elvárt eredmény';
+
+  @override
+  String get feedbackFieldNeed => 'Amit tenni szeretett volna';
+
+  @override
+  String get feedbackFieldIdea => 'Javasolt módosítás';
 }

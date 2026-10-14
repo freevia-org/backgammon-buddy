@@ -1331,9 +1331,8 @@ class AppLocalizationsSv extends AppLocalizations {
   String get analysisSaveForPractice => 'Spara för träning';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Det gick inte att spara beslutet: $error';
-  }
+  String get analysisSaveError =>
+      'Det gick inte att spara det här beslutet. Försök igen.';
 
   @override
   String analysisCubeInfo(
@@ -2442,4 +2441,273 @@ class AppLocalizationsSv extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Fel: $error';
   }
+
+  @override
+  String get privacyTitle => 'Sekretess och data';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy av Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Den här sidan beskriver hur den aktuella appen hanterar din data.';
+
+  @override
+  String get privacyLocalTitle => 'Spel och handledning på din enhet';
+
+  @override
+  String get privacyLocalBody =>
+      'Lokala matcher, inställningar, analyser och träningsframsteg sparas på den här enheten. Spelmotorn och handledarens förklaringar körs här. Om du tar bort en sparad match från Spelarkivet tas även matchens sparade övningar och försök bort. Ta bort enskilda övningar eller återställ träningsframstegen under Lärande och övning; rensa lokala felrapporter under Inställningar → Diagnostik. Enhetens säkerhetskopiering kan också omfatta matchhistoriken. Uppgifter för onlineinloggning sparas i enhetens skyddade lagring.';
+
+  @override
+  String get privacyOnlineTitle => 'Spela online och i närheten';
+
+  @override
+  String get privacyOnlineBody =>
+      'Onlinespel skickar ett anonymt spelar-ID, matchinställningar, drag och loggar från protokollet för att samordna tärningskast till Google Firebase, så att båda spelarna kan spela samma match. Om du raderar historiken på den här enheten raderas inte onlineloggarna. Värdmatcher upphör 30 dagar efter att de skapats; schemalagd rensning tar bort deras molnloggar. Matchdata lagras i EU; Firebase Authentication behandlar inloggningsuppgifter i USA. Anslutningar till Google krypteras under överföring. Vid närspel utbyts matchinformation med den andra enheten via en okrypterad lokal anslutning; använd ett betrott Wi-Fi-nätverk.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Valfri användnings- och kraschdiagnostik';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Delning är avstängt tills du aktiverar det i Inställningar. Om det är aktiverat får Google Firebase användningshändelser, information om appen och enheten, prestandamätningar och kraschrapporter som hjälper till att förbättra appen. Du kan när som helst stänga av delningen för att stoppa ny, frivillig datainsamling. Redan skickade uppgifter raderas inte. Lokal diagnostik och onlinematcher påverkas inte av det här valet.';
+
+  @override
+  String get privacyCameraTitle => 'Kamera för närliggande QR-koder';
+
+  @override
+  String get privacyCameraBody =>
+      'Den valfria kameran skannar QR-koder för närspel. Bilderna behandlas på enheten och sparas eller laddas inte upp. Du kan neka kameraåtkomst och ange värdenhetens adress manuellt. Den här versionen använder inte mikrofonen och stöder inte spel på ett fysiskt bräde.';
+
+  @override
+  String get privacyFeedbackTitle => 'Feedback du väljer att skicka';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Feedback öppnar ett utkast till GitHub-ärende som du kan granska. När utkastet öppnas skickas appversionen och plattformen till GitHub; feedback från Diagnostik kan även innehålla felinformation. Ärendet publiceras inte förrän du skickar in det. Ärenden kan vara offentliga, så ta bort privata uppgifter innan du skickar.';
+
+  @override
+  String get privacyContactTitle => 'Sekretesskontakt';
+
+  @override
+  String get privacyReadPolicy => 'Läs integritetspolicyn';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Det gick inte att öppna sekretesspolicyn.';
+
+  @override
+  String get privacySupportTitle => 'Hjälp och stöd';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Kunde inte öppna support. Kontakta support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle => 'Radera identitet och data online?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Åtkomsten för båda spelarna till molnmatcher som är kopplade till den här identiteten avslutas omedelbart. En begäran skickas om att identiteten och de delade onlinematchloggarna ska raderas inom 30 dagar. Google kan behöva upp till 180 dagar efter att kontot har raderats för att ta bort autentiseringsuppgifter från sina aktiva system och säkerhetskopior. Lokal matchhistorik och övningsuppgifter finns kvar på den här enheten. Tidigare inskickade valfria diagnostikuppgifter hanteras separat; kontakta privacy@freevia.org om dem. Begäran kan inte ångras.';
+
+  @override
+  String get privacyRequestDeletion => 'Begär radering';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Radering av onlinedata';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Använd inloggningsuppgifterna som sparats på den här enheten för att bekräfta att onlineidentiteten tillhör dig. Ett spelar-ID eller en inbjudningskod räcker inte som bevis. För spel som bara sker på enheten behövs inget onlinekonto.';
+
+  @override
+  String get privacySendingRequest => 'Skickar begäran...';
+
+  @override
+  String get privacyDeleteAction => 'Radera identitet och data online';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Begäran om radering har skickats. Du har loggats ut från den här onlineidentiteten. Dess molndata raderas inom 30 dagar. Om du startar ett nytt onlinespel skapas en ny identitet. Det kan ta upp till 180 dagar innan Google tar bort autentiseringsdata. Kontakta privacy@freevia.org om du behöver hjälp.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Begäran om radering har skickats. Molndata raderas inom 30 dagar. Enheten kunde inte rensa de sparade inloggningsuppgifterna, men onlineidentiteten är blockerad från vidare åtkomst till matcher. Det kan ta upp till 180 dagar innan Google tar bort autentiseringsdata. Kontakta privacy@freevia.org om du behöver hjälp.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Det finns ingen användbar onlineidentitet sparad på den här enheten. Inget nytt konto har skapats. Om du har spelat online tidigare kan du kontakta privacy@freevia.org för hjälp; värdmatcher upphör 30 dagar efter att de skapats.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Det gick inte att bekräfta begäran om radering. Kontrollera anslutningen och försök igen eller kontakta privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle => 'Dela användning och kraschdiagnostik?';
+
+  @override
+  String get privacyConsentBody =>
+      'Det här skickar användningshändelser, information om appen och enheten, kraschrapporter och prestandamätningar till Google Firebase. Delning är frivillig. Spel och handledning fungerar även när delning är avstängd; du kan stänga av den igen i Inställningar.';
+
+  @override
+  String get privacyKeepOff => 'Behåll avstängt';
+
+  @override
+  String get privacyShareDiagnostics => 'Dela diagnostik';
+
+  @override
+  String get privacySaveFailed =>
+      'Det gick inte att spara sekretessvalet. Försök igen.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Vad finns kvar på din enhet och vad som delas';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Dela användning och kraschdiagnostik';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle => 'Valfritt · av som standard';
+
+  @override
+  String get lanScanToJoin => 'Skanna för att gå med';
+
+  @override
+  String get lanScanHostCode => 'Skanna värdens kod';
+
+  @override
+  String get lanEnterAddressInstead => 'Ange adressen istället';
+
+  @override
+  String get lanQrAccessibilityLabel =>
+      'QR-kod för att gå med i det här spelet';
+
+  @override
+  String get lanJoinInstruction =>
+      'Öppna Spela i närheten på den andra enheten, välj Gå med och skanna den här QR-koden.';
+
+  @override
+  String get lanTorch => 'Blixt';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy kan inte använda kameran. Tillåt kameraåtkomst i enhetsinställningarna eller ange adressen som visas på den andra enheten manuellt.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Den här enheten kan inte skanna QR-koder. Ange adressen som visas på den andra enheten manuellt.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Kameran kunde inte startas. Ange adressen som visas på den andra enheten manuellt.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Rikta kameran mot QR-koden på den andra enheten.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Spel på ett fysiskt bräde är inte tillgängligt i den här versionen. Spel på skärmen, handledning och övning finns på startskärmen.';
+
+  @override
+  String get homePlayWithBuddy => 'Spela med Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Backgammonbräda. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Det är vits tur att slå tärningarna.';
+
+  @override
+  String get boardBlackToRoll => 'Det är svarts tur att slå tärningarna.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Vits tur; tärningarna visar $die1 och $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Svarts tur; tärningarna visar $die1 och $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'En dubblering har erbjudits.';
+
+  @override
+  String get boardResignationOffered =>
+      'Ett erbjudande om att ge upp har lämnats.';
+
+  @override
+  String get boardGameOver => 'Spelet är över.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Fel]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Idé]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'Ersätt detta med en kort beskrivning av vad som hände.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Ersätt detta med stegen som ledde till problemet.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Ersätt detta med det du förväntade dig att hända.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Ersätt detta med det du ville göra eller lära dig.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Ersätt detta med den ändring som du skulle ha nytta av.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(trunkerad – använd Kopiera till urklipp på diagnostikskärmen för hela loggen)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Vits tur att flytta.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Svarts tur att flytta.';
+
+  @override
+  String get feedbackFieldVersion => 'Appversion';
+
+  @override
+  String get feedbackFieldPlatform => 'Plattform';
+
+  @override
+  String get feedbackFieldSummary => 'Vad hände';
+
+  @override
+  String get feedbackFieldReproduction => 'Steg för att reproducera';
+
+  @override
+  String get feedbackFieldExpected => 'Förväntat resultat';
+
+  @override
+  String get feedbackFieldNeed => 'Vad du ville göra';
+
+  @override
+  String get feedbackFieldIdea => 'Föreslagen förändring';
 }

@@ -1008,12 +1008,7 @@
   },
   "analysisExplain": "Objasni",
   "analysisSaveForPractice": "Sačuvaj za vežbu",
-  "analysisSaveError": "Ovu odluku nije moguće sačuvati: {error}",
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
-    }
-  },
+  "analysisSaveError": "Ovu odluku nije moguće sačuvati. Pokušajte ponovo.",
   "analysisCubeInfo": "{side}: {action} · {mark} · gubitak {loss}",
   "@analysisCubeInfo": {
     "placeholders": {
@@ -1519,5 +1514,104 @@
   "metricExplainerEquityBody": "Ako rezultat nije dostupan, ekvitij bez kocke pokazuje prosečnu vrednost pozicije u poenima kada je kocka na 1. +1,0 znači očekivan dobitak jednog poena, a −0,5 gubitak pola poena.",
   "metricExplainerEquityLossBody": "Poredi se odigrani potez sa najboljim potezom motora. Gubitak ekvitija pokazuje koliko je očekivane vrednosti potez prepustio. −0,016 znači da je bio samo 0,016 poena slabiji — sitan propust. 0,000 znači da si pronašao najbolji potez.",
   "metricExplainerErrorRateBody": "Prosečan gubitak računa prosek ocenjenih odluka figurama u prikazanoj jedinici. Odluke kockom imaju poseban prosek. Manja vrednost znači da su potezi bliži najboljim procenama motora; to nije kalibrisan rejting igrača.",
-  "metricExplainerMoveMarksBody": "MWC granice za učenje: Najbolje < 0,05 pp, Dobro < 0,5 pp, Sumnjivo < 1,5 pp, Greška < 3 pp, Velika greška ≥ 3 pp. To su granice za učenje, a ne kalibrisana pouzdanost ili turnirski rejting.\n\nGranice ekvitija bez kocke za učenje:"
+  "metricExplainerMoveMarksBody": "MWC granice za učenje: Najbolje < 0,05 pp, Dobro < 0,5 pp, Sumnjivo < 1,5 pp, Greška < 3 pp, Velika greška ≥ 3 pp. To su granice za učenje, a ne kalibrisana pouzdanost ili turnirski rejting.\n\nGranice ekvitija bez kocke za učenje:",
+  "privacyTitle": "Privatnost i podaci",
+  "privacyAppTitle": "Backgammon Buddy od Freevia",
+  "privacyIntro": "Ova stranica opisuje kako trenutna aplikacija rukuje vašim podacima.",
+  "privacyLocalTitle": "Igre i podučavanje na vašem uređaju",
+  "privacyLocalBody": "Lokalni mečevi, podešavanja, analiza i napredak u vežbanju čuvaju se na ovom uređaju. Ovde rade mehanizam igre i objašnjenja trenera. Brisanje sačuvanog meča iz Arhive igara briše i sačuvane vežbe i pokušaje za taj meč. Pojedinačne vežbe možete obrisati ili resetovati napredak u odeljku Učenje i vežbanje; lokalne izveštaje o greškama obrišite u Podešavanja → Dijagnostika. Rezervne kopije uređaja mogu da obuhvate i istoriju mečeva. Podaci za onlajn prijavu čuvaju se u zaštićenom prostoru uređaja.",
+  "privacyOnlineTitle": "Igra na mreži i u blizini",
+  "privacyOnlineBody": "Onlajn igra šalje na Google Firebase anoniman identifikator igrača, podešavanja meča, poteze i zapise protokola za usaglašavanje bacanja kockica, kako bi oba igrača mogla da igraju isti meč. Brisanje istorije na ovom uređaju ne briše onlajn zapise. Hostovani mečevi ističu 30 dana nakon kreiranja; zakazano čišćenje uklanja njihove dnevnike iz oblaka. Zapisi mečeva čuvaju se u EU; Firebase Authentication obrađuje podatke za prijavu u Sjedinjenim Državama. Veze sa Google-om šifruju se tokom prenosa. Tokom igre u blizini, podaci o meču razmenjuju se sa drugim uređajem preko nešifrovane lokalne veze; koristite pouzdanu Wi-Fi mrežu.",
+  "privacyDiagnosticsTitle": "Opciona dijagnostika korišćenja i padova",
+  "privacyDiagnosticsBody": "Deljenje je isključeno dok ga ne uključite u podešavanjima. Ako ga uključite, Google Firebase prima događaje korišćenja, informacije o aplikaciji i uređaju, merenja performansi i izveštaje o padovima, kako bi pomogao u poboljšanju aplikacije. Deljenje možete isključiti u bilo kom trenutku i tako zaustaviti prikupljanje novih opcionih podataka. To ne briše već poslate podatke. Lokalna dijagnostika i onlajn mečevi ne zavise od ove opcije.",
+  "privacyCameraTitle": "Kamera za obližnje QR kodove",
+  "privacyCameraBody": "Opciona kamera skenira QR kodove za igru u blizini. Slike se obrađuju na uređaju i ne čuvaju se niti otpremaju. Pristup kameri možete odbiti i ručno uneti adresu uređaja domaćina. Ova verzija ne koristi mikrofon i ne podržava igru na fizičkoj tabli.",
+  "privacyFeedbackTitle": "Povratne informacije koje odaberete da pošaljete",
+  "privacyFeedbackBody": "Slanje povratnih informacija otvara nacrt prijave na GitHub-u koji možete da pregledate. Otvaranjem nacrta na GitHub se šalju verzija aplikacije i platforma; povratne informacije sa ekrana Dijagnostika mogu da sadrže i detalje greške. Prijava se ne objavljuje dok je ne pošaljete. Prijave mogu biti javne, zato pre slanja uklonite privatne podatke.",
+  "privacyContactTitle": "Kontakt za privatnost",
+  "privacyReadPolicy": "Pročitajte politiku privatnosti",
+  "privacyPolicyOpenFailed": "Nije moguće otvoriti politiku privatnosti.",
+  "privacySupportTitle": "Pomoć i podrška",
+  "privacySupportOpenFailed": "Nije moguće otvoriti podršku. Kontakt support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Želite li da izbrišete onlajn identitet i podatke?",
+  "privacyDeleteConfirmBody": "Pristup oba igrača mečevima u oblaku povezanim sa ovim onlajn identifikatorom odmah se prekida. Zahteva se brisanje identifikatora i zajedničkih evidencija onlajn mečeva u roku od 30 dana. Google-u može biti potrebno do 180 dana nakon brisanja naloga da ukloni podatke za autentifikaciju iz aktivnih i rezervnih sistema. Lokalna istorija mečeva i vežbe ostaju na ovom uređaju. Ranije poslati opcioni dijagnostički podaci obrađuju se zasebno; za pitanja o njima pišite na privacy@freevia.org. Ovaj zahtev se ne može opozvati.",
+  "privacyRequestDeletion": "Zahtevaj brisanje",
+  "privacyDeleteSectionTitle": "Brisanje onlajn podataka",
+  "privacyDeleteInstructions": "Koristite podatke za prijavu sačuvane na ovom uređaju da potvrdite da onlajn identitet pripada vama. Sam identifikator igrača ili pozivni kod ne dokazuju vlasništvo. Za igranje samo na ovom uređaju nije potreban onlajn nalog.",
+  "privacySendingRequest": "Slanje zahteva…",
+  "privacyDeleteAction": "Izbrišite onlajn identitet i podatke",
+  "privacyDeleteRequested": "Zahtev za brisanje je poslat. Ova onlajn identifikacija je odjavljena. Njeni podaci iz oblaka biće izbrisani u roku od 30 dana. Kada ponovo pokrenete onlajn igru, kreiraće se novi identifikator. Google-u može biti potrebno do 180 dana da ukloni podatke za autentifikaciju. Za pomoć pišite na privacy@freevia.org.",
+  "privacyDeleteRequestedSignOutFailed": "Zahtev za brisanje je poslat. Podaci iz oblaka biće izbrisani u roku od 30 dana. Uređaj nije uspeo da ukloni sačuvane podatke za prijavu, ali je onlajn identifikator blokiran i više ne može da pristupa mečevima. Google-u može biti potrebno do 180 dana da ukloni podatke za autentifikaciju. Za pomoć pišite na privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "Na ovom uređaju nije sačuvan upotrebljiv onlajn identifikator. Novi nalog nije napravljen. Ako ste ranije igrali onlajn, za pomoć pišite na privacy@freevia.org; hostovani mečevi ističu 30 dana nakon kreiranja.",
+  "privacyDeleteRequestFailed": "Nije moguće potvrditi zahtev za brisanje. Proverite vezu i pokušajte ponovo ili pišite na privacy@freevia.org.",
+  "privacyConsentTitle": "Želite li da delite dijagnostiku korišćenja i padova?",
+  "privacyConsentBody": "Ova opcija šalje događaje korišćenja, informacije o aplikaciji i uređaju, izveštaje o padovima i merenja performansi na Google Firebase. Deljenje je opciono. Igre i podučavanje rade i kada je deljenje isključeno; možete ga isključiti u podešavanjima.",
+  "privacyKeepOff": "Neka ostane isključeno.",
+  "privacyShareDiagnostics": "Delite dijagnostiku",
+  "privacySaveFailed": "Nije moguće sačuvati izbor privatnosti. Pokušajte ponovo.",
+  "privacySettingsSubtitle": "Šta ostaje na vašem uređaju i šta se deli",
+  "privacyDiagnosticsSettingTitle": "Delite dijagnostiku korišćenja i otkazivanja",
+  "privacyDiagnosticsSettingSubtitle": "Opciono · podrazumevano isključeno",
+  "lanScanToJoin": "Skenirajte da biste se pridružili",
+  "lanScanHostCode": "Skenirajte kod domaćina",
+  "lanEnterAddressInstead": "Umesto toga unesite adresu",
+  "lanTorch": "Blic",
+  "lanCameraPermissionDenied": "Backgammon Buddy ne može da koristi kameru. Dozvolite pristup kameri u podešavanjima uređaja ili ručno unesite adresu prikazanu na drugom uređaju.",
+  "lanCameraUnsupported": "Ovaj uređaj ne može da skenira QR kodove. Ručno unesite adresu prikazanu na drugom uređaju.",
+  "lanCameraStartFailed": "Kamera nije mogla da se pokrene. Ručno unesite adresu prikazanu na drugom uređaju.",
+  "lanPointCameraAtQr": "Usmerite kameru ka QR kodu na drugom uređaju.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "physicalBuddyUnavailableBody": "Igra na fizičkoj tabli nije dostupna u ovoj verziji. Igre na ekranu, podučavanje i vežbanje dostupni su na početnom ekranu.",
+  "boardSemanticsLabel": "Tabla za tavlu. {status}",
+  "boardWhiteToRoll": "Bele figure su na potezu da bace kockice.",
+  "boardBlackToRoll": "Crne figure su na potezu da bace kockice.",
+  "boardWhiteToMove": "Bele figure su na potezu; kockice su {die1} i {die2}.",
+  "boardBlackToMove": "Crne figure su na potezu; kockice su {die1} i {die2}.",
+  "boardDoubleOffered": "Ponuđeno je dupliranje kocke.",
+  "boardResignationOffered": "Ponuđeno je predavanje partije.",
+  "boardGameOver": "Igra je gotova.",
+  "feedbackBugTitle": "[Greška]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Ideja]: Backgammon Buddy",
+  "feedbackBugSummary": "Zamenite ovo kratkim opisom onoga što se dogodilo.",
+  "feedbackBugReproduction": "Zamenite ovo koracima koji su doveli do problema.",
+  "feedbackBugExpected": "Zamenite ovo onim što ste očekivali da će se dogoditi.",
+  "feedbackIdeaNeed": "Zamenite ovo onim što ste želeli da uradite ili naučite.",
+  "feedbackIdeaSuggestion": "Zamenite ovo promenom koja bi vam pomogla.",
+  "feedbackExcerptTruncated": "(skraćeno — koristite Kopiraj u klipbord na ekranu Dijagnostika za ceo dnevnik)",
+  "boardWhiteToMoveNoRoll": "Bele figure su na potezu.",
+  "boardBlackToMoveNoRoll": "Crne figure su na potezu.",
+  "feedbackFieldVersion": "Verzija aplikacije",
+  "feedbackFieldPlatform": "Platforma",
+  "feedbackFieldSummary": "Šta se desilo",
+  "feedbackFieldReproduction": "Koraci za reprodukciju",
+  "feedbackFieldExpected": "Očekivani rezultat",
+  "feedbackFieldNeed": "Šta ste želeli da uradite?",
+  "feedbackFieldIdea": "Predložena promena",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "QR kod za pridruživanje ovoj igri",
+  "lanJoinInstruction": "Na drugom uređaju otvorite Igraj u blizini, izaberite Pridruži se, pa skenirajte ovaj QR kod.",
+  "homePlayWithBuddy": "Igraj sa Buddy",
+  "homeBuddyShort": "Buddy"
 }

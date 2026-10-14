@@ -55,18 +55,19 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
   /// clipboard route stays the way to send a long log in full.
   Future<void> _reportIssue() async {
     if (_reporting) return;
+    final l10n = appLocalizationsOf(context);
     final uri = buildFeedbackIssueUri(
       kind: FeedbackKind.bug,
       appVersion: appVersion,
       platform: currentPlatformName(),
       diagnosticsExcerpt: _log.isEmpty ? null : _log.asText(),
+      l10n: l10n,
     );
     setState(() => _reporting = true);
     try {
       final confirmed = await showDialog<bool>(
         context: context,
         builder: (context) {
-          final l10n = appLocalizationsOf(context);
           return AlertDialog(
             scrollable: true,
             title: Text(l10n.diagnosticsReviewTitle),
@@ -76,7 +77,7 @@ class _DiagnosticsScreenState extends State<DiagnosticsScreen> {
               children: [
                 Text(l10n.diagnosticsPrivacyNotice),
                 const SizedBox(height: 16),
-                SelectableText(feedbackDraftPreviewText(uri)),
+                SelectableText(feedbackDraftPreviewText(uri, l10n: l10n)),
               ],
             ),
             actions: [

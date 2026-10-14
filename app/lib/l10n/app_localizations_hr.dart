@@ -1432,9 +1432,8 @@ class AppLocalizationsHr extends AppLocalizations {
   String get analysisSaveForPractice => 'Spremi za vježbu';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Nije moguće spremiti ovu odluku: $error';
-  }
+  String get analysisSaveError =>
+      'Nije moguće spremiti ovu odluku. Pokušajte ponovno.';
 
   @override
   String analysisCubeInfo(
@@ -2549,4 +2548,274 @@ class AppLocalizationsHr extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Pogreška: $error';
   }
+
+  @override
+  String get privacyTitle => 'Privatnost i podaci';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy tvrtke Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Ova stranica opisuje kako ova aplikacija obrađuje vaše podatke.';
+
+  @override
+  String get privacyLocalTitle => 'Igre i podučavanje na vašem uređaju';
+
+  @override
+  String get privacyLocalBody =>
+      'Lokalne partije, postavke, analiza i napredak vježbanja pohranjuju se na ovom uređaju. Backgammon mehanizam i objašnjenja trenera rade ovdje. Izbriši spremljenu partiju iz Povijesti da ukloniš i njezine spremljene vježbe i pokušaje. Izbriši pojedinačne vježbe ili poništi napredak u Učenju; lokalne prijave pogrešaka izbriši u Postavke → Dijagnostika. Postavke sigurnosne kopije uređaja mogu obuhvatiti i povijest partija. Podaci za online prijavu čuvaju se u zaštićenoj pohrani uređaja.';
+
+  @override
+  String get privacyOnlineTitle => 'Online i lokalno igranje';
+
+  @override
+  String get privacyOnlineBody =>
+      'Online igranje šalje anoniman identifikator igrača, postavke partije, poteze i zapise potvrde kockica u Google Firebase kako bi oba igrača igrala istu partiju. Brisanje Povijesti na ovom uređaju ne briše online zapise. Hostane partije istječu 30 dana nakon stvaranja; zakazano čišćenje uklanja njihove zapise u oblaku. Zapisi partija pohranjuju se u EU-u; Firebase Authentication obrađuje podatke za prijavu u Sjedinjenim Američkim Državama. Veze s Googleom šifrirane su tijekom prijenosa. Igranje u blizini razmjenjuje podatke s drugim uređajem nešifriranom lokalnom vezom; koristi pouzdanu Wi-Fi mrežu.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Neobavezna dijagnostika korištenja i rušenja';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Dijeljenje je isključeno dok ga ne odabereš u Postavkama. Ako ga uključiš, Google Firebase prima događaje korištenja, podatke o aplikaciji/uređaju, mjerenja performansi i izvješća o rušenju radi poboljšanja aplikacije. Dijeljenje možeš isključiti u bilo kojem trenutku kako bi zaustavio/la novo neobavezno prikupljanje. Time se ne brišu već poslani podaci. Lokalna dijagnostika i online partije ne ovise o ovom odabiru.';
+
+  @override
+  String get privacyCameraTitle => 'Kamera za obližnje QR kodove';
+
+  @override
+  String get privacyCameraBody =>
+      'Neobavezna kamera skenira QR kodove za obližnje partije. Slike se obrađuju na uređaju i ne spremaju se niti prenose. Možeš odbiti pristup kameri i ručno unijeti adresu domaćina. Ova verzija ne koristi mikrofon niti podržava igranje na fizičkoj ploči.';
+
+  @override
+  String get privacyFeedbackTitle =>
+      'Povratne informacije koje odlučite poslati';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Povratne informacije otvaraju nacrt GitHub prijave koji možeš pregledati. Otvaranjem se GitHubu šalju verzija aplikacije i platforma; povratne informacije iz Dijagnostike mogu sadržavati i pojedinosti o pogreškama. Prijava se ne objavljuje dok je ne pošalješ. Prijave mogu biti javne, zato ukloni privatne podatke prije slanja.';
+
+  @override
+  String get privacyContactTitle => 'Kontakt za privatnost';
+
+  @override
+  String get privacyReadPolicy => 'Pročitajte pravila privatnosti';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Nije moguće otvoriti pravila privatnosti.';
+
+  @override
+  String get privacySupportTitle => 'Pomoć i podrška';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Nije moguće otvoriti podršku. Obrati se na support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Izbrisati online identitet i podatke?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Ovo odmah ukida pristup ovog identiteta igrama u oblaku za oba igrača i traži brisanje identiteta i zajedničkih online zapisa u roku od 30 dana. Googleu može trebati do 180 dana nakon brisanja računa da ukloni podatke Authentication iz aktivnih i sigurnosnih sustava. Lokalna Povijest i vježbanje ostaju na ovom uređaju. Ranije poslana neobavezna dijagnostika zasebna je; za nju se obrati na privacy@freevia.org. Ovaj se zahtjev ne može poništiti.';
+
+  @override
+  String get privacyRequestDeletion => 'Zatraži brisanje';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Brisanje online podataka';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Za potvrdu vlasništva koristi spremljenu prijavu na ovom uređaju. Sam identifikator igrača ili kod pozivnice ne dokazuje vlasništvo. Lokalnim igračima nije potreban online račun.';
+
+  @override
+  String get privacySendingRequest => 'Slanje zahtjeva…';
+
+  @override
+  String get privacyDeleteAction => 'Izbriši online identitet i podatke';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Brisanje je zatraženo. Ovaj online identitet odjavljen je. Njegovi podaci u oblaku bit će izbrisani u roku od 30 dana. Ponovnim online igranjem stvara se novi identitet. Googleu može trebati do 180 dana za uklanjanje Authentication podataka. Za pomoć se obrati na privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Brisanje je zatraženo i podaci u oblaku bit će izbrisani u roku od 30 dana. Uređaj nije mogao ukloniti spremljenu prijavu, ali online identitet više ne može pristupiti partijama. Googleu može trebati do 180 dana za uklanjanje Authentication podataka. Obrati se na privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Na ovom uređaju nije spremljen upotrebljiv online identitet. Novi račun nije stvoren. Ako si prije igrao/la online, obrati se na privacy@freevia.org; hostane partije istječu nakon 30 dana.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Nije moguće potvrditi zahtjev za brisanje. Provjeri vezu i pokušaj ponovno ili se obrati na privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle =>
+      'Podijeliti dijagnostiku korištenja i rušenja?';
+
+  @override
+  String get privacyConsentBody =>
+      'To šalje događaje korištenja, podatke o aplikaciji/uređaju, izvješća o rušenju i mjerenja performansi u Google Firebase. Dijeljenje je neobavezno. Igre i podučavanje rade i bez njega, a možeš ga ponovno isključiti u Postavkama.';
+
+  @override
+  String get privacyKeepOff => 'Ostavi isključeno';
+
+  @override
+  String get privacyShareDiagnostics => 'Podijeli dijagnostiku';
+
+  @override
+  String get privacySaveFailed =>
+      'Nije moguće spremiti odabir privatnosti. Pokušajte ponovno.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Što ostaje na uređaju, a što se dijeli';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Dijeli dijagnostiku korištenja i rušenja';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Neobavezno · isključeno po zadanim postavkama';
+
+  @override
+  String get lanScanToJoin => 'Skeniraj za pridruživanje';
+
+  @override
+  String get lanScanHostCode => 'Skeniraj kod domaćina';
+
+  @override
+  String get lanEnterAddressInstead => 'Umjesto toga unesi adresu';
+
+  @override
+  String get lanQrAccessibilityLabel => 'QR kod za pridruživanje ovoj partiji';
+
+  @override
+  String get lanJoinInstruction =>
+      'Na drugom uređaju otvori Igranje u blizini, odaberi Pridruži se i skeniraj ovaj QR kod.';
+
+  @override
+  String get lanTorch => 'Svjetiljka';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy ne može koristiti kameru. Dopustite pristup u postavkama uređaja ili ručno unesite adresu s drugog uređaja.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Ovaj uređaj ne može skenirati QR kodove. Unesi adresu prikazanu na drugom uređaju.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Nije moguće pokrenuti kameru. Unesi adresu prikazanu na drugom uređaju.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Usmjeri kameru prema QR kodu na drugom uređaju.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Igranje na fizičkoj ploči';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Igranje na fizičkoj ploči nije dostupno u ovoj verziji. Igre na zaslonu, podučavanje i vježbanje dostupni su na početnom zaslonu.';
+
+  @override
+  String get homePlayWithBuddy => 'Igraj s Buddyjem';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Backgammon ploča. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Bijeli je na redu za bacanje.';
+
+  @override
+  String get boardBlackToRoll => 'Crni je na redu za bacanje.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Bijeli igra, baci $die1 i $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Crni igra, baci $die1 i $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Ponudeno je udvostručenje.';
+
+  @override
+  String get boardResignationOffered => 'Ponuđena je predaja.';
+
+  @override
+  String get boardGameOver => 'Partija je završena.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Pogreška]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Ideja]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary => 'Ovdje ukratko opiši što se dogodilo.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Ovdje navedi korake koji su doveli do problema.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Ovdje napiši što si očekivao/la da će se dogoditi.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Ovdje napiši što si želio/željela učiniti ili naučiti.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Ovdje napiši promjenu koja bi ti bila korisna.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(skraćeno — upotrijebi Kopiraj u međuspremnik na zaslonu Dijagnostika za cijeli zapisnik)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Bijeli je na potezu.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Crni je na potezu.';
+
+  @override
+  String get feedbackFieldVersion => 'Verzija aplikacije';
+
+  @override
+  String get feedbackFieldPlatform => 'Platforma';
+
+  @override
+  String get feedbackFieldSummary => 'Što se dogodilo';
+
+  @override
+  String get feedbackFieldReproduction => 'Koraci za ponavljanje';
+
+  @override
+  String get feedbackFieldExpected => 'Očekivani rezultat';
+
+  @override
+  String get feedbackFieldNeed => 'Što si želio/željela učiniti';
+
+  @override
+  String get feedbackFieldIdea => 'Predložena promjena';
 }

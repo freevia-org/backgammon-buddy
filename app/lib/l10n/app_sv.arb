@@ -1008,12 +1008,7 @@
   },
   "analysisExplain": "Förklara",
   "analysisSaveForPractice": "Spara för träning",
-  "analysisSaveError": "Det gick inte att spara beslutet: {error}",
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
-    }
-  },
+  "analysisSaveError": "Det gick inte att spara det här beslutet. Försök igen.",
   "analysisCubeInfo": "{side}: {action} · {mark} · förlust {loss}",
   "@analysisCubeInfo": {
     "placeholders": {
@@ -1519,5 +1514,104 @@
   "metricExplainerEquityBody": "Om poängen saknas visar cubeless equity positionens genomsnittliga värde i poäng med kuben på 1. +1,0 betyder förväntad vinst med en poäng; −0,5 betyder förlust med en halv poäng.",
   "metricExplainerEquityLossBody": "Vi jämför ditt drag med motorns bästa drag. Equityförlust visar hur mycket förväntat värde draget gav upp. −0,016 betyder att draget bara var 0,016 poäng sämre än det bästa — en liten miss. 0,000 betyder att du hittade bästa draget.",
   "metricExplainerErrorRateBody": "Medelförlust är genomsnittet av bedömda brickbeslut i den visade enheten. Kubbeslut har ett eget medelvärde. Lägre betyder drag närmare motorns bästa uppskattningar; det är inget kalibrerat spelarbetyg.",
-  "metricExplainerMoveMarksBody": "MWC:s riktvärden: Bäst < 0,05 pp, Bra < 0,5 pp, Tveksamt < 1,5 pp, Fel < 3 pp, Blunder ≥ 3 pp. Det är pedagogiska gränser, inte kalibrerad säkerhet eller turneringsbetyg.\n\nRiktvärden för cubeless equity:"
+  "metricExplainerMoveMarksBody": "MWC:s riktvärden: Bäst < 0,05 pp, Bra < 0,5 pp, Tveksamt < 1,5 pp, Fel < 3 pp, Blunder ≥ 3 pp. Det är pedagogiska gränser, inte kalibrerad säkerhet eller turneringsbetyg.\n\nRiktvärden för cubeless equity:",
+  "privacyTitle": "Sekretess och data",
+  "privacyAppTitle": "Backgammon Buddy av Freevia",
+  "privacyIntro": "Den här sidan beskriver hur den aktuella appen hanterar din data.",
+  "privacyLocalTitle": "Spel och handledning på din enhet",
+  "privacyLocalBody": "Lokala matcher, inställningar, analyser och träningsframsteg sparas på den här enheten. Spelmotorn och handledarens förklaringar körs här. Om du tar bort en sparad match från Spelarkivet tas även matchens sparade övningar och försök bort. Ta bort enskilda övningar eller återställ träningsframstegen under Lärande och övning; rensa lokala felrapporter under Inställningar → Diagnostik. Enhetens säkerhetskopiering kan också omfatta matchhistoriken. Uppgifter för onlineinloggning sparas i enhetens skyddade lagring.",
+  "privacyOnlineTitle": "Spela online och i närheten",
+  "privacyOnlineBody": "Onlinespel skickar ett anonymt spelar-ID, matchinställningar, drag och loggar från protokollet för att samordna tärningskast till Google Firebase, så att båda spelarna kan spela samma match. Om du raderar historiken på den här enheten raderas inte onlineloggarna. Värdmatcher upphör 30 dagar efter att de skapats; schemalagd rensning tar bort deras molnloggar. Matchdata lagras i EU; Firebase Authentication behandlar inloggningsuppgifter i USA. Anslutningar till Google krypteras under överföring. Vid närspel utbyts matchinformation med den andra enheten via en okrypterad lokal anslutning; använd ett betrott Wi-Fi-nätverk.",
+  "privacyDiagnosticsTitle": "Valfri användnings- och kraschdiagnostik",
+  "privacyDiagnosticsBody": "Delning är avstängt tills du aktiverar det i Inställningar. Om det är aktiverat får Google Firebase användningshändelser, information om appen och enheten, prestandamätningar och kraschrapporter som hjälper till att förbättra appen. Du kan när som helst stänga av delningen för att stoppa ny, frivillig datainsamling. Redan skickade uppgifter raderas inte. Lokal diagnostik och onlinematcher påverkas inte av det här valet.",
+  "privacyCameraTitle": "Kamera för närliggande QR-koder",
+  "privacyCameraBody": "Den valfria kameran skannar QR-koder för närspel. Bilderna behandlas på enheten och sparas eller laddas inte upp. Du kan neka kameraåtkomst och ange värdenhetens adress manuellt. Den här versionen använder inte mikrofonen och stöder inte spel på ett fysiskt bräde.",
+  "privacyFeedbackTitle": "Feedback du väljer att skicka",
+  "privacyFeedbackBody": "Feedback öppnar ett utkast till GitHub-ärende som du kan granska. När utkastet öppnas skickas appversionen och plattformen till GitHub; feedback från Diagnostik kan även innehålla felinformation. Ärendet publiceras inte förrän du skickar in det. Ärenden kan vara offentliga, så ta bort privata uppgifter innan du skickar.",
+  "privacyContactTitle": "Sekretesskontakt",
+  "privacyReadPolicy": "Läs integritetspolicyn",
+  "privacyPolicyOpenFailed": "Det gick inte att öppna sekretesspolicyn.",
+  "privacySupportTitle": "Hjälp och stöd",
+  "privacySupportOpenFailed": "Kunde inte öppna support. Kontakta support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Radera identitet och data online?",
+  "privacyDeleteConfirmBody": "Åtkomsten för båda spelarna till molnmatcher som är kopplade till den här identiteten avslutas omedelbart. En begäran skickas om att identiteten och de delade onlinematchloggarna ska raderas inom 30 dagar. Google kan behöva upp till 180 dagar efter att kontot har raderats för att ta bort autentiseringsuppgifter från sina aktiva system och säkerhetskopior. Lokal matchhistorik och övningsuppgifter finns kvar på den här enheten. Tidigare inskickade valfria diagnostikuppgifter hanteras separat; kontakta privacy@freevia.org om dem. Begäran kan inte ångras.",
+  "privacyRequestDeletion": "Begär radering",
+  "privacyDeleteSectionTitle": "Radering av onlinedata",
+  "privacyDeleteInstructions": "Använd inloggningsuppgifterna som sparats på den här enheten för att bekräfta att onlineidentiteten tillhör dig. Ett spelar-ID eller en inbjudningskod räcker inte som bevis. För spel som bara sker på enheten behövs inget onlinekonto.",
+  "privacySendingRequest": "Skickar begäran...",
+  "privacyDeleteAction": "Radera identitet och data online",
+  "privacyDeleteRequested": "Begäran om radering har skickats. Du har loggats ut från den här onlineidentiteten. Dess molndata raderas inom 30 dagar. Om du startar ett nytt onlinespel skapas en ny identitet. Det kan ta upp till 180 dagar innan Google tar bort autentiseringsdata. Kontakta privacy@freevia.org om du behöver hjälp.",
+  "privacyDeleteRequestedSignOutFailed": "Begäran om radering har skickats. Molndata raderas inom 30 dagar. Enheten kunde inte rensa de sparade inloggningsuppgifterna, men onlineidentiteten är blockerad från vidare åtkomst till matcher. Det kan ta upp till 180 dagar innan Google tar bort autentiseringsdata. Kontakta privacy@freevia.org om du behöver hjälp.",
+  "privacyDeleteNoIdentity": "Det finns ingen användbar onlineidentitet sparad på den här enheten. Inget nytt konto har skapats. Om du har spelat online tidigare kan du kontakta privacy@freevia.org för hjälp; värdmatcher upphör 30 dagar efter att de skapats.",
+  "privacyDeleteRequestFailed": "Det gick inte att bekräfta begäran om radering. Kontrollera anslutningen och försök igen eller kontakta privacy@freevia.org.",
+  "privacyConsentTitle": "Dela användning och kraschdiagnostik?",
+  "privacyConsentBody": "Det här skickar användningshändelser, information om appen och enheten, kraschrapporter och prestandamätningar till Google Firebase. Delning är frivillig. Spel och handledning fungerar även när delning är avstängd; du kan stänga av den igen i Inställningar.",
+  "privacyKeepOff": "Behåll avstängt",
+  "privacyShareDiagnostics": "Dela diagnostik",
+  "privacySaveFailed": "Det gick inte att spara sekretessvalet. Försök igen.",
+  "privacySettingsSubtitle": "Vad finns kvar på din enhet och vad som delas",
+  "privacyDiagnosticsSettingTitle": "Dela användning och kraschdiagnostik",
+  "privacyDiagnosticsSettingSubtitle": "Valfritt · av som standard",
+  "lanScanToJoin": "Skanna för att gå med",
+  "lanScanHostCode": "Skanna värdens kod",
+  "lanEnterAddressInstead": "Ange adressen istället",
+  "lanTorch": "Blixt",
+  "lanCameraPermissionDenied": "Backgammon Buddy kan inte använda kameran. Tillåt kameraåtkomst i enhetsinställningarna eller ange adressen som visas på den andra enheten manuellt.",
+  "lanCameraUnsupported": "Den här enheten kan inte skanna QR-koder. Ange adressen som visas på den andra enheten manuellt.",
+  "lanCameraStartFailed": "Kameran kunde inte startas. Ange adressen som visas på den andra enheten manuellt.",
+  "lanPointCameraAtQr": "Rikta kameran mot QR-koden på den andra enheten.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "physicalBuddyUnavailableBody": "Spel på ett fysiskt bräde är inte tillgängligt i den här versionen. Spel på skärmen, handledning och övning finns på startskärmen.",
+  "boardSemanticsLabel": "Backgammonbräda. {status}",
+  "boardWhiteToRoll": "Det är vits tur att slå tärningarna.",
+  "boardBlackToRoll": "Det är svarts tur att slå tärningarna.",
+  "boardWhiteToMove": "Vits tur; tärningarna visar {die1} och {die2}.",
+  "boardBlackToMove": "Svarts tur; tärningarna visar {die1} och {die2}.",
+  "boardDoubleOffered": "En dubblering har erbjudits.",
+  "boardResignationOffered": "Ett erbjudande om att ge upp har lämnats.",
+  "boardGameOver": "Spelet är över.",
+  "feedbackBugTitle": "[Fel]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Idé]: Backgammon Buddy",
+  "feedbackBugSummary": "Ersätt detta med en kort beskrivning av vad som hände.",
+  "feedbackBugReproduction": "Ersätt detta med stegen som ledde till problemet.",
+  "feedbackBugExpected": "Ersätt detta med det du förväntade dig att hända.",
+  "feedbackIdeaNeed": "Ersätt detta med det du ville göra eller lära dig.",
+  "feedbackIdeaSuggestion": "Ersätt detta med den ändring som du skulle ha nytta av.",
+  "feedbackExcerptTruncated": "(trunkerad – använd Kopiera till urklipp på diagnostikskärmen för hela loggen)",
+  "boardWhiteToMoveNoRoll": "Vits tur att flytta.",
+  "boardBlackToMoveNoRoll": "Svarts tur att flytta.",
+  "feedbackFieldVersion": "Appversion",
+  "feedbackFieldPlatform": "Plattform",
+  "feedbackFieldSummary": "Vad hände",
+  "feedbackFieldReproduction": "Steg för att reproducera",
+  "feedbackFieldExpected": "Förväntat resultat",
+  "feedbackFieldNeed": "Vad du ville göra",
+  "feedbackFieldIdea": "Föreslagen förändring",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "QR-kod för att gå med i det här spelet",
+  "lanJoinInstruction": "Öppna Spela i närheten på den andra enheten, välj Gå med och skanna den här QR-koden.",
+  "homePlayWithBuddy": "Spela med Buddy",
+  "homeBuddyShort": "Buddy"
 }

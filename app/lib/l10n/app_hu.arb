@@ -1136,7 +1136,7 @@
   "analysisBestMoveLine": "Legjobb: {move}",
   "analysisExplain": "Magyarázat",
   "analysisSaveForPractice": "Mentés gyakorláshoz",
-  "analysisSaveError": "A döntés mentése nem sikerült: {error}",
+  "analysisSaveError": "A döntést nem sikerült menteni. Próbálja újra.",
   "analysisCubeInfo": "{side}: {action} · {mark} · veszteség: {loss}",
   "analysisCubeDecision": "Kockadöntés",
   "analysisCubePlayed": "Lejátszva: {action} (a meccsnyerési esély {percent}%).",
@@ -1202,11 +1202,6 @@
   "@analysisBestMoveLine": {
     "placeholders": {
       "move": {}
-    }
-  },
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
     }
   },
   "@analysisCubeInfo": {
@@ -1519,5 +1514,104 @@
     "placeholders": {
       "date": {}
     }
-  }
+  },
+  "privacyTitle": "Adatvédelem és adatok",
+  "privacyAppTitle": "Freevia Backgammon Buddy",
+  "privacyIntro": "Ez az oldal ismerteti, hogyan kezeli az alkalmazás az adatait.",
+  "privacyLocalTitle": "Játékok és oktatás az eszközén",
+  "privacyLocalBody": "A helyi játszmák, beállítások, elemzések és gyakorlási eredmények ezen az eszközön tárolódnak. A backgammon motor és az oktatói magyarázatok itt futnak. A mentett játszma törlése az Előzményekből a hozzá tartozó mentett feladatokat és próbálkozásokat is törli. Az egyes feladatokat törölheti, vagy a Tanulás részen visszaállíthatja a haladást; a helyi hibajelentéseket a Beállítások → Diagnosztika részen törölheti. Az eszköz biztonsági mentési beállításai a játszmaelõzményekre is vonatkozhatnak. Az online bejelentkezési adatok az eszköz védett tárhelyén maradnak.",
+  "privacyOnlineTitle": "Online és közeli játék",
+  "privacyOnlineBody": "Az online játék névtelen játékosazonosítót, játszmabeállításokat, lépéseket és a kockadobások egyeztetési adatait küldi a Google Firebase szolgáltatásnak, hogy mindkét játékos ugyanazt a játszmát játszhassa. Az Előzmények törlése ezen az eszközön nem törli az online adatokat. A tárolt játszmák létrehozásuk után 30 nappal lejárnak; az ütemezett takarítás eltávolítja felhőnaplóikat. A játszmaadatokat az EU-ban tároljuk; a Firebase Authentication az Egyesült Államokban dolgozza fel a bejelentkezési adatokat. A Google felé irányuló online kapcsolat titkosított. A közeli játék titkosítatlan helyi kapcsolaton cserél adatot a másik eszközzel; használjon megbízható Wi-Fi-hálózatot.",
+  "privacyDiagnosticsTitle": "Nem kötelező használati és összeomlási diagnosztika",
+  "privacyDiagnosticsBody": "A megosztás addig ki van kapcsolva, amíg a Beállításokban nem engedélyezi. Bekapcsolás esetén a Google Firebase használati eseményeket, alkalmazás- és eszközadatokat, teljesítményméréseket és összeomlási jelentéseket kap az alkalmazás fejlesztéséhez. Bármikor kikapcsolhatja, így leáll az új, nem kötelező adatgyűjtés. A már elküldött adatokat ez nem törli. A helyi diagnosztika és az online játszmák ettől a választástól függetlenül működnek.",
+  "privacyCameraTitle": "Kamera közeli QR-kódokhoz",
+  "privacyCameraBody": "Az opcionális kamera a közeli játékok QR-kódjait olvassa be. A képek feldolgozása az eszközön történik; nem mentjük és nem töltjük fel őket. Megtagadhatja a kamera-hozzáférést, és kézzel is megadhatja a gazdagép címét. Ez a verzió nem használ mikrofont és nem támogat fizikai táblás játékot.",
+  "privacyFeedbackTitle": "Az Ön által elküldött visszajelzés",
+  "privacyFeedbackBody": "A visszajelzés egy áttekinthető GitHub-issue vázlatot nyit meg. Megnyitásakor az alkalmazás verziója és platformja elküldésre kerül a GitHubnak; a Diagnosztikából küldött visszajelzés hibaadatokat is tartalmazhat. Semmi sem jelenik meg, amíg el nem küldi. Az issue-k nyilvánosak lehetnek, ezért küldés előtt távolítsa el a személyes adatokat.",
+  "privacyContactTitle": "Adatvédelmi kapcsolat",
+  "privacyReadPolicy": "Adatvédelmi irányelvek",
+  "privacyPolicyOpenFailed": "Az adatvédelmi irányelvek nem nyithatók meg.",
+  "privacySupportTitle": "Súgó és támogatás",
+  "privacySupportOpenFailed": "A támogatás nem nyitható meg. Lépjen kapcsolatba velünk: support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Törli az online identitást és az adatokat?",
+  "privacyDeleteConfirmBody": "Ez azonnal megszünteti az identitás felhőben tárolt játszmáihoz való hozzáférést mindkét játékos számára, és kéri az identitás, valamint a megosztott online naplók törlését 30 napon belül. A Google-nak a fiók törlése után akár 180 napra is szüksége lehet az Authentication-adatok eltávolításához az aktív és biztonsági mentési rendszerekből. A helyi Előzmények és gyakorlás ezen az eszközön marad. A korábban elküldött opcionális diagnosztika különálló; ezekkel kapcsolatban írjon a privacy@freevia.org címre. Ez a kérés nem vonható vissza.",
+  "privacyRequestDeletion": "Törlés kérése",
+  "privacyDeleteSectionTitle": "Online adatok törlése",
+  "privacyDeleteInstructions": "A tulajdonjog igazolásához használja az eszközön mentett bejelentkezést. A játékosazonosító vagy meghívókód önmagában nem igazolja a tulajdonjogot. A csak helyben játszóknak nincs szükségük online fiókra.",
+  "privacySendingRequest": "Kérés küldése…",
+  "privacyDeleteAction": "Online identitás és adatok törlése",
+  "privacyDeleteRequested": "A törlést kértük. Ez az online identitás kijelentkezett. Felhőadatait 30 napon belül töröljük. Az online játék újrakezdése új identitást hoz létre. A Google Authentication-adatainak eltávolítása akár 180 napig tarthat. Segítségért írjon a privacy@freevia.org címre.",
+  "privacyDeleteRequestedSignOutFailed": "A törlést kértük, a felhőadatokat 30 napon belül töröljük. Az eszköz nem tudta törölni a mentett bejelentkezést, de az online identitás több játszmához nem férhet hozzá. A Google Authentication-adatainak eltávolítása akár 180 napig tarthat. Írjon a privacy@freevia.org címre.",
+  "privacyDeleteNoIdentity": "Nincs használható online identitás mentve ezen az eszközön. Új fiók nem jött létre. Ha korábban online játszott, írjon a privacy@freevia.org címre; a tárolt játszmák 30 nap után lejárnak.",
+  "privacyDeleteRequestFailed": "A törlési kérés nem erősíthető meg. Ellenőrizze a kapcsolatot, próbálja újra, vagy írjon a privacy@freevia.org címre.",
+  "privacyConsentTitle": "Megosztja a használati és összeomlási diagnosztikát?",
+  "privacyConsentBody": "Ez használati eseményeket, alkalmazás-/eszközadatokat, összeomlási jelentéseket és teljesítményméréseket küld a Google Firebase szolgáltatásnak. A megosztás nem kötelező. A játék és az oktatás nélküle is működik, és a Beállításokban bármikor kikapcsolhatja.",
+  "privacyKeepOff": "Maradjon kikapcsolva",
+  "privacyShareDiagnostics": "Diagnosztika megosztása",
+  "privacySaveFailed": "Az adatvédelmi beállítás nem menthető. Próbálja újra.",
+  "privacySettingsSubtitle": "Mi marad az eszközén, és mi kerül megosztásra",
+  "privacyDiagnosticsSettingTitle": "Használati és összeomlási diagnosztika megosztása",
+  "privacyDiagnosticsSettingSubtitle": "Nem kötelező · alapértelmezés szerint ki",
+  "lanScanToJoin": "Beolvasás a csatlakozáshoz",
+  "lanScanHostCode": "Gazdakód beolvasása",
+  "lanEnterAddressInstead": "Cím megadása helyette",
+  "lanTorch": "Zseblámpa",
+  "lanCameraPermissionDenied": "A Backgammon Buddy nem fér hozzá a kamerához. Engedélyezze a hozzáférést az eszköz beállításaiban, vagy írja be a másik eszközön látható címet.",
+  "lanCameraUnsupported": "Ez az eszköz nem tud QR-kódot beolvasni. Írja be a másik eszközön látható címet.",
+  "lanCameraStartFailed": "A kamera nem indítható el. Írja be a másik eszközön látható címet.",
+  "lanPointCameraAtQr": "Irányítsa a kamerát a másik eszköz QR-kódjára.",
+  "physicalBuddyUnavailableTitle": "Játék fizikai táblán",
+  "physicalBuddyUnavailableBody": "A fizikai táblás játék ebben a verzióban nem érhető el. A képernyős játékok, oktatás és gyakorlás a főképernyőről érhető el.",
+  "boardSemanticsLabel": "Backgammon tábla. {status}",
+  "boardWhiteToRoll": "A fehér következik a dobással.",
+  "boardBlackToRoll": "A fekete következik a dobással.",
+  "boardWhiteToMove": "A fehér lép, dobás: {die1} és {die2}.",
+  "boardBlackToMove": "A fekete lép, dobás: {die1} és {die2}.",
+  "boardDoubleOffered": "Duplázást ajánlottak.",
+  "boardResignationOffered": "Feladást ajánlottak.",
+  "boardGameOver": "A játék véget ért.",
+  "feedbackBugTitle": "[Hiba]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Ötlet]: Backgammon Buddy",
+  "feedbackBugSummary": "Írja le röviden, mi történt.",
+  "feedbackBugReproduction": "Írja le a hiba előidézésének lépéseit.",
+  "feedbackBugExpected": "Írja le, mit várt volna eredményként.",
+  "feedbackIdeaNeed": "Írja le, mit szeretett volna tenni vagy megtanulni.",
+  "feedbackIdeaSuggestion": "Írja le, milyen változást találna hasznosnak.",
+  "feedbackExcerptTruncated": "(rövidítve — a teljes naplóért használja a Diagnosztika képernyő Vágólapra másolás funkcióját)",
+  "boardWhiteToMoveNoRoll": "A fehér következik.",
+  "boardBlackToMoveNoRoll": "A fekete következik.",
+  "feedbackFieldVersion": "Alkalmazás verziója",
+  "feedbackFieldPlatform": "Platform",
+  "feedbackFieldSummary": "Mi történt",
+  "feedbackFieldReproduction": "A reprodukálás lépései",
+  "feedbackFieldExpected": "Elvárt eredmény",
+  "feedbackFieldNeed": "Amit tenni szeretett volna",
+  "feedbackFieldIdea": "Javasolt módosítás",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "QR-kód a játszmához való csatlakozáshoz",
+  "lanJoinInstruction": "A másik eszközön nyissa meg a Közeli játékot, válassza a Csatlakozás lehetőséget, majd olvassa be ezt a QR-kódot.",
+  "homePlayWithBuddy": "Játék Buddyval",
+  "homeBuddyShort": "Buddy"
 }

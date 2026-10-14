@@ -1168,7 +1168,7 @@
   "analysisBestMoveLine": "Nejlepší tah: {move}",
   "analysisExplain": "Vysvětlit",
   "analysisSaveForPractice": "Uložit k procvičení",
-  "analysisSaveError": "Toto rozhodnutí se nepodařilo uložit: {error}",
+  "analysisSaveError": "Toto rozhodnutí se nepodařilo uložit. Zkuste to znovu.",
   "analysisCubeInfo": "{side}: {action} · {mark} · ztráta {loss}",
   "analysisCubeDecision": "Rozhodnutí o kostce",
   "analysisCubePlayed": "Odehráno: {action} (šance na výhru zápasu {percent} %).",
@@ -1353,11 +1353,6 @@
       "move": {}
     }
   },
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
-    }
-  },
   "@analysisCubeInfo": {
     "placeholders": {
       "side": {},
@@ -1519,5 +1514,104 @@
         "type": "int"
       }
     }
-  }
+  },
+  "privacyTitle": "Soukromí a data",
+  "privacyAppTitle": "Backgammon Buddy od Freevia",
+  "privacyIntro": "Tato stránka popisuje, jak aktuální aplikace zpracovává vaše data.",
+  "privacyLocalTitle": "Hry a doučování na vašem zařízení",
+  "privacyLocalBody": "Na tomto zařízení jsou uloženy místní shody, nastavení, analýza a průběh cvičení. Zde běží backgammon engine a tutor vysvětlení. Smažte uloženou shodu z historie, abyste odstranili i její uložená cvičná cvičení a pokusy. Smazat jednotlivá cvičení nebo resetovat postup praxe ve vzdělávání; vymazat místní chybové zprávy v → diagnostice nastavení. Nastavení zálohování vašeho zařízení se může vztahovat také na historii her. Online přihlašovací údaje jsou uloženy v chráněném úložišti zařízení.",
+  "privacyOnlineTitle": "Online hry a hry v okolí",
+  "privacyOnlineBody": "Online hra odesílá Google Firebase anonymní identifikátor hráče, nastavení zápasu, tahy a záznamy o potřesení kostkou, takže oba hráči mohou hrát stejný zápas. Smazání historie na tomto zařízení neodstraní online záznamy. Platnost hostovaných zápasů vyprší 30 dní po vytvoření; plánované vyčištění odstraní jejich cloudové protokoly. Záznamy o shodě jsou uloženy v EU; Firebase Authentication zpracovává přihlašovací údaje ve Spojených státech. Online připojení ke Googlu používá při přepravě šifrování. Blízké herní výměny odpovídají informacím s jiným zařízením přes nešifrované místní připojení; použijte důvěryhodný Wi-Fi.",
+  "privacyDiagnosticsTitle": "Volitelné použití a diagnostika pádů",
+  "privacyDiagnosticsBody": "Sdílení je vypnuté, dokud ho nevyberete v Nastavení. Pokud je povoleno, Google Firebase přijímá události použití, informace o aplikaci/zařízení, měření výkonu a zprávy o selhání, které pomáhají vylepšit aplikaci. Chcete-li zastavit novou volitelnou kolekci, můžete sdílení kdykoli vypnout. Tím se nevymažou již odeslaná data. Místní diagnostika a online shody fungují odděleně od této volby.",
+  "privacyCameraTitle": "Kamera pro QR kódy v okolí",
+  "privacyCameraBody": "Volitelná kamera skenuje QR kódy hry v okolí. Obrázky jsou zpracovávány ve vašem zařízení a nejsou ukládány ani nahrávány. Přístup k fotoaparátu můžeš odmítnout a adresu hostitele zadat ručně. Tato verze nepoužívá mikrofon ani neposkytuje přehrávání fyzické desky.",
+  "privacyFeedbackTitle": "Zpětná vazba, kterou se rozhodnete odeslat",
+  "privacyFeedbackBody": "Zpětná vazba otevře koncept problému GitHub, který si můžete prohlédnout. Otevření konceptu odešle jeho verzi aplikace a platformu do GitHub; zpětná vazba od Diagnostiky může také odeslat podrobnosti o chybě. Dokud ji nepředložíte, nebude zveřejněn žádný problém. Problémy mohou být veřejné, proto před odesláním odstraňte soukromé informace.",
+  "privacyContactTitle": "Kontakt pro ochranu osobních údajů",
+  "privacyReadPolicy": "Načíst zásady ochrany osobních údajů",
+  "privacyPolicyOpenFailed": "Nelze otevřít zásady ochrany osobních údajů.",
+  "privacySupportTitle": "hledat pomoc a podporu",
+  "privacySupportOpenFailed": "Nelze otevřít podporu. Kontaktujte support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Smazat online identitu a data?",
+  "privacyDeleteConfirmBody": "To okamžitě ukončí přístup k cloudovým zápasům této identity pro oba hráče a požádá o odstranění identity a sdílených protokolů online zápasů během dnů 30. Odstranění ověřovacích údajů ze svých živých a zálohovacích systémů může trvat až několik dní po smazání účtu 180. Místní historie a praxe zůstávají na tomto zařízení. Dříve odeslané volitelné diagnostiky jsou oddělené; obraťte se na privacy@freevia.org o těchto. Tato akce je nevratná.",
+  "privacyRequestDeletion": "Požádat o odstranění",
+  "privacyDeleteSectionTitle": "Smazat online data",
+  "privacyDeleteInstructions": "K ověření vlastnictví použijte uložené přihlašovací údaje tohoto zařízení. Samotný identifikátor hráče nebo zvací kód neprokazuje vlastnictví. Místní hráči nepotřebují online účet.",
+  "privacySendingRequest": "Posílání žádosti...",
+  "privacyDeleteAction": "Smazat online identitu a data",
+  "privacyDeleteRequested": "Požadováno smazání. Tato online identita je odhlášena. Jeho cloudová data budou smazána během dnů 30. Opětovným spuštěním online hry vytvoříte novou identitu. Odstranění ověřovacích dat Google může trvat až dny 180. Kontaktujte privacy@freevia.org pro pomoc.",
+  "privacyDeleteRequestedSignOutFailed": "Požadováno smazání. Jeho cloudová data budou smazána během dnů 30. Zařízení se nepodařilo vymazat uložené přihlášení, ale online identitě je zablokován přístup k další shodě. Odstranění ověřovacích dat Google může trvat až dny 180. Kontaktujte privacy@freevia.org pro pomoc.",
+  "privacyDeleteNoIdentity": "V tomto zařízení není uložena žádná použitelná online identita. Nebyl vytvořen žádný nový účet. Pokud jste dříve používali online hru, kontaktujte privacy@freevia.org pro pomoc; hostované zápasy vyprší po dnech 30.",
+  "privacyDeleteRequestFailed": "Žádost o odstranění se nepodařilo potvrdit. Zkontrolujte připojení a zkuste to znovu nebo kontaktujte privacy@freevia.org.",
+  "privacyConsentTitle": "Sdílet diagnostiku používání a pádů?",
+  "privacyConsentBody": "Tím se odesílají události použití, informace o aplikaci/zařízení, zprávy o selhání a měření výkonu do Google Firebase. Sdílení je volitelné. Hry a doučování s ním pracují vypnuté a můžete jej znovu vypnout v Nastavení.",
+  "privacyKeepOff": "Bez vstupu",
+  "privacyShareDiagnostics": "Sdílet diagnostiku",
+  "privacySaveFailed": "Nelze uložit volbu ochrany osobních údajů. Zkuste to prosím znovu.",
+  "privacySettingsSubtitle": "Co zůstává na tvém zařízení a co je sdíleno",
+  "privacyDiagnosticsSettingTitle": "Sdílejte diagnostiku používání a pádů",
+  "privacyDiagnosticsSettingSubtitle": "Volitelné · ve výchozím nastavení vypnuto",
+  "lanScanToJoin": "Skenovat a připojit se",
+  "lanScanHostCode": "Naskenujte kód hostitele",
+  "lanEnterAddressInstead": "Místo toho zadejte adresu",
+  "lanTorch": "Pochodeň",
+  "lanCameraUnsupported": "Toto zařízení nemůže skenovat QR kódy. Zadej adresu zobrazenou na druhém zařízení ručně.",
+  "lanCameraPermissionDenied": "Backgammon Buddy nemůže používat kameru. Povolte přístup k fotoaparátu v nastavení zařízení nebo ručně zadejte adresu zobrazenou na druhém zařízení.",
+  "lanCameraStartFailed": "Fotoaparát nelze spustit. Zadej adresu zobrazenou na druhém zařízení ručně.",
+  "lanPointCameraAtQr": "Namiřte kameru na QR kód na druhém zařízení.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "boardSemanticsLabel": "Deska backgammon. {status}",
+  "physicalBuddyUnavailableBody": "Hra s fyzickou deskou není v této verzi k dispozici. Hry na obrazovce, doučování a cvičení jsou k dispozici na domovské stránce.",
+  "boardWhiteToRoll": "Bílá na svinutí.",
+  "boardWhiteToMove": "Bílá pro pohyb, rolujte {die1} a {die2}.",
+  "boardBlackToRoll": "Černý na válcování.",
+  "boardBlackToMove": "Černý pro pohyb, rolujte {die1} a {die2}.",
+  "feedbackBugTitle": "[Bug]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Idea]: Backgammon Buddy",
+  "feedbackBugSummary": "Nahraďte to krátkým popisem toho, co se stalo.",
+  "feedbackBugReproduction": "Nahraďte jej kroky, které vedly k problému.",
+  "feedbackBugExpected": "Nahraď to tím, co jsi očekával/a, že se stane.",
+  "feedbackIdeaNeed": "Nahraď to tím, co jsi chtěl/a dělat nebo se učit.",
+  "feedbackIdeaSuggestion": "Nahraďte to změnou, kterou byste považovali za užitečnou.",
+  "boardWhiteToMoveNoRoll": "Bílý na tahu",
+  "boardBlackToMoveNoRoll": "Černý na tahu",
+  "feedbackFieldVersion": "Verze aplikace",
+  "feedbackFieldPlatform": "Platforma",
+  "feedbackFieldSummary": "Co se stalo",
+  "feedbackFieldReproduction": "Kroky k reprodukci",
+  "feedbackFieldExpected": "Očekávaný výsledek",
+  "feedbackFieldNeed": "Co jste chtěli udělat",
+  "feedbackFieldIdea": "Navrhovaná změna",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "boardDoubleOffered": "Bylo nabídnuto zdvojnásobení.",
+  "boardResignationOffered": "Bylo nabídnuto vzdání hry.",
+  "boardGameOver": "Hra skončila.",
+  "lanQrAccessibilityLabel": "QR kód pro připojení k této hře",
+  "lanJoinInstruction": "Na druhém zařízení otevři Hru v okolí, vyber Připojit se a naskenuj tento QR kód.",
+  "homePlayWithBuddy": "Hrát s Buddy",
+  "homeBuddyShort": "Buddy",
+  "feedbackExcerptTruncated": "(zkráceno – celý záznam zkopírujete tlačítkem „Kopírovat do schránky“ na obrazovce Diagnostika)"
 }

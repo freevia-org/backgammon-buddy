@@ -715,7 +715,7 @@
   "analysisBestMoveLine": "Najlepszy ruch: {move}",
   "analysisExplain": "Wyjaśnij",
   "analysisSaveForPractice": "Zapisz do ćwiczeń",
-  "analysisSaveError": "Nie udało się zapisać tej decyzji: {error}",
+  "analysisSaveError": "Nie udało się zapisać tej decyzji. Spróbuj ponownie.",
   "analysisCubeInfo": "{side}: {action} · {mark} · strata {loss}",
   "analysisCubeDecision": "Decyzja o kostce",
   "analysisCubePlayed": "Zagrano: {action} (szansa wygrania meczu: {percent}%).",
@@ -789,11 +789,6 @@
       "action": {},
       "mark": {},
       "loss": {}
-    }
-  },
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
     }
   },
   "@analysisCubePlayed": {
@@ -1519,5 +1514,104 @@
         "type": "String"
       }
     }
-  }
+  },
+  "privacyTitle": "PrywatnoÅ›Ä‡ i dane",
+  "privacyAppTitle": "Backgammon Buddy od Freevia",
+  "privacyIntro": "Ta strona opisuje, jak bieÅ¼Ä…ca wersja aplikacji przetwarza Twoje dane.",
+  "privacyLocalTitle": "Gry i nauka na tym urzÄ…dzeniu",
+  "privacyLocalBody": "Lokalne partie, ustawienia, analizy i postÄ™py w Ä‡wiczeniach sÄ… przechowywane na tym urzÄ…dzeniu. Silnik backgammona i wyjaÅ›nienia tutora dziaÅ‚ajÄ… tutaj. UsuÅ„ zapisanÄ… partiÄ™ z Historii, aby usunÄ…Ä‡ takÅ¼e zapisane Ä‡wiczenia i podejÅ›cia z niÄ… zwiÄ…zane. UsuÅ„ pojedyncze Ä‡wiczenia lub wyzeruj postÄ™py w sekcji Nauka; wyczyÅ›Ä‡ lokalne raporty o bÅ‚Ä™dach w Ustawienia â†’ Diagnostyka. Ustawienia kopii zapasowej urzÄ…dzenia mogÄ… obejmowaÄ‡ takÅ¼e historiÄ™ partii. Dane logowania online sÄ… przechowywane w chronionym magazynie urzÄ…dzenia.",
+  "privacyOnlineTitle": "Gra online i w pobliÅ¼u",
+  "privacyOnlineBody": "Gra online wysyÅ‚a do Google Firebase anonimowy identyfikator gracza, ustawienia partii, ruchy i zapisy uzgadniania koÅ›ci, aby obaj gracze mogli rozegraÄ‡ tÄ™ samÄ… partiÄ™. UsuniÄ™cie Historii na tym urzÄ…dzeniu nie usuwa danych online. Hostowane partie wygasajÄ… po 30 dniach od utworzenia; zaplanowane czyszczenie usuwa ich dzienniki w chmurze. Dane partii sÄ… przechowywane w UE; Firebase Authentication przetwarza dane logowania w Stanach Zjednoczonych. PoÅ‚Ä…czenia online z Google sÄ… szyfrowane podczas przesyÅ‚ania. Gra w pobliÅ¼u wymienia informacje o partii z drugim urzÄ…dzeniem przez nieszyfrowane poÅ‚Ä…czenie lokalne; korzystaj z zaufanej sieci Wi-Fi.",
+  "privacyDiagnosticsTitle": "Opcjonalna diagnostyka uÅ¼ycia i awarii",
+  "privacyDiagnosticsBody": "UdostÄ™pnianie jest wyÅ‚Ä…czone, dopÃ³ki nie wÅ‚Ä…czysz go w Ustawieniach. Po wÅ‚Ä…czeniu Google Firebase otrzymuje zdarzenia uÅ¼ycia, informacje o aplikacji i urzÄ…dzeniu, pomiary wydajnoÅ›ci oraz raporty o awariach, aby pomÃ³c ulepszaÄ‡ aplikacjÄ™. W kaÅ¼dej chwili moÅ¼esz wyÅ‚Ä…czyÄ‡ udostÄ™pnianie, aby zatrzymaÄ‡ dalsze opcjonalne zbieranie danych. Nie usuwa to wczeÅ›niej wysÅ‚anych danych. Diagnostyka lokalna i partie online dziaÅ‚ajÄ… niezaleÅ¼nie od tego wyboru.",
+  "privacyCameraTitle": "Aparat do skanowania kodÃ³w QR pobliskich gier",
+  "privacyCameraBody": "Opcjonalny aparat skanuje kody QR pobliskich gier. Obrazy sÄ… przetwarzane na urzÄ…dzeniu i nie sÄ… zapisywane ani przesyÅ‚ane. MoÅ¼esz odmÃ³wiÄ‡ dostÄ™pu do aparatu i rÄ™cznie wpisaÄ‡ adres hosta. Ta wersja nie uÅ¼ywa mikrofonu ani nie umoÅ¼liwia gry na fizycznej planszy.",
+  "privacyFeedbackTitle": "Opinie, ktÃ³re zdecydujesz siÄ™ wysÅ‚aÄ‡",
+  "privacyFeedbackBody": "Opinia otwiera wersjÄ™ roboczÄ… zgÅ‚oszenia GitHub do sprawdzenia. Otwarcie wersji roboczej wysyÅ‚a do GitHub wersjÄ™ aplikacji i platformÄ™; opinia z Diagnostyki moÅ¼e zawieraÄ‡ takÅ¼e szczegÃ³Å‚y bÅ‚Ä™du. ZgÅ‚oszenie nie zostanie opublikowane, dopÃ³ki go nie wyÅ›lesz. ZgÅ‚oszenia mogÄ… byÄ‡ publiczne, wiÄ™c przed wysÅ‚aniem usuÅ„ prywatne informacje.",
+  "privacyContactTitle": "Kontakt w sprawach prywatnoÅ›ci",
+  "privacyReadPolicy": "Przeczytaj politykÄ™ prywatnoÅ›ci",
+  "privacyPolicyOpenFailed": "Nie moÅ¼na otworzyÄ‡ polityki prywatnoÅ›ci.",
+  "privacySupportTitle": "Pomoc i wsparcie",
+  "privacySupportOpenFailed": "Nie moÅ¼na otworzyÄ‡ pomocy. Napisz na support@freevia.org.",
+  "privacyDeleteConfirmTitle": "UsunÄ…Ä‡ toÅ¼samoÅ›Ä‡ online i dane?",
+  "privacyDeleteConfirmBody": "Ta czynnoÅ›Ä‡ natychmiast odbiera obu graczom dostÄ™p do meczÃ³w tej toÅ¼samoÅ›ci w chmurze i rozpoczyna Å¼Ä…danie usuniÄ™cia toÅ¼samoÅ›ci oraz wspÃ³lnych dziennikÃ³w partii online w ciÄ…gu 30 dni. Google moÅ¼e potrzebowaÄ‡ do 180 dni od usuniÄ™cia konta, aby usunÄ…Ä‡ dane Authentication z systemÃ³w bieÅ¼Ä…cych i kopii zapasowych. Lokalna Historia i Ä‡wiczenia pozostanÄ… na tym urzÄ…dzeniu. WczeÅ›niej wysÅ‚ana opcjonalna diagnostyka jest odrÄ™bna; w tej sprawie napisz na privacy@freevia.org. Tego Å¼Ä…dania nie moÅ¼na cofnÄ…Ä‡.",
+  "privacyRequestDeletion": "PoproÅ› o usuniÄ™cie",
+  "privacyDeleteSectionTitle": "UsuÅ„ dane online",
+  "privacyDeleteInstructions": "UÅ¼yj zapisanego logowania na tym urzÄ…dzeniu, aby potwierdziÄ‡ wÅ‚asnoÅ›Ä‡. Sam identyfikator gracza lub kod zaproszenia nie potwierdza wÅ‚asnoÅ›ci. Gracze korzystajÄ…cy wyÅ‚Ä…cznie z trybu lokalnego nie potrzebujÄ… konta online.",
+  "privacySendingRequest": "WysyÅ‚anie Å¼Ä…daniaâ€¦",
+  "privacyDeleteAction": "UsuÅ„ toÅ¼samoÅ›Ä‡ online i dane",
+  "privacyDeleteRequested": "ZaÅ¼Ä…dano usuniÄ™cia. Ta toÅ¼samoÅ›Ä‡ online zostaÅ‚a wylogowana. Jej dane w chmurze zostanÄ… usuniÄ™te w ciÄ…gu 30 dni. Ponowne rozpoczÄ™cie gry online utworzy nowÄ… toÅ¼samoÅ›Ä‡. UsuniÄ™cie danych Google Authentication moÅ¼e potrwaÄ‡ do 180 dni. W razie potrzeby napisz na privacy@freevia.org.",
+  "privacyDeleteRequestedSignOutFailed": "ZaÅ¼Ä…dano usuniÄ™cia. Dane w chmurze zostanÄ… usuniÄ™te w ciÄ…gu 30 dni. UrzÄ…dzenie nie mogÅ‚o usunÄ…Ä‡ zapisanego logowania, ale toÅ¼samoÅ›Ä‡ online zostaÅ‚a zablokowana i nie moÅ¼e juÅ¼ uzyskiwaÄ‡ dostÄ™pu do partii. UsuniÄ™cie danych Google Authentication moÅ¼e potrwaÄ‡ do 180 dni. W razie potrzeby napisz na privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "Na tym urzÄ…dzeniu nie ma zapisanej uÅ¼ytecznej toÅ¼samoÅ›ci online. Nie utworzono nowego konta. JeÅ›li wczeÅ›niej korzystaÅ‚eÅ› z gry online, napisz na privacy@freevia.org; hostowane partie wygasajÄ… po 30 dniach.",
+  "privacyDeleteRequestFailed": "Nie moÅ¼na potwierdziÄ‡ Å¼Ä…dania usuniÄ™cia. SprawdÅº poÅ‚Ä…czenie i sprÃ³buj ponownie albo napisz na privacy@freevia.org.",
+  "privacyConsentTitle": "UdostÄ™pniaÄ‡ dane o uÅ¼yciu i diagnostykÄ™ awarii?",
+  "privacyConsentBody": "Ta opcja wysyÅ‚a do Google Firebase zdarzenia uÅ¼ycia, informacje o aplikacji i urzÄ…dzeniu, raporty o awariach oraz pomiary wydajnoÅ›ci. UdostÄ™pnianie jest dobrowolne. Gra i tutor dziaÅ‚ajÄ… takÅ¼e przy wyÅ‚Ä…czonym udostÄ™pnianiu; moÅ¼esz je ponownie wyÅ‚Ä…czyÄ‡ w Ustawieniach.",
+  "privacyKeepOff": "Pozostaw wyÅ‚Ä…czone",
+  "privacyShareDiagnostics": "UdostÄ™pniaj diagnostykÄ™",
+  "privacySaveFailed": "Nie moÅ¼na zapisaÄ‡ ustawienia prywatnoÅ›ci. SprÃ³buj ponownie.",
+  "privacySettingsSubtitle": "Co pozostaje na urzÄ…dzeniu, a co jest udostÄ™pniane",
+  "privacyDiagnosticsSettingTitle": "UdostÄ™pniaj dane o uÅ¼yciu i diagnostykÄ™ awarii",
+  "privacyDiagnosticsSettingSubtitle": "Opcjonalne Â· domyÅ›lnie wyÅ‚Ä…czone",
+  "lanScanToJoin": "Zeskanuj, aby doÅ‚Ä…czyÄ‡",
+  "lanScanHostCode": "Zeskanuj kod hosta",
+  "lanEnterAddressInstead": "Zamiast tego wpisz adres",
+  "lanCameraPermissionDenied": "Backgammon Buddy nie moÅ¼e uÅ¼yÄ‡ aparatu. ZezwÃ³l na dostÄ™p do aparatu w ustawieniach urzÄ…dzenia lub rÄ™cznie wpisz adres wyÅ›wietlony na drugim urzÄ…dzeniu.",
+  "feedbackExcerptTruncated": "(skrÃ³cono â€” uÅ¼yj opcji Kopiuj do schowka na ekranie Diagnostyka, aby skopiowaÄ‡ peÅ‚ny dziennik)",
+  "boardSemanticsLabel": "Plansza do backgammona. {status}",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "feedbackFieldVersion": "Wersja",
+  "boardGameOver": "Partia siÄ™ zakoÅ„czyÅ‚a.",
+  "feedbackBugSummary": "ZastÄ…p ten tekst krÃ³tkim opisem tego, co siÄ™ staÅ‚o.",
+  "boardWhiteToMove": "Ruch biaÅ‚ych â€” rzuÄ‡ {die1} i {die2}.",
+  "lanPointCameraAtQr": "Skieruj aparat na kod QR na drugim urzÄ…dzeniu.",
+  "feedbackIdeaTitle": "[PomysÅ‚]: Backgammon Buddy",
+  "feedbackIdeaNeed": "ZastÄ…p ten tekst opisem tego, co chcesz zrobiÄ‡ lub czego siÄ™ nauczyÄ‡.",
+  "boardBlackToMoveNoRoll": "Ruch czarnych.",
+  "boardBlackToMove": "Ruch czarnych â€” rzuÄ‡ {die1} i {die2}.",
+  "feedbackFieldIdea": "PomysÅ‚",
+  "feedbackBugExpected": "ZastÄ…p ten tekst opisem oczekiwanego dziaÅ‚ania.",
+  "feedbackFieldPlatform": "Platforma",
+  "lanTorch": "Latarka",
+  "feedbackBugReproduction": "ZastÄ…p ten tekst krokami, ktÃ³re doprowadziÅ‚y do problemu.",
+  "feedbackFieldReproduction": "Kroki odtworzenia problemu",
+  "boardWhiteToRoll": "BiaÅ‚e rzucajÄ… koÅ›Ä‡mi.",
+  "feedbackFieldSummary": "Podsumowanie",
+  "feedbackFieldNeed": "Co chcesz zrobiÄ‡ lub czego siÄ™ nauczyÄ‡",
+  "physicalBuddyUnavailableBody": "Gra na fizycznej planszy nie jest dostÄ™pna w tej wersji. Gry na ekranie, tutor i Ä‡wiczenia sÄ… dostÄ™pne na ekranie gÅ‚Ã³wnym.",
+  "boardResignationOffered": "Zapropnowano poddanie partii.",
+  "boardWhiteToMoveNoRoll": "Ruch biaÅ‚ych.",
+  "boardBlackToRoll": "Czarne rzucajÄ… koÅ›Ä‡mi.",
+  "lanCameraUnsupported": "To urzÄ…dzenie nie moÅ¼e skanowaÄ‡ kodÃ³w QR. RÄ™cznie wpisz adres wyÅ›wietlony na drugim urzÄ…dzeniu.",
+  "feedbackIdeaSuggestion": "ZastÄ…p ten tekst zmianÄ…, ktÃ³ra byÅ‚aby dla Ciebie pomocna.",
+  "feedbackFieldExpected": "Oczekiwane dziaÅ‚anie",
+  "lanCameraStartFailed": "Nie moÅ¼na uruchomiÄ‡ aparatu. RÄ™cznie wpisz adres wyÅ›wietlony na drugim urzÄ…dzeniu.",
+  "feedbackBugTitle": "[BÅ‚Ä…d]: Backgammon Buddy {version} ({platform})",
+  "boardDoubleOffered": "Zapropnowano podwojenie stawki.",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "Kod QR umożliwiający dołączenie do tej gry",
+  "lanJoinInstruction": "Na drugim urządzeniu otwórz Grę w pobliżu, wybierz Dołącz, a następnie zeskanuj ten kod QR.",
+  "homePlayWithBuddy": "Graj z Buddy",
+  "homeBuddyShort": "Buddy"
 }

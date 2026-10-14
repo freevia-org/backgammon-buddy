@@ -1008,12 +1008,7 @@
   },
   "analysisExplain": "Paskaidrot",
   "analysisSaveForPractice": "Saglabāt treniņam",
-  "analysisSaveError": "Neizdevās saglabāt šo lēmumu: {error}",
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
-    }
-  },
+  "analysisSaveError": "Neizdevās saglabāt šo lēmumu. Mēģiniet vēlreiz.",
   "analysisCubeInfo": "{side}: {action} · {mark} · zaudējums {loss}",
   "@analysisCubeInfo": {
     "placeholders": {
@@ -1519,5 +1514,104 @@
   "metricExplainerEquityBody": "Ja rezultāts nav zināms, kuba neietekmēts kapitāls rāda pozīcijas vidējo vērtību punktos, ja kuba vērtība ir 1. +1,0 nozīmē gaidāmu viena punkta uzvaru, bet −0,5 — puspunktu zaudējumu.",
   "metricExplainerEquityLossBody": "Katru gājienu salīdzinām ar dzinēja labāko gājienu. Kapitāla zudums rāda, cik paredzamās vērtības gājiens atdeva. −0,016 nozīmē, ka tas bija tikai par 0,016 punktiem sliktāks — niecīga kļūda. 0,000 nozīmē, ka atrasts labākais gājiens.",
   "metricExplainerErrorRateBody": "Vidējais zaudējums ir novērtēto kauliņu lēmumu vidējais rādītājs izvēlētajās vienībās. Kuba lēmumiem ir atsevišķs vidējais. Mazāks skaitlis nozīmē, ka gājieni ir tuvāk dzinēja augstākajam vērtējumam; tas nav kalibrēts spēlētāja reitings.",
-  "metricExplainerMoveMarksBody": "MWC mācību robežas: labākais < 0,05 pp, labs < 0,5 pp, apšaubāms < 1,5 pp, kļūda < 3 pp, rupja kļūda ≥ 3 pp. Tās ir mācību robežas, nevis ticamības vai turnīra reitings.\n\nKuba neietekmēta kapitāla mācību robežas:"
+  "metricExplainerMoveMarksBody": "MWC mācību robežas: labākais < 0,05 pp, labs < 0,5 pp, apšaubāms < 1,5 pp, kļūda < 3 pp, rupja kļūda ≥ 3 pp. Tās ir mācību robežas, nevis ticamības vai turnīra reitings.\n\nKuba neietekmēta kapitāla mācību robežas:",
+  "privacyTitle": "Privātums un dati",
+  "privacyAppTitle": "Backgammon Buddy no Freevia",
+  "privacyIntro": "Šajā lapā ir aprakstīts, kā lietotne apstrādā jūsu datus.",
+  "privacyLocalTitle": "Spēles un apmācība jūsu ierīcē",
+  "privacyLocalBody": "Vietējās partijas, iestatījumi, analīze un treniņu progress tiek glabāti šajā ierīcē. Šeit darbojas bekgemona dzinējs un trenera skaidrojumi. Izdzēšot saglabātu partiju no vēstures, tiek dzēsti arī tās saglabātie uzdevumi un mēģinājumi. Dzēsiet atsevišķus uzdevumus vai atiestatiet progresu sadaļā “Mācības”; vietējos kļūdu ziņojumus notīriet sadaļā Iestatījumi → Diagnostika. Ierīces dublēšanas iestatījumi var attiekties arī uz partiju vēsturi. Tiešsaistes pierakstīšanās dati tiek glabāti ierīces aizsargātajā krātuvē.",
+  "privacyOnlineTitle": "Tiešsaistes un tuvuma spēle",
+  "privacyOnlineBody": "Tiešsaistes spēle nosūta anonīmu spēlētāja identifikatoru, partijas iestatījumus, gājienus un kauliņu apstiprināšanas ierakstus uz Google Firebase, lai abi spēlētāji varētu spēlēt vienu partiju. Vēstures dzēšana šajā ierīcē neizdzēš tiešsaistes ierakstus. Mitinātās partijas beidzas 30 dienas pēc izveides; ieplānotā tīrīšana dzēš to mākoņa žurnālus. Partiju ieraksti tiek glabāti ES; Firebase Authentication apstrādā pierakstīšanās datus ASV. Tiešsaistes savienojums ar Google tiek šifrēts pārsūtīšanas laikā. Tuvuma spēlē dati tiek apmainīti ar otru ierīci nešifrētā lokālā savienojumā; izmantojiet uzticamu Wi-Fi.",
+  "privacyDiagnosticsTitle": "Neobligāta lietojuma un avāriju diagnostika",
+  "privacyDiagnosticsBody": "Kopīgošana ir izslēgta, līdz to iespējojat iestatījumos. Ja tā ir ieslēgta, Google Firebase saņem lietojuma notikumus, lietotnes un ierīces informāciju, veiktspējas mērījumus un avāriju ziņojumus, lai palīdzētu uzlabot lietotni. Jebkurā laikā izslēdziet kopīgošanu, lai apturētu jaunu neobligātu datu vākšanu. Tas neizdzēš iepriekš nosūtītos datus. Vietējā diagnostika un tiešsaistes partijas darbojas neatkarīgi no šīs izvēles.",
+  "privacyCameraTitle": "Kamera tuvumā esošiem QR kodiem",
+  "privacyCameraBody": "Izvēles kamera skenē tuvumā esošo spēļu QR kodus. Attēli tiek apstrādāti ierīcē un netiek saglabāti vai augšupielādēti. Varat liegt piekļuvi kamerai un manuāli ievadīt resursdatora adresi. Šajā versijā netiek izmantots mikrofons un nav pieejama spēle pie fiziska galdiņa.",
+  "privacyFeedbackTitle": "Jūsu izvēlētās atsauksmes",
+  "privacyFeedbackBody": "Atsauksme atver GitHub problēmas melnrakstu pārskatīšanai. Atverot melnrakstu, GitHub tiek nosūtīta lietotnes versija un platforma; atsauksmē no diagnostikas var būt arī kļūdu informācija. Problēma netiek publicēta, kamēr to neiesniedzat. Problēmas var būt publiskas, tāpēc pirms nosūtīšanas izdzēsiet privātu informāciju.",
+  "privacyContactTitle": "Privātuma kontaktinformācija",
+  "privacyReadPolicy": "Lasīt privātuma politiku",
+  "privacyPolicyOpenFailed": "Neizdevās atvērt privātuma politiku.",
+  "privacySupportTitle": "Palīdzība un atbalsts",
+  "privacySupportOpenFailed": "Neizdevās atvērt atbalsta lapu. Sazinieties ar support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Dzēst tiešsaistes identitāti un datus?",
+  "privacyDeleteConfirmBody": "Tas nekavējoties pārtrauc abiem spēlētājiem piekļuvi šīs identitātes mākoņa partijām un pieprasa dzēst identitāti un kopīgotos tiešsaistes žurnālus 30 dienu laikā. Pēc konta dzēšanas Google var būt nepieciešamas līdz 180 dienām, lai noņemtu Authentication datus no aktīvajām un rezerves sistēmām. Vietējā vēsture un treniņi paliek šajā ierīcē. Iepriekš nosūtītā izvēles diagnostika ir atsevišķa; sazinieties ar privacy@freevia.org. Šo pieprasījumu nevar atsaukt.",
+  "privacyRequestDeletion": "Pieprasīt dzēšanu",
+  "privacyDeleteSectionTitle": "Tiešsaistes datu dzēšana",
+  "privacyDeleteInstructions": "Lai apstiprinātu īpašumtiesības, izmantojiet šajā ierīcē saglabāto pierakstīšanos. Ar spēlētāja identifikatoru vai uzaicinājuma kodu vien nepietiek. Tikai lokālajiem spēlētājiem tiešsaistes konts nav vajadzīgs.",
+  "privacySendingRequest": "Nosūta pieprasījumu…",
+  "privacyDeleteAction": "Dzēst tiešsaistes identitāti un datus",
+  "privacyDeleteRequested": "Dzēšanas pieprasījums ir nosūtīts. Šī tiešsaistes identitāte ir izrakstīta. Tās mākoņa dati tiks dzēsti 30 dienu laikā. Atsākot tiešsaistes spēli, tiks izveidota jauna identitāte. Google Authentication datu dzēšana var ilgt līdz 180 dienām. Lai saņemtu palīdzību, sazinieties ar privacy@freevia.org.",
+  "privacyDeleteRequestedSignOutFailed": "Dzēšana ir pieprasīta, un mākoņa dati tiks dzēsti 30 dienu laikā. Ierīcei neizdevās notīrīt saglabāto pierakstīšanos, taču tiešsaistes identitātei ir liegta piekļuve partijām. Google Authentication datu dzēšana var ilgt līdz 180 dienām. Sazinieties ar privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "Šajā ierīcē nav saglabāta derīga tiešsaistes identitāte. Jauns konts netika izveidots. Ja iepriekš spēlējāt tiešsaistē, sazinieties ar privacy@freevia.org; mitinātās partijas beidzas pēc 30 dienām.",
+  "privacyDeleteRequestFailed": "Neizdevās apstiprināt dzēšanas pieprasījumu. Pārbaudiet savienojumu un mēģiniet vēlreiz vai sazinieties ar privacy@freevia.org.",
+  "privacyConsentTitle": "Kopīgot lietojuma un avāriju diagnostiku?",
+  "privacyConsentBody": "Uz Google Firebase tiek nosūtīti lietojuma notikumi, lietotnes un ierīces informācija, avāriju ziņojumi un veiktspējas mērījumi. Kopīgošana nav obligāta. Spēles un apmācība darbojas arī bez tās; iestatījumos to var atkal izslēgt.",
+  "privacyKeepOff": "Atstāt izslēgtu",
+  "privacyShareDiagnostics": "Kopīgot diagnostiku",
+  "privacySaveFailed": "Neizdevās saglabāt privātuma izvēli. Mēģiniet vēlreiz.",
+  "privacySettingsSubtitle": "Kas paliek jūsu ierīcē un kas tiek kopīgots",
+  "privacyDiagnosticsSettingTitle": "Kopīgot lietojuma un avāriju diagnostiku",
+  "privacyDiagnosticsSettingSubtitle": "Neobligāti · pēc noklusējuma izslēgta",
+  "lanScanToJoin": "Skenēt, lai pievienotos",
+  "lanScanHostCode": "Skenēt saimnieka kodu",
+  "lanEnterAddressInstead": "Tā vietā ievadiet adresi",
+  "lanTorch": "Lukturis",
+  "lanCameraPermissionDenied": "Backgammon Buddy nevar izmantot kameru. Atļaujiet piekļuvi ierīces iestatījumos vai ievadiet adresi, kas redzama otrā ierīcē.",
+  "lanCameraUnsupported": "Šī ierīce nevar skenēt QR kodus. Ievadiet adresi, kas redzama otrā ierīcē.",
+  "lanCameraStartFailed": "Neizdevās palaist kameru. Ievadiet adresi, kas redzama otrā ierīcē.",
+  "lanPointCameraAtQr": "Pavērsiet kameru pret QR kodu otrā ierīcē.",
+  "physicalBuddyUnavailableTitle": "Spēle pie fiziska galdiņa",
+  "physicalBuddyUnavailableBody": "Šajā versijā nav pieejama spēle pie fiziska galdiņa. Spēles ekrānā, apmācība un treniņi pieejami sākuma ekrānā.",
+  "boardSemanticsLabel": "Beckgammon galdiņš. {status}",
+  "boardWhiteToRoll": "Baltajiem jāmet kauliņi.",
+  "boardBlackToRoll": "Melnajiem jāmet kauliņi.",
+  "boardWhiteToMove": "Baltajiem gājiens, metiet {die1} un {die2}.",
+  "boardBlackToMove": "Melnajiem gājiens, metiet {die1} un {die2}.",
+  "boardDoubleOffered": "Piedāvāta dubultošana.",
+  "boardResignationOffered": "Piedāvāta padošanās.",
+  "boardGameOver": "Spēle ir beigusies.",
+  "feedbackBugTitle": "[Kļūda]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Ideja]: Backgammon Buddy",
+  "feedbackBugSummary": "Īsi aprakstiet, kas notika.",
+  "feedbackBugReproduction": "Norādiet darbības, kas izraisīja problēmu.",
+  "feedbackBugExpected": "Aprakstiet, kādu rezultātu gaidījāt.",
+  "feedbackIdeaNeed": "Aprakstiet, ko vēlējāties darīt vai apgūt.",
+  "feedbackIdeaSuggestion": "Aprakstiet, kādas izmaiņas būtu noderīgas.",
+  "feedbackExcerptTruncated": "(saīsināts — pilnu žurnālu kopējiet diagnostikas ekrānā, izvēloties “Kopēt starpliktuvē”)",
+  "boardWhiteToMoveNoRoll": "Baltajiem gājiens.",
+  "boardBlackToMoveNoRoll": "Melnajiem gājiens.",
+  "feedbackFieldVersion": "Lietotnes versija",
+  "feedbackFieldPlatform": "Platforma",
+  "feedbackFieldSummary": "Kas notika",
+  "feedbackFieldReproduction": "Darbības problēmas atkārtošanai",
+  "feedbackFieldExpected": "Gaidītais rezultāts",
+  "feedbackFieldNeed": "Ko vēlējāties darīt",
+  "feedbackFieldIdea": "Ieteiktās izmaiņas",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "QR kods, lai pievienotos šai spēlei",
+  "lanJoinInstruction": "Otrā ierīcē atveriet “Spēlēt tuvumā”, izvēlieties “Pievienoties” un noskenējiet šo QR kodu.",
+  "homePlayWithBuddy": "Spēlēt ar Buddy",
+  "homeBuddyShort": "Buddy"
 }

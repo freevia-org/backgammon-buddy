@@ -2,6 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../l10n/app_localizations.dart';
+import '../l10n/app_localizations_en.dart';
+
 /// The repository issues live in.
 const String kFeedbackRepository = 'freevia-org/backgammon-buddy';
 
@@ -31,32 +34,34 @@ Uri buildFeedbackIssueUri({
   required String appVersion,
   required String platform,
   String? diagnosticsExcerpt,
+  AppLocalizations? l10n,
 }) {
+  final copy = l10n ?? AppLocalizationsEn();
   final excerpt = diagnosticsExcerpt?.trim();
   final query = <String, String>{
     'template': kind == FeedbackKind.bug
         ? 'bug_report.yml'
         : 'feature_request.yml',
     'title': kind == FeedbackKind.bug
-        ? '[Bug]: Backgammon Buddy $appVersion ($platform)'
-        : '[Idea]: Backgammon Buddy',
+        ? copy.feedbackBugTitle(appVersion, platform)
+        : copy.feedbackIdeaTitle,
     'version': appVersion,
     'platform': platform,
   };
 
   if (kind == FeedbackKind.bug) {
     query.addAll({
-      'summary': 'Replace this with a short description of what happened.',
-      'reproduce': 'Replace this with the steps that led to the problem.',
-      'expected': 'Replace this with what you expected to happen.',
+      'summary': copy.feedbackBugSummary,
+      'reproduce': copy.feedbackBugReproduction,
+      'expected': copy.feedbackBugExpected,
     });
     if (excerpt != null && excerpt.isNotEmpty) {
-      query['context'] = _clampExcerpt(excerpt);
+      query['context'] = _clampExcerpt(excerpt, copy.feedbackExcerptTruncated);
     }
   } else {
     query.addAll({
-      'need': 'Replace this with what you wanted to do or learn.',
-      'idea': 'Replace this with the change you would find helpful.',
+      'need': copy.feedbackIdeaNeed,
+      'idea': copy.feedbackIdeaSuggestion,
     });
   }
 
@@ -64,11 +69,21 @@ Uri buildFeedbackIssueUri({
 }
 
 /// Text shown before opening GitHub, matching the fields sent in the URL.
-String feedbackDraftPreviewText(Uri uri) {
+String feedbackDraftPreviewText(Uri uri, {AppLocalizations? l10n}) {
+  final copy = l10n ?? AppLocalizationsEn();
+  final labels = <String, String>{
+    'version': copy.feedbackFieldVersion,
+    'platform': copy.feedbackFieldPlatform,
+    'summary': copy.feedbackFieldSummary,
+    'reproduce': copy.feedbackFieldReproduction,
+    'expected': copy.feedbackFieldExpected,
+    'need': copy.feedbackFieldNeed,
+    'idea': copy.feedbackFieldIdea,
+  };
   final fields = uri.queryParameters;
   final values = fields.entries
       .where((entry) => !const {'template', 'title'}.contains(entry.key))
-      .map((entry) => '${entry.key}: ${entry.value}')
+      .map((entry) => '${labels[entry.key] ?? entry.key}: ${entry.value}')
       .join('\n\n');
   return '${fields['title']}\n\n$values';
 }
@@ -84,10 +99,10 @@ String feedbackDraftPreviewText(Uri uri) {
 /// cause, with everything after it the consequence.
 const int _maxExcerptChars = 1500;
 
-String _clampExcerpt(String excerpt) => excerpt.length <= _maxExcerptChars
+String _clampExcerpt(String excerpt, String truncationNotice) =>
+    excerpt.length <= _maxExcerptChars
     ? excerpt
-    : '${excerpt.substring(0, _maxExcerptChars)}\n… (truncated — use Copy to '
-        'clipboard on the Diagnostics screen for the full log)';
+    : '${excerpt.substring(0, _maxExcerptChars)}\n… $truncationNotice';
 
 /// A short name for the platform the app is running on.
 ///

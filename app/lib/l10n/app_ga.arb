@@ -1136,7 +1136,7 @@
   "analysisBestMoveLine": "Is fearr: {move}",
   "analysisExplain": "Mínigh",
   "analysisSaveForPractice": "Sábháil le cleachtadh",
-  "analysisSaveError": "Níorbh fhéidir an cinneadh seo a shábháil: {error}",
+  "analysisSaveError": "Níorbh fhéidir an cinneadh seo a shábháil. Bain triail eile as.",
   "analysisCubeInfo": "{side}: {action} · {mark} · caillteanas {loss}",
   "analysisCubeDecision": "Cinneadh ciúib",
   "analysisCubePlayed": "Imeartha: {action} ({percent}% seans buaite an chluiche).",
@@ -1202,11 +1202,6 @@
   "@analysisBestMoveLine": {
     "placeholders": {
       "move": {}
-    }
-  },
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
     }
   },
   "@analysisCubeInfo": {
@@ -1519,5 +1514,104 @@
         "type": "int"
       }
     }
-  }
+  },
+  "privacyTitle": "Príobháideachas agus sonraí",
+  "privacyAppTitle": "Backgammon Buddy le Freevia",
+  "privacyIntro": "Déanann an leathanach seo cur síos ar an gcaoi a láimhseálann an aip do shonraí.",
+  "privacyLocalTitle": "Cluichí agus teagasc ar do ghléas",
+  "privacyLocalBody": "Stóráiltear cluichí áitiúla, socruithe, anailís agus dul chun cinn cleachtaidh ar an ngléas seo. Ritheann inneall backgammon agus míniúcháin an teagascóra anseo. Scrios cluiche sábháilte ón Stair chun a chleachtaí agus a iarrachtaí sábháilte a bhaint freisin. Scrios cleachtaí aonair nó athshocraigh dul chun cinn i bhFoghlaim; glan tuairiscí earráide áitiúla i Socruithe → Diagnóisic. D’fhéadfadh socruithe cúltaca do ghléis dul i bhfeidhm ar stair na gcluichí. Coinnítear sonraí síniú isteach ar líne i stóráil chosanta an ghléis.",
+  "privacyOnlineTitle": "Imirt ar líne agus in aice láimhe",
+  "privacyOnlineBody": "Seolann imirt ar líne aitheantas imreora gan ainm, socruithe cluiche, gluaiseachtaí agus taifid deimhniúcháin na ndísle chuig Google Firebase chun gur féidir leis an mbeirt an cluiche céanna a imirt. Ní scriosann Stair a scriosadh ar an ngléas seo taifid ar líne. Téann cluichí óstáilte in éag 30 lá tar éis a gcruthaithe; baintear a logaí néil le glanadh sceidealaithe. Stóráiltear taifid cluichí san AE; próiseálann Firebase Authentication sonraí síniú isteach sna Stáit Aontaithe. Tá naisc ar líne le Google criptithe le linn aistrithe. Malartaíonn imirt in aice láimhe sonraí cluiche leis an ngléas eile trí nasc áitiúil neamhchriptithe; úsáid Wi-Fi iontaofa.",
+  "privacyDiagnosticsTitle": "Diagnóisic úsáide agus tuairteála roghnach",
+  "privacyDiagnosticsBody": "Tá an roinnt múchta go dtí go roghnaíonn tú í i Socruithe. Má chumasaítear í, faigheann Google Firebase imeachtaí úsáide, faisnéis aipe/gléis, tomhais feidhmíochta agus tuairiscí tuairteála chun cabhrú leis an aip a fheabhsú. Múch an roinnt am ar bith chun bailiú roghnach nua a stopadh. Ní scriosann sé seo sonraí a seoladh cheana. Feidhmíonn diagnóisic áitiúil agus cluichí ar líne go neamhspleách ar an rogha seo.",
+  "privacyCameraTitle": "Ceamara do chóid QR in aice láimhe",
+  "privacyCameraBody": "Scanann an ceamara roghnach cóid QR do chluichí in aice láimhe. Próiseáiltear íomhánna ar do ghléas agus ní shábháiltear ná ní uaslódáiltear iad. Is féidir leat rochtain ceamara a dhiúltú agus seoladh an óstaigh a chur isteach de láimh. Ní úsáideann an leagan seo an micreafón ná ní thairgeann sé imirt ar chlár fisiciúil.",
+  "privacyFeedbackTitle": "Aiseolas a roghnaíonn tú a sheoladh",
+  "privacyFeedbackBody": "Osclaíonn aiseolas dréacht saincheiste GitHub duit le hathbhreithniú. Nuair a osclaítear an dréacht, seoltar leagan na haipe agus an t-ardán chuig GitHub; d’fhéadfadh sonraí earráide a bheith san aiseolas ó Diagnóisic freisin. Ní fhoilsítear aon saincheist go dtí go seolann tú í. D’fhéadfadh saincheisteanna a bheith poiblí, mar sin bain faisnéis phríobháideach sula seolann tú.",
+  "privacyContactTitle": "Teagmháil phríobháideachais",
+  "privacyReadPolicy": "Léigh an polasaí príobháideachais",
+  "privacyPolicyOpenFailed": "Níorbh fhéidir an polasaí príobháideachais a oscailt.",
+  "privacySupportTitle": "Cabhair agus tacaíocht",
+  "privacySupportOpenFailed": "Níorbh fhéidir an tacaíocht a oscailt. Déan teagmháil le support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Scrios aitheantas agus sonraí ar líne?",
+  "privacyDeleteConfirmBody": "Cuireann sé seo deireadh láithreach le rochtain an aitheantais seo ar chluichí néil don dá imreoir agus iarrann sé scriosadh an aitheantais agus na logaí comhroinnte laistigh de 30 lá. D’fhéadfadh Google suas le 180 lá a thógáil chun sonraí Authentication a bhaint dá chórais bheo agus chúltaca tar éis scriosadh an chuntais. Fanann an Stair áitiúil agus an cleachtadh ar an ngléas seo. Tá diagnóisic roghnach a seoladh roimhe seo scartha; déan teagmháil le privacy@freevia.org fúthu. Ní féidir an t-iarratas seo a chealú.",
+  "privacyRequestDeletion": "Iarr scriosadh",
+  "privacyDeleteSectionTitle": "Scrios sonraí ar líne",
+  "privacyDeleteInstructions": "Úsáid an síniú isteach atá sábháilte ar an ngléas seo chun úinéireacht a fhíorú. Ní chruthaíonn aitheantas imreora ná cód cuireadh amháin úinéireacht. Níl cuntas ar líne ag teastáil ó imreoirí áitiúla amháin.",
+  "privacySendingRequest": "Iarratas á sheoladh…",
+  "privacyDeleteAction": "Scrios aitheantas agus sonraí ar líne",
+  "privacyDeleteRequested": "Iarradh an scriosadh. Síníodh amach an t-aitheantas ar líne seo. Scriosfar a shonraí néil laistigh de 30 lá. Cruthófar aitheantas nua má thosaíonn tú ag imirt ar líne arís. D’fhéadfadh sé suas le 180 lá a thógáil sonraí Authentication Google a bhaint. Déan teagmháil le privacy@freevia.org chun cabhair a fháil.",
+  "privacyDeleteRequestedSignOutFailed": "Iarradh an scriosadh agus scriosfar sonraí néil laistigh de 30 lá. Níorbh fhéidir leis an ngléas an síniú isteach sábháilte a ghlanadh, ach cuireadh bac ar an aitheantas ar líne rochtain a fháil ar chluichí eile. D’fhéadfadh sé suas le 180 lá a thógáil sonraí Authentication Google a bhaint. Déan teagmháil le privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "Níl aon aitheantas ar líne inúsáidte sábháilte ar an ngléas seo. Níor cruthaíodh cuntas nua. Má d’imir tú ar líne roimhe seo, déan teagmháil le privacy@freevia.org; téann cluichí óstáilte in éag tar éis 30 lá.",
+  "privacyDeleteRequestFailed": "Níorbh fhéidir an t-iarratas scriosta a dheimhniú. Seiceáil an nasc agus bain triail eile as, nó déan teagmháil le privacy@freevia.org.",
+  "privacyConsentTitle": "A roinnfear diagnóisic úsáide agus tuairteála?",
+  "privacyConsentBody": "Seoltar imeachtaí úsáide, faisnéis aipe/gléis, tuairiscí tuairteála agus tomhais feidhmíochta chuig Google Firebase leis seo. Is roghnach an roinnt. Oibríonn cluichí agus teagasc gan é, agus is féidir leat é a mhúchadh arís i Socruithe.",
+  "privacyKeepOff": "Fág as",
+  "privacyShareDiagnostics": "Roinn diagnóisic",
+  "privacySaveFailed": "Níorbh fhéidir an rogha phríobháideachais a shábháil. Bain triail eile as.",
+  "privacySettingsSubtitle": "Cad a fhanann ar do ghléas agus cad a roinntear",
+  "privacyDiagnosticsSettingTitle": "Roinn diagnóisic úsáide agus tuairteála",
+  "privacyDiagnosticsSettingSubtitle": "Roghnach · as de réir réamhshocraithe",
+  "lanScanToJoin": "Scan chun páirt a ghlacadh",
+  "lanScanHostCode": "Scan cód an óstaigh",
+  "lanEnterAddressInstead": "Cuir an seoladh isteach ina ionad",
+  "lanTorch": "Splanc",
+  "lanCameraPermissionDenied": "Ní féidir le Backgammon Buddy an ceamara a úsáid. Ceadaigh rochtain sna socruithe, nó cuir isteach an seoladh ón ngléas eile.",
+  "lanCameraUnsupported": "Ní féidir leis an ngléas seo cóid QR a scanadh. Cuir isteach an seoladh ón ngléas eile.",
+  "lanCameraStartFailed": "Níorbh fhéidir an ceamara a thosú. Cuir isteach an seoladh ón ngléas eile.",
+  "lanPointCameraAtQr": "Dírigh an ceamara ar an gcód QR ar an ngléas eile.",
+  "physicalBuddyUnavailableTitle": "Imirt ar chlár fisiciúil",
+  "physicalBuddyUnavailableBody": "Níl imirt ar chlár fisiciúil ar fáil sa leagan seo. Tá cluichí ar an scáileán, teagasc agus cleachtadh ar fáil ón Scáileán baile.",
+  "boardSemanticsLabel": "Clár backgammon. {status}",
+  "boardWhiteToRoll": "Is le Bán an chéad chaitheamh.",
+  "boardBlackToRoll": "Is le Dubh an chéad chaitheamh.",
+  "boardWhiteToMove": "Is ag Bán atá an imirt; caith {die1} agus {die2}.",
+  "boardBlackToMove": "Is ag Dubh atá an imirt; caith {die1} agus {die2}.",
+  "boardDoubleOffered": "Tá dúbailt tairgthe.",
+  "boardResignationOffered": "Tá géilleadh tairgthe.",
+  "boardGameOver": "Tá an cluiche thart.",
+  "feedbackBugTitle": "[Fabht]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Smaoineamh]: Backgammon Buddy",
+  "feedbackBugSummary": "Cuir cur síos gairid anseo ar ar tharla.",
+  "feedbackBugReproduction": "Cuir na céimeanna a chruthaigh an fhadhb anseo.",
+  "feedbackBugExpected": "Cuir síos anseo ar an toradh a bhí tú ag súil leis.",
+  "feedbackIdeaNeed": "Cuir síos anseo ar a raibh tú ag iarraidh a dhéanamh nó a fhoghlaim.",
+  "feedbackIdeaSuggestion": "Cuir síos anseo ar an athrú a bheadh úsáideach duit.",
+  "feedbackExcerptTruncated": "(giorraithe — bain úsáid as Cóipeáil chuig an ngearrthaisce i Diagnóisic chun an logchomhad iomlán a fháil)",
+  "boardWhiteToMoveNoRoll": "Is ag Bán atá an imirt.",
+  "boardBlackToMoveNoRoll": "Is ag Dubh atá an imirt.",
+  "feedbackFieldVersion": "Leagan na haipe",
+  "feedbackFieldPlatform": "Ardán",
+  "feedbackFieldSummary": "Cad a tharla",
+  "feedbackFieldReproduction": "Céimeanna chun é a atáirgeadh",
+  "feedbackFieldExpected": "Toradh a raibh súil leis",
+  "feedbackFieldNeed": "A raibh tú ag iarraidh a dhéanamh",
+  "feedbackFieldIdea": "Athrú molta",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "Cód QR chun páirt a ghlacadh sa chluiche seo",
+  "lanJoinInstruction": "Ar an ngléas eile, oscail Imirt in Aice Láimhe, roghnaigh Glac páirt, agus scan an cód QR seo.",
+  "homePlayWithBuddy": "Imir le Buddy",
+  "homeBuddyShort": "Buddy"
 }

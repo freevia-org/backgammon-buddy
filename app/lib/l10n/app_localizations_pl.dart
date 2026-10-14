@@ -1391,9 +1391,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get analysisSaveForPractice => 'Zapisz do ćwiczeń';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Nie udało się zapisać tej decyzji: $error';
-  }
+  String get analysisSaveError =>
+      'Nie udało się zapisać tej decyzji. Spróbuj ponownie.';
 
   @override
   String analysisCubeInfo(
@@ -2504,4 +2503,276 @@ class AppLocalizationsPl extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Błąd: $error';
   }
+
+  @override
+  String get privacyTitle => 'PrywatnoÅ›Ä‡ i dane';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy od Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Ta strona opisuje, jak bieÅ¼Ä…ca wersja aplikacji przetwarza Twoje dane.';
+
+  @override
+  String get privacyLocalTitle => 'Gry i nauka na tym urzÄ…dzeniu';
+
+  @override
+  String get privacyLocalBody =>
+      'Lokalne partie, ustawienia, analizy i postÄ™py w Ä‡wiczeniach sÄ… przechowywane na tym urzÄ…dzeniu. Silnik backgammona i wyjaÅ›nienia tutora dziaÅ‚ajÄ… tutaj. UsuÅ„ zapisanÄ… partiÄ™ z Historii, aby usunÄ…Ä‡ takÅ¼e zapisane Ä‡wiczenia i podejÅ›cia z niÄ… zwiÄ…zane. UsuÅ„ pojedyncze Ä‡wiczenia lub wyzeruj postÄ™py w sekcji Nauka; wyczyÅ›Ä‡ lokalne raporty o bÅ‚Ä™dach w Ustawienia â†’ Diagnostyka. Ustawienia kopii zapasowej urzÄ…dzenia mogÄ… obejmowaÄ‡ takÅ¼e historiÄ™ partii. Dane logowania online sÄ… przechowywane w chronionym magazynie urzÄ…dzenia.';
+
+  @override
+  String get privacyOnlineTitle => 'Gra online i w pobliÅ¼u';
+
+  @override
+  String get privacyOnlineBody =>
+      'Gra online wysyÅ‚a do Google Firebase anonimowy identyfikator gracza, ustawienia partii, ruchy i zapisy uzgadniania koÅ›ci, aby obaj gracze mogli rozegraÄ‡ tÄ™ samÄ… partiÄ™. UsuniÄ™cie Historii na tym urzÄ…dzeniu nie usuwa danych online. Hostowane partie wygasajÄ… po 30 dniach od utworzenia; zaplanowane czyszczenie usuwa ich dzienniki w chmurze. Dane partii sÄ… przechowywane w UE; Firebase Authentication przetwarza dane logowania w Stanach Zjednoczonych. PoÅ‚Ä…czenia online z Google sÄ… szyfrowane podczas przesyÅ‚ania. Gra w pobliÅ¼u wymienia informacje o partii z drugim urzÄ…dzeniem przez nieszyfrowane poÅ‚Ä…czenie lokalne; korzystaj z zaufanej sieci Wi-Fi.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Opcjonalna diagnostyka uÅ¼ycia i awarii';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'UdostÄ™pnianie jest wyÅ‚Ä…czone, dopÃ³ki nie wÅ‚Ä…czysz go w Ustawieniach. Po wÅ‚Ä…czeniu Google Firebase otrzymuje zdarzenia uÅ¼ycia, informacje o aplikacji i urzÄ…dzeniu, pomiary wydajnoÅ›ci oraz raporty o awariach, aby pomÃ³c ulepszaÄ‡ aplikacjÄ™. W kaÅ¼dej chwili moÅ¼esz wyÅ‚Ä…czyÄ‡ udostÄ™pnianie, aby zatrzymaÄ‡ dalsze opcjonalne zbieranie danych. Nie usuwa to wczeÅ›niej wysÅ‚anych danych. Diagnostyka lokalna i partie online dziaÅ‚ajÄ… niezaleÅ¼nie od tego wyboru.';
+
+  @override
+  String get privacyCameraTitle =>
+      'Aparat do skanowania kodÃ³w QR pobliskich gier';
+
+  @override
+  String get privacyCameraBody =>
+      'Opcjonalny aparat skanuje kody QR pobliskich gier. Obrazy sÄ… przetwarzane na urzÄ…dzeniu i nie sÄ… zapisywane ani przesyÅ‚ane. MoÅ¼esz odmÃ³wiÄ‡ dostÄ™pu do aparatu i rÄ™cznie wpisaÄ‡ adres hosta. Ta wersja nie uÅ¼ywa mikrofonu ani nie umoÅ¼liwia gry na fizycznej planszy.';
+
+  @override
+  String get privacyFeedbackTitle => 'Opinie, ktÃ³re zdecydujesz siÄ™ wysÅ‚aÄ‡';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Opinia otwiera wersjÄ™ roboczÄ… zgÅ‚oszenia GitHub do sprawdzenia. Otwarcie wersji roboczej wysyÅ‚a do GitHub wersjÄ™ aplikacji i platformÄ™; opinia z Diagnostyki moÅ¼e zawieraÄ‡ takÅ¼e szczegÃ³Å‚y bÅ‚Ä™du. ZgÅ‚oszenie nie zostanie opublikowane, dopÃ³ki go nie wyÅ›lesz. ZgÅ‚oszenia mogÄ… byÄ‡ publiczne, wiÄ™c przed wysÅ‚aniem usuÅ„ prywatne informacje.';
+
+  @override
+  String get privacyContactTitle => 'Kontakt w sprawach prywatnoÅ›ci';
+
+  @override
+  String get privacyReadPolicy => 'Przeczytaj politykÄ™ prywatnoÅ›ci';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Nie moÅ¼na otworzyÄ‡ polityki prywatnoÅ›ci.';
+
+  @override
+  String get privacySupportTitle => 'Pomoc i wsparcie';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Nie moÅ¼na otworzyÄ‡ pomocy. Napisz na support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'UsunÄ…Ä‡ toÅ¼samoÅ›Ä‡ online i dane?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Ta czynnoÅ›Ä‡ natychmiast odbiera obu graczom dostÄ™p do meczÃ³w tej toÅ¼samoÅ›ci w chmurze i rozpoczyna Å¼Ä…danie usuniÄ™cia toÅ¼samoÅ›ci oraz wspÃ³lnych dziennikÃ³w partii online w ciÄ…gu 30 dni. Google moÅ¼e potrzebowaÄ‡ do 180 dni od usuniÄ™cia konta, aby usunÄ…Ä‡ dane Authentication z systemÃ³w bieÅ¼Ä…cych i kopii zapasowych. Lokalna Historia i Ä‡wiczenia pozostanÄ… na tym urzÄ…dzeniu. WczeÅ›niej wysÅ‚ana opcjonalna diagnostyka jest odrÄ™bna; w tej sprawie napisz na privacy@freevia.org. Tego Å¼Ä…dania nie moÅ¼na cofnÄ…Ä‡.';
+
+  @override
+  String get privacyRequestDeletion => 'PoproÅ› o usuniÄ™cie';
+
+  @override
+  String get privacyDeleteSectionTitle => 'UsuÅ„ dane online';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'UÅ¼yj zapisanego logowania na tym urzÄ…dzeniu, aby potwierdziÄ‡ wÅ‚asnoÅ›Ä‡. Sam identyfikator gracza lub kod zaproszenia nie potwierdza wÅ‚asnoÅ›ci. Gracze korzystajÄ…cy wyÅ‚Ä…cznie z trybu lokalnego nie potrzebujÄ… konta online.';
+
+  @override
+  String get privacySendingRequest => 'WysyÅ‚anie Å¼Ä…daniaâ€¦';
+
+  @override
+  String get privacyDeleteAction => 'UsuÅ„ toÅ¼samoÅ›Ä‡ online i dane';
+
+  @override
+  String get privacyDeleteRequested =>
+      'ZaÅ¼Ä…dano usuniÄ™cia. Ta toÅ¼samoÅ›Ä‡ online zostaÅ‚a wylogowana. Jej dane w chmurze zostanÄ… usuniÄ™te w ciÄ…gu 30 dni. Ponowne rozpoczÄ™cie gry online utworzy nowÄ… toÅ¼samoÅ›Ä‡. UsuniÄ™cie danych Google Authentication moÅ¼e potrwaÄ‡ do 180 dni. W razie potrzeby napisz na privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'ZaÅ¼Ä…dano usuniÄ™cia. Dane w chmurze zostanÄ… usuniÄ™te w ciÄ…gu 30 dni. UrzÄ…dzenie nie mogÅ‚o usunÄ…Ä‡ zapisanego logowania, ale toÅ¼samoÅ›Ä‡ online zostaÅ‚a zablokowana i nie moÅ¼e juÅ¼ uzyskiwaÄ‡ dostÄ™pu do partii. UsuniÄ™cie danych Google Authentication moÅ¼e potrwaÄ‡ do 180 dni. W razie potrzeby napisz na privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Na tym urzÄ…dzeniu nie ma zapisanej uÅ¼ytecznej toÅ¼samoÅ›ci online. Nie utworzono nowego konta. JeÅ›li wczeÅ›niej korzystaÅ‚eÅ› z gry online, napisz na privacy@freevia.org; hostowane partie wygasajÄ… po 30 dniach.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Nie moÅ¼na potwierdziÄ‡ Å¼Ä…dania usuniÄ™cia. SprawdÅº poÅ‚Ä…czenie i sprÃ³buj ponownie albo napisz na privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle =>
+      'UdostÄ™pniaÄ‡ dane o uÅ¼yciu i diagnostykÄ™ awarii?';
+
+  @override
+  String get privacyConsentBody =>
+      'Ta opcja wysyÅ‚a do Google Firebase zdarzenia uÅ¼ycia, informacje o aplikacji i urzÄ…dzeniu, raporty o awariach oraz pomiary wydajnoÅ›ci. UdostÄ™pnianie jest dobrowolne. Gra i tutor dziaÅ‚ajÄ… takÅ¼e przy wyÅ‚Ä…czonym udostÄ™pnianiu; moÅ¼esz je ponownie wyÅ‚Ä…czyÄ‡ w Ustawieniach.';
+
+  @override
+  String get privacyKeepOff => 'Pozostaw wyÅ‚Ä…czone';
+
+  @override
+  String get privacyShareDiagnostics => 'UdostÄ™pniaj diagnostykÄ™';
+
+  @override
+  String get privacySaveFailed =>
+      'Nie moÅ¼na zapisaÄ‡ ustawienia prywatnoÅ›ci. SprÃ³buj ponownie.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Co pozostaje na urzÄ…dzeniu, a co jest udostÄ™pniane';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'UdostÄ™pniaj dane o uÅ¼yciu i diagnostykÄ™ awarii';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Opcjonalne Â· domyÅ›lnie wyÅ‚Ä…czone';
+
+  @override
+  String get lanScanToJoin => 'Zeskanuj, aby doÅ‚Ä…czyÄ‡';
+
+  @override
+  String get lanScanHostCode => 'Zeskanuj kod hosta';
+
+  @override
+  String get lanEnterAddressInstead => 'Zamiast tego wpisz adres';
+
+  @override
+  String get lanQrAccessibilityLabel =>
+      'Kod QR umożliwiający dołączenie do tej gry';
+
+  @override
+  String get lanJoinInstruction =>
+      'Na drugim urządzeniu otwórz Grę w pobliżu, wybierz Dołącz, a następnie zeskanuj ten kod QR.';
+
+  @override
+  String get lanTorch => 'Latarka';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy nie moÅ¼e uÅ¼yÄ‡ aparatu. ZezwÃ³l na dostÄ™p do aparatu w ustawieniach urzÄ…dzenia lub rÄ™cznie wpisz adres wyÅ›wietlony na drugim urzÄ…dzeniu.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'To urzÄ…dzenie nie moÅ¼e skanowaÄ‡ kodÃ³w QR. RÄ™cznie wpisz adres wyÅ›wietlony na drugim urzÄ…dzeniu.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Nie moÅ¼na uruchomiÄ‡ aparatu. RÄ™cznie wpisz adres wyÅ›wietlony na drugim urzÄ…dzeniu.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Skieruj aparat na kod QR na drugim urzÄ…dzeniu.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Gra na fizycznej planszy nie jest dostÄ™pna w tej wersji. Gry na ekranie, tutor i Ä‡wiczenia sÄ… dostÄ™pne na ekranie gÅ‚Ã³wnym.';
+
+  @override
+  String get homePlayWithBuddy => 'Graj z Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Plansza do backgammona. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'BiaÅ‚e rzucajÄ… koÅ›Ä‡mi.';
+
+  @override
+  String get boardBlackToRoll => 'Czarne rzucajÄ… koÅ›Ä‡mi.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Ruch biaÅ‚ych â€” rzuÄ‡ $die1 i $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Ruch czarnych â€” rzuÄ‡ $die1 i $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Zapropnowano podwojenie stawki.';
+
+  @override
+  String get boardResignationOffered => 'Zapropnowano poddanie partii.';
+
+  @override
+  String get boardGameOver => 'Partia siÄ™ zakoÅ„czyÅ‚a.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[BÅ‚Ä…d]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[PomysÅ‚]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'ZastÄ…p ten tekst krÃ³tkim opisem tego, co siÄ™ staÅ‚o.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'ZastÄ…p ten tekst krokami, ktÃ³re doprowadziÅ‚y do problemu.';
+
+  @override
+  String get feedbackBugExpected =>
+      'ZastÄ…p ten tekst opisem oczekiwanego dziaÅ‚ania.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'ZastÄ…p ten tekst opisem tego, co chcesz zrobiÄ‡ lub czego siÄ™ nauczyÄ‡.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'ZastÄ…p ten tekst zmianÄ…, ktÃ³ra byÅ‚aby dla Ciebie pomocna.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(skrÃ³cono â€” uÅ¼yj opcji Kopiuj do schowka na ekranie Diagnostyka, aby skopiowaÄ‡ peÅ‚ny dziennik)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Ruch biaÅ‚ych.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Ruch czarnych.';
+
+  @override
+  String get feedbackFieldVersion => 'Wersja';
+
+  @override
+  String get feedbackFieldPlatform => 'Platforma';
+
+  @override
+  String get feedbackFieldSummary => 'Podsumowanie';
+
+  @override
+  String get feedbackFieldReproduction => 'Kroki odtworzenia problemu';
+
+  @override
+  String get feedbackFieldExpected => 'Oczekiwane dziaÅ‚anie';
+
+  @override
+  String get feedbackFieldNeed => 'Co chcesz zrobiÄ‡ lub czego siÄ™ nauczyÄ‡';
+
+  @override
+  String get feedbackFieldIdea => 'PomysÅ‚';
 }

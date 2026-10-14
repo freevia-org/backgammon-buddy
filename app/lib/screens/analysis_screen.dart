@@ -653,12 +653,12 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
       await Navigator.of(context).push(
         MaterialPageRoute<void>(builder: (_) => PracticeScreen(positionId: id)),
       );
-    } catch (error) {
+    } catch (_) {
       if (!mounted) return;
       final l10n = appLocalizationsOf(context);
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(l10n.analysisSaveError('$error'))));
+      ).showSnackBar(SnackBar(content: Text(l10n.analysisSaveError)));
     }
   }
 

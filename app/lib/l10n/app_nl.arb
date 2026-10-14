@@ -715,7 +715,7 @@
   "analysisBestMoveLine": "Beste zet: {move}",
   "analysisExplain": "Uitleggen",
   "analysisSaveForPractice": "Opslaan om te oefenen",
-  "analysisSaveError": "Deze beslissing kon niet worden opgeslagen: {error}",
+  "analysisSaveError": "Deze beslissing kon niet worden opgeslagen. Probeer het opnieuw.",
   "analysisCubeInfo": "{side}: {action} · {mark} · verlies {loss}",
   "analysisCubeDecision": "Dobbelsteenbeslissing",
   "analysisCubePlayed": "Gespeeld: {action} (winstkans partij: {percent}%).",
@@ -789,11 +789,6 @@
       "action": {},
       "mark": {},
       "loss": {}
-    }
-  },
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
     }
   },
   "@analysisCubePlayed": {
@@ -1519,5 +1514,104 @@
         "type": "String"
       }
     }
-  }
+  },
+  "privacyTitle": "Privacy en gegevens",
+  "privacyAppTitle": "Backgammon Buddy van Freevia",
+  "privacyIntro": "Op deze pagina staat hoe deze versie van de app met je gegevens omgaat.",
+  "privacyLocalTitle": "Spellen en begeleiding op je apparaat",
+  "privacyLocalBody": "Lokale spellen, instellingen, analyses en oefenvoortgang worden op dit apparaat opgeslagen. De backgammonengine en uitleg van de tutor werken hier. Verwijder een opgeslagen spel uit Geschiedenis om ook de bijbehorende opgeslagen oefeningen en pogingen te verwijderen. Verwijder afzonderlijke oefeningen of reset je voortgang bij Leren; wis lokale foutmeldingen via Instellingen â†’ Diagnostiek. De back-upinstellingen van je apparaat kunnen ook gelden voor de spelgeschiedenis. Inloggegevens voor online spelen worden bewaard in de beveiligde opslag van het apparaat.",
+  "privacyOnlineTitle": "Online en in de buurt spelen",
+  "privacyOnlineBody": "Bij online spelen worden een anonieme spelers-ID, spelinstellingen, zetten en records voor het afstemmen van de dobbelstenen naar Google Firebase gestuurd, zodat beide spelers hetzelfde spel kunnen spelen. Als je de Geschiedenis op dit apparaat wist, worden online gegevens niet verwijderd. Gehoste spellen verlopen 30 dagen na aanmaak; geplande opschoning verwijdert de bijbehorende cloudlogboeken. Spelgegevens worden in de EU opgeslagen; Firebase Authentication verwerkt inloggegevens in de Verenigde Staten. Online verbindingen met Google zijn tijdens verzending versleuteld. Bij lokaal spelen worden spelgegevens via een niet-versleutelde lokale verbinding uitgewisseld met het andere apparaat; gebruik een vertrouwd wifi-netwerk.",
+  "privacyDiagnosticsTitle": "Optionele gebruiks- en crashdiagnostiek",
+  "privacyDiagnosticsBody": "Delen staat uit totdat je dit inschakelt via Instellingen. Als je het inschakelt, ontvangt Google Firebase gebruiksgebeurtenissen, app- en apparaatgegevens, prestatiemetingen en crashrapporten om de app te verbeteren. Je kunt delen op elk moment uitschakelen, zodat er geen nieuwe optionele gegevens worden verzameld. Reeds verzonden gegevens worden hierdoor niet gewist. Lokale diagnostiek en online spellen staan los van deze keuze.",
+  "privacyCameraTitle": "Camera voor QR-codes van spellen in de buurt",
+  "privacyCameraBody": "De optionele camera scant QR-codes voor spellen in de buurt. Afbeeldingen worden op je apparaat verwerkt en niet opgeslagen of geÃ¼pload. Je kunt cameratoegang weigeren en het adres van de host handmatig invoeren. Deze versie gebruikt de microfoon niet en biedt geen spel met een fysiek bord.",
+  "privacyFeedbackTitle": "Feedback die je zelf wilt versturen",
+  "privacyFeedbackBody": "Feedback opent een concept voor een GitHub-issue dat je kunt bekijken. Bij het openen worden de appversie en het platform naar GitHub gestuurd; feedback vanuit Diagnostiek kan ook foutdetails bevatten. Er wordt pas een issue geplaatst als je het verstuurt. Issues kunnen openbaar zijn, dus verwijder privÃ©gegevens voordat je ze verstuurt.",
+  "privacyContactTitle": "Privacycontact",
+  "privacyReadPolicy": "Lees het privacybeleid",
+  "privacyPolicyOpenFailed": "Het privacybeleid kan niet worden geopend.",
+  "privacySupportTitle": "Hulp en ondersteuning",
+  "privacySupportOpenFailed": "Ondersteuning kan niet worden geopend. Neem contact op via support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Online identiteit en gegevens verwijderen?",
+  "privacyDeleteConfirmBody": "Hierdoor wordt de toegang van beide spelers tot de cloudspellen van deze identiteit direct beÃ«indigd en wordt verzocht de identiteit en gedeelde logboeken van online spellen binnen 30 dagen te verwijderen. Google kan na het verwijderen van het account tot 180 dagen nodig hebben om Authentication-gegevens uit actieve systemen en back-ups te verwijderen. De lokale Geschiedenis en oefeningen blijven op dit apparaat staan. Eerder verstuurde optionele diagnostiek valt hier los van; neem daarvoor contact op via privacy@freevia.org. Dit verzoek kan niet ongedaan worden gemaakt.",
+  "privacyRequestDeletion": "Verwijdering aanvragen",
+  "privacyDeleteSectionTitle": "Online gegevens verwijderen",
+  "privacyDeleteInstructions": "Gebruik de opgeslagen aanmelding op dit apparaat om te bewijzen dat jij de eigenaar bent. Een spelers-ID of uitnodigingscode alleen bewijst het eigendom niet. Spelers die alleen lokaal spelen hebben geen online account nodig.",
+  "privacySendingRequest": "Verzoek verzendenâ€¦",
+  "privacyDeleteAction": "Online identiteit en gegevens verwijderen",
+  "privacyDeleteRequested": "Verwijdering aangevraagd. Deze online identiteit is afgemeld. De cloudgegevens worden binnen 30 dagen verwijderd. Als je opnieuw online gaat spelen, wordt een nieuwe identiteit aangemaakt. Het verwijderen van Google Authentication-gegevens kan tot 180 dagen duren. Neem voor hulp contact op via privacy@freevia.org.",
+  "privacyDeleteRequestedSignOutFailed": "Verwijdering aangevraagd. De cloudgegevens worden binnen 30 dagen verwijderd. Het apparaat kon de opgeslagen aanmelding niet wissen, maar de online identiteit is geblokkeerd voor verdere toegang tot spellen. Het verwijderen van Google Authentication-gegevens kan tot 180 dagen duren. Neem voor hulp contact op via privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "Er is geen bruikbare online identiteit op dit apparaat opgeslagen. Er is geen nieuw account aangemaakt. Heb je eerder online gespeeld, neem dan voor hulp contact op via privacy@freevia.org; gehoste spellen verlopen na 30 dagen.",
+  "privacyDeleteRequestFailed": "Het verwijderingsverzoek kon niet worden bevestigd. Controleer je verbinding en probeer het opnieuw, of neem contact op via privacy@freevia.org.",
+  "privacyConsentTitle": "Gebruiksgegevens en crashdiagnostiek delen?",
+  "privacyConsentBody": "Hiermee worden gebruiksgebeurtenissen, app- en apparaatgegevens, crashrapporten en prestatiemetingen naar Google Firebase gestuurd. Delen is optioneel. Spellen en begeleiding werken ook als delen uitstaat; je kunt het later weer uitschakelen via Instellingen.",
+  "privacyKeepOff": "Uit laten",
+  "privacyShareDiagnostics": "Diagnostiek delen",
+  "privacySaveFailed": "Je privacykeuze kon niet worden opgeslagen. Probeer het opnieuw.",
+  "privacySettingsSubtitle": "Wat op je apparaat blijft en wat wordt gedeeld",
+  "privacyDiagnosticsSettingTitle": "Gebruiksgegevens en crashdiagnostiek delen",
+  "privacyDiagnosticsSettingSubtitle": "Optioneel Â· standaard uitgeschakeld",
+  "lanScanToJoin": "Scannen om mee te doen",
+  "lanScanHostCode": "Code van de host scannen",
+  "lanEnterAddressInstead": "In plaats daarvan het adres invoeren",
+  "lanCameraUnsupported": "Dit apparaat kan geen QR-codes scannen. Voer het adres van het andere apparaat handmatig in.",
+  "feedbackFieldSummary": "Samenvatting",
+  "feedbackBugReproduction": "Vervang dit door de stappen die tot het probleem hebben geleid.",
+  "boardBlackToRoll": "Zwart is aan de beurt om te gooien.",
+  "boardSemanticsLabel": "Backgammonbord. {status}",
+  "lanPointCameraAtQr": "Richt de camera op de QR-code op het andere apparaat.",
+  "feedbackBugSummary": "Vervang dit door een korte beschrijving van wat er is gebeurd.",
+  "physicalBuddyUnavailableBody": "Spelen met een fysiek bord is in deze versie niet beschikbaar. Schermspellen, begeleiding en oefenen vind je op het startscherm.",
+  "feedbackFieldPlatform": "Platform",
+  "feedbackFieldExpected": "Verwacht resultaat",
+  "boardGameOver": "Het spel is afgelopen.",
+  "feedbackBugExpected": "Vervang dit door wat je verwachtte dat er zou gebeuren.",
+  "feedbackIdeaNeed": "Vervang dit door wat je wilde doen of leren.",
+  "boardDoubleOffered": "Er is een verdubbeling aangeboden.",
+  "feedbackFieldNeed": "Wat wilde je doen of leren",
+  "boardWhiteToRoll": "Wit is aan de beurt om te gooien.",
+  "lanTorch": "Zaklamp",
+  "boardBlackToMove": "Zwart is aan zet; gooi {die1} en {die2}.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "boardResignationOffered": "Er is een opgave aangeboden.",
+  "feedbackFieldIdea": "Idee",
+  "lanCameraStartFailed": "De camera kon niet worden gestart. Voer het adres van het andere apparaat handmatig in.",
+  "boardWhiteToMove": "Wit is aan zet; gooi {die1} en {die2}.",
+  "feedbackIdeaSuggestion": "Vervang dit door de verandering die je nuttig zou vinden.",
+  "feedbackIdeaTitle": "[Idee]: Backgammon Buddy",
+  "feedbackBugTitle": "[Bug]: Backgammon Buddy {version} ({platform})",
+  "lanCameraPermissionDenied": "Backgammon Buddy kan de camera niet gebruiken. Geef de app toegang tot de camera via de apparaatinstellingen of voer het adres van het andere apparaat handmatig in.",
+  "feedbackExcerptTruncated": "(afgekapt â€” gebruik KopiÃ«ren naar klembord op het scherm Diagnostiek voor het volledige logboek)",
+  "boardWhiteToMoveNoRoll": "Wit is aan zet.",
+  "feedbackFieldVersion": "Versie",
+  "boardBlackToMoveNoRoll": "Zwart is aan zet.",
+  "feedbackFieldReproduction": "Stappen om te reproduceren",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "QR-code om aan dit spel deel te nemen",
+  "lanJoinInstruction": "Open op het andere apparaat Dichtbij spelen, kies Deelnemen en scan daarna deze QR-code.",
+  "homePlayWithBuddy": "Spelen met Buddy",
+  "homeBuddyShort": "Buddy"
 }

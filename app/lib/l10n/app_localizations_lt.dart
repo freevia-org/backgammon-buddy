@@ -1363,9 +1363,8 @@ class AppLocalizationsLt extends AppLocalizations {
   String get analysisSaveForPractice => 'Išsaugoti praktikai';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Nepavyko išsaugoti sprendimo: $error';
-  }
+  String get analysisSaveError =>
+      'Nepavyko išsaugoti šio sprendimo. Bandykite dar kartą.';
 
   @override
   String analysisCubeInfo(
@@ -2473,4 +2472,272 @@ class AppLocalizationsLt extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Klaida: $error';
   }
+
+  @override
+  String get privacyTitle => 'Privatumas ir duomenys';
+
+  @override
+  String get privacyAppTitle => 'Freevia Backgammon Buddy';
+
+  @override
+  String get privacyIntro =>
+      'Šiame puslapyje aprašoma, kaip ši programėlė tvarko jūsų duomenis.';
+
+  @override
+  String get privacyLocalTitle => 'Žaidimai ir mokymas jūsų įrenginyje';
+
+  @override
+  String get privacyLocalBody =>
+      'Vietinės partijos, nustatymai, analizė ir treniruočių pažanga saugomi šiame įrenginyje. Čia veikia backgammon variklis ir mokytojo paaiškinimai. Ištrynus išsaugotą partiją iš istorijos, pašalinamos ir jos išsaugotos treniruotės bei bandymai. Atskirą pratimą ištrinkite arba iš naujo nustatykite mokymosi pažangą skiltyje „Mokymasis“; vietines klaidų ataskaitas išvalykite skiltyje „Nustatymai“ → „Diagnostika“. Įrenginio atsarginės kopijos nustatymai taip pat gali apimti partijų istoriją. Internetinio prisijungimo duomenys laikomi saugioje įrenginio saugykloje.';
+
+  @override
+  String get privacyOnlineTitle => 'Žaidimas internetu ir netoliese';
+
+  @override
+  String get privacyOnlineBody =>
+      'Žaidžiant internetu „Google Firebase“ siunčiamas anoniminis žaidėjo identifikatorius, partijos nustatymai, ėjimai ir kauliukų suderinimo įrašai, kad abu žaidėjai galėtų žaisti tą pačią partiją. Ištrynus istoriją šiame įrenginyje, internetiniai įrašai neištrinami. Priglobtos partijos baigia galioti praėjus 30 dienų nuo sukūrimo; suplanuotas valymas pašalina jų debesijos žurnalus. Partijų įrašai saugomi ES; „Firebase Authentication“ prisijungimo duomenis tvarko Jungtinėse Valstijose. Interneto ryšys su „Google“ šifruojamas perduodant duomenis. Žaidžiant netoliese, informacija su kitu įrenginiu perduodama nešifruotu vietiniu ryšiu; naudokite patikimą „Wi-Fi“.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Pasirenkama naudojimo ir strigčių diagnostika';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Bendrinimas išjungtas, kol jo nepasirinksite nustatymuose. Įjungus „Google Firebase“ gauna naudojimo įvykius, programėlės ir įrenginio informaciją, našumo matavimus bei strigčių ataskaitas, kad padėtų tobulinti programėlę. Bendrinimą galite bet kada išjungti ir sustabdyti naują pasirenkamą duomenų rinkimą. Anksčiau išsiųsti duomenys neištrinami. Vietinė diagnostika ir internetinės partijos veikia nepriklausomai nuo šio pasirinkimo.';
+
+  @override
+  String get privacyCameraTitle => 'Kamera netoliese esantiems QR kodams';
+
+  @override
+  String get privacyCameraBody =>
+      'Pasirenkama kamera nuskaito netoliese esančių žaidimų QR kodus. Vaizdai apdorojami įrenginyje, neišsaugomi ir neįkeliami. Galite neleisti naudoti kameros ir rankiniu būdu įvesti pagrindinio įrenginio adresą. Šioje versijoje nenaudojamas mikrofonas ir negalima žaisti su fizine lenta.';
+
+  @override
+  String get privacyFeedbackTitle => 'Jūsų siunčiami atsiliepimai';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Atsiliepimas atveria „GitHub“ problemos juodraštį, kad galėtumėte jį peržiūrėti. Atvėrus juodraštį, „GitHub“ siunčiama programėlės versija ir platforma; atsiliepime iš diagnostikos taip pat gali būti klaidų duomenų. Problema paskelbiama tik jums ją pateikus. Problemos gali būti viešos, todėl prieš siųsdami pašalinkite privačią informaciją.';
+
+  @override
+  String get privacyContactTitle => 'Privatumo kontaktai';
+
+  @override
+  String get privacyReadPolicy => 'Skaityti privatumo politiką';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Nepavyko atidaryti privatumo politikos.';
+
+  @override
+  String get privacySupportTitle => 'Pagalba ir palaikymas';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Nepavyko atidaryti pagalbos. Susisiekite adresu support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Ištrinti internetinę tapatybę ir duomenis?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Tai iš karto panaikina šios tapatybės prieigą prie debesijos partijų abiem žaidėjams ir pateikia prašymą per 30 dienų ištrinti tapatybę bei bendrinamus internetinių partijų žurnalus. „Google“ gali užtrukti iki 180 dienų po paskyros ištrynimo, kol pašalins „Authentication“ duomenis iš veikiančių ir atsarginių sistemų. Vietinė istorija ir treniruotės liks šiame įrenginyje. Anksčiau siųsta pasirenkama diagnostika tvarkoma atskirai; dėl jos kreipkitės privacy@freevia.org. Šio prašymo atšaukti negalima.';
+
+  @override
+  String get privacyRequestDeletion => 'Prašyti ištrinti';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Internetinių duomenų ištrynimas';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Nuosavybei patvirtinti naudokite šiame įrenginyje išsaugotą prisijungimą. Vien žaidėjo identifikatorius ar kvietimo kodas nuosavybės neįrodo. Tik vietiniu režimu žaidžiantiems internetinės paskyros nereikia.';
+
+  @override
+  String get privacySendingRequest => 'Siunčiama užklausa…';
+
+  @override
+  String get privacyDeleteAction => 'Ištrinti internetinę tapatybę ir duomenis';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Pateiktas prašymas ištrinti. Ši internetinė tapatybė atjungta. Jos debesijos duomenys bus ištrinti per 30 dienų. Vėl pradėjus žaisti internetu bus sukurta nauja tapatybė. „Google“ Authentication duomenims pašalinti gali prireikti iki 180 dienų. Pagalbos kreipkitės privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Pateiktas prašymas ištrinti; debesijos duomenys bus ištrinti per 30 dienų. Įrenginiui nepavyko išvalyti išsaugoto prisijungimo, tačiau internetinei tapatybei užblokuota prieiga prie partijų. „Google“ Authentication duomenims pašalinti gali prireikti iki 180 dienų. Kreipkitės privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Šiame įrenginyje nėra išsaugotos tinkamos internetinės tapatybės. Nauja paskyra nesukurta. Jei anksčiau žaidėte internetu, kreipkitės privacy@freevia.org; priglobtos partijos baigia galioti po 30 dienų.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Nepavyko patvirtinti ištrynimo prašymo. Patikrinkite ryšį ir bandykite dar kartą arba kreipkitės privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle =>
+      'Bendrinti naudojimo ir strigčių diagnostiką?';
+
+  @override
+  String get privacyConsentBody =>
+      'Į „Google Firebase“ siunčiami naudojimo įvykiai, programėlės ir įrenginio informacija, strigčių ataskaitos bei našumo matavimai. Bendrinimas neprivalomas. Žaidimai ir mokymas veikia ir be jo; nustatymuose galite jį vėl išjungti.';
+
+  @override
+  String get privacyKeepOff => 'Palikti išjungtą';
+
+  @override
+  String get privacyShareDiagnostics => 'Bendrinti diagnostiką';
+
+  @override
+  String get privacySaveFailed =>
+      'Nepavyko išsaugoti privatumo pasirinkimo. Bandykite dar kartą.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Kas lieka jūsų įrenginyje ir kas bendrinama';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Bendrinti naudojimo ir strigčių diagnostiką';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Pasirenkama · pagal numatytuosius nustatymus išjungta';
+
+  @override
+  String get lanScanToJoin => 'Nuskaityti ir prisijungti';
+
+  @override
+  String get lanScanHostCode => 'Nuskaityti pagrindinio įrenginio kodą';
+
+  @override
+  String get lanEnterAddressInstead => 'Vietoj to įveskite adresą';
+
+  @override
+  String get lanQrAccessibilityLabel =>
+      'QR kodas, skirtas prisijungti prie šio žaidimo';
+
+  @override
+  String get lanJoinInstruction =>
+      'Kitame įrenginyje atidarykite „Žaisti netoliese“, pasirinkite „Prisijungti“ ir nuskaitykite šį QR kodą.';
+
+  @override
+  String get lanTorch => 'Žibintuvėlis';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy negali naudoti kameros. Suteikite prieigą įrenginio nustatymuose arba įveskite adresą, rodomą kitame įrenginyje.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Šis įrenginys negali nuskaityti QR kodų. Įveskite adresą, rodomą kitame įrenginyje.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Nepavyko paleisti kameros. Įveskite adresą, rodomą kitame įrenginyje.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Nukreipkite kamerą į QR kodą kitame įrenginyje.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Žaidimas su fizine lenta';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Šioje versijoje negalima žaisti su fizine lenta. Žaidimai ekrane, mokymas ir treniruotės pasiekiami pagrindiniame ekrane.';
+
+  @override
+  String get homePlayWithBuddy => 'Žaisti su Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Backgammon lenta. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Baltieji meta kauliukus.';
+
+  @override
+  String get boardBlackToRoll => 'Juodieji meta kauliukus.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Baltieji turi ėjimą, meskite $die1 ir $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Juodieji turi ėjimą, meskite $die1 ir $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Pasiūlytas dvigubinimas.';
+
+  @override
+  String get boardResignationOffered => 'Pasiūlyta pasiduoti.';
+
+  @override
+  String get boardGameOver => 'Žaidimas baigtas.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Klaida]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Idėja]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary => 'Trumpai aprašykite, kas nutiko.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Aprašykite veiksmus, po kurių kilo problema.';
+
+  @override
+  String get feedbackBugExpected => 'Aprašykite, ko tikėjotės.';
+
+  @override
+  String get feedbackIdeaNeed => 'Aprašykite, ką norėjote padaryti ar išmokti.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Aprašykite, koks pakeitimas būtų naudingas.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(sutrumpinta — visą žurnalą nukopijuokite diagnostikos ekrane pasirinkę „Kopijuoti į iškarpinę“)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Baltųjų ėjimas.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Juodųjų ėjimas.';
+
+  @override
+  String get feedbackFieldVersion => 'Programėlės versija';
+
+  @override
+  String get feedbackFieldPlatform => 'Platforma';
+
+  @override
+  String get feedbackFieldSummary => 'Kas nutiko';
+
+  @override
+  String get feedbackFieldReproduction => 'Veiksmai problemai atkartoti';
+
+  @override
+  String get feedbackFieldExpected => 'Tikėtas rezultatas';
+
+  @override
+  String get feedbackFieldNeed => 'Ką norėjote padaryti';
+
+  @override
+  String get feedbackFieldIdea => 'Siūlomas pakeitimas';
 }

@@ -1340,9 +1340,8 @@ class AppLocalizationsFi extends AppLocalizations {
   String get analysisSaveForPractice => 'Tallenna harjoitteluun';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Päätöstä ei voitu tallentaa: $error';
-  }
+  String get analysisSaveError =>
+      'Päätöstä ei voitu tallentaa. Yritä uudelleen.';
 
   @override
   String analysisCubeInfo(
@@ -2456,4 +2455,270 @@ class AppLocalizationsFi extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Virhe: $error';
   }
+
+  @override
+  String get privacyTitle => 'Tietosuoja ja tiedot';
+
+  @override
+  String get privacyAppTitle => 'Freevian Backgammon Buddy';
+
+  @override
+  String get privacyIntro =>
+      'Tällä sivulla kuvataan, miten nykyinen sovellus käsittelee tietojasi.';
+
+  @override
+  String get privacyLocalTitle => 'Pelit ja valmennus laitteellasi';
+
+  @override
+  String get privacyLocalBody =>
+      'Paikalliset pelit, asetukset, analyysit ja harjoittelun edistyminen tallennetaan tähän laitteeseen. Backgammon-moottori ja valmentajan selitykset toimivat täällä. Poista tallennettu peli Pelihistoriasta, niin myös siihen tallennetut harjoitustehtävät ja yritykset poistetaan. Poista yksittäisiä tehtäviä tai nollaa harjoittelun edistyminen Oppimisessa; poista paikalliset virheraportit kohdasta Asetukset → Diagnostiikka. Laitteen varmuuskopiointiasetukset voivat koskea myös pelihistoriaa. Verkkokirjautumisen tunnistetiedot säilytetään laitteen suojatussa tallennustilassa.';
+
+  @override
+  String get privacyOnlineTitle => 'Verkkopeli ja lähiverkkopeli';
+
+  @override
+  String get privacyOnlineBody =>
+      'Verkkopelissä Google Firebaseen lähetetään anonyymi pelaajatunniste, peliasetukset, siirrot ja noppien synkronointitiedot, jotta molemmat pelaajat voivat pelata samaa peliä. Pelihistorian poistaminen tältä laitteelta ei poista verkkotietueita. Isännöidyt pelit vanhenevat 30 päivän kuluttua luomisesta; ajastettu siivous poistaa niiden pilvilokit. Pelitietueet tallennetaan EU:ssa; Firebase Authentication käsittelee kirjautumistietoja Yhdysvalloissa. Google-yhteydet salataan tiedonsiirron aikana. Lähiverkkopelissä pelitietoja vaihdetaan toisen laitteen kanssa salaamattoman paikallisyhteyden kautta; käytä luotettua Wi-Fi-verkkoa.';
+
+  @override
+  String get privacyDiagnosticsTitle => 'Valinnaiset käyttö- ja kaatumistiedot';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Tietojen jako on poissa käytöstä, kunnes otat sen käyttöön Asetuksissa. Jos otat sen käyttöön, Google Firebase saa käyttötapahtumia, sovelluksen ja laitteen tietoja, suorituskykymittauksia sekä kaatumisraportteja sovelluksen parantamiseksi. Voit poistaa jakamisen käytöstä milloin tahansa, jolloin uusien valinnaisten tietojen keruu loppuu. Tämä ei poista jo lähetettyjä tietoja. Paikalliset diagnostiikkatiedot ja verkkopelit toimivat tästä valinnasta riippumatta.';
+
+  @override
+  String get privacyCameraTitle => 'Kamera lähiverkon QR-koodeja varten';
+
+  @override
+  String get privacyCameraBody =>
+      'Valinnainen kamera skannaa lähiverkon pelien QR-koodeja. Kuvat käsitellään laitteellasi, eikä niitä tallenneta tai lähetetä. Voit kieltää kameran käytön ja kirjoittaa isännän osoitteen käsin. Tämä versio ei käytä mikrofonia eikä tue fyysisellä pelilaudalla pelaamista.';
+
+  @override
+  String get privacyFeedbackTitle => 'Vapaaehtoisesti lähettämäsi palaute';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Palaute avaa GitHub-ongelmaluonnoksen tarkistettavaksesi. Luonnoksen avaaminen lähettää sovelluksen version ja alustan GitHubiin; Diagnostiikasta lähetetty palaute voi sisältää myös virhetietoja. Ongelmaa ei julkaista ennen kuin lähetät sen. Ongelmat voivat olla julkisia, joten poista yksityiset tiedot ennen lähettämistä.';
+
+  @override
+  String get privacyContactTitle => 'Tietosuojayhteystiedot';
+
+  @override
+  String get privacyReadPolicy => 'Lue tietosuojakäytäntö';
+
+  @override
+  String get privacyPolicyOpenFailed => 'Tietosuojakäytäntöä ei voitu avata.';
+
+  @override
+  String get privacySupportTitle => 'Ohje ja tuki';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Tukea ei voitu avata. Ota yhteyttä: support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Poistetaanko verkkotunnus ja tiedot?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Tämä estää heti molempia pelaajia käyttämästä tämän tunnuksen pilvipelejä ja pyytää tunnuksen sekä yhteisten verkkopelilokien poistamista 30 päivän kuluessa. Google voi tarvita tilin poistamisen jälkeen enintään 180 päivää Authentication-tietojen poistamiseen aktiivisista järjestelmistään ja varmuuskopioistaan. Paikallinen pelihistoria ja harjoittelu säilyvät tällä laitteella. Aiemmin lähetetyt valinnaiset diagnostiikkatiedot ovat erillisiä; ota niistä yhteyttä osoitteeseen privacy@freevia.org. Tätä pyyntöä ei voi peruuttaa.';
+
+  @override
+  String get privacyRequestDeletion => 'Pyydä poistamista';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Poista verkkotiedot';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Vahvista omistajuus käyttämällä tälle laitteelle tallennettua kirjautumista. Pelaajatunniste tai kutsukoodi yksinään ei todista omistajuutta. Vain paikallisesti pelaavat eivät tarvitse verkkotiliä.';
+
+  @override
+  String get privacySendingRequest => 'Lähetetään pyyntöä…';
+
+  @override
+  String get privacyDeleteAction => 'Poista verkkotunnus ja tiedot';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Poistamista on pyydetty. Tästä verkkotunnuksesta on kirjauduttu ulos. Sen pilvitiedot poistetaan 30 päivän kuluessa. Jos aloitat verkkopelin uudelleen, luodaan uusi tunnus. Google voi tarvita Authentication-tietojen poistamiseen enintään 180 päivää. Saat apua osoitteesta privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Poistamista on pyydetty. Pilvitiedot poistetaan 30 päivän kuluessa. Laite ei pystynyt poistamaan tallennettua kirjautumista, mutta verkkotunnus on estetty käyttämästä uusia pelejä. Google voi tarvita Authentication-tietojen poistamiseen enintään 180 päivää. Saat apua osoitteesta privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Tälle laitteelle ei ole tallennettu käyttökelpoista verkkotunnusta. Uutta tiliä ei luotu. Jos olet pelannut verkossa aiemmin, pyydä apua osoitteesta privacy@freevia.org; isännöidyt pelit vanhenevat 30 päivän kuluttua.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Poistopyyntöä ei voitu vahvistaa. Tarkista yhteys ja yritä uudelleen tai ota yhteyttä osoitteeseen privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle => 'Jaetaanko käyttö- ja kaatumistietoja?';
+
+  @override
+  String get privacyConsentBody =>
+      'Tämä lähettää Google Firebaseen käyttötapahtumia, sovelluksen ja laitteen tietoja, kaatumisraportteja sekä suorituskykymittauksia. Tietojen jakaminen on vapaaehtoista. Pelit ja valmennus toimivat ilman sitä, ja voit poistaa jakamisen käytöstä Asetuksissa.';
+
+  @override
+  String get privacyKeepOff => 'Pidä poissa käytöstä';
+
+  @override
+  String get privacyShareDiagnostics => 'Jaa diagnostiikkatietoja';
+
+  @override
+  String get privacySaveFailed =>
+      'Tietosuojavalintaa ei voitu tallentaa. Yritä uudelleen.';
+
+  @override
+  String get privacySettingsSubtitle => 'Mitä jää laitteellesi ja mitä jaetaan';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Jaa käyttö- ja kaatumisdiagnostiikkaa';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Valinnainen · oletuksena poissa käytöstä';
+
+  @override
+  String get lanScanToJoin => 'Skannaa liittyäksesi';
+
+  @override
+  String get lanScanHostCode => 'Skannaa isännän koodi';
+
+  @override
+  String get lanEnterAddressInstead => 'Kirjoita sen sijaan osoite';
+
+  @override
+  String get lanQrAccessibilityLabel =>
+      'QR-koodi tähän peliin liittymistä varten';
+
+  @override
+  String get lanJoinInstruction =>
+      'Avaa toisella laitteella Lähialuepeli, valitse Liity ja skannaa tämä QR-koodi.';
+
+  @override
+  String get lanTorch => 'Taskulamppu';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy ei voi käyttää kameraa. Salli kameran käyttö laitteen asetuksissa tai kirjoita toisessa laitteessa näkyvä osoite.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Tämä laite ei voi skannata QR-koodeja. Kirjoita toisessa laitteessa näkyvä osoite.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Kameraa ei voitu käynnistää. Kirjoita toisessa laitteessa näkyvä osoite.';
+
+  @override
+  String get lanPointCameraAtQr => 'Suuntaa kamera toisen laitteen QR-koodiin.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Fyysisellä pelilaudalla pelaaminen ei ole käytettävissä tässä versiossa. Näytöllä pelattavat pelit, opastus ja harjoittelu löytyvät etusivulta.';
+
+  @override
+  String get homePlayWithBuddy => 'Pelaa Buddyn kanssa';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Backgammonlauta. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Valkoisen vuoro: heitä noppia.';
+
+  @override
+  String get boardBlackToRoll => 'Mustan vuoro: heitä noppia.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Valkoisen vuoro, heitä $die1 ja $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Mustan vuoro, heitä $die1 ja $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Tuplaus on tarjottu.';
+
+  @override
+  String get boardResignationOffered => 'Luovutusta on ehdotettu.';
+
+  @override
+  String get boardGameOver => 'Peli on päättynyt.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Virhe]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Idea]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'Korvaa tämä lyhyellä kuvauksella siitä, mitä tapahtui.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Korvaa tämä ongelmaan johtaneilla vaiheilla.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Korvaa tämä kuvauksella siitä, mitä odotit tapahtuvan.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Korvaa tämä sillä, mitä halusit tehdä tai oppia.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Korvaa tämä muutoksella, josta olisi mielestäsi hyötyä.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(lyhennetty — saat koko lokin kopioimalla sen Diagnostiikka-näytön painikkeella Kopioi leikepöydälle)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Valkoisen vuoro.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Mustan vuoro.';
+
+  @override
+  String get feedbackFieldVersion => 'Sovellusversio';
+
+  @override
+  String get feedbackFieldPlatform => 'Alusta';
+
+  @override
+  String get feedbackFieldSummary => 'Mitä tapahtui';
+
+  @override
+  String get feedbackFieldReproduction => 'Toistamisen vaiheet';
+
+  @override
+  String get feedbackFieldExpected => 'Odotettu tulos';
+
+  @override
+  String get feedbackFieldNeed => 'Mitä halusit tehdä';
+
+  @override
+  String get feedbackFieldIdea => 'Ehdotettu muutos';
 }

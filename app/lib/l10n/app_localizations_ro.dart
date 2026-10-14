@@ -1444,9 +1444,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get analysisSaveForPractice => 'Salvează pentru antrenament';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Decizia nu a putut fi salvată: $error';
-  }
+  String get analysisSaveError =>
+      'Decizia nu a putut fi salvată. Încearcă din nou.';
 
   @override
   String analysisCubeInfo(
@@ -2559,4 +2558,273 @@ class AppLocalizationsRo extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Eroare: $error';
   }
+
+  @override
+  String get privacyTitle => 'Confidențialitate și date';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy de Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Această pagină descrie modul în care aplicația actuală vă gestionează datele.';
+
+  @override
+  String get privacyLocalTitle => 'Jocuri și instruire pe dispozitivul dvs';
+
+  @override
+  String get privacyLocalBody =>
+      'Meciurile locale, setările, analizele și progresul exercițiilor sunt stocate pe acest dispozitiv. Motorul jocului și explicațiile antrenorului rulează aici. Ștergerea unei partide salvate din Arhiva jocurilor șterge și exercițiile de antrenament salvate, precum și încercările acestora. Șterge exerciții individuale sau resetează progresul în secțiunea Învățare și practică; șterge rapoartele locale de erori din Setări → Diagnosticare. Istoricul partidelor poate fi inclus și în copiile de siguranță ale dispozitivului. Datele de conectare online sunt păstrate în spațiul de stocare protejat al dispozitivului.';
+
+  @override
+  String get privacyOnlineTitle => 'Joacă online și în apropiere';
+
+  @override
+  String get privacyOnlineBody =>
+      'Jocul online trimite către Google Firebase un identificator anonim al jucătorului, setările meciului, mutările și înregistrările protocolului de sincronizare a zarurilor, pentru ca ambii jucători să poată juca același meci. Ștergerea Istoricului de pe acest dispozitiv nu șterge înregistrările online. Meciurile găzduite expiră la 30 de zile după creare; o curățare programată le șterge jurnalele din cloud. Înregistrările meciurilor sunt stocate în UE; Firebase Authentication procesează datele de conectare în Statele Unite. Conexiunile online la Google folosesc criptarea în tranzit. În jocurile în apropiere, informațiile despre meci sunt schimbate cu celălalt dispozitiv printr-o conexiune locală necriptată; folosiți o rețea Wi-Fi de încredere.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Diagnosticare opțională a utilizării și a blocărilor';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Partajarea rămâne dezactivată până când o activezi în Setări. Dacă o activezi, Google Firebase primește evenimente de utilizare, informații despre aplicație și dispozitiv, măsurători de performanță și rapoarte despre blocări, pentru a ajuta la îmbunătățirea aplicației. Poți dezactiva partajarea oricând pentru a opri colectarea opțională de date noi. Datele trimise deja nu sunt șterse. Diagnosticarea locală și meciurile online nu depind de această opțiune.';
+
+  @override
+  String get privacyCameraTitle => 'Cameră pentru codurile QR din apropiere';
+
+  @override
+  String get privacyCameraBody =>
+      'Camera opțională scanează codurile QR pentru jocurile în apropiere. Imaginile sunt procesate pe dispozitiv și nu sunt salvate sau încărcate. Poți refuza accesul la cameră și poți introduce manual adresa gazdei. Această versiune nu folosește microfonul și nu permite jocul pe o tablă fizică.';
+
+  @override
+  String get privacyFeedbackTitle => 'Feedback pe care alegeți să îl trimiteți';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Feedbackul deschide o schiță de issue pe GitHub pe care o poți verifica. Deschiderea schiței trimite către GitHub versiunea aplicației și platforma; feedbackul din Diagnosticare poate include și detalii despre erori. Issue-ul nu este publicat până când nu îl trimiți. Issue-urile pot fi publice, așa că elimină informațiile private înainte de trimitere.';
+
+  @override
+  String get privacyContactTitle => 'Contact pentru confidențialitate';
+
+  @override
+  String get privacyReadPolicy => 'Citește politica de confidențialitate';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Politica de confidențialitate nu a putut fi deschisă.';
+
+  @override
+  String get privacySupportTitle => 'Ajutor și sprijin';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Nu s-a putut deschide pagina de asistență. Contactează support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Ștergeți identitatea și datele online?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Accesul ambilor jucători la meciurile din cloud asociate acestei identități încetează imediat. Se solicită ștergerea identității și a jurnalelor comune ale meciurilor online în termen de 30 de zile. Google poate avea nevoie de până la 180 de zile după ștergerea contului pentru a elimina datele de autentificare din sistemele active și de rezervă. Istoricul local și exercițiile de antrenament rămân pe acest dispozitiv. Datele de diagnostic opționale trimise anterior sunt tratate separat; contactează privacy@freevia.org în legătură cu ele. Această solicitare nu poate fi anulată.';
+
+  @override
+  String get privacyRequestDeletion => 'Solicită ștergerea';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Ștergerea datelor online';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Folosește datele de conectare salvate pe acest dispozitiv pentru a confirma că identitatea îți aparține. Un identificator de jucător sau un cod de invitație, singur, nu dovedește acest lucru. Pentru jocul doar local nu este nevoie de un cont online.';
+
+  @override
+  String get privacySendingRequest => 'Se trimite cererea...';
+
+  @override
+  String get privacyDeleteAction => 'Șterge identitatea și datele online';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Cererea de ștergere a fost trimisă. S-a încheiat sesiunea acestei identități online. Datele sale din cloud vor fi șterse în cel mult 30 de zile. Dacă începi din nou un joc online, se va crea o identitate nouă. Eliminarea datelor de autentificare de către Google poate dura până la 180 de zile. Pentru ajutor, contactează privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Cererea de ștergere a fost trimisă. Datele din cloud vor fi șterse în cel mult 30 de zile. Dispozitivul nu a putut șterge datele de conectare salvate, însă identitatea online nu mai poate accesa meciuri. Eliminarea datelor de autentificare de către Google poate dura până la 180 de zile. Pentru ajutor, contactează privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Pe acest dispozitiv nu este salvată nicio identitate online utilizabilă. Nu a fost creat niciun cont nou. Dacă ai jucat online înainte, contactează privacy@freevia.org pentru ajutor; meciurile găzduite expiră la 30 de zile după creare.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Cererea de ștergere nu a putut fi confirmată. Verifică conexiunea și încearcă din nou sau contactează privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle =>
+      'Partajați utilizarea și diagnosticarea erorilor?';
+
+  @override
+  String get privacyConsentBody =>
+      'Această opțiune trimite către Google Firebase evenimente de utilizare, informații despre aplicație și dispozitiv, rapoarte despre blocări și măsurători de performanță. Partajarea este opțională. Jocurile și antrenamentul funcționează cu partajarea dezactivată; o poți dezactiva oricând în Setări.';
+
+  @override
+  String get privacyKeepOff => 'Păstrează dezactivat';
+
+  @override
+  String get privacyShareDiagnostics => 'Partajează datele de diagnosticare';
+
+  @override
+  String get privacySaveFailed =>
+      'Nu s-a putut salva opțiunea de confidențialitate. Încearcă din nou.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Ce rămâne pe dispozitiv și ce este partajat';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Partajați diagnosticarea utilizării și a erorilor';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Opțional · dezactivat în mod implicit';
+
+  @override
+  String get lanScanToJoin => 'Scanează pentru a te alătura';
+
+  @override
+  String get lanScanHostCode => 'Scanează codul gazdei';
+
+  @override
+  String get lanEnterAddressInstead => 'Introdu adresa în schimb';
+
+  @override
+  String get lanQrAccessibilityLabel => 'Cod QR pentru a intra în acest joc';
+
+  @override
+  String get lanJoinInstruction =>
+      'Pe celălalt dispozitiv, deschideți Joacă în apropiere, alegeți Alătură-te, apoi scanați acest cod QR.';
+
+  @override
+  String get lanTorch => 'Bliț';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy nu poate folosi camera. Permite accesul la cameră din setările dispozitivului sau introdu manual adresa afișată pe celălalt dispozitiv.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Acest dispozitiv nu poate scana coduri QR. Introdu manual adresa afișată pe celălalt dispozitiv.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Camera nu a putut porni. Introdu manual adresa afișată pe celălalt dispozitiv.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Îndreaptă camera spre codul QR de pe celălalt dispozitiv.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Jocul pe o tablă fizică nu este disponibil în această versiune. Jocurile pe ecran, îndrumarea și antrenamentul sunt disponibile pe ecranul principal.';
+
+  @override
+  String get homePlayWithBuddy => 'Joacă cu Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Tablă de table. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll =>
+      'Este rândul pieselor albe să arunce zarurile.';
+
+  @override
+  String get boardBlackToRoll =>
+      'Este rândul pieselor negre să arunce zarurile.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Piesele albe sunt la mutare; zarurile sunt $die1 și $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Piesele negre sunt la mutare; zarurile sunt $die1 și $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'A fost oferită dublarea cubului.';
+
+  @override
+  String get boardResignationOffered => 'S-a oferit cedarea partidei.';
+
+  @override
+  String get boardGameOver => 'Jocul s-a terminat.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Eroare]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Idee]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary => 'Descrie pe scurt ce s-a întâmplat.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Descrie pașii care au dus la problemă.';
+
+  @override
+  String get feedbackBugExpected => 'Descrie ce te așteptai să se întâmple.';
+
+  @override
+  String get feedbackIdeaNeed => 'Descrie ce voiai să faci sau să înveți.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Descrie schimbarea care ți-ar fi de ajutor.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(trunchiat - utilizați Copiere în clipboard pe ecranul Diagnosticare pentru jurnalul complet)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Este rândul pieselor albe să mute.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Este rândul pieselor negre să mute.';
+
+  @override
+  String get feedbackFieldVersion => 'Versiunea aplicației';
+
+  @override
+  String get feedbackFieldPlatform => 'Platformă';
+
+  @override
+  String get feedbackFieldSummary => 'Ce s-a întâmplat';
+
+  @override
+  String get feedbackFieldReproduction => 'Pași pentru reproducere';
+
+  @override
+  String get feedbackFieldExpected => 'Rezultat așteptat';
+
+  @override
+  String get feedbackFieldNeed => 'Ce ai vrut să faci';
+
+  @override
+  String get feedbackFieldIdea => 'Modificare sugerată';
 }

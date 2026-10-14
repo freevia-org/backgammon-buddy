@@ -1361,9 +1361,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get analysisSaveForPractice => 'Запази за упражнение';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Решението не можа да бъде запазено: $error';
-  }
+  String get analysisSaveError =>
+      'Не можа да се запази това решение. Опитай отново.';
 
   @override
   String analysisCubeInfo(
@@ -2478,4 +2477,275 @@ class AppLocalizationsBg extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Грешка: $error';
   }
+
+  @override
+  String get privacyTitle => 'Поверителност и данни';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy от Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Тази страница описва как текущото приложение обработва вашите данни.';
+
+  @override
+  String get privacyLocalTitle => 'Игри и уроци на вашето устройство';
+
+  @override
+  String get privacyLocalBody =>
+      'На това устройство се съхраняват местни съвпадения, настройки, анализи и практически напредък. Обясненията за таблата и преподавателя се намират тук. Изтрийте запазено съвпадение от хронологията, за да премахнете и запазените упражнения и опити. Изтриване на отделни упражнения или нулиране на напредъка на практиката в обучението; изчистване на локалните доклади за грешки в → Диагностика на настройките. Настройките за архивиране на устройството ви може да се прилагат и за историята на игрите. Онлайн данните за вход се съхраняват в защитената памет на устройството.';
+
+  @override
+  String get privacyOnlineTitle => 'Онлайн игра и игра наблизо';
+
+  @override
+  String get privacyOnlineBody =>
+      'Онлайн играта изпраща анонимен идентификатор на играч, настройки за съвпадение, ходове и записи за ръкостискане на зарове до Google Firebase, така че и двамата играчи да могат да играят един и същ мач. Изтриването на хронологията на това устройство не изтрива онлайн записи. Хостваните мачове изтичат 30 дни след създаването им. Планираното изчистване премахва регистрите им в облака. Записите за съвпадения се съхраняват в ЕС; Firebase Authentication обработва данни за влизане в САЩ. Онлайн връзките с Google използват криптиране по време на транспортиране. Обменът на възпроизвеждане наблизо съвпада с информацията от другото устройство чрез некриптирана локална връзка. Използвайте надежден Wi-Fi.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Незадължително използване и диагностика на сривове';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Споделянето е изключено, докато не го изберете в „Настройки “. Ако е активирано, Google Firebase получава събития за използване, информация за приложение/устройство, измервания на ефективността и доклади за сривове, за да помогне за подобряване на приложението. Изключете споделянето по всяко време, за да спрете новата незадължителна колекция. Това не изтрива вече изпратени данни. Локалната диагностика и онлайн съвпаденията работят отделно от този избор.';
+
+  @override
+  String get privacyCameraTitle => 'Камера за QR кодове наблизо';
+
+  @override
+  String get privacyCameraBody =>
+      'Допълнителната камера сканира QR кодовете на близките игри. Изображенията се обработват на устройството ви и не се запазват или качват. Можете да откажете достъпа до камерата и да въведете адреса на домакина ръчно. Тази версия не използва микрофона и не предоставя възпроизвеждане на физическа дъска.';
+
+  @override
+  String get privacyFeedbackTitle => 'Отзиви, които сте избрали да изпратите';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Отзивите отварят чернова на проблем GitHub, която да прегледате. Отварянето на черновата изпраща версията и платформата на приложението до GitHub; обратната връзка от Diagnostics също може да изпрати подробности за грешката. Няма публикуван проблем, докато не го изпратите. Проблемите може да са публични, така че премахнете личната информация, преди да я изпратите.';
+
+  @override
+  String get privacyContactTitle => 'Лични данни за контакт';
+
+  @override
+  String get privacyReadPolicy => 'Прочети декларацията за поверителност';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Политиката за поверителност не може да бъде отворена.';
+
+  @override
+  String get privacySupportTitle => 'Помощ и поддръжка';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Неуспешно отваряне на поддръжката. Свържете се със support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Изтриване на онлайн самоличност и данни?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Това незабавно прекратява достъпа до облачните съвпадения на тази самоличност за играчите и изисква изтриване на самоличността и споделените онлайн дневници за съвпадения в рамките на 30 дни. Google може да отнеме до 180 дни след изтриването на профила, за да премахне данните за удостоверяване от своите активни и резервни системи. Местната история и практика остават на това устройство. По - рано изпратената незадължителна диагностика е отделна; свържете се със privacy@freevia.org за тях. Това не може да бъде отменено.';
+
+  @override
+  String get privacyRequestDeletion => 'Заявка за изтриване';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Изтриване на онлайн данни';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Използвайте запазената регистрация на това устройство, за да потвърдите собствеността. Само идентификатор на играч или код за покана не доказва собственост. Играчите само на местно ниво не се нуждаят от онлайн акаунт.';
+
+  @override
+  String get privacySendingRequest => 'Изпращане на заявка...';
+
+  @override
+  String get privacyDeleteAction => 'Изтриване на онлайн самоличност и данни';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Заявено е изтриване. Тази онлайн самоличност е отписана. Данните му в облака ще бъдат изтрити в рамките на 30 дни. Започването на онлайн игра отново създава нова идентичност. Премахването на данни за удостоверяване от Google може да отнеме до 180 дни. Свържете се със privacy@freevia.org за помощ.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Заявено е изтриване. Данните му в облака ще бъдат изтрити в рамките на 30 дни. Устройството не можа да изчисти запазеното влизане, но онлайн самоличността е блокирана за по - нататъшен достъп до съвпадение. Премахването на данни за удостоверяване от Google може да отнеме до 180 дни. Свържете се със privacy@freevia.org за помощ.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'На това устройство не се запазва използваема онлайн идентичност. Не е създаден нов акаунт. Ако преди това сте използвали онлайн игра, свържете се със privacy@freevia.org за помощ; хостваните мачове изтичат след 30 дни.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Заявката за изтриване не може да бъде потвърдена. Проверете връзката си и опитайте отново или се свържете със privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle =>
+      'Споделяне на използването и диагностика на сривове?';
+
+  @override
+  String get privacyConsentBody =>
+      'Това изпраща събития за използване, информация за приложение/устройство, доклади за сривове и измервания на ефективността до Google Firebase. Споделянето не е задължително. Игрите и уроците работят без него и можете да го изключите отново в Настройки.';
+
+  @override
+  String get privacyKeepOff => 'Стойте на разстояние';
+
+  @override
+  String get privacyShareDiagnostics => 'Споделяне на диагностика';
+
+  @override
+  String get privacySaveFailed =>
+      'Изборът за поверителност не може да бъде запазен. Моля, опитайте отново.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Какво остава на устройството ви и какво се споделя';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Споделяне на използването и диагностика на сривове';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Незадължително · изключено по подразбиране';
+
+  @override
+  String get lanScanToJoin => 'Сканирайте, за да се присъедините';
+
+  @override
+  String get lanScanHostCode => 'Сканирайте кода на домакина';
+
+  @override
+  String get lanEnterAddressInstead => 'Вместо това въведете адреса';
+
+  @override
+  String get lanQrAccessibilityLabel =>
+      'QR код за присъединяване към тази игра';
+
+  @override
+  String get lanJoinInstruction =>
+      'На другото устройство отвори „Играй наблизо“, избери „Присъедини се“, след което сканирай този QR код.';
+
+  @override
+  String get lanTorch => 'Факла';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy не може да използва камерата. Разрешаване на достъп до камерата в настройките на устройството или ръчно въвеждане на адреса, показан на другото устройство.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Това устройство не може да сканира QR кодове. Въведете ръчно адреса, показан на другото устройство.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Камерата не може да бъде стартирана. Въведете ръчно адреса, показан на другото устройство.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Насочете камерата към QR кода на другото устройство.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'В тази версия не се предлага възпроизвеждане на физическа дъска. Игрите на екрана, уроците и практиката са достъпни от Home.';
+
+  @override
+  String get homePlayWithBuddy => 'Играй с Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Табло за табла. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Бяла на руло.';
+
+  @override
+  String get boardBlackToRoll => 'Черно за търкаляне.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Бяло за преместване, завъртете $die1 и $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Черно за преместване, завъртете $die1 и $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Предложено е удвояване.';
+
+  @override
+  String get boardResignationOffered => 'Предложено е предаване.';
+
+  @override
+  String get boardGameOver => 'Играта приключи.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Bug]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Идея]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'Заменете това с кратко описание на случилото се.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Заменете това със стъпките, които са довели до проблема.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Заменете това с това, което очаквате да се случи.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Заменете това с това, което искате да направите или научите.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Заменете това с промяната, която ще намерите за полезна.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(съкратено — за пълния журнал използвайте „Копирай в клипборда“ на екрана Диагностика)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Бяло за движение.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Черно за движение.';
+
+  @override
+  String get feedbackFieldVersion => 'Версия на приложението';
+
+  @override
+  String get feedbackFieldPlatform => 'Платформа';
+
+  @override
+  String get feedbackFieldSummary => 'Какво се случи';
+
+  @override
+  String get feedbackFieldReproduction => 'Стъпки за възпроизвеждане';
+
+  @override
+  String get feedbackFieldExpected => 'Очакван резултат';
+
+  @override
+  String get feedbackFieldNeed => 'Какво искахте да направите';
+
+  @override
+  String get feedbackFieldIdea => 'Предложена промяна';
 }

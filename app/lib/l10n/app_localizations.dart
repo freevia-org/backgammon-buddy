@@ -2256,8 +2256,8 @@ abstract class AppLocalizations {
   /// No description provided for @analysisSaveError.
   ///
   /// In en, this message translates to:
-  /// **'Could not save this decision: {error}'**
-  String analysisSaveError(Object error);
+  /// **'Could not save this decision. Please try again.'**
+  String get analysisSaveError;
 
   /// No description provided for @analysisCubeInfo.
   ///
@@ -4082,6 +4082,462 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error: {error}'**
   String gameErrorBannerLabel(Object error);
+
+  /// No description provided for @privacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy and data'**
+  String get privacyTitle;
+
+  /// No description provided for @privacyAppTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Backgammon Buddy by Freevia'**
+  String get privacyAppTitle;
+
+  /// No description provided for @privacyIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'This page describes how the current app handles your data.'**
+  String get privacyIntro;
+
+  /// No description provided for @privacyLocalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Games and tutoring on your device'**
+  String get privacyLocalTitle;
+
+  /// No description provided for @privacyLocalBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Local matches, settings, analysis and practice progress are stored on this device. The backgammon engine and tutor explanations run here. Delete a saved match from History to remove its saved practice exercises and attempts too. Delete individual exercises or reset practice progress in Learning; clear local error reports in Settings → Diagnostics. Your device’s backup settings may also apply to game history. Online sign-in credentials are kept in the device’s protected storage.'**
+  String get privacyLocalBody;
+
+  /// No description provided for @privacyOnlineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Online and nearby play'**
+  String get privacyOnlineTitle;
+
+  /// No description provided for @privacyOnlineBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Online play sends an anonymous player identifier, match settings, moves and dice-handshake records to Google Firebase so both players can play the same match. Deleting History on this device does not delete online records. Hosted matches expire 30 days after creation; scheduled cleanup removes their cloud logs. Match records are stored in the EU; Firebase Authentication processes sign-in data in the United States. Online connections to Google use encryption in transit. Nearby play exchanges match information with the other device over an unencrypted local connection; use trusted Wi-Fi.'**
+  String get privacyOnlineBody;
+
+  /// No description provided for @privacyDiagnosticsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional usage and crash diagnostics'**
+  String get privacyDiagnosticsTitle;
+
+  /// No description provided for @privacyDiagnosticsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Sharing is off until you choose it in Settings. If enabled, Google Firebase receives usage events, app/device information, performance measurements and crash reports to help improve the app. Turn sharing off at any time to stop new optional collection. This does not erase data already sent. Local diagnostics and online matches work separately from this choice.'**
+  String get privacyDiagnosticsBody;
+
+  /// No description provided for @privacyCameraTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera for nearby QR codes'**
+  String get privacyCameraTitle;
+
+  /// No description provided for @privacyCameraBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The optional camera scans nearby game QR codes. Images are processed on your device and are not saved or uploaded. You can refuse camera access and enter the host address manually. This version does not use the microphone or provide physical-board play.'**
+  String get privacyCameraBody;
+
+  /// No description provided for @privacyFeedbackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback you choose to send'**
+  String get privacyFeedbackTitle;
+
+  /// No description provided for @privacyFeedbackBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback opens a GitHub issue draft for you to review. Opening the draft sends its app version and platform to GitHub; feedback from Diagnostics may also send error details. No issue is posted until you submit it. Issues may be public, so remove private information before sending.'**
+  String get privacyFeedbackBody;
+
+  /// No description provided for @privacyContactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy contact'**
+  String get privacyContactTitle;
+
+  /// No description provided for @privacyReadPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the privacy policy'**
+  String get privacyReadPolicy;
+
+  /// No description provided for @privacyPolicyOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open the privacy policy.'**
+  String get privacyPolicyOpenFailed;
+
+  /// No description provided for @privacySupportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Help and support'**
+  String get privacySupportTitle;
+
+  /// No description provided for @privacySupportOpenFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open support. Contact support@freevia.org.'**
+  String get privacySupportOpenFailed;
+
+  /// No description provided for @privacyDeleteConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete online identity and data?'**
+  String get privacyDeleteConfirmTitle;
+
+  /// No description provided for @privacyDeleteConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This immediately ends access to this identity’s cloud matches for both players and requests deletion of the identity and shared online match logs within 30 days. Google may take up to 180 days after account deletion to remove Authentication data from its live and backup systems. Local History and practice remain on this device. Previously sent optional diagnostics are separate; contact privacy@freevia.org about those. This request cannot be undone.'**
+  String get privacyDeleteConfirmBody;
+
+  /// No description provided for @privacyRequestDeletion.
+  ///
+  /// In en, this message translates to:
+  /// **'Request deletion'**
+  String get privacyRequestDeletion;
+
+  /// No description provided for @privacyDeleteSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete online data'**
+  String get privacyDeleteSectionTitle;
+
+  /// No description provided for @privacyDeleteInstructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this device’s saved sign-in to verify ownership. A player identifier or invite code alone does not prove ownership. Local-only players do not need an online account.'**
+  String get privacyDeleteInstructions;
+
+  /// No description provided for @privacySendingRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending request…'**
+  String get privacySendingRequest;
+
+  /// No description provided for @privacyDeleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete online identity and data'**
+  String get privacyDeleteAction;
+
+  /// No description provided for @privacyDeleteRequested.
+  ///
+  /// In en, this message translates to:
+  /// **'Deletion requested. This online identity is signed out. Its cloud data will be deleted within 30 days. Starting online play again creates a new identity. Google’s Authentication data removal can take up to 180 days. Contact privacy@freevia.org for help.'**
+  String get privacyDeleteRequested;
+
+  /// No description provided for @privacyDeleteRequestedSignOutFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Deletion requested. Its cloud data will be deleted within 30 days. The device could not clear the saved sign-in, but the online identity is blocked from further match access. Google’s Authentication data removal can take up to 180 days. Contact privacy@freevia.org for help.'**
+  String get privacyDeleteRequestedSignOutFailed;
+
+  /// No description provided for @privacyDeleteNoIdentity.
+  ///
+  /// In en, this message translates to:
+  /// **'No usable online identity is saved on this device. No new account was created. If you previously used online play, contact privacy@freevia.org for help; hosted matches expire after 30 days.'**
+  String get privacyDeleteNoIdentity;
+
+  /// No description provided for @privacyDeleteRequestFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not confirm the deletion request. Check your connection and retry, or contact privacy@freevia.org.'**
+  String get privacyDeleteRequestFailed;
+
+  /// No description provided for @privacyConsentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share usage and crash diagnostics?'**
+  String get privacyConsentTitle;
+
+  /// No description provided for @privacyConsentBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This sends usage events, app/device information, crash reports and performance measurements to Google Firebase. Sharing is optional. Games and tutoring work with it off, and you can turn it off again in Settings.'**
+  String get privacyConsentBody;
+
+  /// No description provided for @privacyKeepOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep off'**
+  String get privacyKeepOff;
+
+  /// No description provided for @privacyShareDiagnostics.
+  ///
+  /// In en, this message translates to:
+  /// **'Share diagnostics'**
+  String get privacyShareDiagnostics;
+
+  /// No description provided for @privacySaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save the privacy choice. Please try again.'**
+  String get privacySaveFailed;
+
+  /// No description provided for @privacySettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What stays on your device and what is shared'**
+  String get privacySettingsSubtitle;
+
+  /// No description provided for @privacyDiagnosticsSettingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share usage and crash diagnostics'**
+  String get privacyDiagnosticsSettingTitle;
+
+  /// No description provided for @privacyDiagnosticsSettingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional · off by default'**
+  String get privacyDiagnosticsSettingSubtitle;
+
+  /// No description provided for @lanScanToJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan to join'**
+  String get lanScanToJoin;
+
+  /// No description provided for @lanScanHostCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan the host’s code'**
+  String get lanScanHostCode;
+
+  /// No description provided for @lanEnterAddressInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the address instead'**
+  String get lanEnterAddressInstead;
+
+  /// No description provided for @lanQrAccessibilityLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'QR code to join this game'**
+  String get lanQrAccessibilityLabel;
+
+  /// No description provided for @lanJoinInstruction.
+  ///
+  /// In en, this message translates to:
+  /// **'On the other device, open Play Nearby, choose Join, then scan this QR code.'**
+  String get lanJoinInstruction;
+
+  /// No description provided for @lanTorch.
+  ///
+  /// In en, this message translates to:
+  /// **'Torch'**
+  String get lanTorch;
+
+  /// No description provided for @lanCameraPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Backgammon Buddy cannot use the camera. Allow camera access in device settings, or enter the address shown on the other device manually.'**
+  String get lanCameraPermissionDenied;
+
+  /// No description provided for @lanCameraUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'This device cannot scan QR codes. Enter the address shown on the other device manually.'**
+  String get lanCameraUnsupported;
+
+  /// No description provided for @lanCameraStartFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The camera could not be started. Enter the address shown on the other device manually.'**
+  String get lanCameraStartFailed;
+
+  /// No description provided for @lanPointCameraAtQr.
+  ///
+  /// In en, this message translates to:
+  /// **'Point the camera at the QR code on the other device.'**
+  String get lanPointCameraAtQr;
+
+  /// No description provided for @physicalBuddyUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Backgammon Buddy'**
+  String get physicalBuddyUnavailableTitle;
+
+  /// No description provided for @physicalBuddyUnavailableBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Physical-board play is not available in this version. On-screen games, tutoring and practice are available from Home.'**
+  String get physicalBuddyUnavailableBody;
+
+  /// No description provided for @homePlayWithBuddy.
+  ///
+  /// In en, this message translates to:
+  /// **'Play with Buddy'**
+  String get homePlayWithBuddy;
+
+  /// No description provided for @homeBuddyShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy'**
+  String get homeBuddyShort;
+
+  /// No description provided for @boardSemanticsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Backgammon board. {status}'**
+  String boardSemanticsLabel(Object status);
+
+  /// No description provided for @boardWhiteToRoll.
+  ///
+  /// In en, this message translates to:
+  /// **'White to roll.'**
+  String get boardWhiteToRoll;
+
+  /// No description provided for @boardBlackToRoll.
+  ///
+  /// In en, this message translates to:
+  /// **'Black to roll.'**
+  String get boardBlackToRoll;
+
+  /// No description provided for @boardWhiteToMove.
+  ///
+  /// In en, this message translates to:
+  /// **'White to move, roll {die1} and {die2}.'**
+  String boardWhiteToMove(Object die1, Object die2);
+
+  /// No description provided for @boardBlackToMove.
+  ///
+  /// In en, this message translates to:
+  /// **'Black to move, roll {die1} and {die2}.'**
+  String boardBlackToMove(Object die1, Object die2);
+
+  /// No description provided for @boardDoubleOffered.
+  ///
+  /// In en, this message translates to:
+  /// **'A double is offered.'**
+  String get boardDoubleOffered;
+
+  /// No description provided for @boardResignationOffered.
+  ///
+  /// In en, this message translates to:
+  /// **'A resignation is offered.'**
+  String get boardResignationOffered;
+
+  /// No description provided for @boardGameOver.
+  ///
+  /// In en, this message translates to:
+  /// **'The game is over.'**
+  String get boardGameOver;
+
+  /// No description provided for @feedbackBugTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'[Bug]: Backgammon Buddy {version} ({platform})'**
+  String feedbackBugTitle(Object version, Object platform);
+
+  /// No description provided for @feedbackIdeaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'[Idea]: Backgammon Buddy'**
+  String get feedbackIdeaTitle;
+
+  /// No description provided for @feedbackBugSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace this with a short description of what happened.'**
+  String get feedbackBugSummary;
+
+  /// No description provided for @feedbackBugReproduction.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace this with the steps that led to the problem.'**
+  String get feedbackBugReproduction;
+
+  /// No description provided for @feedbackBugExpected.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace this with what you expected to happen.'**
+  String get feedbackBugExpected;
+
+  /// No description provided for @feedbackIdeaNeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace this with what you wanted to do or learn.'**
+  String get feedbackIdeaNeed;
+
+  /// No description provided for @feedbackIdeaSuggestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace this with the change you would find helpful.'**
+  String get feedbackIdeaSuggestion;
+
+  /// No description provided for @feedbackExcerptTruncated.
+  ///
+  /// In en, this message translates to:
+  /// **'(truncated — use Copy to clipboard on the Diagnostics screen for the full log)'**
+  String get feedbackExcerptTruncated;
+
+  /// No description provided for @boardWhiteToMoveNoRoll.
+  ///
+  /// In en, this message translates to:
+  /// **'White to move.'**
+  String get boardWhiteToMoveNoRoll;
+
+  /// No description provided for @boardBlackToMoveNoRoll.
+  ///
+  /// In en, this message translates to:
+  /// **'Black to move.'**
+  String get boardBlackToMoveNoRoll;
+
+  /// No description provided for @feedbackFieldVersion.
+  ///
+  /// In en, this message translates to:
+  /// **'App version'**
+  String get feedbackFieldVersion;
+
+  /// No description provided for @feedbackFieldPlatform.
+  ///
+  /// In en, this message translates to:
+  /// **'Platform'**
+  String get feedbackFieldPlatform;
+
+  /// No description provided for @feedbackFieldSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'What happened'**
+  String get feedbackFieldSummary;
+
+  /// No description provided for @feedbackFieldReproduction.
+  ///
+  /// In en, this message translates to:
+  /// **'Steps to reproduce'**
+  String get feedbackFieldReproduction;
+
+  /// No description provided for @feedbackFieldExpected.
+  ///
+  /// In en, this message translates to:
+  /// **'Expected result'**
+  String get feedbackFieldExpected;
+
+  /// No description provided for @feedbackFieldNeed.
+  ///
+  /// In en, this message translates to:
+  /// **'What you wanted to do'**
+  String get feedbackFieldNeed;
+
+  /// No description provided for @feedbackFieldIdea.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested change'**
+  String get feedbackFieldIdea;
 }
 
 class _AppLocalizationsDelegate

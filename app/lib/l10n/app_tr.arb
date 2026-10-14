@@ -1008,12 +1008,7 @@
   },
   "analysisExplain": "Açıkla",
   "analysisSaveForPractice": "Antrenman için kaydet",
-  "analysisSaveError": "Bu karar kaydedilemedi: {error}",
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
-    }
-  },
+  "analysisSaveError": "Bu karar kaydedilemedi. Lütfen tekrar deneyin.",
   "analysisCubeInfo": "{side}: {action} · {mark} · kayıp {loss}",
   "@analysisCubeInfo": {
     "placeholders": {
@@ -1519,5 +1514,104 @@
   "metricExplainerEquityBody": "Skor yoksa küpsüz eşitlik, küp 1 değerindeyken pozisyonun ortalama puan değerini gösterir. +1,0 ortalama bir puan kazanmayı, −0,5 yarım puan kaybetmeyi beklediğin anlamına gelir.",
   "metricExplainerEquityLossBody": "Oynadığın hamleyi motorun en iyi hamlesiyle karşılaştırırız. Eşitlik kaybı, hamlenin vazgeçtiği beklenen değerdir. −0,016, hamlenin en iyiden yalnızca 0,016 puan kötü olduğunu, yani ufak bir hata olduğunu gösterir. 0,000 en iyi hamleyi bulduğun anlamına gelir.",
   "metricExplainerErrorRateBody": "Ortalama kayıp, puanlanan pul kararlarının gösterilen birimdeki ortalamasıdır. Küp kararlarının ayrı ortalaması vardır. Daha düşük değer motorun en iyi tahminlerine daha yakın hamleler demektir; kalibre edilmiş oyuncu puanı değildir.",
-  "metricExplainerMoveMarksBody": "MWC öğretim aralıkları: En iyi < 0,05 pp, İyi < 0,5 pp, Şüpheli < 1,5 pp, Hata < 3 pp, Büyük hata ≥ 3 pp. Bunlar kalibre edilmiş güven ya da turnuva puanı değil, eğitim aralıklarıdır.\n\nKüpsüz eşitlik öğretim aralıkları:"
+  "metricExplainerMoveMarksBody": "MWC öğretim aralıkları: En iyi < 0,05 pp, İyi < 0,5 pp, Şüpheli < 1,5 pp, Hata < 3 pp, Büyük hata ≥ 3 pp. Bunlar kalibre edilmiş güven ya da turnuva puanı değil, eğitim aralıklarıdır.\n\nKüpsüz eşitlik öğretim aralıkları:",
+  "privacyTitle": "Gizlilik ve veriler",
+  "privacyAppTitle": "Backgammon Buddy yazan: Freevia",
+  "privacyIntro": "Bu sayfada mevcut uygulamanın verilerinizi nasıl işlediği açıklanmaktadır.",
+  "privacyLocalTitle": "Cihazınızda oyunlar ve dersler",
+  "privacyLocalBody": "Yerel maçlar, ayarlar, analizler ve antrenman ilerlemesi bu cihazda saklanır. Oyun motoru ve eğitmen açıklamaları burada çalışır. Kayıtlı bir maçı Oyun Arşivi’nden silmek, o maça ait kayıtlı alıştırmaları ve denemeleri de siler. Öğrenme ve Pratik bölümünden alıştırmaları tek tek silebilir veya ilerlemeyi sıfırlayabilirsiniz; yerel hata raporlarını Ayarlar → Tanılama bölümünden temizleyebilirsiniz. Cihaz yedeklemesi maç geçmişini de içerebilir. Çevrimiçi oturum açma bilgileri cihazın korumalı depolama alanında saklanır.",
+  "privacyOnlineTitle": "Çevrimiçi ve yakındaki oyun",
+  "privacyOnlineBody": "Çevrimiçi oyun, her iki oyuncunun da aynı maçı oynayabilmesi için Google Firebase’e anonim oyuncu tanımlayıcısı, maç ayarları, hamleler ve zar atışlarını eşgüdümleme protokolüne ait kayıtları gönderir. Bu cihazdaki Geçmişi silmek çevrimiçi kayıtları silmez. Barındırılan maçların süresi oluşturulmalarından 30 gün sonra dolar; zamanlanmış temizlik bulut günlüklerini siler. Maç kayıtları AB’de saklanır; Firebase Authentication oturum açma verilerini Amerika Birleşik Devletleri’nde işler. Google bağlantıları aktarım sırasında şifrelenir. Yakındaki oyunlarda maç bilgileri diğer cihazla şifrelenmemiş yerel bağlantı üzerinden paylaşılır; güvenilir bir Wi-Fi ağı kullanın.",
+  "privacyDiagnosticsTitle": "İsteğe bağlı kullanım ve çökme tanılama",
+  "privacyDiagnosticsBody": "Ayarlar’dan etkinleştirene kadar paylaşım kapalıdır. Etkinleştirilirse Google Firebase, uygulamayı geliştirmeye yardımcı olmak için kullanım etkinliklerini, uygulama ve cihaz bilgilerini, performans ölçümlerini ve kilitlenme raporlarını alır. Yeni isteğe bağlı veri toplamayı durdurmak için paylaşımı istediğiniz zaman kapatabilirsiniz. Bu işlem daha önce gönderilen verileri silmez. Yerel tanılama ve çevrimiçi maçlar bu ayardan bağımsız çalışır.",
+  "privacyCameraTitle": "Yakındaki QR kodları için kamera",
+  "privacyCameraBody": "İsteğe bağlı kamera yakındaki oyunlar için QR kodlarını tarar. Görüntüler cihazda işlenir; kaydedilmez veya yüklenmez. Kamera erişimini reddedebilir ve ana cihazın adresini elle girebilirsiniz. Bu sürüm mikrofonu kullanmaz ve fiziksel tahtada oyunu desteklemez.",
+  "privacyFeedbackTitle": "Göndermeyi seçtiğiniz geri bildirim",
+  "privacyFeedbackBody": "Geri bildirim, inceleyebilmeniz için bir GitHub issue taslağı açar. Taslağı açmak uygulama sürümünü ve platformu GitHub’a gönderir; Tanılama ekranından gönderilen geri bildirim hata ayrıntılarını da içerebilir. Issue siz göndermeden yayımlanmaz. Issue’lar herkese açık olabilir; göndermeden önce özel bilgileri kaldırın.",
+  "privacyContactTitle": "Gizlilik iletişim bilgileri",
+  "privacyReadPolicy": "Gizlilik politikasını okuyun",
+  "privacyPolicyOpenFailed": "Gizlilik politikası açılamadı.",
+  "privacySupportTitle": "Yardım ve destek",
+  "privacySupportOpenFailed": "Destek açılamadı. support@freevia.org ile iletişime geçin.",
+  "privacyDeleteConfirmTitle": "Çevrimiçi kimlik ve veriler silinsin mi?",
+  "privacyDeleteConfirmBody": "Bu kimlikle ilişkili bulut maçlarına her iki oyuncunun erişimi derhal sona erer. Kimliğin ve paylaşılan çevrimiçi maç günlüklerinin 30 gün içinde silinmesi için talep oluşturulur. Google, hesap silindikten sonra kimlik doğrulama verilerini canlı sistemlerinden ve yedeklerinden kaldırmak için 180 güne kadar süreye ihtiyaç duyabilir. Yerel maç geçmişi ve alıştırmalar bu cihazda kalır. Daha önce gönderilen isteğe bağlı tanılama verileri bu işlemden ayrıdır; bunlar hakkında privacy@freevia.org ile iletişime geçin. Bu talep geri alınamaz.",
+  "privacyRequestDeletion": "Silme isteği",
+  "privacyDeleteSectionTitle": "Çevrimiçi verileri silme",
+  "privacyDeleteInstructions": "Kimliğin size ait olduğunu doğrulamak için bu cihaza kaydedilmiş oturum açma bilgilerini kullanın. Oyuncu tanımlayıcısı veya davet kodu tek başına sahipliği kanıtlamaz. Yalnızca bu cihazda oynayanların çevrimiçi hesaba ihtiyacı yoktur.",
+  "privacySendingRequest": "İstek gönderiliyor…",
+  "privacyDeleteAction": "Çevrimiçi kimliği ve verileri silin",
+  "privacyDeleteRequested": "Silme talebi gönderildi. Bu çevrimiçi kimliğin oturumu kapatıldı. Kimliğin bulut verileri 30 gün içinde silinecek. Çevrimiçi oyunu yeniden başlatırsanız yeni bir kimlik oluşturulur. Google’ın kimlik doğrulama verilerini kaldırması 180 güne kadar sürebilir. Yardım için privacy@freevia.org ile iletişime geçin.",
+  "privacyDeleteRequestedSignOutFailed": "Silme talebi gönderildi. Bulut verileri 30 gün içinde silinecek. Cihaz kayıtlı oturum açma bilgilerini temizleyemedi, ancak çevrimiçi kimliğin maçlara erişimi engellendi. Google’ın kimlik doğrulama verilerini kaldırması 180 güne kadar sürebilir. Yardım için privacy@freevia.org ile iletişime geçin.",
+  "privacyDeleteNoIdentity": "Bu cihazda kullanılabilir bir çevrimiçi kimlik kayıtlı değil. Yeni bir hesap oluşturulmadı. Daha önce çevrimiçi oynadıysanız yardım için privacy@freevia.org ile iletişime geçin; barındırılan maçlar oluşturulduktan 30 gün sonra sona erer.",
+  "privacyDeleteRequestFailed": "Silme talebi doğrulanamadı. Bağlantınızı kontrol edip yeniden deneyin veya privacy@freevia.org ile iletişime geçin.",
+  "privacyConsentTitle": "Kullanım ve kilitlenme teşhisleri paylaşılsın mı?",
+  "privacyConsentBody": "Bu seçenek kullanım etkinliklerini, uygulama ve cihaz bilgilerini, kilitlenme raporlarını ve performans ölçümlerini Google Firebase’e gönderir. Paylaşım isteğe bağlıdır. Oyun ve antrenman paylaşım kapalıyken de çalışır; paylaşımı Ayarlar’dan istediğiniz zaman kapatabilirsiniz.",
+  "privacyKeepOff": "Kapalı kalsın",
+  "privacyShareDiagnostics": "Teşhisleri paylaş",
+  "privacySaveFailed": "Gizlilik seçimi kaydedilemedi. Lütfen tekrar deneyin.",
+  "privacySettingsSubtitle": "Cihazınızda kalanlar ve paylaşılanlar",
+  "privacyDiagnosticsSettingTitle": "Kullanım ve kilitlenme teşhislerini paylaşma",
+  "privacyDiagnosticsSettingSubtitle": "İsteğe bağlı · varsayılan olarak kapalı",
+  "lanScanToJoin": "Katılmak için tarayın",
+  "lanScanHostCode": "Toplantı sahibinin kodunu tarayın",
+  "lanEnterAddressInstead": "Bunun yerine adresi girin",
+  "lanTorch": "Flaş",
+  "lanCameraPermissionDenied": "Backgammon Buddy kamerayı kullanamıyor. Cihaz ayarlarında kamera erişimine izin verin veya diğer cihazda gösterilen adresi manuel olarak girin.",
+  "lanCameraUnsupported": "Bu cihaz QR kodlarını tarayamıyor. Diğer cihazda gösterilen adresi manuel olarak girin.",
+  "lanCameraStartFailed": "Kamera başlatılamadı. Diğer cihazda gösterilen adresi manuel olarak girin.",
+  "lanPointCameraAtQr": "Kamerayı diğer cihazdaki QR koduna doğrultun.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "physicalBuddyUnavailableBody": "Bu sürümde fiziksel tahtada oyun oynanamaz. Ekran oyunları, rehberlik ve pratik Ana ekranda kullanılabilir.",
+  "boardSemanticsLabel": "Tavla tahtası. {status}",
+  "boardWhiteToRoll": "Zar atma sırası Beyazda.",
+  "boardBlackToRoll": "Zar atma sırası Siyahta.",
+  "boardWhiteToMove": "Sıra Beyazda; zarlar {die1} ve {die2}.",
+  "boardBlackToMove": "Sıra Siyahta; zarlar {die1} ve {die2}.",
+  "boardDoubleOffered": "Küpü ikiye katlama teklifi yapıldı.",
+  "boardResignationOffered": "Oyunu bırakma teklifi yapıldı.",
+  "boardGameOver": "Oyun bitti.",
+  "feedbackBugTitle": "[Hata]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Fikir]: Backgammon Buddy",
+  "feedbackBugSummary": "Bunu, ne olduğuna dair kısa bir açıklamayla değiştirin.",
+  "feedbackBugReproduction": "Bunu, soruna yol açan adımlarla değiştirin.",
+  "feedbackBugExpected": "Bunu olmasını beklediğiniz şeyle değiştirin.",
+  "feedbackIdeaNeed": "Bunu yapmak veya öğrenmek istediğiniz şeyle değiştirin.",
+  "feedbackIdeaSuggestion": "Bunu yararlı bulacağınız değişiklikle değiştirin.",
+  "feedbackExcerptTruncated": "(kesildi — tam günlük için Teşhis ekranında Panoya kopyala seçeneğini kullanın)",
+  "boardWhiteToMoveNoRoll": "Sıra Beyazda.",
+  "boardBlackToMoveNoRoll": "Sıra Siyahta.",
+  "feedbackFieldVersion": "Uygulama sürümü",
+  "feedbackFieldPlatform": "Platform",
+  "feedbackFieldSummary": "Ne oldu",
+  "feedbackFieldReproduction": "Yeniden oluşturma adımları",
+  "feedbackFieldExpected": "Beklenen sonuç",
+  "feedbackFieldNeed": "Ne yapmak istediniz?",
+  "feedbackFieldIdea": "Önerilen değişiklik",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "Bu oyuna katılmak için QR kodu",
+  "lanJoinInstruction": "Diğer cihazda Yakındakilerle Oyna’yı açın, Katıl’ı seçin ve bu QR kodunu tarayın.",
+  "homePlayWithBuddy": "Buddy ile oyna",
+  "homeBuddyShort": "Buddy"
 }

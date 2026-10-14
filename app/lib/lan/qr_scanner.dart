@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:camera/camera.dart';
 
+import '../l10n/app_localizations.dart';
+import '../l10n/localization_lookup.dart';
 import 'qr_payload.dart';
 import 'qr_decoder.dart';
 
@@ -68,7 +70,11 @@ class CameraQrScanner implements QrScanner {
   Future<QrScanOutcome> scan(BuildContext context) async {
     if (kIsWeb || !qrScanSupportedOn(defaultTargetPlatform)) {
       return QrScanUnavailable(
-          cameraErrorText(CameraException('unsupported', '')));
+        cameraErrorText(
+          CameraException('unsupported', ''),
+          appLocalizationsOf(context),
+        ),
+      );
     }
     final outcome = await Navigator.of(context).push<QrScanOutcome>(
       MaterialPageRoute(builder: (_) => const QrScanPage()),
@@ -79,8 +85,10 @@ class CameraQrScanner implements QrScanner {
 
 /// Injectable camera boundary keeps lifecycle and late-frame handling testable.
 abstract interface class QrScanCamera {
-  Future<void> start(void Function(QrLuminanceFrame) onFrame,
-      void Function(CameraException) onError);
+  Future<void> start(
+    void Function(QrLuminanceFrame) onFrame,
+    void Function(CameraException) onError,
+  );
   Widget preview();
   Future<void> toggleTorch();
   Future<void> close();
@@ -91,19 +99,24 @@ class PhoneQrScanCamera implements QrScanCamera {
   bool _torch = false;
 
   @override
-  Future<void> start(void Function(QrLuminanceFrame) onFrame,
-      void Function(CameraException) onError) async {
+  Future<void> start(
+    void Function(QrLuminanceFrame) onFrame,
+    void Function(CameraException) onError,
+  ) async {
     final cameras = await availableCameras();
     if (cameras.isEmpty) throw CameraException('noCamera', '');
     final back = cameras.firstWhere(
       (c) => c.lensDirection == CameraLensDirection.back,
       orElse: () => cameras.first,
     );
-    final controller = CameraController(back, ResolutionPreset.medium,
-        enableAudio: false,
-        imageFormatGroup: defaultTargetPlatform == TargetPlatform.iOS
-            ? ImageFormatGroup.bgra8888
-            : ImageFormatGroup.yuv420);
+    final controller = CameraController(
+      back,
+      ResolutionPreset.medium,
+      enableAudio: false,
+      imageFormatGroup: defaultTargetPlatform == TargetPlatform.iOS
+          ? ImageFormatGroup.bgra8888
+          : ImageFormatGroup.yuv420,
+    );
     _controller = controller;
     _torch = false;
     await controller.initialize();
@@ -126,12 +139,13 @@ class PhoneQrScanCamera implements QrScanCamera {
       final plane = image.planes.first;
       final bgra = format == ImageFormatGroup.bgra8888;
       final frame = QrLuminanceFrame.fromPlane(
-          width: image.width,
-          height: image.height,
-          bytes: plane.bytes,
-          rowStride: plane.bytesPerRow,
-          pixelStride: bgra ? 4 : (plane.bytesPerPixel ?? 1),
-          bgra: bgra);
+        width: image.width,
+        height: image.height,
+        bytes: plane.bytes,
+        rowStride: plane.bytesPerRow,
+        pixelStride: bgra ? 4 : (plane.bytesPerPixel ?? 1),
+        bgra: bgra,
+      );
       if (frame != null) onFrame(frame);
     });
   }
@@ -190,8 +204,10 @@ class _QrScanPageState extends State<QrScanPage> with WidgetsBindingObserver {
     _cameraWork = _cameraWork.then((_) async {
       if (!mounted || !_active || generation != _generation) return;
       try {
-        await _camera.start((frame) => _onFrame(frame, generation),
-            (error) => _fail(error, generation));
+        await _camera.start(
+          (frame) => _onFrame(frame, generation),
+          (error) => _fail(error, generation),
+        );
         if (!mounted || !_active || generation != _generation) return;
         setState(() {
           _ready = true;
@@ -199,10 +215,9 @@ class _QrScanPageState extends State<QrScanPage> with WidgetsBindingObserver {
         });
       } catch (error) {
         _fail(
-            error is CameraException
-                ? error
-                : CameraException('unavailable', ''),
-            generation);
+          error is CameraException ? error : CameraException('unavailable', ''),
+          generation,
+        );
       }
     });
   }
@@ -211,8 +226,9 @@ class _QrScanPageState extends State<QrScanPage> with WidgetsBindingObserver {
     ++_generation;
     // Serialize shutdown after an in-flight permission/start request. A resumed
     // route cannot open another controller before the previous one is released.
-    _cameraWork =
-        _cameraWork.then((_) => _camera.close()).catchError((Object _) {});
+    _cameraWork = _cameraWork
+        .then((_) => _camera.close())
+        .catchError((Object _) {});
   }
 
   void _fail(CameraException error, int generation) {
@@ -269,9 +285,7 @@ class _QrScanPageState extends State<QrScanPage> with WidgetsBindingObserver {
         _handled = true;
         Navigator.of(context).pop(QrScanCode(raw));
       } else if (_hint == null) {
-        setState(
-            () => _hint = 'That is not a Backgammon Buddy game code. Point the '
-                'camera at the QR code on the other device\'s Host screen.');
+        setState(() => _hint = appLocalizationsOf(context).lanInvalidQr);
       }
     } catch (_) {
       // A malformed camera frame or unrecognized QR is not a camera failure.
@@ -296,51 +310,61 @@ class _QrScanPageState extends State<QrScanPage> with WidgetsBindingObserver {
   }
 
   @override
-  Widget build(BuildContext context) => PopScope(
-        canPop: false,
-        onPopInvokedWithResult: (didPop, _) {
-          if (!didPop) Navigator.of(context).pop(backOutcomeFor(_error));
-        },
-        child: Scaffold(
-          appBar: AppBar(title: const Text('Scan the host\'s code'), actions: [
+  Widget build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) Navigator.of(context).pop(backOutcomeFor(_error, l10n));
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(l10n.lanScanHostCode),
+          actions: [
             IconButton(
-                tooltip: 'Torch',
-                icon: const Icon(Icons.flashlight_on),
-                onPressed: () => unawaited(_toggleTorch())),
-          ]),
-          body: _error != null
-              ? _CameraProblem(
-                  message: cameraErrorText(_error!),
-                  onDismiss: () =>
-                      Navigator.of(context).pop(backOutcomeFor(_error)))
-              : Stack(fit: StackFit.expand, children: [
+              tooltip: l10n.lanTorch,
+              icon: const Icon(Icons.flashlight_on),
+              onPressed: () => unawaited(_toggleTorch()),
+            ),
+          ],
+        ),
+        body: _error != null
+            ? _CameraProblem(
+                message: cameraErrorText(_error!, l10n),
+                onDismiss: () =>
+                    Navigator.of(context).pop(backOutcomeFor(_error, l10n)),
+              )
+            : Stack(
+                fit: StackFit.expand,
+                children: [
                   const ColoredBox(color: Colors.black),
                   if (_ready) Center(child: _camera.preview()),
                   if (!_ready) const Center(child: CircularProgressIndicator()),
                   Positioned(
-                      left: 16,
-                      right: 16,
-                      bottom: 32,
-                      child: SafeArea(child: _ScanCaption(hint: _hint))),
-                ]),
-        ),
-      );
+                    left: 16,
+                    right: 16,
+                    bottom: 32,
+                    child: SafeArea(child: _ScanCaption(hint: _hint)),
+                  ),
+                ],
+              ),
+      ),
+    );
+  }
 }
 
-QrScanOutcome backOutcomeFor(CameraException? error) => error == null
+QrScanOutcome backOutcomeFor(CameraException? error, AppLocalizations l10n) =>
+    error == null
     ? const QrScanCancelled()
-    : QrScanUnavailable(cameraErrorText(error));
+    : QrScanUnavailable(cameraErrorText(error, l10n));
 
-String cameraErrorText(CameraException error) => switch (error.code) {
+String cameraErrorText(CameraException error, AppLocalizations l10n) =>
+    switch (error.code) {
       'CameraAccessDenied' ||
       'CameraAccessDeniedWithoutPrompt' ||
-      'CameraAccessRestricted' =>
-        'Backgammon Buddy does not have permission to use the camera. Allow camera '
-            'access in your device settings, or enter the address shown on the other device by hand.',
-      'unsupported' =>
-        'This device cannot scan QR codes. Enter the address shown on the other device by hand.',
-      _ =>
-        'The camera could not be started. Enter the address shown on the other device by hand.',
+      'CameraAccessRestricted' => l10n.lanCameraPermissionDenied,
+      'unsupported' => l10n.lanCameraUnsupported,
+      _ => l10n.lanCameraStartFailed,
     };
 
 class _CameraProblem extends StatelessWidget {
@@ -357,19 +381,22 @@ class _CameraProblem extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(32),
           child: SingleChildScrollView(
-              child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.no_photography_outlined, size: 40),
-              const SizedBox(height: 16),
-              Text(message, textAlign: TextAlign.center),
-              const SizedBox(height: 24),
-              FilledButton(
-                onPressed: onDismiss,
-                child: const Text('Enter the address instead'),
-              ),
-            ],
-          )),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.no_photography_outlined, size: 40),
+                const SizedBox(height: 16),
+                Text(message, textAlign: TextAlign.center),
+                const SizedBox(height: 24),
+                FilledButton(
+                  onPressed: onDismiss,
+                  child: Text(
+                    appLocalizationsOf(context).lanEnterAddressInstead,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -393,7 +420,7 @@ class _ScanCaption extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Text(
-          hint ?? 'Point the camera at the QR code on the other device.',
+          hint ?? appLocalizationsOf(context).lanPointCameraAtQr,
           textAlign: TextAlign.center,
           style: const TextStyle(color: Colors.white),
         ),
@@ -403,6 +430,4 @@ class _ScanCaption extends StatelessWidget {
 }
 
 /// The scanner [LanScreen] uses. Overridden in widget tests with a scripted one.
-final qrScannerProvider = Provider<QrScanner>(
-  (ref) => const CameraQrScanner(),
-);
+final qrScannerProvider = Provider<QrScanner>((ref) => const CameraQrScanner());

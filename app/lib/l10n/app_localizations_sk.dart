@@ -1370,9 +1370,8 @@ class AppLocalizationsSk extends AppLocalizations {
   String get analysisSaveForPractice => 'Uložiť na precvičenie';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Toto rozhodnutie sa nepodarilo uložiť: $error';
-  }
+  String get analysisSaveError =>
+      'Toto rozhodnutie sa nepodarilo uložiť. Skúste to znova.';
 
   @override
   String analysisCubeInfo(
@@ -2485,4 +2484,276 @@ class AppLocalizationsSk extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Chyba: $error';
   }
+
+  @override
+  String get privacyTitle => 'Súkromie a údaje';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy od Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Táto stránka popisuje, ako aktuálna aplikácia narába s vašimi údajmi.';
+
+  @override
+  String get privacyLocalTitle => 'Hry a doučovanie na vašom zariadení';
+
+  @override
+  String get privacyLocalBody =>
+      'Miestne zápasy, nastavenia, analýza a pokrok v tréningu sa ukladajú v tomto zariadení. Tu beží herný engine aj vysvetlenia trénera. Odstránením uloženého zápasu z Archívu hier sa odstránia aj uložené tréningové cvičenia a pokusy pre tento zápas. Jednotlivé cvičenia môžete odstrániť alebo resetovať pokrok v časti Učenie a tréning; miestne chybové hlásenia vymažete v Nastavenia → Diagnostika. História zápasov môže byť zahrnutá aj v zálohách zariadenia. Prihlasovacie údaje na online hranie sa uchovávajú v chránenom úložisku zariadenia.';
+
+  @override
+  String get privacyOnlineTitle => 'Hrajte online a v okolí';
+
+  @override
+  String get privacyOnlineBody =>
+      'Online hra posiela do služby Google Firebase anonymný identifikátor hráča, nastavenia zápasu, ťahy a záznamy protokolu na zosúladenie hodov kockami, aby obaja hráči mohli hrať ten istý zápas. Odstránením histórie v tomto zariadení sa online záznamy neodstránia. Platnosť hostovaných zápasov vyprší 30 dní po vytvorení; plánované čistenie odstráni ich záznamy z cloudu. Záznamy zápasov sa ukladajú v EÚ; Firebase Authentication spracúva prihlasovacie údaje v Spojených štátoch. Spojenia so službami Google sú počas prenosu šifrované. Pri hre nablízku si zariadenia vymieňajú informácie o zápase cez nešifrované miestne pripojenie; používajte dôveryhodnú sieť Wi-Fi.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Voliteľná diagnostika používania a pádov';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Zdieľanie je vypnuté, kým ho nezapnete v Nastaveniach. Ak ho zapnete, Google Firebase bude prijímať udalosti používania, informácie o aplikácii a zariadení, merania výkonu a hlásenia o zlyhaní, aby pomohol zlepšiť aplikáciu. Zdieľanie môžete kedykoľvek vypnúť a zastaviť tak zhromažďovanie nových voliteľných údajov. Už odoslané údaje sa tým nevymažú. Miestna diagnostika a online zápasy fungujú nezávisle od tejto voľby.';
+
+  @override
+  String get privacyCameraTitle => 'Kamera pre blízke QR kódy';
+
+  @override
+  String get privacyCameraBody =>
+      'Voliteľná kamera skenuje QR kódy na hranie v blízkosti. Obrázky sa spracúvajú v zariadení, neukladajú sa ani sa neodosielajú. Prístup ku kamere môžete odmietnuť a adresu hostiteľského zariadenia zadať ručne. Táto verzia nepoužíva mikrofón ani nepodporuje hru na fyzickej doske.';
+
+  @override
+  String get privacyFeedbackTitle =>
+      'Spätná väzba, ktorú sa rozhodnete odoslať';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Spätná väzba otvorí návrh hlásenia na GitHub, ktorý si môžete skontrolovať. Otvorením návrhu sa na GitHub odošle verzia aplikácie a platforma; spätná väzba z obrazovky Diagnostika môže obsahovať aj podrobnosti o chybe. Hlásenie sa nezverejní, kým ho neodošlete. Hlásenia môžu byť verejné, preto pred odoslaním odstráňte súkromné informácie.';
+
+  @override
+  String get privacyContactTitle => 'Kontakt na ochranu osobných údajov';
+
+  @override
+  String get privacyReadPolicy =>
+      'Prečítajte si zásady ochrany osobných údajov';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Nepodarilo sa otvoriť zásady ochrany osobných údajov.';
+
+  @override
+  String get privacySupportTitle => 'Pomoc a podpora';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Nepodarilo sa otvoriť podporu. Kontaktujte support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Chcete odstrániť online identitu a údaje?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Prístup oboch hráčov k zápasom v cloude prepojeným s touto identitou sa okamžite ukončí. Žiada sa o vymazanie identity a zdieľaných záznamov online zápasov do 30 dní. Google môže po odstránení účtu potrebovať až 180 dní na odstránenie autentifikačných údajov zo svojich aktívnych a záložných systémov. Miestna história zápasov a tréningové úlohy zostanú v tomto zariadení. Predtým odoslané voliteľné diagnostické údaje sa riešia samostatne; v tejto veci kontaktujte privacy@freevia.org. Túto žiadosť nemožno vziať späť.';
+
+  @override
+  String get privacyRequestDeletion => 'Požiadať o vymazanie';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Odstránenie online údajov';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Na overenie vlastníctva použite prihlasovacie údaje uložené v tomto zariadení. Samotný identifikátor hráča ani pozývací kód vlastníctvo nepotvrdzuje. Pri hraní iba na tomto zariadení online účet nepotrebujete.';
+
+  @override
+  String get privacySendingRequest => 'Odosiela sa žiadosť…';
+
+  @override
+  String get privacyDeleteAction => 'Odstráňte online identitu a údaje';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Žiadosť o vymazanie bola odoslaná. Táto online identita bola odhlásená. Jej cloudové údaje sa vymažú do 30 dní. Pri ďalšom spustení online hry sa vytvorí nová identita. Odstránenie autentifikačných údajov Googlom môže trvať až 180 dní. Ak potrebujete pomoc, kontaktujte privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Žiadosť o vymazanie bola odoslaná. Cloudové údaje sa vymažú do 30 dní. Zariadeniu sa nepodarilo odstrániť uložené prihlasovacie údaje, online identita však už nemá prístup k zápasom. Odstránenie autentifikačných údajov Googlom môže trvať až 180 dní. Ak potrebujete pomoc, kontaktujte privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'V tomto zariadení nie je uložená žiadna použiteľná online identita. Nový účet sa nevytvoril. Ak ste už hrali online, požiadajte o pomoc na privacy@freevia.org; hostované zápasy vypršia 30 dní po vytvorení.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Žiadosť o vymazanie sa nepodarilo potvrdiť. Skontrolujte pripojenie a skúste to znova alebo kontaktujte privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle =>
+      'Zdieľať používanie a diagnostiku zlyhania?';
+
+  @override
+  String get privacyConsentBody =>
+      'Táto voľba odosiela do služby Google Firebase udalosti používania, informácie o aplikácii a zariadení, hlásenia o zlyhaní a merania výkonu. Zdieľanie je dobrovoľné. Hry aj tréning fungujú aj pri vypnutom zdieľaní; zdieľanie môžete kedykoľvek vypnúť v Nastaveniach.';
+
+  @override
+  String get privacyKeepOff => 'Ponechať vypnuté';
+
+  @override
+  String get privacyShareDiagnostics => 'Zdieľať diagnostiku';
+
+  @override
+  String get privacySaveFailed =>
+      'Nepodarilo sa uložiť voľbu ochrany osobných údajov. Skúste to znova.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Čo zostane vo vašom zariadení a čo sa zdieľa';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Zdieľanie používania a diagnostiky zlyhania';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Voliteľné · predvolene vypnuté';
+
+  @override
+  String get lanScanToJoin => 'Pripojte sa naskenovaním';
+
+  @override
+  String get lanScanHostCode => 'Naskenujte kód hostiteľa';
+
+  @override
+  String get lanEnterAddressInstead => 'Namiesto toho zadajte adresu';
+
+  @override
+  String get lanQrAccessibilityLabel => 'QR kód na pripojenie k tejto hre';
+
+  @override
+  String get lanJoinInstruction =>
+      'Na druhom zariadení otvorte Hrať nablízku, vyberte Pripojiť sa a naskenujte tento QR kód.';
+
+  @override
+  String get lanTorch => 'Blesk';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy nemôže používať fotoaparát. Povoľte prístup k fotoaparátu v nastaveniach zariadenia alebo zadajte adresu zobrazenú na druhom zariadení manuálne.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Toto zariadenie nedokáže skenovať QR kódy. Ručne zadajte adresu zobrazenú na druhom zariadení.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Fotoaparát sa nepodarilo spustiť. Ručne zadajte adresu zobrazenú na druhom zariadení.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Nasmerujte fotoaparát na QR kód na druhom zariadení.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Hra na fyzickej doske nie je v tejto verzii dostupná. Hry na obrazovke, doučovanie a tréning nájdete na domovskej obrazovke.';
+
+  @override
+  String get homePlayWithBuddy => 'Hrať s Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Doska na vrhcáby. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Biely je na ťahu, aby hodil kockami.';
+
+  @override
+  String get boardBlackToRoll => 'Čierny je na ťahu, aby hodil kockami.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Biely je na ťahu; na kockách padlo $die1 a $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Čierny je na ťahu; na kockách padlo $die1 a $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Bolo ponúknuté zdvojnásobenie kocky.';
+
+  @override
+  String get boardResignationOffered => 'Bolo ponúknuté vzdanie partie.';
+
+  @override
+  String get boardGameOver => 'Hra sa skončila.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Chyba]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Nápad]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'Nahraďte to krátkym popisom toho, čo sa stalo.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Nahraďte to krokmi, ktoré viedli k problému.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Nahraďte to tým, čo ste očakávali, že sa stane.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Nahraďte to tým, čo ste chceli robiť alebo sa učiť.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Nahraďte to zmenou, ktorá by vám pomohla.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(skrátené – pre celý protokol použite Kopírovať do schránky na obrazovke Diagnostika)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Biely je na ťahu.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Čierny je na ťahu.';
+
+  @override
+  String get feedbackFieldVersion => 'Verzia aplikácie';
+
+  @override
+  String get feedbackFieldPlatform => 'Platforma';
+
+  @override
+  String get feedbackFieldSummary => 'Čo sa stalo';
+
+  @override
+  String get feedbackFieldReproduction => 'Kroky na reprodukciu';
+
+  @override
+  String get feedbackFieldExpected => 'Očakávaný výsledok';
+
+  @override
+  String get feedbackFieldNeed => 'Čo ste chceli urobiť';
+
+  @override
+  String get feedbackFieldIdea => 'Navrhovaná zmena';
 }

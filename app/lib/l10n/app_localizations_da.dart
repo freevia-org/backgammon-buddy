@@ -1360,9 +1360,8 @@ class AppLocalizationsDa extends AppLocalizations {
   String get analysisSaveForPractice => 'Gem til træning';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Denne beslutning kunne ikke gemmes: $error';
-  }
+  String get analysisSaveError =>
+      'Denne beslutning kunne ikke gemmes. Prøv igen.';
 
   @override
   String analysisCubeInfo(
@@ -2475,4 +2474,271 @@ class AppLocalizationsDa extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Fejl: $error';
   }
+
+  @override
+  String get privacyTitle => 'Privatliv og data';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy af Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Denne side beskriver, hvordan den aktuelle app håndterer dine data.';
+
+  @override
+  String get privacyLocalTitle => 'Spil og vejledning på din enhed';
+
+  @override
+  String get privacyLocalBody =>
+      'Lokale matches, indstillinger, analyser og øvelsesfremskridt gemmes på denne enhed. Backgammon motoren og tutor forklaringerne kører her. Slet et gemt match fra historikken for også at fjerne dets gemte øvelsesøvelser og forsøg. Slet individuelle øvelser eller nulstil øvelsesfremskridt i Læring; ryd lokale fejlrapporter i Indstillinger → Diagnostik. Din enheds indstillinger for sikkerhedskopiering kan også gælde for spilhistorik. Online loginoplysninger opbevares i enhedens beskyttede lager.';
+
+  @override
+  String get privacyOnlineTitle => 'Online og spil i nærheden';
+
+  @override
+  String get privacyOnlineBody =>
+      'Onlinespil sender en anonym spilleridentifikator, matchindstillinger, træk og terning-håndtryk til Google Firebase, så begge spillere kan spille den samme kamp. Sletning af historik på denne enhed sletter ikke online optegnelser. Hostede matches udløber 30 dage efter oprettelse. Planlagt oprydning fjerner deres sky-logfiler. Matchposter gemmes i EU; Firebase Authentication behandler login-data i USA. Onlineforbindelser til Google bruger kryptering under overførsel. Afspilningsudvekslinger i nærheden matcher oplysninger med den anden enhed over en ukrypteret lokal forbindelse; brug betroet Wi-Fi.';
+
+  @override
+  String get privacyDiagnosticsTitle => 'Valgfri brug og crashdiagnostik';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Deling er slået fra, indtil du vælger det i Indstillinger. Hvis aktiveret, modtager Google Firebase brugshændelser, app-/enhedsoplysninger, præstationsmålinger og nedbrudsrapporter for at hjælpe med at forbedre appen. Slå deling fra når som helst for at stoppe ny valgfri samling. Dette sletter ikke data, der allerede er sendt. Lokal diagnosticering og onlinematch fungerer adskilt fra dette valg.';
+
+  @override
+  String get privacyCameraTitle => 'Kamera til nærliggende QR-koder';
+
+  @override
+  String get privacyCameraBody =>
+      'Det valgfrie kamera scanner QR-koder for spil i nærheden. Billeder behandles på din enhed og gemmes eller uploades ikke. Du kan nægte kameraadgang og indtaste værtsadressen manuelt. Denne version bruger ikke mikrofonen eller giver fysisk brætspil.';
+
+  @override
+  String get privacyFeedbackTitle => 'Feedback, du vælger at sende';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Feedback åbner et udkast til et GitHub-problem, som du kan gennemgå. Åbning af udkastet sender sin appversion og platform til GitHub; feedback fra Diagnostics kan også sende fejloplysninger. Der er ikke noget problem, før du indsender det. Problemer kan være offentlige, så fjern private oplysninger, før du sender dem.';
+
+  @override
+  String get privacyContactTitle => 'Privatlivskontakt';
+
+  @override
+  String get privacyReadPolicy => 'Læs privatpolitikken';
+
+  @override
+  String get privacyPolicyOpenFailed => 'Kunne ikke åbne privatlivspolitikken.';
+
+  @override
+  String get privacySupportTitle => 'Hjælp og support';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Kunne ikke åbne support. Kontakt support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Vil du slette onlineidentitet og -data?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Dette afslutter øjeblikkeligt adgangen til denne identitets cloud-kampe for begge spillere og anmoder om sletning af identiteten og delte online matchlogs inden for 30 dage. Det kan tage Google op til 180 dage efter sletning af konto at fjerne godkendelsesdata fra sine live- og backupsystemer. Lokal historik og praksis forbliver på denne enhed. Tidligere sendt valgfri diagnostik er separat; kontakt privacy@freevia.org om disse. Denne handling kan ikke fortrydes.';
+
+  @override
+  String get privacyRequestDeletion => 'Anmod om sletning';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Slet onlinedata';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Brug denne enheds gemte login til at bekræfte ejerskab. En spilleridentifikator eller invitationskode alene beviser ikke ejerskab. Lokale spillere behøver ikke en onlinekonto.';
+
+  @override
+  String get privacySendingRequest => 'Sender';
+
+  @override
+  String get privacyDeleteAction => 'Slet onlineidentitet og -data';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Der anmodes om sletning. Denne onlineidentitet er logget ud. Dens cloud-data vil blive slettet inden for 30 dage. At starte online spil igen skaber en ny identitet. Googles fjernelse af godkendelsesdata kan tage op til 180 dage. Kontakt privacy@freevia.org for at få hjælp.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Sletning anmodet. Dens cloud-data vil blive slettet inden for 30 dage. Enheden kunne ikke rydde det gemte login, men onlineidentiteten er blokeret for yderligere matchadgang. Googles fjernelse af godkendelsesdata kan tage op til 180 dage. Kontakt privacy@freevia.org for at få hjælp.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Der gemmes ingen brugbar onlineidentitet på denne enhed. Ingen ny konto blev oprettet. Hvis du tidligere har brugt online spil, skal du kontakte privacy@freevia.org for at få hjælp; hostede kampe udløber efter 30 dage.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Kunne ikke bekræfte sletningsanmodningen. Kontroller din forbindelse, og prøv igen, eller kontakt privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle => 'Vil du dele brugs- og crashdiagnostik?';
+
+  @override
+  String get privacyConsentBody =>
+      'Dette sender brugsbegivenheder, oplysninger om appen/enheden, nedbrudsrapporter og målinger af ydeevnen til Google Firebase. Deling er valgfri. Spil og vejledning fungerer også uden deling, og du kan slå den fra igen under Indstillinger.';
+
+  @override
+  String get privacyKeepOff => 'Hold deaktiveret';
+
+  @override
+  String get privacyShareDiagnostics => 'Del diagnosticeringsdata';
+
+  @override
+  String get privacySaveFailed =>
+      'Privatlivsvalget kunne ikke gemmes. Prøv igen.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Hvad der gemmes på din enhed, og hvad der deles';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Del brugs- og nedbrudsdiagnosticering';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Valgfrit · slået fra som standard';
+
+  @override
+  String get lanScanToJoin => 'Scan for at deltage';
+
+  @override
+  String get lanScanHostCode => 'Scan værtens kode';
+
+  @override
+  String get lanEnterAddressInstead => 'Indtast adressen i stedet';
+
+  @override
+  String get lanQrAccessibilityLabel => 'QR-kode til at deltage i dette spil';
+
+  @override
+  String get lanJoinInstruction =>
+      'Åbn Spil i nærheden på den anden enhed, vælg Deltag, og scan derefter denne QR-kode.';
+
+  @override
+  String get lanTorch => 'Lommelygte';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy kan ikke bruge kameraet. Tillad kameraadgang i enhedens indstillinger, eller indtast adressen fra den anden enhed manuelt.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Denne enhed kan ikke scanne QR-koder. Indtast adressen fra den anden enhed manuelt.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Kameraet kunne ikke startes. Indtast adressen fra den anden enhed manuelt.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Ret kameraet mod QR-koden på den anden enhed.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Spil med et fysisk bræt er ikke tilgængeligt i denne version. Spil på skærmen, vejledning og træning findes på startskærmen.';
+
+  @override
+  String get homePlayWithBuddy => 'Spil med Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Backgammonbræt. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Hvid skal slå med terningerne.';
+
+  @override
+  String get boardBlackToRoll => 'Sort skal slå med terningerne.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Hvid er i tur. Slå $die1 og $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Sort er i tur. Slå $die1 og $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Der er tilbudt en fordobling.';
+
+  @override
+  String get boardResignationOffered => 'Der er tilbudt opgivelse.';
+
+  @override
+  String get boardGameOver => 'Spillet er slut.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Fejl]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Idé]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'Erstat dette med en kort beskrivelse af, hvad der skete.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Erstat dette med trinene, der førte til problemet.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Erstat dette med det, du forventede ville ske.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Erstat dette med det, du ville gøre eller lære.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Erstat dette med den ændring, du ville finde nyttig.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(forkortet – brug Kopiér til udklipsholder på diagnoseskærmen for at få hele loggen)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Hvid er i tur.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Sort er i tur.';
+
+  @override
+  String get feedbackFieldVersion => 'Appversion';
+
+  @override
+  String get feedbackFieldPlatform => 'Platform';
+
+  @override
+  String get feedbackFieldSummary => 'Hvad skete der';
+
+  @override
+  String get feedbackFieldReproduction => 'Trin til at genskabe problemet';
+
+  @override
+  String get feedbackFieldExpected => 'Forventet resultat';
+
+  @override
+  String get feedbackFieldNeed => 'Hvad du ville gøre';
+
+  @override
+  String get feedbackFieldIdea => 'Foreslået ændring';
 }

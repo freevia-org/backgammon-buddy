@@ -115,9 +115,9 @@
   "tutorPhraseResignationOffered": "Une proposition d’abandon a été faite.",
   "tutorPhraseResignationDecisionPrompt": "Comparez les points proposés à la position avant d’accepter ou de continuer.",
   "tutorPhraseNoLegalPlay": "Aucun coup légal avec ce lancer.",
-  "tutorPhraseForcedPassPrompt": "Un passe forcé n’est pas une erreur ; attendez le prochain lancer.",
+  "tutorPhraseForcedPassPrompt": "Une passe forcée n’est pas une erreur ; attends le prochain lancer.",
   "tutorPhraseOnlyOneResult": "Une seule position finale légale est possible.",
-  "tutorPhraseForcedTurnPrompt": "Jouez le tour forcé. Ce lancer ne comporte aucun choix à évaluer.",
+  "tutorPhraseForcedTurnPrompt": "Joue le tour forcé. Ce lancer ne comporte aucun choix à évaluer.",
   "tutorPhrasePipCountsLevel": "Les comptes de pips sont à égalité.",
   "tutorPhrasePipCountsAhead": "Vous avez {count} pips d’avance.",
   "tutorPhrasePipCountsBehind": "Vous avez {count} pips de retard.",
@@ -152,7 +152,7 @@
   "tutorPhraseStagedMakePoints": "Vous avez fait {points}.",
   "tutorPhraseStagedBlot": "Le pion sur votre case {point} est un blot pour le moment.",
   "tutorPhraseStagedSpare": "Le pion en réserve sur votre case {point} pourra bouger plus tard sans ouvrir la case.",
-  "tutorPhraseStagedPartialPrompt": "{part} Utilisez les dés encore jouables avant d’évaluer le coup complet.",
+  "tutorPhraseStagedPartialPrompt": "{part} Utilise les dés encore jouables avant d’évaluer le coup complet.",
   "tutorPhraseStagedAllCheckersOff": "Les 15 pions sont sortis : la partie est gagnée.",
   "tutorPhraseStagedHitShortPlan": "Frapper fait gagner du temps pendant que l’adversaire tente de rentrer.",
   "tutorPhraseStagedEfficientBearOffPlan": "Une sortie efficace retire des pions tout en laissant des nombres utiles pour le prochain lancer.",
@@ -165,7 +165,7 @@
   "tutorPhraseStagedNewAnchorPlan": "Le nouvel ancrage offre un point d’appui sûr aux pions arrière.",
   "tutorPhraseStagedCoverBlotPlan": "Couvrir un blot retire une cible à l’adversaire.",
   "tutorPhraseStagedSafetyTradeoffPlan": "Le compromis oppose développement et sécurité : les pions utiles à la construction peuvent aussi devenir des cibles.",
-  "tutorPhraseStagedCompletePrompt": "{part} Le coup complet est prêt ; « Confirmer » le joue.",
+  "tutorPhraseStagedCompletePrompt": "{part} Le coup complet est prêt ; appuie sur « Confirmer » pour le jouer.",
   "@tutorPhrasePipCountsAhead": {
     "placeholders": {
       "count": {
@@ -453,7 +453,7 @@
   },
   "tutorMoveObservationAllEntriesClosed": "L’adversaire ne peut pas rentrer tant qu’un point ne s’ouvre pas.",
   "tutorMoveObservationOpenEntry": "Un lancer utilisant un point d’entrée libre peut faire rentrer un pion depuis la barre.",
-  "tutorMoveComparisonDetail": "{factors} La probabilité estimée de victoire du meilleur coup est de {delta} points de pourcentage {direction}.{scoreContext}",
+  "tutorMoveComparisonDetail": "{factors} Avec le meilleur coup, la probabilité estimée de victoire est {delta} points de pourcentage {direction}.{scoreContext}",
   "@tutorMoveComparisonDetail": {
     "placeholders": {
       "factors": {},
@@ -715,7 +715,7 @@
   "analysisBestMoveLine": "Meilleur coup : {move}",
   "analysisExplain": "Expliquer",
   "analysisSaveForPractice": "Enregistrer pour s’exercer",
-  "analysisSaveError": "Impossible d’enregistrer cette décision : {error}",
+  "analysisSaveError": "Impossible d’enregistrer cette décision. Réessaie.",
   "analysisCubeInfo": "{side} : {action} · {mark} · perte {loss}",
   "analysisCubeDecision": "Décision sur le videau",
   "analysisCubePlayed": "Joué : {action} (chance de gagner le match : {percent} %).",
@@ -789,11 +789,6 @@
       "action": {},
       "mark": {},
       "loss": {}
-    }
-  },
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
     }
   },
   "@analysisCubePlayed": {
@@ -1519,5 +1514,104 @@
         "type": "String"
       }
     }
-  }
+  },
+  "privacyTitle": "Confidentialité et données",
+  "privacyAppTitle": "Backgammon Buddy par Freevia",
+  "privacyIntro": "Cette page décrit la façon dont la version actuelle de l’application traite tes données.",
+  "privacyLocalTitle": "Parties et tutorat sur ton appareil",
+  "privacyLocalBody": "Les parties locales, les réglages, les analyses et la progression de l’entraînement sont enregistrés sur cet appareil. Le moteur de backgammon et les explications du tuteur s’exécutent ici. Supprime une partie enregistrée dans l’archive des parties pour supprimer aussi les exercices et tentatives d’entraînement associés. Supprime des exercices ou réinitialise la progression dans Apprentissage ; efface les rapports d’erreur locaux dans Réglages → Diagnostics. Les paramètres de sauvegarde de ton appareil peuvent aussi s’appliquer à l’historique des parties. Les identifiants de connexion en ligne sont conservés dans l’espace de stockage protégé de l’appareil.",
+  "privacyOnlineTitle": "Jeu en ligne et à proximité",
+  "privacyOnlineBody": "Le jeu en ligne envoie à Google Firebase un identifiant de joueur anonyme, les paramètres de la partie, les coups et les enregistrements de synchronisation des dés afin que les deux joueurs disputent la même partie. Supprimer l’historique de cet appareil ne supprime pas les données en ligne. Les parties hébergées expirent 30 jours après leur création ; un nettoyage planifié supprime leurs journaux dans le cloud. Les données des parties sont stockées dans l’UE ; Firebase Authentication traite les données de connexion aux États-Unis. Les connexions à Google sont chiffrées pendant le transfert. Le jeu à proximité échange des informations de partie avec l’autre appareil par une connexion locale non chiffrée ; utilise un réseau Wi-Fi de confiance.",
+  "privacyDiagnosticsTitle": "Diagnostics facultatifs d’utilisation et de plantage",
+  "privacyDiagnosticsBody": "Le partage est désactivé tant que tu ne l’actives pas dans Réglages. Si tu l’actives, Google Firebase reçoit des événements d’utilisation, des informations sur l’application et l’appareil, des mesures de performance et des rapports de plantage pour contribuer à l’amélioration de l’application. Tu peux désactiver le partage à tout moment pour arrêter toute nouvelle collecte facultative. Cela n’efface pas les données déjà envoyées. Les diagnostics locaux et les parties en ligne fonctionnent indépendamment de ce choix.",
+  "privacyCameraTitle": "Caméra pour les codes QR à proximité",
+  "privacyCameraBody": "La caméra facultative scanne les codes QR des parties à proximité. Les images sont traitées sur ton appareil ; elles ne sont ni enregistrées ni envoyées. Tu peux refuser l’accès à la caméra et saisir manuellement l’adresse de l’hôte. Cette version n’utilise pas le microphone et ne permet pas de jouer sur un plateau physique.",
+  "privacyFeedbackTitle": "Commentaires que tu choisis d’envoyer",
+  "privacyFeedbackBody": "Les commentaires ouvrent un brouillon de ticket GitHub que tu peux vérifier. Son ouverture transmet à GitHub la version de l’application et la plateforme ; les commentaires envoyés depuis Diagnostics peuvent aussi transmettre des détails sur l’erreur. Aucun ticket n’est publié avant que tu l’envoies. Les tickets peuvent être publics ; retire donc les informations privées avant l’envoi.",
+  "privacyContactTitle": "Contact confidentialité",
+  "privacyReadPolicy": "Lire la politique de confidentialité",
+  "privacyPolicyOpenFailed": "Impossible d’ouvrir la politique de confidentialité.",
+  "privacySupportTitle": "Aide et assistance",
+  "privacySupportOpenFailed": "Impossible d’ouvrir l’assistance. Contacte support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Supprimer l’identité et les données en ligne ?",
+  "privacyDeleteConfirmBody": "Cette action met immédiatement fin à l’accès des deux joueurs aux parties dans le cloud de cette identité et demande la suppression de l’identité et des journaux partagés des parties en ligne sous 30 jours. Google peut prendre jusqu’à 180 jours après la suppression du compte pour retirer les données Authentication de ses systèmes actifs et de sauvegarde. L’historique local et l’entraînement restent sur cet appareil. Les diagnostics facultatifs déjà envoyés sont distincts ; contacte privacy@freevia.org à leur sujet. Cette demande est irréversible.",
+  "privacyRequestDeletion": "Demander la suppression",
+  "privacyDeleteSectionTitle": "Supprimer les données en ligne",
+  "privacyDeleteInstructions": "Utilise la connexion enregistrée sur cet appareil pour vérifier que le compte t’appartient. Un identifiant de joueur ou un code d’invitation ne suffit pas à prouver que tu en es propriétaire. Les joueurs qui jouent uniquement en local n’ont pas besoin de compte en ligne.",
+  "privacySendingRequest": "Envoi de la demande…",
+  "privacyDeleteAction": "Supprimer l’identité et les données en ligne",
+  "privacyDeleteRequested": "La suppression a été demandée. Cette identité en ligne est déconnectée. Ses données dans le cloud seront supprimées sous 30 jours. Si tu recommences à jouer en ligne, une nouvelle identité sera créée. Google peut prendre jusqu’à 180 jours pour supprimer les données Authentication. Pour obtenir de l’aide, contacte privacy@freevia.org.",
+  "privacyDeleteRequestedSignOutFailed": "La suppression a été demandée. Les données dans le cloud seront supprimées sous 30 jours. L’appareil n’a pas pu effacer la connexion enregistrée, mais l’identité en ligne est bloquée et ne peut plus accéder aux parties. Google peut prendre jusqu’à 180 jours pour supprimer les données Authentication. Pour obtenir de l’aide, contacte privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "Aucune identité en ligne utilisable n’est enregistrée sur cet appareil. Aucun compte n’a été créé. Si tu as déjà joué en ligne, contacte privacy@freevia.org pour obtenir de l’aide ; les parties hébergées expirent après 30 jours.",
+  "privacyDeleteRequestFailed": "Impossible de confirmer la demande de suppression. Vérifie ta connexion et réessaie, ou contacte privacy@freevia.org.",
+  "privacyConsentTitle": "Partager les données d’utilisation et de plantage ?",
+  "privacyConsentBody": "Cela envoie à Google Firebase des événements d’utilisation, des informations sur l’application et l’appareil, des rapports de plantage et des mesures de performance. Le partage est facultatif. Les parties et le tutorat fonctionnent sans lui ; tu peux le désactiver à nouveau dans Réglages.",
+  "privacyKeepOff": "Laisser désactivé",
+  "privacyShareDiagnostics": "Partager les diagnostics",
+  "privacySaveFailed": "Impossible d’enregistrer le choix de confidentialité. Réessaie.",
+  "privacySettingsSubtitle": "Ce qui reste sur ton appareil et ce qui est partagé",
+  "privacyDiagnosticsSettingTitle": "Partager les diagnostics d’utilisation et de plantage",
+  "privacyDiagnosticsSettingSubtitle": "Facultatif · désactivé par défaut",
+  "lanScanToJoin": "Scanner pour rejoindre",
+  "lanScanHostCode": "Scanner le code de l’hôte",
+  "lanEnterAddressInstead": "Saisir l’adresse à la place",
+  "feedbackFieldVersion": "Version de l’application",
+  "feedbackFieldPlatform": "Plateforme",
+  "feedbackFieldSummary": "Que s’est-il passé ?",
+  "feedbackFieldReproduction": "Étapes pour reproduire le problème",
+  "feedbackFieldExpected": "Résultat attendu",
+  "feedbackFieldNeed": "Ce que tu voulais faire",
+  "feedbackFieldIdea": "Modification suggérée",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanTorch": "Lampe torche",
+  "lanCameraPermissionDenied": "Backgammon Buddy ne peut pas utiliser l’appareil photo. Autorise l’accès dans les réglages de l’appareil ou saisis manuellement l’adresse affichée sur l’autre appareil.",
+  "lanCameraUnsupported": "Cet appareil ne peut pas scanner les codes QR. Saisis manuellement l’adresse affichée sur l’autre appareil.",
+  "lanCameraStartFailed": "Impossible de démarrer l’appareil photo. Saisis manuellement l’adresse affichée sur l’autre appareil.",
+  "lanPointCameraAtQr": "Pointe l’appareil photo vers le code QR sur l’autre appareil.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "physicalBuddyUnavailableBody": "Le jeu sur un plateau physique n’est pas disponible dans cette version. Les parties à l’écran, le tutorat et l’entraînement sont accessibles depuis l’accueil.",
+  "boardSemanticsLabel": "Plateau de backgammon. {status}",
+  "boardWhiteToRoll": "Aux blancs de lancer les dés.",
+  "boardBlackToRoll": "Aux noirs de lancer les dés.",
+  "boardWhiteToMove": "Aux blancs de jouer ; lance {die1} et {die2}.",
+  "boardBlackToMove": "Aux noirs de jouer ; lance {die1} et {die2}.",
+  "boardDoubleOffered": "Un double est proposé.",
+  "boardResignationOffered": "Une partie abandonnée est proposée.",
+  "boardGameOver": "La partie est terminée.",
+  "feedbackBugTitle": "[Bug] : Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Idée] : Backgammon Buddy",
+  "feedbackBugSummary": "Remplace ce texte par une brève description de ce qui s’est passé.",
+  "feedbackBugReproduction": "Remplace ce texte par les étapes qui ont mené au problème.",
+  "feedbackBugExpected": "Remplace ce texte par le résultat auquel tu t’attendais.",
+  "feedbackIdeaNeed": "Remplace ce texte par ce que tu voulais faire ou apprendre.",
+  "feedbackIdeaSuggestion": "Remplace ce texte par le changement qui te serait utile.",
+  "boardWhiteToMoveNoRoll": "Aux blancs de jouer.",
+  "boardBlackToMoveNoRoll": "Aux noirs de jouer.",
+  "lanQrAccessibilityLabel": "Code QR pour rejoindre cette partie",
+  "lanJoinInstruction": "Sur l’autre appareil, ouvre Jeu à proximité, choisis Rejoindre, puis scanne ce code QR.",
+  "homePlayWithBuddy": "Jouer avec Buddy",
+  "homeBuddyShort": "Buddy",
+  "feedbackExcerptTruncated": "(extrait tronqué — utilise « Copier dans le presse-papiers » sur l’écran Diagnostics pour obtenir le journal complet)"
 }

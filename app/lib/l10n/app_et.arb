@@ -1049,7 +1049,7 @@
   "onlineRoomCode": "Matši kood",
   "onlineJoin": "Liitu",
   "lanTitle": "Mängi läheduses",
-  "lanTabHost": "Host",
+  "lanTabHost": "Majutaja",
   "lanTabJoin": "Liitu",
   "lanUnassistedNote": "Läheduses mängitavad mängud on ilma abita. Vaata käigud üle ja harjuta vigu pärast matši.",
   "lanGameStartFailed": "Mängu ei saanud alustada. Teine seade võib uuesti liituda proovida.",
@@ -1136,7 +1136,7 @@
   "analysisBestMoveLine": "Parim: {move}",
   "analysisExplain": "Selgita",
   "analysisSaveForPractice": "Salvesta harjutamiseks",
-  "analysisSaveError": "Otsust ei saanud salvestada: {error}",
+  "analysisSaveError": "Seda otsust ei saanud salvestada. Proovi uuesti.",
   "analysisCubeInfo": "{side}: {action} · {mark} · kaotus {loss}",
   "analysisCubeDecision": "Kuubikuotsus",
   "analysisCubePlayed": "Mängitud: {action} ({percent}% matši võidutõenäosus).",
@@ -1202,11 +1202,6 @@
   "@analysisBestMoveLine": {
     "placeholders": {
       "move": {}
-    }
-  },
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
     }
   },
   "@analysisCubeInfo": {
@@ -1519,5 +1514,104 @@
     "placeholders": {
       "date": {}
     }
-  }
+  },
+  "privacyTitle": "Privaatsus ja andmed",
+  "privacyAppTitle": "Freevia Backgammon Buddy",
+  "privacyIntro": "Sellel lehel kirjeldatakse, kuidas rakendus sinu andmeid kasutab.",
+  "privacyLocalTitle": "Mängud ja juhendamine sinu seadmes",
+  "privacyLocalBody": "Kohalikud mängud, seaded, analüüsid ja harjutamise edenemine salvestatakse sellesse seadmesse. Backgammoni mängumootor ja juhendaja selgitused töötavad siin. Kustuta salvestatud mäng mängude arhiivist, et eemaldada ka selle salvestatud harjutused ja katsed. Kustuta õppimises üksikuid harjutusi või lähtesta harjutamise edenemine; kustuta kohalikud veaaruanded menüüs Seaded → Diagnostika. Seadme varundusseaded võivad kehtida ka mänguajaloole. Veebis sisselogimise andmeid hoitakse seadme kaitstud salvestusruumis.",
+  "privacyOnlineTitle": "Võrgus ja läheduses mängimine",
+  "privacyOnlineBody": "Võrgumäng saadab Google Firebase’i anonüümse mängijatunnuse, mängu seaded, käigud ja täringute sünkroonimise kirjed, et mõlemad mängijad saaksid sama mängu mängida. Selle seadme ajaloo kustutamine ei kustuta võrgukirjeid. Majutatud mängud aeguvad 30 päeva pärast loomist; ajastatud puhastus eemaldab nende pilvelogid. Mängukirjeid hoitakse EL-is; Firebase Authentication töötleb sisselogimisandmeid Ameerika Ühendriikides. Google’i ühendused on edastuse ajal krüptitud. Läheduses mängides vahetatakse teise seadmega mänguinfot krüptimata kohaliku ühenduse kaudu; kasuta usaldatud Wi-Fi-võrku.",
+  "privacyDiagnosticsTitle": "Valikuline kasutus- ja krahhidiagnostika",
+  "privacyDiagnosticsBody": "Andmete jagamine on välja lülitatud, kuni selle seadetes sisse lülitad. Sisselülitamisel saab Google Firebase kasutussündmusi, rakenduse ja seadme teavet, jõudlusmõõdikuid ning krahhiaruandeid, et rakendust paremaks muuta. Uue valikulise andmekogumise peatamiseks saad jagamise igal ajal välja lülitada. See ei kustuta juba saadetud andmeid. Kohalik diagnostika ja võrgumängud toimivad sellest valikust sõltumatult.",
+  "privacyCameraTitle": "Kaamera läheduses olevate QR-koodide jaoks",
+  "privacyCameraBody": "Valikuline kaamera skannib läheduses olevate mängude QR-koode. Pilte töödeldakse sinu seadmes ning neid ei salvestata ega laadita üles. Võid kaamerale juurdepääsu keelata ja sisestada korraldaja aadressi käsitsi. See versioon ei kasuta mikrofoni ega võimalda mängida füüsilise lauaga.",
+  "privacyFeedbackTitle": "Tagasiside, mille otsustad saata",
+  "privacyFeedbackBody": "Tagasiside avab ülevaatamiseks GitHubi probleemi mustandi. Mustandi avamisel saadetakse GitHubi rakenduse versioon ja platvorm; Diagnostikast saadetud tagasiside võib sisaldada ka vea üksikasju. Probleemi ei avaldata enne, kui selle esitad. Probleemid võivad olla avalikud, seega eemalda enne saatmist isiklik teave.",
+  "privacyContactTitle": "Privaatsuse kontakt",
+  "privacyReadPolicy": "Loe privaatsuspoliitikat",
+  "privacyPolicyOpenFailed": "Privaatsuspoliitikat ei saanud avada.",
+  "privacySupportTitle": "Abi ja tugi",
+  "privacySupportOpenFailed": "Tuge ei saanud avada. Võta ühendust aadressil support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Kas kustutada veebitunnus ja andmed?",
+  "privacyDeleteConfirmBody": "See lõpetab kohe mõlema mängija juurdepääsu selle tunnuse pilvemängudele ning esitab taotluse tunnuse ja jagatud võrgumängude logide kustutamiseks 30 päeva jooksul. Google’il võib pärast konto kustutamist kuluda kuni 180 päeva, et eemaldada Authenticationi andmed aktiivsetest süsteemidest ja varukoopiatest. Kohalik ajalugu ja harjutused jäävad sellesse seadmesse. Varem saadetud valikuline diagnostika on eraldi; küsi selle kohta aadressilt privacy@freevia.org. Seda taotlust ei saa tagasi võtta.",
+  "privacyRequestDeletion": "Taotle kustutamist",
+  "privacyDeleteSectionTitle": "Kustuta võrguandmed",
+  "privacyDeleteInstructions": "Omandi kinnitamiseks kasuta sellesse seadmesse salvestatud sisselogimist. Mängijatunnus või kutsekood üksi ei tõesta omandiõigust. Ainult kohapeal mängijad ei vaja võrgukontot.",
+  "privacySendingRequest": "Taotlust saadetakse…",
+  "privacyDeleteAction": "Kustuta veebitunnus ja andmed",
+  "privacyDeleteRequested": "Kustutamistaotlus on esitatud. Sellest veebitunnusest on välja logitud. Selle pilveandmed kustutatakse 30 päeva jooksul. Veebis uuesti mängimise alustamisel luuakse uus tunnus. Google’il võib Authenticationi andmete eemaldamiseks kuluda kuni 180 päeva. Abi saamiseks kirjuta aadressile privacy@freevia.org.",
+  "privacyDeleteRequestedSignOutFailed": "Kustutamistaotlus on esitatud. Pilveandmed kustutatakse 30 päeva jooksul. Seade ei saanud salvestatud sisselogimist kustutada, kuid veebitunnus on edasistele mängudele juurdepääsuks blokeeritud. Google’il võib Authenticationi andmete eemaldamiseks kuluda kuni 180 päeva. Abi saamiseks kirjuta aadressile privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "Sellesse seadmesse pole salvestatud kasutatavat veebitunnust. Uut kontot ei loodud. Kui oled varem võrgus mänginud, kirjuta abi saamiseks aadressile privacy@freevia.org; majutatud mängud aeguvad 30 päeva pärast.",
+  "privacyDeleteRequestFailed": "Kustutamistaotlust ei õnnestunud kinnitada. Kontrolli ühendust ja proovi uuesti või võta ühendust aadressil privacy@freevia.org.",
+  "privacyConsentTitle": "Kas jagada kasutus- ja krahhiandmeid?",
+  "privacyConsentBody": "See saadab Google Firebase’ile kasutussündmusi, rakenduse ja seadme teavet, krahhiaruandeid ning jõudlusmõõdikuid. Jagamine on vabatahtlik. Mängud ja juhendamine toimivad ka ilma selleta ning saad jagamise seadetes uuesti välja lülitada.",
+  "privacyKeepOff": "Hoia väljas",
+  "privacyShareDiagnostics": "Jaga diagnostikat",
+  "privacySaveFailed": "Privaatsusvalikut ei saanud salvestada. Proovi uuesti.",
+  "privacySettingsSubtitle": "Mis jääb sinu seadmesse ja mida jagatakse",
+  "privacyDiagnosticsSettingTitle": "Jaga kasutus- ja krahhidiagnostikat",
+  "privacyDiagnosticsSettingSubtitle": "Valikuline · vaikimisi väljas",
+  "lanScanToJoin": "Liitumiseks skanni",
+  "lanScanHostCode": "Skanni korraldaja koodi",
+  "lanEnterAddressInstead": "Sisesta selle asemel aadress",
+  "feedbackFieldVersion": "Rakenduse versioon",
+  "feedbackFieldPlatform": "Platvorm",
+  "feedbackFieldSummary": "Mis juhtus",
+  "feedbackFieldReproduction": "Taasesitamise sammud",
+  "feedbackFieldExpected": "Oodatud tulemus",
+  "feedbackFieldNeed": "Mida soovisid teha",
+  "feedbackFieldIdea": "Soovitatud muudatus",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanTorch": "Taskulamp",
+  "lanCameraPermissionDenied": "Backgammon Buddy ei saa kaamerat kasutada. Luba kaamerale juurdepääs seadme seadetes või sisesta teises seadmes kuvatud aadress käsitsi.",
+  "lanCameraUnsupported": "See seade ei saa QR-koode skannida. Sisesta teises seadmes kuvatud aadress käsitsi.",
+  "lanCameraStartFailed": "Kaamerat ei saanud käivitada. Sisesta teises seadmes kuvatud aadress käsitsi.",
+  "lanPointCameraAtQr": "Suuna kaamera teise seadme QR-koodile.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "physicalBuddyUnavailableBody": "Selles versioonis ei saa mängida füüsilise lauaga. Ekraanil mängimine, juhendamine ja harjutamine on avalehel saadaval.",
+  "boardSemanticsLabel": "Backgammoni laud. {status}",
+  "boardWhiteToRoll": "Valge kord: veereta täringuid.",
+  "boardBlackToRoll": "Musta kord: veereta täringuid.",
+  "boardWhiteToMove": "Valge käik, veereta {die1} ja {die2}.",
+  "boardBlackToMove": "Musta käik, veereta {die1} ja {die2}.",
+  "boardDoubleOffered": "Pakuti kahekordistamist.",
+  "boardResignationOffered": "Pakuti alistumist.",
+  "boardGameOver": "Mäng on läbi.",
+  "feedbackBugTitle": "[Viga]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Idee]: Backgammon Buddy",
+  "feedbackBugSummary": "Asenda see juhtunu lühikese kirjeldusega.",
+  "feedbackBugReproduction": "Asenda see probleemi põhjustanud sammudega.",
+  "feedbackBugExpected": "Asenda see oodatud tulemuse kirjeldusega.",
+  "feedbackIdeaNeed": "Asenda see kirjeldusega, mida soovisid teha või õppida.",
+  "feedbackIdeaSuggestion": "Asenda see muudatusega, millest oleks sinu arvates abi.",
+  "boardWhiteToMoveNoRoll": "Valge käik.",
+  "boardBlackToMoveNoRoll": "Musta käik.",
+  "lanQrAccessibilityLabel": "QR-kood selle mänguga liitumiseks",
+  "lanJoinInstruction": "Ava teises seadmes „Mängi läheduses“, vali „Liitu“ ja skanni see QR-kood.",
+  "homePlayWithBuddy": "Mängi Buddyga",
+  "homeBuddyShort": "Buddy",
+  "feedbackExcerptTruncated": "(lühendatud — täieliku logi saamiseks kasuta diagnostikakuval valikut „Kopeeri lõikelauale“)"
 }

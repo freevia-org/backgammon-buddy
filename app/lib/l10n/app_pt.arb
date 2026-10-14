@@ -173,7 +173,7 @@
   },
   "tutorPhraseKeepBoardClosed": "Mantenha as casas fechadas enquanto traz as restantes peças para casa.",
   "tutorPhraseBuildOrPreserveHomeBoard": "Construa ou mantenha fechado o seu tabuleiro interno enquanto o adversário tenta reentrar.",
-  "tutorPhraseHomePointsCloseEntries": "Tem {count} casas no tabuleiro interno; cada uma bloqueia um número de entrada.",
+  "tutorPhraseHomePointsCloseEntries": "Tem {count} pontos fechados no tabuleiro interno; cada um bloqueia um número de entrada.",
   "@tutorPhraseHomePointsCloseEntries": {
     "placeholders": {
       "count": {
@@ -715,7 +715,7 @@
   "analysisBestMoveLine": "Melhor jogada: {move}",
   "analysisExplain": "Explicar",
   "analysisSaveForPractice": "Guardar para praticar",
-  "analysisSaveError": "Não foi possível guardar esta decisão: {error}",
+  "analysisSaveError": "Não foi possível guardar esta decisão. Tente novamente.",
   "analysisCubeInfo": "{side}: {action} · {mark} · perda {loss}",
   "analysisCubeDecision": "Decisão do cubo",
   "analysisCubePlayed": "Jogada: {action} (probabilidade de ganhar a partida: {percent}%).",
@@ -789,11 +789,6 @@
       "action": {},
       "mark": {},
       "loss": {}
-    }
-  },
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
     }
   },
   "@analysisCubePlayed": {
@@ -1519,5 +1514,104 @@
         "type": "String"
       }
     }
-  }
+  },
+  "privacyTitle": "Privacidade e dados",
+  "privacyAppTitle": "Backgammon Buddy por Freevia",
+  "privacyIntro": "Esta página descreve como o aplicativo atual lida com seus dados.",
+  "privacyLocalTitle": "Jogos e aulas particulares no seu dispositivo",
+  "privacyLocalBody": "Partidas locais, configurações, análises e progresso dos exercícios ficam armazenados neste dispositivo. O mecanismo do jogo e as explicações do tutor são executados aqui. Apagar uma partida salva no Arquivo de jogos também apaga os exercícios de prática salvos e as tentativas correspondentes. Apague exercícios individualmente ou redefina o progresso em Aprendizado e prática; apague os relatórios de erro locais em Configurações → Diagnósticos. O histórico de partidas também pode ser incluído nos backups do dispositivo. As credenciais de login online ficam no armazenamento protegido do dispositivo.",
+  "privacyOnlineTitle": "Jogo online e nas proximidades",
+  "privacyOnlineBody": "O jogo online envia ao Google Firebase um identificador anônimo de jogador, as configurações da partida, as jogadas e registros do protocolo de sincronização dos dados, para que ambos os jogadores possam jogar a mesma partida. Apagar o Histórico neste dispositivo não apaga os registros online. As partidas hospedadas expiram 30 dias após a criação; uma limpeza programada remove os registros da nuvem. Os registros das partidas são armazenados na UE; o Firebase Authentication processa dados de login nos Estados Unidos. As conexões online com o Google usam criptografia durante a transmissão. Nas partidas próximas, as informações da partida são trocadas com o outro dispositivo por uma conexão local sem criptografia; use uma rede Wi-Fi confiável.",
+  "privacyDiagnosticsTitle": "Diagnósticos opcionais de uso e falhas",
+  "privacyDiagnosticsBody": "O compartilhamento permanece desativado até que você o ative em Configurações. Se ativado, o Google Firebase recebe eventos de uso, informações sobre o app e o dispositivo, métricas de desempenho e relatórios de falhas para ajudar a melhorar o app. Você pode desativar o compartilhamento a qualquer momento para interromper a coleta opcional de novos dados. Isso não apaga os dados já enviados. Os diagnósticos locais e as partidas online não dependem dessa opção.",
+  "privacyCameraTitle": "Câmera para códigos QR próximos",
+  "privacyCameraBody": "A câmera opcional lê os códigos QR para partidas próximas. As imagens são processadas no dispositivo e não são salvas nem enviadas. Você pode negar o acesso à câmera e digitar manualmente o endereço do anfitrião. Esta versão não usa o microfone nem permite jogar com um tabuleiro físico.",
+  "privacyFeedbackTitle": "Feedback que você escolhe enviar",
+  "privacyFeedbackBody": "O feedback abre um rascunho de issue no GitHub para você revisar. Abrir o rascunho envia ao GitHub a versão do app e a plataforma; o feedback enviado pela tela Diagnósticos também pode incluir detalhes do erro. A issue só é publicada quando você a envia. Issues podem ser públicas, então remova informações privadas antes de enviar.",
+  "privacyContactTitle": "Contato de privacidade",
+  "privacyReadPolicy": "Leia a política de privacidade",
+  "privacyPolicyOpenFailed": "Não foi possível abrir a política de privacidade.",
+  "privacySupportTitle": "Ajuda e suporte",
+  "privacySupportOpenFailed": "Não foi possível abrir o suporte. Entre em contato com support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Excluir identidade e dados online?",
+  "privacyDeleteConfirmBody": "O acesso dos dois jogadores às partidas na nuvem associadas a esta identidade é encerrado imediatamente. A exclusão da identidade e dos registros compartilhados das partidas online é solicitada para ocorrer em até 30 dias. O Google pode levar até 180 dias após a exclusão da conta para remover os dados de autenticação dos sistemas ativos e de backup. O Histórico local e os exercícios de prática permanecem neste dispositivo. Os diagnósticos opcionais enviados anteriormente são tratados separadamente; entre em contato com privacy@freevia.org sobre eles. Esta solicitação não pode ser desfeita.",
+  "privacyRequestDeletion": "Solicitar exclusão",
+  "privacyDeleteSectionTitle": "Exclusão de dados online",
+  "privacyDeleteInstructions": "Use o login salvo neste dispositivo para confirmar que a identidade é sua. Um identificador de jogador ou código de convite, sozinho, não comprova que ela pertence a você. Quem joga apenas localmente não precisa de uma conta online.",
+  "privacySendingRequest": "Enviando solicitação…",
+  "privacyDeleteAction": "Excluir identidade e dados online",
+  "privacyDeleteRequested": "Solicitação de exclusão registrada. Esta identidade online foi desconectada. Os dados dela na nuvem serão excluídos em até 30 dias. Ao iniciar um novo jogo online, uma nova identidade será criada. A remoção dos dados de autenticação pelo Google pode levar até 180 dias. Para obter ajuda, entre em contato com privacy@freevia.org.",
+  "privacyDeleteRequestedSignOutFailed": "Solicitação de exclusão registrada. Os dados na nuvem serão excluídos em até 30 dias. Não foi possível apagar as credenciais salvas neste dispositivo, mas a identidade online foi bloqueada para novos acessos às partidas. A remoção dos dados de autenticação pelo Google pode levar até 180 dias. Para obter ajuda, entre em contato com privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "Nenhuma identidade online válida está salva neste dispositivo. Nenhuma nova conta foi criada. Se você já jogou online, entre em contato com privacy@freevia.org para obter ajuda; as partidas hospedadas expiram 30 dias após a criação.",
+  "privacyDeleteRequestFailed": "Não foi possível confirmar a solicitação de exclusão. Verifique sua conexão e tente novamente ou entre em contato com privacy@freevia.org.",
+  "privacyConsentTitle": "Compartilhar uso e diagnósticos de falhas?",
+  "privacyConsentBody": "Este recurso envia eventos de uso, informações sobre o app e o dispositivo, relatórios de falhas e métricas de desempenho ao Google Firebase. O compartilhamento é opcional. Os jogos e a tutoria funcionam com o compartilhamento desativado; você pode ativá-lo ou desativá-lo em Configurações.",
+  "privacyKeepOff": "Manter desativado",
+  "privacyShareDiagnostics": "Compartilhar diagnósticos",
+  "privacySaveFailed": "Não foi possível salvar a opção de privacidade. Por favor, tente novamente.",
+  "privacySettingsSubtitle": "O que permanece no seu dispositivo e o que é compartilhado",
+  "privacyDiagnosticsSettingTitle": "Compartilhe uso e diagnósticos de falhas",
+  "privacyDiagnosticsSettingSubtitle": "Opcional · desativado por padrão",
+  "lanScanToJoin": "Digitalize para participar",
+  "lanScanHostCode": "Digitalize o código do host",
+  "lanEnterAddressInstead": "Digite o endereço",
+  "lanTorch": "Flash",
+  "lanCameraPermissionDenied": "Backgammon Buddy não pode usar a câmera. Permita o acesso à câmera nas configurações do dispositivo ou insira manualmente o endereço mostrado no outro dispositivo.",
+  "lanCameraUnsupported": "Este dispositivo não pode ler códigos QR. Insira o endereço mostrado no outro dispositivo manualmente.",
+  "lanCameraStartFailed": "A câmera não pôde ser iniciada. Insira o endereço mostrado no outro dispositivo manualmente.",
+  "lanPointCameraAtQr": "Aponte a câmera para o código QR no outro dispositivo.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "physicalBuddyUnavailableBody": "O jogo em um tabuleiro físico não está disponível nesta versão. Jogos na tela, tutoria e prática estão disponíveis na tela inicial.",
+  "boardSemanticsLabel": "Tabuleiro de gamão. {status}",
+  "boardWhiteToRoll": "É a vez das brancas lançarem os dados.",
+  "boardBlackToRoll": "É a vez das pretas lançarem os dados.",
+  "boardWhiteToMove": "É a vez das brancas; os dados são {die1} e {die2}.",
+  "boardBlackToMove": "É a vez das pretas; os dados são {die1} e {die2}.",
+  "boardDoubleOffered": "Foi oferecido dobrar o cubo.",
+  "boardResignationOffered": "Foi oferecida uma rendição.",
+  "boardGameOver": "O jogo acabou.",
+  "feedbackBugTitle": "[Erro]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Ideia]: Backgammon Buddy",
+  "feedbackBugSummary": "Substitua isso por uma breve descrição do que aconteceu.",
+  "feedbackBugReproduction": "Substitua isso pelas etapas que levaram ao problema.",
+  "feedbackBugExpected": "Substitua isso pelo que você esperava que acontecesse.",
+  "feedbackIdeaNeed": "Substitua isso pelo que você queria fazer ou aprender.",
+  "feedbackIdeaSuggestion": "Substitua isso pela alteração que você acharia útil.",
+  "feedbackExcerptTruncated": "(truncado — use Copiar para a área de transferência na tela Diagnóstico para obter o log completo)",
+  "boardWhiteToMoveNoRoll": "É a vez das brancas.",
+  "boardBlackToMoveNoRoll": "É a vez das pretas.",
+  "feedbackFieldVersion": "Versão do aplicativo",
+  "feedbackFieldPlatform": "Plataforma",
+  "feedbackFieldSummary": "O que aconteceu",
+  "feedbackFieldReproduction": "Passos para reproduzir",
+  "feedbackFieldExpected": "Resultado esperado",
+  "feedbackFieldNeed": "O que você queria fazer",
+  "feedbackFieldIdea": "Alteração sugerida",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "Código QR para entrar neste jogo",
+  "lanJoinInstruction": "No outro dispositivo, abra Jogar por Perto, escolha Entrar e leia este código QR.",
+  "homePlayWithBuddy": "Jogar com o Buddy",
+  "homeBuddyShort": "Buddy"
 }

@@ -377,7 +377,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get tutorPhraseForcedPassPrompt =>
-      'Вимушений пропуск — це не помилка. Дочекайтеся наступного кидка.';
+      'Вимушений пропуск — це не помилка; дочекайся наступного кидка.';
 
   @override
   String get tutorPhraseOnlyOneResult =>
@@ -815,7 +815,7 @@ class AppLocalizationsUk extends AppLocalizations {
     Object direction,
     Object scoreContext,
   ) {
-    return '$factors Оціночна ймовірність перемоги для найкращого ходу на $delta відсоткових пункта $direction.$scoreContext';
+    return '$factors Оціночна ймовірність перемоги для найкращого ходу на $delta відсоткових пунктів $direction.$scoreContext';
   }
 
   @override
@@ -1108,7 +1108,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get gameTutorCubeTake => 'Порада тренера: прийняти';
 
   @override
-  String get gameTutorCubePass => 'Порада тренера: скинути';
+  String get gameTutorCubePass => 'Порада тренера: пас';
 
   @override
   String get practiceScreenTitle => 'Практикуйте рішення';
@@ -1357,9 +1357,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get analysisSaveForPractice => 'Зберегти для тренування';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Не вдалося зберегти це рішення: $error';
-  }
+  String get analysisSaveError =>
+      'Не вдалося зберегти це рішення. Спробуйте ще раз.';
 
   @override
   String analysisCubeInfo(
@@ -2461,4 +2460,273 @@ class AppLocalizationsUk extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Помилка: $error';
   }
+
+  @override
+  String get privacyTitle => 'Конфіденційність і дані';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy від Freevia';
+
+  @override
+  String get privacyIntro =>
+      'На цій сторінці описано, як поточна програма обробляє ваші дані.';
+
+  @override
+  String get privacyLocalTitle => 'Ігри та уроки на вашому пристрої';
+
+  @override
+  String get privacyLocalBody =>
+      'Локальні матчі, налаштування, аналіз і прогрес тренувань зберігаються на цьому пристрої. Тут працюють ігровий рушій і пояснення тренера. Видалення збереженого матчу з Архіву ігор також видаляє збережені вправи та спроби для цього матчу. Видаляйте окремі вправи або скидайте прогрес у розділі Навчання і практика; очищуйте локальні звіти про помилки в Налаштування → Діагностика. Резервні копії пристрою також можуть містити історію матчів. Дані для онлайн-входу зберігаються в захищеному сховищі пристрою.';
+
+  @override
+  String get privacyOnlineTitle => 'Грати онлайн і поблизу';
+
+  @override
+  String get privacyOnlineBody =>
+      'Для спільної онлайн-гри до Google Firebase надсилаються анонімний ідентифікатор гравця, налаштування матчу, ходи та записи протоколу узгодження кидків кубиків. Видалення історії на цьому пристрої не видаляє онлайн-записи. Строк дії розміщених матчів завершується через 30 днів після створення; заплановане очищення видаляє їхні журнали з хмари. Записи матчів зберігаються в ЄС; Firebase Authentication обробляє дані для входу у США. З’єднання з Google шифруються під час передавання даних. Під час гри поблизу дані матчу передаються на інший пристрій через незашифроване локальне з’єднання; використовуйте надійну мережу Wi-Fi.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Необов’язкова діагностика використання та збоїв';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Спільний доступ вимкнено, доки ви не ввімкнете його в налаштуваннях. Якщо його ввімкнено, Google Firebase отримує події використання, інформацію про програму й пристрій, показники продуктивності та звіти про збої, щоб допомогти покращити програму. Ви можете будь-коли вимкнути спільний доступ, щоб припинити збирання нових необов’язкових даних. Раніше надіслані дані не видаляються. Локальна діагностика та онлайн-матчі не залежать від цього вибору.';
+
+  @override
+  String get privacyCameraTitle => 'Камера для QR-кодів поблизу';
+
+  @override
+  String get privacyCameraBody =>
+      'Додаткова камера сканує QR-коди для гри поблизу. Зображення обробляються на пристрої, не зберігаються й не завантажуються. Ви можете відмовити в доступі до камери та вручну ввести адресу пристрою-хоста. Ця версія не використовує мікрофон і не підтримує гру на фізичній дошці.';
+
+  @override
+  String get privacyFeedbackTitle => 'Відгук, який ви вирішили надіслати';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Відгук відкриває чернетку звернення на GitHub для перегляду. Під час відкриття чернетки на GitHub надсилаються версія програми та платформа; відгук із розділу Діагностика може також містити відомості про помилку. Звернення не буде опубліковано, доки ви його не надішлете. Звернення можуть бути публічними, тому перед надсиланням видаліть приватну інформацію.';
+
+  @override
+  String get privacyContactTitle => 'Контакт з питань конфіденційності';
+
+  @override
+  String get privacyReadPolicy => 'Прочитайте політику конфіденційності';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Не вдалося відкрити політику конфіденційності.';
+
+  @override
+  String get privacySupportTitle => 'Допомога та підтримка';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Не вдалося відкрити підтримку. Контакт support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Видалити онлайн-ідентифікатор і дані?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Доступ обох гравців до хмарних матчів, пов’язаних із цим онлайн-ідентифікатором, негайно припиняється. Надсилається запит на видалення ідентифікатора та спільних журналів онлайн-матчів протягом 30 днів. Google може витратити до 180 днів після видалення облікового запису, щоб видалити дані автентифікації з активних систем і резервних копій. Локальна історія матчів і тренувальні вправи залишаться на цьому пристрої. Раніше надіслані необов’язкові діагностичні дані обробляються окремо; щодо них звертайтеся до privacy@freevia.org. Запит не можна скасувати.';
+
+  @override
+  String get privacyRequestDeletion => 'Запит на видалення';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Видалення даних онлайн';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Щоб підтвердити належність онлайн-ідентифікатора, використайте дані для входу, збережені на цьому пристрої. Самого ідентифікатора гравця чи коду запрошення недостатньо для підтвердження. Для гри лише на цьому пристрої онлайн-обліковий запис не потрібен.';
+
+  @override
+  String get privacySendingRequest => 'Надсилання запиту…';
+
+  @override
+  String get privacyDeleteAction => 'Видалити онлайн-ідентифікацію та дані';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Запит на видалення надіслано. Виконано вихід із цієї онлайн-ідентичності. Її дані в хмарі буде видалено протягом 30 днів. Після повторного запуску онлайн-гри буде створено новий ідентифікатор. Google може видаляти дані автентифікації до 180 днів. По допомогу звертайтеся до privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Запит на видалення надіслано. Дані в хмарі буде видалено протягом 30 днів. Пристрою не вдалося стерти збережені дані для входу, але онлайн-ідентифікатор заблоковано від подальшого доступу до матчів. Google може видаляти дані автентифікації до 180 днів. По допомогу звертайтеся до privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'На цьому пристрої немає збереженого придатного для використання онлайн-ідентифікатора. Новий обліковий запис не створювався. Якщо ви раніше грали онлайн, зверніться по допомогу до privacy@freevia.org; розміщені матчі видаляються через 30 днів після створення.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Не вдалося підтвердити запит на видалення. Перевірте з’єднання та повторіть спробу або зверніться до privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle =>
+      'Поділитися діагностикою використання та збоїв?';
+
+  @override
+  String get privacyConsentBody =>
+      'Ця опція надсилає до Google Firebase події використання, інформацію про програму й пристрій, звіти про збої та показники продуктивності. Спільний доступ необов’язковий. Ігри та тренування працюють і з вимкненим спільним доступом; ви можете вимкнути його в налаштуваннях.';
+
+  @override
+  String get privacyKeepOff => 'Залишити вимкненим';
+
+  @override
+  String get privacyShareDiagnostics => 'Поділіться діагностикою';
+
+  @override
+  String get privacySaveFailed =>
+      'Не вдалося зберегти вибір конфіденційності. Спробуйте ще раз.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Що залишається на вашому пристрої, а до чого надається спільний доступ';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Поділіться діагностикою використання та збоїв';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Необов’язково · вимкнено за умовчанням';
+
+  @override
+  String get lanScanToJoin => 'Скануйте, щоб приєднатися';
+
+  @override
+  String get lanScanHostCode => 'Відскануйте код хоста';
+
+  @override
+  String get lanEnterAddressInstead => 'Натомість введіть адресу';
+
+  @override
+  String get lanQrAccessibilityLabel => 'QR-код для приєднання до цієї гри';
+
+  @override
+  String get lanJoinInstruction =>
+      'На іншому пристрої відкрий «Грати поруч», вибери «Приєднатися» та відскануй цей QR-код.';
+
+  @override
+  String get lanTorch => 'Спалах';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy не може використовувати камеру. Надайте доступ до камери в налаштуваннях пристрою або вручну введіть адресу, яка відображається на іншому пристрої.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Цей пристрій не може сканувати QR-коди. Вручну введіть адресу, яка відображається на іншому пристрої.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Не вдалося запустити камеру. Вручну введіть адресу, яка відображається на іншому пристрої.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Наведіть камеру на QR-код на іншому пристрої.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Гра на фізичній дошці в цій версії недоступна. Екранні ігри, навчання та практика доступні на головному екрані.';
+
+  @override
+  String get homePlayWithBuddy => 'Грати з Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Дошка для гри в нарди. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Настала черга білих кидати кубики.';
+
+  @override
+  String get boardBlackToRoll => 'Настала черга чорних кидати кубики.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Хід білих; на кубиках $die1 та $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Хід чорних; на кубиках $die1 та $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Запропоновано подвоєння куба.';
+
+  @override
+  String get boardResignationOffered => 'Запропоновано здатися.';
+
+  @override
+  String get boardGameOver => 'Гра закінчена.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Помилка]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Ідея]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'Замініть це коротким описом того, що сталося.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Замініть це кроками, які призвели до проблеми.';
+
+  @override
+  String get feedbackBugExpected => 'Замініть це тим, що ви очікували.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Замініть це тим, що ви хотіли зробити чи навчитися.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Замініть це зміною, яку ви вважаєте корисною.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(урізано — використовуйте Копіювати в буфер обміну на екрані діагностики для повного журналу)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Хід білих.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Хід чорних.';
+
+  @override
+  String get feedbackFieldVersion => 'Версія програми';
+
+  @override
+  String get feedbackFieldPlatform => 'Платформа';
+
+  @override
+  String get feedbackFieldSummary => 'Що сталося';
+
+  @override
+  String get feedbackFieldReproduction => 'Кроки для відтворення';
+
+  @override
+  String get feedbackFieldExpected => 'Очікуваний результат';
+
+  @override
+  String get feedbackFieldNeed => 'Що ви хотіли зробити?';
+
+  @override
+  String get feedbackFieldIdea => 'Запропонована зміна';
 }
