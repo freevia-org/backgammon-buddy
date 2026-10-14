@@ -109,6 +109,16 @@ set by CI from the workflow run number and is not tracked here.
   stays there. What each of the four rolls is still waiting on is recorded in
   `corpus_harness_test.dart`; the **tilt** work is queued.
 
+## [0.14.1] — 2026-10-14
+
+### Fixed
+
+- Android Back keeps active games open: collapse the tutor, undo unconfirmed
+  checker moves, dismiss popups, then offer Surrender when nothing remains to
+  revert. Pending double and resignation decisions remain reachable after
+  dismissing their dialogs.
+- Stale Next game presses cannot advance later buffered multiplayer games.
+
 ## [0.14.0] — 2026-08-27
 
 **Buddy Mode**: play on your real board against the engine, with the phone
