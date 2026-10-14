@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:aigammon_app/board/board_painter.dart';
+import 'package:aigammon_app/data/app_settings.dart';
 import 'package:aigammon_app/data/database.dart';
 import 'package:aigammon_app/data/match_repository.dart';
+import 'package:aigammon_app/data/settings_repository.dart';
 import 'package:aigammon_app/engine/engine_provider.dart';
 import 'package:aigammon_app/game/game_record.dart';
 import 'package:aigammon_app/game/player_agent.dart';
@@ -152,7 +154,7 @@ Widget _app(
       ).copyWith(textScaler: TextScaler.linear(textScale)),
       child: child!,
     ),
-    home: AnalysisScreen(gameId: gameId),
+    home: AnalysisScreen(gameId: gameId, tutor: TutorService(facade)),
   ),
 );
 
@@ -313,6 +315,44 @@ void main() {
     _repo = MatchRepository(_db);
   });
   tearDown(() => _db.close());
+
+  testWidgets(
+    'cold analysis honors the persisted GNUbg selection and replaces a wildbg cache',
+    (t) async {
+      await t.binding.setSurfaceSize(_surface);
+      addTearDown(() => t.binding.setSurfaceSize(null));
+      final gameId = await _seedCachedBlunder(t);
+      await t.runAsync(
+        () => SettingsRepository(_db).save(
+          AppSettings.defaults.copyWith(
+            evaluationEngine: EvaluationEngine.gnubg,
+          ),
+        ),
+      );
+      await _pumpLoaded(
+        t,
+        ProviderScope(
+          overrides: [
+            databaseProvider.overrideWithValue(_db),
+            fixedEngineFacadeProvider(
+              EvaluationEngine.gnubg,
+            ).overrideWithValue(const FlatFacade()),
+            fixedEngineFacadeProvider(
+              EvaluationEngine.wildbg,
+            ).overrideWith((ref) => throw StateError('Wrong engine selected')),
+          ],
+          child: MaterialApp(home: AnalysisScreen(gameId: gameId)),
+        ),
+      );
+      expect(find.textContaining('Mean loss'), findsWidgets);
+      await t.runAsync(() async {
+        final cached = jsonDecode((await _repo.loadAnalysis(gameId))!) as Map;
+        expect(cached['engineId'], 'gnubg');
+      });
+      await t.pumpWidget(const SizedBox());
+      await t.pump();
+    },
+  );
 
   testWidgets('stepped move: shows historical dice, played-move highlights, and the '
       'Played/Best toggle swaps the overlay', (t) async {

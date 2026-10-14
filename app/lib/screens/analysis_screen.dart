@@ -54,7 +54,7 @@ class AnalysisScreen extends ConsumerStatefulWidget {
   final MatchRepository? repository;
 
   /// The tutor used when analysis must be (re)computed; defaults to a
-  /// [TutorService] over [engineFacadeProvider].
+  /// [TutorService] over the persisted engine selection, fixed for the job.
   final TutorService? tutor;
 
   @override
@@ -117,8 +117,7 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
     try {
       final repo = _repo;
       final engineChoice = widget.tutor == null
-          ? (ref.read(settingsProvider).valueOrNull ?? AppSettings.defaults)
-                .evaluationEngine
+          ? (await ref.read(settingsRepositoryProvider).load()).evaluationEngine
           : AppSettings.defaults.evaluationEngine;
       final row = await repo.loadGame(widget.gameId);
       final events = await repo.loadGameEvents(widget.gameId);
