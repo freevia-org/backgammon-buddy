@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "Kod QR umożliwiający dołączenie do tej gry",
   "lanJoinInstruction": "Na drugim urządzeniu otwórz Grę w pobliżu, wybierz Dołącz, a następnie zeskanuj ten kod QR.",
   "homePlayWithBuddy": "Graj z Buddy",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Graj z Buddy",
+  "buddySetupSideLabel": "Buddy gra",
+  "buddySetupSeatLabel": "Twoja strona",
+  "buddySetupSeatNear": "Przy telefonie",
+  "buddySetupSeatFar": "Naprzeciwko",
+  "buddySetupSeatHelp": "Po której stronie planszy siedzisz. Od tego zależy numeracja pól przez Buddy oraz to, jak odróżnia Twój rzut otwierający od swojego.",
+  "buddySetupVoiceLabel": "Sposób mówienia Buddy",
+  "buddySetupVoiceTerse": "Zwięźle",
+  "buddySetupVoiceFriendly": "Przyjaźnie",
+  "buddySetupVoiceTerseHelp": "„13/8, 24/22” — zapis, którym posługują się gracze przy planszy.",
+  "buddySetupVoiceFriendlyHelp": "„Przesuń jeden pionek z 13 na 8, a drugi z 24 na 22”.",
+  "buddySetupTutorHelp": "Komentarze trenera i wyjaśnienia ruchów są zgodne z zapisanymi preferencjami trenera. Buddy od czasu do czasu komentuje Twoje ruchy; wpisywanie rzutów i ręczne wykonywanie ruchów działa tak samo.",
+  "buddySetupCalibrate": "Skalibruj planszę",
+  "buddyFixAim": "Popraw ustawienie",
+  "buddyWaitingForOpening": "Buddy czeka na rzut rozpoczynający mecz.",
+  "buddyPromptLostBoard": "Buddy stracił planszę z pola widzenia. Popraw ustawienie kamery, a mecz będzie kontynuowany od miejsca, w którym się zatrzymał.",
+  "buddyPromptWaitingPicture": "Czekam na obraz, który Buddy będzie w stanie odczytać. Nic nie przepadło.",
+  "buddyPromptTypeDice": "Buddy nie widzi kości. Wpisz wynik rzutu ręcznie.",
+  "buddyPromptPlay": "Wykonaj ruch na planszy. Jeśli Buddy go nie widzi, wpisz go tutaj.",
+  "buddyPromptWhichPlay": "Jaki to był ruch?",
+  "buddyPromptCube": "Buddy proponuje podwojenie. Przyjmujesz czy pasujesz?",
+  "buddyPromptMakeMove": "Wykonaj ruch Buddy’ego na planszy, a potem Buddy będzie kontynuować.",
+  "buddyPromptThinking": "Buddy myśli.",
+  "buddyPromptWaitingCalibration": "Czekam na kalibrację.",
+  "buddyPromptMirrorNoDetail": "Buddy nadal nie widzi swojego ruchu. Plansza poniżej pokazuje pozycję zapisaną przez Buddy’ego.",
+  "buddyPromptNotLegal": "Ten ruch jest niedozwolony.",
+  "buddyPromptNotLegalReason": "Ten ruch jest niedozwolony. {reason}",
+  "buddyThrowOpening": "Rzućcie kośćmi na początek — po jednej kości na osobę.",
+  "buddyThrowUser": "Rzuć kośćmi.",
+  "buddyThrowBuddy": "Rzuć kośćmi za Buddy’ego.",
+  "buddyMatchOver": "Mecz się zakończył.",
+  "buddyYouWin": "Wygrywasz mecz!",
+  "buddyBuddyWins": "Buddy wygrywa mecz.",
+  "buddyDoubleNoGame": "Nie ma jeszcze gry, w której można podwoić stawkę — najpierw następuje rzut otwierający.",
+  "buddyDoubleBeforeRoll": "Możesz podwoić stawkę tylko przed rzutem, gdy jest Twoja kolej.",
+  "buddyDoubleCrawford": "W grze Crawforda nie można podwajać — o meczu decyduje ta jedna gra.",
+  "buddyDoubleNotOwner": "Podwoić może tylko właściciel kostki podwajającej, a teraz należy ona do przeciwnika.",
+  "buddyDoubleUnavailable": "Podwojenie nie jest teraz dostępne.",
+  "buddyLookingAtBoard": "Buddy przygląda się planszy.",
+  "buddyCameraPlayFallback": "Możesz kontynuować mecz: wpisuj każdy rzut na panelu kości i zaznaczaj ruchy na planszy poniżej.",
+  "buddySkipCheck": "Pomiń tę kontrolę",
+  "buddyFixedIt": "Naprawione",
+  "buddyDrop": "Pas",
+  "buddyTake": "Przyjmij",
+  "buddyDone": "Gotowe",
+  "buddyTranscriptLabel": "Co powiedział Buddy",
+  "buddyUndo": "Cofnij",
+  "buddyConfirm": "Potwierdź",
+  "buddyDice": "Kości",
+  "buddyDouble": "Podwój",
+  "buddyDicePadTitle": "Co wyrzuciłeś?",
+  "buddyEnterRoll": "Wpisz rzut",
+  "buddyContextBeforeGame": "Graj z Buddy",
+  "buddyContextMatchScore": "Ty {you}–{buddy} Buddy · do {length} · Gra {number}",
+  "buddyCameraUnavailable": "Nie udało się uruchomić aparatu. Sprawdź uprawnienia i spróbuj ponownie.",
+  "buddyCameraPermission": "Backgammon Buddy nie ma uprawnień do używania aparatu. Zezwól na dostęp do aparatu w ustawieniach urządzenia i spróbuj ponownie.",
+  "buddyCalibrationTitle": "Pokaż Buddy’emu planszę",
+  "buddyCalibrationCornersFold": "Przeciągnij cztery zewnętrzne uchwyty do rogów pola gry, nie drewnianej ramki, a cztery małe do szwów, w których zawias łączy się z dalszą i bliższą krawędzią.",
+  "buddyCalibrationCornersFlat": "Przeciągnij każdy uchwyt do rogu pola gry — powierzchni do gry, nie otaczającej jej drewnianej ramki.",
+  "buddyCalibrationCheckLines": "Następnie sprawdź dwanaście linii na każdej połowie: każda powinna biec wzdłuż pola planszy. Jeśli linia mija swoje pole, przesuń odpowiedni uchwyt.",
+  "buddyCalibrationSeatQuestion": "Która połowa jest Twoją planszą wewnętrzną?",
+  "buddyCalibrationSeatHelp": "Ta połowa, która znajduje się bliżej dolnej krawędzi obrazu. To ustala numerację pól, do której dopasują się linie powyżej.",
+  "buddyCalibrationCaptureWait": "Trzymaj telefon nieruchomo. Buddy czeka, aż obraz się ustabilizuje, zanim nauczy się planszy.",
+  "buddyCalibrationConfirmQuestion": "Czy to Twoja plansza?",
+  "buddyCalibrationConfirmFallback": "Buddy przygląda się planszy, którą właśnie rozpoznał.",
+  "buddyCalibrationConfirmHelp": "Pionki narysowane na obrazie pokazują, gdzie według Buddy’ego się znajdują. Jeśli któryś jest w złym miejscu, zacznij od nowa — teraz stracisz kilka sekund, a później może całą grę.",
+  "buddyCalibrationNext": "Dalej",
+  "buddyCalibrationBack": "Wstecz",
+  "buddyCalibrationCapture": "Zrób zdjęcie",
+  "buddyCalibrationStartOver": "Zacznij od nowa",
+  "buddyCalibrationLooksRight": "Wygląda dobrze",
+  "buddyCalibrationCornersInvalid": "Te cztery uchwyty nie wyznaczają planszy — jeden przecina drugi. Przeciągnij je z powrotem do rogów pola gry.",
+  "buddyCalibrationPrepTitle": "Najpierw trzy rzeczy",
+  "buddyCalibrationRemoveDiceTitle": "Zdejmij kości z planszy.",
+  "buddyCalibrationRemoveDiceBody": "Buddy uczy się teraz pustej planszy. Kostka pozostawiona na powierzchni do gry zostanie rozpoznana jako część planszy, a Buddy nie będzie już widzieć kości w tej sesji.",
+  "buddyCalibrationSetupCheckersTitle": "Ustaw pionki w pozycji początkowej.",
+  "buddyCalibrationSetupCheckersBody": "Trzydzieści pionków w znanych miejscach pozwala Buddy’emu rozpoznać dwa kolory planszy bez podpowiedzi z Twojej strony.",
+  "buddyCalibrationFitBoardTitle": "Obejmij obrazem całe pole gry.",
+  "buddyCalibrationFitBoardBody": "Potem zostaw telefon w miejscu. Jeśli się poruszy, Buddy da znać i będzie można ponownie dopasować rogi.",
+  "buddyCalibrationBoardKind": "Jaki to rodzaj planszy?",
+  "buddyCalibrationFlatBoard": "Płaska plansza",
+  "buddyCalibrationFoldingBoard": "Składana plansza",
+  "buddyCalibrationBoardKindHelp": "Składana plansza wymaga czterech dodatkowych uchwytów przy szwach zawiasu.",
+  "buddyCalibrationNoCameraBody": "Tryb Buddy obserwuje prawdziwą planszę, więc nie uruchomi się bez aparatu. Reszta aplikacji będzie działać normalnie.",
+  "buddyHandleHingeSeam": "Szew zawiasu {number} z 4",
+  "buddyHandleCorner": "Róg planszy {number} z 4",
+  "buddyNudgeLeft": "Przesuń w lewo",
+  "buddyNudgeRight": "Przesuń w prawo",
+  "buddyNudgeUp": "Przesuń w górę",
+  "buddyNudgeDown": "Przesuń w dół",
+  "buddyCalibrationProblemCorners": "Te cztery rogi nie wyznaczają planszy. Przeciągnij każdy uchwyt do rogu pola gry i spróbuj ponownie.",
+  "buddyCalibrationProblemFoldCorners": "Te osiem punktów nie wyznacza składanej planszy. Umieść cztery w rogach pola gry, a cztery przy szwach zawiasu, i spróbuj ponownie.",
+  "buddyCalibrationProblemUnreadable": "Nie mogę rozpoznać samej planszy — jest całkowicie zasłonięta albo ginie w cieniu lub odblaskach. Odsłoń planszę, doświetl ją i spróbuj ponownie.",
+  "buddyCalibrationProblemRegionUnreadable": "Nie mogę odczytać {region}: coś może zasłaniać ten fragment planszy albo jest on zbyt ciemny. Usuń przeszkodę lub dodaj światło i spróbuj ponownie.",
+  "buddyCalibrationProblemColours": "Z tej perspektywy oba zestawy pionków wyglądają zbyt podobnie. Zwykle pomaga więcej światła lub ustawienie z mniejszą ilością odblasków.",
+  "buddyCalibrationProblemWrongChecker": "Pionki nie są w pozycji początkowej — na polu {number} znajduje się pionek złego koloru. Ustaw pionki jak na początku gry i skalibruj ponownie.",
+  "buddyCalibrationProblemOverexposed": "Na planszę pada tak dużo światła, że kolory zlewają się ze sobą. Przygaś światło lub przesuń telefon, aby lampa nie odbijała się bezpośrednio w kamerze.",
+  "buddyCalibrationProblemReadBack": "Widzę planszę, ale nie wygląda jak pozycja przed rozpoczęciem gry. Ustaw pionki jak na początku gry i skalibruj ponownie.",
+  "buddyCalibrationProblemStacks": "Widzę planszę, ale nie potrafię określić, ile pionków stoi jeden za drugim — źle bym je policzył. Zwykle pomaga nieco mocniejsze oświetlenie bliższych pól lub ustawienie kamery trochę wyżej.",
+  "buddyCalibrationProblemNotVisible": "Nie widzę całej planszy. Odsuń telefon albo przeciągnij rogi na pole gry.",
+  "buddyConfirmBoardOutOfFrame": "Nie widzę już całej planszy — {region} znajduje się poza kadrem. Ustaw ponownie kamerę lub sprawdź rogi.",
+  "buddyConfirmStartingPosition": "To wygląda na pozycję początkową.",
+  "buddyConfirmNoCheckers": "Nie widzę żadnego pionka na polu, na którym rozpoczyna się gra. Ustaw pionki jak na początku gry i spróbuj ponownie.",
+  "buddyConfirmWrongPosition": "Plansza nie jest ustawiona w pozycji początkowej: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region}: nic tam nie ma, ale na początku gry powinny tam być {side}",
+  "buddyConfirmRegionUnexpected": "{region}: znajdują się tam {side}, choć na początku gry to miejsce powinno być puste",
+  "buddyConfirmRegionWrongSide": "{region}: znajdują się tam {observed}, choć na początku gry powinny być tam {expected}",
+  "buddyReadabilityMotion": "Zatrzymaj się na chwilę — gdy telefon się porusza, tracę planszę z oczu.",
+  "buddyReadabilityWrongFrame": "Otrzymany obraz nie przedstawia planszy, do której mnie skonfigurowano, więc nie mogę niczego na nim dopasować. Skonfiguruj planszę ponownie w tym miejscu.",
+  "buddyReadabilityBlur": "Obraz jest zbyt rozmazany, żebym mógł odczytać planszę. Poczekaj chwilę, aż aparat ustawi ostrość.",
+  "buddyReadabilityCalibrationStale": "Plansza nie jest już tam, gdzie była, gdy się jej uczyłem. Dopasuj ponownie rogi, a od razu wrócę do gry.",
+  "buddyReadabilityOccluded": "Coś zasłania część planszy. Wrócę do gry, gdy tylko ją odsłonisz.",
+  "buddyReadabilityClear": "Widzę planszę.",
+  "buddyReadabilityColorChanged": "Oświetlenie planszy zmieniło kolor, więc plansza nie wygląda już tak jak ta, której się uczyłem. Dopasuj ponownie rogi w tym świetle, a od razu wrócę do gry.",
+  "buddyReadabilityTooDark": "Jest zbyt ciemno, żebym mógł odczytać planszę. Dodaj trochę światła, a wrócę do miejsca, w którym skończyliśmy.",
+  "buddyReadabilityTooBright": "Na planszę pada tak dużo światła, że kolory zlewają się ze sobą. Przygaś je lub przesuń telefon, aby lampa nie odbijała się bezpośrednio w kamerze.",
+  "buddyPromptBeliefMirror": "Buddy nadal nie widzi swojego ruchu — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nMożesz kontynuować mecz: wpisuj każdy rzut na panelu kości i zaznaczaj ruchy na planszy poniżej.",
+  "buddyCameraGenericError": "Nie udało się uruchomić aparatu. Sprawdź uprawnienia i spróbuj ponownie.",
+  "buddyRegionPoint": "pole {number}",
+  "buddyRegionBar": "bar",
+  "buddyRegionWhiteTray": "strefa wyprowadzania białych pionków",
+  "buddyRegionBlackTray": "strefa wyprowadzania czarnych pionków",
+  "buddyRegionDiceZone": "środek planszy",
+  "buddyCalibrationProblemVisible": "Nie widzę całej planszy. Odsuń telefon albo przeciągnij rogi na pole gry.",
+  "buddyConfirmMore": " (i jeszcze {number})",
+  "buddyDiceOpeningCaption": "Każdy rzuca jedną kością. To, kto wyrzuci wyższy wynik, decyduje o tym, kto zaczyna.",
+  "buddyDiceOpeningFirst": "Kość białych",
+  "buddyDiceOpeningSecond": "Kość czarnych",
+  "buddyDiceRegularCaption": "Dwie wartości na kościach, w dowolnej kolejności.",
+  "buddyDiceRegularFirst": "Jedna kość",
+  "buddyDiceRegularSecond": "Druga",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

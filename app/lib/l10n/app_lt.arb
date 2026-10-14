@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "QR kodas, skirtas prisijungti prie šio žaidimo",
   "lanJoinInstruction": "Kitame įrenginyje atidarykite „Žaisti netoliese“, pasirinkite „Prisijungti“ ir nuskaitykite šį QR kodą.",
   "homePlayWithBuddy": "Žaisti su Buddy",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Žaisk su Buddy",
+  "buddySetupSideLabel": "Buddy žaidžia",
+  "buddySetupSeatLabel": "Tavo sėdynė",
+  "buddySetupSeatNear": "Pagal telefoną",
+  "buddySetupSeatFar": "Priešingai",
+  "buddySetupSeatHelp": "Kurioje lentos pusėje esate. Taip Buddy sunumeruoja taškus ir atskiria jūsų atidarymo kauliuką nuo savo.",
+  "buddySetupVoiceLabel": "Kaip kalba Buddy",
+  "buddySetupVoiceTerse": "Glaustai",
+  "buddySetupVoiceFriendly": "Draugiškas",
+  "buddySetupVoiceTerseHelp": "„13/8, 24/22“ – žymėjimas, kaip iš tikrųjų kalba du žaidėjai prie lentos.",
+  "buddySetupVoiceFriendlyHelp": "„Perkelkite vieną šaškę nuo 13 iki 8, o vieną iš 24 į 22“.",
+  "buddySetupTutorHelp": "Mokytojo komentarai ir perkėlimo paaiškinimai atitinka jūsų išsaugotas Mokytojo nuostatas nustatymuose. Buddy retkarčiais pateikia grįžtamąjį ryšį po jūsų vaidinimų; spausdinami kauliukai ir rankiniai judesiai veikia taip pat.",
+  "buddySetupCalibrate": "Kalibruokite lentą",
+  "buddyFixAim": "Pataisykite tikslą",
+  "buddyWaitingForOpening": "Buddy laukia metimo, kuris pradeda rungtynes.",
+  "buddyPromptLostBoard": "Buddy pametė lentą. Nustatykite tikslą ir rungtynės tęsiasi ten, kur sustojo.",
+  "buddyPromptWaitingPicture": "Laukiu nuotraukos Buddy gali skaityti. Nieko neprarasta.",
+  "buddyPromptTypeDice": "Buddy negali rasti kauliuko. Vietoj to įveskite ritinį.",
+  "buddyPromptPlay": "Žaisk ant lentos. Bakstelėkite jį čia, jei Buddy jo nemato.",
+  "buddyPromptWhichPlay": "Kuri tai buvo pjesė?",
+  "buddyPromptCube": "Buddy siūlo dvigubinti. Priimti ar atmesti?",
+  "buddyPromptMakeMove": "Padarykite Buddy judesį lentoje, tada Buddy veiks toliau.",
+  "buddyPromptThinking": "Buddy galvoja.",
+  "buddyPromptWaitingCalibration": "Laukiama kalibravimo.",
+  "buddyPromptMirrorNoDetail": "Buddy vis dar nemato jo judėjimo. Žemiau esanti lenta yra padėtis, kurią ji užima.",
+  "buddyPromptNotLegal": "Tai neteisėtas ėjimas.",
+  "buddyPromptNotLegalReason": "Tai neteisėtas ėjimas. {reason}",
+  "buddyThrowOpening": "Mesti pradinį kauliuką – po vieną kauliuką.",
+  "buddyThrowUser": "Mesti savo kauliukus.",
+  "buddyThrowBuddy": "Mesti Buddy kauliuką.",
+  "buddyMatchOver": "Rungtynės baigėsi.",
+  "buddyYouWin": "Jūs laimite rungtynes.",
+  "buddyBuddyWins": "Rungtynes ​​laimi Buddy.",
+  "buddyDoubleNoGame": "Dar nėra žaidimo, kurį reikėtų padvigubinti – pirmas metimas.",
+  "buddyDoubleBeforeRoll": "Galite padvigubinti tik prieš ridendami savo ruožtu.",
+  "buddyDoubleCrawford": "Crawford žaidime nedubliuojama – šis vienas žaidimas nusprendžia rungtynes.",
+  "buddyDoubleNotOwner": "Tik kubo savininkas gali padvigubinti, o kita pusė šiuo metu priklauso.",
+  "buddyDoubleUnavailable": "Padvigubinti šiuo metu negalima.",
+  "buddyLookingAtBoard": "Buddy žiūri į lentą.",
+  "buddyCameraPlayFallback": "Vis tiek galite žaisti rungtynes: įveskite kiekvieną metimą ant kauliukų padėklo ir bakstelėkite žaidimus žemiau esančioje lentoje.",
+  "buddySkipCheck": "Praleiskite šį patikrinimą",
+  "buddyFixedIt": "Aš tai pataisiau",
+  "buddyDrop": "Atmesti",
+  "buddyTake": "Priimti",
+  "buddyDone": "Atlikta",
+  "buddyTranscriptLabel": "Ką pasakė Buddy",
+  "buddyUndo": "Anuliuoti",
+  "buddyConfirm": "Patvirtinti",
+  "buddyDice": "Kauliukai",
+  "buddyDouble": "Dvigubinimas",
+  "buddyDicePadTitle": "Ką išmetėte?",
+  "buddyEnterRoll": "Įveskite metimą",
+  "buddyContextBeforeGame": "Žaisk su Buddy",
+  "buddyContextMatchScore": "Jūs {you}–{buddy} Buddy · iki {length} · Žaidimas {number}",
+  "buddyCameraUnavailable": "Nepavyko paleisti fotoaparato. Patikrinkite leidimus ir bandykite dar kartą.",
+  "buddyCameraPermission": "Backgammon Buddy neturi leidimo naudoti fotoaparato. Leiskite pasiekti fotoaparatą įrenginio nustatymuose ir bandykite dar kartą.",
+  "buddyCalibrationTitle": "Parodykite Buddy lentą",
+  "buddyCalibrationCornersFold": "Vilkite keturias išorines rankenas ant veltinio kampų, o ne medinį apvadą, o keturias mažas – ant siūlių, kur vyriai susilieja su tolimu ir artimu kraštu.",
+  "buddyCalibrationCornersFlat": "Vilkite kiekvieną rankenėlę ant veltinio kampo – žaidimo paviršiaus, o ne medinio apvado aplink jį.",
+  "buddyCalibrationCheckLines": "Tada patikrinkite dvylika eilučių kiekvienoje pusėje: kiekviena turi eiti išilgai jūsų lentos taško. Linija, kuri nepatenka į savo tašką, yra rankena, kurią reikia pastumti.",
+  "buddyCalibrationSeatQuestion": "Kuri pusė yra jūsų namų lenta?",
+  "buddyCalibrationSeatHelp": "Pusė, esanti arčiausiai paveikslo apačios. Tai fiksuoja taškų skaičius, todėl aukščiau esančios linijos juda kartu su juo.",
+  "buddyCalibrationCaptureWait": "Laikykite telefoną ramiai. Buddy laukia, kol vaizdas nusistovės, kol išmoks šią plokštę.",
+  "buddyCalibrationConfirmQuestion": "Ar tai tavo lenta?",
+  "buddyCalibrationConfirmFallback": "Buddy žiūri į ką tik išmoktą lentą.",
+  "buddyCalibrationConfirmHelp": "Virš paveikslo nupiešti vyrai, Buddy nuomone, yra lentoje. Jei kuris nors iš jų yra netinkamoje vietoje, pradėkite iš naujo – dabar tai kainuoja sekundes, o žaidimas vėliau.",
+  "buddyCalibrationNext": "Kitas",
+  "buddyCalibrationBack": "Atgal",
+  "buddyCalibrationCapture": "Užfiksuoti",
+  "buddyCalibrationStartOver": "Pradėkite iš naujo",
+  "buddyCalibrationLooksRight": "Atrodo teisingai",
+  "buddyCalibrationCornersInvalid": "Tos keturios rankenos nenubrėžia lentos kontūro – viena iš jų kirto kitą. Vilkite juos atgal į veltinio kampus.",
+  "buddyCalibrationPrepTitle": "Pirmiausia trys dalykai",
+  "buddyCalibrationRemoveDiceTitle": "Nuimkite kauliuką nuo lentos.",
+  "buddyCalibrationRemoveDiceBody": "Buddy dabar mokosi plika lenta. Ant veltinio paliktas kauliukas išmokstamas kaip jo dalis, o tada Buddy daugiau niekada nebematys kauliuko šioje sesijoje.",
+  "buddyCalibrationSetupCheckersTitle": "Sudėkite šaškes į pradinę padėtį.",
+  "buddyCalibrationSetupCheckersBody": "Trisdešimt šaškių žinomose vietose padeda Buddy atpažinti dvi lentos spalvas.",
+  "buddyCalibrationFitBoardTitle": "Sutalpinkite visą žaidimo lauką paveikslėlyje.",
+  "buddyCalibrationFitBoardBody": "Tada palikite telefoną ten, kur jis yra. Jei jis pajuda, Buddy taip pasakys ir galite pastumti kampus atgal.",
+  "buddyCalibrationBoardKind": "Kokia tai lenta?",
+  "buddyCalibrationFlatBoard": "Plokščia lenta",
+  "buddyCalibrationFoldingBoard": "Sulankstomas dėklas",
+  "buddyCalibrationBoardKindHelp": "Sulankstomai lentai reikia keturių papildomų rankenų ant vyrių siūlių.",
+  "buddyCalibrationNoCameraBody": "Buddy režimas stebi tikrą lentą, todėl negali įsijungti be fotoaparato. Visa kita programėlėje neturi įtakos.",
+  "buddyHandleHingeSeam": "Vyrių siūlė {number} iš 4",
+  "buddyHandleCorner": "Lentos kampas {number} iš 4",
+  "buddyNudgeLeft": "Pasukite į kairę",
+  "buddyNudgeRight": "Pasukite dešinėn",
+  "buddyNudgeUp": "Pakelkite aukštyn",
+  "buddyNudgeDown": "Nukreipkite žemyn",
+  "buddyCalibrationProblemCorners": "Tie keturi kampai nenurodo lentos kontūro. Vilkite kiekvieną rankenėlę į žaidimo lauko kampą ir bandykite dar kartą.",
+  "buddyCalibrationProblemFoldCorners": "Tie aštuoni taškai neapibrėžia sulankstomos lentos. Uždėkite keturis ant žaidimo lauko kampų ir keturis ant vyrių siūlių, tada bandykite dar kartą.",
+  "buddyCalibrationProblemUnreadable": "Negaliu atskirti pačios lentos – kiekviena jos dalis yra uždengta arba pasimetusi šešėlyje ar blizgesyje. Išvalykite lentą, įdėkite šiek tiek šviesos ir bandykite dar kartą.",
+  "buddyCalibrationProblemRegionUnreadable": "Negaliu suprasti {region} – kažkas gali būti ant jo arba tas lentos kampas gali būti per tamsus, kad jį būtų galima perskaityti. Išvalykite jį arba įdėkite šiek tiek šviesos ir bandykite dar kartą.",
+  "buddyCalibrationProblemColours": "Iš čia du šaškių rinkiniai atrodo per daug panašūs. Daugiau šviesos arba kampas su mažesniu akinimu ant lentos paprastai tai pataiso.",
+  "buddyCalibrationProblemWrongChecker": "Šaškės nėra pradinėje padėtyje – taške {number} yra netinkamos spalvos šaškė. Sudėkite pradinę padėtį ir kalibruokite dar kartą.",
+  "buddyCalibrationProblemOverexposed": "Lentoje tiek daug šviesos, kad jos spalvos susilieja viena su kita. Pritemdykite šviesą arba perkelkite telefoną taip, kad lemputė nešviestų tiesiai atgal.",
+  "buddyCalibrationProblemReadBack": "Galiu skaityti šią lentą, bet ne kaip netrukus prasidėsiantį žaidimą. Paruoškite vyrus žaidimo pradžiai, tada vėl kalibruokite.",
+  "buddyCalibrationProblemStacks": "Lentą įžiūriu, bet iš čia negaliu patikimai suskaičiuoti vieną ant kitos sudėtų šaškių, todėl galiu suklysti. Paprastai padeda daugiau šviesos į artimus taškus arba kiek aukštesnis kameros kampas.",
+  "buddyCalibrationProblemNotVisible": "Nematau visos lentos. Perkelkite telefoną atgal arba vilkite kampus į žaidimo lauką.",
+  "buddyConfirmBoardOutOfFrame": "Nebematau visos plokštės – {region} yra už nuotraukos ribų. Vėl sulygiuokite fotoaparatą arba dar kartą patikrinkite kampus.",
+  "buddyConfirmStartingPosition": "Tai atrodo kaip pradinė padėtis.",
+  "buddyConfirmNoCheckers": "Pradinės padėties taškuose nematau šaškių. Sudėkite pradinę padėtį ir bandykite dar kartą.",
+  "buddyConfirmWrongPosition": "Lenta nėra paruošta žaidimo pradžiai: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} atrodo tuščias, bet žaidimas prasideda nuo {side}",
+  "buddyConfirmRegionUnexpected": "{region} turi {side}, bet žaidimas pradedamas tuščiu",
+  "buddyConfirmRegionWrongSide": "{region} turi {observed}, kur žaidimas prasideda nuo {expected}",
+  "buddyReadabilityMotion": "Truputį pabūkite – pametu lentą, kol telefonas juda.",
+  "buddyReadabilityWrongFrame": "Man pateikiama nuotrauka nėra ta, ant kurios buvo pastatyta ši lenta, todėl negaliu nieko joje sustatyti. Iš čia vėl nustatykite lentą.",
+  "buddyReadabilityBlur": "Paveikslėlis per minkštas, kad būtų galima perskaityti lentą. Suteikite fotoaparatui akimirką sufokusuoti.",
+  "buddyReadabilityCalibrationStale": "Lenta nėra ten, kur buvo, kai ją išmokau. Vėl išlyginkite kampus ir aš pasirinksiu žaidimą tiesiai atgal.",
+  "buddyReadabilityOccluded": "Kažkas dengia dalį lentos. Tęsiu, kai tik bus aišku.",
+  "buddyReadabilityClear": "Aš matau lentą.",
+  "buddyReadabilityColorChanged": "Lemputė ant lentos pakeitė spalvą, todėl lenta nebeatrodo taip, kaip išmokau. Vėl sureguliuokite kampus po šia šviesa ir aš pasirinksiu žaidimą tiesiai atgal.",
+  "buddyReadabilityTooDark": "Per tamsu skaityti lentą. Dar šiek tiek šviesos ir tęsiu ten, kur buvome.",
+  "buddyReadabilityTooBright": "Lentoje tiek daug šviesos, kad jos spalvos susilieja viena su kita. Pritemdykite jį arba perkelkite telefoną taip, kad lemputė nešviestų tiesiai atgal.",
+  "buddyPromptBeliefMirror": "Buddy vis dar nemato jo judėjimo – {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nVis tiek galite žaisti rungtynes: įveskite kiekvieną metimą ant kauliukų padėklo ir bakstelėkite žaidimus žemiau esančioje lentoje.",
+  "buddyCameraGenericError": "Nepavyko paleisti fotoaparato. Patikrinkite leidimus ir bandykite dar kartą.",
+  "buddyRegionPoint": "taškas {number}",
+  "buddyRegionBar": "baras",
+  "buddyRegionWhiteTray": "baltųjų šaškių išnešimo dėklas",
+  "buddyRegionBlackTray": "juodųjų šaškių išnešimo dėklas",
+  "buddyRegionDiceZone": "lentos vidurys",
+  "buddyCalibrationProblemVisible": "Nematau visos lentos. Perkelkite telefoną atgal arba vilkite kampus į žaidimo lauką.",
+  "buddyConfirmMore": "(ir dar {number})",
+  "buddyDiceOpeningCaption": "Kiekvienas žaidėjas meta po vieną kauliuką. Pradeda išmetęs daugiau.",
+  "buddyDiceOpeningFirst": "baltas kauliukas",
+  "buddyDiceOpeningSecond": "juodas kauliukas",
+  "buddyDiceRegularCaption": "Du veidai ant stalo bet kuria tvarka.",
+  "buddyDiceRegularFirst": "Vienas mirtis",
+  "buddyDiceRegularSecond": "Kitas",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

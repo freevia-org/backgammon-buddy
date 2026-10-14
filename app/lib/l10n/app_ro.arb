@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "Cod QR pentru a intra în acest joc",
   "lanJoinInstruction": "Pe celălalt dispozitiv, deschideți Joacă în apropiere, alegeți Alătură-te, apoi scanați acest cod QR.",
   "homePlayWithBuddy": "Joacă cu Buddy",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Joacă cu Buddy",
+  "buddySetupSideLabel": "Buddy joacă",
+  "buddySetupSeatLabel": "Locul tău",
+  "buddySetupSeatNear": "Lângă telefon",
+  "buddySetupSeatFar": "În partea opusă",
+  "buddySetupSeatHelp": "Pe ce latură a tablei stai? Așa numerotează Buddy punctele și își deosebește zarul de deschidere de al tău.",
+  "buddySetupVoiceLabel": "Cum vorbește Buddy",
+  "buddySetupVoiceTerse": "Concis",
+  "buddySetupVoiceFriendly": "Prietenos",
+  "buddySetupVoiceTerseHelp": "„13/8, 24/22” — notația folosită de doi jucători la tablă.",
+  "buddySetupVoiceFriendlyHelp": "„Mută o piesă de la 13 la 8 și una de la 24 la 22.”",
+  "buddySetupTutorHelp": "Comentariile și explicațiile mutărilor urmează preferințele Tutorului salvate în Setări. Buddy oferă uneori feedback după mutările tale; introducerea zarurilor și mutările manuale funcționează la fel.",
+  "buddySetupCalibrate": "Calibrează tabla",
+  "buddyFixAim": "Corectează încadrarea",
+  "buddyWaitingForOpening": "Buddy așteaptă aruncarea care începe partida.",
+  "buddyPromptLostBoard": "Buddy a pierdut tabla. Corectează încadrarea, iar partida continuă de unde s-a oprit.",
+  "buddyPromptWaitingPicture": "Aștept o imagine pe care Buddy o poate citi. Nu s-a pierdut nimic.",
+  "buddyPromptTypeDice": "Buddy nu găsește zarurile. Introdu rezultatul aruncării.",
+  "buddyPromptPlay": "Fă mutarea pe tablă. Dacă Buddy nu o vede, introdu-o aici.",
+  "buddyPromptWhichPlay": "Ce mutare ai făcut?",
+  "buddyPromptCube": "Buddy dublează. Accepți sau abandonezi?",
+  "buddyPromptMakeMove": "Fă mutarea lui Buddy pe tablă, apoi Buddy va continua.",
+  "buddyPromptThinking": "Buddy se gândește.",
+  "buddyPromptWaitingCalibration": "Aștept calibrarea.",
+  "buddyPromptMirrorNoDetail": "Buddy încă nu își vede mutarea. Tabla de mai jos arată poziția pe care o urmărește.",
+  "buddyPromptNotLegal": "Mutarea nu este legală.",
+  "buddyPromptNotLegalReason": "Mutarea nu este legală. {reason}",
+  "buddyThrowOpening": "Aruncă zarurile de deschidere — câte unul pentru fiecare.",
+  "buddyThrowUser": "Aruncă zarurile tale.",
+  "buddyThrowBuddy": "Aruncă zarurile lui Buddy.",
+  "buddyMatchOver": "Partida s-a încheiat.",
+  "buddyYouWin": "Ai câștigat partida.",
+  "buddyBuddyWins": "Buddy a câștigat partida.",
+  "buddyDoubleNoGame": "Nu există încă un joc care să poată fi dublat — întâi se aruncă zarurile de deschidere.",
+  "buddyDoubleBeforeRoll": "Poți dubla doar la rândul tău, înainte să arunci.",
+  "buddyDoubleCrawford": "Nu se dublează în jocul Crawford — acest joc decide partida.",
+  "buddyDoubleNotOwner": "Doar deținătorul cubului poate dubla, iar acum cubul aparține celeilalte părți.",
+  "buddyDoubleUnavailable": "Dublarea nu este disponibilă acum.",
+  "buddyLookingAtBoard": "Buddy se uită la tablă.",
+  "buddyCameraPlayFallback": "Poți continua partida: introdu fiecare aruncare pe panoul cu zaruri și execută mutările pe tabla de mai jos.",
+  "buddySkipCheck": "Omite verificarea",
+  "buddyFixedIt": "Am corectat",
+  "buddyDrop": "Abandonează",
+  "buddyTake": "Acceptă",
+  "buddyDone": "Gata",
+  "buddyTranscriptLabel": "Ce a spus Buddy",
+  "buddyUndo": "Anulează",
+  "buddyConfirm": "Confirmă",
+  "buddyDice": "Zaruri",
+  "buddyDouble": "Dublează",
+  "buddyDicePadTitle": "Ce ai aruncat?",
+  "buddyEnterRoll": "Introdu aruncarea",
+  "buddyContextBeforeGame": "Joacă cu Buddy",
+  "buddyContextMatchScore": "Tu {you}–{buddy} Buddy · până la {length} · Jocul {number}",
+  "buddyCameraUnavailable": "Camera nu a putut porni. Verifică permisiunile și încearcă din nou.",
+  "buddyCameraPermission": "Backgammon Buddy nu are permisiunea de a folosi camera. Permite accesul la cameră în setările dispozitivului și încearcă din nou.",
+  "buddyCalibrationTitle": "Arată-i tabla lui Buddy",
+  "buddyCalibrationCornersFold": "Trage cele patru mânere exterioare în colțurile suprafeței de joc, nu pe rama de lemn, iar cele patru mici pe îmbinările balamalei cu marginile îndepărtată și apropiată.",
+  "buddyCalibrationCornersFlat": "Trage fiecare mâner într-un colț al suprafeței de joc, nu pe rama de lemn.",
+  "buddyCalibrationCheckLines": "Apoi verifică cele douăsprezece linii din fiecare jumătate: fiecare trebuie să urmeze un punct al tablei. Dacă o linie ratează punctul, ajustează mânerul corespunzător.",
+  "buddyCalibrationSeatQuestion": "Care jumătate este zona ta de joc?",
+  "buddyCalibrationSeatHelp": "Jumătatea aflată mai aproape de marginea de jos a imaginii. Aceasta fixează numerotarea punctelor, iar liniile de mai sus se aliniază după ea.",
+  "buddyCalibrationCaptureWait": "Ține telefonul nemișcat. Buddy așteaptă ca imaginea să se stabilizeze înainte să învețe tabla.",
+  "buddyCalibrationConfirmQuestion": "Aceasta este tabla ta?",
+  "buddyCalibrationConfirmFallback": "Buddy privește tabla pe care tocmai a învățat-o.",
+  "buddyCalibrationConfirmHelp": "Piesele desenate peste imagine arată ce crede Buddy că se află pe tablă. Dacă vreuna este în locul greșit, reia procesul — acum durează câteva secunde, mai târziu poate costa o partidă.",
+  "buddyCalibrationNext": "Înainte",
+  "buddyCalibrationBack": "Înapoi",
+  "buddyCalibrationCapture": "Capturează",
+  "buddyCalibrationStartOver": "Reia de la început",
+  "buddyCalibrationLooksRight": "Arată bine",
+  "buddyCalibrationCornersInvalid": "Aceste patru mânere nu conturează o tablă — unul îl intersectează pe altul. Trage-le înapoi în colțurile suprafeței de joc.",
+  "buddyCalibrationPrepTitle": "Mai întâi, trei lucruri",
+  "buddyCalibrationRemoveDiceTitle": "Ia zarurile de pe tablă.",
+  "buddyCalibrationRemoveDiceBody": "Buddy învață acum tabla goală. Dacă lași un zar pe suprafața de joc, îl va învăța ca parte a tablei și nu va mai putea vedea zarurile în această sesiune.",
+  "buddyCalibrationSetupCheckersTitle": "Așază piesele în poziția de început a unei partide.",
+  "buddyCalibrationSetupCheckersBody": "Cele treizeci de piese în poziții cunoscute îl ajută pe Buddy să învețe cele două culori ale tablei fără să-i spui care sunt.",
+  "buddyCalibrationFitBoardTitle": "Încadrează toată suprafața de joc.",
+  "buddyCalibrationFitBoardBody": "Apoi lasă telefonul pe loc. Dacă se mișcă, Buddy te anunță și poți regla din nou colțurile.",
+  "buddyCalibrationBoardKind": "Ce tip de tablă ai?",
+  "buddyCalibrationFlatBoard": "Tablă simplă",
+  "buddyCalibrationFoldingBoard": "Tablă pliabilă",
+  "buddyCalibrationBoardKindHelp": "O tablă pliabilă are nevoie de încă patru mânere pe îmbinările balamalei.",
+  "buddyCalibrationNoCameraBody": "Modul Buddy urmărește o tablă reală, deci nu poate porni fără cameră. Restul aplicației funcționează în continuare.",
+  "buddyHandleHingeSeam": "Îmbinarea balamalei {number} din 4",
+  "buddyHandleCorner": "Colțul tablei {number} din 4",
+  "buddyNudgeLeft": "Mută puțin la stânga",
+  "buddyNudgeRight": "Mută puțin la dreapta",
+  "buddyNudgeUp": "Mută puțin în sus",
+  "buddyNudgeDown": "Mută puțin în jos",
+  "buddyCalibrationProblemCorners": "Aceste patru colțuri nu conturează tabla. Trage fiecare mâner într-un colț al suprafeței de joc și încearcă din nou.",
+  "buddyCalibrationProblemFoldCorners": "Aceste opt puncte nu conturează o tablă pliabilă. Pune patru în colțurile suprafeței de joc și patru pe îmbinările balamalei, apoi încearcă din nou.",
+  "buddyCalibrationProblemUnreadable": "Nu pot distinge tabla — este acoperită complet sau se pierde în umbră ori reflexii. Eliberează tabla, adaugă lumină și încearcă din nou.",
+  "buddyCalibrationProblemRegionUnreadable": "Nu pot distinge {region} — poate este ceva așezat acolo sau colțul este prea întunecat. Eliberează-l ori adaugă lumină și încearcă din nou.",
+  "buddyCalibrationProblemColours": "Cele două culori ale pieselor seamănă prea mult din acest unghi. De obicei, ajută mai multă lumină sau un unghi cu mai puține reflexii.",
+  "buddyCalibrationProblemWrongChecker": "Piesele nu sunt în poziția de început — punctul {number} are o piesă de culoarea greșită. Așază tabla pentru începutul unei partide și calibrează din nou.",
+  "buddyCalibrationProblemOverexposed": "Este atât de multă lumină pe tablă încât culorile se confundă. Redu lumina sau mută telefonul astfel încât lampa să nu se reflecte direct în cameră.",
+  "buddyCalibrationProblemReadBack": "Pot citi tabla, dar nu este pregătită pentru începutul unei partide. Așază piesele în poziția inițială și calibrează din nou.",
+  "buddyCalibrationProblemStacks": "Pot citi tabla, dar nu disting cât de mult se află o piesă în spatele alteia, așa că aș număra greșit. Mai multă lumină pe punctele apropiate sau un unghi puțin mai ridicat al camerei rezolvă de obicei problema.",
+  "buddyCalibrationProblemNotVisible": "Nu văd toată tabla. Îndepărtează telefonul sau trage colțurile pe suprafața de joc.",
+  "buddyConfirmBoardOutOfFrame": "Nu mai văd toată tabla — {region} este în afara imaginii. Realiniază camera sau verifică din nou colțurile.",
+  "buddyConfirmStartingPosition": "Arată ca poziția de început.",
+  "buddyConfirmNoCheckers": "Nu văd nicio piesă în pozițiile de început. Așază tabla pentru o partidă nouă și încearcă din nou.",
+  "buddyConfirmWrongPosition": "Tabla nu este așezată pentru începutul unei partide: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} pare gol, dar partida începe cu {side} acolo",
+  "buddyConfirmRegionUnexpected": "{region} are {side}, dar partida începe cu acel loc gol",
+  "buddyConfirmRegionWrongSide": "{region} are {observed}, dar partida începe cu {expected} acolo",
+  "buddyReadabilityMotion": "Stai nemișcat o clipă — pierd tabla când se mișcă telefonul.",
+  "buddyReadabilityWrongFrame": "Imaginea primită nu este cea pe care a fost configurată tabla, așa că nu pot alinia nimic. Configurează din nou tabla de aici.",
+  "buddyReadabilityBlur": "Imaginea este prea neclară pentru a citi tabla. Așteaptă puțin să focalizeze camera.",
+  "buddyReadabilityCalibrationStale": "Tabla nu mai este în locul în care am învățat-o. Realiniază colțurile și reiau partida imediat.",
+  "buddyReadabilityOccluded": "Ceva acoperă o parte din tablă. Continui imediat ce este liberă.",
+  "buddyReadabilityClear": "Văd tabla.",
+  "buddyReadabilityColorChanged": "Culoarea luminii de pe tablă s-a schimbat, iar tabla nu mai arată ca cea pe care am învățat-o. Realiniază colțurile în această lumină și reiau partida.",
+  "buddyReadabilityTooDark": "Este prea întuneric ca să citesc tabla. Cu puțină lumină în plus, continui de unde am rămas.",
+  "buddyReadabilityTooBright": "Este atât de multă lumină pe tablă încât culorile se confundă. Redu lumina sau mută telefonul ca lampa să nu se reflecte direct în cameră.",
+  "buddyPromptBeliefMirror": "Buddy încă nu își poate vedea mutarea — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nPoți continua partida: introdu fiecare aruncare pe panoul cu zaruri și execută mutările pe tabla de mai jos.",
+  "buddyRegionPoint": "punctul {number}",
+  "buddyRegionBar": "bara",
+  "buddyRegionWhiteTray": "tava de scoatere a pieselor albe",
+  "buddyRegionBlackTray": "tava de scoatere a pieselor negre",
+  "buddyRegionDiceZone": "mijlocul tablei",
+  "buddyCalibrationProblemVisible": "Nu văd toată tabla. Îndepărtează telefonul sau trage colțurile pe suprafața de joc.",
+  "buddyConfirmMore": " (și încă {number})",
+  "buddyDiceOpeningCaption": "Câte un zar fiecare. Fețele aruncate stabilesc cine începe.",
+  "buddyDiceOpeningFirst": "Zarul albului",
+  "buddyDiceOpeningSecond": "Zarul negrului",
+  "buddyDiceRegularCaption": "Cele două fețe de pe masă, în orice ordine.",
+  "buddyDiceRegularFirst": "Un zar",
+  "buddyDiceRegularSecond": "Celălalt zar",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyCameraGenericError": "Camera nu a putut porni. Verifică permisiunile și încearcă din nou."
 }

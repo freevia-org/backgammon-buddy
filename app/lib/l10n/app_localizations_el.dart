@@ -2763,4 +2763,496 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Προτεινόμενη αλλαγή';
+
+  @override
+  String get buddySetupTitle => 'Παίξτε με το Buddy';
+
+  @override
+  String get buddySetupSideLabel => 'Το Buddy παίζει';
+
+  @override
+  String get buddySetupSeatLabel => 'Η θέση σας';
+
+  @override
+  String get buddySetupSeatNear => 'Από το τηλέφωνο';
+
+  @override
+  String get buddySetupSeatFar => 'Απέναντι';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Σε ποια πλευρά του πίνακα βρίσκεστε. Είναι ο τρόπος με τον οποίο το Buddy αριθμεί τους πόντους και πώς λέει το αρχικό σας ζάρι από το δικό του.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Πώς μιλάει το Buddy';
+
+  @override
+  String get buddySetupVoiceTerse => 'Λιτός';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Φιλικός';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '«13/8, 24/22» — σημειογραφία, ο τρόπος με τον οποίο μιλάνε πραγματικά δύο παίκτες σε ένα ταμπλό.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '«Μετακινήστε ένα πούλι από το 13 στο 8 και ένα από το 24 στο 22».';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Ο σχολιασμός εκπαιδευτή και οι επεξηγήσεις μετακίνησης ακολουθούν τις αποθηκευμένες προτιμήσεις του εκπαιδευτή στις Ρυθμίσεις. Το Buddy δίνει περιστασιακά σχόλια μετά τα παιχνίδια σας. Τα δακτυλογραφημένα ζάρια και οι χειροκίνητες κινήσεις λειτουργούν με τον ίδιο τρόπο.';
+
+  @override
+  String get buddySetupCalibrate => 'Βαθμονόμηση του πίνακα';
+
+  @override
+  String get buddyFixAim => 'Διορθώστε τον στόχο';
+
+  @override
+  String get buddyWaitingForOpening =>
+      'Ο Buddy περιμένει τη ρίψη που ξεκινά τον αγώνα.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Ο Buddy έχασε τον πίνακα. Διορθώστε το στόχο και ο αγώνας συνεχίζεται εκεί που σταμάτησε.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Αναμονή για φωτογραφία Ο Buddy μπορεί να διαβάσει. Τίποτα δεν πάει χαμένο.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Ο Buddy δεν μπορεί να βρει τα ζάρια. Πληκτρολογήστε το ρολό.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Κάντε το παιχνίδι σας στο ταμπλό. Πατήστε το εδώ αν το Buddy δεν το βλέπει.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Ποιο θεατρικό ήταν;';
+
+  @override
+  String get buddyPromptCube => 'Ο Buddy διπλασιάζει. Δέχεσαι ή παραιτείσαι;';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Κάντε την κίνηση του Buddy στον πίνακα, τότε το Buddy θα συνεχίσει.';
+
+  @override
+  String get buddyPromptThinking => 'Ο Buddy σκέφτεται.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Αναμονή για βαθμονόμηση.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Το Buddy εξακολουθεί να μην μπορεί να δει την κίνησή του. Ο πίνακας παρακάτω είναι η θέση που κρατά.';
+
+  @override
+  String get buddyPromptNotLegal => 'Αυτό δεν είναι νόμιμο παιχνίδι.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Αυτό δεν είναι νόμιμο παιχνίδι. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening =>
+      'Ρίξτε τα ζάρια της έναρξης — ένα ζάρι ο καθένας.';
+
+  @override
+  String get buddyThrowUser => 'Ρίξτε τα ζάρια σας.';
+
+  @override
+  String get buddyThrowBuddy => 'Ρίξτε τα ζάρια του Buddy.';
+
+  @override
+  String get buddyMatchOver => 'Ο αγώνας τελείωσε.';
+
+  @override
+  String get buddyYouWin => 'Κερδίζεις τον αγώνα.';
+
+  @override
+  String get buddyBuddyWins => 'Ο Buddy κερδίζει τον αγώνα.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Δεν υπάρχει παιχνίδι για διπλό ακόμα — η πρώτη βολή έρχεται πρώτη.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Μπορείτε μόνο να διπλασιαστείτε πριν από την κύλιση, στη σειρά σας.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'Χωρίς διπλασιασμό στο παιχνίδι του Κρόφορντ — αυτό το μεμονωμένο παιχνίδι αποφασίζει τον αγώνα.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Μόνο ο κάτοχος του κύβου μπορεί να διπλασιαστεί και η άλλη πλευρά τον κατέχει αυτή τη στιγμή.';
+
+  @override
+  String get buddyDoubleUnavailable =>
+      'Ο διπλασιασμός δεν είναι διαθέσιμος αυτήν τη στιγμή.';
+
+  @override
+  String get buddyLookingAtBoard => 'Ο Buddy κοιτάζει τον πίνακα.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Μπορείτε ακόμα να παίξετε τον αγώνα: πληκτρολογήστε κάθε ζαριά στο ταμπλό και πατήστε τα παιχνίδια σας στον παρακάτω πίνακα.';
+
+  @override
+  String get buddySkipCheck => 'Παραλείψτε αυτόν τον έλεγχο';
+
+  @override
+  String get buddyFixedIt => 'το διόρθωσα';
+
+  @override
+  String get buddyDrop => 'Πτώση';
+
+  @override
+  String get buddyTake => 'Παίρνω';
+
+  @override
+  String get buddyDone => 'Γινώμενος';
+
+  @override
+  String get buddyTranscriptLabel => 'Τι είπε ο Buddy';
+
+  @override
+  String get buddyUndo => 'Ξεκάνω';
+
+  @override
+  String get buddyConfirm => 'Επιβεβαιώνω';
+
+  @override
+  String get buddyDice => 'Ζάρια';
+
+  @override
+  String get buddyDouble => 'Διπλό';
+
+  @override
+  String get buddyDicePadTitle => 'Τι έφεραν τα ζάρια;';
+
+  @override
+  String get buddyEnterRoll => 'Εισαγάγετε το ρολό';
+
+  @override
+  String get buddyContextBeforeGame => 'Παίξτε με το Buddy';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Εσείς $you–$buddy Buddy · έως $length · Παιχνίδι $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Δεν ήταν δυνατή η εκκίνηση της κάμερας. Ελέγξτε τα δικαιώματα και δοκιμάστε ξανά.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Το Backgammon Buddy δεν έχει άδεια χρήσης της κάμερας. Επιτρέψτε την πρόσβαση της κάμερας στις ρυθμίσεις της συσκευής σας και δοκιμάστε ξανά.';
+
+  @override
+  String get buddyCalibrationTitle => 'Δείξτε τον πίνακα Buddy';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Σύρετε τις τέσσερις εξωτερικές λαβές στις γωνίες της τσόχας - όχι στο ξύλινο χείλος - και τις τέσσερις μικρές στις ραφές όπου ο μεντεσές συναντά τις μακρινές και τις κοντινές άκρες.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Σύρετε κάθε λαβή σε μια γωνία της τσόχας — στην επιφάνεια παιχνιδιού, όχι στο ξύλινο χείλος γύρω της.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Στη συνέχεια, ελέγξτε τις δώδεκα γραμμές κάτω σε κάθε μισό: κάθε μία πρέπει να τρέχει κατά μήκος ενός σημείου του ταμπλό σας. Μια γραμμή που χάνει το σημείο της είναι μια λαβή που χρειάζεται ώθηση.';
+
+  @override
+  String get buddyCalibrationSeatQuestion => 'Ποιο μισό είναι το σπίτι σας;';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'Το μισό πλησιέστερο στο κάτω μέρος της εικόνας. Αυτό είναι που διορθώνει τους αριθμούς των σημείων, επομένως οι παραπάνω γραμμές κινούνται μαζί τους.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Κρατήστε το τηλέφωνο ακίνητο. Ο Buddy περιμένει να ρυθμιστεί η εικόνα πριν μάθει αυτόν τον πίνακα.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Αυτό είναι το ταμπλό σας;';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Ο Buddy κοιτάζει τον πίνακα που μόλις έμαθε.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Οι άντρες που σχεδιάζονται πάνω από την εικόνα είναι αυτό που ο Buddy πιστεύει ότι είναι στον πίνακα. Εάν κάποιο από αυτά βρίσκεται στο λάθος μέρος, ξεκινήστε από την αρχή — κοστίζει δευτερόλεπτα τώρα και ένα παιχνίδι αργότερα.';
+
+  @override
+  String get buddyCalibrationNext => 'Επόμενος';
+
+  @override
+  String get buddyCalibrationBack => 'Πίσω';
+
+  @override
+  String get buddyCalibrationCapture => 'Σύλληψη';
+
+  @override
+  String get buddyCalibrationStartOver => 'Ξεκινήστε από την αρχή';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Φαίνεται σωστό';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Αυτές οι τέσσερις λαβές δεν σκιαγραφούν μια σανίδα — η μία από αυτές έχει διασταυρώσει την άλλη. Σύρτε τα πίσω στις γωνίες της τσόχας.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Τρία πράγματα πρώτα';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle =>
+      'Απομακρύνετε τα ζάρια από το ταμπλό.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Ο Buddy μαθαίνει τώρα το άδειο ταμπλό. Αν μείνει ένα ζάρι στην επιφάνεια, θα το μάθει ως μέρος του ταμπλό και δεν θα μπορεί να βλέπει τα ζάρια σε αυτήν τη συνεδρία.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Προετοιμάστε τους άνδρες για την έναρξη ενός παιχνιδιού.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Τριάντα πούλια σε γνωστά μέρη είναι ο τρόπος με τον οποίο ο Buddy μαθαίνει τα δύο χρώματα αυτού του πίνακα χωρίς να του πουν τι είναι.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Τοποθετήστε ολόκληρο τον αγωνιστικό χώρο στην εικόνα.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Στη συνέχεια, αφήστε το τηλέφωνο εκεί που είναι. Εάν μετακινηθεί, το Buddy θα το πει και μπορείτε να σπρώξετε τις γωνίες προς τα πίσω.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Τι είδους σανίδα είναι;';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Επίπεδη σανίδα';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Πτυσσόμενη θήκη';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Μια πτυσσόμενη σανίδα χρειάζεται τέσσερις επιπλέον λαβές στις ραφές μεντεσέδων.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Η λειτουργία Buddy παρακολουθεί μια πραγματική πλακέτα, επομένως δεν μπορεί να ξεκινήσει χωρίς την κάμερα. Όλα τα άλλα στην εφαρμογή δεν επηρεάζονται.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Ραφή μεντεσέ $number από 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Γωνία σανίδας $number από 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Σπρώξτε αριστερά';
+
+  @override
+  String get buddyNudgeRight => 'Σπρώξτε δεξιά';
+
+  @override
+  String get buddyNudgeUp => 'Σπρώξτε επάνω';
+
+  @override
+  String get buddyNudgeDown => 'Σπρώξτε προς τα κάτω';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Αυτές οι τέσσερις γωνίες δεν περιγράφουν έναν πίνακα. Σύρετε κάθε λαβή σε μια γωνία του αγωνιστικού χώρου και δοκιμάστε ξανά.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Αυτά τα οκτώ σημεία δεν περιγράφουν μια πτυσσόμενη σανίδα. Τοποθετήστε τέσσερις στις γωνίες του αγωνιστικού χώρου και τέσσερις στις ραφές μεντεσέδων και, στη συνέχεια, δοκιμάστε ξανά.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Δεν μπορώ να διακρίνω τον ίδιο τον πίνακα - κάθε μέρος του είναι καλυμμένο ή χαμένο στη σκιά ή στο έντονο φως. Καθαρίστε τον πίνακα, προσθέστε λίγο φως και δοκιμάστε ξανά.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Δεν μπορώ να διακρίνω το $region — μπορεί κάτι να στηρίζεται σε αυτό ή αυτή η γωνία του πίνακα μπορεί να είναι πολύ σκοτεινή για να διαβαστεί. Διαγράψτε το ή προσθέστε λίγο φως και δοκιμάστε ξανά.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Τα δύο σετ πούλια μοιάζουν πάρα πολύ από εδώ. Το περισσότερο φως ή μια γωνία με λιγότερη λάμψη στον πίνακα, συνήθως το διορθώνει.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Τα πούλια δεν βρίσκονται στην αρχική θέση — το σημείο $number έχει λάθος χρώμα. Ρυθμίστε τον πίνακα για την έναρξη ενός παιχνιδιού και, στη συνέχεια, βαθμονομήστε ξανά.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Υπάρχει τόσο πολύ φως στον πίνακα που τα χρώματά του πλένονται το ένα μέσα στο άλλο. Χαμηλώστε το φως ή μετακινήστε το τηλέφωνο έτσι ώστε η λάμπα να μην ανάβει κατευθείαν σε αυτό.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Μπορώ να διαβάσω αυτόν τον πίνακα, αλλά όχι ως ένα παιχνίδι που πρόκειται να ξεκινήσει. Ρυθμίστε τους άνδρες για την έναρξη ενός παιχνιδιού και μετά βαθμονομήστε ξανά.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Μπορώ να διαβάσω αυτόν τον πίνακα, αλλά δεν μπορώ να καταλάβω πόσο μακριά είναι το ένα πούλι πίσω από το άλλο από εδώ — οπότε θα έκανα λάθος τους αριθμούς. Λίγο περισσότερο φως στα κοντινά σημεία ή μια ελαφρώς υψηλότερη γωνία κάμερας, συνήθως το διορθώνει.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Δεν μπορώ να δω ολόκληρο τον πίνακα. Μετακινήστε το τηλέφωνο προς τα πίσω ή σύρετε τις γωνίες στον αγωνιστικό χώρο.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Δεν μπορώ να δω ολόκληρο τον πίνακα πια — το $region είναι έξω από την εικόνα. Ευθυγραμμίστε ξανά την κάμερα ή ελέγξτε ξανά τις γωνίες.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition => 'Μοιάζει με την αρχική θέση.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Δεν μπορώ να δω πούλι οπουδήποτε ξεκινά το παιχνίδι. Ρυθμίστε τους άνδρες για την έναρξη ενός παιχνιδιού και δοκιμάστε ξανά.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Ο πίνακας δεν έχει ρυθμιστεί για την έναρξη ενός παιχνιδιού: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return 'Το $region φαίνεται κενό, αλλά το παιχνίδι ξεκινά με το $side εκεί';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return 'Το $region έχει το $side, αλλά το παιχνίδι ξεκινά με άδειο';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return 'Το $region έχει $observed σε αυτό, όπου το παιχνίδι ξεκινά με $expected';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Μείνετε ακίνητοι για λίγο — χάνω την πλακέτα ενώ το τηλέφωνο κινείται.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Η εικόνα που μου δίνεται δεν είναι αυτή στην οποία δημιουργήθηκε αυτός ο πίνακας, επομένως δεν μπορώ να παραθέσω τίποτα σε αυτήν. Ρυθμίστε ξανά τον πίνακα από εδώ.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Η εικόνα είναι πολύ απαλή για να διαβάσετε τον πίνακα. Δώστε στην κάμερα μια στιγμή να εστιάσει.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Ο πίνακας δεν είναι εκεί που ήταν όταν τον έμαθα. Ευθυγραμμίστε ξανά τις γωνίες και θα πάρω το παιχνίδι κατευθείαν πίσω.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Κάτι καλύπτει μέρος του πίνακα. Θα συνεχίσω μόλις είναι σαφές.';
+
+  @override
+  String get buddyReadabilityClear => 'Μπορώ να δω τον πίνακα.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Το φως στον πίνακα έχει αλλάξει χρώμα, οπότε ο πίνακας δεν μοιάζει πλέον με αυτόν που έμαθα. Ευθυγραμμίστε ξανά τις γωνίες κάτω από αυτό το φως και θα επιλέξω το παιχνίδι κατευθείαν πίσω.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Είναι πολύ σκοτεινό για να διαβάσετε τον πίνακα. Λίγο ακόμα φως και θα συνεχίσω εκεί που ήμασταν.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Υπάρχει τόσο πολύ φως στον πίνακα που τα χρώματά του πέφτουν μεταξύ τους. Χαμηλώστε το ή μετακινήστε το τηλέφωνο ώστε η λάμπα να μην ανάβει κατευθείαν σε αυτό.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Το Buddy εξακολουθεί να μην μπορεί να δει την κίνησή του — $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nΜπορείτε ακόμα να παίξετε τον αγώνα: πληκτρολογήστε κάθε ζαριά στο ταμπλό και πατήστε τα παιχνίδια σας στον παρακάτω πίνακα.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Δεν ήταν δυνατή η εκκίνηση της κάμερας. Ελέγξτε τα δικαιώματα και δοκιμάστε ξανά.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'το σημείο $number';
+  }
+
+  @override
+  String get buddyRegionBar => 'το μπαρ';
+
+  @override
+  String get buddyRegionWhiteTray => 'Ο δίσκος με αρκουδάκι του White';
+
+  @override
+  String get buddyRegionBlackTray => 'Δίσκος με αρκούδα του Black';
+
+  @override
+  String get buddyRegionDiceZone => 'τη μέση του πίνακα';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Δεν μπορώ να δω ολόκληρο τον πίνακα. Μετακινήστε το τηλέφωνο προς τα πίσω ή σύρετε τις γωνίες στον αγωνιστικό χώρο.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return '(και $number περισσότερα)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Ένα ζάρι ο καθένας. Το μεγαλύτερο αποτέλεσμα καθορίζει ποιος ξεκινά.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'Το ζάρι του Λευκού';
+
+  @override
+  String get buddyDiceOpeningSecond => 'Το ζάρι του Μαύρου';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'Τα δύο πρόσωπα στο τραπέζι, με οποιαδήποτε σειρά.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Ένα ζάρι';
+
+  @override
+  String get buddyDiceRegularSecond => 'Το άλλο';
 }

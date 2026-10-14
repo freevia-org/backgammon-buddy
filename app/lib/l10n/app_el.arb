@@ -1613,5 +1613,266 @@
   "lanJoinInstruction": "Στην άλλη συσκευή, άνοιξε το Παιχνίδι κοντά, επίλεξε Συμμετοχή και σάρωσε αυτόν τον κωδικό QR.",
   "homePlayWithBuddy": "Παίξε με το Buddy",
   "homeBuddyShort": "Buddy",
-  "feedbackExcerptTruncated": "(περικομμένο — για ολόκληρο το αρχείο καταγραφής, χρησιμοποίησε την επιλογή «Αντιγραφή στο πρόχειρο» στην οθόνη Διαγνωστικά)"
+  "feedbackExcerptTruncated": "(περικομμένο — για ολόκληρο το αρχείο καταγραφής, χρησιμοποίησε την επιλογή «Αντιγραφή στο πρόχειρο» στην οθόνη Διαγνωστικά)",
+  "buddySetupTitle": "Παίξτε με το Buddy",
+  "buddySetupSideLabel": "Το Buddy παίζει",
+  "buddySetupSeatLabel": "Η θέση σας",
+  "buddySetupSeatNear": "Από το τηλέφωνο",
+  "buddySetupSeatFar": "Απέναντι",
+  "buddySetupSeatHelp": "Σε ποια πλευρά του πίνακα βρίσκεστε. Είναι ο τρόπος με τον οποίο το Buddy αριθμεί τους πόντους και πώς λέει το αρχικό σας ζάρι από το δικό του.",
+  "buddySetupVoiceLabel": "Πώς μιλάει το Buddy",
+  "buddySetupVoiceTerse": "Λιτός",
+  "buddySetupVoiceFriendly": "Φιλικός",
+  "buddySetupVoiceTerseHelp": "«13/8, 24/22» — σημειογραφία, ο τρόπος με τον οποίο μιλάνε πραγματικά δύο παίκτες σε ένα ταμπλό.",
+  "buddySetupVoiceFriendlyHelp": "«Μετακινήστε ένα πούλι από το 13 στο 8 και ένα από το 24 στο 22».",
+  "buddySetupTutorHelp": "Ο σχολιασμός εκπαιδευτή και οι επεξηγήσεις μετακίνησης ακολουθούν τις αποθηκευμένες προτιμήσεις του εκπαιδευτή στις Ρυθμίσεις. Το Buddy δίνει περιστασιακά σχόλια μετά τα παιχνίδια σας. Τα δακτυλογραφημένα ζάρια και οι χειροκίνητες κινήσεις λειτουργούν με τον ίδιο τρόπο.",
+  "buddySetupCalibrate": "Βαθμονόμηση του πίνακα",
+  "buddyFixAim": "Διορθώστε τον στόχο",
+  "buddyWaitingForOpening": "Ο Buddy περιμένει τη ρίψη που ξεκινά τον αγώνα.",
+  "buddyPromptLostBoard": "Ο Buddy έχασε τον πίνακα. Διορθώστε το στόχο και ο αγώνας συνεχίζεται εκεί που σταμάτησε.",
+  "buddyPromptWaitingPicture": "Αναμονή για φωτογραφία Ο Buddy μπορεί να διαβάσει. Τίποτα δεν πάει χαμένο.",
+  "buddyPromptTypeDice": "Ο Buddy δεν μπορεί να βρει τα ζάρια. Πληκτρολογήστε το ρολό.",
+  "buddyPromptPlay": "Κάντε το παιχνίδι σας στο ταμπλό. Πατήστε το εδώ αν το Buddy δεν το βλέπει.",
+  "buddyPromptWhichPlay": "Ποιο θεατρικό ήταν;",
+  "buddyPromptCube": "Ο Buddy διπλασιάζει. Δέχεσαι ή παραιτείσαι;",
+  "buddyPromptMakeMove": "Κάντε την κίνηση του Buddy στον πίνακα, τότε το Buddy θα συνεχίσει.",
+  "buddyPromptThinking": "Ο Buddy σκέφτεται.",
+  "buddyPromptWaitingCalibration": "Αναμονή για βαθμονόμηση.",
+  "buddyPromptMirrorNoDetail": "Το Buddy εξακολουθεί να μην μπορεί να δει την κίνησή του. Ο πίνακας παρακάτω είναι η θέση που κρατά.",
+  "buddyPromptNotLegal": "Αυτό δεν είναι νόμιμο παιχνίδι.",
+  "buddyPromptNotLegalReason": "Αυτό δεν είναι νόμιμο παιχνίδι. {reason}",
+  "buddyThrowOpening": "Ρίξτε τα ζάρια της έναρξης — ένα ζάρι ο καθένας.",
+  "buddyThrowUser": "Ρίξτε τα ζάρια σας.",
+  "buddyThrowBuddy": "Ρίξτε τα ζάρια του Buddy.",
+  "buddyMatchOver": "Ο αγώνας τελείωσε.",
+  "buddyYouWin": "Κερδίζεις τον αγώνα.",
+  "buddyBuddyWins": "Ο Buddy κερδίζει τον αγώνα.",
+  "buddyDoubleNoGame": "Δεν υπάρχει παιχνίδι για διπλό ακόμα — η πρώτη βολή έρχεται πρώτη.",
+  "buddyDoubleBeforeRoll": "Μπορείτε μόνο να διπλασιαστείτε πριν από την κύλιση, στη σειρά σας.",
+  "buddyDoubleCrawford": "Χωρίς διπλασιασμό στο παιχνίδι του Κρόφορντ — αυτό το μεμονωμένο παιχνίδι αποφασίζει τον αγώνα.",
+  "buddyDoubleNotOwner": "Μόνο ο κάτοχος του κύβου μπορεί να διπλασιαστεί και η άλλη πλευρά τον κατέχει αυτή τη στιγμή.",
+  "buddyDoubleUnavailable": "Ο διπλασιασμός δεν είναι διαθέσιμος αυτήν τη στιγμή.",
+  "buddyLookingAtBoard": "Ο Buddy κοιτάζει τον πίνακα.",
+  "buddyCameraPlayFallback": "Μπορείτε ακόμα να παίξετε τον αγώνα: πληκτρολογήστε κάθε ζαριά στο ταμπλό και πατήστε τα παιχνίδια σας στον παρακάτω πίνακα.",
+  "buddySkipCheck": "Παραλείψτε αυτόν τον έλεγχο",
+  "buddyFixedIt": "το διόρθωσα",
+  "buddyDrop": "Πτώση",
+  "buddyTake": "Παίρνω",
+  "buddyDone": "Γινώμενος",
+  "buddyTranscriptLabel": "Τι είπε ο Buddy",
+  "buddyUndo": "Ξεκάνω",
+  "buddyConfirm": "Επιβεβαιώνω",
+  "buddyDice": "Ζάρια",
+  "buddyDouble": "Διπλό",
+  "buddyDicePadTitle": "Τι έφεραν τα ζάρια;",
+  "buddyEnterRoll": "Εισαγάγετε το ρολό",
+  "buddyContextBeforeGame": "Παίξτε με το Buddy",
+  "buddyContextMatchScore": "Εσείς {you}–{buddy} Buddy · έως {length} · Παιχνίδι {number}",
+  "buddyCameraUnavailable": "Δεν ήταν δυνατή η εκκίνηση της κάμερας. Ελέγξτε τα δικαιώματα και δοκιμάστε ξανά.",
+  "buddyCameraPermission": "Το Backgammon Buddy δεν έχει άδεια χρήσης της κάμερας. Επιτρέψτε την πρόσβαση της κάμερας στις ρυθμίσεις της συσκευής σας και δοκιμάστε ξανά.",
+  "buddyCalibrationTitle": "Δείξτε τον πίνακα Buddy",
+  "buddyCalibrationCornersFold": "Σύρετε τις τέσσερις εξωτερικές λαβές στις γωνίες της τσόχας - όχι στο ξύλινο χείλος - και τις τέσσερις μικρές στις ραφές όπου ο μεντεσές συναντά τις μακρινές και τις κοντινές άκρες.",
+  "buddyCalibrationCornersFlat": "Σύρετε κάθε λαβή σε μια γωνία της τσόχας — στην επιφάνεια παιχνιδιού, όχι στο ξύλινο χείλος γύρω της.",
+  "buddyCalibrationCheckLines": "Στη συνέχεια, ελέγξτε τις δώδεκα γραμμές κάτω σε κάθε μισό: κάθε μία πρέπει να τρέχει κατά μήκος ενός σημείου του ταμπλό σας. Μια γραμμή που χάνει το σημείο της είναι μια λαβή που χρειάζεται ώθηση.",
+  "buddyCalibrationSeatQuestion": "Ποιο μισό είναι το σπίτι σας;",
+  "buddyCalibrationSeatHelp": "Το μισό πλησιέστερο στο κάτω μέρος της εικόνας. Αυτό είναι που διορθώνει τους αριθμούς των σημείων, επομένως οι παραπάνω γραμμές κινούνται μαζί τους.",
+  "buddyCalibrationCaptureWait": "Κρατήστε το τηλέφωνο ακίνητο. Ο Buddy περιμένει να ρυθμιστεί η εικόνα πριν μάθει αυτόν τον πίνακα.",
+  "buddyCalibrationConfirmQuestion": "Αυτό είναι το ταμπλό σας;",
+  "buddyCalibrationConfirmFallback": "Ο Buddy κοιτάζει τον πίνακα που μόλις έμαθε.",
+  "buddyCalibrationConfirmHelp": "Οι άντρες που σχεδιάζονται πάνω από την εικόνα είναι αυτό που ο Buddy πιστεύει ότι είναι στον πίνακα. Εάν κάποιο από αυτά βρίσκεται στο λάθος μέρος, ξεκινήστε από την αρχή — κοστίζει δευτερόλεπτα τώρα και ένα παιχνίδι αργότερα.",
+  "buddyCalibrationNext": "Επόμενος",
+  "buddyCalibrationBack": "Πίσω",
+  "buddyCalibrationCapture": "Σύλληψη",
+  "buddyCalibrationStartOver": "Ξεκινήστε από την αρχή",
+  "buddyCalibrationLooksRight": "Φαίνεται σωστό",
+  "buddyCalibrationCornersInvalid": "Αυτές οι τέσσερις λαβές δεν σκιαγραφούν μια σανίδα — η μία από αυτές έχει διασταυρώσει την άλλη. Σύρτε τα πίσω στις γωνίες της τσόχας.",
+  "buddyCalibrationPrepTitle": "Τρία πράγματα πρώτα",
+  "buddyCalibrationRemoveDiceTitle": "Απομακρύνετε τα ζάρια από το ταμπλό.",
+  "buddyCalibrationRemoveDiceBody": "Ο Buddy μαθαίνει τώρα το άδειο ταμπλό. Αν μείνει ένα ζάρι στην επιφάνεια, θα το μάθει ως μέρος του ταμπλό και δεν θα μπορεί να βλέπει τα ζάρια σε αυτήν τη συνεδρία.",
+  "buddyCalibrationSetupCheckersTitle": "Προετοιμάστε τους άνδρες για την έναρξη ενός παιχνιδιού.",
+  "buddyCalibrationSetupCheckersBody": "Τριάντα πούλια σε γνωστά μέρη είναι ο τρόπος με τον οποίο ο Buddy μαθαίνει τα δύο χρώματα αυτού του πίνακα χωρίς να του πουν τι είναι.",
+  "buddyCalibrationFitBoardTitle": "Τοποθετήστε ολόκληρο τον αγωνιστικό χώρο στην εικόνα.",
+  "buddyCalibrationFitBoardBody": "Στη συνέχεια, αφήστε το τηλέφωνο εκεί που είναι. Εάν μετακινηθεί, το Buddy θα το πει και μπορείτε να σπρώξετε τις γωνίες προς τα πίσω.",
+  "buddyCalibrationBoardKind": "Τι είδους σανίδα είναι;",
+  "buddyCalibrationFlatBoard": "Επίπεδη σανίδα",
+  "buddyCalibrationFoldingBoard": "Πτυσσόμενη θήκη",
+  "buddyCalibrationBoardKindHelp": "Μια πτυσσόμενη σανίδα χρειάζεται τέσσερις επιπλέον λαβές στις ραφές μεντεσέδων.",
+  "buddyCalibrationNoCameraBody": "Η λειτουργία Buddy παρακολουθεί μια πραγματική πλακέτα, επομένως δεν μπορεί να ξεκινήσει χωρίς την κάμερα. Όλα τα άλλα στην εφαρμογή δεν επηρεάζονται.",
+  "buddyHandleHingeSeam": "Ραφή μεντεσέ {number} από 4",
+  "buddyHandleCorner": "Γωνία σανίδας {number} από 4",
+  "buddyNudgeLeft": "Σπρώξτε αριστερά",
+  "buddyNudgeRight": "Σπρώξτε δεξιά",
+  "buddyNudgeUp": "Σπρώξτε επάνω",
+  "buddyNudgeDown": "Σπρώξτε προς τα κάτω",
+  "buddyCalibrationProblemCorners": "Αυτές οι τέσσερις γωνίες δεν περιγράφουν έναν πίνακα. Σύρετε κάθε λαβή σε μια γωνία του αγωνιστικού χώρου και δοκιμάστε ξανά.",
+  "buddyCalibrationProblemFoldCorners": "Αυτά τα οκτώ σημεία δεν περιγράφουν μια πτυσσόμενη σανίδα. Τοποθετήστε τέσσερις στις γωνίες του αγωνιστικού χώρου και τέσσερις στις ραφές μεντεσέδων και, στη συνέχεια, δοκιμάστε ξανά.",
+  "buddyCalibrationProblemUnreadable": "Δεν μπορώ να διακρίνω τον ίδιο τον πίνακα - κάθε μέρος του είναι καλυμμένο ή χαμένο στη σκιά ή στο έντονο φως. Καθαρίστε τον πίνακα, προσθέστε λίγο φως και δοκιμάστε ξανά.",
+  "buddyCalibrationProblemRegionUnreadable": "Δεν μπορώ να διακρίνω το {region} — μπορεί κάτι να στηρίζεται σε αυτό ή αυτή η γωνία του πίνακα μπορεί να είναι πολύ σκοτεινή για να διαβαστεί. Διαγράψτε το ή προσθέστε λίγο φως και δοκιμάστε ξανά.",
+  "buddyCalibrationProblemColours": "Τα δύο σετ πούλια μοιάζουν πάρα πολύ από εδώ. Το περισσότερο φως ή μια γωνία με λιγότερη λάμψη στον πίνακα, συνήθως το διορθώνει.",
+  "buddyCalibrationProblemWrongChecker": "Τα πούλια δεν βρίσκονται στην αρχική θέση — το σημείο {number} έχει λάθος χρώμα. Ρυθμίστε τον πίνακα για την έναρξη ενός παιχνιδιού και, στη συνέχεια, βαθμονομήστε ξανά.",
+  "buddyCalibrationProblemOverexposed": "Υπάρχει τόσο πολύ φως στον πίνακα που τα χρώματά του πλένονται το ένα μέσα στο άλλο. Χαμηλώστε το φως ή μετακινήστε το τηλέφωνο έτσι ώστε η λάμπα να μην ανάβει κατευθείαν σε αυτό.",
+  "buddyCalibrationProblemReadBack": "Μπορώ να διαβάσω αυτόν τον πίνακα, αλλά όχι ως ένα παιχνίδι που πρόκειται να ξεκινήσει. Ρυθμίστε τους άνδρες για την έναρξη ενός παιχνιδιού και μετά βαθμονομήστε ξανά.",
+  "buddyCalibrationProblemStacks": "Μπορώ να διαβάσω αυτόν τον πίνακα, αλλά δεν μπορώ να καταλάβω πόσο μακριά είναι το ένα πούλι πίσω από το άλλο από εδώ — οπότε θα έκανα λάθος τους αριθμούς. Λίγο περισσότερο φως στα κοντινά σημεία ή μια ελαφρώς υψηλότερη γωνία κάμερας, συνήθως το διορθώνει.",
+  "buddyCalibrationProblemNotVisible": "Δεν μπορώ να δω ολόκληρο τον πίνακα. Μετακινήστε το τηλέφωνο προς τα πίσω ή σύρετε τις γωνίες στον αγωνιστικό χώρο.",
+  "buddyConfirmBoardOutOfFrame": "Δεν μπορώ να δω ολόκληρο τον πίνακα πια — το {region} είναι έξω από την εικόνα. Ευθυγραμμίστε ξανά την κάμερα ή ελέγξτε ξανά τις γωνίες.",
+  "buddyConfirmStartingPosition": "Μοιάζει με την αρχική θέση.",
+  "buddyConfirmNoCheckers": "Δεν μπορώ να δω πούλι οπουδήποτε ξεκινά το παιχνίδι. Ρυθμίστε τους άνδρες για την έναρξη ενός παιχνιδιού και δοκιμάστε ξανά.",
+  "buddyConfirmWrongPosition": "Ο πίνακας δεν έχει ρυθμιστεί για την έναρξη ενός παιχνιδιού: {details}{more}.",
+  "buddyConfirmRegionEmpty": "Το {region} φαίνεται κενό, αλλά το παιχνίδι ξεκινά με το {side} εκεί",
+  "buddyConfirmRegionUnexpected": "Το {region} έχει το {side}, αλλά το παιχνίδι ξεκινά με άδειο",
+  "buddyConfirmRegionWrongSide": "Το {region} έχει {observed} σε αυτό, όπου το παιχνίδι ξεκινά με {expected}",
+  "buddyReadabilityMotion": "Μείνετε ακίνητοι για λίγο — χάνω την πλακέτα ενώ το τηλέφωνο κινείται.",
+  "buddyReadabilityWrongFrame": "Η εικόνα που μου δίνεται δεν είναι αυτή στην οποία δημιουργήθηκε αυτός ο πίνακας, επομένως δεν μπορώ να παραθέσω τίποτα σε αυτήν. Ρυθμίστε ξανά τον πίνακα από εδώ.",
+  "buddyReadabilityBlur": "Η εικόνα είναι πολύ απαλή για να διαβάσετε τον πίνακα. Δώστε στην κάμερα μια στιγμή να εστιάσει.",
+  "buddyReadabilityCalibrationStale": "Ο πίνακας δεν είναι εκεί που ήταν όταν τον έμαθα. Ευθυγραμμίστε ξανά τις γωνίες και θα πάρω το παιχνίδι κατευθείαν πίσω.",
+  "buddyReadabilityOccluded": "Κάτι καλύπτει μέρος του πίνακα. Θα συνεχίσω μόλις είναι σαφές.",
+  "buddyReadabilityClear": "Μπορώ να δω τον πίνακα.",
+  "buddyReadabilityColorChanged": "Το φως στον πίνακα έχει αλλάξει χρώμα, οπότε ο πίνακας δεν μοιάζει πλέον με αυτόν που έμαθα. Ευθυγραμμίστε ξανά τις γωνίες κάτω από αυτό το φως και θα επιλέξω το παιχνίδι κατευθείαν πίσω.",
+  "buddyReadabilityTooDark": "Είναι πολύ σκοτεινό για να διαβάσετε τον πίνακα. Λίγο ακόμα φως και θα συνεχίσω εκεί που ήμασταν.",
+  "buddyReadabilityTooBright": "Υπάρχει τόσο πολύ φως στον πίνακα που τα χρώματά του πέφτουν μεταξύ τους. Χαμηλώστε το ή μετακινήστε το τηλέφωνο ώστε η λάμπα να μην ανάβει κατευθείαν σε αυτό.",
+  "buddyPromptBeliefMirror": "Το Buddy εξακολουθεί να μην μπορεί να δει την κίνησή του — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nΜπορείτε ακόμα να παίξετε τον αγώνα: πληκτρολογήστε κάθε ζαριά στο ταμπλό και πατήστε τα παιχνίδια σας στον παρακάτω πίνακα.",
+  "buddyCameraGenericError": "Δεν ήταν δυνατή η εκκίνηση της κάμερας. Ελέγξτε τα δικαιώματα και δοκιμάστε ξανά.",
+  "buddyRegionPoint": "το σημείο {number}",
+  "buddyRegionBar": "το μπαρ",
+  "buddyRegionWhiteTray": "Ο δίσκος με αρκουδάκι του White",
+  "buddyRegionBlackTray": "Δίσκος με αρκούδα του Black",
+  "buddyRegionDiceZone": "τη μέση του πίνακα",
+  "buddyCalibrationProblemVisible": "Δεν μπορώ να δω ολόκληρο τον πίνακα. Μετακινήστε το τηλέφωνο προς τα πίσω ή σύρετε τις γωνίες στον αγωνιστικό χώρο.",
+  "buddyConfirmMore": "(και {number} περισσότερα)",
+  "buddyDiceOpeningCaption": "Ένα ζάρι ο καθένας. Το μεγαλύτερο αποτέλεσμα καθορίζει ποιος ξεκινά.",
+  "buddyDiceOpeningFirst": "Το ζάρι του Λευκού",
+  "buddyDiceOpeningSecond": "Το ζάρι του Μαύρου",
+  "buddyDiceRegularCaption": "Τα δύο πρόσωπα στο τραπέζι, με οποιαδήποτε σειρά.",
+  "buddyDiceRegularFirst": "Ένα ζάρι",
+  "buddyDiceRegularSecond": "Το άλλο",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

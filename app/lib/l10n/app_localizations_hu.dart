@@ -2717,4 +2717,493 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Javasolt módosítás';
+
+  @override
+  String get buddySetupTitle => 'Játssz a Buddy-vel';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy játszik';
+
+  @override
+  String get buddySetupSeatLabel => 'A te ülésed';
+
+  @override
+  String get buddySetupSeatNear => 'Telefonon keresztül';
+
+  @override
+  String get buddySetupSeatFar => 'Szemben';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'A tábla melyik oldalán állsz. A Buddy így számozza a pontokat, és hogyan különbözteti meg a nyitókockát a sajátjától.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Hogyan beszél Buddy';
+
+  @override
+  String get buddySetupVoiceTerse => 'Tömör';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Barátságos';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '„13/8, 24/22” – jelölés, ahogy két játékos egy táblánál valójában beszél.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '„Egy ellenőrzőt 13-ról 8-ra, egyet 24-ről 22-re mozgatni.”';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Az oktatói kommentárok és a mozgásmagyarázatok követik a Beállításokban mentett oktatói beállításokat. A Buddy időnként visszajelzést ad a játékaid után; A gépelt kocka és a kézi mozdulatok ugyanúgy működnek.';
+
+  @override
+  String get buddySetupCalibrate => 'Kalibrálja a táblát';
+
+  @override
+  String get buddyFixAim => 'Rögzítse a célt';
+
+  @override
+  String get buddyWaitingForOpening => 'Buddy várja a mérkőzést indító dobást.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'A Buddy elvesztette a táblát. Rögzítsd a célt, és a meccs ott folytatódik, ahol abbamaradt.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Képre várva Buddy tud olvasni. Semmi sem veszett el.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'A Buddy nem találja a kockát. Írja be helyette a tekercset.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Játssz a táblán. Koppintson ide, ha a Buddy nem látja.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Melyik lépést tetted meg?';
+
+  @override
+  String get buddyPromptCube => 'Buddy dupláz. Elfogadod vagy elutasítod?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Végezze el a Buddy lépését a táblán, és a Buddy folytatja.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy gondolkodik.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Várakozás a kalibrációra.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'A Buddy továbbra sem látja a mozgását. Az alatta lévő tábla az általa tartott pozíciót mutatja.';
+
+  @override
+  String get buddyPromptNotLegal => 'Ez nem szabályos lépés.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Ez nem szabályos lépés. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening => 'Dobd a nyitókockát – egy-egy kockát.';
+
+  @override
+  String get buddyThrowUser => 'Dobd a kockádat.';
+
+  @override
+  String get buddyThrowBuddy => 'Dobd a Buddy kockáját.';
+
+  @override
+  String get buddyMatchOver => 'A meccsnek vége.';
+
+  @override
+  String get buddyYouWin => 'Megnyered a meccset.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy nyeri a mérkőzést.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Még nincs duplázható játék – a nyitódobás az első.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Csak a körödön duplázhatsz, mielőtt dobsz.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'Nincs duplázás a Crawford meccsen – ez az egyetlen játszma dönti el a meccset.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Csak a kocka tulajdonosa duplázhat, és jelenleg a másik oldal birtokolja.';
+
+  @override
+  String get buddyDoubleUnavailable => 'A duplázás jelenleg nem elérhető.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy a táblát nézi.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Továbbra is játszhatod a meccset: írj be minden dobást a kockatáblára, és koppints a játékaidra az alábbi táblán.';
+
+  @override
+  String get buddySkipCheck => 'Hagyja ki ezt az ellenőrzést';
+
+  @override
+  String get buddyFixedIt => 'javítottam';
+
+  @override
+  String get buddyDrop => 'Elutasítom';
+
+  @override
+  String get buddyTake => 'Elfogadom';
+
+  @override
+  String get buddyDone => 'Kész';
+
+  @override
+  String get buddyTranscriptLabel => 'Amit Buddy mondott';
+
+  @override
+  String get buddyUndo => 'Visszavonás';
+
+  @override
+  String get buddyConfirm => 'Erősítse meg';
+
+  @override
+  String get buddyDice => 'Dobókocka';
+
+  @override
+  String get buddyDouble => 'Duplázás';
+
+  @override
+  String get buddyDicePadTitle => 'Mit dobtál?';
+
+  @override
+  String get buddyEnterRoll => 'Add meg a dobást';
+
+  @override
+  String get buddyContextBeforeGame => 'Játssz a Buddy-vel';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Ön $you–$buddy Buddy · - $length · Játék $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'A kamerát nem lehetett elindítani. Ellenőrizze az engedélyeket, és próbálja újra.';
+
+  @override
+  String get buddyCameraPermission =>
+      'A Backgammon Buddy nem rendelkezik engedéllyel a kamera használatához. Engedélyezze a kamera hozzáférését az eszköz beállításaiban, és próbálja újra.';
+
+  @override
+  String get buddyCalibrationTitle => 'Mutasd meg a Buddy táblát';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Húzza a négy külső fogantyút a filc sarkaira – ne a fa peremre –, a négy kicsiket pedig a varratokra, ahol a zsanér találkozik a távoli és a közeli élekkel.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Húzza a fogantyúkat a filc egyik sarkára – a játékfelületre, ne a körülötte lévő fa peremre.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Ezután ellenőrizze a tizenkét sort lefelé mindkét felében: mindegyiknek a tábla egy pontján kell futnia. Az a vonal, amely kihagyja a pontját, olyan fogantyú, amely bökést igényel.';
+
+  @override
+  String get buddyCalibrationSeatQuestion => 'Melyik fele az otthoni táblád?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'A kép aljához legközelebb eső fele. Ez rögzíti a pontszámokat, így a fenti vonalak vele együtt mozognak.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Tartsa mozdulatlanul a telefont. A Buddy várja, hogy a kép rendeződjön, mielőtt megtanulná ezt a táblát.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Ez a te táblád?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'A Buddy az imént tanult táblát nézi.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'A képre rajzolt férfiak Buddy szerint a táblán vannak. Ha bármelyik rossz helyen van, kezdje elölről – most másodpercekbe kerül, és egy játékkal később.';
+
+  @override
+  String get buddyCalibrationNext => 'Következő';
+
+  @override
+  String get buddyCalibrationBack => 'Vissza';
+
+  @override
+  String get buddyCalibrationCapture => 'Elfog';
+
+  @override
+  String get buddyCalibrationStartOver => 'Kezdje elölről';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Jól néz ki';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Ez a négy fogantyú nem körvonalaz egy táblát – az egyik keresztezett egy másikat. Húzza vissza őket a filc sarkaihoz.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Először három dolog';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Vegye le a kockát a tábláról.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'A Buddy most megtanulja a csupasz táblát. A nemezen hagyott kocka ennek részeként megtanulható, majd a Buddy soha többé nem láthatja a kockát ezen a munkameneten.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Állítsd fel a korongokat a kezdőállásba.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'A harminc korong ismert helyzete alapján Buddy felismeri a tábla két színét.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Illessze a teljes játékteret a képre.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Ezután hagyja a telefont ott, ahol van. Ha elmozdul, a Buddy ezt fogja mondani, és visszatolja a sarkokat.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Milyen tábla ez?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Lapos tábla';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Összecsukható tok';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Egy összecsukható deszkához négy extra fogantyú szükséges a zsanérvarratokon.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'A Buddy mód valódi táblát néz, így nem indul el a kamera nélkül. Az alkalmazásban lévő összes többire nincs hatással.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Zsanérvarrás $number 4-ből';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return '4-ből $number táblasarok';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Bökjön balra';
+
+  @override
+  String get buddyNudgeRight => 'Bökjön jobbra';
+
+  @override
+  String get buddyNudgeUp => 'Bökd fel';
+
+  @override
+  String get buddyNudgeDown => 'Bökd le';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Ez a négy sarok nem körvonalaz egy táblát. Húzza az egyes fogantyúkat a játéktér egyik sarkába, és próbálja újra.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Ez a nyolc pont nem körvonalaz egy összecsukható táblát. Tegyen négyet a játéktér sarkaira és négyet a zsanérvarratokra, majd próbálkozzon újra.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Magát a táblát nem tudom kivenni – minden része le van takarva, vagy elveszett az árnyékban vagy a tükröződésben. Tisztítsa meg a táblát, adjon hozzá egy kis fényt, és próbálja újra.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Nem tudom kivenni a $region-t – lehet, hogy valami nyugszik rajta, vagy a tábla sarka túl sötét ahhoz, hogy leolvasható. Törölje ki, vagy adjon hozzá egy kis fényt, és próbálja újra.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Innen nézve a két dámakészlet túlságosan hasonlít egymásra. Több fény, vagy a tábla kevesebb vakító szöge általában javítja.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'A korongok nincsenek kezdőállásban: a(z) $number. mezőn rossz színű korong van. Állítsd fel a kezdőállást, majd kalibrálj újra.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Annyi fény van a táblán, hogy a színei egymásba mosódnak. Tompítsa el a fényt, vagy mozgassa a telefont úgy, hogy a lámpa ne világítson egyenesen rá.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'El tudom olvasni ezt a táblát, de nem úgy, mint egy hamarosan induló játékot. Készítse fel a férfiakat a játék kezdetére, majd kalibrálja újra.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Látom a táblát, de innen nem tudom biztosan megszámolni az egymás mögött álló korongokat, így tévedhetek a darabszámban. Általában segít több fény a közeli mezőkön vagy kissé magasabb kameranézet.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Nem látom az egész táblát. Húzza vissza a telefont, vagy húzza a sarkokat a játékmezőre.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Már nem látom az egész táblát – a $region kívül van a képen. Állítsa be újra a kamerát, vagy ellenőrizze újra a sarkokat.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition =>
+      'Ez úgy néz ki, mint a kiinduló helyzet.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Nem látok korongot a kezdőállás mezőin. Állítsd fel a kezdőállást, és próbáld újra.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'A tábla nincs beállítva a játék indításához: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return 'A $region üresnek tűnik, de a játék a $side karakterlánccal kezdődik.';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return '$region $side van rajta, de a játék üresen indul';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return 'A $region-n a $observed van, ahol a játék a $expected-vel kezdődik';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Maradj egy pillanatra – elvesztem a táblát, miközben a telefon mozog.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'A kép, amit kapok, nem az, amelyre ezt a táblát felállították, így nem tudok rajta semmit sorba rendezni. Állítsa be újra a táblát innen.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'A kép túl lágy ahhoz, hogy le lehessen olvasni a táblát. Adjon egy pillanatot a fényképezőgépnek, hogy fókuszáljon.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'A tábla nem ott van, ahol megtanultam. Állítsd be újra a sarkokat, és egyenesen visszaveszem a játékot.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Valami eltakarja a tábla egy részét. Amint kiderül, folytatom.';
+
+  @override
+  String get buddyReadabilityClear => 'Látom a táblát.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'A táblán lévő fény színe megváltozott, így a tábla már nem úgy néz ki, mint amit tanultam. Illessze újra a sarkokat ebben a lámpában, és azonnal felveszem a játékot.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Túl sötét a tábla olvasásához. Még egy kis fény, és folytatom, ahol voltunk.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'A táblán annyi fény van, hogy a színei összefutnak. Sötétítse el, vagy mozgassa a telefont úgy, hogy a lámpa ne világítson egyenesen rá.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'A Buddy továbbra sem látja a mozgását – $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nTovábbra is játszhatod a meccset: írj be minden dobást a kockatáblára, és koppints a játékaidra az alábbi táblán.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'A kamerát nem lehetett elindítani. Ellenőrizze az engedélyeket, és próbálja újra.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'a $number-pont';
+  }
+
+  @override
+  String get buddyRegionBar => 'a bár';
+
+  @override
+  String get buddyRegionWhiteTray => 'a fehér korongok leütő tálcája';
+
+  @override
+  String get buddyRegionBlackTray => 'a fekete korongok leütő tálcája';
+
+  @override
+  String get buddyRegionDiceZone => 'a tábla közepe';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Nem látom az egész táblát. Húzza vissza a telefont, vagy húzza a sarkokat a játékmezőre.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return '(és még $number)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Mindkét játékos dob egy kockával. A nagyobb dobás kezd.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'fehér kocka';
+
+  @override
+  String get buddyDiceOpeningSecond => 'fekete kocka';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'A két arc az asztalon, bármelyik sorrendben.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Egy meghal';
+
+  @override
+  String get buddyDiceRegularSecond => 'A másik';
 }

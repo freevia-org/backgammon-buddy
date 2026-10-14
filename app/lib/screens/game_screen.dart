@@ -1124,9 +1124,7 @@ class _GameScreenState extends State<GameScreen> {
                             top: 0,
                             left: 0,
                             right: 0,
-                            child: IgnorePointer(
-                              child: _ErrorBanner(error: _c.error!),
-                            ),
+                            child: IgnorePointer(child: const _ErrorBanner()),
                           ),
                         // Floats over the board's bottom edge, so it never takes
                         // layout height (F6) and never covers the action bar.
@@ -2358,13 +2356,15 @@ class _InlineCandidateExplanationState
 }
 
 class _ErrorBanner extends StatelessWidget {
-  const _ErrorBanner({required this.error});
-
-  final Object error;
+  const _ErrorBanner();
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = appLocalizationsOf(context);
+    // Controller exceptions may contain English engine or platform details.
+    // Keep the localized failure notice, but do not expose raw exception text.
+    final message = l10n.onlineErrorGeneric;
     // A live region: the banner appears without any action of the user's, so a
     // screen reader has to ANNOUNCE it rather than wait to be walked into it.
     // One node carrying the whole sentence (the inner text excluded) — the icon
@@ -2373,7 +2373,7 @@ class _ErrorBanner extends StatelessWidget {
       container: true,
       liveRegion: true,
       excludeSemantics: true,
-      label: appLocalizationsOf(context).gameErrorBannerLabel('$error'),
+      label: l10n.gameErrorBannerLabel(message),
       child: Material(
         color: scheme.errorContainer,
         child: Padding(
@@ -2384,7 +2384,7 @@ class _ErrorBanner extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  '$error',
+                  message,
                   style: TextStyle(color: scheme.onErrorContainer),
                 ),
               ),

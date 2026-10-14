@@ -1237,7 +1237,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get practiceMarkError => 'Error';
 
   @override
-  String get practiceMarkBlunder => 'Blunder';
+  String get practiceMarkBlunder => 'Pifia';
 
   @override
   String get practiceMarkForced => 'Forzada';
@@ -1419,7 +1419,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get analysisMarkError => 'Error';
 
   @override
-  String get analysisMarkBlunder => 'Blunder';
+  String get analysisMarkBlunder => 'Pifia';
 
   @override
   String analysisSummaryMeanLoss(Object loss) {
@@ -2751,4 +2751,494 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Cambio sugerido';
+
+  @override
+  String get buddySetupTitle => 'Juega con Buddy';
+
+  @override
+  String get buddySetupSideLabel => 'Juega contra Buddy';
+
+  @override
+  String get buddySetupSeatLabel => 'Tu lado';
+
+  @override
+  String get buddySetupSeatNear => 'Junto al teléfono';
+
+  @override
+  String get buddySetupSeatFar => 'Enfrente';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Indica en qué lado del tablero estás. Así Buddy numera las casillas y distingue tu dado de apertura del suyo.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Cómo habla Buddy';
+
+  @override
+  String get buddySetupVoiceTerse => 'Conciso';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Cercano';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '«13/8, 24/22»: la notación que usan dos jugadores frente al tablero.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '«Mueve una ficha de 13 a 8 y otra de 24 a 22».';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Los comentarios del tutor y las explicaciones de las jugadas siguen tus preferencias guardadas en Ajustes. Buddy te dará comentarios de vez en cuando; introducir los dados y las jugadas manualmente funciona igual.';
+
+  @override
+  String get buddySetupCalibrate => 'Calibrar el tablero';
+
+  @override
+  String get buddyFixAim => 'Ajustar la cámara';
+
+  @override
+  String get buddyWaitingForOpening =>
+      'Buddy espera la tirada que inicia la partida.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy ha perdido de vista el tablero. Ajusta la cámara y la partida continuará donde se quedó.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Esperando una imagen que Buddy pueda leer. No se pierde nada.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy no encuentra los dados. Introduce la tirada manualmente.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Haz tu jugada en el tablero. Si Buddy no la ve, introdúcela aquí.';
+
+  @override
+  String get buddyPromptWhichPlay => '¿Qué jugada has hecho?';
+
+  @override
+  String get buddyPromptCube => 'Buddy dobla. ¿Aceptas o rechazas?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Haz la jugada de Buddy en el tablero para que pueda continuar.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy está pensando.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Esperando la calibración.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy todavía no ve su jugada. El tablero de abajo muestra la posición que tiene guardada.';
+
+  @override
+  String get buddyPromptNotLegal => 'Esa jugada no es legal.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Esa jugada no es legal. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening => 'Tira los dados de apertura: uno cada uno.';
+
+  @override
+  String get buddyThrowUser => 'Tira tus dados.';
+
+  @override
+  String get buddyThrowBuddy => 'Tira los dados de Buddy.';
+
+  @override
+  String get buddyMatchOver => 'La partida ha terminado.';
+
+  @override
+  String get buddyYouWin => 'Has ganado la partida.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy ha ganado la partida.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Todavía no hay ninguna partida que doblar: primero va la tirada de apertura.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Solo puedes doblar antes de tirar y durante tu turno.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'No se puede doblar en la partida Crawford: esta única partida decide el encuentro.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Solo quien tiene el cubo puede doblar, y ahora lo tiene el otro lado.';
+
+  @override
+  String get buddyDoubleUnavailable => 'No se puede doblar en este momento.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy está mirando el tablero.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Puedes seguir jugando: introduce cada tirada en el panel de dados y marca tus jugadas en el tablero de abajo.';
+
+  @override
+  String get buddySkipCheck => 'Omitir esta comprobación';
+
+  @override
+  String get buddyFixedIt => 'Ya lo he corregido';
+
+  @override
+  String get buddyDrop => 'Rechazar';
+
+  @override
+  String get buddyTake => 'Aceptar';
+
+  @override
+  String get buddyDone => 'Listo';
+
+  @override
+  String get buddyTranscriptLabel => 'Lo que ha dicho Buddy';
+
+  @override
+  String get buddyUndo => 'Deshacer';
+
+  @override
+  String get buddyConfirm => 'Confirmar';
+
+  @override
+  String get buddyDice => 'Dados';
+
+  @override
+  String get buddyDouble => 'Doblar';
+
+  @override
+  String get buddyDicePadTitle => '¿Qué te ha salido?';
+
+  @override
+  String get buddyEnterRoll => 'Introducir tirada';
+
+  @override
+  String get buddyContextBeforeGame => 'Juega con Buddy';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Tú $you–$buddy Buddy · a $length · Partida $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'No se ha podido iniciar la cámara. Comprueba los permisos y vuelve a intentarlo.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy no tiene permiso para usar la cámara. Permite el acceso a la cámara en los ajustes del dispositivo y vuelve a intentarlo.';
+
+  @override
+  String get buddyCalibrationTitle => 'Enséñale el tablero a Buddy';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Arrastra los cuatro controles exteriores hasta las esquinas del paño, no del marco de madera, y los cuatro pequeños hasta las uniones donde la bisagra toca los bordes cercano y lejano.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Arrastra cada control hasta una esquina del paño, la superficie de juego, no el marco de madera.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Después, comprueba las doce líneas de cada mitad: todas deben seguir una punta del tablero. Si una línea no pasa por su punta, ajusta el control correspondiente.';
+
+  @override
+  String get buddyCalibrationSeatQuestion =>
+      '¿Qué mitad es tu tablero interior?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'La mitad más cercana a la parte inferior de la imagen. Esto fija los números de las puntas y ajusta las líneas de arriba.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Mantén el teléfono quieto. Buddy espera a que la imagen se estabilice para aprender el tablero.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => '¿Es este tu tablero?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy está mirando el tablero que acaba de aprender.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Las fichas dibujadas sobre la imagen muestran dónde cree Buddy que están. Si alguna está mal, empieza de nuevo: ahora solo son unos segundos; más adelante podría costarte una partida.';
+
+  @override
+  String get buddyCalibrationNext => 'Siguiente';
+
+  @override
+  String get buddyCalibrationBack => 'Atrás';
+
+  @override
+  String get buddyCalibrationCapture => 'Capturar';
+
+  @override
+  String get buddyCalibrationStartOver => 'Empezar de nuevo';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Se ve bien';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Esos cuatro controles no delimitan un tablero: uno ha cruzado otro. Devuélvelos a las esquinas del paño.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Primero, tres cosas';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Quita los dados del tablero.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy va a aprender el tablero vacío. Si queda un dado sobre el tapete, lo aprenderá como parte del tablero y no podrá volver a ver los dados durante esta sesión.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Coloca las fichas en la posición inicial.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Las treinta fichas en posiciones conocidas permiten que Buddy aprenda los dos colores del tablero sin que tengas que indicárselos.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Incluye toda la superficie de juego en la imagen.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Después, deja el teléfono en su sitio. Si se mueve, Buddy te avisará para que puedas ajustar las esquinas.';
+
+  @override
+  String get buddyCalibrationBoardKind => '¿Qué tipo de tablero tienes?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Tablero plano';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Tablero plegable';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'El tablero plegable necesita cuatro controles adicionales en las uniones de la bisagra.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'El modo Buddy observa un tablero real, así que no puede iniciarse sin la cámara. El resto de la aplicación seguirá funcionando.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Unión de bisagra $number de 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Esquina del tablero $number de 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Mover un poco a la izquierda';
+
+  @override
+  String get buddyNudgeRight => 'Mover un poco a la derecha';
+
+  @override
+  String get buddyNudgeUp => 'Mover un poco hacia arriba';
+
+  @override
+  String get buddyNudgeDown => 'Mover un poco hacia abajo';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Esas cuatro esquinas no delimitan un tablero. Coloca cada control en una esquina de la superficie de juego y vuelve a intentarlo.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Esos ocho puntos no delimitan un tablero plegable. Coloca cuatro en las esquinas de la superficie de juego y cuatro en las uniones de la bisagra; después, vuelve a intentarlo.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'No consigo distinguir el tablero: está totalmente cubierto o se pierde entre las sombras o los reflejos. Despeja el tablero, añade luz y vuelve a intentarlo.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'No consigo distinguir $region: quizá haya algo encima o esa esquina esté demasiado oscura. Despeja la zona o añade luz y vuelve a intentarlo.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Desde aquí, los dos colores de las fichas se parecen demasiado. Suele ayudar tener más luz o cambiar el ángulo para reducir los reflejos.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Las fichas no están en la posición inicial: en la punta $number hay fichas del color equivocado. Coloca el tablero en la posición inicial y vuelve a calibrarlo.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Hay tanta luz en el tablero que los colores se confunden. Baja la intensidad o mueve el teléfono para que la lámpara no se refleje directamente.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Puedo leer el tablero, pero no parece una partida a punto de empezar. Coloca las fichas en la posición inicial y vuelve a calibrarlo.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Puedo leer el tablero, pero no distinguir cuántas fichas hay apiladas una detrás de otra; acabaría contando mal. Suele ayudar iluminar un poco más las puntas cercanas o elevar ligeramente la cámara.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'No veo el tablero entero. Aleja el teléfono o arrastra las esquinas hasta la superficie de juego.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Ya no veo el tablero entero: $region queda fuera de la imagen. Vuelve a encuadrarlo o comprueba las esquinas.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition => 'Parece la posición inicial.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'No veo ninguna ficha en las posiciones iniciales. Coloca las fichas como al comienzo de una partida y vuelve a intentarlo.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'El tablero no está en la posición inicial: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region parece vacío, pero la partida empieza con $side ahí';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return 'Hay $side en $region, pero la partida empieza con esa zona vacía';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return 'Hay $observed en $region, pero al empezar debería haber $expected';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Quédate quieto un momento: pierdo de vista el tablero mientras se mueve el teléfono.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'La imagen que recibo no corresponde al tablero con el que me configuraron, así que no puedo orientarme. Vuelve a configurar el tablero desde aquí.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'La imagen está demasiado borrosa para leer el tablero. Espera un momento a que la cámara enfoque.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'El tablero ya no está donde estaba cuando lo aprendí. Vuelve a encuadrar las esquinas y retomaré la partida enseguida.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Hay algo que tapa parte del tablero. Seguiré en cuanto quede despejado.';
+
+  @override
+  String get buddyReadabilityClear => 'Ya veo el tablero.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'La luz del tablero ha cambiado de color y ahora ya no se parece al que aprendí. Vuelve a encuadrar las esquinas con esta luz y retomaré la partida enseguida.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Hay poca luz para leer el tablero. Añade un poco de luz y continuaré donde lo dejamos.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Hay tanta luz en el tablero que los colores se confunden. Baja la intensidad o mueve el teléfono para que la lámpara no se refleje directamente.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy todavía no ve su jugada: $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nPuedes seguir jugando: introduce cada tirada en el panel de dados y marca tus jugadas en el tablero de abajo.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'No se ha podido iniciar la cámara. Comprueba los permisos y vuelve a intentarlo.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'la punta $number';
+  }
+
+  @override
+  String get buddyRegionBar => 'la barra';
+
+  @override
+  String get buddyRegionWhiteTray => 'la bandeja de salida de las blancas';
+
+  @override
+  String get buddyRegionBlackTray => 'la bandeja de salida de las negras';
+
+  @override
+  String get buddyRegionDiceZone => 'el centro del tablero';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'No veo el tablero entero. Aleja el teléfono o arrastra las esquinas hasta la superficie de juego.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return ' (y $number más)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Tiráis un dado cada uno. El número que saque cada jugador decide quién empieza.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'Dado de blancas';
+
+  @override
+  String get buddyDiceOpeningSecond => 'Dado de negras';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'Los dos números que han salido, en cualquier orden.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Un dado';
+
+  @override
+  String get buddyDiceRegularSecond => 'El otro';
 }

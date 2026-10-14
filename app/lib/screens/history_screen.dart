@@ -75,8 +75,9 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
       appBar: AppBar(title: Text(l10n.historyTitle)),
       body: matches.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) =>
-            Center(child: Text(l10n.historyLoadFailed(e.toString()))),
+        error: (e, _) => Center(
+          child: Text(l10n.historyLoadFailed(l10n.onlineErrorGeneric)),
+        ),
         data: (all) {
           final rows = [
             for (final row in all)
@@ -251,7 +252,7 @@ class MatchDetailScreen extends ConsumerWidget {
           return Scaffold(
             appBar: AppBar(title: Text(l10n.historyMatchTitle)),
             body: Center(
-              child: Text(l10n.historyMatchLoadFailed(snap.error.toString())),
+              child: Text(l10n.historyMatchLoadFailed(l10n.onlineErrorGeneric)),
             ),
           );
         }
@@ -280,7 +281,7 @@ class MatchDetailScreen extends ConsumerWidget {
         builder: (context, snap) {
           if (snap.hasError) {
             return Center(
-              child: Text(l10n.historyGamesLoadFailed(snap.error.toString())),
+              child: Text(l10n.historyGamesLoadFailed(l10n.onlineErrorGeneric)),
             );
           }
           if (!snap.hasData) {

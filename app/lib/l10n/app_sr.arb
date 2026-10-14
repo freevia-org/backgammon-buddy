@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "QR kod za pridruživanje ovoj igri",
   "lanJoinInstruction": "Na drugom uređaju otvorite Igraj u blizini, izaberite Pridruži se, pa skenirajte ovaj QR kod.",
   "homePlayWithBuddy": "Igraj sa Buddy",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Igraj sa Buddyjem",
+  "buddySetupSideLabel": "Buddy igra",
+  "buddySetupSeatLabel": "Tvoja strana",
+  "buddySetupSeatNear": "Pored telefona",
+  "buddySetupSeatFar": "Nasuprot",
+  "buddySetupSeatHelp": "Na kojoj strani table sediš? Tako Buddy numeriše polja i razlikuje tvoj početni bacaj od svog.",
+  "buddySetupVoiceLabel": "Kako Buddy govori",
+  "buddySetupVoiceTerse": "Sažeto",
+  "buddySetupVoiceFriendly": "Prijateljski",
+  "buddySetupVoiceTerseHelp": "„13/8, 24/22“ — zapis kojim igrači razgovaraju za tablom.",
+  "buddySetupVoiceFriendlyHelp": "„Pomeri jednu figuru sa 13 na 8, a drugu sa 24 na 22.“",
+  "buddySetupTutorHelp": "Komentari i objašnjenja poteza prate podešavanja Tutora sačuvana u Podešavanjima. Buddy povremeno komentariše tvoje poteze; unos bacanja i ručni potezi rade isto.",
+  "buddySetupCalibrate": "Kalibriši tablu",
+  "buddyFixAim": "Ispravi kadar",
+  "buddyWaitingForOpening": "Buddy čeka bacanje kojim počinje meč.",
+  "buddyPromptLostBoard": "Buddy je izgubio tablu. Ispravi kadar i meč će se nastaviti tamo gde je stao.",
+  "buddyPromptWaitingPicture": "Čekam sliku koju Buddy može da pročita. Ništa nije izgubljeno.",
+  "buddyPromptTypeDice": "Buddy ne vidi kockice. Unesi rezultat bacanja.",
+  "buddyPromptPlay": "Odigraj potez na tabli. Ako ga Buddy ne vidi, unesi ga ovde.",
+  "buddyPromptWhichPlay": "Koji potez si odigrao?",
+  "buddyPromptCube": "Buddy udvostručuje. Prihvataš ili odustaješ?",
+  "buddyPromptMakeMove": "Odigraj Buddyjev potez na tabli, pa će Buddy nastaviti.",
+  "buddyPromptThinking": "Buddy razmišlja.",
+  "buddyPromptWaitingCalibration": "Čeka se kalibracija.",
+  "buddyPromptMirrorNoDetail": "Buddy i dalje ne vidi svoj potez. Tabla ispod prikazuje poziciju koju prati.",
+  "buddyPromptNotLegal": "Taj potez nije dozvoljen.",
+  "buddyPromptNotLegalReason": "Taj potez nije dozvoljen. {reason}",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyThrowOpening": "Bacite početne kockice — po jednu svaki.",
+  "buddyThrowUser": "Baci svoje kockice.",
+  "buddyThrowBuddy": "Baci Buddyjeve kockice.",
+  "buddyMatchOver": "Meč je završen.",
+  "buddyYouWin": "Pobedio si u meču.",
+  "buddyBuddyWins": "Buddy je pobedio u meču.",
+  "buddyDoubleNoGame": "Još nema igre za udvostručavanje — prvo se bacaju početne kockice.",
+  "buddyDoubleBeforeRoll": "Možeš da udvostručiš samo na svom potezu, pre bacanja.",
+  "buddyDoubleCrawford": "U Krafordovoj partiji nema udvostručavanja — ova jedina partija odlučuje meč.",
+  "buddyDoubleNotOwner": "Samo vlasnik kocke može da udvostruči, a sada je kocka kod druge strane.",
+  "buddyDoubleUnavailable": "Udvostručavanje trenutno nije dostupno.",
+  "buddyLookingAtBoard": "Buddy gleda tablu.",
+  "buddyCameraPlayFallback": "Možeš da nastaviš meč: unesi svako bacanje na tastaturi za kockice i odigraj poteze na tabli ispod.",
+  "buddySkipCheck": "Preskoči proveru",
+  "buddyFixedIt": "Ispravio sam",
+  "buddyDrop": "Odustani",
+  "buddyTake": "Prihvati",
+  "buddyDone": "Gotovo",
+  "buddyTranscriptLabel": "Šta je Buddy rekao",
+  "buddyUndo": "Opozovi",
+  "buddyConfirm": "Potvrdi",
+  "buddyDice": "Kockice",
+  "buddyDouble": "Udvostruči",
+  "buddyDicePadTitle": "Šta si bacio?",
+  "buddyEnterRoll": "Unesi bacanje",
+  "buddyContextBeforeGame": "Igraj sa Buddyjem",
+  "buddyContextMatchScore": "Ti {you}–{buddy} Buddy · do {length} · partija {number}",
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraUnavailable": "Kameru nije moguće pokrenuti. Proveri dozvole i pokušaj ponovo.",
+  "buddyCameraPermission": "Backgammon Buddy nema dozvolu za korišćenje kamere. Dozvoli pristup kameri u podešavanjima uređaja i pokušaj ponovo.",
+  "buddyCalibrationTitle": "Pokaži Buddyju tablu",
+  "buddyCalibrationCornersFold": "Prevuci četiri spoljne oznake na uglove podloge za igru, ne na drveni okvir, a četiri manje na spojeve šarke sa daljom i bližom ivicom.",
+  "buddyCalibrationCornersFlat": "Prevuci svaku oznaku na ugao podloge za igru, ne na drveni okvir.",
+  "buddyCalibrationCheckLines": "Zatim proveri dvanaest linija na svakoj polovini: svaka treba da prati jedno polje table. Ako promaši polje, pomeri odgovarajuću oznaku.",
+  "buddyCalibrationSeatQuestion": "Koja polovina je tvoje kućno polje?",
+  "buddyCalibrationSeatHelp": "Polovina bliža donjoj ivici slike. Ona određuje numeraciju polja, pa se i linije iznad poravnavaju prema njoj.",
+  "buddyCalibrationCaptureWait": "Drži telefon mirno. Buddy čeka da se slika umiri pre nego što nauči tablu.",
+  "buddyCalibrationConfirmQuestion": "Da li je ovo tvoja tabla?",
+  "buddyCalibrationConfirmFallback": "Buddy gleda tablu koju je upravo naučio.",
+  "buddyCalibrationConfirmHelp": "Figure nacrtane preko slike pokazuju gde Buddy misli da su. Ako je neka na pogrešnom mestu, počni ponovo — sada traje nekoliko sekundi, a kasnije može da košta partije.",
+  "buddyCalibrationNext": "Dalje",
+  "buddyCalibrationBack": "Nazad",
+  "buddyCalibrationCapture": "Snimi",
+  "buddyCalibrationStartOver": "Počni ponovo",
+  "buddyCalibrationLooksRight": "Izgleda dobro",
+  "buddyCalibrationCornersInvalid": "Ove četiri oznake ne uokviruju tablu — jedna prelazi preko druge. Prevuci ih nazad u uglove podloge za igru.",
+  "buddyCalibrationPrepTitle": "Prvo tri stvari",
+  "buddyCalibrationRemoveDiceTitle": "Skloni kockice sa table.",
+  "buddyCalibrationRemoveDiceBody": "Buddy sada uči praznu tablu. Ako kockica ostane na podlozi, naučiće je kao deo table i tokom ove sesije više neće videti kockice.",
+  "buddyCalibrationSetupCheckersTitle": "Postavi figure za početak partije.",
+  "buddyCalibrationSetupCheckersBody": "Trideset figura na poznatim mestima pomaže Buddyju da nauči dve boje table bez tvog objašnjenja.",
+  "buddyCalibrationFitBoardTitle": "Uokviri celu površinu za igru.",
+  "buddyCalibrationFitBoardBody": "Zatim ostavi telefon na mestu. Ako se pomeri, Buddy će ti reći, a ti možeš ponovo da podesiš uglove.",
+  "buddyCalibrationBoardKind": "Kakva je tvoja tabla?",
+  "buddyCalibrationFlatBoard": "Ravna tabla",
+  "buddyCalibrationFoldingBoard": "Sklopiva tabla",
+  "buddyCalibrationBoardKindHelp": "Sklopivoj tabli potrebne su još četiri oznake na spojevima šarke.",
+  "buddyCalibrationNoCameraBody": "Buddy režim prati stvarnu tablu, pa ne može da se pokrene bez kamere. Sve ostalo u aplikaciji radi normalno.",
+  "buddyHandleHingeSeam": "Spoj šarke {number} od 4",
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyHandleCorner": "Ugao table {number} od 4",
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyNudgeLeft": "Pomeri ulevo",
+  "buddyNudgeRight": "Pomeri udesno",
+  "buddyNudgeUp": "Pomeri nagore",
+  "buddyNudgeDown": "Pomeri nadole",
+  "buddyCalibrationProblemCorners": "Ova četiri ugla ne uokviruju tablu. Prevuci svaku oznaku na ugao površine za igru i pokušaj ponovo.",
+  "buddyCalibrationProblemFoldCorners": "Ovih osam tačaka ne uokviruje sklopivu tablu. Postavi četiri na uglove površine za igru, a četiri na spojeve šarke, pa pokušaj ponovo.",
+  "buddyCalibrationProblemUnreadable": "Ne mogu da razaznam samu tablu — potpuno je prekrivena ili se gubi u senci ili odsjaju. Oslobodi tablu, dodaj svetla i pokušaj ponovo.",
+  "buddyCalibrationProblemRegionUnreadable": "Ne mogu da razaznam {region} — možda nešto leži na njemu ili je taj ugao previše taman. Ukloni prepreku ili dodaj svetla i pokušaj ponovo.",
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCalibrationProblemColours": "Dve boje figura odavde izgledaju previše slično. Obično pomaže više svetla ili ugao sa manje odsjaja.",
+  "buddyCalibrationProblemWrongChecker": "Figure nisu u početnom položaju — na polju {number} nalazi se figura pogrešne boje. Postavi tablu za početak partije i ponovo je kalibriši.",
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyCalibrationProblemOverexposed": "Na tablu pada toliko svetla da se boje stapaju. Priguši svetlo ili pomeri telefon da se lampa ne odbija pravo u kameru.",
+  "buddyCalibrationProblemReadBack": "Mogu da pročitam tablu, ali nije spremna za početak partije. Postavi figure u početni položaj i ponovo kalibriši.",
+  "buddyCalibrationProblemStacks": "Mogu da pročitam tablu, ali ne vidim koliko je jedna figura iza druge, pa bih ih pogrešno prebrojao. Obično pomaže više svetla na bližim poljima ili malo viši ugao kamere.",
+  "buddyCalibrationProblemNotVisible": "Ne vidim celu tablu. Odmakni telefon ili prevuci uglove na površinu za igru.",
+  "buddyConfirmBoardOutOfFrame": "Više ne vidim celu tablu — {region} je van slike. Ponovo usmeri kameru ili proveri uglove.",
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmStartingPosition": "Izgleda kao početni položaj.",
+  "buddyConfirmNoCheckers": "Ne vidim nijednu figuru na početnim poljima. Postavi tablu za početak partije i pokušaj ponovo.",
+  "buddyConfirmWrongPosition": "Tabla nije postavljena za početak partije: {details}{more}.",
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionEmpty": "{region} izgleda prazno, ali se partija započinje sa figurama {side} na tom mestu",
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionUnexpected": "Na polju {region} su figure {side}, ali to polje na početku treba da bude prazno",
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionWrongSide": "Na polju {region} su figure {observed}, a početni položaj zahteva {expected}",
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyReadabilityMotion": "Zastani na trenutak — gubim tablu dok se telefon pomera.",
+  "buddyReadabilityWrongFrame": "Dobijam drugu sliku od one na kojoj je tabla podešena, pa ne mogu da je poravnam. Ponovo podesi tablu odavde.",
+  "buddyReadabilityBlur": "Slika je previše mutna da bih pročitao tablu. Sačekaj trenutak da kamera fokusira.",
+  "buddyReadabilityCalibrationStale": "Tabla više nije tamo gde sam je naučio. Ponovo poravnaj uglove i odmah nastavljam partiju.",
+  "buddyReadabilityOccluded": "Nešto zaklanja deo table. Nastaviću čim tabla bude vidljiva.",
+  "buddyReadabilityClear": "Vidim tablu.",
+  "buddyReadabilityColorChanged": "Promenila se boja svetla na tabli, pa više ne izgleda kao ona koju sam naučio. Ponovo poravnaj uglove pod ovim svetlom i nastavljam partiju.",
+  "buddyReadabilityTooDark": "Pretamno je da pročitam tablu. Dodaj malo svetla i nastavljam tamo gde smo stali.",
+  "buddyReadabilityTooBright": "Na tablu pada previše svetla i boje se stapaju. Priguši svetlo ili pomeri telefon da se lampa ne odbija u kameru.",
+  "buddyPromptBeliefMirror": "Buddy i dalje ne vidi svoj potez — {reason}.",
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nMeč možeš da nastaviš: unesi svako bacanje na tastaturi za kockice i odigraj poteze na tabli ispod.",
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraGenericError": "Kameru nije moguće pokrenuti. Proveri dozvole i pokušaj ponovo.",
+  "buddyRegionPoint": "polje {number}",
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyRegionBar": "bara",
+  "buddyRegionWhiteTray": "poslužavnik za iznete bele figure",
+  "buddyRegionBlackTray": "poslužavnik za iznete crne figure",
+  "buddyRegionDiceZone": "sredina table",
+  "buddyCalibrationProblemVisible": "Ne vidim celu tablu. Odmakni telefon ili prevuci uglove na površinu za igru.",
+  "buddyConfirmMore": " (i još {number})",
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyDiceOpeningCaption": "Svako baca po jednu kockicu. Vrednosti određuju ko počinje.",
+  "buddyDiceOpeningFirst": "Bela kockica",
+  "buddyDiceOpeningSecond": "Crna kockica",
+  "buddyDiceRegularCaption": "Dve bačene vrednosti, bilo kojim redom.",
+  "buddyDiceRegularFirst": "Jedna kockica",
+  "buddyDiceRegularSecond": "Druga kockica"
 }

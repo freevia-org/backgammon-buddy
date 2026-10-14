@@ -2750,4 +2750,496 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Idee';
+
+  @override
+  String get buddySetupTitle => 'Speel met Buddy';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy speelt';
+
+  @override
+  String get buddySetupSeatLabel => 'Jouw kant';
+
+  @override
+  String get buddySetupSeatNear => 'Bij de telefoon';
+
+  @override
+  String get buddySetupSeatFar => 'Aan de overkant';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Aan welke kant van het bord je zit. Zo nummert Buddy de punten en onderscheidt hij jouw openingsworp van die van zichzelf.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Hoe Buddy praat';
+
+  @override
+  String get buddySetupVoiceTerse => 'Kort en bondig';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Vriendelijk';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '“13/8, 24/22” — de notatie die twee spelers aan het bord gebruiken.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '“Verplaats één schijf van 13 naar 8 en één van 24 naar 22.”';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'De uitleg en opmerkingen van de coach volgen je opgeslagen coachvoorkeuren in Instellingen. Buddy geeft af en toe feedback op je zetten; worpen invoeren en zetten handmatig doen werkt hetzelfde.';
+
+  @override
+  String get buddySetupCalibrate => 'Kalibreer het bord';
+
+  @override
+  String get buddyFixAim => 'Richt de camera opnieuw';
+
+  @override
+  String get buddyWaitingForOpening =>
+      'Buddy wacht op de worp die de wedstrijd opent.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy is het bord kwijt. Richt de camera opnieuw; de wedstrijd gaat verder waar hij gebleven was.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Wachten op een beeld dat Buddy kan lezen. Er gaat niets verloren.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy kan de dobbelstenen niet zien. Voer de worp handmatig in.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Voer je zet uit op het bord. Voer hem hier in als Buddy hem niet ziet.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Welke zet heb je gedaan?';
+
+  @override
+  String get buddyPromptCube =>
+      'Buddy biedt een verdubbeling aan. Aannemen of weigeren?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Voer Buddy’s zet uit op het bord, dan gaat Buddy verder.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy denkt na.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Wachten op kalibratie.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy kan zijn zet nog steeds niet zien. Het bord hieronder toont de positie die Buddy heeft opgeslagen.';
+
+  @override
+  String get buddyPromptNotLegal => 'Dat is geen toegestane zet.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Dat is geen toegestane zet. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening =>
+      'Gooi de openingsdobbelstenen — ieder één dobbelsteen.';
+
+  @override
+  String get buddyThrowUser => 'Gooi je dobbelstenen.';
+
+  @override
+  String get buddyThrowBuddy => 'Gooi de dobbelstenen voor Buddy.';
+
+  @override
+  String get buddyMatchOver => 'De wedstrijd is afgelopen.';
+
+  @override
+  String get buddyYouWin => 'Je wint de wedstrijd.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy wint de wedstrijd.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Er is nog geen spel om te verdubbelen — eerst komt de openingsworp.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Je kunt alleen vóór het gooien verdubbelen, tijdens je beurt.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'In het Crawford-spel mag niet worden verdubbeld — deze ene partij beslist de wedstrijd.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Alleen de eigenaar van de verdubbelingskubus mag verdubbelen; op dit moment is dat de tegenstander.';
+
+  @override
+  String get buddyDoubleUnavailable => 'Verdubbelen kan nu niet.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy bekijkt het bord.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Je kunt de match blijven spelen: voer elke worp in op het dobbelstenenpaneel en tik je zetten aan op het bord hieronder.';
+
+  @override
+  String get buddySkipCheck => 'Deze controle overslaan';
+
+  @override
+  String get buddyFixedIt => 'Ik heb het opgelost';
+
+  @override
+  String get buddyDrop => 'Weigeren';
+
+  @override
+  String get buddyTake => 'Aannemen';
+
+  @override
+  String get buddyDone => 'Klaar';
+
+  @override
+  String get buddyTranscriptLabel => 'Wat Buddy zei';
+
+  @override
+  String get buddyUndo => 'Ongedaan maken';
+
+  @override
+  String get buddyConfirm => 'Bevestigen';
+
+  @override
+  String get buddyDice => 'Dobbelstenen';
+
+  @override
+  String get buddyDouble => 'Verdubbelen';
+
+  @override
+  String get buddyDicePadTitle => 'Wat heb je gegooid?';
+
+  @override
+  String get buddyEnterRoll => 'Worp invoeren';
+
+  @override
+  String get buddyContextBeforeGame => 'Speel met Buddy';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Jij $you–$buddy Buddy · tot $length · Spel $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'De camera kon niet worden gestart. Controleer de machtigingen en probeer het opnieuw.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy heeft geen toestemming om de camera te gebruiken. Geef cameratoegang in de instellingen van je apparaat en probeer het opnieuw.';
+
+  @override
+  String get buddyCalibrationTitle => 'Laat Buddy het bord zien';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Sleep de vier buitenste handgrepen naar de hoeken van het vilt, niet de houten rand, en de vier kleine naar de naden waar het scharnier de verre en nabije rand raakt.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Sleep elke handgreep naar een hoek van het vilt — het speeloppervlak, niet de houten rand eromheen.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Controleer daarna de twaalf lijnen op elke helft: ze moeten allemaal langs een punt van het bord lopen. Mist een lijn haar punt, verschuif dan de bijbehorende handgreep.';
+
+  @override
+  String get buddyCalibrationSeatQuestion => 'Welke helft is jouw binnenveld?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'De helft die het dichtst bij de onderkant van de afbeelding ligt. Daarmee wordt de puntnummering bepaald en sluiten de lijnen hierboven daarop aan.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Houd de telefoon stil. Buddy wacht tot het beeld stabiel is voordat hij dit bord leert.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Is dit jouw bord?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy bekijkt het bord dat hij zojuist heeft geleerd.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'De schijven die over de afbeelding zijn getekend, laten zien waar Buddy denkt dat ze liggen. Staat er ook maar één verkeerd, begin dan opnieuw — dat kost nu seconden en kan je later een hele game kosten.';
+
+  @override
+  String get buddyCalibrationNext => 'Volgende';
+
+  @override
+  String get buddyCalibrationBack => 'Terug';
+
+  @override
+  String get buddyCalibrationCapture => 'Foto maken';
+
+  @override
+  String get buddyCalibrationStartOver => 'Opnieuw beginnen';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Ziet er goed uit';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Deze vier handgrepen vormen geen bord — één handgreep kruist een andere. Sleep ze terug naar de hoeken van het vilt.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Eerst drie dingen';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle =>
+      'Haal de dobbelstenen van het bord.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy leert nu het lege bord. Een dobbelsteen die op het vilt blijft liggen, wordt als onderdeel van het bord gezien. Daarna kan Buddy de dobbelstenen deze sessie niet meer herkennen.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Zet de schijven in de beginopstelling.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Met dertig schijven op bekende plekken leert Buddy de twee kleuren van het bord herkennen, zonder dat je hoeft te vertellen welke kleur welke is.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Zorg dat het hele speelveld op de afbeelding staat.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Laat de telefoon daarna staan. Als hij beweegt, laat Buddy dat weten en kun je de hoeken bijstellen.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Wat voor soort bord is het?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Plat bord';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Vouwbord';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Een vouwbord heeft vier extra handgrepen op de naden van het scharnier nodig.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Buddy-modus kijkt mee op een echt bord en kan daarom niet starten zonder camera. De rest van de app blijft gewoon werken.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Scharniernaad $number van 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Bordhoek $number van 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Iets naar links';
+
+  @override
+  String get buddyNudgeRight => 'Iets naar rechts';
+
+  @override
+  String get buddyNudgeUp => 'Iets omhoog';
+
+  @override
+  String get buddyNudgeDown => 'Iets omlaag';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Deze vier hoeken vormen geen bord. Sleep elke handgreep naar een hoek van het speelveld en probeer het opnieuw.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Deze acht punten vormen geen vouwbord. Zet er vier op de hoeken van het speelveld en vier op de scharniernaden, en probeer het opnieuw.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Ik kan het bord zelf niet goed zien: het is helemaal bedekt of valt weg in schaduw of schittering. Maak het bord vrij, zorg voor meer licht en probeer het opnieuw.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Ik kan $region niet goed zien — er ligt misschien iets op, of deze hoek van het bord is te donker. Maak de plek vrij of zorg voor meer licht en probeer het opnieuw.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'De twee kleuren schijven lijken vanaf hier te veel op elkaar. Meer licht of een hoek met minder schittering helpt meestal.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'De schijven staan niet in de beginopstelling — op punt $number ligt een schijf van de verkeerde kleur. Zet de schijven in de beginopstelling en kalibreer opnieuw.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Er valt zoveel licht op het bord dat de kleuren in elkaar overlopen. Dim het licht of verplaats de telefoon zodat de lamp er niet recht in weerkaatst.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Ik kan het bord lezen, maar het staat niet in de beginopstelling. Zet de schijven in de beginopstelling en kalibreer opnieuw.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Ik kan het bord lezen, maar niet zien hoeveel schijven achter elkaar staan — dan zou ik verkeerd tellen. Iets meer licht op de punten dichtbij of een iets hogere camerahoek helpt meestal.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Ik kan niet het hele bord zien. Houd de telefoon verder weg of sleep de hoeken naar het speelveld.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Ik kan het hele bord niet meer zien — $region valt buiten beeld. Richt de camera opnieuw of controleer de hoeken.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition => 'Dit lijkt de beginopstelling.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Ik zie geen enkele schijf op een beginpunt. Zet de schijven in de beginopstelling en probeer het opnieuw.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Het bord staat niet in de beginopstelling: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region lijkt leeg, maar in de beginopstelling heeft $side daar schijven staan';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return '$region is bezet door $side, maar hoort in de beginopstelling leeg te zijn';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return '$region is bezet door $observed, maar in de beginopstelling horen daar schijven van $expected te staan';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Houd even stil — als de telefoon beweegt, raak ik het bord kwijt.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'De afbeelding die ik krijg hoort niet bij het bord waarvoor ik ben ingesteld, dus ik kan niets op de afbeelding uitlijnen. Stel het bord hier opnieuw in.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'De afbeelding is te onscherp om het bord te lezen. Wacht even tot de camera scherpstelt.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Het bord staat niet meer op de plek waar het stond toen ik het leerde. Lijn de hoeken opnieuw uit; dan pak ik het spel meteen weer op.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Iets bedekt een deel van het bord. Zodra dat weg is, ga ik verder.';
+
+  @override
+  String get buddyReadabilityClear => 'Ik kan het bord zien.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Het licht op het bord heeft een andere kleur, waardoor het bord niet meer lijkt op wat ik heb geleerd. Lijn de hoeken opnieuw uit bij dit licht; dan pak ik het spel meteen weer op.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Het is te donker om het bord te lezen. Zorg voor wat meer licht, dan ga ik verder waar we gebleven waren.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Er valt zoveel licht op het bord dat de kleuren in elkaar overlopen. Dim het licht of verplaats de telefoon zodat de lamp er niet recht in weerkaatst.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy kan zijn zet nog steeds niet zien — $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nJe kunt de wedstrijd blijven spelen: voer elke worp in op het dobbelstenenpaneel en voer je zetten op het bord hieronder uit door erop te tikken.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'De camera kon niet worden gestart. Controleer de machtigingen en probeer het opnieuw.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'punt $number';
+  }
+
+  @override
+  String get buddyRegionBar => 'de bar';
+
+  @override
+  String get buddyRegionWhiteTray => 'het uitneemvak voor witte schijven';
+
+  @override
+  String get buddyRegionBlackTray => 'het uitneemvak voor zwarte schijven';
+
+  @override
+  String get buddyRegionDiceZone => 'het midden van het bord';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Ik kan niet het hele bord zien. Houd de telefoon verder weg of sleep de hoeken naar het speelveld.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return ' (en nog $number)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Jullie gooien allebei één dobbelsteen. De hoogste worp bepaalt wie begint.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'De dobbelsteen van wit';
+
+  @override
+  String get buddyDiceOpeningSecond => 'De dobbelsteen van zwart';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'De twee gegooide waarden, in willekeurige volgorde.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Eén dobbelsteen';
+
+  @override
+  String get buddyDiceRegularSecond => 'De andere';
 }

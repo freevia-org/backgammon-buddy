@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "QR-код для приєднання до цієї гри",
   "lanJoinInstruction": "На іншому пристрої відкрий «Грати поруч», вибери «Приєднатися» та відскануй цей QR-код.",
   "homePlayWithBuddy": "Грати з Buddy",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Грай із Buddy",
+  "buddySetupSideLabel": "Грає Buddy",
+  "buddySetupSeatLabel": "Твоя сторона",
+  "buddySetupSeatNear": "Біля телефона",
+  "buddySetupSeatFar": "Навпроти",
+  "buddySetupSeatHelp": "З якого боку дошки ти сидиш. Від цього залежить, як Buddy нумерує пункти та відрізняє твій вступний кидок від свого.",
+  "buddySetupVoiceLabel": "Як говорить Buddy",
+  "buddySetupVoiceTerse": "Коротко",
+  "buddySetupVoiceFriendly": "Привітно",
+  "buddySetupVoiceTerseHelp": "«13/8, 24/22» — нотація, якою зазвичай спілкуються гравці за дошкою.",
+  "buddySetupVoiceFriendlyHelp": "«Пересунь одну шашку з 13 на 8, а іншу — з 24 на 22».",
+  "buddySetupTutorHelp": "Коментарі тьютора та пояснення ходів відповідають збереженим налаштуванням тьютора. Buddy час від часу коментує твої ходи; введення кубиків і ручне введення ходів працюють так само.",
+  "buddySetupCalibrate": "Калібрувати дошку",
+  "buddyFixAim": "Вирівняти камеру",
+  "buddyWaitingForOpening": "Buddy чекає на кидок, з якого починається матч.",
+  "buddyPromptLostBoard": "Buddy втратив дошку з поля зору. Вирівняй камеру, і матч продовжиться з того самого місця.",
+  "buddyPromptWaitingPicture": "Очікування зображення, яке Buddy зможе розпізнати. Нічого не втрачено.",
+  "buddyPromptTypeDice": "Buddy не бачить кубики. Введи результат кидка вручну.",
+  "buddyPromptPlay": "Зроби хід на дошці. Якщо Buddy його не бачить, введи хід тут.",
+  "buddyPromptWhichPlay": "Який саме хід ти зробив?",
+  "buddyPromptCube": "Buddy подвоює ставку. Прийняти чи відмовитися?",
+  "buddyPromptMakeMove": "Зроби хід Buddy на дошці, і тоді він продовжить.",
+  "buddyPromptThinking": "Buddy думає.",
+  "buddyPromptWaitingCalibration": "Очікування калібрування.",
+  "buddyPromptMirrorNoDetail": "Buddy досі не бачить свого ходу. На дошці нижче показано позицію, яку він зберіг.",
+  "buddyPromptNotLegal": "Цей хід неможливий за правилами.",
+  "buddyPromptNotLegalReason": "Цей хід неможливий за правилами. {reason}",
+  "buddyThrowOpening": "Кинь вступні кубики — по одному кожному.",
+  "buddyThrowUser": "Кинь свої кубики.",
+  "buddyThrowBuddy": "Кинь кубики Buddy.",
+  "buddyMatchOver": "Матч завершено.",
+  "buddyYouWin": "Перемога твоя!",
+  "buddyBuddyWins": "Buddy виграв матч.",
+  "buddyDoubleNoGame": "Поки що немає гри, у якій можна подвоїти ставку — спершу вступний кидок.",
+  "buddyDoubleBeforeRoll": "Подвоювати можна лише до кидка, коли зараз твій хід.",
+  "buddyDoubleCrawford": "У грі Крофорда подвоювати не можна — саме ця гра вирішує матч.",
+  "buddyDoubleNotOwner": "Подвоювати може лише власник куба, а зараз він належить супернику.",
+  "buddyDoubleUnavailable": "Зараз подвоїти не можна.",
+  "buddyLookingAtBoard": "Buddy розглядає дошку.",
+  "buddyCameraPlayFallback": "Ти все одно можеш грати: вводь кожен кидок на панелі кубиків, а ходи відзначай на дошці нижче.",
+  "buddySkipCheck": "Пропустити перевірку",
+  "buddyFixedIt": "Я виправив це",
+  "buddyDrop": "Відмовитися",
+  "buddyTake": "Прийняти",
+  "buddyDone": "Готово",
+  "buddyTranscriptLabel": "Що сказав Buddy",
+  "buddyUndo": "Скасувати",
+  "buddyConfirm": "Підтвердити",
+  "buddyDice": "Кубики",
+  "buddyDouble": "Подвоїти",
+  "buddyDicePadTitle": "Що випало?",
+  "buddyEnterRoll": "Ввести кидок",
+  "buddyContextBeforeGame": "Грай із Buddy",
+  "buddyContextMatchScore": "Ти {you}–{buddy} Buddy · до {length} · Гра {number}",
+  "buddyCameraUnavailable": "Не вдалося запустити камеру. Перевір дозволи й спробуй ще раз.",
+  "buddyCameraPermission": "Backgammon Buddy не має дозволу на використання камери. Дозволь доступ до камери в налаштуваннях пристрою й спробуй ще раз.",
+  "buddyCalibrationTitle": "Покажи Buddy дошку",
+  "buddyCalibrationCornersFold": "Перетягни чотири зовнішні маркери до кутів ігрового поля, а не дерев’яного бортика, а чотири маленькі — до швів, де петля з’єднується з дальнім і ближнім краями.",
+  "buddyCalibrationCornersFlat": "Перетягни кожен маркер до кута ігрового поля — поверхні для гри, а не дерев’яного бортика навколо неї.",
+  "buddyCalibrationCheckLines": "Потім перевір дванадцять ліній на кожній половині: кожна має проходити вздовж пункту дошки. Якщо лінія не проходить через свій пункт, трохи посунь відповідний маркер.",
+  "buddyCalibrationSeatQuestion": "Яка половина — твоя домашня частина?",
+  "buddyCalibrationSeatHelp": "Та, що ближче до нижнього краю зображення. Це визначає нумерацію пунктів, тож лінії вище підлаштуються відповідно.",
+  "buddyCalibrationCaptureWait": "Не рухай телефон. Buddy чекає, поки зображення стабілізується, перш ніж вивчати дошку.",
+  "buddyCalibrationConfirmQuestion": "Це твоя дошка?",
+  "buddyCalibrationConfirmFallback": "Buddy розглядає дошку, яку щойно вивчив.",
+  "buddyCalibrationConfirmHelp": "Намальовані поверх зображення шашки показують, де, на думку Buddy, вони стоять. Якщо хоч одна не на місці, почни спочатку — зараз це забере кілька секунд, а згодом може коштувати цілої гри.",
+  "buddyCalibrationNext": "Далі",
+  "buddyCalibrationBack": "Назад",
+  "buddyCalibrationCapture": "Зняти",
+  "buddyCalibrationStartOver": "Почати спочатку",
+  "buddyCalibrationLooksRight": "Усе правильно",
+  "buddyCalibrationCornersInvalid": "Ці чотири маркери не окреслюють дошку — один перетнув інший. Перетягни їх назад до кутів ігрового поля.",
+  "buddyCalibrationPrepTitle": "Спершу три речі",
+  "buddyCalibrationRemoveDiceTitle": "Прибери кубики з дошки.",
+  "buddyCalibrationRemoveDiceBody": "Зараз Buddy вивчає порожню дошку. Якщо кубик залишиться на ігровому полі, Buddy сприйме його як частину дошки й до кінця цього сеансу більше не зможе бачити кубики.",
+  "buddyCalibrationSetupCheckersTitle": "Розстав шашки як на початку гри.",
+  "buddyCalibrationSetupCheckersBody": "Тридцять шашок у відомих місцях допоможуть Buddy розпізнати два кольори дошки без твоїх підказок.",
+  "buddyCalibrationFitBoardTitle": "Умісти всю ігрову поверхню в кадр.",
+  "buddyCalibrationFitBoardBody": "Потім не рухай телефон. Якщо він зміститься, Buddy повідомить, і ти зможеш знову підправити кути.",
+  "buddyCalibrationBoardKind": "Яка в тебе дошка?",
+  "buddyCalibrationFlatBoard": "Плоска дошка",
+  "buddyCalibrationFoldingBoard": "Складна дошка",
+  "buddyCalibrationBoardKindHelp": "Для складної дошки потрібні ще чотири маркери на швах петлі.",
+  "buddyCalibrationNoCameraBody": "Режим Buddy стежить за справжньою дошкою, тому без камери його не запустити. Решта застосунку працюватиме як завжди.",
+  "buddyHandleHingeSeam": "Шов петлі {number} із 4",
+  "buddyHandleCorner": "Кут дошки {number} із 4",
+  "buddyNudgeLeft": "Трохи лівіше",
+  "buddyNudgeRight": "Трохи правіше",
+  "buddyNudgeUp": "Трохи вище",
+  "buddyNudgeDown": "Трохи нижче",
+  "buddyCalibrationProblemCorners": "Ці чотири кути не окреслюють дошку. Перетягни кожен маркер до кута ігрової поверхні й спробуй ще раз.",
+  "buddyCalibrationProblemFoldCorners": "Ці вісім точок не окреслюють складну дошку. Розмісти чотири на кутах ігрової поверхні, а чотири — на швах петлі, і спробуй ще раз.",
+  "buddyCalibrationProblemUnreadable": "Не можу розгледіти саму дошку: вона повністю закрита або губиться в тіні чи відблисках. Звільни дошку, додай світла й спробуй ще раз.",
+  "buddyCalibrationProblemRegionUnreadable": "Не можу розгледіти {region}: можливо, там щось лежить або цей кут дошки надто темний. Звільни його або додай світла й спробуй ще раз.",
+  "buddyCalibrationProblemColours": "Звідси два кольори шашок надто схожі. Зазвичай допомагає краще освітлення або кут, під яким менше відблисків.",
+  "buddyCalibrationProblemWrongChecker": "Шашки розставлені не як на початку гри — на пункті {number} шашка не того кольору. Розстав шашки як на початку гри й відкалібруй дошку ще раз.",
+  "buddyCalibrationProblemOverexposed": "На дошку падає забагато світла, і кольори зливаються. Приглуши світло або змісти телефон, щоб лампа не відбивалася просто в камеру.",
+  "buddyCalibrationProblemReadBack": "Я бачу дошку, але це не схоже на початкову позицію гри. Розстав шашки як на початку гри й відкалібруй дошку ще раз.",
+  "buddyCalibrationProblemStacks": "Я бачу дошку, але не можу визначити, скільки шашок стоїть одна за одною, тож неправильно їх порахую. Зазвичай допомагає трохи краще освітити ближні пункти або підняти камеру вище.",
+  "buddyCalibrationProblemNotVisible": "Я не бачу всю дошку. Відсунь телефон далі або перетягни кути на ігрову поверхню.",
+  "buddyConfirmBoardOutOfFrame": "Я більше не бачу всю дошку — {region} поза кадром. Знову наведи камеру або перевір кути.",
+  "buddyConfirmStartingPosition": "Схоже на початкову позицію.",
+  "buddyConfirmNoCheckers": "Не бачу жодної шашки там, де починається гра. Розстав шашки як на початку гри й спробуй ще раз.",
+  "buddyConfirmWrongPosition": "Дошка розставлена не в початкову позицію: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} порожній, але на початку гри там має бути {side}",
+  "buddyConfirmRegionUnexpected": "На {region} є шашки {side}, хоча на початку гри там має бути порожньо",
+  "buddyConfirmRegionWrongSide": "На {region} є шашки {observed}, а на початку гри там мають бути {expected}",
+  "buddyReadabilityMotion": "Не рухайся мить — коли телефон рухається, я втрачаю дошку з поля зору.",
+  "buddyReadabilityWrongFrame": "Мені передають зображення не тієї дошки, для якої мене налаштували, тож я не можу на ньому нічого зіставити. Налаштуй дошку тут ще раз.",
+  "buddyReadabilityBlur": "Зображення надто розмите, щоб розпізнати дошку. Зачекай, поки камера сфокусується.",
+  "buddyReadabilityCalibrationStale": "Дошка вже не там, де була, коли я її вивчив. Знову вирівняй кути, і я відразу продовжу гру.",
+  "buddyReadabilityOccluded": "Частину дошки щось закриває. Щойно її звільниш, я продовжу.",
+  "buddyReadabilityClear": "Я бачу дошку.",
+  "buddyReadabilityColorChanged": "Освітлення змінило колір, і дошка більше не схожа на ту, яку я вивчив. Знову вирівняй кути за цього освітлення, і я відразу продовжу гру.",
+  "buddyReadabilityTooDark": "Надто темно, щоб розпізнати дошку. Додай трохи світла, і я продовжу з того місця, де ми зупинилися.",
+  "buddyReadabilityTooBright": "На дошку падає забагато світла, і кольори зливаються. Приглуши його або змісти телефон, щоб лампа не відбивалася просто в камеру.",
+  "buddyPromptBeliefMirror": "Buddy досі не бачить свого ходу — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nТи все одно можеш грати: вводь кожен кидок на панелі кубиків, а ходи відзначай на дошці нижче.",
+  "buddyCameraGenericError": "Не вдалося запустити камеру. Перевір дозволи й спробуй ще раз.",
+  "buddyRegionPoint": "пункт {number}",
+  "buddyRegionBar": "бар",
+  "buddyRegionWhiteTray": "лоток для виведення білих шашок",
+  "buddyRegionBlackTray": "лоток для виведення чорних шашок",
+  "buddyRegionDiceZone": "середина дошки",
+  "buddyCalibrationProblemVisible": "Я не бачу всю дошку. Відсунь телефон далі або перетягни кути на ігрову поверхню.",
+  "buddyConfirmMore": " (і ще {number})",
+  "buddyDiceOpeningCaption": "Кожен кидає по одному кубику. Випале число визначає, хто починає.",
+  "buddyDiceOpeningFirst": "Кубик білих",
+  "buddyDiceOpeningSecond": "Кубик чорних",
+  "buddyDiceRegularCaption": "Два числа, що випали на кубиках, у будь-якому порядку.",
+  "buddyDiceRegularFirst": "Один кубик",
+  "buddyDiceRegularSecond": "Інший",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

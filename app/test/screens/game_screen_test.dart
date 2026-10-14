@@ -2460,7 +2460,7 @@ void main() {
     });
   });
 
-  testWidgets('error banner surfaces controller.error', (t) async {
+  testWidgets('error banner reports a localized-safe message, not exception details', (t) async {
     final c = GameController(
       white: ThrowingAgent(),
       black: FakeAgent(),
@@ -2471,7 +2471,8 @@ void main() {
     await t.pumpWidget(_harness(c));
     await pumpUntil(t, () => c.error != null);
     await t.pump();
-    expect(find.textContaining('boom from agent'), findsOneWidget);
+    expect(find.text('Something went wrong. Please try again.'), findsOneWidget);
+    expect(find.textContaining('boom from agent'), findsNothing);
 
     c.disposeController();
   });
@@ -5502,8 +5503,10 @@ void main() {
       await pumpUntil(t, () => c.error != null);
       await t.pump();
 
-      final node = t.getSemantics(find.textContaining('boom from agent'));
-      expect(node.label, contains('boom from agent'));
+      final node = t.getSemantics(
+        find.bySemanticsLabel('Error: Something went wrong. Please try again.'),
+      );
+      expect(node.label, 'Error: Something went wrong. Please try again.');
       expect(node.flagsCollection.isLiveRegion, isTrue,
           reason: 'a screen reader must hear the failure, not find it');
 

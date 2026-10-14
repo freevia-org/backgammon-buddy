@@ -2756,4 +2756,492 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Navrhovaná zmena';
+
+  @override
+  String get buddySetupTitle => 'Hrať s Buddy';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy hrá';
+
+  @override
+  String get buddySetupSeatLabel => 'Vaša strana';
+
+  @override
+  String get buddySetupSeatNear => 'Pri telefóne';
+
+  @override
+  String get buddySetupSeatFar => 'Oproti';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Na ktorej strane dosky sedíte? Podľa toho Buddy čísluje body a rozlišuje váš úvodný hod od svojho.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Ako Buddy hovorí';
+
+  @override
+  String get buddySetupVoiceTerse => 'Stručne';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Priateľsky';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '„13/8, 24/22“ — zápis, ktorým sa hráči pri doske bežne dorozumievajú.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '„Presuňte kameň z 13 na 8 a ďalší z 24 na 22.“';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Komentáre a vysvetlenia ťahov sa riadia uloženými nastaveniami Trénera. Buddy občas okomentuje vaše ťahy; zadávanie hodov aj ručné ťahy fungujú rovnako.';
+
+  @override
+  String get buddySetupCalibrate => 'Kalibrovať dosku';
+
+  @override
+  String get buddyFixAim => 'Upraviť záber';
+
+  @override
+  String get buddyWaitingForOpening => 'Buddy čaká na hod, ktorý začne zápas.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy stratil dosku. Upravte záber a zápas bude pokračovať tam, kde sa zastavil.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Čakám na obraz, ktorý Buddy dokáže prečítať. Nič sa nestratilo.';
+
+  @override
+  String get buddyPromptTypeDice => 'Buddy nevidí kocky. Zadajte hod ručne.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Urobte ťah na doske. Ak ho Buddy nevidí, zadajte ho tu.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Aký ťah ste urobili?';
+
+  @override
+  String get buddyPromptCube => 'Buddy zdvojnásobuje. Prijať alebo vzdať?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Urobte Buddyho ťah na doske a potom bude pokračovať.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy premýšľa.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Čaká sa na kalibráciu.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy stále nevidí svoj ťah. Doska nižšie ukazuje pozíciu, ktorú sleduje.';
+
+  @override
+  String get buddyPromptNotLegal => 'Tento ťah nie je povolený.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Tento ťah nie je povolený. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening => 'Hoďte úvodné kocky — každý jednu.';
+
+  @override
+  String get buddyThrowUser => 'Hoďte svoje kocky.';
+
+  @override
+  String get buddyThrowBuddy => 'Hoďte kocky za Buddyho.';
+
+  @override
+  String get buddyMatchOver => 'Zápas sa skončil.';
+
+  @override
+  String get buddyYouWin => 'Vyhrali ste zápas.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy vyhral zápas.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Zatiaľ niet čo zdvojnásobiť — najprv treba hodiť úvodné kocky.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Zdvojnásobiť môžete iba na ťahu a pred hodom.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'V Crawfordovej hre sa nezdvojnásobuje — táto jediná hra rozhodne zápas.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Zdvojnásobiť môže iba vlastník kocky a teraz ju vlastní druhá strana.';
+
+  @override
+  String get buddyDoubleUnavailable => 'Zdvojnásobenie teraz nie je dostupné.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy sa pozerá na dosku.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Môžete pokračovať v zápase: každý hod zadajte na paneli kociek a ťahy vykonajte na doske nižšie.';
+
+  @override
+  String get buddySkipCheck => 'Preskočiť kontrolu';
+
+  @override
+  String get buddyFixedIt => 'Opravil som to';
+
+  @override
+  String get buddyDrop => 'Vzdať';
+
+  @override
+  String get buddyTake => 'Prijať';
+
+  @override
+  String get buddyDone => 'Hotovo';
+
+  @override
+  String get buddyTranscriptLabel => 'Čo povedal Buddy';
+
+  @override
+  String get buddyUndo => 'Vrátiť späť';
+
+  @override
+  String get buddyConfirm => 'Potvrdiť';
+
+  @override
+  String get buddyDice => 'Kocky';
+
+  @override
+  String get buddyDouble => 'Zdvojnásobiť';
+
+  @override
+  String get buddyDicePadTitle => 'Čo vám padlo?';
+
+  @override
+  String get buddyEnterRoll => 'Zadať hod';
+
+  @override
+  String get buddyContextBeforeGame => 'Hrať s Buddym';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Vy $you–$buddy Buddy · do $length · hra $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Kameru sa nepodarilo spustiť. Skontrolujte povolenia a skúste znova.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Aplikácia Backgammon Buddy nemá povolenie používať kameru. Povoľte prístup ku kamere v nastaveniach zariadenia a skúste znova.';
+
+  @override
+  String get buddyCalibrationTitle => 'Ukážte Buddymu dosku';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Štyri vonkajšie značky presuňte do rohov hracej plochy, nie na drevený okraj. Štyri malé presuňte na spoje pántu pri vzdialenom a blízkom okraji.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Každú značku presuňte do rohu hracej plochy, nie na drevený okraj.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Potom skontrolujte dvanásť čiar na každej polovici: každá má viesť pozdĺž bodu dosky. Ak míňa bod, posuňte príslušnú značku.';
+
+  @override
+  String get buddyCalibrationSeatQuestion =>
+      'Ktorá polovica je vaše domáce pole?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'Polovica bližšie k dolnému okraju obrázka. Podľa nej sa určí číslovanie bodov a zarovnajú sa čiary vyššie.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Držte telefón nehybne. Buddy čaká, kým sa obraz ustáli, a potom sa naučí dosku.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Je toto vaša doska?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy sa pozerá na dosku, ktorú práve rozpoznal.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Figúrky prekreslené cez obraz ukazujú, čo si Buddy myslí, že je na doske. Ak niektorá nesedí, začnite odznova — teraz to zaberie sekundy, neskôr môže pokaziť hru.';
+
+  @override
+  String get buddyCalibrationNext => 'Ďalej';
+
+  @override
+  String get buddyCalibrationBack => 'Späť';
+
+  @override
+  String get buddyCalibrationCapture => 'Nasnímať';
+
+  @override
+  String get buddyCalibrationStartOver => 'Začať odznova';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Vyzerá to správne';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Tieto štyri značky neohraničujú dosku — jedna pretína druhú. Presuňte ich späť do rohov hracej plochy.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Najprv tri veci';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Odstráňte kocky z dosky.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy sa teraz učí prázdnu dosku. Ak na ploche zostane kocka, naučí sa ju ako súčasť dosky a počas tejto relácie už kocky neuvidí.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Rozostavte kamene do začiatočnej pozície.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Tridsať kameňov na známych miestach pomôže Buddymu rozpoznať obe farby bez toho, aby ste mu ich museli povedať.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle => 'Zachyťte celú hraciu plochu.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Potom nechajte telefón na mieste. Ak sa pohne, Buddy vás upozorní a môžete upraviť rohy.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Aký typ dosky máte?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Rovná doska';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Skladacia doska';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Skladacia doska potrebuje ďalšie štyri značky na spojoch pántu.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Režim Buddy sleduje skutočnú dosku, preto sa bez kamery nespustí. Všetko ostatné v aplikácii funguje ďalej.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Spoj pántu $number zo 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Roh dosky $number zo 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Posunúť doľava';
+
+  @override
+  String get buddyNudgeRight => 'Posunúť doprava';
+
+  @override
+  String get buddyNudgeUp => 'Posunúť nahor';
+
+  @override
+  String get buddyNudgeDown => 'Posunúť nadol';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Tieto štyri rohy neohraničujú dosku. Presuňte každú značku do rohu hracej plochy a skúste znova.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Týchto osem bodov neohraničuje skladaciu dosku. Štyri umiestnite do rohov hracej plochy a štyri na spoje pántu, potom skúste znova.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Samotnú dosku nedokážem rozpoznať — je celá zakrytá alebo stratená v tieni či odleskoch. Uvoľnite ju, pridajte svetlo a skúste znova.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Nedokážem rozpoznať $region — možno na ňom niečo leží alebo je tento roh príliš tmavý. Uvoľnite ho alebo pridajte svetlo a skúste znova.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Obe farby kameňov z tohto miesta vyzerajú príliš podobne. Zvyčajne pomôže viac svetla alebo uhol s menším odleskom.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Kamene nie sú v začiatočnej pozícii — na bode $number je kameň nesprávnej farby. Rozostavte dosku na začiatok hry a znova ju kalibrujte.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Na dosku dopadá priveľa svetla a farby splývajú. Stlmte svetlo alebo posuňte telefón, aby sa lampa neodrážala priamo do kamery.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Dosku viem prečítať, ale nie je pripravená na začiatok hry. Rozostavte kamene do začiatočnej pozície a znova kalibrujte.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Dosku viem prečítať, ale neviem určiť, ako ďaleko je jeden kameň za druhým, takže by som ich zle spočítal. Pomôže viac svetla na blízkych bodoch alebo trochu vyšší uhol kamery.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Nevidím celú dosku. Odsuňte telefón alebo presuňte rohy na hraciu plochu.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Celá doska sa už nezmestí do záberu — $region je mimo obrazu. Znova nasmerujte kameru alebo skontrolujte rohy.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition =>
+      'Vyzerá to ako začiatočná pozícia.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Na žiadnom začiatočnom bode nevidím kameň. Rozostavte dosku na začiatok hry a skúste znova.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Doska nie je rozostavená na začiatok hry: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region vyzerá prázdny, ale hra sa začína s kameňmi $side na tomto mieste';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return 'Na $region sú kamene $side, ale hra sa tam začína s prázdnym miestom';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return 'Na $region sú kamene $observed, no hra sa tam začína s kameňmi $expected';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Chvíľu sa nehýbte — keď sa telefón pohybuje, strácam dosku.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Dostal som iný obraz, než na akom bola doska nastavená, takže ju neviem zarovnať. Nastavte dosku znova odtiaľto.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Obraz je príliš rozmazaný na prečítanie dosky. Počkajte, kým kamera zaostrí.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Doska už nie je tam, kde som sa ju naučil. Znova zarovnajte rohy a hneď nadviažem na hru.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Časť dosky niečo zakrýva. Pokračujem, len čo bude voľná.';
+
+  @override
+  String get buddyReadabilityClear => 'Dosku vidím.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Farba svetla na doske sa zmenila a doska už nevyzerá ako tá, ktorú som sa naučil. Pri tomto svetle znova zarovnajte rohy a hneď nadviažem na hru.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Na prečítanie dosky je príliš tma. Pridajte trochu svetla a pokračujem tam, kde sme skončili.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Na dosku dopadá priveľa svetla a farby splývajú. Stlmte svetlo alebo posuňte telefón, aby sa lampa neodrážala do kamery.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy stále nevidí svoj ťah — $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nV zápase môžete pokračovať: každý hod zadajte na paneli kociek a ťahy vykonajte na doske nižšie.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Kameru sa nepodarilo spustiť. Skontrolujte povolenia a skúste znova.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'bod $number';
+  }
+
+  @override
+  String get buddyRegionBar => 'bar';
+
+  @override
+  String get buddyRegionWhiteTray => 'odkladací priestor bielych kameňov';
+
+  @override
+  String get buddyRegionBlackTray => 'odkladací priestor čiernych kameňov';
+
+  @override
+  String get buddyRegionDiceZone => 'stred dosky';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Nevidím celú dosku. Odsuňte telefón alebo presuňte rohy na hraciu plochu.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return ' (a ďalších $number)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Každý hodí jednou kockou. Hodnoty určia, kto začína.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'Kocka bieleho';
+
+  @override
+  String get buddyDiceOpeningSecond => 'Kocka čierneho';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'Dve hodené hodnoty v ľubovoľnom poradí.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Jedna kocka';
+
+  @override
+  String get buddyDiceRegularSecond => 'Druhá kocka';
 }

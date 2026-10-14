@@ -13,6 +13,7 @@ import '../../analytics/app_analytics.dart';
 import '../../board/board_view.dart';
 import '../../buddy/buddy_policy.dart';
 import '../../buddy/buddy_coach.dart';
+import '../../buddy/buddy_localization.dart';
 import '../../buddy/buddy_session.dart';
 import '../../buddy/camera_frame_source.dart';
 import '../../buddy/dice_sound_trigger.dart';
@@ -26,6 +27,7 @@ import '../../engine/engine_provider.dart';
 import '../../game/game_controller.dart';
 import '../../game/game_record.dart';
 import '../../game/player_agent.dart';
+import '../../l10n/localization_lookup.dart';
 import '../../tutor/tutor_service.dart';
 import '../game/tap_when_disabled.dart';
 import 'buddy_setup_screen.dart';
@@ -97,12 +99,11 @@ void openBuddyGame(
   BuildContext context,
   BuddySetup setup,
   CalibrationOutcome outcome,
-) =>
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => BuddyGameScreen(setup: setup, outcome: outcome),
-      ),
-    );
+) => Navigator.of(context).push(
+  MaterialPageRoute<void>(
+    builder: (_) => BuddyGameScreen(setup: setup, outcome: outcome),
+  ),
+);
 
 /// Whether the user's Double is a legal verb right now.
 ///
@@ -189,15 +190,12 @@ class BuddyGameScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PhysicalBuddyGate(
-        builder: (_) => _EnabledBuddyGameScreen(setup: setup, outcome: outcome),
-      );
+    builder: (_) => _EnabledBuddyGameScreen(setup: setup, outcome: outcome),
+  );
 }
 
 class _EnabledBuddyGameScreen extends ConsumerStatefulWidget {
-  const _EnabledBuddyGameScreen({
-    required this.setup,
-    required this.outcome,
-  });
+  const _EnabledBuddyGameScreen({required this.setup, required this.outcome});
 
   final BuddySetup setup;
 
@@ -205,7 +203,8 @@ class _EnabledBuddyGameScreen extends ConsumerStatefulWidget {
   final CalibrationOutcome outcome;
 
   @override
-  ConsumerState<_EnabledBuddyGameScreen> createState() => _BuddyGameScreenState();
+  ConsumerState<_EnabledBuddyGameScreen> createState() =>
+      _BuddyGameScreenState();
 }
 
 /// The fixed heights. See the class doc for why they are fixed.
@@ -237,8 +236,9 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
   /// because two of the three uses are in [dispose], where reading a provider
   /// is reaching into a scope that may already be tearing down.
   late final AppAnalytics _analytics = ref.read(appAnalyticsProvider);
-  late final SettingsRepository _settings =
-      ref.read(settingsRepositoryProvider);
+  late final SettingsRepository _settings = ref.read(
+    settingsRepositoryProvider,
+  );
 
   StreamSubscription<BuddyLine>? _transcript;
   StreamSubscription<ObservedFrame>? _frames;
@@ -278,11 +278,15 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
       engine: ref.read(buddyTtsProvider)(),
       phrasing: widget.setup.phrasing,
     );
-    final preferences = ref.read(settingsProvider).valueOrNull ?? AppSettings.defaults;
+    final preferences =
+        ref.read(settingsProvider).valueOrNull ?? AppSettings.defaults;
     if (preferences.tutorOverride != false) {
-      _coach = BuddyCoach(tutor: TutorService(ref.read(engineFacadeProvider)),
-        options: preferences.tutorOptions, speaker: _speaker,
-        userSide: widget.setup.userSide);
+      _coach = BuddyCoach(
+        tutor: TutorService(ref.read(engineFacadeProvider)),
+        options: preferences.tutorOptions,
+        speaker: _speaker,
+        userSide: widget.setup.userSide,
+      );
     }
     final repo = ref.read(matchRepositoryProvider);
     final buddyType = 'ai:${widget.setup.difficulty.name}';
@@ -457,10 +461,15 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
       // The user's answer, remembered — so the next match does not ask again.
       // A single-column write, and the same column the Settings switch reads:
       // see SettingsRepository.markBuddyMicRefused for both reasons.
-      unawaited(_settings.markBuddyMicRefused().catchError(
-            (Object error, StackTrace stack) => CrashLog.instance
-                .record(error, stack: stack, source: 'buddy-mic-refused'),
-          ));
+      unawaited(
+        _settings.markBuddyMicRefused().catchError(
+          (Object error, StackTrace stack) => CrashLog.instance.record(
+            error,
+            stack: stack,
+            source: 'buddy-mic-refused',
+          ),
+        ),
+      );
     }
   }
 
@@ -561,14 +570,19 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
   /// all, which is what the second pair of labels says.
   Future<void> _openDicePad() async {
     final opening = _openingNeeded;
+    final l10n = appLocalizationsOf(context);
     final dice = await showModalBottomSheet<Dice>(
       context: context,
       builder: (_) => _DicePad(
         caption: opening
-            ? 'One die each. Which face is whose is what decides who starts.'
-            : 'The two faces on the table, in either order.',
-        firstLabel: opening ? "White's die" : 'One die',
-        secondLabel: opening ? "Black's die" : 'The other',
+            ? l10n.buddyDiceOpeningCaption
+            : l10n.buddyDiceRegularCaption,
+        firstLabel: opening
+            ? l10n.buddyDiceOpeningFirst
+            : l10n.buddyDiceRegularFirst,
+        secondLabel: opening
+            ? l10n.buddyDiceOpeningSecond
+            : l10n.buddyDiceRegularSecond,
       ),
     );
     if (dice == null || !mounted) return;
@@ -634,11 +648,11 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
   /// throw is the backstop rather than the user experience: a dead button that
   /// says why is what the digital game does and what this does.
   bool get _canDouble => buddyDoubleAvailable(
-        controller: _controller,
-        awaitingRoll: _session.awaitingRoll,
-        cubeless: _session.cubeless,
-        userSide: _session.userSide,
-      );
+    controller: _controller,
+    awaitingRoll: _session.awaitingRoll,
+    cubeless: _session.cubeless,
+    userSide: _session.userSide,
+  );
 
   /// One sentence explaining why a tap on the disabled Double just did nothing
   /// — the one thing the button itself cannot say. The two rule clauses are
@@ -651,52 +665,51 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
   /// your turn." while the user was standing at exactly that gate on exactly
   /// their turn.
   String _doubleBlockedReason() {
+    final l10n = appLocalizationsOf(context);
     final c = _controller;
     if (c == null) {
-      return 'There is no game to double in yet — the opening throw comes '
-          'first.';
+      return l10n.buddyDoubleNoGame;
     }
     final s = c.state;
     if (!_session.awaitingRoll ||
         !c.awaitingHumanTurn ||
         s.turn != _session.userSide) {
-      return 'You can only double before rolling, on your turn.';
+      return l10n.buddyDoubleBeforeRoll;
     }
     if (s.isCrawfordGame) {
-      return 'No doubling in the Crawford game — this single game decides '
-          'the match.';
+      return l10n.buddyDoubleCrawford;
     }
     if (s.cube.owner != null && s.cube.owner != s.turn) {
-      return 'Only the cube owner can double, and the other side owns it '
-          'right now.';
+      return l10n.buddyDoubleNotOwner;
     }
-    return 'Doubling is not available right now.';
+    return l10n.buddyDoubleUnavailable;
   }
 
   void _explain(String reason) => ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          behavior: SnackBarBehavior.floating,
-          margin: const EdgeInsets.only(bottom: 104, left: 12, right: 12),
-          content: Text(reason),
-        ),
-      );
+    SnackBar(
+      behavior: SnackBarBehavior.floating,
+      margin: const EdgeInsets.only(bottom: 104, left: 12, right: 12),
+      content: Text(reason),
+    ),
+  );
 
   // --- the screen ----------------------------------------------------------
 
   @override
   // See [HomeScreen] for why every screen splits build/_build.
   Widget build(BuildContext context) => AnalyticsScreenView(
-        name: AnalyticsScreens.buddyGame,
-        child: _build(context),
-      );
+    name: AnalyticsScreens.buddyGame,
+    child: _build(context),
+  );
 
   Widget _build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(_contextLine()),
         actions: <Widget>[
           IconButton(
-            tooltip: 'Fix the aim',
+            tooltip: l10n.buddyFixAim,
             icon: const Icon(Icons.center_focus_strong_outlined),
             onPressed: _session.phase == BuddyPhase.over ? null : _recalibrate,
           ),
@@ -735,14 +748,20 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
   /// "You 1–0 Buddy · to 3 · Game 2", or the mode's name before there is a
   /// game to say anything about.
   String _contextLine() {
+    final l10n = appLocalizationsOf(context);
     final c = _controller;
-    if (c == null) return 'Play with Buddy';
+    if (c == null) return l10n.buddyContextBeforeGame;
     final match = c.match;
     final (you, buddy) = _session.userSide == Player.white
         ? (match.whiteScore, match.blackScore)
         : (match.blackScore, match.whiteScore);
     final number = c.gameNumber < 1 ? 1 : c.gameNumber;
-    return 'You $you–$buddy Buddy · to ${_session.matchLength} · Game $number';
+    return l10n.buddyContextMatchScore(
+      you.toString(),
+      buddy.toString(),
+      _session.matchLength.toString(),
+      number.toString(),
+    );
   }
 
   /// The readability light: a colour, an icon, the cause in words, and — when
@@ -753,13 +772,17 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
   /// listening to a screen reader.
   Widget _light(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = appLocalizationsOf(context);
     final reading = _session.readability;
     final needsFix =
         _session.needsRecalibration || _session.phase == BuddyPhase.calibrating;
     final (Color tone, IconData icon) = switch (reading?.level) {
       null => (theme.colorScheme.onSurfaceVariant, Icons.visibility_outlined),
       ReadabilityLevel.green => (Colors.green.shade700, Icons.visibility),
-      ReadabilityLevel.amber => (Colors.amber.shade800, Icons.back_hand_outlined),
+      ReadabilityLevel.amber => (
+        Colors.amber.shade800,
+        Icons.back_hand_outlined,
+      ),
       ReadabilityLevel.red => (Colors.red.shade700, Icons.visibility_off),
     };
     return SizedBox(
@@ -775,7 +798,7 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
                 // `Readability.message` is written to be shown as it stands —
                 // the same contract `CalibrationResult.message` has.
                 key: const Key('buddy-readability'),
-                reading?.message ?? 'Buddy is looking at the board.',
+                buddyReadabilityMessage(reading, l10n),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: theme.textTheme.bodySmall?.copyWith(color: tone),
@@ -788,7 +811,7 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
                 style: FilledButton.styleFrom(
                   visualDensity: VisualDensity.compact,
                 ),
-                child: const Text('Fix the aim'),
+                child: Text(l10n.buddyFixAim),
               ),
             ],
           ],
@@ -809,14 +832,15 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
     if (opening is CameraUnavailable) {
       return _Placeholder(
         icon: Icons.no_photography_outlined,
-        message: '${opening.message}\n\nYou can still play the match: type '
-            'each roll on the dice pad and tap your plays out on the board '
-            'below.',
+        message: appLocalizationsOf(context).buddyCameraUnavailablePlay(
+          buddyCameraErrorMessage(opening.message, appLocalizationsOf(context)),
+        ),
       );
     }
     final size = _frameSize;
-    final aspect =
-        size == null || size.height == 0 ? 4 / 3 : size.width / size.height;
+    final aspect = size == null || size.height == 0
+        ? 4 / 3
+        : size.width / size.height;
     return Center(
       child: AspectRatio(
         aspectRatio: aspect,
@@ -845,9 +869,9 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
   Widget _mirror(BuildContext context) {
     final c = _controller;
     if (c == null) {
-      return const _Placeholder(
+      return _Placeholder(
         icon: Icons.casino_outlined,
-        message: 'Buddy is waiting for the throw that starts the match.',
+        message: appLocalizationsOf(context).buddyWaitingForOpening,
       );
     }
     final (whiteDice, blackDice) = persistentDice(c.game.events);
@@ -947,11 +971,11 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
   }
 
   String _promptLine() {
+    final l10n = appLocalizationsOf(context);
     final c = _controller;
     if (_session.needsRecalibration ||
         _session.phase == BuddyPhase.calibrating) {
-      return 'Buddy has lost the board. Fix the aim and the match carries on '
-          'where it stopped.';
+      return l10n.buddyPromptLostBoard;
     }
     return switch (_session.phase) {
       // A pause is perception's, not the user's: whatever the user was already
@@ -960,10 +984,10 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
       // Take/Drop would be the screen contradicting itself, so the outage line
       // is the FALLBACK — what is left to say when the only thing outstanding
       // is something the camera has to answer.
-      BuddyPhase.paused => _userQuestionLine() ??
-          'Waiting for a picture Buddy can read. Nothing is lost.',
+      BuddyPhase.paused =>
+        _userQuestionLine() ?? l10n.buddyPromptWaitingPicture,
       BuddyPhase.awaitingDice when _session.needsManualDice =>
-        'Buddy cannot find the dice. Type the roll instead.',
+        l10n.buddyPromptTypeDice,
       BuddyPhase.awaitingDice => _throwLine(c),
       BuddyPhase.awaitingPlay => _kPlayLine,
       BuddyPhase.objecting => _objectionLine,
@@ -971,12 +995,12 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
       // Falls through to the user's own question for the same reason the
       // paused case does: once the escalation is up, the thing outstanding is
       // something only the person at the board can answer.
-      BuddyPhase.verifyingPlacement => _userQuestionLine() ??
-          "Make Buddy's move on the board, then Buddy will carry on.",
+      BuddyPhase.verifyingPlacement =>
+        _userQuestionLine() ?? l10n.buddyPromptMakeMove,
       BuddyPhase.awaitingCubeAnswer => _kCubeLine,
-      BuddyPhase.thinking => 'Buddy is thinking.',
+      BuddyPhase.thinking => l10n.buddyPromptThinking,
       BuddyPhase.over => _outcomeLine(),
-      BuddyPhase.calibrating => 'Waiting for a calibration.',
+      BuddyPhase.calibrating => l10n.buddyPromptWaitingCalibration,
     };
   }
 
@@ -996,10 +1020,10 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
     return null;
   }
 
-  static const String _kPlayLine =
-      'Make your play on the board. Tap it out here if Buddy does not see it.';
-  static const String _kCandidateLine = 'Which play was it?';
-  static const String _kCubeLine = 'Buddy doubles. Take or drop?';
+  String get _kPlayLine => appLocalizationsOf(context).buddyPromptPlay;
+  String get _kCandidateLine =>
+      appLocalizationsOf(context).buddyPromptWhichPlay;
+  String get _kCubeLine => appLocalizationsOf(context).buddyPromptCube;
 
   /// What Buddy expects against what it sees, in the words of the region that
   /// disagrees.
@@ -1017,34 +1041,40 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
   /// and buy nothing — and this slot has a fixed height, as every band but the
   /// two pictures does.
   String get _mirrorLine {
-    final first = _session.placementDiscrepancies.firstOrNull;
-    return first == null
-        ? 'Buddy still cannot see its move. The board below is the position it '
-            'is holding.'
-        : 'Buddy still cannot see its move — ${first.message}.';
+    final l10n = appLocalizationsOf(context);
+    final discrepancy = _session.placementDiscrepancies.firstOrNull;
+    if (discrepancy == null) return l10n.buddyPromptMirrorNoDetail;
+    final detail = buddyPointDiscrepancyMessage(
+      PointDiscrepancy(
+        region: discrepancy.region,
+        pointNumber: discrepancy.pointNumber,
+        expected: discrepancy.side,
+        observed: discrepancy.observedColour,
+      ),
+      l10n,
+    );
+    return l10n.buddyPromptBeliefMirror(detail);
   }
 
   /// Word for word what Buddy just said out loud. The transcript and the
   /// prompt are two channels for one sentence, not two sentences.
-  String get _objectionLine => _session.objection == null
-      ? "That isn't a legal play."
-      : "That isn't a legal play. ${_session.objection}";
+  String get _objectionLine => appLocalizationsOf(context).buddyPromptNotLegal;
 
   /// Whose dice are on the table. A hand throws for both sides in this mode,
   /// so which pair to pick up is a real question and the screen answers it.
   String _throwLine(GameController? c) {
-    if (_openingNeeded) return 'Throw the opening dice — one die each.';
+    final l10n = appLocalizationsOf(context);
+    if (_openingNeeded) return l10n.buddyThrowOpening;
     return c!.state.turn == _session.userSide
-        ? 'Throw your dice.'
-        : "Throw Buddy's dice.";
+        ? l10n.buddyThrowUser
+        : l10n.buddyThrowBuddy;
   }
 
   String _outcomeLine() {
+    final l10n = appLocalizationsOf(context);
     final winner = _controller?.match.winner;
-    if (winner == null) return 'The match is over.';
-    return winner == _session.userSide
-        ? 'You win the match.'
-        : 'Buddy wins the match.';
+    if (winner == null) return l10n.buddyMatchOver;
+    return winner == _session.userSide ? l10n.buddyYouWin : l10n.buddyBuddyWins;
   }
 
   /// The buttons that answer whatever the prompt is asking.
@@ -1061,6 +1091,7 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
   /// The order is the scheduler's own priority in `BuddySession._derive`, so
   /// the slot can never show an answer to a question that has been overtaken.
   Widget _promptActions(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     // First, because it is first in `_derive` too: a pending placement outranks
     // everything the controller wants next, and while the escalation is up
     // these two are the ONLY forward paths — the dice are not being asked for,
@@ -1071,14 +1102,14 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
           Expanded(
             child: OutlinedButton(
               onPressed: _skipPlacement,
-              child: const Text('Skip this check'),
+              child: Text(l10n.buddySkipCheck),
             ),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: FilledButton(
               onPressed: _retryPlacement,
-              child: const Text("I've fixed it"),
+              child: Text(l10n.buddyFixedIt),
             ),
           ),
         ],
@@ -1093,14 +1124,14 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
           Expanded(
             child: OutlinedButton(
               onPressed: () => _session.answerDouble(CubeAction.drop),
-              child: const Text('Drop'),
+              child: Text(l10n.buddyDrop),
             ),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: FilledButton(
               onPressed: () => _session.answerDouble(CubeAction.take),
-              child: const Text('Take'),
+              child: Text(l10n.buddyTake),
             ),
           ),
         ],
@@ -1127,7 +1158,7 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
           Expanded(
             child: FilledButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Done'),
+              child: Text(l10n.buddyDone),
             ),
           ),
         ],
@@ -1146,7 +1177,7 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
     return SizedBox(
       height: _kTranscriptHeight,
       child: Semantics(
-        label: 'What Buddy said',
+        label: appLocalizationsOf(context).buddyTranscriptLabel,
         child: SingleChildScrollView(
           // The scroll opens at the END of the content, so the newest line is
           // the one on screen without a controller animating anything into
@@ -1163,10 +1194,7 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
                     // Only the newest, or a screen reader would re-read the
                     // whole match every time Buddy opened its mouth.
                     liveRegion: i == _lines.length - 1,
-                    child: Text(
-                      line.text,
-                      style: theme.textTheme.bodySmall,
-                    ),
+                    child: Text(line.text, style: theme.textTheme.bodySmall),
                   ),
               ],
             ),
@@ -1184,15 +1212,16 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
   /// doubling is over for the turn), so the two buttons it replaces are two
   /// disabled buttons.
   Widget _controls(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     final buttons = _entry.active
         ? <Widget>[
             OutlinedButton(
               onPressed: _entry.canUndo ? _entry.undo : null,
-              child: const Text('Undo'),
+              child: Text(l10n.buddyUndo),
             ),
             FilledButton(
               onPressed: _entry.canConfirm ? _entry.confirm : null,
-              child: const Text('Confirm'),
+              child: Text(l10n.buddyConfirm),
             ),
           ]
         : <Widget>[
@@ -1200,7 +1229,7 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
               key: const Key('buddy-dice-button'),
               onPressed: _session.awaitingRoll ? _openDicePad : null,
               icon: const Icon(Icons.casino_outlined, size: 18),
-              label: const Text('Dice'),
+              label: Text(l10n.buddyDice),
             ),
             // Suppressed with the rest of the cube in a cubeless match, exactly
             // as the digital screens suppress their three cube surfaces
@@ -1211,7 +1240,7 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
                 child: OutlinedButton.icon(
                   onPressed: _canDouble ? _offerDouble : null,
                   icon: const Icon(Icons.control_point_duplicate, size: 18),
-                  label: const Text('Double'),
+                  label: Text(l10n.buddyDouble),
                 ),
               ),
           ];
@@ -1277,8 +1306,7 @@ class _Placeholder extends StatelessWidget {
                   // inside a FittedBox lays itself out on one endless line and
                   // is then scaled to nothing.
                   child: ConstrainedBox(
-                    constraints:
-                        BoxConstraints(maxWidth: constraints.maxWidth),
+                    constraints: BoxConstraints(maxWidth: constraints.maxWidth),
                     child: Text(
                       message,
                       textAlign: TextAlign.center,
@@ -1329,6 +1357,7 @@ class _DicePadState extends State<_DicePad> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = appLocalizationsOf(context);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
@@ -1336,7 +1365,7 @@ class _DicePadState extends State<_DicePad> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text('What did you throw?', style: theme.textTheme.titleMedium),
+            Text(l10n.buddyDicePadTitle, style: theme.textTheme.titleMedium),
             const SizedBox(height: 4),
             Text(widget.caption, style: theme.textTheme.bodySmall),
             const SizedBox(height: 16),
@@ -1351,7 +1380,7 @@ class _DicePadState extends State<_DicePad> {
               style: FilledButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 16),
               ),
-              child: const Text('Enter roll'),
+              child: Text(l10n.buddyEnterRoll),
             ),
           ],
         ),
@@ -1359,32 +1388,36 @@ class _DicePadState extends State<_DicePad> {
     );
   }
 
-  Widget _row(String label, String die, int? chosen, ValueChanged<int> onPick) =>
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _row(
+    String label,
+    String die,
+    int? chosen,
+    ValueChanged<int> onPick,
+  ) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Text(label, style: Theme.of(context).textTheme.labelMedium),
+      const SizedBox(height: 4),
+      Row(
         children: <Widget>[
-          Text(label, style: Theme.of(context).textTheme.labelMedium),
-          const SizedBox(height: 4),
-          Row(
-            children: <Widget>[
-              for (var face = 1; face <= 6; face++) ...<Widget>[
-                if (face > 1) const SizedBox(width: 8),
-                Expanded(
-                  child: chosen == face
-                      ? FilledButton(
-                          key: Key('buddy-die-$die-$face'),
-                          onPressed: () => onPick(face),
-                          child: Text('$face'),
-                        )
-                      : OutlinedButton(
-                          key: Key('buddy-die-$die-$face'),
-                          onPressed: () => onPick(face),
-                          child: Text('$face'),
-                        ),
-                ),
-              ],
-            ],
-          ),
+          for (var face = 1; face <= 6; face++) ...<Widget>[
+            if (face > 1) const SizedBox(width: 8),
+            Expanded(
+              child: chosen == face
+                  ? FilledButton(
+                      key: Key('buddy-die-$die-$face'),
+                      onPressed: () => onPick(face),
+                      child: Text('$face'),
+                    )
+                  : OutlinedButton(
+                      key: Key('buddy-die-$die-$face'),
+                      onPressed: () => onPick(face),
+                      child: Text('$face'),
+                    ),
+            ),
+          ],
         ],
-      );
+      ),
+    ],
+  );
 }

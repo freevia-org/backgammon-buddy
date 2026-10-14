@@ -10,6 +10,7 @@ import '../../buddy/buddy_session.dart';
 import '../../buddy/speaker.dart';
 import '../../data/app_settings.dart';
 import '../../data/settings_repository.dart';
+import '../../l10n/localization_lookup.dart';
 import '../setup_options.dart';
 import 'calibration_screen.dart';
 
@@ -53,15 +54,14 @@ class BuddySetup {
     Player? buddySide,
     BuddySeat? seat,
     BuddyPhrasing? phrasing,
-  }) =>
-      BuddySetup(
-        matchLength: matchLength ?? this.matchLength,
-        cubeless: cubeless ?? this.cubeless,
-        difficulty: difficulty ?? this.difficulty,
-        buddySide: buddySide ?? this.buddySide,
-        seat: seat ?? this.seat,
-        phrasing: phrasing ?? this.phrasing,
-      );
+  }) => BuddySetup(
+    matchLength: matchLength ?? this.matchLength,
+    cubeless: cubeless ?? this.cubeless,
+    difficulty: difficulty ?? this.difficulty,
+    buddySide: buddySide ?? this.buddySide,
+    seat: seat ?? this.seat,
+    phrasing: phrasing ?? this.phrasing,
+  );
 }
 
 /// What happens once there is both a set of choices and a learned board.
@@ -69,11 +69,12 @@ class BuddySetup {
 /// Required rather than defaulted, because the destination is not this
 /// screen's to decide: Task 13's game screen is what a match starts on, and
 /// until it exists the caller says what to do instead.
-typedef BuddyLaunch = void Function(
-  BuildContext context,
-  BuddySetup setup,
-  CalibrationOutcome outcome,
-);
+typedef BuddyLaunch =
+    void Function(
+      BuildContext context,
+      BuddySetup setup,
+      CalibrationOutcome outcome,
+    );
 
 /// The setup screen for a match against a real board.
 ///
@@ -93,8 +94,8 @@ class BuddySetupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PhysicalBuddyGate(
-        builder: (_) => _EnabledBuddySetupScreen(launch: launch),
-      );
+    builder: (_) => _EnabledBuddySetupScreen(launch: launch),
+  );
 }
 
 class _EnabledBuddySetupScreen extends ConsumerStatefulWidget {
@@ -133,24 +134,25 @@ class _BuddySetupScreenState extends ConsumerState<_EnabledBuddySetupScreen> {
   }
 
   BuddySetup get _setup => BuddySetup(
-        matchLength: _matchLength,
-        cubeless: _cubeless,
-        difficulty: _difficulty,
-        buddySide: _buddySide,
-        seat: _seat,
-        phrasing: _phrasing,
-      );
+    matchLength: _matchLength,
+    cubeless: _cubeless,
+    difficulty: _difficulty,
+    buddySide: _buddySide,
+    seat: _seat,
+    phrasing: _phrasing,
+  );
 
   @override
   // See [HomeScreen] for why every screen splits build/_build.
   Widget build(BuildContext context) => AnalyticsScreenView(
-        name: AnalyticsScreens.buddySetup,
-        child: _build(context),
-      );
+    name: AnalyticsScreens.buddySetup,
+    child: _build(context),
+  );
 
   Widget _build(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Play with Buddy')),
+      appBar: AppBar(title: Text(l10n.buddySetupTitle)),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
@@ -173,14 +175,18 @@ class _BuddySetupScreenState extends ConsumerState<_EnabledBuddySetupScreen> {
                     ),
                     const SizedBox(height: 24),
                     SetupSection(
-                      label: 'Buddy plays',
+                      label: l10n.buddySetupSideLabel,
                       child: SegmentedButton<Player>(
                         showSelectedIcon: false,
-                        segments: const [
+                        segments: [
                           ButtonSegment(
-                              value: Player.white, label: Text('White')),
+                            value: Player.white,
+                            label: Text(l10n.white),
+                          ),
                           ButtonSegment(
-                              value: Player.black, label: Text('Black')),
+                            value: Player.black,
+                            label: Text(l10n.black),
+                          ),
                         ],
                         selected: {_buddySide},
                         onSelectionChanged: (s) =>
@@ -189,15 +195,18 @@ class _BuddySetupScreenState extends ConsumerState<_EnabledBuddySetupScreen> {
                     ),
                     const SizedBox(height: 24),
                     SetupSection(
-                      label: 'Your seat',
+                      label: l10n.buddySetupSeatLabel,
                       child: SegmentedButton<BuddySeat>(
                         showSelectedIcon: false,
-                        segments: const [
+                        segments: [
                           ButtonSegment(
-                              value: BuddySeat.near,
-                              label: Text('By the phone')),
+                            value: BuddySeat.near,
+                            label: Text(l10n.buddySetupSeatNear),
+                          ),
                           ButtonSegment(
-                              value: BuddySeat.far, label: Text('Opposite')),
+                            value: BuddySeat.far,
+                            label: Text(l10n.buddySetupSeatFar),
+                          ),
                         ],
                         selected: {_seat},
                         onSelectionChanged: (s) =>
@@ -206,22 +215,23 @@ class _BuddySetupScreenState extends ConsumerState<_EnabledBuddySetupScreen> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Which side of the board you are on. It is how Buddy '
-                      'numbers the points, and how it tells your opening die '
-                      'from its own.',
+                      l10n.buddySetupSeatHelp,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     const SizedBox(height: 24),
                     SetupSection(
-                      label: 'How Buddy talks',
+                      label: l10n.buddySetupVoiceLabel,
                       child: SegmentedButton<BuddyPhrasing>(
                         showSelectedIcon: false,
-                        segments: const [
+                        segments: [
                           ButtonSegment(
-                              value: BuddyPhrasing.terse, label: Text('Terse')),
+                            value: BuddyPhrasing.terse,
+                            label: Text(l10n.buddySetupVoiceTerse),
+                          ),
                           ButtonSegment(
-                              value: BuddyPhrasing.friendly,
-                              label: Text('Friendly')),
+                            value: BuddyPhrasing.friendly,
+                            label: Text(l10n.buddySetupVoiceFriendly),
+                          ),
                         ],
                         selected: {_phrasing},
                         onSelectionChanged: (s) =>
@@ -231,10 +241,8 @@ class _BuddySetupScreenState extends ConsumerState<_EnabledBuddySetupScreen> {
                     const SizedBox(height: 8),
                     Text(
                       _phrasing == BuddyPhrasing.terse
-                          ? '"13/8, 24/22" — notation, the way two players at a '
-                              'board actually talk.'
-                          : '"Move one checker from 13 to 8, and one from 24 to '
-                              '22."',
+                          ? l10n.buddySetupVoiceTerseHelp
+                          : l10n.buddySetupVoiceFriendlyHelp,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     const SizedBox(height: 8),
@@ -243,9 +251,7 @@ class _BuddySetupScreenState extends ConsumerState<_EnabledBuddySetupScreen> {
                       onChanged: (v) => setState(() => _cubeless = v),
                     ),
                     const SizedBox(height: 12),
-                    const Text('Tutor commentary and move explanations follow your saved '
-                        'Tutor preferences in Settings. Buddy gives occasional feedback after '
-                        'your plays; typed dice and manual moves work the same way.'),
+                    Text(l10n.buddySetupTutorHelp),
                     const SizedBox(height: 40),
                     SizedBox(
                       width: double.infinity,
@@ -254,7 +260,7 @@ class _BuddySetupScreenState extends ConsumerState<_EnabledBuddySetupScreen> {
                         style: FilledButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 18),
                         ),
-                        child: const Text('Calibrate the board'),
+                        child: Text(l10n.buddySetupCalibrate),
                       ),
                     ),
                   ],
@@ -281,11 +287,7 @@ class _BuddySetupScreenState extends ConsumerState<_EnabledBuddySetupScreen> {
             // the board — so what comes back wins, and the setup that goes on
             // to build a session is the reconciled one rather than the guess.
             Navigator.of(routeContext).pop();
-            widget.launch(
-              context,
-              setup.copyWith(seat: outcome.seat),
-              outcome,
-            );
+            widget.launch(context, setup.copyWith(seat: outcome.seat), outcome);
           },
         ),
       ),

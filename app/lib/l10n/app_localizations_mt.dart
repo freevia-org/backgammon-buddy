@@ -12,7 +12,7 @@ class AppLocalizationsMt extends AppLocalizations {
   String get homeTagline => 'Ittejjeb il-logħba tiegħek ma’ kowċ';
 
   @override
-  String get settings => 'Settings';
+  String get settings => 'Issettjar';
 
   @override
   String get playVsComputer => 'Ilgħab kontra l-kompjuter';
@@ -2718,4 +2718,498 @@ class AppLocalizationsMt extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Bidla ssuġġerita';
+
+  @override
+  String get buddySetupTitle => 'Ilgħab ma\' Buddy';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy jilgħab';
+
+  @override
+  String get buddySetupSeatLabel => 'Is-sede tiegħek';
+
+  @override
+  String get buddySetupSeatNear => 'Bit-telefon';
+
+  @override
+  String get buddySetupSeatFar => 'Oppost';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Fuq liema naħa tal-bord int. Huwa kif Buddy jgħodd il-punti, u kif jgħidlek il-ftuħ tiegħek minn tiegħu stess.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Kif titkellem Buddy';
+
+  @override
+  String get buddySetupVoiceTerse => 'Fil-qosor';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Ħbiberija';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '\"13/8, 24/22\" - notazzjoni, il-mod kif żewġ plejers fuq bord fil-fatt jitkellmu.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '\"Mexxi kontrollur wieħed minn 13 għal 8, u wieħed minn 24 għal 22.\"';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Il-kummentarju tat-tutur u l-ispjegazzjonijiet taċ-ċaqliq isegwu l-preferenzi ffrankati tiegħek tat-Tuturi f\'Settings. Buddy jagħti feedback okkażjonali wara l-logħob tiegħek; dadi ittajpjati u movimenti manwali jaħdmu bl-istess mod.';
+
+  @override
+  String get buddySetupCalibrate => 'Ikkalibra l-bord';
+
+  @override
+  String get buddyFixAim => 'Waħħal l-għan';
+
+  @override
+  String get buddyWaitingForOpening =>
+      'Buddy qed jistenna t-throw li jibda l-partita.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy tilef il-bord. Waħħal l-għan u l-logħba tkompli fejn waqfet.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Stennija għal stampa Buddy jista \'jaqra. Xejn huwa mitluf.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy ma jistax isib id-dadi. Ittajpja r-roll minflok.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Agħmel il-logħob tiegħek fuq il-bord. Tektek hawn jekk Buddy ma tarahx.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Liema mossa lgħabt?';
+
+  @override
+  String get buddyPromptCube =>
+      'Buddy jipproponi d-doppju. Taċċetta jew tirrifjuta?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Agħmel il-mossa ta \'Buddy fuq il-bord, imbagħad Buddy se jkompli.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy qed taħseb.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Stennija għal kalibrazzjoni.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy għadu ma jistax jara ċ-ċaqliq tiegħu. Il-bord hawn taħt huwa l-pożizzjoni li qed iżomm.';
+
+  @override
+  String get buddyPromptNotLegal => 'Din mhix mossa legali.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Din mhix mossa legali. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening =>
+      'Tarmi d-dadi tal-ftuħ - die wieħed kull wieħed.';
+
+  @override
+  String get buddyThrowUser => 'Tarmi d-dadi tiegħek.';
+
+  @override
+  String get buddyThrowBuddy => 'Itfa’ d-dadi ta’ Buddy.';
+
+  @override
+  String get buddyMatchOver => 'Il-partita spiċċat.';
+
+  @override
+  String get buddyYouWin => 'Inti tirbaħ il-partita.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy jirbaħ il-partita.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Għad m\'hemm l-ebda logħba biex tirdoppja — it-tefta tal-ftuħ tiġi l-ewwel.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Tista \'biss tirdoppja qabel irrumblar, min-naħa tiegħek.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'L-ebda rduppjar fil-logħba Crawford — din il-logħba waħda tiddeċiedi l-logħba.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Is-sid tal-kubu biss jista’ jirdoppja, u n-naħa l-oħra tippossjediha bħalissa.';
+
+  @override
+  String get buddyDoubleUnavailable =>
+      'L-irduppjar mhuwiex disponibbli bħalissa.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy qed iħares lejn il-bord.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Xorta tista\' tilgħab il-logħba: ittajpja kull roll fuq il-kuxxinett tad-dadi u tektek il-logħob tiegħek fuq il-bord hawn taħt.';
+
+  @override
+  String get buddySkipCheck => 'Aqbeż din il-verifika';
+
+  @override
+  String get buddyFixedIt => 'Irranġajt';
+
+  @override
+  String get buddyDrop => 'Irrifjuta';
+
+  @override
+  String get buddyTake => 'Aċċetta';
+
+  @override
+  String get buddyDone => 'Magħmul';
+
+  @override
+  String get buddyTranscriptLabel => 'Dak li qal Buddy';
+
+  @override
+  String get buddyUndo => 'Ħoll';
+
+  @override
+  String get buddyConfirm => 'Ikkonferma';
+
+  @override
+  String get buddyDice => 'Dadi';
+
+  @override
+  String get buddyDouble => 'Doppju';
+
+  @override
+  String get buddyDicePadTitle => 'X’tefgħet?';
+
+  @override
+  String get buddyEnterRoll => 'Daħħal it-tefa’';
+
+  @override
+  String get buddyContextBeforeGame => 'Ilgħab ma\' Buddy';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Inti $you–$buddy Buddy · għal $length · Logħba $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Il-kamera ma setgħetx tinbeda. Iċċekkja l-permessi u erġa\' pprova.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy m\'għandux permess biex juża l-kamera. Ħalli aċċess għall-kamera fis-settings tat-tagħmir tiegħek u erġa\' pprova.';
+
+  @override
+  String get buddyCalibrationTitle => 'Uri Buddy il-bord';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Iddreggja l-erba \'manki ta\' barra fuq il-kantunieri tal-feltru - mhux ir-rimm tal-injam - u l-erba \'żgħar fuq il-ħjatat fejn iċ-ċappetta tiltaqa\' mat-truf \'il bogħod u qrib.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Iddreggja kull manku fuq kantuniera tal-feltru - il-wiċċ tal-logħob, mhux ir-rimm tal-injam madwaru.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Imbagħad iċċekkja t-tnax-il linja \'l isfel kull nofs: kull wieħed għandu jimxi tul punt tal-bord tiegħek. Linja li titlef il-punt tagħha hija manku li jeħtieġ nudging.';
+
+  @override
+  String get buddyCalibrationSeatQuestion =>
+      'Liema nofs huwa l-bord tad-dar tiegħek?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'L-eqreb nofs il-qiegħ tal-istampa. Dan huwa dak li jiffissa n-numri tal-punti, sabiex il-linji ta \'hawn fuq jimxu magħha.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Żomm it-telefon xorta. Buddy qed jistenna li l-istampa tissetilja qabel ma titgħallem dan il-bord.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Dan il-bord tiegħek?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy qed iħares lejn il-bord li għadu kemm tgħallem.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'L-irġiel imfassla fuq l-istampa huma dak li Buddy jaħseb li huwa fuq il-bord. Jekk xi ħadd minnhom jinsab fil-post ħażin, ibda mill-ġdid — issa tiswa sekondi u logħba wara.';
+
+  @override
+  String get buddyCalibrationNext => 'Li jmiss';
+
+  @override
+  String get buddyCalibrationBack => 'Lura';
+
+  @override
+  String get buddyCalibrationCapture => 'Qbid';
+
+  @override
+  String get buddyCalibrationStartOver => 'Ibda mill-ġdid';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Jidher sew';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Dawk l-erba \'manki ma jiddeskrivux bord - wieħed minnhom qasmet ieħor. Iddregghom lura lejn il-kantunieri tal-feltru.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Tliet affarijiet l-ewwel';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Ħu d-dadi minn fuq il-bord.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy jitgħallem il-bord vojt issa. Die li jitħalla fuq il-feltru titgħallem bħala parti minnha, u mbagħad Buddy qatt ma jista \'jara d-dadi mill-ġdid din is-sessjoni.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Poġġi l-biċċiet fil-pożizzjoni tal-bidu.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'It-tletin biċċa fil-postijiet magħrufa jgħinu lil Buddy jagħraf iż-żewġ kuluri tal-bord.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Waħħal il-playing field kollu fl-istampa.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Imbagħad ħalli t-telefon fejn ikun. Jekk jiċċaqlaq, Buddy jgħid hekk u tista \'tħeġġeġ il-kantunieri lura.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'X\'tip ta\' bord huwa?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Bord ċatt';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Każ li jintwew';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Bord li jintwew jeħtieġ erba \'manki żejda fuq il-ħjatat taċ-ċappetta.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Il-mod Buddy jara bord reali, u għalhekk ma jistax jibda mingħajr il-kamera. Kull ħaġa oħra fl-app mhix affettwata.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Ħjata taċ-ċappetta $number ta’ 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Bord kantuniera $number ta 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Nudge xellug';
+
+  @override
+  String get buddyNudgeRight => 'Nudge dritt';
+
+  @override
+  String get buddyNudgeUp => 'Mexxi \'l fuq';
+
+  @override
+  String get buddyNudgeDown => 'Nudge isfel';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Dawk l-erba \'kantunieri ma jiddeskrivux bord. Iddreggja kull manku fuq kantuniera tal-playing field u erġa pprova.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Dawk it-tmien punti ma jiddeskrivux bord li jintwew. Poġġi erbgħa fuq il-kantunieri tal-playing-field u erbgħa fuq il-ħjatat taċ-ċappetta, imbagħad erġa\' pprova.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Ma nistax nagħmel il-bord innifsu - kull parti minnu hija mgħottija, jew mitlufa fid-dell jew dija. Ċara l-bord, żid ftit dawl, u erġa\' pprova.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Ma nistax nagħmel lil $region — xi ħaġa tista\' tkun qed tistrieħ fuqha, jew dik il-kantuniera tal-bord tista\' tkun skura wisq biex taqra. Ċarha, jew żid ftit dawl, u erġa\' pprova.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Iż-żewġ settijiet ta \'kontrolluri jixbħu wisq minn hawn. Aktar dawl, jew angolu b\'inqas dija fuq il-bord, normalment jiffissah.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Il-biċċiet mhumiex fil-pożizzjoni tal-bidu — il-punt $number għandu biċċa tal-kulur ħażin. Erġa’ poġġihom fil-pożizzjoni tal-bidu u kkalibra mill-ġdid.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Tant hemm dawl fuq il-bord li l-kuluri tiegħu qed jaħslu lil xulxin. Dim id-dawl, jew ċċaqlaq it-telefon sabiex il-lampa ma tkunx qed tiddi dritta lura lejha.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Kapaċi naqra dan il-bord, iżda mhux bħala logħba li waslet biex tibda. Issettja l-irġiel għall-bidu ta \'logħba, imbagħad erġa\' ikkalibra.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Nista’ naqra l-bord, iżda minn hawn ma nistax ngħodd b’ċertezza l-biċċiet f’munzell, u għalhekk nista’ niżbalja l-għadd. Normalment jgħin aktar dawl fuq il-punti qrib jew angolu tal-kamera kemxejn ogħla.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Ma nistax nara l-bord kollu. Mexxi l-mowbajl lura, jew drag il-kantunieri fuq il-playing field.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Ma nistax nara l-bord kollu aktar — $region jinsab barra l-istampa. Erġa \'linja l-kamera, jew iċċekkja mill-ġdid il-kantunieri.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition =>
+      'Dik tidher bħall-pożizzjoni tal-bidu.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Ma nara l-ebda biċċa fil-punti tal-pożizzjoni tal-bidu. Erġa’ poġġihom fil-pożizzjoni tal-bidu u pprova mill-ġdid.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Il-bord mhuwiex stabbilit għall-bidu ta\' logħba: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region jidher vojt, iżda l-logħba tibda b\'$side hemmhekk';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return '$region għandu $side fuqu, iżda l-logħba tibda biha vojta';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return '$region għandu $observed fuqu, fejn il-logħba tibda b\'$expected';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Żomm kwiet mument — nitlef il-bord waqt li t-telefon ikun miexi.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'L-istampa li qed ningħata mhix dik li twaqqaf dan il-bord, għalhekk ma nista\' nillinja xejn fiha. Erġa\' waqqaf il-bord minn hawn.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'L-istampa hija ratba wisq biex taqra l-bord minnha. Agħti l-kamera mument biex tiffoka.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Il-bord mhuwiex fejn kien meta tgħallimt. Erġa \'linja l-kantunieri u se nagħżel il-logħba dritt lura.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Xi ħaġa qed tkopri parti mill-bord. Jien se nkompli hekk kif ikun ċar.';
+
+  @override
+  String get buddyReadabilityClear => 'Nista\' nara l-bord.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Id-dawl fuq il-bord inbidel il-kulur, u għalhekk il-bord m\'għadux jidher bħal dak li tgħallimt. Erġa \'linja l-kantunieri taħt dan id-dawl u nagħżel il-logħba dritt lura.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Huwa skur wisq biex taqra l-bord. Ftit aktar dawl u nkompli fejn konna.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Tant hemm dawl fuq il-bord li l-kuluri tiegħu qed jidħlu f\'xulxin. Dim it, jew iċċaqlaq it-telefon sabiex il-lampa ma tkunx qed tiddi dritta lura lejha.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy għadu ma jistax jara ċ-ċaqliq tiegħu — $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nXorta tista\' tilgħab il-logħba: ittajpja kull roll fuq il-kuxxinett tad-dadi u tektek il-logħob tiegħek fuq il-bord hawn taħt.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Il-kamera ma setgħetx tinbeda. Iċċekkja l-permessi u erġa\' pprova.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'il-punt $number';
+  }
+
+  @override
+  String get buddyRegionBar => 'il-bar';
+
+  @override
+  String get buddyRegionWhiteTray => 'trej tal-ħruġ tal-biċċiet bojod';
+
+  @override
+  String get buddyRegionBlackTray => 'trej tal-ħruġ tal-biċċiet suwed';
+
+  @override
+  String get buddyRegionDiceZone => 'in-nofs tal-bord';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Ma nistax nara l-bord kollu. Mexxi l-mowbajl lura, jew drag il-kantunieri fuq il-playing field.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return '(u $number aktar)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Kull plejer jitfa’ dadi wieħed. Jibda min jikseb l-ogħla numru.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'id-die abjad';
+
+  @override
+  String get buddyDiceOpeningSecond => 'id-die iswed';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'Iż-żewġ uċuħ fuq il-mejda, fi kwalunkwe ordni.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Wieħed imut';
+
+  @override
+  String get buddyDiceRegularSecond => 'L-ieħor';
 }

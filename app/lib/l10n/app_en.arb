@@ -1613,5 +1613,266 @@
   "feedbackFieldReproduction": "Steps to reproduce",
   "feedbackFieldExpected": "Expected result",
   "feedbackFieldNeed": "What you wanted to do",
-  "feedbackFieldIdea": "Suggested change"
+  "feedbackFieldIdea": "Suggested change",
+  "buddySetupTitle": "Play with Buddy",
+  "buddySetupSideLabel": "Buddy plays",
+  "buddySetupSeatLabel": "Your seat",
+  "buddySetupSeatNear": "By the phone",
+  "buddySetupSeatFar": "Opposite",
+  "buddySetupSeatHelp": "Which side of the board you are on. It is how Buddy numbers the points, and how it tells your opening die from its own.",
+  "buddySetupVoiceLabel": "How Buddy talks",
+  "buddySetupVoiceTerse": "Terse",
+  "buddySetupVoiceFriendly": "Friendly",
+  "buddySetupVoiceTerseHelp": "“13/8, 24/22” — notation, the way two players at a board actually talk.",
+  "buddySetupVoiceFriendlyHelp": "“Move one checker from 13 to 8, and one from 24 to 22.”",
+  "buddySetupTutorHelp": "Tutor commentary and move explanations follow your saved Tutor preferences in Settings. Buddy gives occasional feedback after your plays; typed dice and manual moves work the same way.",
+  "buddySetupCalibrate": "Calibrate the board",
+  "buddyFixAim": "Fix the aim",
+  "buddyWaitingForOpening": "Buddy is waiting for the throw that starts the match.",
+  "buddyPromptLostBoard": "Buddy has lost the board. Fix the aim and the match carries on where it stopped.",
+  "buddyPromptWaitingPicture": "Waiting for a picture Buddy can read. Nothing is lost.",
+  "buddyPromptTypeDice": "Buddy cannot find the dice. Type the roll instead.",
+  "buddyPromptPlay": "Make your play on the board. Tap it out here if Buddy does not see it.",
+  "buddyPromptWhichPlay": "Which play was it?",
+  "buddyPromptCube": "Buddy doubles. Take or drop?",
+  "buddyPromptMakeMove": "Make Buddy’s move on the board, then Buddy will carry on.",
+  "buddyPromptThinking": "Buddy is thinking.",
+  "buddyPromptWaitingCalibration": "Waiting for a calibration.",
+  "buddyPromptMirrorNoDetail": "Buddy still cannot see its move. The board below is the position it is holding.",
+  "buddyPromptNotLegal": "That isn’t a legal play.",
+  "buddyPromptNotLegalReason": "That isn’t a legal play. {reason}",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyThrowOpening": "Throw the opening dice — one die each.",
+  "buddyThrowUser": "Throw your dice.",
+  "buddyThrowBuddy": "Throw Buddy’s dice.",
+  "buddyMatchOver": "The match is over.",
+  "buddyYouWin": "You win the match.",
+  "buddyBuddyWins": "Buddy wins the match.",
+  "buddyDoubleNoGame": "There is no game to double in yet — the opening throw comes first.",
+  "buddyDoubleBeforeRoll": "You can only double before rolling, on your turn.",
+  "buddyDoubleCrawford": "No doubling in the Crawford game — this single game decides the match.",
+  "buddyDoubleNotOwner": "Only the cube owner can double, and the other side owns it right now.",
+  "buddyDoubleUnavailable": "Doubling is not available right now.",
+  "buddyLookingAtBoard": "Buddy is looking at the board.",
+  "buddyCameraPlayFallback": "You can still play the match: type each roll on the dice pad and tap your plays out on the board below.",
+  "buddySkipCheck": "Skip this check",
+  "buddyFixedIt": "I’ve fixed it",
+  "buddyDrop": "Drop",
+  "buddyTake": "Take",
+  "buddyDone": "Done",
+  "buddyTranscriptLabel": "What Buddy said",
+  "buddyUndo": "Undo",
+  "buddyConfirm": "Confirm",
+  "buddyDice": "Dice",
+  "buddyDouble": "Double",
+  "buddyDicePadTitle": "What did you throw?",
+  "buddyEnterRoll": "Enter roll",
+  "buddyContextBeforeGame": "Play with Buddy",
+  "buddyContextMatchScore": "You {you}–{buddy} Buddy · to {length} · Game {number}",
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraUnavailable": "The camera could not be started. Check permissions and try again.",
+  "buddyCameraPermission": "Backgammon Buddy does not have permission to use the camera. Allow camera access in your device settings and try again.",
+  "buddyCalibrationTitle": "Show Buddy the board",
+  "buddyCalibrationCornersFold": "Drag the four outer handles onto the corners of the felt — not the wooden rim — and the four small ones onto the seams where the hinge meets the far and near edges.",
+  "buddyCalibrationCornersFlat": "Drag each handle onto a corner of the felt — the playing surface, not the wooden rim around it.",
+  "buddyCalibrationCheckLines": "Then check the twelve lines down each half: every one should run along a point of your board. A line that misses its point is a handle that needs nudging.",
+  "buddyCalibrationSeatQuestion": "Which half is your home board?",
+  "buddyCalibrationSeatHelp": "The half nearest the bottom of the picture. This is what fixes the point numbers, so the lines above move with it.",
+  "buddyCalibrationCaptureWait": "Hold the phone still. Buddy is waiting for the picture to settle before it learns this board.",
+  "buddyCalibrationConfirmQuestion": "Is this your board?",
+  "buddyCalibrationConfirmFallback": "Buddy is looking at the board it just learned.",
+  "buddyCalibrationConfirmHelp": "The men drawn over the picture are what Buddy thinks is on the board. If any of them are in the wrong place, start over — it costs seconds now and a game later.",
+  "buddyCalibrationNext": "Next",
+  "buddyCalibrationBack": "Back",
+  "buddyCalibrationCapture": "Capture",
+  "buddyCalibrationStartOver": "Start over",
+  "buddyCalibrationLooksRight": "Looks right",
+  "buddyCalibrationCornersInvalid": "Those four handles do not outline a board — one of them has crossed another. Drag them back to the corners of the felt.",
+  "buddyCalibrationPrepTitle": "Three things first",
+  "buddyCalibrationRemoveDiceTitle": "Take the dice off the board.",
+  "buddyCalibrationRemoveDiceBody": "Buddy learns the bare board now. A die left on the felt is learned as part of it, and then Buddy can never see the dice again this session.",
+  "buddyCalibrationSetupCheckersTitle": "Set the men up for the start of a game.",
+  "buddyCalibrationSetupCheckersBody": "Thirty checkers in known places is how Buddy learns this board’s two colours without being told what they are.",
+  "buddyCalibrationFitBoardTitle": "Fit the whole playing field in the picture.",
+  "buddyCalibrationFitBoardBody": "Then leave the phone where it is. If it moves, Buddy will say so and you can nudge the corners back.",
+  "buddyCalibrationBoardKind": "What kind of board is it?",
+  "buddyCalibrationFlatBoard": "Flat board",
+  "buddyCalibrationFoldingBoard": "Folding case",
+  "buddyCalibrationBoardKindHelp": "A folding board needs four extra handles on the hinge seams.",
+  "buddyCalibrationNoCameraBody": "Buddy Mode watches a real board, so it cannot start without the camera. Everything else in the app is unaffected.",
+  "buddyHandleHingeSeam": "Hinge seam {number} of 4",
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyHandleCorner": "Board corner {number} of 4",
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyNudgeLeft": "Nudge left",
+  "buddyNudgeRight": "Nudge right",
+  "buddyNudgeUp": "Nudge up",
+  "buddyNudgeDown": "Nudge down",
+  "buddyCalibrationProblemCorners": "Those four corners do not outline a board. Drag each handle onto a corner of the playing field and try again.",
+  "buddyCalibrationProblemFoldCorners": "Those eight points do not outline a folding board. Put four on the playing-field corners and four on the hinge seams, then try again.",
+  "buddyCalibrationProblemUnreadable": "I cannot make out the board itself — every part of it is covered, or lost in shadow or glare. Clear the board, add some light, and try again.",
+  "buddyCalibrationProblemRegionUnreadable": "I cannot make out {region} — something may be resting on it, or that corner of the board may be too dark to read. Clear it, or add some light, and try again.",
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCalibrationProblemColours": "The two sets of checkers look too much alike from here. More light, or an angle with less glare on the board, usually fixes it.",
+  "buddyCalibrationProblemWrongChecker": "The checkers are not in the starting position — point {number} is holding the wrong colour. Set the board up for the start of a game, then calibrate again.",
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyCalibrationProblemOverexposed": "There is so much light on the board that its colours are washing into each other. Dim the light, or move the phone so the lamp is not shining straight back at it.",
+  "buddyCalibrationProblemReadBack": "I can read this board, but not as a game about to start. Set the men up for the start of a game, then calibrate again.",
+  "buddyCalibrationProblemStacks": "I can read this board, but I cannot make out how far one checker sits behind another from here — so I would get the numbers wrong. A little more light on the near points, or a slightly higher camera angle, usually fixes it.",
+  "buddyCalibrationProblemNotVisible": "I cannot see the whole board. Move the phone back, or drag the corners onto the playing field.",
+  "buddyConfirmBoardOutOfFrame": "I cannot see the whole board any more — {region} is outside the picture. Line the camera up again, or re-check the corners.",
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmStartingPosition": "That looks like the starting position.",
+  "buddyConfirmNoCheckers": "I cannot see a checker anywhere the game starts. Set the men up for the start of a game and try again.",
+  "buddyConfirmWrongPosition": "The board is not set up for the start of a game: {details}{more}.",
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionEmpty": "{region} looks empty, but the game starts with {side} there",
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionUnexpected": "{region} has {side} on it, but the game starts with it empty",
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionWrongSide": "{region} has {observed} on it, where the game starts with {expected}",
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyReadabilityMotion": "Hold still a moment — I lose the board while the phone is moving.",
+  "buddyReadabilityWrongFrame": "The picture I am being given is not the one this board was set up on, so I cannot line anything up in it. Set the board up again from here.",
+  "buddyReadabilityBlur": "The picture is too soft to read the board from. Give the camera a moment to focus.",
+  "buddyReadabilityCalibrationStale": "The board is not where it was when I learned it. Line the corners up again and I will pick the game straight back up.",
+  "buddyReadabilityOccluded": "Something is covering part of the board. I will carry on as soon as it is clear.",
+  "buddyReadabilityClear": "I can see the board.",
+  "buddyReadabilityColorChanged": "The light on the board has changed colour, so the board no longer looks like the one I learned. Line the corners up again under this light and I will pick the game straight back up.",
+  "buddyReadabilityTooDark": "It is too dark to read the board. A little more light and I will carry on where we were.",
+  "buddyReadabilityTooBright": "There is so much light on the board that its colours are running into each other. Dim it, or move the phone so the lamp is not shining straight back at it.",
+  "buddyPromptBeliefMirror": "Buddy still cannot see its move — {reason}.",
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nYou can still play the match: type each roll on the dice pad and tap your plays out on the board below.",
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraGenericError": "The camera could not be started. Check permissions and try again.",
+  "buddyRegionPoint": "the {number}-point",
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyRegionBar": "the bar",
+  "buddyRegionWhiteTray": "White’s bear-off tray",
+  "buddyRegionBlackTray": "Black’s bear-off tray",
+  "buddyRegionDiceZone": "the middle of the board",
+  "buddyCalibrationProblemVisible": "I cannot see the whole board. Move the phone back, or drag the corners onto the playing field.",
+  "buddyConfirmMore": " (and {number} more)",
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyDiceOpeningCaption": "One die each. Which face is whose is what decides who starts.",
+  "buddyDiceOpeningFirst": "White’s die",
+  "buddyDiceOpeningSecond": "Black’s die",
+  "buddyDiceRegularCaption": "The two faces on the table, in either order.",
+  "buddyDiceRegularFirst": "One die",
+  "buddyDiceRegularSecond": "The other"
 }

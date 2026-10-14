@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "QR-kód a játszmához való csatlakozáshoz",
   "lanJoinInstruction": "A másik eszközön nyissa meg a Közeli játékot, válassza a Csatlakozás lehetőséget, majd olvassa be ezt a QR-kódot.",
   "homePlayWithBuddy": "Játék Buddyval",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Játssz a Buddy-vel",
+  "buddySetupSideLabel": "Buddy játszik",
+  "buddySetupSeatLabel": "A te ülésed",
+  "buddySetupSeatNear": "Telefonon keresztül",
+  "buddySetupSeatFar": "Szemben",
+  "buddySetupSeatHelp": "A tábla melyik oldalán állsz. A Buddy így számozza a pontokat, és hogyan különbözteti meg a nyitókockát a sajátjától.",
+  "buddySetupVoiceLabel": "Hogyan beszél Buddy",
+  "buddySetupVoiceTerse": "Tömör",
+  "buddySetupVoiceFriendly": "Barátságos",
+  "buddySetupVoiceTerseHelp": "„13/8, 24/22” – jelölés, ahogy két játékos egy táblánál valójában beszél.",
+  "buddySetupVoiceFriendlyHelp": "„Egy ellenőrzőt 13-ról 8-ra, egyet 24-ről 22-re mozgatni.”",
+  "buddySetupTutorHelp": "Az oktatói kommentárok és a mozgásmagyarázatok követik a Beállításokban mentett oktatói beállításokat. A Buddy időnként visszajelzést ad a játékaid után; A gépelt kocka és a kézi mozdulatok ugyanúgy működnek.",
+  "buddySetupCalibrate": "Kalibrálja a táblát",
+  "buddyFixAim": "Rögzítse a célt",
+  "buddyWaitingForOpening": "Buddy várja a mérkőzést indító dobást.",
+  "buddyPromptLostBoard": "A Buddy elvesztette a táblát. Rögzítsd a célt, és a meccs ott folytatódik, ahol abbamaradt.",
+  "buddyPromptWaitingPicture": "Képre várva Buddy tud olvasni. Semmi sem veszett el.",
+  "buddyPromptTypeDice": "A Buddy nem találja a kockát. Írja be helyette a tekercset.",
+  "buddyPromptPlay": "Játssz a táblán. Koppintson ide, ha a Buddy nem látja.",
+  "buddyPromptWhichPlay": "Melyik lépést tetted meg?",
+  "buddyPromptCube": "Buddy dupláz. Elfogadod vagy elutasítod?",
+  "buddyPromptMakeMove": "Végezze el a Buddy lépését a táblán, és a Buddy folytatja.",
+  "buddyPromptThinking": "Buddy gondolkodik.",
+  "buddyPromptWaitingCalibration": "Várakozás a kalibrációra.",
+  "buddyPromptMirrorNoDetail": "A Buddy továbbra sem látja a mozgását. Az alatta lévő tábla az általa tartott pozíciót mutatja.",
+  "buddyPromptNotLegal": "Ez nem szabályos lépés.",
+  "buddyPromptNotLegalReason": "Ez nem szabályos lépés. {reason}",
+  "buddyThrowOpening": "Dobd a nyitókockát – egy-egy kockát.",
+  "buddyThrowUser": "Dobd a kockádat.",
+  "buddyThrowBuddy": "Dobd a Buddy kockáját.",
+  "buddyMatchOver": "A meccsnek vége.",
+  "buddyYouWin": "Megnyered a meccset.",
+  "buddyBuddyWins": "Buddy nyeri a mérkőzést.",
+  "buddyDoubleNoGame": "Még nincs duplázható játék – a nyitódobás az első.",
+  "buddyDoubleBeforeRoll": "Csak a körödön duplázhatsz, mielőtt dobsz.",
+  "buddyDoubleCrawford": "Nincs duplázás a Crawford meccsen – ez az egyetlen játszma dönti el a meccset.",
+  "buddyDoubleNotOwner": "Csak a kocka tulajdonosa duplázhat, és jelenleg a másik oldal birtokolja.",
+  "buddyDoubleUnavailable": "A duplázás jelenleg nem elérhető.",
+  "buddyLookingAtBoard": "Buddy a táblát nézi.",
+  "buddyCameraPlayFallback": "Továbbra is játszhatod a meccset: írj be minden dobást a kockatáblára, és koppints a játékaidra az alábbi táblán.",
+  "buddySkipCheck": "Hagyja ki ezt az ellenőrzést",
+  "buddyFixedIt": "javítottam",
+  "buddyDrop": "Elutasítom",
+  "buddyTake": "Elfogadom",
+  "buddyDone": "Kész",
+  "buddyTranscriptLabel": "Amit Buddy mondott",
+  "buddyUndo": "Visszavonás",
+  "buddyConfirm": "Erősítse meg",
+  "buddyDice": "Dobókocka",
+  "buddyDouble": "Duplázás",
+  "buddyDicePadTitle": "Mit dobtál?",
+  "buddyEnterRoll": "Add meg a dobást",
+  "buddyContextBeforeGame": "Játssz a Buddy-vel",
+  "buddyContextMatchScore": "Ön {you}–{buddy} Buddy · - {length} · Játék {number}",
+  "buddyCameraUnavailable": "A kamerát nem lehetett elindítani. Ellenőrizze az engedélyeket, és próbálja újra.",
+  "buddyCameraPermission": "A Backgammon Buddy nem rendelkezik engedéllyel a kamera használatához. Engedélyezze a kamera hozzáférését az eszköz beállításaiban, és próbálja újra.",
+  "buddyCalibrationTitle": "Mutasd meg a Buddy táblát",
+  "buddyCalibrationCornersFold": "Húzza a négy külső fogantyút a filc sarkaira – ne a fa peremre –, a négy kicsiket pedig a varratokra, ahol a zsanér találkozik a távoli és a közeli élekkel.",
+  "buddyCalibrationCornersFlat": "Húzza a fogantyúkat a filc egyik sarkára – a játékfelületre, ne a körülötte lévő fa peremre.",
+  "buddyCalibrationCheckLines": "Ezután ellenőrizze a tizenkét sort lefelé mindkét felében: mindegyiknek a tábla egy pontján kell futnia. Az a vonal, amely kihagyja a pontját, olyan fogantyú, amely bökést igényel.",
+  "buddyCalibrationSeatQuestion": "Melyik fele az otthoni táblád?",
+  "buddyCalibrationSeatHelp": "A kép aljához legközelebb eső fele. Ez rögzíti a pontszámokat, így a fenti vonalak vele együtt mozognak.",
+  "buddyCalibrationCaptureWait": "Tartsa mozdulatlanul a telefont. A Buddy várja, hogy a kép rendeződjön, mielőtt megtanulná ezt a táblát.",
+  "buddyCalibrationConfirmQuestion": "Ez a te táblád?",
+  "buddyCalibrationConfirmFallback": "A Buddy az imént tanult táblát nézi.",
+  "buddyCalibrationConfirmHelp": "A képre rajzolt férfiak Buddy szerint a táblán vannak. Ha bármelyik rossz helyen van, kezdje elölről – most másodpercekbe kerül, és egy játékkal később.",
+  "buddyCalibrationNext": "Következő",
+  "buddyCalibrationBack": "Vissza",
+  "buddyCalibrationCapture": "Elfog",
+  "buddyCalibrationStartOver": "Kezdje elölről",
+  "buddyCalibrationLooksRight": "Jól néz ki",
+  "buddyCalibrationCornersInvalid": "Ez a négy fogantyú nem körvonalaz egy táblát – az egyik keresztezett egy másikat. Húzza vissza őket a filc sarkaihoz.",
+  "buddyCalibrationPrepTitle": "Először három dolog",
+  "buddyCalibrationRemoveDiceTitle": "Vegye le a kockát a tábláról.",
+  "buddyCalibrationRemoveDiceBody": "A Buddy most megtanulja a csupasz táblát. A nemezen hagyott kocka ennek részeként megtanulható, majd a Buddy soha többé nem láthatja a kockát ezen a munkameneten.",
+  "buddyCalibrationSetupCheckersTitle": "Állítsd fel a korongokat a kezdőállásba.",
+  "buddyCalibrationSetupCheckersBody": "A harminc korong ismert helyzete alapján Buddy felismeri a tábla két színét.",
+  "buddyCalibrationFitBoardTitle": "Illessze a teljes játékteret a képre.",
+  "buddyCalibrationFitBoardBody": "Ezután hagyja a telefont ott, ahol van. Ha elmozdul, a Buddy ezt fogja mondani, és visszatolja a sarkokat.",
+  "buddyCalibrationBoardKind": "Milyen tábla ez?",
+  "buddyCalibrationFlatBoard": "Lapos tábla",
+  "buddyCalibrationFoldingBoard": "Összecsukható tok",
+  "buddyCalibrationBoardKindHelp": "Egy összecsukható deszkához négy extra fogantyú szükséges a zsanérvarratokon.",
+  "buddyCalibrationNoCameraBody": "A Buddy mód valódi táblát néz, így nem indul el a kamera nélkül. Az alkalmazásban lévő összes többire nincs hatással.",
+  "buddyHandleHingeSeam": "Zsanérvarrás {number} 4-ből",
+  "buddyHandleCorner": "4-ből {number} táblasarok",
+  "buddyNudgeLeft": "Bökjön balra",
+  "buddyNudgeRight": "Bökjön jobbra",
+  "buddyNudgeUp": "Bökd fel",
+  "buddyNudgeDown": "Bökd le",
+  "buddyCalibrationProblemCorners": "Ez a négy sarok nem körvonalaz egy táblát. Húzza az egyes fogantyúkat a játéktér egyik sarkába, és próbálja újra.",
+  "buddyCalibrationProblemFoldCorners": "Ez a nyolc pont nem körvonalaz egy összecsukható táblát. Tegyen négyet a játéktér sarkaira és négyet a zsanérvarratokra, majd próbálkozzon újra.",
+  "buddyCalibrationProblemUnreadable": "Magát a táblát nem tudom kivenni – minden része le van takarva, vagy elveszett az árnyékban vagy a tükröződésben. Tisztítsa meg a táblát, adjon hozzá egy kis fényt, és próbálja újra.",
+  "buddyCalibrationProblemRegionUnreadable": "Nem tudom kivenni a {region}-t – lehet, hogy valami nyugszik rajta, vagy a tábla sarka túl sötét ahhoz, hogy leolvasható. Törölje ki, vagy adjon hozzá egy kis fényt, és próbálja újra.",
+  "buddyCalibrationProblemColours": "Innen nézve a két dámakészlet túlságosan hasonlít egymásra. Több fény, vagy a tábla kevesebb vakító szöge általában javítja.",
+  "buddyCalibrationProblemWrongChecker": "A korongok nincsenek kezdőállásban: a(z) {number}. mezőn rossz színű korong van. Állítsd fel a kezdőállást, majd kalibrálj újra.",
+  "buddyCalibrationProblemOverexposed": "Annyi fény van a táblán, hogy a színei egymásba mosódnak. Tompítsa el a fényt, vagy mozgassa a telefont úgy, hogy a lámpa ne világítson egyenesen rá.",
+  "buddyCalibrationProblemReadBack": "El tudom olvasni ezt a táblát, de nem úgy, mint egy hamarosan induló játékot. Készítse fel a férfiakat a játék kezdetére, majd kalibrálja újra.",
+  "buddyCalibrationProblemStacks": "Látom a táblát, de innen nem tudom biztosan megszámolni az egymás mögött álló korongokat, így tévedhetek a darabszámban. Általában segít több fény a közeli mezőkön vagy kissé magasabb kameranézet.",
+  "buddyCalibrationProblemNotVisible": "Nem látom az egész táblát. Húzza vissza a telefont, vagy húzza a sarkokat a játékmezőre.",
+  "buddyConfirmBoardOutOfFrame": "Már nem látom az egész táblát – a {region} kívül van a képen. Állítsa be újra a kamerát, vagy ellenőrizze újra a sarkokat.",
+  "buddyConfirmStartingPosition": "Ez úgy néz ki, mint a kiinduló helyzet.",
+  "buddyConfirmNoCheckers": "Nem látok korongot a kezdőállás mezőin. Állítsd fel a kezdőállást, és próbáld újra.",
+  "buddyConfirmWrongPosition": "A tábla nincs beállítva a játék indításához: {details}{more}.",
+  "buddyConfirmRegionEmpty": "A {region} üresnek tűnik, de a játék a {side} karakterlánccal kezdődik.",
+  "buddyConfirmRegionUnexpected": "{region} {side} van rajta, de a játék üresen indul",
+  "buddyConfirmRegionWrongSide": "A {region}-n a {observed} van, ahol a játék a {expected}-vel kezdődik",
+  "buddyReadabilityMotion": "Maradj egy pillanatra – elvesztem a táblát, miközben a telefon mozog.",
+  "buddyReadabilityWrongFrame": "A kép, amit kapok, nem az, amelyre ezt a táblát felállították, így nem tudok rajta semmit sorba rendezni. Állítsa be újra a táblát innen.",
+  "buddyReadabilityBlur": "A kép túl lágy ahhoz, hogy le lehessen olvasni a táblát. Adjon egy pillanatot a fényképezőgépnek, hogy fókuszáljon.",
+  "buddyReadabilityCalibrationStale": "A tábla nem ott van, ahol megtanultam. Állítsd be újra a sarkokat, és egyenesen visszaveszem a játékot.",
+  "buddyReadabilityOccluded": "Valami eltakarja a tábla egy részét. Amint kiderül, folytatom.",
+  "buddyReadabilityClear": "Látom a táblát.",
+  "buddyReadabilityColorChanged": "A táblán lévő fény színe megváltozott, így a tábla már nem úgy néz ki, mint amit tanultam. Illessze újra a sarkokat ebben a lámpában, és azonnal felveszem a játékot.",
+  "buddyReadabilityTooDark": "Túl sötét a tábla olvasásához. Még egy kis fény, és folytatom, ahol voltunk.",
+  "buddyReadabilityTooBright": "A táblán annyi fény van, hogy a színei összefutnak. Sötétítse el, vagy mozgassa a telefont úgy, hogy a lámpa ne világítson egyenesen rá.",
+  "buddyPromptBeliefMirror": "A Buddy továbbra sem látja a mozgását – {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nTovábbra is játszhatod a meccset: írj be minden dobást a kockatáblára, és koppints a játékaidra az alábbi táblán.",
+  "buddyCameraGenericError": "A kamerát nem lehetett elindítani. Ellenőrizze az engedélyeket, és próbálja újra.",
+  "buddyRegionPoint": "a {number}-pont",
+  "buddyRegionBar": "a bár",
+  "buddyRegionWhiteTray": "a fehér korongok leütő tálcája",
+  "buddyRegionBlackTray": "a fekete korongok leütő tálcája",
+  "buddyRegionDiceZone": "a tábla közepe",
+  "buddyCalibrationProblemVisible": "Nem látom az egész táblát. Húzza vissza a telefont, vagy húzza a sarkokat a játékmezőre.",
+  "buddyConfirmMore": "(és még {number})",
+  "buddyDiceOpeningCaption": "Mindkét játékos dob egy kockával. A nagyobb dobás kezd.",
+  "buddyDiceOpeningFirst": "fehér kocka",
+  "buddyDiceOpeningSecond": "fekete kocka",
+  "buddyDiceRegularCaption": "A két arc az asztalon, bármelyik sorrendben.",
+  "buddyDiceRegularFirst": "Egy meghal",
+  "buddyDiceRegularSecond": "A másik",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

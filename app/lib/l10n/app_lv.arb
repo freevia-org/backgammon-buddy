@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "QR kods, lai pievienotos šai spēlei",
   "lanJoinInstruction": "Otrā ierīcē atveriet “Spēlēt tuvumā”, izvēlieties “Pievienoties” un noskenējiet šo QR kodu.",
   "homePlayWithBuddy": "Spēlēt ar Buddy",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Spēlējiet ar Buddy",
+  "buddySetupSideLabel": "Buddy spēlē",
+  "buddySetupSeatLabel": "Jūsu sēdeklis",
+  "buddySetupSeatNear": "Pa telefonu",
+  "buddySetupSeatFar": "Pretēji",
+  "buddySetupSeatHelp": "Kurā dēļa pusē jūs atrodaties. Tas ir veids, kā Buddy numurē punktus un kā tas atšķir jūsu sākuma kauliņu no sava.",
+  "buddySetupVoiceLabel": "Kā Buddy runā",
+  "buddySetupVoiceTerse": "Īsi",
+  "buddySetupVoiceFriendly": "Draudzīgs",
+  "buddySetupVoiceTerseHelp": "“13/8, 24/22” — apzīmējums, veids, kā faktiski runā divi spēlētāji pie galda.",
+  "buddySetupVoiceFriendlyHelp": "\"Pārvietojiet vienu pārbaudītāju no 13 uz 8 un vienu no 24 uz 22.\"",
+  "buddySetupTutorHelp": "Skolotāja komentāri un pārvietošanas skaidrojumi atbilst jūsu saglabātajām skolotāja preferencēm sadaļā Iestatījumi. Buddy laiku pa laikam sniedz atsauksmes pēc atskaņošanas; drukāti kauliņi un manuālas kustības darbojas tāpat.",
+  "buddySetupCalibrate": "Kalibrējiet dēli",
+  "buddyFixAim": "Fiksējiet mērķi",
+  "buddyWaitingForOpening": "Buddy gaida metienu, kas sāk maču.",
+  "buddyPromptLostBoard": "Buddy ir pazaudējis dēli. Nofiksējiet mērķi, un spēle turpinās tur, kur tā apstājās.",
+  "buddyPromptWaitingPicture": "Gaida attēlu Buddy var lasīt. Nekas nav zaudēts.",
+  "buddyPromptTypeDice": "Buddy nevar atrast kauliņus. Tā vietā ierakstiet rullīti.",
+  "buddyPromptPlay": "Padariet savu spēli uz galda. Pieskarieties tam šeit, ja Buddy to neredz.",
+  "buddyPromptWhichPlay": "Kura luga tā bija?",
+  "buddyPromptCube": "Buddy piedāvā dubultošanu. Pieņemt vai atteikt?",
+  "buddyPromptMakeMove": "Veiciet Buddy gājienu uz tāfeles, tad Buddy turpinās.",
+  "buddyPromptThinking": "Buddy domā.",
+  "buddyPromptWaitingCalibration": "Gaida kalibrēšanu.",
+  "buddyPromptMirrorNoDetail": "Buddy joprojām nevar redzēt tā kustību. Zemāk esošais dēlis ir pozīcija, kuru tas ieņem.",
+  "buddyPromptNotLegal": "Šis gājiens nav atļauts.",
+  "buddyPromptNotLegalReason": "Šis gājiens nav atļauts. {reason}",
+  "buddyThrowOpening": "Metiet sākuma kauliņu — katrs pa vienam kauliņam.",
+  "buddyThrowUser": "Metiet kauliņus.",
+  "buddyThrowBuddy": "Metiet Buddy kauliņus.",
+  "buddyMatchOver": "Mačs ir beidzies.",
+  "buddyYouWin": "Tu uzvarēsi maču.",
+  "buddyBuddyWins": "Buddy uzvar mačā.",
+  "buddyDoubleNoGame": "Pagaidām nav spēles, ko dubultot — pirmais ir pirmais metiens.",
+  "buddyDoubleBeforeRoll": "Jūs varat dubultot tikai pirms ripināšanas, jūsu gājienā.",
+  "buddyDoubleCrawford": "Krofordas spēlē bez dubultošanas — šī viena spēle izšķir maču.",
+  "buddyDoubleNotOwner": "Tikai kuba īpašnieks var dubultot, un šobrīd tas pieder otrai pusei.",
+  "buddyDoubleUnavailable": "Dubultēšana pašlaik nav pieejama.",
+  "buddyLookingAtBoard": "Buddy skatās uz tāfeles.",
+  "buddyCameraPlayFallback": "Jūs joprojām varat spēlēt spēli: ierakstiet katru metienu uz kauliņu paliktņa un piesitiet savām izspēlēm zemāk esošajā tabulā.",
+  "buddySkipCheck": "Izlaidiet šo pārbaudi",
+  "buddyFixedIt": "Es to izlaboju",
+  "buddyDrop": "Atteikt",
+  "buddyTake": "Pieņemt",
+  "buddyDone": "Gatavs",
+  "buddyTranscriptLabel": "Ko teica Buddy",
+  "buddyUndo": "Atsaukt",
+  "buddyConfirm": "Apstiprināt",
+  "buddyDice": "Kauliņi",
+  "buddyDouble": "Dubultošanas kubs",
+  "buddyDicePadTitle": "Ko jūs uzmetāt?",
+  "buddyEnterRoll": "Ievadiet metienu",
+  "buddyContextBeforeGame": "Spēlējiet ar Buddy",
+  "buddyContextMatchScore": "Jūs {you}–{buddy} Buddy · uz {length} · Spēle {number}",
+  "buddyCameraUnavailable": "Nevarēja palaist kameru. Pārbaudiet atļaujas un mēģiniet vēlreiz.",
+  "buddyCameraPermission": "Backgammon Buddy nav atļaujas izmantot kameru. Ierīces iestatījumos atļaujiet piekļuvi kamerai un mēģiniet vēlreiz.",
+  "buddyCalibrationTitle": "Parādiet Buddy tāfeli",
+  "buddyCalibrationCornersFold": "Velciet četrus ārējos rokturus uz filca stūriem, nevis uz koka malas, un četrus mazos rokturus uz šuvēm, kur eņģe saskaras ar tālāko un tuvāko malu.",
+  "buddyCalibrationCornersFlat": "Velciet katru rokturi uz filca stūra — uz spēles virsmas, nevis uz koka apmali ap to.",
+  "buddyCalibrationCheckLines": "Pēc tam pārbaudiet divpadsmit līnijas uz leju katrā pusē: katrai ir jāiet gar jūsu dēļa punktu. Līnija, kas izlaiž savu punktu, ir rokturis, kas jāpaspiež.",
+  "buddyCalibrationSeatQuestion": "Kura puse ir jūsu mājas dēlis?",
+  "buddyCalibrationSeatHelp": "Puse, kas ir vistuvāk attēla apakšai. Tas nosaka punktu skaitļus, tāpēc iepriekš esošās līnijas pārvietojas ar to.",
+  "buddyCalibrationCaptureWait": "Turiet tālruni nekustīgi. Buddy gaida, līdz attēls nokārtosies, pirms tas apgūst šo dēli.",
+  "buddyCalibrationConfirmQuestion": "Vai tas ir jūsu dēlis?",
+  "buddyCalibrationConfirmFallback": "Buddy skatās uz tikko apgūto dēli.",
+  "buddyCalibrationConfirmHelp": "Buddy domām, virs attēla uzzīmētie vīrieši ir uz tāfeles. Ja kāds no tiem atrodas nepareizā vietā, sāciet no jauna — tagad tas maksā sekundes un spēli vēlāk.",
+  "buddyCalibrationNext": "Tālāk",
+  "buddyCalibrationBack": "Atpakaļ",
+  "buddyCalibrationCapture": "Uzņemt",
+  "buddyCalibrationStartOver": "Sāciet no jauna",
+  "buddyCalibrationLooksRight": "Izskatās pareizi",
+  "buddyCalibrationCornersInvalid": "Šie četri rokturi nerada dēli — viens no tiem ir šķērsojis otru. Velciet tos atpakaļ uz filca stūriem.",
+  "buddyCalibrationPrepTitle": "Vispirms trīs lietas",
+  "buddyCalibrationRemoveDiceTitle": "Noņemiet kauliņus no dēļa.",
+  "buddyCalibrationRemoveDiceBody": "Buddy tagad apgūst tukšo dēli. Uz filca atstāts kauliņš tiek apgūts kā daļa no tā, un tad Buddy nekad vairs neredzēs kauliņus šajā sesijā.",
+  "buddyCalibrationSetupCheckersTitle": "Sakārtojiet spēles kauliņus sākuma pozīcijā.",
+  "buddyCalibrationSetupCheckersBody": "Trīsdesmit spēles kauliņi zināmās vietās palīdz Buddy atpazīt abas dēļa krāsas.",
+  "buddyCalibrationFitBoardTitle": "Ievietojiet attēlā visu spēles laukumu.",
+  "buddyCalibrationFitBoardBody": "Pēc tam atstājiet tālruni, kur tas ir. Ja tas kustas, Buddy to pateiks, un jūs varat pabīdīt stūrus atpakaļ.",
+  "buddyCalibrationBoardKind": "Kāda veida dēlis tas ir?",
+  "buddyCalibrationFlatBoard": "Plakans dēlis",
+  "buddyCalibrationFoldingBoard": "Saliekams futrālis",
+  "buddyCalibrationBoardKindHelp": "Saliekamam dēlim ir nepieciešami četri papildu rokturi uz eņģu šuvēm.",
+  "buddyCalibrationNoCameraBody": "Buddy režīms skatās īstu dēli, tāpēc to nevar sākt bez kameras. Viss pārējais lietotnē netiek ietekmēts.",
+  "buddyHandleHingeSeam": "Eņģes šuve {number} no 4",
+  "buddyHandleCorner": "Dēļa stūris {number} no 4",
+  "buddyNudgeLeft": "Pabīdiet pa kreisi",
+  "buddyNudgeRight": "Pabīdiet pa labi",
+  "buddyNudgeUp": "Pabīdiet augšup",
+  "buddyNudgeDown": "Pabīdiet uz leju",
+  "buddyCalibrationProblemCorners": "Šie četri stūri nenorāda dēli. Velciet katru rokturi uz spēles laukuma stūri un mēģiniet vēlreiz.",
+  "buddyCalibrationProblemFoldCorners": "Šie astoņi punkti nerada saliekamo dēli. Uzlieciet četrus uz spēles laukuma stūriem un četrus uz eņģu šuvēm, pēc tam mēģiniet vēlreiz.",
+  "buddyCalibrationProblemUnreadable": "Es nevaru atpazīt pašu dēli — katra tā daļa ir aizsegta vai pazaudēta ēnā vai atspīdumā. Notīriet dēli, pievienojiet nedaudz gaismas un mēģiniet vēlreiz.",
+  "buddyCalibrationProblemRegionUnreadable": "Es nevaru noteikt {region} — uz tā var būt kaut kas balsts, vai arī šis tāfeles stūris ir pārāk tumšs, lai to izlasītu. Notīriet to vai pievienojiet nedaudz gaismas un mēģiniet vēlreiz.",
+  "buddyCalibrationProblemColours": "Divi dambretes komplekti izskatās pārāk līdzīgi. Vairāk gaismas vai leņķis ar mazāku atspīdumu uz tāfeles parasti to novērš.",
+  "buddyCalibrationProblemWrongChecker": "Spēles kauliņi nav sākuma pozīcijā — {number}. punktā ir nepareizas krāsas kauliņš. Sakārtojiet sākuma pozīciju un kalibrējiet vēlreiz.",
+  "buddyCalibrationProblemOverexposed": "Uz tāfeles ir tik daudz gaismas, ka tās krāsas saplūst viena ar otru. Aptumšojiet gaismu vai pārvietojiet tālruni tā, lai lampiņa nespīdētu tieši atpakaļ.",
+  "buddyCalibrationProblemReadBack": "Es varu lasīt šo tabulu, bet ne kā spēli, kas drīz sāksies. Sagatavojiet vīriešus spēles sākumam, pēc tam vēlreiz kalibrējiet.",
+  "buddyCalibrationProblemStacks": "Es redzu dēli, bet no šejienes nevaru droši saskaitīt citu virs cita saliktos spēles kauliņus, tāpēc skaits var būt nepareizs. Parasti palīdz vairāk gaismas tuvākajiem punktiem vai nedaudz augstāks kameras leņķis.",
+  "buddyCalibrationProblemNotVisible": "Es nevaru redzēt visu dēli. Pārvietojiet tālruni atpakaļ vai velciet stūrus uz spēles lauku.",
+  "buddyConfirmBoardOutOfFrame": "Es vairs neredzu visu paneli — {region} ir ārpus attēla. Novietojiet kameru vēlreiz vai vēlreiz pārbaudiet stūrus.",
+  "buddyConfirmStartingPosition": "Tā izskatās kā sākuma pozīcija.",
+  "buddyConfirmNoCheckers": "Sākuma pozīcijas punktos neredzu spēles kauliņus. Sakārtojiet sākuma pozīciju un mēģiniet vēlreiz.",
+  "buddyConfirmWrongPosition": "Dēlis nav iestatīts spēles sākumam: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} izskatās tukšs, bet spēle sākas ar {side} tur",
+  "buddyConfirmRegionUnexpected": "{region} ir {side}, bet spēle sākas ar tukšu",
+  "buddyConfirmRegionWrongSide": "{region} ir {observed}, kur spēle sākas ar {expected}",
+  "buddyReadabilityMotion": "Uzturiet brīdi — es pazaudēju dēli, kamēr tālrunis kustas.",
+  "buddyReadabilityWrongFrame": "Attēls, kas man tiek sniegts, nav tas, uz kura tika uzstādīts šis dēlis, tāpēc es nevaru tajā neko sakārtot. No šejienes atkal iestatiet dēli.",
+  "buddyReadabilityBlur": "Attēls ir pārāk mīksts, lai nolasītu tāfeli. Dodiet kamerai brīdi fokusēties.",
+  "buddyReadabilityCalibrationStale": "Tāfele nav tur, kur tā bija, kad es to uzzināju. Atkal sakārtojiet stūrus, un es izvēlēšos spēli uzreiz.",
+  "buddyReadabilityOccluded": "Kaut kas pārklāj daļu no dēļa. Tiklīdz būs skaidrs, turpināšu.",
+  "buddyReadabilityClear": "Es redzu dēli.",
+  "buddyReadabilityColorChanged": "Gaisma uz tāfeles ir mainījusi krāsu, tāpēc tāfele vairs neizskatās pēc tā, ko es mācījos. Atkal novietojiet stūrus uz augšu zem šīs gaismas, un es izvēlēšos spēli uzreiz.",
+  "buddyReadabilityTooDark": "Ir pārāk tumšs, lai lasītu tāfeli. Vēl nedaudz gaismas, un es turpināšu tur, kur bijām.",
+  "buddyReadabilityTooBright": "Uz tāfeles ir tik daudz gaismas, ka tās krāsas saskaras viena ar otru. Aptumšojiet to vai pārvietojiet tālruni tā, lai lampiņa nespīdētu tieši atpakaļ.",
+  "buddyPromptBeliefMirror": "Buddy joprojām nevar redzēt savu kustību — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nJūs joprojām varat spēlēt spēli: ierakstiet katru metienu uz kauliņu paliktņa un piesitiet savām izspēlēm zemāk esošajā tabulā.",
+  "buddyCameraGenericError": "Nevarēja palaist kameru. Pārbaudiet atļaujas un mēģiniet vēlreiz.",
+  "buddyRegionPoint": "punkts {number}",
+  "buddyRegionBar": "bārs",
+  "buddyRegionWhiteTray": "balto kauliņu iznešanas paplāte",
+  "buddyRegionBlackTray": "melno kauliņu iznešanas paplāte",
+  "buddyRegionDiceZone": "dēļa vidus",
+  "buddyCalibrationProblemVisible": "Es nevaru redzēt visu dēli. Pārvietojiet tālruni atpakaļ vai velciet stūrus uz spēles lauku.",
+  "buddyConfirmMore": "(un vēl {number})",
+  "buddyDiceOpeningCaption": "Katrs spēlētājs met vienu kauliņu. Sāk tas, kurš uzmet vairāk.",
+  "buddyDiceOpeningFirst": "baltais kauliņš",
+  "buddyDiceOpeningSecond": "melnais kauliņš",
+  "buddyDiceRegularCaption": "Abas sejas uz galda, jebkurā secībā.",
+  "buddyDiceRegularFirst": "Viens mirst",
+  "buddyDiceRegularSecond": "Otra",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

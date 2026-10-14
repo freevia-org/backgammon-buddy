@@ -1613,5 +1613,266 @@
   "lanJoinInstruction": "Ava teises seadmes „Mängi läheduses“, vali „Liitu“ ja skanni see QR-kood.",
   "homePlayWithBuddy": "Mängi Buddyga",
   "homeBuddyShort": "Buddy",
-  "feedbackExcerptTruncated": "(lühendatud — täieliku logi saamiseks kasuta diagnostikakuval valikut „Kopeeri lõikelauale“)"
+  "feedbackExcerptTruncated": "(lühendatud — täieliku logi saamiseks kasuta diagnostikakuval valikut „Kopeeri lõikelauale“)",
+  "buddySetupTitle": "Mängige Buddy-iga",
+  "buddySetupSideLabel": "Buddy mängib",
+  "buddySetupSeatLabel": "Sinu istekoht",
+  "buddySetupSeatNear": "Telefoni järgi",
+  "buddySetupSeatFar": "Vastupidi",
+  "buddySetupSeatHelp": "Kummal pool tahvlit olete. See on see, kuidas Buddy nummerdab punkte ja eristab teie avamisvormi omast.",
+  "buddySetupVoiceLabel": "Kuidas Buddy räägib",
+  "buddySetupVoiceTerse": "Lühidalt",
+  "buddySetupVoiceFriendly": "Sõbralik",
+  "buddySetupVoiceTerseHelp": "“13/8, 24/22” – märge, viis, kuidas kaks mängijat lauas tegelikult räägivad.",
+  "buddySetupVoiceFriendlyHelp": "\"Viige üks kabe 13-lt 8-le ja üks 24-lt 22-le.\"",
+  "buddySetupTutorHelp": "Õpetaja kommentaarid ja liigutuste selgitused järgivad teie salvestatud juhendaja eelistusi jaotises Seaded. Buddy annab aeg-ajalt tagasisidet pärast teie näidendeid; trükitud täringud ja käsitsi liigutused töötavad samamoodi.",
+  "buddySetupCalibrate": "Kalibreerige tahvel",
+  "buddyFixAim": "Kinnitage eesmärk",
+  "buddyWaitingForOpening": "Buddy ootab viset, mis matši alustab.",
+  "buddyPromptLostBoard": "Buddy kaotas tahvli. Kinnitage siht ja matš jätkub sealt, kus see peatus.",
+  "buddyPromptWaitingPicture": "Ootan pilti. Buddy oskab lugeda. Midagi pole kadunud.",
+  "buddyPromptTypeDice": "Buddy ei leia täringut. Tippige selle asemel rull.",
+  "buddyPromptPlay": "Mängige oma mängu laual. Puudutage seda siin, kui Buddy seda ei näe.",
+  "buddyPromptWhichPlay": "Mis näidend see oli?",
+  "buddyPromptCube": "Buddy pakub kahekordistamist. Kas võtad vastu või loobud?",
+  "buddyPromptMakeMove": "Tehke Buddyi käik laual, siis jätkab Buddy.",
+  "buddyPromptThinking": "Buddy mõtleb.",
+  "buddyPromptWaitingCalibration": "Ootab kalibreerimist.",
+  "buddyPromptMirrorNoDetail": "Buddy ei näe endiselt oma liikumist. Allpool olev tahvel on positsioon, mida see hoiab.",
+  "buddyPromptNotLegal": "See pole juriidiline mäng.",
+  "buddyPromptNotLegalReason": "See pole juriidiline mäng. {reason}",
+  "buddyThrowOpening": "Veeretage avavisked — üks täring kummalegi. Suurema silmade arvuga mängija alustab.",
+  "buddyThrowUser": "Veereta oma täringuid.",
+  "buddyThrowBuddy": "Veereta Buddy täringuid.",
+  "buddyMatchOver": "Matš on läbi.",
+  "buddyYouWin": "Sa võidad matši.",
+  "buddyBuddyWins": "Buddy võidab matši.",
+  "buddyDoubleNoGame": "Duubeldamiseks pole veel mängu – avavise tuleb enne.",
+  "buddyDoubleBeforeRoll": "Enne veeremist saate kahekordistada ainult oma käigul.",
+  "buddyDoubleCrawford": "Crawfordi mängus ei kahelda – see üksikmäng otsustab matši.",
+  "buddyDoubleNotOwner": "Ainult kuubiku omanik saab kahekordistada ja praegu kuulub see teisele poolele.",
+  "buddyDoubleUnavailable": "Kahekordistamine pole praegu saadaval.",
+  "buddyLookingAtBoard": "Buddy vaatab tahvlit.",
+  "buddyCameraPlayFallback": "Saate siiski matši mängida: tippige täringuplokile iga veeretamine ja koputage oma mänge alloleval laual.",
+  "buddySkipCheck": "Jäta see kontroll vahele",
+  "buddyFixedIt": "Olen selle parandanud",
+  "buddyDrop": "Langetage",
+  "buddyTake": "Võtke",
+  "buddyDone": "Valmis",
+  "buddyTranscriptLabel": "Mida Buddy ütles",
+  "buddyUndo": "Võta tagasi",
+  "buddyConfirm": "Kinnita",
+  "buddyDice": "Täringud",
+  "buddyDouble": "Kahekordne",
+  "buddyDicePadTitle": "Mida täringud näitasid?",
+  "buddyEnterRoll": "Sisesta rulli",
+  "buddyContextBeforeGame": "Mängige Buddy-iga",
+  "buddyContextMatchScore": "Teie {you}–{buddy} Buddy · kuni {length} · Mäng {number}",
+  "buddyCameraUnavailable": "Kaamerat ei saanud käivitada. Kontrollige õigusi ja proovige uuesti.",
+  "buddyCameraPermission": "Backgammon Buddy ei oma luba kaamera kasutamiseks. Lubage oma seadme seadetes kaamerale juurdepääs ja proovige uuesti.",
+  "buddyCalibrationTitle": "Näidake tahvlit Buddy",
+  "buddyCalibrationCornersFold": "Lohistage neli välimist käepidet vildi nurkadele, mitte puitveljele, ja neli väikest käepidet õmblustele, kus hing puutub kokku kaugema ja lähima servaga.",
+  "buddyCalibrationCornersFlat": "Lohistage iga käepide vildi nurgale - mängupinnale, mitte seda ümbritsevale puidust servale.",
+  "buddyCalibrationCheckLines": "Seejärel kontrollige mõlemat poolt kaksteist rida allapoole: igaüks peaks kulgema mööda teie tahvli punkti. Joon, mis oma punktist mööda ei näe, on käepide, mis vajab torkimist.",
+  "buddyCalibrationSeatQuestion": "Milline pool on teie kodulaud?",
+  "buddyCalibrationSeatHelp": "Pildi allservale lähim pool. See fikseerib punktide numbrid, nii et ülaltoodud jooned liiguvad sellega kaasa.",
+  "buddyCalibrationCaptureWait": "Hoidke telefoni paigal. Buddy ootab, kuni pilt settib, enne kui ta selle tahvli ära õpib.",
+  "buddyCalibrationConfirmQuestion": "Kas see on teie tahvel?",
+  "buddyCalibrationConfirmFallback": "Buddy vaatab äsja õpitud tahvlit.",
+  "buddyCalibrationConfirmHelp": "Pildile joonistatud mehed on Buddyi arvates tahvlil. Kui mõni neist on vales kohas, alusta otsast – see maksab praegu sekundeid ja mäng hiljem.",
+  "buddyCalibrationNext": "Edasi",
+  "buddyCalibrationBack": "Tagasi",
+  "buddyCalibrationCapture": "Jäädvusta",
+  "buddyCalibrationStartOver": "Alusta otsast",
+  "buddyCalibrationLooksRight": "Näeb õige välja",
+  "buddyCalibrationCornersInvalid": "Need neli käepidet ei piirdu tahvliga – üks neist on teise risti ristunud. Lohistage need tagasi vildi nurkadesse.",
+  "buddyCalibrationPrepTitle": "Esiteks kolm asja",
+  "buddyCalibrationRemoveDiceTitle": "Eemalda täringud laualt.",
+  "buddyCalibrationRemoveDiceBody": "Buddy õpib nüüd tühja lauda. Kui täring jääb lauale, õpib Buddy selle laua osana selgeks ega näe selles mängukorras enam täringuid.",
+  "buddyCalibrationSetupCheckersTitle": "Seadke mehed mängu alguseks valmis.",
+  "buddyCalibrationSetupCheckersBody": "Kolmkümmend kabet tuntud kohtades on see, kuidas Buddy õpib selle laua kaks värvi selgeks, ilma et talle öeldaks, mis need on.",
+  "buddyCalibrationFitBoardTitle": "Sobitage pildile kogu mänguväli.",
+  "buddyCalibrationFitBoardBody": "Seejärel jätke telefon sinna, kus see on. Kui see liigub, ütleb Buddy seda ja saate nurki tagasi lükata.",
+  "buddyCalibrationBoardKind": "Mis tahvliga on tegu?",
+  "buddyCalibrationFlatBoard": "Lamelaud",
+  "buddyCalibrationFoldingBoard": "Kokkupandav korpus",
+  "buddyCalibrationBoardKindHelp": "Kokkupandav laud vajab hingeõmblustel nelja lisakäepidet.",
+  "buddyCalibrationNoCameraBody": "Buddy-režiim jälgib tõelist tahvlit, nii et see ei saa käivituda ilma kaamerata. Kõik muu rakenduses sisalduv ei muutu.",
+  "buddyHandleHingeSeam": "Hingeõmblus {number} 4-st",
+  "buddyHandleCorner": "Laua nurk {number} 4-st",
+  "buddyNudgeLeft": "Nihutage vasakule",
+  "buddyNudgeRight": "Nihutage paremale",
+  "buddyNudgeUp": "Tõstke üles",
+  "buddyNudgeDown": "Nihutage alla",
+  "buddyCalibrationProblemCorners": "Need neli nurka ei piirdu tahvliga. Lohistage iga käepide mänguvälja nurka ja proovige uuesti.",
+  "buddyCalibrationProblemFoldCorners": "Need kaheksa punkti ei kirjelda voltimislauda. Asetage neli mänguvälja nurkadele ja neli hingeõmblustele, seejärel proovige uuesti.",
+  "buddyCalibrationProblemUnreadable": "Tahvlit endast ei saa aru – kõik selle osad on kaetud või kadunud varju või sära. Tühjendage tahvel, lisage veidi valgust ja proovige uuesti.",
+  "buddyCalibrationProblemRegionUnreadable": "Ma ei saa {region}-i teha – sellel võib midagi toetuda või see tahvli nurk on lugemiseks liiga tume. Tühjendage see või lisage veidi valgust ja proovige uuesti.",
+  "buddyCalibrationProblemColours": "Kaks kabekomplekti näevad siit liiga sarnased välja. Tavaliselt parandab seda rohkem valgust või nurk, kus tahvlil on vähem pimestamist.",
+  "buddyCalibrationProblemWrongChecker": "Kabe ei ole lähteasendis — punkt {number} hoiab valet värvi. Seadistage laud mängu alustamiseks ja seejärel kalibreerige uuesti.",
+  "buddyCalibrationProblemOverexposed": "Tahvlil on nii palju valgust, et selle värvid uhuvad üksteise sisse. Hämardage valgust või liigutage telefoni nii, et lamp sellele otse tagasi ei paistaks.",
+  "buddyCalibrationProblemReadBack": "Ma võin seda tahvlit lugeda, kuid mitte kui algavat mängu. Seadistage mehed mängu alguseks, seejärel kalibreerige uuesti.",
+  "buddyCalibrationProblemStacks": "Ma võin seda tahvlit lugeda, kuid ma ei saa aru, kui kaugel üks kabe teisest taga istub - nii et ma saaksin numbreid valesti. Natuke rohkem valgust lähipunktides või veidi kõrgem kaameranurk parandab selle tavaliselt.",
+  "buddyCalibrationProblemNotVisible": "Ma ei näe kogu tahvlit. Liigutage telefon tagasi või lohistage nurgad mänguväljale.",
+  "buddyConfirmBoardOutOfFrame": "Ma ei näe enam tervet tahvlit - {region} on väljaspool pilti. Joondage kaamera uuesti või kontrollige nurki uuesti.",
+  "buddyConfirmStartingPosition": "See näeb välja nagu lähtepositsioon.",
+  "buddyConfirmNoCheckers": "Ma ei näe kabe kõikjal, kus mäng algab. Seadke mehed mängu alguseks valmis ja proovige uuesti.",
+  "buddyConfirmWrongPosition": "Laud ei ole mängu alustamiseks seadistatud: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} tundub tühi, kuid mäng algab seal {side}-iga",
+  "buddyConfirmRegionUnexpected": "{region}-l on peal {side}, kuid mäng algab tühjaga",
+  "buddyConfirmRegionWrongSide": "{region}-l on {observed}, kus mäng algab numbriga {expected}",
+  "buddyReadabilityMotion": "Hoidke hetk paigal – kaotan tahvli, kui telefon liigub.",
+  "buddyReadabilityWrongFrame": "Pilt, mis mulle antakse, ei ole see, millele see tahvel oli üles seatud, nii et ma ei saa sellele midagi ritta seada. Seadke laud siit uuesti üles.",
+  "buddyReadabilityBlur": "Pilt on tahvli lugemiseks liiga pehme. Andke kaamerale hetk teravustamiseks.",
+  "buddyReadabilityCalibrationStale": "Tahvel pole seal, kus see oli, kui ma seda õppisin. Joondage nurgad uuesti ja ma valin mängu otse üles.",
+  "buddyReadabilityOccluded": "Midagi katab osa tahvlist. Ma jätkan niipea, kui see on selge.",
+  "buddyReadabilityClear": "Ma näen tahvlit.",
+  "buddyReadabilityColorChanged": "Tahvli tuli on muutnud värvi, nii et tahvel ei näe enam välja selline, nagu õppisin. Joondage nurgad uuesti selle valguse alla ja ma valin mängu otse üles.",
+  "buddyReadabilityTooDark": "Tahvli lugemiseks on liiga pime. Natuke veel valgust ja jätkan seal, kus olime.",
+  "buddyReadabilityTooBright": "Tahvlil on nii palju valgust, et selle värvid jooksevad üksteisega kokku. Hämardage seda või liigutage telefoni nii, et lamp ei paistaks otse tagasi.",
+  "buddyPromptBeliefMirror": "Buddy ei näe endiselt oma liikumist - {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nSaate siiski matši mängida: tippige täringuplokile iga veeretamine ja koputage oma mänge alloleval laual.",
+  "buddyCameraGenericError": "Kaamerat ei saanud käivitada. Kontrollige õigusi ja proovige uuesti.",
+  "buddyRegionPoint": "{number}-punkt",
+  "buddyRegionBar": "baar",
+  "buddyRegionWhiteTray": "Valge kandepind",
+  "buddyRegionBlackTray": "Musta kandepind",
+  "buddyRegionDiceZone": "tahvli keskel",
+  "buddyCalibrationProblemVisible": "Ma ei näe kogu tahvlit. Liigutage telefon tagasi või lohistage nurgad mänguväljale.",
+  "buddyConfirmMore": "(ja veel {number})",
+  "buddyDiceOpeningCaption": "Kumbki viskab ühe täringu. Suurema silmade arvuga mängija alustab.",
+  "buddyDiceOpeningFirst": "Valge täring",
+  "buddyDiceOpeningSecond": "Musta täring",
+  "buddyDiceRegularCaption": "Kaks nägu laual, kummaski järjekorras.",
+  "buddyDiceRegularFirst": "Üks täring",
+  "buddyDiceRegularSecond": "Teine",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

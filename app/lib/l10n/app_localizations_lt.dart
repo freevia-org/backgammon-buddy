@@ -2740,4 +2740,492 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Siūlomas pakeitimas';
+
+  @override
+  String get buddySetupTitle => 'Žaisk su Buddy';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy žaidžia';
+
+  @override
+  String get buddySetupSeatLabel => 'Tavo sėdynė';
+
+  @override
+  String get buddySetupSeatNear => 'Pagal telefoną';
+
+  @override
+  String get buddySetupSeatFar => 'Priešingai';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Kurioje lentos pusėje esate. Taip Buddy sunumeruoja taškus ir atskiria jūsų atidarymo kauliuką nuo savo.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Kaip kalba Buddy';
+
+  @override
+  String get buddySetupVoiceTerse => 'Glaustai';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Draugiškas';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '„13/8, 24/22“ – žymėjimas, kaip iš tikrųjų kalba du žaidėjai prie lentos.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '„Perkelkite vieną šaškę nuo 13 iki 8, o vieną iš 24 į 22“.';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Mokytojo komentarai ir perkėlimo paaiškinimai atitinka jūsų išsaugotas Mokytojo nuostatas nustatymuose. Buddy retkarčiais pateikia grįžtamąjį ryšį po jūsų vaidinimų; spausdinami kauliukai ir rankiniai judesiai veikia taip pat.';
+
+  @override
+  String get buddySetupCalibrate => 'Kalibruokite lentą';
+
+  @override
+  String get buddyFixAim => 'Pataisykite tikslą';
+
+  @override
+  String get buddyWaitingForOpening =>
+      'Buddy laukia metimo, kuris pradeda rungtynes.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy pametė lentą. Nustatykite tikslą ir rungtynės tęsiasi ten, kur sustojo.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Laukiu nuotraukos Buddy gali skaityti. Nieko neprarasta.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy negali rasti kauliuko. Vietoj to įveskite ritinį.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Žaisk ant lentos. Bakstelėkite jį čia, jei Buddy jo nemato.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Kuri tai buvo pjesė?';
+
+  @override
+  String get buddyPromptCube => 'Buddy siūlo dvigubinti. Priimti ar atmesti?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Padarykite Buddy judesį lentoje, tada Buddy veiks toliau.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy galvoja.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Laukiama kalibravimo.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy vis dar nemato jo judėjimo. Žemiau esanti lenta yra padėtis, kurią ji užima.';
+
+  @override
+  String get buddyPromptNotLegal => 'Tai neteisėtas ėjimas.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Tai neteisėtas ėjimas. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening => 'Mesti pradinį kauliuką – po vieną kauliuką.';
+
+  @override
+  String get buddyThrowUser => 'Mesti savo kauliukus.';
+
+  @override
+  String get buddyThrowBuddy => 'Mesti Buddy kauliuką.';
+
+  @override
+  String get buddyMatchOver => 'Rungtynės baigėsi.';
+
+  @override
+  String get buddyYouWin => 'Jūs laimite rungtynes.';
+
+  @override
+  String get buddyBuddyWins => 'Rungtynes ​​laimi Buddy.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Dar nėra žaidimo, kurį reikėtų padvigubinti – pirmas metimas.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Galite padvigubinti tik prieš ridendami savo ruožtu.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'Crawford žaidime nedubliuojama – šis vienas žaidimas nusprendžia rungtynes.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Tik kubo savininkas gali padvigubinti, o kita pusė šiuo metu priklauso.';
+
+  @override
+  String get buddyDoubleUnavailable => 'Padvigubinti šiuo metu negalima.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy žiūri į lentą.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Vis tiek galite žaisti rungtynes: įveskite kiekvieną metimą ant kauliukų padėklo ir bakstelėkite žaidimus žemiau esančioje lentoje.';
+
+  @override
+  String get buddySkipCheck => 'Praleiskite šį patikrinimą';
+
+  @override
+  String get buddyFixedIt => 'Aš tai pataisiau';
+
+  @override
+  String get buddyDrop => 'Atmesti';
+
+  @override
+  String get buddyTake => 'Priimti';
+
+  @override
+  String get buddyDone => 'Atlikta';
+
+  @override
+  String get buddyTranscriptLabel => 'Ką pasakė Buddy';
+
+  @override
+  String get buddyUndo => 'Anuliuoti';
+
+  @override
+  String get buddyConfirm => 'Patvirtinti';
+
+  @override
+  String get buddyDice => 'Kauliukai';
+
+  @override
+  String get buddyDouble => 'Dvigubinimas';
+
+  @override
+  String get buddyDicePadTitle => 'Ką išmetėte?';
+
+  @override
+  String get buddyEnterRoll => 'Įveskite metimą';
+
+  @override
+  String get buddyContextBeforeGame => 'Žaisk su Buddy';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Jūs $you–$buddy Buddy · iki $length · Žaidimas $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Nepavyko paleisti fotoaparato. Patikrinkite leidimus ir bandykite dar kartą.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy neturi leidimo naudoti fotoaparato. Leiskite pasiekti fotoaparatą įrenginio nustatymuose ir bandykite dar kartą.';
+
+  @override
+  String get buddyCalibrationTitle => 'Parodykite Buddy lentą';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Vilkite keturias išorines rankenas ant veltinio kampų, o ne medinį apvadą, o keturias mažas – ant siūlių, kur vyriai susilieja su tolimu ir artimu kraštu.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Vilkite kiekvieną rankenėlę ant veltinio kampo – žaidimo paviršiaus, o ne medinio apvado aplink jį.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Tada patikrinkite dvylika eilučių kiekvienoje pusėje: kiekviena turi eiti išilgai jūsų lentos taško. Linija, kuri nepatenka į savo tašką, yra rankena, kurią reikia pastumti.';
+
+  @override
+  String get buddyCalibrationSeatQuestion => 'Kuri pusė yra jūsų namų lenta?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'Pusė, esanti arčiausiai paveikslo apačios. Tai fiksuoja taškų skaičius, todėl aukščiau esančios linijos juda kartu su juo.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Laikykite telefoną ramiai. Buddy laukia, kol vaizdas nusistovės, kol išmoks šią plokštę.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Ar tai tavo lenta?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy žiūri į ką tik išmoktą lentą.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Virš paveikslo nupiešti vyrai, Buddy nuomone, yra lentoje. Jei kuris nors iš jų yra netinkamoje vietoje, pradėkite iš naujo – dabar tai kainuoja sekundes, o žaidimas vėliau.';
+
+  @override
+  String get buddyCalibrationNext => 'Kitas';
+
+  @override
+  String get buddyCalibrationBack => 'Atgal';
+
+  @override
+  String get buddyCalibrationCapture => 'Užfiksuoti';
+
+  @override
+  String get buddyCalibrationStartOver => 'Pradėkite iš naujo';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Atrodo teisingai';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Tos keturios rankenos nenubrėžia lentos kontūro – viena iš jų kirto kitą. Vilkite juos atgal į veltinio kampus.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Pirmiausia trys dalykai';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Nuimkite kauliuką nuo lentos.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy dabar mokosi plika lenta. Ant veltinio paliktas kauliukas išmokstamas kaip jo dalis, o tada Buddy daugiau niekada nebematys kauliuko šioje sesijoje.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Sudėkite šaškes į pradinę padėtį.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Trisdešimt šaškių žinomose vietose padeda Buddy atpažinti dvi lentos spalvas.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Sutalpinkite visą žaidimo lauką paveikslėlyje.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Tada palikite telefoną ten, kur jis yra. Jei jis pajuda, Buddy taip pasakys ir galite pastumti kampus atgal.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Kokia tai lenta?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Plokščia lenta';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Sulankstomas dėklas';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Sulankstomai lentai reikia keturių papildomų rankenų ant vyrių siūlių.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Buddy režimas stebi tikrą lentą, todėl negali įsijungti be fotoaparato. Visa kita programėlėje neturi įtakos.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Vyrių siūlė $number iš 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Lentos kampas $number iš 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Pasukite į kairę';
+
+  @override
+  String get buddyNudgeRight => 'Pasukite dešinėn';
+
+  @override
+  String get buddyNudgeUp => 'Pakelkite aukštyn';
+
+  @override
+  String get buddyNudgeDown => 'Nukreipkite žemyn';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Tie keturi kampai nenurodo lentos kontūro. Vilkite kiekvieną rankenėlę į žaidimo lauko kampą ir bandykite dar kartą.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Tie aštuoni taškai neapibrėžia sulankstomos lentos. Uždėkite keturis ant žaidimo lauko kampų ir keturis ant vyrių siūlių, tada bandykite dar kartą.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Negaliu atskirti pačios lentos – kiekviena jos dalis yra uždengta arba pasimetusi šešėlyje ar blizgesyje. Išvalykite lentą, įdėkite šiek tiek šviesos ir bandykite dar kartą.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Negaliu suprasti $region – kažkas gali būti ant jo arba tas lentos kampas gali būti per tamsus, kad jį būtų galima perskaityti. Išvalykite jį arba įdėkite šiek tiek šviesos ir bandykite dar kartą.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Iš čia du šaškių rinkiniai atrodo per daug panašūs. Daugiau šviesos arba kampas su mažesniu akinimu ant lentos paprastai tai pataiso.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Šaškės nėra pradinėje padėtyje – taške $number yra netinkamos spalvos šaškė. Sudėkite pradinę padėtį ir kalibruokite dar kartą.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Lentoje tiek daug šviesos, kad jos spalvos susilieja viena su kita. Pritemdykite šviesą arba perkelkite telefoną taip, kad lemputė nešviestų tiesiai atgal.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Galiu skaityti šią lentą, bet ne kaip netrukus prasidėsiantį žaidimą. Paruoškite vyrus žaidimo pradžiai, tada vėl kalibruokite.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Lentą įžiūriu, bet iš čia negaliu patikimai suskaičiuoti vieną ant kitos sudėtų šaškių, todėl galiu suklysti. Paprastai padeda daugiau šviesos į artimus taškus arba kiek aukštesnis kameros kampas.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Nematau visos lentos. Perkelkite telefoną atgal arba vilkite kampus į žaidimo lauką.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Nebematau visos plokštės – $region yra už nuotraukos ribų. Vėl sulygiuokite fotoaparatą arba dar kartą patikrinkite kampus.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition => 'Tai atrodo kaip pradinė padėtis.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Pradinės padėties taškuose nematau šaškių. Sudėkite pradinę padėtį ir bandykite dar kartą.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Lenta nėra paruošta žaidimo pradžiai: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region atrodo tuščias, bet žaidimas prasideda nuo $side';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return '$region turi $side, bet žaidimas pradedamas tuščiu';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return '$region turi $observed, kur žaidimas prasideda nuo $expected';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Truputį pabūkite – pametu lentą, kol telefonas juda.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Man pateikiama nuotrauka nėra ta, ant kurios buvo pastatyta ši lenta, todėl negaliu nieko joje sustatyti. Iš čia vėl nustatykite lentą.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Paveikslėlis per minkštas, kad būtų galima perskaityti lentą. Suteikite fotoaparatui akimirką sufokusuoti.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Lenta nėra ten, kur buvo, kai ją išmokau. Vėl išlyginkite kampus ir aš pasirinksiu žaidimą tiesiai atgal.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Kažkas dengia dalį lentos. Tęsiu, kai tik bus aišku.';
+
+  @override
+  String get buddyReadabilityClear => 'Aš matau lentą.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Lemputė ant lentos pakeitė spalvą, todėl lenta nebeatrodo taip, kaip išmokau. Vėl sureguliuokite kampus po šia šviesa ir aš pasirinksiu žaidimą tiesiai atgal.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Per tamsu skaityti lentą. Dar šiek tiek šviesos ir tęsiu ten, kur buvome.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Lentoje tiek daug šviesos, kad jos spalvos susilieja viena su kita. Pritemdykite jį arba perkelkite telefoną taip, kad lemputė nešviestų tiesiai atgal.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy vis dar nemato jo judėjimo – $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nVis tiek galite žaisti rungtynes: įveskite kiekvieną metimą ant kauliukų padėklo ir bakstelėkite žaidimus žemiau esančioje lentoje.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Nepavyko paleisti fotoaparato. Patikrinkite leidimus ir bandykite dar kartą.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'taškas $number';
+  }
+
+  @override
+  String get buddyRegionBar => 'baras';
+
+  @override
+  String get buddyRegionWhiteTray => 'baltųjų šaškių išnešimo dėklas';
+
+  @override
+  String get buddyRegionBlackTray => 'juodųjų šaškių išnešimo dėklas';
+
+  @override
+  String get buddyRegionDiceZone => 'lentos vidurys';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Nematau visos lentos. Perkelkite telefoną atgal arba vilkite kampus į žaidimo lauką.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return '(ir dar $number)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Kiekvienas žaidėjas meta po vieną kauliuką. Pradeda išmetęs daugiau.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'baltas kauliukas';
+
+  @override
+  String get buddyDiceOpeningSecond => 'juodas kauliukas';
+
+  @override
+  String get buddyDiceRegularCaption => 'Du veidai ant stalo bet kuria tvarka.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Vienas mirtis';
+
+  @override
+  String get buddyDiceRegularSecond => 'Kitas';
 }

@@ -4538,6 +4538,807 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Suggested change'**
   String get feedbackFieldIdea;
+
+  /// No description provided for @buddySetupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Play with Buddy'**
+  String get buddySetupTitle;
+
+  /// No description provided for @buddySetupSideLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy plays'**
+  String get buddySetupSideLabel;
+
+  /// No description provided for @buddySetupSeatLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your seat'**
+  String get buddySetupSeatLabel;
+
+  /// No description provided for @buddySetupSeatNear.
+  ///
+  /// In en, this message translates to:
+  /// **'By the phone'**
+  String get buddySetupSeatNear;
+
+  /// No description provided for @buddySetupSeatFar.
+  ///
+  /// In en, this message translates to:
+  /// **'Opposite'**
+  String get buddySetupSeatFar;
+
+  /// No description provided for @buddySetupSeatHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Which side of the board you are on. It is how Buddy numbers the points, and how it tells your opening die from its own.'**
+  String get buddySetupSeatHelp;
+
+  /// No description provided for @buddySetupVoiceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'How Buddy talks'**
+  String get buddySetupVoiceLabel;
+
+  /// No description provided for @buddySetupVoiceTerse.
+  ///
+  /// In en, this message translates to:
+  /// **'Terse'**
+  String get buddySetupVoiceTerse;
+
+  /// No description provided for @buddySetupVoiceFriendly.
+  ///
+  /// In en, this message translates to:
+  /// **'Friendly'**
+  String get buddySetupVoiceFriendly;
+
+  /// No description provided for @buddySetupVoiceTerseHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'“13/8, 24/22” — notation, the way two players at a board actually talk.'**
+  String get buddySetupVoiceTerseHelp;
+
+  /// No description provided for @buddySetupVoiceFriendlyHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'“Move one checker from 13 to 8, and one from 24 to 22.”'**
+  String get buddySetupVoiceFriendlyHelp;
+
+  /// No description provided for @buddySetupTutorHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Tutor commentary and move explanations follow your saved Tutor preferences in Settings. Buddy gives occasional feedback after your plays; typed dice and manual moves work the same way.'**
+  String get buddySetupTutorHelp;
+
+  /// No description provided for @buddySetupCalibrate.
+  ///
+  /// In en, this message translates to:
+  /// **'Calibrate the board'**
+  String get buddySetupCalibrate;
+
+  /// No description provided for @buddyFixAim.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix the aim'**
+  String get buddyFixAim;
+
+  /// No description provided for @buddyWaitingForOpening.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy is waiting for the throw that starts the match.'**
+  String get buddyWaitingForOpening;
+
+  /// No description provided for @buddyPromptLostBoard.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy has lost the board. Fix the aim and the match carries on where it stopped.'**
+  String get buddyPromptLostBoard;
+
+  /// No description provided for @buddyPromptWaitingPicture.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for a picture Buddy can read. Nothing is lost.'**
+  String get buddyPromptWaitingPicture;
+
+  /// No description provided for @buddyPromptTypeDice.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy cannot find the dice. Type the roll instead.'**
+  String get buddyPromptTypeDice;
+
+  /// No description provided for @buddyPromptPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Make your play on the board. Tap it out here if Buddy does not see it.'**
+  String get buddyPromptPlay;
+
+  /// No description provided for @buddyPromptWhichPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Which play was it?'**
+  String get buddyPromptWhichPlay;
+
+  /// No description provided for @buddyPromptCube.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy doubles. Take or drop?'**
+  String get buddyPromptCube;
+
+  /// No description provided for @buddyPromptMakeMove.
+  ///
+  /// In en, this message translates to:
+  /// **'Make Buddy’s move on the board, then Buddy will carry on.'**
+  String get buddyPromptMakeMove;
+
+  /// No description provided for @buddyPromptThinking.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy is thinking.'**
+  String get buddyPromptThinking;
+
+  /// No description provided for @buddyPromptWaitingCalibration.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for a calibration.'**
+  String get buddyPromptWaitingCalibration;
+
+  /// No description provided for @buddyPromptMirrorNoDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy still cannot see its move. The board below is the position it is holding.'**
+  String get buddyPromptMirrorNoDetail;
+
+  /// No description provided for @buddyPromptNotLegal.
+  ///
+  /// In en, this message translates to:
+  /// **'That isn’t a legal play.'**
+  String get buddyPromptNotLegal;
+
+  /// No description provided for @buddyPromptNotLegalReason.
+  ///
+  /// In en, this message translates to:
+  /// **'That isn’t a legal play. {reason}'**
+  String buddyPromptNotLegalReason(String reason);
+
+  /// No description provided for @buddyThrowOpening.
+  ///
+  /// In en, this message translates to:
+  /// **'Throw the opening dice — one die each.'**
+  String get buddyThrowOpening;
+
+  /// No description provided for @buddyThrowUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Throw your dice.'**
+  String get buddyThrowUser;
+
+  /// No description provided for @buddyThrowBuddy.
+  ///
+  /// In en, this message translates to:
+  /// **'Throw Buddy’s dice.'**
+  String get buddyThrowBuddy;
+
+  /// No description provided for @buddyMatchOver.
+  ///
+  /// In en, this message translates to:
+  /// **'The match is over.'**
+  String get buddyMatchOver;
+
+  /// No description provided for @buddyYouWin.
+  ///
+  /// In en, this message translates to:
+  /// **'You win the match.'**
+  String get buddyYouWin;
+
+  /// No description provided for @buddyBuddyWins.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy wins the match.'**
+  String get buddyBuddyWins;
+
+  /// No description provided for @buddyDoubleNoGame.
+  ///
+  /// In en, this message translates to:
+  /// **'There is no game to double in yet — the opening throw comes first.'**
+  String get buddyDoubleNoGame;
+
+  /// No description provided for @buddyDoubleBeforeRoll.
+  ///
+  /// In en, this message translates to:
+  /// **'You can only double before rolling, on your turn.'**
+  String get buddyDoubleBeforeRoll;
+
+  /// No description provided for @buddyDoubleCrawford.
+  ///
+  /// In en, this message translates to:
+  /// **'No doubling in the Crawford game — this single game decides the match.'**
+  String get buddyDoubleCrawford;
+
+  /// No description provided for @buddyDoubleNotOwner.
+  ///
+  /// In en, this message translates to:
+  /// **'Only the cube owner can double, and the other side owns it right now.'**
+  String get buddyDoubleNotOwner;
+
+  /// No description provided for @buddyDoubleUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Doubling is not available right now.'**
+  String get buddyDoubleUnavailable;
+
+  /// No description provided for @buddyLookingAtBoard.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy is looking at the board.'**
+  String get buddyLookingAtBoard;
+
+  /// No description provided for @buddyCameraPlayFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'You can still play the match: type each roll on the dice pad and tap your plays out on the board below.'**
+  String get buddyCameraPlayFallback;
+
+  /// No description provided for @buddySkipCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip this check'**
+  String get buddySkipCheck;
+
+  /// No description provided for @buddyFixedIt.
+  ///
+  /// In en, this message translates to:
+  /// **'I’ve fixed it'**
+  String get buddyFixedIt;
+
+  /// No description provided for @buddyDrop.
+  ///
+  /// In en, this message translates to:
+  /// **'Drop'**
+  String get buddyDrop;
+
+  /// No description provided for @buddyTake.
+  ///
+  /// In en, this message translates to:
+  /// **'Take'**
+  String get buddyTake;
+
+  /// No description provided for @buddyDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get buddyDone;
+
+  /// No description provided for @buddyTranscriptLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What Buddy said'**
+  String get buddyTranscriptLabel;
+
+  /// No description provided for @buddyUndo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get buddyUndo;
+
+  /// No description provided for @buddyConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get buddyConfirm;
+
+  /// No description provided for @buddyDice.
+  ///
+  /// In en, this message translates to:
+  /// **'Dice'**
+  String get buddyDice;
+
+  /// No description provided for @buddyDouble.
+  ///
+  /// In en, this message translates to:
+  /// **'Double'**
+  String get buddyDouble;
+
+  /// No description provided for @buddyDicePadTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What did you throw?'**
+  String get buddyDicePadTitle;
+
+  /// No description provided for @buddyEnterRoll.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter roll'**
+  String get buddyEnterRoll;
+
+  /// No description provided for @buddyContextBeforeGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Play with Buddy'**
+  String get buddyContextBeforeGame;
+
+  /// No description provided for @buddyContextMatchScore.
+  ///
+  /// In en, this message translates to:
+  /// **'You {you}–{buddy} Buddy · to {length} · Game {number}'**
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  );
+
+  /// No description provided for @buddyCameraUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'The camera could not be started. Check permissions and try again.'**
+  String get buddyCameraUnavailable;
+
+  /// No description provided for @buddyCameraPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Backgammon Buddy does not have permission to use the camera. Allow camera access in your device settings and try again.'**
+  String get buddyCameraPermission;
+
+  /// No description provided for @buddyCalibrationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Buddy the board'**
+  String get buddyCalibrationTitle;
+
+  /// No description provided for @buddyCalibrationCornersFold.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag the four outer handles onto the corners of the felt — not the wooden rim — and the four small ones onto the seams where the hinge meets the far and near edges.'**
+  String get buddyCalibrationCornersFold;
+
+  /// No description provided for @buddyCalibrationCornersFlat.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag each handle onto a corner of the felt — the playing surface, not the wooden rim around it.'**
+  String get buddyCalibrationCornersFlat;
+
+  /// No description provided for @buddyCalibrationCheckLines.
+  ///
+  /// In en, this message translates to:
+  /// **'Then check the twelve lines down each half: every one should run along a point of your board. A line that misses its point is a handle that needs nudging.'**
+  String get buddyCalibrationCheckLines;
+
+  /// No description provided for @buddyCalibrationSeatQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Which half is your home board?'**
+  String get buddyCalibrationSeatQuestion;
+
+  /// No description provided for @buddyCalibrationSeatHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'The half nearest the bottom of the picture. This is what fixes the point numbers, so the lines above move with it.'**
+  String get buddyCalibrationSeatHelp;
+
+  /// No description provided for @buddyCalibrationCaptureWait.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold the phone still. Buddy is waiting for the picture to settle before it learns this board.'**
+  String get buddyCalibrationCaptureWait;
+
+  /// No description provided for @buddyCalibrationConfirmQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Is this your board?'**
+  String get buddyCalibrationConfirmQuestion;
+
+  /// No description provided for @buddyCalibrationConfirmFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy is looking at the board it just learned.'**
+  String get buddyCalibrationConfirmFallback;
+
+  /// No description provided for @buddyCalibrationConfirmHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'The men drawn over the picture are what Buddy thinks is on the board. If any of them are in the wrong place, start over — it costs seconds now and a game later.'**
+  String get buddyCalibrationConfirmHelp;
+
+  /// No description provided for @buddyCalibrationNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get buddyCalibrationNext;
+
+  /// No description provided for @buddyCalibrationBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get buddyCalibrationBack;
+
+  /// No description provided for @buddyCalibrationCapture.
+  ///
+  /// In en, this message translates to:
+  /// **'Capture'**
+  String get buddyCalibrationCapture;
+
+  /// No description provided for @buddyCalibrationStartOver.
+  ///
+  /// In en, this message translates to:
+  /// **'Start over'**
+  String get buddyCalibrationStartOver;
+
+  /// No description provided for @buddyCalibrationLooksRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Looks right'**
+  String get buddyCalibrationLooksRight;
+
+  /// No description provided for @buddyCalibrationCornersInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Those four handles do not outline a board — one of them has crossed another. Drag them back to the corners of the felt.'**
+  String get buddyCalibrationCornersInvalid;
+
+  /// No description provided for @buddyCalibrationPrepTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Three things first'**
+  String get buddyCalibrationPrepTitle;
+
+  /// No description provided for @buddyCalibrationRemoveDiceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Take the dice off the board.'**
+  String get buddyCalibrationRemoveDiceTitle;
+
+  /// No description provided for @buddyCalibrationRemoveDiceBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy learns the bare board now. A die left on the felt is learned as part of it, and then Buddy can never see the dice again this session.'**
+  String get buddyCalibrationRemoveDiceBody;
+
+  /// No description provided for @buddyCalibrationSetupCheckersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set the men up for the start of a game.'**
+  String get buddyCalibrationSetupCheckersTitle;
+
+  /// No description provided for @buddyCalibrationSetupCheckersBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Thirty checkers in known places is how Buddy learns this board’s two colours without being told what they are.'**
+  String get buddyCalibrationSetupCheckersBody;
+
+  /// No description provided for @buddyCalibrationFitBoardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fit the whole playing field in the picture.'**
+  String get buddyCalibrationFitBoardTitle;
+
+  /// No description provided for @buddyCalibrationFitBoardBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Then leave the phone where it is. If it moves, Buddy will say so and you can nudge the corners back.'**
+  String get buddyCalibrationFitBoardBody;
+
+  /// No description provided for @buddyCalibrationBoardKind.
+  ///
+  /// In en, this message translates to:
+  /// **'What kind of board is it?'**
+  String get buddyCalibrationBoardKind;
+
+  /// No description provided for @buddyCalibrationFlatBoard.
+  ///
+  /// In en, this message translates to:
+  /// **'Flat board'**
+  String get buddyCalibrationFlatBoard;
+
+  /// No description provided for @buddyCalibrationFoldingBoard.
+  ///
+  /// In en, this message translates to:
+  /// **'Folding case'**
+  String get buddyCalibrationFoldingBoard;
+
+  /// No description provided for @buddyCalibrationBoardKindHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'A folding board needs four extra handles on the hinge seams.'**
+  String get buddyCalibrationBoardKindHelp;
+
+  /// No description provided for @buddyCalibrationNoCameraBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy Mode watches a real board, so it cannot start without the camera. Everything else in the app is unaffected.'**
+  String get buddyCalibrationNoCameraBody;
+
+  /// No description provided for @buddyHandleHingeSeam.
+  ///
+  /// In en, this message translates to:
+  /// **'Hinge seam {number} of 4'**
+  String buddyHandleHingeSeam(int number);
+
+  /// No description provided for @buddyHandleCorner.
+  ///
+  /// In en, this message translates to:
+  /// **'Board corner {number} of 4'**
+  String buddyHandleCorner(int number);
+
+  /// No description provided for @buddyNudgeLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Nudge left'**
+  String get buddyNudgeLeft;
+
+  /// No description provided for @buddyNudgeRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Nudge right'**
+  String get buddyNudgeRight;
+
+  /// No description provided for @buddyNudgeUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Nudge up'**
+  String get buddyNudgeUp;
+
+  /// No description provided for @buddyNudgeDown.
+  ///
+  /// In en, this message translates to:
+  /// **'Nudge down'**
+  String get buddyNudgeDown;
+
+  /// No description provided for @buddyCalibrationProblemCorners.
+  ///
+  /// In en, this message translates to:
+  /// **'Those four corners do not outline a board. Drag each handle onto a corner of the playing field and try again.'**
+  String get buddyCalibrationProblemCorners;
+
+  /// No description provided for @buddyCalibrationProblemFoldCorners.
+  ///
+  /// In en, this message translates to:
+  /// **'Those eight points do not outline a folding board. Put four on the playing-field corners and four on the hinge seams, then try again.'**
+  String get buddyCalibrationProblemFoldCorners;
+
+  /// No description provided for @buddyCalibrationProblemUnreadable.
+  ///
+  /// In en, this message translates to:
+  /// **'I cannot make out the board itself — every part of it is covered, or lost in shadow or glare. Clear the board, add some light, and try again.'**
+  String get buddyCalibrationProblemUnreadable;
+
+  /// No description provided for @buddyCalibrationProblemRegionUnreadable.
+  ///
+  /// In en, this message translates to:
+  /// **'I cannot make out {region} — something may be resting on it, or that corner of the board may be too dark to read. Clear it, or add some light, and try again.'**
+  String buddyCalibrationProblemRegionUnreadable(String region);
+
+  /// No description provided for @buddyCalibrationProblemColours.
+  ///
+  /// In en, this message translates to:
+  /// **'The two sets of checkers look too much alike from here. More light, or an angle with less glare on the board, usually fixes it.'**
+  String get buddyCalibrationProblemColours;
+
+  /// No description provided for @buddyCalibrationProblemWrongChecker.
+  ///
+  /// In en, this message translates to:
+  /// **'The checkers are not in the starting position — point {number} is holding the wrong colour. Set the board up for the start of a game, then calibrate again.'**
+  String buddyCalibrationProblemWrongChecker(int number);
+
+  /// No description provided for @buddyCalibrationProblemOverexposed.
+  ///
+  /// In en, this message translates to:
+  /// **'There is so much light on the board that its colours are washing into each other. Dim the light, or move the phone so the lamp is not shining straight back at it.'**
+  String get buddyCalibrationProblemOverexposed;
+
+  /// No description provided for @buddyCalibrationProblemReadBack.
+  ///
+  /// In en, this message translates to:
+  /// **'I can read this board, but not as a game about to start. Set the men up for the start of a game, then calibrate again.'**
+  String get buddyCalibrationProblemReadBack;
+
+  /// No description provided for @buddyCalibrationProblemStacks.
+  ///
+  /// In en, this message translates to:
+  /// **'I can read this board, but I cannot make out how far one checker sits behind another from here — so I would get the numbers wrong. A little more light on the near points, or a slightly higher camera angle, usually fixes it.'**
+  String get buddyCalibrationProblemStacks;
+
+  /// No description provided for @buddyCalibrationProblemNotVisible.
+  ///
+  /// In en, this message translates to:
+  /// **'I cannot see the whole board. Move the phone back, or drag the corners onto the playing field.'**
+  String get buddyCalibrationProblemNotVisible;
+
+  /// No description provided for @buddyConfirmBoardOutOfFrame.
+  ///
+  /// In en, this message translates to:
+  /// **'I cannot see the whole board any more — {region} is outside the picture. Line the camera up again, or re-check the corners.'**
+  String buddyConfirmBoardOutOfFrame(String region);
+
+  /// No description provided for @buddyConfirmStartingPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'That looks like the starting position.'**
+  String get buddyConfirmStartingPosition;
+
+  /// No description provided for @buddyConfirmNoCheckers.
+  ///
+  /// In en, this message translates to:
+  /// **'I cannot see a checker anywhere the game starts. Set the men up for the start of a game and try again.'**
+  String get buddyConfirmNoCheckers;
+
+  /// No description provided for @buddyConfirmWrongPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'The board is not set up for the start of a game: {details}{more}.'**
+  String buddyConfirmWrongPosition(String details, String more);
+
+  /// No description provided for @buddyConfirmRegionEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'{region} looks empty, but the game starts with {side} there'**
+  String buddyConfirmRegionEmpty(String region, String side);
+
+  /// No description provided for @buddyConfirmRegionUnexpected.
+  ///
+  /// In en, this message translates to:
+  /// **'{region} has {side} on it, but the game starts with it empty'**
+  String buddyConfirmRegionUnexpected(String region, String side);
+
+  /// No description provided for @buddyConfirmRegionWrongSide.
+  ///
+  /// In en, this message translates to:
+  /// **'{region} has {observed} on it, where the game starts with {expected}'**
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  );
+
+  /// No description provided for @buddyReadabilityMotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold still a moment — I lose the board while the phone is moving.'**
+  String get buddyReadabilityMotion;
+
+  /// No description provided for @buddyReadabilityWrongFrame.
+  ///
+  /// In en, this message translates to:
+  /// **'The picture I am being given is not the one this board was set up on, so I cannot line anything up in it. Set the board up again from here.'**
+  String get buddyReadabilityWrongFrame;
+
+  /// No description provided for @buddyReadabilityBlur.
+  ///
+  /// In en, this message translates to:
+  /// **'The picture is too soft to read the board from. Give the camera a moment to focus.'**
+  String get buddyReadabilityBlur;
+
+  /// No description provided for @buddyReadabilityCalibrationStale.
+  ///
+  /// In en, this message translates to:
+  /// **'The board is not where it was when I learned it. Line the corners up again and I will pick the game straight back up.'**
+  String get buddyReadabilityCalibrationStale;
+
+  /// No description provided for @buddyReadabilityOccluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Something is covering part of the board. I will carry on as soon as it is clear.'**
+  String get buddyReadabilityOccluded;
+
+  /// No description provided for @buddyReadabilityClear.
+  ///
+  /// In en, this message translates to:
+  /// **'I can see the board.'**
+  String get buddyReadabilityClear;
+
+  /// No description provided for @buddyReadabilityColorChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'The light on the board has changed colour, so the board no longer looks like the one I learned. Line the corners up again under this light and I will pick the game straight back up.'**
+  String get buddyReadabilityColorChanged;
+
+  /// No description provided for @buddyReadabilityTooDark.
+  ///
+  /// In en, this message translates to:
+  /// **'It is too dark to read the board. A little more light and I will carry on where we were.'**
+  String get buddyReadabilityTooDark;
+
+  /// No description provided for @buddyReadabilityTooBright.
+  ///
+  /// In en, this message translates to:
+  /// **'There is so much light on the board that its colours are running into each other. Dim it, or move the phone so the lamp is not shining straight back at it.'**
+  String get buddyReadabilityTooBright;
+
+  /// No description provided for @buddyPromptBeliefMirror.
+  ///
+  /// In en, this message translates to:
+  /// **'Buddy still cannot see its move — {reason}.'**
+  String buddyPromptBeliefMirror(String reason);
+
+  /// No description provided for @buddyCameraUnavailablePlay.
+  ///
+  /// In en, this message translates to:
+  /// **'{cameraMessage}\n\nYou can still play the match: type each roll on the dice pad and tap your plays out on the board below.'**
+  String buddyCameraUnavailablePlay(String cameraMessage);
+
+  /// No description provided for @buddyCameraGenericError.
+  ///
+  /// In en, this message translates to:
+  /// **'The camera could not be started. Check permissions and try again.'**
+  String get buddyCameraGenericError;
+
+  /// No description provided for @buddyRegionPoint.
+  ///
+  /// In en, this message translates to:
+  /// **'the {number}-point'**
+  String buddyRegionPoint(int number);
+
+  /// No description provided for @buddyRegionBar.
+  ///
+  /// In en, this message translates to:
+  /// **'the bar'**
+  String get buddyRegionBar;
+
+  /// No description provided for @buddyRegionWhiteTray.
+  ///
+  /// In en, this message translates to:
+  /// **'White’s bear-off tray'**
+  String get buddyRegionWhiteTray;
+
+  /// No description provided for @buddyRegionBlackTray.
+  ///
+  /// In en, this message translates to:
+  /// **'Black’s bear-off tray'**
+  String get buddyRegionBlackTray;
+
+  /// No description provided for @buddyRegionDiceZone.
+  ///
+  /// In en, this message translates to:
+  /// **'the middle of the board'**
+  String get buddyRegionDiceZone;
+
+  /// No description provided for @buddyCalibrationProblemVisible.
+  ///
+  /// In en, this message translates to:
+  /// **'I cannot see the whole board. Move the phone back, or drag the corners onto the playing field.'**
+  String get buddyCalibrationProblemVisible;
+
+  /// No description provided for @buddyConfirmMore.
+  ///
+  /// In en, this message translates to:
+  /// **' (and {number} more)'**
+  String buddyConfirmMore(int number);
+
+  /// No description provided for @buddyDiceOpeningCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'One die each. Which face is whose is what decides who starts.'**
+  String get buddyDiceOpeningCaption;
+
+  /// No description provided for @buddyDiceOpeningFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'White’s die'**
+  String get buddyDiceOpeningFirst;
+
+  /// No description provided for @buddyDiceOpeningSecond.
+  ///
+  /// In en, this message translates to:
+  /// **'Black’s die'**
+  String get buddyDiceOpeningSecond;
+
+  /// No description provided for @buddyDiceRegularCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'The two faces on the table, in either order.'**
+  String get buddyDiceRegularCaption;
+
+  /// No description provided for @buddyDiceRegularFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'One die'**
+  String get buddyDiceRegularFirst;
+
+  /// No description provided for @buddyDiceRegularSecond.
+  ///
+  /// In en, this message translates to:
+  /// **'The other'**
+  String get buddyDiceRegularSecond;
 }
 
 class _AppLocalizationsDelegate
