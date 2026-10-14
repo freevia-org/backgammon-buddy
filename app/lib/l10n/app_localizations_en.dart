@@ -1352,9 +1352,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get analysisSaveForPractice => 'Save for practice';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Could not save this decision: $error';
-  }
+  String get analysisSaveError =>
+      'Could not save this decision. Please try again.';
 
   @override
   String analysisCubeInfo(
@@ -2467,4 +2466,269 @@ class AppLocalizationsEn extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Error: $error';
   }
+
+  @override
+  String get privacyTitle => 'Privacy and data';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy by Freevia';
+
+  @override
+  String get privacyIntro =>
+      'This page describes how the current app handles your data.';
+
+  @override
+  String get privacyLocalTitle => 'Games and tutoring on your device';
+
+  @override
+  String get privacyLocalBody =>
+      'Local matches, settings, analysis and practice progress are stored on this device. The backgammon engine and tutor explanations run here. Delete a saved match from History to remove its saved practice exercises and attempts too. Delete individual exercises or reset practice progress in Learning; clear local error reports in Settings → Diagnostics. Your device’s backup settings may also apply to game history. Online sign-in credentials are kept in the device’s protected storage.';
+
+  @override
+  String get privacyOnlineTitle => 'Online and nearby play';
+
+  @override
+  String get privacyOnlineBody =>
+      'Online play sends an anonymous player identifier, match settings, moves and dice-handshake records to Google Firebase so both players can play the same match. Deleting History on this device does not delete online records. Hosted matches expire 30 days after creation; scheduled cleanup removes their cloud logs. Match records are stored in the EU; Firebase Authentication processes sign-in data in the United States. Online connections to Google use encryption in transit. Nearby play exchanges match information with the other device over an unencrypted local connection; use trusted Wi-Fi.';
+
+  @override
+  String get privacyDiagnosticsTitle => 'Optional usage and crash diagnostics';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Sharing is off until you choose it in Settings. If enabled, Google Firebase receives usage events, app/device information, performance measurements and crash reports to help improve the app. Turn sharing off at any time to stop new optional collection. This does not erase data already sent. Local diagnostics and online matches work separately from this choice.';
+
+  @override
+  String get privacyCameraTitle => 'Camera for nearby QR codes';
+
+  @override
+  String get privacyCameraBody =>
+      'The optional camera scans nearby game QR codes. Images are processed on your device and are not saved or uploaded. You can refuse camera access and enter the host address manually. This version does not use the microphone or provide physical-board play.';
+
+  @override
+  String get privacyFeedbackTitle => 'Feedback you choose to send';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Feedback opens a GitHub issue draft for you to review. Opening the draft sends its app version and platform to GitHub; feedback from Diagnostics may also send error details. No issue is posted until you submit it. Issues may be public, so remove private information before sending.';
+
+  @override
+  String get privacyContactTitle => 'Privacy contact';
+
+  @override
+  String get privacyReadPolicy => 'Read the privacy policy';
+
+  @override
+  String get privacyPolicyOpenFailed => 'Could not open the privacy policy.';
+
+  @override
+  String get privacySupportTitle => 'Help and support';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Could not open support. Contact support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle => 'Delete online identity and data?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'This immediately ends access to this identity’s cloud matches for both players and requests deletion of the identity and shared online match logs within 30 days. Google may take up to 180 days after account deletion to remove Authentication data from its live and backup systems. Local History and practice remain on this device. Previously sent optional diagnostics are separate; contact privacy@freevia.org about those. This request cannot be undone.';
+
+  @override
+  String get privacyRequestDeletion => 'Request deletion';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Delete online data';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Use this device’s saved sign-in to verify ownership. A player identifier or invite code alone does not prove ownership. Local-only players do not need an online account.';
+
+  @override
+  String get privacySendingRequest => 'Sending request…';
+
+  @override
+  String get privacyDeleteAction => 'Delete online identity and data';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Deletion requested. This online identity is signed out. Its cloud data will be deleted within 30 days. Starting online play again creates a new identity. Google’s Authentication data removal can take up to 180 days. Contact privacy@freevia.org for help.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Deletion requested. Its cloud data will be deleted within 30 days. The device could not clear the saved sign-in, but the online identity is blocked from further match access. Google’s Authentication data removal can take up to 180 days. Contact privacy@freevia.org for help.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'No usable online identity is saved on this device. No new account was created. If you previously used online play, contact privacy@freevia.org for help; hosted matches expire after 30 days.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Could not confirm the deletion request. Check your connection and retry, or contact privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle => 'Share usage and crash diagnostics?';
+
+  @override
+  String get privacyConsentBody =>
+      'This sends usage events, app/device information, crash reports and performance measurements to Google Firebase. Sharing is optional. Games and tutoring work with it off, and you can turn it off again in Settings.';
+
+  @override
+  String get privacyKeepOff => 'Keep off';
+
+  @override
+  String get privacyShareDiagnostics => 'Share diagnostics';
+
+  @override
+  String get privacySaveFailed =>
+      'Could not save the privacy choice. Please try again.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'What stays on your device and what is shared';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Share usage and crash diagnostics';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle => 'Optional · off by default';
+
+  @override
+  String get lanScanToJoin => 'Scan to join';
+
+  @override
+  String get lanScanHostCode => 'Scan the host’s code';
+
+  @override
+  String get lanEnterAddressInstead => 'Enter the address instead';
+
+  @override
+  String get lanQrAccessibilityLabel => 'QR code to join this game';
+
+  @override
+  String get lanJoinInstruction =>
+      'On the other device, open Play Nearby, choose Join, then scan this QR code.';
+
+  @override
+  String get lanTorch => 'Torch';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy cannot use the camera. Allow camera access in device settings, or enter the address shown on the other device manually.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'This device cannot scan QR codes. Enter the address shown on the other device manually.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'The camera could not be started. Enter the address shown on the other device manually.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Point the camera at the QR code on the other device.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Physical-board play is not available in this version. On-screen games, tutoring and practice are available from Home.';
+
+  @override
+  String get homePlayWithBuddy => 'Play with Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Backgammon board. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'White to roll.';
+
+  @override
+  String get boardBlackToRoll => 'Black to roll.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'White to move, roll $die1 and $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Black to move, roll $die1 and $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'A double is offered.';
+
+  @override
+  String get boardResignationOffered => 'A resignation is offered.';
+
+  @override
+  String get boardGameOver => 'The game is over.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Bug]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Idea]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'Replace this with a short description of what happened.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Replace this with the steps that led to the problem.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Replace this with what you expected to happen.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Replace this with what you wanted to do or learn.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Replace this with the change you would find helpful.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(truncated — use Copy to clipboard on the Diagnostics screen for the full log)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'White to move.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Black to move.';
+
+  @override
+  String get feedbackFieldVersion => 'App version';
+
+  @override
+  String get feedbackFieldPlatform => 'Platform';
+
+  @override
+  String get feedbackFieldSummary => 'What happened';
+
+  @override
+  String get feedbackFieldReproduction => 'Steps to reproduce';
+
+  @override
+  String get feedbackFieldExpected => 'Expected result';
+
+  @override
+  String get feedbackFieldNeed => 'What you wanted to do';
+
+  @override
+  String get feedbackFieldIdea => 'Suggested change';
 }

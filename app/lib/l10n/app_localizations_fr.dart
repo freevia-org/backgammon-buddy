@@ -377,7 +377,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tutorPhraseForcedPassPrompt =>
-      'Un passe forcé n’est pas une erreur ; attendez le prochain lancer.';
+      'Une passe forcée n’est pas une erreur ; attends le prochain lancer.';
 
   @override
   String get tutorPhraseOnlyOneResult =>
@@ -385,7 +385,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tutorPhraseForcedTurnPrompt =>
-      'Jouez le tour forcé. Ce lancer ne comporte aucun choix à évaluer.';
+      'Joue le tour forcé. Ce lancer ne comporte aucun choix à évaluer.';
 
   @override
   String get tutorPhrasePipCountsLevel => 'Les comptes de pips sont à égalité.';
@@ -551,7 +551,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String tutorPhraseStagedPartialPrompt(Object part) {
-    return '$part Utilisez les dés encore jouables avant d’évaluer le coup complet.';
+    return '$part Utilise les dés encore jouables avant d’évaluer le coup complet.';
   }
 
   @override
@@ -604,7 +604,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String tutorPhraseStagedCompletePrompt(Object part) {
-    return '$part Le coup complet est prêt ; « Confirmer » le joue.';
+    return '$part Le coup complet est prêt ; appuie sur « Confirmer » pour le jouer.';
   }
 
   @override
@@ -821,7 +821,7 @@ class AppLocalizationsFr extends AppLocalizations {
     Object direction,
     Object scoreContext,
   ) {
-    return '$factors La probabilité estimée de victoire du meilleur coup est de $delta points de pourcentage $direction.$scoreContext';
+    return '$factors Avec le meilleur coup, la probabilité estimée de victoire est $delta points de pourcentage $direction.$scoreContext';
   }
 
   @override
@@ -1365,9 +1365,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get analysisSaveForPractice => 'Enregistrer pour s’exercer';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Impossible d’enregistrer cette décision : $error';
-  }
+  String get analysisSaveError =>
+      'Impossible d’enregistrer cette décision. Réessaie.';
 
   @override
   String analysisCubeInfo(
@@ -2483,4 +2482,275 @@ class AppLocalizationsFr extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Erreur : $error';
   }
+
+  @override
+  String get privacyTitle => 'Confidentialité et données';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy par Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Cette page décrit la façon dont la version actuelle de l’application traite tes données.';
+
+  @override
+  String get privacyLocalTitle => 'Parties et tutorat sur ton appareil';
+
+  @override
+  String get privacyLocalBody =>
+      'Les parties locales, les réglages, les analyses et la progression de l’entraînement sont enregistrés sur cet appareil. Le moteur de backgammon et les explications du tuteur s’exécutent ici. Supprime une partie enregistrée dans l’archive des parties pour supprimer aussi les exercices et tentatives d’entraînement associés. Supprime des exercices ou réinitialise la progression dans Apprentissage ; efface les rapports d’erreur locaux dans Réglages → Diagnostics. Les paramètres de sauvegarde de ton appareil peuvent aussi s’appliquer à l’historique des parties. Les identifiants de connexion en ligne sont conservés dans l’espace de stockage protégé de l’appareil.';
+
+  @override
+  String get privacyOnlineTitle => 'Jeu en ligne et à proximité';
+
+  @override
+  String get privacyOnlineBody =>
+      'Le jeu en ligne envoie à Google Firebase un identifiant de joueur anonyme, les paramètres de la partie, les coups et les enregistrements de synchronisation des dés afin que les deux joueurs disputent la même partie. Supprimer l’historique de cet appareil ne supprime pas les données en ligne. Les parties hébergées expirent 30 jours après leur création ; un nettoyage planifié supprime leurs journaux dans le cloud. Les données des parties sont stockées dans l’UE ; Firebase Authentication traite les données de connexion aux États-Unis. Les connexions à Google sont chiffrées pendant le transfert. Le jeu à proximité échange des informations de partie avec l’autre appareil par une connexion locale non chiffrée ; utilise un réseau Wi-Fi de confiance.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Diagnostics facultatifs d’utilisation et de plantage';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Le partage est désactivé tant que tu ne l’actives pas dans Réglages. Si tu l’actives, Google Firebase reçoit des événements d’utilisation, des informations sur l’application et l’appareil, des mesures de performance et des rapports de plantage pour contribuer à l’amélioration de l’application. Tu peux désactiver le partage à tout moment pour arrêter toute nouvelle collecte facultative. Cela n’efface pas les données déjà envoyées. Les diagnostics locaux et les parties en ligne fonctionnent indépendamment de ce choix.';
+
+  @override
+  String get privacyCameraTitle => 'Caméra pour les codes QR à proximité';
+
+  @override
+  String get privacyCameraBody =>
+      'La caméra facultative scanne les codes QR des parties à proximité. Les images sont traitées sur ton appareil ; elles ne sont ni enregistrées ni envoyées. Tu peux refuser l’accès à la caméra et saisir manuellement l’adresse de l’hôte. Cette version n’utilise pas le microphone et ne permet pas de jouer sur un plateau physique.';
+
+  @override
+  String get privacyFeedbackTitle => 'Commentaires que tu choisis d’envoyer';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Les commentaires ouvrent un brouillon de ticket GitHub que tu peux vérifier. Son ouverture transmet à GitHub la version de l’application et la plateforme ; les commentaires envoyés depuis Diagnostics peuvent aussi transmettre des détails sur l’erreur. Aucun ticket n’est publié avant que tu l’envoies. Les tickets peuvent être publics ; retire donc les informations privées avant l’envoi.';
+
+  @override
+  String get privacyContactTitle => 'Contact confidentialité';
+
+  @override
+  String get privacyReadPolicy => 'Lire la politique de confidentialité';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Impossible d’ouvrir la politique de confidentialité.';
+
+  @override
+  String get privacySupportTitle => 'Aide et assistance';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Impossible d’ouvrir l’assistance. Contacte support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Supprimer l’identité et les données en ligne ?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Cette action met immédiatement fin à l’accès des deux joueurs aux parties dans le cloud de cette identité et demande la suppression de l’identité et des journaux partagés des parties en ligne sous 30 jours. Google peut prendre jusqu’à 180 jours après la suppression du compte pour retirer les données Authentication de ses systèmes actifs et de sauvegarde. L’historique local et l’entraînement restent sur cet appareil. Les diagnostics facultatifs déjà envoyés sont distincts ; contacte privacy@freevia.org à leur sujet. Cette demande est irréversible.';
+
+  @override
+  String get privacyRequestDeletion => 'Demander la suppression';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Supprimer les données en ligne';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Utilise la connexion enregistrée sur cet appareil pour vérifier que le compte t’appartient. Un identifiant de joueur ou un code d’invitation ne suffit pas à prouver que tu en es propriétaire. Les joueurs qui jouent uniquement en local n’ont pas besoin de compte en ligne.';
+
+  @override
+  String get privacySendingRequest => 'Envoi de la demande…';
+
+  @override
+  String get privacyDeleteAction =>
+      'Supprimer l’identité et les données en ligne';
+
+  @override
+  String get privacyDeleteRequested =>
+      'La suppression a été demandée. Cette identité en ligne est déconnectée. Ses données dans le cloud seront supprimées sous 30 jours. Si tu recommences à jouer en ligne, une nouvelle identité sera créée. Google peut prendre jusqu’à 180 jours pour supprimer les données Authentication. Pour obtenir de l’aide, contacte privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'La suppression a été demandée. Les données dans le cloud seront supprimées sous 30 jours. L’appareil n’a pas pu effacer la connexion enregistrée, mais l’identité en ligne est bloquée et ne peut plus accéder aux parties. Google peut prendre jusqu’à 180 jours pour supprimer les données Authentication. Pour obtenir de l’aide, contacte privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Aucune identité en ligne utilisable n’est enregistrée sur cet appareil. Aucun compte n’a été créé. Si tu as déjà joué en ligne, contacte privacy@freevia.org pour obtenir de l’aide ; les parties hébergées expirent après 30 jours.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Impossible de confirmer la demande de suppression. Vérifie ta connexion et réessaie, ou contacte privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle =>
+      'Partager les données d’utilisation et de plantage ?';
+
+  @override
+  String get privacyConsentBody =>
+      'Cela envoie à Google Firebase des événements d’utilisation, des informations sur l’application et l’appareil, des rapports de plantage et des mesures de performance. Le partage est facultatif. Les parties et le tutorat fonctionnent sans lui ; tu peux le désactiver à nouveau dans Réglages.';
+
+  @override
+  String get privacyKeepOff => 'Laisser désactivé';
+
+  @override
+  String get privacyShareDiagnostics => 'Partager les diagnostics';
+
+  @override
+  String get privacySaveFailed =>
+      'Impossible d’enregistrer le choix de confidentialité. Réessaie.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Ce qui reste sur ton appareil et ce qui est partagé';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Partager les diagnostics d’utilisation et de plantage';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Facultatif · désactivé par défaut';
+
+  @override
+  String get lanScanToJoin => 'Scanner pour rejoindre';
+
+  @override
+  String get lanScanHostCode => 'Scanner le code de l’hôte';
+
+  @override
+  String get lanEnterAddressInstead => 'Saisir l’adresse à la place';
+
+  @override
+  String get lanQrAccessibilityLabel => 'Code QR pour rejoindre cette partie';
+
+  @override
+  String get lanJoinInstruction =>
+      'Sur l’autre appareil, ouvre Jeu à proximité, choisis Rejoindre, puis scanne ce code QR.';
+
+  @override
+  String get lanTorch => 'Lampe torche';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy ne peut pas utiliser l’appareil photo. Autorise l’accès dans les réglages de l’appareil ou saisis manuellement l’adresse affichée sur l’autre appareil.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Cet appareil ne peut pas scanner les codes QR. Saisis manuellement l’adresse affichée sur l’autre appareil.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Impossible de démarrer l’appareil photo. Saisis manuellement l’adresse affichée sur l’autre appareil.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Pointe l’appareil photo vers le code QR sur l’autre appareil.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Le jeu sur un plateau physique n’est pas disponible dans cette version. Les parties à l’écran, le tutorat et l’entraînement sont accessibles depuis l’accueil.';
+
+  @override
+  String get homePlayWithBuddy => 'Jouer avec Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Plateau de backgammon. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Aux blancs de lancer les dés.';
+
+  @override
+  String get boardBlackToRoll => 'Aux noirs de lancer les dés.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Aux blancs de jouer ; lance $die1 et $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Aux noirs de jouer ; lance $die1 et $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Un double est proposé.';
+
+  @override
+  String get boardResignationOffered => 'Une partie abandonnée est proposée.';
+
+  @override
+  String get boardGameOver => 'La partie est terminée.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Bug] : Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Idée] : Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'Remplace ce texte par une brève description de ce qui s’est passé.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Remplace ce texte par les étapes qui ont mené au problème.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Remplace ce texte par le résultat auquel tu t’attendais.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Remplace ce texte par ce que tu voulais faire ou apprendre.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Remplace ce texte par le changement qui te serait utile.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(extrait tronqué — utilise « Copier dans le presse-papiers » sur l’écran Diagnostics pour obtenir le journal complet)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Aux blancs de jouer.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Aux noirs de jouer.';
+
+  @override
+  String get feedbackFieldVersion => 'Version de l’application';
+
+  @override
+  String get feedbackFieldPlatform => 'Plateforme';
+
+  @override
+  String get feedbackFieldSummary => 'Que s’est-il passé ?';
+
+  @override
+  String get feedbackFieldReproduction => 'Étapes pour reproduire le problème';
+
+  @override
+  String get feedbackFieldExpected => 'Résultat attendu';
+
+  @override
+  String get feedbackFieldNeed => 'Ce que tu voulais faire';
+
+  @override
+  String get feedbackFieldIdea => 'Modification suggérée';
 }

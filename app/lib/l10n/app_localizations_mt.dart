@@ -1336,9 +1336,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get analysisSaveForPractice => 'Issejvja għall-prattika';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Ma setax jiġi ssejvjat dan id-deċiżjoni: $error';
-  }
+  String get analysisSaveError =>
+      'Ma setgħetx tiġi ssejvjata din id-deċiżjoni. Erġa’ pprova.';
 
   @override
   String analysisCubeInfo(
@@ -2452,4 +2451,271 @@ class AppLocalizationsMt extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Żball: $error';
   }
+
+  @override
+  String get privacyTitle => 'Privatezza u d-dejta';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy minn Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Din il-paġna tiddeskrivi kif l-app timmaniġġja d-dejta tiegħek.';
+
+  @override
+  String get privacyLocalTitle => 'Logħob u tagħlim fuq it-tagħmir tiegħek';
+
+  @override
+  String get privacyLocalBody =>
+      'Il-logħbiet lokali, is-settings, l-analiżi u l-progress tal-prattika jinħażnu fuq dan it-tagħmir. Il-magna tal-backgammon u l-ispjegazzjonijiet tat-tutur jaħdmu hawn. Ħassar logħba ssejvjata mill-Istorja biex tneħħi wkoll l-eżerċizzji u t-tentattivi tagħha. Ħassar eżerċizzji individwali jew irrisettja l-progress fit-Tagħlim; neħħi r-rapporti lokali tal-iżbalji minn Settings → Dijanjostika. Is-settings tal-backup tat-tagħmir jistgħu japplikaw ukoll għall-istorja tal-logħob. Id-dettalji tad-dħul online jinżammu fil-ħażna protetta tat-tagħmir.';
+
+  @override
+  String get privacyOnlineTitle => 'Logħob online u fil-qrib';
+
+  @override
+  String get privacyOnlineBody =>
+      'Il-logħob online jibgħat identifikatur anonimu tal-plejer, is-settings tal-logħba, il-mossi u r-rekords tal-qbil tad-dadi lil Google Firebase biex iż-żewġ plejers ikunu jistgħu jilagħbu l-istess logħba. It-tħassir tal-Istorja minn dan it-tagħmir ma jħassarx ir-rekords online. Il-logħbiet ospitati jiskadu 30 jum wara li jinħolqu; tindif skedat ineħħi r-rekords tagħhom mill-cloud. Ir-rekords tal-logħob jinħażnu fl-UE; Firebase Authentication tipproċessa d-dettalji tad-dħul fl-Istati Uniti. Il-konnessjonijiet online ma’ Google huma kriptati waqt it-trażmissjoni. Il-logħob fil-qrib jiskambja informazzjoni mat-tagħmir l-ieħor fuq konnessjoni lokali mhux kriptata; uża Wi-Fi fdat.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Dijanjostika fakultattiva tal-użu u l-ħabtiet';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Il-qsim ikun mitfi sakemm tagħżlu fis-Settings. Jekk tixegħlu, Google Firebase tirċievi avvenimenti tal-użu, informazzjoni dwar l-app u t-tagħmir, kejl tal-prestazzjoni u rapporti ta’ ħabtiet biex tgħin fit-titjib tal-app. Tista’ titfih f’kull ħin biex twaqqaf ġbir fakultattiv ġdid. Dan ma jħassarx dejta li tkun intbagħtet diġà. Id-dijanjostika lokali u l-logħbiet online jaħdmu indipendentement minn din l-għażla.';
+
+  @override
+  String get privacyCameraTitle => 'Kamera għal kodiċijiet QR fil-qrib';
+
+  @override
+  String get privacyCameraBody =>
+      'Il-kamera fakultattiva tiskennja kodiċijiet QR għal-logħob fil-qrib. L-immaġnijiet jiġu pproċessati fuq it-tagħmir tiegħek u ma jinħażnux jew jittellgħu. Tista’ tirrifjuta l-aċċess għall-kamera u ddaħħal l-indirizz tal-host manwalment. Din il-verżjoni ma tużax mikrofonu u ma tipprovdix logħob fuq bord fiżiku.';
+
+  @override
+  String get privacyFeedbackTitle => 'Feedback li tagħżel li tibgħat';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Il-feedback jiftaħ abbozz ta’ issue fuq GitHub biex tirreveduh. Meta tiftaħ l-abbozz, il-verżjoni tal-app u l-pjattaforma jintbagħtu lil GitHub; feedback mid-Dijanjostika jista’ jinkludi wkoll dettalji tal-iżbalji. L-ebda issue ma tiġi ppubblikata qabel ma tissottomettiha. L-issues jistgħu jkunu pubbliċi, għalhekk neħħi informazzjoni privata qabel tibgħatha.';
+
+  @override
+  String get privacyContactTitle => 'Kuntatt dwar il-privatezza';
+
+  @override
+  String get privacyReadPolicy => 'Aqra l-politika tal-privatezza';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Ma setgħetx tinfetaħ il-politika tal-privatezza.';
+
+  @override
+  String get privacySupportTitle => 'Għajnuna u appoġġ';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Ma setgħetx tinfetaħ l-għajnuna. Ikkuntattja support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Tħassar l-identità u d-dejta online?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Dan iwaqqaf minnufih l-aċċess ta’ din l-identità għal-logħbiet fil-cloud għaż-żewġ plejers u jitlob it-tħassir tal-identità u tar-rekords kondiviżi fi żmien 30 jum. Google jista’ jieħu sa 180 jum wara t-tħassir tal-kont biex ineħħi d-dejta ta’ Authentication mis-sistemi attivi u tal-backup. L-Istorja lokali u l-prattika jibqgħu fuq dan it-tagħmir. Id-dijanjostika fakultattiva mibgħuta qabel hija separata; ikkuntattja privacy@freevia.org dwarha. Din it-talba ma tistax titneħħa.';
+
+  @override
+  String get privacyRequestDeletion => 'Itlob it-tħassir';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Ħassar dejta online';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Uża d-dettalji tad-dħul ssejvjati fuq dan it-tagħmir biex tivverifika s-sjieda. Identifikatur tal-plejer jew kodiċi ta’ stedina waħdu ma jipprovax is-sjieda. Plejers lokali biss m’għandhomx bżonn kont online.';
+
+  @override
+  String get privacySendingRequest => 'Qed tintbagħat it-talba…';
+
+  @override
+  String get privacyDeleteAction => 'Ħassar l-identità u d-dejta online';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Intalab it-tħassir. Din l-identità online ġiet illoggjata. Id-dejta tagħha fil-cloud titħassar fi żmien 30 jum. Jekk terġa’ tibda tilgħab online jinħoloq identità ġdida. It-tneħħija tad-dejta ta’ Google Authentication tista’ tieħu sa 180 jum. Ikkuntattja privacy@freevia.org għall-għajnuna.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Intalab it-tħassir u d-dejta fil-cloud titħassar fi żmien 30 jum. It-tagħmir ma setax ineħħi d-dħul ssejvjat, iżda l-identità online ma tistax taċċessa aktar logħbiet. It-tneħħija tad-dejta ta’ Google Authentication tista’ tieħu sa 180 jum. Ikkuntattja privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Ma hemm l-ebda identità online li tista’ tintuża ssejvjata fuq dan it-tagħmir. Ma nħoloq ebda kont ġdid. Jekk lgħabt online qabel, ikkuntattja privacy@freevia.org; il-logħbiet ospitati jiskadu wara 30 jum.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Ma setgħetx tiġi kkonfermata t-talba għat-tħassir. Iċċekkja l-konnessjoni u erġa’ pprova, jew ikkuntattja privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle => 'Taqsam dijanjostika tal-użu u l-ħabtiet?';
+
+  @override
+  String get privacyConsentBody =>
+      'Dan jibgħat avvenimenti tal-użu, informazzjoni dwar l-app/tagħmir, rapporti ta’ ħabtiet u kejl tal-prestazzjoni lil Google Firebase. Il-qsim mhux obbligatorju. Il-logħob u t-tagħlim jaħdmu mingħajru, u tista’ titfih mill-ġdid fis-Settings.';
+
+  @override
+  String get privacyKeepOff => 'Żomm mitfija';
+
+  @override
+  String get privacyShareDiagnostics => 'Aqsam id-dijanjostika';
+
+  @override
+  String get privacySaveFailed =>
+      'Ma setgħetx tiġi ssejvjata l-għażla tal-privatezza. Erġa’ pprova.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'X’jibqa’ fuq it-tagħmir tiegħek u x’jinqasam';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Aqsam dijanjostika tal-użu u l-ħabtiet';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Fakultattiva · mitfija awtomatikament';
+
+  @override
+  String get lanScanToJoin => 'Skennja biex tingħaqad';
+
+  @override
+  String get lanScanHostCode => 'Skennja l-kodiċi tal-host';
+
+  @override
+  String get lanEnterAddressInstead => 'Daħħal l-indirizz minflok';
+
+  @override
+  String get lanQrAccessibilityLabel =>
+      'Kodiċi QR biex tingħaqad ma’ din il-logħba';
+
+  @override
+  String get lanJoinInstruction =>
+      'Fuq it-tagħmir l-ieħor, iftaħ Ilgħab fil-qrib, agħżel Ingħaqad, imbagħad skennja dan il-kodiċi QR.';
+
+  @override
+  String get lanTorch => 'Dawl';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy ma jistax juża l-kamera. Ħalli l-aċċess fis-settings tat-tagħmir jew daħħal l-indirizz muri fuq it-tagħmir l-ieħor.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Dan it-tagħmir ma jistax jiskennja kodiċijiet QR. Daħħal l-indirizz muri fuq it-tagħmir l-ieħor.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Il-kamera ma setgħetx tinbeda. Daħħal l-indirizz muri fuq it-tagħmir l-ieħor.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Ponta l-kamera lejn il-kodiċi QR fuq it-tagħmir l-ieħor.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Logħob fuq bord fiżiku';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Il-logħob fuq bord fiżiku mhux disponibbli f’din il-verżjoni. Logħob fuq l-iskrin, tagħlim u prattika huma disponibbli mill-iskrin tad-dar.';
+
+  @override
+  String get homePlayWithBuddy => 'Ilgħab ma’ Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Bord tal-backgammon. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Abjad imiss.';
+
+  @override
+  String get boardBlackToRoll => 'L-Iswed imiss.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Abjad imiss, itfa’ $die1 u $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'L-Iswed imiss, itfa’ $die1 u $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Ġie offrut id-doppju.';
+
+  @override
+  String get boardResignationOffered => 'Ġiet offruta rassenjazzjoni.';
+
+  @override
+  String get boardGameOver => 'Il-logħba spiċċat.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Problema]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Suġġeriment]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary => 'Ikteb deskrizzjoni qasira ta’ dak li ġara.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Ikteb il-passi li wasslu għall-problema.';
+
+  @override
+  String get feedbackBugExpected => 'Ikteb x’kont qed tistenna li jiġri.';
+
+  @override
+  String get feedbackIdeaNeed => 'Ikteb x’kont tixtieq tagħmel jew titgħallem.';
+
+  @override
+  String get feedbackIdeaSuggestion => 'Ikteb il-bidla li tkun utli għalik.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(imqassar — uża Ikkopja fil-clipboard mill-iskrin tad-Dijanjostika biex tikseb il-log sħiħ)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Imiss lill-Abjad.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Imiss lill-Iswed.';
+
+  @override
+  String get feedbackFieldVersion => 'Verżjoni tal-app';
+
+  @override
+  String get feedbackFieldPlatform => 'Pjattaforma';
+
+  @override
+  String get feedbackFieldSummary => 'X’ġara';
+
+  @override
+  String get feedbackFieldReproduction =>
+      'Passi biex terġa’ toħloq il-problema';
+
+  @override
+  String get feedbackFieldExpected => 'Riżultat mistenni';
+
+  @override
+  String get feedbackFieldNeed => 'Dak li xtaqt tagħmel';
+
+  @override
+  String get feedbackFieldIdea => 'Bidla ssuġġerita';
 }

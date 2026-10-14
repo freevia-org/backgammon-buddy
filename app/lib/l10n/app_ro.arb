@@ -1008,12 +1008,7 @@
   },
   "analysisExplain": "Explică",
   "analysisSaveForPractice": "Salvează pentru antrenament",
-  "analysisSaveError": "Decizia nu a putut fi salvată: {error}",
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
-    }
-  },
+  "analysisSaveError": "Decizia nu a putut fi salvată. Încearcă din nou.",
   "analysisCubeInfo": "{side}: {action} · {mark} · pierdere {loss}",
   "@analysisCubeInfo": {
     "placeholders": {
@@ -1519,5 +1514,104 @@
   "metricExplainerEquityBody": "Dacă scorul nu este disponibil, echitatea fără cub arată valoarea medie a poziției în puncte cu cubul la 1. +1,0 înseamnă că te aștepți să câștigi un punct; −0,5, să pierzi jumătate de punct.",
   "metricExplainerEquityLossBody": "Comparăm mutarea jucată cu cea mai bună mutare a motorului. Pierderea de echitate arată câtă valoare estimată ai cedat. −0,016 înseamnă că mutarea a fost cu doar 0,016 puncte mai slabă — o scăpare minoră. 0,000 înseamnă că ai găsit cea mai bună mutare.",
   "metricExplainerErrorRateBody": "Pierderea medie este media deciziilor evaluate cu piesele, în unitatea afișată. Deciziile cu cubul au o medie separată. O valoare mai mică înseamnă mutări mai apropiate de estimările motorului; nu este un rating calibrat al jucătorului.",
-  "metricExplainerMoveMarksBody": "Praguri MWC pentru învățare: Cel mai bun < 0,05 pp, Bun < 0,5 pp, Discutabil < 1,5 pp, Eroare < 3 pp, Greșeală gravă ≥ 3 pp. Sunt praguri educative, nu valori calibrate de încredere sau ratinguri de turneu.\n\nPraguri educative pentru echitatea fără cub:"
+  "metricExplainerMoveMarksBody": "Praguri MWC pentru învățare: Cel mai bun < 0,05 pp, Bun < 0,5 pp, Discutabil < 1,5 pp, Eroare < 3 pp, Greșeală gravă ≥ 3 pp. Sunt praguri educative, nu valori calibrate de încredere sau ratinguri de turneu.\n\nPraguri educative pentru echitatea fără cub:",
+  "privacyTitle": "Confidențialitate și date",
+  "privacyAppTitle": "Backgammon Buddy de Freevia",
+  "privacyIntro": "Această pagină descrie modul în care aplicația actuală vă gestionează datele.",
+  "privacyLocalTitle": "Jocuri și instruire pe dispozitivul dvs",
+  "privacyLocalBody": "Meciurile locale, setările, analizele și progresul exercițiilor sunt stocate pe acest dispozitiv. Motorul jocului și explicațiile antrenorului rulează aici. Ștergerea unei partide salvate din Arhiva jocurilor șterge și exercițiile de antrenament salvate, precum și încercările acestora. Șterge exerciții individuale sau resetează progresul în secțiunea Învățare și practică; șterge rapoartele locale de erori din Setări → Diagnosticare. Istoricul partidelor poate fi inclus și în copiile de siguranță ale dispozitivului. Datele de conectare online sunt păstrate în spațiul de stocare protejat al dispozitivului.",
+  "privacyOnlineTitle": "Joacă online și în apropiere",
+  "privacyOnlineBody": "Jocul online trimite către Google Firebase un identificator anonim al jucătorului, setările meciului, mutările și înregistrările protocolului de sincronizare a zarurilor, pentru ca ambii jucători să poată juca același meci. Ștergerea Istoricului de pe acest dispozitiv nu șterge înregistrările online. Meciurile găzduite expiră la 30 de zile după creare; o curățare programată le șterge jurnalele din cloud. Înregistrările meciurilor sunt stocate în UE; Firebase Authentication procesează datele de conectare în Statele Unite. Conexiunile online la Google folosesc criptarea în tranzit. În jocurile în apropiere, informațiile despre meci sunt schimbate cu celălalt dispozitiv printr-o conexiune locală necriptată; folosiți o rețea Wi-Fi de încredere.",
+  "privacyDiagnosticsTitle": "Diagnosticare opțională a utilizării și a blocărilor",
+  "privacyDiagnosticsBody": "Partajarea rămâne dezactivată până când o activezi în Setări. Dacă o activezi, Google Firebase primește evenimente de utilizare, informații despre aplicație și dispozitiv, măsurători de performanță și rapoarte despre blocări, pentru a ajuta la îmbunătățirea aplicației. Poți dezactiva partajarea oricând pentru a opri colectarea opțională de date noi. Datele trimise deja nu sunt șterse. Diagnosticarea locală și meciurile online nu depind de această opțiune.",
+  "privacyCameraTitle": "Cameră pentru codurile QR din apropiere",
+  "privacyCameraBody": "Camera opțională scanează codurile QR pentru jocurile în apropiere. Imaginile sunt procesate pe dispozitiv și nu sunt salvate sau încărcate. Poți refuza accesul la cameră și poți introduce manual adresa gazdei. Această versiune nu folosește microfonul și nu permite jocul pe o tablă fizică.",
+  "privacyFeedbackTitle": "Feedback pe care alegeți să îl trimiteți",
+  "privacyFeedbackBody": "Feedbackul deschide o schiță de issue pe GitHub pe care o poți verifica. Deschiderea schiței trimite către GitHub versiunea aplicației și platforma; feedbackul din Diagnosticare poate include și detalii despre erori. Issue-ul nu este publicat până când nu îl trimiți. Issue-urile pot fi publice, așa că elimină informațiile private înainte de trimitere.",
+  "privacyContactTitle": "Contact pentru confidențialitate",
+  "privacyReadPolicy": "Citește politica de confidențialitate",
+  "privacyPolicyOpenFailed": "Politica de confidențialitate nu a putut fi deschisă.",
+  "privacySupportTitle": "Ajutor și sprijin",
+  "privacySupportOpenFailed": "Nu s-a putut deschide pagina de asistență. Contactează support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Ștergeți identitatea și datele online?",
+  "privacyDeleteConfirmBody": "Accesul ambilor jucători la meciurile din cloud asociate acestei identități încetează imediat. Se solicită ștergerea identității și a jurnalelor comune ale meciurilor online în termen de 30 de zile. Google poate avea nevoie de până la 180 de zile după ștergerea contului pentru a elimina datele de autentificare din sistemele active și de rezervă. Istoricul local și exercițiile de antrenament rămân pe acest dispozitiv. Datele de diagnostic opționale trimise anterior sunt tratate separat; contactează privacy@freevia.org în legătură cu ele. Această solicitare nu poate fi anulată.",
+  "privacyRequestDeletion": "Solicită ștergerea",
+  "privacyDeleteSectionTitle": "Ștergerea datelor online",
+  "privacyDeleteInstructions": "Folosește datele de conectare salvate pe acest dispozitiv pentru a confirma că identitatea îți aparține. Un identificator de jucător sau un cod de invitație, singur, nu dovedește acest lucru. Pentru jocul doar local nu este nevoie de un cont online.",
+  "privacySendingRequest": "Se trimite cererea...",
+  "privacyDeleteAction": "Șterge identitatea și datele online",
+  "privacyDeleteRequested": "Cererea de ștergere a fost trimisă. S-a încheiat sesiunea acestei identități online. Datele sale din cloud vor fi șterse în cel mult 30 de zile. Dacă începi din nou un joc online, se va crea o identitate nouă. Eliminarea datelor de autentificare de către Google poate dura până la 180 de zile. Pentru ajutor, contactează privacy@freevia.org.",
+  "privacyDeleteRequestedSignOutFailed": "Cererea de ștergere a fost trimisă. Datele din cloud vor fi șterse în cel mult 30 de zile. Dispozitivul nu a putut șterge datele de conectare salvate, însă identitatea online nu mai poate accesa meciuri. Eliminarea datelor de autentificare de către Google poate dura până la 180 de zile. Pentru ajutor, contactează privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "Pe acest dispozitiv nu este salvată nicio identitate online utilizabilă. Nu a fost creat niciun cont nou. Dacă ai jucat online înainte, contactează privacy@freevia.org pentru ajutor; meciurile găzduite expiră la 30 de zile după creare.",
+  "privacyDeleteRequestFailed": "Cererea de ștergere nu a putut fi confirmată. Verifică conexiunea și încearcă din nou sau contactează privacy@freevia.org.",
+  "privacyConsentTitle": "Partajați utilizarea și diagnosticarea erorilor?",
+  "privacyConsentBody": "Această opțiune trimite către Google Firebase evenimente de utilizare, informații despre aplicație și dispozitiv, rapoarte despre blocări și măsurători de performanță. Partajarea este opțională. Jocurile și antrenamentul funcționează cu partajarea dezactivată; o poți dezactiva oricând în Setări.",
+  "privacyKeepOff": "Păstrează dezactivat",
+  "privacyShareDiagnostics": "Partajează datele de diagnosticare",
+  "privacySaveFailed": "Nu s-a putut salva opțiunea de confidențialitate. Încearcă din nou.",
+  "privacySettingsSubtitle": "Ce rămâne pe dispozitiv și ce este partajat",
+  "privacyDiagnosticsSettingTitle": "Partajați diagnosticarea utilizării și a erorilor",
+  "privacyDiagnosticsSettingSubtitle": "Opțional · dezactivat în mod implicit",
+  "lanScanToJoin": "Scanează pentru a te alătura",
+  "lanScanHostCode": "Scanează codul gazdei",
+  "lanEnterAddressInstead": "Introdu adresa în schimb",
+  "lanTorch": "Bliț",
+  "lanCameraPermissionDenied": "Backgammon Buddy nu poate folosi camera. Permite accesul la cameră din setările dispozitivului sau introdu manual adresa afișată pe celălalt dispozitiv.",
+  "lanCameraUnsupported": "Acest dispozitiv nu poate scana coduri QR. Introdu manual adresa afișată pe celălalt dispozitiv.",
+  "lanCameraStartFailed": "Camera nu a putut porni. Introdu manual adresa afișată pe celălalt dispozitiv.",
+  "lanPointCameraAtQr": "Îndreaptă camera spre codul QR de pe celălalt dispozitiv.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "physicalBuddyUnavailableBody": "Jocul pe o tablă fizică nu este disponibil în această versiune. Jocurile pe ecran, îndrumarea și antrenamentul sunt disponibile pe ecranul principal.",
+  "boardSemanticsLabel": "Tablă de table. {status}",
+  "boardWhiteToRoll": "Este rândul pieselor albe să arunce zarurile.",
+  "boardBlackToRoll": "Este rândul pieselor negre să arunce zarurile.",
+  "boardWhiteToMove": "Piesele albe sunt la mutare; zarurile sunt {die1} și {die2}.",
+  "boardBlackToMove": "Piesele negre sunt la mutare; zarurile sunt {die1} și {die2}.",
+  "boardDoubleOffered": "A fost oferită dublarea cubului.",
+  "boardResignationOffered": "S-a oferit cedarea partidei.",
+  "boardGameOver": "Jocul s-a terminat.",
+  "feedbackBugTitle": "[Eroare]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Idee]: Backgammon Buddy",
+  "feedbackBugSummary": "Descrie pe scurt ce s-a întâmplat.",
+  "feedbackBugReproduction": "Descrie pașii care au dus la problemă.",
+  "feedbackBugExpected": "Descrie ce te așteptai să se întâmple.",
+  "feedbackIdeaNeed": "Descrie ce voiai să faci sau să înveți.",
+  "feedbackIdeaSuggestion": "Descrie schimbarea care ți-ar fi de ajutor.",
+  "feedbackExcerptTruncated": "(trunchiat - utilizați Copiere în clipboard pe ecranul Diagnosticare pentru jurnalul complet)",
+  "boardWhiteToMoveNoRoll": "Este rândul pieselor albe să mute.",
+  "boardBlackToMoveNoRoll": "Este rândul pieselor negre să mute.",
+  "feedbackFieldVersion": "Versiunea aplicației",
+  "feedbackFieldPlatform": "Platformă",
+  "feedbackFieldSummary": "Ce s-a întâmplat",
+  "feedbackFieldReproduction": "Pași pentru reproducere",
+  "feedbackFieldExpected": "Rezultat așteptat",
+  "feedbackFieldNeed": "Ce ai vrut să faci",
+  "feedbackFieldIdea": "Modificare sugerată",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "Cod QR pentru a intra în acest joc",
+  "lanJoinInstruction": "Pe celălalt dispozitiv, deschideți Joacă în apropiere, alegeți Alătură-te, apoi scanați acest cod QR.",
+  "homePlayWithBuddy": "Joacă cu Buddy",
+  "homeBuddyShort": "Buddy"
 }

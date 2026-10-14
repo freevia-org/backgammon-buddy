@@ -799,12 +799,7 @@
   },
   "analysisExplain": "Explain",
   "analysisSaveForPractice": "Save for practice",
-  "analysisSaveError": "Could not save this decision: {error}",
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
-    }
-  },
+  "analysisSaveError": "Could not save this decision. Please try again.",
   "analysisCubeInfo": "{side}: {action} · {mark} · {loss} loss",
   "@analysisCubeInfo": {
     "placeholders": {
@@ -1519,5 +1514,104 @@
         "type": "Object"
       }
     }
-  }
+  },
+  "privacyTitle": "Privacy and data",
+  "privacyAppTitle": "Backgammon Buddy by Freevia",
+  "privacyIntro": "This page describes how the current app handles your data.",
+  "privacyLocalTitle": "Games and tutoring on your device",
+  "privacyLocalBody": "Local matches, settings, analysis and practice progress are stored on this device. The backgammon engine and tutor explanations run here. Delete a saved match from History to remove its saved practice exercises and attempts too. Delete individual exercises or reset practice progress in Learning; clear local error reports in Settings → Diagnostics. Your device’s backup settings may also apply to game history. Online sign-in credentials are kept in the device’s protected storage.",
+  "privacyOnlineTitle": "Online and nearby play",
+  "privacyOnlineBody": "Online play sends an anonymous player identifier, match settings, moves and dice-handshake records to Google Firebase so both players can play the same match. Deleting History on this device does not delete online records. Hosted matches expire 30 days after creation; scheduled cleanup removes their cloud logs. Match records are stored in the EU; Firebase Authentication processes sign-in data in the United States. Online connections to Google use encryption in transit. Nearby play exchanges match information with the other device over an unencrypted local connection; use trusted Wi-Fi.",
+  "privacyDiagnosticsTitle": "Optional usage and crash diagnostics",
+  "privacyDiagnosticsBody": "Sharing is off until you choose it in Settings. If enabled, Google Firebase receives usage events, app/device information, performance measurements and crash reports to help improve the app. Turn sharing off at any time to stop new optional collection. This does not erase data already sent. Local diagnostics and online matches work separately from this choice.",
+  "privacyCameraTitle": "Camera for nearby QR codes",
+  "privacyCameraBody": "The optional camera scans nearby game QR codes. Images are processed on your device and are not saved or uploaded. You can refuse camera access and enter the host address manually. This version does not use the microphone or provide physical-board play.",
+  "privacyFeedbackTitle": "Feedback you choose to send",
+  "privacyFeedbackBody": "Feedback opens a GitHub issue draft for you to review. Opening the draft sends its app version and platform to GitHub; feedback from Diagnostics may also send error details. No issue is posted until you submit it. Issues may be public, so remove private information before sending.",
+  "privacyContactTitle": "Privacy contact",
+  "privacyReadPolicy": "Read the privacy policy",
+  "privacyPolicyOpenFailed": "Could not open the privacy policy.",
+  "privacySupportTitle": "Help and support",
+  "privacySupportOpenFailed": "Could not open support. Contact support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Delete online identity and data?",
+  "privacyDeleteConfirmBody": "This immediately ends access to this identity’s cloud matches for both players and requests deletion of the identity and shared online match logs within 30 days. Google may take up to 180 days after account deletion to remove Authentication data from its live and backup systems. Local History and practice remain on this device. Previously sent optional diagnostics are separate; contact privacy@freevia.org about those. This request cannot be undone.",
+  "privacyRequestDeletion": "Request deletion",
+  "privacyDeleteSectionTitle": "Delete online data",
+  "privacyDeleteInstructions": "Use this device’s saved sign-in to verify ownership. A player identifier or invite code alone does not prove ownership. Local-only players do not need an online account.",
+  "privacySendingRequest": "Sending request…",
+  "privacyDeleteAction": "Delete online identity and data",
+  "privacyDeleteRequested": "Deletion requested. This online identity is signed out. Its cloud data will be deleted within 30 days. Starting online play again creates a new identity. Google’s Authentication data removal can take up to 180 days. Contact privacy@freevia.org for help.",
+  "privacyDeleteRequestedSignOutFailed": "Deletion requested. Its cloud data will be deleted within 30 days. The device could not clear the saved sign-in, but the online identity is blocked from further match access. Google’s Authentication data removal can take up to 180 days. Contact privacy@freevia.org for help.",
+  "privacyDeleteNoIdentity": "No usable online identity is saved on this device. No new account was created. If you previously used online play, contact privacy@freevia.org for help; hosted matches expire after 30 days.",
+  "privacyDeleteRequestFailed": "Could not confirm the deletion request. Check your connection and retry, or contact privacy@freevia.org.",
+  "privacyConsentTitle": "Share usage and crash diagnostics?",
+  "privacyConsentBody": "This sends usage events, app/device information, crash reports and performance measurements to Google Firebase. Sharing is optional. Games and tutoring work with it off, and you can turn it off again in Settings.",
+  "privacyKeepOff": "Keep off",
+  "privacyShareDiagnostics": "Share diagnostics",
+  "privacySaveFailed": "Could not save the privacy choice. Please try again.",
+  "privacySettingsSubtitle": "What stays on your device and what is shared",
+  "privacyDiagnosticsSettingTitle": "Share usage and crash diagnostics",
+  "privacyDiagnosticsSettingSubtitle": "Optional · off by default",
+  "lanScanToJoin": "Scan to join",
+  "lanScanHostCode": "Scan the host’s code",
+  "lanEnterAddressInstead": "Enter the address instead",
+  "lanQrAccessibilityLabel": "QR code to join this game",
+  "lanJoinInstruction": "On the other device, open Play Nearby, choose Join, then scan this QR code.",
+  "lanTorch": "Torch",
+  "lanCameraPermissionDenied": "Backgammon Buddy cannot use the camera. Allow camera access in device settings, or enter the address shown on the other device manually.",
+  "lanCameraUnsupported": "This device cannot scan QR codes. Enter the address shown on the other device manually.",
+  "lanCameraStartFailed": "The camera could not be started. Enter the address shown on the other device manually.",
+  "lanPointCameraAtQr": "Point the camera at the QR code on the other device.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "physicalBuddyUnavailableBody": "Physical-board play is not available in this version. On-screen games, tutoring and practice are available from Home.",
+  "homePlayWithBuddy": "Play with Buddy",
+  "homeBuddyShort": "Buddy",
+  "boardSemanticsLabel": "Backgammon board. {status}",
+  "boardWhiteToRoll": "White to roll.",
+  "boardBlackToRoll": "Black to roll.",
+  "boardWhiteToMove": "White to move, roll {die1} and {die2}.",
+  "boardBlackToMove": "Black to move, roll {die1} and {die2}.",
+  "boardDoubleOffered": "A double is offered.",
+  "boardResignationOffered": "A resignation is offered.",
+  "boardGameOver": "The game is over.",
+  "feedbackBugTitle": "[Bug]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Idea]: Backgammon Buddy",
+  "feedbackBugSummary": "Replace this with a short description of what happened.",
+  "feedbackBugReproduction": "Replace this with the steps that led to the problem.",
+  "feedbackBugExpected": "Replace this with what you expected to happen.",
+  "feedbackIdeaNeed": "Replace this with what you wanted to do or learn.",
+  "feedbackIdeaSuggestion": "Replace this with the change you would find helpful.",
+  "feedbackExcerptTruncated": "(truncated — use Copy to clipboard on the Diagnostics screen for the full log)",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "boardWhiteToMoveNoRoll": "White to move.",
+  "boardBlackToMoveNoRoll": "Black to move.",
+  "feedbackFieldVersion": "App version",
+  "feedbackFieldPlatform": "Platform",
+  "feedbackFieldSummary": "What happened",
+  "feedbackFieldReproduction": "Steps to reproduce",
+  "feedbackFieldExpected": "Expected result",
+  "feedbackFieldNeed": "What you wanted to do",
+  "feedbackFieldIdea": "Suggested change"
 }

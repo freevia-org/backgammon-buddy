@@ -1008,12 +1008,7 @@
   },
   "analysisExplain": "Paaiškinti",
   "analysisSaveForPractice": "Išsaugoti praktikai",
-  "analysisSaveError": "Nepavyko išsaugoti sprendimo: {error}",
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
-    }
-  },
+  "analysisSaveError": "Nepavyko išsaugoti šio sprendimo. Bandykite dar kartą.",
   "analysisCubeInfo": "{side}: {action} · {mark} · praradimas {loss}",
   "@analysisCubeInfo": {
     "placeholders": {
@@ -1519,5 +1514,104 @@
   "metricExplainerEquityBody": "Jei rezultatas nežinomas, nuosavybė be kubo rodo vidutinę pozicijos vertę taškais, kai kubas lygus 1. +1,0 reiškia tikėtiną vieno taško laimėjimą, o −0,5 – pusės taško pralaimėjimą.",
   "metricExplainerEquityLossBody": "Kiekvieną ėjimą lyginame su geriausiu variklio ėjimu. Nuosavybės praradimas rodo, kiek tikėtinos vertės atsisakyta. −0,016 reiškia, kad ėjimas buvo tik 0,016 taško blogesnis už geriausią – tai menka klaida. 0,000 reiškia, kad radote geriausią ėjimą.",
   "metricExplainerErrorRateBody": "Vidutinis praradimas apskaičiuojamas iš įvertintų šaškių sprendimų ir rodomas pasirinktais vienetais. Kubo sprendimai turi atskirą vidurkį. Mažesnė reikšmė reiškia, kad ėjimai artimesni geriausiems variklio įverčiams; tai nėra kalibruotas žaidėjo reitingas.",
-  "metricExplainerMoveMarksBody": "MWC mokomosios ribos: geriausias < 0,05 pp, geras < 0,5 pp, abejotinas < 1,5 pp, klaida < 3 pp, grubi klaida ≥ 3 pp. Tai mokomieji intervalai, o ne patikimumo ar turnyro reitingai.\n\nNuosavybės be kubo mokomosios ribos:"
+  "metricExplainerMoveMarksBody": "MWC mokomosios ribos: geriausias < 0,05 pp, geras < 0,5 pp, abejotinas < 1,5 pp, klaida < 3 pp, grubi klaida ≥ 3 pp. Tai mokomieji intervalai, o ne patikimumo ar turnyro reitingai.\n\nNuosavybės be kubo mokomosios ribos:",
+  "privacyTitle": "Privatumas ir duomenys",
+  "privacyAppTitle": "Freevia Backgammon Buddy",
+  "privacyIntro": "Šiame puslapyje aprašoma, kaip ši programėlė tvarko jūsų duomenis.",
+  "privacyLocalTitle": "Žaidimai ir mokymas jūsų įrenginyje",
+  "privacyLocalBody": "Vietinės partijos, nustatymai, analizė ir treniruočių pažanga saugomi šiame įrenginyje. Čia veikia backgammon variklis ir mokytojo paaiškinimai. Ištrynus išsaugotą partiją iš istorijos, pašalinamos ir jos išsaugotos treniruotės bei bandymai. Atskirą pratimą ištrinkite arba iš naujo nustatykite mokymosi pažangą skiltyje „Mokymasis“; vietines klaidų ataskaitas išvalykite skiltyje „Nustatymai“ → „Diagnostika“. Įrenginio atsarginės kopijos nustatymai taip pat gali apimti partijų istoriją. Internetinio prisijungimo duomenys laikomi saugioje įrenginio saugykloje.",
+  "privacyOnlineTitle": "Žaidimas internetu ir netoliese",
+  "privacyOnlineBody": "Žaidžiant internetu „Google Firebase“ siunčiamas anoniminis žaidėjo identifikatorius, partijos nustatymai, ėjimai ir kauliukų suderinimo įrašai, kad abu žaidėjai galėtų žaisti tą pačią partiją. Ištrynus istoriją šiame įrenginyje, internetiniai įrašai neištrinami. Priglobtos partijos baigia galioti praėjus 30 dienų nuo sukūrimo; suplanuotas valymas pašalina jų debesijos žurnalus. Partijų įrašai saugomi ES; „Firebase Authentication“ prisijungimo duomenis tvarko Jungtinėse Valstijose. Interneto ryšys su „Google“ šifruojamas perduodant duomenis. Žaidžiant netoliese, informacija su kitu įrenginiu perduodama nešifruotu vietiniu ryšiu; naudokite patikimą „Wi-Fi“.",
+  "privacyDiagnosticsTitle": "Pasirenkama naudojimo ir strigčių diagnostika",
+  "privacyDiagnosticsBody": "Bendrinimas išjungtas, kol jo nepasirinksite nustatymuose. Įjungus „Google Firebase“ gauna naudojimo įvykius, programėlės ir įrenginio informaciją, našumo matavimus bei strigčių ataskaitas, kad padėtų tobulinti programėlę. Bendrinimą galite bet kada išjungti ir sustabdyti naują pasirenkamą duomenų rinkimą. Anksčiau išsiųsti duomenys neištrinami. Vietinė diagnostika ir internetinės partijos veikia nepriklausomai nuo šio pasirinkimo.",
+  "privacyCameraTitle": "Kamera netoliese esantiems QR kodams",
+  "privacyCameraBody": "Pasirenkama kamera nuskaito netoliese esančių žaidimų QR kodus. Vaizdai apdorojami įrenginyje, neišsaugomi ir neįkeliami. Galite neleisti naudoti kameros ir rankiniu būdu įvesti pagrindinio įrenginio adresą. Šioje versijoje nenaudojamas mikrofonas ir negalima žaisti su fizine lenta.",
+  "privacyFeedbackTitle": "Jūsų siunčiami atsiliepimai",
+  "privacyFeedbackBody": "Atsiliepimas atveria „GitHub“ problemos juodraštį, kad galėtumėte jį peržiūrėti. Atvėrus juodraštį, „GitHub“ siunčiama programėlės versija ir platforma; atsiliepime iš diagnostikos taip pat gali būti klaidų duomenų. Problema paskelbiama tik jums ją pateikus. Problemos gali būti viešos, todėl prieš siųsdami pašalinkite privačią informaciją.",
+  "privacyContactTitle": "Privatumo kontaktai",
+  "privacyReadPolicy": "Skaityti privatumo politiką",
+  "privacyPolicyOpenFailed": "Nepavyko atidaryti privatumo politikos.",
+  "privacySupportTitle": "Pagalba ir palaikymas",
+  "privacySupportOpenFailed": "Nepavyko atidaryti pagalbos. Susisiekite adresu support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Ištrinti internetinę tapatybę ir duomenis?",
+  "privacyDeleteConfirmBody": "Tai iš karto panaikina šios tapatybės prieigą prie debesijos partijų abiem žaidėjams ir pateikia prašymą per 30 dienų ištrinti tapatybę bei bendrinamus internetinių partijų žurnalus. „Google“ gali užtrukti iki 180 dienų po paskyros ištrynimo, kol pašalins „Authentication“ duomenis iš veikiančių ir atsarginių sistemų. Vietinė istorija ir treniruotės liks šiame įrenginyje. Anksčiau siųsta pasirenkama diagnostika tvarkoma atskirai; dėl jos kreipkitės privacy@freevia.org. Šio prašymo atšaukti negalima.",
+  "privacyRequestDeletion": "Prašyti ištrinti",
+  "privacyDeleteSectionTitle": "Internetinių duomenų ištrynimas",
+  "privacyDeleteInstructions": "Nuosavybei patvirtinti naudokite šiame įrenginyje išsaugotą prisijungimą. Vien žaidėjo identifikatorius ar kvietimo kodas nuosavybės neįrodo. Tik vietiniu režimu žaidžiantiems internetinės paskyros nereikia.",
+  "privacySendingRequest": "Siunčiama užklausa…",
+  "privacyDeleteAction": "Ištrinti internetinę tapatybę ir duomenis",
+  "privacyDeleteRequested": "Pateiktas prašymas ištrinti. Ši internetinė tapatybė atjungta. Jos debesijos duomenys bus ištrinti per 30 dienų. Vėl pradėjus žaisti internetu bus sukurta nauja tapatybė. „Google“ Authentication duomenims pašalinti gali prireikti iki 180 dienų. Pagalbos kreipkitės privacy@freevia.org.",
+  "privacyDeleteRequestedSignOutFailed": "Pateiktas prašymas ištrinti; debesijos duomenys bus ištrinti per 30 dienų. Įrenginiui nepavyko išvalyti išsaugoto prisijungimo, tačiau internetinei tapatybei užblokuota prieiga prie partijų. „Google“ Authentication duomenims pašalinti gali prireikti iki 180 dienų. Kreipkitės privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "Šiame įrenginyje nėra išsaugotos tinkamos internetinės tapatybės. Nauja paskyra nesukurta. Jei anksčiau žaidėte internetu, kreipkitės privacy@freevia.org; priglobtos partijos baigia galioti po 30 dienų.",
+  "privacyDeleteRequestFailed": "Nepavyko patvirtinti ištrynimo prašymo. Patikrinkite ryšį ir bandykite dar kartą arba kreipkitės privacy@freevia.org.",
+  "privacyConsentTitle": "Bendrinti naudojimo ir strigčių diagnostiką?",
+  "privacyConsentBody": "Į „Google Firebase“ siunčiami naudojimo įvykiai, programėlės ir įrenginio informacija, strigčių ataskaitos bei našumo matavimai. Bendrinimas neprivalomas. Žaidimai ir mokymas veikia ir be jo; nustatymuose galite jį vėl išjungti.",
+  "privacyKeepOff": "Palikti išjungtą",
+  "privacyShareDiagnostics": "Bendrinti diagnostiką",
+  "privacySaveFailed": "Nepavyko išsaugoti privatumo pasirinkimo. Bandykite dar kartą.",
+  "privacySettingsSubtitle": "Kas lieka jūsų įrenginyje ir kas bendrinama",
+  "privacyDiagnosticsSettingTitle": "Bendrinti naudojimo ir strigčių diagnostiką",
+  "privacyDiagnosticsSettingSubtitle": "Pasirenkama · pagal numatytuosius nustatymus išjungta",
+  "lanScanToJoin": "Nuskaityti ir prisijungti",
+  "lanScanHostCode": "Nuskaityti pagrindinio įrenginio kodą",
+  "lanEnterAddressInstead": "Vietoj to įveskite adresą",
+  "lanTorch": "Žibintuvėlis",
+  "lanCameraPermissionDenied": "Backgammon Buddy negali naudoti kameros. Suteikite prieigą įrenginio nustatymuose arba įveskite adresą, rodomą kitame įrenginyje.",
+  "lanCameraUnsupported": "Šis įrenginys negali nuskaityti QR kodų. Įveskite adresą, rodomą kitame įrenginyje.",
+  "lanCameraStartFailed": "Nepavyko paleisti kameros. Įveskite adresą, rodomą kitame įrenginyje.",
+  "lanPointCameraAtQr": "Nukreipkite kamerą į QR kodą kitame įrenginyje.",
+  "physicalBuddyUnavailableTitle": "Žaidimas su fizine lenta",
+  "physicalBuddyUnavailableBody": "Šioje versijoje negalima žaisti su fizine lenta. Žaidimai ekrane, mokymas ir treniruotės pasiekiami pagrindiniame ekrane.",
+  "boardSemanticsLabel": "Backgammon lenta. {status}",
+  "boardWhiteToRoll": "Baltieji meta kauliukus.",
+  "boardBlackToRoll": "Juodieji meta kauliukus.",
+  "boardWhiteToMove": "Baltieji turi ėjimą, meskite {die1} ir {die2}.",
+  "boardBlackToMove": "Juodieji turi ėjimą, meskite {die1} ir {die2}.",
+  "boardDoubleOffered": "Pasiūlytas dvigubinimas.",
+  "boardResignationOffered": "Pasiūlyta pasiduoti.",
+  "boardGameOver": "Žaidimas baigtas.",
+  "feedbackBugTitle": "[Klaida]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Idėja]: Backgammon Buddy",
+  "feedbackBugSummary": "Trumpai aprašykite, kas nutiko.",
+  "feedbackBugReproduction": "Aprašykite veiksmus, po kurių kilo problema.",
+  "feedbackBugExpected": "Aprašykite, ko tikėjotės.",
+  "feedbackIdeaNeed": "Aprašykite, ką norėjote padaryti ar išmokti.",
+  "feedbackIdeaSuggestion": "Aprašykite, koks pakeitimas būtų naudingas.",
+  "feedbackExcerptTruncated": "(sutrumpinta — visą žurnalą nukopijuokite diagnostikos ekrane pasirinkę „Kopijuoti į iškarpinę“)",
+  "boardWhiteToMoveNoRoll": "Baltųjų ėjimas.",
+  "boardBlackToMoveNoRoll": "Juodųjų ėjimas.",
+  "feedbackFieldVersion": "Programėlės versija",
+  "feedbackFieldPlatform": "Platforma",
+  "feedbackFieldSummary": "Kas nutiko",
+  "feedbackFieldReproduction": "Veiksmai problemai atkartoti",
+  "feedbackFieldExpected": "Tikėtas rezultatas",
+  "feedbackFieldNeed": "Ką norėjote padaryti",
+  "feedbackFieldIdea": "Siūlomas pakeitimas",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanQrAccessibilityLabel": "QR kodas, skirtas prisijungti prie šio žaidimo",
+  "lanJoinInstruction": "Kitame įrenginyje atidarykite „Žaisti netoliese“, pasirinkite „Prisijungti“ ir nuskaitykite šį QR kodą.",
+  "homePlayWithBuddy": "Žaisti su Buddy",
+  "homeBuddyShort": "Buddy"
 }

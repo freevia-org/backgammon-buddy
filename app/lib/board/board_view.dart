@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 import '../game/applied_move.dart';
+import '../l10n/app_localizations.dart';
+import '../l10n/localization_lookup.dart';
 import 'board_geometry.dart';
 import 'board_painter.dart';
 import 'board_theme.dart';
@@ -1711,7 +1713,11 @@ class _BoardViewState extends State<BoardView>
         },
       ),
     );
-    return Semantics(container: true, label: _semanticsLabel(), child: board);
+    return Semantics(
+      container: true,
+      label: _semanticsLabel(appLocalizationsOf(context)),
+      child: board,
+    );
   }
 
   /// What a screen reader hears for the board as a whole.
@@ -1722,21 +1728,29 @@ class _BoardViewState extends State<BoardView>
   /// deliberately NOT attempted here — this label is the floor, not the
   /// ceiling. The roll named is [BoardView.state]'s, never the cosmetic
   /// [diceOverride]: a tumbling die is not a fact about the game.
-  String _semanticsLabel() {
+  String _semanticsLabel(AppLocalizations l10n) {
     final state = widget.state;
-    final side = state.turn == Player.white ? 'White' : 'Black';
     final dice = state.dice;
-    final roll = dice == null ? '' : ', roll ${dice.die1} and ${dice.die2}';
     final what = switch (state.phase) {
-      GamePhase.awaitingRoll => '$side to roll.',
-      GamePhase.moving => '$side to move$roll.',
+      GamePhase.awaitingRoll =>
+        state.turn == Player.white
+            ? l10n.boardWhiteToRoll
+            : l10n.boardBlackToRoll,
+      GamePhase.moving when dice != null =>
+        state.turn == Player.white
+            ? l10n.boardWhiteToMove(dice.die1, dice.die2)
+            : l10n.boardBlackToMove(dice.die1, dice.die2),
+      GamePhase.moving =>
+        state.turn == Player.white
+            ? l10n.boardWhiteToMoveNoRoll
+            : l10n.boardBlackToMoveNoRoll,
       // The offer is the news in both of these, and the offering side is named
       // by the dialog that carries it — the board just says one is open.
-      GamePhase.cubeOffered => 'A double is offered.',
-      GamePhase.resignOffered => 'A resignation is offered.',
-      GamePhase.gameOver => 'The game is over.',
+      GamePhase.cubeOffered => l10n.boardDoubleOffered,
+      GamePhase.resignOffered => l10n.boardResignationOffered,
+      GamePhase.gameOver => l10n.boardGameOver,
     };
-    return 'Backgammon board. $what';
+    return l10n.boardSemanticsLabel(what);
   }
 }
 

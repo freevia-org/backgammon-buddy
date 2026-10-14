@@ -1168,7 +1168,7 @@
   "analysisBestMoveLine": "Bedste træk: {move}",
   "analysisExplain": "Forklar",
   "analysisSaveForPractice": "Gem til træning",
-  "analysisSaveError": "Denne beslutning kunne ikke gemmes: {error}",
+  "analysisSaveError": "Denne beslutning kunne ikke gemmes. Prøv igen.",
   "analysisCubeInfo": "{side}: {action} · {mark} · tab {loss}",
   "analysisCubeDecision": "Terningbeslutning",
   "analysisCubePlayed": "Spillet: {action} ({percent}% chance for at vinde partiet).",
@@ -1353,11 +1353,6 @@
       "move": {}
     }
   },
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
-    }
-  },
   "@analysisCubeInfo": {
     "placeholders": {
       "side": {},
@@ -1519,5 +1514,104 @@
         "type": "int"
       }
     }
-  }
+  },
+  "privacyTitle": "Privatliv og data",
+  "privacyAppTitle": "Backgammon Buddy af Freevia",
+  "privacyIntro": "Denne side beskriver, hvordan den aktuelle app håndterer dine data.",
+  "privacyLocalTitle": "Spil og vejledning på din enhed",
+  "privacyLocalBody": "Lokale matches, indstillinger, analyser og øvelsesfremskridt gemmes på denne enhed. Backgammon motoren og tutor forklaringerne kører her. Slet et gemt match fra historikken for også at fjerne dets gemte øvelsesøvelser og forsøg. Slet individuelle øvelser eller nulstil øvelsesfremskridt i Læring; ryd lokale fejlrapporter i Indstillinger → Diagnostik. Din enheds indstillinger for sikkerhedskopiering kan også gælde for spilhistorik. Online loginoplysninger opbevares i enhedens beskyttede lager.",
+  "privacyOnlineTitle": "Online og spil i nærheden",
+  "privacyOnlineBody": "Onlinespil sender en anonym spilleridentifikator, matchindstillinger, træk og terning-håndtryk til Google Firebase, så begge spillere kan spille den samme kamp. Sletning af historik på denne enhed sletter ikke online optegnelser. Hostede matches udløber 30 dage efter oprettelse. Planlagt oprydning fjerner deres sky-logfiler. Matchposter gemmes i EU; Firebase Authentication behandler login-data i USA. Onlineforbindelser til Google bruger kryptering under overførsel. Afspilningsudvekslinger i nærheden matcher oplysninger med den anden enhed over en ukrypteret lokal forbindelse; brug betroet Wi-Fi.",
+  "privacyDiagnosticsTitle": "Valgfri brug og crashdiagnostik",
+  "privacyDiagnosticsBody": "Deling er slået fra, indtil du vælger det i Indstillinger. Hvis aktiveret, modtager Google Firebase brugshændelser, app-/enhedsoplysninger, præstationsmålinger og nedbrudsrapporter for at hjælpe med at forbedre appen. Slå deling fra når som helst for at stoppe ny valgfri samling. Dette sletter ikke data, der allerede er sendt. Lokal diagnosticering og onlinematch fungerer adskilt fra dette valg.",
+  "privacyCameraTitle": "Kamera til nærliggende QR-koder",
+  "privacyCameraBody": "Det valgfrie kamera scanner QR-koder for spil i nærheden. Billeder behandles på din enhed og gemmes eller uploades ikke. Du kan nægte kameraadgang og indtaste værtsadressen manuelt. Denne version bruger ikke mikrofonen eller giver fysisk brætspil.",
+  "privacyFeedbackTitle": "Feedback, du vælger at sende",
+  "privacyFeedbackBody": "Feedback åbner et udkast til et GitHub-problem, som du kan gennemgå. Åbning af udkastet sender sin appversion og platform til GitHub; feedback fra Diagnostics kan også sende fejloplysninger. Der er ikke noget problem, før du indsender det. Problemer kan være offentlige, så fjern private oplysninger, før du sender dem.",
+  "privacyContactTitle": "Privatlivskontakt",
+  "privacyReadPolicy": "Læs privatpolitikken",
+  "privacyPolicyOpenFailed": "Kunne ikke åbne privatlivspolitikken.",
+  "privacySupportTitle": "Hjælp og support",
+  "privacySupportOpenFailed": "Kunne ikke åbne support. Kontakt support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Vil du slette onlineidentitet og -data?",
+  "privacyDeleteConfirmBody": "Dette afslutter øjeblikkeligt adgangen til denne identitets cloud-kampe for begge spillere og anmoder om sletning af identiteten og delte online matchlogs inden for 30 dage. Det kan tage Google op til 180 dage efter sletning af konto at fjerne godkendelsesdata fra sine live- og backupsystemer. Lokal historik og praksis forbliver på denne enhed. Tidligere sendt valgfri diagnostik er separat; kontakt privacy@freevia.org om disse. Denne handling kan ikke fortrydes.",
+  "privacyRequestDeletion": "Anmod om sletning",
+  "privacyDeleteSectionTitle": "Slet onlinedata",
+  "privacyDeleteInstructions": "Brug denne enheds gemte login til at bekræfte ejerskab. En spilleridentifikator eller invitationskode alene beviser ikke ejerskab. Lokale spillere behøver ikke en onlinekonto.",
+  "privacySendingRequest": "Sender",
+  "privacyDeleteAction": "Slet onlineidentitet og -data",
+  "privacyDeleteRequested": "Der anmodes om sletning. Denne onlineidentitet er logget ud. Dens cloud-data vil blive slettet inden for 30 dage. At starte online spil igen skaber en ny identitet. Googles fjernelse af godkendelsesdata kan tage op til 180 dage. Kontakt privacy@freevia.org for at få hjælp.",
+  "privacyDeleteRequestedSignOutFailed": "Sletning anmodet. Dens cloud-data vil blive slettet inden for 30 dage. Enheden kunne ikke rydde det gemte login, men onlineidentiteten er blokeret for yderligere matchadgang. Googles fjernelse af godkendelsesdata kan tage op til 180 dage. Kontakt privacy@freevia.org for at få hjælp.",
+  "privacyDeleteNoIdentity": "Der gemmes ingen brugbar onlineidentitet på denne enhed. Ingen ny konto blev oprettet. Hvis du tidligere har brugt online spil, skal du kontakte privacy@freevia.org for at få hjælp; hostede kampe udløber efter 30 dage.",
+  "privacyDeleteRequestFailed": "Kunne ikke bekræfte sletningsanmodningen. Kontroller din forbindelse, og prøv igen, eller kontakt privacy@freevia.org.",
+  "privacyConsentTitle": "Vil du dele brugs- og crashdiagnostik?",
+  "privacyConsentBody": "Dette sender brugsbegivenheder, oplysninger om appen/enheden, nedbrudsrapporter og målinger af ydeevnen til Google Firebase. Deling er valgfri. Spil og vejledning fungerer også uden deling, og du kan slå den fra igen under Indstillinger.",
+  "privacyKeepOff": "Hold deaktiveret",
+  "privacyShareDiagnostics": "Del diagnosticeringsdata",
+  "privacySaveFailed": "Privatlivsvalget kunne ikke gemmes. Prøv igen.",
+  "privacySettingsSubtitle": "Hvad der gemmes på din enhed, og hvad der deles",
+  "privacyDiagnosticsSettingTitle": "Del brugs- og nedbrudsdiagnosticering",
+  "privacyDiagnosticsSettingSubtitle": "Valgfrit · slået fra som standard",
+  "lanScanToJoin": "Scan for at deltage",
+  "lanScanHostCode": "Scan værtens kode",
+  "lanEnterAddressInstead": "Indtast adressen i stedet",
+  "feedbackFieldVersion": "Appversion",
+  "feedbackFieldPlatform": "Platform",
+  "feedbackFieldSummary": "Hvad skete der",
+  "feedbackFieldReproduction": "Trin til at genskabe problemet",
+  "feedbackFieldExpected": "Forventet resultat",
+  "feedbackFieldNeed": "Hvad du ville gøre",
+  "feedbackFieldIdea": "Foreslået ændring",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanTorch": "Lommelygte",
+  "lanCameraPermissionDenied": "Backgammon Buddy kan ikke bruge kameraet. Tillad kameraadgang i enhedens indstillinger, eller indtast adressen fra den anden enhed manuelt.",
+  "lanCameraUnsupported": "Denne enhed kan ikke scanne QR-koder. Indtast adressen fra den anden enhed manuelt.",
+  "lanCameraStartFailed": "Kameraet kunne ikke startes. Indtast adressen fra den anden enhed manuelt.",
+  "lanPointCameraAtQr": "Ret kameraet mod QR-koden på den anden enhed.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "physicalBuddyUnavailableBody": "Spil med et fysisk bræt er ikke tilgængeligt i denne version. Spil på skærmen, vejledning og træning findes på startskærmen.",
+  "boardSemanticsLabel": "Backgammonbræt. {status}",
+  "boardWhiteToRoll": "Hvid skal slå med terningerne.",
+  "boardBlackToRoll": "Sort skal slå med terningerne.",
+  "boardWhiteToMove": "Hvid er i tur. Slå {die1} og {die2}.",
+  "boardBlackToMove": "Sort er i tur. Slå {die1} og {die2}.",
+  "boardDoubleOffered": "Der er tilbudt en fordobling.",
+  "boardResignationOffered": "Der er tilbudt opgivelse.",
+  "boardGameOver": "Spillet er slut.",
+  "feedbackBugTitle": "[Fejl]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Idé]: Backgammon Buddy",
+  "feedbackBugSummary": "Erstat dette med en kort beskrivelse af, hvad der skete.",
+  "feedbackBugReproduction": "Erstat dette med trinene, der førte til problemet.",
+  "feedbackBugExpected": "Erstat dette med det, du forventede ville ske.",
+  "feedbackIdeaNeed": "Erstat dette med det, du ville gøre eller lære.",
+  "feedbackIdeaSuggestion": "Erstat dette med den ændring, du ville finde nyttig.",
+  "boardWhiteToMoveNoRoll": "Hvid er i tur.",
+  "boardBlackToMoveNoRoll": "Sort er i tur.",
+  "lanQrAccessibilityLabel": "QR-kode til at deltage i dette spil",
+  "lanJoinInstruction": "Åbn Spil i nærheden på den anden enhed, vælg Deltag, og scan derefter denne QR-kode.",
+  "homePlayWithBuddy": "Spil med Buddy",
+  "homeBuddyShort": "Buddy",
+  "feedbackExcerptTruncated": "(forkortet – brug Kopiér til udklipsholder på diagnoseskærmen for at få hele loggen)"
 }

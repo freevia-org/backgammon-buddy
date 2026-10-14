@@ -1368,9 +1368,8 @@ class AppLocalizationsCs extends AppLocalizations {
   String get analysisSaveForPractice => 'Uložit k procvičení';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Toto rozhodnutí se nepodařilo uložit: $error';
-  }
+  String get analysisSaveError =>
+      'Toto rozhodnutí se nepodařilo uložit. Zkuste to znovu.';
 
   @override
   String analysisCubeInfo(
@@ -2483,4 +2482,272 @@ class AppLocalizationsCs extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Chyba: $error';
   }
+
+  @override
+  String get privacyTitle => 'Soukromí a data';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy od Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Tato stránka popisuje, jak aktuální aplikace zpracovává vaše data.';
+
+  @override
+  String get privacyLocalTitle => 'Hry a doučování na vašem zařízení';
+
+  @override
+  String get privacyLocalBody =>
+      'Na tomto zařízení jsou uloženy místní shody, nastavení, analýza a průběh cvičení. Zde běží backgammon engine a tutor vysvětlení. Smažte uloženou shodu z historie, abyste odstranili i její uložená cvičná cvičení a pokusy. Smazat jednotlivá cvičení nebo resetovat postup praxe ve vzdělávání; vymazat místní chybové zprávy v → diagnostice nastavení. Nastavení zálohování vašeho zařízení se může vztahovat také na historii her. Online přihlašovací údaje jsou uloženy v chráněném úložišti zařízení.';
+
+  @override
+  String get privacyOnlineTitle => 'Online hry a hry v okolí';
+
+  @override
+  String get privacyOnlineBody =>
+      'Online hra odesílá Google Firebase anonymní identifikátor hráče, nastavení zápasu, tahy a záznamy o potřesení kostkou, takže oba hráči mohou hrát stejný zápas. Smazání historie na tomto zařízení neodstraní online záznamy. Platnost hostovaných zápasů vyprší 30 dní po vytvoření; plánované vyčištění odstraní jejich cloudové protokoly. Záznamy o shodě jsou uloženy v EU; Firebase Authentication zpracovává přihlašovací údaje ve Spojených státech. Online připojení ke Googlu používá při přepravě šifrování. Blízké herní výměny odpovídají informacím s jiným zařízením přes nešifrované místní připojení; použijte důvěryhodný Wi-Fi.';
+
+  @override
+  String get privacyDiagnosticsTitle => 'Volitelné použití a diagnostika pádů';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Sdílení je vypnuté, dokud ho nevyberete v Nastavení. Pokud je povoleno, Google Firebase přijímá události použití, informace o aplikaci/zařízení, měření výkonu a zprávy o selhání, které pomáhají vylepšit aplikaci. Chcete-li zastavit novou volitelnou kolekci, můžete sdílení kdykoli vypnout. Tím se nevymažou již odeslaná data. Místní diagnostika a online shody fungují odděleně od této volby.';
+
+  @override
+  String get privacyCameraTitle => 'Kamera pro QR kódy v okolí';
+
+  @override
+  String get privacyCameraBody =>
+      'Volitelná kamera skenuje QR kódy hry v okolí. Obrázky jsou zpracovávány ve vašem zařízení a nejsou ukládány ani nahrávány. Přístup k fotoaparátu můžeš odmítnout a adresu hostitele zadat ručně. Tato verze nepoužívá mikrofon ani neposkytuje přehrávání fyzické desky.';
+
+  @override
+  String get privacyFeedbackTitle =>
+      'Zpětná vazba, kterou se rozhodnete odeslat';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Zpětná vazba otevře koncept problému GitHub, který si můžete prohlédnout. Otevření konceptu odešle jeho verzi aplikace a platformu do GitHub; zpětná vazba od Diagnostiky může také odeslat podrobnosti o chybě. Dokud ji nepředložíte, nebude zveřejněn žádný problém. Problémy mohou být veřejné, proto před odesláním odstraňte soukromé informace.';
+
+  @override
+  String get privacyContactTitle => 'Kontakt pro ochranu osobních údajů';
+
+  @override
+  String get privacyReadPolicy => 'Načíst zásady ochrany osobních údajů';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Nelze otevřít zásady ochrany osobních údajů.';
+
+  @override
+  String get privacySupportTitle => 'hledat pomoc a podporu';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Nelze otevřít podporu. Kontaktujte support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle => 'Smazat online identitu a data?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'To okamžitě ukončí přístup k cloudovým zápasům této identity pro oba hráče a požádá o odstranění identity a sdílených protokolů online zápasů během dnů 30. Odstranění ověřovacích údajů ze svých živých a zálohovacích systémů může trvat až několik dní po smazání účtu 180. Místní historie a praxe zůstávají na tomto zařízení. Dříve odeslané volitelné diagnostiky jsou oddělené; obraťte se na privacy@freevia.org o těchto. Tato akce je nevratná.';
+
+  @override
+  String get privacyRequestDeletion => 'Požádat o odstranění';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Smazat online data';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'K ověření vlastnictví použijte uložené přihlašovací údaje tohoto zařízení. Samotný identifikátor hráče nebo zvací kód neprokazuje vlastnictví. Místní hráči nepotřebují online účet.';
+
+  @override
+  String get privacySendingRequest => 'Posílání žádosti...';
+
+  @override
+  String get privacyDeleteAction => 'Smazat online identitu a data';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Požadováno smazání. Tato online identita je odhlášena. Jeho cloudová data budou smazána během dnů 30. Opětovným spuštěním online hry vytvoříte novou identitu. Odstranění ověřovacích dat Google může trvat až dny 180. Kontaktujte privacy@freevia.org pro pomoc.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Požadováno smazání. Jeho cloudová data budou smazána během dnů 30. Zařízení se nepodařilo vymazat uložené přihlášení, ale online identitě je zablokován přístup k další shodě. Odstranění ověřovacích dat Google může trvat až dny 180. Kontaktujte privacy@freevia.org pro pomoc.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'V tomto zařízení není uložena žádná použitelná online identita. Nebyl vytvořen žádný nový účet. Pokud jste dříve používali online hru, kontaktujte privacy@freevia.org pro pomoc; hostované zápasy vyprší po dnech 30.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Žádost o odstranění se nepodařilo potvrdit. Zkontrolujte připojení a zkuste to znovu nebo kontaktujte privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle => 'Sdílet diagnostiku používání a pádů?';
+
+  @override
+  String get privacyConsentBody =>
+      'Tím se odesílají události použití, informace o aplikaci/zařízení, zprávy o selhání a měření výkonu do Google Firebase. Sdílení je volitelné. Hry a doučování s ním pracují vypnuté a můžete jej znovu vypnout v Nastavení.';
+
+  @override
+  String get privacyKeepOff => 'Bez vstupu';
+
+  @override
+  String get privacyShareDiagnostics => 'Sdílet diagnostiku';
+
+  @override
+  String get privacySaveFailed =>
+      'Nelze uložit volbu ochrany osobních údajů. Zkuste to prosím znovu.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Co zůstává na tvém zařízení a co je sdíleno';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Sdílejte diagnostiku používání a pádů';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Volitelné · ve výchozím nastavení vypnuto';
+
+  @override
+  String get lanScanToJoin => 'Skenovat a připojit se';
+
+  @override
+  String get lanScanHostCode => 'Naskenujte kód hostitele';
+
+  @override
+  String get lanEnterAddressInstead => 'Místo toho zadejte adresu';
+
+  @override
+  String get lanQrAccessibilityLabel => 'QR kód pro připojení k této hře';
+
+  @override
+  String get lanJoinInstruction =>
+      'Na druhém zařízení otevři Hru v okolí, vyber Připojit se a naskenuj tento QR kód.';
+
+  @override
+  String get lanTorch => 'Pochodeň';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy nemůže používat kameru. Povolte přístup k fotoaparátu v nastavení zařízení nebo ručně zadejte adresu zobrazenou na druhém zařízení.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Toto zařízení nemůže skenovat QR kódy. Zadej adresu zobrazenou na druhém zařízení ručně.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Fotoaparát nelze spustit. Zadej adresu zobrazenou na druhém zařízení ručně.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Namiřte kameru na QR kód na druhém zařízení.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Hra s fyzickou deskou není v této verzi k dispozici. Hry na obrazovce, doučování a cvičení jsou k dispozici na domovské stránce.';
+
+  @override
+  String get homePlayWithBuddy => 'Hrát s Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Deska backgammon. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Bílá na svinutí.';
+
+  @override
+  String get boardBlackToRoll => 'Černý na válcování.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Bílá pro pohyb, rolujte $die1 a $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Černý pro pohyb, rolujte $die1 a $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Bylo nabídnuto zdvojnásobení.';
+
+  @override
+  String get boardResignationOffered => 'Bylo nabídnuto vzdání hry.';
+
+  @override
+  String get boardGameOver => 'Hra skončila.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Bug]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Idea]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'Nahraďte to krátkým popisem toho, co se stalo.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Nahraďte jej kroky, které vedly k problému.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Nahraď to tím, co jsi očekával/a, že se stane.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Nahraď to tím, co jsi chtěl/a dělat nebo se učit.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Nahraďte to změnou, kterou byste považovali za užitečnou.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(zkráceno – celý záznam zkopírujete tlačítkem „Kopírovat do schránky“ na obrazovce Diagnostika)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Bílý na tahu';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Černý na tahu';
+
+  @override
+  String get feedbackFieldVersion => 'Verze aplikace';
+
+  @override
+  String get feedbackFieldPlatform => 'Platforma';
+
+  @override
+  String get feedbackFieldSummary => 'Co se stalo';
+
+  @override
+  String get feedbackFieldReproduction => 'Kroky k reprodukci';
+
+  @override
+  String get feedbackFieldExpected => 'Očekávaný výsledek';
+
+  @override
+  String get feedbackFieldNeed => 'Co jste chtěli udělat';
+
+  @override
+  String get feedbackFieldIdea => 'Navrhovaná změna';
 }

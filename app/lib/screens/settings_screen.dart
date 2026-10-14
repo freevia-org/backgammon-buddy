@@ -436,7 +436,8 @@ class SettingsScreen extends ConsumerWidget {
                             title: Text(l10n.settingsReportBug),
                             subtitle: Text(l10n.settingsReportBugHelp),
                             trailing: const Icon(Icons.open_in_new, size: 18),
-                            onTap: () => _sendFeedback(ref, FeedbackKind.bug),
+                            onTap: () =>
+                                _sendFeedback(context, ref, FeedbackKind.bug),
                           ),
                           ListTile(
                             contentPadding: EdgeInsets.zero,
@@ -444,7 +445,8 @@ class SettingsScreen extends ConsumerWidget {
                             title: Text(l10n.settingsSuggestIdea),
                             subtitle: Text(l10n.settingsSuggestIdeaHelp),
                             trailing: const Icon(Icons.open_in_new, size: 18),
-                            onTap: () => _sendFeedback(ref, FeedbackKind.idea),
+                            onTap: () =>
+                                _sendFeedback(context, ref, FeedbackKind.idea),
                           ),
                         ],
                       ),
@@ -512,12 +514,14 @@ List<DropdownMenuItem<String>> _languageOptions(AppLocalizations l10n) => [
 /// Fire-and-forget, and failure is silent by design: if no browser can be
 /// reached there is nothing the user can do about it from here, and a red
 /// error under a "Send feedback" button is a poor joke.
-void _sendFeedback(WidgetRef ref, FeedbackKind kind) {
+void _sendFeedback(BuildContext context, WidgetRef ref, FeedbackKind kind) {
   ref.read(appAnalyticsProvider).logFeedbackOpened();
+  final l10n = appLocalizationsOf(context);
   final uri = buildFeedbackIssueUri(
     kind: kind,
     appVersion: appVersion,
     platform: currentPlatformName(),
+    l10n: l10n,
   );
   unawaited(ref.read(urlOpenerProvider)(uri).catchError((Object _) => false));
 }

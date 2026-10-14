@@ -33,9 +33,9 @@ class HomeScreen extends ConsumerWidget {
   // without re-indenting the whole tree: [build] names the screen, [_build] is
   // the screen. Every screen in this app follows the same shape.
   Widget build(BuildContext context, WidgetRef ref) => AnalyticsScreenView(
-        name: AnalyticsScreens.home,
-        child: _build(context, ref),
-      );
+    name: AnalyticsScreens.home,
+    child: _build(context, ref),
+  );
 
   Widget _build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
@@ -52,9 +52,7 @@ class HomeScreen extends ConsumerWidget {
                   tooltip: l10n.settings,
                   icon: const Icon(Icons.settings_outlined),
                   onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => const SettingsScreen(),
-                    ),
+                    MaterialPageRoute(builder: (_) => const SettingsScreen()),
                   ),
                 ),
               ),
@@ -63,7 +61,8 @@ class HomeScreen extends ConsumerWidget {
               child: LayoutBuilder(
                 builder: (context, constraints) {
                   final textScale = MediaQuery.textScalerOf(context).scale(1);
-                  final compact = constraints.maxHeight < 570 || textScale > 1.3;
+                  final compact =
+                      constraints.maxHeight < 570 || textScale > 1.3;
                   final actions = <Widget>[
                     _ModeButton(
                       label: l10n.playVsComputer,
@@ -82,14 +81,13 @@ class HomeScreen extends ConsumerWidget {
                     if (ref.watch(physicalBuddyEnabledProvider) &&
                         isBuddyModeSupportedPlatform)
                       _ModeButton(
-                        label: 'Play with Buddy',
-                        compactLabel: 'Buddy',
+                        label: l10n.homePlayWithBuddy,
+                        compactLabel: l10n.homeBuddyShort,
                         icon: Icons.videocam_outlined,
                         onPressed: () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (_) => const BuddySetupScreen(
-                              launch: openBuddyGame,
-                            ),
+                            builder: (_) =>
+                                const BuddySetupScreen(launch: openBuddyGame),
                           ),
                         ),
                       ),
@@ -114,7 +112,9 @@ class HomeScreen extends ConsumerWidget {
                       compactLabel: l10n.learningPractice,
                       icon: Icons.school_outlined,
                       onPressed: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const LearningScreen()),
+                        MaterialPageRoute(
+                          builder: (_) => const LearningScreen(),
+                        ),
                       ),
                     ),
                     _ModeButton(
@@ -122,7 +122,9 @@ class HomeScreen extends ConsumerWidget {
                       compactLabel: l10n.gamesArchive,
                       icon: Icons.history,
                       onPressed: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const HistoryScreen()),
+                        MaterialPageRoute(
+                          builder: (_) => const HistoryScreen(),
+                        ),
                       ),
                     ),
                   ];
@@ -130,11 +132,16 @@ class HomeScreen extends ConsumerWidget {
                   final markSize = largeText ? 32.0 : (compact ? 56.0 : 104.0);
                   final tileHeight = largeText ? 96.0 : (compact ? 82.0 : 92.0);
                   return Align(
-                    alignment: compact ? Alignment.topCenter : const Alignment(0, -0.18),
+                    alignment: compact
+                        ? Alignment.topCenter
+                        : const Alignment(0, -0.18),
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 420),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 8,
+                        ),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -147,7 +154,9 @@ class HomeScreen extends ConsumerWidget {
                               fit: BoxFit.scaleDown,
                               child: Text(
                                 'Backgammon Buddy',
-                                style: compact ? theme.textTheme.titleLarge : theme.textTheme.displaySmall,
+                                style: compact
+                                    ? theme.textTheme.titleLarge
+                                    : theme.textTheme.displaySmall,
                                 textAlign: TextAlign.center,
                                 maxLines: 1,
                                 softWrap: false,
@@ -191,8 +200,9 @@ class HomeScreen extends ConsumerWidget {
               child: Text(
                 'v$appVersion',
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurfaceVariant
-                      .withValues(alpha: 0.7),
+                  color: theme.colorScheme.onSurfaceVariant.withValues(
+                    alpha: 0.7,
+                  ),
                 ),
               ),
             ),
@@ -204,9 +214,7 @@ class HomeScreen extends ConsumerWidget {
 
   void _open(BuildContext context, {required bool vsComputer}) {
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => NewMatchScreen(vsComputer: vsComputer),
-      ),
+      MaterialPageRoute(builder: (_) => NewMatchScreen(vsComputer: vsComputer)),
     );
   }
 }
@@ -240,10 +248,7 @@ class _ModeButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (!largeText) ...[
-              Icon(icon),
-              const SizedBox(height: 3),
-            ],
+            if (!largeText) ...[Icon(icon), const SizedBox(height: 3)],
             Text(
               largeText ? compactLabel : label,
               textAlign: TextAlign.center,

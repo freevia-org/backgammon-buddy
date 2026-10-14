@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import '../l10n/localization_lookup.dart';
 import 'qr_payload.dart';
 
 /// The host's address, port and room code as one thing to point a camera at.
@@ -27,7 +28,10 @@ class JoinQrCode extends StatelessWidget {
     final theme = Theme.of(context);
     return Column(
       children: [
-        Text('Scan to join', style: theme.textTheme.titleSmall),
+        Text(
+          appLocalizationsOf(context).lanScanToJoin,
+          style: theme.textTheme.titleSmall,
+        ),
         const SizedBox(height: 8),
         Center(
           // The white plate and its margin are part of the SYMBOL, not
@@ -49,15 +53,18 @@ class JoinQrCode extends StatelessWidget {
               // leaves a coarse symbol — which is what survives a phone held at
               // an angle across a table, or a screen with a fingerprint on it.
               errorCorrectionLevel: QrErrorCorrectLevel.H,
-              semanticsLabel: 'QR code to join this game',
+              semanticsLabel: appLocalizationsOf(
+                context,
+              ).lanQrAccessibilityLabel,
             ),
           ),
         ),
         const SizedBox(height: 8),
         Text(
-          'On the other device, open Play Nearby → Join → Scan QR code.',
-          style: theme.textTheme.bodySmall
-              ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+          appLocalizationsOf(context).lanJoinInstruction,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
           textAlign: TextAlign.center,
         ),
       ],

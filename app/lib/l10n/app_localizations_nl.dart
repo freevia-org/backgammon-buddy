@@ -1363,9 +1363,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get analysisSaveForPractice => 'Opslaan om te oefenen';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Deze beslissing kon niet worden opgeslagen: $error';
-  }
+  String get analysisSaveError =>
+      'Deze beslissing kon niet worden opgeslagen. Probeer het opnieuw.';
 
   @override
   String analysisCubeInfo(
@@ -2481,4 +2480,274 @@ class AppLocalizationsNl extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Fout: $error';
   }
+
+  @override
+  String get privacyTitle => 'Privacy en gegevens';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy van Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Op deze pagina staat hoe deze versie van de app met je gegevens omgaat.';
+
+  @override
+  String get privacyLocalTitle => 'Spellen en begeleiding op je apparaat';
+
+  @override
+  String get privacyLocalBody =>
+      'Lokale spellen, instellingen, analyses en oefenvoortgang worden op dit apparaat opgeslagen. De backgammonengine en uitleg van de tutor werken hier. Verwijder een opgeslagen spel uit Geschiedenis om ook de bijbehorende opgeslagen oefeningen en pogingen te verwijderen. Verwijder afzonderlijke oefeningen of reset je voortgang bij Leren; wis lokale foutmeldingen via Instellingen â†’ Diagnostiek. De back-upinstellingen van je apparaat kunnen ook gelden voor de spelgeschiedenis. Inloggegevens voor online spelen worden bewaard in de beveiligde opslag van het apparaat.';
+
+  @override
+  String get privacyOnlineTitle => 'Online en in de buurt spelen';
+
+  @override
+  String get privacyOnlineBody =>
+      'Bij online spelen worden een anonieme spelers-ID, spelinstellingen, zetten en records voor het afstemmen van de dobbelstenen naar Google Firebase gestuurd, zodat beide spelers hetzelfde spel kunnen spelen. Als je de Geschiedenis op dit apparaat wist, worden online gegevens niet verwijderd. Gehoste spellen verlopen 30 dagen na aanmaak; geplande opschoning verwijdert de bijbehorende cloudlogboeken. Spelgegevens worden in de EU opgeslagen; Firebase Authentication verwerkt inloggegevens in de Verenigde Staten. Online verbindingen met Google zijn tijdens verzending versleuteld. Bij lokaal spelen worden spelgegevens via een niet-versleutelde lokale verbinding uitgewisseld met het andere apparaat; gebruik een vertrouwd wifi-netwerk.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Optionele gebruiks- en crashdiagnostiek';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Delen staat uit totdat je dit inschakelt via Instellingen. Als je het inschakelt, ontvangt Google Firebase gebruiksgebeurtenissen, app- en apparaatgegevens, prestatiemetingen en crashrapporten om de app te verbeteren. Je kunt delen op elk moment uitschakelen, zodat er geen nieuwe optionele gegevens worden verzameld. Reeds verzonden gegevens worden hierdoor niet gewist. Lokale diagnostiek en online spellen staan los van deze keuze.';
+
+  @override
+  String get privacyCameraTitle =>
+      'Camera voor QR-codes van spellen in de buurt';
+
+  @override
+  String get privacyCameraBody =>
+      'De optionele camera scant QR-codes voor spellen in de buurt. Afbeeldingen worden op je apparaat verwerkt en niet opgeslagen of geÃ¼pload. Je kunt cameratoegang weigeren en het adres van de host handmatig invoeren. Deze versie gebruikt de microfoon niet en biedt geen spel met een fysiek bord.';
+
+  @override
+  String get privacyFeedbackTitle => 'Feedback die je zelf wilt versturen';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Feedback opent een concept voor een GitHub-issue dat je kunt bekijken. Bij het openen worden de appversie en het platform naar GitHub gestuurd; feedback vanuit Diagnostiek kan ook foutdetails bevatten. Er wordt pas een issue geplaatst als je het verstuurt. Issues kunnen openbaar zijn, dus verwijder privÃ©gegevens voordat je ze verstuurt.';
+
+  @override
+  String get privacyContactTitle => 'Privacycontact';
+
+  @override
+  String get privacyReadPolicy => 'Lees het privacybeleid';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Het privacybeleid kan niet worden geopend.';
+
+  @override
+  String get privacySupportTitle => 'Hulp en ondersteuning';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Ondersteuning kan niet worden geopend. Neem contact op via support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Online identiteit en gegevens verwijderen?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Hierdoor wordt de toegang van beide spelers tot de cloudspellen van deze identiteit direct beÃ«indigd en wordt verzocht de identiteit en gedeelde logboeken van online spellen binnen 30 dagen te verwijderen. Google kan na het verwijderen van het account tot 180 dagen nodig hebben om Authentication-gegevens uit actieve systemen en back-ups te verwijderen. De lokale Geschiedenis en oefeningen blijven op dit apparaat staan. Eerder verstuurde optionele diagnostiek valt hier los van; neem daarvoor contact op via privacy@freevia.org. Dit verzoek kan niet ongedaan worden gemaakt.';
+
+  @override
+  String get privacyRequestDeletion => 'Verwijdering aanvragen';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Online gegevens verwijderen';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Gebruik de opgeslagen aanmelding op dit apparaat om te bewijzen dat jij de eigenaar bent. Een spelers-ID of uitnodigingscode alleen bewijst het eigendom niet. Spelers die alleen lokaal spelen hebben geen online account nodig.';
+
+  @override
+  String get privacySendingRequest => 'Verzoek verzendenâ€¦';
+
+  @override
+  String get privacyDeleteAction => 'Online identiteit en gegevens verwijderen';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Verwijdering aangevraagd. Deze online identiteit is afgemeld. De cloudgegevens worden binnen 30 dagen verwijderd. Als je opnieuw online gaat spelen, wordt een nieuwe identiteit aangemaakt. Het verwijderen van Google Authentication-gegevens kan tot 180 dagen duren. Neem voor hulp contact op via privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Verwijdering aangevraagd. De cloudgegevens worden binnen 30 dagen verwijderd. Het apparaat kon de opgeslagen aanmelding niet wissen, maar de online identiteit is geblokkeerd voor verdere toegang tot spellen. Het verwijderen van Google Authentication-gegevens kan tot 180 dagen duren. Neem voor hulp contact op via privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Er is geen bruikbare online identiteit op dit apparaat opgeslagen. Er is geen nieuw account aangemaakt. Heb je eerder online gespeeld, neem dan voor hulp contact op via privacy@freevia.org; gehoste spellen verlopen na 30 dagen.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Het verwijderingsverzoek kon niet worden bevestigd. Controleer je verbinding en probeer het opnieuw, of neem contact op via privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle =>
+      'Gebruiksgegevens en crashdiagnostiek delen?';
+
+  @override
+  String get privacyConsentBody =>
+      'Hiermee worden gebruiksgebeurtenissen, app- en apparaatgegevens, crashrapporten en prestatiemetingen naar Google Firebase gestuurd. Delen is optioneel. Spellen en begeleiding werken ook als delen uitstaat; je kunt het later weer uitschakelen via Instellingen.';
+
+  @override
+  String get privacyKeepOff => 'Uit laten';
+
+  @override
+  String get privacyShareDiagnostics => 'Diagnostiek delen';
+
+  @override
+  String get privacySaveFailed =>
+      'Je privacykeuze kon niet worden opgeslagen. Probeer het opnieuw.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Wat op je apparaat blijft en wat wordt gedeeld';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Gebruiksgegevens en crashdiagnostiek delen';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Optioneel Â· standaard uitgeschakeld';
+
+  @override
+  String get lanScanToJoin => 'Scannen om mee te doen';
+
+  @override
+  String get lanScanHostCode => 'Code van de host scannen';
+
+  @override
+  String get lanEnterAddressInstead => 'In plaats daarvan het adres invoeren';
+
+  @override
+  String get lanQrAccessibilityLabel => 'QR-code om aan dit spel deel te nemen';
+
+  @override
+  String get lanJoinInstruction =>
+      'Open op het andere apparaat Dichtbij spelen, kies Deelnemen en scan daarna deze QR-code.';
+
+  @override
+  String get lanTorch => 'Zaklamp';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy kan de camera niet gebruiken. Geef de app toegang tot de camera via de apparaatinstellingen of voer het adres van het andere apparaat handmatig in.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Dit apparaat kan geen QR-codes scannen. Voer het adres van het andere apparaat handmatig in.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'De camera kon niet worden gestart. Voer het adres van het andere apparaat handmatig in.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Richt de camera op de QR-code op het andere apparaat.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Spelen met een fysiek bord is in deze versie niet beschikbaar. Schermspellen, begeleiding en oefenen vind je op het startscherm.';
+
+  @override
+  String get homePlayWithBuddy => 'Spelen met Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Backgammonbord. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Wit is aan de beurt om te gooien.';
+
+  @override
+  String get boardBlackToRoll => 'Zwart is aan de beurt om te gooien.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Wit is aan zet; gooi $die1 en $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Zwart is aan zet; gooi $die1 en $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Er is een verdubbeling aangeboden.';
+
+  @override
+  String get boardResignationOffered => 'Er is een opgave aangeboden.';
+
+  @override
+  String get boardGameOver => 'Het spel is afgelopen.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Bug]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Idee]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'Vervang dit door een korte beschrijving van wat er is gebeurd.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Vervang dit door de stappen die tot het probleem hebben geleid.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Vervang dit door wat je verwachtte dat er zou gebeuren.';
+
+  @override
+  String get feedbackIdeaNeed => 'Vervang dit door wat je wilde doen of leren.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Vervang dit door de verandering die je nuttig zou vinden.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(afgekapt â€” gebruik KopiÃ«ren naar klembord op het scherm Diagnostiek voor het volledige logboek)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Wit is aan zet.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Zwart is aan zet.';
+
+  @override
+  String get feedbackFieldVersion => 'Versie';
+
+  @override
+  String get feedbackFieldPlatform => 'Platform';
+
+  @override
+  String get feedbackFieldSummary => 'Samenvatting';
+
+  @override
+  String get feedbackFieldReproduction => 'Stappen om te reproduceren';
+
+  @override
+  String get feedbackFieldExpected => 'Verwacht resultaat';
+
+  @override
+  String get feedbackFieldNeed => 'Wat wilde je doen of leren';
+
+  @override
+  String get feedbackFieldIdea => 'Idee';
 }

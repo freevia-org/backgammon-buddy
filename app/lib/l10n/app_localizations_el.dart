@@ -1369,9 +1369,8 @@ class AppLocalizationsEl extends AppLocalizations {
   String get analysisSaveForPractice => 'Αποθήκευση για εξάσκηση';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Δεν ήταν δυνατή η αποθήκευση αυτής της απόφασης: $error';
-  }
+  String get analysisSaveError =>
+      'Δεν ήταν δυνατή η αποθήκευση αυτής της απόφασης. Δοκίμασε ξανά.';
 
   @override
   String analysisCubeInfo(
@@ -2491,4 +2490,277 @@ class AppLocalizationsEl extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Σφάλμα: $error';
   }
+
+  @override
+  String get privacyTitle => 'Απόρρητο και δεδομένα';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy από τη Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Αυτή η σελίδα περιγράφει τον τρόπο με τον οποίο η τρέχουσα εφαρμογή χειρίζεται τα δεδομένα σου.';
+
+  @override
+  String get privacyLocalTitle => 'Παιχνίδια και καθοδήγηση στη συσκευή σου';
+
+  @override
+  String get privacyLocalBody =>
+      'Οι τοπικές παρτίδες, οι ρυθμίσεις, οι αναλύσεις και η πρόοδος εξάσκησης αποθηκεύονται σε αυτήν τη συσκευή. Η μηχανή τάβλι και οι εξηγήσεις του καθοδηγητή εκτελούνται εδώ. Διέγραψε μια αποθηκευμένη παρτίδα από το Ιστορικό για να διαγράψεις και τις αποθηκευμένες ασκήσεις και προσπάθειες εξάσκησής της. Διέγραψε μεμονωμένες ασκήσεις ή μηδένισε την πρόοδο εξάσκησης στην Εκμάθηση· διέγραψε τις τοπικές αναφορές σφαλμάτων από τις Ρυθμίσεις → Διαγνωστικά. Οι ρυθμίσεις αντιγράφων ασφαλείας της συσκευής σου ενδέχεται επίσης να ισχύουν για το ιστορικό παρτίδων. Τα διαπιστευτήρια σύνδεσης στο διαδίκτυο φυλάσσονται στον προστατευμένο χώρο αποθήκευσης της συσκευής.';
+
+  @override
+  String get privacyOnlineTitle =>
+      'Διαδικτυακό παιχνίδι και παιχνίδι κοντινής απόστασης';
+
+  @override
+  String get privacyOnlineBody =>
+      'Το διαδικτυακό παιχνίδι στέλνει στην Google Firebase ένα ανώνυμο αναγνωριστικό παίκτη, τις ρυθμίσεις της παρτίδας, τις κινήσεις και τις εγγραφές συγχρονισμού των ζαριών, ώστε και οι δύο παίκτες να παίζουν την ίδια παρτίδα. Η διαγραφή του Ιστορικού σε αυτήν τη συσκευή δεν διαγράφει τα διαδικτυακά αρχεία. Οι φιλοξενούμενες παρτίδες λήγουν 30 ημέρες μετά τη δημιουργία τους· ο προγραμματισμένος καθαρισμός διαγράφει τα αρχεία καταγραφής τους από το cloud. Τα αρχεία παρτίδων αποθηκεύονται στην ΕΕ· το Firebase Authentication επεξεργάζεται δεδομένα σύνδεσης στις Ηνωμένες Πολιτείες. Οι συνδέσεις με την Google κρυπτογραφούνται κατά τη μεταφορά. Το παιχνίδι κοντινής απόστασης ανταλλάσσει πληροφορίες παρτίδας με την άλλη συσκευή μέσω μη κρυπτογραφημένης τοπικής σύνδεσης· χρησιμοποίησε αξιόπιστο Wi-Fi.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Προαιρετικά διαγνωστικά χρήσης και σφαλμάτων';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Η κοινοποίηση είναι απενεργοποιημένη μέχρι να την ενεργοποιήσεις στις Ρυθμίσεις. Αν την ενεργοποιήσεις, η Google Firebase λαμβάνει συμβάντα χρήσης, πληροφορίες εφαρμογής/συσκευής, μετρήσεις απόδοσης και αναφορές σφαλμάτων για τη βελτίωση της εφαρμογής. Μπορείς να απενεργοποιήσεις την κοινοποίηση ανά πάσα στιγμή για να σταματήσει η νέα προαιρετική συλλογή. Αυτό δεν διαγράφει δεδομένα που έχουν ήδη σταλεί. Τα τοπικά διαγνωστικά και οι διαδικτυακές παρτίδες λειτουργούν ανεξάρτητα από αυτήν την επιλογή.';
+
+  @override
+  String get privacyCameraTitle => 'Κάμερα για κοντινούς κωδικούς QR';
+
+  @override
+  String get privacyCameraBody =>
+      'Η προαιρετική κάμερα σαρώνει κωδικούς QR για κοντινές παρτίδες. Οι εικόνες υποβάλλονται σε επεξεργασία στη συσκευή σου και δεν αποθηκεύονται ούτε μεταφορτώνονται. Μπορείς να αρνηθείς την πρόσβαση στην κάμερα και να πληκτρολογήσεις χειροκίνητα τη διεύθυνση του οικοδεσπότη. Αυτή η έκδοση δεν χρησιμοποιεί το μικρόφωνο ούτε υποστηρίζει παιχνίδι με φυσικό ταμπλό.';
+
+  @override
+  String get privacyFeedbackTitle => 'Σχόλια που επιλέγεις να στείλεις';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Τα σχόλια ανοίγουν ένα προσχέδιο ζητήματος στο GitHub για να το ελέγξεις. Με το άνοιγμα του προσχεδίου, αποστέλλονται στο GitHub η έκδοση της εφαρμογής και η πλατφόρμα· τα σχόλια από τα Διαγνωστικά μπορεί επίσης να περιλαμβάνουν λεπτομέρειες σφάλματος. Δεν δημοσιεύεται κανένα ζήτημα μέχρι να το υποβάλεις. Τα ζητήματα μπορεί να είναι δημόσια, γι’ αυτό αφαίρεσε προσωπικές πληροφορίες πριν από την αποστολή.';
+
+  @override
+  String get privacyContactTitle => 'Επικοινωνία για το απόρρητο';
+
+  @override
+  String get privacyReadPolicy => 'Διάβασε την πολιτική απορρήτου';
+
+  @override
+  String get privacyPolicyOpenFailed =>
+      'Δεν ήταν δυνατό το άνοιγμα της πολιτικής απορρήτου.';
+
+  @override
+  String get privacySupportTitle => 'Βοήθεια και υποστήριξη';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Δεν ήταν δυνατό το άνοιγμα της υποστήριξης. Επικοινώνησε στο support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Να διαγραφούν η διαδικτυακή ταυτότητα και τα δεδομένα;';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Αυτό τερματίζει αμέσως την πρόσβαση και των δύο παικτών στις παρτίδες cloud αυτής της ταυτότητας και ζητά τη διαγραφή της ταυτότητας και των κοινών αρχείων καταγραφής διαδικτυακών παρτίδων εντός 30 ημερών. Η Google μπορεί να χρειαστεί έως και 180 ημέρες μετά τη διαγραφή του λογαριασμού για να αφαιρέσει τα δεδομένα Authentication από τα ενεργά συστήματα και τα αντίγραφα ασφαλείας της. Το τοπικό Ιστορικό και η εξάσκηση παραμένουν σε αυτήν τη συσκευή. Τα προαιρετικά διαγνωστικά που στάλθηκαν παλαιότερα είναι ξεχωριστά· επικοινώνησε με το privacy@freevia.org γι’ αυτά. Αυτό το αίτημα δεν μπορεί να αναιρεθεί.';
+
+  @override
+  String get privacyRequestDeletion => 'Αίτημα διαγραφής';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Διαγραφή διαδικτυακών δεδομένων';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Χρησιμοποίησε τη σύνδεση που είναι αποθηκευμένη σε αυτήν τη συσκευή για να επαληθεύσεις την κυριότητα. Ένα αναγνωριστικό παίκτη ή ένας κωδικός πρόσκλησης από μόνος του δεν αποδεικνύει την κυριότητα. Οι παίκτες που παίζουν μόνο τοπικά δεν χρειάζονται διαδικτυακό λογαριασμό.';
+
+  @override
+  String get privacySendingRequest => 'Αποστολή αιτήματος…';
+
+  @override
+  String get privacyDeleteAction =>
+      'Διαγραφή διαδικτυακής ταυτότητας και δεδομένων';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Ζητήθηκε η διαγραφή. Έγινε αποσύνδεση αυτής της διαδικτυακής ταυτότητας. Τα δεδομένα της στο cloud θα διαγραφούν εντός 30 ημερών. Αν ξεκινήσεις ξανά διαδικτυακό παιχνίδι, θα δημιουργηθεί νέα ταυτότητα. Η αφαίρεση των δεδομένων Authentication από την Google μπορεί να χρειαστεί έως και 180 ημέρες. Για βοήθεια, επικοινώνησε με το privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Ζητήθηκε η διαγραφή. Τα δεδομένα cloud θα διαγραφούν εντός 30 ημερών. Η συσκευή δεν μπόρεσε να διαγράψει την αποθηκευμένη σύνδεση, αλλά η διαδικτυακή ταυτότητα έχει αποκλειστεί από περαιτέρω πρόσβαση σε παρτίδες. Η αφαίρεση των δεδομένων Authentication από την Google μπορεί να χρειαστεί έως και 180 ημέρες. Για βοήθεια, επικοινώνησε με το privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Δεν υπάρχει αποθηκευμένη χρησιμοποιήσιμη διαδικτυακή ταυτότητα σε αυτήν τη συσκευή. Δεν δημιουργήθηκε νέος λογαριασμός. Αν έπαιξες διαδικτυακά στο παρελθόν, επικοινώνησε με το privacy@freevia.org για βοήθεια· οι φιλοξενούμενες παρτίδες λήγουν μετά από 30 ημέρες.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Δεν ήταν δυνατή η επιβεβαίωση του αιτήματος διαγραφής. Έλεγξε τη σύνδεσή σου και δοκίμασε ξανά ή επικοινώνησε με το privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle =>
+      'Να κοινοποιούνται διαγνωστικά χρήσης και σφαλμάτων;';
+
+  @override
+  String get privacyConsentBody =>
+      'Αυτό στέλνει στην Google Firebase συμβάντα χρήσης, πληροφορίες εφαρμογής/συσκευής, αναφορές σφαλμάτων και μετρήσεις απόδοσης. Η κοινοποίηση είναι προαιρετική. Τα παιχνίδια και η καθοδήγηση λειτουργούν και χωρίς αυτήν, και μπορείς να την απενεργοποιήσεις ξανά στις Ρυθμίσεις.';
+
+  @override
+  String get privacyKeepOff => 'Παραμονή απενεργοποιημένη';
+
+  @override
+  String get privacyShareDiagnostics => 'Κοινοποίηση διαγνωστικών';
+
+  @override
+  String get privacySaveFailed =>
+      'Δεν ήταν δυνατή η αποθήκευση της επιλογής απορρήτου. Δοκίμασε ξανά.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Τι παραμένει στη συσκευή σου και τι κοινοποιείται';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Κοινοποίηση διαγνωστικών χρήσης και σφαλμάτων';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Προαιρετικό · απενεργοποιημένο από προεπιλογή';
+
+  @override
+  String get lanScanToJoin => 'Σάρωση για συμμετοχή';
+
+  @override
+  String get lanScanHostCode => 'Σάρωσε τον κωδικό του οικοδεσπότη';
+
+  @override
+  String get lanEnterAddressInstead => 'Εισαγωγή διεύθυνσης αντί για σάρωση';
+
+  @override
+  String get lanQrAccessibilityLabel =>
+      'Κωδικός QR για συμμετοχή σε αυτό το παιχνίδι';
+
+  @override
+  String get lanJoinInstruction =>
+      'Στην άλλη συσκευή, άνοιξε το Παιχνίδι κοντά, επίλεξε Συμμετοχή και σάρωσε αυτόν τον κωδικό QR.';
+
+  @override
+  String get lanTorch => 'Φακός';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Το Backgammon Buddy δεν μπορεί να χρησιμοποιήσει την κάμερα. Επίτρεψε την πρόσβαση στις ρυθμίσεις της συσκευής ή πληκτρολόγησε τη διεύθυνση που εμφανίζεται στην άλλη συσκευή.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Αυτή η συσκευή δεν μπορεί να σαρώσει κωδικούς QR. Πληκτρολόγησε τη διεύθυνση που εμφανίζεται στην άλλη συσκευή.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Δεν ήταν δυνατή η εκκίνηση της κάμερας. Πληκτρολόγησε τη διεύθυνση που εμφανίζεται στην άλλη συσκευή.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Στρέψε την κάμερα στον κωδικό QR της άλλης συσκευής.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Το παιχνίδι με φυσική επιτραπέζια διάταξη δεν είναι διαθέσιμο σε αυτήν την έκδοση. Τα παιχνίδια στην οθόνη, η καθοδήγηση και η εξάσκηση είναι διαθέσιμα από την Αρχική.';
+
+  @override
+  String get homePlayWithBuddy => 'Παίξε με το Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Ταμπλό τάβλι. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Παίζει ο λευκός· ρίξε τα ζάρια.';
+
+  @override
+  String get boardBlackToRoll => 'Παίζει ο μαύρος· ρίξε τα ζάρια.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Παίζει ο λευκός· ρίξε $die1 και $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Παίζει ο μαύρος· ρίξε $die1 και $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Προσφέρθηκε διπλασιασμός.';
+
+  @override
+  String get boardResignationOffered => 'Προσφέρθηκε παραίτηση.';
+
+  @override
+  String get boardGameOver => 'Το παιχνίδι τελείωσε.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Σφάλμα]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Ιδέα]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'Αντικατάστησε αυτό το κείμενο με μια σύντομη περιγραφή του τι συνέβη.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Αντικατάστησε αυτό το κείμενο με τα βήματα που οδήγησαν στο πρόβλημα.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Αντικατάστησε αυτό το κείμενο με το αναμενόμενο αποτέλεσμα.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Αντικατάστησε αυτό το κείμενο με αυτό που ήθελες να κάνεις ή να μάθεις.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Αντικατάστησε αυτό το κείμενο με την αλλαγή που θα σου ήταν χρήσιμη.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(περικομμένο — για ολόκληρο το αρχείο καταγραφής, χρησιμοποίησε την επιλογή «Αντιγραφή στο πρόχειρο» στην οθόνη Διαγνωστικά)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Παίζει ο λευκός.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Παίζει ο μαύρος.';
+
+  @override
+  String get feedbackFieldVersion => 'Έκδοση εφαρμογής';
+
+  @override
+  String get feedbackFieldPlatform => 'Πλατφόρμα';
+
+  @override
+  String get feedbackFieldSummary => 'Τι συνέβη';
+
+  @override
+  String get feedbackFieldReproduction => 'Βήματα αναπαραγωγής';
+
+  @override
+  String get feedbackFieldExpected => 'Αναμενόμενο αποτέλεσμα';
+
+  @override
+  String get feedbackFieldNeed => 'Τι ήθελες να κάνεις';
+
+  @override
+  String get feedbackFieldIdea => 'Προτεινόμενη αλλαγή';
 }

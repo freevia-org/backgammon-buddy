@@ -420,7 +420,7 @@
       "previousPoints": {}
     }
   },
-  "tutorMoveObservationPureRace": "Reines Rennen: Beide Parteien sind aneinander vorbei und niemand steht auf dem Bar. Schlagen ist nicht mehr möglich; effizientes Ausspielen zählt.",
+  "tutorMoveObservationPureRace": "Im reinen Rennen sind beide Seiten aneinander vorbeigezogen; kein Stein liegt auf der Bar. Schlagen ist nicht mehr möglich – jetzt zählt ein effizientes Ausspielen.",
   "tutorMoveObservationNoReplyHit": "Mit keinem legalen nächsten Wurf kann der Gegner in dieser Stellung schlagen. Kontakt besteht jedoch weiter; spätere Züge können neue Schlagmöglichkeiten schaffen.",
   "tutorMoveObservationReplyHit": "Der Gegner kann bei {count} von {total} Würfen schlagen. Zum Beispiel ermöglicht {dieOne}–{dieTwo} einen legalen Schlag auf deinem {point}-Punkt. Eine Schlagchance bedeutet nicht, dass der Gegner sie nutzt.",
   "@tutorMoveObservationReplyHit": {
@@ -452,7 +452,7 @@
     }
   },
   "tutorMoveObservationAllEntriesClosed": "Der Gegner kann erst wieder eintreten, wenn ein Punkt frei wird.",
-  "tutorMoveObservationOpenEntry": "Ein Wurf mit einer offenen Eintrittszahl kann einen Stein vom Bar zurückbringen.",
+  "tutorMoveObservationOpenEntry": "Ein Wurf mit einer offenen Eintrittszahl kann einen Stein von der Bar zurückbringen.",
   "tutorMoveComparisonDetail": "{factors} Die geschätzte Gewinnchance des besten Zugs liegt {delta} Prozentpunkte {direction}.{scoreContext}",
   "@tutorMoveComparisonDetail": {
     "placeholders": {
@@ -715,7 +715,7 @@
   "analysisBestMoveLine": "Bester Zug: {move}",
   "analysisExplain": "Erklären",
   "analysisSaveForPractice": "Zum Üben speichern",
-  "analysisSaveError": "Diese Entscheidung konnte nicht gespeichert werden: {error}",
+  "analysisSaveError": "Diese Entscheidung konnte nicht gespeichert werden. Bitte versuche es erneut.",
   "analysisCubeInfo": "{side}: {action} · {mark} · Verlust {loss}",
   "analysisCubeDecision": "Cube-Entscheidung",
   "analysisCubePlayed": "Gespielt: {action} ({percent}% Matchchance).",
@@ -789,11 +789,6 @@
       "action": {},
       "mark": {},
       "loss": {}
-    }
-  },
-  "@analysisSaveError": {
-    "placeholders": {
-      "error": {}
     }
   },
   "@analysisCubePlayed": {
@@ -984,7 +979,7 @@
   "onlineRoomCode": "Matchcode",
   "onlineJoin": "Beitreten",
   "lanTitle": "Lokal spielen",
-  "lanTabHost": "Host",
+  "lanTabHost": "Hosten",
   "lanTabJoin": "Beitreten",
   "lanUnassistedNote": "Lokale Partien werden nicht vom Tutor begleitet. Überprüfe deine Züge und übe Fehler nach dem Match.",
   "lanGameStartFailed": "Das Spiel konnte nicht gestartet werden. Das andere Gerät kann erneut beitreten.",
@@ -1519,5 +1514,104 @@
         "type": "String"
       }
     }
-  }
+  },
+  "privacyTitle": "Datenschutz und Daten",
+  "privacyAppTitle": "Backgammon Buddy von Freevia",
+  "privacyIntro": "Auf dieser Seite wird beschrieben, wie die aktuelle App mit deinen Daten umgeht.",
+  "privacyLocalTitle": "Spiele und Training auf deinem Gerät",
+  "privacyLocalBody": "Lokale Partien, Einstellungen, Analysen und Trainingsfortschritte werden auf diesem Gerät gespeichert. Die Backgammon-Engine und die Erklärungen des Tutors laufen hier. Lösche eine gespeicherte Partie im Spielarchiv, um auch die dazugehörigen gespeicherten Trainingsaufgaben und Versuche zu entfernen. Einzelne Aufgaben kannst du unter Lernen löschen oder den Trainingsfortschritt zurücksetzen; lokale Fehlerberichte löschst du unter Einstellungen → Diagnose. Auch die Sicherungseinstellungen deines Geräts können für den Spielverlauf gelten. Zugangsdaten für die Online-Anmeldung werden im geschützten Speicher des Geräts aufbewahrt.",
+  "privacyOnlineTitle": "Online- und Spielen in der Nähe",
+  "privacyOnlineBody": "Beim Onlinespiel werden eine anonyme Spielerkennung, Spieleinstellungen, Züge und Würfelabgleich-Daten an Google Firebase gesendet, damit beide Spieler dieselbe Partie spielen können. Wenn du den Spielverlauf auf diesem Gerät löschst, werden Online-Datensätze nicht gelöscht. Gehostete Partien laufen 30 Tage nach ihrer Erstellung ab; eine geplante Bereinigung entfernt ihre Cloud-Protokolle. Spieldaten werden in der EU gespeichert; Firebase Authentication verarbeitet Anmeldedaten in den Vereinigten Staaten. Verbindungen zu Google werden während der Übertragung verschlüsselt. Beim Spielen in der Nähe tauschen die Geräte Spieldaten über eine unverschlüsselte lokale Verbindung aus; verwende ein vertrauenswürdiges WLAN.",
+  "privacyDiagnosticsTitle": "Optionale Nutzungs- und Absturzdiagnose",
+  "privacyDiagnosticsBody": "Die Datenweitergabe ist deaktiviert, bis du sie unter Einstellungen einschaltest. Wenn sie aktiviert ist, erhält Google Firebase Nutzungsereignisse, App- und Geräteinformationen, Leistungsmesswerte und Absturzberichte, damit die App verbessert werden kann. Du kannst die Weitergabe jederzeit ausschalten, um die optionale Erfassung neuer Daten zu beenden. Bereits gesendete Daten werden dadurch nicht gelöscht. Lokale Diagnosedaten und Onlinespiele sind von dieser Auswahl unabhängig.",
+  "privacyCameraTitle": "Kamera für QR-Codes beim Spielen in der Nähe",
+  "privacyCameraBody": "Mit der optionalen Kamera kannst du QR-Codes für Spiele in der Nähe scannen. Bilder werden auf deinem Gerät verarbeitet und weder gespeichert noch hochgeladen. Du kannst den Kamerazugriff ablehnen und die Adresse des Hosts manuell eingeben. Diese Version verwendet weder das Mikrofon noch ermöglicht sie das Spielen am physischen Brett.",
+  "privacyFeedbackTitle": "Feedback, das du senden möchtest",
+  "privacyFeedbackBody": "Beim Feedback wird ein GitHub-Entwurf für ein Issue geöffnet, den du prüfen kannst. Beim Öffnen des Entwurfs werden App-Version und Plattform an GitHub übermittelt; Feedback aus der Diagnose kann zusätzlich Fehlerdetails enthalten. Erst wenn du es absendest, wird ein Issue veröffentlicht. Issues können öffentlich sein. Entferne daher private Informationen, bevor du sie sendest.",
+  "privacyContactTitle": "Kontakt zum Datenschutz",
+  "privacyReadPolicy": "Datenschutzerklärung lesen",
+  "privacyPolicyOpenFailed": "Die Datenschutzerklärung konnte nicht geöffnet werden.",
+  "privacySupportTitle": "Hilfe und Support",
+  "privacySupportOpenFailed": "Der Support konnte nicht geöffnet werden. Wende dich an support@freevia.org.",
+  "privacyDeleteConfirmTitle": "Online-Identität und Daten löschen?",
+  "privacyDeleteConfirmBody": "Damit endet sofort der Zugriff beider Spieler auf die Cloud-Partien dieser Identität; zugleich wird die Löschung der Identität und der gemeinsamen Online-Spielprotokolle innerhalb von 30 Tagen beantragt. Google kann bis zu 180 Tage nach der Kontolöschung benötigen, um Authentication-Daten aus aktiven Systemen und Sicherungen zu entfernen. Der lokale Spielverlauf und Trainingsdaten bleiben auf diesem Gerät. Zuvor gesendete optionale Diagnosedaten sind davon getrennt; wende dich dazu an privacy@freevia.org. Dieser Antrag kann nicht rückgängig gemacht werden.",
+  "privacyRequestDeletion": "Löschung beantragen",
+  "privacyDeleteSectionTitle": "Onlinedaten löschen",
+  "privacyDeleteInstructions": "Bestätige, dass dir das Konto gehört, mit der auf diesem Gerät gespeicherten Anmeldung. Eine Spielerkennung oder ein Einladungscode allein belegt nicht, dass dir das Konto gehört. Spieler, die nur lokal spielen, benötigen kein Onlinekonto.",
+  "privacySendingRequest": "Anfrage wird gesendet…",
+  "privacyDeleteAction": "Online-Identität und Daten löschen",
+  "privacyDeleteRequested": "Die Löschung wurde beantragt. Diese Online-Identität wurde abgemeldet. Ihre Cloud-Daten werden innerhalb von 30 Tagen gelöscht. Wenn du wieder online spielst, wird eine neue Identität erstellt. Die Entfernung der Authentication-Daten durch Google kann bis zu 180 Tage dauern. Hilfe erhältst du unter privacy@freevia.org.",
+  "privacyDeleteRequestedSignOutFailed": "Die Löschung wurde beantragt. Die Cloud-Daten werden innerhalb von 30 Tagen gelöscht. Das Gerät konnte die gespeicherte Anmeldung nicht entfernen, aber die Online-Identität ist für weitere Partien gesperrt. Die Entfernung der Authentication-Daten durch Google kann bis zu 180 Tage dauern. Hilfe erhältst du unter privacy@freevia.org.",
+  "privacyDeleteNoIdentity": "Auf diesem Gerät ist keine verwendbare Online-Identität gespeichert. Es wurde kein neues Konto erstellt. Wenn du früher online gespielt hast, wende dich an privacy@freevia.org. Gehostete Partien laufen nach 30 Tagen ab.",
+  "privacyDeleteRequestFailed": "Der Löschantrag konnte nicht bestätigt werden. Prüfe deine Verbindung und versuche es erneut oder wende dich an privacy@freevia.org.",
+  "privacyConsentTitle": "Nutzungs- und Absturzdiagnosedaten teilen?",
+  "privacyConsentBody": "Dadurch werden Nutzungsereignisse, App- und Geräteinformationen, Absturzberichte und Leistungsmesswerte an Google Firebase gesendet. Die Weitergabe ist freiwillig. Spiele und Training funktionieren auch ohne sie; du kannst sie unter Einstellungen jederzeit wieder ausschalten.",
+  "privacyKeepOff": "Deaktiviert lassen",
+  "privacyShareDiagnostics": "Diagnosedaten teilen",
+  "privacySaveFailed": "Die Datenschutzeinstellung konnte nicht gespeichert werden. Bitte versuche es erneut.",
+  "privacySettingsSubtitle": "Was auf deinem Gerät bleibt und was geteilt wird",
+  "privacyDiagnosticsSettingTitle": "Nutzungs- und Absturzdiagnosedaten teilen",
+  "privacyDiagnosticsSettingSubtitle": "Optional · standardmäßig deaktiviert",
+  "lanScanToJoin": "Scannen zum Beitreten",
+  "lanScanHostCode": "Code des Hosts scannen",
+  "lanEnterAddressInstead": "Stattdessen Adresse eingeben",
+  "feedbackFieldVersion": "App-Version",
+  "feedbackFieldPlatform": "Plattform",
+  "feedbackFieldSummary": "Was ist passiert",
+  "feedbackFieldReproduction": "Schritte zur Reproduktion",
+  "feedbackFieldExpected": "Erwartetes Ergebnis",
+  "feedbackFieldNeed": "Was du tun wolltest",
+  "feedbackFieldIdea": "Vorgeschlagene Änderung",
+  "@boardSemanticsLabel": {
+    "placeholders": {
+      "status": {}
+    }
+  },
+  "@boardWhiteToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@boardBlackToMove": {
+    "placeholders": {
+      "die1": {},
+      "die2": {}
+    }
+  },
+  "@feedbackBugTitle": {
+    "placeholders": {
+      "version": {},
+      "platform": {}
+    }
+  },
+  "lanTorch": "Taschenlampe",
+  "lanCameraPermissionDenied": "Backgammon Buddy kann die Kamera nicht verwenden. Erlaube den Kamerazugriff in den Geräteeinstellungen oder gib die auf dem anderen Gerät angezeigte Adresse manuell ein.",
+  "lanCameraUnsupported": "Dieses Gerät kann keine QR-Codes scannen. Gib die auf dem anderen Gerät angezeigte Adresse manuell ein.",
+  "lanCameraStartFailed": "Die Kamera konnte nicht gestartet werden. Gib die auf dem anderen Gerät angezeigte Adresse manuell ein.",
+  "lanPointCameraAtQr": "Richte die Kamera auf den QR-Code des anderen Geräts.",
+  "physicalBuddyUnavailableTitle": "Backgammon Buddy",
+  "physicalBuddyUnavailableBody": "Das Spielen am physischen Brett ist in dieser Version nicht verfügbar. Spiele auf dem Bildschirm, Tutor und Training findest du auf der Startseite.",
+  "boardSemanticsLabel": "Backgammonbrett. {status}",
+  "boardWhiteToRoll": "Weiß ist mit Würfeln an der Reihe.",
+  "boardBlackToRoll": "Schwarz ist mit Würfeln an der Reihe.",
+  "boardWhiteToMove": "Weiß ist am Zug. Wirf {die1} und {die2}.",
+  "boardBlackToMove": "Schwarz ist am Zug. Wirf {die1} und {die2}.",
+  "boardDoubleOffered": "Ein Doppler wurde angeboten.",
+  "boardResignationOffered": "Eine Aufgabe wurde angeboten.",
+  "boardGameOver": "Das Spiel ist beendet.",
+  "feedbackBugTitle": "[Fehler]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Idee]: Backgammon Buddy",
+  "feedbackBugSummary": "Ersetze dies durch eine kurze Beschreibung des Geschehens.",
+  "feedbackBugReproduction": "Ersetze dies durch die Schritte, die zum Problem geführt haben.",
+  "feedbackBugExpected": "Ersetze dies durch die Beschreibung des erwarteten Ergebnisses.",
+  "feedbackIdeaNeed": "Ersetze dies durch das, was du tun oder lernen wolltest.",
+  "feedbackIdeaSuggestion": "Ersetze dies durch eine Änderung, die dir helfen würde.",
+  "boardWhiteToMoveNoRoll": "Weiß ist am Zug.",
+  "boardBlackToMoveNoRoll": "Schwarz ist am Zug.",
+  "lanQrAccessibilityLabel": "QR-Code, um diesem Spiel beizutreten",
+  "lanJoinInstruction": "Öffne auf dem anderen Gerät „In der Nähe spielen“, wähle „Beitreten“ und scanne diesen QR-Code.",
+  "homePlayWithBuddy": "Mit Buddy spielen",
+  "homeBuddyShort": "Buddy",
+  "feedbackExcerptTruncated": "(gekürzt – den vollständigen Bericht kannst du über „In Zwischenablage kopieren“ auf dem Diagnosebildschirm kopieren)"
 }

@@ -1327,9 +1327,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get analysisSaveForPractice => 'Saglabāt treniņam';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Neizdevās saglabāt šo lēmumu: $error';
-  }
+  String get analysisSaveError =>
+      'Neizdevās saglabāt šo lēmumu. Mēģiniet vēlreiz.';
 
   @override
   String analysisCubeInfo(
@@ -2434,4 +2433,268 @@ class AppLocalizationsLv extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Kļūda: $error';
   }
+
+  @override
+  String get privacyTitle => 'Privātums un dati';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy no Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Šajā lapā ir aprakstīts, kā lietotne apstrādā jūsu datus.';
+
+  @override
+  String get privacyLocalTitle => 'Spēles un apmācība jūsu ierīcē';
+
+  @override
+  String get privacyLocalBody =>
+      'Vietējās partijas, iestatījumi, analīze un treniņu progress tiek glabāti šajā ierīcē. Šeit darbojas bekgemona dzinējs un trenera skaidrojumi. Izdzēšot saglabātu partiju no vēstures, tiek dzēsti arī tās saglabātie uzdevumi un mēģinājumi. Dzēsiet atsevišķus uzdevumus vai atiestatiet progresu sadaļā “Mācības”; vietējos kļūdu ziņojumus notīriet sadaļā Iestatījumi → Diagnostika. Ierīces dublēšanas iestatījumi var attiekties arī uz partiju vēsturi. Tiešsaistes pierakstīšanās dati tiek glabāti ierīces aizsargātajā krātuvē.';
+
+  @override
+  String get privacyOnlineTitle => 'Tiešsaistes un tuvuma spēle';
+
+  @override
+  String get privacyOnlineBody =>
+      'Tiešsaistes spēle nosūta anonīmu spēlētāja identifikatoru, partijas iestatījumus, gājienus un kauliņu apstiprināšanas ierakstus uz Google Firebase, lai abi spēlētāji varētu spēlēt vienu partiju. Vēstures dzēšana šajā ierīcē neizdzēš tiešsaistes ierakstus. Mitinātās partijas beidzas 30 dienas pēc izveides; ieplānotā tīrīšana dzēš to mākoņa žurnālus. Partiju ieraksti tiek glabāti ES; Firebase Authentication apstrādā pierakstīšanās datus ASV. Tiešsaistes savienojums ar Google tiek šifrēts pārsūtīšanas laikā. Tuvuma spēlē dati tiek apmainīti ar otru ierīci nešifrētā lokālā savienojumā; izmantojiet uzticamu Wi-Fi.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'Neobligāta lietojuma un avāriju diagnostika';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Kopīgošana ir izslēgta, līdz to iespējojat iestatījumos. Ja tā ir ieslēgta, Google Firebase saņem lietojuma notikumus, lietotnes un ierīces informāciju, veiktspējas mērījumus un avāriju ziņojumus, lai palīdzētu uzlabot lietotni. Jebkurā laikā izslēdziet kopīgošanu, lai apturētu jaunu neobligātu datu vākšanu. Tas neizdzēš iepriekš nosūtītos datus. Vietējā diagnostika un tiešsaistes partijas darbojas neatkarīgi no šīs izvēles.';
+
+  @override
+  String get privacyCameraTitle => 'Kamera tuvumā esošiem QR kodiem';
+
+  @override
+  String get privacyCameraBody =>
+      'Izvēles kamera skenē tuvumā esošo spēļu QR kodus. Attēli tiek apstrādāti ierīcē un netiek saglabāti vai augšupielādēti. Varat liegt piekļuvi kamerai un manuāli ievadīt resursdatora adresi. Šajā versijā netiek izmantots mikrofons un nav pieejama spēle pie fiziska galdiņa.';
+
+  @override
+  String get privacyFeedbackTitle => 'Jūsu izvēlētās atsauksmes';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Atsauksme atver GitHub problēmas melnrakstu pārskatīšanai. Atverot melnrakstu, GitHub tiek nosūtīta lietotnes versija un platforma; atsauksmē no diagnostikas var būt arī kļūdu informācija. Problēma netiek publicēta, kamēr to neiesniedzat. Problēmas var būt publiskas, tāpēc pirms nosūtīšanas izdzēsiet privātu informāciju.';
+
+  @override
+  String get privacyContactTitle => 'Privātuma kontaktinformācija';
+
+  @override
+  String get privacyReadPolicy => 'Lasīt privātuma politiku';
+
+  @override
+  String get privacyPolicyOpenFailed => 'Neizdevās atvērt privātuma politiku.';
+
+  @override
+  String get privacySupportTitle => 'Palīdzība un atbalsts';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Neizdevās atvērt atbalsta lapu. Sazinieties ar support@freevia.org.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Dzēst tiešsaistes identitāti un datus?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Tas nekavējoties pārtrauc abiem spēlētājiem piekļuvi šīs identitātes mākoņa partijām un pieprasa dzēst identitāti un kopīgotos tiešsaistes žurnālus 30 dienu laikā. Pēc konta dzēšanas Google var būt nepieciešamas līdz 180 dienām, lai noņemtu Authentication datus no aktīvajām un rezerves sistēmām. Vietējā vēsture un treniņi paliek šajā ierīcē. Iepriekš nosūtītā izvēles diagnostika ir atsevišķa; sazinieties ar privacy@freevia.org. Šo pieprasījumu nevar atsaukt.';
+
+  @override
+  String get privacyRequestDeletion => 'Pieprasīt dzēšanu';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Tiešsaistes datu dzēšana';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Lai apstiprinātu īpašumtiesības, izmantojiet šajā ierīcē saglabāto pierakstīšanos. Ar spēlētāja identifikatoru vai uzaicinājuma kodu vien nepietiek. Tikai lokālajiem spēlētājiem tiešsaistes konts nav vajadzīgs.';
+
+  @override
+  String get privacySendingRequest => 'Nosūta pieprasījumu…';
+
+  @override
+  String get privacyDeleteAction => 'Dzēst tiešsaistes identitāti un datus';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Dzēšanas pieprasījums ir nosūtīts. Šī tiešsaistes identitāte ir izrakstīta. Tās mākoņa dati tiks dzēsti 30 dienu laikā. Atsākot tiešsaistes spēli, tiks izveidota jauna identitāte. Google Authentication datu dzēšana var ilgt līdz 180 dienām. Lai saņemtu palīdzību, sazinieties ar privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Dzēšana ir pieprasīta, un mākoņa dati tiks dzēsti 30 dienu laikā. Ierīcei neizdevās notīrīt saglabāto pierakstīšanos, taču tiešsaistes identitātei ir liegta piekļuve partijām. Google Authentication datu dzēšana var ilgt līdz 180 dienām. Sazinieties ar privacy@freevia.org.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Šajā ierīcē nav saglabāta derīga tiešsaistes identitāte. Jauns konts netika izveidots. Ja iepriekš spēlējāt tiešsaistē, sazinieties ar privacy@freevia.org; mitinātās partijas beidzas pēc 30 dienām.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Neizdevās apstiprināt dzēšanas pieprasījumu. Pārbaudiet savienojumu un mēģiniet vēlreiz vai sazinieties ar privacy@freevia.org.';
+
+  @override
+  String get privacyConsentTitle => 'Kopīgot lietojuma un avāriju diagnostiku?';
+
+  @override
+  String get privacyConsentBody =>
+      'Uz Google Firebase tiek nosūtīti lietojuma notikumi, lietotnes un ierīces informācija, avāriju ziņojumi un veiktspējas mērījumi. Kopīgošana nav obligāta. Spēles un apmācība darbojas arī bez tās; iestatījumos to var atkal izslēgt.';
+
+  @override
+  String get privacyKeepOff => 'Atstāt izslēgtu';
+
+  @override
+  String get privacyShareDiagnostics => 'Kopīgot diagnostiku';
+
+  @override
+  String get privacySaveFailed =>
+      'Neizdevās saglabāt privātuma izvēli. Mēģiniet vēlreiz.';
+
+  @override
+  String get privacySettingsSubtitle =>
+      'Kas paliek jūsu ierīcē un kas tiek kopīgots';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Kopīgot lietojuma un avāriju diagnostiku';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'Neobligāti · pēc noklusējuma izslēgta';
+
+  @override
+  String get lanScanToJoin => 'Skenēt, lai pievienotos';
+
+  @override
+  String get lanScanHostCode => 'Skenēt saimnieka kodu';
+
+  @override
+  String get lanEnterAddressInstead => 'Tā vietā ievadiet adresi';
+
+  @override
+  String get lanQrAccessibilityLabel => 'QR kods, lai pievienotos šai spēlei';
+
+  @override
+  String get lanJoinInstruction =>
+      'Otrā ierīcē atveriet “Spēlēt tuvumā”, izvēlieties “Pievienoties” un noskenējiet šo QR kodu.';
+
+  @override
+  String get lanTorch => 'Lukturis';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy nevar izmantot kameru. Atļaujiet piekļuvi ierīces iestatījumos vai ievadiet adresi, kas redzama otrā ierīcē.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Šī ierīce nevar skenēt QR kodus. Ievadiet adresi, kas redzama otrā ierīcē.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Neizdevās palaist kameru. Ievadiet adresi, kas redzama otrā ierīcē.';
+
+  @override
+  String get lanPointCameraAtQr => 'Pavērsiet kameru pret QR kodu otrā ierīcē.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Spēle pie fiziska galdiņa';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Šajā versijā nav pieejama spēle pie fiziska galdiņa. Spēles ekrānā, apmācība un treniņi pieejami sākuma ekrānā.';
+
+  @override
+  String get homePlayWithBuddy => 'Spēlēt ar Buddy';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Beckgammon galdiņš. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Baltajiem jāmet kauliņi.';
+
+  @override
+  String get boardBlackToRoll => 'Melnajiem jāmet kauliņi.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Baltajiem gājiens, metiet $die1 un $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Melnajiem gājiens, metiet $die1 un $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Piedāvāta dubultošana.';
+
+  @override
+  String get boardResignationOffered => 'Piedāvāta padošanās.';
+
+  @override
+  String get boardGameOver => 'Spēle ir beigusies.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Kļūda]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Ideja]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary => 'Īsi aprakstiet, kas notika.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Norādiet darbības, kas izraisīja problēmu.';
+
+  @override
+  String get feedbackBugExpected => 'Aprakstiet, kādu rezultātu gaidījāt.';
+
+  @override
+  String get feedbackIdeaNeed => 'Aprakstiet, ko vēlējāties darīt vai apgūt.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Aprakstiet, kādas izmaiņas būtu noderīgas.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(saīsināts — pilnu žurnālu kopējiet diagnostikas ekrānā, izvēloties “Kopēt starpliktuvē”)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Baltajiem gājiens.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Melnajiem gājiens.';
+
+  @override
+  String get feedbackFieldVersion => 'Lietotnes versija';
+
+  @override
+  String get feedbackFieldPlatform => 'Platforma';
+
+  @override
+  String get feedbackFieldSummary => 'Kas notika';
+
+  @override
+  String get feedbackFieldReproduction => 'Darbības problēmas atkārtošanai';
+
+  @override
+  String get feedbackFieldExpected => 'Gaidītais rezultāts';
+
+  @override
+  String get feedbackFieldNeed => 'Ko vēlējāties darīt';
+
+  @override
+  String get feedbackFieldIdea => 'Ieteiktās izmaiņas';
 }

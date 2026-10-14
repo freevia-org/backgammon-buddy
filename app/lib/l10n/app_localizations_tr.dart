@@ -1326,9 +1326,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get analysisSaveForPractice => 'Antrenman için kaydet';
 
   @override
-  String analysisSaveError(Object error) {
-    return 'Bu karar kaydedilemedi: $error';
-  }
+  String get analysisSaveError =>
+      'Bu karar kaydedilemedi. Lütfen tekrar deneyin.';
 
   @override
   String analysisCubeInfo(
@@ -2427,4 +2426,272 @@ class AppLocalizationsTr extends AppLocalizations {
   String gameErrorBannerLabel(Object error) {
     return 'Hata: $error';
   }
+
+  @override
+  String get privacyTitle => 'Gizlilik ve veriler';
+
+  @override
+  String get privacyAppTitle => 'Backgammon Buddy yazan: Freevia';
+
+  @override
+  String get privacyIntro =>
+      'Bu sayfada mevcut uygulamanın verilerinizi nasıl işlediği açıklanmaktadır.';
+
+  @override
+  String get privacyLocalTitle => 'Cihazınızda oyunlar ve dersler';
+
+  @override
+  String get privacyLocalBody =>
+      'Yerel maçlar, ayarlar, analizler ve antrenman ilerlemesi bu cihazda saklanır. Oyun motoru ve eğitmen açıklamaları burada çalışır. Kayıtlı bir maçı Oyun Arşivi’nden silmek, o maça ait kayıtlı alıştırmaları ve denemeleri de siler. Öğrenme ve Pratik bölümünden alıştırmaları tek tek silebilir veya ilerlemeyi sıfırlayabilirsiniz; yerel hata raporlarını Ayarlar → Tanılama bölümünden temizleyebilirsiniz. Cihaz yedeklemesi maç geçmişini de içerebilir. Çevrimiçi oturum açma bilgileri cihazın korumalı depolama alanında saklanır.';
+
+  @override
+  String get privacyOnlineTitle => 'Çevrimiçi ve yakındaki oyun';
+
+  @override
+  String get privacyOnlineBody =>
+      'Çevrimiçi oyun, her iki oyuncunun da aynı maçı oynayabilmesi için Google Firebase’e anonim oyuncu tanımlayıcısı, maç ayarları, hamleler ve zar atışlarını eşgüdümleme protokolüne ait kayıtları gönderir. Bu cihazdaki Geçmişi silmek çevrimiçi kayıtları silmez. Barındırılan maçların süresi oluşturulmalarından 30 gün sonra dolar; zamanlanmış temizlik bulut günlüklerini siler. Maç kayıtları AB’de saklanır; Firebase Authentication oturum açma verilerini Amerika Birleşik Devletleri’nde işler. Google bağlantıları aktarım sırasında şifrelenir. Yakındaki oyunlarda maç bilgileri diğer cihazla şifrelenmemiş yerel bağlantı üzerinden paylaşılır; güvenilir bir Wi-Fi ağı kullanın.';
+
+  @override
+  String get privacyDiagnosticsTitle =>
+      'İsteğe bağlı kullanım ve çökme tanılama';
+
+  @override
+  String get privacyDiagnosticsBody =>
+      'Ayarlar’dan etkinleştirene kadar paylaşım kapalıdır. Etkinleştirilirse Google Firebase, uygulamayı geliştirmeye yardımcı olmak için kullanım etkinliklerini, uygulama ve cihaz bilgilerini, performans ölçümlerini ve kilitlenme raporlarını alır. Yeni isteğe bağlı veri toplamayı durdurmak için paylaşımı istediğiniz zaman kapatabilirsiniz. Bu işlem daha önce gönderilen verileri silmez. Yerel tanılama ve çevrimiçi maçlar bu ayardan bağımsız çalışır.';
+
+  @override
+  String get privacyCameraTitle => 'Yakındaki QR kodları için kamera';
+
+  @override
+  String get privacyCameraBody =>
+      'İsteğe bağlı kamera yakındaki oyunlar için QR kodlarını tarar. Görüntüler cihazda işlenir; kaydedilmez veya yüklenmez. Kamera erişimini reddedebilir ve ana cihazın adresini elle girebilirsiniz. Bu sürüm mikrofonu kullanmaz ve fiziksel tahtada oyunu desteklemez.';
+
+  @override
+  String get privacyFeedbackTitle => 'Göndermeyi seçtiğiniz geri bildirim';
+
+  @override
+  String get privacyFeedbackBody =>
+      'Geri bildirim, inceleyebilmeniz için bir GitHub issue taslağı açar. Taslağı açmak uygulama sürümünü ve platformu GitHub’a gönderir; Tanılama ekranından gönderilen geri bildirim hata ayrıntılarını da içerebilir. Issue siz göndermeden yayımlanmaz. Issue’lar herkese açık olabilir; göndermeden önce özel bilgileri kaldırın.';
+
+  @override
+  String get privacyContactTitle => 'Gizlilik iletişim bilgileri';
+
+  @override
+  String get privacyReadPolicy => 'Gizlilik politikasını okuyun';
+
+  @override
+  String get privacyPolicyOpenFailed => 'Gizlilik politikası açılamadı.';
+
+  @override
+  String get privacySupportTitle => 'Yardım ve destek';
+
+  @override
+  String get privacySupportOpenFailed =>
+      'Destek açılamadı. support@freevia.org ile iletişime geçin.';
+
+  @override
+  String get privacyDeleteConfirmTitle =>
+      'Çevrimiçi kimlik ve veriler silinsin mi?';
+
+  @override
+  String get privacyDeleteConfirmBody =>
+      'Bu kimlikle ilişkili bulut maçlarına her iki oyuncunun erişimi derhal sona erer. Kimliğin ve paylaşılan çevrimiçi maç günlüklerinin 30 gün içinde silinmesi için talep oluşturulur. Google, hesap silindikten sonra kimlik doğrulama verilerini canlı sistemlerinden ve yedeklerinden kaldırmak için 180 güne kadar süreye ihtiyaç duyabilir. Yerel maç geçmişi ve alıştırmalar bu cihazda kalır. Daha önce gönderilen isteğe bağlı tanılama verileri bu işlemden ayrıdır; bunlar hakkında privacy@freevia.org ile iletişime geçin. Bu talep geri alınamaz.';
+
+  @override
+  String get privacyRequestDeletion => 'Silme isteği';
+
+  @override
+  String get privacyDeleteSectionTitle => 'Çevrimiçi verileri silme';
+
+  @override
+  String get privacyDeleteInstructions =>
+      'Kimliğin size ait olduğunu doğrulamak için bu cihaza kaydedilmiş oturum açma bilgilerini kullanın. Oyuncu tanımlayıcısı veya davet kodu tek başına sahipliği kanıtlamaz. Yalnızca bu cihazda oynayanların çevrimiçi hesaba ihtiyacı yoktur.';
+
+  @override
+  String get privacySendingRequest => 'İstek gönderiliyor…';
+
+  @override
+  String get privacyDeleteAction => 'Çevrimiçi kimliği ve verileri silin';
+
+  @override
+  String get privacyDeleteRequested =>
+      'Silme talebi gönderildi. Bu çevrimiçi kimliğin oturumu kapatıldı. Kimliğin bulut verileri 30 gün içinde silinecek. Çevrimiçi oyunu yeniden başlatırsanız yeni bir kimlik oluşturulur. Google’ın kimlik doğrulama verilerini kaldırması 180 güne kadar sürebilir. Yardım için privacy@freevia.org ile iletişime geçin.';
+
+  @override
+  String get privacyDeleteRequestedSignOutFailed =>
+      'Silme talebi gönderildi. Bulut verileri 30 gün içinde silinecek. Cihaz kayıtlı oturum açma bilgilerini temizleyemedi, ancak çevrimiçi kimliğin maçlara erişimi engellendi. Google’ın kimlik doğrulama verilerini kaldırması 180 güne kadar sürebilir. Yardım için privacy@freevia.org ile iletişime geçin.';
+
+  @override
+  String get privacyDeleteNoIdentity =>
+      'Bu cihazda kullanılabilir bir çevrimiçi kimlik kayıtlı değil. Yeni bir hesap oluşturulmadı. Daha önce çevrimiçi oynadıysanız yardım için privacy@freevia.org ile iletişime geçin; barındırılan maçlar oluşturulduktan 30 gün sonra sona erer.';
+
+  @override
+  String get privacyDeleteRequestFailed =>
+      'Silme talebi doğrulanamadı. Bağlantınızı kontrol edip yeniden deneyin veya privacy@freevia.org ile iletişime geçin.';
+
+  @override
+  String get privacyConsentTitle =>
+      'Kullanım ve kilitlenme teşhisleri paylaşılsın mı?';
+
+  @override
+  String get privacyConsentBody =>
+      'Bu seçenek kullanım etkinliklerini, uygulama ve cihaz bilgilerini, kilitlenme raporlarını ve performans ölçümlerini Google Firebase’e gönderir. Paylaşım isteğe bağlıdır. Oyun ve antrenman paylaşım kapalıyken de çalışır; paylaşımı Ayarlar’dan istediğiniz zaman kapatabilirsiniz.';
+
+  @override
+  String get privacyKeepOff => 'Kapalı kalsın';
+
+  @override
+  String get privacyShareDiagnostics => 'Teşhisleri paylaş';
+
+  @override
+  String get privacySaveFailed =>
+      'Gizlilik seçimi kaydedilemedi. Lütfen tekrar deneyin.';
+
+  @override
+  String get privacySettingsSubtitle => 'Cihazınızda kalanlar ve paylaşılanlar';
+
+  @override
+  String get privacyDiagnosticsSettingTitle =>
+      'Kullanım ve kilitlenme teşhislerini paylaşma';
+
+  @override
+  String get privacyDiagnosticsSettingSubtitle =>
+      'İsteğe bağlı · varsayılan olarak kapalı';
+
+  @override
+  String get lanScanToJoin => 'Katılmak için tarayın';
+
+  @override
+  String get lanScanHostCode => 'Toplantı sahibinin kodunu tarayın';
+
+  @override
+  String get lanEnterAddressInstead => 'Bunun yerine adresi girin';
+
+  @override
+  String get lanQrAccessibilityLabel => 'Bu oyuna katılmak için QR kodu';
+
+  @override
+  String get lanJoinInstruction =>
+      'Diğer cihazda Yakındakilerle Oyna’yı açın, Katıl’ı seçin ve bu QR kodunu tarayın.';
+
+  @override
+  String get lanTorch => 'Flaş';
+
+  @override
+  String get lanCameraPermissionDenied =>
+      'Backgammon Buddy kamerayı kullanamıyor. Cihaz ayarlarında kamera erişimine izin verin veya diğer cihazda gösterilen adresi manuel olarak girin.';
+
+  @override
+  String get lanCameraUnsupported =>
+      'Bu cihaz QR kodlarını tarayamıyor. Diğer cihazda gösterilen adresi manuel olarak girin.';
+
+  @override
+  String get lanCameraStartFailed =>
+      'Kamera başlatılamadı. Diğer cihazda gösterilen adresi manuel olarak girin.';
+
+  @override
+  String get lanPointCameraAtQr =>
+      'Kamerayı diğer cihazdaki QR koduna doğrultun.';
+
+  @override
+  String get physicalBuddyUnavailableTitle => 'Backgammon Buddy';
+
+  @override
+  String get physicalBuddyUnavailableBody =>
+      'Bu sürümde fiziksel tahtada oyun oynanamaz. Ekran oyunları, rehberlik ve pratik Ana ekranda kullanılabilir.';
+
+  @override
+  String get homePlayWithBuddy => 'Buddy ile oyna';
+
+  @override
+  String get homeBuddyShort => 'Buddy';
+
+  @override
+  String boardSemanticsLabel(Object status) {
+    return 'Tavla tahtası. $status';
+  }
+
+  @override
+  String get boardWhiteToRoll => 'Zar atma sırası Beyazda.';
+
+  @override
+  String get boardBlackToRoll => 'Zar atma sırası Siyahta.';
+
+  @override
+  String boardWhiteToMove(Object die1, Object die2) {
+    return 'Sıra Beyazda; zarlar $die1 ve $die2.';
+  }
+
+  @override
+  String boardBlackToMove(Object die1, Object die2) {
+    return 'Sıra Siyahta; zarlar $die1 ve $die2.';
+  }
+
+  @override
+  String get boardDoubleOffered => 'Küpü ikiye katlama teklifi yapıldı.';
+
+  @override
+  String get boardResignationOffered => 'Oyunu bırakma teklifi yapıldı.';
+
+  @override
+  String get boardGameOver => 'Oyun bitti.';
+
+  @override
+  String feedbackBugTitle(Object version, Object platform) {
+    return '[Hata]: Backgammon Buddy $version ($platform)';
+  }
+
+  @override
+  String get feedbackIdeaTitle => '[Fikir]: Backgammon Buddy';
+
+  @override
+  String get feedbackBugSummary =>
+      'Bunu, ne olduğuna dair kısa bir açıklamayla değiştirin.';
+
+  @override
+  String get feedbackBugReproduction =>
+      'Bunu, soruna yol açan adımlarla değiştirin.';
+
+  @override
+  String get feedbackBugExpected =>
+      'Bunu olmasını beklediğiniz şeyle değiştirin.';
+
+  @override
+  String get feedbackIdeaNeed =>
+      'Bunu yapmak veya öğrenmek istediğiniz şeyle değiştirin.';
+
+  @override
+  String get feedbackIdeaSuggestion =>
+      'Bunu yararlı bulacağınız değişiklikle değiştirin.';
+
+  @override
+  String get feedbackExcerptTruncated =>
+      '(kesildi — tam günlük için Teşhis ekranında Panoya kopyala seçeneğini kullanın)';
+
+  @override
+  String get boardWhiteToMoveNoRoll => 'Sıra Beyazda.';
+
+  @override
+  String get boardBlackToMoveNoRoll => 'Sıra Siyahta.';
+
+  @override
+  String get feedbackFieldVersion => 'Uygulama sürümü';
+
+  @override
+  String get feedbackFieldPlatform => 'Platform';
+
+  @override
+  String get feedbackFieldSummary => 'Ne oldu';
+
+  @override
+  String get feedbackFieldReproduction => 'Yeniden oluşturma adımları';
+
+  @override
+  String get feedbackFieldExpected => 'Beklenen sonuç';
+
+  @override
+  String get feedbackFieldNeed => 'Ne yapmak istediniz?';
+
+  @override
+  String get feedbackFieldIdea => 'Önerilen değişiklik';
 }
