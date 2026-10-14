@@ -1,13 +1,20 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:backgammon_core/backgammon_core.dart' as core;
 
 import '../analytics/analytics_events.dart';
 import '../analytics/analytics_screen_view.dart';
 import '../data/database.dart';
 import '../data/match_repository.dart';
 import '../diagnostics/crash_log.dart';
+import '../export/backgammon_match_export.dart';
+import '../export/extreme_gammon_export.dart';
+import '../export/jellyfish_mat_export.dart';
 import '../l10n/app_localizations.dart';
 import '../l10n/localization_lookup.dart';
 import 'analysis_screen.dart';
@@ -275,7 +282,60 @@ class MatchDetailScreen extends ConsumerWidget {
   ) {
     final repo = ref.watch(matchRepositoryProvider);
     return Scaffold(
-      appBar: AppBar(title: Text(_scoreLine(match, l10n))),
+      appBar: AppBar(
+        title: Text(_scoreLine(match, l10n)),
+        actions: [
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.ios_share),
+            onSelected: (format) async {
+              try {
+                final games = await repo.gamesFor(match.id);
+                if (!context.mounted || games.isEmpty) return;
+                final export = _exportableMatch(match, games);
+                final (extension, bytes) = switch (format) {
+                  'sgf' => ('.sgf', utf8.encode(exportMatchSgf(export))),
+                  'mat' => ('.mat', utf8.encode(exportMatchMat(export))),
+                  'xg' => ('.xg', exportMatchXg(export)),
+                  _ => throw ArgumentError.value(format, 'format'),
+                };
+                final name = 'backgammon-match-${match.id}$extension';
+                await SharePlus.instance.share(
+                  ShareParams(
+                    files: [
+                      XFile.fromData(
+                        Uint8List.fromList(bytes),
+                        mimeType: 'application/octet-stream',
+                      ),
+                    ],
+                    fileNameOverrides: [name],
+                  ),
+                );
+              } catch (error, stack) {
+                FlutterError.reportError(
+                  FlutterErrorDetails(
+                    exception: error,
+                    stack: stack,
+                    library: 'match export',
+                  ),
+                );
+                if (!context.mounted) return;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      l10n.historyMatchLoadFailed(l10n.onlineErrorGeneric),
+                    ),
+                  ),
+                );
+              }
+            },
+            itemBuilder: (context) => const [
+              PopupMenuItem(value: 'sgf', child: Text('SGF (.sgf)')),
+              PopupMenuItem(value: 'mat', child: Text('MAT (.mat)')),
+              PopupMenuItem(value: 'xg', child: Text('XG (.xg)')),
+            ],
+          ),
+        ],
+      ),
       body: FutureBuilder<List<GameRow>>(
         future: repo.gamesFor(match.id),
         builder: (context, snap) {
@@ -300,6 +360,42 @@ class MatchDetailScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+ExportableMatch _exportableMatch(MatchRow match, List<GameRow> rows) {
+  var whiteScore = 0;
+  var blackScore = 0;
+  final games = <ExportableGame>[];
+  for (final row in rows) {
+    final result = row.resultWinner == null
+        ? null
+        : core.GameResult(
+            winner: core.Player.values.byName(row.resultWinner!),
+            points: row.resultPoints ?? 0,
+            outcome: core.GameOutcome.values.byName(
+              row.resultOutcome ?? 'single',
+            ),
+          );
+    games.add(
+      ExportableGame(
+        number: row.gameNumber,
+        whiteScore: whiteScore,
+        blackScore: blackScore,
+        isCrawford: row.isCrawford,
+        events: MatchRepository.decodeEventsJson(row.eventsJson),
+        result: result,
+      ),
+    );
+    if (result?.winner == core.Player.white) whiteScore += result!.points;
+    if (result?.winner == core.Player.black) blackScore += result!.points;
+  }
+  return ExportableMatch(
+    whitePlayer: 'White',
+    blackPlayer: 'Black',
+    length: match.matchLength,
+    games: games,
+    date: match.createdAt,
+  );
 }
 
 class _GameTile extends StatelessWidget {

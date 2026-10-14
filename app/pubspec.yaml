@@ -96,6 +96,7 @@ dependencies:
   # Verified by reading the plugin's CMakeLists rather than assumed — see the
   # toolchain section of README.md, which now says so alongside the nuget note.
   record: ^7.1.1
+  share_plus: 13.3.1
 
 dev_dependencies:
   flutter_test:
