@@ -195,6 +195,15 @@ androidComponents {
 }
 
 dependencies {
+    // Keep transitive coroutine resolution reproducible and in sync with the
+    // hash-reviewed offline notices in native/licenses/mobile/manifest.json.
+    constraints {
+        listOf("android", "core-jvm", "play-services").forEach { module ->
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-$module") {
+                version { strictly("1.11.0") }
+            }
+        }
+    }
     testImplementation("junit:junit:4.13.2")
     if (hasFirebaseConfig) {
         // `firebase-crashlytics-ndk` is the artifact that installs the native
