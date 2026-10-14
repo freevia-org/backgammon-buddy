@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Inneall measúnaithe",
+  "parallelEngineAnalysis": "Anailís leis an dá inneall",
+  "parallelEngineExplanation": "Déan comparáid idir comhairle ar leith wildbg agus GNUbg sa teagascóir.",
+  "engineComparison": "Comparáid inneall",
+  "engineWinChance": "Seans bua"
 }

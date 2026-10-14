@@ -3215,4 +3215,20 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Другая кость';
+
+  @override
+  String get evaluationEngine => 'Движок оценки';
+
+  @override
+  String get parallelEngineAnalysis => 'Анализировать обоими движками';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Сравнивайте отдельные советы wildbg и GNUbg в наставнике.';
+
+  @override
+  String get engineComparison => 'Сравнение движков';
+
+  @override
+  String get engineWinChance => 'Вероятность победы';
 }

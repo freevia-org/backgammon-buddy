@@ -1874,5 +1874,10 @@
   "buddyDiceOpeningSecond": "Svarts tärning",
   "buddyDiceRegularCaption": "De två tärningarnas värden, i valfri ordning.",
   "buddyDiceRegularFirst": "En tärning",
-  "buddyDiceRegularSecond": "Den andra tärningen"
+  "buddyDiceRegularSecond": "Den andra tärningen",
+  "evaluationEngine": "Utvärderingsmotor",
+  "parallelEngineAnalysis": "Analysera med båda motorerna",
+  "parallelEngineExplanation": "Jämför separata råd från wildbg och GNUbg i handledaren.",
+  "engineComparison": "Motorjämförelse",
+  "engineWinChance": "Vinstchans"
 }

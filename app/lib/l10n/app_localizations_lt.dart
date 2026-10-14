@@ -3228,4 +3228,20 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Kitas';
+
+  @override
+  String get evaluationEngine => 'Vertinimo variklis';
+
+  @override
+  String get parallelEngineAnalysis => 'Analizuoti abiem varikliais';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Palyginkite atskirus wildbg ir GNUbg patarimus mokytojuje.';
+
+  @override
+  String get engineComparison => 'Variklių palyginimas';
+
+  @override
+  String get engineWinChance => 'Laimėjimo tikimybė';
 }

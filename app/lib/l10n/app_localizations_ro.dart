@@ -3318,4 +3318,20 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Celălalt zar';
+
+  @override
+  String get evaluationEngine => 'Motor de evaluare';
+
+  @override
+  String get parallelEngineAnalysis => 'Analizează cu ambele motoare';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Compară sfaturile separate wildbg și GNUbg în tutor.';
+
+  @override
+  String get engineComparison => 'Compararea motoarelor';
+
+  @override
+  String get engineWinChance => 'Șansă de câștig';
 }

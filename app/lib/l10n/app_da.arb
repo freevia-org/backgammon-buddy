@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Evalueringsmotor",
+  "parallelEngineAnalysis": "Analyser med begge motorer",
+  "parallelEngineExplanation": "Sammenlign separate råd fra wildbg og GNUbg i vejlederen.",
+  "engineComparison": "Sammenligning af motorer",
+  "engineWinChance": "Vinderchance"
 }

@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Рушій оцінювання",
+  "parallelEngineAnalysis": "Аналізувати обома рушіями",
+  "parallelEngineExplanation": "Порівнюйте окремі поради wildbg і GNUbg у наставнику.",
+  "engineComparison": "Порівняння рушіїв",
+  "engineWinChance": "Шанс перемоги"
 }

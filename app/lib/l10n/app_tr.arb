@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Değerlendirme motoru",
+  "parallelEngineAnalysis": "Her iki motorla analiz et",
+  "parallelEngineExplanation": "Öğreticide wildbg ve GNUbg önerilerini ayrı ayrı karşılaştırın.",
+  "engineComparison": "Motor karşılaştırması",
+  "engineWinChance": "Kazanma olasılığı"
 }

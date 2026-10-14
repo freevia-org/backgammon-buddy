@@ -1,5 +1,12 @@
 # Native dependency and model notices
 
+GNUbg-enabled app binaries are GPL-3.0-or-later. The evaluator sources and
+portable bridge are in [../gnubg](../gnubg/README.md); its model/database
+assets are bundled in `app/assets/gnubg` and SHA-256 validated before use.
+Preserve the GNUbg GPL, attribution/source notice and Expat MIT notice in
+`app/assets/licenses`. Distribute corresponding source for each exact build.
+Freevia's original files retain their MIT notices.
+
 `python tool/generate_native_notices.py` resolves the locked Cargo graph for
 Android ARM/ARM64, iOS ARM64 and Windows GNU x64. Run `cargo fetch --locked
 --manifest-path native/engine_shim/Cargo.toml` first if the local crate cache is

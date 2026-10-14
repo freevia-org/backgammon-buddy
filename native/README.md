@@ -1,4 +1,9 @@
-# native/ — vendored wildbg engine and neural nets
+# native/ — wildbg and GNU Backgammon evaluators
+
+GNUbg is integrated alongside wildbg as a local native evaluator, with its own
+worker, networks, bearoff databases and match-aware cube/search logic. See
+[GNUbg build, evaluation and GPL distribution notes](gnubg/README.md).
+The details below describe the existing wildbg integration.
 
 This directory vendors the [wildbg](https://github.com/carsten-wenderdel/wildbg)
 backgammon engine (as a git submodule) plus the production neural nets used by

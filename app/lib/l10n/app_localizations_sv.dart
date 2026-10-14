@@ -3199,4 +3199,20 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Den andra tärningen';
+
+  @override
+  String get evaluationEngine => 'Utvärderingsmotor';
+
+  @override
+  String get parallelEngineAnalysis => 'Analysera med båda motorerna';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Jämför separata råd från wildbg och GNUbg i handledaren.';
+
+  @override
+  String get engineComparison => 'Motorjämförelse';
+
+  @override
+  String get engineWinChance => 'Vinstchans';
 }

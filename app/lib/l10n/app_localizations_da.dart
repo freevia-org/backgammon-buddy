@@ -3232,4 +3232,20 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Den anden';
+
+  @override
+  String get evaluationEngine => 'Evalueringsmotor';
+
+  @override
+  String get parallelEngineAnalysis => 'Analyser med begge motorer';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Sammenlign separate råd fra wildbg og GNUbg i vejlederen.';
+
+  @override
+  String get engineComparison => 'Sammenligning af motorer';
+
+  @override
+  String get engineWinChance => 'Vinderchance';
 }

@@ -3321,4 +3321,20 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Druga kocka';
+
+  @override
+  String get evaluationEngine => 'Mehanizem ocenjevanja';
+
+  @override
+  String get parallelEngineAnalysis => 'Analiziraj z obema mehanizmoma';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Primerjajte ločene nasvete wildbg in GNUbg v vaditelju.';
+
+  @override
+  String get engineComparison => 'Primerjava mehanizmov';
+
+  @override
+  String get engineWinChance => 'Možnost zmage';
 }

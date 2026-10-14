@@ -1874,5 +1874,10 @@
   "buddyDiceOpeningSecond": "Crna kockica",
   "buddyDiceRegularCaption": "Dve bačene vrednosti, bilo kojim redom.",
   "buddyDiceRegularFirst": "Jedna kockica",
-  "buddyDiceRegularSecond": "Druga kockica"
+  "buddyDiceRegularSecond": "Druga kockica",
+  "evaluationEngine": "Механизам процене",
+  "parallelEngineAnalysis": "Анализирај оба механизма",
+  "parallelEngineExplanation": "Упоредите одвојене савете wildbg и GNUbg у тренеру.",
+  "engineComparison": "Поређење механизама",
+  "engineWinChance": "Шанса за победу"
 }

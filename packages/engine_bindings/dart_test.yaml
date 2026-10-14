@@ -1,5 +1,6 @@
 tags:
   engine:
+  gnubg:
 exclude_tags: engine
 presets:
   engine:

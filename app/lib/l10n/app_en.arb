@@ -1874,5 +1874,10 @@
   "buddyDiceOpeningSecond": "Black’s die",
   "buddyDiceRegularCaption": "The two faces on the table, in either order.",
   "buddyDiceRegularFirst": "One die",
-  "buddyDiceRegularSecond": "The other"
+  "buddyDiceRegularSecond": "The other",
+  "evaluationEngine": "Evaluation engine",
+  "parallelEngineAnalysis": "Analyse with both engines",
+  "parallelEngineExplanation": "Compare separate wildbg and GNUbg advice in the tutor.",
+  "engineComparison": "Engine comparison",
+  "engineWinChance": "Win chance"
 }

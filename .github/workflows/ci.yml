@@ -169,6 +169,16 @@ jobs:
         working-directory: packages/engine_bindings
       - run: dart analyze --fatal-infos
         working-directory: packages/engine_bindings
+      - name: Build GNUbg evaluator
+        run: |
+          cmake -S native/gnubg -B native/gnubg/build/linux -DCMAKE_BUILD_TYPE=Release
+          cmake --build native/gnubg/build/linux --parallel 4
+      - name: GNUbg desktop parity and worker restart tests
+        working-directory: packages/engine_bindings
+        run: dart test test/gnubg_integration_test.dart
+        env:
+          GNUBG_LIBRARY: ${{ github.workspace }}/native/gnubg/build/linux/libbuddy_gnubg.so
+          GNUBG_DATA: ${{ github.workspace }}/app/assets/gnubg
       - name: Unit tests
         run: dart test
         working-directory: packages/engine_bindings

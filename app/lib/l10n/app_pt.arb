@@ -1874,5 +1874,10 @@
       }
     }
   },
-  "buddyCameraGenericError": "Não foi possível iniciar a câmara. Verifique as permissões e tente novamente."
+  "buddyCameraGenericError": "Não foi possível iniciar a câmara. Verifique as permissões e tente novamente.",
+  "evaluationEngine": "Motor de avaliação",
+  "parallelEngineAnalysis": "Analisar com ambos os motores",
+  "parallelEngineExplanation": "Compare os conselhos separados de wildbg e GNUbg no tutor.",
+  "engineComparison": "Comparação de motores",
+  "engineWinChance": "Probabilidade de vitória"
 }

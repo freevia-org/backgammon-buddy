@@ -3220,4 +3220,20 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Інший';
+
+  @override
+  String get evaluationEngine => 'Рушій оцінювання';
+
+  @override
+  String get parallelEngineAnalysis => 'Аналізувати обома рушіями';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Порівнюйте окремі поради wildbg і GNUbg у наставнику.';
+
+  @override
+  String get engineComparison => 'Порівняння рушіїв';
+
+  @override
+  String get engineWinChance => 'Шанс перемоги';
 }

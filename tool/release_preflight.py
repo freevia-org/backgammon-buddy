@@ -40,6 +40,17 @@ def check_sources(root=ROOT):
         actual = hashlib.sha1(f'blob {len(data)}\0'.encode() + data).hexdigest()
         _require(actual == expected, f'{filename}: re-review model license/provenance')
     _require((assets / 'wildbg-training-CC0.txt').read_bytes() == (root / 'native/licenses/upstream/wildbg-training-CC0.txt').read_bytes(), 'Model license differs')
+    gnu_assets = {
+        'gnubg.wd': 'bb045bb416c70706ba34ad64595af2b43cac3722560b6ab01829eb719417153b',
+        'gnubg_os0.bd': '38089567e87a681682bb4ff53f30d781af215fc04debbdff3f61b6db68547a49',
+        'gnubg_ts0.bd': '9eac8a2c697dae8a09f2e5653022084b9e725df6c32950cb5299b273fc64500f',
+        'kazaross-xg2.xml': '7a232b171744b8db34306d11cff79a5974541328bb033b6bf16c012e8f7a3cc3',
+    }
+    for name, digest in gnu_assets.items():
+        _require(sha((root / 'app/assets/gnubg' / name).read_bytes()) == digest, f'GNUbg asset changed: {name}')
+    _require((assets / 'GPL-3.0.txt').read_bytes() == (root / 'native/gnubg/upstream/COPYING').read_bytes(), 'GNUbg GPL license differs')
+    _require((assets / 'expat-COPYING.txt').read_bytes() == (root / 'native/gnubg/vendor/expat-2.7.5/COPYING').read_bytes(), 'Expat license differs')
+    _require((assets / 'gnubg-NOTICES.txt').is_file(), 'GNUbg source and distribution notice missing')
     print(f'Provenance verified: {len(inventory["packages"])} Rust components and 2 production models')
 
 
@@ -132,7 +143,9 @@ def check_android(path, expected_abis, zipalign=None):
             errors.append(f'ABIs {abis}, expected {set(expected_abis)}')
         for abi in sorted(abis):
             if f'{prefix}{abi}/libaigammon_engine.so' not in names:
-                errors.append(f'no engine for {abi}')
+                errors.append(f'no wildbg engine for {abi}')
+            if f'{prefix}{abi}/libbuddy_gnubg.so' not in names:
+                errors.append(f'no GNUbg engine for {abi}')
         for name in names:
             if name.startswith(prefix) and name.endswith('.so') and any(f'/{abi}/' in name for abi in ['arm64-v8a', 'x86_64']):
                 try:

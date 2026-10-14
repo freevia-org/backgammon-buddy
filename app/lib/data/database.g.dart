@@ -1269,6 +1269,33 @@ class $SettingsTable extends Settings
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $SettingsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _evaluationEngineMeta = const VerificationMeta(
+    'evaluationEngine',
+  );
+  @override
+  late final GeneratedColumn<String> evaluationEngine = GeneratedColumn<String>(
+    'evaluation_engine',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant('wildbg'),
+  );
+  static const VerificationMeta _parallelEngineAnalysisMeta =
+      const VerificationMeta('parallelEngineAnalysis');
+  @override
+  late final GeneratedColumn<bool> parallelEngineAnalysis =
+      GeneratedColumn<bool>(
+        'parallel_engine_analysis',
+        aliasedName,
+        false,
+        type: DriftSqlType.bool,
+        requiredDuringInsert: false,
+        defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("parallel_engine_analysis" IN (0, 1))',
+        ),
+        defaultValue: const Constant(false),
+      );
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
@@ -1586,6 +1613,8 @@ class $SettingsTable extends Settings
   );
   @override
   List<GeneratedColumn> get $columns => [
+    evaluationEngine,
+    parallelEngineAnalysis,
     id,
     themeMode,
     animationSpeed,
@@ -1622,6 +1651,24 @@ class $SettingsTable extends Settings
   }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
+    if (data.containsKey('evaluation_engine')) {
+      context.handle(
+        _evaluationEngineMeta,
+        evaluationEngine.isAcceptableOrUnknown(
+          data['evaluation_engine']!,
+          _evaluationEngineMeta,
+        ),
+      );
+    }
+    if (data.containsKey('parallel_engine_analysis')) {
+      context.handle(
+        _parallelEngineAnalysisMeta,
+        parallelEngineAnalysis.isAcceptableOrUnknown(
+          data['parallel_engine_analysis']!,
+          _parallelEngineAnalysisMeta,
+        ),
+      );
+    }
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
@@ -1823,6 +1870,14 @@ class $SettingsTable extends Settings
   SettingsRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return SettingsRow(
+      evaluationEngine: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}evaluation_engine'],
+      )!,
+      parallelEngineAnalysis: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}parallel_engine_analysis'],
+      )!,
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}id'],
@@ -1925,6 +1980,9 @@ class $SettingsTable extends Settings
 }
 
 class SettingsRow extends DataClass implements Insertable<SettingsRow> {
+  final String evaluationEngine;
+  final bool parallelEngineAnalysis;
+
   /// Always 1 (enforced by [customConstraints]). Defaulted so a bare
   /// `INSERT (id) VALUES (1)` fills every other column from its default.
   final int id;
@@ -2025,6 +2083,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   /// Optional BCP-47 language override; null follows the device locale (v11).
   final String? localeCode;
   const SettingsRow({
+    required this.evaluationEngine,
+    required this.parallelEngineAnalysis,
     required this.id,
     required this.themeMode,
     required this.animationSpeed,
@@ -2052,6 +2112,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
+    map['evaluation_engine'] = Variable<String>(evaluationEngine);
+    map['parallel_engine_analysis'] = Variable<bool>(parallelEngineAnalysis);
     map['id'] = Variable<int>(id);
     map['theme_mode'] = Variable<String>(themeMode);
     map['animation_speed'] = Variable<String>(animationSpeed);
@@ -2084,6 +2146,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
 
   SettingsCompanion toCompanion(bool nullToAbsent) {
     return SettingsCompanion(
+      evaluationEngine: Value(evaluationEngine),
+      parallelEngineAnalysis: Value(parallelEngineAnalysis),
       id: Value(id),
       themeMode: Value(themeMode),
       animationSpeed: Value(animationSpeed),
@@ -2120,6 +2184,10 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return SettingsRow(
+      evaluationEngine: serializer.fromJson<String>(json['evaluationEngine']),
+      parallelEngineAnalysis: serializer.fromJson<bool>(
+        json['parallelEngineAnalysis'],
+      ),
       id: serializer.fromJson<int>(json['id']),
       themeMode: serializer.fromJson<String>(json['themeMode']),
       animationSpeed: serializer.fromJson<String>(json['animationSpeed']),
@@ -2149,6 +2217,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
+      'evaluationEngine': serializer.toJson<String>(evaluationEngine),
+      'parallelEngineAnalysis': serializer.toJson<bool>(parallelEngineAnalysis),
       'id': serializer.toJson<int>(id),
       'themeMode': serializer.toJson<String>(themeMode),
       'animationSpeed': serializer.toJson<String>(animationSpeed),
@@ -2176,6 +2246,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   }
 
   SettingsRow copyWith({
+    String? evaluationEngine,
+    bool? parallelEngineAnalysis,
     int? id,
     String? themeMode,
     String? animationSpeed,
@@ -2200,6 +2272,9 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     bool? telemetryEnabled,
     Value<String?> localeCode = const Value.absent(),
   }) => SettingsRow(
+    evaluationEngine: evaluationEngine ?? this.evaluationEngine,
+    parallelEngineAnalysis:
+        parallelEngineAnalysis ?? this.parallelEngineAnalysis,
     id: id ?? this.id,
     themeMode: themeMode ?? this.themeMode,
     animationSpeed: animationSpeed ?? this.animationSpeed,
@@ -2228,6 +2303,12 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   );
   SettingsRow copyWithCompanion(SettingsCompanion data) {
     return SettingsRow(
+      evaluationEngine: data.evaluationEngine.present
+          ? data.evaluationEngine.value
+          : this.evaluationEngine,
+      parallelEngineAnalysis: data.parallelEngineAnalysis.present
+          ? data.parallelEngineAnalysis.value
+          : this.parallelEngineAnalysis,
       id: data.id.present ? data.id.value : this.id,
       themeMode: data.themeMode.present ? data.themeMode.value : this.themeMode,
       animationSpeed: data.animationSpeed.present
@@ -2299,6 +2380,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   @override
   String toString() {
     return (StringBuffer('SettingsRow(')
+          ..write('evaluationEngine: $evaluationEngine, ')
+          ..write('parallelEngineAnalysis: $parallelEngineAnalysis, ')
           ..write('id: $id, ')
           ..write('themeMode: $themeMode, ')
           ..write('animationSpeed: $animationSpeed, ')
@@ -2328,6 +2411,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
 
   @override
   int get hashCode => Object.hashAll([
+    evaluationEngine,
+    parallelEngineAnalysis,
     id,
     themeMode,
     animationSpeed,
@@ -2356,6 +2441,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is SettingsRow &&
+          other.evaluationEngine == this.evaluationEngine &&
+          other.parallelEngineAnalysis == this.parallelEngineAnalysis &&
           other.id == this.id &&
           other.themeMode == this.themeMode &&
           other.animationSpeed == this.animationSpeed &&
@@ -2382,6 +2469,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
 }
 
 class SettingsCompanion extends UpdateCompanion<SettingsRow> {
+  final Value<String> evaluationEngine;
+  final Value<bool> parallelEngineAnalysis;
   final Value<int> id;
   final Value<String> themeMode;
   final Value<String> animationSpeed;
@@ -2406,6 +2495,8 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
   final Value<bool> telemetryEnabled;
   final Value<String?> localeCode;
   const SettingsCompanion({
+    this.evaluationEngine = const Value.absent(),
+    this.parallelEngineAnalysis = const Value.absent(),
     this.id = const Value.absent(),
     this.themeMode = const Value.absent(),
     this.animationSpeed = const Value.absent(),
@@ -2431,6 +2522,8 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     this.localeCode = const Value.absent(),
   });
   SettingsCompanion.insert({
+    this.evaluationEngine = const Value.absent(),
+    this.parallelEngineAnalysis = const Value.absent(),
     this.id = const Value.absent(),
     this.themeMode = const Value.absent(),
     this.animationSpeed = const Value.absent(),
@@ -2456,6 +2549,8 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     this.localeCode = const Value.absent(),
   });
   static Insertable<SettingsRow> custom({
+    Expression<String>? evaluationEngine,
+    Expression<bool>? parallelEngineAnalysis,
     Expression<int>? id,
     Expression<String>? themeMode,
     Expression<String>? animationSpeed,
@@ -2481,6 +2576,9 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Expression<String>? localeCode,
   }) {
     return RawValuesInsertable({
+      if (evaluationEngine != null) 'evaluation_engine': evaluationEngine,
+      if (parallelEngineAnalysis != null)
+        'parallel_engine_analysis': parallelEngineAnalysis,
       if (id != null) 'id': id,
       if (themeMode != null) 'theme_mode': themeMode,
       if (animationSpeed != null) 'animation_speed': animationSpeed,
@@ -2511,6 +2609,8 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
   }
 
   SettingsCompanion copyWith({
+    Value<String>? evaluationEngine,
+    Value<bool>? parallelEngineAnalysis,
     Value<int>? id,
     Value<String>? themeMode,
     Value<String>? animationSpeed,
@@ -2536,6 +2636,9 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Value<String?>? localeCode,
   }) {
     return SettingsCompanion(
+      evaluationEngine: evaluationEngine ?? this.evaluationEngine,
+      parallelEngineAnalysis:
+          parallelEngineAnalysis ?? this.parallelEngineAnalysis,
       id: id ?? this.id,
       themeMode: themeMode ?? this.themeMode,
       animationSpeed: animationSpeed ?? this.animationSpeed,
@@ -2565,6 +2668,14 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
+    if (evaluationEngine.present) {
+      map['evaluation_engine'] = Variable<String>(evaluationEngine.value);
+    }
+    if (parallelEngineAnalysis.present) {
+      map['parallel_engine_analysis'] = Variable<bool>(
+        parallelEngineAnalysis.value,
+      );
+    }
     if (id.present) {
       map['id'] = Variable<int>(id.value);
     }
@@ -2640,6 +2751,8 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
   @override
   String toString() {
     return (StringBuffer('SettingsCompanion(')
+          ..write('evaluationEngine: $evaluationEngine, ')
+          ..write('parallelEngineAnalysis: $parallelEngineAnalysis, ')
           ..write('id: $id, ')
           ..write('themeMode: $themeMode, ')
           ..write('animationSpeed: $animationSpeed, ')
@@ -5406,6 +5519,8 @@ typedef $$GamesTableProcessedTableManager =
     >;
 typedef $$SettingsTableCreateCompanionBuilder =
     SettingsCompanion Function({
+      Value<String> evaluationEngine,
+      Value<bool> parallelEngineAnalysis,
       Value<int> id,
       Value<String> themeMode,
       Value<String> animationSpeed,
@@ -5432,6 +5547,8 @@ typedef $$SettingsTableCreateCompanionBuilder =
     });
 typedef $$SettingsTableUpdateCompanionBuilder =
     SettingsCompanion Function({
+      Value<String> evaluationEngine,
+      Value<bool> parallelEngineAnalysis,
       Value<int> id,
       Value<String> themeMode,
       Value<String> animationSpeed,
@@ -5466,6 +5583,16 @@ class $$SettingsTableFilterComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
+  ColumnFilters<String> get evaluationEngine => $composableBuilder(
+    column: $table.evaluationEngine,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get parallelEngineAnalysis => $composableBuilder(
+    column: $table.parallelEngineAnalysis,
+    builder: (column) => ColumnFilters(column),
+  );
+
   ColumnFilters<int> get id => $composableBuilder(
     column: $table.id,
     builder: (column) => ColumnFilters(column),
@@ -5591,6 +5718,16 @@ class $$SettingsTableOrderingComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
+  ColumnOrderings<String> get evaluationEngine => $composableBuilder(
+    column: $table.evaluationEngine,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get parallelEngineAnalysis => $composableBuilder(
+    column: $table.parallelEngineAnalysis,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<int> get id => $composableBuilder(
     column: $table.id,
     builder: (column) => ColumnOrderings(column),
@@ -5716,6 +5853,16 @@ class $$SettingsTableAnnotationComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
+  GeneratedColumn<String> get evaluationEngine => $composableBuilder(
+    column: $table.evaluationEngine,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get parallelEngineAnalysis => $composableBuilder(
+    column: $table.parallelEngineAnalysis,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
@@ -5859,6 +6006,8 @@ class $$SettingsTableTableManager
               $$SettingsTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
+                Value<String> evaluationEngine = const Value.absent(),
+                Value<bool> parallelEngineAnalysis = const Value.absent(),
                 Value<int> id = const Value.absent(),
                 Value<String> themeMode = const Value.absent(),
                 Value<String> animationSpeed = const Value.absent(),
@@ -5883,6 +6032,8 @@ class $$SettingsTableTableManager
                 Value<bool> telemetryEnabled = const Value.absent(),
                 Value<String?> localeCode = const Value.absent(),
               }) => SettingsCompanion(
+                evaluationEngine: evaluationEngine,
+                parallelEngineAnalysis: parallelEngineAnalysis,
                 id: id,
                 themeMode: themeMode,
                 animationSpeed: animationSpeed,
@@ -5909,6 +6060,8 @@ class $$SettingsTableTableManager
               ),
           createCompanionCallback:
               ({
+                Value<String> evaluationEngine = const Value.absent(),
+                Value<bool> parallelEngineAnalysis = const Value.absent(),
                 Value<int> id = const Value.absent(),
                 Value<String> themeMode = const Value.absent(),
                 Value<String> animationSpeed = const Value.absent(),
@@ -5933,6 +6086,8 @@ class $$SettingsTableTableManager
                 Value<bool> telemetryEnabled = const Value.absent(),
                 Value<String?> localeCode = const Value.absent(),
               }) => SettingsCompanion.insert(
+                evaluationEngine: evaluationEngine,
+                parallelEngineAnalysis: parallelEngineAnalysis,
                 id: id,
                 themeMode: themeMode,
                 animationSpeed: animationSpeed,

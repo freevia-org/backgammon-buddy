@@ -11,3 +11,10 @@ native/licenses/mobile/texts/*.txt -text whitespace=-blank-at-eol,-blank-at-eof
 native/licenses/mobile/*.json text eol=lf
 app/assets/licenses/android-native-notices.txt -text whitespace=-blank-at-eol
 app/assets/licenses/apple-native-notices.txt -text whitespace=-blank-at-eol
+# GNUbg asset checksums include the XML's exact upstream bytes. Preserve these
+# across Windows/Linux checkouts; vendored source keeps upstream whitespace.
+app/assets/gnubg/* -text whitespace=-blank-at-eol,-blank-at-eof
+app/assets/licenses/GPL-3.0.txt -text whitespace=-blank-at-eol,-blank-at-eof
+app/assets/licenses/expat-COPYING.txt -text whitespace=-blank-at-eol,-blank-at-eof
+native/gnubg/upstream/** text=auto eol=lf whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab
+native/gnubg/vendor/** text=auto eol=lf whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab

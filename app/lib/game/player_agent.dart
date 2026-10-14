@@ -34,8 +34,57 @@ class MatchContext {
     required this.moverAway,
     required this.opponentAway,
     required this.crawfordPlayed,
+    this.cubeless = false,
   });
+  final bool cubeless;
 }
+
+abstract interface class ContextualEngineFacade {
+  Future<List<ScoredMove>?> rankForState(GameState state, MatchContext context);
+  Future<CubeAdvice?> cubeForState(
+    GameState state,
+    Player mover,
+    MatchContext context,
+  );
+}
+
+abstract interface class PlayedMoveEngineFacade {
+  Future<List<ScoredMove>?> rankForAssessment(
+    GameState state,
+    Move played,
+    MatchContext? context,
+  );
+}
+
+abstract interface class MatchAwareMoveAgent {
+  Future<Move> chooseMoveInMatch(GameState state, MatchContext context);
+}
+
+AnalysisContext analysisContextFor(
+  GameState state,
+  Player mover,
+  MatchContext context,
+) {
+  final length = max(context.moverAway, context.opponentAway);
+  final ownScore = length - context.moverAway,
+      otherScore = length - context.opponentAway;
+  return AnalysisContext(
+    cubeValue: state.cube.value,
+    cubeOwner: state.cube.owner,
+    matchLength: length,
+    whiteScore: mover == Player.white ? ownScore : otherScore,
+    blackScore: mover == Player.black ? ownScore : otherScore,
+    crawford: state.isCrawfordGame,
+    cubeless: context.cubeless,
+  );
+}
+
+MatchContext swappedContext(MatchContext c) => MatchContext(
+  moverAway: c.opponentAway,
+  opponentAway: c.moverAway,
+  crawfordPlayed: c.crawfordPlayed,
+  cubeless: c.cubeless,
+);
 
 /// A decision-maker for one side of a game. The [GameController] (Plan 3
 /// Task 4) drives a match by asking the on-turn agent for its choices and
@@ -68,7 +117,10 @@ abstract interface class PlayerAgent {
   /// The response to an opponent's resignation offer. `true` accepts. [ctx] is
   /// built from the acceptor's (`state.turn`'s) perspective.
   Future<bool> chooseResignResponse(
-      GameState state, ResignValue value, MatchContext ctx);
+    GameState state,
+    ResignValue value,
+    MatchContext ctx,
+  );
 
   /// Releases any resources. No-op by default.
   void dispose() {}
@@ -135,7 +187,10 @@ class LocalHumanAgent implements PlayerAgent {
 
   @override
   Future<bool> chooseResignResponse(
-      GameState state, ResignValue value, MatchContext ctx) {
+    GameState state,
+    ResignValue value,
+    MatchContext ctx,
+  ) {
     if (_resignCompleter != null) {
       throw StateError('a resign response is already pending');
     }
@@ -217,16 +272,15 @@ abstract interface class EngineFacade {
   /// Use [Probabilities.inverted] to view that position from the other side;
   /// querying the other player instead also changes whose turn is evaluated.
   Future<Probabilities> evaluate(BoardState board, Player mover);
-  Future<List<ScoredMove>> rankMoves(
-      BoardState board, Player mover, Dice dice);
+  Future<List<ScoredMove>> rankMoves(BoardState board, Player mover, Dice dice);
   Future<CubeAdvice> cubeInfo(BoardState board, Player mover);
 }
 
 /// An AI agent that consults the engine and samples a move according to
 /// [difficulty].
-class AiAgent implements PlayerAgent {
+class AiAgent implements PlayerAgent, MatchAwareMoveAgent {
   AiAgent(this._engine, this.difficulty, [Random? rng])
-      : _rng = rng ?? Random();
+    : _rng = rng ?? Random();
 
   final EngineFacade _engine;
   final Difficulty difficulty;
@@ -248,6 +302,23 @@ class AiAgent implements PlayerAgent {
     return pickMove(ranked, difficulty, _rng).move;
   }
 
+  @override
+  Future<Move> chooseMoveInMatch(GameState state, MatchContext context) async {
+    final engine = _engine;
+    if (engine is ContextualEngineFacade) {
+      final ranked = await (engine as ContextualEngineFacade).rankForState(
+        state,
+        context,
+      );
+      if (ranked != null) {
+        return ranked.isEmpty
+            ? Move.none
+            : pickMove(ranked, difficulty, _rng).move;
+      }
+    }
+    return chooseMove(state);
+  }
+
   /// Match-aware double decision via [MatchCubeAdvisor]. `state.turn` is the
   /// mover, and [ctx] is built from the mover's perspective, so the advisor's
   /// `moverAway`/`opponentAway` map straight through.
@@ -258,6 +329,15 @@ class AiAgent implements PlayerAgent {
   /// consulted here.
   @override
   Future<bool> considerDouble(GameState state, MatchContext ctx) async {
+    final engine = _engine;
+    if (engine is ContextualEngineFacade) {
+      final native = await (engine as ContextualEngineFacade).cubeForState(
+        state,
+        state.turn,
+        ctx,
+      );
+      if (native != null) return native.shouldDouble;
+    }
     final probs = await _engine.evaluate(state.board, state.turn);
     final advice = _advisor.advise(
       probs: probs,
@@ -284,8 +364,21 @@ class AiAgent implements PlayerAgent {
   /// response.
   @override
   Future<CubeAction> chooseCubeResponse(
-      GameState state, MatchContext ctx) async {
+    GameState state,
+    MatchContext ctx,
+  ) async {
     final doubler = state.turn.opponent;
+    final engine = _engine;
+    if (engine is ContextualEngineFacade) {
+      final native = await (engine as ContextualEngineFacade).cubeForState(
+        state,
+        doubler,
+        swappedContext(ctx),
+      );
+      if (native != null) {
+        return native.shouldAccept ? CubeAction.take : CubeAction.drop;
+      }
+    }
     final probs = await _engine.evaluate(state.board, doubler);
     final advice = _advisor.advise(
       probs: probs,
@@ -325,9 +418,14 @@ class AiAgent implements PlayerAgent {
   /// so every resignation is accepted regardless of gammon/backgammon prospects.
   @override
   Future<bool> chooseResignResponse(
-      GameState state, ResignValue value, MatchContext ctx) async {
-    final probs =
-        (await _engine.evaluate(state.board, state.turn.opponent)).inverted;
+    GameState state,
+    ResignValue value,
+    MatchContext ctx,
+  ) async {
+    final probs = (await _engine.evaluate(
+      state.board,
+      state.turn.opponent,
+    )).inverted;
     final offeredPoints = state.cube.value * value.multiplier;
     // Both alternatives end this game. If it is the Crawford game, any next
     // game has a live cube even though the current match context has not yet

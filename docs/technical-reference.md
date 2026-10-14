@@ -1,5 +1,16 @@
 # Backgammon Buddy technical reference
 
+## Evaluation engines
+
+Settings selects wildbg (the default) or GNU Backgammon 1.08.003 for AI,
+coaching and post-game analysis. Optional parallel tutor analysis displays
+separate advice from both engines for one captured position. GNUbg uses its
+native deterministic search, bearoff databases and match-aware cube handling;
+its default 2-ply move filter can leave obvious candidates at shallower depth.
+Saved analyses include the engine identity and are recomputed after a switch.
+See [the native GNUbg integration](../native/gnubg/README.md) for build,
+validation and GPL source-distribution details.
+
 This is the former repository README, kept as an engineering reference. For
 current store availability, support and legal information, use the
 [Backgammon Buddy website](https://freevia.org/backgammon-buddy/). Some release

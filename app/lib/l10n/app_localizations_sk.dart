@@ -3244,4 +3244,20 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Druhá kocka';
+
+  @override
+  String get evaluationEngine => 'Vyhodnocovací engine';
+
+  @override
+  String get parallelEngineAnalysis => 'Analyzovať oboma enginmi';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Porovnajte samostatné rady wildbg a GNUbg v trénerovi.';
+
+  @override
+  String get engineComparison => 'Porovnanie enginov';
+
+  @override
+  String get engineWinChance => 'Šanca na výhru';
 }

@@ -3186,4 +3186,20 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'Otra';
+
+  @override
+  String get evaluationEngine => 'Novērtēšanas dzinējs';
+
+  @override
+  String get parallelEngineAnalysis => 'Analizēt ar abiem dzinējiem';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Salīdziniet atsevišķus wildbg un GNUbg padomus pasniedzējā.';
+
+  @override
+  String get engineComparison => 'Dzinēju salīdzinājums';
+
+  @override
+  String get engineWinChance => 'Uzvaras iespēja';
 }

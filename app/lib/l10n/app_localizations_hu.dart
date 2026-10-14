@@ -3206,4 +3206,20 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get buddyDiceRegularSecond => 'A másik';
+
+  @override
+  String get evaluationEngine => 'Értékelőmotor';
+
+  @override
+  String get parallelEngineAnalysis => 'Elemzés mindkét motorral';
+
+  @override
+  String get parallelEngineExplanation =>
+      'Hasonlítsa össze a wildbg és GNUbg külön tanácsait az oktatóban.';
+
+  @override
+  String get engineComparison => 'Motorok összehasonlítása';
+
+  @override
+  String get engineWinChance => 'Győzelmi esély';
 }

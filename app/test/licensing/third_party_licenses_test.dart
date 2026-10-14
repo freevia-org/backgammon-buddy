@@ -11,9 +11,11 @@ void main() {
     'native transitive notices and model terms are available offline',
     () async {
       final entries = await additionalNativeLicenses().toList();
-      expect(entries, hasLength(7));
+      expect(entries, hasLength(10));
       final text =
           entries.expand((e) => e.paragraphs).map((p) => p.text).join('\n');
+      expect(text, contains('GNU Backgammon 1.08.003'));
+      expect(text, contains('GNU GENERAL PUBLIC LICENSE'));
       expect(text, contains('dyn-eq 0.1.3'));
       expect(text, contains('Mozilla Public License'));
       expect(text, contains('CC0'));

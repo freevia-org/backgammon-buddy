@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Arviointimoottori",
+  "parallelEngineAnalysis": "Analysoi molemmilla moottoreilla",
+  "parallelEngineExplanation": "Vertaa wildbg- ja GNUbg-moottorien erillisiä neuvoja opastajassa.",
+  "engineComparison": "Moottorien vertailu",
+  "engineWinChance": "Voiton todennäköisyys"
 }

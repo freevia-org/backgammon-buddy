@@ -46,6 +46,14 @@ class TutorService {
   }) async {
     if (state.phase != GamePhase.moving) return const [];
     if (state.legalMoves.isEmpty) return const [];
+    final engine = _engine;
+    if (context != null && engine is ContextualEngineFacade) {
+      final native = await (engine as ContextualEngineFacade).rankForState(
+        state,
+        context,
+      );
+      if (native != null) return _scoreForContext(native, state, context);
+    }
     final ranked = await _engine.rankMoves(
       state.board,
       state.turn,
@@ -69,7 +77,9 @@ class TutorService {
         throw StateError('The engine returned invalid outcome probabilities.');
       }
     }
-    if (context == null) return ranked;
+    if (context == null || ranked.every((m) => m.matchWinningChance != null)) {
+      return ranked;
+    }
     if (context.moverAway < 1 || context.opponentAway < 1) {
       throw StateError(
         'A checker decision requires the score before the game ends.',
@@ -127,7 +137,17 @@ class TutorService {
       );
     }
 
-    final ranked = await hint(before, context: context);
+    final engine = _engine;
+    final native = engine is PlayedMoveEngineFacade
+        ? await (engine as PlayedMoveEngineFacade).rankForAssessment(
+            before,
+            played,
+            context,
+          )
+        : null;
+    final ranked = native == null
+        ? await hint(before, context: context)
+        : _scoreForContext(native, before, context);
     if (ranked.isEmpty) {
       throw StateError('The engine returned no ranking for a legal move.');
     }
@@ -199,6 +219,10 @@ class TutorService {
     required bool playerDoubled,
     double cubeLife = 0.7,
   }) async {
+    final native = await _nativeCube(state, state.turn, ctx);
+    if (native != null) {
+      return CubeAssessment(actionWasDouble: playerDoubled, advice: native);
+    }
     final probs = await _engine.evaluate(state.board, state.turn);
     final advice = _advisor.advise(
       probs: probs,
@@ -233,6 +257,14 @@ class TutorService {
     double cubeLife = 0.7,
   }) async {
     final doubler = state.turn.opponent;
+    final native = await _nativeCube(
+      state,
+      doubler,
+      swappedContext(deciderCtx),
+    );
+    if (native != null) {
+      return CubeAssessment(actionWasDouble: true, advice: native);
+    }
     final probs = await _engine.evaluate(state.board, doubler);
     final advice = _advisor.advise(
       probs: probs,
@@ -243,6 +275,28 @@ class TutorService {
       cubeLife: cubeLife,
     );
     return CubeAssessment(actionWasDouble: true, advice: advice);
+  }
+
+  Future<MatchCubeAdvice?> _nativeCube(
+    GameState s,
+    Player mover,
+    MatchContext c,
+  ) async {
+    final engine = _engine;
+    if (engine is! ContextualEngineFacade) return null;
+    final advice = await (engine as ContextualEngineFacade).cubeForState(
+      s,
+      mover,
+      c,
+    );
+    if (advice == null) return null;
+    return MatchCubeAdvice(
+      shouldDouble: advice.shouldDouble,
+      shouldTake: advice.shouldAccept,
+      equityNoDouble: advice.equityNoDouble,
+      equityDoubleTake: advice.equityDoubleTake,
+      equityDoubleDrop: advice.equityDoublePass!,
+    );
   }
 
   // --- Live-tutor variants ---------------------------------------------------

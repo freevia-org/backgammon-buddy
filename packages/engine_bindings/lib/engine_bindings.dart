@@ -2,6 +2,8 @@
 library;
 
 export 'src/difficulty.dart';
+export 'src/analysis_context.dart';
+export 'src/gnubg_engine.dart';
 export 'src/engine.dart';
 export 'src/engine_service.dart';
 export 'src/match_cube_advisor.dart';

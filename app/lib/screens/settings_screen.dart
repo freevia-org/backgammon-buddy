@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:engine_bindings/engine_bindings.dart' show Difficulty;
+import 'package:engine_bindings/engine_bindings.dart'
+    show Difficulty, EvaluationEngine;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -74,6 +75,38 @@ class SettingsScreen extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    _Section(
+                      label: l10n.evaluationEngine,
+                      child: DropdownButtonFormField<EvaluationEngine>(
+                        initialValue: settings.evaluationEngine,
+                        isExpanded: true,
+                        items: const [
+                          DropdownMenuItem(
+                            value: EvaluationEngine.wildbg,
+                            child: Text('wildbg'),
+                          ),
+                          DropdownMenuItem(
+                            value: EvaluationEngine.gnubg,
+                            child: Text('GNUbg'),
+                          ),
+                        ],
+                        onChanged: (value) {
+                          if (value != null) {
+                            update((s) => s.copyWith(evaluationEngine: value));
+                          }
+                        },
+                      ),
+                    ),
+                    SwitchListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(l10n.parallelEngineAnalysis),
+                      subtitle: Text(l10n.parallelEngineExplanation),
+                      value: settings.parallelEngineAnalysis,
+                      onChanged: (value) => update(
+                        (s) => s.copyWith(parallelEngineAnalysis: value),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
                     _Section(
                       label: l10n.settingsAppLanguage,
                       child: DropdownButtonFormField<String>(

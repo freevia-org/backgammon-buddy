@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Silnik oceny",
+  "parallelEngineAnalysis": "Analizuj oboma silnikami",
+  "parallelEngineExplanation": "Porównuj osobne wskazówki wildbg i GNUbg w trenerze.",
+  "engineComparison": "Porównanie silników",
+  "engineWinChance": "Szansa wygranej"
 }

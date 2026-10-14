@@ -1874,5 +1874,10 @@
         "type": "int"
       }
     }
-  }
+  },
+  "evaluationEngine": "Magna ta’ evalwazzjoni",
+  "parallelEngineAnalysis": "Analizza biż-żewġ magni",
+  "parallelEngineExplanation": "Qabbel il-pariri separati ta’ wildbg u GNUbg fit-tutur.",
+  "engineComparison": "Tqabbil tal-magni",
+  "engineWinChance": "Ċans ta’ rebħa"
 }

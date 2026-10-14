@@ -5339,6 +5339,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The other'**
   String get buddyDiceRegularSecond;
+
+  /// No description provided for @evaluationEngine.
+  ///
+  /// In en, this message translates to:
+  /// **'Evaluation engine'**
+  String get evaluationEngine;
+
+  /// No description provided for @parallelEngineAnalysis.
+  ///
+  /// In en, this message translates to:
+  /// **'Analyse with both engines'**
+  String get parallelEngineAnalysis;
+
+  /// No description provided for @parallelEngineExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare separate wildbg and GNUbg advice in the tutor.'**
+  String get parallelEngineExplanation;
+
+  /// No description provided for @engineComparison.
+  ///
+  /// In en, this message translates to:
+  /// **'Engine comparison'**
+  String get engineComparison;
+
+  /// No description provided for @engineWinChance.
+  ///
+  /// In en, this message translates to:
+  /// **'Win chance'**
+  String get engineWinChance;
 }
 
 class _AppLocalizationsDelegate
