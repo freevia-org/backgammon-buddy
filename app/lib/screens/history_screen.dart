@@ -286,7 +286,7 @@ class MatchDetailScreen extends ConsumerWidget {
         title: Text(_scoreLine(match, l10n)),
         actions: [
           PopupMenuButton<String>(
-            icon: const Icon(Icons.ios_share),
+            icon: const Icon(Icons.share),
             onSelected: (format) async {
               try {
                 final games = await repo.gamesFor(match.id);
