@@ -102,7 +102,7 @@ void main() {
               'own notation');
 
       await h.frame(t); // Buddy's dice, and the move it dictates
-      expect(_prompt(t).toLowerCase(), contains("buddy's move"),
+      expect(_prompt(t).toLowerCase(), contains('buddy’s move'),
           reason: 'a dictated move is not a made one — the board has to catch '
               'up before the next roll is asked for');
     });
@@ -178,7 +178,7 @@ void main() {
       await h.frame(t);
       await h.frame(t);
 
-      expect(_readability(t), 'It is too dark to read the board.',
+      expect(_readability(t), 'It is too dark to read the board. A little more light and I will carry on where we were.',
           reason: "Readability.message is written to be shown as it stands, so "
               'the light names the cause rather than merely going red');
       expect(h.vision.playCalls, playsBefore,
@@ -205,7 +205,7 @@ void main() {
       await h.frame(t); // the opening roll
       await h.frame(t); // the user's play, folded
       await h.frame(t); // Buddy's roll, and the move it dictates
-      expect(_prompt(t).toLowerCase(), contains("buddy's move"));
+      expect(_prompt(t).toLowerCase(), contains('buddy’s move'));
 
       h.vision.willSee([tooDarkReading]);
       await h.frame(t);
@@ -226,7 +226,7 @@ void main() {
 
       h.vision.willSee([staleCalibrationReading]);
       await h.frame(t);
-      expect(_readability(t), 'The board is not where it was when I learned it.');
+      expect(_readability(t), 'The board is not where it was when I learned it. Line the corners up again and I will pick the game straight back up.');
 
       await t.tap(find.text('Fix the aim'));
       await t.pumpAndSettle();
@@ -267,8 +267,8 @@ void main() {
       // The opening is the one throw whose two faces belong to two different
       // people, and a pad that said "in any order" would be inviting the user
       // to decide who starts by accident.
-      expect(find.text("White's die"), findsOneWidget);
-      expect(find.text("Black's die"), findsOneWidget);
+      expect(find.text('White’s die'), findsOneWidget);
+      expect(find.text('Black’s die'), findsOneWidget);
       await h.pickRoll(t, 5, 2);
 
       expect(_transcript(t), contains('You rolled 5-2.'));
@@ -286,7 +286,7 @@ void main() {
       await h.pump(t);
       await h.frame(t);
 
-      expect(_readability(t), 'The board is not where it was when I learned it.',
+      expect(_readability(t), 'The board is not where it was when I learned it. Line the corners up again and I will pick the game straight back up.',
           reason: 'the banner stays up, so the user knows why Buddy is quiet');
       await h.enterRoll(t, 5, 2);
 
@@ -318,7 +318,7 @@ void main() {
       await t.pumpAndSettle();
       expect(find.text('One die'), findsOneWidget);
       expect(find.text('The other'), findsOneWidget);
-      expect(find.text("White's die"), findsNothing);
+      expect(find.text('White’s die'), findsNothing);
       expect(find.textContaining('either order'), findsOneWidget,
           reason: 'and the caption says so, rather than leaving the user to '
               'infer it from two labels that stopped mentioning colours');
@@ -392,13 +392,14 @@ void main() {
           reason: 'the fake contradicts every region on the board; what the '
               'session CLAIMED is the regions the dictated play touched, and '
               'that is what may be ringed');
-      expect(_prompt(t), contains('the camera sees'),
-          reason: 'what Buddy expects against what it sees, verbatim from the '
-              'region that disagrees');
+      expect(_prompt(t), contains('Buddy still cannot see its move'));
+      expect(_prompt(t), contains('the game starts with'),
+          reason: 'the localized prompt identifies the disputed region and '
+              'the position Buddy expects');
 
       // And the two ways out, which are the whole point: without them a
       // placement that cannot verify closes every forward path at once.
-      expect(find.text("I've fixed it"), findsOneWidget);
+      expect(find.text('I’ve fixed it'), findsOneWidget);
       expect(find.text('Skip this check'), findsOneWidget);
     });
 
@@ -413,7 +414,7 @@ void main() {
         final h = _Harness();
         await h.reachTheMirror(t, textScale: scale);
         expect(t.takeException(), isNull);
-        expect(find.text("I've fixed it"), findsOneWidget);
+        expect(find.text('I’ve fixed it'), findsOneWidget);
       });
     }
 
@@ -423,7 +424,7 @@ void main() {
       await h.reachTheMirror(t);
 
       h.vision.willVerify([boardAgrees]);
-      await t.tap(find.text("I've fixed it"));
+      await t.tap(find.text('I’ve fixed it'));
       await h.settle(t);
       expect(find.text('Skip this check'), findsNothing,
           reason: 'the escalation is lowered the moment the user says they '
@@ -500,7 +501,7 @@ void main() {
       h.vision.willSee([tooDarkReading]);
       await h.frame(t);
 
-      expect(_readability(t), 'It is too dark to read the board.',
+      expect(_readability(t), 'It is too dark to read the board. A little more light and I will carry on where we were.',
           reason: 'the light is out, so the session has stopped asking');
       expect(find.widgetWithText(OutlinedButton, 'Drop'), findsOneWidget,
           reason: 'the cube is on the table and the user has not answered — a '
@@ -935,7 +936,7 @@ void main() {
       // And play carries on: the next settled frame is answered as though
       // nothing had happened.
       await h.frame(t);
-      expect(_prompt(t).toLowerCase(), contains("buddy's move"),
+      expect(_prompt(t).toLowerCase(), contains('buddy’s move'),
           reason: 'the turn resumed where it was — Buddy rolled and dictated, '
               'which is what the frame before the interruption was owed');
     });

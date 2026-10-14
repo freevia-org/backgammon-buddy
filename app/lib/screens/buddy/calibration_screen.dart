@@ -16,6 +16,8 @@ import '../../analytics/analytics_screen_view.dart';
 import '../../analytics/app_analytics.dart';
 import '../../buddy/buddy_session.dart';
 import '../../buddy/camera_frame_source.dart';
+import '../../buddy/buddy_localization.dart';
+import '../../l10n/localization_lookup.dart';
 import '../game/tap_when_disabled.dart';
 
 void _reportBuddyCameraFailure(
@@ -336,8 +338,9 @@ class RealBoardLearner implements BoardLearner {
       BoardVision(calibration);
 }
 
-final boardLearnerProvider =
-    Provider<BoardLearner>((ref) => const RealBoardLearner());
+final boardLearnerProvider = Provider<BoardLearner>(
+  (ref) => const RealBoardLearner(),
+);
 
 /// The camera this screen uses. Overridden in widget tests with a scripted one.
 final buddyCameraProvider = Provider<BuddyCamera>((ref) {
@@ -391,13 +394,13 @@ class BoardHandles {
   /// and, worse, they start on the ROOM rather than on the board, which invites
   /// exactly the mistake the corner step is about.
   factory BoardHandles.seed({required bool folding}) => const BoardHandles(
-        outer: <Offset>[
-          Offset(0.10, 0.15),
-          Offset(0.90, 0.15),
-          Offset(0.90, 0.85),
-          Offset(0.10, 0.85),
-        ],
-      ).asFolding(folding);
+    outer: <Offset>[
+      Offset(0.10, 0.15),
+      Offset(0.90, 0.15),
+      Offset(0.90, 0.85),
+      Offset(0.10, 0.85),
+    ],
+  ).asFolding(folding);
 
   bool get isFolding => hinge.length == 4;
 
@@ -436,8 +439,8 @@ class BoardHandles {
 
   /// The four outer corners in the pixels of a [frame]-sized picture.
   BoardQuad quadIn(Size frame) => BoardQuad.fromCorners(<Pt>[
-        for (final p in outer) Pt(p.dx * frame.width, p.dy * frame.height),
-      ]);
+    for (final p in outer) Pt(p.dx * frame.width, p.dy * frame.height),
+  ]);
 
   /// All eight points, in the pixels of a [frame]-sized picture.
   FoldingCorners foldingIn(Size frame) {
@@ -498,7 +501,10 @@ class BoardHandles {
   List<List<Offset>> outlines(BoardOrientation orientation) {
     final map = geometry;
     if (map == null) return const <List<Offset>>[];
-    final atlas = RoiAtlas.forOrientation(orientation, proportions: proportions);
+    final atlas = RoiAtlas.forOrientation(
+      orientation,
+      proportions: proportions,
+    );
     final rings = <List<Offset>>[];
     for (var i = 0; i < 24; i++) {
       rings.add(_ring(map, atlas.roi(RoiId.point(i))));
@@ -508,12 +514,12 @@ class BoardHandles {
   }
 
   static List<Offset> _ring(BoardGeometry map, BoardQuad quad) => <Offset>[
-        for (final corner in quad.corners)
-          () {
-            final p = map.imagePointOf(corner);
-            return Offset(p.x, p.y);
-          }(),
-      ];
+    for (final corner in quad.corners)
+      () {
+        final p = map.imagePointOf(corner);
+        return Offset(p.x, p.y);
+      }(),
+  ];
 }
 
 // -----------------------------------------------------------------------------
@@ -634,11 +640,9 @@ class CalibrationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PhysicalBuddyGate(
-        builder: (_) => _EnabledCalibrationScreen(
-          request: request,
-          onCalibrated: onCalibrated,
-        ),
-      );
+    builder: (_) =>
+        _EnabledCalibrationScreen(request: request, onCalibrated: onCalibrated),
+  );
 }
 
 class _EnabledCalibrationScreen extends ConsumerStatefulWidget {
@@ -658,7 +662,9 @@ class _EnabledCalibrationScreen extends ConsumerStatefulWidget {
 }
 
 class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
-    with WidgetsBindingObserver, BuddyCameraLifecycle<_EnabledCalibrationScreen> {
+    with
+        WidgetsBindingObserver,
+        BuddyCameraLifecycle<_EnabledCalibrationScreen> {
   late final BuddyCamera _camera = ref.read(buddyCameraProvider);
   StreamSubscription<ObservedFrame>? _frames;
 
@@ -692,7 +698,9 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
     _seat = widget.request.seat;
     // A recalibration opens on the corners: the board has already been
     // explained once, and what changed is where it is.
-    _stage = seeded == null ? CalibrationStage.aiming : CalibrationStage.corners;
+    _stage = seeded == null
+        ? CalibrationStage.aiming
+        : CalibrationStage.corners;
     startCamera();
   }
 
@@ -742,11 +750,13 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
         // move a checker, and the answer has to follow the board rather than
         // stay frozen on the frame that happened to be learned from.
         if (vision != null) {
-          setState(() => _confirmation = vision.confirmStartingPosition(f.frame));
+          setState(
+            () => _confirmation = vision.confirmStartingPosition(f.frame),
+          );
         }
       case CalibrationStage.aiming ||
-            CalibrationStage.corners ||
-            CalibrationStage.seat:
+          CalibrationStage.corners ||
+          CalibrationStage.seat:
         break;
     }
   }
@@ -763,7 +773,9 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
 
   /// One attempt, on one settled frame.
   void _learn(ObservedFrame f) {
-    final result = ref.read(boardLearnerProvider).learn(
+    final result = ref
+        .read(boardLearnerProvider)
+        .learn(
           frame: f.frame,
           handles: _handles,
           orientation: _orientation,
@@ -772,7 +784,9 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
     final calibration = result.calibration;
     // Reported before the branch, so a refusal and a success are one event with
     // one outcome parameter rather than two events that could drift apart.
-    ref.read(appAnalyticsProvider).logBuddyCalibration(
+    ref
+        .read(appAnalyticsProvider)
+        .logBuddyCalibration(
           ok: calibration != null,
           recalibration: _isRecalibration,
         );
@@ -782,7 +796,11 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
       // they were: whatever went wrong, starting the outline again is not the
       // fix.
       setState(() {
-        _problem = result.message;
+        _problem = buddyCalibrationProblemMessage(
+          result,
+          appLocalizationsOf(context),
+          folding: _handles.isFolding,
+        );
         _stage = CalibrationStage.corners;
       });
       return;
@@ -800,17 +818,17 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
   }
 
   void _goTo(CalibrationStage stage) => setState(() {
-        _stage = stage;
-        if (stage != CalibrationStage.confirming) {
-          _vision = null;
-          _confirmation = null;
-        }
-      });
+    _stage = stage;
+    if (stage != CalibrationStage.confirming) {
+      _vision = null;
+      _confirmation = null;
+    }
+  });
 
   void _setFolding(bool folding) => setState(() {
-        _handles = _handles.asFolding(folding);
-        _problem = null;
-      });
+    _handles = _handles.asFolding(folding);
+    _problem = null;
+  });
 
   void _accept() {
     final vision = _vision;
@@ -823,44 +841,47 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
   @override
   // See [HomeScreen] for why every screen splits build/_build.
   Widget build(BuildContext context) => AnalyticsScreenView(
-        name: AnalyticsScreens.buddyCalibration,
-        child: _build(context),
-      );
+    name: AnalyticsScreens.buddyCalibration,
+    child: _build(context),
+  );
 
   Widget _build(BuildContext context) {
     final opening = _opening;
+    final l10n = appLocalizationsOf(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Show Buddy the board')),
+      appBar: AppBar(title: Text(l10n.buddyCalibrationTitle)),
       body: SafeArea(
         child: switch (opening) {
-          CameraUnavailable(:final message) => _NoCamera(message: message),
+          CameraUnavailable(:final message) => _NoCamera(
+            message: buddyCameraErrorMessage(message, l10n),
+          ),
           _ => Column(
-              children: [
-                Expanded(child: _body(context)),
-                const Divider(height: 1),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
-                  child: _footer(context),
-                ),
-              ],
-            ),
+            children: [
+              Expanded(child: _body(context)),
+              const Divider(height: 1),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+                child: _footer(context),
+              ),
+            ],
+          ),
         },
       ),
     );
   }
 
   Widget _body(BuildContext context) => switch (_stage) {
-        CalibrationStage.aiming => _AimStep(
-            folding: _handles.isFolding,
-            onFoldingChanged: _setFolding,
-          ),
-        _ => Column(
-            children: [
-              Expanded(child: _preview(context)),
-              _caption(context),
-            ],
-          ),
-      };
+    CalibrationStage.aiming => _AimStep(
+      folding: _handles.isFolding,
+      onFoldingChanged: _setFolding,
+    ),
+    _ => Column(
+      children: [
+        Expanded(child: _preview(context)),
+        _caption(context),
+      ],
+    ),
+  };
 
   /// The live picture, the outline over it, and — on the confirming step — the
   /// position Buddy believes it is looking at.
@@ -923,8 +944,9 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
                         calibration: _vision!.calibration,
                         frame: _learnedOn ?? box,
                         offending: <RoiId>{
-                          for (final d in _confirmation?.discrepancies ??
-                              const <PointDiscrepancy>[])
+                          for (final d
+                              in _confirmation?.discrepancies ??
+                                  const <PointDiscrepancy>[])
                             d.region,
                         },
                         wrong: scheme.error,
@@ -971,12 +993,11 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
   /// where it was put. On the one screen in the app whose whole purpose is
   /// placing a point to within a few pixels.
   void _nudge(int i, Offset delta, Size box) => setState(() {
-        _handles = _handles.movedTo(
-          i,
-          _handles.all[i] +
-              Offset(delta.dx / box.width, delta.dy / box.height),
-        );
-      });
+    _handles = _handles.movedTo(
+      i,
+      _handles.all[i] + Offset(delta.dx / box.width, delta.dy / box.height),
+    );
+  });
 
   /// The loupe over the handle being dragged.
   ///
@@ -1010,6 +1031,7 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
 
   Widget _caption(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = appLocalizationsOf(context);
     final problem = _problem;
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
@@ -1022,86 +1044,82 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
           ],
           ...switch (_stage) {
             CalibrationStage.corners => <Widget>[
-                Text(
-                  _handles.isFolding
-                      ? 'Drag the four outer handles onto the corners of the '
-                          'felt — not the wooden rim — and the four small ones '
-                          'onto the seams where the hinge meets the far and '
-                          'near edges.'
-                      : 'Drag each handle onto a corner of the felt — the '
-                          'playing surface, not the wooden rim around it.',
-                  style: theme.textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Then check the twelve lines down each half: every one should '
-                  'run along a point of your board. A line that misses its '
-                  'point is a handle that needs nudging.',
-                  style: theme.textTheme.bodySmall,
-                ),
-              ],
+              Text(
+                _handles.isFolding
+                    ? l10n.buddyCalibrationCornersFold
+                    : l10n.buddyCalibrationCornersFlat,
+                style: theme.textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.buddyCalibrationCheckLines,
+                style: theme.textTheme.bodySmall,
+              ),
+            ],
             CalibrationStage.seat => <Widget>[
-                Text('Which half is your home board?',
-                    style: theme.textTheme.titleMedium),
-                const SizedBox(height: 12),
-                SegmentedButton<BuddySeat>(
-                  showSelectedIcon: false,
-                  segments: const <ButtonSegment<BuddySeat>>[
-                    ButtonSegment(
-                      value: BuddySeat.near,
-                      label: Text('The near half'),
-                    ),
-                    ButtonSegment(
-                      value: BuddySeat.far,
-                      label: Text('The far half'),
-                    ),
-                  ],
-                  selected: <BuddySeat>{_seat},
-                  onSelectionChanged: (s) => setState(() => _seat = s.first),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'The half nearest the bottom of the picture. This is what '
-                  'fixes the point numbers, so the lines above move with it.',
-                  style: theme.textTheme.bodySmall,
-                ),
-              ],
+              Text(
+                l10n.buddyCalibrationSeatQuestion,
+                style: theme.textTheme.titleMedium,
+              ),
+              const SizedBox(height: 12),
+              SegmentedButton<BuddySeat>(
+                showSelectedIcon: false,
+                segments: <ButtonSegment<BuddySeat>>[
+                  ButtonSegment(
+                    value: BuddySeat.near,
+                    label: Text(l10n.buddySetupSeatNear),
+                  ),
+                  ButtonSegment(
+                    value: BuddySeat.far,
+                    label: Text(l10n.buddySetupSeatFar),
+                  ),
+                ],
+                selected: <BuddySeat>{_seat},
+                onSelectionChanged: (s) => setState(() => _seat = s.first),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.buddyCalibrationSeatHelp,
+                style: theme.textTheme.bodySmall,
+              ),
+            ],
             // No spinner here, and that is not an aesthetic choice: an
             // indeterminate progress indicator animates forever, and a widget
             // test that pumps until the tree is idle would never finish. The
             // wait is a fraction of a second anyway — the sentence IS the
             // affordance, because it says what to do with the wait.
             CalibrationStage.capturing => <Widget>[
-                Row(
-                  children: [
-                    const Icon(Icons.back_hand_outlined, size: 20),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        'Hold the phone still. Buddy is waiting for the '
-                        'picture to settle before it learns this board.',
-                        style: theme.textTheme.bodyMedium,
-                      ),
+              Row(
+                children: [
+                  const Icon(Icons.back_hand_outlined, size: 20),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      l10n.buddyCalibrationCaptureWait,
+                      style: theme.textTheme.bodyMedium,
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
+            ],
             CalibrationStage.confirming => <Widget>[
-                Text('Is this your board?', style: theme.textTheme.titleMedium),
-                const SizedBox(height: 8),
-                Text(
-                  _confirmation?.message ??
-                      'Buddy is looking at the board it just learned.',
-                  style: theme.textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'The men drawn over the picture are what Buddy thinks is on '
-                  'the board. If any of them are in the wrong place, start '
-                  'over — it costs seconds now and a game later.',
-                  style: theme.textTheme.bodySmall,
-                ),
-              ],
+              Text(
+                l10n.buddyCalibrationConfirmQuestion,
+                style: theme.textTheme.titleMedium,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                _confirmation == null
+                    ? l10n.buddyCalibrationConfirmFallback
+                    : buddyConfirmationMessage(_confirmation!, l10n),
+                style: theme.textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                l10n.buddyCalibrationConfirmHelp,
+                style: theme.textTheme.bodySmall,
+              ),
+            ],
             CalibrationStage.aiming => const <Widget>[],
           },
         ],
@@ -1118,33 +1136,42 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
       orientationFor(widget.request.userSide, _seat);
 
   Widget _footer(BuildContext context) {
+    final l10n = appLocalizationsOf(context);
     final buttons = switch (_stage) {
       CalibrationStage.aiming => <Widget>[
-          _forward('Next', () => _goTo(CalibrationStage.corners)),
-        ],
+        _forward(
+          l10n.buddyCalibrationNext,
+          () => _goTo(CalibrationStage.corners),
+        ),
+      ],
       CalibrationStage.corners => <Widget>[
-          _back('Back', () => _goTo(CalibrationStage.aiming)),
-          _forward(
-            'Next',
-            _handles.geometry == null
-                ? null
-                : () => _goTo(CalibrationStage.seat),
-            disabledReason: 'Those four handles do not outline a board — one '
-                'of them has crossed another. Drag them back to the corners of '
-                'the felt.',
-          ),
-        ],
+        _back(l10n.buddyCalibrationBack, () => _goTo(CalibrationStage.aiming)),
+        _forward(
+          l10n.buddyCalibrationNext,
+          _handles.geometry == null ? null : () => _goTo(CalibrationStage.seat),
+          disabledReason: l10n.buddyCalibrationCornersInvalid,
+        ),
+      ],
       CalibrationStage.seat => <Widget>[
-          _back('Back', () => _goTo(CalibrationStage.corners)),
-          _forward('Capture', () => _goTo(CalibrationStage.capturing)),
-        ],
+        _back(l10n.buddyCalibrationBack, () => _goTo(CalibrationStage.corners)),
+        _forward(
+          l10n.buddyCalibrationCapture,
+          () => _goTo(CalibrationStage.capturing),
+        ),
+      ],
       CalibrationStage.capturing => <Widget>[
-          _back('Back', () => _goTo(CalibrationStage.corners)),
-        ],
+        _back(l10n.buddyCalibrationBack, () => _goTo(CalibrationStage.corners)),
+      ],
       CalibrationStage.confirming => <Widget>[
-          _back('Start over', () => _goTo(CalibrationStage.corners)),
-          _forward('Looks right', _vision == null ? null : _accept),
-        ],
+        _back(
+          l10n.buddyCalibrationStartOver,
+          () => _goTo(CalibrationStage.corners),
+        ),
+        _forward(
+          l10n.buddyCalibrationLooksRight,
+          _vision == null ? null : _accept,
+        ),
+      ],
     };
     return Row(
       children: <Widget>[
@@ -1157,15 +1184,18 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
   }
 
   Widget _back(String label, VoidCallback onPressed) => OutlinedButton(
-        onPressed: onPressed,
-        style: OutlinedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-        ),
-        child: Text(label),
-      );
+    onPressed: onPressed,
+    style: OutlinedButton.styleFrom(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+    ),
+    child: Text(label),
+  );
 
-  Widget _forward(String label, VoidCallback? onPressed,
-      {String? disabledReason}) {
+  Widget _forward(
+    String label,
+    VoidCallback? onPressed, {
+    String? disabledReason,
+  }) {
     final button = FilledButton(
       onPressed: onPressed,
       style: FilledButton.styleFrom(
@@ -1176,9 +1206,9 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
     if (onPressed != null || disabledReason == null) return button;
     // A dead button cannot say why it is dead.
     return TapWhenDisabled(
-      onDisabledTap: () => ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(disabledReason)),
-      ),
+      onDisabledTap: () => ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(disabledReason))),
       child: button,
     );
   }
@@ -1202,6 +1232,7 @@ class _AimStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = appLocalizationsOf(context);
     return SingleChildScrollView(
       child: Center(
         child: ConstrainedBox(
@@ -1211,51 +1242,55 @@ class _AimStep extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Three things first', style: theme.textTheme.titleMedium),
+                Text(
+                  l10n.buddyCalibrationPrepTitle,
+                  style: theme.textTheme.titleMedium,
+                ),
                 const SizedBox(height: 8),
-                const _Step(
+                _Step(
                   icon: Icons.casino_outlined,
-                  title: 'Take the dice off the board.',
+                  title: l10n.buddyCalibrationRemoveDiceTitle,
                   // The one mistake with a permanent cost. A die on the felt
                   // during calibration is learned as part of the board's own
                   // surface, and the dice reader looks for what the board does
                   // not account for — so that die, and every die like it, is
                   // invisible for the rest of the session.
-                  detail: 'Buddy learns the bare board now. A die left on the '
-                      'felt is learned as part of it, and then Buddy can never '
-                      'see the dice again this session.',
+                  detail: l10n.buddyCalibrationRemoveDiceBody,
                 ),
-                const _Step(
+                _Step(
                   icon: Icons.grid_view_outlined,
-                  title: 'Set the men up for the start of a game.',
-                  detail: 'Thirty checkers in known places is how Buddy learns '
-                      'this board\'s two colours without being told what they '
-                      'are.',
+                  title: l10n.buddyCalibrationSetupCheckersTitle,
+                  detail: l10n.buddyCalibrationSetupCheckersBody,
                 ),
-                const _Step(
+                _Step(
                   icon: Icons.center_focus_strong_outlined,
-                  title: 'Fit the whole playing field in the picture.',
-                  detail: 'Then leave the phone where it is. If it moves, '
-                      'Buddy will say so and you can nudge the corners back.',
+                  title: l10n.buddyCalibrationFitBoardTitle,
+                  detail: l10n.buddyCalibrationFitBoardBody,
                 ),
                 const SizedBox(height: 24),
-                Text('What kind of board is it?',
-                    style: theme.textTheme.titleMedium),
+                Text(
+                  l10n.buddyCalibrationBoardKind,
+                  style: theme.textTheme.titleMedium,
+                ),
                 const SizedBox(height: 12),
                 SegmentedButton<bool>(
                   showSelectedIcon: false,
-                  segments: const [
-                    ButtonSegment(value: false, label: Text('Flat board')),
-                    ButtonSegment(value: true, label: Text('Folding case')),
+                  segments: [
+                    ButtonSegment(
+                      value: false,
+                      label: Text(l10n.buddyCalibrationFlatBoard),
+                    ),
+                    ButtonSegment(
+                      value: true,
+                      label: Text(l10n.buddyCalibrationFoldingBoard),
+                    ),
                   ],
                   selected: {folding},
                   onSelectionChanged: (s) => onFoldingChanged(s.first),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'A case that folds in half sits slightly tented, so its two '
-                  'leaves are not in one plane and no four corners describe it. '
-                  'Pick it and you will place four extra points on the hinge.',
+                  l10n.buddyCalibrationBoardKindHelp,
                   style: theme.textTheme.bodySmall,
                 ),
               ],
@@ -1276,12 +1311,12 @@ class _Step extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: Icon(icon),
-        title: Text(title),
-        subtitle: Text(detail),
-        isThreeLine: true,
-      );
+    contentPadding: EdgeInsets.zero,
+    leading: Icon(icon),
+    title: Text(title),
+    subtitle: Text(detail),
+    isThreeLine: true,
+  );
 }
 
 class _NoCamera extends StatelessWidget {
@@ -1291,25 +1326,24 @@ class _NoCamera extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.no_photography_outlined, size: 40),
-              const SizedBox(height: 16),
-              Text(message, textAlign: TextAlign.center),
-              const SizedBox(height: 24),
-              Text(
-                'Buddy Mode watches a real board, so it cannot start without '
-                'the camera. Everything else in the app is unaffected.',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-            ],
+    child: Padding(
+      padding: const EdgeInsets.all(32),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(Icons.no_photography_outlined, size: 40),
+          const SizedBox(height: 16),
+          Text(message, textAlign: TextAlign.center),
+          const SizedBox(height: 12),
+          Text(
+            appLocalizationsOf(context).buddyCalibrationNoCameraBody,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
-        ),
-      );
+        ],
+      ),
+    ),
+  );
 }
 
 class _Notice extends StatelessWidget {
@@ -1320,21 +1354,18 @@ class _Notice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(Icons.error_outline, size: 18, color: tone),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              message,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(color: tone),
-            ),
-          ),
-        ],
-      );
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Icon(Icons.error_outline, size: 18, color: tone),
+      const SizedBox(width: 8),
+      Expanded(
+        child: Text(
+          message,
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: tone),
+        ),
+      ),
+    ],
+  );
 }
 
 /// One corner, draggable — and nudgeable without a finger.
@@ -1421,6 +1452,7 @@ class _CalibrationHandleState extends State<CalibrationHandle> {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = appLocalizationsOf(context);
     final ring = widget.hinge ? 16.0 : 26.0;
     // Focused counts as active: a keyboard user needs to see which of the eight
     // marks the arrow keys are about, for the same reason a dragging finger
@@ -1429,16 +1461,16 @@ class _CalibrationHandleState extends State<CalibrationHandle> {
     const step = CalibrationHandle.nudgeStep;
     return Semantics(
       label: widget.hinge
-          ? 'Hinge seam ${widget.index - 3} of 4'
-          : 'Board corner ${widget.index + 1} of 4',
+          ? l10n.buddyHandleHingeSeam(widget.index - 3)
+          : l10n.buddyHandleCorner(widget.index + 1),
       customSemanticsActions: <CustomSemanticsAction, VoidCallback>{
-        const CustomSemanticsAction(label: 'Nudge left'): () =>
+        CustomSemanticsAction(label: l10n.buddyNudgeLeft): () =>
             widget.onMove(const Offset(-step, 0)),
-        const CustomSemanticsAction(label: 'Nudge right'): () =>
+        CustomSemanticsAction(label: l10n.buddyNudgeRight): () =>
             widget.onMove(const Offset(step, 0)),
-        const CustomSemanticsAction(label: 'Nudge up'): () =>
+        CustomSemanticsAction(label: l10n.buddyNudgeUp): () =>
             widget.onMove(const Offset(0, -step)),
-        const CustomSemanticsAction(label: 'Nudge down'): () =>
+        CustomSemanticsAction(label: l10n.buddyNudgeDown): () =>
             widget.onMove(const Offset(0, step)),
       },
       child: Focus(
@@ -1466,10 +1498,7 @@ class _CalibrationHandleState extends State<CalibrationHandle> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: scheme.primary.withValues(alpha: lit ? 0.35 : 0.15),
-                  border: Border.all(
-                    color: scheme.primary,
-                    width: lit ? 3 : 2,
-                  ),
+                  border: Border.all(color: scheme.primary, width: lit ? 3 : 2),
                 ),
                 // The mark is a ring around a one-pixel dot rather than a
                 // filled blob: what is being placed is a POINT, and a handle
@@ -1525,7 +1554,8 @@ class BoardOutlinePainter extends CustomPainter {
       ..strokeWidth = 1
       ..color = column;
     for (final ring in columns) {
-      final path = Path()..addPolygon(<Offset>[for (final p in ring) at(p)], true);
+      final path = Path()
+        ..addPolygon(<Offset>[for (final p in ring) at(p)], true);
       canvas.drawPath(path, thin);
     }
 
@@ -1539,7 +1569,8 @@ class BoardOutlinePainter extends CustomPainter {
     );
     if (handles.isFolding) {
       canvas.drawPath(
-        Path()..addPolygon(<Offset>[for (final p in handles.hinge) at(p)], true),
+        Path()
+          ..addPolygon(<Offset>[for (final p in handles.hinge) at(p)], true),
         thick,
       );
     }
@@ -1610,8 +1641,10 @@ class BeliefPainter extends CustomPainter {
 
     Offset at(Pt board) {
       final p = calibration.geometry.imagePointOf(board);
-      return Offset(p.x / frame.width * size.width,
-          p.y / frame.height * size.height);
+      return Offset(
+        p.x / frame.width * size.width,
+        p.y / frame.height * size.height,
+      );
     }
 
     // The stack fit this board was calibrated with, which is the same
@@ -1626,7 +1659,8 @@ class BeliefPainter extends CustomPainter {
     // far half is a pitch that cannot be right, and this is the step where a
     // person is being asked to spot exactly that.
     final stacks = calibration.stacks;
-    final fitted = stacks.pitch >= StackMetrics.minPitch &&
+    final fitted =
+        stacks.pitch >= StackMetrics.minPitch &&
         stacks.pitch <= StackMetrics.maxPitch;
     final pitch = fitted ? stacks.pitch : _kNominalPitch;
     final origin = fitted ? stacks.origin : 0.0;
@@ -1643,8 +1677,8 @@ class BeliefPainter extends CustomPainter {
       final near = quad.topLeft.y >= RoiAtlas.midline;
       final count = men.abs();
       // One checker's radius on screen, from what a column measures there.
-      final span = (at(Pt(right, near ? 1 : 0)) - at(Pt(left, near ? 1 : 0)))
-          .distance;
+      final span =
+          (at(Pt(right, near ? 1 : 0)) - at(Pt(left, near ? 1 : 0))).distance;
       final radius = math.max(2.0, span / 2 * 0.82);
       for (var k = 0; k < count; k++) {
         final depth = origin + (k + 0.5) * pitch;
@@ -1761,18 +1795,19 @@ class PhoneBuddyCamera implements BuddyCamera {
     final pending = _opening;
     if (pending != null) return pending;
 
-    final opening = _openCamera().catchError(
-      (Object error, StackTrace stackTrace) {
-        _reportBuddyCameraFailure(
-          error,
-          stackTrace,
-          operation: 'while opening the camera',
-        );
-        return const CameraUnavailable(
-          'The camera could not be started. Check permissions and try again.',
-        );
-      },
-    );
+    final opening = _openCamera().catchError((
+      Object error,
+      StackTrace stackTrace,
+    ) {
+      _reportBuddyCameraFailure(
+        error,
+        stackTrace,
+        operation: 'while opening the camera',
+      );
+      return const CameraUnavailable(
+        'The camera could not be started. Check permissions and try again.',
+      );
+    });
     _opening = opening;
     return _clearOpening(opening);
   }
@@ -1913,15 +1948,14 @@ class PhoneBuddyCamera implements BuddyCamera {
     }
   }
 
-  static String _reasonFor(CameraException error) =>
-      switch (error.code) {
-        'CameraAccessDenied' ||
-        'CameraAccessDeniedWithoutPrompt' ||
-        'CameraAccessRestricted' =>
-          'Backgammon Buddy does not have permission to use the camera. Allow camera '
-              'access in your device settings and try again.',
-        _ => 'The camera could not be started. ${error.description ?? ''}'.trim(),
-      };
+  static String _reasonFor(CameraException error) => switch (error.code) {
+    'CameraAccessDenied' ||
+    'CameraAccessDeniedWithoutPrompt' ||
+    'CameraAccessRestricted' =>
+      'Backgammon Buddy does not have permission to use the camera. Allow camera '
+          'access in your device settings and try again.',
+    _ => 'The camera could not be started. ${error.description ?? ''}'.trim(),
+  };
 
   /// The controller's own preview widget, handed over unwrapped.
   ///

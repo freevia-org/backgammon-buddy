@@ -2735,4 +2735,493 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Predložena promena';
+
+  @override
+  String get buddySetupTitle => 'Igraj sa Buddyjem';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy igra';
+
+  @override
+  String get buddySetupSeatLabel => 'Tvoja strana';
+
+  @override
+  String get buddySetupSeatNear => 'Pored telefona';
+
+  @override
+  String get buddySetupSeatFar => 'Nasuprot';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Na kojoj strani table sediš? Tako Buddy numeriše polja i razlikuje tvoj početni bacaj od svog.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Kako Buddy govori';
+
+  @override
+  String get buddySetupVoiceTerse => 'Sažeto';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Prijateljski';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '„13/8, 24/22“ — zapis kojim igrači razgovaraju za tablom.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '„Pomeri jednu figuru sa 13 na 8, a drugu sa 24 na 22.“';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Komentari i objašnjenja poteza prate podešavanja Tutora sačuvana u Podešavanjima. Buddy povremeno komentariše tvoje poteze; unos bacanja i ručni potezi rade isto.';
+
+  @override
+  String get buddySetupCalibrate => 'Kalibriši tablu';
+
+  @override
+  String get buddyFixAim => 'Ispravi kadar';
+
+  @override
+  String get buddyWaitingForOpening => 'Buddy čeka bacanje kojim počinje meč.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy je izgubio tablu. Ispravi kadar i meč će se nastaviti tamo gde je stao.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Čekam sliku koju Buddy može da pročita. Ništa nije izgubljeno.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy ne vidi kockice. Unesi rezultat bacanja.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Odigraj potez na tabli. Ako ga Buddy ne vidi, unesi ga ovde.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Koji potez si odigrao?';
+
+  @override
+  String get buddyPromptCube => 'Buddy udvostručuje. Prihvataš ili odustaješ?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Odigraj Buddyjev potez na tabli, pa će Buddy nastaviti.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy razmišlja.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Čeka se kalibracija.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy i dalje ne vidi svoj potez. Tabla ispod prikazuje poziciju koju prati.';
+
+  @override
+  String get buddyPromptNotLegal => 'Taj potez nije dozvoljen.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Taj potez nije dozvoljen. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening => 'Bacite početne kockice — po jednu svaki.';
+
+  @override
+  String get buddyThrowUser => 'Baci svoje kockice.';
+
+  @override
+  String get buddyThrowBuddy => 'Baci Buddyjeve kockice.';
+
+  @override
+  String get buddyMatchOver => 'Meč je završen.';
+
+  @override
+  String get buddyYouWin => 'Pobedio si u meču.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy je pobedio u meču.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Još nema igre za udvostručavanje — prvo se bacaju početne kockice.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Možeš da udvostručiš samo na svom potezu, pre bacanja.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'U Krafordovoj partiji nema udvostručavanja — ova jedina partija odlučuje meč.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Samo vlasnik kocke može da udvostruči, a sada je kocka kod druge strane.';
+
+  @override
+  String get buddyDoubleUnavailable =>
+      'Udvostručavanje trenutno nije dostupno.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy gleda tablu.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Možeš da nastaviš meč: unesi svako bacanje na tastaturi za kockice i odigraj poteze na tabli ispod.';
+
+  @override
+  String get buddySkipCheck => 'Preskoči proveru';
+
+  @override
+  String get buddyFixedIt => 'Ispravio sam';
+
+  @override
+  String get buddyDrop => 'Odustani';
+
+  @override
+  String get buddyTake => 'Prihvati';
+
+  @override
+  String get buddyDone => 'Gotovo';
+
+  @override
+  String get buddyTranscriptLabel => 'Šta je Buddy rekao';
+
+  @override
+  String get buddyUndo => 'Opozovi';
+
+  @override
+  String get buddyConfirm => 'Potvrdi';
+
+  @override
+  String get buddyDice => 'Kockice';
+
+  @override
+  String get buddyDouble => 'Udvostruči';
+
+  @override
+  String get buddyDicePadTitle => 'Šta si bacio?';
+
+  @override
+  String get buddyEnterRoll => 'Unesi bacanje';
+
+  @override
+  String get buddyContextBeforeGame => 'Igraj sa Buddyjem';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Ti $you–$buddy Buddy · do $length · partija $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Kameru nije moguće pokrenuti. Proveri dozvole i pokušaj ponovo.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy nema dozvolu za korišćenje kamere. Dozvoli pristup kameri u podešavanjima uređaja i pokušaj ponovo.';
+
+  @override
+  String get buddyCalibrationTitle => 'Pokaži Buddyju tablu';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Prevuci četiri spoljne oznake na uglove podloge za igru, ne na drveni okvir, a četiri manje na spojeve šarke sa daljom i bližom ivicom.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Prevuci svaku oznaku na ugao podloge za igru, ne na drveni okvir.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Zatim proveri dvanaest linija na svakoj polovini: svaka treba da prati jedno polje table. Ako promaši polje, pomeri odgovarajuću oznaku.';
+
+  @override
+  String get buddyCalibrationSeatQuestion =>
+      'Koja polovina je tvoje kućno polje?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'Polovina bliža donjoj ivici slike. Ona određuje numeraciju polja, pa se i linije iznad poravnavaju prema njoj.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Drži telefon mirno. Buddy čeka da se slika umiri pre nego što nauči tablu.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Da li je ovo tvoja tabla?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy gleda tablu koju je upravo naučio.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Figure nacrtane preko slike pokazuju gde Buddy misli da su. Ako je neka na pogrešnom mestu, počni ponovo — sada traje nekoliko sekundi, a kasnije može da košta partije.';
+
+  @override
+  String get buddyCalibrationNext => 'Dalje';
+
+  @override
+  String get buddyCalibrationBack => 'Nazad';
+
+  @override
+  String get buddyCalibrationCapture => 'Snimi';
+
+  @override
+  String get buddyCalibrationStartOver => 'Počni ponovo';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Izgleda dobro';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Ove četiri oznake ne uokviruju tablu — jedna prelazi preko druge. Prevuci ih nazad u uglove podloge za igru.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Prvo tri stvari';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Skloni kockice sa table.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy sada uči praznu tablu. Ako kockica ostane na podlozi, naučiće je kao deo table i tokom ove sesije više neće videti kockice.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Postavi figure za početak partije.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Trideset figura na poznatim mestima pomaže Buddyju da nauči dve boje table bez tvog objašnjenja.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle => 'Uokviri celu površinu za igru.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Zatim ostavi telefon na mestu. Ako se pomeri, Buddy će ti reći, a ti možeš ponovo da podesiš uglove.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Kakva je tvoja tabla?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Ravna tabla';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Sklopiva tabla';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Sklopivoj tabli potrebne su još četiri oznake na spojevima šarke.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Buddy režim prati stvarnu tablu, pa ne može da se pokrene bez kamere. Sve ostalo u aplikaciji radi normalno.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Spoj šarke $number od 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Ugao table $number od 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Pomeri ulevo';
+
+  @override
+  String get buddyNudgeRight => 'Pomeri udesno';
+
+  @override
+  String get buddyNudgeUp => 'Pomeri nagore';
+
+  @override
+  String get buddyNudgeDown => 'Pomeri nadole';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Ova četiri ugla ne uokviruju tablu. Prevuci svaku oznaku na ugao površine za igru i pokušaj ponovo.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Ovih osam tačaka ne uokviruje sklopivu tablu. Postavi četiri na uglove površine za igru, a četiri na spojeve šarke, pa pokušaj ponovo.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Ne mogu da razaznam samu tablu — potpuno je prekrivena ili se gubi u senci ili odsjaju. Oslobodi tablu, dodaj svetla i pokušaj ponovo.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Ne mogu da razaznam $region — možda nešto leži na njemu ili je taj ugao previše taman. Ukloni prepreku ili dodaj svetla i pokušaj ponovo.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Dve boje figura odavde izgledaju previše slično. Obično pomaže više svetla ili ugao sa manje odsjaja.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Figure nisu u početnom položaju — na polju $number nalazi se figura pogrešne boje. Postavi tablu za početak partije i ponovo je kalibriši.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Na tablu pada toliko svetla da se boje stapaju. Priguši svetlo ili pomeri telefon da se lampa ne odbija pravo u kameru.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Mogu da pročitam tablu, ali nije spremna za početak partije. Postavi figure u početni položaj i ponovo kalibriši.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Mogu da pročitam tablu, ali ne vidim koliko je jedna figura iza druge, pa bih ih pogrešno prebrojao. Obično pomaže više svetla na bližim poljima ili malo viši ugao kamere.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Ne vidim celu tablu. Odmakni telefon ili prevuci uglove na površinu za igru.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Više ne vidim celu tablu — $region je van slike. Ponovo usmeri kameru ili proveri uglove.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition => 'Izgleda kao početni položaj.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Ne vidim nijednu figuru na početnim poljima. Postavi tablu za početak partije i pokušaj ponovo.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Tabla nije postavljena za početak partije: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region izgleda prazno, ali se partija započinje sa figurama $side na tom mestu';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return 'Na polju $region su figure $side, ali to polje na početku treba da bude prazno';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return 'Na polju $region su figure $observed, a početni položaj zahteva $expected';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Zastani na trenutak — gubim tablu dok se telefon pomera.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Dobijam drugu sliku od one na kojoj je tabla podešena, pa ne mogu da je poravnam. Ponovo podesi tablu odavde.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Slika je previše mutna da bih pročitao tablu. Sačekaj trenutak da kamera fokusira.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Tabla više nije tamo gde sam je naučio. Ponovo poravnaj uglove i odmah nastavljam partiju.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Nešto zaklanja deo table. Nastaviću čim tabla bude vidljiva.';
+
+  @override
+  String get buddyReadabilityClear => 'Vidim tablu.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Promenila se boja svetla na tabli, pa više ne izgleda kao ona koju sam naučio. Ponovo poravnaj uglove pod ovim svetlom i nastavljam partiju.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Pretamno je da pročitam tablu. Dodaj malo svetla i nastavljam tamo gde smo stali.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Na tablu pada previše svetla i boje se stapaju. Priguši svetlo ili pomeri telefon da se lampa ne odbija u kameru.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy i dalje ne vidi svoj potez — $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nMeč možeš da nastaviš: unesi svako bacanje na tastaturi za kockice i odigraj poteze na tabli ispod.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Kameru nije moguće pokrenuti. Proveri dozvole i pokušaj ponovo.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'polje $number';
+  }
+
+  @override
+  String get buddyRegionBar => 'bara';
+
+  @override
+  String get buddyRegionWhiteTray => 'poslužavnik za iznete bele figure';
+
+  @override
+  String get buddyRegionBlackTray => 'poslužavnik za iznete crne figure';
+
+  @override
+  String get buddyRegionDiceZone => 'sredina table';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Ne vidim celu tablu. Odmakni telefon ili prevuci uglove na površinu za igru.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return ' (i još $number)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Svako baca po jednu kockicu. Vrednosti određuju ko počinje.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'Bela kockica';
+
+  @override
+  String get buddyDiceOpeningSecond => 'Crna kockica';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'Dve bačene vrednosti, bilo kojim redom.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Jedna kockica';
+
+  @override
+  String get buddyDiceRegularSecond => 'Druga kockica';
 }

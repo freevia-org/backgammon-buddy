@@ -284,7 +284,7 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   Widget _body() {
     final l10n = appLocalizationsOf(context);
     if (_error != null) {
-      return Center(child: Text(l10n.analysisError('$_error')));
+      return Center(child: Text(l10n.analysisError(l10n.onlineErrorGeneric)));
     }
     if (_loading) {
       return _loadingView();

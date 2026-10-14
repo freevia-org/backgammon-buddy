@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "QR kod za pridruživanje ovoj partiji",
   "lanJoinInstruction": "Na drugom uređaju otvori Igranje u blizini, odaberi Pridruži se i skeniraj ovaj QR kod.",
   "homePlayWithBuddy": "Igraj s Buddyjem",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Igrajte s Buddyjem",
+  "buddySetupSideLabel": "Buddy igra",
+  "buddySetupSeatLabel": "Vaše mjesto",
+  "buddySetupSeatNear": "Uz telefon",
+  "buddySetupSeatFar": "Suprotan",
+  "buddySetupSeatHelp": "Na kojoj ste strani ploče. To je način na koji Buddy broji bodove i kako razlikuje vaše otvaranje od vlastitog.",
+  "buddySetupVoiceLabel": "Kako Buddy priča",
+  "buddySetupVoiceTerse": "Sažet",
+  "buddySetupVoiceFriendly": "Prijateljski",
+  "buddySetupVoiceTerseHelp": "“13/8, 24/22” — zapis, način na koji dva igrača za pločom zapravo razgovaraju.",
+  "buddySetupVoiceFriendlyHelp": "\"Pomaknite jedan žeton s 13 na 8, a jedan s 24 na 22.\"",
+  "buddySetupTutorHelp": "Komentari nastavnika i objašnjenja pokreta slijede vaše spremljene postavke nastavnika u postavkama. Buddy daje povremene povratne informacije nakon vaših igranja; tipkane kockice i ručni potezi rade na isti način.",
+  "buddySetupCalibrate": "Kalibrirajte ploču",
+  "buddyFixAim": "Popravite cilj",
+  "buddyWaitingForOpening": "Buddy čeka bacanje kojim počinje utakmica.",
+  "buddyPromptLostBoard": "Buddy je izgubio ploču. Popravite cilj i utakmica se nastavlja tamo gdje je stala.",
+  "buddyPromptWaitingPicture": "Čekam sliku Buddy može čitati. Ništa nije izgubljeno.",
+  "buddyPromptTypeDice": "Buddy ne može pronaći kockice. Umjesto toga upišite rolu.",
+  "buddyPromptPlay": "Igrajte na ploči. Dodirnite ga ovdje ako ga Buddy ne vidi.",
+  "buddyPromptWhichPlay": "Koji ste potez odigrali?",
+  "buddyPromptCube": "Buddy nudi udvostručenje. Prihvatiti ili odbiti?",
+  "buddyPromptMakeMove": "Napravite potez Buddy na ploči, a zatim će Buddy nastaviti.",
+  "buddyPromptThinking": "Buddy razmišlja.",
+  "buddyPromptWaitingCalibration": "Čeka se kalibracija.",
+  "buddyPromptMirrorNoDetail": "Buddy još uvijek ne vidi njegov pokret. Ploča ispod je pozicija koju drži.",
+  "buddyPromptNotLegal": "To nije dopušten potez.",
+  "buddyPromptNotLegalReason": "To nije dopušten potez. {reason}",
+  "buddyThrowOpening": "Bacite početnu kocku — svaki po jednu kocku.",
+  "buddyThrowUser": "Baci kocku.",
+  "buddyThrowBuddy": "Baci Buddy-ovu kocku.",
+  "buddyMatchOver": "Utakmica je gotova.",
+  "buddyYouWin": "Dobili ste utakmicu.",
+  "buddyBuddyWins": "Buddy pobjeđuje u utakmici.",
+  "buddyDoubleNoGame": "Još nema igre za dupliranje — prvo je prvo bacanje.",
+  "buddyDoubleBeforeRoll": "Možete samo udvostručiti prije bacanja, na svom potezu.",
+  "buddyDoubleCrawford": "Nema udvostručavanja u igri Crawford — ova pojedinačna igra odlučuje utakmicu.",
+  "buddyDoubleNotOwner": "Samo vlasnik kocke može udvostručiti, a druga strana je posjeduje upravo sada.",
+  "buddyDoubleUnavailable": "Udvostručenje trenutno nije dostupno.",
+  "buddyLookingAtBoard": "Buddy gleda u ploču.",
+  "buddyCameraPlayFallback": "Još uvijek možete igrati utakmicu: upišite svako bacanje na ploču s kockicama i dodirnite svoje igre na ploči ispod.",
+  "buddySkipCheck": "Preskoči ovu provjeru",
+  "buddyFixedIt": "Popravio sam to",
+  "buddyDrop": "Odbij",
+  "buddyTake": "Prihvati",
+  "buddyDone": "Gotovo",
+  "buddyTranscriptLabel": "Što je Buddy rekao",
+  "buddyUndo": "Poništi",
+  "buddyConfirm": "Potvrdi",
+  "buddyDice": "Kocke",
+  "buddyDouble": "Udvostručenje",
+  "buddyDicePadTitle": "Što ste bacili?",
+  "buddyEnterRoll": "Unesite bacanje",
+  "buddyContextBeforeGame": "Igrajte se sa Buddy",
+  "buddyContextMatchScore": "Vi {you}–{buddy} Buddy · do {length} · Igra {number}",
+  "buddyCameraUnavailable": "Kamera se nije mogla pokrenuti. Provjerite dopuštenja i pokušajte ponovno.",
+  "buddyCameraPermission": "Backgammon Buddy nema dozvolu za korištenje kamere. Dopustite pristup kameri u postavkama uređaja i pokušajte ponovo.",
+  "buddyCalibrationTitle": "Pokažite Buddy ploču",
+  "buddyCalibrationCornersFold": "Povucite četiri vanjske ručke na kutove filca - ne na drveni rub - a četiri male na šavove gdje se šarka spaja s daljim i bližim rubovima.",
+  "buddyCalibrationCornersFlat": "Povucite svaku ručku na kut filca - na površinu za igru, a ne na drveni rub oko nje.",
+  "buddyCalibrationCheckLines": "Zatim provjerite dvanaest linija u svakoj polovici: svaka bi trebala ići duž jedne točke vaše ploče. Crta koja promašuje svoju bit je ručka koju treba gurnuti.",
+  "buddyCalibrationSeatQuestion": "Koja je polovica vaša kućna ploča?",
+  "buddyCalibrationSeatHelp": "Polovica najbliža dnu slike. To je ono što popravlja brojeve bodova, tako da se crte iznad pomiču s tim.",
+  "buddyCalibrationCaptureWait": "Drži telefon mirno. Buddy čeka da se slika smiri prije nego što nauči ovu ploču.",
+  "buddyCalibrationConfirmQuestion": "Je li ovo vaša ploča?",
+  "buddyCalibrationConfirmFallback": "Buddy gleda u ploču koju je upravo naučio.",
+  "buddyCalibrationConfirmHelp": "Ljudi nacrtani preko slike su ono što Buddy misli da je na ploči. Ako je bilo koji od njih na pogrešnom mjestu, počnite ispočetka — sada košta nekoliko sekundi, a kasnije igra.",
+  "buddyCalibrationNext": "Sljedeći",
+  "buddyCalibrationBack": "Nazad",
+  "buddyCalibrationCapture": "Hvatanje",
+  "buddyCalibrationStartOver": "Kreni ispočetka",
+  "buddyCalibrationLooksRight": "Izgleda dobro",
+  "buddyCalibrationCornersInvalid": "Te četiri ručke ne ocrtavaju ploču — jedna je prešla drugu. Povucite ih natrag u kutove filca.",
+  "buddyCalibrationPrepTitle": "Prvo tri stvari",
+  "buddyCalibrationRemoveDiceTitle": "Skinite kockice s ploče.",
+  "buddyCalibrationRemoveDiceBody": "Buddy sada uči golu ploču. Kockica ostavljena na filcu uči se kao dio toga, a zatim Buddy nikada više ne može vidjeti kockicu u ovoj sesiji.",
+  "buddyCalibrationSetupCheckersTitle": "Postavite žetone u početni položaj.",
+  "buddyCalibrationSetupCheckersBody": "Trideset žetona na poznatim mjestima pomaže Buddyju prepoznati dvije boje na ploči.",
+  "buddyCalibrationFitBoardTitle": "Uklopi cijelo polje za igru ​​na sliku.",
+  "buddyCalibrationFitBoardBody": "Zatim ostavite telefon gdje jest. Ako se pomakne, Buddy će to reći i možete gurnuti uglove unazad.",
+  "buddyCalibrationBoardKind": "Kakva je to ploča?",
+  "buddyCalibrationFlatBoard": "Ravna ploča",
+  "buddyCalibrationFoldingBoard": "Preklopna torbica",
+  "buddyCalibrationBoardKindHelp": "Sklopiva daska treba četiri dodatne ručke na šavovima šarki.",
+  "buddyCalibrationNoCameraBody": "Buddy Mode promatra pravu ploču, tako da ne može započeti bez kamere. Sve ostalo u aplikaciji je nepromijenjeno.",
+  "buddyHandleHingeSeam": "Zglobni šav {number} od 4",
+  "buddyHandleCorner": "Kutak ploče {number} od 4",
+  "buddyNudgeLeft": "Pomakni lijevo",
+  "buddyNudgeRight": "Pomaknite desno",
+  "buddyNudgeUp": "Gurkati gore",
+  "buddyNudgeDown": "Gurnuti dolje",
+  "buddyCalibrationProblemCorners": "Ta četiri kuta ne ocrtavaju ploču. Povucite svaku ručku u kut polja za igru ​​i pokušajte ponovno.",
+  "buddyCalibrationProblemFoldCorners": "Tih osam točaka ne ocrtava sklopivu ploču. Stavite četiri na kutove igrališta i četiri na šavove šarki, a zatim pokušajte ponovno.",
+  "buddyCalibrationProblemUnreadable": "Ne mogu razaznati samu ploču — svaki njen dio je prekriven ili izgubljen u sjeni ili odsjaju. Očistite ploču, dodajte malo svjetla i pokušajte ponovo.",
+  "buddyCalibrationProblemRegionUnreadable": "Ne mogu razaznati {region} — možda nešto leži na njemu ili je taj kut ploče možda pretaman za čitanje. Obrišite ga ili dodajte malo svjetla i pokušajte ponovno.",
+  "buddyCalibrationProblemColours": "Dva seta dama odavde izgledaju previše slični. Više svjetla, ili kut s manje odsjaja na ploči, obično to popravi.",
+  "buddyCalibrationProblemWrongChecker": "Žetoni nisu u početnom položaju — polje {number} ima pogrešnu boju. Postavite ploču za početak partije pa ponovno kalibrirajte.",
+  "buddyCalibrationProblemOverexposed": "Na ploči je toliko svjetla da se boje prelijevaju jedna u drugu. Prigušite svjetlo ili pomaknite telefon tako da lampa ne svijetli ravno u njega.",
+  "buddyCalibrationProblemReadBack": "Mogu čitati ovu ploču, ali ne kao igru ​​koja će uskoro početi. Postavite ljude za početak igre, a zatim ponovno kalibrirajte.",
+  "buddyCalibrationProblemStacks": "Mogu pročitati ploču, ali ne mogu razaznati koliko se žetona nalazi u pojedinom nizu — zato bih mogao pogriješiti u brojanju. Obično pomaže više svjetla na bližim poljima ili malo viši kut kamere.",
+  "buddyCalibrationProblemNotVisible": "Ne mogu vidjeti cijelu ploču. Pomaknite telefon natrag ili povucite kutove na igralište.",
+  "buddyConfirmBoardOutOfFrame": "Više ne mogu vidjeti cijelu ploču — {region} je izvan slike. Ponovno poravnajte kameru ili ponovno provjerite kutove.",
+  "buddyConfirmStartingPosition": "To izgleda kao početna pozicija.",
+  "buddyConfirmNoCheckers": "Ne vidim žetone na početnim poljima. Postavite ih u početni položaj i pokušajte ponovno.",
+  "buddyConfirmWrongPosition": "Ploča nije postavljena za početak igre: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} izgleda prazno, ali igra počinje sa {side} tamo",
+  "buddyConfirmRegionUnexpected": "{region} ima {side} na sebi, ali igra počinje s praznim",
+  "buddyConfirmRegionWrongSide": "{region} ima {observed} na sebi, gdje igra počinje sa {expected}",
+  "buddyReadabilityMotion": "Stani mirno na trenutak — gubim ploču dok se telefon pomiče.",
+  "buddyReadabilityWrongFrame": "Slika koju sam dobio nije ona na kojoj je ova ploča postavljena, tako da ne mogu ništa poredati na njoj. Ponovno postavite ploču odavde.",
+  "buddyReadabilityBlur": "Slika je previše mekana za čitanje ploče. Dajte kameri trenutak da se fokusira.",
+  "buddyReadabilityCalibrationStale": "Ploča nije gdje je bila kad sam je naučio. Ponovno poravnajte kutove i ja ću odabrati igru ​​ravno gore.",
+  "buddyReadabilityOccluded": "Nešto prekriva dio ploče. Nastavit ću čim bude jasno.",
+  "buddyReadabilityClear": "Vidim ploču.",
+  "buddyReadabilityColorChanged": "Svjetlo na ploči je promijenilo boju, tako da ploča više ne izgleda kao ona koju sam naučio. Ponovno poravnajte kutove pod ovim svjetlom i ja ću odabrati igru ​​ravno gore.",
+  "buddyReadabilityTooDark": "It is too dark to read the board. Još malo svjetla i nastavit ću gdje smo bili.",
+  "buddyReadabilityTooBright": "Na ploči je toliko svjetla da se boje prelijevaju jedna u drugu. Prigušite ga ili pomaknite telefon tako da lampa ne svijetli ravno u njega.",
+  "buddyPromptBeliefMirror": "Buddy još uvijek ne vidi svoj pokret — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nJoš uvijek možete igrati utakmicu: upišite svako bacanje na ploču s kockicama i dodirnite svoje igre na ploči ispod.",
+  "buddyCameraGenericError": "Kamera se nije mogla pokrenuti. Provjerite dopuštenja i pokušajte ponovno.",
+  "buddyRegionPoint": "točka {number}",
+  "buddyRegionBar": "bar",
+  "buddyRegionWhiteTray": "bijeli pladanj za iznošenje žetona",
+  "buddyRegionBlackTray": "crni pladanj za iznošenje žetona",
+  "buddyRegionDiceZone": "sredina ploče",
+  "buddyCalibrationProblemVisible": "Ne mogu vidjeti cijelu ploču. Pomaknite telefon natrag ili povucite kutove na igralište.",
+  "buddyConfirmMore": "(i još {number})",
+  "buddyDiceOpeningCaption": "Svaki igrač baca po jednu kockicu. Veći broj određuje tko počinje.",
+  "buddyDiceOpeningFirst": "bijela kockica",
+  "buddyDiceOpeningSecond": "crna kockica",
+  "buddyDiceRegularCaption": "Dva lica na stolu, bilo kojim redom.",
+  "buddyDiceRegularFirst": "Jedan umri",
+  "buddyDiceRegularSecond": "Drugi",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

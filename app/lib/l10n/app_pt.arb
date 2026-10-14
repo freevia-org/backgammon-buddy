@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "Código QR para entrar neste jogo",
   "lanJoinInstruction": "No outro dispositivo, abra Jogar por Perto, escolha Entrar e leia este código QR.",
   "homePlayWithBuddy": "Jogar com o Buddy",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Jogar com o Buddy",
+  "buddySetupSideLabel": "O Buddy joga",
+  "buddySetupSeatLabel": "O seu lado",
+  "buddySetupSeatNear": "Perto do telemóvel",
+  "buddySetupSeatFar": "Do lado oposto",
+  "buddySetupSeatHelp": "Em que lado do tabuleiro está? É assim que o Buddy numera os pontos e distingue o seu dado inicial do dele.",
+  "buddySetupVoiceLabel": "Como fala o Buddy",
+  "buddySetupVoiceTerse": "Conciso",
+  "buddySetupVoiceFriendly": "Descontraído",
+  "buddySetupVoiceTerseHelp": "“13/8, 24/22” — a notação que dois jogadores usam ao tabuleiro.",
+  "buddySetupVoiceFriendlyHelp": "“Mova uma peça de 13 para 8 e outra de 24 para 22.”",
+  "buddySetupTutorHelp": "Os comentários e explicações de jogadas seguem as preferências do Tutor guardadas nas Definições. O Buddy dá algum feedback após as suas jogadas; introduzir os dados e mover as peças manualmente funciona da mesma forma.",
+  "buddySetupCalibrate": "Calibrar o tabuleiro",
+  "buddyFixAim": "Ajustar a orientação",
+  "buddyWaitingForOpening": "O Buddy está à espera do lançamento que inicia a partida.",
+  "buddyPromptLostBoard": "O Buddy perdeu o tabuleiro. Ajuste a orientação e a partida continua de onde parou.",
+  "buddyPromptWaitingPicture": "À espera de uma imagem que o Buddy consiga ler. Não perdeu nada.",
+  "buddyPromptTypeDice": "O Buddy não consegue encontrar os dados. Introduza o lançamento.",
+  "buddyPromptPlay": "Faça a sua jogada no tabuleiro. Se o Buddy não a detetar, indique-a aqui.",
+  "buddyPromptWhichPlay": "Que jogada fez?",
+  "buddyPromptCube": "O Buddy dobra. Aceita ou desiste?",
+  "buddyPromptMakeMove": "Faça a jogada do Buddy no tabuleiro; depois, ele continuará.",
+  "buddyPromptThinking": "O Buddy está a pensar.",
+  "buddyPromptWaitingCalibration": "À espera da calibração.",
+  "buddyPromptMirrorNoDetail": "O Buddy ainda não consegue ver a sua jogada. O tabuleiro abaixo mostra a posição que está a acompanhar.",
+  "buddyPromptNotLegal": "Essa jogada não é válida.",
+  "buddyPromptNotLegalReason": "Essa jogada não é válida. {reason}",
+  "buddyThrowOpening": "Lance os dados iniciais — um dado para cada jogador.",
+  "buddyThrowUser": "Lance os seus dados.",
+  "buddyThrowBuddy": "Lance os dados do Buddy.",
+  "buddyMatchOver": "A partida terminou.",
+  "buddyYouWin": "Ganhou a partida.",
+  "buddyBuddyWins": "O Buddy ganhou a partida.",
+  "buddyDoubleNoGame": "Ainda não há jogo para dobrar — primeiro é preciso lançar os dados iniciais.",
+  "buddyDoubleBeforeRoll": "Só pode dobrar na sua vez e antes de lançar os dados.",
+  "buddyDoubleCrawford": "Não há duplicação no jogo de Crawford — este jogo único decide a partida.",
+  "buddyDoubleNotOwner": "Só quem tem o cubo pode dobrar; neste momento, pertence ao outro lado.",
+  "buddyDoubleUnavailable": "Não é possível dobrar neste momento.",
+  "buddyLookingAtBoard": "O Buddy está a olhar para o tabuleiro.",
+  "buddyCameraPlayFallback": "Ainda pode jogar a partida: introduza cada lançamento no teclado dos dados e faça as jogadas no tabuleiro abaixo.",
+  "buddySkipCheck": "Ignorar esta verificação",
+  "buddyFixedIt": "Já corrigi",
+  "buddyDrop": "Desistir",
+  "buddyTake": "Aceitar",
+  "buddyDone": "Concluído",
+  "buddyTranscriptLabel": "O que o Buddy disse",
+  "buddyUndo": "Anular",
+  "buddyConfirm": "Confirmar",
+  "buddyDice": "Dados",
+  "buddyDouble": "Dobrar",
+  "buddyDicePadTitle": "Que dados lançou?",
+  "buddyEnterRoll": "Introduzir lançamento",
+  "buddyContextBeforeGame": "Jogar com o Buddy",
+  "buddyContextMatchScore": "Tu {you}–{buddy} Buddy · até {length} · Jogo {number}",
+  "buddyCameraUnavailable": "Não foi possível iniciar a câmara. Verifique as permissões e tente novamente.",
+  "buddyCameraPermission": "O Backgammon Buddy não tem permissão para usar a câmara. Ative o acesso à câmara nas definições do dispositivo e tente novamente.",
+  "buddyCalibrationTitle": "Mostre o tabuleiro ao Buddy",
+  "buddyCalibrationCornersFold": "Arraste as quatro marcas exteriores para os cantos do pano — não para a moldura de madeira — e as quatro pequenas para as junções da dobradiça com as bordas de cima e de baixo.",
+  "buddyCalibrationCornersFlat": "Arraste cada marca para um canto do pano, a superfície de jogo, e não para a moldura de madeira.",
+  "buddyCalibrationCheckLines": "Depois, verifique as doze linhas em cada metade: todas devem acompanhar um ponto do tabuleiro. Se alguma falhar o ponto, ajuste a marca correspondente.",
+  "buddyCalibrationSeatQuestion": "Qual metade é o seu campo?",
+  "buddyCalibrationSeatHelp": "A metade mais próxima da parte inferior da imagem. Isto define a numeração dos pontos, e as linhas acima acompanham-na.",
+  "buddyCalibrationCaptureWait": "Mantenha o telemóvel imóvel. O Buddy espera que a imagem estabilize para aprender este tabuleiro.",
+  "buddyCalibrationConfirmQuestion": "Este é o seu tabuleiro?",
+  "buddyCalibrationConfirmFallback": "O Buddy está a observar o tabuleiro que acabou de aprender.",
+  "buddyCalibrationConfirmHelp": "As peças desenhadas sobre a imagem mostram o que o Buddy pensa que está no tabuleiro. Se alguma estiver no sítio errado, comece de novo — agora demora segundos, mais tarde pode custar uma partida.",
+  "buddyCalibrationNext": "Seguinte",
+  "buddyCalibrationBack": "Voltar",
+  "buddyCalibrationCapture": "Capturar",
+  "buddyCalibrationStartOver": "Começar de novo",
+  "buddyCalibrationLooksRight": "Parece correto",
+  "buddyCalibrationCornersInvalid": "Estas quatro marcas não delimitam um tabuleiro — uma cruzou-se com outra. Arraste-as novamente para os cantos do pano.",
+  "buddyCalibrationPrepTitle": "Primeiro, três coisas",
+  "buddyCalibrationRemoveDiceTitle": "Retire os dados do tabuleiro.",
+  "buddyCalibrationRemoveDiceBody": "O Buddy vai aprender o tabuleiro sem peças. Se deixar um dado no pano, ele será aprendido como parte do tabuleiro e o Buddy deixará de conseguir ver os dados nesta sessão.",
+  "buddyCalibrationSetupCheckersTitle": "Prepare as peças para o início de uma partida.",
+  "buddyCalibrationSetupCheckersBody": "As trinta peças nas posições conhecidas permitem ao Buddy aprender as duas cores do tabuleiro sem precisar que lhas indique.",
+  "buddyCalibrationFitBoardTitle": "Enquadre todo o campo de jogo.",
+  "buddyCalibrationFitBoardBody": "Depois, deixe o telemóvel onde está. Se ele se mexer, o Buddy avisa e pode reajustar os cantos.",
+  "buddyCalibrationBoardKind": "Que tipo de tabuleiro tem?",
+  "buddyCalibrationFlatBoard": "Tabuleiro plano",
+  "buddyCalibrationFoldingBoard": "Tabuleiro dobrável",
+  "buddyCalibrationBoardKindHelp": "Um tabuleiro dobrável precisa de mais quatro marcas nas junções da dobradiça.",
+  "buddyCalibrationNoCameraBody": "O modo Buddy observa um tabuleiro real, por isso não pode iniciar sem a câmara. O resto da aplicação continua a funcionar normalmente.",
+  "buddyHandleHingeSeam": "Junção da dobradiça {number} de 4",
+  "buddyHandleCorner": "Canto do tabuleiro {number} de 4",
+  "buddyNudgeLeft": "Ajustar para a esquerda",
+  "buddyNudgeRight": "Ajustar para a direita",
+  "buddyNudgeUp": "Ajustar para cima",
+  "buddyNudgeDown": "Ajustar para baixo",
+  "buddyCalibrationProblemCorners": "Estes quatro cantos não delimitam um tabuleiro. Arraste cada marca para um canto do campo de jogo e tente novamente.",
+  "buddyCalibrationProblemFoldCorners": "Estes oito pontos não delimitam um tabuleiro dobrável. Coloque quatro nos cantos do campo e quatro nas junções da dobradiça; depois, tente novamente.",
+  "buddyCalibrationProblemUnreadable": "Não consigo distinguir o tabuleiro — está totalmente tapado ou perdido na sombra ou no reflexo. Desimpeça-o, melhore a iluminação e tente novamente.",
+  "buddyCalibrationProblemRegionUnreadable": "Não consigo distinguir {region} — pode haver algo pousado aí ou esse canto pode estar demasiado escuro. Desimpeça-o ou melhore a iluminação e tente novamente.",
+  "buddyCalibrationProblemColours": "As duas cores das peças parecem demasiado semelhantes daqui. Mais luz ou um ângulo com menos reflexo costuma resolver o problema.",
+  "buddyCalibrationProblemWrongChecker": "As peças não estão na posição inicial — o ponto {number} tem uma peça da cor errada. Prepare o tabuleiro para o início de uma partida e calibre novamente.",
+  "buddyCalibrationProblemOverexposed": "Há tanta luz no tabuleiro que as cores se confundem. Diminua a luz ou mude o telemóvel de posição para a lâmpada não refletir diretamente na câmara.",
+  "buddyCalibrationProblemReadBack": "Consigo ler o tabuleiro, mas não está preparado para começar uma partida. Coloque as peças na posição inicial e calibre novamente.",
+  "buddyCalibrationProblemStacks": "Consigo ler o tabuleiro, mas não percebo bem a distância entre peças sobrepostas, por isso contaria mal. Mais luz nos pontos próximos ou um ângulo da câmara um pouco mais alto costuma resolver.",
+  "buddyCalibrationProblemNotVisible": "Não consigo ver o tabuleiro todo. Afaste o telemóvel ou arraste os cantos para o campo de jogo.",
+  "buddyConfirmBoardOutOfFrame": "Já não consigo ver o tabuleiro todo — {region} está fora da imagem. Alinhe novamente a câmara ou verifique os cantos.",
+  "buddyConfirmStartingPosition": "Parece estar na posição inicial.",
+  "buddyConfirmNoCheckers": "Não consigo ver nenhuma peça numa posição inicial. Prepare o tabuleiro para o início de uma partida e tente novamente.",
+  "buddyConfirmWrongPosition": "O tabuleiro não está preparado para o início de uma partida: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} parece vazio, mas a partida começa com {side} nessa posição",
+  "buddyConfirmRegionUnexpected": "{region} tem {side}, mas a partida começa com essa posição vazia",
+  "buddyConfirmRegionWrongSide": "{region} tem {observed}, mas a partida começa com {expected} nessa posição",
+  "buddyReadabilityMotion": "Fique imóvel por um instante — perco o tabuleiro quando o telemóvel se mexe.",
+  "buddyReadabilityWrongFrame": "A imagem que recebo não é a mesma em que este tabuleiro foi configurado, por isso não consigo alinhá-lo. Configure novamente o tabuleiro a partir daqui.",
+  "buddyReadabilityBlur": "A imagem está demasiado desfocada para ler o tabuleiro. Aguarde um momento até a câmara focar.",
+  "buddyReadabilityCalibrationStale": "O tabuleiro já não está onde o aprendi. Alinhe novamente os cantos e retomo a partida de imediato.",
+  "buddyReadabilityOccluded": "Há algo a tapar parte do tabuleiro. Continuo assim que estiver desimpedido.",
+  "buddyReadabilityClear": "Consigo ver o tabuleiro.",
+  "buddyReadabilityColorChanged": "A cor da luz sobre o tabuleiro mudou e ele já não parece igual ao que aprendi. Alinhe novamente os cantos com esta luz e retomo a partida.",
+  "buddyReadabilityTooDark": "Está demasiado escuro para ler o tabuleiro. Com um pouco mais de luz, continuo de onde parámos.",
+  "buddyReadabilityTooBright": "Há tanta luz no tabuleiro que as cores se confundem. Diminua a luz ou mude o telemóvel para a lâmpada não refletir diretamente na câmara.",
+  "buddyPromptBeliefMirror": "O Buddy ainda não consegue ver a sua jogada — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nAinda pode jogar a partida: introduza cada lançamento no teclado dos dados e faça as jogadas no tabuleiro abaixo.",
+  "buddyRegionPoint": "o ponto {number}",
+  "buddyRegionBar": "a barra",
+  "buddyRegionWhiteTray": "a bandeja de saída das brancas",
+  "buddyRegionBlackTray": "a bandeja de saída das pretas",
+  "buddyRegionDiceZone": "o centro do tabuleiro",
+  "buddyCalibrationProblemVisible": "Não consigo ver o tabuleiro todo. Afaste o telemóvel ou arraste os cantos para o campo de jogo.",
+  "buddyConfirmMore": " (e mais {number})",
+  "buddyDiceOpeningCaption": "Um dado para cada jogador. A face de cada dado determina quem começa.",
+  "buddyDiceOpeningFirst": "Dado das brancas",
+  "buddyDiceOpeningSecond": "Dado das pretas",
+  "buddyDiceRegularCaption": "As duas faces lançadas, em qualquer ordem.",
+  "buddyDiceRegularFirst": "Um dado",
+  "buddyDiceRegularSecond": "O outro dado",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyCameraGenericError": "Não foi possível iniciar a câmara. Verifique as permissões e tente novamente."
 }

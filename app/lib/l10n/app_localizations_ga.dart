@@ -2744,4 +2744,499 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Athrú molta';
+
+  @override
+  String get buddySetupTitle => 'Imir le Buddy';
+
+  @override
+  String get buddySetupSideLabel => 'Imríonn Buddy';
+
+  @override
+  String get buddySetupSeatLabel => 'Do shuíochán';
+
+  @override
+  String get buddySetupSeatNear => 'Ar an teileafón';
+
+  @override
+  String get buddySetupSeatFar => 'os coinne';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Cén taobh den chlár a bhfuil tú. Sin é mar a uimhriú Buddy na pointí agus mar a dhéanann sé idirdhealú idir do dhísle tosaigh agus a dhísle féin.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Mar a labhraíonn Buddy';
+
+  @override
+  String get buddySetupVoiceTerse => 'Go hachomair';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Cairdiúil';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '“13/8, 24/22” — nodaireacht, an bealach a labhraíonn beirt imreoirí ag bord i ndáiríre.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '“Bog seiceálaí amháin ó 13 go 8, agus ceann amháin ó 24 go 22.”';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Leanann tráchtaireacht teagascóra agus mínithe ar bhogadh do shainroghanna Teagascóra sábháilte sna Socruithe. Tugann Buddy aiseolas ó am go chéile tar éis do dhrámaí; oibríonn dísle clóscríofa agus bogtha láimhe ar an mbealach céanna.';
+
+  @override
+  String get buddySetupCalibrate => 'Calabraigh an bord';
+
+  @override
+  String get buddyFixAim => 'Deisigh an aidhm';
+
+  @override
+  String get buddyWaitingForOpening =>
+      'Buddy ag fanacht leis an caith a thosaíonn an cluiche.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Tá an bord caillte ag Buddy. Deisigh an aidhm agus leanann an cluiche ar aghaidh nuair a stop sé.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Ag fanacht le pictiúr is féidir Buddy a léamh. Níl aon rud caillte.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Ní féidir le Buddy na dísle a aimsiú. Clóscríobh an rolla ina ionad.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Déan do imirt ar an gclár. Tapáil amach anseo mura bhfeiceann Buddy é.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Cén bogadh a rinne tú?';
+
+  @override
+  String get buddyPromptCube =>
+      'Tá Buddy ag tairiscint dúbailt. An nglacann tú léi nó an ndiúltaíonn tú di?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Déan bogadh Buddy ar an gclár, ansin leanfaidh Buddy ar aghaidh.';
+
+  @override
+  String get buddyPromptThinking => 'Tá Buddy ag smaoineamh.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Ag fanacht le calabrú.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Ní féidir le Buddy an t-aistriú a fheiceáil go fóill. Is é an bord thíos an seasamh atá aige.';
+
+  @override
+  String get buddyPromptNotLegal => 'Ní bogadh dleathach é sin.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Ní bogadh dleathach é sin. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening =>
+      'Caith an dísle oscailt - bás amháin an ceann.';
+
+  @override
+  String get buddyThrowUser => 'Caith do dhísle.';
+
+  @override
+  String get buddyThrowBuddy => 'Caith dísle Buddy.';
+
+  @override
+  String get buddyMatchOver => 'Tá an cluiche thart.';
+
+  @override
+  String get buddyYouWin => 'Bhuaigh tú an cluiche.';
+
+  @override
+  String get buddyBuddyWins => 'Bhuaigh Buddy an cluiche.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Níl aon chluiche le dúbailt ann fós - is é an chéad chaitheamh a thagann ar dtús.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Ní féidir leat ach dúbailt roimh rolladh, ar do sheal.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'Gan aon dúbailt sa chluiche Crawford — cinneann an cluiche aonair seo an cluiche.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Ní féidir ach an t-úinéir ciúb a dhúbailt, agus is leis an taobh eile é faoi láthair.';
+
+  @override
+  String get buddyDoubleUnavailable => 'Níl dúbailt ar fáil faoi láthair.';
+
+  @override
+  String get buddyLookingAtBoard => 'Tá Buddy ag féachaint ar an mbord.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Is féidir leat an cluiche a imirt fós: clóscríobh gach rolla ar an eochaircheap dísle agus tapáil do chuid drámaí amach ar an gclár thíos.';
+
+  @override
+  String get buddySkipCheck => 'Léim an seic seo';
+
+  @override
+  String get buddyFixedIt => 'Tá sé socraithe agam';
+
+  @override
+  String get buddyDrop => 'Diúltaigh';
+
+  @override
+  String get buddyTake => 'Glac leis';
+
+  @override
+  String get buddyDone => 'Déanta';
+
+  @override
+  String get buddyTranscriptLabel => 'Cad a dúirt Buddy';
+
+  @override
+  String get buddyUndo => 'Cealaigh';
+
+  @override
+  String get buddyConfirm => 'Deimhnigh';
+
+  @override
+  String get buddyDice => 'dísle';
+
+  @override
+  String get buddyDouble => 'Dúbailt';
+
+  @override
+  String get buddyDicePadTitle => 'Cad a chaith tú?';
+
+  @override
+  String get buddyEnterRoll => 'Cuir isteach an caitheamh';
+
+  @override
+  String get buddyContextBeforeGame => 'Seinn le Buddy';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Tusa $you–$buddy Buddy · go $length · Cluiche $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Níorbh fhéidir an ceamara a thosú. Seiceáil ceadanna agus bain triail eile as.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Níl cead ag backgammon Buddy an ceamara a úsáid. Ceadaigh rochtain ceamara i socruithe do ghléis agus bain triail eile as.';
+
+  @override
+  String get buddyCalibrationTitle => 'Taispeáin Buddy an clár';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Tarraing na ceithre láimhe seachtracha isteach ar choirnéil an fheilt — ní ar an imeall adhmaid — agus na ceithre cinn bheaga ar na seams mar a mbuaileann an inse leis na himill i bhfad agus i gcóngar.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Tarraing gach hanla ar chúinne den fheilt — an dromchla imeartha, ní an imeall adhmaid timpeall air.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Ansin seiceáil an dá líne déag síos gach leath: ba chóir gach ceann ag rith feadh pointe de do chlár. Is éard atá i líne a chailleann a pointe ná láimhseáil nach mór a nudging.';
+
+  @override
+  String get buddyCalibrationSeatQuestion =>
+      'Cén leath atá mar do chlár baile?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'An leath is gaire do bhun an phictiúir. Is é seo a shocraíonn na huimhreacha pointí, mar sin bogann na línte thuas leis.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Coinnigh an teileafón fós. Tá Buddy ag fanacht leis an bpictiúr a shocrú sula bhfoghlaimíonn sé an bord seo.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'An é seo do bhord?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Tá Buddy ag féachaint ar an mbord atá díreach foghlamtha aige.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Is iad na fir a tarraingíodh os cionn an phictiúir ná an rud a cheapann Buddy atá ar an gclár. Má tá aon cheann acu san áit mícheart, tosaigh arís - cosnaíonn sé soicind anois agus cluiche níos déanaí.';
+
+  @override
+  String get buddyCalibrationNext => 'Ar aghaidh';
+
+  @override
+  String get buddyCalibrationBack => 'Ar ais';
+
+  @override
+  String get buddyCalibrationCapture => 'Gabháil';
+
+  @override
+  String get buddyCalibrationStartOver => 'Tosaigh os a chionn';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Breathnaíonn ceart';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Ní imlíníonn na ceithre lámh sin bord — tá ceann amháin acu tar éis ceann eile a thrasnú. Tarraing ar ais go dtí coirnéil an fheilt iad.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Trí rud ar dtús';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Tóg an dísle den chlár.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy foghlaimíonn an bord lom anois. Foghlaimítear dísle a fhágtar ar an bhfeilt mar chuid de, agus ansin ní féidir le Buddy na dísle a fheiceáil arís an seisiún seo.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Cuir na fir sa suíomh tosaigh.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Cuidíonn na tríocha fear sna suíomhanna tosaigh le Buddy dhá dhath an chláir a aithint.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Fit an pháirc imeartha ar fad sa phictiúr.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Ansin fág an fón áit a bhfuil sé. Má bhogann sé, déarfaidh Buddy amhlaidh agus is féidir leat na coirnéil a bhrú ar ais.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Cén cineál boird é?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Bord cothrom';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Cás fillte';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Tá ceithre lámh breise ag teastáil ó chlár fillte ar na seams hinge.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Féachann Mód Buddy ar fhíorchlár, mar sin ní féidir leis tosú gan an ceamara. Níl aon tionchar ar gach rud eile san aip.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Seam hinge $number de 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Cúinne boird $number de 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Nudge fhág';
+
+  @override
+  String get buddyNudgeRight => 'Nudge ceart';
+
+  @override
+  String get buddyNudgeUp => 'Nudge suas';
+
+  @override
+  String get buddyNudgeDown => 'Nudge síos';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Ní imlíníonn na ceithre choirnéal sin bord. Tarraing gach cas isteach ar choirnéal na páirce imeartha agus bain triail eile as.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Ní thugann na hocht bpointe sin cuntas ar chlár fillte. Cuir ceithre cinn ar choirnéil na páirce imeartha agus ceithre cinn ar na seams inse, ansin bain triail eile as.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Ní féidir liom an bord féin a dhéanamh amach — tá gach cuid de clúdaithe, nó caillte le scáth nó le glare. Glan an bord, cuir roinnt solas, agus bain triail eile as.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Ní féidir liom $region a dhéanamh amach — b\'fhéidir go bhfuil rud éigin ag luí air, nó b\'fhéidir go bhfuil cúinne an chláir ró-dhorcha le léamh. Glan é, nó cuir solas éigin leis, agus bain triail eile as.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Breathnaíonn an dá shraith seiceálaithe i bhfad ró-chosúil ó anseo. De ghnáth socraíonn níos mó solais, nó uillinn le níos lú dalladh ar an gclár é.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Níl na fir sa suíomh tosaigh — tá fear den dath mícheart ar phointe $number. Cuir an clár sa suíomh tosaigh agus calabraigh arís.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Tá an oiread sin solais ar an gclár go bhfuil a dathanna ag níochán isteach i ngach ceann eile. Laghdaigh an solas, nó bog an fón ionas nach mbeidh an lampa ag taitneamh díreach siar air.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Is féidir liom an clár seo a léamh, ach ní mar chluiche atá ar tí tosú. Socraigh na fir suas do thús cluiche, ansin calabrú arís.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Is féidir liom an clár a léamh, ach ní féidir liom líon na bhfear atá cruachta a dheimhniú ón áit seo, mar sin d’fhéadfainn an líon a fháil mícheart. De ghnáth cabhraíonn níos mó solais ar na pointí cóngaracha nó uillinn cheamara beagán níos airde.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Ní féidir liom an bord ar fad a fheiceáil. Bog an fón ar ais, nó tarraing na coirnéil ar an bpáirc imeartha.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Ní féidir liom an bord ar fad a fheiceáil níos mó - tá $region lasmuigh den phictiúr. Líne an ceamara suas arís, nó athsheiceáil na coirnéil.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition =>
+      'Is cosúil go bhfuil an suíomh tosaigh sin.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Ní fheicim fir ar na pointí sa suíomh tosaigh. Cuir an clár sa suíomh tosaigh agus bain triail eile as.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Níl an bord socraithe chun cluiche a thosú: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return 'Breathnaíonn $region folamh, ach tosaíonn an cluiche le $side ann';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return 'Tá $region ag $side air, ach tosaíonn an cluiche leis folamh';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return 'Tá $region ag $observed air, áit a dtosaíonn an cluiche le $expected';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Coinnigh nóiméad fós - caillim an bord agus an fón ag bogadh.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Ní hé an pictiúr atá á thabhairt agam an ceann ar cuireadh an bord seo ar bun, mar sin ní féidir liom aon rud a chur suas ann. Socraigh an bord arís as seo.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Tá an pictiúr ró-bhog chun an clár a léamh uaidh. Tabhair nóiméad chun díriú ar an gceamara.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Níl an bord áit a raibh sé nuair a d\'fhoghlaim mé é. Líne na coirnéil suas arís agus roghnóidh mé an cluiche díreach ar ais suas.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Tá rud éigin ag clúdach cuid den bhord. Leanfaidh mé ar aghaidh chomh luath agus is léir.';
+
+  @override
+  String get buddyReadabilityClear => 'Is féidir liom an bord a fheiceáil.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Tá dath athraithe ag an solas ar an gclár, mar sin níl cuma ar an gclár leis an gceann a d’fhoghlaim mé a thuilleadh. Líne na coirnéil suas arís faoin solas seo agus roghnóidh mé an cluiche díreach ar ais suas.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Tá sé ró-dhorcha an clár a léamh. Beagán níos mó solais agus leanfaidh mé ar aghaidh san áit a raibh muid.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Tá an oiread sin solais ar an gclár go bhfuil a dathanna ag rith isteach i ngach ceann eile. Laghdaigh é, nó bog an fón ionas nach mbeidh an lampa ag taitneamh díreach siar air.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Ní féidir le Buddy an t-aistriú a fheiceáil go fóill — $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nIs féidir leat an cluiche a imirt fós: clóscríobh gach rolla ar an eochaircheap dísle agus tapáil do chuid drámaí amach ar an gclár thíos.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Níorbh fhéidir an ceamara a thosú. Seiceáil ceadanna agus bain triail eile as.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'an pointe $number';
+  }
+
+  @override
+  String get buddyRegionBar => 'an barra';
+
+  @override
+  String get buddyRegionWhiteTray =>
+      'tráidire chun fir bhána a thabhairt den chlár';
+
+  @override
+  String get buddyRegionBlackTray =>
+      'tráidire chun fir dhubha a thabhairt den chlár';
+
+  @override
+  String get buddyRegionDiceZone => 'lár an bhoird';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Ní féidir liom an bord ar fad a fheiceáil. Bog an fón ar ais, nó tarraing na coirnéil ar an bpáirc imeartha.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return '(agus $number níos mó)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Caitheann gach imreoir dísle amháin. Tosaíonn an té a chaitheann an uimhir is airde.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'dísle bán';
+
+  @override
+  String get buddyDiceOpeningSecond => 'dísle dubh';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'An dá aghaidh ar an mbord, i gceachtar den dá ord.';
+
+  @override
+  String get buddyDiceRegularFirst => 'bás amháin';
+
+  @override
+  String get buddyDiceRegularSecond => 'An ceann eile';
 }

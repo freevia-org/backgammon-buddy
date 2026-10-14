@@ -1613,5 +1613,266 @@
   "lanJoinInstruction": "Sur l’autre appareil, ouvre Jeu à proximité, choisis Rejoindre, puis scanne ce code QR.",
   "homePlayWithBuddy": "Jouer avec Buddy",
   "homeBuddyShort": "Buddy",
-  "feedbackExcerptTruncated": "(extrait tronqué — utilise « Copier dans le presse-papiers » sur l’écran Diagnostics pour obtenir le journal complet)"
+  "feedbackExcerptTruncated": "(extrait tronqué — utilise « Copier dans le presse-papiers » sur l’écran Diagnostics pour obtenir le journal complet)",
+  "buddySetupTitle": "Jouez avec Buddy",
+  "buddySetupSideLabel": "Buddy joue",
+  "buddySetupSeatLabel": "Votre siège",
+  "buddySetupSeatNear": "Par téléphone",
+  "buddySetupSeatFar": "Opposé",
+  "buddySetupSeatHelp": "De quel côté du tableau vous vous trouvez. C'est ainsi que Buddy numérote les points et comment il indique votre dé d'ouverture à partir du sien.",
+  "buddySetupVoiceLabel": "Comment Buddy parle",
+  "buddySetupVoiceTerse": "Laconique",
+  "buddySetupVoiceFriendly": "Amical",
+  "buddySetupVoiceTerseHelp": "« 13/8, 24/22 » — notation, la façon dont deux joueurs sur un échiquier parlent réellement.",
+  "buddySetupVoiceFriendlyHelp": "\"Déplacez un pion du 13 au 8 et un autre du 24 au 22.\"",
+  "buddySetupTutorHelp": "Les commentaires du tuteur et les explications des mouvements suivent vos préférences de tuteur enregistrées dans Paramètres. Buddy donne des commentaires occasionnels après vos parties ; les dés tapés et les mouvements manuels fonctionnent de la même manière.",
+  "buddySetupCalibrate": "Calibrer la carte",
+  "buddyFixAim": "Fixer l'objectif",
+  "buddyWaitingForOpening": "Buddy attend le lancer qui lance le match.",
+  "buddyPromptLostBoard": "Buddy a perdu le tableau. Fixez le but et le match continue là où il s'est arrêté.",
+  "buddyPromptWaitingPicture": "En attente d'une image que Buddy peut lire. Rien n'est perdu.",
+  "buddyPromptTypeDice": "Buddy ne trouve pas les dés. Tapez plutôt le rouleau.",
+  "buddyPromptPlay": "Faites votre jeu sur le plateau. Appuyez-le ici si Buddy ne le voit pas.",
+  "buddyPromptWhichPlay": "De quelle pièce s'agissait-il ?",
+  "buddyPromptCube": "Buddy double. Vous prenez ou vous passez ?",
+  "buddyPromptMakeMove": "Faites le mouvement de Buddy sur le plateau, puis Buddy continuera.",
+  "buddyPromptThinking": "Buddy réfléchit.",
+  "buddyPromptWaitingCalibration": "En attente d'un calibrage.",
+  "buddyPromptMirrorNoDetail": "Buddy ne voit toujours pas son mouvement. Le tableau ci-dessous est la position qu’il occupe.",
+  "buddyPromptNotLegal": "Ce n’est pas un jeu légal.",
+  "buddyPromptNotLegalReason": "Ce n’est pas un jeu légal. {reason}",
+  "buddyThrowOpening": "Lancez les dés d’ouverture — un dé chacun. Le résultat le plus élevé détermine qui commence.",
+  "buddyThrowUser": "Lancez vos dés.",
+  "buddyThrowBuddy": "Lancez les dés de Buddy.",
+  "buddyMatchOver": "Le match est terminé.",
+  "buddyYouWin": "Vous gagnez le match.",
+  "buddyBuddyWins": "Buddy remporte le match.",
+  "buddyDoubleNoGame": "Il n’y a pas encore de jeu à doubler – le lancer d’ouverture vient en premier.",
+  "buddyDoubleBeforeRoll": "Vous ne pouvez doubler qu'avant de lancer, à votre tour.",
+  "buddyDoubleCrawford": "Pas de double dans le jeu Crawford – ce jeu unique décide du match.",
+  "buddyDoubleNotOwner": "Seul le propriétaire du cube peut doubler, et l'autre côté en est actuellement propriétaire.",
+  "buddyDoubleUnavailable": "Le doublement n’est pas disponible pour le moment.",
+  "buddyLookingAtBoard": "Buddy regarde le tableau.",
+  "buddyCameraPlayFallback": "Vous pouvez toujours jouer le match : tapez chaque lancer sur le tapis de dés et appuyez sur votre jeu sur le tableau ci-dessous.",
+  "buddySkipCheck": "Ignorer cette vérification",
+  "buddyFixedIt": "je l'ai réparé",
+  "buddyDrop": "Baisse",
+  "buddyTake": "Prendre",
+  "buddyDone": "Fait",
+  "buddyTranscriptLabel": "Ce que Buddy a dit",
+  "buddyUndo": "Défaire",
+  "buddyConfirm": "Confirmer",
+  "buddyDice": "Dés",
+  "buddyDouble": "Double",
+  "buddyDicePadTitle": "Quel résultat avez-vous obtenu ?",
+  "buddyEnterRoll": "Entrez le rouleau",
+  "buddyContextBeforeGame": "Jouez avec Buddy",
+  "buddyContextMatchScore": "Vous {you}–{buddy} Buddy · à {length} · Jeu {number}",
+  "buddyCameraUnavailable": "La caméra n'a pas pu démarrer. Vérifiez les autorisations et réessayez.",
+  "buddyCameraPermission": "Backgammon Buddy n'a ​​pas la permission d'utiliser la caméra. Autorisez l'accès à la caméra dans les paramètres de votre appareil et réessayez.",
+  "buddyCalibrationTitle": "Montrer le tableau à Buddy",
+  "buddyCalibrationCornersFold": "Faites glisser les quatre poignées extérieures sur les coins du feutre – et non sur le bord en bois – et les quatre petites sur les coutures où la charnière rencontre les bords éloignés et proches.",
+  "buddyCalibrationCornersFlat": "Faites glisser chaque poignée sur un coin du feutre – la surface de jeu, pas le bord en bois qui l'entoure.",
+  "buddyCalibrationCheckLines": "Vérifiez ensuite les douze lignes de chaque moitié : chacune doit longer un point de votre tableau. Une ligne qui manque son objectif est une poignée qui a besoin d’être poussée.",
+  "buddyCalibrationSeatQuestion": "Quelle moitié est votre tableau d’origine ?",
+  "buddyCalibrationSeatHelp": "La moitié la plus proche du bas de l’image. C'est ce qui fixe les numéros de points, de sorte que les lignes ci-dessus se déplacent avec.",
+  "buddyCalibrationCaptureWait": "Tenez le téléphone immobile. Buddy attend que la situation se stabilise avant d'apprendre ce tableau.",
+  "buddyCalibrationConfirmQuestion": "Est-ce votre tableau ?",
+  "buddyCalibrationConfirmFallback": "Buddy regarde le tableau qu'il vient d'apprendre.",
+  "buddyCalibrationConfirmHelp": "Les hommes dessinés sur l'image sont ce que Buddy pense être sur le tableau. Si l’un d’entre eux est au mauvais endroit, recommencez – cela coûte quelques secondes maintenant et une partie plus tard.",
+  "buddyCalibrationNext": "Suivant",
+  "buddyCalibrationBack": "Dos",
+  "buddyCalibrationCapture": "Capturer",
+  "buddyCalibrationStartOver": "Recommencer",
+  "buddyCalibrationLooksRight": "Ça a l'air bien",
+  "buddyCalibrationCornersInvalid": "Ces quatre poignées ne dessinent pas une planche : l’une d’elles en a croisé une autre. Faites-les glisser vers les coins du feutre.",
+  "buddyCalibrationPrepTitle": "Trois choses d'abord",
+  "buddyCalibrationRemoveDiceTitle": "Retirez les dés du plateau.",
+  "buddyCalibrationRemoveDiceBody": "Buddy apprend maintenant le plateau vide. Un dé laissé sur le tapis serait appris comme faisant partie du plateau, et Buddy ne pourrait plus voir les dés pendant cette session.",
+  "buddyCalibrationSetupCheckersTitle": "Préparez les hommes pour le début d’un match.",
+  "buddyCalibrationSetupCheckersBody": "Trente pions dans des endroits connus, c'est ainsi que Buddy apprend les deux couleurs de ce tableau sans qu'on lui dise ce qu'elles sont.",
+  "buddyCalibrationFitBoardTitle": "Ajustez tout le terrain de jeu dans l’image.",
+  "buddyCalibrationFitBoardBody": "Laissez ensuite le téléphone là où il se trouve. S'il bouge, Buddy le dira et vous pourrez repousser les coins.",
+  "buddyCalibrationBoardKind": "De quel type de planche s'agit-il ?",
+  "buddyCalibrationFlatBoard": "Planche plate",
+  "buddyCalibrationFoldingBoard": "Étui pliable",
+  "buddyCalibrationBoardKindHelp": "Une planche pliante a besoin de quatre poignées supplémentaires sur les coutures des charnières.",
+  "buddyCalibrationNoCameraBody": "Le mode Buddy surveille une vraie carte, elle ne peut donc pas démarrer sans la caméra. Tout le reste de l’application n’est pas affecté.",
+  "buddyHandleHingeSeam": "Couture charnière {number} de 4",
+  "buddyHandleCorner": "Coin de planche {number} de 4",
+  "buddyNudgeLeft": "Coup de pouce vers la gauche",
+  "buddyNudgeRight": "Poussez à droite",
+  "buddyNudgeUp": "Poussez vers le haut",
+  "buddyNudgeDown": "Poussez vers le bas",
+  "buddyCalibrationProblemCorners": "Ces quatre coins ne délimitent pas une planche. Faites glisser chaque poignée sur un coin du terrain de jeu et réessayez.",
+  "buddyCalibrationProblemFoldCorners": "Ces huit points ne constituent pas une planche pliante. Mettez-en quatre sur les coins du terrain de jeu et quatre sur les coutures des charnières, puis réessayez.",
+  "buddyCalibrationProblemUnreadable": "Je n'arrive pas à distinguer le tableau lui-même : chaque partie est recouverte, ou perdue dans l'ombre ou l'éblouissement. Videz le tableau, ajoutez un peu de lumière et réessayez.",
+  "buddyCalibrationProblemRegionUnreadable": "Je n'arrive pas à distinguer {region} – quelque chose repose peut-être dessus, ou ce coin du tableau est peut-être trop sombre pour être lu. Effacez-le ou ajoutez de la lumière et réessayez.",
+  "buddyCalibrationProblemColours": "Les deux jeux de dames se ressemblent trop vus d’ici. Plus de lumière, ou un angle avec moins d'éblouissement sur le tableau, règle généralement le problème.",
+  "buddyCalibrationProblemWrongChecker": "Les pions ne sont pas dans la position de départ — le point {number} a la mauvaise couleur. Préparez le plateau pour le début d’une partie, puis calibrez-le à nouveau.",
+  "buddyCalibrationProblemOverexposed": "Il y a tellement de lumière sur le tableau que ses couleurs se fondent les unes dans les autres. Baissez la lumière ou déplacez le téléphone pour que la lampe ne lui renvoie pas directement la lumière.",
+  "buddyCalibrationProblemReadBack": "Je peux lire ce tableau, mais pas comme un jeu sur le point de commencer. Préparez les hommes pour le début d’une partie, puis calibrez à nouveau.",
+  "buddyCalibrationProblemStacks": "Je peux lire ce tableau, mais je ne peux pas déterminer à quelle distance un pion se trouve derrière un autre à partir d'ici - donc je me tromperais sur les chiffres. Un peu plus de lumière sur les points proches, ou un angle de caméra légèrement plus élevé, règle généralement le problème.",
+  "buddyCalibrationProblemNotVisible": "Je ne peux pas voir tout le tableau. Reculez le téléphone ou faites glisser les coins sur le terrain de jeu.",
+  "buddyConfirmBoardOutOfFrame": "Je ne peux plus voir l'ensemble du tableau – {region} est en dehors de l'image. Alignez à nouveau la caméra ou revérifiez les coins.",
+  "buddyConfirmStartingPosition": "Cela ressemble à la position de départ.",
+  "buddyConfirmNoCheckers": "Je ne vois pas de pion partout où le jeu commence. Préparez les hommes pour le début d’un match et réessayez.",
+  "buddyConfirmWrongPosition": "Le plateau n'est pas configuré pour le début d'une partie : {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} semble vide, mais le jeu commence ici avec {side}",
+  "buddyConfirmRegionUnexpected": "{region} contient {side}, mais le jeu commence avec celui-ci vide",
+  "buddyConfirmRegionWrongSide": "{region} contient {observed}, où le jeu commence par {expected}",
+  "buddyReadabilityMotion": "Attendez un instant – je perds le tableau pendant que le téléphone bouge.",
+  "buddyReadabilityWrongFrame": "L'image qu'on me donne n'est pas celle sur laquelle ce tableau a été installé, je ne peux donc rien y aligner. Réinstallez le tableau à partir d’ici.",
+  "buddyReadabilityBlur": "L'image est trop molle pour lire le tableau. Donnez à l'appareil photo un moment pour faire la mise au point.",
+  "buddyReadabilityCalibrationStale": "Le tableau n'est pas là où il était lorsque je l'ai appris. Alignez à nouveau les coins et je reprendrai le jeu directement.",
+  "buddyReadabilityOccluded": "Quelque chose recouvre une partie du tableau. Je continuerai dès que ce sera clair.",
+  "buddyReadabilityClear": "Je peux voir le tableau.",
+  "buddyReadabilityColorChanged": "La lumière sur le tableau a changé de couleur, le tableau ne ressemble donc plus à celui que j'ai appris. Alignez à nouveau les coins sous cette lumière et je reprendrai le jeu directement.",
+  "buddyReadabilityTooDark": "Il fait trop sombre pour lire le tableau. Un peu plus de lumière et je continue là où nous en étions.",
+  "buddyReadabilityTooBright": "Il y a tellement de lumière sur le tableau que ses couleurs se croisent. Baissez-le ou déplacez le téléphone pour que la lampe ne brille pas directement vers lui.",
+  "buddyPromptBeliefMirror": "Buddy ne peut toujours pas voir son mouvement – ​​{reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nVous pouvez toujours jouer le match : tapez chaque lancer sur le tapis de dés et appuyez sur votre jeu sur le tableau ci-dessous.",
+  "buddyCameraGenericError": "La caméra n'a pas pu démarrer. Vérifiez les autorisations et réessayez.",
+  "buddyRegionPoint": "le point {number}",
+  "buddyRegionBar": "le bar",
+  "buddyRegionWhiteTray": "Le plateau d'ours de White",
+  "buddyRegionBlackTray": "Le plateau d'ours de Black",
+  "buddyRegionDiceZone": "le milieu du plateau",
+  "buddyCalibrationProblemVisible": "Je ne peux pas voir tout le tableau. Reculez le téléphone ou faites glisser les coins sur le terrain de jeu.",
+  "buddyConfirmMore": "(et {number} plus)",
+  "buddyDiceOpeningCaption": "Un dé chacun. Le résultat le plus élevé détermine qui commence.",
+  "buddyDiceOpeningFirst": "Dé des Blancs",
+  "buddyDiceOpeningSecond": "Dé des Noirs",
+  "buddyDiceRegularCaption": "Les deux visages sur la table, dans n'importe quel ordre.",
+  "buddyDiceRegularFirst": "Un dé",
+  "buddyDiceRegularSecond": "L'autre",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

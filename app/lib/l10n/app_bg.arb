@@ -1567,7 +1567,7 @@
   "boardBlackToRoll": "Черно за търкаляне.",
   "boardWhiteToMove": "Бяло за преместване, завъртете {die1} и {die2}.",
   "boardBlackToMove": "Черно за преместване, завъртете {die1} и {die2}.",
-  "feedbackBugTitle": "[Bug]: Backgammon Buddy {version} ({platform})",
+  "feedbackBugTitle": "[Грешка]: Backgammon Buddy {version} ({platform})",
   "feedbackIdeaTitle": "[Идея]: Backgammon Buddy",
   "feedbackBugSummary": "Заменете това с кратко описание на случилото се.",
   "feedbackBugReproduction": "Заменете това със стъпките, които са довели до проблема.",
@@ -1613,5 +1613,266 @@
   "lanJoinInstruction": "На другото устройство отвори „Играй наблизо“, избери „Присъедини се“, след което сканирай този QR код.",
   "homePlayWithBuddy": "Играй с Buddy",
   "homeBuddyShort": "Buddy",
-  "feedbackExcerptTruncated": "(съкратено — за пълния журнал използвайте „Копирай в клипборда“ на екрана Диагностика)"
+  "feedbackExcerptTruncated": "(съкратено — за пълния журнал използвайте „Копирай в клипборда“ на екрана Диагностика)",
+  "buddySetupTitle": "Играй с Buddy",
+  "buddySetupSideLabel": "Играе Buddy",
+  "buddySetupSeatLabel": "Твоята страна",
+  "buddySetupSeatNear": "До телефона",
+  "buddySetupSeatFar": "Отсреща",
+  "buddySetupSeatHelp": "От коя страна на дъската седиш. Това определя как Buddy номерира полетата и различава твоя начален зар от своя.",
+  "buddySetupVoiceLabel": "Как говори Buddy",
+  "buddySetupVoiceTerse": "Кратко",
+  "buddySetupVoiceFriendly": "Приветливо",
+  "buddySetupVoiceTerseHelp": "„13/8, 24/22“ — нотацията, с която говорят двама играчи пред дъската.",
+  "buddySetupVoiceFriendlyHelp": "„Премести един пул от 13 на 8 и още един от 24 на 22.“",
+  "buddySetupTutorHelp": "Коментарите на наставника и обясненията на ходовете следват запазените ти настройки за наставник. Buddy от време на време ще коментира ходовете ти; въвеждането на зарове и ръчните ходове работят по същия начин.",
+  "buddySetupCalibrate": "Калибрирай дъската",
+  "buddyFixAim": "Настрой камерата",
+  "buddyWaitingForOpening": "Buddy чака хвърлянето, което започва мача.",
+  "buddyPromptLostBoard": "Buddy загуби дъската от поглед. Настрой камерата и мачът ще продължи от мястото, на което спря.",
+  "buddyPromptWaitingPicture": "Изчакване на изображение, което Buddy може да разчете. Нищо не е загубено.",
+  "buddyPromptTypeDice": "Buddy не вижда заровете. Въведи хвърлянето ръчно.",
+  "buddyPromptPlay": "Направи хода си на дъската. Ако Buddy не го вижда, въведи го тук.",
+  "buddyPromptWhichPlay": "Кой ход направи?",
+  "buddyPromptCube": "Buddy удвоява. Приемаш или отказваш?",
+  "buddyPromptMakeMove": "Изпълни хода на Buddy на дъската и той ще продължи.",
+  "buddyPromptThinking": "Buddy мисли.",
+  "buddyPromptWaitingCalibration": "Изчакване на калибриране.",
+  "buddyPromptMirrorNoDetail": "Buddy още не вижда хода си. Дъската отдолу показва позицията, която е запазил.",
+  "buddyPromptNotLegal": "Това не е позволен ход.",
+  "buddyPromptNotLegalReason": "Това не е позволен ход. {reason}",
+  "buddyThrowOpening": "Хвърли началните зарове — по един за всеки.",
+  "buddyThrowUser": "Хвърли своите зарове.",
+  "buddyThrowBuddy": "Хвърли заровете на Buddy.",
+  "buddyMatchOver": "Мачът приключи.",
+  "buddyYouWin": "Ти спечели мача.",
+  "buddyBuddyWins": "Buddy спечели мача.",
+  "buddyDoubleNoGame": "Все още няма игра, която да се удвои — първо е началното хвърляне.",
+  "buddyDoubleBeforeRoll": "Можеш да удвоиш само преди хвърляне, когато си на ход.",
+  "buddyDoubleCrawford": "В играта на Крофорд няма удвояване — този единствен гейм решава мача.",
+  "buddyDoubleNotOwner": "Само притежателят на куба за удвояване може да удвои, а в момента той е у противника.",
+  "buddyDoubleUnavailable": "В момента удвояването не е достъпно.",
+  "buddyLookingAtBoard": "Buddy оглежда дъската.",
+  "buddyCameraPlayFallback": "Можеш да продължиш да играеш: въвеждай всяко хвърляне в панела със заровете и отбелязвай ходовете си на дъската отдолу.",
+  "buddySkipCheck": "Пропусни проверката",
+  "buddyFixedIt": "Поправих го",
+  "buddyDrop": "Откажи",
+  "buddyTake": "Приеми",
+  "buddyDone": "Готово",
+  "buddyTranscriptLabel": "Какво каза Buddy",
+  "buddyUndo": "Отмени",
+  "buddyConfirm": "Потвърди",
+  "buddyDice": "Зарове",
+  "buddyDouble": "Удвои",
+  "buddyDicePadTitle": "Какво хвърли?",
+  "buddyEnterRoll": "Въведи хвърлянето",
+  "buddyContextBeforeGame": "Играй с Buddy",
+  "buddyContextMatchScore": "Ти {you}–{buddy} Buddy · до {length} · Игра {number}",
+  "buddyCameraUnavailable": "Камерата не можа да се стартира. Провери разрешенията и опитай отново.",
+  "buddyCameraPermission": "Backgammon Buddy няма разрешение да използва камерата. Разреши достъп до камерата в настройките на устройството и опитай отново.",
+  "buddyCalibrationTitle": "Покажи дъската на Buddy",
+  "buddyCalibrationCornersFold": "Плъзни четирите външни маркера до ъглите на плата — не до дървения ръб — а четирите малки маркера до шевовете, където пантата се среща с далечния и близкия ръб.",
+  "buddyCalibrationCornersFlat": "Плъзни всеки маркер до ъгъл на плата — игралната повърхност, а не дървения ръб около нея.",
+  "buddyCalibrationCheckLines": "След това провери дванайсетте линии във всяка половина: всяка трябва да минава по едно поле на дъската. Ако някоя линия пропуска полето си, премести съответния маркер.",
+  "buddyCalibrationSeatQuestion": "Коя половина е твоето домашно поле?",
+  "buddyCalibrationSeatHelp": "Половината, която е най-близо до долния край на изображението. Това определя номерата на полетата, а линиите отгоре ще се нагодят към тях.",
+  "buddyCalibrationCaptureWait": "Дръж телефона неподвижно. Buddy изчаква изображението да се стабилизира, преди да научи дъската.",
+  "buddyCalibrationConfirmQuestion": "Това твоята дъска ли е?",
+  "buddyCalibrationConfirmFallback": "Buddy разглежда дъската, която току-що научи.",
+  "buddyCalibrationConfirmHelp": "Нарисуваните върху изображението пулове показват къде Buddy смята, че се намират. Ако някой е на грешно място, започни отначало — сега това ще ти отнеме секунди, а по-късно може да ти струва цяла игра.",
+  "buddyCalibrationNext": "Напред",
+  "buddyCalibrationBack": "Назад",
+  "buddyCalibrationCapture": "Заснеми",
+  "buddyCalibrationStartOver": "Започни отначало",
+  "buddyCalibrationLooksRight": "Изглежда правилно",
+  "buddyCalibrationCornersInvalid": "Тези четири маркера не очертават дъска — единият е пресекъл друг. Премести ги обратно в ъглите на плата.",
+  "buddyCalibrationPrepTitle": "Първо три неща",
+  "buddyCalibrationRemoveDiceTitle": "Махни заровете от дъската.",
+  "buddyCalibrationRemoveDiceBody": "Сега Buddy научава празната дъска. Ако зар остане върху плата, Buddy ще го научи като част от дъската и няма да може да вижда заровете до края на тази сесия.",
+  "buddyCalibrationSetupCheckersTitle": "Подреди пуловете за началото на играта.",
+  "buddyCalibrationSetupCheckersBody": "Тридесет пула на познати места помагат на Buddy да научи двата цвята на дъската, без да му казваш кои са те.",
+  "buddyCalibrationFitBoardTitle": "Побери цялата игрална повърхност в кадъра.",
+  "buddyCalibrationFitBoardBody": "След това остави телефона на място. Ако се премести, Buddy ще ти каже и ще можеш да нагласиш ъглите отново.",
+  "buddyCalibrationBoardKind": "Какъв вид е дъската?",
+  "buddyCalibrationFlatBoard": "Плоска дъска",
+  "buddyCalibrationFoldingBoard": "Сгъваема дъска",
+  "buddyCalibrationBoardKindHelp": "При сгъваема дъска са нужни още четири маркера по шевовете на пантата.",
+  "buddyCalibrationNoCameraBody": "Режимът Buddy следи истинска дъска, затова не може да стартира без камера. Всичко останало в приложението ще работи както обикновено.",
+  "buddyHandleHingeSeam": "Шев на панта {number} от 4",
+  "buddyHandleCorner": "Ъгъл на дъската {number} от 4",
+  "buddyNudgeLeft": "Премести леко наляво",
+  "buddyNudgeRight": "Премести леко надясно",
+  "buddyNudgeUp": "Премести леко нагоре",
+  "buddyNudgeDown": "Премести леко надолу",
+  "buddyCalibrationProblemCorners": "Тези четири ъгъла не очертават дъска. Премести всеки маркер до ъгъл на игралната повърхност и опитай отново.",
+  "buddyCalibrationProblemFoldCorners": "Тези осем точки не очертават сгъваема дъска. Постави четири в ъглите на игралната повърхност и четири по шевовете на пантата, после опитай отново.",
+  "buddyCalibrationProblemUnreadable": "Не мога да различа самата дъска — изцяло е покрита или е в сянка/отблясък. Освободи дъската, добави светлина и опитай отново.",
+  "buddyCalibrationProblemRegionUnreadable": "Не мога да различа {region} — може да има нещо там или този ъгъл на дъската да е твърде тъмен. Освободи го или добави светлина и опитай отново.",
+  "buddyCalibrationProblemColours": "Оттук двата цвята пулове изглеждат твърде сходни. Обикновено помага повече светлина или ъгъл с по-малко отблясъци.",
+  "buddyCalibrationProblemWrongChecker": "Пуловете не са в начална позиция — на поле {number} има пул с грешен цвят. Подреди дъската за начало на играта и калибрирай отново.",
+  "buddyCalibrationProblemOverexposed": "Светлината върху дъската е толкова силна, че цветовете се сливат. Намали осветлението или премести телефона, така че лампата да не свети право към камерата.",
+  "buddyCalibrationProblemReadBack": "Виждам дъската, но тя не е подредена като за започваща игра. Подреди пуловете за начало на играта и калибрирай отново.",
+  "buddyCalibrationProblemStacks": "Виждам дъската, но не мога да определя колко пулове има един зад друг — така ще ги преброя неправилно. Обикновено помага малко повече светлина върху близките полета или малко по-висок ъгъл на камерата.",
+  "buddyCalibrationProblemNotVisible": "Не виждам цялата дъска. Отдалечи телефона или премести ъглите върху игралната повърхност.",
+  "buddyConfirmBoardOutOfFrame": "Вече не виждам цялата дъска — {region} е извън кадъра. Насочи камерата отново или провери ъглите.",
+  "buddyConfirmStartingPosition": "Това прилича на началната позиция.",
+  "buddyConfirmNoCheckers": "Не виждам пул на нито едно място от началната позиция. Подреди пуловете за начало на играта и опитай отново.",
+  "buddyConfirmWrongPosition": "Дъската не е подредена в начална позиция: {details}{more}.",
+  "buddyConfirmRegionEmpty": "На {region} няма нищо, но в началото на играта там трябва да има {side}",
+  "buddyConfirmRegionUnexpected": "На {region} има {side}, но в началото на играта мястото трябва да е празно",
+  "buddyConfirmRegionWrongSide": "На {region} има {observed}, а в началото на играта там трябва да има {expected}",
+  "buddyReadabilityMotion": "Постой неподвижно за миг — губя дъската от поглед, докато телефонът се движи.",
+  "buddyReadabilityWrongFrame": "Полученото изображение не е от дъската, за която бях настроен, затова не мога да съпоставя нищо. Настрой дъската отново оттук.",
+  "buddyReadabilityBlur": "Изображението е твърде размазано, за да разчета дъската. Изчакай камерата да фокусира.",
+  "buddyReadabilityCalibrationStale": "Дъската вече не е там, където беше, когато я научих. Нагласи ъглите отново и веднага ще продължа играта.",
+  "buddyReadabilityOccluded": "Нещо закрива част от дъската. Ще продължа веднага щом я освободиш.",
+  "buddyReadabilityClear": "Виждам дъската.",
+  "buddyReadabilityColorChanged": "Осветлението е променило цвета си и дъската вече не изглежда като тази, която научих. Нагласи ъглите отново при тази светлина и веднага ще продължа играта.",
+  "buddyReadabilityTooDark": "Твърде тъмно е, за да разчета дъската. Добави малко светлина и ще продължа оттам, докъдето стигнахме.",
+  "buddyReadabilityTooBright": "Светлината върху дъската е толкова силна, че цветовете се сливат. Намали я или премести телефона, така че лампата да не свети право към камерата.",
+  "buddyPromptBeliefMirror": "Buddy още не вижда хода си — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nМожеш да продължиш да играеш: въвеждай всяко хвърляне в панела със заровете и отбелязвай ходовете си на дъската отдолу.",
+  "buddyCameraGenericError": "Камерата не можа да се стартира. Провери разрешенията и опитай отново.",
+  "buddyRegionPoint": "поле {number}",
+  "buddyRegionBar": "бара",
+  "buddyRegionWhiteTray": "таблата за изваждане на белите пулове",
+  "buddyRegionBlackTray": "таблата за изваждане на черните пулове",
+  "buddyRegionDiceZone": "средата на дъската",
+  "buddyCalibrationProblemVisible": "Не виждам цялата дъска. Отдалечи телефона или премести ъглите върху игралната повърхност.",
+  "buddyConfirmMore": " (и още {number})",
+  "buddyDiceOpeningCaption": "Всеки хвърля по един зар. Показаното число определя кой започва.",
+  "buddyDiceOpeningFirst": "Зарът на белите",
+  "buddyDiceOpeningSecond": "Зарът на черните",
+  "buddyDiceRegularCaption": "Двете числа от заровете на масата, в произволен ред.",
+  "buddyDiceRegularFirst": "Единият зар",
+  "buddyDiceRegularSecond": "Другият",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

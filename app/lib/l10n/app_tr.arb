@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "Bu oyuna katılmak için QR kodu",
   "lanJoinInstruction": "Diğer cihazda Yakındakilerle Oyna’yı açın, Katıl’ı seçin ve bu QR kodunu tarayın.",
   "homePlayWithBuddy": "Buddy ile oyna",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Buddy ile oyna",
+  "buddySetupSideLabel": "Buddy oynasın",
+  "buddySetupSeatLabel": "Senin tarafın",
+  "buddySetupSeatNear": "Telefonun yanı",
+  "buddySetupSeatFar": "Karşı taraf",
+  "buddySetupSeatHelp": "Tahtanın hangi tarafında oturduğun. Buddy noktaları buna göre numaralandırır ve açılış zarını seninkiyle kendi zarı arasında ayırt eder.",
+  "buddySetupVoiceLabel": "Buddy nasıl konuşsun?",
+  "buddySetupVoiceTerse": "Kısa",
+  "buddySetupVoiceFriendly": "Samimi",
+  "buddySetupVoiceTerseHelp": "“13/8, 24/22” — tahtadaki iki oyuncunun kullandığı notasyon.",
+  "buddySetupVoiceFriendlyHelp": "“Bir pulu 13’ten 8’e, birini de 24’ten 22’ye taşı.”",
+  "buddySetupTutorHelp": "Eğitmen yorumları ve hamle açıklamaları, Ayarlar’da kaydettiğin eğitmen tercihlerini izler. Buddy hamlelerin hakkında ara sıra yorum yapar; zarları girmek ve hamleleri elle yapmak da aynı şekilde çalışır.",
+  "buddySetupCalibrate": "Tahtayı kalibre et",
+  "buddyFixAim": "Kamerayı hizala",
+  "buddyWaitingForOpening": "Buddy maçı başlatacak atışı bekliyor.",
+  "buddyPromptLostBoard": "Buddy tahtayı kaybetti. Kamerayı hizala, maç kaldığı yerden devam etsin.",
+  "buddyPromptWaitingPicture": "Buddy’nin okuyabileceği bir görüntü bekleniyor. Hiçbir şey kaybolmadı.",
+  "buddyPromptTypeDice": "Buddy zarları göremiyor. Atışı elle gir.",
+  "buddyPromptPlay": "Hamleni tahtada yap. Buddy göremezse buradan gir.",
+  "buddyPromptWhichPlay": "Hangi hamleyi yaptın?",
+  "buddyPromptCube": "Buddy katlama teklif ediyor. Kabul mü, pas mı?",
+  "buddyPromptMakeMove": "Buddy’nin hamlesini tahtada yap, sonra Buddy devam edecek.",
+  "buddyPromptThinking": "Buddy düşünüyor.",
+  "buddyPromptWaitingCalibration": "Kalibrasyon bekleniyor.",
+  "buddyPromptMirrorNoDetail": "Buddy hâlâ kendi hamlesini göremiyor. Aşağıdaki tahta, Buddy’nin aklında tuttuğu konumu gösteriyor.",
+  "buddyPromptNotLegal": "Bu kurallara uygun bir hamle değil.",
+  "buddyPromptNotLegalReason": "Bu kurallara uygun bir hamle değil. {reason}",
+  "buddyThrowOpening": "Açılış zarlarını at — herkes bir zar atsın.",
+  "buddyThrowUser": "Zarlarını at.",
+  "buddyThrowBuddy": "Buddy’nin zarlarını at.",
+  "buddyMatchOver": "Maç bitti.",
+  "buddyYouWin": "Maçı kazandın.",
+  "buddyBuddyWins": "Buddy maçı kazandı.",
+  "buddyDoubleNoGame": "Henüz katlanacak bir oyun yok — önce açılış atışı yapılmalı.",
+  "buddyDoubleBeforeRoll": "Yalnızca kendi sıranda ve zar atmadan önce katlayabilirsin.",
+  "buddyDoubleCrawford": "Crawford oyununda katlama yok — maçı bu tek oyun belirler.",
+  "buddyDoubleNotOwner": "Yalnızca katlama küpünün sahibi katlayabilir; şu anda küp rakibin elinde.",
+  "buddyDoubleUnavailable": "Şu anda katlama yapılamaz.",
+  "buddyLookingAtBoard": "Buddy tahtaya bakıyor.",
+  "buddyCameraPlayFallback": "Maça yine de devam edebilirsin: her atışı zar paneline gir ve hamlelerini aşağıdaki tahtada işaretle.",
+  "buddySkipCheck": "Bu kontrolü atla",
+  "buddyFixedIt": "Düzelttim",
+  "buddyDrop": "Pas",
+  "buddyTake": "Kabul et",
+  "buddyDone": "Bitti",
+  "buddyTranscriptLabel": "Buddy ne dedi?",
+  "buddyUndo": "Geri al",
+  "buddyConfirm": "Onayla",
+  "buddyDice": "Zarlar",
+  "buddyDouble": "Katla",
+  "buddyDicePadTitle": "Zarlarda ne geldi?",
+  "buddyEnterRoll": "Atışı gir",
+  "buddyContextBeforeGame": "Buddy ile oyna",
+  "buddyContextMatchScore": "Sen {you}–{buddy} Buddy · {length} puanlık maç · Oyun {number}",
+  "buddyCameraUnavailable": "Kamera başlatılamadı. İzinleri kontrol edip tekrar dene.",
+  "buddyCameraPermission": "Backgammon Buddy’nin kamerayı kullanma izni yok. Cihaz ayarlarından kamera erişimine izin verip tekrar dene.",
+  "buddyCalibrationTitle": "Tahtayı Buddy’ye göster",
+  "buddyCalibrationCornersFold": "Dört dış tutamacı ahşap çerçeveye değil, oyun yüzeyinin köşelerine; dört küçük tutamacı ise menteşenin uzak ve yakın kenarlarla birleştiği dikişlere sürükle.",
+  "buddyCalibrationCornersFlat": "Her tutamacı oyun yüzeyinin bir köşesine sürükle; ahşap çerçeveye değil.",
+  "buddyCalibrationCheckLines": "Ardından her yarıdaki on iki çizgiyi kontrol et: her biri tahtadaki bir hanenin boyunca uzanmalı. Bir çizgi hanesini ıskalıyorsa ilgili tutamacı biraz kaydır.",
+  "buddyCalibrationSeatQuestion": "Hangi yarı senin iç sahan?",
+  "buddyCalibrationSeatHelp": "Görüntünün alt kenarına en yakın yarı. Bu, hane numaralarını belirler; yukarıdaki çizgiler de buna göre hizalanır.",
+  "buddyCalibrationCaptureWait": "Telefonu sabit tut. Buddy tahtayı öğrenmeden önce görüntünün durulmasını bekliyor.",
+  "buddyCalibrationConfirmQuestion": "Bu senin tahtan mı?",
+  "buddyCalibrationConfirmFallback": "Buddy az önce öğrendiği tahtaya bakıyor.",
+  "buddyCalibrationConfirmHelp": "Görüntünün üzerine çizilen pullar, Buddy’nin onları tahtada nerede gördüğünü gösterir. Biri bile yanlış yerdeyse baştan başla; şimdi birkaç saniye kaybedersin, sonra belki bir oyunu.",
+  "buddyCalibrationNext": "İleri",
+  "buddyCalibrationBack": "Geri",
+  "buddyCalibrationCapture": "Fotoğraf çek",
+  "buddyCalibrationStartOver": "Baştan başla",
+  "buddyCalibrationLooksRight": "Doğru görünüyor",
+  "buddyCalibrationCornersInvalid": "Bu dört tutamaç bir tahta sınırı oluşturmuyor; biri diğerinin üzerinden geçmiş. Tutamaçları oyun yüzeyinin köşelerine geri sürükle.",
+  "buddyCalibrationPrepTitle": "Önce üç şey",
+  "buddyCalibrationRemoveDiceTitle": "Zarları tahtadan kaldır.",
+  "buddyCalibrationRemoveDiceBody": "Buddy şimdi boş tahtayı öğreniyor. Kumaşın üzerinde kalan bir zarı tahtanın parçası sanır ve bu oturum boyunca zarları bir daha göremez.",
+  "buddyCalibrationSetupCheckersTitle": "Pulları oyunun başlangıç düzenine koy.",
+  "buddyCalibrationSetupCheckersBody": "Bilinen yerlerdeki otuz pul, Buddy’nin tahtanın iki rengini ne olduklarını söylemene gerek kalmadan öğrenmesini sağlar.",
+  "buddyCalibrationFitBoardTitle": "Oyun yüzeyinin tamamını görüntüye sığdır.",
+  "buddyCalibrationFitBoardBody": "Ardından telefonu olduğu yerde bırak. Hareket ederse Buddy haber verir, sen de köşeleri yeniden ayarlayabilirsin.",
+  "buddyCalibrationBoardKind": "Tahta türü nedir?",
+  "buddyCalibrationFlatBoard": "Düz tahta",
+  "buddyCalibrationFoldingBoard": "Katlanır kutu",
+  "buddyCalibrationBoardKindHelp": "Katlanır tahta için menteşe dikişlerinde dört ek tutamaç gerekir.",
+  "buddyCalibrationNoCameraBody": "Buddy Modu gerçek bir tahtayı izler, bu nedenle kamera olmadan başlatılamaz. Uygulamanın geri kalanı çalışmaya devam eder.",
+  "buddyHandleHingeSeam": "Menteşe dikişi {number}/4",
+  "buddyHandleCorner": "Tahta köşesi {number}/4",
+  "buddyNudgeLeft": "Biraz sola kaydır",
+  "buddyNudgeRight": "Biraz sağa kaydır",
+  "buddyNudgeUp": "Biraz yukarı kaydır",
+  "buddyNudgeDown": "Biraz aşağı kaydır",
+  "buddyCalibrationProblemCorners": "Bu dört köşe bir tahta sınırı oluşturmuyor. Her tutamacı oyun yüzeyinin bir köşesine sürükle ve tekrar dene.",
+  "buddyCalibrationProblemFoldCorners": "Bu sekiz nokta katlanır bir tahta sınırı oluşturmuyor. Dördünü oyun yüzeyinin köşelerine, dördünü menteşe dikişlerine yerleştirip tekrar dene.",
+  "buddyCalibrationProblemUnreadable": "Tahtanın kendisini seçemiyorum; tamamen örtülmüş ya da gölgede veya parlamada kalmış. Tahtayı boşalt, biraz ışık ekle ve tekrar dene.",
+  "buddyCalibrationProblemRegionUnreadable": "{region} seçemiyorum; orada bir şey olabilir ya da tahtanın o köşesi çok karanlık olabilir. Orayı boşalt veya biraz ışık ekleyip tekrar dene.",
+  "buddyCalibrationProblemColours": "İki pul grubu buradan birbirine çok benziyor. Genellikle daha fazla ışık ya da tahtada daha az parlama olan bir açı işe yarar.",
+  "buddyCalibrationProblemWrongChecker": "Pullar başlangıç konumunda değil; {number}. hanede yanlış renkte pul var. Pulları oyun başlangıcındaki gibi diz ve yeniden kalibre et.",
+  "buddyCalibrationProblemOverexposed": "Tahtaya o kadar çok ışık vuruyor ki renkler birbirine karışıyor. Işığı azalt ya da lamba doğrudan yansımayacak şekilde telefonu hareket ettir.",
+  "buddyCalibrationProblemReadBack": "Tahtayı görebiliyorum ama oyun başlangıç konumunda görünmüyor. Pulları oyun başlangıcındaki gibi diz ve yeniden kalibre et.",
+  "buddyCalibrationProblemStacks": "Tahtayı okuyabiliyorum ama bir pulun diğerinin ne kadar arkasında kaldığını seçemiyorum; bu yüzden yanlış sayarım. Yakın haneleri biraz daha aydınlatmak veya kamerayı biraz yükseltmek genellikle işe yarar.",
+  "buddyCalibrationProblemNotVisible": "Tahtanın tamamını göremiyorum. Telefonu biraz uzaklaştır veya köşeleri oyun yüzeyine sürükle.",
+  "buddyConfirmBoardOutOfFrame": "Artık tahtanın tamamını göremiyorum; {region} görüntünün dışında. Kamerayı yeniden hizala veya köşeleri kontrol et.",
+  "buddyConfirmStartingPosition": "Bu başlangıç konumuna benziyor.",
+  "buddyConfirmNoCheckers": "Oyunun başladığı yerlerde hiç pul göremiyorum. Pulları başlangıç düzenine koyup tekrar dene.",
+  "buddyConfirmWrongPosition": "Tahta başlangıç düzeninde değil: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} boş görünüyor ama oyun başlarken orada {side} olmalı",
+  "buddyConfirmRegionUnexpected": "{region} üzerinde {side} var ama oyun başlarken orası boş olmalı",
+  "buddyConfirmRegionWrongSide": "{region} üzerinde {observed} var; oyun başlarken orada {expected} olmalı",
+  "buddyReadabilityMotion": "Bir an sabit dur; telefon hareket ederken tahtayı kaybediyorum.",
+  "buddyReadabilityWrongFrame": "Bana gönderilen görüntü, ayarlandığım tahtaya ait değil; bu yüzden görüntüde eşleştirme yapamıyorum. Tahtayı buradan yeniden ayarla.",
+  "buddyReadabilityBlur": "Görüntü tahtayı okuyamayacağım kadar bulanık. Kameranın odaklanması için biraz bekle.",
+  "buddyReadabilityCalibrationStale": "Tahta, onu öğrendiğim yerde değil. Köşeleri yeniden hizala, ben de oyuna kaldığımız yerden hemen devam edeyim.",
+  "buddyReadabilityOccluded": "Tahtanın bir kısmı örtülmüş. Üzeri açılır açılmaz devam edeceğim.",
+  "buddyReadabilityClear": "Tahtayı görebiliyorum.",
+  "buddyReadabilityColorChanged": "Tahtadaki ışığın rengi değişti; tahta artık öğrendiğim hâline benzemiyor. Bu ışıkta köşeleri yeniden hizala, ben de oyuna hemen devam edeyim.",
+  "buddyReadabilityTooDark": "Tahtayı okumak için çok karanlık. Biraz ışık ekle, kaldığımız yerden devam edeyim.",
+  "buddyReadabilityTooBright": "Tahtaya o kadar çok ışık vuruyor ki renkler birbirine karışıyor. Işığı azalt ya da lamba doğrudan yansımayacak şekilde telefonu hareket ettir.",
+  "buddyPromptBeliefMirror": "Buddy hâlâ kendi hamlesini göremiyor — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nMaça yine de devam edebilirsin: her atışı zar paneline gir ve hamlelerini aşağıdaki tahtada işaretle.",
+  "buddyCameraGenericError": "Kamera başlatılamadı. İzinleri kontrol edip tekrar dene.",
+  "buddyRegionPoint": "{number}. hane",
+  "buddyRegionBar": "bar",
+  "buddyRegionWhiteTray": "beyaz pulların toplama alanı",
+  "buddyRegionBlackTray": "siyah pulların toplama alanı",
+  "buddyRegionDiceZone": "tahtanın ortası",
+  "buddyCalibrationProblemVisible": "Tahtanın tamamını göremiyorum. Telefonu biraz uzaklaştır veya köşeleri oyun yüzeyine sürükle.",
+  "buddyConfirmMore": " (ve {number} tane daha)",
+  "buddyDiceOpeningCaption": "Herkes bir zar atar. Hangi sayının kime geldiği, kimin başlayacağını belirler.",
+  "buddyDiceOpeningFirst": "Beyazın zarı",
+  "buddyDiceOpeningSecond": "Siyahın zarı",
+  "buddyDiceRegularCaption": "Masadaki iki zarın gösterdiği sayılar, sırası fark etmeksizin.",
+  "buddyDiceRegularFirst": "Bir zar",
+  "buddyDiceRegularSecond": "Diğeri",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

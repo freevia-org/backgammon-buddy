@@ -1567,8 +1567,8 @@
   "boardWhiteToMove": "Bílá pro pohyb, rolujte {die1} a {die2}.",
   "boardBlackToRoll": "Černý na válcování.",
   "boardBlackToMove": "Černý pro pohyb, rolujte {die1} a {die2}.",
-  "feedbackBugTitle": "[Bug]: Backgammon Buddy {version} ({platform})",
-  "feedbackIdeaTitle": "[Idea]: Backgammon Buddy",
+  "feedbackBugTitle": "[Chyba]: Backgammon Buddy {version} ({platform})",
+  "feedbackIdeaTitle": "[Nápad]: Backgammon Buddy",
   "feedbackBugSummary": "Nahraďte to krátkým popisem toho, co se stalo.",
   "feedbackBugReproduction": "Nahraďte jej kroky, které vedly k problému.",
   "feedbackBugExpected": "Nahraď to tím, co jsi očekával/a, že se stane.",
@@ -1613,5 +1613,266 @@
   "lanJoinInstruction": "Na druhém zařízení otevři Hru v okolí, vyber Připojit se a naskenuj tento QR kód.",
   "homePlayWithBuddy": "Hrát s Buddy",
   "homeBuddyShort": "Buddy",
-  "feedbackExcerptTruncated": "(zkráceno – celý záznam zkopírujete tlačítkem „Kopírovat do schránky“ na obrazovce Diagnostika)"
+  "feedbackExcerptTruncated": "(zkráceno – celý záznam zkopírujete tlačítkem „Kopírovat do schránky“ na obrazovce Diagnostika)",
+  "buddySetupTitle": "Hraj s Buddy",
+  "buddySetupSideLabel": "Hraje Buddy",
+  "buddySetupSeatLabel": "Tvoje strana",
+  "buddySetupSeatNear": "U telefonu",
+  "buddySetupSeatFar": "Naproti",
+  "buddySetupSeatHelp": "Na které straně desky sedíš. Podle toho Buddy čísluje body a pozná tvůj úvodní hod od svého.",
+  "buddySetupVoiceLabel": "Jak Buddy mluví",
+  "buddySetupVoiceTerse": "Stručně",
+  "buddySetupVoiceFriendly": "Přátelsky",
+  "buddySetupVoiceTerseHelp": "„13/8, 24/22“ — zápis, kterým spolu mluví hráči u desky.",
+  "buddySetupVoiceFriendlyHelp": "„Přesuň jeden kámen z 13 na 8 a další z 24 na 22.“",
+  "buddySetupTutorHelp": "Komentáře trenéra a vysvětlení tahů se řídí tvými uloženými předvolbami trenéra. Buddy občas okomentuje tvé tahy; zadávání hodů i ruční zadávání tahů funguje stejně.",
+  "buddySetupCalibrate": "Kalibrovat desku",
+  "buddyFixAim": "Upravit zaměření",
+  "buddyWaitingForOpening": "Buddy čeká na hod, který zahájí zápas.",
+  "buddyPromptLostBoard": "Buddy ztratil desku z dohledu. Uprav zaměření a zápas bude pokračovat tam, kde skončil.",
+  "buddyPromptWaitingPicture": "Čekám na snímek, který Buddy dokáže přečíst. Nic se neztratilo.",
+  "buddyPromptTypeDice": "Buddy nevidí kostky. Zadej hod ručně.",
+  "buddyPromptPlay": "Proveď svůj tah na desce. Pokud ho Buddy nevidí, zadej ho sem.",
+  "buddyPromptWhichPlay": "Který tah to byl?",
+  "buddyPromptCube": "Buddy zdvojnásobuje. Přijmout, nebo vzdát?",
+  "buddyPromptMakeMove": "Proveď tah Buddyho na desce a Buddy bude pokračovat.",
+  "buddyPromptThinking": "Buddy přemýšlí.",
+  "buddyPromptWaitingCalibration": "Čekám na kalibraci.",
+  "buddyPromptMirrorNoDetail": "Buddy stále nevidí svůj tah. Deska níže ukazuje pozici, kterou si Buddy uložil.",
+  "buddyPromptNotLegal": "Tento tah není povolený.",
+  "buddyPromptNotLegalReason": "Tento tah není povolený. {reason}",
+  "buddyThrowOpening": "Hoď úvodními kostkami — jeden hod pro každého.",
+  "buddyThrowUser": "Hoď svými kostkami.",
+  "buddyThrowBuddy": "Hoď kostkami za Buddyho.",
+  "buddyMatchOver": "Zápas skončil.",
+  "buddyYouWin": "Vítězství je tvoje!",
+  "buddyBuddyWins": "Buddy vyhrál zápas.",
+  "buddyDoubleNoGame": "Zatím není žádná hra, kterou by šlo zdvojnásobit — nejdřív přijde úvodní hod.",
+  "buddyDoubleBeforeRoll": "Zdvojnásobit můžeš jen před hodem, když jsi na tahu.",
+  "buddyDoubleCrawford": "V Crawfordově hře se nezdvojnásobuje — o zápasu rozhodne tato jediná hra.",
+  "buddyDoubleNotOwner": "Zdvojnásobit může jen vlastník zdvojovací kostky a právě ji vlastní soupeř.",
+  "buddyDoubleUnavailable": "Teď není možné zdvojnásobit.",
+  "buddyLookingAtBoard": "Buddy se dívá na desku.",
+  "buddyCameraPlayFallback": "Můžeš dál hrát: každý hod zadej na panelu kostek a tahy zadávej na desce níže.",
+  "buddySkipCheck": "Přeskočit kontrolu",
+  "buddyFixedIt": "Je to opravené",
+  "buddyDrop": "Vzdát",
+  "buddyTake": "Přijmout",
+  "buddyDone": "Hotovo",
+  "buddyTranscriptLabel": "Co Buddy řekl",
+  "buddyUndo": "Vrátit zpět",
+  "buddyConfirm": "Potvrdit",
+  "buddyDice": "Kostky",
+  "buddyDouble": "Zdvojnásobit",
+  "buddyDicePadTitle": "Co ti padlo?",
+  "buddyEnterRoll": "Zadat hod",
+  "buddyContextBeforeGame": "Hraj s Buddy",
+  "buddyContextMatchScore": "Ty {you}–{buddy} Buddy · do {length} · Hra {number}",
+  "buddyCameraUnavailable": "Kameru se nepodařilo spustit. Zkontroluj oprávnění a zkus to znovu.",
+  "buddyCameraPermission": "Backgammon Buddy nemá oprávnění používat kameru. Povol přístup ke kameře v nastavení zařízení a zkus to znovu.",
+  "buddyCalibrationTitle": "Ukaž Buddymu desku",
+  "buddyCalibrationCornersFold": "Přetáhni čtyři vnější úchyty do rohů plátna, ne dřevěného rámu, a čtyři malé na švy, kde se pant stýká se vzdáleným a bližším okrajem.",
+  "buddyCalibrationCornersFlat": "Přetáhni každý úchyt do rohu plátna — hrací plochy, ne dřevěného rámu kolem ní.",
+  "buddyCalibrationCheckLines": "Pak zkontroluj dvanáct čar na každé polovině: každá má vést podél jednoho bodu desky. Pokud čára míjí svůj bod, posuň příslušný úchyt.",
+  "buddyCalibrationSeatQuestion": "Která polovina je tvoje domácí deska?",
+  "buddyCalibrationSeatHelp": "Ta polovina, která je blíž spodnímu okraji snímku. Tím se určí číslování bodů, podle kterého se upraví i čáry výše.",
+  "buddyCalibrationCaptureWait": "Drž telefon v klidu. Buddy čeká, až se snímek ustálí, než se desku naučí.",
+  "buddyCalibrationConfirmQuestion": "Je to tvoje deska?",
+  "buddyCalibrationConfirmFallback": "Buddy se dívá na desku, kterou právě poznal.",
+  "buddyCalibrationConfirmHelp": "Kameny zakreslené přes snímek ukazují, kde si Buddy myslí, že jsou. Pokud je některý na špatném místě, začni znovu — teď to zabere pár sekund, později třeba celou hru.",
+  "buddyCalibrationNext": "Další",
+  "buddyCalibrationBack": "Zpět",
+  "buddyCalibrationCapture": "Pořídit snímek",
+  "buddyCalibrationStartOver": "Začít znovu",
+  "buddyCalibrationLooksRight": "Vypadá správně",
+  "buddyCalibrationCornersInvalid": "Tyto čtyři úchyty nevymezují desku — jeden překřížil jiný. Přetáhni je zpět do rohů plátna.",
+  "buddyCalibrationPrepTitle": "Nejdřív tři věci",
+  "buddyCalibrationRemoveDiceTitle": "Sundej kostky z desky.",
+  "buddyCalibrationRemoveDiceBody": "Buddy se teď učí prázdnou desku. Kostka ponechaná na plátně se naučí jako její součást a Buddy pak během této relace kostky už neuvidí.",
+  "buddyCalibrationSetupCheckersTitle": "Rozestav kameny jako na začátku hry.",
+  "buddyCalibrationSetupCheckersBody": "Třicet kamenů na známých místech pomůže Buddymu poznat dvě barvy desky, aniž bys mu musel/a říkat, které to jsou.",
+  "buddyCalibrationFitBoardTitle": "Zachyť na snímku celou hrací plochu.",
+  "buddyCalibrationFitBoardBody": "Pak nech telefon na místě. Pokud se pohne, Buddy ti to oznámí a můžeš rohy znovu doladit.",
+  "buddyCalibrationBoardKind": "Jaký typ desky máš?",
+  "buddyCalibrationFlatBoard": "Plochá deska",
+  "buddyCalibrationFoldingBoard": "Skládací kufřík",
+  "buddyCalibrationBoardKindHelp": "Skládací deska potřebuje čtyři další úchyty na švech pantu.",
+  "buddyCalibrationNoCameraBody": "Režim Buddy sleduje skutečnou desku, a proto se bez kamery nespustí. Zbytek aplikace bude fungovat dál.",
+  "buddyHandleHingeSeam": "Šev pantu {number} ze 4",
+  "buddyHandleCorner": "Roh desky {number} ze 4",
+  "buddyNudgeLeft": "Posunout doleva",
+  "buddyNudgeRight": "Posunout doprava",
+  "buddyNudgeUp": "Posunout nahoru",
+  "buddyNudgeDown": "Posunout dolů",
+  "buddyCalibrationProblemCorners": "Tyto čtyři rohy nevymezují desku. Přetáhni každý úchyt do rohu hrací plochy a zkus to znovu.",
+  "buddyCalibrationProblemFoldCorners": "Těchto osm bodů nevymezuje skládací desku. Čtyři umísti do rohů hrací plochy a čtyři na švy pantu, pak to zkus znovu.",
+  "buddyCalibrationProblemUnreadable": "Samotnou desku nedokážu rozeznat — je celá zakrytá nebo ztracená ve stínu či odlescích. Uvolni desku, přidej světlo a zkus to znovu.",
+  "buddyCalibrationProblemRegionUnreadable": "Nedokážu rozeznat {region}; v této oblasti může něco ležet nebo může být příliš tmavá. Uvolni ji, přidej světlo a zkus to znovu.",
+  "buddyCalibrationProblemColours": "Obě sady kamenů odtud vypadají příliš podobně. Obvykle pomůže více světla nebo úhel s menšími odlesky.",
+  "buddyCalibrationProblemWrongChecker": "Kameny nejsou v počátečním rozestavení — na bodě {number} je kámen nesprávné barvy. Rozestav kameny jako na začátku hry a znovu kalibruj.",
+  "buddyCalibrationProblemOverexposed": "Na desku dopadá tolik světla, že barvy splývají. Ztlum světlo nebo přesuň telefon, aby se v něm lampa přímo neodrážela.",
+  "buddyCalibrationProblemReadBack": "Desku přečtu, ale nevypadá jako hra připravená k začátku. Rozestav kameny jako na začátku hry a znovu kalibruj.",
+  "buddyCalibrationProblemStacks": "Desku přečtu, ale nedokážu určit, kolik kamenů je za sebou — špatně bych je spočítal. Obvykle pomůže trochu více světla na bližší body nebo mírně vyšší úhel kamery.",
+  "buddyCalibrationProblemNotVisible": "Nevidím celou desku. Odsuň telefon dál nebo přetáhni rohy na hrací plochu.",
+  "buddyConfirmBoardOutOfFrame": "Už nevidím celou desku — {region} je mimo záběr. Znovu namiř kameru nebo zkontroluj rohy.",
+  "buddyConfirmStartingPosition": "To vypadá jako počáteční rozestavení.",
+  "buddyConfirmNoCheckers": "Nevidím žádný kámen na místě, kde hra začíná. Rozestav kameny jako na začátku hry a zkus to znovu.",
+  "buddyConfirmWrongPosition": "Deska není v počátečním rozestavení: {details}{more}.",
+  "buddyConfirmRegionEmpty": "Na {region} nic není, ale na začátku hry tam má být {side}",
+  "buddyConfirmRegionUnexpected": "Na {region} se nachází {side}, ale na začátku hry tam má být prázdno",
+  "buddyConfirmRegionWrongSide": "Na {region} se nachází {observed}, ale na začátku hry tam má být {expected}",
+  "buddyReadabilityMotion": "Chvíli se nehýbej — když se telefon pohybuje, ztrácím desku z dohledu.",
+  "buddyReadabilityWrongFrame": "Obrázek, který dostávám, nepatří k desce, pro kterou jsem byl nastaven, takže v něm nedokážu nic zarovnat. Nastav desku znovu odsud.",
+  "buddyReadabilityBlur": "Obrázek je příliš rozmazaný, abych z něj přečetl desku. Počkej chvíli, než kamera zaostří.",
+  "buddyReadabilityCalibrationStale": "Deska už není tam, kde byla, když jsem se ji učil. Znovu zarovnej rohy a hned navážu na hru.",
+  "buddyReadabilityOccluded": "Část desky něco zakrývá. Jakmile ji uvolníš, budu pokračovat.",
+  "buddyReadabilityClear": "Vidím desku.",
+  "buddyReadabilityColorChanged": "Osvětlení desky změnilo barvu, takže už nevypadá jako ta, kterou jsem se naučil. Znovu zarovnej rohy při tomto světle a hned navážu na hru.",
+  "buddyReadabilityTooDark": "Na přečtení desky je příliš tma. Přidej trochu světla a budu pokračovat tam, kde jsme skončili.",
+  "buddyReadabilityTooBright": "Na desku dopadá tolik světla, že barvy splývají. Ztlum ho nebo přesuň telefon, aby se v něm lampa přímo neodrážela.",
+  "buddyPromptBeliefMirror": "Buddy stále nevidí svůj tah — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nMůžeš dál hrát: každý hod zadej na panelu kostek a tahy zadávej na desce níže.",
+  "buddyCameraGenericError": "Kameru se nepodařilo spustit. Zkontroluj oprávnění a zkus to znovu.",
+  "buddyRegionPoint": "bod {number}",
+  "buddyRegionBar": "bar",
+  "buddyRegionWhiteTray": "miska na vyhazování bílých kamenů",
+  "buddyRegionBlackTray": "miska na vyhazování černých kamenů",
+  "buddyRegionDiceZone": "střed desky",
+  "buddyCalibrationProblemVisible": "Nevidím celou desku. Odsuň telefon dál nebo přetáhni rohy na hrací plochu.",
+  "buddyConfirmMore": " (a dalších {number})",
+  "buddyDiceOpeningCaption": "Každý hodí jednou kostkou. Její číslo rozhodne, kdo začne.",
+  "buddyDiceOpeningFirst": "Kostka bílého hráče",
+  "buddyDiceOpeningSecond": "Kostka černého hráče",
+  "buddyDiceRegularCaption": "Dvě hodnoty na kostkách na stole, v libovolném pořadí.",
+  "buddyDiceRegularFirst": "Jedna kostka",
+  "buddyDiceRegularSecond": "Druhá",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

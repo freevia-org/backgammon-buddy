@@ -2694,4 +2694,492 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Önerilen değişiklik';
+
+  @override
+  String get buddySetupTitle => 'Buddy ile oyna';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy oynasın';
+
+  @override
+  String get buddySetupSeatLabel => 'Senin tarafın';
+
+  @override
+  String get buddySetupSeatNear => 'Telefonun yanı';
+
+  @override
+  String get buddySetupSeatFar => 'Karşı taraf';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Tahtanın hangi tarafında oturduğun. Buddy noktaları buna göre numaralandırır ve açılış zarını seninkiyle kendi zarı arasında ayırt eder.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Buddy nasıl konuşsun?';
+
+  @override
+  String get buddySetupVoiceTerse => 'Kısa';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Samimi';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '“13/8, 24/22” — tahtadaki iki oyuncunun kullandığı notasyon.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '“Bir pulu 13’ten 8’e, birini de 24’ten 22’ye taşı.”';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Eğitmen yorumları ve hamle açıklamaları, Ayarlar’da kaydettiğin eğitmen tercihlerini izler. Buddy hamlelerin hakkında ara sıra yorum yapar; zarları girmek ve hamleleri elle yapmak da aynı şekilde çalışır.';
+
+  @override
+  String get buddySetupCalibrate => 'Tahtayı kalibre et';
+
+  @override
+  String get buddyFixAim => 'Kamerayı hizala';
+
+  @override
+  String get buddyWaitingForOpening => 'Buddy maçı başlatacak atışı bekliyor.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy tahtayı kaybetti. Kamerayı hizala, maç kaldığı yerden devam etsin.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Buddy’nin okuyabileceği bir görüntü bekleniyor. Hiçbir şey kaybolmadı.';
+
+  @override
+  String get buddyPromptTypeDice => 'Buddy zarları göremiyor. Atışı elle gir.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Hamleni tahtada yap. Buddy göremezse buradan gir.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Hangi hamleyi yaptın?';
+
+  @override
+  String get buddyPromptCube =>
+      'Buddy katlama teklif ediyor. Kabul mü, pas mı?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Buddy’nin hamlesini tahtada yap, sonra Buddy devam edecek.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy düşünüyor.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Kalibrasyon bekleniyor.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy hâlâ kendi hamlesini göremiyor. Aşağıdaki tahta, Buddy’nin aklında tuttuğu konumu gösteriyor.';
+
+  @override
+  String get buddyPromptNotLegal => 'Bu kurallara uygun bir hamle değil.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Bu kurallara uygun bir hamle değil. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening => 'Açılış zarlarını at — herkes bir zar atsın.';
+
+  @override
+  String get buddyThrowUser => 'Zarlarını at.';
+
+  @override
+  String get buddyThrowBuddy => 'Buddy’nin zarlarını at.';
+
+  @override
+  String get buddyMatchOver => 'Maç bitti.';
+
+  @override
+  String get buddyYouWin => 'Maçı kazandın.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy maçı kazandı.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Henüz katlanacak bir oyun yok — önce açılış atışı yapılmalı.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Yalnızca kendi sıranda ve zar atmadan önce katlayabilirsin.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'Crawford oyununda katlama yok — maçı bu tek oyun belirler.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Yalnızca katlama küpünün sahibi katlayabilir; şu anda küp rakibin elinde.';
+
+  @override
+  String get buddyDoubleUnavailable => 'Şu anda katlama yapılamaz.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy tahtaya bakıyor.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Maça yine de devam edebilirsin: her atışı zar paneline gir ve hamlelerini aşağıdaki tahtada işaretle.';
+
+  @override
+  String get buddySkipCheck => 'Bu kontrolü atla';
+
+  @override
+  String get buddyFixedIt => 'Düzelttim';
+
+  @override
+  String get buddyDrop => 'Pas';
+
+  @override
+  String get buddyTake => 'Kabul et';
+
+  @override
+  String get buddyDone => 'Bitti';
+
+  @override
+  String get buddyTranscriptLabel => 'Buddy ne dedi?';
+
+  @override
+  String get buddyUndo => 'Geri al';
+
+  @override
+  String get buddyConfirm => 'Onayla';
+
+  @override
+  String get buddyDice => 'Zarlar';
+
+  @override
+  String get buddyDouble => 'Katla';
+
+  @override
+  String get buddyDicePadTitle => 'Zarlarda ne geldi?';
+
+  @override
+  String get buddyEnterRoll => 'Atışı gir';
+
+  @override
+  String get buddyContextBeforeGame => 'Buddy ile oyna';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Sen $you–$buddy Buddy · $length puanlık maç · Oyun $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Kamera başlatılamadı. İzinleri kontrol edip tekrar dene.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy’nin kamerayı kullanma izni yok. Cihaz ayarlarından kamera erişimine izin verip tekrar dene.';
+
+  @override
+  String get buddyCalibrationTitle => 'Tahtayı Buddy’ye göster';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Dört dış tutamacı ahşap çerçeveye değil, oyun yüzeyinin köşelerine; dört küçük tutamacı ise menteşenin uzak ve yakın kenarlarla birleştiği dikişlere sürükle.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Her tutamacı oyun yüzeyinin bir köşesine sürükle; ahşap çerçeveye değil.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Ardından her yarıdaki on iki çizgiyi kontrol et: her biri tahtadaki bir hanenin boyunca uzanmalı. Bir çizgi hanesini ıskalıyorsa ilgili tutamacı biraz kaydır.';
+
+  @override
+  String get buddyCalibrationSeatQuestion => 'Hangi yarı senin iç sahan?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'Görüntünün alt kenarına en yakın yarı. Bu, hane numaralarını belirler; yukarıdaki çizgiler de buna göre hizalanır.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Telefonu sabit tut. Buddy tahtayı öğrenmeden önce görüntünün durulmasını bekliyor.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Bu senin tahtan mı?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy az önce öğrendiği tahtaya bakıyor.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Görüntünün üzerine çizilen pullar, Buddy’nin onları tahtada nerede gördüğünü gösterir. Biri bile yanlış yerdeyse baştan başla; şimdi birkaç saniye kaybedersin, sonra belki bir oyunu.';
+
+  @override
+  String get buddyCalibrationNext => 'İleri';
+
+  @override
+  String get buddyCalibrationBack => 'Geri';
+
+  @override
+  String get buddyCalibrationCapture => 'Fotoğraf çek';
+
+  @override
+  String get buddyCalibrationStartOver => 'Baştan başla';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Doğru görünüyor';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Bu dört tutamaç bir tahta sınırı oluşturmuyor; biri diğerinin üzerinden geçmiş. Tutamaçları oyun yüzeyinin köşelerine geri sürükle.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Önce üç şey';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Zarları tahtadan kaldır.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy şimdi boş tahtayı öğreniyor. Kumaşın üzerinde kalan bir zarı tahtanın parçası sanır ve bu oturum boyunca zarları bir daha göremez.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Pulları oyunun başlangıç düzenine koy.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Bilinen yerlerdeki otuz pul, Buddy’nin tahtanın iki rengini ne olduklarını söylemene gerek kalmadan öğrenmesini sağlar.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Oyun yüzeyinin tamamını görüntüye sığdır.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Ardından telefonu olduğu yerde bırak. Hareket ederse Buddy haber verir, sen de köşeleri yeniden ayarlayabilirsin.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Tahta türü nedir?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Düz tahta';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Katlanır kutu';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Katlanır tahta için menteşe dikişlerinde dört ek tutamaç gerekir.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Buddy Modu gerçek bir tahtayı izler, bu nedenle kamera olmadan başlatılamaz. Uygulamanın geri kalanı çalışmaya devam eder.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Menteşe dikişi $number/4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Tahta köşesi $number/4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Biraz sola kaydır';
+
+  @override
+  String get buddyNudgeRight => 'Biraz sağa kaydır';
+
+  @override
+  String get buddyNudgeUp => 'Biraz yukarı kaydır';
+
+  @override
+  String get buddyNudgeDown => 'Biraz aşağı kaydır';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Bu dört köşe bir tahta sınırı oluşturmuyor. Her tutamacı oyun yüzeyinin bir köşesine sürükle ve tekrar dene.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Bu sekiz nokta katlanır bir tahta sınırı oluşturmuyor. Dördünü oyun yüzeyinin köşelerine, dördünü menteşe dikişlerine yerleştirip tekrar dene.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Tahtanın kendisini seçemiyorum; tamamen örtülmüş ya da gölgede veya parlamada kalmış. Tahtayı boşalt, biraz ışık ekle ve tekrar dene.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return '$region seçemiyorum; orada bir şey olabilir ya da tahtanın o köşesi çok karanlık olabilir. Orayı boşalt veya biraz ışık ekleyip tekrar dene.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'İki pul grubu buradan birbirine çok benziyor. Genellikle daha fazla ışık ya da tahtada daha az parlama olan bir açı işe yarar.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Pullar başlangıç konumunda değil; $number. hanede yanlış renkte pul var. Pulları oyun başlangıcındaki gibi diz ve yeniden kalibre et.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Tahtaya o kadar çok ışık vuruyor ki renkler birbirine karışıyor. Işığı azalt ya da lamba doğrudan yansımayacak şekilde telefonu hareket ettir.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Tahtayı görebiliyorum ama oyun başlangıç konumunda görünmüyor. Pulları oyun başlangıcındaki gibi diz ve yeniden kalibre et.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Tahtayı okuyabiliyorum ama bir pulun diğerinin ne kadar arkasında kaldığını seçemiyorum; bu yüzden yanlış sayarım. Yakın haneleri biraz daha aydınlatmak veya kamerayı biraz yükseltmek genellikle işe yarar.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Tahtanın tamamını göremiyorum. Telefonu biraz uzaklaştır veya köşeleri oyun yüzeyine sürükle.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Artık tahtanın tamamını göremiyorum; $region görüntünün dışında. Kamerayı yeniden hizala veya köşeleri kontrol et.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition => 'Bu başlangıç konumuna benziyor.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Oyunun başladığı yerlerde hiç pul göremiyorum. Pulları başlangıç düzenine koyup tekrar dene.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Tahta başlangıç düzeninde değil: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region boş görünüyor ama oyun başlarken orada $side olmalı';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return '$region üzerinde $side var ama oyun başlarken orası boş olmalı';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return '$region üzerinde $observed var; oyun başlarken orada $expected olmalı';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Bir an sabit dur; telefon hareket ederken tahtayı kaybediyorum.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Bana gönderilen görüntü, ayarlandığım tahtaya ait değil; bu yüzden görüntüde eşleştirme yapamıyorum. Tahtayı buradan yeniden ayarla.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Görüntü tahtayı okuyamayacağım kadar bulanık. Kameranın odaklanması için biraz bekle.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Tahta, onu öğrendiğim yerde değil. Köşeleri yeniden hizala, ben de oyuna kaldığımız yerden hemen devam edeyim.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Tahtanın bir kısmı örtülmüş. Üzeri açılır açılmaz devam edeceğim.';
+
+  @override
+  String get buddyReadabilityClear => 'Tahtayı görebiliyorum.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Tahtadaki ışığın rengi değişti; tahta artık öğrendiğim hâline benzemiyor. Bu ışıkta köşeleri yeniden hizala, ben de oyuna hemen devam edeyim.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Tahtayı okumak için çok karanlık. Biraz ışık ekle, kaldığımız yerden devam edeyim.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Tahtaya o kadar çok ışık vuruyor ki renkler birbirine karışıyor. Işığı azalt ya da lamba doğrudan yansımayacak şekilde telefonu hareket ettir.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy hâlâ kendi hamlesini göremiyor — $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nMaça yine de devam edebilirsin: her atışı zar paneline gir ve hamlelerini aşağıdaki tahtada işaretle.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Kamera başlatılamadı. İzinleri kontrol edip tekrar dene.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return '$number. hane';
+  }
+
+  @override
+  String get buddyRegionBar => 'bar';
+
+  @override
+  String get buddyRegionWhiteTray => 'beyaz pulların toplama alanı';
+
+  @override
+  String get buddyRegionBlackTray => 'siyah pulların toplama alanı';
+
+  @override
+  String get buddyRegionDiceZone => 'tahtanın ortası';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Tahtanın tamamını göremiyorum. Telefonu biraz uzaklaştır veya köşeleri oyun yüzeyine sürükle.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return ' (ve $number tane daha)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Herkes bir zar atar. Hangi sayının kime geldiği, kimin başlayacağını belirler.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'Beyazın zarı';
+
+  @override
+  String get buddyDiceOpeningSecond => 'Siyahın zarı';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'Masadaki iki zarın gösterdiği sayılar, sırası fark etmeksizin.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Bir zar';
+
+  @override
+  String get buddyDiceRegularSecond => 'Diğeri';
 }

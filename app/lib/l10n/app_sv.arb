@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "QR-kod för att gå med i det här spelet",
   "lanJoinInstruction": "Öppna Spela i närheten på den andra enheten, välj Gå med och skanna den här QR-koden.",
   "homePlayWithBuddy": "Spela med Buddy",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Spela med Buddy",
+  "buddySetupSideLabel": "Buddy spelar",
+  "buddySetupSeatLabel": "Din sida",
+  "buddySetupSeatNear": "Nära telefonen",
+  "buddySetupSeatFar": "Mittemot",
+  "buddySetupSeatHelp": "På vilken sida av brädet sitter du? Det avgör hur Buddy numrerar punkterna och skiljer din öppningskastning från sin egen.",
+  "buddySetupVoiceLabel": "Så pratar Buddy",
+  "buddySetupVoiceTerse": "Kortfattat",
+  "buddySetupVoiceFriendly": "Vänligt",
+  "buddySetupVoiceTerseHelp": "”13/8, 24/22” — notation som två spelare använder vid brädet.",
+  "buddySetupVoiceFriendlyHelp": "”Flytta en bricka från 13 till 8 och en från 24 till 22.”",
+  "buddySetupTutorHelp": "Tutor-kommentarer och dragförklaringar följer dina sparade Tutor-inställningar. Buddy ger ibland återkoppling efter dina drag; manuell tärningsinmatning och manuella drag fungerar på samma sätt.",
+  "buddySetupCalibrate": "Kalibrera brädet",
+  "buddyFixAim": "Justera kameran",
+  "buddyWaitingForOpening": "Buddy väntar på kastet som startar matchen.",
+  "buddyPromptLostBoard": "Buddy har tappat bort brädet. Justera kameran så fortsätter matchen där den pausades.",
+  "buddyPromptWaitingPicture": "Väntar på en bild som Buddy kan läsa. Inget har gått förlorat.",
+  "buddyPromptTypeDice": "Buddy hittar inte tärningarna. Ange kastet manuellt.",
+  "buddyPromptPlay": "Gör ditt drag på brädet. Om Buddy inte ser det kan du ange det här.",
+  "buddyPromptWhichPlay": "Vilket drag gjorde du?",
+  "buddyPromptCube": "Buddy dubblar. Ta eller lägg ned?",
+  "buddyPromptMakeMove": "Gör Buddys drag på brädet, så fortsätter Buddy sedan.",
+  "buddyPromptThinking": "Buddy tänker.",
+  "buddyPromptWaitingCalibration": "Väntar på kalibrering.",
+  "buddyPromptMirrorNoDetail": "Buddy ser fortfarande inte sitt drag. Brädet nedan visar positionen som Buddy följer.",
+  "buddyPromptNotLegal": "Det draget är inte tillåtet.",
+  "buddyPromptNotLegalReason": "Det draget är inte tillåtet. {reason}",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyThrowOpening": "Kasta öppningstärningarna — en var.",
+  "buddyThrowUser": "Kasta dina tärningar.",
+  "buddyThrowBuddy": "Kasta Buddys tärningar.",
+  "buddyMatchOver": "Matchen är slut.",
+  "buddyYouWin": "Du vann matchen.",
+  "buddyBuddyWins": "Buddy vann matchen.",
+  "buddyDoubleNoGame": "Det finns inget parti att dubbla ännu — öppningskastet kommer först.",
+  "buddyDoubleBeforeRoll": "Du kan bara dubbla före kastet när det är din tur.",
+  "buddyDoubleCrawford": "Ingen dubbling i Crawford-partiet — det här enda partiet avgör matchen.",
+  "buddyDoubleNotOwner": "Bara kubägaren kan dubbla, och just nu äger den andra sidan kuben.",
+  "buddyDoubleUnavailable": "Dubbling är inte tillgänglig just nu.",
+  "buddyLookingAtBoard": "Buddy tittar på brädet.",
+  "buddyCameraPlayFallback": "Du kan fortsätta matchen: ange varje kast på tärningspanelen och gör dragen på brädet nedan.",
+  "buddySkipCheck": "Hoppa över kontrollen",
+  "buddyFixedIt": "Jag har fixat det",
+  "buddyDrop": "Lägg ned",
+  "buddyTake": "Ta",
+  "buddyDone": "Klart",
+  "buddyTranscriptLabel": "Det Buddy sa",
+  "buddyUndo": "Ångra",
+  "buddyConfirm": "Bekräfta",
+  "buddyDice": "Tärningar",
+  "buddyDouble": "Dubbling",
+  "buddyDicePadTitle": "Vad fick du?",
+  "buddyEnterRoll": "Ange kast",
+  "buddyContextBeforeGame": "Spela med Buddy",
+  "buddyContextMatchScore": "Du {you}–{buddy} Buddy · till {length} · parti {number}",
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraUnavailable": "Kameran kunde inte startas. Kontrollera behörigheterna och försök igen.",
+  "buddyCameraPermission": "Backgammon Buddy har inte behörighet att använda kameran. Tillåt kameraåtkomst i enhetens inställningar och försök igen.",
+  "buddyCalibrationTitle": "Visa Buddy brädet",
+  "buddyCalibrationCornersFold": "Dra de fyra yttre handtagen till hörnen på spelytan, inte träramen. Dra de fyra små handtagen till gångjärnsskarvarna vid de bortre och närmaste kanterna.",
+  "buddyCalibrationCornersFlat": "Dra varje handtag till ett hörn av spelytan, inte träramen.",
+  "buddyCalibrationCheckLines": "Kontrollera sedan de tolv linjerna på varje halva: var och en ska följa en punkt på brädet. Om en linje missar sin punkt behöver handtaget flyttas.",
+  "buddyCalibrationSeatQuestion": "Vilken halva är ditt hemområde?",
+  "buddyCalibrationSeatHelp": "Halvan närmast bildens nederkant. Den bestämmer punktnumren, så linjerna ovanför följer den.",
+  "buddyCalibrationCaptureWait": "Håll telefonen stilla. Buddy väntar på att bilden ska stabiliseras innan brädet lärs in.",
+  "buddyCalibrationConfirmQuestion": "Är det här ditt bräde?",
+  "buddyCalibrationConfirmFallback": "Buddy tittar på brädet som just lärdes in.",
+  "buddyCalibrationConfirmHelp": "Brickorna som ritats ovanpå bilden visar var Buddy tror att de ligger. Om någon är felplacerad kan du börja om — det tar sekunder nu, men kan kosta ett parti senare.",
+  "buddyCalibrationNext": "Nästa",
+  "buddyCalibrationBack": "Tillbaka",
+  "buddyCalibrationCapture": "Ta bild",
+  "buddyCalibrationStartOver": "Börja om",
+  "buddyCalibrationLooksRight": "Ser rätt ut",
+  "buddyCalibrationCornersInvalid": "De här fyra handtagen ramar inte in brädet — ett har korsat ett annat. Dra tillbaka dem till spelytans hörn.",
+  "buddyCalibrationPrepTitle": "Tre saker först",
+  "buddyCalibrationRemoveDiceTitle": "Ta bort tärningarna från brädet.",
+  "buddyCalibrationRemoveDiceBody": "Buddy lär sig det tomma brädet nu. Om en tärning ligger kvar på spelytan lär sig Buddy att den är en del av brädet och kan då inte se tärningarna under den här sessionen.",
+  "buddyCalibrationSetupCheckersTitle": "Ställ upp brickorna för ett nytt parti.",
+  "buddyCalibrationSetupCheckersBody": "Trettio brickor på kända platser hjälper Buddy att lära sig brädets två färger utan att du behöver berätta vilka de är.",
+  "buddyCalibrationFitBoardTitle": "Få med hela spelytan i bilden.",
+  "buddyCalibrationFitBoardBody": "Låt sedan telefonen ligga kvar. Om den flyttas säger Buddy till, så kan du justera hörnen igen.",
+  "buddyCalibrationBoardKind": "Vilken typ av bräde har du?",
+  "buddyCalibrationFlatBoard": "Platt bräde",
+  "buddyCalibrationFoldingBoard": "Hopfällbart bräde",
+  "buddyCalibrationBoardKindHelp": "Ett hopfällbart bräde behöver fyra extra handtag vid gångjärnsskarvarna.",
+  "buddyCalibrationNoCameraBody": "Buddy-läget följer ett fysiskt bräde och kan därför inte starta utan kameran. Resten av appen fungerar som vanligt.",
+  "buddyHandleHingeSeam": "Gångjärnsskarv {number} av 4",
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyHandleCorner": "Brädhörn {number} av 4",
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyNudgeLeft": "Flytta åt vänster",
+  "buddyNudgeRight": "Flytta åt höger",
+  "buddyNudgeUp": "Flytta uppåt",
+  "buddyNudgeDown": "Flytta nedåt",
+  "buddyCalibrationProblemCorners": "De här fyra hörnen ramar inte in ett bräde. Dra varje handtag till ett hörn av spelytan och försök igen.",
+  "buddyCalibrationProblemFoldCorners": "De här åtta punkterna ramar inte in ett hopfällbart bräde. Placera fyra i spelytans hörn och fyra vid gångjärnsskarvarna, och försök igen.",
+  "buddyCalibrationProblemUnreadable": "Jag kan inte urskilja själva brädet — det är helt täckt eller försvinner i skugga eller blänk. Frilägg brädet, öka belysningen och försök igen.",
+  "buddyCalibrationProblemRegionUnreadable": "Jag kan inte urskilja {region} — något kan ligga där eller så är hörnet för mörkt. Ta bort föremålet eller öka belysningen och försök igen.",
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCalibrationProblemColours": "De två brickfärgerna ser för lika ut härifrån. Mer ljus eller en vinkel med mindre blänk brukar hjälpa.",
+  "buddyCalibrationProblemWrongChecker": "Brickorna står inte i startpositionen — punkt {number} har en bricka med fel färg. Ställ upp brädet för ett nytt parti och kalibrera igen.",
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyCalibrationProblemOverexposed": "Brädet får så mycket ljus att färgerna flyter ihop. Dämpa belysningen eller flytta telefonen så att lampan inte lyser rakt in i kameran.",
+  "buddyCalibrationProblemReadBack": "Jag kan läsa brädet, men det ser inte ut som inför ett nytt parti. Ställ brickorna i startpositionen och kalibrera igen.",
+  "buddyCalibrationProblemStacks": "Jag kan läsa brädet, men inte avgöra hur långt en bricka ligger bakom en annan och skulle därför räkna fel. Mer ljus på de närmaste punkterna eller en något högre kameravinkel brukar hjälpa.",
+  "buddyCalibrationProblemNotVisible": "Jag ser inte hela brädet. Flytta telefonen längre bort eller dra hörnen till spelytan.",
+  "buddyConfirmBoardOutOfFrame": "Jag ser inte hela brädet längre — {region} är utanför bilden. Rikta in kameran igen eller kontrollera hörnen.",
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmStartingPosition": "Det ser ut som startpositionen.",
+  "buddyConfirmNoCheckers": "Jag ser ingen bricka på någon startpunkt. Ställ upp brädet för ett nytt parti och försök igen.",
+  "buddyConfirmWrongPosition": "Brädet är inte uppställt för ett nytt parti: {details}{more}.",
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionEmpty": "{region} ser tomt ut, men i startpositionen ska {side} stå där",
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionUnexpected": "{region} har {side}, men ska vara tomt i startpositionen",
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionWrongSide": "{region} har {observed}, men startpositionen kräver {expected}",
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyReadabilityMotion": "Håll stilla en stund — jag tappar bort brädet när telefonen rör sig.",
+  "buddyReadabilityWrongFrame": "Bilden jag får är inte den som brädet ställdes in med, så jag kan inte rikta in det. Ställ in brädet igen härifrån.",
+  "buddyReadabilityBlur": "Bilden är för suddig för att läsa brädet. Vänta en stund medan kameran fokuserar.",
+  "buddyReadabilityCalibrationStale": "Brädet står inte längre där jag lärde mig det. Rikta in hörnen igen så fortsätter jag matchen direkt.",
+  "buddyReadabilityOccluded": "Något täcker en del av brädet. Jag fortsätter så snart det är fritt.",
+  "buddyReadabilityClear": "Jag ser brädet.",
+  "buddyReadabilityColorChanged": "Ljuset på brädet har ändrat färg, så brädet ser inte längre ut som det jag lärde mig. Rikta in hörnen igen i det här ljuset så fortsätter jag matchen.",
+  "buddyReadabilityTooDark": "Det är för mörkt för att läsa brädet. Lite mer ljus så fortsätter jag där vi slutade.",
+  "buddyReadabilityTooBright": "Brädet får så mycket ljus att färgerna flyter ihop. Dämpa ljuset eller flytta telefonen så att lampan inte blänker in i kameran.",
+  "buddyPromptBeliefMirror": "Buddy ser fortfarande inte sitt drag — {reason}.",
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nDu kan fortsätta matchen: ange varje kast på tärningspanelen och gör dragen på brädet nedan.",
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraGenericError": "Kameran kunde inte startas. Kontrollera behörigheterna och försök igen.",
+  "buddyRegionPoint": "punkt {number}",
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyRegionBar": "baren",
+  "buddyRegionWhiteTray": "vit spelares brickbricka",
+  "buddyRegionBlackTray": "svart spelares brickbricka",
+  "buddyRegionDiceZone": "brädets mitt",
+  "buddyCalibrationProblemVisible": "Jag ser inte hela brädet. Flytta telefonen längre bort eller dra hörnen till spelytan.",
+  "buddyConfirmMore": " (och {number} till)",
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyDiceOpeningCaption": "En tärning var. Värdena avgör vem som börjar.",
+  "buddyDiceOpeningFirst": "Vits tärning",
+  "buddyDiceOpeningSecond": "Svarts tärning",
+  "buddyDiceRegularCaption": "De två tärningarnas värden, i valfri ordning.",
+  "buddyDiceRegularFirst": "En tärning",
+  "buddyDiceRegularSecond": "Den andra tärningen"
 }

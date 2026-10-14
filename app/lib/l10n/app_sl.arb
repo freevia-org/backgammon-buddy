@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "Koda QR za pridružitev tej igri",
   "lanJoinInstruction": "V drugi napravi odprite Igraj v bližini, izberite Pridruži se in skenirajte to kodo QR.",
   "homePlayWithBuddy": "Igraj z Buddy",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Igraj z Buddyjem",
+  "buddySetupSideLabel": "Buddy igra",
+  "buddySetupSeatLabel": "Tvoja stran",
+  "buddySetupSeatNear": "Ob telefonu",
+  "buddySetupSeatFar": "Nasproti",
+  "buddySetupSeatHelp": "Na kateri strani igralne plošče sediš? Tako Buddy oštevilči polja in loči tvoj začetni met od svojega.",
+  "buddySetupVoiceLabel": "Kako govori Buddy",
+  "buddySetupVoiceTerse": "Jedrnato",
+  "buddySetupVoiceFriendly": "Prijazno",
+  "buddySetupVoiceTerseHelp": "»13/8, 24/22« — zapis, kot se ob plošči pogovarjata dva igralca.",
+  "buddySetupVoiceFriendlyHelp": "»Premakni eno figuro s 13 na 8 in eno s 24 na 22.«",
+  "buddySetupTutorHelp": "Komentarji in razlage potez sledijo shranjenim nastavitvam Tutorja. Buddy občasno komentira tvoje poteze; vnos meta in ročne poteze delujejo enako.",
+  "buddySetupCalibrate": "Umeri ploščo",
+  "buddyFixAim": "Popravi kader",
+  "buddyWaitingForOpening": "Buddy čaka na met, ki začne partijo.",
+  "buddyPromptLostBoard": "Buddy je izgubil ploščo. Popravi kader in partija se bo nadaljevala tam, kjer se je ustavila.",
+  "buddyPromptWaitingPicture": "Čakam na sliko, ki jo Buddy lahko prebere. Nič ni izgubljeno.",
+  "buddyPromptTypeDice": "Buddy ne vidi kock. Vnesi met ročno.",
+  "buddyPromptPlay": "Izvedi potezo na plošči. Če je Buddy ne vidi, jo vnesi tukaj.",
+  "buddyPromptWhichPlay": "Katero potezo si izvedel?",
+  "buddyPromptCube": "Buddy podvoji. Sprejmeš ali odstopiš?",
+  "buddyPromptMakeMove": "Izvedi Buddyjevo potezo na plošči, nato bo nadaljeval.",
+  "buddyPromptThinking": "Buddy razmišlja.",
+  "buddyPromptWaitingCalibration": "Čakam na umerjanje.",
+  "buddyPromptMirrorNoDetail": "Buddy še vedno ne vidi svoje poteze. Spodnja plošča prikazuje položaj, ki ga spremlja.",
+  "buddyPromptNotLegal": "Ta poteza ni dovoljena.",
+  "buddyPromptNotLegalReason": "Ta poteza ni dovoljena. {reason}",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyThrowOpening": "Vrzi začetni kocki — vsak po eno.",
+  "buddyThrowUser": "Vrzi svoje kocke.",
+  "buddyThrowBuddy": "Vrzi Buddyjeve kocke.",
+  "buddyMatchOver": "Partija je končana.",
+  "buddyYouWin": "Zmagal si partijo.",
+  "buddyBuddyWins": "Buddy je zmagal partijo.",
+  "buddyDoubleNoGame": "Za zdaj še ni igre za podvojitev — najprej vrzi začetni kocki.",
+  "buddyDoubleBeforeRoll": "Podvojiš lahko le na svoji potezi in pred metom.",
+  "buddyDoubleCrawford": "V Crawfordovi partiji ni podvojitev — ta posamezna partija odloči dvoboj.",
+  "buddyDoubleNotOwner": "Podvoji lahko le lastnik kocke, trenutno pa je kocka pri drugi strani.",
+  "buddyDoubleUnavailable": "Podvojitev trenutno ni na voljo.",
+  "buddyLookingAtBoard": "Buddy gleda ploščo.",
+  "buddyCameraPlayFallback": "Partijo lahko nadaljuješ: vsak met vnesi na ploščici za kocke, poteze pa izvedi na spodnji plošči.",
+  "buddySkipCheck": "Preskoči preverjanje",
+  "buddyFixedIt": "Popravil sem",
+  "buddyDrop": "Odstopi",
+  "buddyTake": "Sprejmi",
+  "buddyDone": "Končano",
+  "buddyTranscriptLabel": "Kaj je rekel Buddy",
+  "buddyUndo": "Razveljavi",
+  "buddyConfirm": "Potrdi",
+  "buddyDice": "Kocke",
+  "buddyDouble": "Podvoji",
+  "buddyDicePadTitle": "Kaj si vrgel?",
+  "buddyEnterRoll": "Vnesi met",
+  "buddyContextBeforeGame": "Igraj z Buddyjem",
+  "buddyContextMatchScore": "Ti {you}–{buddy} Buddy · do {length} · partija {number}",
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraUnavailable": "Kamere ni bilo mogoče zagnati. Preveri dovoljenja in poskusi znova.",
+  "buddyCameraPermission": "Backgammon Buddy nima dovoljenja za uporabo kamere. Dovoli dostop v nastavitvah naprave in poskusi znova.",
+  "buddyCalibrationTitle": "Pokaži Buddyju ploščo",
+  "buddyCalibrationCornersFold": "Štiri zunanje ročice povleci na vogale igralne površine, ne na lesen rob; štiri manjše pa na stike tečaja z oddaljenim in bližnjim robom.",
+  "buddyCalibrationCornersFlat": "Vsako ročico povleci na vogal igralne površine, ne na lesen rob.",
+  "buddyCalibrationCheckLines": "Nato preveri dvanajst črt na vsaki polovici: vsaka naj poteka vzdolž polja. Če zgreši polje, premakni ustrezno ročico.",
+  "buddyCalibrationSeatQuestion": "Katera polovica je tvoje domače območje?",
+  "buddyCalibrationSeatHelp": "Polovica bližje spodnjemu robu slike. Ta določi oštevilčenje polj, zgornje črte pa se poravnajo z njo.",
+  "buddyCalibrationCaptureWait": "Telefon drži pri miru. Buddy čaka, da se slika umiri, preden se nauči ploščo.",
+  "buddyCalibrationConfirmQuestion": "Je to tvoja plošča?",
+  "buddyCalibrationConfirmFallback": "Buddy gleda ploščo, ki se jo je pravkar naučil.",
+  "buddyCalibrationConfirmHelp": "Figure, narisane čez sliko, kažejo, kje Buddy misli, da so. Če je katera napačno, začni znova — zdaj traja le nekaj sekund, pozneje pa lahko pokvari partijo.",
+  "buddyCalibrationNext": "Naprej",
+  "buddyCalibrationBack": "Nazaj",
+  "buddyCalibrationCapture": "Zajemi",
+  "buddyCalibrationStartOver": "Začni znova",
+  "buddyCalibrationLooksRight": "Videti je prav",
+  "buddyCalibrationCornersInvalid": "Te štiri ročice ne obdajajo plošče — ena prečka drugo. Povleci jih nazaj na vogale igralne površine.",
+  "buddyCalibrationPrepTitle": "Najprej tri stvari",
+  "buddyCalibrationRemoveDiceTitle": "Umakni kocke s plošče.",
+  "buddyCalibrationRemoveDiceBody": "Buddy se zdaj uči prazno ploščo. Če kocka ostane na igralni površini, jo bo prepoznal kot del plošče in v tej seji kock ne bo več videl.",
+  "buddyCalibrationSetupCheckersTitle": "Figure postavi v začetni položaj.",
+  "buddyCalibrationSetupCheckersBody": "Trideset figur na znanih mestih Buddyju pove, kateri sta barvi plošče, ne da bi mu ju moral povedati.",
+  "buddyCalibrationFitBoardTitle": "V kader spravi celotno igralno površino.",
+  "buddyCalibrationFitBoardBody": "Nato pusti telefon pri miru. Če se premakne, bo Buddy povedal, ti pa lahko znova prilagodiš vogale.",
+  "buddyCalibrationBoardKind": "Kakšno ploščo imaš?",
+  "buddyCalibrationFlatBoard": "Ravna plošča",
+  "buddyCalibrationFoldingBoard": "Zložljiva plošča",
+  "buddyCalibrationBoardKindHelp": "Zložljiva plošča potrebuje še štiri ročice na stikih tečaja.",
+  "buddyCalibrationNoCameraBody": "Način Buddy spremlja pravo ploščo, zato brez kamere ne more začeti. Vse drugo v aplikaciji še naprej deluje.",
+  "buddyHandleHingeSeam": "Stik tečaja {number} od 4",
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyHandleCorner": "Vogal plošče {number} od 4",
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyNudgeLeft": "Premakni levo",
+  "buddyNudgeRight": "Premakni desno",
+  "buddyNudgeUp": "Premakni navzgor",
+  "buddyNudgeDown": "Premakni navzdol",
+  "buddyCalibrationProblemCorners": "Ti štirje vogali ne obdajajo plošče. Vsako ročico povleci na vogal igralne površine in poskusi znova.",
+  "buddyCalibrationProblemFoldCorners": "Teh osem točk ne obroblja zložljive plošče. Štiri postavi na vogale igralne površine, štiri pa na stike tečaja, nato poskusi znova.",
+  "buddyCalibrationProblemUnreadable": "Same plošče ne razločim — povsem je zakrita ali izgubljena v senci oziroma bleščanju. Sprosti ploščo, dodaj svetlobo in poskusi znova.",
+  "buddyCalibrationProblemRegionUnreadable": "Ne razločim {region} — morda nekaj leži na njem ali pa je vogal pretemen. Odstrani oviro ali dodaj svetlobo in poskusi znova.",
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCalibrationProblemColours": "Obe barvi figur sta od tod videti preveč podobni. Običajno pomaga več svetlobe ali kot z manj bleščanja.",
+  "buddyCalibrationProblemWrongChecker": "Figure niso v začetnem položaju — na polju {number} je figura napačne barve. Postavi ploščo v začetni položaj in jo znova umeri.",
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyCalibrationProblemOverexposed": "Na ploščo pada preveč svetlobe, zato se barve zlivajo. Zatemni prostor ali premakni telefon, da se svetilka ne bo odbijala naravnost v kamero.",
+  "buddyCalibrationProblemReadBack": "Ploščo lahko preberem, vendar ni pripravljena za začetek partije. Postavi figure v začetni položaj in jo znova umeri.",
+  "buddyCalibrationProblemStacks": "Ploščo lahko preberem, vendar ne razločim, koliko ena figura zakriva drugo, zato bi jih napačno preštel. Običajno pomaga več svetlobe na bližnjih poljih ali nekoliko višji kot kamere.",
+  "buddyCalibrationProblemNotVisible": "Ne vidim cele plošče. Odmakni telefon ali povleci vogale na igralno površino.",
+  "buddyConfirmBoardOutOfFrame": "Cele plošče ne vidim več — {region} je zunaj slike. Znova poravnaj kamero ali preveri vogale.",
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmStartingPosition": "Videti je kot začetni položaj.",
+  "buddyConfirmNoCheckers": "Nobene figure ne vidim na začetnih mestih. Postavi ploščo za začetek partije in poskusi znova.",
+  "buddyConfirmWrongPosition": "Plošča ni postavljena za začetek partije: {details}{more}.",
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionEmpty": "{region} je videti prazno, vendar so na začetku partije tam figure {side}",
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionUnexpected": "Na območju {region} so figure {side}, vendar mora biti na začetku prazno",
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionWrongSide": "Na območju {region} so figure {observed}, začetni položaj pa predvideva {expected}",
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyReadabilityMotion": "Za trenutek miruj — ko se telefon premika, izgubim ploščo.",
+  "buddyReadabilityWrongFrame": "Dobil sem drugo sliko od tiste, na kateri je bila plošča nastavljena, zato je ne morem poravnati. Ploščo nastavi znova od tukaj.",
+  "buddyReadabilityBlur": "Slika je preveč neostra, da bi prebral ploščo. Počakaj trenutek, da kamera izostri.",
+  "buddyReadabilityCalibrationStale": "Plošča ni več tam, kjer sem se je naučil. Znova poravnaj vogale in takoj nadaljujem partijo.",
+  "buddyReadabilityOccluded": "Nekaj prekriva del plošče. Nadaljujem, ko bo spet vidna.",
+  "buddyReadabilityClear": "Ploščo vidim.",
+  "buddyReadabilityColorChanged": "Barva svetlobe na plošči se je spremenila, zato ni več videti kot tista, ki sem se je naučil. V tej svetlobi znova poravnaj vogale in nadaljujem partijo.",
+  "buddyReadabilityTooDark": "Pretemno je, da bi prebral ploščo. Dodaj malo svetlobe in nadaljujem, kjer sva končala.",
+  "buddyReadabilityTooBright": "Na ploščo pada preveč svetlobe in barve se zlivajo. Zatemni prostor ali premakni telefon, da se svetilka ne odbija v kamero.",
+  "buddyPromptBeliefMirror": "Buddy še vedno ne vidi svoje poteze — {reason}.",
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nPartijo lahko nadaljuješ: vsak met vnesi na ploščici za kocke, poteze pa izvedi na spodnji plošči.",
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraGenericError": "Kamere ni bilo mogoče zagnati. Preveri dovoljenja in poskusi znova.",
+  "buddyRegionPoint": "polje {number}",
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyRegionBar": "prečka",
+  "buddyRegionWhiteTray": "pladenj za pobrane bele figure",
+  "buddyRegionBlackTray": "pladenj za pobrane črne figure",
+  "buddyRegionDiceZone": "sredina plošče",
+  "buddyCalibrationProblemVisible": "Ne vidim cele plošče. Odmakni telefon ali povleci vogale na igralno površino.",
+  "buddyConfirmMore": " (in še {number})",
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyDiceOpeningCaption": "Vsak vrže po eno kocko. Vrednosti določita, kdo začne.",
+  "buddyDiceOpeningFirst": "Bela kocka",
+  "buddyDiceOpeningSecond": "Črna kocka",
+  "buddyDiceRegularCaption": "Vrednosti obeh kock v poljubnem vrstnem redu.",
+  "buddyDiceRegularFirst": "Ena kocka",
+  "buddyDiceRegularSecond": "Druga kocka"
 }

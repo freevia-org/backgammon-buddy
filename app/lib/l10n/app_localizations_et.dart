@@ -2732,4 +2732,495 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Soovitatud muudatus';
+
+  @override
+  String get buddySetupTitle => 'Mängige Buddy-iga';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy mängib';
+
+  @override
+  String get buddySetupSeatLabel => 'Sinu istekoht';
+
+  @override
+  String get buddySetupSeatNear => 'Telefoni järgi';
+
+  @override
+  String get buddySetupSeatFar => 'Vastupidi';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Kummal pool tahvlit olete. See on see, kuidas Buddy nummerdab punkte ja eristab teie avamisvormi omast.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Kuidas Buddy räägib';
+
+  @override
+  String get buddySetupVoiceTerse => 'Lühidalt';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Sõbralik';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '“13/8, 24/22” – märge, viis, kuidas kaks mängijat lauas tegelikult räägivad.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '\"Viige üks kabe 13-lt 8-le ja üks 24-lt 22-le.\"';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Õpetaja kommentaarid ja liigutuste selgitused järgivad teie salvestatud juhendaja eelistusi jaotises Seaded. Buddy annab aeg-ajalt tagasisidet pärast teie näidendeid; trükitud täringud ja käsitsi liigutused töötavad samamoodi.';
+
+  @override
+  String get buddySetupCalibrate => 'Kalibreerige tahvel';
+
+  @override
+  String get buddyFixAim => 'Kinnitage eesmärk';
+
+  @override
+  String get buddyWaitingForOpening => 'Buddy ootab viset, mis matši alustab.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy kaotas tahvli. Kinnitage siht ja matš jätkub sealt, kus see peatus.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Ootan pilti. Buddy oskab lugeda. Midagi pole kadunud.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy ei leia täringut. Tippige selle asemel rull.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Mängige oma mängu laual. Puudutage seda siin, kui Buddy seda ei näe.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Mis näidend see oli?';
+
+  @override
+  String get buddyPromptCube =>
+      'Buddy pakub kahekordistamist. Kas võtad vastu või loobud?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Tehke Buddyi käik laual, siis jätkab Buddy.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy mõtleb.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Ootab kalibreerimist.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy ei näe endiselt oma liikumist. Allpool olev tahvel on positsioon, mida see hoiab.';
+
+  @override
+  String get buddyPromptNotLegal => 'See pole juriidiline mäng.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'See pole juriidiline mäng. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening =>
+      'Veeretage avavisked — üks täring kummalegi. Suurema silmade arvuga mängija alustab.';
+
+  @override
+  String get buddyThrowUser => 'Veereta oma täringuid.';
+
+  @override
+  String get buddyThrowBuddy => 'Veereta Buddy täringuid.';
+
+  @override
+  String get buddyMatchOver => 'Matš on läbi.';
+
+  @override
+  String get buddyYouWin => 'Sa võidad matši.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy võidab matši.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Duubeldamiseks pole veel mängu – avavise tuleb enne.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Enne veeremist saate kahekordistada ainult oma käigul.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'Crawfordi mängus ei kahelda – see üksikmäng otsustab matši.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Ainult kuubiku omanik saab kahekordistada ja praegu kuulub see teisele poolele.';
+
+  @override
+  String get buddyDoubleUnavailable => 'Kahekordistamine pole praegu saadaval.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy vaatab tahvlit.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Saate siiski matši mängida: tippige täringuplokile iga veeretamine ja koputage oma mänge alloleval laual.';
+
+  @override
+  String get buddySkipCheck => 'Jäta see kontroll vahele';
+
+  @override
+  String get buddyFixedIt => 'Olen selle parandanud';
+
+  @override
+  String get buddyDrop => 'Langetage';
+
+  @override
+  String get buddyTake => 'Võtke';
+
+  @override
+  String get buddyDone => 'Valmis';
+
+  @override
+  String get buddyTranscriptLabel => 'Mida Buddy ütles';
+
+  @override
+  String get buddyUndo => 'Võta tagasi';
+
+  @override
+  String get buddyConfirm => 'Kinnita';
+
+  @override
+  String get buddyDice => 'Täringud';
+
+  @override
+  String get buddyDouble => 'Kahekordne';
+
+  @override
+  String get buddyDicePadTitle => 'Mida täringud näitasid?';
+
+  @override
+  String get buddyEnterRoll => 'Sisesta rulli';
+
+  @override
+  String get buddyContextBeforeGame => 'Mängige Buddy-iga';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Teie $you–$buddy Buddy · kuni $length · Mäng $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Kaamerat ei saanud käivitada. Kontrollige õigusi ja proovige uuesti.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy ei oma luba kaamera kasutamiseks. Lubage oma seadme seadetes kaamerale juurdepääs ja proovige uuesti.';
+
+  @override
+  String get buddyCalibrationTitle => 'Näidake tahvlit Buddy';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Lohistage neli välimist käepidet vildi nurkadele, mitte puitveljele, ja neli väikest käepidet õmblustele, kus hing puutub kokku kaugema ja lähima servaga.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Lohistage iga käepide vildi nurgale - mängupinnale, mitte seda ümbritsevale puidust servale.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Seejärel kontrollige mõlemat poolt kaksteist rida allapoole: igaüks peaks kulgema mööda teie tahvli punkti. Joon, mis oma punktist mööda ei näe, on käepide, mis vajab torkimist.';
+
+  @override
+  String get buddyCalibrationSeatQuestion => 'Milline pool on teie kodulaud?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'Pildi allservale lähim pool. See fikseerib punktide numbrid, nii et ülaltoodud jooned liiguvad sellega kaasa.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Hoidke telefoni paigal. Buddy ootab, kuni pilt settib, enne kui ta selle tahvli ära õpib.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Kas see on teie tahvel?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy vaatab äsja õpitud tahvlit.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Pildile joonistatud mehed on Buddyi arvates tahvlil. Kui mõni neist on vales kohas, alusta otsast – see maksab praegu sekundeid ja mäng hiljem.';
+
+  @override
+  String get buddyCalibrationNext => 'Edasi';
+
+  @override
+  String get buddyCalibrationBack => 'Tagasi';
+
+  @override
+  String get buddyCalibrationCapture => 'Jäädvusta';
+
+  @override
+  String get buddyCalibrationStartOver => 'Alusta otsast';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Näeb õige välja';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Need neli käepidet ei piirdu tahvliga – üks neist on teise risti ristunud. Lohistage need tagasi vildi nurkadesse.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Esiteks kolm asja';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Eemalda täringud laualt.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy õpib nüüd tühja lauda. Kui täring jääb lauale, õpib Buddy selle laua osana selgeks ega näe selles mängukorras enam täringuid.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Seadke mehed mängu alguseks valmis.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Kolmkümmend kabet tuntud kohtades on see, kuidas Buddy õpib selle laua kaks värvi selgeks, ilma et talle öeldaks, mis need on.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Sobitage pildile kogu mänguväli.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Seejärel jätke telefon sinna, kus see on. Kui see liigub, ütleb Buddy seda ja saate nurki tagasi lükata.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Mis tahvliga on tegu?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Lamelaud';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Kokkupandav korpus';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Kokkupandav laud vajab hingeõmblustel nelja lisakäepidet.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Buddy-režiim jälgib tõelist tahvlit, nii et see ei saa käivituda ilma kaamerata. Kõik muu rakenduses sisalduv ei muutu.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Hingeõmblus $number 4-st';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Laua nurk $number 4-st';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Nihutage vasakule';
+
+  @override
+  String get buddyNudgeRight => 'Nihutage paremale';
+
+  @override
+  String get buddyNudgeUp => 'Tõstke üles';
+
+  @override
+  String get buddyNudgeDown => 'Nihutage alla';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Need neli nurka ei piirdu tahvliga. Lohistage iga käepide mänguvälja nurka ja proovige uuesti.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Need kaheksa punkti ei kirjelda voltimislauda. Asetage neli mänguvälja nurkadele ja neli hingeõmblustele, seejärel proovige uuesti.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Tahvlit endast ei saa aru – kõik selle osad on kaetud või kadunud varju või sära. Tühjendage tahvel, lisage veidi valgust ja proovige uuesti.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Ma ei saa $region-i teha – sellel võib midagi toetuda või see tahvli nurk on lugemiseks liiga tume. Tühjendage see või lisage veidi valgust ja proovige uuesti.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Kaks kabekomplekti näevad siit liiga sarnased välja. Tavaliselt parandab seda rohkem valgust või nurk, kus tahvlil on vähem pimestamist.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Kabe ei ole lähteasendis — punkt $number hoiab valet värvi. Seadistage laud mängu alustamiseks ja seejärel kalibreerige uuesti.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Tahvlil on nii palju valgust, et selle värvid uhuvad üksteise sisse. Hämardage valgust või liigutage telefoni nii, et lamp sellele otse tagasi ei paistaks.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Ma võin seda tahvlit lugeda, kuid mitte kui algavat mängu. Seadistage mehed mängu alguseks, seejärel kalibreerige uuesti.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Ma võin seda tahvlit lugeda, kuid ma ei saa aru, kui kaugel üks kabe teisest taga istub - nii et ma saaksin numbreid valesti. Natuke rohkem valgust lähipunktides või veidi kõrgem kaameranurk parandab selle tavaliselt.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Ma ei näe kogu tahvlit. Liigutage telefon tagasi või lohistage nurgad mänguväljale.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Ma ei näe enam tervet tahvlit - $region on väljaspool pilti. Joondage kaamera uuesti või kontrollige nurki uuesti.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition =>
+      'See näeb välja nagu lähtepositsioon.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Ma ei näe kabe kõikjal, kus mäng algab. Seadke mehed mängu alguseks valmis ja proovige uuesti.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Laud ei ole mängu alustamiseks seadistatud: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region tundub tühi, kuid mäng algab seal $side-iga';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return '$region-l on peal $side, kuid mäng algab tühjaga';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return '$region-l on $observed, kus mäng algab numbriga $expected';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Hoidke hetk paigal – kaotan tahvli, kui telefon liigub.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Pilt, mis mulle antakse, ei ole see, millele see tahvel oli üles seatud, nii et ma ei saa sellele midagi ritta seada. Seadke laud siit uuesti üles.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Pilt on tahvli lugemiseks liiga pehme. Andke kaamerale hetk teravustamiseks.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Tahvel pole seal, kus see oli, kui ma seda õppisin. Joondage nurgad uuesti ja ma valin mängu otse üles.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Midagi katab osa tahvlist. Ma jätkan niipea, kui see on selge.';
+
+  @override
+  String get buddyReadabilityClear => 'Ma näen tahvlit.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Tahvli tuli on muutnud värvi, nii et tahvel ei näe enam välja selline, nagu õppisin. Joondage nurgad uuesti selle valguse alla ja ma valin mängu otse üles.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Tahvli lugemiseks on liiga pime. Natuke veel valgust ja jätkan seal, kus olime.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Tahvlil on nii palju valgust, et selle värvid jooksevad üksteisega kokku. Hämardage seda või liigutage telefoni nii, et lamp ei paistaks otse tagasi.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy ei näe endiselt oma liikumist - $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nSaate siiski matši mängida: tippige täringuplokile iga veeretamine ja koputage oma mänge alloleval laual.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Kaamerat ei saanud käivitada. Kontrollige õigusi ja proovige uuesti.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return '$number-punkt';
+  }
+
+  @override
+  String get buddyRegionBar => 'baar';
+
+  @override
+  String get buddyRegionWhiteTray => 'Valge kandepind';
+
+  @override
+  String get buddyRegionBlackTray => 'Musta kandepind';
+
+  @override
+  String get buddyRegionDiceZone => 'tahvli keskel';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Ma ei näe kogu tahvlit. Liigutage telefon tagasi või lohistage nurgad mänguväljale.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return '(ja veel $number)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Kumbki viskab ühe täringu. Suurema silmade arvuga mängija alustab.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'Valge täring';
+
+  @override
+  String get buddyDiceOpeningSecond => 'Musta täring';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'Kaks nägu laual, kummaski järjekorras.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Üks täring';
+
+  @override
+  String get buddyDiceRegularSecond => 'Teine';
 }

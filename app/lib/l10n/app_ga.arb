@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "Cód QR chun páirt a ghlacadh sa chluiche seo",
   "lanJoinInstruction": "Ar an ngléas eile, oscail Imirt in Aice Láimhe, roghnaigh Glac páirt, agus scan an cód QR seo.",
   "homePlayWithBuddy": "Imir le Buddy",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Imir le Buddy",
+  "buddySetupSideLabel": "Imríonn Buddy",
+  "buddySetupSeatLabel": "Do shuíochán",
+  "buddySetupSeatNear": "Ar an teileafón",
+  "buddySetupSeatFar": "os coinne",
+  "buddySetupSeatHelp": "Cén taobh den chlár a bhfuil tú. Sin é mar a uimhriú Buddy na pointí agus mar a dhéanann sé idirdhealú idir do dhísle tosaigh agus a dhísle féin.",
+  "buddySetupVoiceLabel": "Mar a labhraíonn Buddy",
+  "buddySetupVoiceTerse": "Go hachomair",
+  "buddySetupVoiceFriendly": "Cairdiúil",
+  "buddySetupVoiceTerseHelp": "“13/8, 24/22” — nodaireacht, an bealach a labhraíonn beirt imreoirí ag bord i ndáiríre.",
+  "buddySetupVoiceFriendlyHelp": "“Bog seiceálaí amháin ó 13 go 8, agus ceann amháin ó 24 go 22.”",
+  "buddySetupTutorHelp": "Leanann tráchtaireacht teagascóra agus mínithe ar bhogadh do shainroghanna Teagascóra sábháilte sna Socruithe. Tugann Buddy aiseolas ó am go chéile tar éis do dhrámaí; oibríonn dísle clóscríofa agus bogtha láimhe ar an mbealach céanna.",
+  "buddySetupCalibrate": "Calabraigh an bord",
+  "buddyFixAim": "Deisigh an aidhm",
+  "buddyWaitingForOpening": "Buddy ag fanacht leis an caith a thosaíonn an cluiche.",
+  "buddyPromptLostBoard": "Tá an bord caillte ag Buddy. Deisigh an aidhm agus leanann an cluiche ar aghaidh nuair a stop sé.",
+  "buddyPromptWaitingPicture": "Ag fanacht le pictiúr is féidir Buddy a léamh. Níl aon rud caillte.",
+  "buddyPromptTypeDice": "Ní féidir le Buddy na dísle a aimsiú. Clóscríobh an rolla ina ionad.",
+  "buddyPromptPlay": "Déan do imirt ar an gclár. Tapáil amach anseo mura bhfeiceann Buddy é.",
+  "buddyPromptWhichPlay": "Cén bogadh a rinne tú?",
+  "buddyPromptCube": "Tá Buddy ag tairiscint dúbailt. An nglacann tú léi nó an ndiúltaíonn tú di?",
+  "buddyPromptMakeMove": "Déan bogadh Buddy ar an gclár, ansin leanfaidh Buddy ar aghaidh.",
+  "buddyPromptThinking": "Tá Buddy ag smaoineamh.",
+  "buddyPromptWaitingCalibration": "Ag fanacht le calabrú.",
+  "buddyPromptMirrorNoDetail": "Ní féidir le Buddy an t-aistriú a fheiceáil go fóill. Is é an bord thíos an seasamh atá aige.",
+  "buddyPromptNotLegal": "Ní bogadh dleathach é sin.",
+  "buddyPromptNotLegalReason": "Ní bogadh dleathach é sin. {reason}",
+  "buddyThrowOpening": "Caith an dísle oscailt - bás amháin an ceann.",
+  "buddyThrowUser": "Caith do dhísle.",
+  "buddyThrowBuddy": "Caith dísle Buddy.",
+  "buddyMatchOver": "Tá an cluiche thart.",
+  "buddyYouWin": "Bhuaigh tú an cluiche.",
+  "buddyBuddyWins": "Bhuaigh Buddy an cluiche.",
+  "buddyDoubleNoGame": "Níl aon chluiche le dúbailt ann fós - is é an chéad chaitheamh a thagann ar dtús.",
+  "buddyDoubleBeforeRoll": "Ní féidir leat ach dúbailt roimh rolladh, ar do sheal.",
+  "buddyDoubleCrawford": "Gan aon dúbailt sa chluiche Crawford — cinneann an cluiche aonair seo an cluiche.",
+  "buddyDoubleNotOwner": "Ní féidir ach an t-úinéir ciúb a dhúbailt, agus is leis an taobh eile é faoi láthair.",
+  "buddyDoubleUnavailable": "Níl dúbailt ar fáil faoi láthair.",
+  "buddyLookingAtBoard": "Tá Buddy ag féachaint ar an mbord.",
+  "buddyCameraPlayFallback": "Is féidir leat an cluiche a imirt fós: clóscríobh gach rolla ar an eochaircheap dísle agus tapáil do chuid drámaí amach ar an gclár thíos.",
+  "buddySkipCheck": "Léim an seic seo",
+  "buddyFixedIt": "Tá sé socraithe agam",
+  "buddyDrop": "Diúltaigh",
+  "buddyTake": "Glac leis",
+  "buddyDone": "Déanta",
+  "buddyTranscriptLabel": "Cad a dúirt Buddy",
+  "buddyUndo": "Cealaigh",
+  "buddyConfirm": "Deimhnigh",
+  "buddyDice": "dísle",
+  "buddyDouble": "Dúbailt",
+  "buddyDicePadTitle": "Cad a chaith tú?",
+  "buddyEnterRoll": "Cuir isteach an caitheamh",
+  "buddyContextBeforeGame": "Seinn le Buddy",
+  "buddyContextMatchScore": "Tusa {you}–{buddy} Buddy · go {length} · Cluiche {number}",
+  "buddyCameraUnavailable": "Níorbh fhéidir an ceamara a thosú. Seiceáil ceadanna agus bain triail eile as.",
+  "buddyCameraPermission": "Níl cead ag backgammon Buddy an ceamara a úsáid. Ceadaigh rochtain ceamara i socruithe do ghléis agus bain triail eile as.",
+  "buddyCalibrationTitle": "Taispeáin Buddy an clár",
+  "buddyCalibrationCornersFold": "Tarraing na ceithre láimhe seachtracha isteach ar choirnéil an fheilt — ní ar an imeall adhmaid — agus na ceithre cinn bheaga ar na seams mar a mbuaileann an inse leis na himill i bhfad agus i gcóngar.",
+  "buddyCalibrationCornersFlat": "Tarraing gach hanla ar chúinne den fheilt — an dromchla imeartha, ní an imeall adhmaid timpeall air.",
+  "buddyCalibrationCheckLines": "Ansin seiceáil an dá líne déag síos gach leath: ba chóir gach ceann ag rith feadh pointe de do chlár. Is éard atá i líne a chailleann a pointe ná láimhseáil nach mór a nudging.",
+  "buddyCalibrationSeatQuestion": "Cén leath atá mar do chlár baile?",
+  "buddyCalibrationSeatHelp": "An leath is gaire do bhun an phictiúir. Is é seo a shocraíonn na huimhreacha pointí, mar sin bogann na línte thuas leis.",
+  "buddyCalibrationCaptureWait": "Coinnigh an teileafón fós. Tá Buddy ag fanacht leis an bpictiúr a shocrú sula bhfoghlaimíonn sé an bord seo.",
+  "buddyCalibrationConfirmQuestion": "An é seo do bhord?",
+  "buddyCalibrationConfirmFallback": "Tá Buddy ag féachaint ar an mbord atá díreach foghlamtha aige.",
+  "buddyCalibrationConfirmHelp": "Is iad na fir a tarraingíodh os cionn an phictiúir ná an rud a cheapann Buddy atá ar an gclár. Má tá aon cheann acu san áit mícheart, tosaigh arís - cosnaíonn sé soicind anois agus cluiche níos déanaí.",
+  "buddyCalibrationNext": "Ar aghaidh",
+  "buddyCalibrationBack": "Ar ais",
+  "buddyCalibrationCapture": "Gabháil",
+  "buddyCalibrationStartOver": "Tosaigh os a chionn",
+  "buddyCalibrationLooksRight": "Breathnaíonn ceart",
+  "buddyCalibrationCornersInvalid": "Ní imlíníonn na ceithre lámh sin bord — tá ceann amháin acu tar éis ceann eile a thrasnú. Tarraing ar ais go dtí coirnéil an fheilt iad.",
+  "buddyCalibrationPrepTitle": "Trí rud ar dtús",
+  "buddyCalibrationRemoveDiceTitle": "Tóg an dísle den chlár.",
+  "buddyCalibrationRemoveDiceBody": "Buddy foghlaimíonn an bord lom anois. Foghlaimítear dísle a fhágtar ar an bhfeilt mar chuid de, agus ansin ní féidir le Buddy na dísle a fheiceáil arís an seisiún seo.",
+  "buddyCalibrationSetupCheckersTitle": "Cuir na fir sa suíomh tosaigh.",
+  "buddyCalibrationSetupCheckersBody": "Cuidíonn na tríocha fear sna suíomhanna tosaigh le Buddy dhá dhath an chláir a aithint.",
+  "buddyCalibrationFitBoardTitle": "Fit an pháirc imeartha ar fad sa phictiúr.",
+  "buddyCalibrationFitBoardBody": "Ansin fág an fón áit a bhfuil sé. Má bhogann sé, déarfaidh Buddy amhlaidh agus is féidir leat na coirnéil a bhrú ar ais.",
+  "buddyCalibrationBoardKind": "Cén cineál boird é?",
+  "buddyCalibrationFlatBoard": "Bord cothrom",
+  "buddyCalibrationFoldingBoard": "Cás fillte",
+  "buddyCalibrationBoardKindHelp": "Tá ceithre lámh breise ag teastáil ó chlár fillte ar na seams hinge.",
+  "buddyCalibrationNoCameraBody": "Féachann Mód Buddy ar fhíorchlár, mar sin ní féidir leis tosú gan an ceamara. Níl aon tionchar ar gach rud eile san aip.",
+  "buddyHandleHingeSeam": "Seam hinge {number} de 4",
+  "buddyHandleCorner": "Cúinne boird {number} de 4",
+  "buddyNudgeLeft": "Nudge fhág",
+  "buddyNudgeRight": "Nudge ceart",
+  "buddyNudgeUp": "Nudge suas",
+  "buddyNudgeDown": "Nudge síos",
+  "buddyCalibrationProblemCorners": "Ní imlíníonn na ceithre choirnéal sin bord. Tarraing gach cas isteach ar choirnéal na páirce imeartha agus bain triail eile as.",
+  "buddyCalibrationProblemFoldCorners": "Ní thugann na hocht bpointe sin cuntas ar chlár fillte. Cuir ceithre cinn ar choirnéil na páirce imeartha agus ceithre cinn ar na seams inse, ansin bain triail eile as.",
+  "buddyCalibrationProblemUnreadable": "Ní féidir liom an bord féin a dhéanamh amach — tá gach cuid de clúdaithe, nó caillte le scáth nó le glare. Glan an bord, cuir roinnt solas, agus bain triail eile as.",
+  "buddyCalibrationProblemRegionUnreadable": "Ní féidir liom {region} a dhéanamh amach — b'fhéidir go bhfuil rud éigin ag luí air, nó b'fhéidir go bhfuil cúinne an chláir ró-dhorcha le léamh. Glan é, nó cuir solas éigin leis, agus bain triail eile as.",
+  "buddyCalibrationProblemColours": "Breathnaíonn an dá shraith seiceálaithe i bhfad ró-chosúil ó anseo. De ghnáth socraíonn níos mó solais, nó uillinn le níos lú dalladh ar an gclár é.",
+  "buddyCalibrationProblemWrongChecker": "Níl na fir sa suíomh tosaigh — tá fear den dath mícheart ar phointe {number}. Cuir an clár sa suíomh tosaigh agus calabraigh arís.",
+  "buddyCalibrationProblemOverexposed": "Tá an oiread sin solais ar an gclár go bhfuil a dathanna ag níochán isteach i ngach ceann eile. Laghdaigh an solas, nó bog an fón ionas nach mbeidh an lampa ag taitneamh díreach siar air.",
+  "buddyCalibrationProblemReadBack": "Is féidir liom an clár seo a léamh, ach ní mar chluiche atá ar tí tosú. Socraigh na fir suas do thús cluiche, ansin calabrú arís.",
+  "buddyCalibrationProblemStacks": "Is féidir liom an clár a léamh, ach ní féidir liom líon na bhfear atá cruachta a dheimhniú ón áit seo, mar sin d’fhéadfainn an líon a fháil mícheart. De ghnáth cabhraíonn níos mó solais ar na pointí cóngaracha nó uillinn cheamara beagán níos airde.",
+  "buddyCalibrationProblemNotVisible": "Ní féidir liom an bord ar fad a fheiceáil. Bog an fón ar ais, nó tarraing na coirnéil ar an bpáirc imeartha.",
+  "buddyConfirmBoardOutOfFrame": "Ní féidir liom an bord ar fad a fheiceáil níos mó - tá {region} lasmuigh den phictiúr. Líne an ceamara suas arís, nó athsheiceáil na coirnéil.",
+  "buddyConfirmStartingPosition": "Is cosúil go bhfuil an suíomh tosaigh sin.",
+  "buddyConfirmNoCheckers": "Ní fheicim fir ar na pointí sa suíomh tosaigh. Cuir an clár sa suíomh tosaigh agus bain triail eile as.",
+  "buddyConfirmWrongPosition": "Níl an bord socraithe chun cluiche a thosú: {details}{more}.",
+  "buddyConfirmRegionEmpty": "Breathnaíonn {region} folamh, ach tosaíonn an cluiche le {side} ann",
+  "buddyConfirmRegionUnexpected": "Tá {region} ag {side} air, ach tosaíonn an cluiche leis folamh",
+  "buddyConfirmRegionWrongSide": "Tá {region} ag {observed} air, áit a dtosaíonn an cluiche le {expected}",
+  "buddyReadabilityMotion": "Coinnigh nóiméad fós - caillim an bord agus an fón ag bogadh.",
+  "buddyReadabilityWrongFrame": "Ní hé an pictiúr atá á thabhairt agam an ceann ar cuireadh an bord seo ar bun, mar sin ní féidir liom aon rud a chur suas ann. Socraigh an bord arís as seo.",
+  "buddyReadabilityBlur": "Tá an pictiúr ró-bhog chun an clár a léamh uaidh. Tabhair nóiméad chun díriú ar an gceamara.",
+  "buddyReadabilityCalibrationStale": "Níl an bord áit a raibh sé nuair a d'fhoghlaim mé é. Líne na coirnéil suas arís agus roghnóidh mé an cluiche díreach ar ais suas.",
+  "buddyReadabilityOccluded": "Tá rud éigin ag clúdach cuid den bhord. Leanfaidh mé ar aghaidh chomh luath agus is léir.",
+  "buddyReadabilityClear": "Is féidir liom an bord a fheiceáil.",
+  "buddyReadabilityColorChanged": "Tá dath athraithe ag an solas ar an gclár, mar sin níl cuma ar an gclár leis an gceann a d’fhoghlaim mé a thuilleadh. Líne na coirnéil suas arís faoin solas seo agus roghnóidh mé an cluiche díreach ar ais suas.",
+  "buddyReadabilityTooDark": "Tá sé ró-dhorcha an clár a léamh. Beagán níos mó solais agus leanfaidh mé ar aghaidh san áit a raibh muid.",
+  "buddyReadabilityTooBright": "Tá an oiread sin solais ar an gclár go bhfuil a dathanna ag rith isteach i ngach ceann eile. Laghdaigh é, nó bog an fón ionas nach mbeidh an lampa ag taitneamh díreach siar air.",
+  "buddyPromptBeliefMirror": "Ní féidir le Buddy an t-aistriú a fheiceáil go fóill — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nIs féidir leat an cluiche a imirt fós: clóscríobh gach rolla ar an eochaircheap dísle agus tapáil do chuid drámaí amach ar an gclár thíos.",
+  "buddyCameraGenericError": "Níorbh fhéidir an ceamara a thosú. Seiceáil ceadanna agus bain triail eile as.",
+  "buddyRegionPoint": "an pointe {number}",
+  "buddyRegionBar": "an barra",
+  "buddyRegionWhiteTray": "tráidire chun fir bhána a thabhairt den chlár",
+  "buddyRegionBlackTray": "tráidire chun fir dhubha a thabhairt den chlár",
+  "buddyRegionDiceZone": "lár an bhoird",
+  "buddyCalibrationProblemVisible": "Ní féidir liom an bord ar fad a fheiceáil. Bog an fón ar ais, nó tarraing na coirnéil ar an bpáirc imeartha.",
+  "buddyConfirmMore": "(agus {number} níos mó)",
+  "buddyDiceOpeningCaption": "Caitheann gach imreoir dísle amháin. Tosaíonn an té a chaitheann an uimhir is airde.",
+  "buddyDiceOpeningFirst": "dísle bán",
+  "buddyDiceOpeningSecond": "dísle dubh",
+  "buddyDiceRegularCaption": "An dá aghaidh ar an mbord, i gceachtar den dá ord.",
+  "buddyDiceRegularFirst": "bás amháin",
+  "buddyDiceRegularSecond": "An ceann eile",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

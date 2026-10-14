@@ -2731,4 +2731,494 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Suggested change';
+
+  @override
+  String get buddySetupTitle => 'Play with Buddy';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy plays';
+
+  @override
+  String get buddySetupSeatLabel => 'Your seat';
+
+  @override
+  String get buddySetupSeatNear => 'By the phone';
+
+  @override
+  String get buddySetupSeatFar => 'Opposite';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Which side of the board you are on. It is how Buddy numbers the points, and how it tells your opening die from its own.';
+
+  @override
+  String get buddySetupVoiceLabel => 'How Buddy talks';
+
+  @override
+  String get buddySetupVoiceTerse => 'Terse';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Friendly';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '“13/8, 24/22” — notation, the way two players at a board actually talk.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '“Move one checker from 13 to 8, and one from 24 to 22.”';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Tutor commentary and move explanations follow your saved Tutor preferences in Settings. Buddy gives occasional feedback after your plays; typed dice and manual moves work the same way.';
+
+  @override
+  String get buddySetupCalibrate => 'Calibrate the board';
+
+  @override
+  String get buddyFixAim => 'Fix the aim';
+
+  @override
+  String get buddyWaitingForOpening =>
+      'Buddy is waiting for the throw that starts the match.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy has lost the board. Fix the aim and the match carries on where it stopped.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Waiting for a picture Buddy can read. Nothing is lost.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy cannot find the dice. Type the roll instead.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Make your play on the board. Tap it out here if Buddy does not see it.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Which play was it?';
+
+  @override
+  String get buddyPromptCube => 'Buddy doubles. Take or drop?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Make Buddy’s move on the board, then Buddy will carry on.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy is thinking.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Waiting for a calibration.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy still cannot see its move. The board below is the position it is holding.';
+
+  @override
+  String get buddyPromptNotLegal => 'That isn’t a legal play.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'That isn’t a legal play. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening => 'Throw the opening dice — one die each.';
+
+  @override
+  String get buddyThrowUser => 'Throw your dice.';
+
+  @override
+  String get buddyThrowBuddy => 'Throw Buddy’s dice.';
+
+  @override
+  String get buddyMatchOver => 'The match is over.';
+
+  @override
+  String get buddyYouWin => 'You win the match.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy wins the match.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'There is no game to double in yet — the opening throw comes first.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'You can only double before rolling, on your turn.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'No doubling in the Crawford game — this single game decides the match.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Only the cube owner can double, and the other side owns it right now.';
+
+  @override
+  String get buddyDoubleUnavailable => 'Doubling is not available right now.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy is looking at the board.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'You can still play the match: type each roll on the dice pad and tap your plays out on the board below.';
+
+  @override
+  String get buddySkipCheck => 'Skip this check';
+
+  @override
+  String get buddyFixedIt => 'I’ve fixed it';
+
+  @override
+  String get buddyDrop => 'Drop';
+
+  @override
+  String get buddyTake => 'Take';
+
+  @override
+  String get buddyDone => 'Done';
+
+  @override
+  String get buddyTranscriptLabel => 'What Buddy said';
+
+  @override
+  String get buddyUndo => 'Undo';
+
+  @override
+  String get buddyConfirm => 'Confirm';
+
+  @override
+  String get buddyDice => 'Dice';
+
+  @override
+  String get buddyDouble => 'Double';
+
+  @override
+  String get buddyDicePadTitle => 'What did you throw?';
+
+  @override
+  String get buddyEnterRoll => 'Enter roll';
+
+  @override
+  String get buddyContextBeforeGame => 'Play with Buddy';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'You $you–$buddy Buddy · to $length · Game $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'The camera could not be started. Check permissions and try again.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy does not have permission to use the camera. Allow camera access in your device settings and try again.';
+
+  @override
+  String get buddyCalibrationTitle => 'Show Buddy the board';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Drag the four outer handles onto the corners of the felt — not the wooden rim — and the four small ones onto the seams where the hinge meets the far and near edges.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Drag each handle onto a corner of the felt — the playing surface, not the wooden rim around it.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Then check the twelve lines down each half: every one should run along a point of your board. A line that misses its point is a handle that needs nudging.';
+
+  @override
+  String get buddyCalibrationSeatQuestion => 'Which half is your home board?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'The half nearest the bottom of the picture. This is what fixes the point numbers, so the lines above move with it.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Hold the phone still. Buddy is waiting for the picture to settle before it learns this board.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Is this your board?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy is looking at the board it just learned.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'The men drawn over the picture are what Buddy thinks is on the board. If any of them are in the wrong place, start over — it costs seconds now and a game later.';
+
+  @override
+  String get buddyCalibrationNext => 'Next';
+
+  @override
+  String get buddyCalibrationBack => 'Back';
+
+  @override
+  String get buddyCalibrationCapture => 'Capture';
+
+  @override
+  String get buddyCalibrationStartOver => 'Start over';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Looks right';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Those four handles do not outline a board — one of them has crossed another. Drag them back to the corners of the felt.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Three things first';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Take the dice off the board.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy learns the bare board now. A die left on the felt is learned as part of it, and then Buddy can never see the dice again this session.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Set the men up for the start of a game.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Thirty checkers in known places is how Buddy learns this board’s two colours without being told what they are.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Fit the whole playing field in the picture.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Then leave the phone where it is. If it moves, Buddy will say so and you can nudge the corners back.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'What kind of board is it?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Flat board';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Folding case';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'A folding board needs four extra handles on the hinge seams.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Buddy Mode watches a real board, so it cannot start without the camera. Everything else in the app is unaffected.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Hinge seam $number of 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Board corner $number of 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Nudge left';
+
+  @override
+  String get buddyNudgeRight => 'Nudge right';
+
+  @override
+  String get buddyNudgeUp => 'Nudge up';
+
+  @override
+  String get buddyNudgeDown => 'Nudge down';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Those four corners do not outline a board. Drag each handle onto a corner of the playing field and try again.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Those eight points do not outline a folding board. Put four on the playing-field corners and four on the hinge seams, then try again.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'I cannot make out the board itself — every part of it is covered, or lost in shadow or glare. Clear the board, add some light, and try again.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'I cannot make out $region — something may be resting on it, or that corner of the board may be too dark to read. Clear it, or add some light, and try again.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'The two sets of checkers look too much alike from here. More light, or an angle with less glare on the board, usually fixes it.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'The checkers are not in the starting position — point $number is holding the wrong colour. Set the board up for the start of a game, then calibrate again.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'There is so much light on the board that its colours are washing into each other. Dim the light, or move the phone so the lamp is not shining straight back at it.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'I can read this board, but not as a game about to start. Set the men up for the start of a game, then calibrate again.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'I can read this board, but I cannot make out how far one checker sits behind another from here — so I would get the numbers wrong. A little more light on the near points, or a slightly higher camera angle, usually fixes it.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'I cannot see the whole board. Move the phone back, or drag the corners onto the playing field.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'I cannot see the whole board any more — $region is outside the picture. Line the camera up again, or re-check the corners.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition =>
+      'That looks like the starting position.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'I cannot see a checker anywhere the game starts. Set the men up for the start of a game and try again.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'The board is not set up for the start of a game: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region looks empty, but the game starts with $side there';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return '$region has $side on it, but the game starts with it empty';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return '$region has $observed on it, where the game starts with $expected';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Hold still a moment — I lose the board while the phone is moving.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'The picture I am being given is not the one this board was set up on, so I cannot line anything up in it. Set the board up again from here.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'The picture is too soft to read the board from. Give the camera a moment to focus.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'The board is not where it was when I learned it. Line the corners up again and I will pick the game straight back up.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Something is covering part of the board. I will carry on as soon as it is clear.';
+
+  @override
+  String get buddyReadabilityClear => 'I can see the board.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'The light on the board has changed colour, so the board no longer looks like the one I learned. Line the corners up again under this light and I will pick the game straight back up.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'It is too dark to read the board. A little more light and I will carry on where we were.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'There is so much light on the board that its colours are running into each other. Dim it, or move the phone so the lamp is not shining straight back at it.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy still cannot see its move — $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nYou can still play the match: type each roll on the dice pad and tap your plays out on the board below.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'The camera could not be started. Check permissions and try again.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'the $number-point';
+  }
+
+  @override
+  String get buddyRegionBar => 'the bar';
+
+  @override
+  String get buddyRegionWhiteTray => 'White’s bear-off tray';
+
+  @override
+  String get buddyRegionBlackTray => 'Black’s bear-off tray';
+
+  @override
+  String get buddyRegionDiceZone => 'the middle of the board';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'I cannot see the whole board. Move the phone back, or drag the corners onto the playing field.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return ' (and $number more)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'One die each. Which face is whose is what decides who starts.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'White’s die';
+
+  @override
+  String get buddyDiceOpeningSecond => 'Black’s die';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'The two faces on the table, in either order.';
+
+  @override
+  String get buddyDiceRegularFirst => 'One die';
+
+  @override
+  String get buddyDiceRegularSecond => 'The other';
 }

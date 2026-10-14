@@ -1167,7 +1167,7 @@
   "learningThemeBarEntry": "Vom Brett eintreten",
   "learningThemeCube": "Cube-Entscheidungen",
   "analysisCubeNoDouble": "Kein Double",
-  "analysisCubeDouble": "Double",
+  "analysisCubeDouble": "Doppeln",
   "analysisCubeTake": "Annehmen",
   "analysisCubePass": "Passen",
   "learningAnalysisStarting": "Gespeicherte Partien werden analysiert…",
@@ -1289,7 +1289,7 @@
   "gameHudOpponentDetailWithLevel": "gegen {opponent} · {level} · {pipsLabel} {mine}–{theirs}",
   "gameHudPips": "Pips",
   "gameHudCrawford": "Crawford",
-  "gameHudDouble": "Double",
+  "gameHudDouble": "Doppeln",
   "gameHudMoreActions": "Weitere Aktionen",
   "gameHudSurrender": "Aufgeben…",
   "gameHudThinking": "Denkt nach",
@@ -1613,5 +1613,266 @@
   "lanJoinInstruction": "Öffne auf dem anderen Gerät „In der Nähe spielen“, wähle „Beitreten“ und scanne diesen QR-Code.",
   "homePlayWithBuddy": "Mit Buddy spielen",
   "homeBuddyShort": "Buddy",
-  "feedbackExcerptTruncated": "(gekürzt – den vollständigen Bericht kannst du über „In Zwischenablage kopieren“ auf dem Diagnosebildschirm kopieren)"
+  "feedbackExcerptTruncated": "(gekürzt – den vollständigen Bericht kannst du über „In Zwischenablage kopieren“ auf dem Diagnosebildschirm kopieren)",
+  "buddySetupTitle": "Mit Buddy spielen",
+  "buddySetupSideLabel": "Buddy spielt",
+  "buddySetupSeatLabel": "Dein Platz",
+  "buddySetupSeatNear": "Am Telefon",
+  "buddySetupSeatFar": "Gegenüber",
+  "buddySetupSeatHelp": "Auf welcher Brettseite du sitzt. Danach richtet Buddy die Nummerierung der Punkte aus und unterscheidet deinen Eröffnungswurf von seinem.",
+  "buddySetupVoiceLabel": "Wie Buddy spricht",
+  "buddySetupVoiceTerse": "Knapp",
+  "buddySetupVoiceFriendly": "Freundlich",
+  "buddySetupVoiceTerseHelp": "„13/8, 24/22“ – die übliche Zugnotation am Backgammonbrett.",
+  "buddySetupVoiceFriendlyHelp": "„Ziehe einen Stein von 13 nach 8 und einen von 24 nach 22.“",
+  "buddySetupTutorHelp": "Tutor-Kommentare und Zugerklärungen richten sich nach deinen gespeicherten Tutor-Einstellungen. Buddy gibt gelegentlich Rückmeldung zu deinen Zügen; eingegebene Würfe und manuelle Züge funktionieren genauso.",
+  "buddySetupCalibrate": "Brett kalibrieren",
+  "buddyFixAim": "Ausrichtung korrigieren",
+  "buddyWaitingForOpening": "Buddy wartet auf den Eröffnungswurf.",
+  "buddyPromptLostBoard": "Buddy hat das Brett verloren. Korrigiere die Ausrichtung, dann geht die Partie an derselben Stelle weiter.",
+  "buddyPromptWaitingPicture": "Warte auf ein Bild, das Buddy lesen kann. Es geht nichts verloren.",
+  "buddyPromptTypeDice": "Buddy kann die Würfel nicht erkennen. Gib den Wurf stattdessen ein.",
+  "buddyPromptPlay": "Führe deinen Zug auf dem Brett aus. Wenn Buddy ihn nicht erkennt, tippe ihn hier ein.",
+  "buddyPromptWhichPlay": "Welchen Zug hast du gemacht?",
+  "buddyPromptCube": "Buddy verdoppelt. Annehmen oder ablehnen?",
+  "buddyPromptMakeMove": "Führe Buddys Zug auf dem Brett aus, dann spielt Buddy weiter.",
+  "buddyPromptThinking": "Buddy denkt nach.",
+  "buddyPromptWaitingCalibration": "Warte auf die Kalibrierung.",
+  "buddyPromptMirrorNoDetail": "Buddy kann seinen Zug noch nicht erkennen. Das Brett unten zeigt die Position, die Buddy gespeichert hat.",
+  "buddyPromptNotLegal": "Das ist kein legaler Zug.",
+  "buddyPromptNotLegalReason": "Das ist kein legaler Zug. {reason}",
+  "buddyThrowOpening": "Würfle zum Start – jeder würfelt einmal.",
+  "buddyThrowUser": "Würfle.",
+  "buddyThrowBuddy": "Würfle für Buddy.",
+  "buddyMatchOver": "Das Match ist beendet.",
+  "buddyYouWin": "Du gewinnst das Match.",
+  "buddyBuddyWins": "Buddy gewinnt das Match.",
+  "buddyDoubleNoGame": "Es gibt noch keine Partie zum Verdoppeln – zuerst kommt der Eröffnungswurf.",
+  "buddyDoubleBeforeRoll": "Du kannst nur vor dem Würfeln und während deines Zuges verdoppeln.",
+  "buddyDoubleCrawford": "Im Crawford-Spiel gibt es keinen Doppler – dieses einzelne Spiel entscheidet das Match.",
+  "buddyDoubleNotOwner": "Nur der Besitzer des Dopplers darf verdoppeln. Im Moment gehört er der anderen Seite.",
+  "buddyDoubleUnavailable": "Verdoppeln ist gerade nicht möglich.",
+  "buddyLookingAtBoard": "Buddy schaut sich das Brett an.",
+  "buddyCameraPlayFallback": "Du kannst die Partie trotzdem spielen: Gib jeden Wurf auf dem Würfelfeld ein und tippe deine Züge auf dem Brett unten ein.",
+  "buddySkipCheck": "Diese Prüfung überspringen",
+  "buddyFixedIt": "Ich habe es behoben",
+  "buddyDrop": "Ablehnen",
+  "buddyTake": "Annehmen",
+  "buddyDone": "Fertig",
+  "buddyTranscriptLabel": "Was Buddy gesagt hat",
+  "buddyUndo": "Rückgängig",
+  "buddyConfirm": "Bestätigen",
+  "buddyDice": "Würfel",
+  "buddyDouble": "Verdoppeln",
+  "buddyDicePadTitle": "Was hast du gewürfelt?",
+  "buddyEnterRoll": "Wurf eingeben",
+  "buddyContextBeforeGame": "Mit Buddy spielen",
+  "buddyContextMatchScore": "Du {you}–{buddy} Buddy · bis {length} · Spiel {number}",
+  "buddyCameraUnavailable": "Die Kamera konnte nicht gestartet werden. Prüfe die Berechtigungen und versuche es erneut.",
+  "buddyCameraPermission": "Backgammon Buddy darf die Kamera nicht verwenden. Erlaube den Kamerazugriff in den Geräteeinstellungen und versuche es erneut.",
+  "buddyCalibrationTitle": "Zeig Buddy das Brett",
+  "buddyCalibrationCornersFold": "Ziehe die vier äußeren Griffe auf die Ecken des Spielfelds – nicht auf den Holzrand – und die vier kleinen Griffe auf die Scharnierfugen an der fernen und nahen Kante.",
+  "buddyCalibrationCornersFlat": "Ziehe jeden Griff auf eine Ecke des Spielfelds – die Spielfläche, nicht den Holzrand außen herum.",
+  "buddyCalibrationCheckLines": "Prüfe anschließend die zwölf Linien auf jeder Hälfte: Jede sollte entlang eines Brettpunkts verlaufen. Verfehlt eine Linie ihren Punkt, muss der zugehörige Griff verschoben werden.",
+  "buddyCalibrationSeatQuestion": "Welche Hälfte ist dein Heimfeld?",
+  "buddyCalibrationSeatHelp": "Die Hälfte, die im Bild näher am unteren Rand liegt. Damit wird die Punktnummerierung festgelegt, und die Linien oben richten sich danach aus.",
+  "buddyCalibrationCaptureWait": "Halte das Telefon ruhig. Buddy wartet, bis das Bild stabil ist, bevor es dieses Brett lernt.",
+  "buddyCalibrationConfirmQuestion": "Ist das dein Brett?",
+  "buddyCalibrationConfirmFallback": "Buddy betrachtet das Brett, das es gerade erkannt hat.",
+  "buddyCalibrationConfirmHelp": "Die Steine, die im Bild eingezeichnet sind, zeigen Buddys Erkennung. Liegt auch nur einer falsch, beginne von vorn – das kostet jetzt Sekunden und später vielleicht eine ganze Partie.",
+  "buddyCalibrationNext": "Weiter",
+  "buddyCalibrationBack": "Zurück",
+  "buddyCalibrationCapture": "Aufnehmen",
+  "buddyCalibrationStartOver": "Von vorn beginnen",
+  "buddyCalibrationLooksRight": "Sieht richtig aus",
+  "buddyCalibrationCornersInvalid": "Diese vier Griffe umschließen kein Brett – einer hat einen anderen gekreuzt. Ziehe sie zurück auf die Ecken des Spielfelds.",
+  "buddyCalibrationPrepTitle": "Zuerst drei Dinge",
+  "buddyCalibrationRemoveDiceTitle": "Nimm die Würfel vom Brett.",
+  "buddyCalibrationRemoveDiceBody": "Buddy lernt jetzt das leere Brett. Ein Würfel auf dem Spielfeld wird als Teil des Bretts erkannt; danach kann Buddy die Würfel in dieser Sitzung nicht mehr sehen.",
+  "buddyCalibrationSetupCheckersTitle": "Stelle die Steine für den Spielbeginn auf.",
+  "buddyCalibrationSetupCheckersBody": "Anhand von 30 Steinen an bekannten Positionen lernt Buddy die beiden Farben dieses Bretts, ohne dass du sie angeben musst.",
+  "buddyCalibrationFitBoardTitle": "Das ganze Spielfeld muss im Bild sein.",
+  "buddyCalibrationFitBoardBody": "Lass das Telefon danach an seiner Stelle. Falls es sich bewegt, sagt Buddy Bescheid und du kannst die Ecken nachjustieren.",
+  "buddyCalibrationBoardKind": "Welche Art von Brett ist es?",
+  "buddyCalibrationFlatBoard": "Flaches Brett",
+  "buddyCalibrationFoldingBoard": "Klappbrett",
+  "buddyCalibrationBoardKindHelp": "Bei einem Klappbrett sind vier zusätzliche Griffe an den Scharnierfugen nötig.",
+  "buddyCalibrationNoCameraBody": "Buddy-Modus beobachtet ein echtes Brett und kann ohne Kamera nicht starten. Der Rest der App funktioniert unverändert.",
+  "buddyHandleHingeSeam": "Scharnierfuge {number} von 4",
+  "buddyHandleCorner": "Brettecke {number} von 4",
+  "buddyNudgeLeft": "Nach links verschieben",
+  "buddyNudgeRight": "Nach rechts verschieben",
+  "buddyNudgeUp": "Nach oben verschieben",
+  "buddyNudgeDown": "Nach unten verschieben",
+  "buddyCalibrationProblemCorners": "Diese vier Ecken umschließen kein Brett. Ziehe jeden Griff auf eine Ecke des Spielfelds und versuche es erneut.",
+  "buddyCalibrationProblemFoldCorners": "Diese acht Punkte passen nicht zu einem Klappbrett. Setze vier auf die Ecken der Spielfläche und vier auf die Scharnierfugen, dann versuche es erneut.",
+  "buddyCalibrationProblemUnreadable": "Ich kann das Brett selbst nicht erkennen – es ist vollständig verdeckt oder liegt im Schatten bzw. blendet. Räume das Brett frei, sorge für mehr Licht und versuche es erneut.",
+  "buddyCalibrationProblemRegionUnreadable": "Ich kann {region} nicht erkennen – möglicherweise liegt etwas darauf oder diese Brettecke ist zu dunkel. Räume sie frei oder sorge für mehr Licht und versuche es erneut.",
+  "buddyCalibrationProblemColours": "Die beiden Steinfarben sehen von hier aus zu ähnlich aus. Mehr Licht oder ein Blickwinkel mit weniger Blendung hilft meistens.",
+  "buddyCalibrationProblemWrongChecker": "Die Steine stehen nicht in der Ausgangsstellung – auf Punkt {number} liegt die falsche Farbe. Stelle die Steine für den Spielbeginn auf und kalibriere erneut.",
+  "buddyCalibrationProblemOverexposed": "Das Brett ist so stark beleuchtet, dass seine Farben ineinander übergehen. Dimme das Licht oder halte das Telefon so, dass sich die Lampe nicht darin spiegelt.",
+  "buddyCalibrationProblemReadBack": "Ich kann das Brett erkennen, aber nicht als Ausgangsstellung einer Partie. Stelle die Steine für den Spielbeginn auf und kalibriere erneut.",
+  "buddyCalibrationProblemStacks": "Ich kann das Brett erkennen, aber nicht, wie weit ein Stein hinter einem anderen liegt – dadurch würde ich falsch zählen. Etwas mehr Licht auf den nahen Punkten oder ein leicht erhöhter Kamerawinkel hilft meistens.",
+  "buddyCalibrationProblemNotVisible": "Ich kann nicht das ganze Brett sehen. Halte das Telefon weiter zurück oder ziehe die Ecken auf die Spielfläche.",
+  "buddyConfirmBoardOutOfFrame": "Ich kann nicht mehr das ganze Brett sehen – {region} liegt außerhalb des Bildes. Richte die Kamera neu aus oder prüfe die Ecken erneut.",
+  "buddyConfirmStartingPosition": "Das sieht nach der Ausgangsstellung aus.",
+  "buddyConfirmNoCheckers": "Ich sehe keinen Stein an einer Position der Ausgangsstellung. Stelle die Steine für den Spielbeginn auf und versuche es erneut.",
+  "buddyConfirmWrongPosition": "Das Brett ist nicht für den Spielbeginn aufgestellt: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} sieht leer aus, aber zu Beginn liegt dort {side}",
+  "buddyConfirmRegionUnexpected": "Auf {region} liegt {side}, dort sollte es zu Beginn aber leer sein",
+  "buddyConfirmRegionWrongSide": "Auf {region} liegt {observed}, zu Beginn sollte dort aber {expected} liegen",
+  "buddyReadabilityMotion": "Halte kurz still – während sich das Telefon bewegt, verliere ich das Brett aus dem Blick.",
+  "buddyReadabilityWrongFrame": "Das Bild, das ich erhalte, gehört nicht zu dem Brett, für das ich eingerichtet wurde. Ich kann darin nichts zuordnen. Richte das Brett von hier aus erneut ein.",
+  "buddyReadabilityBlur": "Das Bild ist zu unscharf, um das Brett zu erkennen. Warte kurz, bis die Kamera fokussiert hat.",
+  "buddyReadabilityCalibrationStale": "Das Brett steht nicht mehr dort, wo es beim Einlernen stand. Richte die Ecken erneut aus, dann setze ich die Partie sofort fort.",
+  "buddyReadabilityOccluded": "Ein Teil des Bretts ist verdeckt. Sobald es frei ist, mache ich weiter.",
+  "buddyReadabilityClear": "Ich kann das Brett sehen.",
+  "buddyReadabilityColorChanged": "Das Licht auf dem Brett hat seine Farbe geändert; es sieht deshalb nicht mehr so aus wie beim Einlernen. Richte die Ecken unter diesem Licht neu aus, dann setze ich die Partie sofort fort.",
+  "buddyReadabilityTooDark": "Es ist zu dunkel, um das Brett zu erkennen. Mit etwas mehr Licht mache ich dort weiter, wo wir aufgehört haben.",
+  "buddyReadabilityTooBright": "Das Brett ist so stark beleuchtet, dass seine Farben ineinander übergehen. Dimme das Licht oder halte das Telefon so, dass sich die Lampe nicht darin spiegelt.",
+  "buddyPromptBeliefMirror": "Buddy kann seinen Zug noch nicht erkennen – {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nDu kannst die Partie trotzdem spielen: Gib jeden Wurf auf dem Würfelfeld ein und tippe deine Züge auf dem Brett unten ein.",
+  "buddyCameraGenericError": "Die Kamera konnte nicht gestartet werden. Prüfe die Berechtigungen und versuche es erneut.",
+  "buddyRegionPoint": "der {number}-Punkt",
+  "buddyRegionBar": "die Bar",
+  "buddyRegionWhiteTray": "Weißes Auswurffeld",
+  "buddyRegionBlackTray": "Schwarzes Auswurffeld",
+  "buddyRegionDiceZone": "die Brettmitte",
+  "buddyCalibrationProblemVisible": "Ich kann nicht das ganze Brett sehen. Halte das Telefon weiter zurück oder ziehe die Ecken auf die Spielfläche.",
+  "buddyConfirmMore": " (und {number} weitere)",
+  "buddyDiceOpeningCaption": "Jeder würfelt einmal. Welche Zahl zu wem gehört, entscheidet, wer beginnt.",
+  "buddyDiceOpeningFirst": "Würfel von Weiß",
+  "buddyDiceOpeningSecond": "Würfel von Schwarz",
+  "buddyDiceRegularCaption": "Die beiden gewürfelten Zahlen, in beliebiger Reihenfolge.",
+  "buddyDiceRegularFirst": "Ein Würfel",
+  "buddyDiceRegularSecond": "Der andere",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

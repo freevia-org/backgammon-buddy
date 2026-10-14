@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "QR kód na pripojenie k tejto hre",
   "lanJoinInstruction": "Na druhom zariadení otvorte Hrať nablízku, vyberte Pripojiť sa a naskenujte tento QR kód.",
   "homePlayWithBuddy": "Hrať s Buddy",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Hrať s Buddy",
+  "buddySetupSideLabel": "Buddy hrá",
+  "buddySetupSeatLabel": "Vaša strana",
+  "buddySetupSeatNear": "Pri telefóne",
+  "buddySetupSeatFar": "Oproti",
+  "buddySetupSeatHelp": "Na ktorej strane dosky sedíte? Podľa toho Buddy čísluje body a rozlišuje váš úvodný hod od svojho.",
+  "buddySetupVoiceLabel": "Ako Buddy hovorí",
+  "buddySetupVoiceTerse": "Stručne",
+  "buddySetupVoiceFriendly": "Priateľsky",
+  "buddySetupVoiceTerseHelp": "„13/8, 24/22“ — zápis, ktorým sa hráči pri doske bežne dorozumievajú.",
+  "buddySetupVoiceFriendlyHelp": "„Presuňte kameň z 13 na 8 a ďalší z 24 na 22.“",
+  "buddySetupTutorHelp": "Komentáre a vysvetlenia ťahov sa riadia uloženými nastaveniami Trénera. Buddy občas okomentuje vaše ťahy; zadávanie hodov aj ručné ťahy fungujú rovnako.",
+  "buddySetupCalibrate": "Kalibrovať dosku",
+  "buddyFixAim": "Upraviť záber",
+  "buddyWaitingForOpening": "Buddy čaká na hod, ktorý začne zápas.",
+  "buddyPromptLostBoard": "Buddy stratil dosku. Upravte záber a zápas bude pokračovať tam, kde sa zastavil.",
+  "buddyPromptWaitingPicture": "Čakám na obraz, ktorý Buddy dokáže prečítať. Nič sa nestratilo.",
+  "buddyPromptTypeDice": "Buddy nevidí kocky. Zadajte hod ručne.",
+  "buddyPromptPlay": "Urobte ťah na doske. Ak ho Buddy nevidí, zadajte ho tu.",
+  "buddyPromptWhichPlay": "Aký ťah ste urobili?",
+  "buddyPromptCube": "Buddy zdvojnásobuje. Prijať alebo vzdať?",
+  "buddyPromptMakeMove": "Urobte Buddyho ťah na doske a potom bude pokračovať.",
+  "buddyPromptThinking": "Buddy premýšľa.",
+  "buddyPromptWaitingCalibration": "Čaká sa na kalibráciu.",
+  "buddyPromptMirrorNoDetail": "Buddy stále nevidí svoj ťah. Doska nižšie ukazuje pozíciu, ktorú sleduje.",
+  "buddyPromptNotLegal": "Tento ťah nie je povolený.",
+  "buddyPromptNotLegalReason": "Tento ťah nie je povolený. {reason}",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyThrowOpening": "Hoďte úvodné kocky — každý jednu.",
+  "buddyThrowUser": "Hoďte svoje kocky.",
+  "buddyThrowBuddy": "Hoďte kocky za Buddyho.",
+  "buddyMatchOver": "Zápas sa skončil.",
+  "buddyYouWin": "Vyhrali ste zápas.",
+  "buddyBuddyWins": "Buddy vyhral zápas.",
+  "buddyDoubleNoGame": "Zatiaľ niet čo zdvojnásobiť — najprv treba hodiť úvodné kocky.",
+  "buddyDoubleBeforeRoll": "Zdvojnásobiť môžete iba na ťahu a pred hodom.",
+  "buddyDoubleCrawford": "V Crawfordovej hre sa nezdvojnásobuje — táto jediná hra rozhodne zápas.",
+  "buddyDoubleNotOwner": "Zdvojnásobiť môže iba vlastník kocky a teraz ju vlastní druhá strana.",
+  "buddyDoubleUnavailable": "Zdvojnásobenie teraz nie je dostupné.",
+  "buddyLookingAtBoard": "Buddy sa pozerá na dosku.",
+  "buddyCameraPlayFallback": "Môžete pokračovať v zápase: každý hod zadajte na paneli kociek a ťahy vykonajte na doske nižšie.",
+  "buddySkipCheck": "Preskočiť kontrolu",
+  "buddyFixedIt": "Opravil som to",
+  "buddyDrop": "Vzdať",
+  "buddyTake": "Prijať",
+  "buddyDone": "Hotovo",
+  "buddyTranscriptLabel": "Čo povedal Buddy",
+  "buddyUndo": "Vrátiť späť",
+  "buddyConfirm": "Potvrdiť",
+  "buddyDice": "Kocky",
+  "buddyDouble": "Zdvojnásobiť",
+  "buddyDicePadTitle": "Čo vám padlo?",
+  "buddyEnterRoll": "Zadať hod",
+  "buddyContextBeforeGame": "Hrať s Buddym",
+  "buddyContextMatchScore": "Vy {you}–{buddy} Buddy · do {length} · hra {number}",
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraUnavailable": "Kameru sa nepodarilo spustiť. Skontrolujte povolenia a skúste znova.",
+  "buddyCameraPermission": "Aplikácia Backgammon Buddy nemá povolenie používať kameru. Povoľte prístup ku kamere v nastaveniach zariadenia a skúste znova.",
+  "buddyCalibrationTitle": "Ukážte Buddymu dosku",
+  "buddyCalibrationCornersFold": "Štyri vonkajšie značky presuňte do rohov hracej plochy, nie na drevený okraj. Štyri malé presuňte na spoje pántu pri vzdialenom a blízkom okraji.",
+  "buddyCalibrationCornersFlat": "Každú značku presuňte do rohu hracej plochy, nie na drevený okraj.",
+  "buddyCalibrationCheckLines": "Potom skontrolujte dvanásť čiar na každej polovici: každá má viesť pozdĺž bodu dosky. Ak míňa bod, posuňte príslušnú značku.",
+  "buddyCalibrationSeatQuestion": "Ktorá polovica je vaše domáce pole?",
+  "buddyCalibrationSeatHelp": "Polovica bližšie k dolnému okraju obrázka. Podľa nej sa určí číslovanie bodov a zarovnajú sa čiary vyššie.",
+  "buddyCalibrationCaptureWait": "Držte telefón nehybne. Buddy čaká, kým sa obraz ustáli, a potom sa naučí dosku.",
+  "buddyCalibrationConfirmQuestion": "Je toto vaša doska?",
+  "buddyCalibrationConfirmFallback": "Buddy sa pozerá na dosku, ktorú práve rozpoznal.",
+  "buddyCalibrationConfirmHelp": "Figúrky prekreslené cez obraz ukazujú, čo si Buddy myslí, že je na doske. Ak niektorá nesedí, začnite odznova — teraz to zaberie sekundy, neskôr môže pokaziť hru.",
+  "buddyCalibrationNext": "Ďalej",
+  "buddyCalibrationBack": "Späť",
+  "buddyCalibrationCapture": "Nasnímať",
+  "buddyCalibrationStartOver": "Začať odznova",
+  "buddyCalibrationLooksRight": "Vyzerá to správne",
+  "buddyCalibrationCornersInvalid": "Tieto štyri značky neohraničujú dosku — jedna pretína druhú. Presuňte ich späť do rohov hracej plochy.",
+  "buddyCalibrationPrepTitle": "Najprv tri veci",
+  "buddyCalibrationRemoveDiceTitle": "Odstráňte kocky z dosky.",
+  "buddyCalibrationRemoveDiceBody": "Buddy sa teraz učí prázdnu dosku. Ak na ploche zostane kocka, naučí sa ju ako súčasť dosky a počas tejto relácie už kocky neuvidí.",
+  "buddyCalibrationSetupCheckersTitle": "Rozostavte kamene do začiatočnej pozície.",
+  "buddyCalibrationSetupCheckersBody": "Tridsať kameňov na známych miestach pomôže Buddymu rozpoznať obe farby bez toho, aby ste mu ich museli povedať.",
+  "buddyCalibrationFitBoardTitle": "Zachyťte celú hraciu plochu.",
+  "buddyCalibrationFitBoardBody": "Potom nechajte telefón na mieste. Ak sa pohne, Buddy vás upozorní a môžete upraviť rohy.",
+  "buddyCalibrationBoardKind": "Aký typ dosky máte?",
+  "buddyCalibrationFlatBoard": "Rovná doska",
+  "buddyCalibrationFoldingBoard": "Skladacia doska",
+  "buddyCalibrationBoardKindHelp": "Skladacia doska potrebuje ďalšie štyri značky na spojoch pántu.",
+  "buddyCalibrationNoCameraBody": "Režim Buddy sleduje skutočnú dosku, preto sa bez kamery nespustí. Všetko ostatné v aplikácii funguje ďalej.",
+  "buddyHandleHingeSeam": "Spoj pántu {number} zo 4",
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyHandleCorner": "Roh dosky {number} zo 4",
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyNudgeLeft": "Posunúť doľava",
+  "buddyNudgeRight": "Posunúť doprava",
+  "buddyNudgeUp": "Posunúť nahor",
+  "buddyNudgeDown": "Posunúť nadol",
+  "buddyCalibrationProblemCorners": "Tieto štyri rohy neohraničujú dosku. Presuňte každú značku do rohu hracej plochy a skúste znova.",
+  "buddyCalibrationProblemFoldCorners": "Týchto osem bodov neohraničuje skladaciu dosku. Štyri umiestnite do rohov hracej plochy a štyri na spoje pántu, potom skúste znova.",
+  "buddyCalibrationProblemUnreadable": "Samotnú dosku nedokážem rozpoznať — je celá zakrytá alebo stratená v tieni či odleskoch. Uvoľnite ju, pridajte svetlo a skúste znova.",
+  "buddyCalibrationProblemRegionUnreadable": "Nedokážem rozpoznať {region} — možno na ňom niečo leží alebo je tento roh príliš tmavý. Uvoľnite ho alebo pridajte svetlo a skúste znova.",
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCalibrationProblemColours": "Obe farby kameňov z tohto miesta vyzerajú príliš podobne. Zvyčajne pomôže viac svetla alebo uhol s menším odleskom.",
+  "buddyCalibrationProblemWrongChecker": "Kamene nie sú v začiatočnej pozícii — na bode {number} je kameň nesprávnej farby. Rozostavte dosku na začiatok hry a znova ju kalibrujte.",
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyCalibrationProblemOverexposed": "Na dosku dopadá priveľa svetla a farby splývajú. Stlmte svetlo alebo posuňte telefón, aby sa lampa neodrážala priamo do kamery.",
+  "buddyCalibrationProblemReadBack": "Dosku viem prečítať, ale nie je pripravená na začiatok hry. Rozostavte kamene do začiatočnej pozície a znova kalibrujte.",
+  "buddyCalibrationProblemStacks": "Dosku viem prečítať, ale neviem určiť, ako ďaleko je jeden kameň za druhým, takže by som ich zle spočítal. Pomôže viac svetla na blízkych bodoch alebo trochu vyšší uhol kamery.",
+  "buddyCalibrationProblemNotVisible": "Nevidím celú dosku. Odsuňte telefón alebo presuňte rohy na hraciu plochu.",
+  "buddyConfirmBoardOutOfFrame": "Celá doska sa už nezmestí do záberu — {region} je mimo obrazu. Znova nasmerujte kameru alebo skontrolujte rohy.",
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmStartingPosition": "Vyzerá to ako začiatočná pozícia.",
+  "buddyConfirmNoCheckers": "Na žiadnom začiatočnom bode nevidím kameň. Rozostavte dosku na začiatok hry a skúste znova.",
+  "buddyConfirmWrongPosition": "Doska nie je rozostavená na začiatok hry: {details}{more}.",
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionEmpty": "{region} vyzerá prázdny, ale hra sa začína s kameňmi {side} na tomto mieste",
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionUnexpected": "Na {region} sú kamene {side}, ale hra sa tam začína s prázdnym miestom",
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyConfirmRegionWrongSide": "Na {region} sú kamene {observed}, no hra sa tam začína s kameňmi {expected}",
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyReadabilityMotion": "Chvíľu sa nehýbte — keď sa telefón pohybuje, strácam dosku.",
+  "buddyReadabilityWrongFrame": "Dostal som iný obraz, než na akom bola doska nastavená, takže ju neviem zarovnať. Nastavte dosku znova odtiaľto.",
+  "buddyReadabilityBlur": "Obraz je príliš rozmazaný na prečítanie dosky. Počkajte, kým kamera zaostrí.",
+  "buddyReadabilityCalibrationStale": "Doska už nie je tam, kde som sa ju naučil. Znova zarovnajte rohy a hneď nadviažem na hru.",
+  "buddyReadabilityOccluded": "Časť dosky niečo zakrýva. Pokračujem, len čo bude voľná.",
+  "buddyReadabilityClear": "Dosku vidím.",
+  "buddyReadabilityColorChanged": "Farba svetla na doske sa zmenila a doska už nevyzerá ako tá, ktorú som sa naučil. Pri tomto svetle znova zarovnajte rohy a hneď nadviažem na hru.",
+  "buddyReadabilityTooDark": "Na prečítanie dosky je príliš tma. Pridajte trochu svetla a pokračujem tam, kde sme skončili.",
+  "buddyReadabilityTooBright": "Na dosku dopadá priveľa svetla a farby splývajú. Stlmte svetlo alebo posuňte telefón, aby sa lampa neodrážala do kamery.",
+  "buddyPromptBeliefMirror": "Buddy stále nevidí svoj ťah — {reason}.",
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nV zápase môžete pokračovať: každý hod zadajte na paneli kociek a ťahy vykonajte na doske nižšie.",
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyCameraGenericError": "Kameru sa nepodarilo spustiť. Skontrolujte povolenia a skúste znova.",
+  "buddyRegionPoint": "bod {number}",
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyRegionBar": "bar",
+  "buddyRegionWhiteTray": "odkladací priestor bielych kameňov",
+  "buddyRegionBlackTray": "odkladací priestor čiernych kameňov",
+  "buddyRegionDiceZone": "stred dosky",
+  "buddyCalibrationProblemVisible": "Nevidím celú dosku. Odsuňte telefón alebo presuňte rohy na hraciu plochu.",
+  "buddyConfirmMore": " (a ďalších {number})",
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "buddyDiceOpeningCaption": "Každý hodí jednou kockou. Hodnoty určia, kto začína.",
+  "buddyDiceOpeningFirst": "Kocka bieleho",
+  "buddyDiceOpeningSecond": "Kocka čierneho",
+  "buddyDiceRegularCaption": "Dve hodené hodnoty v ľubovoľnom poradí.",
+  "buddyDiceRegularFirst": "Jedna kocka",
+  "buddyDiceRegularSecond": "Druhá kocka"
 }

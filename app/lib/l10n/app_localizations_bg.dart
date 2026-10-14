@@ -2692,7 +2692,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String feedbackBugTitle(Object version, Object platform) {
-    return '[Bug]: Backgammon Buddy $version ($platform)';
+    return '[Грешка]: Backgammon Buddy $version ($platform)';
   }
 
   @override
@@ -2748,4 +2748,495 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Предложена промяна';
+
+  @override
+  String get buddySetupTitle => 'Играй с Buddy';
+
+  @override
+  String get buddySetupSideLabel => 'Играе Buddy';
+
+  @override
+  String get buddySetupSeatLabel => 'Твоята страна';
+
+  @override
+  String get buddySetupSeatNear => 'До телефона';
+
+  @override
+  String get buddySetupSeatFar => 'Отсреща';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'От коя страна на дъската седиш. Това определя как Buddy номерира полетата и различава твоя начален зар от своя.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Как говори Buddy';
+
+  @override
+  String get buddySetupVoiceTerse => 'Кратко';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Приветливо';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '„13/8, 24/22“ — нотацията, с която говорят двама играчи пред дъската.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '„Премести един пул от 13 на 8 и още един от 24 на 22.“';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Коментарите на наставника и обясненията на ходовете следват запазените ти настройки за наставник. Buddy от време на време ще коментира ходовете ти; въвеждането на зарове и ръчните ходове работят по същия начин.';
+
+  @override
+  String get buddySetupCalibrate => 'Калибрирай дъската';
+
+  @override
+  String get buddyFixAim => 'Настрой камерата';
+
+  @override
+  String get buddyWaitingForOpening =>
+      'Buddy чака хвърлянето, което започва мача.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy загуби дъската от поглед. Настрой камерата и мачът ще продължи от мястото, на което спря.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Изчакване на изображение, което Buddy може да разчете. Нищо не е загубено.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy не вижда заровете. Въведи хвърлянето ръчно.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Направи хода си на дъската. Ако Buddy не го вижда, въведи го тук.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Кой ход направи?';
+
+  @override
+  String get buddyPromptCube => 'Buddy удвоява. Приемаш или отказваш?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Изпълни хода на Buddy на дъската и той ще продължи.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy мисли.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Изчакване на калибриране.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy още не вижда хода си. Дъската отдолу показва позицията, която е запазил.';
+
+  @override
+  String get buddyPromptNotLegal => 'Това не е позволен ход.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Това не е позволен ход. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening => 'Хвърли началните зарове — по един за всеки.';
+
+  @override
+  String get buddyThrowUser => 'Хвърли своите зарове.';
+
+  @override
+  String get buddyThrowBuddy => 'Хвърли заровете на Buddy.';
+
+  @override
+  String get buddyMatchOver => 'Мачът приключи.';
+
+  @override
+  String get buddyYouWin => 'Ти спечели мача.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy спечели мача.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Все още няма игра, която да се удвои — първо е началното хвърляне.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Можеш да удвоиш само преди хвърляне, когато си на ход.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'В играта на Крофорд няма удвояване — този единствен гейм решава мача.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Само притежателят на куба за удвояване може да удвои, а в момента той е у противника.';
+
+  @override
+  String get buddyDoubleUnavailable => 'В момента удвояването не е достъпно.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy оглежда дъската.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Можеш да продължиш да играеш: въвеждай всяко хвърляне в панела със заровете и отбелязвай ходовете си на дъската отдолу.';
+
+  @override
+  String get buddySkipCheck => 'Пропусни проверката';
+
+  @override
+  String get buddyFixedIt => 'Поправих го';
+
+  @override
+  String get buddyDrop => 'Откажи';
+
+  @override
+  String get buddyTake => 'Приеми';
+
+  @override
+  String get buddyDone => 'Готово';
+
+  @override
+  String get buddyTranscriptLabel => 'Какво каза Buddy';
+
+  @override
+  String get buddyUndo => 'Отмени';
+
+  @override
+  String get buddyConfirm => 'Потвърди';
+
+  @override
+  String get buddyDice => 'Зарове';
+
+  @override
+  String get buddyDouble => 'Удвои';
+
+  @override
+  String get buddyDicePadTitle => 'Какво хвърли?';
+
+  @override
+  String get buddyEnterRoll => 'Въведи хвърлянето';
+
+  @override
+  String get buddyContextBeforeGame => 'Играй с Buddy';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Ти $you–$buddy Buddy · до $length · Игра $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Камерата не можа да се стартира. Провери разрешенията и опитай отново.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy няма разрешение да използва камерата. Разреши достъп до камерата в настройките на устройството и опитай отново.';
+
+  @override
+  String get buddyCalibrationTitle => 'Покажи дъската на Buddy';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Плъзни четирите външни маркера до ъглите на плата — не до дървения ръб — а четирите малки маркера до шевовете, където пантата се среща с далечния и близкия ръб.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Плъзни всеки маркер до ъгъл на плата — игралната повърхност, а не дървения ръб около нея.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'След това провери дванайсетте линии във всяка половина: всяка трябва да минава по едно поле на дъската. Ако някоя линия пропуска полето си, премести съответния маркер.';
+
+  @override
+  String get buddyCalibrationSeatQuestion =>
+      'Коя половина е твоето домашно поле?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'Половината, която е най-близо до долния край на изображението. Това определя номерата на полетата, а линиите отгоре ще се нагодят към тях.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Дръж телефона неподвижно. Buddy изчаква изображението да се стабилизира, преди да научи дъската.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Това твоята дъска ли е?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy разглежда дъската, която току-що научи.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Нарисуваните върху изображението пулове показват къде Buddy смята, че се намират. Ако някой е на грешно място, започни отначало — сега това ще ти отнеме секунди, а по-късно може да ти струва цяла игра.';
+
+  @override
+  String get buddyCalibrationNext => 'Напред';
+
+  @override
+  String get buddyCalibrationBack => 'Назад';
+
+  @override
+  String get buddyCalibrationCapture => 'Заснеми';
+
+  @override
+  String get buddyCalibrationStartOver => 'Започни отначало';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Изглежда правилно';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Тези четири маркера не очертават дъска — единият е пресекъл друг. Премести ги обратно в ъглите на плата.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Първо три неща';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Махни заровете от дъската.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Сега Buddy научава празната дъска. Ако зар остане върху плата, Buddy ще го научи като част от дъската и няма да може да вижда заровете до края на тази сесия.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Подреди пуловете за началото на играта.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Тридесет пула на познати места помагат на Buddy да научи двата цвята на дъската, без да му казваш кои са те.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Побери цялата игрална повърхност в кадъра.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'След това остави телефона на място. Ако се премести, Buddy ще ти каже и ще можеш да нагласиш ъглите отново.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Какъв вид е дъската?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Плоска дъска';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Сгъваема дъска';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'При сгъваема дъска са нужни още четири маркера по шевовете на пантата.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Режимът Buddy следи истинска дъска, затова не може да стартира без камера. Всичко останало в приложението ще работи както обикновено.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Шев на панта $number от 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Ъгъл на дъската $number от 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Премести леко наляво';
+
+  @override
+  String get buddyNudgeRight => 'Премести леко надясно';
+
+  @override
+  String get buddyNudgeUp => 'Премести леко нагоре';
+
+  @override
+  String get buddyNudgeDown => 'Премести леко надолу';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Тези четири ъгъла не очертават дъска. Премести всеки маркер до ъгъл на игралната повърхност и опитай отново.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Тези осем точки не очертават сгъваема дъска. Постави четири в ъглите на игралната повърхност и четири по шевовете на пантата, после опитай отново.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Не мога да различа самата дъска — изцяло е покрита или е в сянка/отблясък. Освободи дъската, добави светлина и опитай отново.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Не мога да различа $region — може да има нещо там или този ъгъл на дъската да е твърде тъмен. Освободи го или добави светлина и опитай отново.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Оттук двата цвята пулове изглеждат твърде сходни. Обикновено помага повече светлина или ъгъл с по-малко отблясъци.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Пуловете не са в начална позиция — на поле $number има пул с грешен цвят. Подреди дъската за начало на играта и калибрирай отново.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Светлината върху дъската е толкова силна, че цветовете се сливат. Намали осветлението или премести телефона, така че лампата да не свети право към камерата.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Виждам дъската, но тя не е подредена като за започваща игра. Подреди пуловете за начало на играта и калибрирай отново.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Виждам дъската, но не мога да определя колко пулове има един зад друг — така ще ги преброя неправилно. Обикновено помага малко повече светлина върху близките полета или малко по-висок ъгъл на камерата.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Не виждам цялата дъска. Отдалечи телефона или премести ъглите върху игралната повърхност.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Вече не виждам цялата дъска — $region е извън кадъра. Насочи камерата отново или провери ъглите.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition =>
+      'Това прилича на началната позиция.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Не виждам пул на нито едно място от началната позиция. Подреди пуловете за начало на играта и опитай отново.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Дъската не е подредена в начална позиция: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return 'На $region няма нищо, но в началото на играта там трябва да има $side';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return 'На $region има $side, но в началото на играта мястото трябва да е празно';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return 'На $region има $observed, а в началото на играта там трябва да има $expected';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Постой неподвижно за миг — губя дъската от поглед, докато телефонът се движи.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Полученото изображение не е от дъската, за която бях настроен, затова не мога да съпоставя нищо. Настрой дъската отново оттук.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Изображението е твърде размазано, за да разчета дъската. Изчакай камерата да фокусира.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Дъската вече не е там, където беше, когато я научих. Нагласи ъглите отново и веднага ще продължа играта.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Нещо закрива част от дъската. Ще продължа веднага щом я освободиш.';
+
+  @override
+  String get buddyReadabilityClear => 'Виждам дъската.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Осветлението е променило цвета си и дъската вече не изглежда като тази, която научих. Нагласи ъглите отново при тази светлина и веднага ще продължа играта.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Твърде тъмно е, за да разчета дъската. Добави малко светлина и ще продължа оттам, докъдето стигнахме.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Светлината върху дъската е толкова силна, че цветовете се сливат. Намали я или премести телефона, така че лампата да не свети право към камерата.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy още не вижда хода си — $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nМожеш да продължиш да играеш: въвеждай всяко хвърляне в панела със заровете и отбелязвай ходовете си на дъската отдолу.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Камерата не можа да се стартира. Провери разрешенията и опитай отново.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'поле $number';
+  }
+
+  @override
+  String get buddyRegionBar => 'бара';
+
+  @override
+  String get buddyRegionWhiteTray => 'таблата за изваждане на белите пулове';
+
+  @override
+  String get buddyRegionBlackTray => 'таблата за изваждане на черните пулове';
+
+  @override
+  String get buddyRegionDiceZone => 'средата на дъската';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Не виждам цялата дъска. Отдалечи телефона или премести ъглите върху игралната повърхност.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return ' (и още $number)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Всеки хвърля по един зар. Показаното число определя кой започва.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'Зарът на белите';
+
+  @override
+  String get buddyDiceOpeningSecond => 'Зарът на черните';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'Двете числа от заровете на масата, в произволен ред.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Единият зар';
+
+  @override
+  String get buddyDiceRegularSecond => 'Другият';
 }

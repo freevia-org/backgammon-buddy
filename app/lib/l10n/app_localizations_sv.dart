@@ -2710,4 +2710,493 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Föreslagen förändring';
+
+  @override
+  String get buddySetupTitle => 'Spela med Buddy';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy spelar';
+
+  @override
+  String get buddySetupSeatLabel => 'Din sida';
+
+  @override
+  String get buddySetupSeatNear => 'Nära telefonen';
+
+  @override
+  String get buddySetupSeatFar => 'Mittemot';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'På vilken sida av brädet sitter du? Det avgör hur Buddy numrerar punkterna och skiljer din öppningskastning från sin egen.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Så pratar Buddy';
+
+  @override
+  String get buddySetupVoiceTerse => 'Kortfattat';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Vänligt';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '”13/8, 24/22” — notation som två spelare använder vid brädet.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '”Flytta en bricka från 13 till 8 och en från 24 till 22.”';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Tutor-kommentarer och dragförklaringar följer dina sparade Tutor-inställningar. Buddy ger ibland återkoppling efter dina drag; manuell tärningsinmatning och manuella drag fungerar på samma sätt.';
+
+  @override
+  String get buddySetupCalibrate => 'Kalibrera brädet';
+
+  @override
+  String get buddyFixAim => 'Justera kameran';
+
+  @override
+  String get buddyWaitingForOpening =>
+      'Buddy väntar på kastet som startar matchen.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy har tappat bort brädet. Justera kameran så fortsätter matchen där den pausades.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Väntar på en bild som Buddy kan läsa. Inget har gått förlorat.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy hittar inte tärningarna. Ange kastet manuellt.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Gör ditt drag på brädet. Om Buddy inte ser det kan du ange det här.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Vilket drag gjorde du?';
+
+  @override
+  String get buddyPromptCube => 'Buddy dubblar. Ta eller lägg ned?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Gör Buddys drag på brädet, så fortsätter Buddy sedan.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy tänker.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Väntar på kalibrering.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy ser fortfarande inte sitt drag. Brädet nedan visar positionen som Buddy följer.';
+
+  @override
+  String get buddyPromptNotLegal => 'Det draget är inte tillåtet.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Det draget är inte tillåtet. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening => 'Kasta öppningstärningarna — en var.';
+
+  @override
+  String get buddyThrowUser => 'Kasta dina tärningar.';
+
+  @override
+  String get buddyThrowBuddy => 'Kasta Buddys tärningar.';
+
+  @override
+  String get buddyMatchOver => 'Matchen är slut.';
+
+  @override
+  String get buddyYouWin => 'Du vann matchen.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy vann matchen.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Det finns inget parti att dubbla ännu — öppningskastet kommer först.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Du kan bara dubbla före kastet när det är din tur.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'Ingen dubbling i Crawford-partiet — det här enda partiet avgör matchen.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Bara kubägaren kan dubbla, och just nu äger den andra sidan kuben.';
+
+  @override
+  String get buddyDoubleUnavailable => 'Dubbling är inte tillgänglig just nu.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy tittar på brädet.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Du kan fortsätta matchen: ange varje kast på tärningspanelen och gör dragen på brädet nedan.';
+
+  @override
+  String get buddySkipCheck => 'Hoppa över kontrollen';
+
+  @override
+  String get buddyFixedIt => 'Jag har fixat det';
+
+  @override
+  String get buddyDrop => 'Lägg ned';
+
+  @override
+  String get buddyTake => 'Ta';
+
+  @override
+  String get buddyDone => 'Klart';
+
+  @override
+  String get buddyTranscriptLabel => 'Det Buddy sa';
+
+  @override
+  String get buddyUndo => 'Ångra';
+
+  @override
+  String get buddyConfirm => 'Bekräfta';
+
+  @override
+  String get buddyDice => 'Tärningar';
+
+  @override
+  String get buddyDouble => 'Dubbling';
+
+  @override
+  String get buddyDicePadTitle => 'Vad fick du?';
+
+  @override
+  String get buddyEnterRoll => 'Ange kast';
+
+  @override
+  String get buddyContextBeforeGame => 'Spela med Buddy';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Du $you–$buddy Buddy · till $length · parti $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Kameran kunde inte startas. Kontrollera behörigheterna och försök igen.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy har inte behörighet att använda kameran. Tillåt kameraåtkomst i enhetens inställningar och försök igen.';
+
+  @override
+  String get buddyCalibrationTitle => 'Visa Buddy brädet';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Dra de fyra yttre handtagen till hörnen på spelytan, inte träramen. Dra de fyra små handtagen till gångjärnsskarvarna vid de bortre och närmaste kanterna.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Dra varje handtag till ett hörn av spelytan, inte träramen.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Kontrollera sedan de tolv linjerna på varje halva: var och en ska följa en punkt på brädet. Om en linje missar sin punkt behöver handtaget flyttas.';
+
+  @override
+  String get buddyCalibrationSeatQuestion => 'Vilken halva är ditt hemområde?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'Halvan närmast bildens nederkant. Den bestämmer punktnumren, så linjerna ovanför följer den.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Håll telefonen stilla. Buddy väntar på att bilden ska stabiliseras innan brädet lärs in.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Är det här ditt bräde?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy tittar på brädet som just lärdes in.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Brickorna som ritats ovanpå bilden visar var Buddy tror att de ligger. Om någon är felplacerad kan du börja om — det tar sekunder nu, men kan kosta ett parti senare.';
+
+  @override
+  String get buddyCalibrationNext => 'Nästa';
+
+  @override
+  String get buddyCalibrationBack => 'Tillbaka';
+
+  @override
+  String get buddyCalibrationCapture => 'Ta bild';
+
+  @override
+  String get buddyCalibrationStartOver => 'Börja om';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Ser rätt ut';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'De här fyra handtagen ramar inte in brädet — ett har korsat ett annat. Dra tillbaka dem till spelytans hörn.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Tre saker först';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle =>
+      'Ta bort tärningarna från brädet.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy lär sig det tomma brädet nu. Om en tärning ligger kvar på spelytan lär sig Buddy att den är en del av brädet och kan då inte se tärningarna under den här sessionen.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Ställ upp brickorna för ett nytt parti.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Trettio brickor på kända platser hjälper Buddy att lära sig brädets två färger utan att du behöver berätta vilka de är.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle => 'Få med hela spelytan i bilden.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Låt sedan telefonen ligga kvar. Om den flyttas säger Buddy till, så kan du justera hörnen igen.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Vilken typ av bräde har du?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Platt bräde';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Hopfällbart bräde';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Ett hopfällbart bräde behöver fyra extra handtag vid gångjärnsskarvarna.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Buddy-läget följer ett fysiskt bräde och kan därför inte starta utan kameran. Resten av appen fungerar som vanligt.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Gångjärnsskarv $number av 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Brädhörn $number av 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Flytta åt vänster';
+
+  @override
+  String get buddyNudgeRight => 'Flytta åt höger';
+
+  @override
+  String get buddyNudgeUp => 'Flytta uppåt';
+
+  @override
+  String get buddyNudgeDown => 'Flytta nedåt';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'De här fyra hörnen ramar inte in ett bräde. Dra varje handtag till ett hörn av spelytan och försök igen.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'De här åtta punkterna ramar inte in ett hopfällbart bräde. Placera fyra i spelytans hörn och fyra vid gångjärnsskarvarna, och försök igen.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Jag kan inte urskilja själva brädet — det är helt täckt eller försvinner i skugga eller blänk. Frilägg brädet, öka belysningen och försök igen.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Jag kan inte urskilja $region — något kan ligga där eller så är hörnet för mörkt. Ta bort föremålet eller öka belysningen och försök igen.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'De två brickfärgerna ser för lika ut härifrån. Mer ljus eller en vinkel med mindre blänk brukar hjälpa.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Brickorna står inte i startpositionen — punkt $number har en bricka med fel färg. Ställ upp brädet för ett nytt parti och kalibrera igen.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Brädet får så mycket ljus att färgerna flyter ihop. Dämpa belysningen eller flytta telefonen så att lampan inte lyser rakt in i kameran.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Jag kan läsa brädet, men det ser inte ut som inför ett nytt parti. Ställ brickorna i startpositionen och kalibrera igen.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Jag kan läsa brädet, men inte avgöra hur långt en bricka ligger bakom en annan och skulle därför räkna fel. Mer ljus på de närmaste punkterna eller en något högre kameravinkel brukar hjälpa.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Jag ser inte hela brädet. Flytta telefonen längre bort eller dra hörnen till spelytan.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Jag ser inte hela brädet längre — $region är utanför bilden. Rikta in kameran igen eller kontrollera hörnen.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition => 'Det ser ut som startpositionen.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Jag ser ingen bricka på någon startpunkt. Ställ upp brädet för ett nytt parti och försök igen.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Brädet är inte uppställt för ett nytt parti: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region ser tomt ut, men i startpositionen ska $side stå där';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return '$region har $side, men ska vara tomt i startpositionen';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return '$region har $observed, men startpositionen kräver $expected';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Håll stilla en stund — jag tappar bort brädet när telefonen rör sig.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Bilden jag får är inte den som brädet ställdes in med, så jag kan inte rikta in det. Ställ in brädet igen härifrån.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Bilden är för suddig för att läsa brädet. Vänta en stund medan kameran fokuserar.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Brädet står inte längre där jag lärde mig det. Rikta in hörnen igen så fortsätter jag matchen direkt.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Något täcker en del av brädet. Jag fortsätter så snart det är fritt.';
+
+  @override
+  String get buddyReadabilityClear => 'Jag ser brädet.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Ljuset på brädet har ändrat färg, så brädet ser inte längre ut som det jag lärde mig. Rikta in hörnen igen i det här ljuset så fortsätter jag matchen.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Det är för mörkt för att läsa brädet. Lite mer ljus så fortsätter jag där vi slutade.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Brädet får så mycket ljus att färgerna flyter ihop. Dämpa ljuset eller flytta telefonen så att lampan inte blänker in i kameran.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy ser fortfarande inte sitt drag — $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nDu kan fortsätta matchen: ange varje kast på tärningspanelen och gör dragen på brädet nedan.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Kameran kunde inte startas. Kontrollera behörigheterna och försök igen.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'punkt $number';
+  }
+
+  @override
+  String get buddyRegionBar => 'baren';
+
+  @override
+  String get buddyRegionWhiteTray => 'vit spelares brickbricka';
+
+  @override
+  String get buddyRegionBlackTray => 'svart spelares brickbricka';
+
+  @override
+  String get buddyRegionDiceZone => 'brädets mitt';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Jag ser inte hela brädet. Flytta telefonen längre bort eller dra hörnen till spelytan.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return ' (och $number till)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'En tärning var. Värdena avgör vem som börjar.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'Vits tärning';
+
+  @override
+  String get buddyDiceOpeningSecond => 'Svarts tärning';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'De två tärningarnas värden, i valfri ordning.';
+
+  @override
+  String get buddyDiceRegularFirst => 'En tärning';
+
+  @override
+  String get buddyDiceRegularSecond => 'Den andra tärningen';
 }

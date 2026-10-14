@@ -2827,4 +2827,495 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Modificare sugerată';
+
+  @override
+  String get buddySetupTitle => 'Joacă cu Buddy';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy joacă';
+
+  @override
+  String get buddySetupSeatLabel => 'Locul tău';
+
+  @override
+  String get buddySetupSeatNear => 'Lângă telefon';
+
+  @override
+  String get buddySetupSeatFar => 'În partea opusă';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Pe ce latură a tablei stai? Așa numerotează Buddy punctele și își deosebește zarul de deschidere de al tău.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Cum vorbește Buddy';
+
+  @override
+  String get buddySetupVoiceTerse => 'Concis';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Prietenos';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '„13/8, 24/22” — notația folosită de doi jucători la tablă.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '„Mută o piesă de la 13 la 8 și una de la 24 la 22.”';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Comentariile și explicațiile mutărilor urmează preferințele Tutorului salvate în Setări. Buddy oferă uneori feedback după mutările tale; introducerea zarurilor și mutările manuale funcționează la fel.';
+
+  @override
+  String get buddySetupCalibrate => 'Calibrează tabla';
+
+  @override
+  String get buddyFixAim => 'Corectează încadrarea';
+
+  @override
+  String get buddyWaitingForOpening =>
+      'Buddy așteaptă aruncarea care începe partida.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy a pierdut tabla. Corectează încadrarea, iar partida continuă de unde s-a oprit.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Aștept o imagine pe care Buddy o poate citi. Nu s-a pierdut nimic.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy nu găsește zarurile. Introdu rezultatul aruncării.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Fă mutarea pe tablă. Dacă Buddy nu o vede, introdu-o aici.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Ce mutare ai făcut?';
+
+  @override
+  String get buddyPromptCube => 'Buddy dublează. Accepți sau abandonezi?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Fă mutarea lui Buddy pe tablă, apoi Buddy va continua.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy se gândește.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Aștept calibrarea.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy încă nu își vede mutarea. Tabla de mai jos arată poziția pe care o urmărește.';
+
+  @override
+  String get buddyPromptNotLegal => 'Mutarea nu este legală.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Mutarea nu este legală. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening =>
+      'Aruncă zarurile de deschidere — câte unul pentru fiecare.';
+
+  @override
+  String get buddyThrowUser => 'Aruncă zarurile tale.';
+
+  @override
+  String get buddyThrowBuddy => 'Aruncă zarurile lui Buddy.';
+
+  @override
+  String get buddyMatchOver => 'Partida s-a încheiat.';
+
+  @override
+  String get buddyYouWin => 'Ai câștigat partida.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy a câștigat partida.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Nu există încă un joc care să poată fi dublat — întâi se aruncă zarurile de deschidere.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Poți dubla doar la rândul tău, înainte să arunci.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'Nu se dublează în jocul Crawford — acest joc decide partida.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Doar deținătorul cubului poate dubla, iar acum cubul aparține celeilalte părți.';
+
+  @override
+  String get buddyDoubleUnavailable => 'Dublarea nu este disponibilă acum.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy se uită la tablă.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Poți continua partida: introdu fiecare aruncare pe panoul cu zaruri și execută mutările pe tabla de mai jos.';
+
+  @override
+  String get buddySkipCheck => 'Omite verificarea';
+
+  @override
+  String get buddyFixedIt => 'Am corectat';
+
+  @override
+  String get buddyDrop => 'Abandonează';
+
+  @override
+  String get buddyTake => 'Acceptă';
+
+  @override
+  String get buddyDone => 'Gata';
+
+  @override
+  String get buddyTranscriptLabel => 'Ce a spus Buddy';
+
+  @override
+  String get buddyUndo => 'Anulează';
+
+  @override
+  String get buddyConfirm => 'Confirmă';
+
+  @override
+  String get buddyDice => 'Zaruri';
+
+  @override
+  String get buddyDouble => 'Dublează';
+
+  @override
+  String get buddyDicePadTitle => 'Ce ai aruncat?';
+
+  @override
+  String get buddyEnterRoll => 'Introdu aruncarea';
+
+  @override
+  String get buddyContextBeforeGame => 'Joacă cu Buddy';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Tu $you–$buddy Buddy · până la $length · Jocul $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Camera nu a putut porni. Verifică permisiunile și încearcă din nou.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy nu are permisiunea de a folosi camera. Permite accesul la cameră în setările dispozitivului și încearcă din nou.';
+
+  @override
+  String get buddyCalibrationTitle => 'Arată-i tabla lui Buddy';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Trage cele patru mânere exterioare în colțurile suprafeței de joc, nu pe rama de lemn, iar cele patru mici pe îmbinările balamalei cu marginile îndepărtată și apropiată.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Trage fiecare mâner într-un colț al suprafeței de joc, nu pe rama de lemn.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Apoi verifică cele douăsprezece linii din fiecare jumătate: fiecare trebuie să urmeze un punct al tablei. Dacă o linie ratează punctul, ajustează mânerul corespunzător.';
+
+  @override
+  String get buddyCalibrationSeatQuestion =>
+      'Care jumătate este zona ta de joc?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'Jumătatea aflată mai aproape de marginea de jos a imaginii. Aceasta fixează numerotarea punctelor, iar liniile de mai sus se aliniază după ea.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Ține telefonul nemișcat. Buddy așteaptă ca imaginea să se stabilizeze înainte să învețe tabla.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Aceasta este tabla ta?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy privește tabla pe care tocmai a învățat-o.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Piesele desenate peste imagine arată ce crede Buddy că se află pe tablă. Dacă vreuna este în locul greșit, reia procesul — acum durează câteva secunde, mai târziu poate costa o partidă.';
+
+  @override
+  String get buddyCalibrationNext => 'Înainte';
+
+  @override
+  String get buddyCalibrationBack => 'Înapoi';
+
+  @override
+  String get buddyCalibrationCapture => 'Capturează';
+
+  @override
+  String get buddyCalibrationStartOver => 'Reia de la început';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Arată bine';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Aceste patru mânere nu conturează o tablă — unul îl intersectează pe altul. Trage-le înapoi în colțurile suprafeței de joc.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Mai întâi, trei lucruri';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Ia zarurile de pe tablă.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy învață acum tabla goală. Dacă lași un zar pe suprafața de joc, îl va învăța ca parte a tablei și nu va mai putea vedea zarurile în această sesiune.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Așază piesele în poziția de început a unei partide.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Cele treizeci de piese în poziții cunoscute îl ajută pe Buddy să învețe cele două culori ale tablei fără să-i spui care sunt.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Încadrează toată suprafața de joc.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Apoi lasă telefonul pe loc. Dacă se mișcă, Buddy te anunță și poți regla din nou colțurile.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Ce tip de tablă ai?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Tablă simplă';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Tablă pliabilă';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'O tablă pliabilă are nevoie de încă patru mânere pe îmbinările balamalei.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Modul Buddy urmărește o tablă reală, deci nu poate porni fără cameră. Restul aplicației funcționează în continuare.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Îmbinarea balamalei $number din 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Colțul tablei $number din 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Mută puțin la stânga';
+
+  @override
+  String get buddyNudgeRight => 'Mută puțin la dreapta';
+
+  @override
+  String get buddyNudgeUp => 'Mută puțin în sus';
+
+  @override
+  String get buddyNudgeDown => 'Mută puțin în jos';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Aceste patru colțuri nu conturează tabla. Trage fiecare mâner într-un colț al suprafeței de joc și încearcă din nou.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Aceste opt puncte nu conturează o tablă pliabilă. Pune patru în colțurile suprafeței de joc și patru pe îmbinările balamalei, apoi încearcă din nou.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Nu pot distinge tabla — este acoperită complet sau se pierde în umbră ori reflexii. Eliberează tabla, adaugă lumină și încearcă din nou.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Nu pot distinge $region — poate este ceva așezat acolo sau colțul este prea întunecat. Eliberează-l ori adaugă lumină și încearcă din nou.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Cele două culori ale pieselor seamănă prea mult din acest unghi. De obicei, ajută mai multă lumină sau un unghi cu mai puține reflexii.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Piesele nu sunt în poziția de început — punctul $number are o piesă de culoarea greșită. Așază tabla pentru începutul unei partide și calibrează din nou.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Este atât de multă lumină pe tablă încât culorile se confundă. Redu lumina sau mută telefonul astfel încât lampa să nu se reflecte direct în cameră.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Pot citi tabla, dar nu este pregătită pentru începutul unei partide. Așază piesele în poziția inițială și calibrează din nou.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Pot citi tabla, dar nu disting cât de mult se află o piesă în spatele alteia, așa că aș număra greșit. Mai multă lumină pe punctele apropiate sau un unghi puțin mai ridicat al camerei rezolvă de obicei problema.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Nu văd toată tabla. Îndepărtează telefonul sau trage colțurile pe suprafața de joc.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Nu mai văd toată tabla — $region este în afara imaginii. Realiniază camera sau verifică din nou colțurile.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition => 'Arată ca poziția de început.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Nu văd nicio piesă în pozițiile de început. Așază tabla pentru o partidă nouă și încearcă din nou.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Tabla nu este așezată pentru începutul unei partide: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region pare gol, dar partida începe cu $side acolo';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return '$region are $side, dar partida începe cu acel loc gol';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return '$region are $observed, dar partida începe cu $expected acolo';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Stai nemișcat o clipă — pierd tabla când se mișcă telefonul.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Imaginea primită nu este cea pe care a fost configurată tabla, așa că nu pot alinia nimic. Configurează din nou tabla de aici.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Imaginea este prea neclară pentru a citi tabla. Așteaptă puțin să focalizeze camera.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Tabla nu mai este în locul în care am învățat-o. Realiniază colțurile și reiau partida imediat.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Ceva acoperă o parte din tablă. Continui imediat ce este liberă.';
+
+  @override
+  String get buddyReadabilityClear => 'Văd tabla.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Culoarea luminii de pe tablă s-a schimbat, iar tabla nu mai arată ca cea pe care am învățat-o. Realiniază colțurile în această lumină și reiau partida.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Este prea întuneric ca să citesc tabla. Cu puțină lumină în plus, continui de unde am rămas.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Este atât de multă lumină pe tablă încât culorile se confundă. Redu lumina sau mută telefonul ca lampa să nu se reflecte direct în cameră.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy încă nu își poate vedea mutarea — $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nPoți continua partida: introdu fiecare aruncare pe panoul cu zaruri și execută mutările pe tabla de mai jos.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Camera nu a putut porni. Verifică permisiunile și încearcă din nou.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'punctul $number';
+  }
+
+  @override
+  String get buddyRegionBar => 'bara';
+
+  @override
+  String get buddyRegionWhiteTray => 'tava de scoatere a pieselor albe';
+
+  @override
+  String get buddyRegionBlackTray => 'tava de scoatere a pieselor negre';
+
+  @override
+  String get buddyRegionDiceZone => 'mijlocul tablei';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Nu văd toată tabla. Îndepărtează telefonul sau trage colțurile pe suprafața de joc.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return ' (și încă $number)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Câte un zar fiecare. Fețele aruncate stabilesc cine începe.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'Zarul albului';
+
+  @override
+  String get buddyDiceOpeningSecond => 'Zarul negrului';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'Cele două fețe de pe masă, în orice ordine.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Un zar';
+
+  @override
+  String get buddyDiceRegularSecond => 'Celălalt zar';
 }

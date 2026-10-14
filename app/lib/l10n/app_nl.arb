@@ -1613,5 +1613,266 @@
   "lanQrAccessibilityLabel": "QR-code om aan dit spel deel te nemen",
   "lanJoinInstruction": "Open op het andere apparaat Dichtbij spelen, kies Deelnemen en scan daarna deze QR-code.",
   "homePlayWithBuddy": "Spelen met Buddy",
-  "homeBuddyShort": "Buddy"
+  "homeBuddyShort": "Buddy",
+  "buddySetupTitle": "Speel met Buddy",
+  "buddySetupSideLabel": "Buddy speelt",
+  "buddySetupSeatLabel": "Jouw kant",
+  "buddySetupSeatNear": "Bij de telefoon",
+  "buddySetupSeatFar": "Aan de overkant",
+  "buddySetupSeatHelp": "Aan welke kant van het bord je zit. Zo nummert Buddy de punten en onderscheidt hij jouw openingsworp van die van zichzelf.",
+  "buddySetupVoiceLabel": "Hoe Buddy praat",
+  "buddySetupVoiceTerse": "Kort en bondig",
+  "buddySetupVoiceFriendly": "Vriendelijk",
+  "buddySetupVoiceTerseHelp": "“13/8, 24/22” — de notatie die twee spelers aan het bord gebruiken.",
+  "buddySetupVoiceFriendlyHelp": "“Verplaats één schijf van 13 naar 8 en één van 24 naar 22.”",
+  "buddySetupTutorHelp": "De uitleg en opmerkingen van de coach volgen je opgeslagen coachvoorkeuren in Instellingen. Buddy geeft af en toe feedback op je zetten; worpen invoeren en zetten handmatig doen werkt hetzelfde.",
+  "buddySetupCalibrate": "Kalibreer het bord",
+  "buddyFixAim": "Richt de camera opnieuw",
+  "buddyWaitingForOpening": "Buddy wacht op de worp die de wedstrijd opent.",
+  "buddyPromptLostBoard": "Buddy is het bord kwijt. Richt de camera opnieuw; de wedstrijd gaat verder waar hij gebleven was.",
+  "buddyPromptWaitingPicture": "Wachten op een beeld dat Buddy kan lezen. Er gaat niets verloren.",
+  "buddyPromptTypeDice": "Buddy kan de dobbelstenen niet zien. Voer de worp handmatig in.",
+  "buddyPromptPlay": "Voer je zet uit op het bord. Voer hem hier in als Buddy hem niet ziet.",
+  "buddyPromptWhichPlay": "Welke zet heb je gedaan?",
+  "buddyPromptCube": "Buddy biedt een verdubbeling aan. Aannemen of weigeren?",
+  "buddyPromptMakeMove": "Voer Buddy’s zet uit op het bord, dan gaat Buddy verder.",
+  "buddyPromptThinking": "Buddy denkt na.",
+  "buddyPromptWaitingCalibration": "Wachten op kalibratie.",
+  "buddyPromptMirrorNoDetail": "Buddy kan zijn zet nog steeds niet zien. Het bord hieronder toont de positie die Buddy heeft opgeslagen.",
+  "buddyPromptNotLegal": "Dat is geen toegestane zet.",
+  "buddyPromptNotLegalReason": "Dat is geen toegestane zet. {reason}",
+  "buddyThrowOpening": "Gooi de openingsdobbelstenen — ieder één dobbelsteen.",
+  "buddyThrowUser": "Gooi je dobbelstenen.",
+  "buddyThrowBuddy": "Gooi de dobbelstenen voor Buddy.",
+  "buddyMatchOver": "De wedstrijd is afgelopen.",
+  "buddyYouWin": "Je wint de wedstrijd.",
+  "buddyBuddyWins": "Buddy wint de wedstrijd.",
+  "buddyDoubleNoGame": "Er is nog geen spel om te verdubbelen — eerst komt de openingsworp.",
+  "buddyDoubleBeforeRoll": "Je kunt alleen vóór het gooien verdubbelen, tijdens je beurt.",
+  "buddyDoubleCrawford": "In het Crawford-spel mag niet worden verdubbeld — deze ene partij beslist de wedstrijd.",
+  "buddyDoubleNotOwner": "Alleen de eigenaar van de verdubbelingskubus mag verdubbelen; op dit moment is dat de tegenstander.",
+  "buddyDoubleUnavailable": "Verdubbelen kan nu niet.",
+  "buddyLookingAtBoard": "Buddy bekijkt het bord.",
+  "buddyCameraPlayFallback": "Je kunt de match blijven spelen: voer elke worp in op het dobbelstenenpaneel en tik je zetten aan op het bord hieronder.",
+  "buddySkipCheck": "Deze controle overslaan",
+  "buddyFixedIt": "Ik heb het opgelost",
+  "buddyDrop": "Weigeren",
+  "buddyTake": "Aannemen",
+  "buddyDone": "Klaar",
+  "buddyTranscriptLabel": "Wat Buddy zei",
+  "buddyUndo": "Ongedaan maken",
+  "buddyConfirm": "Bevestigen",
+  "buddyDice": "Dobbelstenen",
+  "buddyDouble": "Verdubbelen",
+  "buddyDicePadTitle": "Wat heb je gegooid?",
+  "buddyEnterRoll": "Worp invoeren",
+  "buddyContextBeforeGame": "Speel met Buddy",
+  "buddyContextMatchScore": "Jij {you}–{buddy} Buddy · tot {length} · Spel {number}",
+  "buddyCameraUnavailable": "De camera kon niet worden gestart. Controleer de machtigingen en probeer het opnieuw.",
+  "buddyCameraPermission": "Backgammon Buddy heeft geen toestemming om de camera te gebruiken. Geef cameratoegang in de instellingen van je apparaat en probeer het opnieuw.",
+  "buddyCalibrationTitle": "Laat Buddy het bord zien",
+  "buddyCalibrationCornersFold": "Sleep de vier buitenste handgrepen naar de hoeken van het vilt, niet de houten rand, en de vier kleine naar de naden waar het scharnier de verre en nabije rand raakt.",
+  "buddyCalibrationCornersFlat": "Sleep elke handgreep naar een hoek van het vilt — het speeloppervlak, niet de houten rand eromheen.",
+  "buddyCalibrationCheckLines": "Controleer daarna de twaalf lijnen op elke helft: ze moeten allemaal langs een punt van het bord lopen. Mist een lijn haar punt, verschuif dan de bijbehorende handgreep.",
+  "buddyCalibrationSeatQuestion": "Welke helft is jouw binnenveld?",
+  "buddyCalibrationSeatHelp": "De helft die het dichtst bij de onderkant van de afbeelding ligt. Daarmee wordt de puntnummering bepaald en sluiten de lijnen hierboven daarop aan.",
+  "buddyCalibrationCaptureWait": "Houd de telefoon stil. Buddy wacht tot het beeld stabiel is voordat hij dit bord leert.",
+  "buddyCalibrationConfirmQuestion": "Is dit jouw bord?",
+  "buddyCalibrationConfirmFallback": "Buddy bekijkt het bord dat hij zojuist heeft geleerd.",
+  "buddyCalibrationConfirmHelp": "De schijven die over de afbeelding zijn getekend, laten zien waar Buddy denkt dat ze liggen. Staat er ook maar één verkeerd, begin dan opnieuw — dat kost nu seconden en kan je later een hele game kosten.",
+  "buddyCalibrationNext": "Volgende",
+  "buddyCalibrationBack": "Terug",
+  "buddyCalibrationCapture": "Foto maken",
+  "buddyCalibrationStartOver": "Opnieuw beginnen",
+  "buddyCalibrationLooksRight": "Ziet er goed uit",
+  "buddyCalibrationCornersInvalid": "Deze vier handgrepen vormen geen bord — één handgreep kruist een andere. Sleep ze terug naar de hoeken van het vilt.",
+  "buddyCalibrationPrepTitle": "Eerst drie dingen",
+  "buddyCalibrationRemoveDiceTitle": "Haal de dobbelstenen van het bord.",
+  "buddyCalibrationRemoveDiceBody": "Buddy leert nu het lege bord. Een dobbelsteen die op het vilt blijft liggen, wordt als onderdeel van het bord gezien. Daarna kan Buddy de dobbelstenen deze sessie niet meer herkennen.",
+  "buddyCalibrationSetupCheckersTitle": "Zet de schijven in de beginopstelling.",
+  "buddyCalibrationSetupCheckersBody": "Met dertig schijven op bekende plekken leert Buddy de twee kleuren van het bord herkennen, zonder dat je hoeft te vertellen welke kleur welke is.",
+  "buddyCalibrationFitBoardTitle": "Zorg dat het hele speelveld op de afbeelding staat.",
+  "buddyCalibrationFitBoardBody": "Laat de telefoon daarna staan. Als hij beweegt, laat Buddy dat weten en kun je de hoeken bijstellen.",
+  "buddyCalibrationBoardKind": "Wat voor soort bord is het?",
+  "buddyCalibrationFlatBoard": "Plat bord",
+  "buddyCalibrationFoldingBoard": "Vouwbord",
+  "buddyCalibrationBoardKindHelp": "Een vouwbord heeft vier extra handgrepen op de naden van het scharnier nodig.",
+  "buddyCalibrationNoCameraBody": "Buddy-modus kijkt mee op een echt bord en kan daarom niet starten zonder camera. De rest van de app blijft gewoon werken.",
+  "buddyHandleHingeSeam": "Scharniernaad {number} van 4",
+  "buddyHandleCorner": "Bordhoek {number} van 4",
+  "buddyNudgeLeft": "Iets naar links",
+  "buddyNudgeRight": "Iets naar rechts",
+  "buddyNudgeUp": "Iets omhoog",
+  "buddyNudgeDown": "Iets omlaag",
+  "buddyCalibrationProblemCorners": "Deze vier hoeken vormen geen bord. Sleep elke handgreep naar een hoek van het speelveld en probeer het opnieuw.",
+  "buddyCalibrationProblemFoldCorners": "Deze acht punten vormen geen vouwbord. Zet er vier op de hoeken van het speelveld en vier op de scharniernaden, en probeer het opnieuw.",
+  "buddyCalibrationProblemUnreadable": "Ik kan het bord zelf niet goed zien: het is helemaal bedekt of valt weg in schaduw of schittering. Maak het bord vrij, zorg voor meer licht en probeer het opnieuw.",
+  "buddyCalibrationProblemRegionUnreadable": "Ik kan {region} niet goed zien — er ligt misschien iets op, of deze hoek van het bord is te donker. Maak de plek vrij of zorg voor meer licht en probeer het opnieuw.",
+  "buddyCalibrationProblemColours": "De twee kleuren schijven lijken vanaf hier te veel op elkaar. Meer licht of een hoek met minder schittering helpt meestal.",
+  "buddyCalibrationProblemWrongChecker": "De schijven staan niet in de beginopstelling — op punt {number} ligt een schijf van de verkeerde kleur. Zet de schijven in de beginopstelling en kalibreer opnieuw.",
+  "buddyCalibrationProblemOverexposed": "Er valt zoveel licht op het bord dat de kleuren in elkaar overlopen. Dim het licht of verplaats de telefoon zodat de lamp er niet recht in weerkaatst.",
+  "buddyCalibrationProblemReadBack": "Ik kan het bord lezen, maar het staat niet in de beginopstelling. Zet de schijven in de beginopstelling en kalibreer opnieuw.",
+  "buddyCalibrationProblemStacks": "Ik kan het bord lezen, maar niet zien hoeveel schijven achter elkaar staan — dan zou ik verkeerd tellen. Iets meer licht op de punten dichtbij of een iets hogere camerahoek helpt meestal.",
+  "buddyCalibrationProblemNotVisible": "Ik kan niet het hele bord zien. Houd de telefoon verder weg of sleep de hoeken naar het speelveld.",
+  "buddyConfirmBoardOutOfFrame": "Ik kan het hele bord niet meer zien — {region} valt buiten beeld. Richt de camera opnieuw of controleer de hoeken.",
+  "buddyConfirmStartingPosition": "Dit lijkt de beginopstelling.",
+  "buddyConfirmNoCheckers": "Ik zie geen enkele schijf op een beginpunt. Zet de schijven in de beginopstelling en probeer het opnieuw.",
+  "buddyConfirmWrongPosition": "Het bord staat niet in de beginopstelling: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} lijkt leeg, maar in de beginopstelling heeft {side} daar schijven staan",
+  "buddyConfirmRegionUnexpected": "{region} is bezet door {side}, maar hoort in de beginopstelling leeg te zijn",
+  "buddyConfirmRegionWrongSide": "{region} is bezet door {observed}, maar in de beginopstelling horen daar schijven van {expected} te staan",
+  "buddyReadabilityMotion": "Houd even stil — als de telefoon beweegt, raak ik het bord kwijt.",
+  "buddyReadabilityWrongFrame": "De afbeelding die ik krijg hoort niet bij het bord waarvoor ik ben ingesteld, dus ik kan niets op de afbeelding uitlijnen. Stel het bord hier opnieuw in.",
+  "buddyReadabilityBlur": "De afbeelding is te onscherp om het bord te lezen. Wacht even tot de camera scherpstelt.",
+  "buddyReadabilityCalibrationStale": "Het bord staat niet meer op de plek waar het stond toen ik het leerde. Lijn de hoeken opnieuw uit; dan pak ik het spel meteen weer op.",
+  "buddyReadabilityOccluded": "Iets bedekt een deel van het bord. Zodra dat weg is, ga ik verder.",
+  "buddyReadabilityClear": "Ik kan het bord zien.",
+  "buddyReadabilityColorChanged": "Het licht op het bord heeft een andere kleur, waardoor het bord niet meer lijkt op wat ik heb geleerd. Lijn de hoeken opnieuw uit bij dit licht; dan pak ik het spel meteen weer op.",
+  "buddyReadabilityTooDark": "Het is te donker om het bord te lezen. Zorg voor wat meer licht, dan ga ik verder waar we gebleven waren.",
+  "buddyReadabilityTooBright": "Er valt zoveel licht op het bord dat de kleuren in elkaar overlopen. Dim het licht of verplaats de telefoon zodat de lamp er niet recht in weerkaatst.",
+  "buddyPromptBeliefMirror": "Buddy kan zijn zet nog steeds niet zien — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nJe kunt de wedstrijd blijven spelen: voer elke worp in op het dobbelstenenpaneel en voer je zetten op het bord hieronder uit door erop te tikken.",
+  "buddyCameraGenericError": "De camera kon niet worden gestart. Controleer de machtigingen en probeer het opnieuw.",
+  "buddyRegionPoint": "punt {number}",
+  "buddyRegionBar": "de bar",
+  "buddyRegionWhiteTray": "het uitneemvak voor witte schijven",
+  "buddyRegionBlackTray": "het uitneemvak voor zwarte schijven",
+  "buddyRegionDiceZone": "het midden van het bord",
+  "buddyCalibrationProblemVisible": "Ik kan niet het hele bord zien. Houd de telefoon verder weg of sleep de hoeken naar het speelveld.",
+  "buddyConfirmMore": " (en nog {number})",
+  "buddyDiceOpeningCaption": "Jullie gooien allebei één dobbelsteen. De hoogste worp bepaalt wie begint.",
+  "buddyDiceOpeningFirst": "De dobbelsteen van wit",
+  "buddyDiceOpeningSecond": "De dobbelsteen van zwart",
+  "buddyDiceRegularCaption": "De twee gegooide waarden, in willekeurige volgorde.",
+  "buddyDiceRegularFirst": "Eén dobbelsteen",
+  "buddyDiceRegularSecond": "De andere",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

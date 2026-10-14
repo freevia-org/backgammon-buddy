@@ -2697,4 +2697,493 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Ieteiktās izmaiņas';
+
+  @override
+  String get buddySetupTitle => 'Spēlējiet ar Buddy';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy spēlē';
+
+  @override
+  String get buddySetupSeatLabel => 'Jūsu sēdeklis';
+
+  @override
+  String get buddySetupSeatNear => 'Pa telefonu';
+
+  @override
+  String get buddySetupSeatFar => 'Pretēji';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Kurā dēļa pusē jūs atrodaties. Tas ir veids, kā Buddy numurē punktus un kā tas atšķir jūsu sākuma kauliņu no sava.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Kā Buddy runā';
+
+  @override
+  String get buddySetupVoiceTerse => 'Īsi';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Draudzīgs';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '“13/8, 24/22” — apzīmējums, veids, kā faktiski runā divi spēlētāji pie galda.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '\"Pārvietojiet vienu pārbaudītāju no 13 uz 8 un vienu no 24 uz 22.\"';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Skolotāja komentāri un pārvietošanas skaidrojumi atbilst jūsu saglabātajām skolotāja preferencēm sadaļā Iestatījumi. Buddy laiku pa laikam sniedz atsauksmes pēc atskaņošanas; drukāti kauliņi un manuālas kustības darbojas tāpat.';
+
+  @override
+  String get buddySetupCalibrate => 'Kalibrējiet dēli';
+
+  @override
+  String get buddyFixAim => 'Fiksējiet mērķi';
+
+  @override
+  String get buddyWaitingForOpening => 'Buddy gaida metienu, kas sāk maču.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy ir pazaudējis dēli. Nofiksējiet mērķi, un spēle turpinās tur, kur tā apstājās.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Gaida attēlu Buddy var lasīt. Nekas nav zaudēts.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy nevar atrast kauliņus. Tā vietā ierakstiet rullīti.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Padariet savu spēli uz galda. Pieskarieties tam šeit, ja Buddy to neredz.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Kura luga tā bija?';
+
+  @override
+  String get buddyPromptCube =>
+      'Buddy piedāvā dubultošanu. Pieņemt vai atteikt?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Veiciet Buddy gājienu uz tāfeles, tad Buddy turpinās.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy domā.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Gaida kalibrēšanu.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy joprojām nevar redzēt tā kustību. Zemāk esošais dēlis ir pozīcija, kuru tas ieņem.';
+
+  @override
+  String get buddyPromptNotLegal => 'Šis gājiens nav atļauts.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Šis gājiens nav atļauts. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening =>
+      'Metiet sākuma kauliņu — katrs pa vienam kauliņam.';
+
+  @override
+  String get buddyThrowUser => 'Metiet kauliņus.';
+
+  @override
+  String get buddyThrowBuddy => 'Metiet Buddy kauliņus.';
+
+  @override
+  String get buddyMatchOver => 'Mačs ir beidzies.';
+
+  @override
+  String get buddyYouWin => 'Tu uzvarēsi maču.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy uzvar mačā.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Pagaidām nav spēles, ko dubultot — pirmais ir pirmais metiens.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Jūs varat dubultot tikai pirms ripināšanas, jūsu gājienā.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'Krofordas spēlē bez dubultošanas — šī viena spēle izšķir maču.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Tikai kuba īpašnieks var dubultot, un šobrīd tas pieder otrai pusei.';
+
+  @override
+  String get buddyDoubleUnavailable => 'Dubultēšana pašlaik nav pieejama.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy skatās uz tāfeles.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Jūs joprojām varat spēlēt spēli: ierakstiet katru metienu uz kauliņu paliktņa un piesitiet savām izspēlēm zemāk esošajā tabulā.';
+
+  @override
+  String get buddySkipCheck => 'Izlaidiet šo pārbaudi';
+
+  @override
+  String get buddyFixedIt => 'Es to izlaboju';
+
+  @override
+  String get buddyDrop => 'Atteikt';
+
+  @override
+  String get buddyTake => 'Pieņemt';
+
+  @override
+  String get buddyDone => 'Gatavs';
+
+  @override
+  String get buddyTranscriptLabel => 'Ko teica Buddy';
+
+  @override
+  String get buddyUndo => 'Atsaukt';
+
+  @override
+  String get buddyConfirm => 'Apstiprināt';
+
+  @override
+  String get buddyDice => 'Kauliņi';
+
+  @override
+  String get buddyDouble => 'Dubultošanas kubs';
+
+  @override
+  String get buddyDicePadTitle => 'Ko jūs uzmetāt?';
+
+  @override
+  String get buddyEnterRoll => 'Ievadiet metienu';
+
+  @override
+  String get buddyContextBeforeGame => 'Spēlējiet ar Buddy';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Jūs $you–$buddy Buddy · uz $length · Spēle $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Nevarēja palaist kameru. Pārbaudiet atļaujas un mēģiniet vēlreiz.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy nav atļaujas izmantot kameru. Ierīces iestatījumos atļaujiet piekļuvi kamerai un mēģiniet vēlreiz.';
+
+  @override
+  String get buddyCalibrationTitle => 'Parādiet Buddy tāfeli';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Velciet četrus ārējos rokturus uz filca stūriem, nevis uz koka malas, un četrus mazos rokturus uz šuvēm, kur eņģe saskaras ar tālāko un tuvāko malu.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Velciet katru rokturi uz filca stūra — uz spēles virsmas, nevis uz koka apmali ap to.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Pēc tam pārbaudiet divpadsmit līnijas uz leju katrā pusē: katrai ir jāiet gar jūsu dēļa punktu. Līnija, kas izlaiž savu punktu, ir rokturis, kas jāpaspiež.';
+
+  @override
+  String get buddyCalibrationSeatQuestion => 'Kura puse ir jūsu mājas dēlis?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'Puse, kas ir vistuvāk attēla apakšai. Tas nosaka punktu skaitļus, tāpēc iepriekš esošās līnijas pārvietojas ar to.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Turiet tālruni nekustīgi. Buddy gaida, līdz attēls nokārtosies, pirms tas apgūst šo dēli.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Vai tas ir jūsu dēlis?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy skatās uz tikko apgūto dēli.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Buddy domām, virs attēla uzzīmētie vīrieši ir uz tāfeles. Ja kāds no tiem atrodas nepareizā vietā, sāciet no jauna — tagad tas maksā sekundes un spēli vēlāk.';
+
+  @override
+  String get buddyCalibrationNext => 'Tālāk';
+
+  @override
+  String get buddyCalibrationBack => 'Atpakaļ';
+
+  @override
+  String get buddyCalibrationCapture => 'Uzņemt';
+
+  @override
+  String get buddyCalibrationStartOver => 'Sāciet no jauna';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Izskatās pareizi';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Šie četri rokturi nerada dēli — viens no tiem ir šķērsojis otru. Velciet tos atpakaļ uz filca stūriem.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Vispirms trīs lietas';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Noņemiet kauliņus no dēļa.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy tagad apgūst tukšo dēli. Uz filca atstāts kauliņš tiek apgūts kā daļa no tā, un tad Buddy nekad vairs neredzēs kauliņus šajā sesijā.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Sakārtojiet spēles kauliņus sākuma pozīcijā.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Trīsdesmit spēles kauliņi zināmās vietās palīdz Buddy atpazīt abas dēļa krāsas.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Ievietojiet attēlā visu spēles laukumu.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Pēc tam atstājiet tālruni, kur tas ir. Ja tas kustas, Buddy to pateiks, un jūs varat pabīdīt stūrus atpakaļ.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Kāda veida dēlis tas ir?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Plakans dēlis';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Saliekams futrālis';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Saliekamam dēlim ir nepieciešami četri papildu rokturi uz eņģu šuvēm.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Buddy režīms skatās īstu dēli, tāpēc to nevar sākt bez kameras. Viss pārējais lietotnē netiek ietekmēts.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Eņģes šuve $number no 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Dēļa stūris $number no 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Pabīdiet pa kreisi';
+
+  @override
+  String get buddyNudgeRight => 'Pabīdiet pa labi';
+
+  @override
+  String get buddyNudgeUp => 'Pabīdiet augšup';
+
+  @override
+  String get buddyNudgeDown => 'Pabīdiet uz leju';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Šie četri stūri nenorāda dēli. Velciet katru rokturi uz spēles laukuma stūri un mēģiniet vēlreiz.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Šie astoņi punkti nerada saliekamo dēli. Uzlieciet četrus uz spēles laukuma stūriem un četrus uz eņģu šuvēm, pēc tam mēģiniet vēlreiz.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Es nevaru atpazīt pašu dēli — katra tā daļa ir aizsegta vai pazaudēta ēnā vai atspīdumā. Notīriet dēli, pievienojiet nedaudz gaismas un mēģiniet vēlreiz.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Es nevaru noteikt $region — uz tā var būt kaut kas balsts, vai arī šis tāfeles stūris ir pārāk tumšs, lai to izlasītu. Notīriet to vai pievienojiet nedaudz gaismas un mēģiniet vēlreiz.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Divi dambretes komplekti izskatās pārāk līdzīgi. Vairāk gaismas vai leņķis ar mazāku atspīdumu uz tāfeles parasti to novērš.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Spēles kauliņi nav sākuma pozīcijā — $number. punktā ir nepareizas krāsas kauliņš. Sakārtojiet sākuma pozīciju un kalibrējiet vēlreiz.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Uz tāfeles ir tik daudz gaismas, ka tās krāsas saplūst viena ar otru. Aptumšojiet gaismu vai pārvietojiet tālruni tā, lai lampiņa nespīdētu tieši atpakaļ.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Es varu lasīt šo tabulu, bet ne kā spēli, kas drīz sāksies. Sagatavojiet vīriešus spēles sākumam, pēc tam vēlreiz kalibrējiet.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Es redzu dēli, bet no šejienes nevaru droši saskaitīt citu virs cita saliktos spēles kauliņus, tāpēc skaits var būt nepareizs. Parasti palīdz vairāk gaismas tuvākajiem punktiem vai nedaudz augstāks kameras leņķis.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Es nevaru redzēt visu dēli. Pārvietojiet tālruni atpakaļ vai velciet stūrus uz spēles lauku.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Es vairs neredzu visu paneli — $region ir ārpus attēla. Novietojiet kameru vēlreiz vai vēlreiz pārbaudiet stūrus.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition => 'Tā izskatās kā sākuma pozīcija.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Sākuma pozīcijas punktos neredzu spēles kauliņus. Sakārtojiet sākuma pozīciju un mēģiniet vēlreiz.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Dēlis nav iestatīts spēles sākumam: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region izskatās tukšs, bet spēle sākas ar $side tur';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return '$region ir $side, bet spēle sākas ar tukšu';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return '$region ir $observed, kur spēle sākas ar $expected';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Uzturiet brīdi — es pazaudēju dēli, kamēr tālrunis kustas.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Attēls, kas man tiek sniegts, nav tas, uz kura tika uzstādīts šis dēlis, tāpēc es nevaru tajā neko sakārtot. No šejienes atkal iestatiet dēli.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Attēls ir pārāk mīksts, lai nolasītu tāfeli. Dodiet kamerai brīdi fokusēties.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Tāfele nav tur, kur tā bija, kad es to uzzināju. Atkal sakārtojiet stūrus, un es izvēlēšos spēli uzreiz.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Kaut kas pārklāj daļu no dēļa. Tiklīdz būs skaidrs, turpināšu.';
+
+  @override
+  String get buddyReadabilityClear => 'Es redzu dēli.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Gaisma uz tāfeles ir mainījusi krāsu, tāpēc tāfele vairs neizskatās pēc tā, ko es mācījos. Atkal novietojiet stūrus uz augšu zem šīs gaismas, un es izvēlēšos spēli uzreiz.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Ir pārāk tumšs, lai lasītu tāfeli. Vēl nedaudz gaismas, un es turpināšu tur, kur bijām.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Uz tāfeles ir tik daudz gaismas, ka tās krāsas saskaras viena ar otru. Aptumšojiet to vai pārvietojiet tālruni tā, lai lampiņa nespīdētu tieši atpakaļ.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy joprojām nevar redzēt savu kustību — $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nJūs joprojām varat spēlēt spēli: ierakstiet katru metienu uz kauliņu paliktņa un piesitiet savām izspēlēm zemāk esošajā tabulā.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Nevarēja palaist kameru. Pārbaudiet atļaujas un mēģiniet vēlreiz.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'punkts $number';
+  }
+
+  @override
+  String get buddyRegionBar => 'bārs';
+
+  @override
+  String get buddyRegionWhiteTray => 'balto kauliņu iznešanas paplāte';
+
+  @override
+  String get buddyRegionBlackTray => 'melno kauliņu iznešanas paplāte';
+
+  @override
+  String get buddyRegionDiceZone => 'dēļa vidus';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Es nevaru redzēt visu dēli. Pārvietojiet tālruni atpakaļ vai velciet stūrus uz spēles lauku.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return '(un vēl $number)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Katrs spēlētājs met vienu kauliņu. Sāk tas, kurš uzmet vairāk.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'baltais kauliņš';
+
+  @override
+  String get buddyDiceOpeningSecond => 'melnais kauliņš';
+
+  @override
+  String get buddyDiceRegularCaption => 'Abas sejas uz galda, jebkurā secībā.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Viens mirst';
+
+  @override
+  String get buddyDiceRegularSecond => 'Otra';
 }

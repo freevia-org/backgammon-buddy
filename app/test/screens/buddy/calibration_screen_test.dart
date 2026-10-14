@@ -239,7 +239,7 @@ void main() {
       await h.pump(t);
       await h.capture(t);
 
-      expect(find.text(startPositionDisagrees.message), findsOneWidget);
+      expect(find.text('The board is not set up for the start of a game: the 6-point has White on it, where the game starts with Black.'), findsOneWidget);
       expect(_belief(t).offending, <RoiId>{RoiId.point5},
           reason: 'the sentence names the 6-point and the overlay has to ring '
               'it — a message about a point the picture does not mark is the '
@@ -292,8 +292,7 @@ void main() {
       await h.capture(t);
 
       expect(
-        find.text('I cannot make out the 6-point — something may be resting '
-            'on it.'),
+        find.text('I cannot make out the 6-point — something may be resting on it, or that corner of the board may be too dark to read. Clear it, or add some light, and try again.'),
         findsOneWidget,
         reason: 'CalibrationResult.message is written to be shown as it is',
       );
@@ -444,7 +443,7 @@ void main() {
       await h.pump(t);
 
       expect(
-        find.text('Backgammon Buddy does not have permission to use the camera.'),
+        find.textContaining('Allow camera access in your device settings'),
         findsOneWidget,
       );
       expect(find.byKey(const Key('buddy-handle-0')), findsNothing);

@@ -1847,7 +1847,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get analysisCubeNoDouble => 'Kein Double';
 
   @override
-  String get analysisCubeDouble => 'Double';
+  String get analysisCubeDouble => 'Doppeln';
 
   @override
   String get analysisCubeTake => 'Annehmen';
@@ -2256,7 +2256,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get gameHudCrawford => 'Crawford';
 
   @override
-  String get gameHudDouble => 'Double';
+  String get gameHudDouble => 'Doppeln';
 
   @override
   String get gameHudMoreActions => 'Weitere Aktionen';
@@ -2760,4 +2760,493 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Vorgeschlagene Änderung';
+
+  @override
+  String get buddySetupTitle => 'Mit Buddy spielen';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy spielt';
+
+  @override
+  String get buddySetupSeatLabel => 'Dein Platz';
+
+  @override
+  String get buddySetupSeatNear => 'Am Telefon';
+
+  @override
+  String get buddySetupSeatFar => 'Gegenüber';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Auf welcher Brettseite du sitzt. Danach richtet Buddy die Nummerierung der Punkte aus und unterscheidet deinen Eröffnungswurf von seinem.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Wie Buddy spricht';
+
+  @override
+  String get buddySetupVoiceTerse => 'Knapp';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Freundlich';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '„13/8, 24/22“ – die übliche Zugnotation am Backgammonbrett.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '„Ziehe einen Stein von 13 nach 8 und einen von 24 nach 22.“';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Tutor-Kommentare und Zugerklärungen richten sich nach deinen gespeicherten Tutor-Einstellungen. Buddy gibt gelegentlich Rückmeldung zu deinen Zügen; eingegebene Würfe und manuelle Züge funktionieren genauso.';
+
+  @override
+  String get buddySetupCalibrate => 'Brett kalibrieren';
+
+  @override
+  String get buddyFixAim => 'Ausrichtung korrigieren';
+
+  @override
+  String get buddyWaitingForOpening => 'Buddy wartet auf den Eröffnungswurf.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy hat das Brett verloren. Korrigiere die Ausrichtung, dann geht die Partie an derselben Stelle weiter.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Warte auf ein Bild, das Buddy lesen kann. Es geht nichts verloren.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy kann die Würfel nicht erkennen. Gib den Wurf stattdessen ein.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Führe deinen Zug auf dem Brett aus. Wenn Buddy ihn nicht erkennt, tippe ihn hier ein.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Welchen Zug hast du gemacht?';
+
+  @override
+  String get buddyPromptCube => 'Buddy verdoppelt. Annehmen oder ablehnen?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Führe Buddys Zug auf dem Brett aus, dann spielt Buddy weiter.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy denkt nach.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Warte auf die Kalibrierung.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy kann seinen Zug noch nicht erkennen. Das Brett unten zeigt die Position, die Buddy gespeichert hat.';
+
+  @override
+  String get buddyPromptNotLegal => 'Das ist kein legaler Zug.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Das ist kein legaler Zug. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening => 'Würfle zum Start – jeder würfelt einmal.';
+
+  @override
+  String get buddyThrowUser => 'Würfle.';
+
+  @override
+  String get buddyThrowBuddy => 'Würfle für Buddy.';
+
+  @override
+  String get buddyMatchOver => 'Das Match ist beendet.';
+
+  @override
+  String get buddyYouWin => 'Du gewinnst das Match.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy gewinnt das Match.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Es gibt noch keine Partie zum Verdoppeln – zuerst kommt der Eröffnungswurf.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Du kannst nur vor dem Würfeln und während deines Zuges verdoppeln.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'Im Crawford-Spiel gibt es keinen Doppler – dieses einzelne Spiel entscheidet das Match.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Nur der Besitzer des Dopplers darf verdoppeln. Im Moment gehört er der anderen Seite.';
+
+  @override
+  String get buddyDoubleUnavailable => 'Verdoppeln ist gerade nicht möglich.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy schaut sich das Brett an.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Du kannst die Partie trotzdem spielen: Gib jeden Wurf auf dem Würfelfeld ein und tippe deine Züge auf dem Brett unten ein.';
+
+  @override
+  String get buddySkipCheck => 'Diese Prüfung überspringen';
+
+  @override
+  String get buddyFixedIt => 'Ich habe es behoben';
+
+  @override
+  String get buddyDrop => 'Ablehnen';
+
+  @override
+  String get buddyTake => 'Annehmen';
+
+  @override
+  String get buddyDone => 'Fertig';
+
+  @override
+  String get buddyTranscriptLabel => 'Was Buddy gesagt hat';
+
+  @override
+  String get buddyUndo => 'Rückgängig';
+
+  @override
+  String get buddyConfirm => 'Bestätigen';
+
+  @override
+  String get buddyDice => 'Würfel';
+
+  @override
+  String get buddyDouble => 'Verdoppeln';
+
+  @override
+  String get buddyDicePadTitle => 'Was hast du gewürfelt?';
+
+  @override
+  String get buddyEnterRoll => 'Wurf eingeben';
+
+  @override
+  String get buddyContextBeforeGame => 'Mit Buddy spielen';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Du $you–$buddy Buddy · bis $length · Spiel $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Die Kamera konnte nicht gestartet werden. Prüfe die Berechtigungen und versuche es erneut.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy darf die Kamera nicht verwenden. Erlaube den Kamerazugriff in den Geräteeinstellungen und versuche es erneut.';
+
+  @override
+  String get buddyCalibrationTitle => 'Zeig Buddy das Brett';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Ziehe die vier äußeren Griffe auf die Ecken des Spielfelds – nicht auf den Holzrand – und die vier kleinen Griffe auf die Scharnierfugen an der fernen und nahen Kante.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Ziehe jeden Griff auf eine Ecke des Spielfelds – die Spielfläche, nicht den Holzrand außen herum.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Prüfe anschließend die zwölf Linien auf jeder Hälfte: Jede sollte entlang eines Brettpunkts verlaufen. Verfehlt eine Linie ihren Punkt, muss der zugehörige Griff verschoben werden.';
+
+  @override
+  String get buddyCalibrationSeatQuestion => 'Welche Hälfte ist dein Heimfeld?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'Die Hälfte, die im Bild näher am unteren Rand liegt. Damit wird die Punktnummerierung festgelegt, und die Linien oben richten sich danach aus.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Halte das Telefon ruhig. Buddy wartet, bis das Bild stabil ist, bevor es dieses Brett lernt.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Ist das dein Brett?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy betrachtet das Brett, das es gerade erkannt hat.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Die Steine, die im Bild eingezeichnet sind, zeigen Buddys Erkennung. Liegt auch nur einer falsch, beginne von vorn – das kostet jetzt Sekunden und später vielleicht eine ganze Partie.';
+
+  @override
+  String get buddyCalibrationNext => 'Weiter';
+
+  @override
+  String get buddyCalibrationBack => 'Zurück';
+
+  @override
+  String get buddyCalibrationCapture => 'Aufnehmen';
+
+  @override
+  String get buddyCalibrationStartOver => 'Von vorn beginnen';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Sieht richtig aus';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Diese vier Griffe umschließen kein Brett – einer hat einen anderen gekreuzt. Ziehe sie zurück auf die Ecken des Spielfelds.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Zuerst drei Dinge';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Nimm die Würfel vom Brett.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy lernt jetzt das leere Brett. Ein Würfel auf dem Spielfeld wird als Teil des Bretts erkannt; danach kann Buddy die Würfel in dieser Sitzung nicht mehr sehen.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle =>
+      'Stelle die Steine für den Spielbeginn auf.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Anhand von 30 Steinen an bekannten Positionen lernt Buddy die beiden Farben dieses Bretts, ohne dass du sie angeben musst.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle =>
+      'Das ganze Spielfeld muss im Bild sein.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Lass das Telefon danach an seiner Stelle. Falls es sich bewegt, sagt Buddy Bescheid und du kannst die Ecken nachjustieren.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Welche Art von Brett ist es?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Flaches Brett';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Klappbrett';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Bei einem Klappbrett sind vier zusätzliche Griffe an den Scharnierfugen nötig.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Buddy-Modus beobachtet ein echtes Brett und kann ohne Kamera nicht starten. Der Rest der App funktioniert unverändert.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Scharnierfuge $number von 4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Brettecke $number von 4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Nach links verschieben';
+
+  @override
+  String get buddyNudgeRight => 'Nach rechts verschieben';
+
+  @override
+  String get buddyNudgeUp => 'Nach oben verschieben';
+
+  @override
+  String get buddyNudgeDown => 'Nach unten verschieben';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Diese vier Ecken umschließen kein Brett. Ziehe jeden Griff auf eine Ecke des Spielfelds und versuche es erneut.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Diese acht Punkte passen nicht zu einem Klappbrett. Setze vier auf die Ecken der Spielfläche und vier auf die Scharnierfugen, dann versuche es erneut.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'Ich kann das Brett selbst nicht erkennen – es ist vollständig verdeckt oder liegt im Schatten bzw. blendet. Räume das Brett frei, sorge für mehr Licht und versuche es erneut.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'Ich kann $region nicht erkennen – möglicherweise liegt etwas darauf oder diese Brettecke ist zu dunkel. Räume sie frei oder sorge für mehr Licht und versuche es erneut.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Die beiden Steinfarben sehen von hier aus zu ähnlich aus. Mehr Licht oder ein Blickwinkel mit weniger Blendung hilft meistens.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Die Steine stehen nicht in der Ausgangsstellung – auf Punkt $number liegt die falsche Farbe. Stelle die Steine für den Spielbeginn auf und kalibriere erneut.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Das Brett ist so stark beleuchtet, dass seine Farben ineinander übergehen. Dimme das Licht oder halte das Telefon so, dass sich die Lampe nicht darin spiegelt.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Ich kann das Brett erkennen, aber nicht als Ausgangsstellung einer Partie. Stelle die Steine für den Spielbeginn auf und kalibriere erneut.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Ich kann das Brett erkennen, aber nicht, wie weit ein Stein hinter einem anderen liegt – dadurch würde ich falsch zählen. Etwas mehr Licht auf den nahen Punkten oder ein leicht erhöhter Kamerawinkel hilft meistens.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'Ich kann nicht das ganze Brett sehen. Halte das Telefon weiter zurück oder ziehe die Ecken auf die Spielfläche.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'Ich kann nicht mehr das ganze Brett sehen – $region liegt außerhalb des Bildes. Richte die Kamera neu aus oder prüfe die Ecken erneut.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition =>
+      'Das sieht nach der Ausgangsstellung aus.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'Ich sehe keinen Stein an einer Position der Ausgangsstellung. Stelle die Steine für den Spielbeginn auf und versuche es erneut.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Das Brett ist nicht für den Spielbeginn aufgestellt: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region sieht leer aus, aber zu Beginn liegt dort $side';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return 'Auf $region liegt $side, dort sollte es zu Beginn aber leer sein';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return 'Auf $region liegt $observed, zu Beginn sollte dort aber $expected liegen';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Halte kurz still – während sich das Telefon bewegt, verliere ich das Brett aus dem Blick.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Das Bild, das ich erhalte, gehört nicht zu dem Brett, für das ich eingerichtet wurde. Ich kann darin nichts zuordnen. Richte das Brett von hier aus erneut ein.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Das Bild ist zu unscharf, um das Brett zu erkennen. Warte kurz, bis die Kamera fokussiert hat.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'Das Brett steht nicht mehr dort, wo es beim Einlernen stand. Richte die Ecken erneut aus, dann setze ich die Partie sofort fort.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Ein Teil des Bretts ist verdeckt. Sobald es frei ist, mache ich weiter.';
+
+  @override
+  String get buddyReadabilityClear => 'Ich kann das Brett sehen.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Das Licht auf dem Brett hat seine Farbe geändert; es sieht deshalb nicht mehr so aus wie beim Einlernen. Richte die Ecken unter diesem Licht neu aus, dann setze ich die Partie sofort fort.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'Es ist zu dunkel, um das Brett zu erkennen. Mit etwas mehr Licht mache ich dort weiter, wo wir aufgehört haben.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Das Brett ist so stark beleuchtet, dass seine Farben ineinander übergehen. Dimme das Licht oder halte das Telefon so, dass sich die Lampe nicht darin spiegelt.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy kann seinen Zug noch nicht erkennen – $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nDu kannst die Partie trotzdem spielen: Gib jeden Wurf auf dem Würfelfeld ein und tippe deine Züge auf dem Brett unten ein.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Die Kamera konnte nicht gestartet werden. Prüfe die Berechtigungen und versuche es erneut.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return 'der $number-Punkt';
+  }
+
+  @override
+  String get buddyRegionBar => 'die Bar';
+
+  @override
+  String get buddyRegionWhiteTray => 'Weißes Auswurffeld';
+
+  @override
+  String get buddyRegionBlackTray => 'Schwarzes Auswurffeld';
+
+  @override
+  String get buddyRegionDiceZone => 'die Brettmitte';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'Ich kann nicht das ganze Brett sehen. Halte das Telefon weiter zurück oder ziehe die Ecken auf die Spielfläche.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return ' (und $number weitere)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Jeder würfelt einmal. Welche Zahl zu wem gehört, entscheidet, wer beginnt.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'Würfel von Weiß';
+
+  @override
+  String get buddyDiceOpeningSecond => 'Würfel von Schwarz';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'Die beiden gewürfelten Zahlen, in beliebiger Reihenfolge.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Ein Würfel';
+
+  @override
+  String get buddyDiceRegularSecond => 'Der andere';
 }

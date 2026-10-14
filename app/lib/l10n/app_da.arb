@@ -1613,5 +1613,266 @@
   "lanJoinInstruction": "Åbn Spil i nærheden på den anden enhed, vælg Deltag, og scan derefter denne QR-kode.",
   "homePlayWithBuddy": "Spil med Buddy",
   "homeBuddyShort": "Buddy",
-  "feedbackExcerptTruncated": "(forkortet – brug Kopiér til udklipsholder på diagnoseskærmen for at få hele loggen)"
+  "feedbackExcerptTruncated": "(forkortet – brug Kopiér til udklipsholder på diagnoseskærmen for at få hele loggen)",
+  "buddySetupTitle": "Spil med Buddy",
+  "buddySetupSideLabel": "Buddy spiller",
+  "buddySetupSeatLabel": "Din side",
+  "buddySetupSeatNear": "Ved telefonen",
+  "buddySetupSeatFar": "Overfor",
+  "buddySetupSeatHelp": "Hvilken side af brættet du sidder ved. Det bestemmer, hvordan Buddy nummererer felterne, og hvordan den skelner mellem dit åbningskast og sit eget.",
+  "buddySetupVoiceLabel": "Sådan taler Buddy",
+  "buddySetupVoiceTerse": "Kortfattet",
+  "buddySetupVoiceFriendly": "Venlig",
+  "buddySetupVoiceTerseHelp": "”13/8, 24/22” — notation, sådan taler to spillere ved brættet.",
+  "buddySetupVoiceFriendlyHelp": "”Flyt en brik fra 13 til 8 og en fra 24 til 22.”",
+  "buddySetupTutorHelp": "Tutor-kommentarer og forklaringer følger dine gemte tutorindstillinger. Buddy giver indimellem feedback på dine træk; indtastede terningkast og manuelle træk fungerer på samme måde.",
+  "buddySetupCalibrate": "Kalibrer brættet",
+  "buddyFixAim": "Ret kameraets retning",
+  "buddyWaitingForOpening": "Buddy venter på kastet, der starter matchen.",
+  "buddyPromptLostBoard": "Buddy har mistet brættet. Ret kameraets retning, så fortsætter matchen, hvor den slap.",
+  "buddyPromptWaitingPicture": "Venter på et billede, som Buddy kan læse. Intet går tabt.",
+  "buddyPromptTypeDice": "Buddy kan ikke finde terningerne. Indtast kastet i stedet.",
+  "buddyPromptPlay": "Udfør dit træk på brættet. Tryk det ind her, hvis Buddy ikke ser det.",
+  "buddyPromptWhichPlay": "Hvilket træk var det?",
+  "buddyPromptCube": "Buddy fordobler. Vil du tage imod eller droppe?",
+  "buddyPromptMakeMove": "Udfør Buddys træk på brættet, så fortsætter Buddy.",
+  "buddyPromptThinking": "Buddy tænker.",
+  "buddyPromptWaitingCalibration": "Venter på kalibrering.",
+  "buddyPromptMirrorNoDetail": "Buddy kan stadig ikke se sit træk. Brættet nedenfor viser den stilling, Buddy holder fast i.",
+  "buddyPromptNotLegal": "Det er ikke et lovligt træk.",
+  "buddyPromptNotLegalReason": "Det er ikke et lovligt træk. {reason}",
+  "buddyThrowOpening": "Kast åbningsterningerne — én terning hver.",
+  "buddyThrowUser": "Kast dine terninger.",
+  "buddyThrowBuddy": "Kast Buddys terninger.",
+  "buddyMatchOver": "Matchen er slut.",
+  "buddyYouWin": "Du vinder matchen.",
+  "buddyBuddyWins": "Buddy vinder matchen.",
+  "buddyDoubleNoGame": "Der er endnu ingen spil at fordoble — åbningskastet kommer først.",
+  "buddyDoubleBeforeRoll": "Du kan kun fordoble før kastet, når det er din tur.",
+  "buddyDoubleCrawford": "Ingen fordobling i Crawford-spillet — dette ene spil afgør matchen.",
+  "buddyDoubleNotOwner": "Kun ejeren af doblingskuben kan fordoble, og lige nu tilhører den den anden side.",
+  "buddyDoubleUnavailable": "Fordobling er ikke mulig lige nu.",
+  "buddyLookingAtBoard": "Buddy kigger på brættet.",
+  "buddyCameraPlayFallback": "Du kan stadig spille matchen: indtast hvert kast på terningefeltet, og tryk dine træk ind på brættet nedenfor.",
+  "buddySkipCheck": "Spring denne kontrol over",
+  "buddyFixedIt": "Jeg har rettet det",
+  "buddyDrop": "Afslå",
+  "buddyTake": "Tag imod",
+  "buddyDone": "Færdig",
+  "buddyTranscriptLabel": "Det sagde Buddy",
+  "buddyUndo": "Fortryd",
+  "buddyConfirm": "Bekræft",
+  "buddyDice": "Terninger",
+  "buddyDouble": "Fordobl",
+  "buddyDicePadTitle": "Hvad slog du?",
+  "buddyEnterRoll": "Indtast kast",
+  "buddyContextBeforeGame": "Spil med Buddy",
+  "buddyContextMatchScore": "Dig {you}–{buddy} Buddy · til {length} · Spil {number}",
+  "buddyCameraUnavailable": "Kameraet kunne ikke startes. Kontrollér tilladelserne, og prøv igen.",
+  "buddyCameraPermission": "Backgammon Buddy har ikke tilladelse til at bruge kameraet. Tillad kameraadgang i enhedens indstillinger, og prøv igen.",
+  "buddyCalibrationTitle": "Vis Buddy brættet",
+  "buddyCalibrationCornersFold": "Træk de fire ydre håndtag til filtens hjørner — ikke trækanten — og de fire små til samlingerne, hvor hængslet møder de fjerne og nære kanter.",
+  "buddyCalibrationCornersFlat": "Træk hvert håndtag til et hjørne af filten — spillefladen, ikke trækanten omkring den.",
+  "buddyCalibrationCheckLines": "Kontrollér derefter de tolv linjer på hver halvdel: Hver linje skal følge et felt på brættet. Hvis en linje ikke rammer sit felt, skal håndtaget flyttes lidt.",
+  "buddyCalibrationSeatQuestion": "Hvilken halvdel er dit hjembræt?",
+  "buddyCalibrationSeatHelp": "Halvdelen nærmest billedets nederste kant. Det fastlægger felternes numre, så linjerne ovenfor følger med.",
+  "buddyCalibrationCaptureWait": "Hold telefonen stille. Buddy venter på, at billedet falder til ro, før den lærer brættet.",
+  "buddyCalibrationConfirmQuestion": "Er dette dit bræt?",
+  "buddyCalibrationConfirmFallback": "Buddy ser på det bræt, den netop har lært.",
+  "buddyCalibrationConfirmHelp": "Brikkerne, der er tegnet oven på billedet, viser, hvor Buddy mener, de står. Hvis nogen står forkert, så start forfra — det koster sekunder nu og måske et helt spil senere.",
+  "buddyCalibrationNext": "Næste",
+  "buddyCalibrationBack": "Tilbage",
+  "buddyCalibrationCapture": "Tag billede",
+  "buddyCalibrationStartOver": "Start forfra",
+  "buddyCalibrationLooksRight": "Ser rigtigt ud",
+  "buddyCalibrationCornersInvalid": "De fire håndtag afgrænser ikke et bræt — et håndtag har krydset et andet. Træk dem tilbage til filtens hjørner.",
+  "buddyCalibrationPrepTitle": "Tre ting først",
+  "buddyCalibrationRemoveDiceTitle": "Fjern terningerne fra brættet.",
+  "buddyCalibrationRemoveDiceBody": "Buddy lærer det tomme bræt nu. En terning på filten bliver lært som en del af brættet, og så kan Buddy ikke se terningerne igen i denne session.",
+  "buddyCalibrationSetupCheckersTitle": "Stil brikkerne op til starten af et spil.",
+  "buddyCalibrationSetupCheckersBody": "Tredive brikker på kendte pladser lærer Buddy brættets to farver, uden at du behøver fortælle den, hvad de er.",
+  "buddyCalibrationFitBoardTitle": "Få hele spillefladen med på billedet.",
+  "buddyCalibrationFitBoardBody": "Lad derefter telefonen stå. Hvis den flytter sig, siger Buddy til, så du kan justere hjørnerne.",
+  "buddyCalibrationBoardKind": "Hvilken type bræt er det?",
+  "buddyCalibrationFlatBoard": "Fladt bræt",
+  "buddyCalibrationFoldingBoard": "Foldebræt",
+  "buddyCalibrationBoardKindHelp": "Et foldebræt har brug for fire ekstra håndtag ved hængslets samlinger.",
+  "buddyCalibrationNoCameraBody": "Buddy-tilstand holder øje med et fysisk bræt og kan derfor ikke starte uden kameraet. Resten af appen fungerer som normalt.",
+  "buddyHandleHingeSeam": "Hængselsamling {number} af 4",
+  "buddyHandleCorner": "Bræthjørne {number} af 4",
+  "buddyNudgeLeft": "Flyt lidt til venstre",
+  "buddyNudgeRight": "Flyt lidt til højre",
+  "buddyNudgeUp": "Flyt lidt op",
+  "buddyNudgeDown": "Flyt lidt ned",
+  "buddyCalibrationProblemCorners": "De fire hjørner afgrænser ikke et bræt. Træk hvert håndtag til et hjørne af spillefladen, og prøv igen.",
+  "buddyCalibrationProblemFoldCorners": "De otte punkter afgrænser ikke et foldebræt. Placer fire ved spillefladens hjørner og fire ved hængselsamlingerne, og prøv igen.",
+  "buddyCalibrationProblemUnreadable": "Jeg kan ikke se selve brættet — det er helt dækket eller skjult i skygge eller genskin. Ryd brættet, få mere lys, og prøv igen.",
+  "buddyCalibrationProblemRegionUnreadable": "Jeg kan ikke se {region} — der ligger måske noget på det, eller brættets hjørne er for mørkt. Ryd det, eller få mere lys, og prøv igen.",
+  "buddyCalibrationProblemColours": "De to sæt brikker ligner hinanden for meget herfra. Mere lys eller en vinkel med mindre genskin plejer at hjælpe.",
+  "buddyCalibrationProblemWrongChecker": "Brikkerne står ikke i startpositionen — felt {number} har den forkerte farve. Stil brættet op til starten af et spil, og kalibrer igen.",
+  "buddyCalibrationProblemOverexposed": "Der er så meget lys på brættet, at farverne flyder sammen. Dæmp lyset, eller flyt telefonen, så lampen ikke skinner direkte tilbage.",
+  "buddyCalibrationProblemReadBack": "Jeg kan læse brættet, men det ligner ikke et spil, der skal til at starte. Stil brikkerne op til spillets start, og kalibrer igen.",
+  "buddyCalibrationProblemStacks": "Jeg kan læse brættet, men ikke se, hvor langt en brik står bag en anden — så ville jeg tælle forkert. Lidt mere lys på de nære felter eller en lidt højere kameravinkel plejer at hjælpe.",
+  "buddyCalibrationProblemNotVisible": "Jeg kan ikke se hele brættet. Flyt telefonen længere væk, eller træk hjørnerne til spillefladen.",
+  "buddyConfirmBoardOutOfFrame": "Jeg kan ikke længere se hele brættet — {region} er uden for billedet. Ret kameraet ind igen, eller kontrollér hjørnerne.",
+  "buddyConfirmStartingPosition": "Det ligner startpositionen.",
+  "buddyConfirmNoCheckers": "Jeg kan ikke se nogen brik, hvor spillet starter. Stil brikkerne op til spillets start, og prøv igen.",
+  "buddyConfirmWrongPosition": "Brættet står ikke i spillets startposition: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} ser tomt ud, men spillet starter med {side} dér",
+  "buddyConfirmRegionUnexpected": "{region} har {side}, men spillet starter med feltet tomt",
+  "buddyConfirmRegionWrongSide": "{region} har {observed}, men spillet starter med {expected} dér",
+  "buddyReadabilityMotion": "Hold stille et øjeblik — jeg mister brættet, mens telefonen bevæger sig.",
+  "buddyReadabilityWrongFrame": "Billedet, jeg får, er ikke fra det bræt, jeg blev indstillet til, så jeg kan ikke finde rundt i det. Indstil brættet igen herfra.",
+  "buddyReadabilityBlur": "Billedet er for uskarpt til, at jeg kan læse brættet. Vent et øjeblik, mens kameraet fokuserer.",
+  "buddyReadabilityCalibrationStale": "Brættet står ikke længere, hvor det stod, da jeg lærte det. Ret hjørnerne ind igen, så fortsætter jeg spillet med det samme.",
+  "buddyReadabilityOccluded": "Noget dækker en del af brættet. Jeg fortsætter, så snart det er frit.",
+  "buddyReadabilityClear": "Jeg kan se brættet.",
+  "buddyReadabilityColorChanged": "Lyset på brættet har skiftet farve, så brættet ikke længere ser ud, som da jeg lærte det. Ret hjørnerne ind igen i dette lys, så fortsætter jeg spillet.",
+  "buddyReadabilityTooDark": "Det er for mørkt til at læse brættet. Mere lys, så fortsætter jeg, hvor vi slap.",
+  "buddyReadabilityTooBright": "Der er så meget lys på brættet, at farverne flyder sammen. Dæmp lyset, eller flyt telefonen, så lampen ikke skinner direkte tilbage.",
+  "buddyPromptBeliefMirror": "Buddy kan stadig ikke se sit træk — {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nDu kan stadig spille matchen: indtast hvert kast på terningefeltet, og tryk dine træk ind på brættet nedenfor.",
+  "buddyCameraGenericError": "Kameraet kunne ikke startes. Kontrollér tilladelserne, og prøv igen.",
+  "buddyRegionPoint": "felt {number}",
+  "buddyRegionBar": "baren",
+  "buddyRegionWhiteTray": "Hvids udslagsbakke",
+  "buddyRegionBlackTray": "Sorts udslagsbakke",
+  "buddyRegionDiceZone": "midten af brættet",
+  "buddyCalibrationProblemVisible": "Jeg kan ikke se hele brættet. Flyt telefonen længere væk, eller træk hjørnerne til spillefladen.",
+  "buddyConfirmMore": " (og {number} mere)",
+  "buddyDiceOpeningCaption": "I kaster én terning hver. Terningernes øjne afgør, hvem der starter.",
+  "buddyDiceOpeningFirst": "Hvids terning",
+  "buddyDiceOpeningSecond": "Sorts terning",
+  "buddyDiceRegularCaption": "De to synlige terninger, uanset rækkefølge.",
+  "buddyDiceRegularFirst": "Den ene terning",
+  "buddyDiceRegularSecond": "Den anden",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

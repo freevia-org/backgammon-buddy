@@ -1613,5 +1613,266 @@
   "lanJoinInstruction": "Avaa toisella laitteella Lähialuepeli, valitse Liity ja skannaa tämä QR-koodi.",
   "homePlayWithBuddy": "Pelaa Buddyn kanssa",
   "homeBuddyShort": "Buddy",
-  "feedbackExcerptTruncated": "(lyhennetty — saat koko lokin kopioimalla sen Diagnostiikka-näytön painikkeella Kopioi leikepöydälle)"
+  "feedbackExcerptTruncated": "(lyhennetty — saat koko lokin kopioimalla sen Diagnostiikka-näytön painikkeella Kopioi leikepöydälle)",
+  "buddySetupTitle": "Pelaa Buddy:llä",
+  "buddySetupSideLabel": "Buddy soittaa",
+  "buddySetupSeatLabel": "Sinun istuin",
+  "buddySetupSeatNear": "Puhelimella",
+  "buddySetupSeatFar": "Vastapäätä",
+  "buddySetupSeatHelp": "Millä puolella taulua olet. Näin Buddy numeroi pisteet ja miten se erottaa avauspuikkosi omasta.",
+  "buddySetupVoiceLabel": "Kuinka Buddy puhuu",
+  "buddySetupVoiceTerse": "Ytimekkäästi",
+  "buddySetupVoiceFriendly": "Ystävällinen",
+  "buddySetupVoiceTerseHelp": "\"13/8, 24/22\" - merkintätapa, tapa, jolla kaksi pelaajaa laudalla todella puhuvat.",
+  "buddySetupVoiceFriendlyHelp": "\"Siirrä yksi nappula 13:sta 8:aan ja toinen 24:stä 22:een.\"",
+  "buddySetupTutorHelp": "Ohjaajan kommentit ja siirtoselitykset noudattavat tallennettuja ohjaajan asetuksia asetuksissa. Buddy antaa satunnaista palautetta toistojesi jälkeen; kirjoitetut nopat ja manuaaliset liikkeet toimivat samalla tavalla.",
+  "buddySetupCalibrate": "Kalibroi taulu",
+  "buddyFixAim": "Korjaa tavoite",
+  "buddyWaitingForOpening": "Buddy odottaa heittoa, joka aloittaa ottelun.",
+  "buddyPromptLostBoard": "Buddy on menettänyt taulun. Kiinnitä tavoite ja ottelu jatkuu siitä mihin se pysähtyi.",
+  "buddyPromptWaitingPicture": "Odotetaan kuvaa Buddy osaa lukea. Mitään ei ole menetetty.",
+  "buddyPromptTypeDice": "Buddy ei löydä noppaa. Kirjoita sen sijaan rulla.",
+  "buddyPromptPlay": "Tee pelisi laudalla. Napauta sitä tästä, jos Buddy ei näe sitä.",
+  "buddyPromptWhichPlay": "Mikä näytelmä se oli?",
+  "buddyPromptCube": "Buddy tarjoaa tuplausta. Otatko vai luovutko?",
+  "buddyPromptMakeMove": "Tee Buddy:n liike laudalla, niin Buddy jatkaa.",
+  "buddyPromptThinking": "Buddy ajattelee.",
+  "buddyPromptWaitingCalibration": "Kalibrointia odotellessa.",
+  "buddyPromptMirrorNoDetail": "Buddy ei vieläkään näe liikettään. Alla oleva taulu on asento, jossa se on.",
+  "buddyPromptNotLegal": "Se ei ole laillinen leikki.",
+  "buddyPromptNotLegalReason": "Se ei ole laillinen leikki. {reason}",
+  "buddyThrowOpening": "Heittäkää aloitusheitot — yksi noppa kummallekin. Suuremman silmäluvun saanut aloittaa.",
+  "buddyThrowUser": "Heitä noppasi.",
+  "buddyThrowBuddy": "Heitä Buddyn nopat.",
+  "buddyMatchOver": "Ottelu on ohi.",
+  "buddyYouWin": "Voitat ottelun.",
+  "buddyBuddyWins": "Buddy voittaa ottelun.",
+  "buddyDoubleNoGame": "Tuplattavaa peliä ei ole vielä - avausheitto tulee ensin.",
+  "buddyDoubleBeforeRoll": "Voit tuplata vain vuorollasi ennen heittämistä.",
+  "buddyDoubleCrawford": "Ei tuplaamista Crawford-pelissä – tämä yksittäinen peli ratkaisee ottelun.",
+  "buddyDoubleNotOwner": "Vain kuution omistaja voi tuplata, ja toinen puoli omistaa sen juuri nyt.",
+  "buddyDoubleUnavailable": "Tuplaus ei ole tällä hetkellä saatavilla.",
+  "buddyLookingAtBoard": "Buddy katsoo taulua.",
+  "buddyCameraPlayFallback": "Voit silti pelata ottelua: kirjoita jokainen heitto noppalevylle ja napauta pelisi alla olevalla laudalla.",
+  "buddySkipCheck": "Ohita tämä tarkistus",
+  "buddyFixedIt": "Olen korjannut sen",
+  "buddyDrop": "Pudota",
+  "buddyTake": "Ota",
+  "buddyDone": "Tehty",
+  "buddyTranscriptLabel": "Mitä Buddy sanoi",
+  "buddyUndo": "Kumoa",
+  "buddyConfirm": "Vahvistaa",
+  "buddyDice": "Nopat",
+  "buddyDouble": "Kaksinkertainen",
+  "buddyDicePadTitle": "Mitä nopat näyttivät?",
+  "buddyEnterRoll": "Anna rulla",
+  "buddyContextBeforeGame": "Pelaa Buddy:llä",
+  "buddyContextMatchScore": "Sinä {you}–{buddy} Buddy · - {length} · Peli {number}",
+  "buddyCameraUnavailable": "Kameraa ei voitu käynnistää. Tarkista käyttöoikeudet ja yritä uudelleen.",
+  "buddyCameraPermission": "Backgammon Buddy:llä ei ole lupaa käyttää kameraa. Salli kameran käyttö laitteesi asetuksista ja yritä uudelleen.",
+  "buddyCalibrationTitle": "Näytä taulu Buddy",
+  "buddyCalibrationCornersFold": "Vedä neljä ulompaa kahvaa huovan kulmiin - ei puureunukseen - ja neljä pientä saumoille, joissa sarana kohtaa etä- ja lähireunan.",
+  "buddyCalibrationCornersFlat": "Vedä jokainen kahva huovan kulmaan – pelipinnalle, ei sitä ympäröivään puureunukseen.",
+  "buddyCalibrationCheckLines": "Tarkista sitten kummankin puolikkaan kaksitoista riviä: jokaisen tulee kulkea laudan pistettä pitkin. Viiva, jonka kohta puuttuu, on kahva, jota on tönäistävä.",
+  "buddyCalibrationSeatQuestion": "Kumpi puolisko on kotilautasi?",
+  "buddyCalibrationSeatHelp": "Kuvan alaosaa lähinnä oleva puolikas. Tämä korjaa pistenumerot, joten yllä olevat viivat liikkuvat sen mukana.",
+  "buddyCalibrationCaptureWait": "Pidä puhelin paikallaan. Buddy odottaa kuvan asettuvan ennen kuin se oppii tämän taulun.",
+  "buddyCalibrationConfirmQuestion": "Onko tämä sinun taulusi?",
+  "buddyCalibrationConfirmFallback": "Buddy katselee juuri oppimaansa taulua.",
+  "buddyCalibrationConfirmHelp": "Kuvan päälle piirretyt miehet ovat Buddy:n mielestä taululla. Jos jokin niistä on väärässä paikassa, aloita alusta – se maksaa nyt sekunteja ja pelin myöhemmin.",
+  "buddyCalibrationNext": "Seuraavaksi",
+  "buddyCalibrationBack": "Takaisin",
+  "buddyCalibrationCapture": "Kaapata",
+  "buddyCalibrationStartOver": "Aloita alusta",
+  "buddyCalibrationLooksRight": "Näyttää oikealta",
+  "buddyCalibrationCornersInvalid": "Nämä neljä kahvaa eivät hahmota lautaa - yksi niistä on ristissä toisensa kanssa. Vedä ne takaisin huovan kulmiin.",
+  "buddyCalibrationPrepTitle": "Kolme asiaa ensin",
+  "buddyCalibrationRemoveDiceTitle": "Ota nopat pois laudalta.",
+  "buddyCalibrationRemoveDiceBody": "Buddy opettelee nyt tyhjän laudan. Jos noppa jää laudalle, Buddy oppii sen osaksi lautaa eikä pysty enää näkemään noppia tämän pelisession aikana.",
+  "buddyCalibrationSetupCheckersTitle": "Aseta miehet pelin alkuun.",
+  "buddyCalibrationSetupCheckersBody": "Kolmekymmentä nappulaa tunnetuissa paikoissa Buddy oppii tämän taulun kaksi väriä kertomatta, mitä ne ovat.",
+  "buddyCalibrationFitBoardTitle": "Sovita koko pelikenttä kuvaan.",
+  "buddyCalibrationFitBoardBody": "Jätä sitten puhelin paikoilleen. Jos se liikkuu, Buddy sanoo niin ja voit työntää kulmia taaksepäin.",
+  "buddyCalibrationBoardKind": "Millainen lauta se on?",
+  "buddyCalibrationFlatBoard": "Tasainen lauta",
+  "buddyCalibrationFoldingBoard": "Taitettava kotelo",
+  "buddyCalibrationBoardKindHelp": "Taittolauta tarvitsee neljä ylimääräistä kahvaa saranassaumoihin.",
+  "buddyCalibrationNoCameraBody": "Buddy Mode katselee oikeaa taulua, joten se ei voi käynnistyä ilman kameraa. Kaikki muu sovelluksessa ei vaikuta.",
+  "buddyHandleHingeSeam": "Saranasauma {number}/4",
+  "buddyHandleCorner": "Lautakulma {number}/4",
+  "buddyNudgeLeft": "Työnnä vasemmalle",
+  "buddyNudgeRight": "Työnnä oikealle",
+  "buddyNudgeUp": "Työnnä ylös",
+  "buddyNudgeDown": "Työnnä alas",
+  "buddyCalibrationProblemCorners": "Nämä neljä kulmaa eivät hahmota lautaa. Vedä jokainen kahva pelikentän kulmaan ja yritä uudelleen.",
+  "buddyCalibrationProblemFoldCorners": "Nämä kahdeksan pistettä eivät hahmota taitettavaa lautaa. Aseta neljä pelikentän kulmiin ja neljä saranan saumoihin ja yritä sitten uudelleen.",
+  "buddyCalibrationProblemUnreadable": "En pysty erottelemaan itse taulua – sen jokainen osa on peitetty tai kadonnut varjoon tai häikäisyyn. Tyhjennä taulu, lisää valoa ja yritä uudelleen.",
+  "buddyCalibrationProblemRegionUnreadable": "En saa selvää {region}:stä - siinä saattaa levätä jotain tai taulun kulma voi olla liian tumma luettavaksi. Tyhjennä se tai lisää valoa ja yritä uudelleen.",
+  "buddyCalibrationProblemColours": "Kaksi tammisarjaa näyttävät liian samanlaisilta täältä. Enemmän valoa tai kulma, jossa on vähemmän häikäisyä, yleensä korjaa sen.",
+  "buddyCalibrationProblemWrongChecker": "Tammi ei ole lähtöasennossa – pisteessä {number} on väärä väri. Aseta lauta pelin alkuun ja kalibroi sitten uudelleen.",
+  "buddyCalibrationProblemOverexposed": "Taululla on niin paljon valoa, että sen värit huuhtoutuvat toisiinsa. Himmennä valoa tai siirrä puhelinta niin, että lamppu ei paista suoraan takaisin siihen.",
+  "buddyCalibrationProblemReadBack": "Voin lukea tämän taulun, mutta en alkavana pelinä. Aseta miehet pelin alkuun ja kalibroi sitten uudelleen.",
+  "buddyCalibrationProblemStacks": "Pystyn lukemaan tämän taulun, mutta en voi päätellä kuinka kaukana yksi nappula on toisen takana - joten ymmärtäisin numerot väärin. Vähän enemmän valoa lähipisteisiin tai hieman korkeampi kamerakulma yleensä korjaa asian.",
+  "buddyCalibrationProblemNotVisible": "En näe koko taulua. Siirrä puhelinta taaksepäin tai vedä kulmat pelikentälle.",
+  "buddyConfirmBoardOutOfFrame": "En näe koko levyä enää - {region} on kuvan ulkopuolella. Kohdista kamera uudelleen tai tarkista kulmat uudelleen.",
+  "buddyConfirmStartingPosition": "Se näyttää lähtöasennosta.",
+  "buddyConfirmNoCheckers": "En näe nappulaa missä tahansa pelin alkaessa. Aseta miehet pelin alkuun ja yritä uudelleen.",
+  "buddyConfirmWrongPosition": "Lauta ei ole asetettu pelin alkuun: {details}{more}.",
+  "buddyConfirmRegionEmpty": "{region} näyttää tyhjältä, mutta peli alkaa {side}:llä",
+  "buddyConfirmRegionUnexpected": "{region}:ssä on {side}, mutta peli alkaa tyhjällä",
+  "buddyConfirmRegionWrongSide": "{region}:ssä on {observed}, jossa peli alkaa {expected}:llä",
+  "buddyReadabilityMotion": "Odota hetki – menetän taulun puhelimen liikkuessa.",
+  "buddyReadabilityWrongFrame": "Minulle annettu kuva ei ole se, jolle tämä taulu on asetettu, joten en voi kohdistaa siihen mitään. Set the board up again from here.",
+  "buddyReadabilityBlur": "Kuva on liian pehmeä taulun lukemiseen. Anna kameralle hetki tarkentaa.",
+  "buddyReadabilityCalibrationStale": "The board is not where it was when I learned it. Linjaa kulmat uudelleen ja nostan pelin suoraan takaisin.",
+  "buddyReadabilityOccluded": "Jokin peittää osan taulusta. Jatkan heti kun asia selviää.",
+  "buddyReadabilityClear": "Näen taulun.",
+  "buddyReadabilityColorChanged": "Taulun valo on vaihtanut väriä, joten taulu ei enää näytä siltä, ​​mitä opin. Linjaa kulmat uudelleen tämän valon alle ja nostan pelin suoraan takaisin ylös.",
+  "buddyReadabilityTooDark": "On liian pimeää taulun lukemiseen. A little more light and I will carry on where we were.",
+  "buddyReadabilityTooBright": "Taululla on niin paljon valoa, että sen värit osuvat toisiinsa. Himmennä sitä tai siirrä puhelinta niin, ettei lamppu pala suoraan takaisin siihen.",
+  "buddyPromptBeliefMirror": "Buddy ei vieläkään näe liikettään - {reason}.",
+  "buddyCameraUnavailablePlay": "{cameraMessage}\n\nVoit silti pelata ottelua: kirjoita jokainen heitto noppalevylle ja napauta pelisi alla olevalla laudalla.",
+  "buddyCameraGenericError": "Kameraa ei voitu käynnistää. Tarkista käyttöoikeudet ja yritä uudelleen.",
+  "buddyRegionPoint": "{number}-piste",
+  "buddyRegionBar": "baari",
+  "buddyRegionWhiteTray": "Valkoisen karhutarjotin",
+  "buddyRegionBlackTray": "Mustan karhutarjotin",
+  "buddyRegionDiceZone": "laudan keskelle",
+  "buddyCalibrationProblemVisible": "En näe koko taulua. Siirrä puhelinta taaksepäin tai vedä kulmat pelikentälle.",
+  "buddyConfirmMore": "(ja {number} lisää)",
+  "buddyDiceOpeningCaption": "Kumpikin heittää yhden nopan. Suuremman silmäluvun saanut aloittaa.",
+  "buddyDiceOpeningFirst": "Valkoisen noppa",
+  "buddyDiceOpeningSecond": "Mustan noppa",
+  "buddyDiceRegularCaption": "Kaksi kasvot pöydällä, kummassakin järjestyksessä.",
+  "buddyDiceRegularFirst": "Yksi noppa",
+  "buddyDiceRegularSecond": "Toinen",
+  "@buddyPromptNotLegalReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyContextMatchScore": {
+    "placeholders": {
+      "you": {
+        "type": "String"
+      },
+      "buddy": {
+        "type": "String"
+      },
+      "length": {
+        "type": "String"
+      },
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyHandleHingeSeam": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyHandleCorner": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyCalibrationProblemRegionUnreadable": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCalibrationProblemWrongChecker": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmBoardOutOfFrame": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmWrongPosition": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionEmpty": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionUnexpected": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongSide": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyPromptBeliefMirror": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyCameraUnavailablePlay": {
+    "placeholders": {
+      "cameraMessage": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyRegionPoint": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "@buddyConfirmMore": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  }
 }

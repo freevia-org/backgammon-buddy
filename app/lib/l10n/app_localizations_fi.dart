@@ -2721,4 +2721,493 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get feedbackFieldIdea => 'Ehdotettu muutos';
+
+  @override
+  String get buddySetupTitle => 'Pelaa Buddy:llä';
+
+  @override
+  String get buddySetupSideLabel => 'Buddy soittaa';
+
+  @override
+  String get buddySetupSeatLabel => 'Sinun istuin';
+
+  @override
+  String get buddySetupSeatNear => 'Puhelimella';
+
+  @override
+  String get buddySetupSeatFar => 'Vastapäätä';
+
+  @override
+  String get buddySetupSeatHelp =>
+      'Millä puolella taulua olet. Näin Buddy numeroi pisteet ja miten se erottaa avauspuikkosi omasta.';
+
+  @override
+  String get buddySetupVoiceLabel => 'Kuinka Buddy puhuu';
+
+  @override
+  String get buddySetupVoiceTerse => 'Ytimekkäästi';
+
+  @override
+  String get buddySetupVoiceFriendly => 'Ystävällinen';
+
+  @override
+  String get buddySetupVoiceTerseHelp =>
+      '\"13/8, 24/22\" - merkintätapa, tapa, jolla kaksi pelaajaa laudalla todella puhuvat.';
+
+  @override
+  String get buddySetupVoiceFriendlyHelp =>
+      '\"Siirrä yksi nappula 13:sta 8:aan ja toinen 24:stä 22:een.\"';
+
+  @override
+  String get buddySetupTutorHelp =>
+      'Ohjaajan kommentit ja siirtoselitykset noudattavat tallennettuja ohjaajan asetuksia asetuksissa. Buddy antaa satunnaista palautetta toistojesi jälkeen; kirjoitetut nopat ja manuaaliset liikkeet toimivat samalla tavalla.';
+
+  @override
+  String get buddySetupCalibrate => 'Kalibroi taulu';
+
+  @override
+  String get buddyFixAim => 'Korjaa tavoite';
+
+  @override
+  String get buddyWaitingForOpening =>
+      'Buddy odottaa heittoa, joka aloittaa ottelun.';
+
+  @override
+  String get buddyPromptLostBoard =>
+      'Buddy on menettänyt taulun. Kiinnitä tavoite ja ottelu jatkuu siitä mihin se pysähtyi.';
+
+  @override
+  String get buddyPromptWaitingPicture =>
+      'Odotetaan kuvaa Buddy osaa lukea. Mitään ei ole menetetty.';
+
+  @override
+  String get buddyPromptTypeDice =>
+      'Buddy ei löydä noppaa. Kirjoita sen sijaan rulla.';
+
+  @override
+  String get buddyPromptPlay =>
+      'Tee pelisi laudalla. Napauta sitä tästä, jos Buddy ei näe sitä.';
+
+  @override
+  String get buddyPromptWhichPlay => 'Mikä näytelmä se oli?';
+
+  @override
+  String get buddyPromptCube => 'Buddy tarjoaa tuplausta. Otatko vai luovutko?';
+
+  @override
+  String get buddyPromptMakeMove =>
+      'Tee Buddy:n liike laudalla, niin Buddy jatkaa.';
+
+  @override
+  String get buddyPromptThinking => 'Buddy ajattelee.';
+
+  @override
+  String get buddyPromptWaitingCalibration => 'Kalibrointia odotellessa.';
+
+  @override
+  String get buddyPromptMirrorNoDetail =>
+      'Buddy ei vieläkään näe liikettään. Alla oleva taulu on asento, jossa se on.';
+
+  @override
+  String get buddyPromptNotLegal => 'Se ei ole laillinen leikki.';
+
+  @override
+  String buddyPromptNotLegalReason(String reason) {
+    return 'Se ei ole laillinen leikki. $reason';
+  }
+
+  @override
+  String get buddyThrowOpening =>
+      'Heittäkää aloitusheitot — yksi noppa kummallekin. Suuremman silmäluvun saanut aloittaa.';
+
+  @override
+  String get buddyThrowUser => 'Heitä noppasi.';
+
+  @override
+  String get buddyThrowBuddy => 'Heitä Buddyn nopat.';
+
+  @override
+  String get buddyMatchOver => 'Ottelu on ohi.';
+
+  @override
+  String get buddyYouWin => 'Voitat ottelun.';
+
+  @override
+  String get buddyBuddyWins => 'Buddy voittaa ottelun.';
+
+  @override
+  String get buddyDoubleNoGame =>
+      'Tuplattavaa peliä ei ole vielä - avausheitto tulee ensin.';
+
+  @override
+  String get buddyDoubleBeforeRoll =>
+      'Voit tuplata vain vuorollasi ennen heittämistä.';
+
+  @override
+  String get buddyDoubleCrawford =>
+      'Ei tuplaamista Crawford-pelissä – tämä yksittäinen peli ratkaisee ottelun.';
+
+  @override
+  String get buddyDoubleNotOwner =>
+      'Vain kuution omistaja voi tuplata, ja toinen puoli omistaa sen juuri nyt.';
+
+  @override
+  String get buddyDoubleUnavailable =>
+      'Tuplaus ei ole tällä hetkellä saatavilla.';
+
+  @override
+  String get buddyLookingAtBoard => 'Buddy katsoo taulua.';
+
+  @override
+  String get buddyCameraPlayFallback =>
+      'Voit silti pelata ottelua: kirjoita jokainen heitto noppalevylle ja napauta pelisi alla olevalla laudalla.';
+
+  @override
+  String get buddySkipCheck => 'Ohita tämä tarkistus';
+
+  @override
+  String get buddyFixedIt => 'Olen korjannut sen';
+
+  @override
+  String get buddyDrop => 'Pudota';
+
+  @override
+  String get buddyTake => 'Ota';
+
+  @override
+  String get buddyDone => 'Tehty';
+
+  @override
+  String get buddyTranscriptLabel => 'Mitä Buddy sanoi';
+
+  @override
+  String get buddyUndo => 'Kumoa';
+
+  @override
+  String get buddyConfirm => 'Vahvistaa';
+
+  @override
+  String get buddyDice => 'Nopat';
+
+  @override
+  String get buddyDouble => 'Kaksinkertainen';
+
+  @override
+  String get buddyDicePadTitle => 'Mitä nopat näyttivät?';
+
+  @override
+  String get buddyEnterRoll => 'Anna rulla';
+
+  @override
+  String get buddyContextBeforeGame => 'Pelaa Buddy:llä';
+
+  @override
+  String buddyContextMatchScore(
+    String you,
+    String buddy,
+    String length,
+    String number,
+  ) {
+    return 'Sinä $you–$buddy Buddy · - $length · Peli $number';
+  }
+
+  @override
+  String get buddyCameraUnavailable =>
+      'Kameraa ei voitu käynnistää. Tarkista käyttöoikeudet ja yritä uudelleen.';
+
+  @override
+  String get buddyCameraPermission =>
+      'Backgammon Buddy:llä ei ole lupaa käyttää kameraa. Salli kameran käyttö laitteesi asetuksista ja yritä uudelleen.';
+
+  @override
+  String get buddyCalibrationTitle => 'Näytä taulu Buddy';
+
+  @override
+  String get buddyCalibrationCornersFold =>
+      'Vedä neljä ulompaa kahvaa huovan kulmiin - ei puureunukseen - ja neljä pientä saumoille, joissa sarana kohtaa etä- ja lähireunan.';
+
+  @override
+  String get buddyCalibrationCornersFlat =>
+      'Vedä jokainen kahva huovan kulmaan – pelipinnalle, ei sitä ympäröivään puureunukseen.';
+
+  @override
+  String get buddyCalibrationCheckLines =>
+      'Tarkista sitten kummankin puolikkaan kaksitoista riviä: jokaisen tulee kulkea laudan pistettä pitkin. Viiva, jonka kohta puuttuu, on kahva, jota on tönäistävä.';
+
+  @override
+  String get buddyCalibrationSeatQuestion => 'Kumpi puolisko on kotilautasi?';
+
+  @override
+  String get buddyCalibrationSeatHelp =>
+      'Kuvan alaosaa lähinnä oleva puolikas. Tämä korjaa pistenumerot, joten yllä olevat viivat liikkuvat sen mukana.';
+
+  @override
+  String get buddyCalibrationCaptureWait =>
+      'Pidä puhelin paikallaan. Buddy odottaa kuvan asettuvan ennen kuin se oppii tämän taulun.';
+
+  @override
+  String get buddyCalibrationConfirmQuestion => 'Onko tämä sinun taulusi?';
+
+  @override
+  String get buddyCalibrationConfirmFallback =>
+      'Buddy katselee juuri oppimaansa taulua.';
+
+  @override
+  String get buddyCalibrationConfirmHelp =>
+      'Kuvan päälle piirretyt miehet ovat Buddy:n mielestä taululla. Jos jokin niistä on väärässä paikassa, aloita alusta – se maksaa nyt sekunteja ja pelin myöhemmin.';
+
+  @override
+  String get buddyCalibrationNext => 'Seuraavaksi';
+
+  @override
+  String get buddyCalibrationBack => 'Takaisin';
+
+  @override
+  String get buddyCalibrationCapture => 'Kaapata';
+
+  @override
+  String get buddyCalibrationStartOver => 'Aloita alusta';
+
+  @override
+  String get buddyCalibrationLooksRight => 'Näyttää oikealta';
+
+  @override
+  String get buddyCalibrationCornersInvalid =>
+      'Nämä neljä kahvaa eivät hahmota lautaa - yksi niistä on ristissä toisensa kanssa. Vedä ne takaisin huovan kulmiin.';
+
+  @override
+  String get buddyCalibrationPrepTitle => 'Kolme asiaa ensin';
+
+  @override
+  String get buddyCalibrationRemoveDiceTitle => 'Ota nopat pois laudalta.';
+
+  @override
+  String get buddyCalibrationRemoveDiceBody =>
+      'Buddy opettelee nyt tyhjän laudan. Jos noppa jää laudalle, Buddy oppii sen osaksi lautaa eikä pysty enää näkemään noppia tämän pelisession aikana.';
+
+  @override
+  String get buddyCalibrationSetupCheckersTitle => 'Aseta miehet pelin alkuun.';
+
+  @override
+  String get buddyCalibrationSetupCheckersBody =>
+      'Kolmekymmentä nappulaa tunnetuissa paikoissa Buddy oppii tämän taulun kaksi väriä kertomatta, mitä ne ovat.';
+
+  @override
+  String get buddyCalibrationFitBoardTitle => 'Sovita koko pelikenttä kuvaan.';
+
+  @override
+  String get buddyCalibrationFitBoardBody =>
+      'Jätä sitten puhelin paikoilleen. Jos se liikkuu, Buddy sanoo niin ja voit työntää kulmia taaksepäin.';
+
+  @override
+  String get buddyCalibrationBoardKind => 'Millainen lauta se on?';
+
+  @override
+  String get buddyCalibrationFlatBoard => 'Tasainen lauta';
+
+  @override
+  String get buddyCalibrationFoldingBoard => 'Taitettava kotelo';
+
+  @override
+  String get buddyCalibrationBoardKindHelp =>
+      'Taittolauta tarvitsee neljä ylimääräistä kahvaa saranassaumoihin.';
+
+  @override
+  String get buddyCalibrationNoCameraBody =>
+      'Buddy Mode katselee oikeaa taulua, joten se ei voi käynnistyä ilman kameraa. Kaikki muu sovelluksessa ei vaikuta.';
+
+  @override
+  String buddyHandleHingeSeam(int number) {
+    return 'Saranasauma $number/4';
+  }
+
+  @override
+  String buddyHandleCorner(int number) {
+    return 'Lautakulma $number/4';
+  }
+
+  @override
+  String get buddyNudgeLeft => 'Työnnä vasemmalle';
+
+  @override
+  String get buddyNudgeRight => 'Työnnä oikealle';
+
+  @override
+  String get buddyNudgeUp => 'Työnnä ylös';
+
+  @override
+  String get buddyNudgeDown => 'Työnnä alas';
+
+  @override
+  String get buddyCalibrationProblemCorners =>
+      'Nämä neljä kulmaa eivät hahmota lautaa. Vedä jokainen kahva pelikentän kulmaan ja yritä uudelleen.';
+
+  @override
+  String get buddyCalibrationProblemFoldCorners =>
+      'Nämä kahdeksan pistettä eivät hahmota taitettavaa lautaa. Aseta neljä pelikentän kulmiin ja neljä saranan saumoihin ja yritä sitten uudelleen.';
+
+  @override
+  String get buddyCalibrationProblemUnreadable =>
+      'En pysty erottelemaan itse taulua – sen jokainen osa on peitetty tai kadonnut varjoon tai häikäisyyn. Tyhjennä taulu, lisää valoa ja yritä uudelleen.';
+
+  @override
+  String buddyCalibrationProblemRegionUnreadable(String region) {
+    return 'En saa selvää $region:stä - siinä saattaa levätä jotain tai taulun kulma voi olla liian tumma luettavaksi. Tyhjennä se tai lisää valoa ja yritä uudelleen.';
+  }
+
+  @override
+  String get buddyCalibrationProblemColours =>
+      'Kaksi tammisarjaa näyttävät liian samanlaisilta täältä. Enemmän valoa tai kulma, jossa on vähemmän häikäisyä, yleensä korjaa sen.';
+
+  @override
+  String buddyCalibrationProblemWrongChecker(int number) {
+    return 'Tammi ei ole lähtöasennossa – pisteessä $number on väärä väri. Aseta lauta pelin alkuun ja kalibroi sitten uudelleen.';
+  }
+
+  @override
+  String get buddyCalibrationProblemOverexposed =>
+      'Taululla on niin paljon valoa, että sen värit huuhtoutuvat toisiinsa. Himmennä valoa tai siirrä puhelinta niin, että lamppu ei paista suoraan takaisin siihen.';
+
+  @override
+  String get buddyCalibrationProblemReadBack =>
+      'Voin lukea tämän taulun, mutta en alkavana pelinä. Aseta miehet pelin alkuun ja kalibroi sitten uudelleen.';
+
+  @override
+  String get buddyCalibrationProblemStacks =>
+      'Pystyn lukemaan tämän taulun, mutta en voi päätellä kuinka kaukana yksi nappula on toisen takana - joten ymmärtäisin numerot väärin. Vähän enemmän valoa lähipisteisiin tai hieman korkeampi kamerakulma yleensä korjaa asian.';
+
+  @override
+  String get buddyCalibrationProblemNotVisible =>
+      'En näe koko taulua. Siirrä puhelinta taaksepäin tai vedä kulmat pelikentälle.';
+
+  @override
+  String buddyConfirmBoardOutOfFrame(String region) {
+    return 'En näe koko levyä enää - $region on kuvan ulkopuolella. Kohdista kamera uudelleen tai tarkista kulmat uudelleen.';
+  }
+
+  @override
+  String get buddyConfirmStartingPosition => 'Se näyttää lähtöasennosta.';
+
+  @override
+  String get buddyConfirmNoCheckers =>
+      'En näe nappulaa missä tahansa pelin alkaessa. Aseta miehet pelin alkuun ja yritä uudelleen.';
+
+  @override
+  String buddyConfirmWrongPosition(String details, String more) {
+    return 'Lauta ei ole asetettu pelin alkuun: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionEmpty(String region, String side) {
+    return '$region näyttää tyhjältä, mutta peli alkaa $side:llä';
+  }
+
+  @override
+  String buddyConfirmRegionUnexpected(String region, String side) {
+    return '$region:ssä on $side, mutta peli alkaa tyhjällä';
+  }
+
+  @override
+  String buddyConfirmRegionWrongSide(
+    String region,
+    String observed,
+    String expected,
+  ) {
+    return '$region:ssä on $observed, jossa peli alkaa $expected:llä';
+  }
+
+  @override
+  String get buddyReadabilityMotion =>
+      'Odota hetki – menetän taulun puhelimen liikkuessa.';
+
+  @override
+  String get buddyReadabilityWrongFrame =>
+      'Minulle annettu kuva ei ole se, jolle tämä taulu on asetettu, joten en voi kohdistaa siihen mitään. Set the board up again from here.';
+
+  @override
+  String get buddyReadabilityBlur =>
+      'Kuva on liian pehmeä taulun lukemiseen. Anna kameralle hetki tarkentaa.';
+
+  @override
+  String get buddyReadabilityCalibrationStale =>
+      'The board is not where it was when I learned it. Linjaa kulmat uudelleen ja nostan pelin suoraan takaisin.';
+
+  @override
+  String get buddyReadabilityOccluded =>
+      'Jokin peittää osan taulusta. Jatkan heti kun asia selviää.';
+
+  @override
+  String get buddyReadabilityClear => 'Näen taulun.';
+
+  @override
+  String get buddyReadabilityColorChanged =>
+      'Taulun valo on vaihtanut väriä, joten taulu ei enää näytä siltä, ​​mitä opin. Linjaa kulmat uudelleen tämän valon alle ja nostan pelin suoraan takaisin ylös.';
+
+  @override
+  String get buddyReadabilityTooDark =>
+      'On liian pimeää taulun lukemiseen. A little more light and I will carry on where we were.';
+
+  @override
+  String get buddyReadabilityTooBright =>
+      'Taululla on niin paljon valoa, että sen värit osuvat toisiinsa. Himmennä sitä tai siirrä puhelinta niin, ettei lamppu pala suoraan takaisin siihen.';
+
+  @override
+  String buddyPromptBeliefMirror(String reason) {
+    return 'Buddy ei vieläkään näe liikettään - $reason.';
+  }
+
+  @override
+  String buddyCameraUnavailablePlay(String cameraMessage) {
+    return '$cameraMessage\n\nVoit silti pelata ottelua: kirjoita jokainen heitto noppalevylle ja napauta pelisi alla olevalla laudalla.';
+  }
+
+  @override
+  String get buddyCameraGenericError =>
+      'Kameraa ei voitu käynnistää. Tarkista käyttöoikeudet ja yritä uudelleen.';
+
+  @override
+  String buddyRegionPoint(int number) {
+    return '$number-piste';
+  }
+
+  @override
+  String get buddyRegionBar => 'baari';
+
+  @override
+  String get buddyRegionWhiteTray => 'Valkoisen karhutarjotin';
+
+  @override
+  String get buddyRegionBlackTray => 'Mustan karhutarjotin';
+
+  @override
+  String get buddyRegionDiceZone => 'laudan keskelle';
+
+  @override
+  String get buddyCalibrationProblemVisible =>
+      'En näe koko taulua. Siirrä puhelinta taaksepäin tai vedä kulmat pelikentälle.';
+
+  @override
+  String buddyConfirmMore(int number) {
+    return '(ja $number lisää)';
+  }
+
+  @override
+  String get buddyDiceOpeningCaption =>
+      'Kumpikin heittää yhden nopan. Suuremman silmäluvun saanut aloittaa.';
+
+  @override
+  String get buddyDiceOpeningFirst => 'Valkoisen noppa';
+
+  @override
+  String get buddyDiceOpeningSecond => 'Mustan noppa';
+
+  @override
+  String get buddyDiceRegularCaption =>
+      'Kaksi kasvot pöydällä, kummassakin järjestyksessä.';
+
+  @override
+  String get buddyDiceRegularFirst => 'Yksi noppa';
+
+  @override
+  String get buddyDiceRegularSecond => 'Toinen';
 }
