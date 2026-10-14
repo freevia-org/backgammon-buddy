@@ -297,6 +297,8 @@ class _GameScreenState extends State<GameScreen> {
   /// id (a brief spinner in the dialog button until the row insert resolves).
   bool _summaryLoading = false;
 
+  GameState? _continuedGameState;
+
   /// Whether the one-time drag/tap hint has been surfaced this session. Seeded
   /// from the persisted [GameScreen.dragHintShown]; set true the instant the
   /// hint actually shows (after the mounted check) so it can never appear twice
@@ -411,6 +413,57 @@ class _GameScreenState extends State<GameScreen> {
   /// rebuilds when the affordances change.
   final BoardEntryController _entryControl = BoardEntryController();
 
+  /// Back may hide a decision card without answering it. The action bar keeps
+  /// the pending decision reachable, and a new position shows its card again.
+  GameState? _dismissedModalState;
+
+  bool get _modalDismissed => identical(_dismissedModalState, _c.state);
+
+  void _handleBack(bool didPop, Object? result) {
+    if (didPop || !mounted || _c.matchOver) return;
+
+    if (_c.awaitingNextGame && !_modalDismissed) {
+      setState(() => _dismissedModalState = _c.state);
+      return;
+    }
+    if (_passDevicePending) {
+      _dismissPassDevice();
+      return;
+    }
+    final decisionPending =
+        _humanSideWith((s) => _c.pendingCubeOf(s).value != null) != null ||
+        _humanSideWith((s) => _c.pendingResignOf(s).value != null) != null;
+    if (decisionPending && !_modalDismissed) {
+      setState(() => _dismissedModalState = _c.state);
+      return;
+    }
+    if (_surrenderOpen) {
+      setState(_closeSurrender);
+      return;
+    }
+    if (_tutorExpanded) {
+      setState(() => _tutorExpanded = false);
+      return;
+    }
+    // A pending request can clear before the board's next rebuild. Only undo
+    // entry that still belongs to the current, unconfirmed human move.
+    if (_entryControl.canUndo &&
+        identical(_entryControl.position, _c.state) &&
+        _humanSideWith((s) => _c.pendingMoveOf(s).value != null) != null) {
+      _entryControl.undo();
+      return;
+    }
+    if (_hint.isOpen) {
+      _hint.close();
+      return;
+    }
+    if (_tutorPresentation.selectedEventIndex != null) {
+      _selectTutorMove(null);
+      return;
+    }
+    if (_hasLocalHuman && !_c.awaitingNextGame) _openSurrender();
+  }
+
   // --- Dice-roll beat --------------------------------------------------------
 
   /// The dice presentation state machine (the roll beat, which pair is lit, and
@@ -518,6 +571,8 @@ class _GameScreenState extends State<GameScreen> {
 
   void _onChange() {
     if (!mounted) return;
+    if (!_modalDismissed) _dismissedModalState = null;
+    if (!identical(_continuedGameState, _c.state)) _continuedGameState = null;
     _syncSheetLog();
     _reportMatchCompletion();
     _updatePassDevice();
@@ -899,6 +954,18 @@ class _GameScreenState extends State<GameScreen> {
     });
   }
 
+  void _continueToNextGame(GameState displayedState) {
+    // Both tabletop edges can continue, and the controller's gate can remain
+    // open until its async loop resumes. Consume only the first press.
+    if (!_c.awaitingNextGame ||
+        !identical(displayedState, _c.state) ||
+        identical(_continuedGameState, displayedState)) {
+      return;
+    }
+    _continuedGameState = displayedState;
+    _c.continueToNextGame();
+  }
+
   // --- Decision lookups ------------------------------------------------------
 
   /// Any human decision is currently open (pre-roll gate, a move, a cube
@@ -928,7 +995,9 @@ class _GameScreenState extends State<GameScreen> {
       showScoring: widget.showScoring,
       opponentLabel: widget.opponentLabel,
       opponentDetail: widget.opponentDetail,
-      onSurrender: _hasLocalHuman ? _openSurrender : null,
+      onSurrender: _hasLocalHuman && !_c.awaitingNextGame && !_c.matchOver
+          ? _openSurrender
+          : null,
       // Tabletop moves Double to the players' own edges — the shared
       // header cannot tell which of the two people pressed it.
       showDouble: !_tabletopBars,
@@ -972,150 +1041,154 @@ class _GameScreenState extends State<GameScreen> {
     // both stay visible after the turn passes.
     final (whiteDice, blackDice) = _persistentDice();
 
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                _hudScope(),
-                // TABLETOP hot-seat only: the second player's action bar, at
-                // THEIR edge (directly under the header) and upside-down so it
-                // reads right-way-up from across the device. Present for the
-                // whole match — reserved height, live only on its owner's turn.
-                if (_tabletopBars)
-                  _topActionBar(
-                    moveSide,
-                    whiteAtBottom ? Player.black : Player.white,
-                  ),
-                Expanded(
-                  // The board's slot. An error banner FLOATS at its top edge
-                  // (just under the HUD, where it used to sit) instead of being
-                  // a Column child: the board fills this slot, so a banner that
-                  // took height of its own would resize the board the moment an
-                  // agent errored — the same F6 no-jump rule the action bar and
-                  // the advice slot follow. StackFit.expand keeps the board's
-                  // constraints byte-identical to the un-stacked layout.
-                  child: Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      // NO padding: the board gets every pixel of this slot (a
-                      // reported complaint — an 8pt inset on a 390pt phone cost
-                      // 4% of the board's width, and the aspect clamp then left
-                      // ~24pt of dead space above and below it). With
-                      // [BoardView.minAspect] relaxed below a phone slot's
-                      // shape, the board now fills the slot outright.
-                      BoardView(
-                        state: state,
-                        interactive: moveSide != null,
-                        onMoveCommitted: (move) {
-                          if (moveSide != null) {
-                            _c.submitMove(moveSide, move);
-                          }
-                        },
-                        whiteAtBottom: whiteAtBottom,
-                        externalMove: _hint.stagedMove,
-                        lastMove: _c.lastMove,
-                        holdMoveAnimation: _dice.dicePresenting,
-                        entryControl: _entryControl,
-                        hopDuration: widget.timings.hop,
-                        interHopDuration: widget.timings.interHop,
-                        interactionOptions: widget.interactionOptions,
-                        whiteDice: whiteDice,
-                        blackDice: blackDice,
-                        // A cubeless match paints NO cube on the bar, exactly as
-                        // it shows no header chip and no Double button — the
-                        // three cube surfaces are suppressed together.
-                        showCube: !_c.cubeless,
-                        diceOverride: _dice.rollBeat,
-                        // Emphasis follows the PRESENTATION, never `state.turn`:
-                        // the roller while a roll is live, the mover while a move
-                        // is entered, nobody in between (both pairs dim).
-                        activeDiceSide: _dice.activeDiceSide(moveSide),
-                        // Tapping the dice is a second, on-board route to the
-                        // Roll button — wired under exactly the condition that
-                        // enables that button, and null otherwise so dice-area
-                        // taps fall through to normal move entry.
-                        onDiceTap: _canRoll(moveSide) ? _rollDice : null,
-                        onMoveAnimation: _dice.onMoveAnimation,
-                        onNoLegalSourceTap: _showNoLegalSourceHint,
-                      ),
-                      // Both banners are PURELY informational and float over the
-                      // board, so both are hit-test transparent: a [Stack]
-                      // returns the topmost child that reports a hit, so a
-                      // banner left tappable silently ate every board tap in
-                      // its band — and each band covers a bear-off tray strip
-                      // (the error banner Black's, the hint White's). Bearing
-                      // off went dead for as long as the banner was up.
-                      if (_c.error != null)
-                        Positioned(
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          child: IgnorePointer(
-                            child: _ErrorBanner(error: _c.error!),
-                          ),
-                        ),
-                      // Floats over the board's bottom edge, so it never takes
-                      // layout height (F6) and never covers the action bar.
-                      if (_tapHint != null)
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: IgnorePointer(
-                            child: _TapHintBanner(message: _tapHint!),
-                          ),
-                        ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: availableHeight < 480 ? 56 : ScoreSheetPanel.height,
-                  child: _scoreSheetScope(),
-                ),
-                if (_tutor != null)
-                  SizedBox(
-                    key: const ValueKey('tutorReservedSpace'),
-                    height: tutorHeight,
-                  ),
-                // In the tabletop layout the bottom bar belongs to ONE player
-                // (the side the board faces) and goes inert on the other's turn;
-                // everywhere else it is the screen's only bar and serves whoever
-                // is deciding.
-                _bottomRegion(
-                  moveSide,
-                  _tabletopBars
-                      ? (whiteAtBottom ? Player.white : Player.black)
-                      : null,
-                ),
-              ],
-            ),
-            if (_tutor != null)
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: _tutorActionsHeight,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: tutorMaxHeight),
-                  child: TutorPanel(
-                    prompt: Text(
-                      _tutorCopy().heading,
-                      key: const ValueKey('tutorSummaryHeading'),
+    return PopScope<Object?>(
+      canPop: _c.matchOver,
+      onPopInvokedWithResult: _handleBack,
+      child: Scaffold(
+        body: SafeArea(
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  _hudScope(),
+                  // TABLETOP hot-seat only: the second player's action bar, at
+                  // THEIR edge (directly under the header) and upside-down so it
+                  // reads right-way-up from across the device. Present for the
+                  // whole match — reserved height, live only on its owner's turn.
+                  if (_tabletopBars)
+                    _topActionBar(
+                      moveSide,
+                      whiteAtBottom ? Player.black : Player.white,
                     ),
-                    expanded: _tutorExpanded,
-                    onExpandedChanged: (expanded) =>
-                        setState(() => _tutorExpanded = expanded),
-                    collapsedHeight: tutorHeight,
-                    expandedHeight: tutorMaxHeight,
-                    summary: _tutorSummary(),
-                    details: _tutorDetails(),
-                    onOpenSettings: _openTutorSettings,
+                  Expanded(
+                    // The board's slot. An error banner FLOATS at its top edge
+                    // (just under the HUD, where it used to sit) instead of being
+                    // a Column child: the board fills this slot, so a banner that
+                    // took height of its own would resize the board the moment an
+                    // agent errored — the same F6 no-jump rule the action bar and
+                    // the advice slot follow. StackFit.expand keeps the board's
+                    // constraints byte-identical to the un-stacked layout.
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        // NO padding: the board gets every pixel of this slot (a
+                        // reported complaint — an 8pt inset on a 390pt phone cost
+                        // 4% of the board's width, and the aspect clamp then left
+                        // ~24pt of dead space above and below it). With
+                        // [BoardView.minAspect] relaxed below a phone slot's
+                        // shape, the board now fills the slot outright.
+                        BoardView(
+                          state: state,
+                          interactive: moveSide != null,
+                          onMoveCommitted: (move) {
+                            if (moveSide != null) {
+                              _c.submitMove(moveSide, move);
+                            }
+                          },
+                          whiteAtBottom: whiteAtBottom,
+                          externalMove: _hint.stagedMove,
+                          lastMove: _c.lastMove,
+                          holdMoveAnimation: _dice.dicePresenting,
+                          entryControl: _entryControl,
+                          hopDuration: widget.timings.hop,
+                          interHopDuration: widget.timings.interHop,
+                          interactionOptions: widget.interactionOptions,
+                          whiteDice: whiteDice,
+                          blackDice: blackDice,
+                          // A cubeless match paints NO cube on the bar, exactly as
+                          // it shows no header chip and no Double button — the
+                          // three cube surfaces are suppressed together.
+                          showCube: !_c.cubeless,
+                          diceOverride: _dice.rollBeat,
+                          // Emphasis follows the PRESENTATION, never `state.turn`:
+                          // the roller while a roll is live, the mover while a move
+                          // is entered, nobody in between (both pairs dim).
+                          activeDiceSide: _dice.activeDiceSide(moveSide),
+                          // Tapping the dice is a second, on-board route to the
+                          // Roll button — wired under exactly the condition that
+                          // enables that button, and null otherwise so dice-area
+                          // taps fall through to normal move entry.
+                          onDiceTap: _canRoll(moveSide) ? _rollDice : null,
+                          onMoveAnimation: _dice.onMoveAnimation,
+                          onNoLegalSourceTap: _showNoLegalSourceHint,
+                        ),
+                        // Both banners are PURELY informational and float over the
+                        // board, so both are hit-test transparent: a [Stack]
+                        // returns the topmost child that reports a hit, so a
+                        // banner left tappable silently ate every board tap in
+                        // its band — and each band covers a bear-off tray strip
+                        // (the error banner Black's, the hint White's). Bearing
+                        // off went dead for as long as the banner was up.
+                        if (_c.error != null)
+                          Positioned(
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            child: IgnorePointer(
+                              child: _ErrorBanner(error: _c.error!),
+                            ),
+                          ),
+                        // Floats over the board's bottom edge, so it never takes
+                        // layout height (F6) and never covers the action bar.
+                        if (_tapHint != null)
+                          Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: IgnorePointer(
+                              child: _TapHintBanner(message: _tapHint!),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: availableHeight < 480 ? 56 : ScoreSheetPanel.height,
+                    child: _scoreSheetScope(),
+                  ),
+                  if (_tutor != null)
+                    SizedBox(
+                      key: const ValueKey('tutorReservedSpace'),
+                      height: tutorHeight,
+                    ),
+                  // In the tabletop layout the bottom bar belongs to ONE player
+                  // (the side the board faces) and goes inert on the other's turn;
+                  // everywhere else it is the screen's only bar and serves whoever
+                  // is deciding.
+                  _bottomRegion(
+                    moveSide,
+                    _tabletopBars
+                        ? (whiteAtBottom ? Player.white : Player.black)
+                        : null,
+                  ),
+                ],
+              ),
+              if (_tutor != null)
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: _tutorActionsHeight,
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: tutorMaxHeight),
+                    child: TutorPanel(
+                      prompt: Text(
+                        _tutorCopy().heading,
+                        key: const ValueKey('tutorSummaryHeading'),
+                      ),
+                      expanded: _tutorExpanded,
+                      onExpandedChanged: (expanded) =>
+                          setState(() => _tutorExpanded = expanded),
+                      collapsedHeight: tutorHeight,
+                      expandedHeight: tutorMaxHeight,
+                      summary: _tutorSummary(),
+                      details: _tutorDetails(),
+                      onOpenSettings: _openTutorSettings,
+                    ),
                   ),
                 ),
-              ),
-            ..._buildModals(cubeSide, resignSide),
-          ],
+              ..._buildModals(cubeSide, resignSide),
+            ],
+          ),
         ),
       ),
     );
@@ -1143,6 +1216,8 @@ class _GameScreenState extends State<GameScreen> {
       ];
     }
     if (_c.awaitingNextGame) {
+      if (_modalDismissed) return const [];
+      final displayedState = _c.state;
       return [
         gameEndDialog(
           l10n: l10n,
@@ -1151,7 +1226,7 @@ class _GameScreenState extends State<GameScreen> {
           summaryAction: _canShowSummary
               ? _summaryAction(l10n.gameAnalyzeGame)
               : null,
-          onNextGame: _c.continueToNextGame,
+          onNextGame: () => _continueToNextGame(displayedState),
         ),
       ];
     }
@@ -1164,7 +1239,7 @@ class _GameScreenState extends State<GameScreen> {
         ),
       ];
     }
-    if (cubeSide != null) {
+    if (cubeSide != null && !_modalDismissed) {
       // The decider is `state.turn`; the doubler is the opponent.
       final state = _c.pendingCubeOf(cubeSide).value!;
       final advice = _tutorSync.cubeResponseAdvice;
@@ -1181,7 +1256,7 @@ class _GameScreenState extends State<GameScreen> {
         ),
       ];
     }
-    if (resignSide != null) {
+    if (resignSide != null && !_modalDismissed) {
       final (state, value) = _c.pendingResignOf(resignSide).value!;
       return [
         resignDialog(
@@ -1237,8 +1312,10 @@ class _GameScreenState extends State<GameScreen> {
         _c.matchOver ||
         _c.awaitingNextGame ||
         _passDevicePending ||
-        _humanSideWith((s) => _c.pendingCubeOf(s).value != null) != null ||
-        _humanSideWith((s) => _c.pendingResignOf(s).value != null) != null;
+        (!_modalDismissed &&
+            (_humanSideWith((s) => _c.pendingCubeOf(s).value != null) != null ||
+                _humanSideWith((s) => _c.pendingResignOf(s).value != null) !=
+                    null));
     // HOT-SEAT WITH A ROTATING BOARD ONLY: the turn leaving the side that opened
     // this sheet means the device has changed hands, so the sheet belongs to
     // somebody who is no longer playing — it goes, rather than lingering for the
@@ -1283,6 +1360,7 @@ class _GameScreenState extends State<GameScreen> {
   /// Opens the sheet, latching the side it is for (see [_surrenderFor]) — or
   /// leaving it UNSET in tabletop, where [_surrenderSideChooser] asks first.
   void _openSurrender() {
+    if (_c.awaitingNextGame || _c.matchOver) return;
     setState(() {
       _surrenderFor = _surrenderNeedsSideChoice ? null : _surrenderSide();
       _surrenderOpen = true;
@@ -1908,7 +1986,38 @@ class _GameScreenState extends State<GameScreen> {
     final showHint =
         _tutor != null && _tutorOptions.bestMoves && moveSide != null;
     final Widget content;
-    if (moveSide != null && _entryControl.isDance) {
+    final cubeSide = _humanSideWith((s) => _c.pendingCubeOf(s).value != null);
+    final resignSide = _humanSideWith(
+      (s) => _c.pendingResignOf(s).value != null,
+    );
+    if (_c.awaitingNextGame && _modalDismissed) {
+      final displayedState = _c.state;
+      content = Align(
+        alignment: Alignment.centerRight,
+        child: FilledButton(
+          onPressed: () => _continueToNextGame(displayedState),
+          child: Text(l10n.gameDialogNextGame),
+        ),
+      );
+    } else if (_modalDismissed && (cubeSide != null || resignSide != null)) {
+      content = Align(
+        alignment: Alignment.centerRight,
+        child: FilledButton(
+          key: const ValueKey('pendingGameDecision'),
+          onPressed: live
+              ? () => setState(() {
+                  _dismissedModalState = null;
+                  _closeSurrender();
+                })
+              : null,
+          child: Text(
+            cubeSide != null
+                ? l10n.gameDialogCubeOfferedTitle
+                : l10n.gameDialogResignationTitle,
+          ),
+        ),
+      );
+    } else if (moveSide != null && _entryControl.isDance) {
       content = Row(
         children: [
           if (showHint) _hintButton(live),
@@ -2005,7 +2114,10 @@ class _GameScreenState extends State<GameScreen> {
   /// entered, else the player sitting at the pre-roll gate, else nobody. The
   /// single answer to "whose bar is live" in the tabletop layout.
   Player? _actingSide(Player? moveSide) =>
-      moveSide ?? (_c.awaitingHumanTurn ? _c.state.turn : null);
+      moveSide ??
+      (_c.awaitingHumanTurn ? _c.state.turn : null) ??
+      _humanSideWith((s) => _c.pendingCubeOf(s).value != null) ??
+      _humanSideWith((s) => _c.pendingResignOf(s).value != null);
 
   /// Whether the local player is at the pre-roll gate, i.e. whether a Roll is
   /// the action on offer. The single source of truth for BOTH routes to it: the
