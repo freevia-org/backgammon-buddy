@@ -94,6 +94,20 @@ GameController _atOpeningMove(LocalHumanAgent human) => GameController(
 );
 
 void main() {
+  testWidgets('Back can leave a live game with no local human', (t) async {
+    final controller = GameController(
+      white: HangingMoveAgent(),
+      black: HangingMoveAgent(),
+      matchLength: 5,
+      diceRoller: DiceRoller(Random(7)),
+    );
+    await _openGame(t, controller);
+    await _systemBack(t);
+    expect(find.byType(GameScreen), findsNothing);
+    expect(find.byKey(_homeKey), findsOneWidget);
+    expect(t.takeException(), isNull);
+  });
+
   testWidgets(
     'Back at pre-roll opens and dismisses surrender without leaving',
     (t) async {
