@@ -3226,4 +3226,176 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Voiton todennäköisyys';
+
+  @override
+  String get buddyBar => 'baari';
+
+  @override
+  String get buddyOff => 'pois';
+
+  @override
+  String get buddyHitSuffix => ', lyömällä';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Siirrä yksi tarkistusmerkki kohteesta $from kohteeseen $to $hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Siirrä $count tammi paikasta $from paikkaan $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Ota yksi nappula pois kohteesta $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Ota $count tammi pois kohteesta $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'Heitin $dice.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'Heitit $dice.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'Molemmat heitettiin $die. Rullaa uudestaan.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn =>
+      'Ei leikkimistä, joten on sinun vuorosi.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn =>
+      'Ei leikkimistä, joten on Buddyn vuoro.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Ei peliä – vuorosi menee ohi.';
+
+  @override
+  String get buddySpeechNoPlayBack =>
+      'Ei leikkimistä, joten se on palannut sinulle.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'Se ei ole laillinen leikki.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'Se ei ole aivan oikein. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Lauta eroaa pelistä: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: peli odottaa $expected $side tammua; kamera näkee $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'Otan sanasi vastaan. En voinut nähdä sitä yhtä maata, joten jos olemme eronneet, se näkyy näytelmänä, jota en voi lukea.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Tuplaan - otan vai pudotan?';
+
+  @override
+  String get buddySpeechYouDouble => 'Sinä tuplaat.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'Otan.';
+
+  @override
+  String get buddySpeechYouTake => 'otat.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'pudotan.';
+
+  @override
+  String get buddySpeechYouDrop => 'Pudotat.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Voitan tämän pelin: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Voitat tämän pelin: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'Se on ottelu minulle.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Voitat ottelun.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Viimeinen pelisi vastasi moottorin parasta.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Viimeinen pelisi oli lähellä moottorin parasta.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Viimeisimmän pelin aikana moottori suosi $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'Se jättää palkkiin $best vastakkaista nappulaa $played:n sijaan.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'Se jättää $best blottia $played:n sijaan.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'Siinä on $best kotilautapistettä $played sijasta.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'Siinä on $best nappula pois päältä $played sijaan.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'Ranking painaa arvioidut voitot ja gammonit; mikään yhden kortin ominaisuus ei selitä sitä.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Pelaa $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'Heitin $dice – $move';
+  }
 }

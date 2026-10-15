@@ -44,6 +44,51 @@ String buddyConfirmationMessage(ConfirmResult result, AppLocalizations l10n) {
   return l10n.buddyConfirmWrongPosition(details, more);
 }
 
+/// Localizes board/game disagreements from an in-game verification frame.
+String buddyRegionVerificationMessage(
+  RegionVerification discrepancy,
+  AppLocalizations l10n,
+) {
+  final region = buddyRegionLabel(discrepancy.region, l10n);
+  final expectedSide = _checkerColorLabel(discrepancy.side, l10n);
+  final observedSide = _checkerColorLabel(discrepancy.observedColour, l10n);
+  if (discrepancy.observedColour == CheckerColor.none) {
+    return l10n.buddyConfirmRegionEmpty(
+      region,
+      '$expectedSide ${discrepancy.expected}',
+    );
+  }
+  if (discrepancy.expected == 0) {
+    return l10n.buddyConfirmRegionUnexpected(region, observedSide);
+  }
+  if (discrepancy.observedColour != discrepancy.side) {
+    return l10n.buddyConfirmRegionWrongSide(
+      region,
+      observedSide,
+      '$expectedSide ${discrepancy.expected}',
+    );
+  }
+  return l10n.buddyConfirmRegionWrongCount(
+    region,
+    '${discrepancy.expected}',
+    expectedSide,
+    '${discrepancy.observedCount}',
+  );
+}
+
+String buddyBoardMismatchMessage(
+  BoardDiscrepancies result,
+  AppLocalizations l10n,
+) {
+  final details = result.discrepancies
+      .take(2)
+      .map((item) => buddyRegionVerificationMessage(item, l10n))
+      .join('; ');
+  final rest = result.discrepancies.length - 2;
+  final more = rest > 0 ? l10n.buddyConfirmMore(rest) : '';
+  return l10n.buddyBoardMismatch(details, more);
+}
+
 String buddyCalibrationProblemMessage(
   CalibrationResult result,
   AppLocalizations l10n, {

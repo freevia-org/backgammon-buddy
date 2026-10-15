@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Анализирај оба механизма",
   "parallelEngineExplanation": "Упоредите одвојене савете wildbg и GNUbg у тренеру.",
   "engineComparison": "Поређење механизама",
-  "engineWinChance": "Шанса за победу"
+  "engineWinChance": "Шанса за победу",
+  "buddyBar": "бар",
+  "buddyOff": "искључено",
+  "buddyHitSuffix": ", ударање",
+  "buddyFriendlyMoveOne": "Премести један чекрк са {from} на {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Премести {count} даме са {from} на {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Спустите један дах од {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Однесите {count} даме од {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Убацио сам {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Добили сте {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Обојица су одиграла {die}. Ролл поново.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Нема игре, па је твој ред.",
+  "buddySpeechNoPlayBuddyTurn": "Нема игре, па је на Бадија ред.",
+  "buddySpeechNoPlayPass": "Нема игре - ваш ред пролази.",
+  "buddySpeechNoPlayBack": "Нема игре, тако да вам се враћа.",
+  "buddySpeechIllegalPlay": "То није легална игра.",
+  "buddySpeechPlacementMismatch": "То није сасвим тачно. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Верујем вам на реч. Нисам могао да видим ту једну земљу, па ако смо се раздвојили појавиће се као комад који не могу да читам.",
+  "buddySpeechBuddyDouble": "Удвостручујем - узми или испусти?",
+  "buddySpeechYouDouble": "Ти дупло.",
+  "buddySpeechBuddyTakes": "ја узимам.",
+  "buddySpeechYouTake": "Ти узимаш.",
+  "buddySpeechBuddyDrops": "падам.",
+  "buddySpeechYouDrop": "Ти паднеш.",
+  "buddySpeechMatchWinnerBuddy": "То ми одговара.",
+  "buddySpeechMatchWinnerYou": "Побеђујеш у мечу.",
+  "buddyTutorLastPlayBest": "Ваша последња игра је најбоље одговарала мотору.",
+  "buddyTutorLastPlayClose": "Ваша последња игра била је близу најбољег мотора.",
+  "buddyTutorPreferredMove": "За вашу последњу репродукцију, машина је преферирала {move}. {reason}",
+  "buddyTutorBarDifference": "Оставља {best} противничких дама на траци уместо {played}.",
+  "buddyTutorBlotDifference": "Оставља {best} мрље уместо {played}.",
+  "buddyTutorHomeDifference": "Садржи {best} поена матичне плоче уместо {played}.",
+  "buddyTutorOffDifference": "Искључено је {best} дама уместо {played}.",
+  "buddyTutorGeneralDifference": "Рангирање тежи процењеним победама и гамонима; ниједна карактеристика плоче то не објашњава.",
+  "buddySpeechPlay": "Пусти {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Убацио сам {dice} — {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Побеђујем у овој игри: {points}.",
+  "buddySpeechGameWinnerYou": "Побеђујете у овој игри: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Табла се разликује од игре: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: игра очекује {expected} {side} дама; камера види {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

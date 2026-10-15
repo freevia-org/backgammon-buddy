@@ -17,6 +17,7 @@ class FakeBuddyTts implements BuddyTts {
   final List<String> spoken = [];
   final List<Completer<void>> pending = [];
   int configureCalls = 0;
+  final configuredLocales = <String>[];
   int stopCalls = 0;
   int disposeCalls = 0;
 
@@ -31,8 +32,9 @@ class FakeBuddyTts implements BuddyTts {
   Object? failNextConfigure;
 
   @override
-  Future<void> configure() async {
+  Future<void> configure({required String locale}) async {
     configureCalls++;
+    configuredLocales.add(locale);
     final failure = failNextConfigure;
     if (failure != null) {
       failNextConfigure = null;
@@ -81,13 +83,21 @@ void main() {
   tearDown(() => debugDefaultTargetPlatformOverride = null);
 
   group('terse phrasing', () {
-    test('a plain two-hop play is the score sheet notation, comma-separated',
-        () {
-      final line = BuddyPhrasing.terse.describePlay(
-        play([hop(13, 8), hop(24, 22)]),
-      );
-      expect(line.text, '13/8, 24/22');
+    test('native speech locale tags are mapped for every shipped language', () {
+      expect(buddySpeechLocaleTag('en'), 'en-US');
+      expect(buddySpeechLocaleTag('fr'), 'fr-FR');
+      expect(buddySpeechLocaleTag('uk'), 'uk-UA');
+      expect(buddySpeechLocaleTag('unsupported'), 'en-US');
     });
+    test(
+      'a plain two-hop play is the score sheet notation, comma-separated',
+      () {
+        final line = BuddyPhrasing.terse.describePlay(
+          play([hop(13, 8), hop(24, 22)]),
+        );
+        expect(line.text, '13/8, 24/22');
+      },
+    );
 
     test('a hit keeps the asterisk on screen and says the word aloud', () {
       final line = BuddyPhrasing.terse.describePlay(
@@ -103,24 +113,27 @@ void main() {
       // one of them is not a move.
       expect(
         BuddyPhrasing.terse
-            .describePlay(play([hop(13, 8, hit: true), hop(6, 5)])).speech,
+            .describePlay(play([hop(13, 8, hit: true), hop(6, 5)]))
+            .speech,
         '13 to 8 hitting, 6 to 5',
       );
     });
 
     test('a bar entry and a bear-off use the core\'s own sentinel names', () {
-      expect(BuddyPhrasing.terse.describePlay(play([fromBar(22)])).text,
-          'bar/22');
-      expect(BuddyPhrasing.terse.describePlay(play([bearOff(6)])).text, '6/off');
+      expect(
+        BuddyPhrasing.terse.describePlay(play([fromBar(22)])).text,
+        'bar/22',
+      );
+      expect(
+        BuddyPhrasing.terse.describePlay(play([bearOff(6)])).text,
+        '6/off',
+      );
     });
 
     test('a doubles play groups its repeats rather than repeating itself', () {
-      final line = BuddyPhrasing.terse.describePlay(play([
-        hop(24, 20),
-        hop(24, 20),
-        hop(13, 9),
-        hop(13, 9),
-      ]));
+      final line = BuddyPhrasing.terse.describePlay(
+        play([hop(24, 20), hop(24, 20), hop(13, 9), hop(13, 9)]),
+      );
       expect(line.text, '24/20(2), 13/9(2)');
       expect(line.speech, '24 to 20 twice, 13 to 9 twice');
     });
@@ -155,8 +168,11 @@ void main() {
     test('is the score sheet hyphen written and two numbers spoken', () {
       final line = BuddyPhrasing.describeDice(Dice(6, 3));
       expect(line.text, '6-3');
-      expect(line.speech, '6 3',
-          reason: 'an engine reads the hyphen as a subtraction');
+      expect(
+        line.speech,
+        '6 3',
+        reason: 'an engine reads the hyphen as a subtraction',
+      );
     });
 
     test('reads the same in either phrasing', () {
@@ -164,10 +180,14 @@ void main() {
       // about — the helper is static so that a future edit has to decide to
       // make them disagree rather than drift into it.
       for (final dice in [Dice(6, 3), Dice(4, 4), Dice(1, 2)]) {
-        expect(BuddyPhrasing.describeDice(dice).text,
-            '${dice.die1}-${dice.die2}');
-        expect(BuddyPhrasing.describeDice(dice).speech,
-            '${dice.die1} ${dice.die2}');
+        expect(
+          BuddyPhrasing.describeDice(dice).text,
+          '${dice.die1}-${dice.die2}',
+        );
+        expect(
+          BuddyPhrasing.describeDice(dice).speech,
+          '${dice.die1} ${dice.die2}',
+        );
       }
     });
   });
@@ -177,9 +197,15 @@ void main() {
       final line = BuddyPhrasing.friendly.describePlay(
         play([hop(13, 8), hop(24, 22)]),
       );
-      expect(line.text, 'Move one checker from 13 to 8, and one from 24 to 22.');
-      expect(line.speech, line.text,
-          reason: 'friendly phrasing is already words — nothing to re-render');
+      expect(
+        line.text,
+        'Move one checker from 13 to 8, and one from 24 to 22.',
+      );
+      expect(
+        line.speech,
+        line.text,
+        reason: 'friendly phrasing is already words — nothing to re-render',
+      );
     });
 
     test('names the hit', () {
@@ -191,18 +217,24 @@ void main() {
 
     test('names the bar', () {
       expect(
-        BuddyPhrasing.friendly.describePlay(play([fromBar(22), hop(13, 11)])).text,
+        BuddyPhrasing.friendly
+            .describePlay(play([fromBar(22), hop(13, 11)]))
+            .text,
         'Move one checker from the bar to 22, and one from 13 to 11.',
       );
     });
 
     test('bears off with the verb a player would use', () {
       expect(
-        BuddyPhrasing.friendly.describePlay(play([bearOff(6), bearOff(6)])).text,
+        BuddyPhrasing.friendly
+            .describePlay(play([bearOff(6), bearOff(6)]))
+            .text,
         'Bear two checkers off from 6.',
       );
       expect(
-        BuddyPhrasing.friendly.describePlay(play([hop(13, 8), bearOff(6)])).text,
+        BuddyPhrasing.friendly
+            .describePlay(play([hop(13, 8), bearOff(6)]))
+            .text,
         'Move one checker from 13 to 8, and bear one off from 6.',
       );
     });
@@ -213,40 +245,45 @@ void main() {
       // elision turns the next hop into "bear one from 13 to 8" — an
       // instruction to take a checker off a point it cannot come off.
       expect(
-        BuddyPhrasing.friendly.describePlay(play([bearOff(6), hop(13, 8)])).text,
+        BuddyPhrasing.friendly
+            .describePlay(play([bearOff(6), hop(13, 8)]))
+            .text,
         'Bear one checker off from 6, and move one from 13 to 8.',
       );
       // And back again: the verb in effect is the most recent one spoken, not
       // the one the sentence opened with.
       expect(
         BuddyPhrasing.friendly
-            .describePlay(play([hop(13, 8), bearOff(6), hop(5, 3)])).text,
+            .describePlay(play([hop(13, 8), bearOff(6), hop(5, 3)]))
+            .text,
         'Move one checker from 13 to 8, bear one off from 6, and move one '
         'from 5 to 3.',
       );
       // Two bear-offs in a row DO elide — the verb has not changed.
       expect(
         BuddyPhrasing.friendly
-            .describePlay(play([bearOff(6), bearOff(5)])).text,
+            .describePlay(play([bearOff(6), bearOff(5)]))
+            .text,
         'Bear one checker off from 6, and one off from 5.',
       );
     });
 
     test('counts the checkers on a doubles play instead of repeating hops', () {
       expect(
-        BuddyPhrasing.friendly.describePlay(play([
-          hop(24, 20),
-          hop(24, 20),
-          hop(13, 9),
-          hop(13, 9),
-        ])).text,
+        BuddyPhrasing.friendly
+            .describePlay(
+              play([hop(24, 20), hop(24, 20), hop(13, 9), hop(13, 9)]),
+            )
+            .text,
         'Move two checkers from 24 to 20, and two from 13 to 9.',
       );
     });
 
     test('a dance is a sentence too', () {
-      expect(BuddyPhrasing.friendly.describePlay(Move.none).text,
-          'No legal play.');
+      expect(
+        BuddyPhrasing.friendly.describePlay(Move.none).text,
+        'No legal play.',
+      );
     });
   });
 
@@ -259,29 +296,33 @@ void main() {
       await speaker.speak('You rolled 6-3.');
       await speaker.announcePlay(play([hop(13, 8), hop(24, 22)]));
 
-      expect(speaker.lines.map((l) => l.text).toList(),
-          ['You rolled 6-3.', '13/8, 24/22']);
+      expect(speaker.lines.map((l) => l.text).toList(), [
+        'You rolled 6-3.',
+        '13/8, 24/22',
+      ]);
       expect(tts.spoken, ['You rolled 6-3.', '13 to 8, 24 to 22']);
     });
 
-    test('the transcript stream carries the line before the engine finishes',
-        () async {
-      final tts = FakeBuddyTts()..autoComplete = false;
-      final speaker = BuddySpeaker(engine: tts);
-      addTearDown(speaker.dispose);
+    test(
+      'the transcript stream carries the line before the engine finishes',
+      () async {
+        final tts = FakeBuddyTts()..autoComplete = false;
+        final speaker = BuddySpeaker(engine: tts);
+        addTearDown(speaker.dispose);
 
-      final seen = <String>[];
-      speaker.transcript.listen((l) => seen.add(l.text));
+        final seen = <String>[];
+        speaker.transcript.listen((l) => seen.add(l.text));
 
-      final spoken = speaker.speak('Your roll.');
-      await pumpEventQueue();
+        final spoken = speaker.speak('Your roll.');
+        await pumpEventQueue();
 
-      // On screen already; still coming out of the phone. A transcript that
-      // waited for the engine would lag every line by its whole utterance.
-      expect(seen, ['Your roll.']);
-      tts.finishNext();
-      await spoken;
-    });
+        // On screen already; still coming out of the phone. A transcript that
+        // waited for the engine would lag every line by its whole utterance.
+        expect(seen, ['Your roll.']);
+        tts.finishNext();
+        await spoken;
+      },
+    );
 
     test('lines are spoken one at a time, never overlapped', () async {
       final tts = FakeBuddyTts()..autoComplete = false;
@@ -292,8 +333,9 @@ void main() {
       final second = speaker.speak('Play 13/8, 24/22.');
       await pumpEventQueue();
 
-      expect(tts.spoken, ['I rolled 5-2.'],
-          reason: 'the second line must wait for the first to finish');
+      expect(tts.spoken, [
+        'I rolled 5-2.',
+      ], reason: 'the second line must wait for the first to finish');
       tts.finishNext();
       await first;
       await pumpEventQueue();
@@ -311,8 +353,11 @@ void main() {
       await speaker.speak('second');
 
       expect(tts.spoken, ['first', 'second']);
-      expect(speaker.lines.map((l) => l.text).toList(), ['first', 'second'],
-          reason: 'a dead voice must still leave a readable transcript');
+      expect(
+        speaker.lines.map((l) => l.text).toList(),
+        ['first', 'second'],
+        reason: 'a dead voice must still leave a readable transcript',
+      );
     });
 
     test('the engine is configured once, lazily, on the first line', () async {
@@ -320,8 +365,11 @@ void main() {
       final speaker = BuddySpeaker(engine: tts);
       addTearDown(speaker.dispose);
 
-      expect(tts.configureCalls, 0,
-          reason: 'constructing a speaker must not touch the engine');
+      expect(
+        tts.configureCalls,
+        0,
+        reason: 'constructing a speaker must not touch the engine',
+      );
       await speaker.speak('one');
       await speaker.speak('two');
       expect(tts.configureCalls, 1);
@@ -336,31 +384,41 @@ void main() {
       speaker.phrasing = BuddyPhrasing.friendly;
       await speaker.announcePlay(play([hop(13, 8)]));
 
-      expect(speaker.lines.map((l) => l.text).toList(),
-          ['13/8', 'Move one checker from 13 to 8.']);
+      expect(speaker.lines.map((l) => l.text).toList(), [
+        '13/8',
+        'Move one checker from 13 to 8.',
+      ]);
     });
 
-    test('stop() silences the engine and drops the queue, keeping the text',
-        () async {
-      final tts = FakeBuddyTts()..autoComplete = false;
-      final speaker = BuddySpeaker(engine: tts);
-      addTearDown(speaker.dispose);
+    test(
+      'stop() silences the engine and drops the queue, keeping the text',
+      () async {
+        final tts = FakeBuddyTts()..autoComplete = false;
+        final speaker = BuddySpeaker(engine: tts);
+        addTearDown(speaker.dispose);
 
-      final first = speaker.speak('long line');
-      unawaited(speaker.speak('queued line'));
-      await pumpEventQueue();
+        final first = speaker.speak('long line');
+        unawaited(speaker.speak('queued line'));
+        await pumpEventQueue();
 
-      await speaker.stop();
-      tts.finishNext();
-      await first;
-      await pumpEventQueue();
+        await speaker.stop();
+        tts.finishNext();
+        await first;
+        await pumpEventQueue();
 
-      expect(tts.stopCalls, 1);
-      expect(tts.spoken, ['long line'],
-          reason: 'the queued line was abandoned, not spoken after the stop');
-      expect(speaker.lines.length, 2,
-          reason: 'both lines were still SAID by Buddy, so both stay on screen');
-    });
+        expect(tts.stopCalls, 1);
+        expect(
+          tts.spoken,
+          ['long line'],
+          reason: 'the queued line was abandoned, not spoken after the stop',
+        );
+        expect(
+          speaker.lines.length,
+          2,
+          reason: 'both lines were still SAID by Buddy, so both stay on screen',
+        );
+      },
+    );
   });
 
   group('configuration', () {
@@ -390,8 +448,11 @@ void main() {
 
       await speaker.speak('the line that pays for it');
       expect(tts.configureCalls, 1);
-      expect(tts.spoken, isEmpty,
-          reason: 'the failure came before speak, and is swallowed');
+      expect(
+        tts.spoken,
+        isEmpty,
+        reason: 'the failure came before speak, and is swallowed',
+      );
 
       await speaker.speak('the next line');
       expect(tts.configureCalls, 2, reason: 'the flag never latched');
@@ -433,8 +494,9 @@ void main() {
       unawaited(speaker.speak('second real line'));
       await pumpEventQueue();
 
-      expect(tts.spoken, ['first real line'],
-          reason: 'the second line waits for the first to finish');
+      expect(tts.spoken, [
+        'first real line',
+      ], reason: 'the second line waits for the first to finish');
       tts.finishNext();
       await pumpEventQueue();
       expect(tts.spoken, ['first real line', 'second real line']);
@@ -451,11 +513,12 @@ void main() {
     setUp(() {
       channelCalls = [];
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-          .setMockMethodCallHandler(const MethodChannel('flutter_tts'),
-              (call) async {
-        channelCalls.add(call.method);
-        return null;
-      });
+          .setMockMethodCallHandler(const MethodChannel('flutter_tts'), (
+            call,
+          ) async {
+            channelCalls.add(call.method);
+            return null;
+          });
     });
 
     test('is true only on Android and iOS', () {
@@ -474,18 +537,20 @@ void main() {
       TargetPlatform.linux,
       TargetPlatform.macOS,
     ]) {
-      test('$platform gets a silent engine and touches no TTS channel',
-          () async {
-        debugDefaultTargetPlatformOverride = platform;
-        final speaker = BuddySpeaker.forPlatform();
-        addTearDown(speaker.dispose);
+      test(
+        '$platform gets a silent engine and touches no TTS channel',
+        () async {
+          debugDefaultTargetPlatformOverride = platform;
+          final speaker = BuddySpeaker.forPlatform();
+          addTearDown(speaker.dispose);
 
-        expect(speaker.engine, isA<SilentBuddyTts>());
-        await speaker.speak('anything');
-        await speaker.stop();
+          expect(speaker.engine, isA<SilentBuddyTts>());
+          await speaker.speak('anything');
+          await speaker.stop();
 
-        expect(channelCalls, isEmpty);
-      });
+          expect(channelCalls, isEmpty);
+        },
+      );
     }
 
     test('the transcript still works on desktop — it is pure Dart', () async {

@@ -117,7 +117,7 @@ void main() {
   test('iOS retains its local AVSpeechSynthesizer plugin path', () async {
     debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
     final engine = FlutterTtsBuddyTts();
-    await engine.configure();
+    await engine.configure(locale: 'en');
     await engine.speak('Your roll.');
     expect(pluginCalls.map((call) => call.method), [
       'setLanguage', 'awaitSpeakCompletion', 'setSpeechRate', 'speak',
@@ -152,12 +152,12 @@ void main() {
       return 1;
     });
     final old = FlutterTtsBuddyTts();
-    await old.configure();
+    await old.configure(locale: 'en');
     final oldOwner = owner;
     final stopping = old.stop();
     await pumpEventQueue();
     final current = FlutterTtsBuddyTts();
-    await current.configure();
+    await current.configure(locale: 'en');
     final currentOwner = owner;
     expect(currentOwner, isNot(oldOwner));
     oldStop.complete();
@@ -177,8 +177,8 @@ void main() {
     debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
     final old = FlutterTtsBuddyTts();
     final current = FlutterTtsBuddyTts();
-    await old.configure();
-    await current.configure();
+    await old.configure(locale: 'en');
+    await current.configure(locale: 'en');
     pluginCalls.clear();
     await old.stop();
     await old.dispose();
@@ -200,10 +200,10 @@ void main() {
       return 1;
     });
     final old = FlutterTtsBuddyTts();
-    final configuring = old.configure();
+    final configuring = old.configure(locale: 'en');
     await pumpEventQueue();
     final current = FlutterTtsBuddyTts();
-    await current.configure();
+    await current.configure(locale: 'en');
     delayedLanguage.complete(1);
     await configuring;
     await old.speak('Stale.');
@@ -244,12 +244,12 @@ void main() {
       return 1;
     });
     final old = FlutterTtsBuddyTts();
-    await old.configure();
+    await old.configure(locale: 'en');
     final speaking = old.speak('Old session.');
     await pumpEventQueue();
     pluginCalls.clear();
     final current = FlutterTtsBuddyTts();
-    await current.configure();
+    await current.configure(locale: 'en');
     await speaking.timeout(const Duration(seconds: 1));
     await old.stop();
     await old.dispose();

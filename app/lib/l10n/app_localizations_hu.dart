@@ -3222,4 +3222,173 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Győzelmi esély';
+
+  @override
+  String get buddyBar => 'a bár';
+
+  @override
+  String get buddyOff => 'le';
+
+  @override
+  String get buddyHitSuffix => ', ütés';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Egy ellenőrző áthelyezése innen: $from ide: $to $hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return '$count ellenőrző áthelyezése innen: $from ide: $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Nyújtson egy kockát innen: $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Nyomj le $count dámát innen: $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return '$dice-t dobtam.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return '$dice-t dobott.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'Mindkét dobás $die. Tekerd újra.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn => 'Nincs játék, tehát rajtad a sor.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn => 'Nincs játék, így Buddy-n a sor.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Nincs játék – elmegy a köröd.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'Nincs játék, így visszatért hozzád.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'Ez nem legális színjáték.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'Ez nem egészen helyes. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'A tábla eltér a játéktól: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: a játék $expected $side dámát vár; a kamera látja a következőt: $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'szót fogadok. Nem láthattam azt az egy földet, így ha elváltunk, akkor színdarabként fog megjelenni, amit nem tudok elolvasni.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Megduplázom – veszem vagy ledobom?';
+
+  @override
+  String get buddySpeechYouDouble => 'Megduplázod.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'veszem.';
+
+  @override
+  String get buddySpeechYouTake => 'Veszel.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'leejtem.';
+
+  @override
+  String get buddySpeechYouDrop => 'Leessz.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Megnyerem ezt a játékot: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Megnyerted ezt a játékot: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'Nekem ez a megfelelő.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Megnyered a meccset.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Az utolsó játékod megfelelt a motor legjobbjának.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Az utolsó játékod közel volt a motor legjobbjához.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Legutóbbi játékodnál a motor a következőt részesítette előnyben: $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return '$best ellentétes kockát hagy a sávon a $played helyett.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return '$played helyett $best blotot hagy.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return '$played helyett $best home-board pontot tartalmaz.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'A(z) $played helyett $best ellenőrző van kikapcsolva.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'A rangsor a becsült nyereményeket és gammonokat mérlegeli; egyetlen tábla funkció sem magyarázza meg.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Play $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return '$dice–$move.';
+  }
 }

@@ -14,6 +14,7 @@ library;
 
 import 'package:backgammon_core/backgammon_core.dart';
 import 'package:flutter/foundation.dart';
+import '../l10n/app_localizations.dart';
 
 /// One thing Buddy says: what the phone speaks, and what the screen shows.
 ///
@@ -66,9 +67,9 @@ enum BuddyPhrasing {
   /// the two renderings in their own sentence, so this returns the pair
   /// rather than a finished line.
   static BuddyLine describeDice(Dice dice) => BuddyLine(
-        '${dice.die1}-${dice.die2}',
-        speech: '${dice.die1} ${dice.die2}',
-      );
+    '${dice.die1}-${dice.die2}',
+    speech: '${dice.die1} ${dice.die2}',
+  );
 
   /// Renders [move] for both channels.
   ///
@@ -80,7 +81,7 @@ enum BuddyPhrasing {
   /// the very same match are all in front of the user at once, and a spoken
   /// "eight" that reads as "17" two centimetres away is worse than a frame the
   /// user has to learn once.
-  BuddyLine describePlay(Move move) {
+  BuddyLine describePlay(Move move, {AppLocalizations? l10n}) {
     final hops = _GroupedHop.of(move);
     if (hops.isEmpty) {
       return switch (this) {
@@ -90,10 +91,14 @@ enum BuddyPhrasing {
     }
     return switch (this) {
       BuddyPhrasing.terse => BuddyLine(
-          hops.map((h) => h.notation).join(', '),
-          speech: hops.map((h) => h.terseSpeech).join(', '),
-        ),
-      BuddyPhrasing.friendly => BuddyLine(_friendlySentence(hops)),
+        hops.map((h) => h.notation).join(', '),
+        speech: hops.map((h) => h.terseSpeech).join(', '),
+      ),
+      BuddyPhrasing.friendly => BuddyLine(
+        l10n == null
+            ? _friendlySentence(hops)
+            : _localizedFriendlySentence(hops, l10n),
+      ),
     };
   }
 
@@ -110,10 +115,12 @@ enum BuddyPhrasing {
     String? verbInEffect;
     for (final hop in hops) {
       final verb = hop.friendlyVerb;
-      parts.add(hop.friendlyClause(
-        withVerb: parts.isEmpty || verb != verbInEffect,
-        withNoun: parts.isEmpty,
-      ));
+      parts.add(
+        hop.friendlyClause(
+          withVerb: parts.isEmpty || verb != verbInEffect,
+          withNoun: parts.isEmpty,
+        ),
+      );
       verbInEffect = verb;
     }
     final joined = parts.length == 1
@@ -121,6 +128,11 @@ enum BuddyPhrasing {
         : '${parts.take(parts.length - 1).join(', ')}, and ${parts.last}';
     return '${joined[0].toUpperCase()}${joined.substring(1)}.';
   }
+
+  static String _localizedFriendlySentence(
+    List<_GroupedHop> hops,
+    AppLocalizations l10n,
+  ) => '${hops.map((hop) => hop.localizedClause(l10n)).join('; ')}.';
 }
 
 /// Identical hops folded into one, with a count.
@@ -158,12 +170,7 @@ class _GroupedHop {
     }
     return [
       for (final key in order)
-        _GroupedHop(
-          key ~/ 100,
-          key % 100 - 1,
-          counts[key]!,
-          isHit: hits[key]!,
-        ),
+        _GroupedHop(key ~/ 100, key % 100 - 1, counts[key]!, isHit: hits[key]!),
     ];
   }
 
@@ -212,21 +219,33 @@ class _GroupedHop {
     return '${withVerb ? '$friendlyVerb ' : ''}$body$_hitting';
   }
 
+  String localizedClause(AppLocalizations l10n) {
+    final source = _fromBar ? l10n.buddyBar : '${from + 1}';
+    final hit = isHit ? l10n.buddyHitSuffix : '';
+    return _bearsOff
+        ? count == 1
+              ? l10n.buddyFriendlyBearOffOne(source, hit).trim()
+              : l10n.buddyFriendlyBearOffMany('$count', source, hit).trim()
+        : count == 1
+        ? l10n.buddyFriendlyMoveOne(source, '${to + 1}', hit).trim()
+        : l10n.buddyFriendlyMoveMany('$count', source, '${to + 1}', hit).trim();
+  }
+
   String get _path => 'from ${_fromBar ? 'the bar' : from + 1} to ${to + 1}';
 
   String get _hitting => isHit ? ', hitting' : '';
 
   String get _count => switch (count) {
-        1 => 'one',
-        2 => 'two',
-        3 => 'three',
-        _ => 'four',
-      };
+    1 => 'one',
+    2 => 'two',
+    3 => 'three',
+    _ => 'four',
+  };
 
   String get _times => switch (count) {
-        1 => '',
-        2 => ' twice',
-        3 => ' three times',
-        _ => ' four times',
-      };
+    1 => '',
+    2 => ' twice',
+    3 => ' three times',
+    _ => ' four times',
+  };
 }

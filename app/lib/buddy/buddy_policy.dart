@@ -2,6 +2,8 @@ import 'package:backgammon_core/backgammon_core.dart';
 import 'package:board_vision/board_vision.dart';
 
 import 'speaker.dart';
+import '../l10n/app_localizations.dart';
+import 'buddy_localization.dart';
 
 /// What happened to the cube, as the session narrates it.
 ///
@@ -90,9 +92,10 @@ abstract interface class BuddyPolicy {
 /// the transition into red — the spec says "spoken once (not nagged)" and the
 /// session only ever calls [onReadability] on a change.
 class OpponentPolicy implements BuddyPolicy {
-  OpponentPolicy({required this.speaker, required this.buddySide});
+  OpponentPolicy({required this.speaker, required this.buddySide, this.l10n});
 
   final BuddySpeaker speaker;
+  final AppLocalizations? l10n;
 
   /// The side the engine plays. Everything else is the user's.
   final Player buddySide;
@@ -114,22 +117,35 @@ class OpponentPolicy implements BuddyPolicy {
   void onDiceRead(Player roller, Dice dice, double? confidence) {
     final mine = roller == buddySide;
     _buddyRollSaid = mine ? dice : null;
-    final who = mine ? 'I rolled' : 'You rolled';
     final d = BuddyPhrasing.describeDice(dice);
-    speaker.say(BuddyLine('$who ${d.text}.', speech: '$who ${d.speech}.'));
+    final line = l10n == null
+        ? '${mine ? 'I rolled' : 'You rolled'} ${d.text}.'
+        : mine
+        ? l10n!.buddySpeechIRolled(d.text)
+        : l10n!.buddySpeechYouRolled(d.text);
+    final spoken = l10n == null
+        ? '${mine ? 'I rolled' : 'You rolled'} ${d.speech}.'
+        : mine
+        ? l10n!.buddySpeechIRolled(d.speech)
+        : l10n!.buddySpeechYouRolled(d.speech);
+    speaker.say(BuddyLine(line, speech: spoken));
   }
 
   @override
-  void onOpeningRerolled(Dice tied) => speaker.say(BuddyLine(
-        'Both ${tied.die1} — roll again.',
-        speech: 'Both ${tied.die1}. Roll again.',
-      ));
+  void onOpeningRerolled(Dice tied) => speaker.say(
+    BuddyLine(
+      l10n?.buddySpeechOpeningTie('${tied.die1}') ??
+          'Both ${tied.die1} — roll again.',
+    ),
+  );
 
   @override
   void onPlayObserved(Player mover, Move play) {
     if (mover == buddySide) return; // Buddy's own play was announced already.
     if (play.checkerMoves.isEmpty) {
-      speaker.say(const BuddyLine('No play — your turn passes.'));
+      speaker.say(
+        BuddyLine(l10n?.buddySpeechNoPlayPass ?? 'No play — your turn passes.'),
+      );
       return;
     }
     // Terse on purpose: an acknowledgement is a receipt, not a commentary.
@@ -137,8 +153,13 @@ class OpponentPolicy implements BuddyPolicy {
   }
 
   @override
-  void onIllegalPlayObserved(String reason) =>
-      speaker.say(BuddyLine("That isn't a legal play. $reason"));
+  void onIllegalPlayObserved(String reason) => speaker.say(
+    BuddyLine(
+      l10n == null
+          ? "That isn't a legal play. $reason"
+          : '${l10n!.buddySpeechIllegalPlay} $reason',
+    ),
+  );
 
   /// **The roll is named here only if nothing has named it yet.** In every
   /// production path [onDiceRead] has just said it — the session announces a
@@ -153,21 +174,30 @@ class OpponentPolicy implements BuddyPolicy {
     _buddyRollSaid = null;
     final d = said ? null : BuddyPhrasing.describeDice(dice);
     if (play.checkerMoves.isEmpty) {
-      speaker.say(d == null
-          ? const BuddyLine('No play, so it is back to you.')
-          : BuddyLine(
-              'I rolled ${d.text} — no play, so it is back to you.',
-              speech: 'I rolled ${d.speech}. No play, so it is back to you.',
-            ));
+      speaker.say(
+        BuddyLine(
+          d == null
+              ? l10n?.buddySpeechNoPlayBack ?? 'No play, so it is back to you.'
+              : '${l10n?.buddySpeechIRolled(d.text) ?? 'I rolled ${d.text}.'} ${l10n?.buddySpeechNoPlayBack ?? 'No play, so it is back to you.'}',
+          speech: d == null
+              ? l10n?.buddySpeechNoPlayBack ?? 'No play, so it is back to you.'
+              : '${l10n?.buddySpeechIRolled(d.speech) ?? 'I rolled ${d.speech}.'} ${l10n?.buddySpeechNoPlayBack ?? 'No play, so it is back to you.'}',
+        ),
+      );
       return;
     }
-    final body = _dictation(speaker.phrasing.describePlay(play));
-    speaker.say(d == null
-        ? body
-        : BuddyLine(
-            'I rolled ${d.text} — ${_lowerFirst(body.text)}',
-            speech: 'I rolled ${d.speech}. ${body.speech}',
-          ));
+    final body = _dictation(speaker.phrasing.describePlay(play, l10n: l10n));
+    speaker.say(
+      d == null
+          ? body
+          : BuddyLine(
+              l10n?.buddySpeechBuddyRolledMove(d.text, body.text) ??
+                  'I rolled ${d.text} — ${_lowerFirst(body.text)}',
+              speech:
+                  l10n?.buddySpeechBuddyRolledMove(d.speech, body.speech) ??
+                  'I rolled ${d.speech}. ${body.speech}',
+            ),
+    );
   }
 
   /// The play as an instruction to a pair of hands.
@@ -175,14 +205,14 @@ class OpponentPolicy implements BuddyPolicy {
   /// Terse hands back notation, which needs a verb in front of it; friendly
   /// hands back a finished imperative sentence, which does not — a verb in
   /// front of that one reads "play Move one checker from 13 to 8".
-  BuddyLine _dictation(BuddyLine described) =>
-      switch (speaker.phrasing) {
-        BuddyPhrasing.terse => BuddyLine(
-            'Play ${described.text}',
-            speech: 'Play ${described.speech}',
-          ),
-        BuddyPhrasing.friendly => described,
-      };
+  BuddyLine _dictation(BuddyLine described) => switch (speaker.phrasing) {
+    BuddyPhrasing.terse => BuddyLine(
+      l10n?.buddySpeechPlay(described.text) ?? 'Play ${described.text}',
+      speech:
+          l10n?.buddySpeechPlay(described.speech) ?? 'Play ${described.speech}',
+    ),
+    BuddyPhrasing.friendly => described,
+  };
 
   static String _lowerFirst(String s) =>
       s.isEmpty ? s : '${s[0].toLowerCase()}${s.substring(1)}';
@@ -193,7 +223,12 @@ class OpponentPolicy implements BuddyPolicy {
     // a double — is the acknowledgement, and a board being correct is the
     // ordinary case, which is precisely what must not be narrated.
     if (correct) return;
-    speaker.say(BuddyLine("That isn't quite it. ${fix ?? ''}".trim()));
+    speaker.say(
+      BuddyLine(
+        l10n?.buddySpeechPlacementMismatch(fix ?? '').trim() ??
+            "That isn't quite right.",
+      ),
+    );
   }
 
   /// **A caveat, not an acknowledgement**, and the difference is the whole
@@ -203,22 +238,32 @@ class OpponentPolicy implements BuddyPolicy {
   /// also true: a board that has genuinely come apart from the game shows up at
   /// the next play, as a difference no legal move accounts for.
   @override
-  void onPlacementSkipped() => speaker.say(const BuddyLine(
-        "I'll take your word for it. I could not see that one land, so if we "
-        'have come apart it will show up as a play I cannot read.',
-      ));
+  void onPlacementSkipped() => speaker.say(
+    BuddyLine(
+      l10n?.buddySpeechSkippedCheck ??
+          "I'll take your word for it. I could not see that one land, so if we "
+              'have come apart it will show up as a play I cannot read.',
+    ),
+  );
 
   @override
   void onCubeAction(Player actor, BuddyCubeAction action) {
     final mine = actor == buddySide;
     speaker.say(switch (action) {
-      BuddyCubeAction.offered => mine
-          ? const BuddyLine('I double — take or drop?')
-          : const BuddyLine('You double.'),
+      BuddyCubeAction.offered =>
+        mine
+            ? BuddyLine(
+                l10n?.buddySpeechBuddyDouble ?? 'I double — take or drop?',
+              )
+            : BuddyLine(l10n?.buddySpeechYouDouble ?? 'You double.'),
       BuddyCubeAction.taken =>
-        mine ? const BuddyLine('I take.') : const BuddyLine('You take.'),
+        mine
+            ? BuddyLine(l10n?.buddySpeechBuddyTakes ?? 'I take.')
+            : BuddyLine(l10n?.buddySpeechYouTake ?? 'You take.'),
       BuddyCubeAction.dropped =>
-        mine ? const BuddyLine('I drop.') : const BuddyLine('You drop.'),
+        mine
+            ? BuddyLine(l10n?.buddySpeechBuddyDrops ?? 'I drop.')
+            : BuddyLine(l10n?.buddySpeechYouDrop ?? 'You drop.'),
     });
   }
 
@@ -229,23 +274,44 @@ class OpponentPolicy implements BuddyPolicy {
       // and this latch survives an amber flicker in between two reds.
       if (_saidRed) return;
       _saidRed = true;
-      speaker.say(BuddyLine(state.message));
+      speaker.say(
+        BuddyLine(
+          l10n == null ? state.message : buddyReadabilityMessage(state, l10n!),
+        ),
+      );
       return;
     }
     if (state.level == ReadabilityLevel.green && _saidRed) {
       _saidRed = false;
-      speaker.say(const BuddyLine('I can see the board again.'));
+      speaker.say(
+        BuddyLine(l10n?.buddyReadabilityClear ?? 'I can see the board again.'),
+      );
     }
   }
 
   @override
   void onGameEnd(GameResult result) {
-    final who = result.winner == buddySide ? 'I win' : 'You win';
-    final points = result.points == 1 ? '1 point' : '${result.points} points';
-    speaker.say(BuddyLine('$who $points.'));
+    final won = result.winner == buddySide;
+    final points = result.points == 1
+        ? '1 ${l10n?.tutorMovePointSingular ?? 'point'}'
+        : '${result.points} ${l10n?.tutorMovePointPlural ?? 'points'}';
+    speaker.say(
+      BuddyLine(
+        l10n == null
+            ? '${won ? 'I' : 'You'} win, $points.'
+            : won
+            ? l10n!.buddySpeechGameWinnerBuddy(points)
+            : l10n!.buddySpeechGameWinnerYou(points),
+      ),
+    );
   }
 
   @override
-  void onMatchEnd(Player winner) => speaker.say(BuddyLine(
-      winner == buddySide ? 'That is the match to me.' : 'You win the match.'));
+  void onMatchEnd(Player winner) => speaker.say(
+    BuddyLine(
+      winner == buddySide
+          ? l10n?.buddySpeechMatchWinnerBuddy ?? 'That is the match to me.'
+          : l10n?.buddySpeechMatchWinnerYou ?? 'You win the match.',
+    ),
+  );
 }

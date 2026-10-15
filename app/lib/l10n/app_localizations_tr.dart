@@ -3198,4 +3198,174 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Kazanma olasılığı';
+
+  @override
+  String get buddyBar => 'bar';
+
+  @override
+  String get buddyOff => 'kapalı';
+
+  @override
+  String get buddyHitSuffix => ', vurmak';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Bir pulu $from\'dan $to $hit\'ye taşıyın';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return '$count damayı $from konumundan $to $hit konumuna taşıyın';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return '$from $hit\'dan bir pul çekin';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return '$from $hit\'den $count dama taşıyın';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return '$dice yuvarladım.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return '$dice attınız.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'İkisi de $die attı. Tekrar yuvarlan.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn => 'Oyun yok, sıra sizde.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn =>
+      'Oyun yok, bu yüzden sıra Buddy\'de.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Oyun yok; sıranız geçer.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'Oyun yok, bu yüzden size geri dönüyor.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'Bu yasal bir oyun değil.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'Bu pek doğru değil. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Tahta oyundan farklıdır: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: oyun $expected $side dama bekliyor; kamera $observed\'ı görür.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'Bu konuda senin sözüne güveneceğim. O ülkeyi göremedim, eğer ayrılırsak okuyamadığım bir oyun olarak karşımıza çıkar.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'İki katına çıkıyorum - al ya da bırak?';
+
+  @override
+  String get buddySpeechYouDouble => 'Sen ikiye katla.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'Ben alıyorum.';
+
+  @override
+  String get buddySpeechYouTake => 'Sen al.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'Düşüyorum.';
+
+  @override
+  String get buddySpeechYouDrop => 'Sen bırak.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Bu oyunu kazandım: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Bu oyunu kazanırsınız: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'Benim için maç bu.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Maçı kazanırsın.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Son oyununuz motorun en iyi performansıyla eşleşti.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Son oyununuz motorun en iyisine yakındı.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Son oyununuzda motor $move\'ı tercih etti. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'Çubukta $played yerine $best adet karşılıklı pul bırakıyor.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return '$played yerine $best leke bırakıyor.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return '$played yerine $best ev tahtası puanına sahiptir.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return '$played yerine $best daması var.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'Sıralamada tahmini galibiyetler ve kumarlar ağırlıklandırılıyor; hiçbir tek kart özelliği bunu açıklamıyor.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return '$move oyna';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return '$dice — $move yuvarladım';
+  }
 }

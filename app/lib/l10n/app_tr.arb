@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Her iki motorla analiz et",
   "parallelEngineExplanation": "Öğreticide wildbg ve GNUbg önerilerini ayrı ayrı karşılaştırın.",
   "engineComparison": "Motor karşılaştırması",
-  "engineWinChance": "Kazanma olasılığı"
+  "engineWinChance": "Kazanma olasılığı",
+  "buddyBar": "bar",
+  "buddyOff": "kapalı",
+  "buddyHitSuffix": ", vurmak",
+  "buddyFriendlyMoveOne": "Bir pulu {from}'dan {to} {hit}'ye taşıyın",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "{count} damayı {from} konumundan {to} {hit} konumuna taşıyın",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "{from} {hit}'dan bir pul çekin",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "{from} {hit}'den {count} dama taşıyın",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "{dice} yuvarladım.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "{dice} attınız.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "İkisi de {die} attı. Tekrar yuvarlan.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Oyun yok, sıra sizde.",
+  "buddySpeechNoPlayBuddyTurn": "Oyun yok, bu yüzden sıra Buddy'de.",
+  "buddySpeechNoPlayPass": "Oyun yok; sıranız geçer.",
+  "buddySpeechNoPlayBack": "Oyun yok, bu yüzden size geri dönüyor.",
+  "buddySpeechIllegalPlay": "Bu yasal bir oyun değil.",
+  "buddySpeechPlacementMismatch": "Bu pek doğru değil. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Bu konuda senin sözüne güveneceğim. O ülkeyi göremedim, eğer ayrılırsak okuyamadığım bir oyun olarak karşımıza çıkar.",
+  "buddySpeechBuddyDouble": "İki katına çıkıyorum - al ya da bırak?",
+  "buddySpeechYouDouble": "Sen ikiye katla.",
+  "buddySpeechBuddyTakes": "Ben alıyorum.",
+  "buddySpeechYouTake": "Sen al.",
+  "buddySpeechBuddyDrops": "Düşüyorum.",
+  "buddySpeechYouDrop": "Sen bırak.",
+  "buddySpeechMatchWinnerBuddy": "Benim için maç bu.",
+  "buddySpeechMatchWinnerYou": "Maçı kazanırsın.",
+  "buddyTutorLastPlayBest": "Son oyununuz motorun en iyi performansıyla eşleşti.",
+  "buddyTutorLastPlayClose": "Son oyununuz motorun en iyisine yakındı.",
+  "buddyTutorPreferredMove": "Son oyununuzda motor {move}'ı tercih etti. {reason}",
+  "buddyTutorBarDifference": "Çubukta {played} yerine {best} adet karşılıklı pul bırakıyor.",
+  "buddyTutorBlotDifference": "{played} yerine {best} leke bırakıyor.",
+  "buddyTutorHomeDifference": "{played} yerine {best} ev tahtası puanına sahiptir.",
+  "buddyTutorOffDifference": "{played} yerine {best} daması var.",
+  "buddyTutorGeneralDifference": "Sıralamada tahmini galibiyetler ve kumarlar ağırlıklandırılıyor; hiçbir tek kart özelliği bunu açıklamıyor.",
+  "buddySpeechPlay": "{move} oyna",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "{dice} — {move} yuvarladım",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Bu oyunu kazandım: {points}.",
+  "buddySpeechGameWinnerYou": "Bu oyunu kazanırsınız: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Tahta oyundan farklıdır: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: oyun {expected} {side} dama bekliyor; kamera {observed}'ı görür.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

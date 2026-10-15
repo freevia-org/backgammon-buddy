@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Аналізувати обома рушіями",
   "parallelEngineExplanation": "Порівнюйте окремі поради wildbg і GNUbg у наставнику.",
   "engineComparison": "Порівняння рушіїв",
-  "engineWinChance": "Шанс перемоги"
+  "engineWinChance": "Шанс перемоги",
+  "buddyBar": "бар",
+  "buddyOff": "вимкнено",
+  "buddyHitSuffix": ", удари",
+  "buddyFriendlyMoveOne": "Перемістити одну шашку з {from} на {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Перемістіть {count} шашок з {from} на {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Зніміть одну шашку з {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Зніміть {count} шашки з {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Я кинув {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Ви кинули {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Обидва кинули {die}. Знову розкачати.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Ніякої гри, тож ваша черга.",
+  "buddySpeechNoPlayBuddyTurn": "Немає гри, тож черга Бадді.",
+  "buddySpeechNoPlayPass": "Немає гри — ваша черга пройдена.",
+  "buddySpeechNoPlayBack": "Немає гри, тому все повертається до вас.",
+  "buddySpeechIllegalPlay": "Це не законна гра.",
+  "buddySpeechPlacementMismatch": "Це не зовсім правильно. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Я повірю вам на слово. Я не міг бачити цю єдину землю, тож якщо ми розійдемося, це буде вистава, яку я не можу прочитати.",
+  "buddySpeechBuddyDouble": "Я подвійний — брати чи кидати?",
+  "buddySpeechYouDouble": "Ти подвоюєшся.",
+  "buddySpeechBuddyTakes": "Я беру.",
+  "buddySpeechYouTake": "Ви берете.",
+  "buddySpeechBuddyDrops": "Я кидаю.",
+  "buddySpeechYouDrop": "Ви падаєте.",
+  "buddySpeechMatchWinnerBuddy": "Це матч для мене.",
+  "buddySpeechMatchWinnerYou": "Ви виграли матч.",
+  "buddyTutorLastPlayBest": "Ваша остання гра відповідала найкращому двигуну.",
+  "buddyTutorLastPlayClose": "Ваша остання гра була близькою до найкращої движка.",
+  "buddyTutorPreferredMove": "Під час вашої останньої гри система віддала перевагу {move}. {reason}",
+  "buddyTutorBarDifference": "Це залишає {best} протилежних шашок на планці замість {played}.",
+  "buddyTutorBlotDifference": "Це залишає {best} плям замість {played}.",
+  "buddyTutorHomeDifference": "Він містить {best} очок домашньої дошки замість {played}.",
+  "buddyTutorOffDifference": "На ньому знято {best} шашок замість {played}.",
+  "buddyTutorGeneralDifference": "У рейтингу зважуються передбачувані виграші та нагороди; жодна функція плати не пояснює це.",
+  "buddySpeechPlay": "Відтворити {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Я кинув {dice} — {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Я виграв цю гру: {points}.",
+  "buddySpeechGameWinnerYou": "Ви виграли цю гру: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Дошка відрізняється від гри: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: гра очікує {expected} {side} шашок; камера бачить {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

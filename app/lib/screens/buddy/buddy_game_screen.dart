@@ -28,6 +28,7 @@ import '../../game/game_controller.dart';
 import '../../game/game_record.dart';
 import '../../game/player_agent.dart';
 import '../../l10n/localization_lookup.dart';
+import '../../l10n/app_localizations.dart';
 import '../../tutor/tutor_service.dart';
 import '../game/tap_when_disabled.dart';
 import 'buddy_setup_screen.dart';
@@ -190,17 +191,26 @@ class BuddyGameScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PhysicalBuddyGate(
-    builder: (_) => _EnabledBuddyGameScreen(setup: setup, outcome: outcome),
+    builder: (_) => _EnabledBuddyGameScreen(
+      setup: setup,
+      outcome: outcome,
+      l10n: appLocalizationsOf(context),
+    ),
   );
 }
 
 class _EnabledBuddyGameScreen extends ConsumerStatefulWidget {
-  const _EnabledBuddyGameScreen({required this.setup, required this.outcome});
+  const _EnabledBuddyGameScreen({
+    required this.setup,
+    required this.outcome,
+    required this.l10n,
+  });
 
   final BuddySetup setup;
 
   /// The learned board the calibration flow just handed over.
   final CalibrationOutcome outcome;
+  final AppLocalizations l10n;
 
   @override
   ConsumerState<_EnabledBuddyGameScreen> createState() =>
@@ -277,6 +287,7 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
     _speaker = BuddySpeaker(
       engine: ref.read(buddyTtsProvider)(),
       phrasing: widget.setup.phrasing,
+      l10n: widget.l10n,
     );
     final preferences =
         ref.read(settingsProvider).valueOrNull ?? AppSettings.defaults;
@@ -286,6 +297,7 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
         options: preferences.tutorOptions,
         speaker: _speaker,
         userSide: widget.setup.userSide,
+        l10n: widget.l10n,
       );
     }
     final repo = ref.read(matchRepositoryProvider);
@@ -304,10 +316,12 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
       policy: OpponentPolicy(
         speaker: _speaker,
         buddySide: widget.setup.buddySide,
+        l10n: widget.l10n,
       ),
       frames: _camera.frames,
       matchLength: widget.setup.matchLength,
       cubeless: widget.setup.cubeless,
+      l10n: widget.l10n,
       persistence: RepositoryPersistence(repo, matchId),
     );
     // BEFORE the listener is attached: `useCalibration` notifies, and a
@@ -1145,7 +1159,9 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
           for (final move in _session.candidates) ...<Widget>[
             OutlinedButton(
               onPressed: () => _pickCandidate(move),
-              child: Text(_speaker.phrasing.describePlay(move).text),
+              child: Text(
+                _speaker.phrasing.describePlay(move, l10n: widget.l10n).text,
+              ),
             ),
             const SizedBox(width: 8),
           ],

@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Mit beiden Engines analysieren",
   "parallelEngineExplanation": "Vergleiche die getrennten Empfehlungen von wildbg und GNUbg im Tutor.",
   "engineComparison": "Engine-Vergleich",
-  "engineWinChance": "Gewinnchance"
+  "engineWinChance": "Gewinnchance",
+  "buddyBar": "die Bar",
+  "buddyOff": "aus",
+  "buddyHitSuffix": ", schlagend",
+  "buddyFriendlyMoveOne": "Verschiebe einen Stein von {from} nach {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Verschiebe {count} Steine ​​von {from} nach {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Tragen Sie einen Stein von {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Tragen Sie {count} Steine ​​von {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Ich habe {dice} gewürfelt.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Du hast {dice} gewürfelt.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Beide haben {die} gewürfelt. Noch einmal rollen.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Kein Spiel, also sind Sie an der Reihe.",
+  "buddySpeechNoPlayBuddyTurn": "Kein Spiel, also ist Buddy an der Reihe.",
+  "buddySpeechNoPlayPass": "Kein Spiel – Sie sind an der Reihe.",
+  "buddySpeechNoPlayBack": "Kein Spiel, also geht es zurück zu Ihnen.",
+  "buddySpeechIllegalPlay": "Das ist kein legales Spiel.",
+  "buddySpeechPlacementMismatch": "Das ist nicht ganz richtig. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Ich vertraue Ihnen beim Wort. Ich konnte dieses eine Land nicht sehen. Wenn wir uns also getrennt haben, wird es als ein Stück auftauchen, das ich nicht lesen kann.",
+  "buddySpeechBuddyDouble": "Ich verdoppele – nehmen oder fallen lassen?",
+  "buddySpeechYouDouble": "Du verdoppelst.",
+  "buddySpeechBuddyTakes": "Ich nehme.",
+  "buddySpeechYouTake": "Du nimmst.",
+  "buddySpeechBuddyDrops": "Ich lasse fallen.",
+  "buddySpeechYouDrop": "Du fällst.",
+  "buddySpeechMatchWinnerBuddy": "Das passt zu mir.",
+  "buddySpeechMatchWinnerYou": "Du gewinnst das Match.",
+  "buddyTutorLastPlayBest": "Ihr letzter Spielzug entsprach dem Besten der Engine.",
+  "buddyTutorLastPlayClose": "Ihr letzter Spielzug war nah am Besten der Engine.",
+  "buddyTutorPreferredMove": "Bei Ihrem letzten Spiel hat die Engine {move} bevorzugt. {reason}",
+  "buddyTutorBarDifference": "Es verbleiben {best} gegnerische Steine ​​auf der Bar statt {played}.",
+  "buddyTutorBlotDifference": "Es hinterlässt {best} Blots anstelle von {played}.",
+  "buddyTutorHomeDifference": "Es enthält {best} Homeboard-Punkte statt {played}.",
+  "buddyTutorOffDifference": "Es hat {best} Steine ​​statt {played}.",
+  "buddyTutorGeneralDifference": "Die Rangliste gewichtet geschätzte Gewinne und Gammons; Keine einzelne Board-Funktion erklärt es.",
+  "buddySpeechPlay": "Spielen Sie {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Ich habe {dice} – {move} gewürfelt",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Ich gewinne dieses Spiel: {points}.",
+  "buddySpeechGameWinnerYou": "Sie gewinnen dieses Spiel: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Das Spielbrett unterscheidet sich vom Spiel: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: Das Spiel erwartet {expected} {side} Steine; Die Kamera sieht {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

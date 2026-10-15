@@ -3237,4 +3237,173 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Win chance';
+
+  @override
+  String get buddyBar => 'the bar';
+
+  @override
+  String get buddyOff => 'off';
+
+  @override
+  String get buddyHitSuffix => ', hitting';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Move one checker from $from to $to $hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Move $count checkers from $from to $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Bear one checker off from $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Bear $count checkers off from $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'I rolled $dice.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'You rolled $dice.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'Both rolled $die. Roll again.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn => 'No play, so it is your turn.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn => 'No play, so it is Buddy’s turn.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'No play — your turn passes.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'No play, so it is back to you.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'That isn’t a legal play.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'That isn’t quite right. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'The board differs from the game: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: the game expects $expected $side checkers; the camera sees $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'I’ll take your word for it. I could not see that one land, so if we have come apart it will show up as a play I cannot read.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'I double — take or drop?';
+
+  @override
+  String get buddySpeechYouDouble => 'You double.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'I take.';
+
+  @override
+  String get buddySpeechYouTake => 'You take.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'I drop.';
+
+  @override
+  String get buddySpeechYouDrop => 'You drop.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'I win this game: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'You win this game: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'That is the match to me.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'You win the match.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Your last play matched the engine’s best.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Your last play was close to the engine’s best.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'For your last play, the engine preferred $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'It leaves $best opposing checkers on the bar instead of $played.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'It leaves $best blots instead of $played.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'It holds $best home-board points instead of $played.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'It has $best checkers off instead of $played.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'The ranking weighs estimated wins and gammons; no single board feature explains it.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Play $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'I rolled $dice — $move';
+  }
 }

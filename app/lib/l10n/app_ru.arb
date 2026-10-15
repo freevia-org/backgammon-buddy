@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Анализировать обоими движками",
   "parallelEngineExplanation": "Сравнивайте отдельные советы wildbg и GNUbg в наставнике.",
   "engineComparison": "Сравнение движков",
-  "engineWinChance": "Вероятность победы"
+  "engineWinChance": "Вероятность победы",
+  "buddyBar": "бар",
+  "buddyOff": "выключенный",
+  "buddyHitSuffix": ", ударяя",
+  "buddyFriendlyMoveOne": "Переместите одну шашку с {from} на {to} {hit}.",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Переместите шашки {count} из {from} в {to} {hit}.",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Отнесите одну шашку от {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Отнесите {count} шашек от {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Я выкинул {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Вы выбросили {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Оба выпали {die}. Сверните еще раз.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Никакой игры, значит, ваша очередь.",
+  "buddySpeechNoPlayBuddyTurn": "Никакой игры, значит, настала очередь Бадди.",
+  "buddySpeechNoPlayPass": "Нет игры — ваш ход пройден.",
+  "buddySpeechNoPlayBack": "Никакой игры, так что оно возвращается к вам.",
+  "buddySpeechIllegalPlay": "Это не легальная игра.",
+  "buddySpeechPlacementMismatch": "Это не совсем так. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Я поверю вам на слово. Я не мог видеть эту землю, поэтому, если мы расстанемся, это будет выглядеть как пьеса, которую я не смогу читать.",
+  "buddySpeechBuddyDouble": "Я дабл — взять или бросить?",
+  "buddySpeechYouDouble": "Вы удваиваете.",
+  "buddySpeechBuddyTakes": "Я беру.",
+  "buddySpeechYouTake": "Вы берете.",
+  "buddySpeechBuddyDrops": "Я бросаю.",
+  "buddySpeechYouDrop": "Вы падаете.",
+  "buddySpeechMatchWinnerBuddy": "Мне это подходит.",
+  "buddySpeechMatchWinnerYou": "Вы выигрываете матч.",
+  "buddyTutorLastPlayBest": "Ваша последняя игра соответствовала лучшим возможностям движка.",
+  "buddyTutorLastPlayClose": "Ваша последняя игра была близка к лучшей на движке.",
+  "buddyTutorPreferredMove": "Для вашей последней игры движок предпочел {move}. {reason}",
+  "buddyTutorBarDifference": "На перекладине остается {best} шашек противника вместо {played}.",
+  "buddyTutorBlotDifference": "Оставляет пятна {best} вместо {played}.",
+  "buddyTutorHomeDifference": "Он содержит {best} очков за домашнюю доску вместо {played}.",
+  "buddyTutorOffDifference": "У него отключено {best} шашек вместо {played}.",
+  "buddyTutorGeneralDifference": "В рейтинге учитываются предполагаемые выигрыши и гаммоны; ни одна особенность платы не объясняет этого.",
+  "buddySpeechPlay": "Играть в {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Я выкинул {dice} — {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Я выиграл эту игру: {points}.",
+  "buddySpeechGameWinnerYou": "Вы выиграете эту игру: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Доска отличается от игры: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: игра ожидает {expected} {side} шашек; камера видит {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

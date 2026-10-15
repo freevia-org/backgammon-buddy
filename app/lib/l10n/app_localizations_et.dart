@@ -3239,4 +3239,173 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Võiduvõimalus';
+
+  @override
+  String get buddyBar => 'baar';
+
+  @override
+  String get buddyOff => 'välja';
+
+  @override
+  String get buddyHitSuffix => ', lööb';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Teisalda üks kontroller kohast $from asukohta $to $hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Teisalda $count kabet asukohast $from asukohta $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Jäta üks ruudus maha kohast $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Jäta $count kabet maha asukohast $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'Veeretasin $dice.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'Veeretasite $dice.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'Mõlemad veeresid $die. Veereta uuesti.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn => 'Ei mängi, seega on teie kord.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn => 'Mängida pole, seega on Buddy kord.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Ei mängita – sinu kord läheb mööda.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'Ei mängi, nii et see on teile tagasi.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'See pole juriidiline mäng.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'See pole päris õige. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Laualaud erineb mängust: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: mäng ootab $expected $side kabet; kaamera näeb $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'Ma võtan teie sõna. Ma ei näinud seda ühte maad, nii et kui oleme lahku läinud, kuvatakse see näidendina, mida ma lugeda ei saa.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Ma kahekordistan – võtan või kukun?';
+
+  @override
+  String get buddySpeechYouDouble => 'Sa kahekordistad.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'ma võtan.';
+
+  @override
+  String get buddySpeechYouTake => 'Sa võtad.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'ma kukun maha.';
+
+  @override
+  String get buddySpeechYouDrop => 'Sa kukud maha.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Ma võidan selle mängu: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Sa võidad selle mängu: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'See sobib mulle.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Sa võidad matši.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Teie viimane esitus vastas mootori parimale tasemele.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Teie viimane esitus oli lähedal mootori parimale tasemele.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Teie viimase esituse jaoks eelistas mootor $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'See jätab ribale $best vastandmärgid, mitte $played.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'See jätab $played asemel $best bloti.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'See sisaldab $played asemel $best kodulaua punkti.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'Sellel on $played asemel väljas $best kabe.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'Edetabel kaalub hinnangulisi võite ja gammoneid; ükski plaadi funktsioon seda ei selgita.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Mängi $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'Veeretasin $dice–$move';
+  }
 }

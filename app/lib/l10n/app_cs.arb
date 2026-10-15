@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Analyzovat oběma enginy",
   "parallelEngineExplanation": "Porovnejte samostatné rady wildbg a GNUbg v trenérovi.",
   "engineComparison": "Porovnání enginů",
-  "engineWinChance": "Šance na výhru"
+  "engineWinChance": "Šance na výhru",
+  "buddyBar": "bar",
+  "buddyOff": "vypnuto",
+  "buddyHitSuffix": ", bít",
+  "buddyFriendlyMoveOne": "Přesunout jedno políčko z {from} na {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Přesunout {count} dám z {from} do {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Odnést jeden šek od {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Odneste {count} dámám z {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Hodil jsem {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Hodili jste {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Oba hodili {die}. Znovu rolujte.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Žádná hra, takže je řada na vás.",
+  "buddySpeechNoPlayBuddyTurn": "Žádná hra, takže je na řadě Buddy.",
+  "buddySpeechNoPlayPass": "Žádná hra – váš tah projde.",
+  "buddySpeechNoPlayBack": "Žádná hra, takže je to zpět k vám.",
+  "buddySpeechIllegalPlay": "To není legální hra.",
+  "buddySpeechPlacementMismatch": "To není úplně správné. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "beru vás za slovo. Neviděl jsem tu jednu zemi, takže pokud jsme se rozešli, ukáže se to jako hra, kterou neumím přečíst.",
+  "buddySpeechBuddyDouble": "Zdvojnásobím – vzít nebo upustit?",
+  "buddySpeechYouDouble": "Ty dvojnásob.",
+  "buddySpeechBuddyTakes": "beru.",
+  "buddySpeechYouTake": "Vezmi si.",
+  "buddySpeechBuddyDrops": "padám.",
+  "buddySpeechYouDrop": "Spadneš.",
+  "buddySpeechMatchWinnerBuddy": "To je pro mě zápas.",
+  "buddySpeechMatchWinnerYou": "Vyhrajete zápas.",
+  "buddyTutorLastPlayBest": "Vaše poslední hra odpovídala tomu nejlepšímu z enginu.",
+  "buddyTutorLastPlayClose": "Vaše poslední hra se blížila tomu nejlepšímu z enginu.",
+  "buddyTutorPreferredMove": "Při vaší poslední hře motor upřednostnil {move}. {reason}",
+  "buddyTutorBarDifference": "Na liště ponechává {best} protilehlých políček namísto {played}.",
+  "buddyTutorBlotDifference": "Zanechává {best} blotů místo {played}.",
+  "buddyTutorHomeDifference": "Má {best} bodů za domácí tabuli namísto {played}.",
+  "buddyTutorOffDifference": "Má {best} zaškrtávacích políček namísto {played}.",
+  "buddyTutorGeneralDifference": "Žebříček váží odhadované výhry a gammony; žádná funkce jedné desky to nevysvětluje.",
+  "buddySpeechPlay": "Přehrát {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Hodil jsem {dice} – {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Vyhrál jsem tuto hru: {points}.",
+  "buddySpeechGameWinnerYou": "Vyhrajete tuto hru: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Deska se liší od hry: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: hra očekává {expected} {side} dám; kamera vidí {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

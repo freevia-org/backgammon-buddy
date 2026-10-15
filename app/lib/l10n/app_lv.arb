@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Analizēt ar abiem dzinējiem",
   "parallelEngineExplanation": "Salīdziniet atsevišķus wildbg un GNUbg padomus pasniedzējā.",
   "engineComparison": "Dzinēju salīdzinājums",
-  "engineWinChance": "Uzvaras iespēja"
+  "engineWinChance": "Uzvaras iespēja",
+  "buddyBar": "bārs",
+  "buddyOff": "izslēgts",
+  "buddyHitSuffix": ", sitot",
+  "buddyFriendlyMoveOne": "Pārvietot vienu pārbaudītāju no {from} uz {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Pārvietot {count} dambreti no {from} uz {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Atstāj vienu rūti no {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Atstāj {count} dambreti no {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Es nometu {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Jūs izlaidāt {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Abi noskrēja {die}. Atkal rullē.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Nedrīkst spēlēt, tāpēc ir jūsu kārta.",
+  "buddySpeechNoPlayBuddyTurn": "Nedrīkst spēlēt, tāpēc pienākusi Badija kārta.",
+  "buddySpeechNoPlayPass": "Nav spēles — jūsu kārta paiet.",
+  "buddySpeechNoPlayBack": "Nav spēlēt, tāpēc tas ir atpakaļ jums.",
+  "buddySpeechIllegalPlay": "Tā nav likumīga spēle.",
+  "buddySpeechPlacementMismatch": "Tas nav gluži pareizi. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Es pieņemšu jūsu vārdu par to. Es nevarēju redzēt šo vienu zemi, tāpēc, ja mēs esam šķirti, tā parādīsies kā luga, kuru es nevaru izlasīt.",
+  "buddySpeechBuddyDouble": "Es dubultoju - ņem vai nomet?",
+  "buddySpeechYouDouble": "Tu dubultojies.",
+  "buddySpeechBuddyTakes": "es ņemu.",
+  "buddySpeechYouTake": "Jūs ņemat.",
+  "buddySpeechBuddyDrops": "Es nometu.",
+  "buddySpeechYouDrop": "Tu nomet.",
+  "buddySpeechMatchWinnerBuddy": "Tas man atbilst.",
+  "buddySpeechMatchWinnerYou": "Tu uzvarēsi maču.",
+  "buddyTutorLastPlayBest": "Jūsu pēdējā spēle atbilst motora labākajai spēlei.",
+  "buddyTutorLastPlayClose": "Jūsu pēdējā spēle bija tuvu dzinēja labākajam rādītājam.",
+  "buddyTutorPreferredMove": "Jūsu pēdējā spēlē dzinējs deva priekšroku {move}. {reason}",
+  "buddyTutorBarDifference": "Tas atstāj {best} pretējās rūtiņas joslā, nevis {played}.",
+  "buddyTutorBlotDifference": "Tas atstāj {best} blotus, nevis {played}.",
+  "buddyTutorHomeDifference": "Tajā ir {best} mājas galda punkti, nevis {played}.",
+  "buddyTutorOffDifference": "Tam ir izslēgti {best} rūtiņas, nevis {played}.",
+  "buddyTutorGeneralDifference": "Reitings sver aptuvenās uzvaras un gemonus; neviena viena paneļa funkcija to neizskaidro.",
+  "buddySpeechPlay": "Spēlēt {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Es izlaidu {dice}–{move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Es uzvarēju šo spēli: {points}.",
+  "buddySpeechGameWinnerYou": "Jūs laimējat šo spēli: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Galds atšķiras no spēles: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: spēle sagaida {expected} {side} dambreti; kamera redz {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }
