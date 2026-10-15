@@ -3,6 +3,10 @@
 #include "glib.h"
 #include <expat.h>
 #include <locale.h>
+#ifdef __APPLE__
+/* Darwin declares strtod_l and the extended locale APIs in xlocale.h. */
+#include <xlocale.h>
+#endif
 void *g_memdup2(const void *p,size_t n){void *r=malloc(n);if(r)memcpy(r,p,n);return r;}
 char *g_build_filename(const char *dir,const char *name,void *unused){(void)unused;size_t n=strlen(dir)+strlen(name)+2;char *p=malloc(n);if(p)snprintf(p,n,"%s/%s",dir,name);return p;}
 /* XML numeric values use C syntax; never mutate the host process locale. */
