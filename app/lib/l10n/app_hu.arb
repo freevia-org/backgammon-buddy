@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Elemzés mindkét motorral",
   "parallelEngineExplanation": "Hasonlítsa össze a wildbg és GNUbg külön tanácsait az oktatóban.",
   "engineComparison": "Motorok összehasonlítása",
-  "engineWinChance": "Győzelmi esély"
+  "engineWinChance": "Győzelmi esély",
+  "buddyBar": "a bár",
+  "buddyOff": "le",
+  "buddyHitSuffix": ", ütés",
+  "buddyFriendlyMoveOne": "Egy ellenőrző áthelyezése innen: {from} ide: {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "{count} ellenőrző áthelyezése innen: {from} ide: {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Nyújtson egy kockát innen: {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Nyomj le {count} dámát innen: {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "{dice}-t dobtam.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "{dice}-t dobott.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Mindkét dobás {die}. Tekerd újra.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Nincs játék, tehát rajtad a sor.",
+  "buddySpeechNoPlayBuddyTurn": "Nincs játék, így Buddy-n a sor.",
+  "buddySpeechNoPlayPass": "Nincs játék – elmegy a köröd.",
+  "buddySpeechNoPlayBack": "Nincs játék, így visszatért hozzád.",
+  "buddySpeechIllegalPlay": "Ez nem legális színjáték.",
+  "buddySpeechPlacementMismatch": "Ez nem egészen helyes. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "szót fogadok. Nem láthattam azt az egy földet, így ha elváltunk, akkor színdarabként fog megjelenni, amit nem tudok elolvasni.",
+  "buddySpeechBuddyDouble": "Megduplázom – veszem vagy ledobom?",
+  "buddySpeechYouDouble": "Megduplázod.",
+  "buddySpeechBuddyTakes": "veszem.",
+  "buddySpeechYouTake": "Veszel.",
+  "buddySpeechBuddyDrops": "leejtem.",
+  "buddySpeechYouDrop": "Leessz.",
+  "buddySpeechMatchWinnerBuddy": "Nekem ez a megfelelő.",
+  "buddySpeechMatchWinnerYou": "Megnyered a meccset.",
+  "buddyTutorLastPlayBest": "Az utolsó játékod megfelelt a motor legjobbjának.",
+  "buddyTutorLastPlayClose": "Az utolsó játékod közel volt a motor legjobbjához.",
+  "buddyTutorPreferredMove": "Legutóbbi játékodnál a motor a következőt részesítette előnyben: {move}. {reason}",
+  "buddyTutorBarDifference": "{best} ellentétes kockát hagy a sávon a {played} helyett.",
+  "buddyTutorBlotDifference": "{played} helyett {best} blotot hagy.",
+  "buddyTutorHomeDifference": "{played} helyett {best} home-board pontot tartalmaz.",
+  "buddyTutorOffDifference": "A(z) {played} helyett {best} ellenőrző van kikapcsolva.",
+  "buddyTutorGeneralDifference": "A rangsor a becsült nyereményeket és gammonokat mérlegeli; egyetlen tábla funkció sem magyarázza meg.",
+  "buddySpeechPlay": "Play {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "{dice}–{move}.",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Megnyerem ezt a játékot: {points}.",
+  "buddySpeechGameWinnerYou": "Megnyerted ezt a játékot: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "A tábla eltér a játéktól: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: a játék {expected} {side} dámát vár; a kamera látja a következőt: {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

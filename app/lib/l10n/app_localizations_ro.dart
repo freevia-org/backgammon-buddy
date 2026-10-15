@@ -3334,4 +3334,174 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Șansă de câștig';
+
+  @override
+  String get buddyBar => 'barul';
+
+  @override
+  String get buddyOff => 'oprit';
+
+  @override
+  String get buddyHitSuffix => ', lovind';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Mutați o pică de la $from la $to $hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Mutați $count dame din $from în $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Reduceți o pică de la $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Reduceți $count pime de la $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'Am aruncat $dice.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'Ai aruncat $dice.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'Ambele au rostogolit $die. Rotiți din nou.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn => 'Fără joc, așa că e rândul tău.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn =>
+      'Fără joc, așa că este rândul lui Buddy.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Fără joc – îți trece rândul.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'Fără joc, așa că este înapoi la tine.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'Asta nu este o piesă legală.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'Nu este tocmai corect. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Tabla diferă de joc: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: jocul așteaptă $expected $side dame; camera vede $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'O să te cred pe cuvânt. Nu am putut vedea acel teren, așa că dacă ne-am despărțit, va apărea ca o piesă pe care nu o pot citi.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Mă dublez - iau sau las?';
+
+  @override
+  String get buddySpeechYouDouble => 'Te dublezi.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'iau.';
+
+  @override
+  String get buddySpeechYouTake => 'Tu iei.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'scap.';
+
+  @override
+  String get buddySpeechYouDrop => 'Tu scapi.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Câștig acest joc: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Câștigi acest joc: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'Acesta este meciul pentru mine.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Tu câștigi meciul.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Ultima ta joc s-a potrivit cu cel mai bun motor.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Ultima ta joacă a fost aproape de cea mai bună a motorului.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Pentru ultima ta redare, motorul a preferat $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'Lasă $best dame adverse pe bară în loc de $played.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'Lasă $best pete în loc de $played.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'Acesta deține $best puncte de acasă în loc de $played.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'Are $best dame dezactivate în loc de $played.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'Clasamentul cântărește câștigurile estimate și gammons; nicio caracteristică a plăcii nu o explică.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Joacă $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'Am aruncat $dice — $move';
+  }
 }

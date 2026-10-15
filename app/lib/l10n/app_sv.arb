@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Analysera med båda motorerna",
   "parallelEngineExplanation": "Jämför separata råd från wildbg och GNUbg i handledaren.",
   "engineComparison": "Motorjämförelse",
-  "engineWinChance": "Vinstchans"
+  "engineWinChance": "Vinstchans",
+  "buddyBar": "baren",
+  "buddyOff": "av",
+  "buddyHitSuffix": ", slår",
+  "buddyFriendlyMoveOne": "Flytta en ruta från {from} till {to} ​​{hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Flytta {count} brickor från {from} till {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Bär en bricka av från {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Bär {count} brickor av från {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Jag rullade {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Du rullade {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Båda rullade {die}. Rulla igen.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Inget spel, så det är din tur.",
+  "buddySpeechNoPlayBuddyTurn": "Ingen lek, så det är Buddys tur.",
+  "buddySpeechNoPlayPass": "Inget spel – din tur passerar.",
+  "buddySpeechNoPlayBack": "Ingen lek, så det är tillbaka till dig.",
+  "buddySpeechIllegalPlay": "Det är inte en laglig pjäs.",
+  "buddySpeechPlacementMismatch": "Det är inte helt rätt. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Jag tar ditt ord för det. Jag kunde inte se det där landet, så om vi har kommit isär kommer det att dyka upp som en pjäs jag inte kan läsa.",
+  "buddySpeechBuddyDouble": "Jag dubblar — ta eller släppa?",
+  "buddySpeechYouDouble": "Du dubblar.",
+  "buddySpeechBuddyTakes": "jag tar.",
+  "buddySpeechYouTake": "Du tar.",
+  "buddySpeechBuddyDrops": "jag tappar.",
+  "buddySpeechYouDrop": "Du tappar.",
+  "buddySpeechMatchWinnerBuddy": "Det är matchen för mig.",
+  "buddySpeechMatchWinnerYou": "Du vinner matchen.",
+  "buddyTutorLastPlayBest": "Ditt senaste spel matchade motorns bästa.",
+  "buddyTutorLastPlayClose": "Ditt senaste spel var nära motorns bästa.",
+  "buddyTutorPreferredMove": "För din senaste spelning föredrog motorn {move}. {reason}",
+  "buddyTutorBarDifference": "Det lämnar {best} motsatta brickor på stapeln istället för {played}.",
+  "buddyTutorBlotDifference": "Det lämnar {best} fläckar istället för {played}.",
+  "buddyTutorHomeDifference": "Den har {best} hemmaplanspoäng istället för {played}.",
+  "buddyTutorOffDifference": "Den har {best} brickor av i stället för {played}.",
+  "buddyTutorGeneralDifference": "Rankingen väger uppskattade vinster och gammon; ingen enskild brädfunktion förklarar det.",
+  "buddySpeechPlay": "Spela {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Jag rullade {dice} – {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Jag vinner det här spelet: {points}.",
+  "buddySpeechGameWinnerYou": "Du vinner detta spel: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Brädan skiljer sig från spelet: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: spelet förväntar sig {expected} {side} pjäser; kameran ser {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

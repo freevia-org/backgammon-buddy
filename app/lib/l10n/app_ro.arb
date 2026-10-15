@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Analizează cu ambele motoare",
   "parallelEngineExplanation": "Compară sfaturile separate wildbg și GNUbg în tutor.",
   "engineComparison": "Compararea motoarelor",
-  "engineWinChance": "Șansă de câștig"
+  "engineWinChance": "Șansă de câștig",
+  "buddyBar": "barul",
+  "buddyOff": "oprit",
+  "buddyHitSuffix": ", lovind",
+  "buddyFriendlyMoveOne": "Mutați o pică de la {from} la {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Mutați {count} dame din {from} în {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Reduceți o pică de la {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Reduceți {count} pime de la {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Am aruncat {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Ai aruncat {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Ambele au rostogolit {die}. Rotiți din nou.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Fără joc, așa că e rândul tău.",
+  "buddySpeechNoPlayBuddyTurn": "Fără joc, așa că este rândul lui Buddy.",
+  "buddySpeechNoPlayPass": "Fără joc – îți trece rândul.",
+  "buddySpeechNoPlayBack": "Fără joc, așa că este înapoi la tine.",
+  "buddySpeechIllegalPlay": "Asta nu este o piesă legală.",
+  "buddySpeechPlacementMismatch": "Nu este tocmai corect. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "O să te cred pe cuvânt. Nu am putut vedea acel teren, așa că dacă ne-am despărțit, va apărea ca o piesă pe care nu o pot citi.",
+  "buddySpeechBuddyDouble": "Mă dublez - iau sau las?",
+  "buddySpeechYouDouble": "Te dublezi.",
+  "buddySpeechBuddyTakes": "iau.",
+  "buddySpeechYouTake": "Tu iei.",
+  "buddySpeechBuddyDrops": "scap.",
+  "buddySpeechYouDrop": "Tu scapi.",
+  "buddySpeechMatchWinnerBuddy": "Acesta este meciul pentru mine.",
+  "buddySpeechMatchWinnerYou": "Tu câștigi meciul.",
+  "buddyTutorLastPlayBest": "Ultima ta joc s-a potrivit cu cel mai bun motor.",
+  "buddyTutorLastPlayClose": "Ultima ta joacă a fost aproape de cea mai bună a motorului.",
+  "buddyTutorPreferredMove": "Pentru ultima ta redare, motorul a preferat {move}. {reason}",
+  "buddyTutorBarDifference": "Lasă {best} dame adverse pe bară în loc de {played}.",
+  "buddyTutorBlotDifference": "Lasă {best} pete în loc de {played}.",
+  "buddyTutorHomeDifference": "Acesta deține {best} puncte de acasă în loc de {played}.",
+  "buddyTutorOffDifference": "Are {best} dame dezactivate în loc de {played}.",
+  "buddyTutorGeneralDifference": "Clasamentul cântărește câștigurile estimate și gammons; nicio caracteristică a plăcii nu o explică.",
+  "buddySpeechPlay": "Joacă {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Am aruncat {dice} — {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Câștig acest joc: {points}.",
+  "buddySpeechGameWinnerYou": "Câștigi acest joc: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Tabla diferă de joc: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: jocul așteaptă {expected} {side} dame; camera vede {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -520,7 +520,12 @@ void main() {
       await h.stableFrame(); // nothing legal matches, and the board HAS moved
       expect(h.session.phase, BuddyPhase.objecting);
       expect(h.policy.objections, hasLength(1));
-      expect(h.speech.join(' '), contains(h.policy.objections.single));
+      expect(
+        h.speech.join(' '),
+        contains("That isn't a legal play."),
+        reason: 'the spoken objection is localized policy copy; the detailed '
+            'vision reason remains available in the objection state',
+      );
       expect(h.controller.game.events, hasLength(eventsBefore),
           reason: 'an objection is a sentence, not a state change');
 

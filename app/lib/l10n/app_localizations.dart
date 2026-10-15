@@ -5369,6 +5369,250 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Win chance'**
   String get engineWinChance;
+
+  /// No description provided for @buddyBar.
+  ///
+  /// In en, this message translates to:
+  /// **'the bar'**
+  String get buddyBar;
+
+  /// No description provided for @buddyOff.
+  ///
+  /// In en, this message translates to:
+  /// **'off'**
+  String get buddyOff;
+
+  /// No description provided for @buddyHitSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **', hitting'**
+  String get buddyHitSuffix;
+
+  /// No description provided for @buddyFriendlyMoveOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Move one checker from {from} to {to} {hit}'**
+  String buddyFriendlyMoveOne(String from, String to, String hit);
+
+  /// No description provided for @buddyFriendlyMoveMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Move {count} checkers from {from} to {to} {hit}'**
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  );
+
+  /// No description provided for @buddyFriendlyBearOffOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Bear one checker off from {from} {hit}'**
+  String buddyFriendlyBearOffOne(String from, String hit);
+
+  /// No description provided for @buddyFriendlyBearOffMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Bear {count} checkers off from {from} {hit}'**
+  String buddyFriendlyBearOffMany(String count, String from, String hit);
+
+  /// No description provided for @buddySpeechIRolled.
+  ///
+  /// In en, this message translates to:
+  /// **'I rolled {dice}.'**
+  String buddySpeechIRolled(String dice);
+
+  /// No description provided for @buddySpeechYouRolled.
+  ///
+  /// In en, this message translates to:
+  /// **'You rolled {dice}.'**
+  String buddySpeechYouRolled(String dice);
+
+  /// No description provided for @buddySpeechOpeningTie.
+  ///
+  /// In en, this message translates to:
+  /// **'Both rolled {die}. Roll again.'**
+  String buddySpeechOpeningTie(String die);
+
+  /// No description provided for @buddySpeechNoPlayYouTurn.
+  ///
+  /// In en, this message translates to:
+  /// **'No play, so it is your turn.'**
+  String get buddySpeechNoPlayYouTurn;
+
+  /// No description provided for @buddySpeechNoPlayBuddyTurn.
+  ///
+  /// In en, this message translates to:
+  /// **'No play, so it is Buddy’s turn.'**
+  String get buddySpeechNoPlayBuddyTurn;
+
+  /// No description provided for @buddySpeechNoPlayPass.
+  ///
+  /// In en, this message translates to:
+  /// **'No play — your turn passes.'**
+  String get buddySpeechNoPlayPass;
+
+  /// No description provided for @buddySpeechNoPlayBack.
+  ///
+  /// In en, this message translates to:
+  /// **'No play, so it is back to you.'**
+  String get buddySpeechNoPlayBack;
+
+  /// No description provided for @buddySpeechIllegalPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'That isn’t a legal play.'**
+  String get buddySpeechIllegalPlay;
+
+  /// No description provided for @buddySpeechPlacementMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'That isn’t quite right. {reason}'**
+  String buddySpeechPlacementMismatch(String reason);
+
+  /// No description provided for @buddyBoardMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The board differs from the game: {details}{more}.'**
+  String buddyBoardMismatch(String details, String more);
+
+  /// No description provided for @buddyConfirmRegionWrongCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{region}: the game expects {expected} {side} checkers; the camera sees {observed}.'**
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  );
+
+  /// No description provided for @buddySpeechSkippedCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'I’ll take your word for it. I could not see that one land, so if we have come apart it will show up as a play I cannot read.'**
+  String get buddySpeechSkippedCheck;
+
+  /// No description provided for @buddySpeechBuddyDouble.
+  ///
+  /// In en, this message translates to:
+  /// **'I double — take or drop?'**
+  String get buddySpeechBuddyDouble;
+
+  /// No description provided for @buddySpeechYouDouble.
+  ///
+  /// In en, this message translates to:
+  /// **'You double.'**
+  String get buddySpeechYouDouble;
+
+  /// No description provided for @buddySpeechBuddyTakes.
+  ///
+  /// In en, this message translates to:
+  /// **'I take.'**
+  String get buddySpeechBuddyTakes;
+
+  /// No description provided for @buddySpeechYouTake.
+  ///
+  /// In en, this message translates to:
+  /// **'You take.'**
+  String get buddySpeechYouTake;
+
+  /// No description provided for @buddySpeechBuddyDrops.
+  ///
+  /// In en, this message translates to:
+  /// **'I drop.'**
+  String get buddySpeechBuddyDrops;
+
+  /// No description provided for @buddySpeechYouDrop.
+  ///
+  /// In en, this message translates to:
+  /// **'You drop.'**
+  String get buddySpeechYouDrop;
+
+  /// No description provided for @buddySpeechGameWinnerBuddy.
+  ///
+  /// In en, this message translates to:
+  /// **'I win this game: {points}.'**
+  String buddySpeechGameWinnerBuddy(String points);
+
+  /// No description provided for @buddySpeechGameWinnerYou.
+  ///
+  /// In en, this message translates to:
+  /// **'You win this game: {points}.'**
+  String buddySpeechGameWinnerYou(String points);
+
+  /// No description provided for @buddySpeechMatchWinnerBuddy.
+  ///
+  /// In en, this message translates to:
+  /// **'That is the match to me.'**
+  String get buddySpeechMatchWinnerBuddy;
+
+  /// No description provided for @buddySpeechMatchWinnerYou.
+  ///
+  /// In en, this message translates to:
+  /// **'You win the match.'**
+  String get buddySpeechMatchWinnerYou;
+
+  /// No description provided for @buddyTutorLastPlayBest.
+  ///
+  /// In en, this message translates to:
+  /// **'Your last play matched the engine’s best.'**
+  String get buddyTutorLastPlayBest;
+
+  /// No description provided for @buddyTutorLastPlayClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Your last play was close to the engine’s best.'**
+  String get buddyTutorLastPlayClose;
+
+  /// No description provided for @buddyTutorPreferredMove.
+  ///
+  /// In en, this message translates to:
+  /// **'For your last play, the engine preferred {move}. {reason}'**
+  String buddyTutorPreferredMove(String move, String reason);
+
+  /// No description provided for @buddyTutorBarDifference.
+  ///
+  /// In en, this message translates to:
+  /// **'It leaves {best} opposing checkers on the bar instead of {played}.'**
+  String buddyTutorBarDifference(String best, String played);
+
+  /// No description provided for @buddyTutorBlotDifference.
+  ///
+  /// In en, this message translates to:
+  /// **'It leaves {best} blots instead of {played}.'**
+  String buddyTutorBlotDifference(String best, String played);
+
+  /// No description provided for @buddyTutorHomeDifference.
+  ///
+  /// In en, this message translates to:
+  /// **'It holds {best} home-board points instead of {played}.'**
+  String buddyTutorHomeDifference(String best, String played);
+
+  /// No description provided for @buddyTutorOffDifference.
+  ///
+  /// In en, this message translates to:
+  /// **'It has {best} checkers off instead of {played}.'**
+  String buddyTutorOffDifference(String best, String played);
+
+  /// No description provided for @buddyTutorGeneralDifference.
+  ///
+  /// In en, this message translates to:
+  /// **'The ranking weighs estimated wins and gammons; no single board feature explains it.'**
+  String get buddyTutorGeneralDifference;
+
+  /// No description provided for @buddySpeechPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play {move}'**
+  String buddySpeechPlay(String move);
+
+  /// No description provided for @buddySpeechBuddyRolledMove.
+  ///
+  /// In en, this message translates to:
+  /// **'I rolled {dice} — {move}'**
+  String buddySpeechBuddyRolledMove(String dice, String move);
 }
 
 class _AppLocalizationsDelegate

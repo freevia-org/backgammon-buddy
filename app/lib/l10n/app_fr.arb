@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Analyser avec les deux moteurs",
   "parallelEngineExplanation": "Comparez les conseils distincts de wildbg et GNUbg dans le tuteur.",
   "engineComparison": "Comparaison des moteurs",
-  "engineWinChance": "Chance de victoire"
+  "engineWinChance": "Chance de victoire",
+  "buddyBar": "le bar",
+  "buddyOff": "désactivé",
+  "buddyHitSuffix": ", frappant",
+  "buddyFriendlyMoveOne": "Déplacez un pion de {from} à {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Déplacez {count} pions de {from} vers {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Retirez un pion de {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Retirez {count} pions de {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "J'ai obtenu {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Vous avez obtenu {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Les deux ont obtenu {die}. Roulez à nouveau.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Pas de jeu, c'est donc votre tour.",
+  "buddySpeechNoPlayBuddyTurn": "Pas de jeu, c'est donc au tour de Buddy.",
+  "buddySpeechNoPlayPass": "Pas de jeu : votre tour passe.",
+  "buddySpeechNoPlayBack": "Pas de jeu, donc c'est à vous de revenir.",
+  "buddySpeechIllegalPlay": "Ce n’est pas un jeu légal.",
+  "buddySpeechPlacementMismatch": "Ce n’est pas tout à fait vrai. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Je vais vous croire sur parole. Je ne pouvais pas voir cette terre atterrir, donc si nous nous séparons, cela apparaîtra comme une pièce de théâtre que je ne peux pas lire.",
+  "buddySpeechBuddyDouble": "Je double – prendre ou laisser tomber ?",
+  "buddySpeechYouDouble": "Vous doublez.",
+  "buddySpeechBuddyTakes": "Je prends.",
+  "buddySpeechYouTake": "Vous prenez.",
+  "buddySpeechBuddyDrops": "Je laisse tomber.",
+  "buddySpeechYouDrop": "Vous laissez tomber.",
+  "buddySpeechMatchWinnerBuddy": "C'est le match pour moi.",
+  "buddySpeechMatchWinnerYou": "Vous gagnez le match.",
+  "buddyTutorLastPlayBest": "Votre dernier jeu correspondait au meilleur du moteur.",
+  "buddyTutorLastPlayClose": "Votre dernier jeu était proche du meilleur du moteur.",
+  "buddyTutorPreferredMove": "Pour votre dernière lecture, le moteur a préféré {move}. {reason}",
+  "buddyTutorBarDifference": "Cela laisse {best} pions adverses sur la barre au lieu de {played}.",
+  "buddyTutorBlotDifference": "Il laisse {best} taches au lieu de {played}.",
+  "buddyTutorHomeDifference": "Il contient {best} points de home-board au lieu de {played}.",
+  "buddyTutorOffDifference": "Il comporte {best} pions au lieu de {played}.",
+  "buddyTutorGeneralDifference": "Le classement pèse les gains et les gains estimés ; aucune fonctionnalité de la carte unique ne l'explique.",
+  "buddySpeechPlay": "Jouer à {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "J'ai obtenu {dice} — {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Je gagne ce jeu : {points}.",
+  "buddySpeechGameWinnerYou": "Vous gagnez ce jeu : {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Le plateau diffère du jeu : {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region} : le jeu attend {expected} {side} pions ; la caméra voit {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

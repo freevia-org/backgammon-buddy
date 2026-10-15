@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Analizza biż-żewġ magni",
   "parallelEngineExplanation": "Qabbel il-pariri separati ta’ wildbg u GNUbg fit-tutur.",
   "engineComparison": "Tqabbil tal-magni",
-  "engineWinChance": "Ċans ta’ rebħa"
+  "engineWinChance": "Ċans ta’ rebħa",
+  "buddyBar": "il-bar",
+  "buddyOff": "mitfi",
+  "buddyHitSuffix": ", jolqot",
+  "buddyFriendlyMoveOne": "Mexxi kontrollur wieħed minn {from} għal {to} ​​{hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Ċaqlaq {count} kontrolluri minn {from} għal {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Żomm kontrollur wieħed minn {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Żomm {count} kontrolluri minn {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Irrumblajt {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Irromblat {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "It-tnejn irrumblaw {die}. Erġa irrombla.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Ebda play, allura huwa imissek.",
+  "buddySpeechNoPlayBuddyTurn": "L-ebda play, allura huwa imiss lil Buddy.",
+  "buddySpeechNoPlayPass": "L-ebda logħob - min-naħa tiegħek jgħaddi.",
+  "buddySpeechNoPlayBack": "Ebda play, għalhekk huwa lura lilek.",
+  "buddySpeechIllegalPlay": "Dak mhux dramm legali.",
+  "buddySpeechPlacementMismatch": "Dak mhux sewwa. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Jien nieħu kelmtek għaliha. Ma stajtx nara dik l-art waħda, allura jekk inkunu separati se tidher bħala dramm li ma nistax naqra.",
+  "buddySpeechBuddyDouble": "Nirdoppja - nieħu jew qatra?",
+  "buddySpeechYouDouble": "Inti tirdoppja.",
+  "buddySpeechBuddyTakes": "nieħu.",
+  "buddySpeechYouTake": "Inti tieħu.",
+  "buddySpeechBuddyDrops": "I qatra.",
+  "buddySpeechYouDrop": "Inti qatra.",
+  "buddySpeechMatchWinnerBuddy": "Dik hija l-logħba għalija.",
+  "buddySpeechMatchWinnerYou": "Inti tirbaħ il-partita.",
+  "buddyTutorLastPlayBest": "L-aħħar logħob tiegħek qabeż l-aħjar tal-magna.",
+  "buddyTutorLastPlayClose": "L-aħħar logħob tiegħek kien qrib l-aqwa tal-magna.",
+  "buddyTutorPreferredMove": "Għall-aħħar play tiegħek, il-magna ppreferiet {move}. {reason}",
+  "buddyTutorBarDifference": "Jħalli {best} kontrolluri opposti fuq il-bar minflok {played}.",
+  "buddyTutorBlotDifference": "Jħalli {best} blots minflok {played}.",
+  "buddyTutorHomeDifference": "Iżomm {best} punti home-board minflok {played}.",
+  "buddyTutorOffDifference": "Għandu {best} kontrolluri off minflok {played}.",
+  "buddyTutorGeneralDifference": "Il-klassifika tiżen rebħiet u gammons stmati; ebda karatteristika tal-bord wieħed jispjegaha.",
+  "buddySpeechPlay": "Ilgħab {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Irrumblajt {dice} — {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Nirbaħ din il-logħba: {points}.",
+  "buddySpeechGameWinnerYou": "Inti tirbaħ din il-logħba: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Il-bord huwa differenti mil-logħba: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: il-logħba tistenna {expected} {side} kontrolluri; il-kamera tara {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

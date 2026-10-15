@@ -8,20 +8,24 @@ import '../tutor/coaching.dart';
 import '../tutor/move_assessment.dart';
 import '../tutor/tutor_service.dart';
 import 'speaker.dart';
+import '../l10n/app_localizations.dart';
 
 /// Retrospective teaching over committed game events. Camera recognition and
 /// manual entry arrive here identically. Coaching never gates a turn or changes
 /// the game, and cannot announce an answer before the human has played.
 class BuddyCoach {
-  BuddyCoach(
-      {required this.tutor,
-      required this.options,
-      required this.speaker,
-      required this.userSide});
+  BuddyCoach({
+    required this.tutor,
+    required this.options,
+    required this.speaker,
+    required this.userSide,
+    this.l10n,
+  });
   final TutorService tutor;
   final TutorOptions options;
   final BuddySpeaker speaker;
   final Player userSide;
+  final AppLocalizations? l10n;
 
   GameEvent? _root;
   GameState? _prefix;
@@ -45,9 +49,10 @@ class BuddyCoach {
       _generation++;
       _root = events.first;
       _matchBefore = controller.match;
-      _prefix = Game.start(events.first as OpeningRollEvent,
-              isCrawfordGame: controller.state.isCrawfordGame)
-          .state;
+      _prefix = Game.start(
+        events.first as OpeningRollEvent,
+        isCrawfordGame: controller.state.isCrawfordGame,
+      ).state;
       _cursor = 1;
       _humanMoves = 0;
       _lastSpoken = -2;
@@ -58,14 +63,24 @@ class BuddyCoach {
       if (event is MoveEvent && event.player == userSide) {
         final match = _matchBefore!;
         final context = MatchContext(
-          moverAway: match.matchLength -
+          moverAway:
+              match.matchLength -
               (userSide == Player.white ? match.whiteScore : match.blackScore),
-          opponentAway: match.matchLength -
+          opponentAway:
+              match.matchLength -
               (userSide == Player.white ? match.blackScore : match.whiteScore),
           crawfordPlayed: match.crawfordPlayed,
         );
-        unawaited(_review(before, event.move, context, ++_humanMoves,
-            _generation, ++_request));
+        unawaited(
+          _review(
+            before,
+            event.move,
+            context,
+            ++_humanMoves,
+            _generation,
+            ++_request,
+          ),
+        );
       }
       before = Game.applyEvent(before, event);
     }
@@ -73,10 +88,19 @@ class BuddyCoach {
     _cursor = events.length;
   }
 
-  Future<void> _review(GameState before, Move played, MatchContext context,
-      int ordinal, int generation, int request) async {
-    final assessment =
-        await tutor.assessOrNull(before, played, context: context);
+  Future<void> _review(
+    GameState before,
+    Move played,
+    MatchContext context,
+    int ordinal,
+    int generation,
+    int request,
+  ) async {
+    final assessment = await tutor.assessOrNull(
+      before,
+      played,
+      context: context,
+    );
     if (_disposed ||
         generation != _generation ||
         request != _request ||
@@ -84,7 +108,8 @@ class BuddyCoach {
         !assessment.isDecision) {
       return;
     }
-    final mistake = assessment.mark == MoveMark.dubious ||
+    final mistake =
+        assessment.mark == MoveMark.dubious ||
         assessment.mark == MoveMark.error ||
         assessment.mark == MoveMark.blunder;
     // At most one coaching line every two human moves. Positive feedback is
@@ -95,21 +120,32 @@ class BuddyCoach {
     }
     _lastSpoken = ordinal;
     if (!mistake) {
-      await speaker.say(BuddyLine(assessment.mark == MoveMark.best
-          ? 'Your last play matched the engine’s best.'
-          : 'Your last play was close to the engine’s best.'));
+      await speaker.say(
+        BuddyLine(
+          assessment.mark == MoveMark.best
+              ? l10n?.buddyTutorLastPlayBest ??
+                    'Your last play matched the engine’s best.'
+              : l10n?.buddyTutorLastPlayClose ??
+                    'Your last play was close to the engine’s best.',
+        ),
+      );
       return;
     }
-    final best = speaker.phrasing.describePlay(assessment.best);
-    final observation =
-        options.explanations ? _difference(before, assessment) : '';
-    await speaker.say(BuddyLine(
-      'For your last play, the engine preferred ${best.text}. $observation'
-          .trim(),
-      speech:
-          'For your last play, the engine preferred ${best.speech}. $observation'
-              .trim(),
-    ));
+    final best = speaker.phrasing.describePlay(assessment.best, l10n: l10n);
+    final observation = options.explanations
+        ? _difference(before, assessment)
+        : '';
+    await speaker.say(
+      BuddyLine(
+        (l10n?.buddyTutorPreferredMove(best.text, observation) ??
+                'For your last play, the engine preferred ${best.text}. $observation')
+            .trim(),
+        speech:
+            (l10n?.buddyTutorPreferredMove(best.speech, observation) ??
+                    'For your last play, the engine preferred ${best.speech}. $observation')
+                .trim(),
+      ),
+    );
   }
 
   String _difference(GameState before, MoveAssessment assessment) {
@@ -120,22 +156,33 @@ class BuddyCoach {
 
     final played = result(assessment.played), best = result(assessment.best);
     if (best.blackBar != played.blackBar) {
-      return 'It leaves ${best.blackBar} opposing checkers on the bar instead of ${played.blackBar}.';
+      return l10n?.buddyTutorBarDifference(
+            '${best.blackBar}',
+            '${played.blackBar}',
+          ) ??
+          'It leaves ${best.blackBar} opposing checkers on the bar instead of ${played.blackBar}.';
     }
     final playedBlots = played.points.where((n) => n == 1).length;
     final bestBlots = best.points.where((n) => n == 1).length;
     if (playedBlots != bestBlots) {
-      return 'It leaves $bestBlots blots instead of $playedBlots.';
+      return l10n?.buddyTutorBlotDifference('$bestBlots', '$playedBlots') ??
+          'It leaves $bestBlots blots instead of $playedBlots.';
     }
     final playedHome = played.points.take(6).where((n) => n >= 2).length;
     final bestHome = best.points.take(6).where((n) => n >= 2).length;
     if (playedHome != bestHome) {
-      return 'It holds $bestHome home-board points instead of $playedHome.';
+      return l10n?.buddyTutorHomeDifference('$bestHome', '$playedHome') ??
+          'It holds $bestHome home-board points instead of $playedHome.';
     }
     if (best.whiteOff != played.whiteOff) {
-      return 'It has ${best.whiteOff} checkers off instead of ${played.whiteOff}.';
+      return l10n?.buddyTutorOffDifference(
+            '${best.whiteOff}',
+            '${played.whiteOff}',
+          ) ??
+          'It has ${best.whiteOff} checkers off instead of ${played.whiteOff}.';
     }
-    return 'The ranking weighs estimated wins and gammons; no single board feature explains it.';
+    return l10n?.buddyTutorGeneralDifference ??
+        'The ranking weighs estimated wins and gammons; no single board feature explains it.';
   }
 
   void dispose() {

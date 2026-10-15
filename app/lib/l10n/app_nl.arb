@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Met beide engines analyseren",
   "parallelEngineExplanation": "Vergelijk afzonderlijke adviezen van wildbg en GNUbg in de tutor.",
   "engineComparison": "Enginevergelijking",
-  "engineWinChance": "Winkans"
+  "engineWinChance": "Winkans",
+  "buddyBar": "de balk",
+  "buddyOff": "uit",
+  "buddyHitSuffix": ", slaan",
+  "buddyFriendlyMoveOne": "Verplaats één schijf van {from} naar {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Verplaats {count} schijven van {from} naar {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Houd één ruitje af van {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Draag {count} schijven weg van {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Ik heb {dice} gegooid.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Je hebt {dice} gegooid.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Beiden gooiden {die}. Rol opnieuw.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Er wordt niet gespeeld, dus het is jouw beurt.",
+  "buddySpeechNoPlayBuddyTurn": "Er wordt niet gespeeld, dus het is Buddy's beurt.",
+  "buddySpeechNoPlayPass": "Niet spelen - jouw beurt gaat voorbij.",
+  "buddySpeechNoPlayBack": "Geen spel, dus het is terug naar jou.",
+  "buddySpeechIllegalPlay": "Dat is geen legaal toneelstuk.",
+  "buddySpeechPlacementMismatch": "Dat klopt niet helemaal. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Ik geloof je op je woord. Ik kon dat ene land niet zien, dus als we uit elkaar zijn gevallen, zal het verschijnen als een toneelstuk dat ik niet kan lezen.",
+  "buddySpeechBuddyDouble": "Ik dubbel – nemen of laten vallen?",
+  "buddySpeechYouDouble": "Jij verdubbelt.",
+  "buddySpeechBuddyTakes": "Ik neem.",
+  "buddySpeechYouTake": "Jij neemt.",
+  "buddySpeechBuddyDrops": "Ik laat vallen.",
+  "buddySpeechYouDrop": "Jij valt.",
+  "buddySpeechMatchWinnerBuddy": "Dat is voor mij de match.",
+  "buddySpeechMatchWinnerYou": "Jij wint de wedstrijd.",
+  "buddyTutorLastPlayBest": "Je laatste spel kwam overeen met het beste van de engine.",
+  "buddyTutorLastPlayClose": "Je laatste spel was bijna het beste van de engine.",
+  "buddyTutorPreferredMove": "Voor je laatste spel gaf de engine de voorkeur aan {move}. {reason}",
+  "buddyTutorBarDifference": "Er blijven {best} tegengestelde schijven op de balk staan ​​in plaats van {played}.",
+  "buddyTutorBlotDifference": "Er blijven {best} blots over in plaats van {played}.",
+  "buddyTutorHomeDifference": "Het bevat {best} thuisbordpunten in plaats van {played}.",
+  "buddyTutorOffDifference": "Er zijn {best} checkers uitgeschakeld in plaats van {played}.",
+  "buddyTutorGeneralDifference": "De ranglijst weegt geschatte overwinningen en achterhammen; geen enkele bordfunctie verklaart dit.",
+  "buddySpeechPlay": "Speel {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Ik heb {dice} — {move} gegooid",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Ik win dit spel: {points}.",
+  "buddySpeechGameWinnerYou": "Jij wint dit spel: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Het bord verschilt van het spel: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: het spel verwacht {expected} {side} schijven; de camera ziet {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

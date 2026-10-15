@@ -3255,4 +3255,175 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Seans bua';
+
+  @override
+  String get buddyBar => 'an barra';
+
+  @override
+  String get buddyOff => 'as';
+
+  @override
+  String get buddyHitSuffix => ', ag bualadh';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Bog seiceálaí amháin ó $from go $to $hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Bog $count seiceálaithe ó $from go $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Bain seiceálaí amháin as $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Bain $count seiceálaithe as $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'rollaigh mé $dice.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'Rollaigh tú $dice.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'Rollaigh an dá cheann $die. Roll arís.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn => 'Gan imirt, mar sin is é do sheal é.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn =>
+      'Gan imirt, mar sin is é seal Buddy é.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Gan imirt - éiríonn le do sheal.';
+
+  @override
+  String get buddySpeechNoPlayBack =>
+      'Níl aon imirt, mar sin tá sé ar ais chugat.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'Ní dráma dlíthiúil é sin.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'Níl sé sin ceart go leor. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Tá an clár difriúil ón gcluiche: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: tá an cluiche ag súil le $expected $side seiceálaithe; feiceann an ceamara $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'Glacfaidh mé do bhriathar ar a shon. Ní raibh mé in ann an tír amháin sin a fheiceáil, mar sin má tá muid tar éis teacht as a chéile beidh sé le feiceáil mar dhráma nach féidir liom a léamh.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Mé dúbailte - a ghlacadh nó titim?';
+
+  @override
+  String get buddySpeechYouDouble => 'Dúbailt tú.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'glacaim.';
+
+  @override
+  String get buddySpeechYouTake => 'Glacann tú.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'scaoilim.';
+
+  @override
+  String get buddySpeechYouDrop => 'Scaoileann tú.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Buaimse an cluiche seo: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Buaigh tú an cluiche seo: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'Sin é an cluiche domsa.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Bhuaigh tú an cluiche.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Ba é an cluiche deireanach a bhí agat ná an ceann is fearr ar an inneall.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Bhí do chluiche deireanach gar don chuid is fearr den inneall.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Don imirt dheireanach, b\'fhearr leis an inneall $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'Fágann sé $best seiceálaithe freasúracha ar an mbarra in ionad $played.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'Fágann sé $best blots in ionad $played.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'Coinníonn sé $best pointe ar an gclár baile in ionad $played.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'Tá $best seiceálaithe múchta aige in ionad $played.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'Is iad na torthaí agus na gamáin mheasta a mheá sa rangú; ní mhíníonn aon ghné boird amháin é.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Seinn $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'rollaigh mé $dice - $move';
+  }
 }

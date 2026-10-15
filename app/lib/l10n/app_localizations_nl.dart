@@ -3258,4 +3258,175 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Winkans';
+
+  @override
+  String get buddyBar => 'de balk';
+
+  @override
+  String get buddyOff => 'uit';
+
+  @override
+  String get buddyHitSuffix => ', slaan';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Verplaats één schijf van $from naar $to $hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Verplaats $count schijven van $from naar $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Houd één ruitje af van $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Draag $count schijven weg van $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'Ik heb $dice gegooid.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'Je hebt $dice gegooid.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'Beiden gooiden $die. Rol opnieuw.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn =>
+      'Er wordt niet gespeeld, dus het is jouw beurt.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn =>
+      'Er wordt niet gespeeld, dus het is Buddy\'s beurt.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Niet spelen - jouw beurt gaat voorbij.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'Geen spel, dus het is terug naar jou.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'Dat is geen legaal toneelstuk.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'Dat klopt niet helemaal. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Het bord verschilt van het spel: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: het spel verwacht $expected $side schijven; de camera ziet $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'Ik geloof je op je woord. Ik kon dat ene land niet zien, dus als we uit elkaar zijn gevallen, zal het verschijnen als een toneelstuk dat ik niet kan lezen.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Ik dubbel – nemen of laten vallen?';
+
+  @override
+  String get buddySpeechYouDouble => 'Jij verdubbelt.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'Ik neem.';
+
+  @override
+  String get buddySpeechYouTake => 'Jij neemt.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'Ik laat vallen.';
+
+  @override
+  String get buddySpeechYouDrop => 'Jij valt.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Ik win dit spel: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Jij wint dit spel: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'Dat is voor mij de match.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Jij wint de wedstrijd.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Je laatste spel kwam overeen met het beste van de engine.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Je laatste spel was bijna het beste van de engine.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Voor je laatste spel gaf de engine de voorkeur aan $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'Er blijven $best tegengestelde schijven op de balk staan ​​in plaats van $played.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'Er blijven $best blots over in plaats van $played.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'Het bevat $best thuisbordpunten in plaats van $played.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'Er zijn $best checkers uitgeschakeld in plaats van $played.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'De ranglijst weegt geschatte overwinningen en achterhammen; geen enkele bordfunctie verklaart dit.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Speel $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'Ik heb $dice — $move gegooid';
+  }
 }

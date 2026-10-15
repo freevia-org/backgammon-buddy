@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
+import '../l10n/app_localizations.dart';
 import 'phrasing.dart';
 
 /// Re-exported so every caller that already had a speaker in scope keeps
@@ -37,7 +38,7 @@ abstract class BuddyTts {
   /// Language, rate and completion semantics. Called once, lazily, before the
   /// first utterance — never from a constructor, so building a speaker on a
   /// platform that then turns out not to need one costs nothing.
-  Future<void> configure();
+  Future<void> configure({required String locale});
 
   /// Speaks [text], completing when the utterance has finished.
   Future<void> speak(String text);
@@ -54,7 +55,7 @@ class SilentBuddyTts implements BuddyTts {
   const SilentBuddyTts();
 
   @override
-  Future<void> configure() async {}
+  Future<void> configure({required String locale}) async {}
 
   @override
   Future<void> speak(String text) async {}
@@ -75,8 +76,9 @@ class FlutterTtsBuddyTts implements BuddyTts {
 
   FlutterTts? _tts;
   FlutterTts get _iosTts => _tts ??= FlutterTts();
-  static const _android =
-      MethodChannel('org.freevia.backgammonbuddy/offline_speech');
+  static const _android = MethodChannel(
+    'org.freevia.backgammonbuddy/offline_speech',
+  );
   static int _nextSession = 0;
   final String _session =
       '${DateTime.now().microsecondsSinceEpoch}-${_nextSession++}';
@@ -88,15 +90,16 @@ class FlutterTtsBuddyTts implements BuddyTts {
   bool get _isAndroid => defaultTargetPlatform == TargetPlatform.android;
 
   @override
-  Future<void> configure() async {
+  Future<void> configure({required String locale}) async {
     if (_disposed) return;
     _canSpeak = false;
     if (_isAndroid) {
       // The bridge selects and verifies a safe installed voice immediately
       // before each utterance, without changing the system engine or language.
-      final configured = await _android.invokeMethod<int>(
-        'configure', {'session': _session},
-      );
+      final configured = await _android.invokeMethod<int>('configure', {
+        'session': _session,
+        'locale': locale,
+      });
       _canSpeak = !_disposed && configured == 1;
       return;
     }
@@ -111,7 +114,10 @@ class FlutterTtsBuddyTts implements BuddyTts {
       await _iosTts.stop();
       if (!_ownsIos) return;
     }
-    if (await _iosTts.setLanguage(kBuddySpeechLanguage) != 1 || !_ownsIos) return;
+    if (await _iosTts.setLanguage(buddySpeechLocaleTag(locale)) != 1 ||
+        !_ownsIos) {
+      return;
+    }
     await _iosTts.awaitSpeakCompletion(true);
     if (!_ownsIos) return;
     await _iosTts.setSpeechRate(kBuddySpeechRate);
@@ -122,7 +128,9 @@ class FlutterTtsBuddyTts implements BuddyTts {
 
   void _cancelIosSpeech() {
     final cancellation = _iosCancellation;
-    if (cancellation != null && !cancellation.isCompleted) cancellation.complete();
+    if (cancellation != null && !cancellation.isCompleted) {
+      cancellation.complete();
+    }
   }
 
   @override
@@ -131,9 +139,10 @@ class FlutterTtsBuddyTts implements BuddyTts {
     if (_isAndroid) {
       // Completes on native utterance completion/stop, or immediately when no
       // verified offline voice exists. The transcript already contains text.
-      await _android.invokeMethod<int>(
-        'speak', {'session': _session, 'text': text},
-      );
+      await _android.invokeMethod<int>('speak', {
+        'session': _session,
+        'text': text,
+      });
     } else if (_ownsIos) {
       final cancellation = Completer<void>();
       _iosCancellation = cancellation;
@@ -181,7 +190,7 @@ class FlutterTtsBuddyTts implements BuddyTts {
 /// engine for the device's locale would mispronounce this file's own output on
 /// a non-English phone rather than translate it. Revisit together with app-wide
 /// localization, not before.
-const String kBuddySpeechLanguage = 'en-US';
+const String kBuddyDefaultSpeechLanguage = 'en';
 
 /// How fast Buddy talks, on the plugin's 0..1 scale.
 ///
@@ -193,6 +202,41 @@ const String kBuddySpeechLanguage = 'en-US';
 /// misheard costs a whole turn while a line heard slowly costs a second; the
 /// on-device protocol in Task 15 is where it gets a measured value.
 const double kBuddySpeechRate = 0.45;
+
+/// Native engines generally expect a regional voice tag although the app's
+/// generated locale identifier is language-only.
+@visibleForTesting
+String buddySpeechLocaleTag(String languageCode) => switch (languageCode) {
+  'bg' => 'bg-BG',
+  'cs' => 'cs-CZ',
+  'da' => 'da-DK',
+  'de' => 'de-DE',
+  'el' => 'el-GR',
+  'en' => 'en-US',
+  'es' => 'es-ES',
+  'et' => 'et-EE',
+  'fi' => 'fi-FI',
+  'fr' => 'fr-FR',
+  'ga' => 'ga-IE',
+  'hr' => 'hr-HR',
+  'hu' => 'hu-HU',
+  'it' => 'it-IT',
+  'lt' => 'lt-LT',
+  'lv' => 'lv-LV',
+  'mt' => 'mt-MT',
+  'nl' => 'nl-NL',
+  'pl' => 'pl-PL',
+  'pt' => 'pt-PT',
+  'ro' => 'ro-RO',
+  'ru' => 'ru-RU',
+  'sk' => 'sk-SK',
+  'sl' => 'sl-SI',
+  'sr' => 'sr-RS',
+  'sv' => 'sv-SE',
+  'tr' => 'tr-TR',
+  'uk' => 'uk-UA',
+  _ => 'en-US',
+};
 
 /// Buddy's voice, and the transcript that mirrors it.
 ///
@@ -216,6 +260,7 @@ class BuddySpeaker {
   BuddySpeaker({
     BuddyTts? engine,
     this.phrasing = BuddyPhrasing.terse,
+    this.l10n,
   }) : engine = engine ?? const SilentBuddyTts();
 
   /// The speaker this platform can actually have.
@@ -226,17 +271,20 @@ class BuddySpeaker {
   /// `test/buddy/speaker_test.dart`.
   factory BuddySpeaker.forPlatform({
     BuddyPhrasing phrasing = BuddyPhrasing.terse,
+    AppLocalizations? l10n,
     @visibleForTesting BuddyTts? engineOverride,
-  }) =>
-      BuddySpeaker(
-        engine: engineOverride ??
-            (isBuddySpeechSupportedPlatform
-                ? FlutterTtsBuddyTts()
-                : const SilentBuddyTts()),
-        phrasing: phrasing,
-      );
+  }) => BuddySpeaker(
+    engine:
+        engineOverride ??
+        (isBuddySpeechSupportedPlatform
+            ? FlutterTtsBuddyTts()
+            : const SilentBuddyTts()),
+    phrasing: phrasing,
+    l10n: l10n,
+  );
 
   final BuddyTts engine;
+  final AppLocalizations? l10n;
   final _lines = <BuddyLine>[];
   final _transcript = StreamController<BuddyLine>.broadcast();
 
@@ -284,7 +332,9 @@ class BuddySpeaker {
           // through an unconfigured engine that returns immediately, the
           // queue stops being a queue, and Buddy talks over itself for the
           // rest of the session with nothing on fire.
-          await engine.configure();
+          await engine.configure(
+            locale: l10n?.localeName ?? kBuddyDefaultSpeechLanguage,
+          );
           _configured = true;
         }
         if (_disposed || generation != _generation) return;
@@ -318,7 +368,8 @@ class BuddySpeaker {
   Future<void> speak(String text) => say(BuddyLine(text));
 
   /// Says [move] in the current [phrasing].
-  Future<void> announcePlay(Move move) => say(phrasing.describePlay(move));
+  Future<void> announcePlay(Move move) =>
+      say(phrasing.describePlay(move, l10n: l10n));
 
   /// Cuts off the current line and abandons everything queued behind it.
   ///

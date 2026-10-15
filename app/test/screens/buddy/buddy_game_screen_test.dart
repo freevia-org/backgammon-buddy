@@ -463,7 +463,7 @@ void main() {
               'already advanced, and verification is only about the felt '
               'catching up');
       expect(find.text('Skip this check'), findsNothing);
-      expect(_transcript(t), contains("I'll take your word for it"),
+      expect(_transcript(t), contains('I’ll take your word for it'),
           reason: 'a caveat, because Buddy has just been told something it '
               'could not check');
       expect(

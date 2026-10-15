@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Analyzovať oboma enginmi",
   "parallelEngineExplanation": "Porovnajte samostatné rady wildbg a GNUbg v trénerovi.",
   "engineComparison": "Porovnanie enginov",
-  "engineWinChance": "Šanca na výhru"
+  "engineWinChance": "Šanca na výhru",
+  "buddyBar": "bar",
+  "buddyOff": "vypnuté",
+  "buddyHitSuffix": ", biť",
+  "buddyFriendlyMoveOne": "Presunúť jedno políčko z {from} na {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Presunúť {count} dám z {from} do {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Odneste jeden káro od {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Odneste {count} dámam z {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Hodil som {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Hodili ste {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Obe hodili {die}. Znova rolujte.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Nehrajte sa, takže ste na rade vy.",
+  "buddySpeechNoPlayBuddyTurn": "Žiadna hra, takže je na rade Buddy.",
+  "buddySpeechNoPlayPass": "Žiadna hra – váš ťah prechádza.",
+  "buddySpeechNoPlayBack": "Žiadna hra, takže je to späť na vás.",
+  "buddySpeechIllegalPlay": "To nie je legálna hra.",
+  "buddySpeechPlacementMismatch": "to nie je celkom správne. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "beriem ťa za slovo. Nevidel som tú jednu krajinu, takže ak sme sa rozišli, ukáže sa to ako hra, ktorú neviem prečítať.",
+  "buddySpeechBuddyDouble": "Zdvojnásobím – vziať alebo pustiť?",
+  "buddySpeechYouDouble": "Zdvojnásobíte.",
+  "buddySpeechBuddyTakes": "beriem.",
+  "buddySpeechYouTake": "Vezmi si.",
+  "buddySpeechBuddyDrops": "padám.",
+  "buddySpeechYouDrop": "Spadneš.",
+  "buddySpeechMatchWinnerBuddy": "To je pre mňa zápas.",
+  "buddySpeechMatchWinnerYou": "Vyhráš zápas.",
+  "buddyTutorLastPlayBest": "Vaša posledná hra zodpovedala tomu najlepšiemu z enginu.",
+  "buddyTutorLastPlayClose": "Vaša posledná hra sa blížila k tomu najlepšiemu z enginu.",
+  "buddyTutorPreferredMove": "Pri vašom poslednom hraní motor uprednostnil {move}. {reason}",
+  "buddyTutorBarDifference": "Ponecháva {best} protiľahlých dám na lište namiesto {played}.",
+  "buddyTutorBlotDifference": "Zanecháva {best} blotov namiesto {played}.",
+  "buddyTutorHomeDifference": "Na domácej palubovke má {best} bodov namiesto {played}.",
+  "buddyTutorOffDifference": "Má {best} vypnutých začiarknutí namiesto {played}.",
+  "buddyTutorGeneralDifference": "Rebríček váži odhadované výhry a gammony; žiadna funkcia jednej dosky to nevysvetľuje.",
+  "buddySpeechPlay": "Prehrať {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Hodil som {dice} – {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Vyhrávam túto hru: {points}.",
+  "buddySpeechGameWinnerYou": "Vyhrávate túto hru: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Doska sa líši od hry: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: hra očakáva {expected} {side} dám; kamera vidí {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

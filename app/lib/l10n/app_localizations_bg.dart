@@ -3255,4 +3255,173 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Шанс за победа';
+
+  @override
+  String get buddyBar => 'барът';
+
+  @override
+  String get buddyOff => 'изключено';
+
+  @override
+  String get buddyHitSuffix => ', удряне';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Преместете един пул от $from на $to $hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Преместете $count пула от $from на $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Извадете един пул от $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Извадете $count пулове от $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'Хвърлих $dice.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'Хвърлихте $dice.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'И двамата хвърлиха $die. Разточете отново.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn => 'Няма игра, твой ред е.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn => 'Няма игра, значи е ред на Бъди.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Няма игра — вашият ред минава.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'Няма игра, така че се връща към вас.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'Това не е законна игра.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'Това не е съвсем правилно. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Таблото се различава от играта: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: играта очаква $expected $side пула; камерата вижда $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'Вярвам на думата ви. Не можах да видя тази единствена земя, така че ако сме се разделили, ще се покаже като пиеса, която не мога да прочета.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Аз удвоявам — вземам или пускам?';
+
+  @override
+  String get buddySpeechYouDouble => 'Удвояваш се.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'вземам.';
+
+  @override
+  String get buddySpeechYouTake => 'Вие вземете.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'изпускам.';
+
+  @override
+  String get buddySpeechYouDrop => 'Изпускаш.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Печеля тази игра: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Вие печелите тази игра: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'Това е съвпадението за мен.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Вие печелите мача.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Последната ви игра съответства на най-доброто от двигателя.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Последната ви игра беше близо до най-доброто от двигателя.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'За последното ви пускане двигателят предпочете $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'Оставя $best противникови пулове на лентата вместо $played.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'Оставя $best петна вместо $played.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'Той съдържа $best точки за домашна дъска вместо $played.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'Има $best свалени пула вместо $played.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'Класирането претегля очакваните печалби и награди; нито една функция на платката не го обяснява.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Игра на $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'Хвърлих $dice — $move';
+  }
 }

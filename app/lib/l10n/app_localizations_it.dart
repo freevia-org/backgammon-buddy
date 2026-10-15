@@ -3271,4 +3271,174 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Probabilità di vittoria';
+
+  @override
+  String get buddyBar => 'il bar';
+
+  @override
+  String get buddyOff => 'spento';
+
+  @override
+  String get buddyHitSuffix => ', colpendo';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Sposta una pedina da $from a $to $hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Sposta $count pedine da $from a $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Porta una pedina fuori da $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Porta $count pedine da $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'Ho tirato $dice.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'Hai tirato $dice.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'Entrambi hanno tirato $die. Rotolare di nuovo.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn => 'Non si gioca, quindi è il tuo turno.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn =>
+      'Non c\'è gioco, quindi è il turno di Buddy.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Nessun gioco: il tuo turno passa.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'Nessun gioco, quindi torna a te.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'Non è un gioco legale.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'Non è del tutto corretto. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Il tabellone è diverso dal gioco: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: il gioco prevede $expected $side pedine; la telecamera vede $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'Ti crederò sulla parola. Non riuscivo a vedere quella terra, quindi se ci siamo separati si presenterà come un\'opera teatrale che non riesco a leggere.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Raddoppio: prendere o rilasciare?';
+
+  @override
+  String get buddySpeechYouDouble => 'Raddoppi.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'Prendo.';
+
+  @override
+  String get buddySpeechYouTake => 'Prendi.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'Lascio cadere.';
+
+  @override
+  String get buddySpeechYouDrop => 'Cadi.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Vinco questa partita: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Hai vinto questa partita: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'Questa è la partita per me.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Hai vinto la partita.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'La tua ultima giocata corrispondeva al meglio del motore.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'La tua ultima giocata è stata vicina alla migliore del motore.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Per la tua ultima riproduzione, il motore ha preferito $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'Lascia $best pedine avversarie sul bar invece di $played.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'Lascia $best macchie invece di $played.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'Ha $best punti sul tabellone interno invece di $played.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'Ha $best pedine spente invece di $played.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'Nella classifica pesano vincite e gammon stimati; nessuna caratteristica della scheda singola lo spiega.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Gioca a $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'Ho tirato $dice — $move';
+  }
 }

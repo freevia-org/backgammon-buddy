@@ -3248,4 +3248,173 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Vinderchance';
+
+  @override
+  String get buddyBar => 'baren';
+
+  @override
+  String get buddyOff => 'slukket';
+
+  @override
+  String get buddyHitSuffix => ', slår';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Flyt en brik fra $from til $to ​​$hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Flyt $count brikker fra $from til $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Tag en brik af fra $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Tag $count brikker af fra $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'Jeg rullede $dice.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'Du rullede $dice.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'Begge rullede $die. Rul igen.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn => 'Ingen spil, så det er din tur.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn => 'Ingen leg, så det er Buddys tur.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Ingen spil - din tur går forbi.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'Ingen spil, så det er tilbage til dig.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'Det er ikke et lovligt spil.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'Det er ikke helt rigtigt. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Brættet adskiller sig fra spillet: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: spillet forventer $expected $side brikker; kameraet ser $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'Jeg tager dit ord for det. Jeg kunne ikke se det ene land, så hvis vi er kommet fra hinanden, vil det dukke op som et teaterstykke, jeg ikke kan læse.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Jeg fordobler — tage eller slippe?';
+
+  @override
+  String get buddySpeechYouDouble => 'Du fordobler.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'jeg tager.';
+
+  @override
+  String get buddySpeechYouTake => 'Du tager.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'jeg dropper.';
+
+  @override
+  String get buddySpeechYouDrop => 'Du slipper.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Jeg vinder dette spil: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Du vinder dette spil: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'Det er matchen for mig.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Du vinder kampen.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Dit sidste spil matchede motorens bedste.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Dit sidste spil var tæt på motorens bedste.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Til dit sidste spil foretrak motoren $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'Det efterlader $best modstående brikker på bjælken i stedet for $played.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'Det efterlader $best klatter i stedet for $played.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'Den har $best hjemmebordspoint i stedet for $played.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'Den har $best brikker fra i stedet for $played.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'Rangeringen vejer estimerede gevinster og gammons; ingen enkelt bordfunktion forklarer det.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Spil $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'Jeg rullede $dice – $move';
+  }
 }

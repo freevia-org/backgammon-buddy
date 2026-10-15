@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Analüüsi mõlema mootoriga",
   "parallelEngineExplanation": "Võrdle juhendajas wildbg ja GNUbg eraldi nõuandeid.",
   "engineComparison": "Mootorite võrdlus",
-  "engineWinChance": "Võiduvõimalus"
+  "engineWinChance": "Võiduvõimalus",
+  "buddyBar": "baar",
+  "buddyOff": "välja",
+  "buddyHitSuffix": ", lööb",
+  "buddyFriendlyMoveOne": "Teisalda üks kontroller kohast {from} asukohta {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Teisalda {count} kabet asukohast {from} asukohta {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Jäta üks ruudus maha kohast {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Jäta {count} kabet maha asukohast {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Veeretasin {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Veeretasite {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Mõlemad veeresid {die}. Veereta uuesti.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Ei mängi, seega on teie kord.",
+  "buddySpeechNoPlayBuddyTurn": "Mängida pole, seega on Buddy kord.",
+  "buddySpeechNoPlayPass": "Ei mängita – sinu kord läheb mööda.",
+  "buddySpeechNoPlayBack": "Ei mängi, nii et see on teile tagasi.",
+  "buddySpeechIllegalPlay": "See pole juriidiline mäng.",
+  "buddySpeechPlacementMismatch": "See pole päris õige. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Ma võtan teie sõna. Ma ei näinud seda ühte maad, nii et kui oleme lahku läinud, kuvatakse see näidendina, mida ma lugeda ei saa.",
+  "buddySpeechBuddyDouble": "Ma kahekordistan – võtan või kukun?",
+  "buddySpeechYouDouble": "Sa kahekordistad.",
+  "buddySpeechBuddyTakes": "ma võtan.",
+  "buddySpeechYouTake": "Sa võtad.",
+  "buddySpeechBuddyDrops": "ma kukun maha.",
+  "buddySpeechYouDrop": "Sa kukud maha.",
+  "buddySpeechMatchWinnerBuddy": "See sobib mulle.",
+  "buddySpeechMatchWinnerYou": "Sa võidad matši.",
+  "buddyTutorLastPlayBest": "Teie viimane esitus vastas mootori parimale tasemele.",
+  "buddyTutorLastPlayClose": "Teie viimane esitus oli lähedal mootori parimale tasemele.",
+  "buddyTutorPreferredMove": "Teie viimase esituse jaoks eelistas mootor {move}. {reason}",
+  "buddyTutorBarDifference": "See jätab ribale {best} vastandmärgid, mitte {played}.",
+  "buddyTutorBlotDifference": "See jätab {played} asemel {best} bloti.",
+  "buddyTutorHomeDifference": "See sisaldab {played} asemel {best} kodulaua punkti.",
+  "buddyTutorOffDifference": "Sellel on {played} asemel väljas {best} kabe.",
+  "buddyTutorGeneralDifference": "Edetabel kaalub hinnangulisi võite ja gammoneid; ükski plaadi funktsioon seda ei selgita.",
+  "buddySpeechPlay": "Mängi {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Veeretasin {dice}–{move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Ma võidan selle mängu: {points}.",
+  "buddySpeechGameWinnerYou": "Sa võidad selle mängu: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Laualaud erineb mängust: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: mäng ootab {expected} {side} kabet; kaamera näeb {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -59,6 +59,16 @@ void main() {
           isNotEmpty,
           reason: '$locale.$key must have translated text',
         );
+        expect(
+          bundle[key],
+          isNot(contains('QZXQ')),
+          reason: '$locale.$key must not contain translation batch markers',
+        );
+        expect(
+          bundle[key],
+          isNot(matches(RegExp(r'\bJ\d{1,2}\b'))),
+          reason: '$locale.$key must not contain translation segment markers',
+        );
         final metadata = bundle['@$key'] as Map<String, dynamic>?;
         final templateMetadata = template['@$key'] as Map<String, dynamic>?;
         expect(

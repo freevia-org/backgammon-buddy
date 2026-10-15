@@ -24,6 +24,7 @@ internal class OfflineBuddyTts(context: Context, messenger: BinaryMessenger) :
     private var initialization: MethodChannel.Result? = null
     private var pending: Pair<String, MethodChannel.Result>? = null
     private var owner: String? = null
+    private var requestedLocale = "en"
 
     init {
         channel.setMethodCallHandler(this)
@@ -39,7 +40,7 @@ internal class OfflineBuddyTts(context: Context, messenger: BinaryMessenger) :
             return
         }
         when (call.method) {
-            "configure" -> configure(session, result)
+            "configure" -> configure(session, call.argument<String>("locale") ?: "en", result)
             "speak" -> speak(call.argument<String>("text"), result)
             "stop" -> { stop(); result.success(1) }
             "dispose" -> { release(); result.success(1) }
@@ -47,7 +48,8 @@ internal class OfflineBuddyTts(context: Context, messenger: BinaryMessenger) :
         }
     }
 
-    private fun configure(session: String, result: MethodChannel.Result) {
+    private fun configure(session: String, locale: String, result: MethodChannel.Result) {
+        requestedLocale = locale
         if (session != owner) {
             release()
             owner = session
@@ -91,13 +93,16 @@ internal class OfflineBuddyTts(context: Context, messenger: BinaryMessenger) :
             return
         }
         try {
-            val voice = tts.voices?.firstOrNull { OfflineSpeechPolicy.eligible(it.snapshot()) }
+            val voice = tts.voices?.firstOrNull {
+                OfflineSpeechPolicy.eligible(it.snapshot(), requestedLocale)
+            }
             if (voice == null) { result.success(0); return }
             val selected = voice.snapshot()
             val success = tts.setVoice(voice) == TextToSpeech.SUCCESS
             // A successful name lookup is insufficient: check Android's actual
             // result AND the active voice, before giving the engine any text.
-            if (!OfflineSpeechPolicy.selected(selected, success, tts.voice?.snapshot())) {
+            if (!OfflineSpeechPolicy.selected(
+                    selected, success, tts.voice?.snapshot(), requestedLocale)) {
                 result.success(0)
                 return
             }

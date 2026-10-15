@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Analysoi molemmilla moottoreilla",
   "parallelEngineExplanation": "Vertaa wildbg- ja GNUbg-moottorien erillisiä neuvoja opastajassa.",
   "engineComparison": "Moottorien vertailu",
-  "engineWinChance": "Voiton todennäköisyys"
+  "engineWinChance": "Voiton todennäköisyys",
+  "buddyBar": "baari",
+  "buddyOff": "pois",
+  "buddyHitSuffix": ", lyömällä",
+  "buddyFriendlyMoveOne": "Siirrä yksi tarkistusmerkki kohteesta {from} kohteeseen {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Siirrä {count} tammi paikasta {from} paikkaan {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Ota yksi nappula pois kohteesta {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Ota {count} tammi pois kohteesta {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Heitin {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Heitit {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Molemmat heitettiin {die}. Rullaa uudestaan.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Ei leikkimistä, joten on sinun vuorosi.",
+  "buddySpeechNoPlayBuddyTurn": "Ei leikkimistä, joten on Buddyn vuoro.",
+  "buddySpeechNoPlayPass": "Ei peliä – vuorosi menee ohi.",
+  "buddySpeechNoPlayBack": "Ei leikkimistä, joten se on palannut sinulle.",
+  "buddySpeechIllegalPlay": "Se ei ole laillinen leikki.",
+  "buddySpeechPlacementMismatch": "Se ei ole aivan oikein. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Otan sanasi vastaan. En voinut nähdä sitä yhtä maata, joten jos olemme eronneet, se näkyy näytelmänä, jota en voi lukea.",
+  "buddySpeechBuddyDouble": "Tuplaan - otan vai pudotan?",
+  "buddySpeechYouDouble": "Sinä tuplaat.",
+  "buddySpeechBuddyTakes": "Otan.",
+  "buddySpeechYouTake": "otat.",
+  "buddySpeechBuddyDrops": "pudotan.",
+  "buddySpeechYouDrop": "Pudotat.",
+  "buddySpeechMatchWinnerBuddy": "Se on ottelu minulle.",
+  "buddySpeechMatchWinnerYou": "Voitat ottelun.",
+  "buddyTutorLastPlayBest": "Viimeinen pelisi vastasi moottorin parasta.",
+  "buddyTutorLastPlayClose": "Viimeinen pelisi oli lähellä moottorin parasta.",
+  "buddyTutorPreferredMove": "Viimeisimmän pelin aikana moottori suosi {move}. {reason}",
+  "buddyTutorBarDifference": "Se jättää palkkiin {best} vastakkaista nappulaa {played}:n sijaan.",
+  "buddyTutorBlotDifference": "Se jättää {best} blottia {played}:n sijaan.",
+  "buddyTutorHomeDifference": "Siinä on {best} kotilautapistettä {played} sijasta.",
+  "buddyTutorOffDifference": "Siinä on {best} nappula pois päältä {played} sijaan.",
+  "buddyTutorGeneralDifference": "Ranking painaa arvioidut voitot ja gammonit; mikään yhden kortin ominaisuus ei selitä sitä.",
+  "buddySpeechPlay": "Pelaa {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Heitin {dice} – {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Voitan tämän pelin: {points}.",
+  "buddySpeechGameWinnerYou": "Voitat tämän pelin: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Lauta eroaa pelistä: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: peli odottaa {expected} {side} tammua; kamera näkee {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Анализ с двата двигателя",
   "parallelEngineExplanation": "Сравнявайте отделните съвети на wildbg и GNUbg в наставника.",
   "engineComparison": "Сравнение на двигатели",
-  "engineWinChance": "Шанс за победа"
+  "engineWinChance": "Шанс за победа",
+  "buddyBar": "барът",
+  "buddyOff": "изключено",
+  "buddyHitSuffix": ", удряне",
+  "buddyFriendlyMoveOne": "Преместете един пул от {from} на {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Преместете {count} пула от {from} на {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Извадете един пул от {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Извадете {count} пулове от {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Хвърлих {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Хвърлихте {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "И двамата хвърлиха {die}. Разточете отново.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Няма игра, твой ред е.",
+  "buddySpeechNoPlayBuddyTurn": "Няма игра, значи е ред на Бъди.",
+  "buddySpeechNoPlayPass": "Няма игра — вашият ред минава.",
+  "buddySpeechNoPlayBack": "Няма игра, така че се връща към вас.",
+  "buddySpeechIllegalPlay": "Това не е законна игра.",
+  "buddySpeechPlacementMismatch": "Това не е съвсем правилно. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Вярвам на думата ви. Не можах да видя тази единствена земя, така че ако сме се разделили, ще се покаже като пиеса, която не мога да прочета.",
+  "buddySpeechBuddyDouble": "Аз удвоявам — вземам или пускам?",
+  "buddySpeechYouDouble": "Удвояваш се.",
+  "buddySpeechBuddyTakes": "вземам.",
+  "buddySpeechYouTake": "Вие вземете.",
+  "buddySpeechBuddyDrops": "изпускам.",
+  "buddySpeechYouDrop": "Изпускаш.",
+  "buddySpeechMatchWinnerBuddy": "Това е съвпадението за мен.",
+  "buddySpeechMatchWinnerYou": "Вие печелите мача.",
+  "buddyTutorLastPlayBest": "Последната ви игра съответства на най-доброто от двигателя.",
+  "buddyTutorLastPlayClose": "Последната ви игра беше близо до най-доброто от двигателя.",
+  "buddyTutorPreferredMove": "За последното ви пускане двигателят предпочете {move}. {reason}",
+  "buddyTutorBarDifference": "Оставя {best} противникови пулове на лентата вместо {played}.",
+  "buddyTutorBlotDifference": "Оставя {best} петна вместо {played}.",
+  "buddyTutorHomeDifference": "Той съдържа {best} точки за домашна дъска вместо {played}.",
+  "buddyTutorOffDifference": "Има {best} свалени пула вместо {played}.",
+  "buddyTutorGeneralDifference": "Класирането претегля очакваните печалби и награди; нито една функция на платката не го обяснява.",
+  "buddySpeechPlay": "Игра на {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Хвърлих {dice} — {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Печеля тази игра: {points}.",
+  "buddySpeechGameWinnerYou": "Вие печелите тази игра: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Таблото се различава от играта: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: играта очаква {expected} {side} пула; камерата вижда {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

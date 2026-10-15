@@ -9,12 +9,14 @@ internal data class SpeechVoice(
 )
 
 internal object OfflineSpeechPolicy {
-    fun eligible(voice: SpeechVoice): Boolean =
-        voice.name.isNotEmpty() && voice.locale == "en-US" &&
+    private fun language(locale: String) = locale.substringBefore('-').lowercase()
+
+    fun eligible(voice: SpeechVoice, requestedLocale: String): Boolean =
+        voice.name.isNotEmpty() && language(voice.locale) == language(requestedLocale) &&
             !voice.networkRequired && voice.features != null &&
             "notInstalled" !in voice.features
 
-    fun selected(selected: SpeechVoice, success: Boolean, active: SpeechVoice?): Boolean =
-        success && eligible(selected) && active != null && eligible(active) &&
+    fun selected(selected: SpeechVoice, success: Boolean, active: SpeechVoice?, requestedLocale: String): Boolean =
+        success && eligible(selected, requestedLocale) && active != null && eligible(active, requestedLocale) &&
             active.name == selected.name && active.locale == selected.locale
 }

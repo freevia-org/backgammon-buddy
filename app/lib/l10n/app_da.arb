@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Analyser med begge motorer",
   "parallelEngineExplanation": "Sammenlign separate råd fra wildbg og GNUbg i vejlederen.",
   "engineComparison": "Sammenligning af motorer",
-  "engineWinChance": "Vinderchance"
+  "engineWinChance": "Vinderchance",
+  "buddyBar": "baren",
+  "buddyOff": "slukket",
+  "buddyHitSuffix": ", slår",
+  "buddyFriendlyMoveOne": "Flyt en brik fra {from} til {to} ​​{hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Flyt {count} brikker fra {from} til {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Tag en brik af fra {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Tag {count} brikker af fra {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Jeg rullede {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Du rullede {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Begge rullede {die}. Rul igen.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Ingen spil, så det er din tur.",
+  "buddySpeechNoPlayBuddyTurn": "Ingen leg, så det er Buddys tur.",
+  "buddySpeechNoPlayPass": "Ingen spil - din tur går forbi.",
+  "buddySpeechNoPlayBack": "Ingen spil, så det er tilbage til dig.",
+  "buddySpeechIllegalPlay": "Det er ikke et lovligt spil.",
+  "buddySpeechPlacementMismatch": "Det er ikke helt rigtigt. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Jeg tager dit ord for det. Jeg kunne ikke se det ene land, så hvis vi er kommet fra hinanden, vil det dukke op som et teaterstykke, jeg ikke kan læse.",
+  "buddySpeechBuddyDouble": "Jeg fordobler — tage eller slippe?",
+  "buddySpeechYouDouble": "Du fordobler.",
+  "buddySpeechBuddyTakes": "jeg tager.",
+  "buddySpeechYouTake": "Du tager.",
+  "buddySpeechBuddyDrops": "jeg dropper.",
+  "buddySpeechYouDrop": "Du slipper.",
+  "buddySpeechMatchWinnerBuddy": "Det er matchen for mig.",
+  "buddySpeechMatchWinnerYou": "Du vinder kampen.",
+  "buddyTutorLastPlayBest": "Dit sidste spil matchede motorens bedste.",
+  "buddyTutorLastPlayClose": "Dit sidste spil var tæt på motorens bedste.",
+  "buddyTutorPreferredMove": "Til dit sidste spil foretrak motoren {move}. {reason}",
+  "buddyTutorBarDifference": "Det efterlader {best} modstående brikker på bjælken i stedet for {played}.",
+  "buddyTutorBlotDifference": "Det efterlader {best} klatter i stedet for {played}.",
+  "buddyTutorHomeDifference": "Den har {best} hjemmebordspoint i stedet for {played}.",
+  "buddyTutorOffDifference": "Den har {best} brikker fra i stedet for {played}.",
+  "buddyTutorGeneralDifference": "Rangeringen vejer estimerede gevinster og gammons; ingen enkelt bordfunktion forklarer det.",
+  "buddySpeechPlay": "Spil {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Jeg rullede {dice} – {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Jeg vinder dette spil: {points}.",
+  "buddySpeechGameWinnerYou": "Du vinder dette spil: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Brættet adskiller sig fra spillet: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: spillet forventer {expected} {side} brikker; kameraet ser {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

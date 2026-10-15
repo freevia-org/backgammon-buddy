@@ -5,9 +5,11 @@ import 'package:board_vision/board_vision.dart';
 import 'package:flutter/foundation.dart';
 
 import '../data/persistence_hooks.dart';
+import '../l10n/app_localizations.dart';
 import '../game/game_controller.dart';
 import '../game/player_agent.dart';
 import 'buddy_dice_roller.dart';
+import 'buddy_localization.dart';
 import 'buddy_policy.dart';
 import 'observed_frame.dart';
 import 'perception_human_agent.dart';
@@ -202,6 +204,7 @@ class BuddySession extends ChangeNotifier {
     required this.policy,
     required Stream<ObservedFrame> frames,
     required this.matchLength,
+    this.l10n,
     this.cubeless = false,
     this.persistence = const NoopPersistence(),
   }) {
@@ -228,6 +231,7 @@ class BuddySession extends ChangeNotifier {
 
   final BuddyPolicy policy;
   final int matchLength;
+  final AppLocalizations? l10n;
   final bool cubeless;
   final MatchPersistence persistence;
 
@@ -793,7 +797,9 @@ class BuddySession extends ChangeNotifier {
       // that is not legal.
       final check = _vision!.verifyExpectedBoard(f.frame, s.board);
       if (check.agrees) return;
-      final reason = check.message;
+      final reason = l10n == null
+          ? check.message
+          : buddyBoardMismatchMessage(check, l10n!);
       if (reason != _objection) {
         _objection = reason;
         policy.onIllegalPlayObserved(reason);
@@ -831,7 +837,9 @@ class BuddySession extends ChangeNotifier {
 
     _placementAttempts++;
     _placementDiscrepancies = result.discrepanciesOn(touched);
-    final fix = _placementDiscrepancies.first.message;
+    final fix = l10n == null
+        ? _placementDiscrepancies.first.message
+        : buddyRegionVerificationMessage(_placementDiscrepancies.first, l10n!);
     if (fix != _lastFix) {
       _lastFix = fix;
       policy.onPlacementVerified(false, fix);

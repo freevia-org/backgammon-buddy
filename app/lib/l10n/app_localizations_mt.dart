@@ -3228,4 +3228,175 @@ class AppLocalizationsMt extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Ċans ta’ rebħa';
+
+  @override
+  String get buddyBar => 'il-bar';
+
+  @override
+  String get buddyOff => 'mitfi';
+
+  @override
+  String get buddyHitSuffix => ', jolqot';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Mexxi kontrollur wieħed minn $from għal $to ​​$hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Ċaqlaq $count kontrolluri minn $from għal $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Żomm kontrollur wieħed minn $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Żomm $count kontrolluri minn $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'Irrumblajt $dice.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'Irromblat $dice.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'It-tnejn irrumblaw $die. Erġa irrombla.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn => 'Ebda play, allura huwa imissek.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn =>
+      'L-ebda play, allura huwa imiss lil Buddy.';
+
+  @override
+  String get buddySpeechNoPlayPass =>
+      'L-ebda logħob - min-naħa tiegħek jgħaddi.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'Ebda play, għalhekk huwa lura lilek.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'Dak mhux dramm legali.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'Dak mhux sewwa. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Il-bord huwa differenti mil-logħba: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: il-logħba tistenna $expected $side kontrolluri; il-kamera tara $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'Jien nieħu kelmtek għaliha. Ma stajtx nara dik l-art waħda, allura jekk inkunu separati se tidher bħala dramm li ma nistax naqra.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Nirdoppja - nieħu jew qatra?';
+
+  @override
+  String get buddySpeechYouDouble => 'Inti tirdoppja.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'nieħu.';
+
+  @override
+  String get buddySpeechYouTake => 'Inti tieħu.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'I qatra.';
+
+  @override
+  String get buddySpeechYouDrop => 'Inti qatra.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Nirbaħ din il-logħba: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Inti tirbaħ din il-logħba: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'Dik hija l-logħba għalija.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Inti tirbaħ il-partita.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'L-aħħar logħob tiegħek qabeż l-aħjar tal-magna.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'L-aħħar logħob tiegħek kien qrib l-aqwa tal-magna.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Għall-aħħar play tiegħek, il-magna ppreferiet $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'Jħalli $best kontrolluri opposti fuq il-bar minflok $played.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'Jħalli $best blots minflok $played.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'Iżomm $best punti home-board minflok $played.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'Għandu $best kontrolluri off minflok $played.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'Il-klassifika tiżen rebħiet u gammons stmati; ebda karatteristika tal-bord wieħed jispjegaha.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Ilgħab $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'Irrumblajt $dice — $move';
+  }
 }

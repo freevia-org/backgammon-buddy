@@ -3202,4 +3202,175 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Uzvaras iespēja';
+
+  @override
+  String get buddyBar => 'bārs';
+
+  @override
+  String get buddyOff => 'izslēgts';
+
+  @override
+  String get buddyHitSuffix => ', sitot';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Pārvietot vienu pārbaudītāju no $from uz $to $hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Pārvietot $count dambreti no $from uz $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Atstāj vienu rūti no $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Atstāj $count dambreti no $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'Es nometu $dice.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'Jūs izlaidāt $dice.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'Abi noskrēja $die. Atkal rullē.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn =>
+      'Nedrīkst spēlēt, tāpēc ir jūsu kārta.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn =>
+      'Nedrīkst spēlēt, tāpēc pienākusi Badija kārta.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Nav spēles — jūsu kārta paiet.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'Nav spēlēt, tāpēc tas ir atpakaļ jums.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'Tā nav likumīga spēle.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'Tas nav gluži pareizi. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Galds atšķiras no spēles: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: spēle sagaida $expected $side dambreti; kamera redz $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'Es pieņemšu jūsu vārdu par to. Es nevarēju redzēt šo vienu zemi, tāpēc, ja mēs esam šķirti, tā parādīsies kā luga, kuru es nevaru izlasīt.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Es dubultoju - ņem vai nomet?';
+
+  @override
+  String get buddySpeechYouDouble => 'Tu dubultojies.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'es ņemu.';
+
+  @override
+  String get buddySpeechYouTake => 'Jūs ņemat.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'Es nometu.';
+
+  @override
+  String get buddySpeechYouDrop => 'Tu nomet.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Es uzvarēju šo spēli: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Jūs laimējat šo spēli: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'Tas man atbilst.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Tu uzvarēsi maču.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Jūsu pēdējā spēle atbilst motora labākajai spēlei.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Jūsu pēdējā spēle bija tuvu dzinēja labākajam rādītājam.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Jūsu pēdējā spēlē dzinējs deva priekšroku $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'Tas atstāj $best pretējās rūtiņas joslā, nevis $played.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'Tas atstāj $best blotus, nevis $played.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'Tajā ir $best mājas galda punkti, nevis $played.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'Tam ir izslēgti $best rūtiņas, nevis $played.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'Reitings sver aptuvenās uzvaras un gemonus; neviena viena paneļa funkcija to neizskaidro.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Spēlēt $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'Es izlaidu $dice–$move';
+  }
 }

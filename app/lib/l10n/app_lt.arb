@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Analizuoti abiem varikliais",
   "parallelEngineExplanation": "Palyginkite atskirus wildbg ir GNUbg patarimus mokytojuje.",
   "engineComparison": "Variklių palyginimas",
-  "engineWinChance": "Laimėjimo tikimybė"
+  "engineWinChance": "Laimėjimo tikimybė",
+  "buddyBar": "baras",
+  "buddyOff": "išjungti",
+  "buddyHitSuffix": ", pataikyti",
+  "buddyFriendlyMoveOne": "Perkelkite vieną tikrintuvą iš {from} į {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Perkelkite {count} šaškes iš {from} į {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Atstok vieną šaškę nuo {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Atleiskite {count} šaškes nuo {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Aš nuleidau {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Išmetėte {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Abu nuriedėjo {die}. Dar kartą sukti.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Nežaisti, todėl tavo eilė.",
+  "buddySpeechNoPlayBuddyTurn": "Nežaidžiama, todėl atėjo Buddy eilė.",
+  "buddySpeechNoPlayPass": "Nežaisti – tavo eilė praeina.",
+  "buddySpeechNoPlayBack": "Nežaidžiama, todėl tai grįžta jums.",
+  "buddySpeechIllegalPlay": "Tai nėra legalus žaidimas.",
+  "buddySpeechPlacementMismatch": "Tai ne visai teisinga. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Pasitiksiu tavo žodžiu. Aš nemačiau tos vienos žemės, todėl jei mes išsiskyrėme, ji pasirodys kaip pjesė, kurios negaliu skaityti.",
+  "buddySpeechBuddyDouble": "Dvigubai – imti ar numesti?",
+  "buddySpeechYouDouble": "Tu dvigubai.",
+  "buddySpeechBuddyTakes": "imu.",
+  "buddySpeechYouTake": "Tu pasiimk.",
+  "buddySpeechBuddyDrops": "nuleidžiu.",
+  "buddySpeechYouDrop": "Tu numeti.",
+  "buddySpeechMatchWinnerBuddy": "Tai man tinka.",
+  "buddySpeechMatchWinnerYou": "Jūs laimite rungtynes.",
+  "buddyTutorLastPlayBest": "Jūsų paskutinis žaidimas atitiko geriausius variklio rezultatus.",
+  "buddyTutorLastPlayClose": "Jūsų paskutinis žaidimas buvo arti geriausio variklio.",
+  "buddyTutorPreferredMove": "Paskutiniam jūsų žaidimui variklis pasirinko {move}. {reason}",
+  "buddyTutorBarDifference": "Juostoje lieka {best} priešingi šaškės, o ne {played}.",
+  "buddyTutorBlotDifference": "Vietoj {played} palieka {best} dėmių.",
+  "buddyTutorHomeDifference": "Jame yra {best} namų lentos taškai, o ne {played}.",
+  "buddyTutorOffDifference": "Vietoj {played} yra išjungtos {best} varnelės.",
+  "buddyTutorGeneralDifference": "Reitingas sveria apskaičiuotus laimėjimus ir žaidimus; jokia vienos plokštės funkcija to nepaaiškina.",
+  "buddySpeechPlay": "Žaisti {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Išmečiau {dice}–{move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Aš laimiu šį žaidimą: {points}.",
+  "buddySpeechGameWinnerYou": "Jūs laimite šį žaidimą: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Lenta skiriasi nuo žaidimo: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: žaidime tikimasi {expected} {side} šaškių; kamera mato {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -3256,4 +3256,173 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Šance na výhru';
+
+  @override
+  String get buddyBar => 'bar';
+
+  @override
+  String get buddyOff => 'vypnuto';
+
+  @override
+  String get buddyHitSuffix => ', bít';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Přesunout jedno políčko z $from na $to $hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Přesunout $count dám z $from do $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Odnést jeden šek od $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Odneste $count dámám z $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'Hodil jsem $dice.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'Hodili jste $dice.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'Oba hodili $die. Znovu rolujte.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn => 'Žádná hra, takže je řada na vás.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn => 'Žádná hra, takže je na řadě Buddy.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Žádná hra – váš tah projde.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'Žádná hra, takže je to zpět k vám.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'To není legální hra.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'To není úplně správné. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Deska se liší od hry: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: hra očekává $expected $side dám; kamera vidí $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'beru vás za slovo. Neviděl jsem tu jednu zemi, takže pokud jsme se rozešli, ukáže se to jako hra, kterou neumím přečíst.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Zdvojnásobím – vzít nebo upustit?';
+
+  @override
+  String get buddySpeechYouDouble => 'Ty dvojnásob.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'beru.';
+
+  @override
+  String get buddySpeechYouTake => 'Vezmi si.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'padám.';
+
+  @override
+  String get buddySpeechYouDrop => 'Spadneš.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Vyhrál jsem tuto hru: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Vyhrajete tuto hru: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'To je pro mě zápas.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Vyhrajete zápas.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Vaše poslední hra odpovídala tomu nejlepšímu z enginu.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Vaše poslední hra se blížila tomu nejlepšímu z enginu.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Při vaší poslední hře motor upřednostnil $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'Na liště ponechává $best protilehlých políček namísto $played.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'Zanechává $best blotů místo $played.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'Má $best bodů za domácí tabuli namísto $played.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'Má $best zaškrtávacích políček namísto $played.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'Žebříček váží odhadované výhry a gammony; žádná funkce jedné desky to nevysvětluje.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Přehrát $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'Hodil jsem $dice – $move';
+  }
 }

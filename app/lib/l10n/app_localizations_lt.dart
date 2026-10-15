@@ -3244,4 +3244,174 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get engineWinChance => 'Laimėjimo tikimybė';
+
+  @override
+  String get buddyBar => 'baras';
+
+  @override
+  String get buddyOff => 'išjungti';
+
+  @override
+  String get buddyHitSuffix => ', pataikyti';
+
+  @override
+  String buddyFriendlyMoveOne(String from, String to, String hit) {
+    return 'Perkelkite vieną tikrintuvą iš $from į $to $hit';
+  }
+
+  @override
+  String buddyFriendlyMoveMany(
+    String count,
+    String from,
+    String to,
+    String hit,
+  ) {
+    return 'Perkelkite $count šaškes iš $from į $to $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffOne(String from, String hit) {
+    return 'Atstok vieną šaškę nuo $from $hit';
+  }
+
+  @override
+  String buddyFriendlyBearOffMany(String count, String from, String hit) {
+    return 'Atleiskite $count šaškes nuo $from $hit';
+  }
+
+  @override
+  String buddySpeechIRolled(String dice) {
+    return 'Aš nuleidau $dice.';
+  }
+
+  @override
+  String buddySpeechYouRolled(String dice) {
+    return 'Išmetėte $dice.';
+  }
+
+  @override
+  String buddySpeechOpeningTie(String die) {
+    return 'Abu nuriedėjo $die. Dar kartą sukti.';
+  }
+
+  @override
+  String get buddySpeechNoPlayYouTurn => 'Nežaisti, todėl tavo eilė.';
+
+  @override
+  String get buddySpeechNoPlayBuddyTurn =>
+      'Nežaidžiama, todėl atėjo Buddy eilė.';
+
+  @override
+  String get buddySpeechNoPlayPass => 'Nežaisti – tavo eilė praeina.';
+
+  @override
+  String get buddySpeechNoPlayBack => 'Nežaidžiama, todėl tai grįžta jums.';
+
+  @override
+  String get buddySpeechIllegalPlay => 'Tai nėra legalus žaidimas.';
+
+  @override
+  String buddySpeechPlacementMismatch(String reason) {
+    return 'Tai ne visai teisinga. $reason';
+  }
+
+  @override
+  String buddyBoardMismatch(String details, String more) {
+    return 'Lenta skiriasi nuo žaidimo: $details$more.';
+  }
+
+  @override
+  String buddyConfirmRegionWrongCount(
+    String region,
+    String expected,
+    String side,
+    String observed,
+  ) {
+    return '$region: žaidime tikimasi $expected $side šaškių; kamera mato $observed.';
+  }
+
+  @override
+  String get buddySpeechSkippedCheck =>
+      'Pasitiksiu tavo žodžiu. Aš nemačiau tos vienos žemės, todėl jei mes išsiskyrėme, ji pasirodys kaip pjesė, kurios negaliu skaityti.';
+
+  @override
+  String get buddySpeechBuddyDouble => 'Dvigubai – imti ar numesti?';
+
+  @override
+  String get buddySpeechYouDouble => 'Tu dvigubai.';
+
+  @override
+  String get buddySpeechBuddyTakes => 'imu.';
+
+  @override
+  String get buddySpeechYouTake => 'Tu pasiimk.';
+
+  @override
+  String get buddySpeechBuddyDrops => 'nuleidžiu.';
+
+  @override
+  String get buddySpeechYouDrop => 'Tu numeti.';
+
+  @override
+  String buddySpeechGameWinnerBuddy(String points) {
+    return 'Aš laimiu šį žaidimą: $points.';
+  }
+
+  @override
+  String buddySpeechGameWinnerYou(String points) {
+    return 'Jūs laimite šį žaidimą: $points.';
+  }
+
+  @override
+  String get buddySpeechMatchWinnerBuddy => 'Tai man tinka.';
+
+  @override
+  String get buddySpeechMatchWinnerYou => 'Jūs laimite rungtynes.';
+
+  @override
+  String get buddyTutorLastPlayBest =>
+      'Jūsų paskutinis žaidimas atitiko geriausius variklio rezultatus.';
+
+  @override
+  String get buddyTutorLastPlayClose =>
+      'Jūsų paskutinis žaidimas buvo arti geriausio variklio.';
+
+  @override
+  String buddyTutorPreferredMove(String move, String reason) {
+    return 'Paskutiniam jūsų žaidimui variklis pasirinko $move. $reason';
+  }
+
+  @override
+  String buddyTutorBarDifference(String best, String played) {
+    return 'Juostoje lieka $best priešingi šaškės, o ne $played.';
+  }
+
+  @override
+  String buddyTutorBlotDifference(String best, String played) {
+    return 'Vietoj $played palieka $best dėmių.';
+  }
+
+  @override
+  String buddyTutorHomeDifference(String best, String played) {
+    return 'Jame yra $best namų lentos taškai, o ne $played.';
+  }
+
+  @override
+  String buddyTutorOffDifference(String best, String played) {
+    return 'Vietoj $played yra išjungtos $best varnelės.';
+  }
+
+  @override
+  String get buddyTutorGeneralDifference =>
+      'Reitingas sveria apskaičiuotus laimėjimus ir žaidimus; jokia vienos plokštės funkcija to nepaaiškina.';
+
+  @override
+  String buddySpeechPlay(String move) {
+    return 'Žaisti $move';
+  }
+
+  @override
+  String buddySpeechBuddyRolledMove(String dice, String move) {
+    return 'Išmečiau $dice–$move';
+  }
 }

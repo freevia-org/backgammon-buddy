@@ -1879,5 +1879,231 @@
   "parallelEngineAnalysis": "Ανάλυση με τις δύο μηχανές",
   "parallelEngineExplanation": "Συγκρίνετε τις ξεχωριστές συμβουλές wildbg και GNUbg στον εκπαιδευτή.",
   "engineComparison": "Σύγκριση μηχανών",
-  "engineWinChance": "Πιθανότητα νίκης"
+  "engineWinChance": "Πιθανότητα νίκης",
+  "buddyBar": "το μπαρ",
+  "buddyOff": "μακριά από",
+  "buddyHitSuffix": ", χτυπώντας",
+  "buddyFriendlyMoveOne": "Μετακινήστε ένα πούλι από το {from} στο {to} {hit}",
+  "@buddyFriendlyMoveOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyMoveMany": "Μετακίνηση {count} πούλια από {from} σε {to} {hit}",
+  "@buddyFriendlyMoveMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffOne": "Φέρτε ένα πούλι μακριά από {from} {hit}",
+  "@buddyFriendlyBearOffOne": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyFriendlyBearOffMany": "Βγάλτε {count} πούλια από {from} {hit}",
+  "@buddyFriendlyBearOffMany": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "hit": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechIRolled": "Έβαλα το {dice}.",
+  "@buddySpeechIRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechYouRolled": "Κάνατε το {dice}.",
+  "@buddySpeechYouRolled": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechOpeningTie": "Και τα δύο κύλησαν {die}. Κυλήστε ξανά.",
+  "@buddySpeechOpeningTie": {
+    "placeholders": {
+      "die": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechNoPlayYouTurn": "Όχι παιχνίδι, οπότε είναι η σειρά σου.",
+  "buddySpeechNoPlayBuddyTurn": "Χωρίς παιχνίδι, οπότε είναι η σειρά του Buddy.",
+  "buddySpeechNoPlayPass": "Χωρίς παιχνίδι — η σειρά σας περνάει.",
+  "buddySpeechNoPlayBack": "Χωρίς παιχνίδι, οπότε είναι πίσω σε εσάς.",
+  "buddySpeechIllegalPlay": "Αυτό δεν είναι νόμιμο παιχνίδι.",
+  "buddySpeechPlacementMismatch": "Αυτό δεν είναι πολύ σωστό. {reason}",
+  "@buddySpeechPlacementMismatch": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechSkippedCheck": "Θα δεχτώ τον λόγο σου. Δεν μπορούσα να δω αυτή τη χώρα, οπότε αν έχουμε χωρίσει θα εμφανιστεί ως έργο που δεν μπορώ να διαβάσω.",
+  "buddySpeechBuddyDouble": "διπλασιάζω — παίρνω ή ρίχνω;",
+  "buddySpeechYouDouble": "Διπλασιάζεσαι.",
+  "buddySpeechBuddyTakes": "παίρνω.",
+  "buddySpeechYouTake": "Παίρνετε.",
+  "buddySpeechBuddyDrops": "πέφτω.",
+  "buddySpeechYouDrop": "Πέφτεις.",
+  "buddySpeechMatchWinnerBuddy": "Αυτό είναι το ταίρι για μένα.",
+  "buddySpeechMatchWinnerYou": "Κερδίζεις τον αγώνα.",
+  "buddyTutorLastPlayBest": "Το τελευταίο σας παιχνίδι ταίριαξε με τα καλύτερα του κινητήρα.",
+  "buddyTutorLastPlayClose": "Το τελευταίο σου παιχνίδι ήταν κοντά στο καλύτερο του κινητήρα.",
+  "buddyTutorPreferredMove": "Για το τελευταίο σας παιχνίδι, η μηχανή προτίμησε το {move}. {reason}",
+  "buddyTutorBarDifference": "Αφήνει {best} αντίθετα πούλια στη γραμμή αντί για {played}.",
+  "buddyTutorBlotDifference": "Αφήνει {best} κηλίδες αντί για {played}.",
+  "buddyTutorHomeDifference": "Κατέχει {best} πόντους αρχικής σελίδας αντί για {played}.",
+  "buddyTutorOffDifference": "Έχει απενεργοποιημένα {best} πούλια αντί για {played}.",
+  "buddyTutorGeneralDifference": "Η κατάταξη ζυγίζει τις εκτιμώμενες νίκες και τα γαμόνια. κανένα χαρακτηριστικό του πίνακα δεν το εξηγεί.",
+  "buddySpeechPlay": "Παίξτε {move}",
+  "@buddySpeechPlay": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechBuddyRolledMove": "Έβαλα {dice} — {move}",
+  "@buddySpeechBuddyRolledMove": {
+    "placeholders": {
+      "dice": {
+        "type": "String"
+      },
+      "move": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorPreferredMove": {
+    "placeholders": {
+      "move": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBarDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorBlotDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorHomeDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyTutorOffDifference": {
+    "placeholders": {
+      "best": {
+        "type": "String"
+      },
+      "played": {
+        "type": "String"
+      }
+    }
+  },
+  "buddySpeechGameWinnerBuddy": "Κερδίζω αυτό το παιχνίδι: {points}.",
+  "buddySpeechGameWinnerYou": "Κερδίζετε αυτό το παιχνίδι: {points}.",
+  "@buddySpeechGameWinnerBuddy": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddySpeechGameWinnerYou": {
+    "placeholders": {
+      "points": {
+        "type": "String"
+      }
+    }
+  },
+  "buddyBoardMismatch": "Ο πίνακας διαφέρει από το παιχνίδι: {details}{more}.",
+  "buddyConfirmRegionWrongCount": "{region}: το παιχνίδι αναμένει {expected} {side} πούλια. η κάμερα βλέπει το {observed}.",
+  "@buddyBoardMismatch": {
+    "placeholders": {
+      "details": {
+        "type": "String"
+      },
+      "more": {
+        "type": "String"
+      }
+    }
+  },
+  "@buddyConfirmRegionWrongCount": {
+    "placeholders": {
+      "region": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "side": {
+        "type": "String"
+      },
+      "observed": {
+        "type": "String"
+      }
+    }
+  }
 }
