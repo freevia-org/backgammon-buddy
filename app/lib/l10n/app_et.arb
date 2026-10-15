@@ -1,5 +1,6 @@
 {
   "@@locale": "et",
+  "appTitle": "Backgammon Buddy",
   "homeTagline": "Arenda oma mängu juhendajaga",
   "settings": "Seaded",
   "playVsComputer": "Mängi arvuti vastu",

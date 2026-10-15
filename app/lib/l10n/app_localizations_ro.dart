@@ -9,6 +9,9 @@ class AppLocalizationsRo extends AppLocalizations {
   AppLocalizationsRo([String locale = 'ro']) : super(locale);
 
   @override
+  String get appTitle => 'Backgammon Buddy';
+
+  @override
   String get homeTagline => 'Îmbunătățește-ți jocul cu un antrenor';
 
   @override
@@ -1742,6 +1745,8 @@ class AppLocalizationsRo extends AppLocalizations {
       count,
       locale: localeName,
       other:
+          '$count de partide salvate au nevoie de analiză sau de o analiză actualizată.',
+      few:
           '$count partide salvate au nevoie de analiză sau de o analiză actualizată.',
       one:
           'Partida salvată are nevoie de analiză sau de o analiză actualizată.',

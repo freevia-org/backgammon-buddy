@@ -1,5 +1,6 @@
 {
   "@@locale": "lv",
+  "appTitle": "Backgammon Buddy",
   "homeTagline": "Uzlabojiet savu spēli ar trenera palīdzību",
   "settings": "Iestatījumi",
   "playVsComputer": "Spēlēt pret datoru",

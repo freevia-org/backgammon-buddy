@@ -110,7 +110,14 @@ class _AiGammonAppState extends ConsumerState<AiGammonApp> {
     final localeCode = settings.localeCode;
     final locale = savedAppLocale(localeCode, AppLocalizations.supportedLocales);
     return MaterialApp(
-      title: 'Backgammon Buddy',
+      // The task switcher's label is a localization like any other, so it is
+      // resolved from the bundle rather than frozen at compile time. The brand
+      // reads the same in every locale on purpose -- `appTitle` is the product
+      // name, not a translatable phrase -- but routing it through the bundle is
+      // what keeps it the ONE user-visible string that cannot drift out of the
+      // l10n system, and `onGenerateTitle` is the only hook that runs with a
+      // context that has localizations attached.
+      onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       locale: locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,

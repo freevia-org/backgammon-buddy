@@ -9,6 +9,9 @@ class AppLocalizationsGa extends AppLocalizations {
   AppLocalizationsGa([String locale = 'ga']) : super(locale);
 
   @override
+  String get appTitle => 'Backgammon Buddy';
+
+  @override
   String get homeTagline => 'Feabhsaigh do chluiche le cóitseálaí';
 
   @override
@@ -514,7 +517,13 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String tutorPhraseStagedHit(int count) {
-    return 'Bhuail tú $count sheiceálaí de chuid an chéile comhraic.';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'sheiceálaí',
+      one: 'seiceálaí',
+    );
+    return 'Bhuail tú $count $_temp0 de chuid an chéile comhraic.';
   }
 
   @override
@@ -524,7 +533,13 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String tutorPhraseStagedBearOff(int count) {
-    return 'Bhain tú $count sheiceálaí den chlár.';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'sheiceálaí',
+      one: 'seiceálaí',
+    );
+    return 'Bhain tú $count $_temp0 den chlár.';
   }
 
   @override
@@ -709,7 +724,13 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String tutorMoveObservationBearOff(int count) {
-    return 'Baineann tú $count sheiceálaí den chlár.';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'sheiceálaí',
+      one: 'seiceálaí',
+    );
+    return 'Baineann tú $count $_temp0 den chlár.';
   }
 
   @override
@@ -729,7 +750,13 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String tutorMoveObservationBlots(int count, int previousCount) {
-    return 'Fágann tú $count sheiceálaí aonair nochta (roimhe seo $previousCount). Féach an féidir leis an gcéile comhraic iad a bhaint amach sula roghnaíonn tú sábháilteacht in áit gnóthachain eile.';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'sheiceálaí',
+      one: 'seiceálaí',
+    );
+    return 'Fágann tú $count $_temp0 aonair nochta (roimhe seo $previousCount). Féach an féidir leis an gcéile comhraic iad a bhaint amach sula roghnaíonn tú sábháilteacht in áit gnóthachain eile.';
   }
 
   @override

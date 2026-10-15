@@ -9,6 +9,9 @@ class AppLocalizationsSv extends AppLocalizations {
   AppLocalizationsSv([String locale = 'sv']) : super(locale);
 
   @override
+  String get appTitle => 'Backgammon Buddy';
+
+  @override
   String get homeTagline => 'Förbättra ditt spel med en handledare';
 
   @override
@@ -518,7 +521,13 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String tutorPhraseStagedBearOff(int count) {
-    return 'Du har tagit ut $count brickor.';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'brickor',
+      one: 'bricka',
+    );
+    return 'Du har tagit ut $count $_temp0.';
   }
 
   @override
@@ -698,7 +707,13 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String tutorMoveObservationBearOff(int count) {
-    return 'Ta ut $count brickor.';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'brickor',
+      one: 'bricka',
+    );
+    return 'Ta ut $count $_temp0.';
   }
 
   @override
@@ -718,7 +733,19 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String tutorMoveObservationBlots(int count, int previousCount) {
-    return 'Du lämnar $count ensamma brickor oskyddade (tidigare $previousCount). Kontrollera om motståndaren når dem innan du väljer säkerhet framför en annan vinst.';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ensamma brickor oskyddade',
+      one: '$count ensam bricka oskyddad',
+    );
+    String _temp1 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'når dem',
+      one: 'når den',
+    );
+    return 'Du lämnar $_temp0 (tidigare $previousCount). Kontrollera om motståndaren $_temp1 innan du väljer säkerhet framför en annan vinst.';
   }
 
   @override

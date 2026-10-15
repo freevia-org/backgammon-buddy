@@ -9,6 +9,9 @@ class AppLocalizationsFi extends AppLocalizations {
   AppLocalizationsFi([String locale = 'fi']) : super(locale);
 
   @override
+  String get appTitle => 'Backgammon Buddy';
+
+  @override
   String get homeTagline => 'Kehitä peliäsi valmentajan avulla';
 
   @override
@@ -517,7 +520,13 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String tutorPhraseStagedBearOff(int count) {
-    return 'Otit $count nappulaa pois laudalta.';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'nappulaa',
+      one: 'nappulan',
+    );
+    return 'Otit $count $_temp0 pois laudalta.';
   }
 
   @override
@@ -728,7 +737,13 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String tutorMoveObservationBlots(int count, int previousCount) {
-    return 'Jätät $count yksinäistä nappulaa alttiiksi (ennen $previousCount). Tarkista, yltääkö vastustaja niihin, ennen kuin valitset turvallisuuden muun hyödyn sijaan.';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'yksinäistä nappulaa',
+      one: 'yksinäisen nappulan',
+    );
+    return 'Jätät $count $_temp0 alttiiksi (ennen $previousCount). Tarkista, yltääkö vastustaja niihin, ennen kuin valitset turvallisuuden muun hyödyn sijaan.';
   }
 
   @override

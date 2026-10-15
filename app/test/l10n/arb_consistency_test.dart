@@ -120,4 +120,97 @@ void main() {
       }
     }
   });
+
+  /// A translation that drops the template's plural renders one noun form for
+  /// every count, which is wrong at 1 in any language that inflects after a
+  /// numeral -- Swedish "1 brickor", Latvian "1 kauliņus".
+  ///
+  /// **Collapsing is sometimes the correct answer, so this is an allowlist
+  /// rather than a ban**, and every entry states why it is not a bug:
+  ///
+  ///  * `hu`, `tr` keep the noun singular after a numeral, so a plural block
+  ///    would be two identical branches.
+  ///  * `ru`, `uk` render these as "noun-in-genitive: {count}", a count-last
+  ///    idiom whose noun does not agree with the number at all.
+  ///  * `sv` and `fi` collapse only where the noun sits in a prepositional
+  ///    phrase ("av motståndarens brickor", illative "nappulaan") that the
+  ///    count does not govern -- Finnish inflects the numeral there, not the
+  ///    noun.
+  ///  * `lv` and `mt` are KNOWN GAPS awaiting a native speaker. Neither bundle
+  ///    attests a `zero`/`two`/`few` form anywhere, so the forms cannot be
+  ///    mirrored from the translator's own work, and guessing the morphology
+  ///    would be worse than recording the debt here. Remove these two entries
+  ///    with the fix; the test then holds the line.
+  test('plural collapses are confined to locales where one form is correct', () {
+    const allowed = <String, Set<String>>{
+      'hu': {
+        'tutorPhraseStagedHit',
+        'tutorPhraseStagedBearOff',
+        'tutorMoveObservationHit',
+        'tutorMoveObservationBearOff',
+        'tutorMoveObservationBlots',
+      },
+      'tr': {
+        'tutorPhraseStagedHit',
+        'tutorPhraseStagedBearOff',
+        'tutorMoveObservationHit',
+        'tutorMoveObservationBearOff',
+        'tutorMoveObservationBlots',
+      },
+      'ru': {'tutorPhraseStagedHit', 'tutorPhraseStagedBearOff'},
+      'uk': {'tutorPhraseStagedHit', 'tutorPhraseStagedBearOff'},
+      'sv': {'tutorPhraseStagedHit', 'tutorMoveObservationHit'},
+      'fi': {'tutorPhraseStagedHit'},
+      // KNOWN GAPS -- see the doc comment above.
+      'lv': {
+        'tutorPhraseStagedHit',
+        'tutorPhraseStagedBearOff',
+        'tutorMoveObservationHit',
+        'tutorMoveObservationBearOff',
+        'tutorMoveObservationBlots',
+      },
+      'mt': {
+        'tutorPhraseStagedHit',
+        'tutorPhraseStagedBearOff',
+        'tutorMoveObservationHit',
+        'tutorMoveObservationBearOff',
+        'tutorMoveObservationBlots',
+      },
+    };
+
+    final template =
+        jsonDecode(File('lib/l10n/app_en.arb').readAsStringSync())
+            as Map<String, dynamic>;
+    final pluralKeys = template.keys
+        .where((key) => !key.startsWith('@'))
+        .where((key) => RegExp(r',\s*plural\s*,').hasMatch(template[key] as String))
+        .toSet();
+    expect(
+      pluralKeys,
+      isNotEmpty,
+      reason: 'the template must still use ICU plurals for this to mean anything',
+    );
+
+    for (final locale in AppLocalizations.supportedLocales.map(
+      (locale) => locale.languageCode,
+    )) {
+      if (locale == 'en') continue;
+      final bundle =
+          jsonDecode(File('lib/l10n/app_$locale.arb').readAsStringSync())
+              as Map<String, dynamic>;
+      final collapsed = pluralKeys
+          .where(
+            (key) => !RegExp(r',\s*plural\s*,').hasMatch(bundle[key] as String),
+          )
+          .toSet();
+      expect(
+        collapsed,
+        allowed[locale] ?? const <String>{},
+        reason:
+            '$locale drops the template plural for these keys. Either restore '
+            'the plural, or add the key to the allowlist above with the reason '
+            'one form is correct in this language.',
+      );
+    }
+  });
 }

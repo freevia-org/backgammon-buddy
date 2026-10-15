@@ -1,5 +1,6 @@
 {
   "@@locale": "fi",
+  "appTitle": "Backgammon Buddy",
   "homeTagline": "Kehitä peliäsi valmentajan avulla",
   "settings": "Asetukset",
   "playVsComputer": "Pelaa tietokonetta vastaan",
@@ -274,7 +275,7 @@
       }
     }
   },
-  "tutorPhraseStagedBearOff": "Otit {count} nappulaa pois laudalta.",
+  "tutorPhraseStagedBearOff": "Otit {count} {count, plural, one{nappulan} other{nappulaa}} pois laudalta.",
   "@tutorPhraseStagedBearOff": {
     "placeholders": {
       "count": {
@@ -416,7 +417,7 @@
       }
     }
   },
-  "tutorMoveObservationBlots": "Jätät {count} yksinäistä nappulaa alttiiksi (ennen {previousCount}). Tarkista, yltääkö vastustaja niihin, ennen kuin valitset turvallisuuden muun hyödyn sijaan.",
+  "tutorMoveObservationBlots": "Jätät {count} {count, plural, one{yksinäisen nappulan} other{yksinäistä nappulaa}} alttiiksi (ennen {previousCount}). Tarkista, yltääkö vastustaja niihin, ennen kuin valitset turvallisuuden muun hyödyn sijaan.",
   "@tutorMoveObservationBlots": {
     "placeholders": {
       "count": {

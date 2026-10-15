@@ -150,6 +150,12 @@ abstract class AppLocalizations {
     Locale('uk'),
   ];
 
+  /// No description provided for @appTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Backgammon Buddy'**
+  String get appTitle;
+
   /// No description provided for @homeTagline.
   ///
   /// In en, this message translates to:

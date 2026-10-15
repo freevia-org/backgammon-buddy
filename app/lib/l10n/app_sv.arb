@@ -1,5 +1,6 @@
 {
   "@@locale": "sv",
+  "appTitle": "Backgammon Buddy",
   "homeTagline": "Förbättra ditt spel med en handledare",
   "settings": "Inställningar",
   "playVsComputer": "Spela mot datorn",
@@ -274,7 +275,7 @@
       }
     }
   },
-  "tutorPhraseStagedBearOff": "Du har tagit ut {count} brickor.",
+  "tutorPhraseStagedBearOff": "Du har tagit ut {count} {count, plural, one{bricka} other{brickor}}.",
   "@tutorPhraseStagedBearOff": {
     "placeholders": {
       "count": {
@@ -387,7 +388,7 @@
       }
     }
   },
-  "tutorMoveObservationBearOff": "Ta ut {count} brickor.",
+  "tutorMoveObservationBearOff": "Ta ut {count} {count, plural, one{bricka} other{brickor}}.",
   "@tutorMoveObservationBearOff": {
     "placeholders": {
       "count": {
@@ -416,7 +417,7 @@
       }
     }
   },
-  "tutorMoveObservationBlots": "Du lämnar {count} ensamma brickor oskyddade (tidigare {previousCount}). Kontrollera om motståndaren når dem innan du väljer säkerhet framför en annan vinst.",
+  "tutorMoveObservationBlots": "Du lämnar {count, plural, one{{count} ensam bricka oskyddad} other{{count} ensamma brickor oskyddade}} (tidigare {previousCount}). Kontrollera om motståndaren {count, plural, one{når den} other{når dem}} innan du väljer säkerhet framför en annan vinst.",
   "@tutorMoveObservationBlots": {
     "placeholders": {
       "count": {
