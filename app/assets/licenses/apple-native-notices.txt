@@ -33,7 +33,7 @@ Notices: Apple-source-notice-cfc7749b96f63bd3
 googledatatransport 10.1.1
 Notices: Apple-source-notice-cfc7749b96f63bd3
 
-googleutilities 8.1.4
+googleutilities 8.1.5
 Notices: Apple-source-notice-41b499c2cfdff095, Apple-source-notice-aae45d67e80192ea, Apple-source-notice-ad6d036b9a78f0e1
 
 grpc-binary 1.69.1
@@ -90,10 +90,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 Apple-source-notice-41b499c2cfdff095
 
 Included for:
-googleutilities 8.1.4
+googleutilities 8.1.5
 
 Source:
-https://github.com/google/GoogleUtilities/blob/cc31f5ed464b111f877ce8554cbef4455d410d91/GoogleUtilities/Tests/Unit/Network/third_party/LICENSE
+https://github.com/google/GoogleUtilities/blob/5459ee5603def3db0fe14ca522185f42c48d978e/GoogleUtilities/Tests/Unit/Network/third_party/LICENSE
 SHA-256: 41b499c2cfdff0957f608b5f7652fe98736c9837ad246707567073f5a29f6fb7
 
 Based a little on HTTPServer, part of the CocoaHTTPServer sample code found at
@@ -746,10 +746,10 @@ IF IBM IS APPRISED OF THE POSSIBILITY OF SUCH DAMAGES.
 Apple-source-notice-aae45d67e80192ea
 
 Included for:
-googleutilities 8.1.4
+googleutilities 8.1.5
 
 Source:
-https://github.com/google/GoogleUtilities/blob/cc31f5ed464b111f877ce8554cbef4455d410d91/third_party/IsAppEncrypted/LICENSE
+https://github.com/google/GoogleUtilities/blob/5459ee5603def3db0fe14ca522185f42c48d978e/third_party/IsAppEncrypted/LICENSE
 SHA-256: aae45d67e80192eaa43dba3e3445ef1645c4daa761d4f0a433e8fa8bc0ef8ae1
 
 Copyright (c) 2017 Landon J. Fuller <landon@landonf.org>
@@ -774,10 +774,10 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
 Apple-source-notice-ad6d036b9a78f0e1
 
 Included for:
-googleutilities 8.1.4
+googleutilities 8.1.5
 
 Source:
-https://github.com/google/GoogleUtilities/blob/cc31f5ed464b111f877ce8554cbef4455d410d91/LICENSE
+https://github.com/google/GoogleUtilities/blob/5459ee5603def3db0fe14ca522185f42c48d978e/LICENSE
 SHA-256: ad6d036b9a78f0e1700d68039c06058033fea063172ce2dc68e382a24b4d1928
 
 

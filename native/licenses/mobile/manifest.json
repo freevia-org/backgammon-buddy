@@ -3612,7 +3612,7 @@
         ]
       },
       {
-        "id": "googleutilities 8.1.4",
+        "id": "googleutilities 8.1.5",
         "notices": [
           "Apple-source-notice-41b499c2cfdff095",
           "Apple-source-notice-aae45d67e80192ea",
@@ -3716,8 +3716,8 @@
         "identity": "googleutilities",
         "location": "https://github.com/google/GoogleUtilities.git",
         "state": {
-          "revision": "cc31f5ed464b111f877ce8554cbef4455d410d91",
-          "version": "8.1.4"
+          "revision": "5459ee5603def3db0fe14ca522185f42c48d978e",
+          "version": "8.1.5"
         }
       },
       {
@@ -4047,7 +4047,7 @@
     "Apple-source-notice-41b499c2cfdff095": {
       "sha256": "41b499c2cfdff0957f608b5f7652fe98736c9837ad246707567073f5a29f6fb7",
       "sources": [
-        "https://github.com/google/GoogleUtilities/blob/cc31f5ed464b111f877ce8554cbef4455d410d91/GoogleUtilities/Tests/Unit/Network/third_party/LICENSE"
+        "https://github.com/google/GoogleUtilities/blob/5459ee5603def3db0fe14ca522185f42c48d978e/GoogleUtilities/Tests/Unit/Network/third_party/LICENSE"
       ]
     },
     "Apple-source-notice-4340368262b9b78d": {
@@ -4089,13 +4089,13 @@
     "Apple-source-notice-aae45d67e80192ea": {
       "sha256": "aae45d67e80192eaa43dba3e3445ef1645c4daa761d4f0a433e8fa8bc0ef8ae1",
       "sources": [
-        "https://github.com/google/GoogleUtilities/blob/cc31f5ed464b111f877ce8554cbef4455d410d91/third_party/IsAppEncrypted/LICENSE"
+        "https://github.com/google/GoogleUtilities/blob/5459ee5603def3db0fe14ca522185f42c48d978e/third_party/IsAppEncrypted/LICENSE"
       ]
     },
     "Apple-source-notice-ad6d036b9a78f0e1": {
       "sha256": "ad6d036b9a78f0e1700d68039c06058033fea063172ce2dc68e382a24b4d1928",
       "sources": [
-        "https://github.com/google/GoogleUtilities/blob/cc31f5ed464b111f877ce8554cbef4455d410d91/LICENSE"
+        "https://github.com/google/GoogleUtilities/blob/5459ee5603def3db0fe14ca522185f42c48d978e/LICENSE"
       ]
     },
     "Apple-source-notice-c71d239df91726fc": {
