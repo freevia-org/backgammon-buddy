@@ -509,8 +509,16 @@ void main() {
           channels.first.sever();
         }
         if (severed && !hostTransport.listenerLive) polledWhileDown = true;
-        _act(host, lastActed);
-        _act(guest, lastActed);
+        // This driver controls both seats, unlike two real players. Never let
+        // the client with a stale fold act: after the host listener is cut, the
+        // guest may already have observed a move that the host will only see on
+        // its polling fallback. Acting both sides at different fold depths can
+        // make the stale side submit an event for an old turn and correctly
+        // trigger the peer's illegal-event freeze.
+        if (_sameFoldDepth(host, guest)) {
+          _act(host, lastActed);
+          _act(guest, lastActed);
+        }
         _expectConverged(host, guest);
         await Future<void>.delayed(const Duration(milliseconds: 5));
       }
@@ -932,6 +940,18 @@ String? _signature(NetMatchController c) {
     '${b.whiteBar}/${b.blackBar}/${b.whiteOff}/${b.blackOff}',
     'crawford${s.isCrawfordGame}',
   ].join('|');
+}
+
+/// Whether both test-driven peers have folded the same event prefix.
+///
+/// A two-seat test driver must not issue actions for a stale position while one
+/// transport is catching up; real players cannot coordinate their clicks this
+/// way, and the resulting stale-turn event is correctly rejected by the peer.
+bool _sameFoldDepth(NetMatchController a, NetMatchController b) {
+  final sa = _signature(a);
+  final sb = _signature(b);
+  return sa != null && sb != null &&
+      sa.split('|').first == sb.split('|').first;
 }
 
 /// Compares the two clients when they are at the same fold depth. Returns 1 if
