@@ -1,5 +1,6 @@
 {
   "@@locale": "ro",
+  "appTitle": "Backgammon Buddy",
   "homeTagline": "Îmbunătățește-ți jocul cu un antrenor",
   "settings": "Setări",
   "playVsComputer": "Joacă împotriva calculatorului",
@@ -1351,7 +1352,7 @@
     }
   },
   "learningForcedDisclaimer": "Mutările forțate sunt excluse. Acestea sunt estimări ale motorului, nu un rating de turneu.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Partida salvată are nevoie de analiză sau de o analiză actualizată.} other{{count} partide salvate au nevoie de analiză sau de o analiză actualizată.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Partida salvată are nevoie de analiză sau de o analiză actualizată.} few{{count} partide salvate au nevoie de analiză sau de o analiză actualizată.} other{{count} de partide salvate au nevoie de analiză sau de o analiză actualizată.}}",
   "@learningGamesNeedingAnalysis": {
     "placeholders": {
       "count": {

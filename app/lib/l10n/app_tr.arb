@@ -1,5 +1,6 @@
 {
   "@@locale": "tr",
+  "appTitle": "Backgammon Buddy",
   "homeTagline": "Bir eğitmenle oyununuzu geliştirin",
   "settings": "Ayarlar",
   "playVsComputer": "Bilgisayara karşı oyna",

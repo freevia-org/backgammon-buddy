@@ -1,5 +1,6 @@
 {
   "@@locale": "ru",
+  "appTitle": "Backgammon Buddy",
   "homeTagline": "Улучшайте игру с тренером",
   "settings": "Настройки",
   "playVsComputer": "Играть против компьютера",

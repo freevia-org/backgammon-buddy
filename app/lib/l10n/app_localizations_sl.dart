@@ -9,6 +9,9 @@ class AppLocalizationsSl extends AppLocalizations {
   AppLocalizationsSl([String locale = 'sl']) : super(locale);
 
   @override
+  String get appTitle => 'Backgammon Buddy';
+
+  @override
   String get homeTagline => 'Izboljšajte igro s pomočjo trenerja';
 
   @override

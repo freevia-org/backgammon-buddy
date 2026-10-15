@@ -1,5 +1,6 @@
 {
   "@@locale": "ga",
+  "appTitle": "Backgammon Buddy",
   "homeTagline": "Feabhsaigh do chluiche le cóitseálaí",
   "settings": "Socruithe",
   "playVsComputer": "Imir in aghaidh an ríomhaire",
@@ -258,7 +259,7 @@
   },
   "tutorPhraseChooseCheckerPrompt": "Roghnaigh seiceálaí chun d’imirt a thosú.",
   "tutorPhraseLegalPlayPrompt": "Tosaigh imirt dhleathach chun tráchtaireacht a fheiceáil.",
-  "tutorPhraseStagedHit": "Bhuail tú {count} sheiceálaí de chuid an chéile comhraic.",
+  "tutorPhraseStagedHit": "Bhuail tú {count} {count, plural, one{seiceálaí} other{sheiceálaí}} de chuid an chéile comhraic.",
   "@tutorPhraseStagedHit": {
     "placeholders": {
       "count": {
@@ -274,7 +275,7 @@
       }
     }
   },
-  "tutorPhraseStagedBearOff": "Bhain tú {count} sheiceálaí den chlár.",
+  "tutorPhraseStagedBearOff": "Bhain tú {count} {count, plural, one{seiceálaí} other{sheiceálaí}} den chlár.",
   "@tutorPhraseStagedBearOff": {
     "placeholders": {
       "count": {
@@ -387,7 +388,7 @@
       }
     }
   },
-  "tutorMoveObservationBearOff": "Baineann tú {count} sheiceálaí den chlár.",
+  "tutorMoveObservationBearOff": "Baineann tú {count} {count, plural, one{seiceálaí} other{sheiceálaí}} den chlár.",
   "@tutorMoveObservationBearOff": {
     "placeholders": {
       "count": {
@@ -416,7 +417,7 @@
       }
     }
   },
-  "tutorMoveObservationBlots": "Fágann tú {count} sheiceálaí aonair nochta (roimhe seo {previousCount}). Féach an féidir leis an gcéile comhraic iad a bhaint amach sula roghnaíonn tú sábháilteacht in áit gnóthachain eile.",
+  "tutorMoveObservationBlots": "Fágann tú {count} {count, plural, one{seiceálaí} other{sheiceálaí}} aonair nochta (roimhe seo {previousCount}). Féach an féidir leis an gcéile comhraic iad a bhaint amach sula roghnaíonn tú sábháilteacht in áit gnóthachain eile.",
   "@tutorMoveObservationBlots": {
     "placeholders": {
       "count": {

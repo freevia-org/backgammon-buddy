@@ -9,6 +9,9 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
+  String get appTitle => 'Backgammon Buddy';
+
+  @override
   String get homeTagline => 'Migliora il tuo gioco con un tutor';
 
   @override

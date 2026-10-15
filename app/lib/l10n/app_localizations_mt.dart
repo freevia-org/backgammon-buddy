@@ -9,6 +9,9 @@ class AppLocalizationsMt extends AppLocalizations {
   AppLocalizationsMt([String locale = 'mt']) : super(locale);
 
   @override
+  String get appTitle => 'Backgammon Buddy';
+
+  @override
   String get homeTagline => 'Ittejjeb il-logħba tiegħek ma’ kowċ';
 
   @override

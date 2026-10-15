@@ -84,9 +84,23 @@ enum BuddyPhrasing {
   BuddyLine describePlay(Move move, {AppLocalizations? l10n}) {
     final hops = _GroupedHop.of(move);
     if (hops.isEmpty) {
+      // **Both live callers guard `checkerMoves.isEmpty` before they get here**
+      // (`onPlayObserved`, `onBuddyMoveChosen`), so this is the defensive arm
+      // rather than the one a session takes. It was still English-only while
+      // every other line Buddy says had been localized, which is the kind of
+      // gap that only surfaces once a caller stops guarding -- so it resolves
+      // from the bundle too, reusing the two strings that already carry this
+      // meaning in all 28 locales rather than minting near-duplicates. The
+      // written channel stays terse ("(no play)") and the spoken channel gets
+      // the sentence, which is the same split the rest of this class exists for.
       return switch (this) {
-        BuddyPhrasing.terse => const BuddyLine('(no play)', speech: 'no play'),
-        BuddyPhrasing.friendly => const BuddyLine('No legal play.'),
+        BuddyPhrasing.terse => BuddyLine(
+          l10n?.analysisNoPlay ?? '(no play)',
+          speech: l10n?.tutorMoveObservationNoLegalPlay ?? 'no play',
+        ),
+        BuddyPhrasing.friendly => BuddyLine(
+          l10n?.tutorMoveObservationNoLegalPlay ?? 'No legal play.',
+        ),
       };
     }
     return switch (this) {
