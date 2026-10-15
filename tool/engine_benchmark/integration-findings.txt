@@ -1,0 +1,56 @@
+Embedding/redistribution findings checked on 14 October 2026
+
+wildbg (current app)
+The vendored Rust engine is MIT OR Apache-2.0. The exact shipped contact/race
+models have separate CC0 provenance in app/assets/licenses/wildbg-NOTICES.txt.
+The app already has a C ABI, Dart FFI, bundled model loading and isolate service.
+
+Open Sage
+Current upstream and PyPI release 2.0.20260907 declare MPL-2.0, expressly covering
+code, trained model weights and bearoff data. The maintainer expressly permits
+embedding/linking/bundling into commercial closed-source products. MPL notices
+and source availability for covered files (including distributed modifications)
+are required; unrelated application files can retain their own license.
+Pinned current source includes mobile/CMakeLists.txt and cpp/include/bgbot/mobile.h:
+a portable C API for CPU-only checker/cube analysis, with no Python/platform/
+network dependency. This is structurally compatible with a Flutter/Dart FFI
+integration. Android/iOS compilation, 16 KB packaging and phone performance were
+not tested here; the benchmark used the Windows Python/C++ binding.
+Sources:
+https://github.com/markbgsage/bgsage
+https://pypi.org/project/bgsage/
+https://www.mozilla.org/en-US/MPL/2.0/FAQ/
+
+GNU Backgammon
+Native C implementation, command-line automation and source access make local
+embedding/porting technically possible. Source release 1.08.003 headers declare
+GPL version 3 or later. It can be used commercially, but combining/linking it
+into the distributed app requires GPL-compliant combined distribution and
+compatible dependencies; it is not an MIT/Apache-style drop-in license.
+Standalone private benchmark use does not redistribute it into the app.
+Sources:
+https://ftp.gnu.org/gnu/gnubg/
+https://www.gnu.org/software/gnubg/manual/gnubg.pdf
+https://www.gnu.org/licenses/gpl-faq.en.html
+
+BGBlitz
+The vendor explicitly offers a commercial server engine called through JSON/XML
+over TCP/IP. That supports application integration via a licensed server, but
+does not establish permission to bundle its engine in an offline mobile app.
+An on-device redistribution arrangement would need agreement from the vendor.
+Source: https://www.bgblitz.com/server.html
+
+eXtreme Gammon
+The published offering is a commercial desktop/mobile analysis product with
+per-computer activations. No public drop-in engine SDK or mobile redistribution
+grant was located in the reviewed official product/support documentation. A
+normal product activation should not be treated as a redistribution license;
+embedding would need a separate rights-holder arrangement. No live XG engine
+was used in this benchmark.
+Sources:
+https://www.extremegammon.com/
+https://www.extremegammon.com/support.aspx
+
+Snowie/JellyFish
+Historical analysis products, not verified current open embedding alternatives.
+No affirmative mobile engine redistribution grant was established in this review.
