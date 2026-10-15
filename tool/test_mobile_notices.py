@@ -78,7 +78,16 @@ class MobileNoticesTests(unittest.TestCase):
         check_apple(manifest, {'apple_sources': source})
         changed = copy.deepcopy(source)
         changed['resolved_packages'][0]['state']['revision'] = 'two'
-        with self.assertRaisesRegex(ValueError, 'revisions changed'):
+        with self.assertRaisesRegex(ValueError, r'a: expected https://example.org/a revision one, found https://example.org/a revision two'):
+            check_apple(manifest, {'apple_sources': changed})
+        changed = copy.deepcopy(source)
+        changed['resolved_packages'].append({'identity': 'b', 'location': 'https://example.org/b',
+                                             'state': {'revision': 'added'}})
+        with self.assertRaisesRegex(ValueError, r'b: added at https://example.org/b revision added'):
+            check_apple(manifest, {'apple_sources': changed})
+        changed = copy.deepcopy(source)
+        changed['resolved_packages'] = []
+        with self.assertRaisesRegex(ValueError, r'a: removed \(reviewed https://example.org/a revision one\)'):
             check_apple(manifest, {'apple_sources': changed})
         changed = copy.deepcopy(source)
         changed['source_notices'] = []

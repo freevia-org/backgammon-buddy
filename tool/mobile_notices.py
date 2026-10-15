@@ -87,9 +87,22 @@ def check_android(manifest, resolved):
 def check_apple(manifest, inventory):
     def signature(pins):
         return {p['identity']: (p['location'], p['state'].get('revision')) for p in pins}
-    if signature(manifest['apple']['resolved_packages']) != signature(
-            inventory['apple_sources']['resolved_packages']):
-        raise ValueError('Apple package revisions changed; review native notices')
+    expected_pins = signature(manifest['apple']['resolved_packages'])
+    actual_pins = signature(inventory['apple_sources']['resolved_packages'])
+    changed = sorted(identity for identity in expected_pins.keys() | actual_pins.keys()
+                     if expected_pins.get(identity) != actual_pins.get(identity))
+    if changed:
+        details = []
+        for identity in changed:
+            expected, actual = expected_pins.get(identity), actual_pins.get(identity)
+            if expected is None:
+                details.append(f'{identity}: added at {actual[0]} revision {actual[1]}')
+            elif actual is None:
+                details.append(f'{identity}: removed (reviewed {expected[0]} revision {expected[1]})')
+            else:
+                details.append(f'{identity}: expected {expected[0]} revision {expected[1]}, '
+                               f'found {actual[0]} revision {actual[1]}')
+        raise ValueError('Apple package pins changed; review native notices: ' + '; '.join(details))
     # Source files can change even if a collector/source root is accidentally
     # incomplete. A successful build must reproduce every reviewed source text.
     expected = {(n['source'], n['sha256']) for n in manifest['apple']['source_notices']}
