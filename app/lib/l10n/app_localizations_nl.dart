@@ -1660,9 +1660,9 @@ class AppLocalizationsNl extends AppLocalizations {
       count,
       locale: localeName,
       other:
-          '# opgeslagen partijen moeten worden geanalyseerd of opnieuw geanalyseerd.',
+          '$count opgeslagen partijen moeten worden geanalyseerd of opnieuw geanalyseerd.',
       one:
-          '# opgeslagen partij moet worden geanalyseerd of opnieuw geanalyseerd.',
+          '$count opgeslagen partij moet worden geanalyseerd of opnieuw geanalyseerd.',
     );
     return '$_temp0';
   }

@@ -1622,7 +1622,7 @@ class AppLocalizationsTr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Kaydedilen # oyun analiz edilmeli veya analizi yenilenmeli.',
+      other: 'Kaydedilen $count oyun analiz edilmeli veya analizi yenilenmeli.',
       one: 'Kaydedilen oyun analiz edilmeli veya analizi yenilenmeli.',
     );
     return '$_temp0';

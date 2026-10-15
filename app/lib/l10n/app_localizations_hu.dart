@@ -1629,7 +1629,7 @@ class AppLocalizationsHu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# mentett játszma elemzést vagy frissítést igényel.',
+      other: '$count mentett játszma elemzést vagy frissítést igényel.',
       one: 'Egy mentett játszma elemzést vagy frissítést igényel.',
     );
     return '$_temp0';

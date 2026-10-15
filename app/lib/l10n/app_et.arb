@@ -1270,7 +1270,7 @@
   "learningDecisionSummary": "{decisions} otsust · {mistakes} vajavad parandamist · {blunders} jämedat viga",
   "learningAverageLoss": "Keskmine kaotus ({decisions} otsust): {loss}",
   "learningForcedDisclaimer": "Sunnitud käike ei arvestata. Need on mootori hinnangud, mitte turniirireiting.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Üks salvestatud partii vajab analüüsi või uut analüüsi.} other{# salvestatud partiid vajavad analüüsi või uut analüüsi.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Üks salvestatud partii vajab analüüsi või uut analüüsi.} other{{count} salvestatud partiid vajavad analüüsi või uut analüüsi.}}",
   "learningAnalyseSavedGames": "Analüüsi salvestatud partiid",
   "learningEmptyProfile": "Õppeprofiili loomiseks mängi ja lõpeta partii. Üksikuid otsuseid saab salvestada ka mängu kordusesitusest.",
   "learningOpenHistory": "Ava matšide ajalugu",

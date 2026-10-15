@@ -512,7 +512,7 @@ class AppLocalizationsBg extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# пула на противника',
+      other: '$count пула на противника',
       one: 'един пул на противника',
     );
     return 'Ударихте $_temp0.';
@@ -528,7 +528,7 @@ class AppLocalizationsBg extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# пула',
+      other: '$count пула',
       one: 'един пул',
     );
     return 'Изведохте от дъската $_temp0.';
@@ -703,8 +703,8 @@ class AppLocalizationsBg extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# пула на противника',
-      one: '# пул на противника',
+      other: '$count пула на противника',
+      one: '$count пул на противника',
     );
     return 'Ударихте $_temp0; противникът трябва първо да влезе от бара, преди да мести другите пулове.';
   }
@@ -719,8 +719,8 @@ class AppLocalizationsBg extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# пула',
-      one: '# пул',
+      other: '$count пула',
+      one: '$count пул',
     );
     return 'Изведени от дъската: $_temp0.';
   }
@@ -745,8 +745,8 @@ class AppLocalizationsBg extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# пула',
-      one: '# пул',
+      other: '$count пула',
+      one: '$count пул',
     );
     return 'Остават открити единични пулове: $_temp0 (преди: $previousCount). Проверете дали противникът може да ги достигне, преди да изберете сигурността пред друга придобивка.';
   }
@@ -1658,8 +1658,8 @@ class AppLocalizationsBg extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# запазени партии се нуждаят от анализ или повторен анализ.',
-      one: '# запазена партия се нуждае от анализ или повторен анализ.',
+      other: '$count запазени партии се нуждаят от анализ или повторен анализ.',
+      one: '$count запазена партия се нуждае от анализ или повторен анализ.',
     );
     return '$_temp0';
   }

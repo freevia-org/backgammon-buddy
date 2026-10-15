@@ -1654,7 +1654,7 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Збережені партії (#) потребують аналізу або його оновлення.',
+      other: 'Збережені партії ($count) потребують аналізу або його оновлення.',
       one: 'Збережена партія потребує аналізу або його оновлення.',
     );
     return '$_temp0';

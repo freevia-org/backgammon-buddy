@@ -1351,7 +1351,7 @@
     }
   },
   "learningForcedDisclaimer": "Priverstiniai ėjimai neįtraukiami. Tai variklio įverčiai, ne turnyro reitingas.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{# išsaugotai partijai reikia analizės arba atnaujintos analizės.} other{# išsaugotoms partijoms reikia analizės arba atnaujintos analizės.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{{count} išsaugotai partijai reikia analizės arba atnaujintos analizės.} other{{count} išsaugotoms partijoms reikia analizės arba atnaujintos analizės.}}",
   "@learningGamesNeedingAnalysis": {
     "placeholders": {
       "count": {

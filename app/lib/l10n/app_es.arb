@@ -351,7 +351,7 @@
       }
     }
   },
-  "tutorMoveObservationBearOff": "Saca {count, plural, one{ficha} other{fichas}}.",
+  "tutorMoveObservationBearOff": "Saca {count} {count, plural, one{ficha} other{fichas}}.",
   "@tutorMoveObservationBearOff": {
     "placeholders": {
       "count": {
@@ -1063,7 +1063,7 @@
   "learningDecisionSummary": "{decisions} decisiones · {mistakes} por mejorar · {blunders} blunders",
   "learningAverageLoss": "Pérdida media ({decisions} decisiones): {loss}",
   "learningForcedDisclaimer": "Las jugadas forzadas quedan excluidas. Son estimaciones del motor, no una clasificación de torneo.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{La partida guardada necesita análisis o un nuevo análisis.} other{Las # partidas guardadas necesitan análisis o un nuevo análisis.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{La partida guardada necesita análisis o un nuevo análisis.} other{Las {count} partidas guardadas necesitan análisis o un nuevo análisis.}}",
   "learningAnalyseSavedGames": "Analizar partidas guardadas",
   "learningEmptyProfile": "Juega y termina una partida para crear tu perfil de aprendizaje. También puedes guardar decisiones concretas desde la repetición.",
   "learningOpenHistory": "Abrir historial de partidas",

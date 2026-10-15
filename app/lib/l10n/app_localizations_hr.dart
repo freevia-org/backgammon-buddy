@@ -1728,7 +1728,8 @@ class AppLocalizationsHr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Spremljene partije treba analizirati ili ponovno analizirati.',
+      other:
+          'Spremljene partije ($count) treba analizirati ili ponovno analizirati.',
       one: 'Spremljenu partiju treba analizirati ili ponovno analizirati.',
     );
     return '$_temp0';

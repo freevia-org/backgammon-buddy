@@ -1742,7 +1742,7 @@ class AppLocalizationsRo extends AppLocalizations {
       count,
       locale: localeName,
       other:
-          '# partide salvate au nevoie de analiză sau de o analiză actualizată.',
+          '$count partide salvate au nevoie de analiză sau de o analiză actualizată.',
       one:
           'Partida salvată are nevoie de analiză sau de o analiză actualizată.',
     );

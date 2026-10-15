@@ -1687,7 +1687,7 @@ class AppLocalizationsPl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Zapisane partie wymagają analizy lub ponownej analizy.',
+      other: 'Zapisane partie ($count) wymagają analizy lub ponownej analizy.',
       one: 'Zapisana partia wymaga analizy lub ponownej analizy.',
     );
     return '$_temp0';

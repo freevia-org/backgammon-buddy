@@ -1351,7 +1351,7 @@
     }
   },
   "learningForcedDisclaimer": "Prinudni potezi su izuzeti. Ovo su procene motora, a ne turnirski rejting.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Sačuvana partija zahteva analizu ili osveženu analizu.} other{Sačuvane partije (#) zahtevaju analizu ili osveženu analizu.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Sačuvana partija zahteva analizu ili osveženu analizu.} other{Sačuvane partije ({count}) zahtevaju analizu ili osveženu analizu.}}",
   "@learningGamesNeedingAnalysis": {
     "placeholders": {
       "count": {

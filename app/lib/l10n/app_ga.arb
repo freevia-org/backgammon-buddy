@@ -1297,7 +1297,7 @@
   "learningDecisionSummary": "{decisions} cinneadh · {mistakes} le feabhsú · {blunders} botún mór",
   "learningAverageLoss": "Meánchaillteanas ({decisions} cinneadh): {loss}",
   "learningForcedDisclaimer": "Fágtar imirt éigeantach as an áireamh. Meastacháin ón inneall atá iontu, ní rátáil chomórtais.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Ní mór anailís a dhéanamh ar # chluiche sábháilte nó anailís nua a dhéanamh air.} other{Ní mór anailís a dhéanamh ar # chluiche sábháilte nó anailís nua a dhéanamh orthu.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Ní mór anailís a dhéanamh ar {count} chluiche sábháilte nó anailís nua a dhéanamh air.} other{Ní mór anailís a dhéanamh ar {count} chluiche sábháilte nó anailís nua a dhéanamh orthu.}}",
   "learningAnalyseSavedGames": "Déan anailís ar chluichí sábháilte",
   "learningEmptyProfile": "Imir agus críochnaigh cluiche chun do phróifíl foghlama a chruthú. Is féidir cinntí aonair a shábháil ó athsheinm cluiche freisin.",
   "learningOpenHistory": "Oscail stair na gcluichí",

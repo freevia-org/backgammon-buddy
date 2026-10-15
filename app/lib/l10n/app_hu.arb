@@ -1270,7 +1270,7 @@
   "learningDecisionSummary": "{decisions} döntés · {mistakes} javítandó · {blunders} nagy hiba",
   "learningAverageLoss": "Átlagos veszteség ({decisions} döntés): {loss}",
   "learningForcedDisclaimer": "A kényszerlépések kimaradnak. Ezek motorbecslések, nem versenyértékelések.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Egy mentett játszma elemzést vagy frissítést igényel.} other{# mentett játszma elemzést vagy frissítést igényel.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Egy mentett játszma elemzést vagy frissítést igényel.} other{{count} mentett játszma elemzést vagy frissítést igényel.}}",
   "learningAnalyseSavedGames": "Mentett játszmák elemzése",
   "learningEmptyProfile": "Játssz végig egy partit a tanulási profilodhoz. Egyedi döntéseket a játszma visszajátszásából is menthetsz.",
   "learningOpenHistory": "Meccselőzmények megnyitása",

@@ -222,7 +222,7 @@
   },
   "tutorPhraseChooseCheckerPrompt": "Vyberte kameň, ktorým začnete ťah.",
   "tutorPhraseLegalPlayPrompt": "Urobte dovolený ťah, aby sa zobrazil komentár.",
-  "tutorPhraseStagedHit": "Zasiahli ste {count, plural, one{# súperov kameň} few{# súperove kamene} many{# súperových kameňov} other{# súperove kamene}}.",
+  "tutorPhraseStagedHit": "Zasiahli ste {count, plural, one{{count} súperov kameň} few{{count} súperove kamene} many{{count} súperových kameňov} other{{count} súperove kamene}}.",
   "@tutorPhraseStagedHit": {
     "placeholders": {
       "count": {
@@ -238,7 +238,7 @@
       }
     }
   },
-  "tutorPhraseStagedBearOff": "Vyvedené kamene: {count, plural, one{# kameň} few{# kamene} many{# kameňov} other{# kamene}}.",
+  "tutorPhraseStagedBearOff": "Vyvedené kamene: {count, plural, one{{count} kameň} few{{count} kamene} many{{count} kameňov} other{{count} kamene}}.",
   "@tutorPhraseStagedBearOff": {
     "placeholders": {
       "count": {
@@ -335,7 +335,7 @@
   "tutorMovePlanCoverBlot": "Spojte svoje kamene. Zakrytím odkrytého kameňa odstránite súperovi cieľ a zachováte si možnosti ďalších ťahov.",
   "tutorMovePlanSafety": "Vyvažujte rozvoj a bezpečnosť: posúvajte stavebné kamene k užitočným bodom a skontrolujte, ktoré osamotené kamene môže súper zasiahnuť.",
   "tutorMoveObservationNoLegalPlay": "Žiadny povolený ťah kameňmi: musíte vynechať ťah.",
-  "tutorMoveObservationHit": "Zasiahli ste {count, plural, one{# súperov kameň} few{# súperove kamene} many{# súperových kameňov} other{# súperove kamene}}; súper musí najprv vstúpiť z baru, až potom môže ťahať ostatnými kameňmi.",
+  "tutorMoveObservationHit": "Zasiahli ste {count, plural, one{{count} súperov kameň} few{{count} súperove kamene} many{{count} súperových kameňov} other{{count} súperove kamene}}; súper musí najprv vstúpiť z baru, až potom môže ťahať ostatnými kameňmi.",
   "@tutorMoveObservationHit": {
     "placeholders": {
       "count": {
@@ -351,7 +351,7 @@
       }
     }
   },
-  "tutorMoveObservationBearOff": "Vyvedené z dosky: {count, plural, one{# kameň} few{# kamene} many{# kameňov} other{# kamene}}.",
+  "tutorMoveObservationBearOff": "Vyvedené z dosky: {count, plural, one{{count} kameň} few{{count} kamene} many{{count} kameňov} other{{count} kamene}}.",
   "@tutorMoveObservationBearOff": {
     "placeholders": {
       "count": {
@@ -380,7 +380,7 @@
       }
     }
   },
-  "tutorMoveObservationBlots": "Odkryté osamotené kamene: {count, plural, one{# kameň} few{# kamene} many{# kameňov} other{# kamene}} (predtým {previousCount}). Skôr než uprednostníte bezpečnosť pred iným ziskom, zvážte, či na ne súper dosiahne.",
+  "tutorMoveObservationBlots": "Odkryté osamotené kamene: {count, plural, one{{count} kameň} few{{count} kamene} many{{count} kameňov} other{{count} kamene}} (predtým {previousCount}). Skôr než uprednostníte bezpečnosť pred iným ziskom, zvážte, či na ne súper dosiahne.",
   "@tutorMoveObservationBlots": {
     "placeholders": {
       "count": {
@@ -1297,7 +1297,7 @@
   "learningDecisionSummary": "{decisions} rozhodnutí · {mistakes} na zlepšenie · {blunders} hrubých chýb",
   "learningAverageLoss": "Priemerná strata ({decisions} rozhodnutí): {loss}",
   "learningForcedDisclaimer": "Vynútené ťahy sú vynechané. Ide o odhady enginu, nie turnajové hodnotenie.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Uložená hra potrebuje analýzu alebo novú analýzu.} other{Uložené hry potrebujú analýzu alebo novú analýzu.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Uložená hra potrebuje analýzu alebo novú analýzu.} other{Uložené hry ({count}) potrebujú analýzu alebo novú analýzu.}}",
   "learningAnalyseSavedGames": "Analyzovať uložené hry",
   "learningEmptyProfile": "Zahraj a dokonči hru, aby si vytvoril svoj učebný profil. Jednotlivé rozhodnutia môžeš uložiť aj z prehrávania hry.",
   "learningOpenHistory": "Otvoriť históriu zápasov",

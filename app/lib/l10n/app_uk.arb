@@ -1351,7 +1351,7 @@
     }
   },
   "learningForcedDisclaimer": "Вимушені ходи не враховуються. Це оцінки рушія, а не турнірний рейтинг.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Збережена партія потребує аналізу або його оновлення.} other{Збережені партії (#) потребують аналізу або його оновлення.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Збережена партія потребує аналізу або його оновлення.} other{Збережені партії ({count}) потребують аналізу або його оновлення.}}",
   "@learningGamesNeedingAnalysis": {
     "placeholders": {
       "count": {

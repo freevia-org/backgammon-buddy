@@ -1670,7 +1670,8 @@ class AppLocalizationsPt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Os # jogos guardados precisam de análise ou de uma nova análise.',
+      other:
+          'Os $count jogos guardados precisam de análise ou de uma nova análise.',
       one: 'O jogo guardado precisa de análise ou de uma nova análise.',
     );
     return '$_temp0';

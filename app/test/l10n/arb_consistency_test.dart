@@ -69,6 +69,11 @@ void main() {
           isNot(matches(RegExp(r'\bJ\d{1,2}\b'))),
           reason: '$locale.$key must not contain translation segment markers',
         );
+        expect(
+          bundle[key],
+          isNot(contains('#')),
+          reason: '$locale.$key must use a declared placeholder for numbers',
+        );
         final metadata = bundle['@$key'] as Map<String, dynamic>?;
         final templateMetadata = template['@$key'] as Map<String, dynamic>?;
         expect(

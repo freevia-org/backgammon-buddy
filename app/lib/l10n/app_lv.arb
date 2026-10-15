@@ -1351,7 +1351,7 @@
     }
   },
   "learningForcedDisclaimer": "Piespiedu gājieni nav iekļauti. Tie ir dzinēja aprēķini, nevis turnīra reitings.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{# saglabātajai partijai vajadzīga analīze vai tās atjauninājums.} other{# saglabātajām partijām vajadzīga analīze vai tās atjauninājums.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{{count} saglabātajai partijai vajadzīga analīze vai tās atjauninājums.} other{{count} saglabātajām partijām vajadzīga analīze vai tās atjauninājums.}}",
   "@learningGamesNeedingAnalysis": {
     "placeholders": {
       "count": {

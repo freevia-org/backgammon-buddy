@@ -1351,7 +1351,7 @@
     }
   },
   "learningForcedDisclaimer": "Tvingade drag utesluts. Det här är motorns uppskattningar, inte ett turneringsbetyg.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Sparat parti behöver analyseras eller analyseras på nytt.} other{Sparade partier behöver analyseras eller analyseras på nytt.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Sparat parti behöver analyseras eller analyseras på nytt.} other{Sparade partier ({count}) behöver analyseras eller analyseras på nytt.}}",
   "@learningGamesNeedingAnalysis": {
     "placeholders": {
       "count": {

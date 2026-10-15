@@ -1063,7 +1063,7 @@
   "learningDecisionSummary": "{decisions} décisions · {mistakes} à améliorer · {blunders} gaffes",
   "learningAverageLoss": "Perte moyenne ({decisions} décisions) : {loss}",
   "learningForcedDisclaimer": "Les coups forcés sont exclus. Ce sont des estimations du moteur, pas une note de tournoi.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{La partie enregistrée doit être analysée ou réanalysée.} other{Les # parties enregistrées doivent être analysées ou réanalysées.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{La partie enregistrée doit être analysée ou réanalysée.} other{Les {count} parties enregistrées doivent être analysées ou réanalysées.}}",
   "learningAnalyseSavedGames": "Analyser les parties enregistrées",
   "learningEmptyProfile": "Joue et termine une partie pour créer ton profil d’apprentissage. Tu peux aussi enregistrer des décisions depuis la relecture.",
   "learningOpenHistory": "Ouvrir l’historique",

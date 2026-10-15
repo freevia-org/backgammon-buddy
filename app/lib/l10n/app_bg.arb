@@ -141,9 +141,9 @@
   "tutorPhraseHomePointsAndBlots": "Затворени полета във вашия дом: {count}. Оставени открити пулове: {otherCount}.",
   "tutorPhraseChooseCheckerPrompt": "Изберете пул, за да започнете хода си.",
   "tutorPhraseLegalPlayPrompt": "Направете разрешен ход, за да видите коментар.",
-  "tutorPhraseStagedHit": "Ударихте {count, plural, one{един пул на противника} other{# пула на противника}}.",
+  "tutorPhraseStagedHit": "Ударихте {count, plural, one{един пул на противника} other{{count} пула на противника}}.",
   "tutorPhraseStagedEnter": "Вкарани от бара пулове: {count}.",
-  "tutorPhraseStagedBearOff": "Изведохте от дъската {count, plural, one{един пул} other{# пула}}.",
+  "tutorPhraseStagedBearOff": "Изведохте от дъската {count, plural, one{един пул} other{{count} пула}}.",
   "tutorPhraseStagedMakePoints": "Затворихте полета {points}.",
   "tutorPhraseStagedBlot": "Пулът на поле {point} засега остава открит за удар.",
   "tutorPhraseStagedSpare": "Резервният пул на поле {point} може да се премести по-късно, без да се отваря полето.",
@@ -204,7 +204,7 @@
   "tutorMovePlanCoverBlot": "Съберете пуловете си. Прикриването на открит пул премахва тази цел и запазва възможностите за следващи ходове.",
   "tutorMovePlanSafety": "Съчетавайте развитието със сигурността: придвижвайте строителните пулове към полезни полета и проверявайте кои единични пулове могат да бъдат ударени.",
   "tutorMoveObservationNoLegalPlay": "Няма разрешен ход с пуловете: ред е на противника.",
-  "tutorMoveObservationHit": "Ударихте {count, plural, one{# пул на противника} other{# пула на противника}}; противникът трябва първо да влезе от бара, преди да мести другите пулове.",
+  "tutorMoveObservationHit": "Ударихте {count, plural, one{{count} пул на противника} other{{count} пула на противника}}; противникът трябва първо да влезе от бара, преди да мести другите пулове.",
   "@tutorMoveObservationHit": {
     "placeholders": {
       "count": {
@@ -220,7 +220,7 @@
       }
     }
   },
-  "tutorMoveObservationBearOff": "Изведени от дъската: {count, plural, one{# пул} other{# пула}}.",
+  "tutorMoveObservationBearOff": "Изведени от дъската: {count, plural, one{{count} пул} other{{count} пула}}.",
   "@tutorMoveObservationBearOff": {
     "placeholders": {
       "count": {
@@ -249,7 +249,7 @@
       }
     }
   },
-  "tutorMoveObservationBlots": "Остават открити единични пулове: {count, plural, one{# пул} other{# пула}} (преди: {previousCount}). Проверете дали противникът може да ги достигне, преди да изберете сигурността пред друга придобивка.",
+  "tutorMoveObservationBlots": "Остават открити единични пулове: {count, plural, one{{count} пул} other{{count} пула}} (преди: {previousCount}). Проверете дали противникът може да ги достигне, преди да изберете сигурността пред друга придобивка.",
   "@tutorMoveObservationBlots": {
     "placeholders": {
       "count": {
@@ -1219,7 +1219,7 @@
   "learningDecisionSummary": "{decisions} решения · {mistakes} за подобрение · {blunders} големи грешки",
   "learningAverageLoss": "Средна загуба ({decisions} решения): {loss}",
   "learningForcedDisclaimer": "Принудителните ходове са изключени. Това са оценки на двигателя, не турнирна оценка.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{# запазена партия се нуждае от анализ или повторен анализ.} other{# запазени партии се нуждаят от анализ или повторен анализ.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{{count} запазена партия се нуждае от анализ или повторен анализ.} other{{count} запазени партии се нуждаят от анализ или повторен анализ.}}",
   "learningAnalyseSavedGames": "Анализирай запазените партии",
   "learningEmptyProfile": "Изиграй и завърши партия, за да изградиш профила си за обучение. Можеш да запазваш и отделни решения от прегледа на партия.",
   "learningOpenHistory": "Отвори историята на мачовете",

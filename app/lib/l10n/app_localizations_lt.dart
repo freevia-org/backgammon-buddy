@@ -1661,8 +1661,9 @@ class AppLocalizationsLt extends AppLocalizations {
       count,
       locale: localeName,
       other:
-          '# išsaugotoms partijoms reikia analizės arba atnaujintos analizės.',
-      one: '# išsaugotai partijai reikia analizės arba atnaujintos analizės.',
+          '$count išsaugotoms partijoms reikia analizės arba atnaujintos analizės.',
+      one:
+          '$count išsaugotai partijai reikia analizės arba atnaujintos analizės.',
     );
     return '$_temp0';
   }

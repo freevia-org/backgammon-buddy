@@ -1748,7 +1748,7 @@ class AppLocalizationsSl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Shranjene igre potrebujejo analizo ali ponovno analizo.',
+      other: 'Shranjene igre ($count) potrebujejo analizo ali ponovno analizo.',
       one: 'Shranjena igra potrebuje analizo ali ponovno analizo.',
     );
     return '$_temp0';

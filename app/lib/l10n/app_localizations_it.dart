@@ -1673,7 +1673,8 @@ class AppLocalizationsIt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Le # partite salvate richiedono un’analisi o una nuova analisi.',
+      other:
+          'Le $count partite salvate richiedono un’analisi o una nuova analisi.',
       one: 'La partita salvata richiede un’analisi o una nuova analisi.',
     );
     return '$_temp0';

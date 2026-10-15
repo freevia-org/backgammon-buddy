@@ -1063,7 +1063,7 @@
   "learningDecisionSummary": "{decisions} odločitev · {mistakes} za izboljšati · {blunders} hudih napak",
   "learningAverageLoss": "Povprečna izguba ({decisions} odločitev): {loss}",
   "learningForcedDisclaimer": "Prisilne poteze so izključene. To so ocene motorja, ne turnirska ocena.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Shranjena igra potrebuje analizo ali ponovno analizo.} other{Shranjene igre potrebujejo analizo ali ponovno analizo.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Shranjena igra potrebuje analizo ali ponovno analizo.} other{Shranjene igre ({count}) potrebujejo analizo ali ponovno analizo.}}",
   "learningAnalyseSavedGames": "Analiziraj shranjene igre",
   "learningEmptyProfile": "Odigraj in zaključi igro, da ustvariš svoj učni profil. Posamezne odločitve lahko shraniš tudi iz ponovitve.",
   "learningOpenHistory": "Odpri zgodovino dvobojev",

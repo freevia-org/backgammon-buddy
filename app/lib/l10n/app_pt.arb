@@ -1063,7 +1063,7 @@
   "learningDecisionSummary": "{decisions} decisões · {mistakes} a melhorar · {blunders} erros graves",
   "learningAverageLoss": "Perda média ({decisions} decisões): {loss}",
   "learningForcedDisclaimer": "As jogadas forçadas são excluídas. São estimativas do motor, não uma classificação de torneio.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{O jogo guardado precisa de análise ou de uma nova análise.} other{Os # jogos guardados precisam de análise ou de uma nova análise.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{O jogo guardado precisa de análise ou de uma nova análise.} other{Os {count} jogos guardados precisam de análise ou de uma nova análise.}}",
   "learningAnalyseSavedGames": "Analisar jogos guardados",
   "learningEmptyProfile": "Joga e termina uma partida para criar o teu perfil de aprendizagem. Também podes guardar decisões individuais a partir da revisão.",
   "learningOpenHistory": "Abrir histórico de partidas",

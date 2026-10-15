@@ -1624,8 +1624,10 @@ class AppLocalizationsLv extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# saglabātajām partijām vajadzīga analīze vai tās atjauninājums.',
-      one: '# saglabātajai partijai vajadzīga analīze vai tās atjauninājums.',
+      other:
+          '$count saglabātajām partijām vajadzīga analīze vai tās atjauninājums.',
+      one:
+          '$count saglabātajai partijai vajadzīga analīze vai tās atjauninājums.',
     );
     return '$_temp0';
   }
