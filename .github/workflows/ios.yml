@@ -168,18 +168,22 @@ jobs:
             --apple-source-root "$HOME/Library/Developer/Xcode/DerivedData" \
             --require-no-apple-ad-support \
             --out-dir app/build/mobile-dependencies/ios-unsigned
-          python3 tool/mobile_notices.py --check \
-            --apple-inventory app/build/mobile-dependencies/ios-unsigned/inventory.json \
-            --flutter-license "$(dirname "$(dirname "$(command -v flutter)")")/bin/cache/pkg/sky_engine/LICENSE"
           xcodebuild -version > app/build/mobile-dependencies/ios-unsigned/xcode-version.txt
           xcrun --sdk iphoneos --show-sdk-version > app/build/mobile-dependencies/ios-unsigned/sdk-version.txt
 
       - name: Upload iOS dependency evidence
+        if: always()
         uses: actions/upload-artifact@v6
         with:
           name: aigammon-ios-dependencies-${{ github.run_number }}
           path: app/build/mobile-dependencies/ios-unsigned
-          if-no-files-found: error
+          if-no-files-found: warn
+
+      - name: Validate iOS native dependencies and privacy manifests
+        run: |
+          python3 tool/mobile_notices.py --check \
+            --apple-inventory app/build/mobile-dependencies/ios-unsigned/inventory.json \
+            --flutter-license "$(dirname "$(dirname "$(command -v flutter)")")/bin/cache/pkg/sky_engine/LICENSE"
 
       # ---------------------------------------------------------------------
       # Signing + Firebase distribution (secret-gated).
