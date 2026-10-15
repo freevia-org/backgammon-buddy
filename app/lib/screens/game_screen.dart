@@ -1044,7 +1044,7 @@ class _GameScreenState extends State<GameScreen> {
     final (whiteDice, blackDice) = _persistentDice();
 
     return PopScope<Object?>(
-      canPop: _c.matchOver,
+      canPop: _c.matchOver || !_hasLocalHuman,
       onPopInvokedWithResult: _handleBack,
       child: Scaffold(
         body: SafeArea(
