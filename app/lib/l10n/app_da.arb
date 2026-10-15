@@ -222,7 +222,7 @@
   },
   "tutorPhraseChooseCheckerPrompt": "Vælg en brik for at begynde dit træk.",
   "tutorPhraseLegalPlayPrompt": "Udfør et lovligt træk for at få en kommentar.",
-  "tutorPhraseStagedHit": "Du har slået {count, plural, one{# modstanderbrik} other{# modstanderbrikker}} hjem.",
+  "tutorPhraseStagedHit": "Du har slået {count, plural, one{{count} modstanderbrik} other{{count} modstanderbrikker}} hjem.",
   "@tutorPhraseStagedHit": {
     "placeholders": {
       "count": {
@@ -238,7 +238,7 @@
       }
     }
   },
-  "tutorPhraseStagedBearOff": "Brikker taget af brættet: {count, plural, one{# brik} other{# brikker}}.",
+  "tutorPhraseStagedBearOff": "Brikker taget af brættet: {count, plural, one{{count} brik} other{{count} brikker}}.",
   "@tutorPhraseStagedBearOff": {
     "placeholders": {
       "count": {
@@ -371,7 +371,7 @@
   "tutorMovePlanCoverBlot": "Saml dine brikker. Når du dækker en ubeskyttet brik, fjerner du det mål og bevarer muligheder for næste kast.",
   "tutorMovePlanSafety": "Afvej udvikling og sikkerhed: flyt byggesten mod nyttige felter, og se efter enlige brikker, der kan slås.",
   "tutorMoveObservationNoLegalPlay": "Intet lovligt brikketræk: turen skal passes.",
-  "tutorMoveObservationHit": "Du slår {count, plural, one{# modstanderbrik} other{# modstanderbrikker}}; modstanderen skal først ind fra baren, før de andre brikker kan flyttes.",
+  "tutorMoveObservationHit": "Du slår {count, plural, one{{count} modstanderbrik} other{{count} modstanderbrikker}}; modstanderen skal først ind fra baren, før de andre brikker kan flyttes.",
   "@tutorMoveObservationHit": {
     "placeholders": {
       "count": {
@@ -387,7 +387,7 @@
       }
     }
   },
-  "tutorMoveObservationBearOff": "Brikker taget af brættet: {count, plural, one{# brik} other{# brikker}}.",
+  "tutorMoveObservationBearOff": "Brikker taget af brættet: {count, plural, one{{count} brik} other{{count} brikker}}.",
   "@tutorMoveObservationBearOff": {
     "placeholders": {
       "count": {
@@ -416,7 +416,7 @@
       }
     }
   },
-  "tutorMoveObservationBlots": "Ubeskyttede enlige brikker: {count, plural, one{# brik} other{# brikker}} (før: {previousCount}). Undersøg, om modstanderen kan nå dem, før du vælger sikkerhed frem for en anden gevinst.",
+  "tutorMoveObservationBlots": "Ubeskyttede enlige brikker: {count, plural, one{{count} brik} other{{count} brikker}} (før: {previousCount}). Undersøg, om modstanderen kan nå dem, før du vælger sikkerhed frem for en anden gevinst.",
   "@tutorMoveObservationBlots": {
     "placeholders": {
       "count": {
@@ -1219,7 +1219,7 @@
   "learningDecisionSummary": "{decisions} beslutninger · {mistakes} at forbedre · {blunders} større fejl",
   "learningAverageLoss": "Gennemsnitligt tab ({decisions} beslutninger): {loss}",
   "learningForcedDisclaimer": "Tvungne træk er udeladt. Det er engineestimater, ikke en turneringsrating.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{# gemt parti skal analyseres eller analyseres igen.} other{# gemte partier skal analyseres eller analyseres igen.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{{count} gemt parti skal analyseres eller analyseres igen.} other{{count} gemte partier skal analyseres eller analyseres igen.}}",
   "learningAnalyseSavedGames": "Analysér gemte partier",
   "learningEmptyProfile": "Spil og afslut et parti for at opbygge din læringsprofil. Du kan også gemme enkelte beslutninger fra en gennemgang.",
   "learningOpenHistory": "Åbn kamphistorik",

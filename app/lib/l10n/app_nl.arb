@@ -1063,7 +1063,7 @@
   "learningDecisionSummary": "{decisions} beslissingen · {mistakes} verbeterpunten · {blunders} blunders",
   "learningAverageLoss": "Gemiddeld verlies ({decisions} beslissingen): {loss}",
   "learningForcedDisclaimer": "Gedwongen zetten tellen niet mee. Dit zijn engine-inschattingen, geen toernooirating.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{# opgeslagen partij moet worden geanalyseerd of opnieuw geanalyseerd.} other{# opgeslagen partijen moeten worden geanalyseerd of opnieuw geanalyseerd.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{{count} opgeslagen partij moet worden geanalyseerd of opnieuw geanalyseerd.} other{{count} opgeslagen partijen moeten worden geanalyseerd of opnieuw geanalyseerd.}}",
   "learningAnalyseSavedGames": "Opgeslagen partijen analyseren",
   "learningEmptyProfile": "Speel en voltooi een partij om je leerprofiel op te bouwen. Je kunt ook losse beslissingen opslaan vanuit de herhaling.",
   "learningOpenHistory": "Partijgeschiedenis openen",

@@ -1063,7 +1063,7 @@
   "learningDecisionSummary": "{decisions} decisioni · {mistakes} da migliorare · {blunders} errori gravi",
   "learningAverageLoss": "Perdita media ({decisions} decisioni): {loss}",
   "learningForcedDisclaimer": "Le mosse forzate sono escluse. Sono stime del motore, non una valutazione da torneo.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{La partita salvata richiede un’analisi o una nuova analisi.} other{Le # partite salvate richiedono un’analisi o una nuova analisi.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{La partita salvata richiede un’analisi o una nuova analisi.} other{Le {count} partite salvate richiedono un’analisi o una nuova analisi.}}",
   "learningAnalyseSavedGames": "Analizza le partite salvate",
   "learningEmptyProfile": "Gioca e termina una partita per creare il tuo profilo di apprendimento. Puoi anche salvare singole decisioni dalla revisione.",
   "learningOpenHistory": "Apri la cronologia",

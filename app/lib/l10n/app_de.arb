@@ -343,7 +343,7 @@
       }
     }
   },
-  "tutorMoveObservationEntry": "Zieht {count, plural, one{Stein} other{Steine}} vom Bar ins Spiel.",
+  "tutorMoveObservationEntry": "Zieht {count} {count, plural, one{Stein} other{Steine}} vom Bar ins Spiel.",
   "@tutorMoveObservationEntry": {
     "placeholders": {
       "count": {
@@ -351,7 +351,7 @@
       }
     }
   },
-  "tutorMoveObservationBearOff": "Spielt {count, plural, one{Stein} other{Steine}} heraus.",
+  "tutorMoveObservationBearOff": "Spielt {count} {count, plural, one{Stein} other{Steine}} heraus.",
   "@tutorMoveObservationBearOff": {
     "placeholders": {
       "count": {
@@ -1063,7 +1063,7 @@
   "learningDecisionSummary": "{decisions} Entscheidungen · {mistakes} verbesserungswürdig · {blunders} Patzer",
   "learningAverageLoss": "Durchschnittlicher Verlust ({decisions} Entscheidungen): {loss}",
   "learningForcedDisclaimer": "Erzwungene Züge sind ausgeschlossen. Dies sind Engine-Schätzungen, keine Turnierwertung.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{# gespeicherte Partie muss analysiert oder erneut analysiert werden.} other{# gespeicherte Partien müssen analysiert oder erneut analysiert werden.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{{count} gespeicherte Partie muss analysiert oder erneut analysiert werden.} other{{count} gespeicherte Partien müssen analysiert oder erneut analysiert werden.}}",
   "learningAnalyseSavedGames": "Gespeicherte Partien analysieren",
   "learningEmptyProfile": "Spiele und beende eine Partie, um dein Lernprofil aufzubauen. Du kannst auch einzelne Entscheidungen aus einer Partie-Wiederholung speichern.",
   "learningOpenHistory": "Spielverlauf öffnen",

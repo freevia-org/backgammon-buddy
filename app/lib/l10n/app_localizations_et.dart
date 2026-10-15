@@ -1650,7 +1650,7 @@ class AppLocalizationsEt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# salvestatud partiid vajavad analüüsi või uut analüüsi.',
+      other: '$count salvestatud partiid vajavad analüüsi või uut analüüsi.',
       one: 'Üks salvestatud partii vajab analüüsi või uut analüüsi.',
     );
     return '$_temp0';

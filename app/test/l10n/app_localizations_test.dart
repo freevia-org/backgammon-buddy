@@ -8,6 +8,7 @@ void main() {
     'all published first-wave locale files load the core play strings',
     () async {
       expect(AppLocalizations.supportedLocales, hasLength(28));
+      final missingNumericValues = <String>[];
 
       for (final locale in AppLocalizations.supportedLocales) {
         final strings = await AppLocalizations.delegate.load(locale);
@@ -56,7 +57,35 @@ void main() {
           contains('1.2.3'),
           reason: locale.toString(),
         );
+        for (final (key, value) in [
+          ('tutorPhraseStagedHit', strings.tutorPhraseStagedHit(17)),
+          ('tutorPhraseStagedBearOff', strings.tutorPhraseStagedBearOff(17)),
+          ('tutorMoveObservationHit', strings.tutorMoveObservationHit(17)),
+          (
+            'tutorMoveObservationBlots',
+            strings.tutorMoveObservationBlots(17, 3),
+          ),
+          (
+            'learningGamesNeedingAnalysis',
+            strings.learningGamesNeedingAnalysis(17),
+          ),
+          (
+            'tutorMoveObservationBearOff',
+            strings.tutorMoveObservationBearOff(17),
+          ),
+          ('tutorMoveObservationEntry', strings.tutorMoveObservationEntry(17)),
+        ]) {
+          if (!value.contains('17')) {
+            missingNumericValues.add('$locale.$key => $value');
+          }
+        }
       }
+      expect(
+        missingNumericValues,
+        isEmpty,
+        reason:
+            'Plural text must retain the quantity:\n${missingNumericValues.join('\n')}',
+      );
     },
   );
 

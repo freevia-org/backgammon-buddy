@@ -1648,9 +1648,9 @@ class AppLocalizationsGa extends AppLocalizations {
       count,
       locale: localeName,
       other:
-          'Ní mór anailís a dhéanamh ar # chluiche sábháilte nó anailís nua a dhéanamh orthu.',
+          'Ní mór anailís a dhéanamh ar $count chluiche sábháilte nó anailís nua a dhéanamh orthu.',
       one:
-          'Ní mór anailís a dhéanamh ar # chluiche sábháilte nó anailís nua a dhéanamh air.',
+          'Ní mór anailís a dhéanamh ar $count chluiche sábháilte nó anailís nua a dhéanamh air.',
     );
     return '$_temp0';
   }

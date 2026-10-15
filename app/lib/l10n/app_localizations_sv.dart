@@ -1628,7 +1628,8 @@ class AppLocalizationsSv extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Sparade partier behöver analyseras eller analyseras på nytt.',
+      other:
+          'Sparade partier ($count) behöver analyseras eller analyseras på nytt.',
       one: 'Sparat parti behöver analyseras eller analyseras på nytt.',
     );
     return '$_temp0';

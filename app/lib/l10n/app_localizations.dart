@@ -2736,7 +2736,7 @@ abstract class AppLocalizations {
   /// No description provided for @learningGamesNeedingAnalysis.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, one{# saved game needs analysis or refreshed analysis.} other{# saved games need analysis or refreshed analysis.}}'**
+  /// **'{count, plural, one{{count} saved game needs analysis or refreshed analysis.} other{{count} saved games need analysis or refreshed analysis.}}'**
   String learningGamesNeedingAnalysis(int count);
 
   /// No description provided for @learningAnalyseSavedGames.

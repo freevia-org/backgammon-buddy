@@ -1648,8 +1648,8 @@ class AppLocalizationsEn extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# saved games need analysis or refreshed analysis.',
-      one: '# saved game needs analysis or refreshed analysis.',
+      other: '$count saved games need analysis or refreshed analysis.',
+      one: '$count saved game needs analysis or refreshed analysis.',
     );
     return '$_temp0';
   }

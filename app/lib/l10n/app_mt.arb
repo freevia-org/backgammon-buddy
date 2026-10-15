@@ -1351,7 +1351,7 @@
     }
   },
   "learningForcedDisclaimer": "Il-mossi obbligatorji huma esklużi. Dawn huma stimi tal-magna, mhux klassifikazzjoni tat-turnew.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Partita waħda ssejvjata teħtieġ analiżi jew aġġornament tal-analiżi.} other{# partiti ssejvjati jeħtieġu analiżi jew aġġornament tal-analiżi.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Partita waħda ssejvjata teħtieġ analiżi jew aġġornament tal-analiżi.} other{{count} partiti ssejvjati jeħtieġu analiżi jew aġġornament tal-analiżi.}}",
   "@learningGamesNeedingAnalysis": {
     "placeholders": {
       "count": {

@@ -1633,7 +1633,7 @@ class AppLocalizationsMt extends AppLocalizations {
       count,
       locale: localeName,
       other:
-          '# partiti ssejvjati jeħtieġu analiżi jew aġġornament tal-analiżi.',
+          '$count partiti ssejvjati jeħtieġu analiżi jew aġġornament tal-analiżi.',
       one:
           'Partita waħda ssejvjata teħtieġ analiżi jew aġġornament tal-analiżi.',
     );

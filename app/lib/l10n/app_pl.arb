@@ -1063,7 +1063,7 @@
   "learningDecisionSummary": "{decisions} decyzji · {mistakes} do poprawy · {blunders} rażących błędów",
   "learningAverageLoss": "Średnia strata ({decisions} decyzji): {loss}",
   "learningForcedDisclaimer": "Wymuszone ruchy są pomijane. To szacunki silnika, a nie ranking turniejowy.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Zapisana partia wymaga analizy lub ponownej analizy.} other{Zapisane partie wymagają analizy lub ponownej analizy.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Zapisana partia wymaga analizy lub ponownej analizy.} other{Zapisane partie ({count}) wymagają analizy lub ponownej analizy.}}",
   "learningAnalyseSavedGames": "Analizuj zapisane partie",
   "learningEmptyProfile": "Rozegraj i ukończ partię, aby zbudować profil nauki. Możesz też zapisywać pojedyncze decyzje z powtórki.",
   "learningOpenHistory": "Otwórz historię meczów",

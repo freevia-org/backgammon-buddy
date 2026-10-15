@@ -222,7 +222,7 @@
   },
   "tutorPhraseChooseCheckerPrompt": "Επιλέξτε ένα πούλι για να ξεκινήσετε την κίνησή σας.",
   "tutorPhraseLegalPlayPrompt": "Κάντε μια νόμιμη κίνηση για να δείτε σχόλια.",
-  "tutorPhraseStagedHit": "Χτυπήσατε {count, plural, one{# αντίπαλο πούλι} other{# αντίπαλα πούλια}}.",
+  "tutorPhraseStagedHit": "Χτυπήσατε {count, plural, one{{count} αντίπαλο πούλι} other{{count} αντίπαλα πούλια}}.",
   "@tutorPhraseStagedHit": {
     "placeholders": {
       "count": {
@@ -238,7 +238,7 @@
       }
     }
   },
-  "tutorPhraseStagedBearOff": "Πούλια που βγάλατε από το παιχνίδι: {count, plural, one{# πούλι} other{# πούλια}}.",
+  "tutorPhraseStagedBearOff": "Πούλια που βγάλατε από το παιχνίδι: {count, plural, one{{count} πούλι} other{{count} πούλια}}.",
   "@tutorPhraseStagedBearOff": {
     "placeholders": {
       "count": {
@@ -335,7 +335,7 @@
   "tutorMovePlanCoverBlot": "Συγκεντρώστε τα πούλια σας. Καλύπτοντας ένα εκτεθειμένο πούλι αφαιρείτε αυτόν τον στόχο και διατηρείτε διαθέσιμες επιλογές για την επόμενη ζαριά.",
   "tutorMovePlanSafety": "Ισορροπήστε την ανάπτυξη με την ασφάλεια: φέρτε τα πούλια που χτίζουν τη θέση σε χρήσιμα σημεία και ελέγξτε ποια μεμονωμένα πούλια μπορεί να χτυπηθούν.",
   "tutorMoveObservationNoLegalPlay": "Δεν υπάρχει νόμιμη κίνηση για τα πούλια: πρέπει να πάτε πάσο.",
-  "tutorMoveObservationHit": "Χτυπάτε {count, plural, one{# αντίπαλο πούλι} other{# αντίπαλα πούλια}}· ο αντίπαλος πρέπει πρώτα να μπει από τη μπάρα πριν μετακινήσει τα υπόλοιπα πούλια.",
+  "tutorMoveObservationHit": "Χτυπάτε {count, plural, one{{count} αντίπαλο πούλι} other{{count} αντίπαλα πούλια}}· ο αντίπαλος πρέπει πρώτα να μπει από τη μπάρα πριν μετακινήσει τα υπόλοιπα πούλια.",
   "@tutorMoveObservationHit": {
     "placeholders": {
       "count": {
@@ -351,7 +351,7 @@
       }
     }
   },
-  "tutorMoveObservationBearOff": "Πούλια που βγήκαν από το ταμπλό: {count, plural, one{# πούλι} other{# πούλια}}.",
+  "tutorMoveObservationBearOff": "Πούλια που βγήκαν από το ταμπλό: {count, plural, one{{count} πούλι} other{{count} πούλια}}.",
   "@tutorMoveObservationBearOff": {
     "placeholders": {
       "count": {
@@ -380,7 +380,7 @@
       }
     }
   },
-  "tutorMoveObservationBlots": "Αφήνετε {count, plural, one{# μεμονωμένο πούλι εκτεθειμένο} other{# μεμονωμένα πούλια εκτεθειμένα}} (προηγουμένως {previousCount}). Εξετάστε αν ο αντίπαλος μπορεί να τα φτάσει πριν προτιμήσετε την ασφάλεια από κάποιο άλλο όφελος.",
+  "tutorMoveObservationBlots": "Αφήνετε {count, plural, one{{count} μεμονωμένο πούλι εκτεθειμένο} other{{count} μεμονωμένα πούλια εκτεθειμένα}} (προηγουμένως {previousCount}). Εξετάστε αν ο αντίπαλος μπορεί να τα φτάσει πριν προτιμήσετε την ασφάλεια από κάποιο άλλο όφελος.",
   "@tutorMoveObservationBlots": {
     "placeholders": {
       "count": {
@@ -1219,7 +1219,7 @@
   "learningDecisionSummary": "{decisions} αποφάσεις · {mistakes} για βελτίωση · {blunders} μεγάλα λάθη",
   "learningAverageLoss": "Μέση απώλεια ({decisions} αποφάσεις): {loss}",
   "learningForcedDisclaimer": "Οι αναγκαστικές κινήσεις εξαιρούνται. Αυτές είναι εκτιμήσεις του κινητήρα, όχι βαθμολογία τουρνουά.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Η αποθηκευμένη παρτίδα χρειάζεται ανάλυση ή νέα ανάλυση.} other{Οι αποθηκευμένες παρτίδες χρειάζονται ανάλυση ή νέα ανάλυση.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Η αποθηκευμένη παρτίδα χρειάζεται ανάλυση ή νέα ανάλυση.} other{Οι αποθηκευμένες παρτίδες ({count}) χρειάζονται ανάλυση ή νέα ανάλυση.}}",
   "learningAnalyseSavedGames": "Ανάλυση αποθηκευμένων παρτίδων",
   "learningEmptyProfile": "Παίξε και ολοκλήρωσε μια παρτίδα για να δημιουργήσεις το προφίλ μάθησής σου. Μπορείς επίσης να αποθηκεύσεις αποφάσεις από την ανασκόπηση.",
   "learningOpenHistory": "Άνοιγμα ιστορικού αγώνων",

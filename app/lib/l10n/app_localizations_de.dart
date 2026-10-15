@@ -719,7 +719,7 @@ class AppLocalizationsDe extends AppLocalizations {
       other: 'Steine',
       one: 'Stein',
     );
-    return 'Zieht $_temp0 vom Bar ins Spiel.';
+    return 'Zieht $count $_temp0 vom Bar ins Spiel.';
   }
 
   @override
@@ -730,7 +730,7 @@ class AppLocalizationsDe extends AppLocalizations {
       other: 'Steine',
       one: 'Stein',
     );
-    return 'Spielt $_temp0 heraus.';
+    return 'Spielt $count $_temp0 heraus.';
   }
 
   @override
@@ -1669,9 +1669,9 @@ class AppLocalizationsDe extends AppLocalizations {
       count,
       locale: localeName,
       other:
-          '# gespeicherte Partien müssen analysiert oder erneut analysiert werden.',
+          '$count gespeicherte Partien müssen analysiert oder erneut analysiert werden.',
       one:
-          '# gespeicherte Partie muss analysiert oder erneut analysiert werden.',
+          '$count gespeicherte Partie muss analysiert oder erneut analysiert werden.',
     );
     return '$_temp0';
   }

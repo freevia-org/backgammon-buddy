@@ -1003,7 +1003,7 @@
     }
   },
   "learningForcedDisclaimer": "Forced plays are excluded. These are engine estimates, not a tournament rating.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{# saved game needs analysis or refreshed analysis.} other{# saved games need analysis or refreshed analysis.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{{count} saved game needs analysis or refreshed analysis.} other{{count} saved games need analysis or refreshed analysis.}}",
   "@learningGamesNeedingAnalysis": {
     "placeholders": {
       "count": {

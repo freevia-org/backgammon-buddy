@@ -724,7 +724,7 @@ class AppLocalizationsEs extends AppLocalizations {
       other: 'fichas',
       one: 'ficha',
     );
-    return 'Saca $_temp0.';
+    return 'Saca $count $_temp0.';
   }
 
   @override
@@ -1666,7 +1666,8 @@ class AppLocalizationsEs extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Las # partidas guardadas necesitan análisis o un nuevo análisis.',
+      other:
+          'Las $count partidas guardadas necesitan análisis o un nuevo análisis.',
       one: 'La partida guardada necesita análisis o un nuevo análisis.',
     );
     return '$_temp0';

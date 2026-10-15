@@ -1650,7 +1650,8 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Сохранённым партиям (#) нужен анализ или обновлённый анализ.',
+      other:
+          'Сохранённым партиям ($count) нужен анализ или обновлённый анализ.',
       one: 'Сохранённой партии нужен анализ или обновлённый анализ.',
     );
     return '$_temp0';

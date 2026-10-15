@@ -1351,7 +1351,7 @@
     }
   },
   "learningForcedDisclaimer": "Вынужденные ходы исключены. Это оценки движка, а не турнирный рейтинг.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Сохранённой партии нужен анализ или обновлённый анализ.} other{Сохранённым партиям (#) нужен анализ или обновлённый анализ.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Сохранённой партии нужен анализ или обновлённый анализ.} other{Сохранённым партиям ({count}) нужен анализ или обновлённый анализ.}}",
   "@learningGamesNeedingAnalysis": {
     "placeholders": {
       "count": {

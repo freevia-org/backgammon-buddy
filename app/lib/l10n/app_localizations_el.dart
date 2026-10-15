@@ -516,8 +516,8 @@ class AppLocalizationsEl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# αντίπαλα πούλια',
-      one: '# αντίπαλο πούλι',
+      other: '$count αντίπαλα πούλια',
+      one: '$count αντίπαλο πούλι',
     );
     return 'Χτυπήσατε $_temp0.';
   }
@@ -532,8 +532,8 @@ class AppLocalizationsEl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# πούλια',
-      one: '# πούλι',
+      other: '$count πούλια',
+      one: '$count πούλι',
     );
     return 'Πούλια που βγάλατε από το παιχνίδι: $_temp0.';
   }
@@ -706,8 +706,8 @@ class AppLocalizationsEl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# αντίπαλα πούλια',
-      one: '# αντίπαλο πούλι',
+      other: '$count αντίπαλα πούλια',
+      one: '$count αντίπαλο πούλι',
     );
     return 'Χτυπάτε $_temp0· ο αντίπαλος πρέπει πρώτα να μπει από τη μπάρα πριν μετακινήσει τα υπόλοιπα πούλια.';
   }
@@ -722,8 +722,8 @@ class AppLocalizationsEl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# πούλια',
-      one: '# πούλι',
+      other: '$count πούλια',
+      one: '$count πούλι',
     );
     return 'Πούλια που βγήκαν από το ταμπλό: $_temp0.';
   }
@@ -748,8 +748,8 @@ class AppLocalizationsEl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# μεμονωμένα πούλια εκτεθειμένα',
-      one: '# μεμονωμένο πούλι εκτεθειμένο',
+      other: '$count μεμονωμένα πούλια εκτεθειμένα',
+      one: '$count μεμονωμένο πούλι εκτεθειμένο',
     );
     return 'Αφήνετε $_temp0 (προηγουμένως $previousCount). Εξετάστε αν ο αντίπαλος μπορεί να τα φτάσει πριν προτιμήσετε την ασφάλεια από κάποιο άλλο όφελος.';
   }
@@ -1667,7 +1667,8 @@ class AppLocalizationsEl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Οι αποθηκευμένες παρτίδες χρειάζονται ανάλυση ή νέα ανάλυση.',
+      other:
+          'Οι αποθηκευμένες παρτίδες ($count) χρειάζονται ανάλυση ή νέα ανάλυση.',
       one: 'Η αποθηκευμένη παρτίδα χρειάζεται ανάλυση ή νέα ανάλυση.',
     );
     return '$_temp0';

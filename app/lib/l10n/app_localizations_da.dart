@@ -513,8 +513,8 @@ class AppLocalizationsDa extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# modstanderbrikker',
-      one: '# modstanderbrik',
+      other: '$count modstanderbrikker',
+      one: '$count modstanderbrik',
     );
     return 'Du har slået $_temp0 hjem.';
   }
@@ -529,8 +529,8 @@ class AppLocalizationsDa extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# brikker',
-      one: '# brik',
+      other: '$count brikker',
+      one: '$count brik',
     );
     return 'Brikker taget af brættet: $_temp0.';
   }
@@ -704,8 +704,8 @@ class AppLocalizationsDa extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# modstanderbrikker',
-      one: '# modstanderbrik',
+      other: '$count modstanderbrikker',
+      one: '$count modstanderbrik',
     );
     return 'Du slår $_temp0; modstanderen skal først ind fra baren, før de andre brikker kan flyttes.';
   }
@@ -720,8 +720,8 @@ class AppLocalizationsDa extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# brikker',
-      one: '# brik',
+      other: '$count brikker',
+      one: '$count brik',
     );
     return 'Brikker taget af brættet: $_temp0.';
   }
@@ -746,8 +746,8 @@ class AppLocalizationsDa extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# brikker',
-      one: '# brik',
+      other: '$count brikker',
+      one: '$count brik',
     );
     return 'Ubeskyttede enlige brikker: $_temp0 (før: $previousCount). Undersøg, om modstanderen kan nå dem, før du vælger sikkerhed frem for en anden gevinst.';
   }
@@ -1656,8 +1656,8 @@ class AppLocalizationsDa extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# gemte partier skal analyseres eller analyseres igen.',
-      one: '# gemt parti skal analyseres eller analyseres igen.',
+      other: '$count gemte partier skal analyseres eller analyseres igen.',
+      one: '$count gemt parti skal analyseres eller analyseres igen.',
     );
     return '$_temp0';
   }

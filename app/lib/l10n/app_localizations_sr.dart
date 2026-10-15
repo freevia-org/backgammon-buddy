@@ -1654,7 +1654,8 @@ class AppLocalizationsSr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Sačuvane partije (#) zahtevaju analizu ili osveženu analizu.',
+      other:
+          'Sačuvane partije ($count) zahtevaju analizu ili osveženu analizu.',
       one: 'Sačuvana partija zahteva analizu ili osveženu analizu.',
     );
     return '$_temp0';

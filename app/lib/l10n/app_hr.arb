@@ -1063,7 +1063,7 @@
   "learningDecisionSummary": "{decisions} odluka · {mistakes} za poboljšati · {blunders} velikih pogrešaka",
   "learningAverageLoss": "Prosječni gubitak ({decisions} odluka): {loss}",
   "learningForcedDisclaimer": "Prisilni potezi nisu uključeni. Ovo su procjene enginea, a ne turniraška ocjena.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Spremljenu partiju treba analizirati ili ponovno analizirati.} other{Spremljene partije treba analizirati ili ponovno analizirati.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Spremljenu partiju treba analizirati ili ponovno analizirati.} other{Spremljene partije ({count}) treba analizirati ili ponovno analizirati.}}",
   "learningAnalyseSavedGames": "Analiziraj spremljene partije",
   "learningEmptyProfile": "Odigraj i završi partiju da izgradiš profil učenja. Odluke možeš spremiti i iz pregleda odigrane partije.",
   "learningOpenHistory": "Otvori povijest mečeva",

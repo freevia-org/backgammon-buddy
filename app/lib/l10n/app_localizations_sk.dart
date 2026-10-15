@@ -511,10 +511,10 @@ class AppLocalizationsSk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# súperove kamene',
-      many: '# súperových kameňov',
-      few: '# súperove kamene',
-      one: '# súperov kameň',
+      other: '$count súperove kamene',
+      many: '$count súperových kameňov',
+      few: '$count súperove kamene',
+      one: '$count súperov kameň',
     );
     return 'Zasiahli ste $_temp0.';
   }
@@ -529,10 +529,10 @@ class AppLocalizationsSk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# kamene',
-      many: '# kameňov',
-      few: '# kamene',
-      one: '# kameň',
+      other: '$count kamene',
+      many: '$count kameňov',
+      few: '$count kamene',
+      one: '$count kameň',
     );
     return 'Vyvedené kamene: $_temp0.';
   }
@@ -705,10 +705,10 @@ class AppLocalizationsSk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# súperove kamene',
-      many: '# súperových kameňov',
-      few: '# súperove kamene',
-      one: '# súperov kameň',
+      other: '$count súperove kamene',
+      many: '$count súperových kameňov',
+      few: '$count súperove kamene',
+      one: '$count súperov kameň',
     );
     return 'Zasiahli ste $_temp0; súper musí najprv vstúpiť z baru, až potom môže ťahať ostatnými kameňmi.';
   }
@@ -723,10 +723,10 @@ class AppLocalizationsSk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# kamene',
-      many: '# kameňov',
-      few: '# kamene',
-      one: '# kameň',
+      other: '$count kamene',
+      many: '$count kameňov',
+      few: '$count kamene',
+      one: '$count kameň',
     );
     return 'Vyvedené z dosky: $_temp0.';
   }
@@ -751,10 +751,10 @@ class AppLocalizationsSk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '# kamene',
-      many: '# kameňov',
-      few: '# kamene',
-      one: '# kameň',
+      other: '$count kamene',
+      many: '$count kameňov',
+      few: '$count kamene',
+      one: '$count kameň',
     );
     return 'Odkryté osamotené kamene: $_temp0 (predtým $previousCount). Skôr než uprednostníte bezpečnosť pred iným ziskom, zvážte, či na ne súper dosiahne.';
   }
@@ -1666,7 +1666,7 @@ class AppLocalizationsSk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: 'Uložené hry potrebujú analýzu alebo novú analýzu.',
+      other: 'Uložené hry ($count) potrebujú analýzu alebo novú analýzu.',
       one: 'Uložená hra potrebuje analýzu alebo novú analýzu.',
     );
     return '$_temp0';

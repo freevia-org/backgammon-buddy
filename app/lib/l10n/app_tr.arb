@@ -1351,7 +1351,7 @@
     }
   },
   "learningForcedDisclaimer": "Zorunlu hamleler hariç tutulur. Bunlar motor tahminleridir, turnuva puanı değildir.",
-  "learningGamesNeedingAnalysis": "{count, plural, one{Kaydedilen oyun analiz edilmeli veya analizi yenilenmeli.} other{Kaydedilen # oyun analiz edilmeli veya analizi yenilenmeli.}}",
+  "learningGamesNeedingAnalysis": "{count, plural, one{Kaydedilen oyun analiz edilmeli veya analizi yenilenmeli.} other{Kaydedilen {count} oyun analiz edilmeli veya analizi yenilenmeli.}}",
   "@learningGamesNeedingAnalysis": {
     "placeholders": {
       "count": {

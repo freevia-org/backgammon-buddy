@@ -1662,7 +1662,7 @@ class AppLocalizationsFr extends AppLocalizations {
       count,
       locale: localeName,
       other:
-          'Les # parties enregistrées doivent être analysées ou réanalysées.',
+          'Les $count parties enregistrées doivent être analysées ou réanalysées.',
       one: 'La partie enregistrée doit être analysée ou réanalysée.',
     );
     return '$_temp0';
