@@ -559,8 +559,13 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
     final l10n = appLocalizationsOf(context);
     final a = m.assessment;
     final (color, label) = _markStyle(a.mark, l10n);
+    // Add a loss sign only when the displayed precision shows a loss. This
+    // also covers tiny nonzero losses that round to 0.00 MWC / 0.000 equity.
+    final displayedLoss = a.lossLabel == formatAssessmentLoss(0, a.metric)
+        ? ' ${a.lossLabel}'
+        : l10n.analysisMoveLoss(a.lossLabel);
     final lossText = a.isDecision
-        ? l10n.analysisMoveLoss(a.lossLabel)
+        ? displayedLoss
         : l10n.analysisExcludedFromAverages;
     final best = a.best.checkerMoves.isEmpty
         ? l10n.analysisNoPlay
