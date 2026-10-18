@@ -478,7 +478,7 @@ void main() {
       greaterThan(5),
       reason: 'the wait stopped polling entirely, which would never launch',
     );
-  });
+  }, skip: TestWidgetsFlutterBinding.ensureInitialized() is LiveTestWidgetsFlutterBinding);
 
   testWidgets('cancel-while-waiting stops polling without errors', (t) async {
     await t.binding.setSurfaceSize(surface);

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'analytics/analytics_events.dart';
@@ -10,6 +9,7 @@ import 'analytics/telemetry_controller.dart';
 import 'data/app_settings.dart';
 import 'l10n/app_localizations.dart';
 import 'l10n/localization_lookup.dart';
+import 'l10n/framework_localizations.dart';
 import 'data/settings_repository.dart';
 import 'diagnostics/crash_log.dart';
 import 'screens/home_screen.dart';
@@ -119,12 +119,7 @@ class _AiGammonAppState extends ConsumerState<AiGammonApp> {
       // context that has localizations attached.
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       locale: locale,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
+      localizationsDelegates: appLocalizationDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       localeListResolutionCallback: (preferredLocales, supportedLocales) =>
           resolveAppLocale(preferredLocales, supportedLocales),

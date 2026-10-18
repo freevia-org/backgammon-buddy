@@ -151,12 +151,17 @@ class _RecordingPersistence implements MatchPersistence {
   }
 }
 
-void main() {
+void main() => registerEmulatorTests();
+
+/// Explicit opt-in for device integration tests, whose process cannot inherit
+/// the host shell's environment. The backend remains localhost emulator-only.
+void registerEmulatorTests({bool enabled = false}) {
   // Env gate: skip entirely unless explicitly asked to run against the emulator.
   // Trim because cmd.exe's `set VAR=1 && ...` captures a trailing space into the
   // value; treat any non-empty, non-"0" value as enabled.
   final gate = Platform.environment['AIGAMMON_EMULATOR']?.trim();
-  final runEmulator = gate != null && gate.isNotEmpty && gate != '0';
+  final runEmulator = enabled ||
+      (gate != null && gate.isNotEmpty && gate != '0');
   final skipReason = runEmulator
       ? null
       : 'Set AIGAMMON_EMULATOR=1 and run inside the Firebase Emulator Suite '

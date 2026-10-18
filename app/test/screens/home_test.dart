@@ -192,6 +192,35 @@ void main() {
   });
   tearDown(() => _db.close());
 
+  for (final size in [const Size(844, 390), const Size(568, 320)]) {
+    for (final scale in [1.0, 2.0]) {
+      testWidgets(
+        'landscape home keeps all six actions visible at $size ${scale}x',
+        (t) async {
+          await t.binding.setSurfaceSize(size);
+          addTearDown(() => t.binding.setSurfaceSize(null));
+          await t.pumpWidget(_app(textScale: scale));
+          for (final label in [
+            'Play vs Computer',
+            'Two Players',
+            'Play Nearby',
+            'Play Online',
+            'Learning & practice',
+            'Games Archive',
+          ]) {
+            final button = find.widgetWithText(FilledButton, label);
+            expect(button.hitTestable(), findsOneWidget);
+            final bounds = t.getRect(button);
+            expect(bounds.top, greaterThanOrEqualTo(0));
+            expect(bounds.bottom, lessThanOrEqualTo(size.height));
+            expect(bounds.height, greaterThanOrEqualTo(48));
+          }
+          expect(t.takeException(), isNull);
+        },
+      );
+    }
+  }
+
   testWidgets(
       'home shows both mode buttons; vs-computer reveals AI selectors, '
       'two-players hides them', (t) async {
