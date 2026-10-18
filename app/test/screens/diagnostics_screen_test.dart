@@ -139,8 +139,14 @@ void main() {
       (tester) async {
     tester.view.physicalSize = const Size(320, 568);
     tester.view.devicePixelRatio = 1;
+    // A synthetic 1x phone must not retain the simulator's physical 3x
+    // cutout insets: those can consume nearly its entire 320px viewport.
+    tester.view.padding = FakeViewPadding.zero;
+    tester.view.viewPadding = FakeViewPadding.zero;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPadding);
+    addTearDown(tester.view.resetViewPadding);
     final opened = <Uri>[];
     await tester.pumpWidget(MaterialApp(
       builder: (context, child) => MediaQuery(

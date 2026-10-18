@@ -130,65 +130,89 @@ class HomeScreen extends ConsumerWidget {
                   ];
                   final largeText = textScale > 1.3;
                   final markSize = largeText ? 32.0 : (compact ? 56.0 : 104.0);
-                  final tileHeight = largeText ? 96.0 : (compact ? 82.0 : 92.0);
+                  final wide =
+                      constraints.maxWidth > 550 && constraints.maxHeight < 340;
+                  final preferredTileHeight = largeText
+                      ? 96.0
+                      : (compact ? 82.0 : 92.0);
+                  final rows = (actions.length / 3).ceil();
+                  final tileHeight = wide
+                      ? ((constraints.maxHeight - 16 - (rows - 1) * 8) / rows)
+                            .clamp(48.0, preferredTileHeight)
+                      : preferredTileHeight;
+                  final identity = Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Semantics(
+                        label: 'Backgammon Buddy',
+                        child: AppMark(size: markSize),
+                      ),
+                      SizedBox(height: compact ? 4 : 8),
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Backgammon Buddy',
+                          style: compact
+                              ? theme.textTheme.titleLarge
+                              : theme.textTheme.displaySmall,
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
+                          softWrap: false,
+                        ),
+                      ),
+                      if (!largeText) ...[
+                        const SizedBox(height: 4),
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            l10n.homeTagline,
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              color: theme.colorScheme.onSurfaceVariant,
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            softWrap: false,
+                          ),
+                        ),
+                      ],
+                    ],
+                  );
+                  final menu = GridView.count(
+                    crossAxisCount: wide ? 3 : 2,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    mainAxisExtent: tileHeight,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: actions,
+                  );
                   return Align(
                     alignment: compact
                         ? Alignment.topCenter
                         : const Alignment(0, -0.18),
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 420),
+                      constraints: BoxConstraints(maxWidth: wide ? 900 : 420),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,
                           vertical: 8,
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Semantics(
-                              label: 'Backgammon Buddy',
-                              child: AppMark(size: markSize),
-                            ),
-                            SizedBox(height: compact ? 4 : 8),
-                            FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                'Backgammon Buddy',
-                                style: compact
-                                    ? theme.textTheme.titleLarge
-                                    : theme.textTheme.displaySmall,
-                                textAlign: TextAlign.center,
-                                maxLines: 1,
-                                softWrap: false,
+                        child: wide
+                            ? Row(
+                                children: [
+                                  SizedBox(width: 160, child: identity),
+                                  const SizedBox(width: 20),
+                                  Expanded(child: menu),
+                                ],
+                              )
+                            : Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  identity,
+                                  SizedBox(height: compact ? 8 : 16),
+                                  menu,
+                                ],
                               ),
-                            ),
-                            if (!largeText) ...[
-                              const SizedBox(height: 4),
-                              FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  l10n.homeTagline,
-                                  style: theme.textTheme.titleMedium?.copyWith(
-                                    color: theme.colorScheme.onSurfaceVariant,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                  maxLines: 1,
-                                  softWrap: false,
-                                ),
-                              ),
-                            ],
-                            SizedBox(height: compact ? 8 : 16),
-                            GridView.count(
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 8,
-                              crossAxisSpacing: 8,
-                              mainAxisExtent: tileHeight,
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              children: actions,
-                            ),
-                          ],
-                        ),
                       ),
                     ),
                   );
