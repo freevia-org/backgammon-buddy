@@ -11,6 +11,7 @@ import 'package:aigammon_app/game/player_agent.dart';
 import 'package:aigammon_app/screens/analysis_screen.dart';
 import 'package:aigammon_app/screens/practice_screen.dart';
 import 'package:aigammon_app/tutor/game_analyzer.dart';
+import 'package:aigammon_app/tutor/move_assessment.dart';
 import 'package:aigammon_app/tutor/tutor_service.dart';
 import 'package:backgammon_core/backgammon_core.dart';
 import 'package:engine_bindings/engine_bindings.dart';
@@ -315,6 +316,65 @@ void main() {
     _repo = MatchRepository(_db);
   });
   tearDown(() => _db.close());
+
+  for (final loss in [0.0, 0.000001, 0.0001]) {
+    testWidgets('analysis loss sign respects displayed precision: $loss', (
+      t,
+    ) async {
+      await t.binding.setSurfaceSize(_surface);
+      addTearDown(() => t.binding.setSurfaceSize(null));
+      late int gameId;
+      await t.runAsync(() async {
+        final matchId = await _repo.startMatch(
+          matchLength: 5,
+          cubeless: false,
+          mode: 'vsComputer',
+          whiteType: 'human',
+          blackType: 'ai:expert',
+        );
+        final fx = _finishedGame();
+        gameId = await _repo.recordGame(
+          matchId: matchId,
+          gameNumber: 1,
+          isCrawford: false,
+          events: fx.game.events,
+          result: fx.game.state.result!,
+        );
+        final analysis = GameAnalysis(
+          [
+            MoveAnalysis(
+              eventIndex: 1,
+              player: Player.white,
+              assessment: MoveAssessment(
+                played: fx.played.first,
+                best: fx.played.first,
+                equityLoss: loss,
+                metric: AssessmentMetric.matchWinningChance,
+                ranked: const [],
+              ),
+            ),
+          ],
+          matchBefore: const MatchState(matchLength: 5),
+          cubeless: false,
+        );
+        await _repo.saveAnalysis(gameId, jsonEncode(analysis.toJson()));
+      });
+      await _pumpLoaded(t, _app(gameId));
+      await t.tap(find.byTooltip('Next'));
+      await t.pumpAndSettle();
+      final verdict = find.descendant(
+        of: find.byKey(const ValueKey('moveVerdictRow')),
+        matching: find.byType(Text),
+      );
+      final text = t.widgetList<Text>(verdict).map((w) => w.data).join(' ');
+      expect(
+        text,
+        contains(loss < 0.00005 ? 'Best 0.00 pp MWC' : '−0.01 pp MWC'),
+      );
+      expect(text, isNot(contains('−0.00 pp MWC')));
+      expect(t.takeException(), isNull);
+    });
+  }
 
   testWidgets(
     'cold analysis honors the persisted GNUbg selection and replaces a wildbg cache',

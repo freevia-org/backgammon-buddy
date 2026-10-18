@@ -1,3 +1,4 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
 #include "Generated.xcconfig"
 
 // AIGammon: statically link the Rust engine staticlib into Runner.
@@ -7,4 +8,6 @@
 // wildbg_free) so the linker's dead-code stripping cannot drop symbols that are
 // only referenced at runtime via dart:ffi DynamicLibrary.process() lookups.
 // See native/README.md "iOS" for the -lc++ troubleshooting note.
-OTHER_LDFLAGS = $(inherited) -force_load $(PROJECT_DIR)/Frameworks/libaigammon_engine.a -force_load $(PROJECT_DIR)/Frameworks/libbuddy_gnubg.a -lc++ -Wl,-dead_strip
+// Preserve global symbols for DynamicLibrary.process() in the main executable.
+// -force_load alone does not keep runtime-only FFI exports with Xcode 27.
+OTHER_LDFLAGS = $(inherited) -force_load $(PROJECT_DIR)/Frameworks/libaigammon_engine.a -force_load $(PROJECT_DIR)/Frameworks/libbuddy_gnubg.a -lc++ -Wl,-dead_strip -Wl,-export_dynamic
