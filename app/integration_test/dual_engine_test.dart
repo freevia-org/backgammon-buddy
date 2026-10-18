@@ -16,7 +16,7 @@ import 'package:integration_test/integration_test.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
   testWidgets(
-    'both real native engines run concurrently on a 16 KB Android device',
+    'both real native engines run concurrently on the target device',
     (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
