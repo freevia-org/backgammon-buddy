@@ -133,3 +133,42 @@ needed. The owner approved status-only operational emails and one test; no such
 email has been sent yet. This optional monitor remains
 undeployed; it is not a launch gate. Operators must still inspect scheduled
 cleanup runs and investigate failures or missed runs as described above.
+
+
+## Completion receipts (source update, 2026-10-19)
+
+New clients attach a random 256-bit `receipt` to their owner-authenticated
+`privacyRequests/{uid}`. A legacy pending request can add it once; it cannot
+replace it or alter status/timestamps. The client stores the receipt securely
+before sending and reads it back to guard against a silently failed local write.
+The refresh token is cleared only after acknowledgement, as before.
+
+After disabling Auth, removing both seats' matches and deleting the account, the
+worker writes `deletionReceipts/{receipt}` with only `status`, `completedAt` and
+`expiresAt`. Publication failure leaves the owner request pending for idempotent
+retry. This independent receipt has no UID or game data and lasts 90 days;
+expired receipts are denied by rules and removed by the hourly worker. The
+UID-keyed deny marker still expires after 24 hours. Admin credentials are needed
+to publish a receipt; clients cannot enumerate, create, change or delete them.
+Possession of the random capability permits only its individual completion read.
+
+The app's **Check deletion confirmation** action makes an unauthenticated read,
+never signs in, and keeps verified completion locally across restarts while
+removing the cached UID. It retains multiple requests so an older completion
+cannot hide a newer pending deletion. Network failures, missing/expired receipts
+and invalid responses never mean completed. Losing the installation/receipt or
+an older completed request uses the existing ownership-verified support process.
+New privacy messages currently use English fallback in other interface locales.
+
+Deploy matching Firestore rules before shipping clients that attach receipts.
+The master cleanup workflow uses the updated worker after merge; verify rules,
+IAM write access to the new collection and the completed production workflow
+before release. Update the public policy to explain temporary unlinkable
+completion receipts and the device-retention instructions. No production rules,
+website publication or production deletion was performed by this test work.
+
+Demo acceptance command (disposable Auth/Firestore on localhost only):
+`AIGAMMON_RECEIPT_EMULATOR=1 node --test firebase/admin/privacy_receipt_emulator_test.mjs`.
+The test uses the real cleanup implementation, deletes its disposable Auth user
+and match, and independently checks an unauthenticated receipt read. It is also
+part of `ci-emulator-suites.sh`. No test targets production endpoints.

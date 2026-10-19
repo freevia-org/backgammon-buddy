@@ -151,6 +151,20 @@ export class GoogleRest {
     return deleted + 1;
   }
 
+  async publishReceipt(receipt, now) {
+    if (!/^[a-f0-9]{64}$/.test(receipt)) throw new Error('Invalid receipt.');
+    const name = `${this.root}/deletionReceipts/${receipt}`;
+    // Idempotent overwrite is safe: clients cannot create/update receipts, and
+    // only a verified owner's immutable request selects this capability.
+    await this.request('firestore', `${this.root}:commit`, 'POST', {
+      writes: [{ update: { name, fields: {
+        status: { stringValue: 'complete' },
+        completedAt: { timestampValue: now.toISOString() },
+        expiresAt: { timestampValue: new Date(now.getTime() + 90 * day).toISOString() },
+      } } }],
+    });
+  }
+
   async disableUser(uid) {
     try {
       await this.request('auth', `projects/${this.project}/accounts:update`, 'POST', { localId: uid, disableUser: true });
@@ -204,6 +218,10 @@ export async function cleanup(api, { apply = false, now = new Date() } = {}) {
       || Date.parse(field(request, 'requestedAt', 'timestampValue')) > now.getTime() + 5 * 60 * 1000) {
       throw new Error('Invalid deletion request; refusing to select an identity.');
     }
+    const receipt = field(request, 'receipt', 'stringValue');
+    if (receipt !== undefined && !/^[a-f0-9]{64}$/.test(receipt)) {
+      throw new Error('Invalid deletion receipt; refusing completion.');
+    }
     summary.requests++;
     if (Date.parse(field(request, 'requestedAt', 'timestampValue')) < Date.parse(cutoff)) summary.overdueRequests++;
     // Rules deny both requester writes and peer writes to related matches from
@@ -214,6 +232,9 @@ export async function cleanup(api, { apply = false, now = new Date() } = {}) {
     if (apply && hosted && joined) {
       await api.deleteUser(uid);
       summary.accountsDeleted++;
+      // Only after all matching data and Auth deletion succeeded. If publication
+      // fails, leave the request pending so the next run safely retries it.
+      if (receipt) await api.publishReceipt(receipt, now);
       // Keep a short deny marker after Auth deletion: already-issued ID tokens
       // can remain valid for an hour. No email, credentials or game data remain.
       await api.patch(request.name, { status: { stringValue: 'complete' }, completedAt: { timestampValue: now.toISOString() } });
@@ -229,6 +250,10 @@ export async function cleanup(api, { apply = false, now = new Date() } = {}) {
       summary.requestMarkersDeleted++;
     }
   }
+  const receipts = await api.query('deletionReceipts', 'expiresAt', 'LESS_THAN_OR_EQUAL',
+    { timestampValue: now.toISOString() });
+  if (receipts.length === batchSize) summary.moreWork = true;
+  if (apply && receipts.length) await api.deleteDocuments(receipts.map(doc => doc.name));
   return summary;
 }
 

@@ -6,6 +6,7 @@ import 'package:match_transport/match_transport.dart'
     show CompletedRoll, FairDicePhase;
 
 import 'auth_client.dart';
+import 'deletion_receipt.dart';
 import 'firestore_docs.dart';
 import 'online_config.dart';
 import 'online_exception.dart';
@@ -354,17 +355,31 @@ class MatchApi {
   /// Security rules bind the path to the ID token, require a server timestamp,
   /// and immediately freeze related cloud matches. Safe to retry after a lost
   /// response: an existing request already expresses the same intent.
-  Future<void> requestDataDeletion() async {
+  Future<void> requestDataDeletion({String? receipt}) async {
+    if (receipt != null && !validDeletionReceipt(receipt)) {
+      throw ArgumentError('Invalid receipt');
+    }
     try {
       await docs.create(
         'privacyRequests/$uid',
-        const {'status': 'pending'},
+        {'status': 'pending', if (receipt != null) 'receipt': receipt},
         serverTimestamps: ['requestedAt'],
       );
     } on AlreadyExistsException {
       // The owner can read their existing request; do not treat a spoofed path
       // or unrelated permission failure as a successful request.
-      if (await docs.get('privacyRequests/$uid') == null) rethrow;
+      final existing = await docs.get('privacyRequests/$uid');
+      if (existing == null) rethrow;
+      if (receipt != null && existing.fields['receipt'] == null &&
+          existing.fields['status'] == 'pending') {
+        await docs.patch('privacyRequests/$uid', {'receipt': receipt},
+            updateMask: ['receipt']);
+      } else if (receipt != null && existing.fields['receipt'] != receipt) {
+        throw const OnlineException(
+          'receipt-mismatch',
+          'An earlier deletion request has a different confirmation receipt.',
+        );
+      }
     }
   }
 

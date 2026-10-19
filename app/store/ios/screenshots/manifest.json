@@ -1,0 +1,29 @@
+{
+  "captured_on": "2026-10-19",
+  "source_base": "f983d2e2f995420d44c44d2acebdeb7b008976a2",
+  "source_changes": "Deletion confirmation and screenshot integration target in the same PR; shipping Home/setup/game widgets with no mock UI.",
+  "version": "0.16.0+22",
+  "runtime": "iOS 27.0 (24A434)",
+  "capture": "Flutter integration_test native iOS captureScreenshot, exported by test_driver/store_screenshots.dart",
+  "devices": {
+    "iphone-6.9": "iPhone 17 Pro Max / 1320x2868",
+    "ipad-13": "iPad Pro 13-inch (M5) / 2064x2752"
+  },
+  "sha256": {
+    "en-US/ipad-13/01-home.png": "dd3de87404bd9eeba40d003a9946fe48aedf775a7d345076a4385bce4be92ab1",
+    "en-US/ipad-13/02-match-setup.png": "7964f8a8611667f916ecf1966b026ced31c2effdde8c9ed5369f22b1e0be8925",
+    "en-US/ipad-13/03-solo-game.png": "766f89e79187050e7835b5716646cb4aa61c4b9ffb1c4f3c51af2873618aa92e",
+    "en-US/iphone-6.9/01-home.png": "7f81d9219d28a74d4317974256a097aac57dc0dcbe6f916fd7dea49d781b66ac",
+    "en-US/iphone-6.9/02-match-setup.png": "4d6e5213eaed2fe73767a3b509591e32fbfe471d15c1921ba5956aa0bc9bf822",
+    "en-US/iphone-6.9/03-solo-game.png": "54bfe3c0122c8dedd8341978d30d37d46a63cf619aeb7e36cc37f0496c26c7c5"
+  },
+  "encoding": "Native opaque 16-bit RGBA capture converted to 8-bit sRGB RGB PNG using embedded ICC profile. No resize, crop, overlays or UI edits.",
+  "raw_capture_sha256": {
+    "en-US/ipad-13/01-home.png": "c0c3c50b4c0fb2937e31cd2a9b9a334c3e2c3f91d6a017774cc58a77565dedee",
+    "en-US/ipad-13/02-match-setup.png": "0dadd6df71f32666747be88fe2c20cd1a9b255d8ea507967ffebe31acfd99c0d",
+    "en-US/ipad-13/03-solo-game.png": "e661b0d0142612f6bbae1d5ade38e8fb714ef589f8d6dcb9313d212aad890795",
+    "en-US/iphone-6.9/01-home.png": "119001b34d79be855f1a6822ba15481f1f4f50d2a53f7f744fbca262b71b36a8",
+    "en-US/iphone-6.9/02-match-setup.png": "3e9521bf2cd950708c51d0c30a019807c4147d0f27126882431790a3394c8e15",
+    "en-US/iphone-6.9/03-solo-game.png": "e94a96379c33f65520f9bd9af2fc0ce8f28691786d741704a2eedd374090c527"
+  }
+}

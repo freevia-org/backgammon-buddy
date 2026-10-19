@@ -11,6 +11,36 @@ import 'mock_api.dart';
 
 void main() {
   group('requestDataDeletion', () {
+    test('adds receipt and upgrades only a legacy pending own request', () async {
+      final receipt = 'a' * 64;
+      var patched = false;
+      final api = await apiFor((req) async {
+        if (req.method == 'POST') {
+          expect(req.body, contains(receipt));
+          return err(409, 'ALREADY_EXISTS');
+        }
+        if (req.method == 'PATCH') {
+          patched = true;
+          expect(req.url.queryParameters['updateMask.fieldPaths'], 'receipt');
+        }
+        return ok({'name': 'privacyRequests/uid-local', 'fields': {
+          'status': {'stringValue': 'pending'},
+        }});
+      });
+      addTearDown(api.close);
+      await api.requestDataDeletion(receipt: receipt);
+      expect(patched, isTrue);
+    });
+    test('refuses a different existing capability', () async {
+      final api = await apiFor((req) async {
+        if (req.method == 'POST') return err(409, 'ALREADY_EXISTS');
+        return ok({'name': 'privacyRequests/uid-local', 'fields': {
+          'status': {'stringValue': 'pending'}, 'receipt': {'stringValue': 'b' * 64},
+        }});
+      });
+      addTearDown(api.close);
+      await expectLater(api.requestDataDeletion(receipt: 'a' * 64), throwsA(isA<OnlineException>()));
+    });
     test('binds request to current uid with server timestamp', () async {
       late http.Request captured;
       final api = await apiFor((req) async {

@@ -157,3 +157,49 @@ test('completed deny marker is retained for at least 24 hours', async () => {
   const markerQuery = api.calls.find(call => call[2] === 'completedAt');
   assert.deepEqual(markerQuery[4], { timestampValue: '2026-10-08T12:00:00.000Z' });
 });
+
+test('receipt is published only after data and account erasure; never in dry-run', async () => {
+  const receipt = 'a'.repeat(64);
+  const withReceipt = { ...request, fields: { ...request.fields, receipt: { stringValue: receipt } } };
+  const api = fakeApi({ requests: [withReceipt] });
+  api.publishReceipt = async (id, time) => api.calls.push(['receipt', id, time]);
+  await cleanup(api, { now });
+  assert.ok(!api.calls.some(c => c[0] === 'receipt'));
+  api.calls.length = 0;
+  await cleanup(api, { now, apply: true });
+  const writes = api.calls.filter(c => c[0] !== 'query').map(c => c[0]);
+  assert.deepEqual(writes, ['disable', 'deleteMatch', 'deleteUser', 'receipt', 'patch']);
+});
+
+test('receipt publication failure keeps request pending for retry', async () => {
+  const api = fakeApi({ requests: [{ ...request, fields: {
+    ...request.fields, receipt: { stringValue: 'b'.repeat(64) },
+  } }] });
+  api.publishReceipt = async () => { throw new Error('unavailable'); };
+  await assert.rejects(cleanup(api, { now, apply: true }), /unavailable/);
+  assert.ok(!api.calls.some(c => c[0] === 'patch'));
+});
+
+test('receipt contains only status/times and expires in 90 days', async () => {
+  let payload;
+  const api = new GoogleRest({ project: projectId, token: 'test', fetcher: async (_, options) => {
+    payload = JSON.parse(options.body);
+    return new Response('{}');
+  } });
+  await api.publishReceipt('c'.repeat(64), now);
+  const fields = payload.writes[0].update.fields;
+  assert.deepEqual(Object.keys(fields).sort(), ['completedAt', 'expiresAt', 'status']);
+  assert.equal(Date.parse(fields.expiresAt.timestampValue) - now.getTime(), 90 * 86400000);
+  await assert.rejects(api.publishReceipt('invalid', now));
+});
+
+test('expired receipts are purged in apply only', async () => {
+  const api = fakeApi({ requests: [] });
+  const query = api.query.bind(api);
+  api.query = async (collection, ...rest) => collection === 'deletionReceipts'
+    ? [{ name: `${root}/deletionReceipts/${'d'.repeat(64)}` }] : query(collection, ...rest);
+  await cleanup(api, { now });
+  assert.ok(!api.calls.some(c => c[0] === 'deleteDocuments'));
+  await cleanup(api, { now, apply: true });
+  assert.ok(api.calls.some(c => c[0] === 'deleteDocuments' && c[1][0].includes('deletionReceipts')));
+});

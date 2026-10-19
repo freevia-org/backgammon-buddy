@@ -110,6 +110,7 @@ class _AiGammonAppState extends ConsumerState<AiGammonApp> {
     final localeCode = settings.localeCode;
     final locale = savedAppLocale(localeCode, AppLocalizations.supportedLocales);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       // The task switcher's label is a localization like any other, so it is
       // resolved from the bundle rather than frozen at compile time. The brand
       // reads the same in every locale on purpose -- `appTitle` is the product

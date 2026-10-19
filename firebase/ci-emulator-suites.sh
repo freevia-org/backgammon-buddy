@@ -12,6 +12,9 @@ set -euo pipefail
 # two E2E legs below, so a broken firestore.rules is red before any of this
 # starts. run-emulator-tests.ps1 still runs all of it in one sitting locally.
 
+# Read-only capability must survive actual anonymous Auth deletion.
+AIGAMMON_RECEIPT_EMULATOR=1 node --test admin/privacy_receipt_emulator_test.mjs
+
 # 1. online_client transport integration suite — the real REST transport
 #    (anonymous auth + direct Firestore documents) against firestore.rules.
 (cd ../packages/online_client && dart test -P emulator)
