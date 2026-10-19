@@ -2107,10 +2107,10 @@
       }
     }
   },
-  "privacyDeletionReceiptCheck": "Check deletion confirmation",
-  "privacyDeletionReceiptHelp": "After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.",
-  "privacyDeletionReceiptNone": "No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.",
-  "privacyDeletionReceiptPending": "Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.",
-  "privacyDeletionReceiptComplete": "Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.",
-  "privacyDeletionReceiptFailed": "Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied."
+  "privacyDeletionReceiptCheck": "Verwijderbevestiging controleren",
+  "privacyDeletionReceiptHelp": "Kom na je verwijderverzoek hier terug om te controleren of het is afgerond. Je privébewijs blijft op dit apparaat en werkt na het uitloggen. Controles maken geen account aan. Bevestigingen van voltooide verwijdering zijn 90 dagen online beschikbaar; behoud deze installatie tot de bevestiging.",
+  "privacyDeletionReceiptNone": "Op dit apparaat is geen bewijs van een verwijderverzoek opgeslagen. Neem bij eerdere verzoeken of een verloren apparaat contact op met ondersteuning.",
+  "privacyDeletionReceiptPending": "De verwijdering is nog niet bevestigd. De verwerking kan maximaal 30 dagen duren. Controleer het later opnieuw. Neem contact op met ondersteuning als er meer dan 30 dagen zijn verstreken. Een niet beschikbaar of verlopen bewijs toont niet aan dat de verwijdering is voltooid.",
+  "privacyDeletionReceiptComplete": "Verwijdering voltooid: alle verzoeken die op dit apparaat zijn opgeslagen, zijn bevestigd als voltooid. Dit verwijdert geen online-identiteit die daarna is aangemaakt. Lokale geschiedenis en leergegevens blijven bewaard. Google kan back-ups en beveiligingslogboeken bewaren zoals beschreven in het privacybeleid.",
+  "privacyDeletionReceiptFailed": "De verwijderbevestiging kon niet worden gecontroleerd. Probeer het opnieuw wanneer je verbinding hebt of neem contact op met ondersteuning. Dit bevestigt niet dat de verwijdering is voltooid."
 }

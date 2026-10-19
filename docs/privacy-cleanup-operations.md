@@ -158,7 +158,8 @@ removing the cached UID. It retains multiple requests so an older completion
 cannot hide a newer pending deletion. Network failures, missing/expired receipts
 and invalid responses never mean completed. Losing the installation/receipt or
 an older completed request uses the existing ownership-verified support process.
-New privacy messages currently use English fallback in other interface locales.
+The six receipt messages are now translated in all 28 interface languages;
+the locale-key contract and narrow enlarged-text privacy screens are tested.
 
 Deploy matching Firestore rules before shipping clients that attach receipts.
 The master cleanup workflow uses the updated worker after merge; verify rules,

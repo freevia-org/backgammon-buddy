@@ -2107,10 +2107,10 @@
       }
     }
   },
-  "privacyDeletionReceiptCheck": "Check deletion confirmation",
-  "privacyDeletionReceiptHelp": "After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.",
-  "privacyDeletionReceiptNone": "No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.",
-  "privacyDeletionReceiptPending": "Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.",
-  "privacyDeletionReceiptComplete": "Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.",
-  "privacyDeletionReceiptFailed": "Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied."
+  "privacyDeletionReceiptCheck": "Skontrolovať potvrdenie o vymazaní",
+  "privacyDeletionReceiptHelp": "Po odoslaní žiadosti o vymazanie sa sem vráťte a skontrolujte dokončenie. Váš súkromný doklad zostáva v tomto zariadení a funguje aj po odhlásení. Kontrola nevytvára účet. Potvrdenia o dokončení sú dostupné online 90 dní; ponechajte si túto inštaláciu až do potvrdenia.",
+  "privacyDeletionReceiptNone": "V tomto zariadení nie je uložený doklad o žiadosti o vymazanie. Pri starších žiadostiach alebo strate zariadenia kontaktujte podporu.",
+  "privacyDeletionReceiptPending": "Vymazanie ešte nie je potvrdené. Spracovanie môže trvať až 30 dní. Skontrolujte stav neskôr. Ak uplynulo viac ako 30 dní, kontaktujte podporu. Nedostupný alebo neplatný doklad nie je dôkazom vymazania.",
+  "privacyDeletionReceiptComplete": "Vymazanie dokončené: všetky žiadosti uložené v tomto zariadení sú potvrdené ako dokončené. Tým sa nevymaže online identita vytvorená neskôr. Miestna história a údaje o učení zostávajú zachované. Google môže uchovávať zálohy a bezpečnostné záznamy podľa zásad ochrany súkromia.",
+  "privacyDeletionReceiptFailed": "Potvrdenie o vymazaní sa nepodarilo skontrolovať. Skúste to znova po pripojení alebo kontaktujte podporu. Tým sa nepotvrdzuje dokončenie vymazania."
 }

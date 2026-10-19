@@ -2107,10 +2107,10 @@
       }
     }
   },
-  "privacyDeletionReceiptCheck": "Check deletion confirmation",
-  "privacyDeletionReceiptHelp": "After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.",
-  "privacyDeletionReceiptNone": "No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.",
-  "privacyDeletionReceiptPending": "Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.",
-  "privacyDeletionReceiptComplete": "Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.",
-  "privacyDeletionReceiptFailed": "Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied."
+  "privacyDeletionReceiptCheck": "Tarkista poistovahvistus",
+  "privacyDeletionReceiptHelp": "Palaa poistopyynnön jälkeen tänne tarkistamaan, onko poisto valmistunut. Yksityinen kuittisi säilyy tällä laitteella ja toimii uloskirjautumisen jälkeen. Tarkistukset eivät luo tiliä. Valmistumisvahvistukset ovat saatavilla verkossa 90 päivää; säilytä tämä asennus vahvistukseen asti.",
+  "privacyDeletionReceiptNone": "Tälle laitteelle ei ole tallennettu poistokuittia. Ota yhteyttä tukeen, jos kyseessä on aiempi pyyntö tai kadonnut laite.",
+  "privacyDeletionReceiptPending": "Poistoa ei ole vielä vahvistettu. Käsittely voi kestää enintään 30 päivää. Tarkista myöhemmin uudelleen. Jos aikaa on kulunut yli 30 päivää, ota yhteyttä tukeen. Puuttuva tai vanhentunut kuitti ei todista poistamista.",
+  "privacyDeletionReceiptComplete": "Poisto valmistui: kaikki tälle laitteelle tallennetut pyynnöt on vahvistettu valmiiksi. Tämä ei poista myöhemmin luotua verkkotunnistetta. Paikallinen historia ja oppimistiedot säilyvät. Google voi säilyttää varmuuskopioita ja turvallisuuslokeja tietosuojakäytännössä kuvatulla tavalla.",
+  "privacyDeletionReceiptFailed": "Poistovahvistusta ei voitu tarkistaa. Yritä uudelleen, kun verkkoyhteys on käytettävissä, tai ota yhteyttä tukeen. Tämä ei vahvista poiston valmistumista."
 }

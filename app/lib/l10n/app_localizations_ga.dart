@@ -3455,25 +3455,25 @@ class AppLocalizationsGa extends AppLocalizations {
   }
 
   @override
-  String get privacyDeletionReceiptCheck => 'Check deletion confirmation';
+  String get privacyDeletionReceiptCheck => 'Seiceáil deimhniú an scriosta';
 
   @override
   String get privacyDeletionReceiptHelp =>
-      'After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.';
+      'Tar ar ais anseo tar éis duit scriosadh a iarraidh chun a sheiceáil an bhfuil sé críochnaithe. Fanann d’admháil phríobháideach ar an ngléas seo agus oibríonn sí tar éis síniú amach. Ní chruthaítear cuntas le seiceáil. Bíonn deimhnithe críochnaithe ar fáil ar líne ar feadh 90 lá; coinnigh an tsuiteáil seo go dtí go bhfaighidh tú deimhniú.';
 
   @override
   String get privacyDeletionReceiptNone =>
-      'No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.';
+      'Níl aon admháil scriosta sábháilte ar an ngléas seo. Déan teagmháil leis an tacaíocht le haghaidh iarratais níos sine nó má cailleadh an gléas.';
 
   @override
   String get privacyDeletionReceiptPending =>
-      'Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.';
+      'Níl an scriosadh deimhnithe fós. D’fhéadfadh an phróiseáil suas le 30 lá a thógáil. Seiceáil arís níos déanaí. Má tá níos mó ná 30 lá caite, déan teagmháil leis an tacaíocht. Ní cruthúnas ar scriosadh í admháil nach bhfuil ar fáil nó atá imithe in éag.';
 
   @override
   String get privacyDeletionReceiptComplete =>
-      'Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.';
+      'Scriosadh críochnaithe: tá gach iarratas atá sábháilte ar an ngléas seo deimhnithe mar iarratas críochnaithe. Ní scriosann sé seo aitheantas ar líne a cruthaíodh ina dhiaidh sin. Coinnítear an stair áitiúil agus na sonraí foghlama. Féadfaidh Google cúltacaí agus taifid slándála a choinneáil mar a thuairiscítear sa pholasaí príobháideachais.';
 
   @override
   String get privacyDeletionReceiptFailed =>
-      'Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied.';
+      'Níorbh fhéidir deimhniú an scriosta a sheiceáil. Bain triail eile as nuair atá ceangal agat, nó déan teagmháil leis an tacaíocht. Ní dheimhnítear leis seo go bhfuil an scriosadh críochnaithe.';
 }

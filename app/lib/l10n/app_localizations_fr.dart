@@ -3440,25 +3440,26 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get privacyDeletionReceiptCheck => 'Check deletion confirmation';
+  String get privacyDeletionReceiptCheck =>
+      'Vérifier la confirmation de suppression';
 
   @override
   String get privacyDeletionReceiptHelp =>
-      'After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.';
+      'Après avoir demandé la suppression, revenez ici pour vérifier qu’elle est terminée. Votre reçu privé reste sur cet appareil et fonctionne après la déconnexion. Les vérifications ne créent pas de compte. Les confirmations de suppression sont disponibles en ligne pendant 90 jours ; conservez cette installation jusqu’à la confirmation.';
 
   @override
   String get privacyDeletionReceiptNone =>
-      'No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.';
+      'Aucun reçu de suppression n’est enregistré sur cet appareil. Pour une demande antérieure ou un appareil perdu, contactez l’assistance.';
 
   @override
   String get privacyDeletionReceiptPending =>
-      'Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.';
+      'La suppression n’est pas encore confirmée. Le traitement peut prendre jusqu’à 30 jours. Vérifiez à nouveau plus tard. Si plus de 30 jours se sont écoulés, contactez l’assistance. Un reçu indisponible ou expiré ne prouve pas la suppression.';
 
   @override
   String get privacyDeletionReceiptComplete =>
-      'Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.';
+      'Suppression terminée : toutes les demandes enregistrées sur cet appareil sont confirmées comme terminées. Cela ne supprime pas une identité en ligne créée ultérieurement. L’historique local et les données d’apprentissage sont conservés. Google peut conserver des sauvegardes et des journaux de sécurité, comme indiqué dans la politique de confidentialité.';
 
   @override
   String get privacyDeletionReceiptFailed =>
-      'Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied.';
+      'Impossible de vérifier la confirmation de suppression. Réessayez lorsque vous avez une connexion ou contactez l’assistance. Cela ne confirme pas que la suppression est terminée.';
 }

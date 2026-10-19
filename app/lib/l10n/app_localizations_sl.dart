@@ -3511,25 +3511,25 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get privacyDeletionReceiptCheck => 'Check deletion confirmation';
+  String get privacyDeletionReceiptCheck => 'Preveri potrditev izbrisa';
 
   @override
   String get privacyDeletionReceiptHelp =>
-      'After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.';
+      'Po zahtevi za izbris se vrnite sem in preverite, ali je postopek končan. Vaše zasebno potrdilo o zahtevi ostane v tej napravi in deluje po odjavi. Preverjanje ne ustvari računa. Potrditve dokončanega izbrisa so na spletu na voljo 90 dni; to namestitev ohranite do potrditve.';
 
   @override
   String get privacyDeletionReceiptNone =>
-      'No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.';
+      'V tej napravi ni shranjenega potrdila o zahtevi za izbris. Za prejšnje zahteve ali izgubljeno napravo se obrnite na podporo.';
 
   @override
   String get privacyDeletionReceiptPending =>
-      'Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.';
+      'Izbris še ni potrjen. Obdelava lahko traja do 30 dni. Preverite pozneje. Če je minilo več kot 30 dni, se obrnite na podporo. Nedostopno ali poteklo potrdilo o zahtevi ni dokaz izbrisa.';
 
   @override
   String get privacyDeletionReceiptComplete =>
-      'Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.';
+      'Izbris je končan: vse zahteve, shranjene v tej napravi, so potrjene kot zaključene. S tem se ne izbriše spletna identiteta, ustvarjena pozneje. Lokalna zgodovina in učni podatki ostanejo. Google lahko hrani varnostne kopije in varnostne dnevnike, kot je opisano v pravilniku o zasebnosti.';
 
   @override
   String get privacyDeletionReceiptFailed =>
-      'Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied.';
+      'Potrditve izbrisa ni bilo mogoče preveriti. Poskusite znova, ko ste povezani, ali se obrnite na podporo. To ne potrjuje dokončanega izbrisa.';
 }

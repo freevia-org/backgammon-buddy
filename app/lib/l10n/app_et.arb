@@ -2107,10 +2107,10 @@
       }
     }
   },
-  "privacyDeletionReceiptCheck": "Check deletion confirmation",
-  "privacyDeletionReceiptHelp": "After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.",
-  "privacyDeletionReceiptNone": "No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.",
-  "privacyDeletionReceiptPending": "Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.",
-  "privacyDeletionReceiptComplete": "Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.",
-  "privacyDeletionReceiptFailed": "Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied."
+  "privacyDeletionReceiptCheck": "Kontrolli kustutamise kinnitust",
+  "privacyDeletionReceiptHelp": "Pärast kustutamise taotlemist tule siia tagasi, et kontrollida selle lõpuleviimist. Sinu privaatne kviitung jääb sellesse seadmesse ja töötab ka pärast väljalogimist. Kontrollimine ei loo kontot. Kustutamise lõpuleviimise kinnitused on veebis saadaval 90 päeva; säilita see paigaldus kuni kinnituse saamiseni.",
+  "privacyDeletionReceiptNone": "Sellesse seadmesse pole kustutamiskviitungit salvestatud. Varasemate taotluste või kadunud seadme korral võta ühendust kasutajatoega.",
+  "privacyDeletionReceiptPending": "Kustutamist pole veel kinnitatud. Töötlemine võib võtta kuni 30 päeva. Kontrolli hiljem uuesti. Kui möödunud on üle 30 päeva, võta ühendust kasutajatoega. Puuduv või aegunud kviitung ei tõenda kustutamist.",
+  "privacyDeletionReceiptComplete": "Kustutamine on lõpetatud: kõik sellesse seadmesse salvestatud taotlused on kinnitatud lõpetatuks. See ei kustuta hiljem loodud veebiidentiteeti. Kohalik ajalugu ja õppeandmed säilivad. Google võib säilitada varukoopiaid ja turbelogisid, nagu on kirjeldatud privaatsuspoliitikas.",
+  "privacyDeletionReceiptFailed": "Kustutamise kinnitust ei saanud kontrollida. Proovi uuesti, kui ühendus on olemas, või võta ühendust kasutajatoega. See ei kinnita kustutamise lõpuleviimist."
 }

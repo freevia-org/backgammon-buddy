@@ -3443,25 +3443,25 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get privacyDeletionReceiptCheck => 'Check deletion confirmation';
+  String get privacyDeletionReceiptCheck => 'Löschbestätigung prüfen';
 
   @override
   String get privacyDeletionReceiptHelp =>
-      'After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.';
+      'Kehre nach dem Löschantrag hierher zurück, um den Abschluss zu prüfen. Dein privater Nachweis bleibt auf diesem Gerät und funktioniert nach der Abmeldung. Die Prüfung erstellt kein Konto. Abschlussbestätigungen sind 90 Tage online verfügbar; behalte diese Installation, bis die Löschung bestätigt ist.';
 
   @override
   String get privacyDeletionReceiptNone =>
-      'No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.';
+      'Auf diesem Gerät ist kein Nachweis zum Löschantrag gespeichert. Wende dich bei älteren Anträgen oder einem verlorenen Gerät an den Support.';
 
   @override
   String get privacyDeletionReceiptPending =>
-      'Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.';
+      'Die Löschung ist noch nicht bestätigt. Die Bearbeitung kann bis zu 30 Tage dauern. Prüfe später erneut. Wende dich an den Support, wenn mehr als 30 Tage vergangen sind. Ein nicht verfügbarer oder abgelaufener Nachweis ist kein Beleg für eine Löschung.';
 
   @override
   String get privacyDeletionReceiptComplete =>
-      'Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.';
+      'Löschung abgeschlossen: Alle auf diesem Gerät gespeicherten Anträge sind als abgeschlossen bestätigt. Eine später erstellte Online-Identität wird dadurch nicht gelöscht. Lokaler Verlauf und Lerndaten bleiben erhalten. Google kann Sicherungs- und Sicherheitsprotokolle wie in der Datenschutzerklärung beschrieben aufbewahren.';
 
   @override
   String get privacyDeletionReceiptFailed =>
-      'Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied.';
+      'Die Löschbestätigung konnte nicht geprüft werden. Versuche es mit einer Verbindung erneut oder wende dich an den Support. Ein Abschluss wird dadurch nicht bestätigt.';
 }

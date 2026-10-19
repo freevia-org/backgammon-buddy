@@ -2107,10 +2107,10 @@
       }
     }
   },
-  "privacyDeletionReceiptCheck": "Check deletion confirmation",
-  "privacyDeletionReceiptHelp": "After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.",
-  "privacyDeletionReceiptNone": "No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.",
-  "privacyDeletionReceiptPending": "Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.",
-  "privacyDeletionReceiptComplete": "Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.",
-  "privacyDeletionReceiptFailed": "Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied."
+  "privacyDeletionReceiptCheck": "Comprobar confirmación de eliminación",
+  "privacyDeletionReceiptHelp": "Después de solicitar la eliminación, vuelve aquí para comprobar si se ha completado. Tu comprobante privado permanece en este dispositivo y funciona después de cerrar sesión. Las comprobaciones no crean una cuenta. Las confirmaciones de finalización están disponibles online durante 90 días; conserva esta instalación hasta recibir la confirmación.",
+  "privacyDeletionReceiptNone": "No hay ningún comprobante de eliminación guardado en este dispositivo. Para solicitudes anteriores o si has perdido el dispositivo, contacta con soporte.",
+  "privacyDeletionReceiptPending": "La eliminación aún no está confirmada. El proceso puede tardar hasta 30 días. Vuelve a comprobarlo más tarde. Si han pasado más de 30 días, contacta con soporte. Un comprobante no disponible o caducado no demuestra que se haya eliminado la información.",
+  "privacyDeletionReceiptComplete": "Eliminación completada: todas las solicitudes guardadas en este dispositivo están confirmadas como completadas. Esto no elimina una identidad online creada posteriormente. El historial local y los datos de aprendizaje se conservan. Google puede conservar copias de seguridad y registros de seguridad, tal como se describe en la política de privacidad.",
+  "privacyDeletionReceiptFailed": "No se pudo comprobar la confirmación de eliminación. Inténtalo de nuevo cuando tengas conexión o contacta con soporte. Esto no confirma que la eliminación se haya completado."
 }

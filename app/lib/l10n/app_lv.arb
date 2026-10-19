@@ -2107,10 +2107,10 @@
       }
     }
   },
-  "privacyDeletionReceiptCheck": "Check deletion confirmation",
-  "privacyDeletionReceiptHelp": "After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.",
-  "privacyDeletionReceiptNone": "No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.",
-  "privacyDeletionReceiptPending": "Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.",
-  "privacyDeletionReceiptComplete": "Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.",
-  "privacyDeletionReceiptFailed": "Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied."
+  "privacyDeletionReceiptCheck": "Pārbaudīt dzēšanas apstiprinājumu",
+  "privacyDeletionReceiptHelp": "Pēc dzēšanas pieprasīšanas atgriezieties šeit, lai pārbaudītu, vai tā ir pabeigta. Jūsu privātā pieprasījuma kvīts paliek šajā ierīcē un darbojas pēc izrakstīšanās. Pārbaudes neveido kontu. Pabeigšanas apstiprinājumi tiešsaistē ir pieejami 90 dienas; saglabājiet šo instalāciju līdz apstiprinājuma saņemšanai.",
+  "privacyDeletionReceiptNone": "Šajā ierīcē nav saglabāta dzēšanas pieprasījuma kvīts. Par agrākiem pieprasījumiem vai nozaudētu ierīci sazinieties ar atbalsta dienestu.",
+  "privacyDeletionReceiptPending": "Dzēšana vēl nav apstiprināta. Apstrāde var ilgt līdz 30 dienām. Pārbaudiet vēlāk. Ja pagājušas vairāk nekā 30 dienas, sazinieties ar atbalsta dienestu. Nepieejama kvīts vai kvīts ar beigušos derīguma termiņu nav dzēšanas pierādījums.",
+  "privacyDeletionReceiptComplete": "Dzēšana pabeigta: visi šajā ierīcē saglabātie pieprasījumi ir apstiprināti kā izpildīti. Tas neizdzēš vēlāk izveidotu tiešsaistes identitāti. Vietējā vēsture un mācību dati saglabājas. Google var saglabāt rezerves kopijas un drošības žurnālus, kā aprakstīts konfidencialitātes politikā.",
+  "privacyDeletionReceiptFailed": "Neizdevās pārbaudīt dzēšanas apstiprinājumu. Mēģiniet vēlreiz, kad ir savienojums, vai sazinieties ar atbalsta dienestu. Tas neapstiprina dzēšanas pabeigšanu."
 }

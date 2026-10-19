@@ -6,6 +6,39 @@ import 'package:intl/message_format.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  test(
+    'deletion confirmation messages are translated in every non-English bundle',
+    () {
+      final root = Directory('lib/l10n');
+      final english =
+          jsonDecode(File('${root.path}/app_en.arb').readAsStringSync()) as Map;
+      final keys = english.keys
+          .cast<String>()
+          .where((key) => key.startsWith('privacyDeletionReceipt'))
+          .toList();
+      expect(keys, hasLength(6));
+      for (final locale in AppLocalizations.supportedLocales) {
+        if (locale.languageCode == 'en') continue;
+        final bundle =
+            jsonDecode(
+                  File(
+                    '${root.path}/app_${locale.languageCode}.arb',
+                  ).readAsStringSync(),
+                )
+                as Map;
+        for (final key in keys) {
+          expect(
+            bundle[key],
+            isNot(english[key]),
+            reason: '${locale.languageCode}.$key must not fall back to English',
+          );
+        }
+        expect(bundle['privacyDeletionReceiptHelp'], contains('90'));
+        expect(bundle['privacyDeletionReceiptPending'], contains('30'));
+      }
+    },
+  );
+
   test('all locale bundles define the same keys and placeholders', () {
     final directory = Directory('lib/l10n');
     final files =
@@ -183,12 +216,15 @@ void main() {
             as Map<String, dynamic>;
     final pluralKeys = template.keys
         .where((key) => !key.startsWith('@'))
-        .where((key) => RegExp(r',\s*plural\s*,').hasMatch(template[key] as String))
+        .where(
+          (key) => RegExp(r',\s*plural\s*,').hasMatch(template[key] as String),
+        )
         .toSet();
     expect(
       pluralKeys,
       isNotEmpty,
-      reason: 'the template must still use ICU plurals for this to mean anything',
+      reason:
+          'the template must still use ICU plurals for this to mean anything',
     );
 
     for (final locale in AppLocalizations.supportedLocales.map(

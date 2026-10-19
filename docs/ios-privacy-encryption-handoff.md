@@ -83,6 +83,6 @@ the public website has not been changed by this work:
 > and security-record retention remains as described above.
 
 Both public policy/support URLs returned HTTP 200 during preparation. Availability
-is distinct from having published the new text. New receipt messages currently
-fall back to English in other interface locales; review translations before a
-localized store launch. Existing gameplay translations are unchanged.
+is distinct from having published the new text. The six receipt messages are translated in all 28 interface languages. Bundle
+consistency and all four status outcomes are tested at 320 logical pixels with
+2× text scaling. Existing gameplay translations are unchanged.
