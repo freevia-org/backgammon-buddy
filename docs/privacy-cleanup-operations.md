@@ -173,3 +173,10 @@ Demo acceptance command (disposable Auth/Firestore on localhost only):
 The test uses the real cleanup implementation, deletes its disposable Auth user
 and match, and independently checks an unauthenticated receipt read. It is also
 part of `ci-emulator-suites.sh`. No test targets production endpoints.
+
+## Production completion-receipt deployment — 2026-10-19
+
+Matching rules are deployed and independently read back. Disposable production
+Auth/match erasure and unauthenticated receipt acceptance passed. Public privacy
+and support disclosures are published. See the [current production record](ios-submission-validation.md).
+The source-update section above records the earlier pre-deployment state.

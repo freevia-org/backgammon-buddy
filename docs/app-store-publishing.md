@@ -28,7 +28,7 @@ monotonically increasing build number for the eventual signed release.
    grounds. This is no longer treated as a preparation blocker. Retain the GPL
    notices and corresponding-source delivery; no alternate license or exception
    has been obtained. [Investigation](gnubg-app-store-options.md).
-2. **Deletion confirmation implemented; deployment acceptance remains.** Settings
+2. **Deletion confirmation deployed and production-tested.** Settings
    → Privacy → Check deletion confirmation uses a private 256-bit receipt stored
    in OS secure storage, independently of the removed Firebase credential.
    The worker publishes completion only after match and Auth deletion succeeds.
@@ -39,9 +39,10 @@ monotonically increasing build number for the eventual signed release.
    contains no UID. Pending legacy requests can attach a receipt once while their
    owner credential still works. Lost-device/older completed requests use support.
    A demo-only real Auth/Firestore erasure-and-receipt test passed, alongside
-   rules, client, cleanup-worker and UI/persistence tests. Deploy matching rules
-   and worker, update the public retention disclosure, then verify the exact
-   production candidate before marking this operational gate complete.
+   rules, client, cleanup-worker and UI/persistence tests. Matching rules are now
+   deployed, a disposable production erasure/receipt test passed, and the public
+   privacy/support disclosures are published. Recheck the exact signed candidate
+   before submission. See [the production record](ios-submission-validation.md).
    This is an in-app status confirmation, not an email/push notification.
    [Apple's requirement](https://developer.apple.com/support/offering-account-deletion-in-your-app/).
 3. **Exact release configuration and privacy form.** See the [current configuration and encryption inventory](ios-privacy-encryption-handoff.md). Choose whether online play
@@ -145,3 +146,9 @@ No final App Privacy answers have been submitted or certified.
 Physical-board camera recognition, dice listening and voice are deferred to v2,
 not missing acceptance for enabled v1 functionality. If re-enabled, restore an
 accurate microphone purpose string and add a separate acceptance/release review.
+
+## Current account-free submission handoff
+
+See [submission answers](../app/store/ios/submission-answers.md) and the
+[validation/deployment record](ios-submission-validation.md). Deployment statements
+in older historical reports are superseded by this record.

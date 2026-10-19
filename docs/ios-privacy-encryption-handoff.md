@@ -62,11 +62,13 @@ compliance code, set it to “no encryption,” or assume a GitHub CI pass is ap
 Account access is needed to record Apple's final questions, but not to gather this
 inventory. Reassess after any licensing-driven engine or distribution change.
 
-## Public policy/support copy ready for publication
+## Public policy/support publication — 2026-10-19
 
-Add this alongside the existing online deletion section after deploying matching
-rules/worker and verifying production completion. This text is prepared here;
-the public website has not been changed by this work:
+Matching Firestore rules are deployed and independently match the committed source
+(SHA-256 `aa4e6d095df54e6e4033e18d1e27ca7ab21d39a93d3cd3cd20d99ef365d695c0`).
+A disposable production identity/match deletion and unauthenticated receipt read
+passed. The following copy is published in the policy and matching support page
+via Cloudflare deployment `0a2042aa-2c0e-4e86-98e3-892c096c641e`:
 
 > After you request online identity and data deletion in the app, you can check
 > completion in Settings → Privacy → Check deletion confirmation. The app keeps a
@@ -82,7 +84,8 @@ the public website has not been changed by this work:
 > history and learning remain unless you delete them separately. Google's backup
 > and security-record retention remains as described above.
 
-Both public policy/support URLs returned HTTP 200 during preparation. Availability
-is distinct from having published the new text. The six receipt messages are translated in all 28 interface languages. Bundle
+Both public policy/support URLs returned HTTP 200 with the new receipt text, all
+four security headers and all 15 prior redirects intact. Only those two HTML
+files changed; the other 66 served assets kept their hashes. The six receipt messages are translated in all 28 interface languages. Bundle
 consistency and all four status outcomes are tested at 320 logical pixels with
 2× text scaling. Existing gameplay translations are unchanged.
