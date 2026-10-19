@@ -3420,25 +3420,25 @@ class AppLocalizationsLt extends AppLocalizations {
   }
 
   @override
-  String get privacyDeletionReceiptCheck => 'Check deletion confirmation';
+  String get privacyDeletionReceiptCheck => 'Tikrinti ištrynimo patvirtinimą';
 
   @override
   String get privacyDeletionReceiptHelp =>
-      'After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.';
+      'Pateikę ištrynimo prašymą, grįžkite čia patikrinti, ar jis įvykdytas. Privatus prašymo kvitas lieka šiame įrenginyje ir veikia atsijungus. Tikrinant paskyra nesukuriama. Įvykdymo patvirtinimai internete pasiekiami 90 dienų; išsaugokite šią programos įdiegtį iki patvirtinimo.';
 
   @override
   String get privacyDeletionReceiptNone =>
-      'No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.';
+      'Šiame įrenginyje nėra išsaugoto ištrynimo prašymo kvito. Dėl ankstesnių prašymų ar prarasto įrenginio kreipkitės į pagalbą.';
 
   @override
   String get privacyDeletionReceiptPending =>
-      'Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.';
+      'Ištrynimas dar nepatvirtintas. Apdorojimas gali užtrukti iki 30 dienų. Patikrinkite vėliau. Jei praėjo daugiau nei 30 dienų, kreipkitės į pagalbą. Nepasiekiamas arba nebegaliojantis kvitas nėra ištrynimo įrodymas.';
 
   @override
   String get privacyDeletionReceiptComplete =>
-      'Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.';
+      'Ištrynimas baigtas: visi šiame įrenginyje išsaugoti prašymai patvirtinti kaip įvykdyti. Tai neištrina vėliau sukurtos internetinės tapatybės. Vietinė istorija ir mokymosi duomenys išlieka. „Google“ gali saugoti atsargines kopijas ir saugos žurnalus, kaip aprašyta privatumo politikoje.';
 
   @override
   String get privacyDeletionReceiptFailed =>
-      'Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied.';
+      'Nepavyko patikrinti ištrynimo patvirtinimo. Bandykite dar kartą prisijungę prie tinklo arba kreipkitės į pagalbą. Tai nepatvirtina, kad ištrynimas baigtas.';
 }

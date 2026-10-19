@@ -25,9 +25,9 @@ This is preparation, not App Store or physical-device approval.
   The test independently checked account and match absence. It is now in CI's
   online emulator leg. No production fixture was created/deleted.
 - The full CI suite caught missing ARB keys for the six new English privacy
-  messages. All 28 bundles now include explicit English fallback entries; the
-  existing key/placeholder contract is preserved. Translation review remains
-  necessary before localized store launch.
+  messages. Explicit fallback entries first restored parity; a subsequent
+  localization pass replaced all six fallbacks in each of the 27 non-English
+  bundles. The key/placeholder contract is preserved.
 - Source analysis passed without issues. iOS simulator debug build passed with
   both native engines. The capture integration test passed independently on
   iPhone 17 Pro Max and iPad Pro 13-inch (M5), iOS 27.0.
@@ -57,7 +57,8 @@ policy/support routes returned HTTP 200, but the new copy is not published.
 Deploy matching rules and verify the updated cleanup worker in production before
 shipping the receipt-enabled client. The receipt confirmation is an in-app check,
 not an email or push notification. Lost-device/older completed requests still use
-ownership-verified support; new messages fall back to English in other locales.
+ownership-verified support. The six new messages are now translated across all
+28 interface languages; see the [localization follow-up](deletion-localizations-2026-10-19.md).
 
 Apple membership, signing/profile/export, App Store Connect forms/upload and
 physical hardware acceptance remain unavailable. A signed native privacy report,

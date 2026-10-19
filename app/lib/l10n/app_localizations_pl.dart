@@ -3457,25 +3457,25 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get privacyDeletionReceiptCheck => 'Check deletion confirmation';
+  String get privacyDeletionReceiptCheck => 'Sprawdź potwierdzenie usunięcia';
 
   @override
   String get privacyDeletionReceiptHelp =>
-      'After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.';
+      'Po wysłaniu prośby o usunięcie wróć tutaj, aby sprawdzić jej realizację. Prywatne potwierdzenie prośby pozostaje na tym urządzeniu i działa po wylogowaniu. Sprawdzanie nie tworzy konta. Potwierdzenia zakończenia są dostępne online przez 90 dni; zachowaj tę instalację do czasu potwierdzenia.';
 
   @override
   String get privacyDeletionReceiptNone =>
-      'No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.';
+      'Na tym urządzeniu nie zapisano potwierdzenia prośby o usunięcie. W sprawie wcześniejszych próśb lub utraconego urządzenia skontaktuj się z pomocą techniczną.';
 
   @override
   String get privacyDeletionReceiptPending =>
-      'Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.';
+      'Usunięcie nie zostało jeszcze potwierdzone. Przetwarzanie może potrwać do 30 dni. Sprawdź ponownie później. Jeśli minęło więcej niż 30 dni, skontaktuj się z pomocą techniczną. Niedostępne lub wygasłe potwierdzenie prośby nie jest dowodem usunięcia.';
 
   @override
   String get privacyDeletionReceiptComplete =>
-      'Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.';
+      'Usuwanie zakończone: realizacja wszystkich próśb zapisanych na tym urządzeniu została potwierdzona. Nie usuwa to tożsamości online utworzonej później. Lokalna historia i dane nauki pozostają. Google może przechowywać kopie zapasowe i dzienniki bezpieczeństwa zgodnie z polityką prywatności.';
 
   @override
   String get privacyDeletionReceiptFailed =>
-      'Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied.';
+      'Nie udało się sprawdzić potwierdzenia usunięcia. Spróbuj ponownie po uzyskaniu połączenia lub skontaktuj się z pomocą techniczną. Nie oznacza to potwierdzenia zakończenia usuwania.';
 }

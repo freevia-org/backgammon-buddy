@@ -57,7 +57,7 @@ def main():
             assert manifest['sha256'][relative] == digest, f'{relative}: manifest hash mismatch'
         print(f'{family}: {len(images)} opaque screenshots at {expected[0]}x{expected[1]}')
     print('Draft metadata, v1 permissions and 1024px icon checks passed.')
-    print('NOT submission approval: licensing, account/signing, production receipt deployment,')
+    print('NOT submission approval: account/signing, production receipt deployment,')
     print('privacy/encryption decisions and device acceptance remain open.')
 
 

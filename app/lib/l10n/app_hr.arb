@@ -2107,10 +2107,10 @@
       }
     }
   },
-  "privacyDeletionReceiptCheck": "Check deletion confirmation",
-  "privacyDeletionReceiptHelp": "After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.",
-  "privacyDeletionReceiptNone": "No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.",
-  "privacyDeletionReceiptPending": "Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.",
-  "privacyDeletionReceiptComplete": "Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.",
-  "privacyDeletionReceiptFailed": "Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied."
+  "privacyDeletionReceiptCheck": "Provjeri potvrdu brisanja",
+  "privacyDeletionReceiptHelp": "Nakon zahtjeva za brisanje vratite se ovdje i provjerite je li postupak dovršen. Vaša privatna potvrda zahtjeva ostaje na ovom uređaju i radi nakon odjave. Provjera ne stvara račun. Potvrde o dovršenom brisanju dostupne su na internetu 90 dana; zadržite ovu instalaciju do potvrde.",
+  "privacyDeletionReceiptNone": "Na ovom uređaju nije spremljena potvrda zahtjeva za brisanje. Za ranije zahtjeve ili izgubljeni uređaj obratite se podršci.",
+  "privacyDeletionReceiptPending": "Brisanje još nije potvrđeno. Obrada može trajati do 30 dana. Provjerite ponovno kasnije. Ako je prošlo više od 30 dana, obratite se podršci. Nedostupna ili istekla potvrda zahtjeva nije dokaz brisanja.",
+  "privacyDeletionReceiptComplete": "Brisanje je dovršeno: svi zahtjevi spremljeni na ovom uređaju potvrđeni su kao dovršeni. Time se ne briše mrežni identitet stvoren nakon toga. Lokalna povijest i podaci o učenju ostaju sačuvani. Google može zadržati sigurnosne kopije i sigurnosne zapise, kako je opisano u pravilima privatnosti.",
+  "privacyDeletionReceiptFailed": "Nije moguće provjeriti potvrdu brisanja. Pokušajte ponovno kada ste povezani ili se obratite podršci. Time se ne potvrđuje dovršetak brisanja."
 }

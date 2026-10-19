@@ -3396,25 +3396,26 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get privacyDeletionReceiptCheck => 'Check deletion confirmation';
+  String get privacyDeletionReceiptCheck =>
+      'Törlési visszaigazolás ellenőrzése';
 
   @override
   String get privacyDeletionReceiptHelp =>
-      'After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.';
+      'A törlés kérése után térj vissza ide, és ellenőrizd, hogy befejeződött-e. A privát bizonylat ezen az eszközön marad, és kijelentkezés után is működik. Az ellenőrzés nem hoz létre fiókot. A befejezési visszaigazolások 90 napig érhetők el online; a visszaigazolásig őrizd meg ezt a telepítést.';
 
   @override
   String get privacyDeletionReceiptNone =>
-      'No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.';
+      'Ezen az eszközön nincs mentett törlési bizonylat. Korábbi kérések vagy elveszett eszköz esetén fordulj az ügyfélszolgálathoz.';
 
   @override
   String get privacyDeletionReceiptPending =>
-      'Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.';
+      'A törlés még nincs megerősítve. A feldolgozás akár 30 napig is tarthat. Ellenőrizd újra később. Ha több mint 30 nap telt el, fordulj az ügyfélszolgálathoz. A nem elérhető vagy lejárt bizonylat nem bizonyítja a törlést.';
 
   @override
   String get privacyDeletionReceiptComplete =>
-      'Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.';
+      'A törlés befejeződött: az ezen az eszközön mentett összes kérés teljesítését visszaigazolták. Ez nem töröl egy később létrehozott online azonosítót. A helyi előzmények és tanulási adatok megmaradnak. A Google az adatvédelmi irányelvekben leírtak szerint megőrizhet biztonsági másolatokat és biztonsági naplókat.';
 
   @override
   String get privacyDeletionReceiptFailed =>
-      'Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied.';
+      'Nem sikerült ellenőrizni a törlési visszaigazolást. Próbáld újra, amikor van kapcsolat, vagy fordulj az ügyfélszolgálathoz. Ez nem igazolja a törlés befejezését.';
 }

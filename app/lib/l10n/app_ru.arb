@@ -2107,10 +2107,10 @@
       }
     }
   },
-  "privacyDeletionReceiptCheck": "Check deletion confirmation",
-  "privacyDeletionReceiptHelp": "After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.",
-  "privacyDeletionReceiptNone": "No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.",
-  "privacyDeletionReceiptPending": "Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.",
-  "privacyDeletionReceiptComplete": "Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.",
-  "privacyDeletionReceiptFailed": "Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied."
+  "privacyDeletionReceiptCheck": "Проверить подтверждение удаления",
+  "privacyDeletionReceiptHelp": "После запроса на удаление вернитесь сюда, чтобы проверить его завершение. Ваша личная квитанция остаётся на этом устройстве и работает после выхода из учётной записи. Проверки не создают учётную запись. Подтверждения завершения доступны онлайн в течение 90 дней; сохраните эту установку приложения до получения подтверждения.",
+  "privacyDeletionReceiptNone": "На этом устройстве нет сохранённой квитанции о запросе на удаление. По поводу более ранних запросов или при потере устройства обратитесь в поддержку.",
+  "privacyDeletionReceiptPending": "Удаление ещё не подтверждено. Обработка может занять до 30 дней. Проверьте позже. Если прошло более 30 дней, обратитесь в поддержку. Недоступная или просроченная квитанция не доказывает удаление.",
+  "privacyDeletionReceiptComplete": "Удаление завершено: выполнение всех запросов, сохранённых на этом устройстве, подтверждено. Это не удаляет онлайн-идентификатор, созданный позднее. Локальная история и данные обучения сохраняются. Google может хранить резервные копии и журналы безопасности, как описано в политике конфиденциальности.",
+  "privacyDeletionReceiptFailed": "Не удалось проверить подтверждение удаления. Повторите попытку при наличии соединения или обратитесь в поддержку. Это не подтверждает завершение удаления."
 }

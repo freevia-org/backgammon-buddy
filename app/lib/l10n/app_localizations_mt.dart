@@ -3404,25 +3404,25 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get privacyDeletionReceiptCheck => 'Check deletion confirmation';
+  String get privacyDeletionReceiptCheck => 'Iċċekkja l-konferma tat-tħassir';
 
   @override
   String get privacyDeletionReceiptHelp =>
-      'After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.';
+      'Wara li titlob it-tħassir, erġa’ lura hawn biex tiċċekkja jekk tlestiex. L-irċevuta privata tiegħek tibqa’ fuq dan l-apparat u taħdem wara li toħroġ mill-kont. Il-verifiki ma joħolqux kont. Il-konfermi tat-tlestija jkunu disponibbli online għal 90 jum; żomm din l-installazzjoni sakemm tirċievi l-konferma.';
 
   @override
   String get privacyDeletionReceiptNone =>
-      'No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.';
+      'Ma hemm l-ebda rċevuta tat-tħassir salvata fuq dan l-apparat. Għal talbiet preċedenti jew jekk tlift l-apparat, ikkuntattja l-appoġġ.';
 
   @override
   String get privacyDeletionReceiptPending =>
-      'Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.';
+      'It-tħassir għadu mhux ikkonfermat. L-ipproċessar jista’ jieħu sa 30 jum. Erġa’ ċċekkja aktar tard. Jekk għaddew aktar minn 30 jum, ikkuntattja l-appoġġ. Irċevuta mhux disponibbli jew skaduta mhijiex prova tat-tħassir.';
 
   @override
   String get privacyDeletionReceiptComplete =>
-      'Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.';
+      'It-tħassir tlesta: it-talbiet kollha salvati fuq dan l-apparat huma kkonfermati bħala lesti. Dan ma jħassarx identità online maħluqa wara. L-istorja lokali u d-dejta tat-tagħlim jibqgħu. Google jista’ jżomm kopji ta’ riżerva u rekords tas-sigurtà kif deskritt fil-politika tal-privatezza.';
 
   @override
   String get privacyDeletionReceiptFailed =>
-      'Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied.';
+      'Ma setgħetx tiġi ċċekkjata l-konferma tat-tħassir. Erġa’ pprova meta jkollok konnessjoni, jew ikkuntattja l-appoġġ. Dan ma jikkonfermax li t-tħassir tlesta.';
 }

@@ -3411,25 +3411,26 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get privacyDeletionReceiptCheck => 'Check deletion confirmation';
+  String get privacyDeletionReceiptCheck =>
+      'Перевірити підтвердження видалення';
 
   @override
   String get privacyDeletionReceiptHelp =>
-      'After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.';
+      'Після запиту на видалення поверніться сюди, щоб перевірити його завершення. Ваша приватна квитанція залишається на цьому пристрої та працює після виходу з облікового запису. Перевірки не створюють облікового запису. Підтвердження завершення доступні онлайн протягом 90 днів; збережіть цю інсталяцію до отримання підтвердження.';
 
   @override
   String get privacyDeletionReceiptNone =>
-      'No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.';
+      'На цьому пристрої немає збереженої квитанції про запит на видалення. Щодо попередніх запитів або втраченого пристрою зверніться до підтримки.';
 
   @override
   String get privacyDeletionReceiptPending =>
-      'Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.';
+      'Видалення ще не підтверджено. Обробка може тривати до 30 днів. Перевірте пізніше. Якщо минуло понад 30 днів, зверніться до підтримки. Недоступна або прострочена квитанція не є доказом видалення.';
 
   @override
   String get privacyDeletionReceiptComplete =>
-      'Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.';
+      'Видалення завершено: виконання всіх запитів, збережених на цьому пристрої, підтверджено. Це не видаляє онлайн-ідентифікатор, створений згодом. Локальна історія та дані навчання залишаються. Google може зберігати резервні копії та журнали безпеки, як описано в політиці конфіденційності.';
 
   @override
   String get privacyDeletionReceiptFailed =>
-      'Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied.';
+      'Не вдалося перевірити підтвердження видалення. Повторіть спробу за наявності з’єднання або зверніться до підтримки. Це не підтверджує завершення видалення.';
 }

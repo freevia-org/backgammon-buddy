@@ -23,15 +23,11 @@ monotonically increasing build number for the eventual signed release.
 
 ## Blockers that do not depend on owning an iPhone
 
-1. **GNUbg licensing decision.** See the [investigated options](gnubg-app-store-options.md). The current iOS workflow statically links GNUbg.
-   `native/licenses/README.md` identifies combined binaries as GPL-3.0-or-later;
-   first-party MIT licensing does not relicense that combined executable. Resolve
-   App Store terms/distribution compatibility and corresponding-source obligations
-   with the rights holders or qualified counsel before distributing. A source link
-   or custom EULA alone does not establish compatibility. Alternatives require
-   a separately licensed implementation or a separately validated build excluding
-   GNUbg and any other incompatible dependency, including assets. No such flavor
-   is implemented by this preparation. Do not remove notices to bypass this gate.
+1. **GNUbg compatibility deferred by owner.** The owner chose to proceed with
+   the current engine and revisit compatibility if Apple rejects it on licensing
+   grounds. This is no longer treated as a preparation blocker. Retain the GPL
+   notices and corresponding-source delivery; no alternate license or exception
+   has been obtained. [Investigation](gnubg-app-store-options.md).
 2. **Deletion confirmation implemented; deployment acceptance remains.** Settings
    → Privacy → Check deletion confirmation uses a private 256-bit receipt stored
    in OS secure storage, independently of the removed Firebase credential.

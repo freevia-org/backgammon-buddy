@@ -3414,25 +3414,25 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get privacyDeletionReceiptCheck => 'Check deletion confirmation';
+  String get privacyDeletionReceiptCheck => 'Kontrollera raderingsbekräftelse';
 
   @override
   String get privacyDeletionReceiptHelp =>
-      'After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.';
+      'Kom tillbaka hit efter att du begärt radering för att kontrollera att den är slutförd. Ditt privata kvitto finns kvar på den här enheten och fungerar efter utloggning. Kontroller skapar inget konto. Bekräftelser på slutförd radering finns tillgängliga online i 90 dagar; behåll den här installationen tills raderingen har bekräftats.';
 
   @override
   String get privacyDeletionReceiptNone =>
-      'No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.';
+      'Inget raderingskvitto är sparat på den här enheten. Kontakta supporten för äldre förfrågningar eller om enheten har förlorats.';
 
   @override
   String get privacyDeletionReceiptPending =>
-      'Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.';
+      'Raderingen har inte bekräftats än. Behandlingen kan ta upp till 30 dagar. Kontrollera igen senare. Kontakta supporten om mer än 30 dagar har gått. Ett otillgängligt eller utgånget kvitto är inget bevis på radering.';
 
   @override
   String get privacyDeletionReceiptComplete =>
-      'Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.';
+      'Radering slutförd: alla förfrågningar som sparats på den här enheten har bekräftats som slutförda. Detta raderar inte en onlineidentitet som skapats senare. Lokal historik och inlärningsdata finns kvar. Google kan behålla säkerhetskopior och säkerhetsloggar enligt integritetspolicyn.';
 
   @override
   String get privacyDeletionReceiptFailed =>
-      'Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied.';
+      'Det gick inte att kontrollera raderingsbekräftelsen. Försök igen när du har anslutning eller kontakta supporten. Detta bekräftar inte att raderingen är slutförd.';
 }

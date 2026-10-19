@@ -3373,25 +3373,25 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get privacyDeletionReceiptCheck => 'Check deletion confirmation';
+  String get privacyDeletionReceiptCheck => 'Silme onayını kontrol et';
 
   @override
   String get privacyDeletionReceiptHelp =>
-      'After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.';
+      'Silme talebinden sonra işlemin tamamlanıp tamamlanmadığını kontrol etmek için buraya dönün. Özel makbuzunuz bu cihazda kalır ve çıkış yaptıktan sonra da çalışır. Kontroller bir hesap oluşturmaz. Tamamlanma onayları 90 gün boyunca çevrimiçi olarak kullanılabilir; onaylanana kadar bu kurulumu koruyun.';
 
   @override
   String get privacyDeletionReceiptNone =>
-      'No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.';
+      'Bu cihazda kayıtlı bir silme makbuzu yok. Önceki talepler veya kayıp cihaz için destekle iletişime geçin.';
 
   @override
   String get privacyDeletionReceiptPending =>
-      'Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.';
+      'Silme işlemi henüz onaylanmadı. İşlem 30 güne kadar sürebilir. Daha sonra tekrar kontrol edin. 30 günden fazla geçtiyse destekle iletişime geçin. Kullanılamayan veya süresi dolmuş bir makbuz, silme işleminin kanıtı değildir.';
 
   @override
   String get privacyDeletionReceiptComplete =>
-      'Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.';
+      'Silme tamamlandı: bu cihazda kayıtlı tüm taleplerin tamamlandığı onaylandı. Bu işlem, daha sonra oluşturulan bir çevrimiçi kimliği silmez. Yerel geçmiş ve öğrenme verileri korunur. Google, gizlilik politikasında açıklandığı gibi yedekleri ve güvenlik kayıtlarını saklayabilir.';
 
   @override
   String get privacyDeletionReceiptFailed =>
-      'Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied.';
+      'Silme onayı kontrol edilemedi. Bağlantınız olduğunda tekrar deneyin veya destekle iletişime geçin. Bu durum, silme işleminin tamamlandığını onaylamaz.';
 }

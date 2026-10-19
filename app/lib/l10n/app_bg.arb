@@ -2107,10 +2107,10 @@
       }
     }
   },
-  "privacyDeletionReceiptCheck": "Check deletion confirmation",
-  "privacyDeletionReceiptHelp": "After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.",
-  "privacyDeletionReceiptNone": "No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.",
-  "privacyDeletionReceiptPending": "Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.",
-  "privacyDeletionReceiptComplete": "Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.",
-  "privacyDeletionReceiptFailed": "Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied."
+  "privacyDeletionReceiptCheck": "Проверка на потвърждението за изтриване",
+  "privacyDeletionReceiptHelp": "След заявката за изтриване се върнете тук, за да проверите дали е завършило. Личният ви код за проверка остава на това устройство и работи след излизане от профила. Проверките не създават профил. Потвържденията за завършено изтриване са достъпни онлайн 90 дни; запазете тази инсталация до потвърждението.",
+  "privacyDeletionReceiptNone": "На това устройство няма запазен код за проверка на изтриването. За по-стари заявки или изгубено устройство се свържете с поддръжката.",
+  "privacyDeletionReceiptPending": "Изтриването все още не е потвърдено. Обработката може да отнеме до 30 дни. Проверете отново по-късно. Ако са минали повече от 30 дни, се свържете с поддръжката. Недостъпен или изтекъл код не е доказателство за изтриване.",
+  "privacyDeletionReceiptComplete": "Изтриването е завършено: всички заявки, запазени на това устройство, са потвърдени като изпълнени. Това не изтрива онлайн идентичност, създадена впоследствие. Локалната история и данните за обучение остават. Google може да пази резервни копия и записи за сигурност, както е описано в политиката за поверителност.",
+  "privacyDeletionReceiptFailed": "Потвърждението за изтриване не можа да бъде проверено. Опитайте отново, когато имате връзка, или се свържете с поддръжката. Това не означава, че изтриването е завършило."
 }

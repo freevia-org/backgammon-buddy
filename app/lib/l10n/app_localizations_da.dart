@@ -3422,25 +3422,26 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get privacyDeletionReceiptCheck => 'Check deletion confirmation';
+  String get privacyDeletionReceiptCheck =>
+      'Kontrollér bekræftelse på sletning';
 
   @override
   String get privacyDeletionReceiptHelp =>
-      'After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.';
+      'Vend tilbage hertil efter anmodningen om sletning for at kontrollere, om den er fuldført. Din private kvittering bliver på denne enhed og virker efter udlogning. Kontrollen opretter ikke en konto. Bekræftelser på fuldført sletning er tilgængelige online i 90 dage; behold denne installation, indtil sletningen er bekræftet.';
 
   @override
   String get privacyDeletionReceiptNone =>
-      'No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.';
+      'Der er ikke gemt nogen sletningskvittering på denne enhed. Kontakt support ved ældre anmodninger eller en mistet enhed.';
 
   @override
   String get privacyDeletionReceiptPending =>
-      'Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.';
+      'Sletningen er endnu ikke bekræftet. Behandlingen kan tage op til 30 dage. Kontrollér igen senere. Kontakt support, hvis der er gået mere end 30 dage. En utilgængelig eller udløbet kvittering er ikke bevis på sletning.';
 
   @override
   String get privacyDeletionReceiptComplete =>
-      'Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.';
+      'Sletning fuldført: alle anmodninger gemt på denne enhed er bekræftet som fuldført. Dette sletter ikke en onlineidentitet, der er oprettet senere. Lokal historik og læringsdata bevares. Google kan beholde sikkerhedskopier og sikkerhedslogfiler som beskrevet i privatlivspolitikken.';
 
   @override
   String get privacyDeletionReceiptFailed =>
-      'Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied.';
+      'Bekræftelsen på sletning kunne ikke kontrolleres. Prøv igen, når du er online, eller kontakt support. Dette bekræfter ikke, at sletningen er fuldført.';
 }

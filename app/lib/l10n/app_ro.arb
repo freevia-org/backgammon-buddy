@@ -2107,10 +2107,10 @@
       }
     }
   },
-  "privacyDeletionReceiptCheck": "Check deletion confirmation",
-  "privacyDeletionReceiptHelp": "After requesting deletion, return here to check completion. Your private receipt stays on this device and works after sign-out. Checks do not create an account. Completion receipts are available online for 90 days; keep this installation until confirmed.",
-  "privacyDeletionReceiptNone": "No deletion receipt is saved on this device. For earlier requests or a lost device, contact support.",
-  "privacyDeletionReceiptPending": "Deletion is not confirmed yet. Processing can take up to 30 days. Check again later. If more than 30 days have passed, contact support. An unavailable or expired receipt is not proof of deletion.",
-  "privacyDeletionReceiptComplete": "Deletion completed: all requests saved on this device are confirmed complete. This does not delete an online identity created afterward. Local history and learning remain. Google may retain backup and security records as described in the privacy policy.",
-  "privacyDeletionReceiptFailed": "Could not check deletion confirmation. Retry when connected, or contact support. No completion is implied."
+  "privacyDeletionReceiptCheck": "Verifică confirmarea ștergerii",
+  "privacyDeletionReceiptHelp": "După ce soliciți ștergerea, revino aici pentru a verifica dacă s-a încheiat. Dovada ta privată rămâne pe acest dispozitiv și funcționează după deconectare. Verificările nu creează un cont. Confirmările finalizării sunt disponibile online timp de 90 de zile; păstrează această instalare până la confirmare.",
+  "privacyDeletionReceiptNone": "Pe acest dispozitiv nu este salvată nicio dovadă a cererii de ștergere. Pentru cereri anterioare sau un dispozitiv pierdut, contactează asistența.",
+  "privacyDeletionReceiptPending": "Ștergerea nu este încă confirmată. Procesarea poate dura până la 30 de zile. Verifică din nou mai târziu. Dacă au trecut mai mult de 30 de zile, contactează asistența. O dovadă indisponibilă sau expirată nu reprezintă o confirmare a ștergerii.",
+  "privacyDeletionReceiptComplete": "Ștergere finalizată: toate cererile salvate pe acest dispozitiv sunt confirmate ca finalizate. Aceasta nu șterge o identitate online creată ulterior. Istoricul local și datele de învățare rămân. Google poate păstra copii de rezervă și jurnale de securitate, conform politicii de confidențialitate.",
+  "privacyDeletionReceiptFailed": "Confirmarea ștergerii nu a putut fi verificată. Încearcă din nou când ai conexiune sau contactează asistența. Aceasta nu confirmă finalizarea ștergerii."
 }
