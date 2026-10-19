@@ -24,6 +24,10 @@ This is preparation, not App Store or physical-device approval.
   hosted match and Auth account, and an unauthenticated read returned completion.
   The test independently checked account and match absence. It is now in CI's
   online emulator leg. No production fixture was created/deleted.
+- The full CI suite caught missing ARB keys for the six new English privacy
+  messages. All 28 bundles now include explicit English fallback entries; the
+  existing key/placeholder contract is preserved. Translation review remains
+  necessary before localized store launch.
 - Source analysis passed without issues. iOS simulator debug build passed with
   both native engines. The capture integration test passed independently on
   iPhone 17 Pro Max and iPad Pro 13-inch (M5), iOS 27.0.
