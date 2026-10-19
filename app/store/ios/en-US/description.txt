@@ -8,7 +8,7 @@ Play against the built-in computer opponent or share one device with another pla
 • Practice exercises and learning progress
 • Match exports in SGF, MAT and XG formats
 • Nearby play on trusted Wi-Fi, with optional QR joining
-• Online play when the service is configured
+• Online play with anonymous sign-in
 • Themes, larger text and 28 interface languages
 
 Live nearby and online matches are unassisted. Nearby traffic is unencrypted; use trusted Wi-Fi. Camera access is optional and used only to scan a nearby game's QR code. A manual address entry option is available.
