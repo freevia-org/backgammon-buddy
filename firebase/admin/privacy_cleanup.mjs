@@ -5,6 +5,31 @@ import { pathToFileURL } from 'node:url';
 
 export const projectId = 'backgammon-buddy-freevia';
 export const retentionDays = 30;
+
+// Also checked by manual dry-runs: an idle queue must not hide a broken writer.
+export const cleanupPermissions = Object.freeze([
+  'datastore.entities.get', 'datastore.entities.list',
+  'datastore.entities.create', 'datastore.entities.update', 'datastore.entities.delete',
+  'firebaseauth.users.get', 'firebaseauth.users.update', 'firebaseauth.users.delete',
+]);
+
+export async function verifyCleanupPermissions({project, token, fetcher = fetch}) {
+  if (project !== projectId || !token) throw new Error('Explicit production identity required');
+  const response = await fetcher(
+    `https://cloudresourcemanager.googleapis.com/v1/projects/${project}:testIamPermissions`, {
+      method: 'POST',
+      headers: {Authorization: `Bearer ${token}`, 'Content-Type': 'application/json'},
+      body: JSON.stringify({permissions: cleanupPermissions}),
+      signal: AbortSignal.timeout(30000),
+    });
+  if (!response.ok) throw new ApiError(response.status);
+  const data = await response.json();
+  const granted = new Set(data.permissions ?? []);
+  if (!cleanupPermissions.every(permission => granted.has(permission))) {
+    throw new Error('Cleanup identity lacks required IAM permissions');
+  }
+}
+
 const day = 24 * 60 * 60 * 1000;
 const batchSize = 200;
 
@@ -259,6 +284,7 @@ export async function cleanup(api, { apply = false, now = new Date() } = {}) {
 
 async function main() {
   const options = parseOptions(process.argv.slice(2));
+  await verifyCleanupPermissions({project: options.project, token: process.env.GOOGLE_OAUTH_ACCESS_TOKEN});
   const api = new GoogleRest({ project: options.project, token: process.env.GOOGLE_OAUTH_ACCESS_TOKEN });
   const summary = await cleanup(api, options);
   console.log(JSON.stringify(summary));

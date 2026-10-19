@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cleanup, GoogleRest, parseOptions, projectId, ApiError } from './privacy_cleanup.mjs';
+import { cleanup, GoogleRest, parseOptions, projectId, ApiError, cleanupPermissions, verifyCleanupPermissions } from './privacy_cleanup.mjs';
 
 const now = new Date('2026-10-09T12:00:00Z');
 const root = `projects/${projectId}/databases/(default)/documents`;
@@ -202,4 +202,26 @@ test('expired receipts are purged in apply only', async () => {
   assert.ok(!api.calls.some(c => c[0] === 'deleteDocuments'));
   await cleanup(api, { now, apply: true });
   assert.ok(api.calls.some(c => c[0] === 'deleteDocuments' && c[1][0].includes('deletionReceipts')));
+});
+
+
+test('IAM preflight catches the missing receipt-create permission even with an idle queue', async () => {
+  const fetcher = async (url, options) => {
+    assert.equal(url, `https://cloudresourcemanager.googleapis.com/v1/projects/${projectId}:testIamPermissions`);
+    assert.equal(options.method, 'POST');
+    assert.ok(JSON.parse(options.body).permissions.includes('datastore.entities.create'));
+    return {ok: true, json: async () => ({permissions: cleanupPermissions.filter(p => p !== 'datastore.entities.create')})};
+  };
+  await assert.rejects(verifyCleanupPermissions({project: projectId, token: 'fixture', fetcher}), /lacks required IAM/);
+});
+
+test('IAM preflight accepts a fully authorized cleanup identity without writes', async () => {
+  await verifyCleanupPermissions({project: projectId, token: 'fixture',
+    fetcher: async () => ({ok: true, json: async () => ({permissions: cleanupPermissions})})});
+});
+
+test('IAM preflight rejects another project or an administrative HTTP failure', async () => {
+  await assert.rejects(verifyCleanupPermissions({project: 'another-project', token: 'fixture'}));
+  await assert.rejects(verifyCleanupPermissions({project: projectId, token: 'fixture',
+    fetcher: async () => ({ok: false, status: 403})}), error => error instanceof ApiError && error.status === 403);
 });

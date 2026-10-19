@@ -53,9 +53,9 @@ Provisioned and read back on 2026-10-09:
 | User-managed service-account keys | None |
 
 The role grants only `datastore.entities.get`, `datastore.entities.list`,
-`datastore.entities.update`, `datastore.entities.delete`,
+`datastore.entities.create`, `datastore.entities.update`, `datastore.entities.delete`,
 `firebaseauth.users.get`, `firebaseauth.users.update`, and
-`firebaseauth.users.delete`. It cannot create records, modify rules, configure
+`firebaseauth.users.delete`. Receipt publication needs record creation. It cannot modify rules, configure
 authentication, mint keys or change IAM. Current runner operations do not need
 database metadata or transaction permissions; the method requirements are in
 the [Firestore IAM reference](https://docs.cloud.google.com/firestore/native/docs/security/iam).
@@ -180,3 +180,9 @@ Matching rules are deployed and independently read back. Disposable production
 Auth/match erasure and unauthenticated receipt acceptance passed. Public privacy
 and support disclosures are published. See the [current production record](ios-submission-validation.md).
 The source-update section above records the earlier pre-deployment state.
+
+The 2026-10-19 production IAM audit found the old role lacked
+`datastore.entities.create`. That single permission was added using an etag-guarded
+role update, and the service-account binding and live role were read back. Both
+manual dry-runs and scheduled apply now preflight their effective project IAM
+permissions before reading the queue, so an empty queue cannot hide this defect.

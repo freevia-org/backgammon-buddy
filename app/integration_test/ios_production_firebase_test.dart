@@ -43,6 +43,20 @@ void main() {
             }),
           )
           .then((_) {});
+      Future<void> acknowledge() async {
+        final saved =
+            jsonDecode(await fixture.readAsString()) as Map<String, dynamic>;
+        saved['confirmed'] = true;
+        await fixture.writeAsString(jsonEncode(saved));
+        final deadline = DateTime.now().add(const Duration(seconds: 30));
+        while (await fixture.exists()) {
+          if (DateTime.now().isAfter(deadline)) {
+            throw StateError('Coordinator did not acknowledge fixture cleanup');
+          }
+          await Future<void>.delayed(const Duration(milliseconds: 200));
+        }
+      }
+
       try {
         // Record each disposable identity immediately so a failed test is cleanable.
         uids.add(await host.signIn());
@@ -130,8 +144,7 @@ void main() {
             await Future<void>.delayed(const Duration(seconds: 3));
           }
         }
-        await fixture
-            .delete(); // Signals that unauthenticated client reads passed.
+        await acknowledge(); // Explicit confirmation; app uninstall is not proof.
       } finally {
         if (await fixture.exists()) {
           // Also request cleanup after an assertion/network failure. Never silently
@@ -168,7 +181,7 @@ void main() {
                 await Future<void>.delayed(const Duration(seconds: 3));
               }
             }
-            await fixture.delete();
+            await acknowledge();
           }
         }
         host.close();

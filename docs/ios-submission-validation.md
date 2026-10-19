@@ -29,7 +29,29 @@ preserved. Headers/redirects were recovered from the actual deployment dashboard
 not guessed from an old snapshot. An initial preview omitted file-upload metadata;
 that preview was not published. The corrected preview preserved both configs.
 
+## Cleanup IAM issue found and fixed
+
+The live custom role originally had seven permissions and lacked
+`datastore.entities.create`. Operator-led erasure tests could pass while the
+hourly service account could not publish a new receipt. The production role was
+updated with exactly that one additional permission using its etag; all original
+permissions were preserved, and the service-account binding/live role were read
+back. No key, token-creator grant or rules-administration permission was added.
+
+The runner now calls the project's read-only `testIamPermissions` API before
+reading the queue, in both manual dry-run and scheduled apply. A missing write
+permission therefore fails even with no pending requests. Nineteen worker tests
+pass, including the missing-create regression, full-access success, wrong-project
+rejection and administrative HTTP failure. An operator preflight passed against
+the live API; the post-merge workflow must also pass using its own OIDC identity.
+
 ## Native production client validation
+
+The native suite passed on the dedicated iPad Pro 13 simulator, iOS 27.0, using
+real production HTTPS and TLS gRPC endpoints. The host coordinator verified both
+identities absent after erasure and removed the disposable match tree, receipts
+and deny markers. This is native client/service evidence, not a physical device
+or a signed App Store binary.
 
 The explicit manual suite `app/integration_test/ios_production_firebase_test.dart`
 creates two fresh anonymous identities and one match. It checks secure-token
@@ -40,9 +62,11 @@ completed full production game or a two-device physical-network test.
 
 The host coordinator `tool/ios_production_fixture_cleanup.mjs` runs the actual
 worker with queries restricted to the private fixture's two UIDs and single
-match. It refuses unexpected matches and never runs retention sweeps. It checks
+match. It verifies server-side account creation times (within 15 minutes) and
+anonymous status, refuses unexpected matches, and never runs retention sweeps. It checks
 Auth deletion and removes the test receipts/markers only after the native client
-acknowledges both completions. IDs and receipts stay in a simulator-private JSON
+explicitly acknowledges both completions in the private fixture. Container/file
+disappearance alone is not accepted as successful native confirmation. IDs and receipts stay in a simulator-private JSON
 file; no OAuth token, refresh token or service-account key enters Dart defines.
 No private fixture is committed or printed. Production testing is manual opt-in,
 not an automatic CI side effect. Interrupted runs require inspecting and cleaning
@@ -75,6 +99,16 @@ states per configuration. The host suite passes
 six cases and is included in ordinary Flutter CI. The native wrapper runs the
 same assertions on a dedicated iPad simulator; synthetic viewport sizes cover
 layout, not an actual Stage Manager window interaction.
+
+The combined native iPad run passed **28 cases**: 22 existing core engine,
+navigation, persistence, tutor/review/practice and loopback multiplayer cases,
+plus the six expanded layout/accessibility configurations above. The native core
+AI UI flow uses surrender; it is not a natural full production online match.
+The original 232-case report remains separate evidence, not 232 repeated iPad
+end-to-end games. Earlier exploratory host harness attempts hit Drift stream
+cancellation timers; moving database close to teardown and advancing the pending
+zero-duration cancellation timer resolved the harness issue. No product failure
+was found in these iPad route checks.
 
 These checks do not certify full VoiceOver/Voice Control navigation, contrast or
 all common tasks at enlarged text. The board exposes a turn/dice summary but not

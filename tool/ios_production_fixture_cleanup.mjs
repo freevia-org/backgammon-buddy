@@ -1,7 +1,7 @@
 // Manual production acceptance coordinator. Never sweeps existing user data.
 // Requires an already-authorized Firebase CLI and a private simulator fixture.
 import {createRequire} from 'node:module';
-import {readFile} from 'node:fs/promises';
+import {readFile, unlink} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {resolve} from 'node:path';
 import {GoogleRest, cleanup} from '../firebase/admin/privacy_cleanup.mjs';
@@ -39,6 +39,17 @@ assert.equal(account?.user.email, 'info@freevia.org', 'Use the approved project 
 const credentials = await auth.getAccessToken(account.tokens.refresh_token,
   ['https://www.googleapis.com/auth/cloud-platform', 'https://www.googleapis.com/auth/firebase']);
 const api = new GoogleRest({project: fixture.project, token: credentials.access_token});
+const identities = await api.request('auth', `projects/${fixture.project}/accounts:lookup`,
+  'POST', {localId: fixture.uids});
+assert.equal(identities.users?.length, 2);
+for (const user of identities.users) {
+  assert.ok(fixture.uids.includes(user.localId));
+  assert.ok(Number.isFinite(Number(user.createdAt)) &&
+    Math.abs(Date.now() - Number(user.createdAt)) < 15 * 60_000,
+    'Refusing an identity not newly created in this test window');
+  assert.ok(!user.email && !user.phoneNumber && !user.providerUserInfo?.length,
+    'Refusing a non-anonymous identity');
+}
 const root = api.root;
 const matchName = `${root}/matches/${fixture.code}`;
 const match = await api.request('firestore', matchName);
@@ -69,10 +80,23 @@ console.log('PASS: only the two disposable identities and their match tree erase
 // Wait until the native client has read both receipts without an Auth token.
 let acknowledged = false;
 for (let i = 0; i < 180; i++) {
-  try {await readFile(fixturePath); await sleep(1000);}
-  catch (error) {if (error.code === 'ENOENT') {acknowledged = true; break;} throw error;}
+  try {
+    const saved = JSON.parse(await readFile(fixturePath, 'utf8'));
+    if (saved.confirmed === true && saved.code === fixture.code &&
+        JSON.stringify(saved.uids) === JSON.stringify(fixture.uids)) {
+      acknowledged = true;
+      break;
+    }
+    await sleep(1000);
+  } catch (error) {
+    // Uninstallation or a crash can remove the container; absence is NOT proof.
+    if (error.code === 'ENOENT') break;
+    if (error instanceof SyntaxError) {await sleep(1000); continue;}
+    throw error;
+  }
 }
-assert.ok(acknowledged, 'Native receipt check not acknowledged; keep receipts for diagnosis');
 await api.deleteDocuments(fixture.uids.map(uid => `${root}/privacyRequests/${uid}`)
   .concat(fixture.receipts.map(receipt => `${root}/deletionReceipts/${receipt}`)));
-console.log('PASS: native client acknowledged both receipts; disposable receipt/marker records removed.');
+assert.ok(acknowledged, 'Native receipt check was not explicitly acknowledged; fixtures erased');
+await unlink(fixturePath);
+console.log('PASS: native client explicitly acknowledged both receipts; disposable receipt/marker records removed.');
