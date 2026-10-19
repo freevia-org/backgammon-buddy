@@ -29,30 +29,16 @@ void main() {
     return match?.group(1);
   }
 
-  test('NSCameraUsageDescription is present and explains BOTH camera uses', () {
+  test('v1 camera permission explains nearby QR and manual fallback', () {
     final value = valueOf('NSCameraUsageDescription');
-    expect(value, isNotNull,
-        reason: 'the app links a camera API (QR join, and Buddy Mode watching '
-            'the board); iOS kills the process on first use without this key');
-    // Two features now share one prompt, and iOS shows it once. A string that
-    // only mentions QR codes would be a lie the second time it appears — in
-    // Buddy Mode, where no QR code is involved at all.
-    expect(value!.toLowerCase(), contains('qr'),
-        reason: 'the QR join still asks for the camera');
-    expect(value.toLowerCase(), contains('board'),
-        reason: 'Buddy Mode points the camera at the physical board, and the '
-            'user sees this same string when it does');
+    expect(value, isNotNull);
+    expect(value!.toLowerCase(), contains('qr'));
+    expect(value.toLowerCase(), contains('manually'));
+    expect(value.toLowerCase(), isNot(contains('physical board')));
   });
 
-  test('NSMicrophoneUsageDescription is present and says what it listens for',
-      () {
-    final value = valueOf('NSMicrophoneUsageDescription');
-    expect(value, isNotNull,
-        reason: "Buddy Mode's dice-roll listener links an audio-input API; "
-            'iOS terminates the app on first use without this key');
-    expect(value!.toLowerCase(), contains('dice'),
-        reason: 'a usage string that does not name the reason is what App '
-            'Review rejects');
+  test('v1 does not declare deferred microphone access', () {
+    expect(valueOf('NSMicrophoneUsageDescription'), isNull);
   });
 
   test('NSLocalNetworkUsageDescription survives (Play Nearby still needs it)',

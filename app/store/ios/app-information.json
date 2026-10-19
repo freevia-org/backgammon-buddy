@@ -1,0 +1,21 @@
+{
+  "status": "preparation-draft-not-submitted",
+  "bundle_id": "org.freevia.backgammonbuddy",
+  "sku": "freevia-backgammon-buddy-ios",
+  "primary_locale": "en-US",
+  "primary_category": "Games",
+  "game_subcategories": [
+    "Board",
+    "Strategy"
+  ],
+  "marketing_url": "https://freevia.org/backgammon-buddy/",
+  "support_url": "https://freevia.org/backgammon-buddy/support/",
+  "privacy_policy_url": "https://freevia.org/backgammon-buddy/privacy/",
+  "support_email": "support@freevia.org",
+  "copyright": "2026 Freevia",
+  "release_mode": "manual",
+  "price_proposal": "Free \u2014 owner to confirm",
+  "age_rating": "Complete current Apple questionnaire; no numerical rating assumed",
+  "review_contact": "ACCOUNT HOLDER TO SUPPLY \u2014 not public support contact",
+  "encryption_declaration": "Pending exact-binary assessment; no exemption assumed"
+}

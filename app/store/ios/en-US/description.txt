@@ -1,0 +1,19 @@
+Build your backgammon skills through play, review and practice.
+
+Play against the built-in computer opponent or share one device with another player. Review completed games, explore engine evaluations and save useful positions for practice. Local play, analysis and learning work offline.
+
+• Computer opponents and local two-player games
+• On-screen hints and move explanations in supported solo modes
+• Post-game review and a saved game archive
+• Practice exercises and learning progress
+• Match exports in SGF, MAT and XG formats
+• Nearby play on trusted Wi-Fi, with optional QR joining
+• Online play when the service is configured
+• Themes, larger text and 28 interface languages
+
+Live nearby and online matches are unassisted. Nearby traffic is unencrypted; use trusted Wi-Fi. Camera access is optional and used only to scan a nearby game's QR code. A manual address entry option is available.
+
+This is a board game with no real-money wagering or prizes. Physical-board recognition, microphone listening and spoken Buddy coaching are not included in this version.
+
+Privacy: https://freevia.org/backgammon-buddy/privacy/
+Support: https://freevia.org/backgammon-buddy/support/
