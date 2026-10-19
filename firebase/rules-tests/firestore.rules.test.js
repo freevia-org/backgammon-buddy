@@ -1122,6 +1122,45 @@ describe('privacy requests and retention', () => {
   });
 });
 
+describe('deletion completion receipts', () => {
+  const receipt = 'a'.repeat(64);
+  const receiptDoc = db => doc(db, 'deletionReceipts', receipt);
+  it('permits capability-only reads but no enumeration or client publication', async () => {
+    await assertSucceeds(getDoc(receiptDoc(anonDb)));
+    await assertFails(getDocs(collection(anonDb, 'deletionReceipts')));
+    await assertFails(setDoc(receiptDoc(hostDb), { status: 'complete' }));
+    await testEnv.withSecurityRulesDisabled(async context => {
+      await setDoc(receiptDoc(context.firestore()), {
+        status: 'complete', completedAt: new Date(), expiresAt: new Date(Date.now() + 86400000),
+      });
+    });
+    await assertSucceeds(getDoc(receiptDoc(anonDb)));
+    await assertFails(updateDoc(receiptDoc(hostDb), { status: 'complete' }));
+    await assertFails(deleteDoc(receiptDoc(hostDb)));
+  });
+  it('rejects expired receipts and malformed capability paths', async () => {
+    await testEnv.withSecurityRulesDisabled(async context => {
+      await setDoc(receiptDoc(context.firestore()), { status: 'complete', expiresAt: new Date(0) });
+    });
+    await assertFails(getDoc(receiptDoc(anonDb)));
+    await assertFails(getDoc(doc(anonDb, 'deletionReceipts', 'guess')));
+  });
+  it('can attach a receipt once to an older pending request, never to completed data', async () => {
+    const request = doc(hostDb, 'privacyRequests', HOST);
+    await assertSucceeds(setDoc(request, { status: 'pending', requestedAt: serverTimestamp() }));
+    await assertFails(updateDoc(request, { receipt: 'bad' }));
+    await assertFails(updateDoc(doc(guestDb, 'privacyRequests', HOST), { receipt }));
+    await assertSucceeds(updateDoc(request, { receipt }));
+    await assertFails(updateDoc(request, { receipt: 'b'.repeat(64) }));
+  });
+  it('requires well-formed receipts in immutable owner requests', async () => {
+    const request = doc(hostDb, 'privacyRequests', HOST);
+    await assertFails(setDoc(request, { status: 'pending', requestedAt: serverTimestamp(), receipt: 'guess' }));
+    await assertSucceeds(setDoc(request, { status: 'pending', requestedAt: serverTimestamp(), receipt }));
+    await assertFails(updateDoc(request, { receipt: 'b'.repeat(64) }));
+  });
+});
+
 describe('everything else', () => {
   it('denies reads and writes outside the match model', async () => {
     await assertFails(getDoc(doc(hostDb, 'users', HOST)));

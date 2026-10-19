@@ -286,11 +286,28 @@ service cloud.firestore {
     match /privacyRequests/{userId} {
       allow get: if signedIn() && userId == uid();
       allow create: if signedIn() && userId == uid()
-        && request.resource.data.keys().hasOnly(['status', 'requestedAt'])
+        && request.resource.data.keys().hasOnly(['status', 'requestedAt', 'receipt'])
         && request.resource.data.keys().hasAll(['status', 'requestedAt'])
+        && (!('receipt' in request.resource.data)
+            || isHex64(request.resource.data.receipt))
         && request.resource.data.status == 'pending'
         && request.resource.data.requestedAt == request.time;
-      allow list, update, delete: if false;
+      // Upgrade a legacy pending request once; never replace a capability or
+      // alter status/timestamps. Useful after updating an older installation.
+      allow update: if signedIn() && userId == uid()
+        && resource.data.status == 'pending' && !('receipt' in resource.data)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['receipt'])
+        && isHex64(request.resource.data.receipt);
+      allow list, delete: if false;
+    }
+
+    // Read-only capability receipt: random 256-bit ID, no UID or match data.
+    // No collection enumeration, client writes or account credential needed.
+    match /deletionReceipts/{receipt} {
+      allow get: if isHex64(receipt)
+        && (!exists(/databases/$(database)/documents/deletionReceipts/$(receipt))
+            || resource.data.expiresAt > request.time);
+      allow list, create, update, delete: if false;
     }
 
     // ---------- everything else ----------

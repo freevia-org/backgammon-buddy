@@ -23,7 +23,7 @@ monotonically increasing build number for the eventual signed release.
 
 ## Blockers that do not depend on owning an iPhone
 
-1. **GNUbg licensing decision.** The current iOS workflow statically links GNUbg.
+1. **GNUbg licensing decision.** See the [investigated options](gnubg-app-store-options.md). The current iOS workflow statically links GNUbg.
    `native/licenses/README.md` identifies combined binaries as GPL-3.0-or-later;
    first-party MIT licensing does not relicense that combined executable. Resolve
    App Store terms/distribution compatibility and corresponding-source obligations
@@ -32,14 +32,23 @@ monotonically increasing build number for the eventual signed release.
    a separately licensed implementation or a separately validated build excluding
    GNUbg and any other incompatible dependency, including assets. No such flavor
    is implemented by this preparation. Do not remove notices to bypass this gate.
-2. **Anonymous-account deletion completion.** The app acknowledges a deletion
-   request and clears the local credential. The existing server cleanup handles
-   deletion asynchronously; an automatic completion receipt is not implemented.
-   Design and test a privacy-preserving completion notification/status mechanism
-   before Apple submission if online identities are enabled. Do not represent
-   “request accepted” as “account deleted.” Apple covers guest identities too:
-   [account deletion](https://developer.apple.com/help/app-review/guideline-reference/5-1-1-account-deletion).
-3. **Exact release configuration and privacy form.** Choose whether online play
+2. **Deletion confirmation implemented; deployment acceptance remains.** Settings
+   → Privacy → Check deletion confirmation uses a private 256-bit receipt stored
+   in OS secure storage, independently of the removed Firebase credential.
+   The worker publishes completion only after match and Auth deletion succeeds.
+   The app preserves verified confirmation across restarts and checks all locally
+   saved requests; missing/expired receipts and failures never imply completion.
+   Anonymous receipt reads cannot list requests, create accounts or expose UID/
+   match data. Server receipts expire after 90 days; a completed cached receipt
+   contains no UID. Pending legacy requests can attach a receipt once while their
+   owner credential still works. Lost-device/older completed requests use support.
+   A demo-only real Auth/Firestore erasure-and-receipt test passed, alongside
+   rules, client, cleanup-worker and UI/persistence tests. Deploy matching rules
+   and worker, update the public retention disclosure, then verify the exact
+   production candidate before marking this operational gate complete.
+   This is an in-app status confirmation, not an email/push notification.
+   [Apple's requirement](https://developer.apple.com/support/offering-account-deletion-in-your-app/).
+3. **Exact release configuration and privacy form.** See the [current configuration and encryption inventory](ios-privacy-encryption-handoff.md). Choose whether online play
    and optional telemetry are enabled in the final build. CI uses repository
    variables for online REST access; Firebase native telemetry also needs sender
    and iOS app identifiers. Inspect the actual signed artifact and behavior before
@@ -49,16 +58,16 @@ monotonically increasing build number for the eventual signed release.
    cryptography, or blindly set `ITSAppUsesNonExemptEncryption=false`. Complete
    Apple's [export questions](https://developer.apple.com/help/app-store-connect/manage-app-information/overview-of-export-compliance/)
    for the exact binary; set the key only after the exemption is established.
-5. **Authentic iPhone and iPad screenshots.** Target family is `1,2`; both devices
-   need layout acceptance and store assets. Existing phone window screenshots are
-   test evidence, not a completed store set. Capture simulator screens with no
-   desktop chrome, real app content, dummy data and no private invite codes.
-   Proposed order: solo game/tutor, completed review, Learning, Archive, Home.
-   Supply 1–10 PNG/JPEG images for each required display class; use current
-   [Apple dimensions](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/)
-   (e.g. iPhone 1320×2868 and iPad 2064×2752 portrait). Do not stretch phone
-   captures into iPad images. Inspect every image and ensure no alpha channel.
-   These captures remain outstanding; no marketing screenshots are fabricated.
+5. **Simulator screenshots prepared.** Six authentic English portrait captures
+   (Home, match setup, solo game with tutor) are committed under
+   `app/store/ios/screenshots/`: three iPhone Pro Max 1320×2868 images and three
+   iPad Pro 13-inch 2064×2752 images. Both native integration capture tests passed;
+   all six were visually reviewed and encoded as opaque 8-bit sRGB PNGs without
+   resizing, overlays or UI edits. CI checks dimensions, opacity and SHA-256.
+   See the [capture manifest and reproduction instructions](../app/store/ios/screenshots/README.md).
+   These show the current dual-engine UI; recapture after visible changes or an
+   alternative licensing build. No App Store upload/acceptance is established.
+   [Apple specifications](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/).
 6. **Age rating and accessibility claims.** Complete Apple's current questionnaire
    from actual content. No money/wager/prize functionality is implemented; do not
    infer Apple's simulated-gambling answer or age rating from Play's IARC result.
@@ -132,7 +141,8 @@ No final App Privacy answers have been submitted or certified.
   coverage does not certify delivery.
 - iPad layouts, touch and VoiceOver usability, supported OS coverage, memory,
   battery and thermal behavior. iPad simulator screenshots/layout work can be
-  done before hardware is available, but is not recorded as completed here.
+  done before hardware is available; the three portrait capture flows now pass,
+  while broader iPad acceptance remains open.
 - Optional telemetry consent/withdrawal and production network behavior if enabled.
   Production service configuration is a separate dependency from hardware.
 

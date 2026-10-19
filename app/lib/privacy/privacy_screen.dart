@@ -126,6 +126,32 @@ class _OnlineDeletionSectionState
     extends ConsumerState<_OnlineDeletionSection> {
   bool _busy = false;
   String? _result;
+  String? _confirmation;
+
+  Future<void> _check() async {
+    setState(() => _busy = true);
+    try {
+      final status = await ref.read(checkOnlineDeletionProvider)();
+      if (!mounted) return;
+      setState(
+        () => _confirmation = switch (status) {
+          DeletionConfirmation.none => widget.l10n.privacyDeletionReceiptNone,
+          DeletionConfirmation.pending =>
+            widget.l10n.privacyDeletionReceiptPending,
+          DeletionConfirmation.complete =>
+            widget.l10n.privacyDeletionReceiptComplete,
+        },
+      );
+    } catch (_) {
+      if (mounted) {
+        setState(
+          () => _confirmation = widget.l10n.privacyDeletionReceiptFailed,
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
 
   Future<void> _request() async {
     final l10n = widget.l10n;
@@ -199,6 +225,17 @@ class _OnlineDeletionSectionState
           ),
         ),
         if (_result != null) ...[const SizedBox(height: 8), Text(_result!)],
+        const SizedBox(height: 8),
+        Text(widget.l10n.privacyDeletionReceiptHelp),
+        TextButton.icon(
+          onPressed: _busy ? null : _check,
+          icon: const Icon(Icons.verified_user_outlined),
+          label: Text(widget.l10n.privacyDeletionReceiptCheck),
+        ),
+        if (_confirmation != null) ...[
+          const SizedBox(height: 8),
+          Text(_confirmation!),
+        ],
       ],
     ),
   );

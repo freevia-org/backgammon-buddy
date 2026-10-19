@@ -150,6 +150,62 @@ void main() {
     },
   );
 
+  for (final status in DeletionConfirmation.values) {
+    testWidgets('deletion confirmation displays verified $status separately', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            checkOnlineDeletionProvider.overrideWithValue(() async => status),
+          ],
+          child: const MaterialApp(home: PrivacyScreen()),
+        ),
+      );
+      final button = find.text('Check deletion confirmation');
+      await tester.scrollUntilVisible(button, 200);
+      await tester.ensureVisible(button);
+      await tester.pumpAndSettle();
+      await tester.tap(button);
+      await tester.pumpAndSettle();
+      expect(
+        find.textContaining(switch (status) {
+          DeletionConfirmation.none => 'No deletion receipt is saved',
+          DeletionConfirmation.pending => 'Deletion is not confirmed yet.',
+          DeletionConfirmation.complete => 'Deletion completed:',
+        }),
+        findsOneWidget,
+      );
+      if (status != DeletionConfirmation.complete) {
+        expect(find.textContaining('Deletion completed:'), findsNothing);
+      }
+    });
+  }
+
+  testWidgets('failed confirmation never displays completion', (tester) async {
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          checkOnlineDeletionProvider.overrideWithValue(
+            () async => throw StateError('offline'),
+          ),
+        ],
+        child: const MaterialApp(home: PrivacyScreen()),
+      ),
+    );
+    final button = find.text('Check deletion confirmation');
+    await tester.scrollUntilVisible(button, 200);
+    await tester.ensureVisible(button);
+    await tester.pumpAndSettle();
+    await tester.tap(button);
+    await tester.pumpAndSettle();
+    expect(
+      find.textContaining('Could not check deletion confirmation.'),
+      findsOneWidget,
+    );
+    expect(find.textContaining('Deletion completed:'), findsNothing);
+  });
+
   test('only public HTTPS policy URLs are exposed', () {
     expect(publicPrivacyPolicyUri(''), isNull);
     expect(publicPrivacyPolicyUri('file:///private'), isNull);
