@@ -1279,7 +1279,7 @@ class $SettingsTable extends Settings
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: false,
-    defaultValue: const Constant('wildbg'),
+    defaultValue: const Constant('gnubg'),
   );
   static const VerificationMeta _parallelEngineAnalysisMeta =
       const VerificationMeta('parallelEngineAnalysis');

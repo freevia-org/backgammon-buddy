@@ -114,7 +114,7 @@ class SettingsRepository {
         telemetryEnabled: row.telemetryEnabled,
         localeCode: row.localeCode,
         evaluationEngine: EvaluationEngine.values.firstWhere(
-          (e) => e.name == row.evaluationEngine, orElse: () => EvaluationEngine.wildbg),
+          (e) => e.name == row.evaluationEngine, orElse: () => AppSettings.defaults.evaluationEngine),
         parallelEngineAnalysis: row.parallelEngineAnalysis,
       );
 
