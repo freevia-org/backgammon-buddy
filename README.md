@@ -23,8 +23,8 @@ the current build may differ. [See the screenshots on the website](https://freev
 
 ## Get the app
 
-- **Google Play — Android:** [Download Backgammon Buddy](https://play.google.com/store/apps/details?id=org.freevia.backgammonbuddy). Version 0.14.0 (build 10061) is live in production. Invited testers can also use the [internal-test opt-in](https://play.google.com/apps/internaltest/4701280291485247000).
-- **App Store — iOS next:** Not available yet. There is no App Store listing or release date. See the [publishing preparation and remaining gates](docs/app-store-publishing.md).
+- **Google Play — Android:** [Download Backgammon Buddy](https://play.google.com/store/apps/details?id=org.freevia.backgammonbuddy). Version 0.16.1 is visible in the public listing in supported regions. The [0.16.1 GitHub release](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.1) also has a signed Android APK and corresponding source. Invited testers can use the [internal-test opt-in](https://play.google.com/apps/internaltest/4701280291485247000).
+- **App Store — iOS next:** Not available yet. The 0.16.1 GitHub release contains an unsigned iOS device preview, but there is no App Store or TestFlight listing. See the [publishing preparation and remaining gates](docs/app-store-publishing.md).
 
 ## What you can do
 
