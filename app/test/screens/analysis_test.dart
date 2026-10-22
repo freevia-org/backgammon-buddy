@@ -357,6 +357,7 @@ void main() {
           ],
           matchBefore: const MatchState(matchLength: 5),
           cubeless: false,
+          engineId: AppSettings.defaults.evaluationEngine.name,
         );
         await _repo.saveAnalysis(gameId, jsonEncode(analysis.toJson()));
       });
