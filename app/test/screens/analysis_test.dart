@@ -173,7 +173,7 @@ Future<void> _pumpLoaded(WidgetTester t, Widget app) async {
 
 /// Records [fx] and caches an analysis where White's move is a blunder (0.20,
 /// best differs from played) and Black's is best (0.0). Returns the game id.
-Future<int> _seedCachedBlunder(WidgetTester t) async {
+Future<int> _seedCachedBlunder(WidgetTester t, {String? engineId}) async {
   late int gameId;
   await t.runAsync(() async {
     final matchId = await _repo.startMatch(
@@ -196,6 +196,7 @@ Future<int> _seedCachedBlunder(WidgetTester t) async {
     ]);
     final analysis = await GameAnalyzer(
       TutorService(engine),
+      engineId: engineId ?? AppSettings.defaults.evaluationEngine.name,
     ).analyze(fx.game.events, isCrawford: false, cubeless: null);
     await _repo.saveAnalysis(gameId, jsonEncode(analysis.toJson()));
   });
@@ -356,6 +357,7 @@ void main() {
           ],
           matchBefore: const MatchState(matchLength: 5),
           cubeless: false,
+          engineId: AppSettings.defaults.evaluationEngine.name,
         );
         await _repo.saveAnalysis(gameId, jsonEncode(analysis.toJson()));
       });
@@ -381,7 +383,7 @@ void main() {
     (t) async {
       await t.binding.setSurfaceSize(_surface);
       addTearDown(() => t.binding.setSurfaceSize(null));
-      final gameId = await _seedCachedBlunder(t);
+      final gameId = await _seedCachedBlunder(t, engineId: 'wildbg');
       await t.runAsync(
         () => SettingsRepository(_db).save(
           AppSettings.defaults.copyWith(

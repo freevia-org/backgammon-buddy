@@ -29,7 +29,8 @@ The Runner force-loads the FFI exports and uses DynamicLibrary.process().
 
 ## Evaluation and comparison
 
-wildbg remains the default. Settings selects the primary engine for AI,
+GNUbg is the default for new settings; saved engine choices are preserved.
+Settings selects the primary engine for AI,
 coaching and analysis. The independent “Analyse with both engines” switch
 adds a comparison to the tutor's ranked-play panel. Both receive one captured
 board, mover and dice; engine-specific results are displayed separately.

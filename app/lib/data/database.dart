@@ -73,7 +73,7 @@ class Games extends Table {
 /// can be seeded with just its id (see [AppDatabase.migration]).
 @DataClassName('SettingsRow')
 class Settings extends Table {
-  TextColumn get evaluationEngine => text().withDefault(const Constant('wildbg'))();
+  TextColumn get evaluationEngine => text().withDefault(const Constant('gnubg'))();
   BoolColumn get parallelEngineAnalysis => boolean().withDefault(const Constant(false))();
   /// Always 1 (enforced by [customConstraints]). Defaulted so a bare
   /// `INSERT (id) VALUES (1)` fills every other column from its default.
@@ -272,7 +272,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 12;
+  int get schemaVersion => 13;
 
   // Games.matchId is a SQL-level foreign key with ON DELETE CASCADE, but SQLite
   // only ENFORCES foreign keys when the per-connection `foreign_keys` pragma is
@@ -402,6 +402,12 @@ class AppDatabase extends _$AppDatabase {
           }
           if (from >= 2 && from < 11) {
             await m.addColumn(settings, settings.localeCode);
+          }
+          if (from == 12) {
+            // Update the SQL default while preserving every saved preference,
+            // including an existing wildbg selection.
+            // ignore: experimental_member_use
+            await m.alterTable(TableMigration(settings));
           }
         },
         beforeOpen: (details) async {

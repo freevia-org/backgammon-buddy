@@ -167,7 +167,7 @@ class AppSettings {
     this.tutorOptions = const TutorOptions(),
     this.telemetryEnabled = false,
     this.localeCode,
-    this.evaluationEngine = EvaluationEngine.wildbg,
+    this.evaluationEngine = EvaluationEngine.gnubg,
     this.parallelEngineAnalysis = false,
   });
 

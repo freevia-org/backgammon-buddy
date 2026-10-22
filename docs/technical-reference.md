@@ -2,7 +2,7 @@
 
 ## Evaluation engines
 
-Settings selects wildbg (the default) or GNU Backgammon 1.08.003 for AI,
+Settings selects GNU Backgammon 1.08.003 (the default) or wildbg for AI,
 coaching and post-game analysis. Optional parallel tutor analysis displays
 separate advice from both engines for one captured position. GNUbg uses its
 native deterministic search, bearoff databases and match-aware cube handling;
