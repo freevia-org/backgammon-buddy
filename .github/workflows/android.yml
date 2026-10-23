@@ -130,7 +130,7 @@ jobs:
 
       # Gradle wrapper distribution + dependency/transform caches. Without this
       # every run downloaded Gradle 9.1, AGP, Kotlin and the Firebase/AndroidX
-      # graph from scratch inside `flutter build apk`. Keyed on every Gradle
+      # graph from scratch during the APK build. Keyed on every Gradle
       # input and on pubspec.lock (Flutter plugins contribute Gradle modules);
       # a prefix restore keeps a dependency bump incremental. PR runs read the
       # master entry; only master writes one GitHub-side.
