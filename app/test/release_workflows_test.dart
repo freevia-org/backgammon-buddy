@@ -27,9 +27,9 @@ void main() {
       final expectedMajor = switch (action) {
         'checkout' => 'v7',
         'setup-node' => 'v7',
-        'cache' => 'v5',
+        'cache' => 'v6',
         'setup-java' => 'v6',
-        'upload-artifact' => 'v6',
+        'upload-artifact' => 'v7',
         _ => fail('Unexpected action $action'),
       };
       if (RegExp(r'^[0-9a-f]{40}$').hasMatch(reference)) {
@@ -68,7 +68,7 @@ void main() {
     const supportedHostedLabels = {
       'ubuntu-24.04',
       'windows-latest',
-      'macos-latest',
+      'macos-26',
     };
     for (final name in ['ci', 'android', 'ios', 'privacy-cleanup']) {
       final source = workflow(name);
@@ -106,7 +106,9 @@ void main() {
 
   test('iOS distribution uses native CLI and retains ad-hoc signing gates', () {
     final source = workflow('ios');
-    expect(source, contains('runs-on: macos-latest'));
+    // Pinned image and pinned Xcode: `macos-latest` drifts under the build.
+    expect(source, contains('runs-on: macos-26'));
+    expect(source, contains('sudo xcode-select -s'));
     expect(
       source,
       isNot(contains('uses: wzieba/Firebase-Distribution-Github-Action')),
@@ -136,21 +138,68 @@ void main() {
   test('automatic privileged builds require a trusted master push', () {
     for (final name in ['android', 'ios']) {
       final source = workflow(name);
-      final jobGate = RegExp(
-        r'    if: >-\r?\n([\s\S]*?)    steps:',
-      ).firstMatch(source)!.group(1)!.replaceAll(RegExp(r'\s+'), '');
-      // A branch filter alone also matches a PR whose head branch is master.
-      // All four AND clauses must remain within the workflow_run alternative.
+      // No privilege-escalating triggers: `workflow_run` and
+      // `pull_request_target` both run with secrets after untrusted code, and
+      // a PR head named master satisfies a workflow_run branch filter.
+      expect(source, isNot(contains('workflow_run:')));
+      expect(source, isNot(contains('pull_request_target')));
+      final push = RegExp(
+        r'^  push:\r?\n    branches: \[([^\]]*)\]',
+        multiLine: true,
+      ).firstMatch(source);
+      expect(push?.group(1), 'master',
+          reason: '$name may run automatically with secrets only on master');
+      // Pull requests build without secrets: every secret reference must be
+      // guarded so a same-repository PR build never receives one.
+      final references = RegExp(r'\$\{\{([^}]*secrets\.[^}]*)\}\}')
+          .allMatches(source)
+          .map((match) => match.group(1)!.trim())
+          .toList();
+      expect(references, isNotEmpty);
+      for (final reference in references) {
+        expect(
+          reference,
+          matches(RegExp(
+            r"^github\.event_name != 'pull_request' && secrets\.[A-Z0-9_]+ \|\| ''$",
+          )),
+          reason: '$name must not hand a release secret to a PR build',
+        );
+      }
+    }
+  });
+
+  test('tester distribution waits for CI to pass on the same commit', () {
+    final gate = File('../.github/scripts/wait-for-ci.sh').readAsStringSync();
+    expect(gate, contains('--workflow ci.yml'));
+    expect(gate, contains('--commit "\$SHA"'));
+    expect(gate, contains('--event push'));
+    expect(gate, contains('if [ "\$conclusion" = success ]; then'));
+    for (final (name, distribute) in [
+      ('android', '      - name: Distribute to Firebase App Distribution'),
+      ('ios', '      - name: Node for macOS Firebase distribution'),
+    ]) {
+      final source = workflow(name);
+      final wait = source.indexOf(
+        '      - name: Wait for CI to pass on this commit',
+      );
+      expect(wait, isNonNegative, reason: '$name must gate distribution');
+      expect(wait, lessThan(source.indexOf(distribute)));
+      final waitIf = RegExp(
+        r'      - name: Wait for CI to pass on this commit\r?\n'
+        r'        if: ([^\r\n]+)',
+      ).firstMatch(source)!.group(1)!;
+      expect(waitIf, startsWith("github.event_name == 'push' && "));
       expect(
-        jobGate,
-        "github.event_name=='workflow_dispatch'||"
-        "(github.event.workflow_run.conclusion=='success'&&"
-        "github.event.workflow_run.event=='push'&&"
-        "github.event.workflow_run.head_branch=='master'&&"
-        'github.event.workflow_run.head_repository.full_name==github.repository)',
-        reason: '$name must not execute a PR head with release secrets',
+        source.substring(wait),
+        contains('run: bash .github/scripts/wait-for-ci.sh'),
       );
     }
+    // A master CI run must never be cancelled by a later push, or the gate
+    // for the earlier commit could never pass.
+    expect(
+      workflow('ci'),
+      contains("cancel-in-progress: \${{ github.event_name == 'pull_request' }}"),
+    );
   });
 
   test('every Android artifact targets only ABIs with a compiled engine', () {

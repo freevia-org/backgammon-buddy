@@ -3,8 +3,8 @@
 | Workflow | File | Trigger | Purpose |
 |---|---|---|---|
 | CI | `ci.yml` | push to `master`, all PRs | Package, app, native, emulator and release-preflight checks — see the breakdown below |
-| Android | `android.yml` | `workflow_dispatch`, **CI success on a same-repository `master` push** | Build ARM/ARM64 APKs, distribute only with release signing and Firebase configured, and optionally prepare a signed Play bundle artifact |
-| iOS | `ios.yml` | `workflow_dispatch`, **CI success on `master`** | Build the Rust engine staticlib, statically link it into `Runner`, produce an unsigned `Runner.app`, and (when configured) build a signed IPA and push it to Firebase App Distribution |
+| Android | `android.yml` | push to `master`, PRs touching app/native/packages/tool, `workflow_dispatch` | Build ARM/ARM64 APKs in parallel with CI; on `master`, distribute only after CI passes for the same commit and only with release signing and Firebase configured; optionally prepare a signed Play bundle artifact (dispatch) |
+| iOS | `ios.yml` | push to `master`, PRs touching app/native/packages/tool, `workflow_dispatch` | Build the Rust engine staticlib, statically link it into `Runner`, produce an unsigned `Runner.app`, and (when configured) build a signed IPA and push it to Firebase App Distribution after CI passes |
 
 ## `ci.yml` — test jobs
 
@@ -28,36 +28,68 @@ golden tests. Upgrade those pins together and regenerate goldens deliberately.
 
 ## Distribution is gated on CI
 
-`android.yml` and `ios.yml` no longer trigger on `push`. They trigger on
-`workflow_run` — CI *completing* on `master` — and their single job is guarded
-by CI success, `event == 'push'`, `head_branch == 'master'`, and the head
-repository matching this repository. A PR branch can also be named `master`;
-the branch trigger alone does not establish trust. These jobs have signing and
-distribution secrets, so they must not check out untrusted PR heads.
-Previously all three
-workflows raced the same push in parallel, so a commit that broke the test suite
-still built and distributed a binary; testers got a broken build before anyone
-noticed the red X.
+`android.yml` and `ios.yml` build **in parallel with** `ci.yml` and gate only
+the tester **upload** on it. Each workflow's `Wait for CI to pass on this
+commit` step (`.github/scripts/wait-for-ci.sh`) polls the `ci.yml` run for the
+same commit's push and fails the job unless it concluded `success`; the
+distribution steps run only after it. A commit that breaks the test suite is
+therefore still never distributed. Because CI (~4–5 min) finishes well before
+the mobile builds (~8–10 min), the wait is normally zero.
 
-Two details this shape forces:
+History: until 2026-10 these workflows chained off CI via `workflow_run`.
+That serialised CI in front of the builds (master push → all platforms done
+took ~14–15 min; it now takes ~10–11 min) and gave pull requests no Android/iOS
+signal at all, so a mobile build break surfaced only after merge (for example
+eight consecutive red master iOS runs on 2026-10-14/15). Before that, all three
+workflows raced the same push with no gate, so a commit that broke the tests
+still reached testers.
 
-* Each build job checks out `github.event.workflow_run.head_sha`. A
-  `workflow_run` job otherwise checks out the **default branch**, which is not
-  necessarily the commit CI validated.
-* `workflow_dispatch` still builds unconditionally, from `github.sha` — the
-  manual escape hatch is intact.
+Trust boundaries:
 
-Folding the build jobs into `ci.yml` with `needs:` was the alternative. It was
-rejected because `ci.yml` also runs on every pull request (where a three-ABI
-Rust cross-compile is pure waste) and because the manual dispatch entry point
-would have dragged the whole test matrix along with it.
+* Automatic runs with secrets happen only on `push` to `master` (merges, which
+  the ruleset requires to come through a PR with green CI). No workflow uses
+  `workflow_run` or `pull_request_target`, so a fork PR — even one whose head
+  branch is named `master` — never runs with secrets.
+* Pull requests run a **build-only** job. Every secret reference is written as
+  `${{ github.event_name != 'pull_request' && secrets.X || '' }}`, so even a
+  same-repository PR build gets no signing keystore, certificate or Firebase
+  credentials: the APK falls back to the debug keystore, iOS stays unsigned,
+  and nothing is distributed. `app/test/release_workflows_test.dart` enforces
+  this shape.
+* `workflow_dispatch` still builds unconditionally from the selected ref, with
+  no CI wait — the manual escape hatch is intact.
+* If CI for a master commit fails and is then re-run to green, re-run the
+  mobile job too: its gate already failed for that commit.
 
-All three workflows declare `permissions: contents: read`, a
-`concurrency` group with `cancel-in-progress`, and per-job `timeout-minutes`.
-The distribution workflows key their concurrency group on the **commit**, not
-the ref: under `workflow_run` every event reports `github.ref` as the default
-branch, so a ref key would let a newer master commit cancel an older commit's
-distribution mid-upload.
+Folding the mobile builds into `ci.yml` behind `needs:` would also run them in
+parallel, but `github.run_number` there is CI's counter, so automatic builds and
+manual `workflow_dispatch` builds would draw build numbers from two different
+counters and a dispatch could produce a lower build number than the previous
+master build. Keeping separate workflows keeps one monotonic counter per
+platform.
+
+Concurrency: `ci.yml` cancels superseded runs only for pull requests; master
+runs are keyed on the commit and never cancelled, because each master commit's
+mobile gate waits on that commit's CI result. The mobile workflows key master
+and dispatch runs on the **commit** (so a newer master commit never cancels an
+older one's distribution mid-upload) and PR runs on the PR number.
+
+All workflows declare least-privilege `permissions` (the mobile workflows add
+`actions: read` for the CI gate) and per-job `timeout-minutes`.
+
+## Caching
+
+| What | Where | Key |
+|---|---|---|
+| Rust `target/` + registry | engine, android, ios (`Swatinem/rust-cache`) | toolchain + `Cargo.lock` |
+| Flutter SDK + pub cache | every Flutter job (`subosito/flutter-action` `cache: true`) | Flutter version |
+| Dart pub cache | package/engine/online jobs | `packages/*/pubspec.yaml` (no lockfiles are committed) |
+| Gradle wrapper + caches | android | Gradle files + `app/pubspec.lock`, prefix fallback |
+| SwiftPM repositories + `DerivedData/*/SourcePackages` | ios | exact `Package.resolved` + Xcode version (no prefix fallback: the dependency inventory scans DerivedData) |
+| npm | privacy monitor, rules | `package-lock.json` |
+
+Caches written by `master` are readable from PRs; PR runs write only PR-scoped
+entries.
 
 ## `android.yml` — how it builds
 
@@ -124,8 +156,9 @@ APK bundles them automatically. No CI work is needed for nets.
 
 ## `ios.yml` — how it builds
 
-Runs on `macos-latest` (Rust cross-compilation to `aarch64-apple-ios` and the
-Xcode build both need macOS).
+Runs on the pinned `macos-26` image with Xcode **26.6** selected explicitly
+(`XCODE_VERSION` in `ios.yml`; Rust cross-compilation to `aarch64-apple-ios`
+and the Xcode build both need macOS). Bump the image and Xcode together.
 
 1. Checks out with `submodules: recursive` (the engine needs `native/wildbg`).
 2. Installs the Rust `aarch64-apple-ios` target and builds the engine staticlib:
