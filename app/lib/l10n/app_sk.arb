@@ -831,6 +831,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Odmietnuť",
   "gameDialogAccept": "Prijať",
+  "gameResultGameNumber": "Hra {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Hody",
+  "gameResultMatchScore": "Skóre zápasu: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Priemerné súčty hodov často kolíšu okolo 7. Táto malá vzorka nemôže preukázať vychýlenie kociek.",
+  "gameResultRatingNotAvailable": "Hodnotenie ťahov zatiaľ nie je dostupné. Pozrite si úplnú analýzu hry.",
+  "gameResultRematch": "Odveta",
   "gameDialogGameOverTitle": "Koniec partie",
   "gameDialogNextGame": "Ďalšia partia",
   "gameDialogMatchOverTitle": "Koniec zápasu",

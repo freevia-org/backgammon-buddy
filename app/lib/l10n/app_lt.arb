@@ -945,6 +945,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Atmesti",
   "gameDialogAccept": "Priimti",
+  "gameResultGameNumber": "Partija {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Metimai",
+  "gameResultMatchScore": "Rungtynių rezultatas: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Vidutinės kauliukų sumos dažnai svyruoja apie 7. Ši maža imtis negali parodyti, ar kauliukai yra šališki.",
+  "gameResultRatingNotAvailable": "Ėjimų įvertinimo dar nėra. Peržiūrėkite partiją ir gaukite visą analizę.",
+  "gameResultRematch": "Pakartotinis žaidimas",
   "gameDialogGameOverTitle": "Partija baigta",
   "gameDialogNextGame": "Kita partija",
   "gameDialogMatchOverTitle": "Mačas baigtas",

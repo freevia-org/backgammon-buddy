@@ -1318,6 +1318,22 @@
   "gameDialogResignBackgammon": "Backgammon",
   "gameDialogDecline": "Ablehnen",
   "gameDialogAccept": "Annehmen",
+  "gameResultGameNumber": "Spiel {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Würfe",
+  "gameResultMatchScore": "Matchstand: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Durchschnittliche Augensummen schwanken oft um 7. Diese kleine Stichprobe kann keine Würfelverzerrung belegen.",
+  "gameResultRatingNotAvailable": "Noch keine Zugbewertung. Öffne die Spielanalyse für eine vollständige Auswertung.",
+  "gameResultRematch": "Revanche",
   "gameDialogGameOverTitle": "Partie beendet",
   "gameDialogNextGame": "Nächste Partie",
   "gameDialogMatchOverTitle": "Match beendet",

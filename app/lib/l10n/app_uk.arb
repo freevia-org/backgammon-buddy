@@ -945,6 +945,22 @@
   "gameDialogResignBackgammon": "бекгеммон",
   "gameDialogDecline": "Відхилити",
   "gameDialogAccept": "Прийняти",
+  "gameResultGameNumber": "Гра {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Кидки",
+  "gameResultMatchScore": "Рахунок матчу: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Середня сума на кубиках часто коливається біля 7. Ця невелика вибірка не дає змоги визначити упередженість кубиків.",
+  "gameResultRatingNotAvailable": "Оцінки ходів ще немає. Перегляньте партію для повного аналізу.",
+  "gameResultRematch": "Матч-реванш",
   "gameDialogGameOverTitle": "Партію завершено",
   "gameDialogNextGame": "Наступна партія",
   "gameDialogMatchOverTitle": "Матч завершено",

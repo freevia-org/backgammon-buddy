@@ -1318,6 +1318,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Odrzuć",
   "gameDialogAccept": "Przyjmij",
+  "gameResultGameNumber": "Gra {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Rzuty",
+  "gameResultMatchScore": "Wynik meczu: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Średnia suma oczek często waha się wokół 7. Ta mała próbka nie pozwala stwierdzić, czy kości są stronnicze.",
+  "gameResultRatingNotAvailable": "Brak oceny ruchów. Przejrzyj grę, aby uzyskać pełną analizę.",
+  "gameResultRematch": "Rewanż",
   "gameDialogGameOverTitle": "Koniec partii",
   "gameDialogNextGame": "Następna partia",
   "gameDialogMatchOverTitle": "Koniec meczu",

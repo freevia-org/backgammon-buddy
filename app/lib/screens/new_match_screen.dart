@@ -248,6 +248,10 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
               ? difficultyLabel(context, _difficulty)
               : null,
           persistedMatchId: matchIdFuture,
+          onRematch: () {
+            Navigator.of(context).pop();
+            _startMatch();
+          },
           timings: settings.timings,
           interactionOptions: BoardInteractionOptions(
             showHighlights: settings.showHighlights,
