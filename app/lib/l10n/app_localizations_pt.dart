@@ -2374,6 +2374,30 @@ class AppLocalizationsPt extends AppLocalizations {
   String get gameDialogAccept => 'Aceitar';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Partida $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Placar do encontro: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Lançamentos';
+
+  @override
+  String get gameResultDiceNote =>
+      'A soma média dos dados varia frequentemente em torno de 7. Esta pequena amostra não permite determinar se os dados são tendenciosos.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Ainda não há avaliação das jogadas. Reveja a partida para obter uma análise completa.';
+
+  @override
+  String get gameResultRematch => 'Desforra';
+
+  @override
   String get gameDialogGameOverTitle => 'Fim do jogo';
 
   @override

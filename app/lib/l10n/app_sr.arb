@@ -945,6 +945,22 @@
   "gameDialogResignBackgammon": "bekgejmon",
   "gameDialogDecline": "Odbij",
   "gameDialogAccept": "Prihvati",
+  "gameResultGameNumber": "Partija {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Bacanja",
+  "gameResultMatchScore": "Rezultat meča: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Prosečni zbirovi bacanja često variraju oko 7. Ovaj mali uzorak ne može da utvrdi da li su kockice pristrasne.",
+  "gameResultRatingNotAvailable": "Ocena poteza još nije dostupna. Pregledajte partiju za potpunu analizu.",
+  "gameResultRematch": "Revanš",
   "gameDialogGameOverTitle": "Partija je završena",
   "gameDialogNextGame": "Sledeća partija",
   "gameDialogMatchOverTitle": "Meč je završen",

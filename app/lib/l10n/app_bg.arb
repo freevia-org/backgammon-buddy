@@ -831,6 +831,22 @@
   "gameDialogResignBackgammon": "бекгемон",
   "gameDialogDecline": "Откажи",
   "gameDialogAccept": "Приеми",
+  "gameResultGameNumber": "Игра {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Хвърляния",
+  "gameResultMatchScore": "Резултат в мача: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Средните стойности на заровете често се отклоняват от 7. Тази малка извадка не може да установи пристрастие.",
+  "gameResultRatingNotAvailable": "Няма оценка на ходовете. Прегледайте играта за пълен анализ.",
+  "gameResultRematch": "Реванш",
   "gameDialogGameOverTitle": "Край на партията",
   "gameDialogNextGame": "Следваща партия",
   "gameDialogMatchOverTitle": "Край на мача",

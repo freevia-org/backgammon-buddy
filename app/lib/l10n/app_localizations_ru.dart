@@ -2347,6 +2347,30 @@ class AppLocalizationsRu extends AppLocalizations {
   String get gameDialogAccept => 'Принять';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Игра $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Счёт матча: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Броски';
+
+  @override
+  String get gameResultDiceNote =>
+      'Средняя сумма на кубиках часто колеблется около 7. Такая небольшая выборка не позволяет определить смещение костей.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Оценки ходов пока нет. Откройте разбор партии для полного анализа.';
+
+  @override
+  String get gameResultRematch => 'Реванш';
+
+  @override
   String get gameDialogGameOverTitle => 'Партия окончена';
 
   @override

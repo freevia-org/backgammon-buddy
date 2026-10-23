@@ -2371,6 +2371,30 @@ class AppLocalizationsSk extends AppLocalizations {
   String get gameDialogAccept => 'Prijať';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Hra $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Skóre zápasu: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Hody';
+
+  @override
+  String get gameResultDiceNote =>
+      'Priemerné súčty hodov často kolíšu okolo 7. Táto malá vzorka nemôže preukázať vychýlenie kociek.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Hodnotenie ťahov zatiaľ nie je dostupné. Pozrite si úplnú analýzu hry.';
+
+  @override
+  String get gameResultRematch => 'Odveta';
+
+  @override
   String get gameDialogGameOverTitle => 'Koniec partie';
 
   @override

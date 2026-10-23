@@ -831,6 +831,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Diúltaigh",
   "gameDialogAccept": "Glac leis",
+  "gameResultGameNumber": "Cluiche {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Caitheamh",
+  "gameResultMatchScore": "Scór an chluiche: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Athraíonn meánshuim na ndísle timpeall ar 7 go minic. Ní féidir leis an sampla beag seo claonadh sna dísle a dheimhniú.",
+  "gameResultRatingNotAvailable": "Níl rátáil gluaiseachta ar fáil fós. Déan athbhreithniú ar an gcluiche le haghaidh anailís iomlán.",
+  "gameResultRematch": "Cluiche eile",
   "gameDialogGameOverTitle": "Cluiche thart",
   "gameDialogNextGame": "An chéad chluiche eile",
   "gameDialogMatchOverTitle": "Cluiche iomlán thart",

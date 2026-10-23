@@ -1141,6 +1141,9 @@ void main() {
   });
 
   testWidgets('game-end dialog shows the score; Next game continues', (t) async {
+    await t.binding.setSurfaceSize(const Size(375, 667));
+    addTearDown(() => t.binding.setSurfaceSize(null));
+
     final c = GameController(
       white: FakeAgent(),
       black: FakeAgent(),
@@ -1160,6 +1163,11 @@ void main() {
     expect(
         find.textContaining('White wins this game (+${result.points}, gammon).'),
         findsOneWidget);
+    expect(find.text('Game 1'), findsOneWidget);
+    expect(find.textContaining('Match score:'), findsOneWidget);
+    expect(find.textContaining('Rolls:'), findsOneWidget);
+    expect(find.textContaining('n='), findsNWidgets(2));
+    expect(find.textContaining('small sample cannot establish'), findsOneWidget);
     expect(find.textContaining('White ${c.match.whiteScore} —'), findsWidgets);
 
     final g1 = c.game;
@@ -1171,6 +1179,7 @@ void main() {
   });
 
   testWidgets('match-end dialog; Done pops the screen', (t) async {
+    var rematches = 0;
     final c = GameController(
       white: FakeAgent(),
       black: FakeAgent(),
@@ -1184,7 +1193,12 @@ void main() {
           builder: (ctx) => Center(
             child: ElevatedButton(
               onPressed: () => Navigator.of(ctx).push(
-                MaterialPageRoute(builder: (_) => GameScreen(controller: c)),
+                MaterialPageRoute(
+                  builder: (_) => GameScreen(
+                    controller: c,
+                    onRematch: () => rematches++,
+                  ),
+                ),
               ),
               child: const Text('start'),
             ),
@@ -1197,6 +1211,9 @@ void main() {
 
     expect(c.matchOver, isTrue);
     expect(find.text('Match over'), findsOneWidget);
+
+    await t.tap(find.widgetWithText(TextButton, 'Rematch'));
+    expect(rematches, 1);
 
     await t.tap(find.widgetWithText(FilledButton, 'Done'));
     await t.pumpAndSettle();

@@ -2351,6 +2351,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get gameDialogAccept => 'Accept';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Game $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Match score: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Rolls';
+
+  @override
+  String get gameResultDiceNote =>
+      'Average roll totals often vary around 7. This small sample cannot establish whether the dice are biased.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'No move rating yet. Review the game for a full analysis.';
+
+  @override
+  String get gameResultRematch => 'Rematch';
+
+  @override
   String get gameDialogGameOverTitle => 'Game over';
 
   @override

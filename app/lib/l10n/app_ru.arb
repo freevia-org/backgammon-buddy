@@ -945,6 +945,22 @@
   "gameDialogResignBackgammon": "бэкгэммон",
   "gameDialogDecline": "Отклонить",
   "gameDialogAccept": "Принять",
+  "gameResultGameNumber": "Игра {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Броски",
+  "gameResultMatchScore": "Счёт матча: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Средняя сумма на кубиках часто колеблется около 7. Такая небольшая выборка не позволяет определить смещение костей.",
+  "gameResultRatingNotAvailable": "Оценки ходов пока нет. Откройте разбор партии для полного анализа.",
+  "gameResultRematch": "Реванш",
   "gameDialogGameOverTitle": "Партия окончена",
   "gameDialogNextGame": "Следующая партия",
   "gameDialogMatchOverTitle": "Матч завершён",

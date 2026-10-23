@@ -831,6 +831,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Hylkää",
   "gameDialogAccept": "Hyväksy",
+  "gameResultGameNumber": "Peli {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Heitot",
+  "gameResultMatchScore": "Ottelun tilanne: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Noppien keskiarvo vaihtelee usein seitsemän ympärillä. Tämä pieni otos ei osoita, ovatko nopat vinoutuneet.",
+  "gameResultRatingNotAvailable": "Siirtoarviota ei vielä ole. Saat täydellisen analyysin tarkastelemalla peliä.",
+  "gameResultRematch": "Uusintaottelu",
   "gameDialogGameOverTitle": "Peli päättyi",
   "gameDialogNextGame": "Seuraava peli",
   "gameDialogMatchOverTitle": "Ottelu päättyi",

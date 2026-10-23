@@ -2450,6 +2450,30 @@ class AppLocalizationsSl extends AppLocalizations {
   String get gameDialogAccept => 'Sprejmi';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Igra $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Rezultat dvoboja: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Meti';
+
+  @override
+  String get gameResultDiceNote =>
+      'Povprečne vsote metov pogosto nihajo okoli 7. Ta majhen vzorec ne more dokazati pristranskosti kock.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Ocena potez še ni na voljo. Preglejte igro za celovito analizo.';
+
+  @override
+  String get gameResultRematch => 'Povratna igra';
+
+  @override
   String get gameDialogGameOverTitle => 'Konec igre';
 
   @override

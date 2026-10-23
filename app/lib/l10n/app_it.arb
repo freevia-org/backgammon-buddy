@@ -1318,6 +1318,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Rifiuta",
   "gameDialogAccept": "Accetta",
+  "gameResultGameNumber": "Partita {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Lanci",
+  "gameResultMatchScore": "Punteggio del match: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "La somma media dei dadi varia spesso intorno a 7. Questo piccolo campione non può dimostrare una distorsione dei dadi.",
+  "gameResultRatingNotAvailable": "Nessuna valutazione delle mosse. Rivedi la partita per un’analisi completa.",
+  "gameResultRematch": "Rivincita",
   "gameDialogGameOverTitle": "Partita terminata",
   "gameDialogNextGame": "Partita successiva",
   "gameDialogMatchOverTitle": "Match terminato",

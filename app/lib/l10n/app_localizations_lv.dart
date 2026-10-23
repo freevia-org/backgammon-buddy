@@ -2323,6 +2323,30 @@ class AppLocalizationsLv extends AppLocalizations {
   String get gameDialogAccept => 'Pieņemt';
 
   @override
+  String gameResultGameNumber(int number) {
+    return '$number. partija';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Mača rezultāts: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Metieni';
+
+  @override
+  String get gameResultDiceNote =>
+      'Kauliņu punktu vidējā summa bieži svārstās ap 7. Šī nelielā izlase nevar noteikt, vai kauliņi ir neobjektīvi.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Gājienu vērtējums vēl nav pieejams. Pārskatiet partiju, lai iegūtu pilnu analīzi.';
+
+  @override
+  String get gameResultRematch => 'Atkārtota spēle';
+
+  @override
   String get gameDialogGameOverTitle => 'Spēle galā';
 
   @override

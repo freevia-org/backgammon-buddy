@@ -2338,6 +2338,30 @@ class AppLocalizationsMt extends AppLocalizations {
   String get gameDialogAccept => 'Aċċetta';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Logħba $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Punteġġ tal-logħba: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Tefgħat';
+
+  @override
+  String get gameResultDiceNote =>
+      'It-totali medji tad-dadi spiss ivarjaw madwar 7. Dan il-kampjun żgħir ma jistax juri jekk id-dadi humiex preġudikati.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Għad m’hemmx klassifikazzjoni tal-mossa. Irrevedi l-logħba għal analiżi sħiħa.';
+
+  @override
+  String get gameResultRematch => 'Logħba oħra';
+
+  @override
   String get gameDialogGameOverTitle => 'Spiċċat il-logħba';
 
   @override

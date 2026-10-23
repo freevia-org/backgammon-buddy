@@ -1318,6 +1318,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Weigeren",
   "gameDialogAccept": "Aannemen",
+  "gameResultGameNumber": "Spel {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Worpen",
+  "gameResultMatchScore": "Matchstand: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Gemiddelde worpsommen schommelen vaak rond 7. Deze kleine steekproef kan niet aantonen of de dobbelstenen bevooroordeeld zijn.",
+  "gameResultRatingNotAvailable": "Nog geen beoordeling van zetten. Bekijk de partij voor een volledige analyse.",
+  "gameResultRematch": "Rematch",
   "gameDialogGameOverTitle": "Spel afgelopen",
   "gameDialogNextGame": "Volgende spel",
   "gameDialogMatchOverTitle": "Partij afgelopen",

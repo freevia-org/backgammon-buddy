@@ -2383,6 +2383,30 @@ class AppLocalizationsGa extends AppLocalizations {
   String get gameDialogAccept => 'Glac leis';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Cluiche $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Scór an chluiche: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Caitheamh';
+
+  @override
+  String get gameResultDiceNote =>
+      'Athraíonn meánshuim na ndísle timpeall ar 7 go minic. Ní féidir leis an sampla beag seo claonadh sna dísle a dheimhniú.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Níl rátáil gluaiseachta ar fáil fós. Déan athbhreithniú ar an gcluiche le haghaidh anailís iomlán.';
+
+  @override
+  String get gameResultRematch => 'Cluiche eile';
+
+  @override
   String get gameDialogGameOverTitle => 'Cluiche thart';
 
   @override

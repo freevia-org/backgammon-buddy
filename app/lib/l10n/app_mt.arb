@@ -945,6 +945,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Irrifjuta",
   "gameDialogAccept": "Aċċetta",
+  "gameResultGameNumber": "Logħba {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Tefgħat",
+  "gameResultMatchScore": "Punteġġ tal-logħba: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "It-totali medji tad-dadi spiss ivarjaw madwar 7. Dan il-kampjun żgħir ma jistax juri jekk id-dadi humiex preġudikati.",
+  "gameResultRatingNotAvailable": "Għad m’hemmx klassifikazzjoni tal-mossa. Irrevedi l-logħba għal analiżi sħiħa.",
+  "gameResultRematch": "Logħba oħra",
   "gameDialogGameOverTitle": "Spiċċat il-logħba",
   "gameDialogNextGame": "Logħba li jmiss",
   "gameDialogMatchOverTitle": "Spiċċat il-partita",

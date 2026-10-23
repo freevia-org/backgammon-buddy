@@ -831,6 +831,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Elutasítás",
   "gameDialogAccept": "Elfogadás",
+  "gameResultGameNumber": "{number}. játék",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Dobások",
+  "gameResultMatchScore": "Meccs állása: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "A dobások átlagos összege gyakran 7 körül ingadozik. Ez a kis minta nem bizonyítja a kockák torzítását.",
+  "gameResultRatingNotAvailable": "Még nincs lépésértékelés. A teljes elemzéshez tekintsd át a játékot.",
+  "gameResultRematch": "Visszavágó",
   "gameDialogGameOverTitle": "Játszma vége",
   "gameDialogNextGame": "Következő játszma",
   "gameDialogMatchOverTitle": "Meccs vége",

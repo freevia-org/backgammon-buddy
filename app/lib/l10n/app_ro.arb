@@ -945,6 +945,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Refuză",
   "gameDialogAccept": "Acceptă",
+  "gameResultGameNumber": "Partida {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Aruncări",
+  "gameResultMatchScore": "Scorul meciului: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Sumele medii ale zarurilor variază adesea în jurul valorii 7. Acest eșantion mic nu poate stabili dacă zarurile sunt părtinitoare.",
+  "gameResultRatingNotAvailable": "Nu există încă o evaluare a mutărilor. Revizuiește partida pentru o analiză completă.",
+  "gameResultRematch": "Revanșă",
   "gameDialogGameOverTitle": "Partidă încheiată",
   "gameDialogNextGame": "Partida următoare",
   "gameDialogMatchOverTitle": "Meci încheiat",

@@ -2363,6 +2363,30 @@ class AppLocalizationsLt extends AppLocalizations {
   String get gameDialogAccept => 'Priimti';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Partija $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Rungtynių rezultatas: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Metimai';
+
+  @override
+  String get gameResultDiceNote =>
+      'Vidutinės kauliukų sumos dažnai svyruoja apie 7. Ši maža imtis negali parodyti, ar kauliukai yra šališki.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Ėjimų įvertinimo dar nėra. Peržiūrėkite partiją ir gaukite visą analizę.';
+
+  @override
+  String get gameResultRematch => 'Pakartotinis žaidimas';
+
+  @override
   String get gameDialogGameOverTitle => 'Partija baigta';
 
   @override

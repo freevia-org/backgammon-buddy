@@ -2360,6 +2360,30 @@ class AppLocalizationsDa extends AppLocalizations {
   String get gameDialogAccept => 'Acceptér';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Spil $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Kampstilling: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Kast';
+
+  @override
+  String get gameResultDiceNote =>
+      'Gennemsnitlige terningesummer varierer ofte omkring 7. Denne lille stikprøve kan ikke fastslå, om terningerne er skæve.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Ingen trækvurdering endnu. Gennemgå spillet for en fuld analyse.';
+
+  @override
+  String get gameResultRematch => 'Omspil';
+
+  @override
   String get gameDialogGameOverTitle => 'Spillet er slut';
 
   @override

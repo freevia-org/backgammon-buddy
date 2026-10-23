@@ -945,6 +945,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Reddet",
   "gameDialogAccept": "Kabul et",
+  "gameResultGameNumber": "Oyun {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Atış",
+  "gameResultMatchScore": "Maç skoru: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Zar toplamlarının ortalaması genellikle 7 civarında değişir. Bu küçük örnek zarların yanlı olup olmadığını gösteremez.",
+  "gameResultRatingNotAvailable": "Henüz hamle puanı yok. Tam analiz için oyunu inceleyin.",
+  "gameResultRematch": "Rövanş",
   "gameDialogGameOverTitle": "Oyun bitti",
   "gameDialogNextGame": "Sonraki oyun",
   "gameDialogMatchOverTitle": "Maç bitti",

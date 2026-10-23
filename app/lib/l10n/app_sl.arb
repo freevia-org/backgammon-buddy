@@ -1318,6 +1318,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Zavrni",
   "gameDialogAccept": "Sprejmi",
+  "gameResultGameNumber": "Igra {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Meti",
+  "gameResultMatchScore": "Rezultat dvoboja: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Povprečne vsote metov pogosto nihajo okoli 7. Ta majhen vzorec ne more dokazati pristranskosti kock.",
+  "gameResultRatingNotAvailable": "Ocena potez še ni na voljo. Preglejte igro za celovito analizo.",
+  "gameResultRematch": "Povratna igra",
   "gameDialogGameOverTitle": "Konec igre",
   "gameDialogNextGame": "Naslednja igra",
   "gameDialogMatchOverTitle": "Konec dvoboja",

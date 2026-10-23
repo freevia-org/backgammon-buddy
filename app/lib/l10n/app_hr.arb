@@ -1318,6 +1318,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Odbij",
   "gameDialogAccept": "Prihvati",
+  "gameResultGameNumber": "Partija {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Bacanja",
+  "gameResultMatchScore": "Rezultat meča: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Prosječni zbrojevi bacanja često variraju oko 7. Ovaj mali uzorak ne može dokazati pristranost kockica.",
+  "gameResultRatingNotAvailable": "Ocjena poteza još nije dostupna. Pregledajte partiju za potpunu analizu.",
+  "gameResultRematch": "Uzvratna partija",
   "gameDialogGameOverTitle": "Partija je završena",
   "gameDialogNextGame": "Sljedeća partija",
   "gameDialogMatchOverTitle": "Meč je završen",

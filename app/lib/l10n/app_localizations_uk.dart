@@ -2350,6 +2350,30 @@ class AppLocalizationsUk extends AppLocalizations {
   String get gameDialogAccept => 'Прийняти';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Гра $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Рахунок матчу: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Кидки';
+
+  @override
+  String get gameResultDiceNote =>
+      'Середня сума на кубиках часто коливається біля 7. Ця невелика вибірка не дає змоги визначити упередженість кубиків.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Оцінки ходів ще немає. Перегляньте партію для повного аналізу.';
+
+  @override
+  String get gameResultRematch => 'Матч-реванш';
+
+  @override
   String get gameDialogGameOverTitle => 'Партію завершено';
 
   @override

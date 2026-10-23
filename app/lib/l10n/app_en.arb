@@ -1301,6 +1301,12 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Decline",
   "gameDialogAccept": "Accept",
+  "gameResultGameNumber": "Game {number}",
+  "gameResultMatchScore": "Match score: {score}",
+  "gameResultRolls": "Rolls",
+  "gameResultDiceNote": "Average roll totals often vary around 7. This small sample cannot establish whether the dice are biased.",
+  "gameResultRatingNotAvailable": "No move rating yet. Review the game for a full analysis.",
+  "gameResultRematch": "Rematch",
   "gameDialogGameOverTitle": "Game over",
   "gameDialogNextGame": "Next game",
   "gameDialogMatchOverTitle": "Match over",
@@ -1308,6 +1314,12 @@
   "gameDialogMatchWinner": "{winner} wins the match.",
   "gameDialogSavedToHistory": "Saved to History",
   "gameDialogDone": "Done",
+  "@gameResultGameNumber": {
+    "placeholders": { "number": { "type": "int" } }
+  },
+  "@gameResultMatchScore": {
+    "placeholders": { "score": {} }
+  },
   "@gameHudNeutralScore": {
     "placeholders": {
       "whiteLabel": {},

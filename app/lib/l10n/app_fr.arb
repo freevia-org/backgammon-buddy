@@ -1318,6 +1318,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Refuser",
   "gameDialogAccept": "Accepter",
+  "gameResultGameNumber": "Partie {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Lancers",
+  "gameResultMatchScore": "Score du match : {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "La somme moyenne des dés varie souvent autour de 7. Cet échantillon réduit ne permet pas d’établir un biais des dés.",
+  "gameResultRatingNotAvailable": "Aucune évaluation des coups pour le moment. Analysez la partie pour obtenir un bilan complet.",
+  "gameResultRematch": "Revanche",
   "gameDialogGameOverTitle": "Partie terminée",
   "gameDialogNextGame": "Partie suivante",
   "gameDialogMatchOverTitle": "Match terminé",
