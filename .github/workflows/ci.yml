@@ -12,12 +12,15 @@ on:
 permissions:
   contents: read
 
-# One live run per branch. A force-push or a rapid second push supersedes the
-# first: the older run's result is about code nobody is looking at any more, and
-# these jobs are the bulk of the repo's CI minutes.
+# Pull requests: one live run per PR — a force-push or rapid second push
+# supersedes the first, whose result is about code nobody is looking at any more.
+# master pushes: keyed on the COMMIT and never cancelled. Every master commit
+# needs its own complete result, because android.yml/ios.yml wait on CI for that
+# exact commit before distributing to testers; a ref-keyed group would cancel
+# (or drop as superseded-pending) an earlier commit's run and fail its gate.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   privacy-monitor:
@@ -43,6 +46,8 @@ jobs:
   release-preflight:
     name: release provenance and artifact validator tests
     runs-on: ubuntu-24.04
+    # Offline Python checks; seconds in practice. Only a hang reaches this.
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
       - run: python3 tool/release_preflight.py
@@ -103,11 +108,14 @@ jobs:
       # sdk / architecture / flavor / problem-matcher), so the pub package cache
       # is cached directly. Keyed on the lockfile: a dependency bump writes a new
       # key, anything else reuses the entry.
-      - uses: actions/cache@v5
+      - uses: actions/cache@v6
         with:
           path: ~/.pub-cache
-          key: pub-${{ runner.os }}-${{ matrix.package }}-${{ hashFiles(format('packages/{0}/pubspec.lock', matrix.package)) }}
-          restore-keys: pub-${{ runner.os }}-${{ matrix.package }}-
+          # Packages commit no pubspec.lock, so the key hashes the manifests
+          # (this package's and its path dependencies'); keying on the absent
+          # lockfile produced a constant key that was never refreshed.
+          key: pub-v2-${{ runner.os }}-${{ matrix.package }}-${{ hashFiles('packages/*/pubspec.yaml') }}
+          restore-keys: pub-v2-${{ runner.os }}-${{ matrix.package }}-
       - run: dart pub get
         working-directory: packages/${{ matrix.package }}
       - run: dart analyze --fatal-infos
@@ -161,11 +169,11 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
-      - uses: actions/cache@v5
+      - uses: actions/cache@v6
         with:
           path: ~/.pub-cache
-          key: pub-${{ runner.os }}-engine_bindings-${{ hashFiles('packages/engine_bindings/pubspec.lock') }}
-          restore-keys: pub-${{ runner.os }}-engine_bindings-
+          key: pub-v2-${{ runner.os }}-engine_bindings-${{ hashFiles('packages/*/pubspec.yaml') }}
+          restore-keys: pub-v2-${{ runner.os }}-engine_bindings-
       - run: dart pub get
         working-directory: packages/engine_bindings
       - run: dart analyze --fatal-infos
@@ -315,11 +323,11 @@ jobs:
           channel: stable
           flutter-version: 3.44.8
           cache: true
-      - uses: actions/cache@v5
+      - uses: actions/cache@v6
         with:
           path: ~/.pub-cache
-          key: pub-${{ runner.os }}-online_client-${{ hashFiles('packages/online_client/pubspec.lock') }}
-          restore-keys: pub-${{ runner.os }}-online_client-
+          key: pub-v2-${{ runner.os }}-online_client-${{ hashFiles('packages/*/pubspec.yaml') }}
+          restore-keys: pub-v2-${{ runner.os }}-online_client-
       # online_client is the largest package on the online side and was the one
       # package CI never analysed. It passes locally, so the step is free.
       - name: online_client analyze

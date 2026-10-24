@@ -331,8 +331,9 @@ enough to find them, and inventing tags after the fact would put dates on object
 that never had them.
 
 Gating `android.yml` on `pubspec.yaml`'s version matching the tag was considered
-and **deferred**: that workflow is already gated on `workflow_run` from CI and
-checks out `workflow_run.head_sha`, and a tag-equality check on top of that has
+and **deferred**: that workflow already builds the pushed master commit and
+gates its tester upload on CI passing for that same commit (see
+`.github/workflows/README.md`), and a tag-equality check on top of that has
 to answer what a `workflow_dispatch` run — which has no tag — should do. It is
 worth doing once tagging has actually been in use for a few releases.
 

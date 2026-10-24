@@ -10,58 +10,52 @@ on:
         description: Build a signed Google Play bundle artifact (does not upload to Play)
         type: boolean
         default: false
-  # Gated on CI rather than on `push`. Both workflows used to fire on the same
-  # master push, in parallel, so a commit that broke the test suite still built
-  # an APK and pushed it to the testers group — a broken master reached real
-  # devices before anyone saw the red X.
-  #
-  # `workflow_run` was chosen over folding these jobs into ci.yml with `needs:`
-  # because the two have genuinely different shapes: ci.yml also runs on every
-  # pull request, where a 3-ABI Rust cross-compile plus an APK build would be
-  # pure waste, and this workflow keeps a manual `workflow_dispatch` entry point
-  # that a `needs:` dependency would drag the whole test matrix into.
-  workflow_run:
-    workflows: [CI]
-    types: [completed]
+  # Builds IN PARALLEL with CI instead of after it (it used to chain off CI via
+  # `workflow_run`, which serialised ~4 min of tests in front of a ~10 min build
+  # and gave pull requests no Android signal at all — Android/iOS breakages were
+  # only discovered after merge). Distribution is still gated on CI: the
+  # `Wait for CI` step below blocks the Firebase upload until ci.yml has passed
+  # for this exact commit, so a commit that breaks the tests never reaches
+  # testers. See .github/workflows/README.md "Distribution is gated on CI".
+  push:
     branches: [master]
+  # Pull requests get a build-only run with NO release secrets (every secret
+  # reference below is guarded on `github.event_name != 'pull_request'`; fork
+  # PRs receive none anyway). Paths limit it to changes that can affect the APK.
+  pull_request:
+    paths:
+      - 'app/**'
+      - 'native/**'
+      - 'packages/**'
+      - 'tool/**'
+      - '.gitmodules'
+      - '.github/workflows/android.yml'
+      - '.github/scripts/wait-for-ci.sh'
 
 permissions:
   contents: read
+  # `gh run list` in the Wait-for-CI gate reads CI's run for this commit.
+  actions: read
 
 concurrency:
-  # Keyed on the COMMIT, not the ref: under `workflow_run` every event reports
-  # `github.ref` as the default branch, so a plain ref key would let a newer
-  # master commit cancel an in-flight distribution of an older one mid-upload.
-  # Keyed this way, cancellation only ever supersedes a re-run of the same
-  # commit — which is exactly the redundant work worth killing.
-  group: ${{ github.workflow }}-${{ github.event.workflow_run.head_sha || github.ref }}
+  # PRs: one live run per PR, superseded pushes are cancelled. master/dispatch:
+  # keyed on the COMMIT so a newer master commit never cancels an older one's
+  # in-flight distribution; only a re-run of the same commit is superseded.
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || github.sha }}
   cancel-in-progress: true
 
 jobs:
   apk:
     name: build APK + distribute
     runs-on: ubuntu-24.04
-    # Cold path: NDK download, three Rust Android targets built from scratch,
-    # then a release APK. Deliberately well clear of the observed ~25 min worst
-    # case so a cache miss is not mistaken for a hang.
-    timeout-minutes: 60
-    # workflow_run has release secrets even after an unprivileged PR workflow.
-    # A PR head named master also matches the trigger's branch filter, so require
-    # a push from this repository before checking out the CI head with secrets.
-    if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event.workflow_run.conclusion == 'success' &&
-       github.event.workflow_run.event == 'push' &&
-       github.event.workflow_run.head_branch == 'master' &&
-       github.event.workflow_run.head_repository.full_name == github.repository)
+    # Cold path: NDK download, Rust Android targets and Gradle dependencies
+    # fetched from scratch, then a release APK, plus up to ~40 min waiting for CI
+    # before distribution (normally zero: CI finishes first).
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v7
         with:
           submodules: recursive
-          # `workflow_run` checks out the DEFAULT BRANCH by default, not the
-          # commit that triggered CI. Without this the job could build a
-          # different tree than the one CI validated.
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - name: Resolve build number
         env:
@@ -122,14 +116,31 @@ jobs:
       - name: List staged jniLibs
         run: find app/android/app/src/main/jniLibs -type f -name '*.so' -exec ls -l {} +
 
+      # cache: true restores the Flutter SDK + pub cache (same key as ci.yml's
+      # Linux jobs) instead of downloading the SDK on every run (~1 min).
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
           flutter-version: 3.44.8
+          cache: true
 
       - name: Flutter pub get
         working-directory: app
         run: flutter pub get
+
+      # Gradle wrapper distribution + dependency/transform caches. Without this
+      # every run downloaded Gradle 9.1, AGP, Kotlin and the Firebase/AndroidX
+      # graph from scratch during the APK build. Keyed on every Gradle
+      # input and on pubspec.lock (Flutter plugins contribute Gradle modules);
+      # a prefix restore keeps a dependency bump incremental. PR runs read the
+      # master entry; only master writes one GitHub-side.
+      - uses: actions/cache@v6
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('app/android/**/*.gradle*', 'app/android/gradle/wrapper/gradle-wrapper.properties', 'app/android/gradle.properties', 'app/pubspec.lock', 'tool/mobile_dependencies.gradle') }}
+          restore-keys: gradle-${{ runner.os }}-
 
       # Release signing, gated on four repository secrets exactly the way the
       # Firebase and iOS-signing paths are gated. Present -> decode the upload
@@ -139,10 +150,10 @@ jobs:
       - name: Configure release signing
         id: signing
         env:
-          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          ANDROID_KEYSTORE_BASE64: ${{ github.event_name != 'pull_request' && secrets.ANDROID_KEYSTORE_BASE64 || '' }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ github.event_name != 'pull_request' && secrets.ANDROID_KEYSTORE_PASSWORD || '' }}
+          ANDROID_KEY_ALIAS: ${{ github.event_name != 'pull_request' && secrets.ANDROID_KEY_ALIAS || '' }}
+          ANDROID_KEY_PASSWORD: ${{ github.event_name != 'pull_request' && secrets.ANDROID_KEY_PASSWORD || '' }}
         run: |
           set -eu
           if [ -n "$ANDROID_KEYSTORE_BASE64" ] && [ -n "$ANDROID_KEYSTORE_PASSWORD" ] \
@@ -158,6 +169,11 @@ jobs:
             } > app/android/key.properties
             echo "has_signing=true" >> "$GITHUB_OUTPUT"
             echo "Release signing ENABLED (upload keystore installed)"
+          elif [ "$GITHUB_EVENT_NAME" = 'pull_request' ]; then
+            # Release secrets are never exposed to PR builds; the debug-key
+            # fallback is the expected, quiet path here.
+            echo "has_signing=false" >> "$GITHUB_OUTPUT"
+            echo "Pull request build: release signing disabled by design (debug keystore)"
           else
             echo "has_signing=false" >> "$GITHUB_OUTPUT"
             echo "::warning::Android signing secrets not set — the release APK will be signed with the DEBUG keystore and cannot be published. See app/android/KEYSTORE_SETUP.md"
@@ -201,7 +217,7 @@ jobs:
           FB_PROJECT: ${{ vars.AIGAMMON_FIREBASE_PROJECT }}
           FB_API_KEY: ${{ vars.AIGAMMON_FIREBASE_API_KEY }}
           FB_SENDER_ID: ${{ vars.AIGAMMON_FIREBASE_SENDER_ID }}
-          FB_ANDROID_APP_ID: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
+          FB_ANDROID_APP_ID: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
         run: |
           set -eu
           if [ -n "$FB_PROJECT" ] && [ -n "$FB_API_KEY" ] \
@@ -277,7 +293,7 @@ jobs:
           # Reused from the App Distribution setup below — the SAME Android app
           # id identifies the app to distribute and to report telemetry for, so
           # there is deliberately no second secret for it.
-          FB_ANDROID_APP_ID: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
+          FB_ANDROID_APP_ID: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
           BUILD_APPBUNDLE: ${{ inputs.build_appbundle }}
         run: |
           DEFINES=""
@@ -298,6 +314,8 @@ jobs:
           else
             echo "Telemetry config incomplete — building with analytics/performance/crashlytics disabled"
           fi
+          # DEFINES is a flag list and must word-split.
+          # shellcheck disable=SC2086
           flutter build apk --release \
             --target-platform android-arm,android-arm64 \
             --build-number="$BUILD_NUMBER" \
@@ -314,6 +332,8 @@ jobs:
             --android build/app/outputs/flutter-apk/app-release.apk \
             --zipalign "${ANDROID_SDK_ROOT:-$ANDROID_HOME}/build-tools/36.0.0/zipalign"
           if [ "$BUILD_APPBUNDLE" = 'true' ]; then
+            # DEFINES is a flag list and must word-split.
+            # shellcheck disable=SC2086
             flutter build appbundle --release \
               --target-platform android-arm,android-arm64 \
               --build-number="$BUILD_NUMBER" \
@@ -340,8 +360,14 @@ jobs:
             --android-resolved app/build/mobile-dependencies/android/resolved.json \
             --flutter-license "$(dirname "$(dirname "$(command -v flutter)")")/bin/cache/pkg/sky_engine/LICENSE"
 
+      # Stop the daemon Flutter's build left running so the Gradle cache is
+      # saved from a quiescent ~/.gradle (no half-written journal/lock files).
+      - name: Stop Gradle daemon
+        if: always()
+        run: (cd app/android && ./gradlew --stop) || true
+
       - name: Upload Android dependency evidence
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: aigammon-android-dependencies-${{ github.run_number }}
           path: app/build/mobile-dependencies/android
@@ -349,7 +375,7 @@ jobs:
 
       - name: Upload signed Google Play bundle
         if: inputs.build_appbundle
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: aigammon-play-bundle-${{ github.run_number }}
           path: |
@@ -357,7 +383,7 @@ jobs:
             app/build/symbols/android-bundle
           if-no-files-found: error
 
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: aigammon-apk
           # Universal ARM/ARM64 APK; version code matches the optional AAB.
@@ -367,14 +393,14 @@ jobs:
       # Keyed by run number: the build number in the APK is the same value, so
       # a trace from a tester's build maps to exactly one symbols artifact.
       - name: Upload Dart debug symbols
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: aigammon-symbols-android-${{ github.run_number }}
           path: app/build/symbols/android
           if-no-files-found: error
 
       - name: Upload unstripped native engine symbols
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: aigammon-native-symbols-android-${{ github.run_number }}
           path: |
@@ -387,14 +413,27 @@ jobs:
       - name: Check Firebase secrets
         id: fb
         env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          FIREBASE_ANDROID_APP_ID: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_SERVICE_ACCOUNT || '' }}
+          FIREBASE_ANDROID_APP_ID: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
         run: |
           if [ -n "$FIREBASE_SERVICE_ACCOUNT" ] && [ -n "$FIREBASE_ANDROID_APP_ID" ]; then
             echo "has_firebase=true" >> "$GITHUB_OUTPUT"
           else
             echo "has_firebase=false" >> "$GITHUB_OUTPUT"
           fi
+
+      # The gate that used to be the `workflow_run` trigger: block the tester
+      # upload until CI has passed for THIS commit. Builds start in parallel
+      # with CI, and CI (~4-5 min) normally finishes long before the APK
+      # (~8-10 min), so this usually returns immediately. A red or cancelled CI
+      # fails the job here and nothing is distributed; after re-running CI to
+      # green, re-run this job. Manual dispatch stays the ungated escape hatch.
+      - name: Wait for CI to pass on this commit
+        if: github.event_name == 'push' && steps.fb.outputs.has_firebase == 'true' && steps.signing.outputs.has_signing == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.sha }}
+        run: bash .github/scripts/wait-for-ci.sh
 
       - name: Distribute to Firebase App Distribution
         if: steps.fb.outputs.has_firebase == 'true' && steps.signing.outputs.has_signing == 'true'
@@ -405,8 +444,8 @@ jobs:
         # Re-pin deliberately when upgrading; do not switch back to a tag.
         uses: wzieba/Firebase-Distribution-Github-Action@bd494989dd4bec0343f78adee87fe66e48279ad6 # v1
         with:
-          appId: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
-          serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          appId: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
+          serviceCredentialsFileContent: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_SERVICE_ACCOUNT || '' }}
           groups: testers
           file: app/build/app/outputs/flutter-apk/app-release.apk
 
