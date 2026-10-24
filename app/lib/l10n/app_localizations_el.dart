@@ -2374,6 +2374,30 @@ class AppLocalizationsEl extends AppLocalizations {
   String get gameDialogAccept => 'Αποδοχή';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Παιχνίδι $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Σκορ αγώνα: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Ζαριές';
+
+  @override
+  String get gameResultDiceNote =>
+      'Τα μέσα αθροίσματα των ζαριών συχνά κυμαίνονται γύρω από το 7. Αυτό το μικρό δείγμα δεν μπορεί να αποδείξει μεροληψία.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Δεν υπάρχει ακόμη αξιολόγηση κινήσεων. Αναλύστε το παιχνίδι για πλήρη αξιολόγηση.';
+
+  @override
+  String get gameResultRematch => 'Ρεβάνς';
+
+  @override
   String get gameDialogGameOverTitle => 'Τέλος παρτίδας';
 
   @override

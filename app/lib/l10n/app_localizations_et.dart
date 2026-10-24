@@ -2354,6 +2354,30 @@ class AppLocalizationsEt extends AppLocalizations {
   String get gameDialogAccept => 'Nõustu';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Partii $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Matši seis: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Visked';
+
+  @override
+  String get gameResultDiceNote =>
+      'Täringuvisete keskmine summa kõigub sageli 7 ümber. See väike valim ei näita, kas täringud on kallutatud.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Käikude hinnang puudub. Täieliku analüüsi jaoks vaata mäng üle.';
+
+  @override
+  String get gameResultRematch => 'Kordusmäng';
+
+  @override
   String get gameDialogGameOverTitle => 'Partii läbi';
 
   @override

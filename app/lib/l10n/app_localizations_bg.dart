@@ -2362,6 +2362,30 @@ class AppLocalizationsBg extends AppLocalizations {
   String get gameDialogAccept => 'Приеми';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Игра $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Резултат в мача: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Хвърляния';
+
+  @override
+  String get gameResultDiceNote =>
+      'Средните стойности на заровете често се отклоняват от 7. Тази малка извадка не може да установи пристрастие.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Няма оценка на ходовете. Прегледайте играта за пълен анализ.';
+
+  @override
+  String get gameResultRematch => 'Реванш';
+
+  @override
   String get gameDialogGameOverTitle => 'Край на партията';
 
   @override

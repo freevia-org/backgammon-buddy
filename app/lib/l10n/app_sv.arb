@@ -945,6 +945,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Avböj",
   "gameDialogAccept": "Acceptera",
+  "gameResultGameNumber": "Parti {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Kast",
+  "gameResultMatchScore": "Matchställning: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Genomsnittliga tärningssummor varierar ofta runt 7. Det här lilla urvalet kan inte fastställa om tärningarna är skeva.",
+  "gameResultRatingNotAvailable": "Inget dragbetyg ännu. Granska partiet för en fullständig analys.",
+  "gameResultRematch": "Returmatch",
   "gameDialogGameOverTitle": "Partiet är slut",
   "gameDialogNextGame": "Nästa parti",
   "gameDialogMatchOverTitle": "Matchen är slut",

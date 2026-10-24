@@ -2333,6 +2333,30 @@ class AppLocalizationsHu extends AppLocalizations {
   String get gameDialogAccept => 'Elfogadás';
 
   @override
+  String gameResultGameNumber(int number) {
+    return '$number. játék';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Meccs állása: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Dobások';
+
+  @override
+  String get gameResultDiceNote =>
+      'A dobások átlagos összege gyakran 7 körül ingadozik. Ez a kis minta nem bizonyítja a kockák torzítását.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Még nincs lépésértékelés. A teljes elemzéshez tekintsd át a játékot.';
+
+  @override
+  String get gameResultRematch => 'Visszavágó';
+
+  @override
   String get gameDialogGameOverTitle => 'Játszma vége';
 
   @override

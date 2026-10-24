@@ -831,6 +831,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Keeldu",
   "gameDialogAccept": "Nõustu",
+  "gameResultGameNumber": "Partii {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Visked",
+  "gameResultMatchScore": "Matši seis: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Täringuvisete keskmine summa kõigub sageli 7 ümber. See väike valim ei näita, kas täringud on kallutatud.",
+  "gameResultRatingNotAvailable": "Käikude hinnang puudub. Täieliku analüüsi jaoks vaata mäng üle.",
+  "gameResultRematch": "Kordusmäng",
   "gameDialogGameOverTitle": "Partii läbi",
   "gameDialogNextGame": "Järgmine partii",
   "gameDialogMatchOverTitle": "Matš läbi",

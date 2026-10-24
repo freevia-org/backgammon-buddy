@@ -2369,6 +2369,30 @@ class AppLocalizationsCs extends AppLocalizations {
   String get gameDialogAccept => 'Přijmout';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Hra $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Skóre zápasu: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Hody';
+
+  @override
+  String get gameResultDiceNote =>
+      'Průměrné součty hodů často kolísají kolem 7. Tento malý vzorek nemůže prokázat zaujatost kostek.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Hodnocení tahů zatím není k dispozici. Otevřete přehrání hry a zobrazte úplnou analýzu.';
+
+  @override
+  String get gameResultRematch => 'Odveta';
+
+  @override
   String get gameDialogGameOverTitle => 'Konec partie';
 
   @override

@@ -831,6 +831,22 @@
   "gameDialogResignBackgammon": "μπακγκάμον",
   "gameDialogDecline": "Απόρριψη",
   "gameDialogAccept": "Αποδοχή",
+  "gameResultGameNumber": "Παιχνίδι {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Ζαριές",
+  "gameResultMatchScore": "Σκορ αγώνα: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Τα μέσα αθροίσματα των ζαριών συχνά κυμαίνονται γύρω από το 7. Αυτό το μικρό δείγμα δεν μπορεί να αποδείξει μεροληψία.",
+  "gameResultRatingNotAvailable": "Δεν υπάρχει ακόμη αξιολόγηση κινήσεων. Αναλύστε το παιχνίδι για πλήρη αξιολόγηση.",
+  "gameResultRematch": "Ρεβάνς",
   "gameDialogGameOverTitle": "Τέλος παρτίδας",
   "gameDialogNextGame": "Επόμενη παρτίδα",
   "gameDialogMatchOverTitle": "Τέλος αγώνα",
