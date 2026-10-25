@@ -8,12 +8,12 @@ import 'package:flutter_test/flutter_test.dart';
 
 /// Gammonless probabilities whose cubeless equity equals [equity].
 Probabilities _probs(double equity) => Probabilities(
-      win: (equity + 1) / 2,
-      winGammon: 0,
-      winBackgammon: 0,
-      loseGammon: 0,
-      loseBackgammon: 0,
-    );
+  win: (equity + 1) / 2,
+  winGammon: 0,
+  winBackgammon: 0,
+  loseGammon: 0,
+  loseBackgammon: 0,
+);
 
 ScoredMove _scored(Move move, double equity) =>
     ScoredMove(move: move, probabilities: _probs(equity));
@@ -36,7 +36,10 @@ class ScriptedEngine implements EngineFacade {
 
   @override
   Future<List<ScoredMove>> rankMoves(
-      BoardState board, Player mover, Dice dice) async {
+    BoardState board,
+    Player mover,
+    Dice dice,
+  ) async {
     return rankings[calls++];
   }
 
@@ -65,6 +68,44 @@ class ScriptedEngine implements EngineFacade {
 }
 
 void main() {
+  test('checker PR uses mean cubeless loss and excludes forced plays', () {
+    final playedA = Move([const CheckerMove(0, 1)]);
+    final bestA = Move([const CheckerMove(0, 2)]);
+    final playedB = Move([const CheckerMove(1, 2)]);
+    final bestB = Move([const CheckerMove(1, 3)]);
+    MoveAssessment assessment(
+      Move played,
+      Move best,
+      double loss, {
+      bool decision = true,
+    }) => MoveAssessment(
+      played: played,
+      best: best,
+      equityLoss: loss,
+      ranked: [_scored(best, 0.5), _scored(played, 0.5 - loss)],
+      isDecision: decision,
+    );
+
+    expect(
+      checkerPerformanceRating([
+        assessment(playedA, bestA, 0.01),
+        assessment(playedB, bestB, 0.03),
+        assessment(
+          Move([const CheckerMove(2, 3)]),
+          Move([const CheckerMove(2, 4)]),
+          0.20,
+          decision: false,
+        ),
+      ]),
+      closeTo(10.0, 1e-9),
+    );
+    expect(
+      checkerPerformanceRating([assessment(playedA, bestA, 0.0)]),
+      closeTo(0, 1e-9),
+    );
+    expect(checkerPerformanceRating(const []), isNull);
+  });
+
   test('assesses both players and computes per-side aggregates', () async {
     final game = _sampleGame();
     // White move 1: 0.20 loss (blunder). Black move: 0.06 loss (error).
@@ -76,16 +117,18 @@ void main() {
     ]);
     final analyzer = GameAnalyzer(TutorService(engine));
 
-    final analysis =
-        await analyzer.analyze(game.events, isCrawford: false);
+    final analysis = await analyzer.analyze(game.events, isCrawford: false);
 
     expect(analysis.moves, hasLength(3));
     expect(engine.calls, 3, reason: 'one ranking query per MoveEvent');
 
     // Move events sit at indices 1, 3, 5 in the log (rolls interleave).
     expect(analysis.moves.map((m) => m.eventIndex).toList(), [1, 3, 5]);
-    expect(analysis.moves.map((m) => m.player).toList(),
-        [Player.white, Player.black, Player.white]);
+    expect(analysis.moves.map((m) => m.player).toList(), [
+      Player.white,
+      Player.black,
+      Player.white,
+    ]);
 
     expect(analysis.moves[0].assessment.equityLoss, closeTo(0.20, 1e-9));
     expect(analysis.moves[0].assessment.mark, MoveMark.blunder);
@@ -126,15 +169,22 @@ void main() {
     expect(round.moves[0].player, Player.white);
     expect(round.moves[0].assessment.equityLoss, closeTo(0.20, 1e-9));
     expect(round.moves[0].assessment.mark, MoveMark.blunder);
-    expect(round.errorRate(Player.white),
-        closeTo(analysis.errorRate(Player.white), 1e-12));
-    expect(round.moves[2].assessment.best.sameAs(game.played[2]), isTrue,
-        reason: 'the best play (played on top) survives the round-trip');
+    expect(
+      round.errorRate(Player.white),
+      closeTo(analysis.errorRate(Player.white), 1e-12),
+    );
+    expect(
+      round.moves[2].assessment.best.sameAs(game.played[2]),
+      isTrue,
+      reason: 'the best play (played on top) survives the round-trip',
+    );
   });
 
   test('fromJson rejects an unknown version', () {
-    expect(() => GameAnalysis.fromJson({'v': 999, 'moves': const []}),
-        throwsFormatException);
+    expect(
+      () => GameAnalysis.fromJson({'v': 999, 'moves': const []}),
+      throwsFormatException,
+    );
   });
 
   test('progress callback is monotonic from 0 to 1', () async {
@@ -147,14 +197,20 @@ void main() {
     final analyzer = GameAnalyzer(TutorService(engine));
 
     final progress = <double>[];
-    await analyzer.analyze(game.events,
-        isCrawford: false, onProgress: progress.add);
+    await analyzer.analyze(
+      game.events,
+      isCrawford: false,
+      onProgress: progress.add,
+    );
 
     expect(progress.first, 0);
     expect(progress.last, 1);
     for (var i = 1; i < progress.length; i++) {
-      expect(progress[i], greaterThanOrEqualTo(progress[i - 1]),
-          reason: 'progress must never decrease');
+      expect(
+        progress[i],
+        greaterThanOrEqualTo(progress[i - 1]),
+        reason: 'progress must never decrease',
+      );
     }
   });
 }

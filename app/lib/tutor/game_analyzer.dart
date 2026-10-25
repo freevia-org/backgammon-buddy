@@ -1,4 +1,5 @@
 import 'package:backgammon_core/backgammon_core.dart';
+import 'package:engine_bindings/engine_bindings.dart';
 
 import '../game/player_agent.dart';
 import 'move_assessment.dart';
@@ -192,6 +193,40 @@ class GameAnalysis {
             ),
     );
   }
+}
+
+/// XG-style checker Performance Rating estimate (PR): mean cubeless equity
+/// lost per unforced checker decision, multiplied by 500. The app does not
+/// have XG's obvious-move filter or cube-decision equity normalization, so
+/// callers must label this as an estimate rather than an exact XG rating.
+///
+/// Returns null when the game has no decisions or any played move is absent
+/// from its retained engine ranking. Forced plays are excluded.
+double? checkerPerformanceRating(Iterable<MoveAssessment> assessments) {
+  final decisions = assessments.where((assessment) => assessment.isDecision);
+  var count = 0;
+  var totalLoss = 0.0;
+  for (final assessment in decisions) {
+    if (assessment.ranked.isEmpty) return null;
+    ScoredMove? played;
+    for (final candidate in assessment.ranked) {
+      if (candidate.move.sameAs(assessment.played)) {
+        played = candidate;
+        break;
+      }
+    }
+    if (played == null) return null;
+    var bestEquity = assessment.ranked.first.equity;
+    for (final candidate in assessment.ranked.skip(1)) {
+      if (candidate.equity > bestEquity) bestEquity = candidate.equity;
+    }
+    final loss = bestEquity - played.equity;
+    if (!loss.isFinite) return null;
+    totalLoss += loss < 0 ? 0 : loss;
+    count++;
+  }
+  if (count == 0) return null;
+  return totalLoss / count * 500;
 }
 
 /// Replays a recorded event log and assesses every played move with a

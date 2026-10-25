@@ -5,6 +5,7 @@ import '../../game/match_controller.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/localization_lookup.dart';
 import '../../tutor/move_assessment.dart';
+import '../../tutor/game_analyzer.dart';
 
 /// The game screen's declarative modals and the vocabulary they are written in.
 ///
@@ -379,7 +380,6 @@ class _GameResultDetails extends StatelessWidget {
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const Divider(height: 24),
-        Text(l10n.metricExplainerErrorRateTitle),
         if (!complete)
           Text(l10n.gameResultRatingNotAvailable)
         else ...[
@@ -388,6 +388,9 @@ class _GameResultDetails extends StatelessWidget {
             if (decisionsByPlayer[player]!.isEmpty)
               Text(l10n.gameResultRatingNotAvailable)
             else ...[
+              if (checkerPerformanceRating(decisionsByPlayer[player]!)
+                  case final pr?)
+                Text('PR ${pr.toStringAsFixed(2)}'),
               Text(
                 l10n.analysisSummaryMeanLoss(
                   formatAssessmentLoss(
