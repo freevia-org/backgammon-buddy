@@ -17,6 +17,8 @@ set by CI from the workflow run number and is not tracked here.
 
 ## [Unreleased]
 
+## [0.16.2] — 2026-10-25
+
 ### Added
 
 - Persistent coaching preferences, try-first hints, a human-decision learning
@@ -74,6 +76,10 @@ set by CI from the workflow run number and is not tracked here.
 
 ### Changed
 
+- End-of-game results distinguish wins, losses and match completion; summarize
+  scores and dice history, show checker Performance Rating estimates when the
+  move evidence is complete, and keep review, close and next-game/rematch
+  actions reachable across compact layouts.
 - The live tutor is one continuous white panel with a centered drag handle and its
   icon, label and short prompt together on the left. Tap the label or swipe up
   to expand it; settings are behind the expanded panel's cog. A smaller gap
