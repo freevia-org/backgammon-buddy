@@ -1,10 +1,19 @@
-# App Store publishing preparation — 2026-10-19
+# App Store publishing preparation — 2026-10-25
 
-Status: prepared source and English metadata drafts; **not submission-ready**.
-No Apple Developer membership, registered app, signing credentials, uploaded build
-or physical iPhone is available. Nothing here enrolls, pays, uploads or publishes.
-Current source version: 0.16.0+22; CI overrides the build number. Select a fresh
-monotonically increasing build number for the eventual signed release.
+Status: source, metadata drafts, screenshots and unsigned iOS build are prepared;
+**App Store submission is waiting for Apple account enrollment and signing setup**.
+No Apple Developer membership, registered app, signing credentials, uploaded
+build or physical iPhone is available. Nothing here enrolls, pays, uploads or
+publishes. The current source version is `0.16.2+24`. Android build 10150 is a
+Play version code; choose an iOS build number above any prior App Store upload
+when the signed candidate is prepared.
+
+The current release commit `3cfbb3ec6b28cd215d7bdcb42d0757d607be3682` is
+published as GitHub release [v0.16.2](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.2).
+Android `0.16.2 (10150)` is available to internal testers and is in Google Play
+production review (submission 10, submitted October 25, 2026). The matching iOS
+workflow passed its unsigned build and privacy-manifest checks; signing and IPA
+export were skipped because Apple signing secrets are not configured.
 
 ## Prepared now
 
@@ -16,7 +25,8 @@ monotonically increasing build number for the eventual signed release.
   privacy-manifest evidence, and supports export-only App Store signing. Signing
   has not been exercised. See `.github/workflows/ios.yml` and its README.
 - Simulator evidence: [232-case report](ios-extended-validation-2026-10-19.md).
-  Current master 0b66d00 passed iOS device-target unsigned build and Android build.
+  Release commit `3cfbb3e` passed CI, Android, Windows and the iOS device-target
+  unsigned build ([iOS workflow](https://github.com/freevia-org/backgammon-buddy/actions/runs/40174626360)).
 - Run `python3 tool/app_store_metadata_check.py` to validate draft field lengths,
   URLs, identity, icon asset and v1 permissions. Passing this check means only
   the local preparation files are coherent; it cannot certify an App Store release.
