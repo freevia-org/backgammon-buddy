@@ -5,4 +5,5 @@
 /// including the widget tests and the screenshot tour, and a platform-channel
 /// round trip buys nothing here. `app_version_test.dart` fails the suite if it
 /// ever drifts from `pubspec.yaml`, so it cannot go stale silently.
+/// Update both values together for each release.
 const String appVersion = '0.16.2';
