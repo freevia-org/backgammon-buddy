@@ -324,7 +324,10 @@ class GameHud extends StatelessWidget {
               SizedBox(
                 key: const ValueKey('hudContextRow'),
                 height: _row1Height,
-                child: Row(
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final compactWidth = constraints.maxWidth < 360;
+                    return Row(
                   children: [
                     // The left group (context line, Crawford badge, cube chip)
                     // takes ALL the space the right-hand controls leave. A bare
@@ -381,25 +384,36 @@ class GameHud extends StatelessWidget {
                     // for whoever is on turn. It moves to the per-edge action
                     // bars instead (see [_GameScreenState._actionBar]).
                     if (!controller.cubeless && showDouble)
-                      TapWhenDisabled(
-                        onDisabledTap: () =>
-                            _explainDoubleBlocked(context, atGate),
-                        child: OutlinedButton.icon(
-                          onPressed: atGate && _doublingLegal
-                              ? _offerDouble
-                              : null,
-                          icon: const Icon(
-                            Icons.control_point_duplicate,
-                            size: 16,
-                          ),
-                          label: Text(
-                            l10n.gameHudDouble,
-                            maxLines: 1,
-                            softWrap: false,
-                          ),
-                          style: OutlinedButton.styleFrom(
-                            visualDensity: VisualDensity.compact,
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                      Semantics(
+                        button: true,
+                        label: l10n.gameHudDouble,
+                        child: Tooltip(
+                          message: l10n.gameHudDouble,
+                          child: TapWhenDisabled(
+                            onDisabledTap: () =>
+                                _explainDoubleBlocked(context, atGate),
+                            child: OutlinedButton.icon(
+                              onPressed: atGate && _doublingLegal
+                                  ? _offerDouble
+                                  : null,
+                              icon: const Icon(
+                                Icons.control_point_duplicate,
+                                size: 16,
+                              ),
+                              label: compactWidth
+                                  ? const SizedBox.shrink()
+                                  : Text(
+                                      l10n.gameHudDouble,
+                                      maxLines: 1,
+                                      softWrap: false,
+                                    ),
+                              style: OutlinedButton.styleFrom(
+                                visualDensity: VisualDensity.compact,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: compactWidth ? 8 : 12,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -427,7 +441,9 @@ class GameHud extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ],
+                    ],
+                    );
+                  },
                 ),
               ),
               SizedBox(

@@ -1178,6 +1178,45 @@ void main() {
     c.disposeController();
   });
 
+  testWidgets('result actions and dice labels work at large text sizes',
+      (t) async {
+    final semantics = t.ensureSemantics();
+    for (final size in [const Size(667, 375), const Size(320, 568)]) {
+      await t.binding.setSurfaceSize(size);
+      final c = GameController(
+        white: FakeAgent(),
+        black: FakeAgent(),
+        matchLength: 7,
+        diceRoller: DiceRoller(Random(7)),
+      );
+      await t.pumpWidget(MaterialApp(
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaler: const TextScaler.linear(2.5),
+          ),
+          child: child!,
+        ),
+        home: GameScreen(key: ValueKey(c), controller: c),
+      ));
+      await t.pumpAndSettle();
+
+      expect(find.text('Game over'), findsOneWidget, reason: '$size');
+      expect(find.text('Next game').hitTestable(), findsOneWidget,
+          reason: 'primary action must remain tappable at $size');
+      expect(
+        find.bySemanticsLabel(RegExp(
+          r'White.*average roll totals.*Rolls: \d+; \d+\.\d',
+          caseSensitive: false,
+        )),
+        findsOneWidget,
+        reason: 'dice stats need an explanatory accessible label at $size',
+      );
+      c.disposeController();
+    }
+    await t.binding.setSurfaceSize(null);
+    semantics.dispose();
+  });
+
   testWidgets('match-end dialog; Done pops the screen', (t) async {
     var rematches = 0;
     final c = GameController(

@@ -345,13 +345,23 @@ class _GameResultDetails extends StatelessWidget {
           children: [
             const Icon(Icons.casino_outlined, size: 18),
             const SizedBox(width: 6),
-            Text('${l10n.gameResultRolls}: $totalRolls'),
+            Flexible(child: Text('${l10n.gameResultRolls}: $totalRolls')),
           ],
         ),
         const SizedBox(height: 8),
-        _DiceAverage(label: l10n.white, count: whiteRolls, pips: whitePips),
+        _DiceAverage(
+          label: l10n.white,
+          l10n: l10n,
+          count: whiteRolls,
+          pips: whitePips,
+        ),
         const SizedBox(height: 4),
-        _DiceAverage(label: l10n.black, count: blackRolls, pips: blackPips),
+        _DiceAverage(
+          label: l10n.black,
+          l10n: l10n,
+          count: blackRolls,
+          pips: blackPips,
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 2),
           child: Row(
@@ -410,10 +420,12 @@ class _GameResultDetails extends StatelessWidget {
 class _DiceAverage extends StatelessWidget {
   const _DiceAverage({
     required this.label,
+    required this.l10n,
     required this.count,
     required this.pips,
   });
   final String label;
+  final AppLocalizations l10n;
   final int count;
   final int pips;
 
@@ -421,8 +433,10 @@ class _DiceAverage extends StatelessWidget {
   Widget build(BuildContext context) {
     final average = count == 0 ? 7.0 : pips / count;
     final averageLabel = count == 0
-        ? '$label: —, n=0'
-        : '$label: ${average.toStringAsFixed(1)}, n=$count';
+        ? '$label. ${l10n.gameResultDiceNote} ${l10n.gameResultRolls}: 0.'
+        : '$label. ${l10n.gameResultDiceNote} '
+              '${l10n.gameResultRolls}: $count; '
+              '${average.toStringAsFixed(1)}.';
     return Semantics(
       container: true,
       label: averageLabel,
@@ -433,10 +447,13 @@ class _DiceAverage extends StatelessWidget {
             Row(
               children: [
                 Expanded(child: Text(label)),
-                Text(
-                  count == 0
-                      ? '— · n=0'
-                      : '${average.toStringAsFixed(1)} · n=$count',
+                Flexible(
+                  child: Text(
+                    count == 0
+                        ? '— · n=0'
+                        : '${average.toStringAsFixed(1)} · n=$count',
+                    textAlign: TextAlign.end,
+                  ),
                 ),
               ],
             ),
