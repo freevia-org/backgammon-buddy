@@ -945,6 +945,22 @@
   "gameDialogResignBackgammon": "backgamons",
   "gameDialogDecline": "Noraidīt",
   "gameDialogAccept": "Pieņemt",
+  "gameResultGameNumber": "{number}. partija",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Metieni",
+  "gameResultMatchScore": "Mača rezultāts: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Kauliņu punktu vidējā summa bieži svārstās ap 7. Šī nelielā izlase nevar noteikt, vai kauliņi ir neobjektīvi.",
+  "gameResultRatingNotAvailable": "Gājienu vērtējums vēl nav pieejams. Pārskatiet partiju, lai iegūtu pilnu analīzi.",
+  "gameResultRematch": "Atkārtota spēle",
   "gameDialogGameOverTitle": "Spēle galā",
   "gameDialogNextGame": "Nākamā spēle",
   "gameDialogMatchOverTitle": "Mačs galā",

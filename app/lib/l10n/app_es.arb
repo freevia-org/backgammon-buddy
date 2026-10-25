@@ -1318,6 +1318,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Rechazar",
   "gameDialogAccept": "Aceptar",
+  "gameResultGameNumber": "Partida {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Tiradas",
+  "gameResultMatchScore": "Marcador del encuentro: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Las sumas medias de los dados suelen variar alrededor de 7. Esta muestra pequeña no permite determinar si los dados están sesgados.",
+  "gameResultRatingNotAvailable": "Aún no hay una valoración de las jugadas. Revisa la partida para obtener un análisis completo.",
+  "gameResultRematch": "Revancha",
   "gameDialogGameOverTitle": "Fin de la partida",
   "gameDialogNextGame": "Siguiente partida",
   "gameDialogMatchOverTitle": "Fin del encuentro",

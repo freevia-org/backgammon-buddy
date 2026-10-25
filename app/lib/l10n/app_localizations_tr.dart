@@ -2318,6 +2318,30 @@ class AppLocalizationsTr extends AppLocalizations {
   String get gameDialogAccept => 'Kabul et';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Oyun $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Maç skoru: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Atış';
+
+  @override
+  String get gameResultDiceNote =>
+      'Zar toplamlarının ortalaması genellikle 7 civarında değişir. Bu küçük örnek zarların yanlı olup olmadığını gösteremez.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Henüz hamle puanı yok. Tam analiz için oyunu inceleyin.';
+
+  @override
+  String get gameResultRematch => 'Rövanş';
+
+  @override
   String get gameDialogGameOverTitle => 'Oyun bitti';
 
   @override

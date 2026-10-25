@@ -2390,6 +2390,30 @@ class AppLocalizationsPl extends AppLocalizations {
   String get gameDialogAccept => 'Przyjmij';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Gra $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Wynik meczu: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Rzuty';
+
+  @override
+  String get gameResultDiceNote =>
+      'Średnia suma oczek często waha się wokół 7. Ta mała próbka nie pozwala stwierdzić, czy kości są stronnicze.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Brak oceny ruchów. Przejrzyj grę, aby uzyskać pełną analizę.';
+
+  @override
+  String get gameResultRematch => 'Rewanż';
+
+  @override
   String get gameDialogGameOverTitle => 'Koniec partii';
 
   @override

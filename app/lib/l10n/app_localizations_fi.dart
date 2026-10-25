@@ -2354,6 +2354,30 @@ class AppLocalizationsFi extends AppLocalizations {
   String get gameDialogAccept => 'Hyväksy';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Peli $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Ottelun tilanne: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Heitot';
+
+  @override
+  String get gameResultDiceNote =>
+      'Noppien keskiarvo vaihtelee usein seitsemän ympärillä. Tämä pieni otos ei osoita, ovatko nopat vinoutuneet.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Siirtoarviota ei vielä ole. Saat täydellisen analyysin tarkastelemalla peliä.';
+
+  @override
+  String get gameResultRematch => 'Uusintaottelu';
+
+  @override
   String get gameDialogGameOverTitle => 'Peli päättyi';
 
   @override

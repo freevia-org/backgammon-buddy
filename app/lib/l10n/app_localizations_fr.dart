@@ -2368,6 +2368,30 @@ class AppLocalizationsFr extends AppLocalizations {
   String get gameDialogAccept => 'Accepter';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Partie $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Score du match : $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Lancers';
+
+  @override
+  String get gameResultDiceNote =>
+      'La somme moyenne des dés varie souvent autour de 7. Cet échantillon réduit ne permet pas d’établir un biais des dés.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Aucune évaluation des coups pour le moment. Analysez la partie pour obtenir un bilan complet.';
+
+  @override
+  String get gameResultRematch => 'Revanche';
+
+  @override
   String get gameDialogGameOverTitle => 'Partie terminée';
 
   @override

@@ -2356,6 +2356,30 @@ class AppLocalizationsSv extends AppLocalizations {
   String get gameDialogAccept => 'Acceptera';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Parti $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Matchställning: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Kast';
+
+  @override
+  String get gameResultDiceNote =>
+      'Genomsnittliga tärningssummor varierar ofta runt 7. Det här lilla urvalet kan inte fastställa om tärningarna är skeva.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Inget dragbetyg ännu. Granska partiet för en fullständig analys.';
+
+  @override
+  String get gameResultRematch => 'Returmatch';
+
+  @override
   String get gameDialogGameOverTitle => 'Partiet är slut';
 
   @override

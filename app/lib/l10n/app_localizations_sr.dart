@@ -2355,6 +2355,30 @@ class AppLocalizationsSr extends AppLocalizations {
   String get gameDialogAccept => 'Prihvati';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Partija $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Rezultat meča: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Bacanja';
+
+  @override
+  String get gameResultDiceNote =>
+      'Prosečni zbirovi bacanja često variraju oko 7. Ovaj mali uzorak ne može da utvrdi da li su kockice pristrasne.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Ocena poteza još nije dostupna. Pregledajte partiju za potpunu analizu.';
+
+  @override
+  String get gameResultRematch => 'Revanš';
+
+  @override
   String get gameDialogGameOverTitle => 'Partija je završena';
 
   @override

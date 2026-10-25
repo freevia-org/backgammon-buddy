@@ -2447,6 +2447,30 @@ class AppLocalizationsRo extends AppLocalizations {
   String get gameDialogAccept => 'Acceptă';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Partida $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Scorul meciului: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Aruncări';
+
+  @override
+  String get gameResultDiceNote =>
+      'Sumele medii ale zarurilor variază adesea în jurul valorii 7. Acest eșantion mic nu poate stabili dacă zarurile sunt părtinitoare.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Nu există încă o evaluare a mutărilor. Revizuiește partida pentru o analiză completă.';
+
+  @override
+  String get gameResultRematch => 'Revanșă';
+
+  @override
   String get gameDialogGameOverTitle => 'Partidă încheiată';
 
   @override

@@ -2378,6 +2378,30 @@ class AppLocalizationsIt extends AppLocalizations {
   String get gameDialogAccept => 'Accetta';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Partita $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Punteggio del match: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Lanci';
+
+  @override
+  String get gameResultDiceNote =>
+      'La somma media dei dadi varia spesso intorno a 7. Questo piccolo campione non può dimostrare una distorsione dei dadi.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Nessuna valutazione delle mosse. Rivedi la partita per un’analisi completa.';
+
+  @override
+  String get gameResultRematch => 'Rivincita';
+
+  @override
   String get gameDialogGameOverTitle => 'Partita terminata';
 
   @override

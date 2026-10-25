@@ -2378,6 +2378,30 @@ class AppLocalizationsDe extends AppLocalizations {
   String get gameDialogAccept => 'Annehmen';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Spiel $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Matchstand: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Würfe';
+
+  @override
+  String get gameResultDiceNote =>
+      'Durchschnittliche Augensummen schwanken oft um 7. Diese kleine Stichprobe kann keine Würfelverzerrung belegen.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Noch keine Zugbewertung. Öffne die Spielanalyse für eine vollständige Auswertung.';
+
+  @override
+  String get gameResultRematch => 'Revanche';
+
+  @override
   String get gameDialogGameOverTitle => 'Partie beendet';
 
   @override

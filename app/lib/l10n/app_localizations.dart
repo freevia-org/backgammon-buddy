@@ -3885,6 +3885,42 @@ abstract class AppLocalizations {
   /// **'Accept'**
   String get gameDialogAccept;
 
+  /// No description provided for @gameResultGameNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Game {number}'**
+  String gameResultGameNumber(int number);
+
+  /// No description provided for @gameResultMatchScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Match score: {score}'**
+  String gameResultMatchScore(Object score);
+
+  /// No description provided for @gameResultRolls.
+  ///
+  /// In en, this message translates to:
+  /// **'Rolls'**
+  String get gameResultRolls;
+
+  /// No description provided for @gameResultDiceNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Average roll totals often vary around 7. This small sample cannot establish whether the dice are biased.'**
+  String get gameResultDiceNote;
+
+  /// No description provided for @gameResultRatingNotAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No move rating yet. Review the game for a full analysis.'**
+  String get gameResultRatingNotAvailable;
+
+  /// No description provided for @gameResultRematch.
+  ///
+  /// In en, this message translates to:
+  /// **'Rematch'**
+  String get gameResultRematch;
+
   /// No description provided for @gameDialogGameOverTitle.
   ///
   /// In en, this message translates to:

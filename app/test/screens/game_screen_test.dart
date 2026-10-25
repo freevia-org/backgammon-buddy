@@ -1141,6 +1141,9 @@ void main() {
   });
 
   testWidgets('game-end dialog shows the score; Next game continues', (t) async {
+    await t.binding.setSurfaceSize(const Size(375, 667));
+    addTearDown(() => t.binding.setSurfaceSize(null));
+
     final c = GameController(
       white: FakeAgent(),
       black: FakeAgent(),
@@ -1160,6 +1163,11 @@ void main() {
     expect(
         find.textContaining('White wins this game (+${result.points}, gammon).'),
         findsOneWidget);
+    expect(find.text('Game 1'), findsOneWidget);
+    expect(find.textContaining('Match score:'), findsOneWidget);
+    expect(find.textContaining('Rolls:'), findsOneWidget);
+    expect(find.textContaining('n='), findsNWidgets(2));
+    expect(find.textContaining('small sample cannot establish'), findsOneWidget);
     expect(find.textContaining('White ${c.match.whiteScore} —'), findsWidgets);
 
     final g1 = c.game;
@@ -1170,7 +1178,68 @@ void main() {
     c.disposeController();
   });
 
+  testWidgets('result actions and dice labels work at large text sizes',
+      (t) async {
+    final semantics = t.ensureSemantics();
+    for (final size in [const Size(667, 375), const Size(320, 568)]) {
+      for (final textScale in [2.5, 3.0]) {
+        await t.binding.setSurfaceSize(size);
+        final c = GameController(
+          white: FakeAgent(),
+          black: FakeAgent(),
+          matchLength: 7,
+          diceRoller: DiceRoller(Random(7)),
+        );
+        await t.pumpWidget(MaterialApp(
+          builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(context).copyWith(
+              textScaler: TextScaler.linear(textScale),
+            ),
+            child: child!,
+          ),
+          home: GameScreen(key: ValueKey(c), controller: c),
+        ));
+        await t.pumpAndSettle();
+
+        expect(find.text('Game over'), findsOneWidget,
+            reason: '$size at $textScale');
+        expect(find.text('Next game').hitTestable(), findsOneWidget,
+            reason:
+                'primary action must remain tappable at $size at $textScale');
+        expect(
+          find.bySemanticsLabel(RegExp(
+            r'White.*average roll totals.*Rolls: \d+; \d+\.\d',
+            caseSensitive: false,
+          )),
+          findsOneWidget,
+          reason:
+            'dice stats need an explanatory accessible label at $size at $textScale',
+        );
+        final modalScroll = find.descendant(
+          of: find.ancestor(
+            of: find.text('Game over'),
+            matching: find.byType(SingleChildScrollView),
+          ),
+          matching: find.byType(Scrollable),
+        );
+        t.state<ScrollableState>(modalScroll).position.jumpTo(
+            t.state<ScrollableState>(modalScroll).position.maxScrollExtent,
+          );
+        await t.pumpAndSettle();
+        expect(find.text('Close').hitTestable(), findsOneWidget,
+            reason:
+                'secondary action must be scroll-reachable at $size at $textScale');
+        expect(find.text('Next game').hitTestable(), findsOneWidget,
+            reason: 'primary action must stay pinned at $size at $textScale');
+        c.disposeController();
+      }
+    }
+    await t.binding.setSurfaceSize(null);
+    semantics.dispose();
+  });
+
   testWidgets('match-end dialog; Done pops the screen', (t) async {
+    var rematches = 0;
     final c = GameController(
       white: FakeAgent(),
       black: FakeAgent(),
@@ -1184,7 +1253,12 @@ void main() {
           builder: (ctx) => Center(
             child: ElevatedButton(
               onPressed: () => Navigator.of(ctx).push(
-                MaterialPageRoute(builder: (_) => GameScreen(controller: c)),
+                MaterialPageRoute(
+                  builder: (_) => GameScreen(
+                    controller: c,
+                    onRematch: () => rematches++,
+                  ),
+                ),
               ),
               child: const Text('start'),
             ),
@@ -1197,6 +1271,9 @@ void main() {
 
     expect(c.matchOver, isTrue);
     expect(find.text('Match over'), findsOneWidget);
+
+    await t.tap(find.widgetWithText(TextButton, 'Rematch'));
+    expect(rematches, 1);
 
     await t.tap(find.widgetWithText(FilledButton, 'Done'));
     await t.pumpAndSettle();

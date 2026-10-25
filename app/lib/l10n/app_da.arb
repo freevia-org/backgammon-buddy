@@ -831,6 +831,22 @@
   "gameDialogResignBackgammon": "backgammon",
   "gameDialogDecline": "Afslå",
   "gameDialogAccept": "Acceptér",
+  "gameResultGameNumber": "Spil {number}",
+  "@gameResultGameNumber": {
+    "placeholders": {
+      "number": { "type": "int" }
+    }
+  },
+  "gameResultRolls": "Kast",
+  "gameResultMatchScore": "Kampstilling: {score}",
+  "@gameResultMatchScore": {
+    "placeholders": {
+      "score": {}
+    }
+  },
+  "gameResultDiceNote": "Gennemsnitlige terningesummer varierer ofte omkring 7. Denne lille stikprøve kan ikke fastslå, om terningerne er skæve.",
+  "gameResultRatingNotAvailable": "Ingen trækvurdering endnu. Gennemgå spillet for en fuld analyse.",
+  "gameResultRematch": "Omspil",
   "gameDialogGameOverTitle": "Spillet er slut",
   "gameDialogNextGame": "Næste spil",
   "gameDialogMatchOverTitle": "Kampen er slut",

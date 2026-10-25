@@ -101,6 +101,7 @@ class GameScreen extends StatefulWidget {
     this.interactionOptions = const BoardInteractionOptions(),
     this.showScoring = true,
     this.persistedMatchId,
+    this.onRematch,
     this.dragHintShown = true,
     this.onDragHintShown,
     this.opponentLabel = 'AI',
@@ -142,6 +143,10 @@ class GameScreen extends StatefulWidget {
   /// demand — so this is gated purely on persistence, NOT on the live [tutor]
   /// (which defaults off for hard/expert and hot-seat matches).
   final Future<int>? persistedMatchId;
+
+  /// Starts a fresh match with the same local setup. Online and LAN screens
+  /// omit this because a new match must be negotiated through their lobby.
+  final VoidCallback? onRematch;
 
   /// The animation pacing (checker hop/inter-hop travel + the dice-roll beat's
   /// tumble/settle timings) passed to the [BoardView] and used by this screen's
@@ -1211,6 +1216,12 @@ class _GameScreenState extends State<GameScreen> {
           summaryAction: _canShowSummary
               ? _summaryAction(l10n.gameMatchSummary)
               : null,
+          rematchAction: widget.onRematch == null
+              ? null
+              : CardAction(
+                  label: l10n.gameResultRematch,
+                  onPressed: widget.onRematch,
+                ),
           onDone: () => Navigator.of(context).maybePop(),
         ),
       ];
@@ -1223,9 +1234,22 @@ class _GameScreenState extends State<GameScreen> {
           l10n: l10n,
           result: _c.state.result!,
           score: scoreLine(_c, l10n),
+          gameNumber: _c.gameNumber,
+          whiteRolls: _rollTotals.whiteCount,
+          blackRolls: _rollTotals.blackCount,
+          whitePips: _rollTotals.whitePips,
+          blackPips: _rollTotals.blackPips,
+          assessmentsByPlayer: _resultAssessmentsByPlayer,
+          expectedMoveAssessments: _c.game.events.whereType<MoveEvent>().length,
+          metric:
+              _tutorSync.assessmentsByEventIndex.values.firstOrNull?.metric ??
+              (_c.cubeless
+                  ? AssessmentMetric.cubelessEquity
+                  : AssessmentMetric.matchWinningChance),
           summaryAction: _canShowSummary
               ? _summaryAction(l10n.gameAnalyzeGame)
               : null,
+          onClose: () => Navigator.of(context).maybePop(),
           onNextGame: () => _continueToNextGame(displayedState),
         ),
       ];
@@ -1270,6 +1294,45 @@ class _GameScreenState extends State<GameScreen> {
     }
     if (_surrenderOpen) return [_surrenderDialog()];
     return const [];
+  }
+
+  ({int whiteCount, int blackCount, int whitePips, int blackPips})
+  get _rollTotals {
+    var whiteCount = 0;
+    var blackCount = 0;
+    var whitePips = 0;
+    var blackPips = 0;
+    for (final event in _c.game.events) {
+      if (event case RollEvent(:final player, :final die1, :final die2)) {
+        if (player == Player.white) {
+          whiteCount++;
+          whitePips += die1 + die2;
+        } else {
+          blackCount++;
+          blackPips += die1 + die2;
+        }
+      }
+    }
+    return (
+      whiteCount: whiteCount,
+      blackCount: blackCount,
+      whitePips: whitePips,
+      blackPips: blackPips,
+    );
+  }
+
+  Map<Player, List<MoveAssessment>> get _resultAssessmentsByPlayer {
+    final result = {
+      for (final player in Player.values) player: <MoveAssessment>[],
+    };
+    final events = _c.game.events;
+    for (final entry in _tutorSync.assessmentsByEventIndex.entries) {
+      if (entry.key < 0 || entry.key >= events.length) continue;
+      if (events[entry.key] case MoveEvent(:final player)) {
+        result[player]!.add(entry.value);
+      }
+    }
+    return result;
   }
 
   // --- Surrender -------------------------------------------------------------

@@ -2366,6 +2366,30 @@ class AppLocalizationsNl extends AppLocalizations {
   String get gameDialogAccept => 'Aannemen';
 
   @override
+  String gameResultGameNumber(int number) {
+    return 'Spel $number';
+  }
+
+  @override
+  String gameResultMatchScore(Object score) {
+    return 'Matchstand: $score';
+  }
+
+  @override
+  String get gameResultRolls => 'Worpen';
+
+  @override
+  String get gameResultDiceNote =>
+      'Gemiddelde worpsommen schommelen vaak rond 7. Deze kleine steekproef kan niet aantonen of de dobbelstenen bevooroordeeld zijn.';
+
+  @override
+  String get gameResultRatingNotAvailable =>
+      'Nog geen beoordeling van zetten. Bekijk de partij voor een volledige analyse.';
+
+  @override
+  String get gameResultRematch => 'Rematch';
+
+  @override
   String get gameDialogGameOverTitle => 'Spel afgelopen';
 
   @override
