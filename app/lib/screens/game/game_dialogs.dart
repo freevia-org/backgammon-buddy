@@ -573,6 +573,13 @@ class ModalCard extends StatelessWidget {
         : TextButton(onPressed: action.onPressed, child: child);
   }
 
+  Widget _actionWrap(Iterable<CardAction> actions) => Wrap(
+    alignment: WrapAlignment.end,
+    spacing: 12,
+    runSpacing: 4,
+    children: [for (final action in actions) _actionButton(action)],
+  );
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -594,6 +601,51 @@ class ModalCard extends StatelessWidget {
                   final maxHeight = (constraints.maxHeight - 32)
                       .clamp(0.0, 640.0)
                       .toDouble();
+                  // Large translated action labels can wrap into several rows.
+                  // On short displays, keep the primary action pinned and let
+                  // details plus secondary actions scroll together.
+                  final compactActions =
+                      maxHeight < 520 &&
+                      MediaQuery.textScalerOf(context).scale(1) >= 2;
+                  final secondaryActions = compactActions
+                      ? actions.where((action) => !action.filled).toList()
+                      : const <CardAction>[];
+                  final pinnedActions = compactActions
+                      ? actions.where((action) => action.filled).toList()
+                      : actions;
+                  final content = Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ?leading,
+                      Text(
+                        title,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 12),
+                      Text(message),
+                      if (details != null) ...[
+                        const SizedBox(height: 12),
+                        details!,
+                      ],
+                      if (footnote case final note?) ...[
+                        const SizedBox(height: 12),
+                        Text(
+                          note,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.onSurfaceVariant,
+                              ),
+                        ),
+                      ],
+                      if (secondaryActions.isNotEmpty) ...[
+                        const SizedBox(height: 24),
+                        _actionWrap(secondaryActions),
+                      ],
+                    ],
+                  );
                   return Center(
                     child: ConstrainedBox(
                       constraints: BoxConstraints(
@@ -609,59 +661,25 @@ class ModalCard extends StatelessWidget {
                             Flexible(
                               fit: FlexFit.loose,
                               child: SingleChildScrollView(
-                                padding: const EdgeInsets.fromLTRB(
+                                padding: EdgeInsets.fromLTRB(
                                   24,
                                   24,
                                   24,
-                                  0,
+                                  compactActions ? 24 : 0,
                                 ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    ?leading,
-                                    Text(
-                                      title,
-                                      style: Theme.of(
-                                        context,
-                                      ).textTheme.titleLarge,
-                                    ),
-                                    const SizedBox(height: 12),
-                                    Text(message),
-                                    if (details != null) ...[
-                                      const SizedBox(height: 12),
-                                      details!,
-                                    ],
-                                    if (footnote case final note?) ...[
-                                      const SizedBox(height: 12),
-                                      Text(
-                                        note,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall
-                                            ?.copyWith(
-                                              color: Theme.of(
-                                                context,
-                                              ).colorScheme.onSurfaceVariant,
-                                            ),
-                                      ),
-                                    ],
-                                  ],
-                                ),
+                                child: content,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(24),
-                              child: Wrap(
-                                alignment: WrapAlignment.end,
-                                spacing: 12,
-                                runSpacing: 4,
-                                children: [
-                                  for (final action in actions)
-                                    _actionButton(action),
-                                ],
+                            if (pinnedActions.isNotEmpty)
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                  24,
+                                  compactActions ? 8 : 24,
+                                  24,
+                                  compactActions ? 16 : 24,
+                                ),
+                                child: _actionWrap(pinnedActions),
                               ),
-                            ),
                           ],
                         ),
                       ),
