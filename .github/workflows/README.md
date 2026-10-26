@@ -170,14 +170,18 @@ and the Xcode build both need macOS). Bump the image and Xcode together.
    (a `.so` opened by path at runtime), iOS forbids `dlopen`, so the engine is
    linked **statically** into `Runner` and its symbols are resolved at runtime
    via `DynamicLibrary.process()`. See `native/README.md` "iOS".
-4. `flutter build ios --release --no-codesign` produces `Runner.app`. Same
+4. `flutter build ios --release --no-codesign` prepares the release app. Same
    online-play dart-defines as `android.yml` (repo **variables**
    `AIGAMMON_FIREBASE_PROJECT` / `AIGAMMON_FIREBASE_API_KEY`). CI inspects the
    executable's Mach-O export trie and fails if any of the 11 required native
    engine exports (including all Dart FFI lookups) are missing.
-5. `Runner.app` is a directory tree with internal symlinks, so it is packaged
-   with `ditto -c -k --keepParent` (upload-artifact mangles the symlinks
-   otherwise) and uploaded as the **`aigammon-ios-unsigned`** artifact.
+5. Xcode creates an unsigned `.xcarchive` on every run, including PRs. CI audits
+   the archive's executable and checks its dSYM. When signing inputs are
+   configured, export signs this same archive; no provisioning profile is
+   passed to archive targets.
+6. `Runner.app` is a directory tree with internal symlinks, so the archived app
+   is packaged with `ditto -c -k --keepParent` (upload-artifact mangles the
+   symlinks otherwise) and uploaded as the **`aigammon-ios-unsigned`** artifact.
 
 > An **unsigned `.app` cannot be installed on an iPhone.** Signing is the
 > user-gated step below; without the secrets, CI stops after the unsigned
@@ -198,11 +202,12 @@ never submits it or distributes it to Firebase. Missing store signing inputs
 fail instead of falling back to an ad-hoc profile. The profile validator checks
 expiry, bundle/team identity and release/distribution type; `plistlib` escapes
 profile names correctly. It compiles with Flutter, creates an **unsigned
-archive**, then lets `xcodebuild -exportArchive` sign the Runner app with the
-selected profile. Signing during archive used to pass the app's profile as a
-global build setting; Swift package resource bundles inherited it and failed
-because those bundles cannot use the app profile. Deferring signing to export
-avoids that target leakage. `Release.xcconfig` also sets `STRIP_STYLE=non-global`
+archive** on every run, then lets `xcodebuild -exportArchive` sign that same
+Runner app with the selected profile. Signing during archive used to pass the
+app's profile as a global build setting; Swift package resource bundles
+inherited it and failed because those bundles cannot use the app profile.
+Deferring signing to export avoids that target leakage. `Release.xcconfig` also
+sets `STRIP_STYLE=non-global`
 because Xcode's default archive stripping removed symbols used by
 `DynamicLibrary.process()` even though the ordinary Flutter release build kept
 them. The final exported IPA is checked again for all 11 symbols before it can

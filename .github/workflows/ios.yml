@@ -48,10 +48,10 @@ jobs:
     # `-latest` label moves to a new macOS/Xcode under the build without any
     # change in the repo. Bump both deliberately, together.
     runs-on: macos-26
-    # macOS runners are the slowest in the fleet and this job can do TWO full
-    # release compiles (unsigned, then the signed archive) plus an xcodebuild
-    # archive/export, plus up to ~40 min waiting for CI before distribution
-    # (normally zero). Generous by design.
+    # macOS runners are the slowest in the fleet: Flutter builds the release
+    # app, Xcode archives it, and configured signing exports it. The job can
+    # also wait up to ~40 min for CI before Firebase distribution (normally
+    # zero). Generous by design.
     timeout-minutes: 75
     env:
       # Supported by the locked FlutterFire SPM package; this app has no ads.
@@ -189,11 +189,31 @@ jobs:
       - name: Verify unsigned iOS FFI exports
         run: python3 tool/verify_ios_ffi_exports.py --binary app/build/ios/iphoneos/Runner.app/Runner
 
+      # Exercise the actual Xcode archive on PRs too. This is unsigned so the
+      # secret-free build can verify archive stripping without a profile; the
+      # signed path below exports this same archive when credentials exist.
+      - name: Archive app without signing and verify archived FFI exports
+        working-directory: app
+        run: |
+          xcodebuild \
+            -workspace ios/Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Release \
+            -archivePath "$RUNNER_TEMP/Runner.xcarchive" \
+            archive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO
+          python3 ../tool/verify_ios_ffi_exports.py \
+            --binary "$RUNNER_TEMP/Runner.xcarchive/Products/Applications/Runner.app/Runner"
+          test -d "$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM"
+
       # Runner.app is a directory containing symlinks; upload-artifact would
       # mangle them, so package it with ditto (the macOS archive idiom) first.
       - name: Zip Runner.app
-        working-directory: app/build/ios/iphoneos
-        run: ditto -c -k --keepParent Runner.app Runner.app.zip
+        run: >-
+          ditto -c -k --keepParent
+          "$RUNNER_TEMP/Runner.xcarchive/Products/Applications/Runner.app"
+          app/build/ios/iphoneos/Runner.app.zip
 
       - uses: actions/upload-artifact@v7
         with:
@@ -290,7 +310,7 @@ jobs:
       # profile itself (so nothing is hard-coded), write ExportOptions.plist,
       # and export a signed IPA. All in one step so the derived values
       # stay in scope. Expected profile name: `aigammon-adhoc`.
-      - name: Build signed IPA
+      - name: Export signed IPA
         id: ipa
         if: steps.ios.outputs.has_signing == 'true'
         working-directory: app
@@ -300,10 +320,6 @@ jobs:
           IOS_PROVISIONING_PROFILE_BASE64: ${{ github.event_name != 'pull_request' && secrets.IOS_PROVISIONING_PROFILE_BASE64 || '' }}
           IOS_APP_STORE_PROFILE_BASE64: ${{ github.event_name != 'pull_request' && secrets.IOS_APP_STORE_PROFILE_BASE64 || '' }}
           EXPORT_METHOD: ${{ inputs.export_method || 'ad-hoc' }}
-          FB_PROJECT: ${{ vars.AIGAMMON_FIREBASE_PROJECT }}
-          FB_API_KEY: ${{ vars.AIGAMMON_FIREBASE_API_KEY }}
-          FB_SENDER_ID: ${{ vars.AIGAMMON_FIREBASE_SENDER_ID }}
-          FB_IOS_APP_ID: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_IOS_APP_ID || '' }}
         run: |
           set -euo pipefail
 
@@ -355,41 +371,6 @@ jobs:
           echo "::add-mask::$UUID"
           echo "Installed provisioning profile (name, UUID and team id masked)"
 
-          # --- Online-play + telemetry dart-defines (same pattern as the
-          # unsigned build; this is the binary testers actually install, so it
-          # must carry the same config) ---
-          DEFINES=""
-          if [ -n "$FB_PROJECT" ] && [ -n "$FB_API_KEY" ]; then
-            DEFINES="--dart-define=AIGAMMON_FIREBASE_PROJECT=$FB_PROJECT --dart-define=AIGAMMON_FIREBASE_API_KEY=$FB_API_KEY"
-          fi
-          if [ -n "$FB_PROJECT" ] && [ -n "$FB_API_KEY" ] \
-             && [ -n "$FB_SENDER_ID" ] && [ -n "$FB_IOS_APP_ID" ]; then
-            DEFINES="$DEFINES --dart-define=AIGAMMON_FIREBASE_SENDER_ID=$FB_SENDER_ID --dart-define=AIGAMMON_FIREBASE_IOS_APP_ID=$FB_IOS_APP_ID"
-          fi
-
-          # Archive without signing, then let exportArchive sign the Runner app
-          # using the already-installed distribution identity/profile. Passing
-          # PROVISIONING_PROFILE_SPECIFIER globally to `archive` leaks it into
-          # Swift package resource bundles, which cannot use an app profile.
-          # The Runner-only Release.xcconfig also sets STRIP_STYLE=non-global;
-          # this preserves the dynamic FFI export trie in the final executable.
-          # --build-number flows into the archive via FLUTTER_BUILD_NUMBER.
-          # DEFINES is a flag list and must word-split.
-          # shellcheck disable=SC2086
-          flutter build ios --release --no-codesign \
-            --build-number="$BUILD_NUMBER" \
-            --obfuscate --split-debug-info=build/symbols/ios \
-            $DEFINES
-
-          xcodebuild \
-            -workspace ios/Runner.xcworkspace \
-            -scheme Runner \
-            -configuration Release \
-            -archivePath "$RUNNER_TEMP/Runner.xcarchive" \
-            archive \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO
-
           xcodebuild \
             -exportArchive \
             -archivePath "$RUNNER_TEMP/Runner.xcarchive" \
@@ -397,7 +378,6 @@ jobs:
             -exportPath build/ios/ipa
 
           IPA="$(find build/ios/ipa -maxdepth 1 -name '*.ipa' | sort | head -1)"
-          test -d "$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM"
           python3 ../tool/verify_ios_ffi_exports.py --ipa "$IPA"
           echo "Built IPA: $IPA"
           echo "ipa_path=app/$IPA" >> "$GITHUB_OUTPUT"
@@ -426,14 +406,11 @@ jobs:
           path: app/build/mobile-dependencies/ios-signed
           if-no-files-found: error
 
-      - name: Upload signed archive symbols
-        if: steps.ios.outputs.has_signing == 'true'
+      - name: Upload iOS archive symbols
         uses: actions/upload-artifact@v7
         with:
-          name: aigammon-ios-signed-symbols-${{ github.run_number }}
-          path: |
-            ${{ runner.temp }}/Runner.xcarchive/dSYMs
-            app/build/symbols/ios
+          name: aigammon-ios-archive-symbols-${{ github.run_number }}
+          path: ${{ runner.temp }}/Runner.xcarchive/dSYMs
           if-no-files-found: error
 
       # Distribution gate: block until CI has passed for this commit (see
