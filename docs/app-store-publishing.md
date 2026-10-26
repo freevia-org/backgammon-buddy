@@ -1,19 +1,32 @@
-# App Store publishing preparation — 2026-10-25
+# App Store publishing status — 2026-10-26
 
-Status: source, metadata drafts, screenshots and unsigned iOS build are prepared;
-**App Store submission is waiting for Apple account enrollment and signing setup**.
-No Apple Developer membership, registered app, signing credentials, uploaded
-build or physical iPhone is available. Nothing here enrolls, pays, uploads or
-publishes. The current source version is `0.16.2+24`. Android build 10150 is a
-Play version code; choose an iOS build number above any prior App Store upload
-when the signed candidate is prepared.
+**Apple accepted the signed iOS candidate into App Store Connect.** Backgammon
+Buddy `org.freevia.backgammonbuddy`, version `0.16.2` build `26`, was built from
+`5577f0b3f8f16f105d69dfb46f105e3f970df68f` (CI run
+[40311504947](https://github.com/freevia-org/backgammon-buddy/actions/runs/40311504947)).
+The exact IPA uploaded to Apple has SHA-256
+`c664e83656f29fdc6d31befb449aa086b7c0bc434a19b3384147e745af88646f`.
+Independent checks confirmed its signature, App Store provisioning profile,
+bundle/version/build identity and all 11 required native FFI exports. App Store
+Connect currently reports build 26 **Ready to Submit**.
 
-The current release commit `3cfbb3ec6b28cd215d7bdcb42d0757d607be3682` is
-published as GitHub release [v0.16.2](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.2).
-Android `0.16.2 (10150)` is available to internal testers and is in Google Play
-production review (submission 10, submitted October 25, 2026). The matching iOS
-workflow passed its unsigned build and privacy-manifest checks; signing and IPA
-export were skipped because Apple signing secrets are not configured.
+Version `0.16.0` build `22` is still **Waiting for Review**. App Store Connect
+requires removing that version from review before a newer version can be
+submitted. The owner explicitly chose to keep 0.16.0 in review and wait, so it
+has not been modified or withdrawn, and 0.16.2 has not been submitted.
+Recheck this gate after Apple completes the existing review; submit 0.16.2 only
+if App Store Connect allows it without changing 0.16.0.
+
+GitHub release [v0.16.2](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.2)
+contains Android build 10150 and the Windows x64 ZIP. The most recent verified
+Google Play status (October 26, 2026) was build 10150 active in internal testing
+and at 100% production rollout across 178 countries. Current Play status still
+needs confirmation in the Publishing session before making any further store
+change. The app source version is `0.16.2+24`; Android code 10150 and iOS build
+26 are platform-specific build numbers.
+
+Physical-device iOS acceptance remains outstanding. No App Store release or
+public iOS availability is claimed.
 
 ## Prepared now
 
@@ -21,9 +34,10 @@ export were skipped because Apple signing secrets are not configured.
 - App identity, public URLs and proposed category: `app/store/ios/app-information.json`.
 - Version 1 camera permission describes QR joining and manual fallback; the
   deferred microphone permission is removed. Physical Buddy remains gated off.
-- Existing CI builds ARM64 iOS with both native engines, collects dependency and
-  privacy-manifest evidence, and supports export-only App Store signing. Signing
-  has not been exercised. See `.github/workflows/ios.yml` and its README.
+- Existing CI builds ARM64 iOS with both native engines and collects dependency
+  and privacy-manifest evidence. App Store signing/export was exercised for build
+  26 and its artifact was independently verified. See `.github/workflows/ios.yml`
+  and its README.
 - Simulator evidence: [232-case report](ios-extended-validation-2026-10-19.md).
   Release commit `3cfbb3e` passed CI, Android, Windows and the iOS device-target
   unsigned build ([iOS workflow](https://github.com/freevia-org/backgammon-buddy/actions/runs/40174626360)).
@@ -101,40 +115,27 @@ Android evidence; revalidate it for this iOS artifact.
 No advertising or cross-app tracking purpose is implemented by first-party code.
 Recheck all embedded SDKs and their manifests before selecting “no tracking.”
 Do not choose “Data Not Collected” for a build enabling online/support collection.
-No final App Privacy answers have been submitted or certified.
+This record does not verify that the final App Privacy answers for version 0.16.2
+are complete. Reconfirm the exact version's answers in App Store Connect before
+submission; do not infer completion from an earlier version or the source inventory.
 
-## When the Apple account is available
+## Remaining App Store steps
 
-1. Owner enrolls as the correct legal entity (organization enrollment may need
-   D-U-N-S verification); chooses seller identity and accepts agreements. Resolve
-   required trader/contact declarations and territories. No invented legal name,
-   phone number or address is provided in the drafts.
-2. Register explicit App ID `org.freevia.backgammonbuddy` and create the iOS app
-   record using the prepared SKU and English primary locale. Confirm identifier
-   availability; do not silently change an established package identity.
-3. Create an Apple Distribution certificate and App Store Connect provisioning
-   profile for that ID. A store profile does not need a registered iPhone UDID.
-   Store P12/password/profile as GitHub secrets, never in this repository:
-   `IOS_CERT_P12_BASE64`, `IOS_CERT_PASSWORD`, `IOS_APP_STORE_PROFILE_BASE64`.
-4. Confirm build-number baseline `RELEASE_BUILD_NUMBER_BASE` or explicitly provide
-   a number greater than every prior upload. Dispatch the iOS workflow on the
-   reviewed commit with `export_method=app-store-connect` and `build_number`.
-   The existing path exports an IPA artifact; it does not upload to Apple or
-   Firebase. No App Store Connect API private key is required for export alone.
-5. Preserve the exact IPA, source commit/submodules, complete corresponding
-   source, Dart symbols, dSYMs, dependency inventory and hashes outside expiring
-   CI artifacts. Validate signing identity/profile, embedded entitlements, native
-   engines, notices, required-reason API manifests and Xcode's privacy report.
-6. Use Xcode Organizer or Transporter to validate/upload the signed build. Resolve
-   processing warnings; successful unsigned CI does not prove Apple acceptance.
-   Select the processed build in App Store Connect and complete privacy, export,
-   rating, review contact, URLs, screenshots, territories, pricing and agreements.
-7. Use TestFlight testers with real iPhones/iPads if the owner has none. A device
-   is not needed to create the account/record or export/upload, but retain the
-   physical acceptance gate below. Never mark those tests passed by simulation.
-8. Replace the preparation paragraph in review notes with exact-build evidence
-   and final online/deletion instructions. Choose manual release initially; owner
-   reviews the concrete listing/build and authorizes submission/publication.
+1. After the 0.16.0 review completes, inspect App Store Connect again. Do not
+   cancel or alter 0.16.0. If the portal still requires that, stop and ask the
+   owner rather than bypassing the instruction to wait.
+2. Confirm version 0.16.2 metadata, privacy answers, export compliance, rating,
+   review contact, URLs, screenshots, territories, pricing and agreements for the
+   exact build. Existing drafts or another version's submission do not establish
+   completion for 0.16.2.
+3. If the accepted build 26 remains eligible and the portal permits submission
+   without changing 0.16.0, submit it for review using the prepared reviewer
+   notes. Otherwise determine whether a newer signed build is required. Preserve
+   the exact IPA, source commit/submodules, Dart symbols, dSYMs, dependency
+   inventory and hashes outside expiring CI artifacts.
+4. Keep the physical iPhone/iPad acceptance checks below visible as outstanding;
+   do not report simulator checks as device acceptance. Choose manual release
+   initially and release only after Apple's approval.
 
 ## Physical acceptance still outstanding
 
@@ -157,7 +158,7 @@ Physical-board camera recognition, dice listening and voice are deferred to v2,
 not missing acceptance for enabled v1 functionality. If re-enabled, restore an
 accurate microphone purpose string and add a separate acceptance/release review.
 
-## Current account-free submission handoff
+## Submission metadata and validation handoff
 
 See [submission answers](../app/store/ios/submission-answers.md) and the
 [validation/deployment record](ios-submission-validation.md). Deployment statements
