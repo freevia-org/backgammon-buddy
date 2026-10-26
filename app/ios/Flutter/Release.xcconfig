@@ -11,3 +11,8 @@
 // Preserve global symbols for DynamicLibrary.process() in the main executable.
 // -force_load alone does not keep runtime-only FFI exports with Xcode 27.
 OTHER_LDFLAGS = $(inherited) -force_load $(PROJECT_DIR)/Frameworks/libaigammon_engine.a -force_load $(PROJECT_DIR)/Frameworks/libbuddy_gnubg.a -lc++ -Wl,-dead_strip -Wl,-export_dynamic
+
+// Dart FFI resolves these C symbols from the app executable at runtime. The
+// default `all` strip style removes them from Xcode archives even when
+// `-export_dynamic` is present; keep global exports and strip only local symbols.
+STRIP_STYLE = non-global

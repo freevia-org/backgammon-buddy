@@ -3,8 +3,8 @@
 # PREREQUISITES: Xcode CLT; rustup target add aarch64-apple-ios aarch64-apple-ios-sim
 set -euo pipefail
 cd "$(dirname "$0")"
-cargo build --release --target aarch64-apple-ios
-cargo build --release --target aarch64-apple-ios-sim
+IPHONEOS_DEPLOYMENT_TARGET="${IPHONEOS_DEPLOYMENT_TARGET:-15.0}" cargo build --release --target aarch64-apple-ios
+IPHONEOS_DEPLOYMENT_TARGET="${IPHONEOS_DEPLOYMENT_TARGET:-15.0}" cargo build --release --target aarch64-apple-ios-sim
 OUT=../../packages/engine_bindings/native/ios
 mkdir -p "$OUT"
 xcodebuild -create-xcframework \
