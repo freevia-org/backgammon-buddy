@@ -90,6 +90,7 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: native/engine_shim
+          shared-key: ios-deployment-target-15
 
       # iOS forbids dlopen of an arbitrary dylib, so the engine is linked
       # STATICALLY into Runner. Build the device-ABI staticlib; the -force_load
@@ -98,12 +99,16 @@ jobs:
       # native/README.md "iOS (static linking into the Runner)".
       - name: Build engine shim staticlib (aarch64-apple-ios)
         working-directory: native/engine_shim
+        env:
+          IPHONEOS_DEPLOYMENT_TARGET: '15.0'
         run: cargo build --release --target aarch64-apple-ios
 
       # Stage the .a where Release.xcconfig's -force_load expects it
       # ($(PROJECT_DIR)/Frameworks -> app/ios/Frameworks). The dir is kept in
       # the tree by .gitkeep; the .a is git-ignored (app/ios/Frameworks/.gitignore).
       - name: Build GNUbg headless static library
+        env:
+          IPHONEOS_DEPLOYMENT_TARGET: '15.0'
         run: bash native/gnubg/build-ios.sh
 
       - name: Stage staticlib into app/ios/Frameworks
@@ -177,6 +182,12 @@ jobs:
             --build-number="$BUILD_NUMBER" \
             --obfuscate --split-debug-info=build/symbols/ios \
             $DEFINES
+
+      # The main executable is the dynamic library used by dart:ffi on iOS.
+      # Check the actual dynamic export trie so CI catches linker/strip changes
+      # before a broken .app can be distributed.
+      - name: Verify unsigned iOS FFI exports
+        run: python3 tool/verify_ios_ffi_exports.py --binary app/build/ios/iphoneos/Runner.app/Runner
 
       # Runner.app is a directory containing symlinks; upload-artifact would
       # mangle them, so package it with ditto (the macOS archive idiom) first.
@@ -277,7 +288,7 @@ jobs:
       # Import the distribution cert into a throwaway keychain, install the
       # provisioning profile, derive team id / profile name / UUID from the
       # profile itself (so nothing is hard-coded), write ExportOptions.plist,
-      # and build a SIGNED ad-hoc IPA. All in one step so the derived values
+      # and export a signed IPA. All in one step so the derived values
       # stay in scope. Expected profile name: `aigammon-adhoc`.
       - name: Build signed IPA
         id: ipa
@@ -356,17 +367,13 @@ jobs:
             DEFINES="$DEFINES --dart-define=AIGAMMON_FIREBASE_SENDER_ID=$FB_SENDER_ID --dart-define=AIGAMMON_FIREBASE_IOS_APP_ID=$FB_IOS_APP_ID"
           fi
 
-          # We deliberately do NOT use `flutter build ipa`: its internal
-          # `xcodebuild archive` inherits the project's target-level build
-          # settings (CODE_SIGN_STYLE=Automatic, no DEVELOPMENT_TEAM in
-          # Runner.xcodeproj/project.pbxproj), which fails on a headless runner
-          # with "Signing for Runner requires a development team" BEFORE our
-          # ExportOptions.plist is ever consulted — and pbxproj target settings
-          # outrank xcconfig, so an xcconfig override can't fix it. Instead we
-          # compile with Flutter (no codesign), then archive with manual-signing
-          # settings passed on the xcodebuild command line (these DO override the
-          # pbxproj), then export the IPA. --build-number flows into the archive
-          # via FLUTTER_BUILD_NUMBER in Generated.xcconfig.
+          # Archive without signing, then let exportArchive sign the Runner app
+          # using the already-installed distribution identity/profile. Passing
+          # PROVISIONING_PROFILE_SPECIFIER globally to `archive` leaks it into
+          # Swift package resource bundles, which cannot use an app profile.
+          # The Runner-only Release.xcconfig also sets STRIP_STYLE=non-global;
+          # this preserves the dynamic FFI export trie in the final executable.
+          # --build-number flows into the archive via FLUTTER_BUILD_NUMBER.
           # DEFINES is a flag list and must word-split.
           # shellcheck disable=SC2086
           flutter build ios --release --no-codesign \
@@ -380,10 +387,8 @@ jobs:
             -configuration Release \
             -archivePath "$RUNNER_TEMP/Runner.xcarchive" \
             archive \
-            CODE_SIGN_STYLE=Manual \
-            DEVELOPMENT_TEAM="$TEAM_ID" \
-            PROVISIONING_PROFILE_SPECIFIER="$PROFILE_NAME" \
-            "CODE_SIGN_IDENTITY=Apple Distribution"
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO
 
           xcodebuild \
             -exportArchive \
@@ -393,6 +398,7 @@ jobs:
 
           IPA="$(find build/ios/ipa -maxdepth 1 -name '*.ipa' | sort | head -1)"
           test -d "$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM"
+          python3 ../tool/verify_ios_ffi_exports.py --ipa "$IPA"
           echo "Built IPA: $IPA"
           echo "ipa_path=app/$IPA" >> "$GITHUB_OUTPUT"
 

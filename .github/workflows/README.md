@@ -162,7 +162,9 @@ and the Xcode build both need macOS). Bump the image and Xcode together.
 
 1. Checks out with `submodules: recursive` (the engine needs `native/wildbg`).
 2. Installs the Rust `aarch64-apple-ios` target and builds the engine staticlib:
-   `cargo build --release --target aarch64-apple-ios` in `native/engine_shim`.
+   `cargo build --release --target aarch64-apple-ios` in `native/engine_shim`,
+   with `IPHONEOS_DEPLOYMENT_TARGET=15.0` so C objects in Rust dependencies do
+   not inherit the runner SDK's newer default. GNUbg uses the same minimum.
 3. Copies `libaigammon_engine.a` to **`app/ios/Frameworks/`** — the path the
    `-force_load` in `app/ios/Flutter/Release.xcconfig` expects. Unlike Android
    (a `.so` opened by path at runtime), iOS forbids `dlopen`, so the engine is
@@ -170,7 +172,9 @@ and the Xcode build both need macOS). Bump the image and Xcode together.
    via `DynamicLibrary.process()`. See `native/README.md` "iOS".
 4. `flutter build ios --release --no-codesign` produces `Runner.app`. Same
    online-play dart-defines as `android.yml` (repo **variables**
-   `AIGAMMON_FIREBASE_PROJECT` / `AIGAMMON_FIREBASE_API_KEY`).
+   `AIGAMMON_FIREBASE_PROJECT` / `AIGAMMON_FIREBASE_API_KEY`). CI inspects the
+   executable's Mach-O export trie and fails if any of the 11 required native
+   engine exports (including all Dart FFI lookups) are missing.
 5. `Runner.app` is a directory tree with internal symlinks, so it is packaged
    with `ditto -c -k --keepParent` (upload-artifact mangles the symlinks
    otherwise) and uploaded as the **`aigammon-ios-unsigned`** artifact.
@@ -193,18 +197,17 @@ and use `IOS_APP_STORE_PROFILE_BASE64`; this creates an export-only artifact and
 never submits it or distributes it to Firebase. Missing store signing inputs
 fail instead of falling back to an ad-hoc profile. The profile validator checks
 expiry, bundle/team identity and release/distribution type; `plistlib` escapes
-profile names correctly. It then builds the signed IPA in three explicit commands
-rather than `flutter build ipa`: `flutter build ios --release --no-codesign`
-(compile), then `xcodebuild … archive` with **manual** signing settings passed
-on the command line (`CODE_SIGN_STYLE=Manual`, `DEVELOPMENT_TEAM`,
-`PROVISIONING_PROFILE_SPECIFIER`, `CODE_SIGN_IDENTITY`), then `xcodebuild
--exportArchive`. This is necessary because `Runner.xcodeproj` ships
-`CODE_SIGN_STYLE=Automatic` with no `DEVELOPMENT_TEAM`, and those target-level
-pbxproj settings outrank xcconfig — only command-line build settings override
-them, so `flutter build ipa`'s internal archive would fail with "Signing for
-Runner requires a development team" on the headless runner. The IPA is uploaded
-as `aigammon-ios-<export-method>-<run>`. Only configured ad-hoc exports are
-distributed to the Firebase **`testers`** group.
+profile names correctly. It compiles with Flutter, creates an **unsigned
+archive**, then lets `xcodebuild -exportArchive` sign the Runner app with the
+selected profile. Signing during archive used to pass the app's profile as a
+global build setting; Swift package resource bundles inherited it and failed
+because those bundles cannot use the app profile. Deferring signing to export
+avoids that target leakage. `Release.xcconfig` also sets `STRIP_STYLE=non-global`
+because Xcode's default archive stripping removed symbols used by
+`DynamicLibrary.process()` even though the ordinary Flutter release build kept
+them. The final exported IPA is checked again for all 11 symbols before it can
+be uploaded as `aigammon-ios-<export-method>-<run>`. Only configured ad-hoc
+exports are distributed to the Firebase **`testers`** group.
 
 The macOS job uses exact-pinned `firebase-tools@15.25.1` on Node 22 for ad-hoc
 distribution. The Linux-only Docker action used by Android cannot execute on a
