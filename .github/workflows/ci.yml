@@ -19,7 +19,7 @@ concurrency:
 jobs:
   privacy-monitor:
     name: independent privacy monitor tests
-    runs-on: ubuntu-24.04
+    runs-on: backgammon-buddy-i5-linux
     timeout-minutes: 10
     defaults:
       run:
@@ -39,7 +39,7 @@ jobs:
 
   release-preflight:
     name: release provenance and artifact validator tests
-    runs-on: ubuntu-24.04
+    runs-on: backgammon-buddy-i5-linux
     # Offline Python checks; seconds in practice. Only a hang reaches this.
     timeout-minutes: 10
     steps:
@@ -70,7 +70,7 @@ jobs:
   # nothing but a Dart SDK.
   packages:
     name: ${{ matrix.package }} tests
-    runs-on: ubuntu-24.04
+    runs-on: backgammon-buddy-i5-linux
     # Pure-Dart unit suites; about a minute in practice. The ceiling only ever
     # fires on a hang (a stuck pub fetch, a test awaiting a future that never
     # lands) rather than on slow-but-working CI. lan_play binds real sockets and
@@ -120,7 +120,7 @@ jobs:
 
   engine:
     name: engine build + integration tests (linux)
-    runs-on: ubuntu-24.04
+    runs-on: backgammon-buddy-i5-linux
     # A COLD Rust cache builds wildbg + the shim from scratch, then the real-net
     # integration suite runs. Generous on purpose: a cache miss must not read as
     # a failure.
@@ -194,7 +194,7 @@ jobs:
 
   app:
     name: flutter app tests
-    runs-on: ubuntu-24.04
+    runs-on: backgammon-buddy-i5-linux
     # Flutter SDK download plus ~700 widget tests.
     timeout-minutes: 30
     steps:
@@ -219,7 +219,7 @@ jobs:
 
   goldens:
     name: golden comparisons (windows)
-    runs-on: windows-latest
+    runs-on: backgammon-buddy-i5-windows
     # One test file, three PNG comparisons — but on a Windows runner, which is
     # slower to provision than Linux and pays for the Flutter SDK download.
     timeout-minutes: 30
@@ -262,7 +262,7 @@ jobs:
   # one.
   rules:
     name: firestore rules
-    runs-on: ubuntu-24.04
+    runs-on: backgammon-buddy-i5-linux
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
@@ -291,7 +291,7 @@ jobs:
 
   online:
     name: online play (emulator)
-    runs-on: ubuntu-24.04
+    runs-on: backgammon-buddy-i5-linux
     # Fails fast on the rules: there is no point standing up four toolchains to
     # play a two-client match against a rules file that already failed its own
     # unit tests.
