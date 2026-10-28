@@ -18,21 +18,22 @@ void main() {
     expect(workflow, contains('persist-credentials: false'));
   });
 
-  test(
-    'manual cleanup is dry-run and scheduled cleanup is explicitly confirmed',
-    () {
-      expect(workflow, contains("cron: '17 * * * *'"));
-      expect(
-        workflow,
-        contains(
-          "if [ \"\$CLEANUP_EVENT\" = 'schedule' ]; then\n"
-          '            args+=(--apply --confirm-project backgammon-buddy-freevia)',
-        ),
-      );
-      expect(workflow, isNot(contains('inputs:')));
-      expect(workflow, contains('args=(--project backgammon-buddy-freevia)'));
-    },
-  );
+  test('cleanup is manual and apply is an explicit opt-in', () {
+    expect(workflow, contains('workflow_dispatch:'));
+    expect(workflow, isNot(contains('schedule:')));
+    expect(workflow, contains('apply_retention:'));
+    expect(workflow, contains('default: false'));
+    expect(
+      workflow,
+      contains(
+        "if [ \"\$CLEANUP_EVENT\" = 'workflow_dispatch' ] && "
+        "[ \"\$CLEANUP_APPLY\" = 'true' ]; then\n"
+        '            args+=(--apply --confirm-project backgammon-buddy-freevia)',
+      ),
+    );
+    expect(workflow, contains(r'CLEANUP_APPLY: ${{ inputs.apply_retention }}'));
+    expect(workflow, contains('args=(--project backgammon-buddy-freevia)'));
+  });
 
   test(
     'cleanup uses a short-lived token after runtime setup without key files',
