@@ -22,7 +22,7 @@ jobs:
       github.repository_owner_id == '333371985' &&
       github.ref == 'refs/heads/master' &&
       github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-24.04
+    runs-on: backgammon-buddy-i5-linux
     timeout-minutes: 20
     permissions:
       contents: read
