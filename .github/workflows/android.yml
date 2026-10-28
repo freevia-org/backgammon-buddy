@@ -10,27 +10,8 @@ on:
         description: Build a signed Google Play bundle artifact (does not upload to Play)
         type: boolean
         default: false
-  # Builds IN PARALLEL with CI instead of after it (it used to chain off CI via
-  # `workflow_run`, which serialised ~4 min of tests in front of a ~10 min build
-  # and gave pull requests no Android signal at all — Android/iOS breakages were
-  # only discovered after merge). Distribution is still gated on CI: the
-  # `Wait for CI` step below blocks the Firebase upload until ci.yml has passed
-  # for this exact commit, so a commit that breaks the tests never reaches
-  # testers. See .github/workflows/README.md "Distribution is gated on CI".
-  push:
-    branches: [master]
-  # Pull requests get a build-only run with NO release secrets (every secret
-  # reference below is guarded on `github.event_name != 'pull_request'`; fork
-  # PRs receive none anyway). Paths limit it to changes that can affect the APK.
-  pull_request:
-    paths:
-      - 'app/**'
-      - 'native/**'
-      - 'packages/**'
-      - 'tool/**'
-      - '.gitmodules'
-      - '.github/workflows/android.yml'
-      - '.github/scripts/wait-for-ci.sh'
+  # On-demand release lane. Dispatch ci.yml first for this commit; this lane
+  # waits for its successful result before distributing to testers.
 
 permissions:
   contents: read

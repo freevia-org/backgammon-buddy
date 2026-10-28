@@ -11,24 +11,8 @@ on:
         type: choice
         options: [ad-hoc, app-store-connect]
         default: ad-hoc
-  # Builds in parallel with CI; tester distribution waits for CI to pass on the
-  # same commit (`Wait for CI` below). See the note in android.yml and
-  # .github/workflows/README.md "Distribution is gated on CI".
-  push:
-    branches: [master]
-  # Build-only PR signal with no release secrets (every secret reference is
-  # guarded on `github.event_name != 'pull_request'`). Before this, an iOS build
-  # break was only discovered after merge (eight consecutive red master iOS runs
-  # on 2026-10-14/15). Paths limit the macOS job to changes that affect the app.
-  pull_request:
-    paths:
-      - 'app/**'
-      - 'native/**'
-      - 'packages/**'
-      - 'tool/**'
-      - '.gitmodules'
-      - '.github/workflows/ios.yml'
-      - '.github/scripts/wait-for-ci.sh'
+  # On-demand release lane. Dispatch ci.yml first for this commit; this lane
+  # waits for its successful result before distributing to testers.
 
 permissions:
   contents: read
