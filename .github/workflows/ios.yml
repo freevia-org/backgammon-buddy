@@ -31,7 +31,7 @@ jobs:
     # Pinned image + pinned Xcode (below) rather than macos-latest: the
     # `-latest` label moves to a new macOS/Xcode under the build without any
     # change in the repo. Bump both deliberately, together.
-    runs-on: macos-26
+    runs-on: backgammon-buddy-macmini
     # macOS runners are the slowest in the fleet: Flutter builds the release
     # app, Xcode archives it, and configured signing exports it. The job can
     # also wait up to ~40 min for CI before Firebase distribution (normally
