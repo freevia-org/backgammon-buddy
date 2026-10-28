@@ -1,4 +1,4 @@
-# App Store publishing status — 2026-10-26
+# App Store publishing status — 2026-10-29 (ASC status last checked October 27)
 
 **Apple accepted the signed iOS candidate into App Store Connect.** Backgammon
 Buddy `org.freevia.backgammonbuddy`, version `0.16.2` build `26`, was built from
@@ -8,14 +8,25 @@ The exact IPA uploaded to Apple has SHA-256
 `c664e83656f29fdc6d31befb449aa086b7c0bc434a19b3384147e745af88646f`.
 Independent checks confirmed its signature, App Store provisioning profile,
 bundle/version/build identity and all 11 required native FFI exports. App Store
-Connect currently reports build 26 **Ready to Submit**.
+Connect reports build 26 **Ready to Submit** in TestFlight.
 
-Version `0.16.0` build `22` is still **Waiting for Review**. App Store Connect
-requires removing that version from review before a newer version can be
-submitted. The owner explicitly chose to keep 0.16.0 in review and wait, so it
-has not been modified or withdrawn, and 0.16.2 has not been submitted.
-Recheck this gate after Apple completes the existing review; submit 0.16.2 only
-if App Store Connect allows it without changing 0.16.0.
+Version `0.16.0` build `22` is **Rejected** under Apple Guidelines 4.3 (Spam)
+and 4.2.6 (App Generation Services). The review is complete; the version was
+not modified after rejection. Apple requests either significant changes before
+resubmission if the cited concerns apply, or a reply to App Review answering
+nine questions about the product, audience, market gap, beta testing, product
+structure, shared code/assets, third-party components, and the origin of the
+concept/content/branding. The prepared product and technical facts are in
+`app/store/ios/submission-answers.md`; several business and testing answers
+still require owner confirmation. No reply has been sent.
+
+Build 26 remains **Ready to Submit** in TestFlight, but no App Store version
+`0.16.2` record exists. Apple’s current guidance says the existing App Store
+version must be **Ready for Distribution** before creating a new version. The
+rejected 0.16.0 release therefore blocks creation/submission of 0.16.2 until
+the rejection is resolved. No new version was created or submitted, and build
+26 has not received physical-device acceptance. Do not represent TestFlight
+availability as App Store review or release. [Apple's version-creation guide](https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version).
 
 GitHub release [v0.16.2](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.2)
 contains Android build 10150 and the Windows x64 ZIP. The most recent verified
@@ -121,19 +132,22 @@ submission; do not infer completion from an earlier version or the source invent
 
 ## Remaining App Store steps
 
-1. After the 0.16.0 review completes, inspect App Store Connect again. Do not
-   cancel or alter 0.16.0. If the portal still requires that, stop and ask the
-   owner rather than bypassing the instruction to wait.
-2. Confirm version 0.16.2 metadata, privacy answers, export compliance, rating,
-   review contact, URLs, screenshots, territories, pricing and agreements for the
-   exact build. Existing drafts or another version's submission do not establish
-   completion for 0.16.2.
-3. If the accepted build 26 remains eligible and the portal permits submission
-   without changing 0.16.0, submit it for review using the prepared reviewer
-   notes. Otherwise determine whether a newer signed build is required. Preserve
-   the exact IPA, source commit/submodules, Dart symbols, dSYMs, dependency
-   inventory and hashes outside expiring CI artifacts.
-4. Keep the physical iPhone/iPad acceptance checks below visible as outstanding;
+1. Resolve the rejection: collect owner-approved answers to Apple's nine
+   questions and send a response only after those facts are confirmed, or make
+   the significant app changes Apple requires if the cited concerns apply.
+   Do not invent market research, beta feedback, company relationships, or
+   third-party rights claims.
+2. Recheck App Store Connect after the rejection is addressed. Apple currently
+   requires the existing App Store version to be **Ready for Distribution** to
+   create a new version. Do not attempt a workaround that cancels, edits, or
+   misrepresents the rejected record.
+3. Only after Apple permits a new version, verify version 0.16.2 metadata,
+   privacy answers, export compliance, rating, review contact, URLs, screenshots,
+   territories, pricing and agreements for the exact build. Determine whether
+   build 26 remains eligible or a newer signed build is required. Preserve the
+   exact IPA, source commit/submodules, Dart symbols, dSYMs, dependency inventory
+   and hashes outside expiring CI artifacts.
+4. Keep physical iPhone/iPad acceptance checks below visible as outstanding;
    do not report simulator checks as device acceptance. Choose manual release
    initially and release only after Apple's approval.
 
