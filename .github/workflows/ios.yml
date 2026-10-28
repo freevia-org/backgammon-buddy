@@ -142,7 +142,7 @@ jobs:
           FB_SENDER_ID: ${{ vars.AIGAMMON_FIREBASE_SENDER_ID }}
           # Reused from the App Distribution setup — one iOS app id serves both
           # distribution and telemetry, so there is no second secret for it.
-          FB_IOS_APP_ID: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_IOS_APP_ID || '' }}
+          FB_IOS_APP_ID: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_IOS_APP_ID || '' }}
         run: |
           DEFINES=""
           if [ -n "$FB_PROJECT" ] && [ -n "$FB_API_KEY" ]; then
@@ -257,15 +257,15 @@ jobs:
       - name: Check iOS signing secrets
         id: ios
         env:
-          IOS_CERT_P12_BASE64: ${{ github.event_name != 'pull_request' && secrets.IOS_CERT_P12_BASE64 || '' }}
-          IOS_CERT_PASSWORD: ${{ github.event_name != 'pull_request' && secrets.IOS_CERT_PASSWORD || '' }}
-          IOS_PROVISIONING_PROFILE_BASE64: ${{ github.event_name != 'pull_request' && secrets.IOS_PROVISIONING_PROFILE_BASE64 || '' }}
-          IOS_APP_STORE_PROFILE_BASE64: ${{ github.event_name != 'pull_request' && secrets.IOS_APP_STORE_PROFILE_BASE64 || '' }}
+          IOS_CERT_P12_BASE64: ${{ github.ref == 'refs/heads/master' && secrets.IOS_CERT_P12_BASE64 || '' }}
+          IOS_CERT_PASSWORD: ${{ github.ref == 'refs/heads/master' && secrets.IOS_CERT_PASSWORD || '' }}
+          IOS_PROVISIONING_PROFILE_BASE64: ${{ github.ref == 'refs/heads/master' && secrets.IOS_PROVISIONING_PROFILE_BASE64 || '' }}
+          IOS_APP_STORE_PROFILE_BASE64: ${{ github.ref == 'refs/heads/master' && secrets.IOS_APP_STORE_PROFILE_BASE64 || '' }}
           EXPORT_METHOD: ${{ inputs.export_method || 'ad-hoc' }}
-          FIREBASE_IOS_APP_ID: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_IOS_APP_ID || '' }}
+          FIREBASE_IOS_APP_ID: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_IOS_APP_ID || '' }}
           # FIREBASE_SERVICE_ACCOUNT is reused from Android; gate on it too so a
           # missing service account skips cleanly instead of failing at distribute.
-          FIREBASE_SERVICE_ACCOUNT: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_SERVICE_ACCOUNT || '' }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_SERVICE_ACCOUNT || '' }}
         run: |
           PROFILE="$IOS_PROVISIONING_PROFILE_BASE64"
           if [ "$EXPORT_METHOD" = 'app-store-connect' ]; then
@@ -299,10 +299,10 @@ jobs:
         if: steps.ios.outputs.has_signing == 'true'
         working-directory: app
         env:
-          IOS_CERT_P12_BASE64: ${{ github.event_name != 'pull_request' && secrets.IOS_CERT_P12_BASE64 || '' }}
-          IOS_CERT_PASSWORD: ${{ github.event_name != 'pull_request' && secrets.IOS_CERT_PASSWORD || '' }}
-          IOS_PROVISIONING_PROFILE_BASE64: ${{ github.event_name != 'pull_request' && secrets.IOS_PROVISIONING_PROFILE_BASE64 || '' }}
-          IOS_APP_STORE_PROFILE_BASE64: ${{ github.event_name != 'pull_request' && secrets.IOS_APP_STORE_PROFILE_BASE64 || '' }}
+          IOS_CERT_P12_BASE64: ${{ github.ref == 'refs/heads/master' && secrets.IOS_CERT_P12_BASE64 || '' }}
+          IOS_CERT_PASSWORD: ${{ github.ref == 'refs/heads/master' && secrets.IOS_CERT_PASSWORD || '' }}
+          IOS_PROVISIONING_PROFILE_BASE64: ${{ github.ref == 'refs/heads/master' && secrets.IOS_PROVISIONING_PROFILE_BASE64 || '' }}
+          IOS_APP_STORE_PROFILE_BASE64: ${{ github.ref == 'refs/heads/master' && secrets.IOS_APP_STORE_PROFILE_BASE64 || '' }}
           EXPORT_METHOD: ${{ inputs.export_method || 'ad-hoc' }}
         run: |
           set -euo pipefail
@@ -400,7 +400,7 @@ jobs:
       # Distribution gate: block until CI has passed for this commit (see
       # android.yml). Manual dispatch stays the ungated escape hatch.
       - name: Wait for CI to pass on this commit
-        if: github.event_name == 'push' && steps.ios.outputs.has_signing == 'true' && steps.ios.outputs.has_distribution == 'true'
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master' && steps.ios.outputs.has_signing == 'true' && steps.ios.outputs.has_distribution == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           SHA: ${{ github.sha }}
@@ -421,8 +421,8 @@ jobs:
       - name: Distribute IPA to Firebase App Distribution
         if: steps.ios.outputs.has_signing == 'true' && steps.ios.outputs.has_distribution == 'true'
         env:
-          FIREBASE_IOS_APP_ID: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_IOS_APP_ID || '' }}
-          FIREBASE_SERVICE_ACCOUNT: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_SERVICE_ACCOUNT || '' }}
+          FIREBASE_IOS_APP_ID: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_IOS_APP_ID || '' }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_SERVICE_ACCOUNT || '' }}
           IPA_PATH: ${{ steps.ipa.outputs.ipa_path }}
         run: |
           set -euo pipefail

@@ -131,10 +131,10 @@ jobs:
       - name: Configure release signing
         id: signing
         env:
-          ANDROID_KEYSTORE_BASE64: ${{ github.event_name != 'pull_request' && secrets.ANDROID_KEYSTORE_BASE64 || '' }}
-          ANDROID_KEYSTORE_PASSWORD: ${{ github.event_name != 'pull_request' && secrets.ANDROID_KEYSTORE_PASSWORD || '' }}
-          ANDROID_KEY_ALIAS: ${{ github.event_name != 'pull_request' && secrets.ANDROID_KEY_ALIAS || '' }}
-          ANDROID_KEY_PASSWORD: ${{ github.event_name != 'pull_request' && secrets.ANDROID_KEY_PASSWORD || '' }}
+          ANDROID_KEYSTORE_BASE64: ${{ github.ref == 'refs/heads/master' && secrets.ANDROID_KEYSTORE_BASE64 || '' }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ github.ref == 'refs/heads/master' && secrets.ANDROID_KEYSTORE_PASSWORD || '' }}
+          ANDROID_KEY_ALIAS: ${{ github.ref == 'refs/heads/master' && secrets.ANDROID_KEY_ALIAS || '' }}
+          ANDROID_KEY_PASSWORD: ${{ github.ref == 'refs/heads/master' && secrets.ANDROID_KEY_PASSWORD || '' }}
         run: |
           set -eu
           if [ -n "$ANDROID_KEYSTORE_BASE64" ] && [ -n "$ANDROID_KEYSTORE_PASSWORD" ] \
@@ -198,7 +198,7 @@ jobs:
           FB_PROJECT: ${{ vars.AIGAMMON_FIREBASE_PROJECT }}
           FB_API_KEY: ${{ vars.AIGAMMON_FIREBASE_API_KEY }}
           FB_SENDER_ID: ${{ vars.AIGAMMON_FIREBASE_SENDER_ID }}
-          FB_ANDROID_APP_ID: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
+          FB_ANDROID_APP_ID: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
         run: |
           set -eu
           if [ -n "$FB_PROJECT" ] && [ -n "$FB_API_KEY" ] \
@@ -274,7 +274,7 @@ jobs:
           # Reused from the App Distribution setup below — the SAME Android app
           # id identifies the app to distribute and to report telemetry for, so
           # there is deliberately no second secret for it.
-          FB_ANDROID_APP_ID: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
+          FB_ANDROID_APP_ID: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
           BUILD_APPBUNDLE: ${{ inputs.build_appbundle }}
         run: |
           DEFINES=""
@@ -394,8 +394,8 @@ jobs:
       - name: Check Firebase secrets
         id: fb
         env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_SERVICE_ACCOUNT || '' }}
-          FIREBASE_ANDROID_APP_ID: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_SERVICE_ACCOUNT || '' }}
+          FIREBASE_ANDROID_APP_ID: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
         run: |
           if [ -n "$FIREBASE_SERVICE_ACCOUNT" ] && [ -n "$FIREBASE_ANDROID_APP_ID" ]; then
             echo "has_firebase=true" >> "$GITHUB_OUTPUT"
@@ -410,7 +410,7 @@ jobs:
       # fails the job here and nothing is distributed; after re-running CI to
       # green, re-run this job. Manual dispatch stays the ungated escape hatch.
       - name: Wait for CI to pass on this commit
-        if: github.event_name == 'push' && steps.fb.outputs.has_firebase == 'true' && steps.signing.outputs.has_signing == 'true'
+        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master' && steps.fb.outputs.has_firebase == 'true' && steps.signing.outputs.has_signing == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           SHA: ${{ github.sha }}
@@ -425,8 +425,8 @@ jobs:
         # Re-pin deliberately when upgrading; do not switch back to a tag.
         uses: wzieba/Firebase-Distribution-Github-Action@bd494989dd4bec0343f78adee87fe66e48279ad6 # v1
         with:
-          appId: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
-          serviceCredentialsFileContent: ${{ github.event_name != 'pull_request' && secrets.FIREBASE_SERVICE_ACCOUNT || '' }}
+          appId: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
+          serviceCredentialsFileContent: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_SERVICE_ACCOUNT || '' }}
           groups: testers
           file: app/build/app/outputs/flutter-apk/app-release.apk
 
