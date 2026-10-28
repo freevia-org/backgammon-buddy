@@ -135,34 +135,35 @@ void main() {
     );
   });
 
-  test('automatic privileged builds require a trusted master push', () {
+  test('manual privileged builds require a trusted master ref', () {
     for (final name in ['android', 'ios']) {
       final source = workflow(name);
-      // No privilege-escalating triggers: `workflow_run` and
-      // `pull_request_target` both run with secrets after untrusted code, and
-      // a PR head named master satisfies a workflow_run branch filter.
+      // Both release workflows are manual-only. Dispatch can choose a branch,
+      // so all release secrets are gated on the trusted master ref.
+      expect(
+        source,
+        matches(RegExp(r'^on:\r?\n  workflow_dispatch:', multiLine: true)),
+      );
+      expect(source, isNot(matches(RegExp(r'^  push:', multiLine: true))));
+      expect(
+        source,
+        isNot(matches(RegExp(r'^  pull_request:', multiLine: true))),
+      );
       expect(source, isNot(contains('workflow_run:')));
       expect(source, isNot(contains('pull_request_target')));
-      final push = RegExp(
-        r'^  push:\r?\n    branches: \[([^\]]*)\]',
-        multiLine: true,
-      ).firstMatch(source);
-      expect(push?.group(1), 'master',
-          reason: '$name may run automatically with secrets only on master');
-      // Pull requests build without secrets: every secret reference must be
-      // guarded so a same-repository PR build never receives one.
-      final references = RegExp(r'\$\{\{([^}]*secrets\.[^}]*)\}\}')
-          .allMatches(source)
-          .map((match) => match.group(1)!.trim())
-          .toList();
+      final references = RegExp(
+        r'\$\{\{([^}]*secrets\.[^}]*)\}\}',
+      ).allMatches(source).map((match) => match.group(1)!.trim()).toList();
       expect(references, isNotEmpty);
       for (final reference in references) {
         expect(
           reference,
-          matches(RegExp(
-            r"^github\.event_name != 'pull_request' && secrets\.[A-Z0-9_]+ \|\| ''$",
-          )),
-          reason: '$name must not hand a release secret to a PR build',
+          matches(
+            RegExp(
+              r"^github\.ref == 'refs/heads/master' && secrets\.[A-Z0-9_]+ \|\| ''$",
+            ),
+          ),
+          reason: '$name must not expose release secrets on another ref',
         );
       }
     }
@@ -172,7 +173,7 @@ void main() {
     final gate = File('../.github/scripts/wait-for-ci.sh').readAsStringSync();
     expect(gate, contains('--workflow ci.yml'));
     expect(gate, contains('--commit "\$SHA"'));
-    expect(gate, contains('--event push'));
+    expect(gate, contains('--event workflow_dispatch'));
     expect(gate, contains('if [ "\$conclusion" = success ]; then'));
     for (final (name, distribute) in [
       ('android', '      - name: Distribute to Firebase App Distribution'),
@@ -188,7 +189,12 @@ void main() {
         r'      - name: Wait for CI to pass on this commit\r?\n'
         r'        if: ([^\r\n]+)',
       ).firstMatch(source)!.group(1)!;
-      expect(waitIf, startsWith("github.event_name == 'push' && "));
+      expect(
+        waitIf,
+        startsWith(
+          "github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master' && ",
+        ),
+      );
       expect(
         source.substring(wait),
         contains('run: bash .github/scripts/wait-for-ci.sh'),
@@ -198,7 +204,9 @@ void main() {
     // for the earlier commit could never pass.
     expect(
       workflow('ci'),
-      contains("cancel-in-progress: \${{ github.event_name == 'pull_request' }}"),
+      contains(
+        "cancel-in-progress: \${{ github.event_name == 'pull_request' }}",
+      ),
     );
   });
 

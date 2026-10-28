@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Block until the CI workflow (ci.yml) run for the push of $SHA completes, and
+# Block until the CI workflow (ci.yml) run for $SHA completes, and
 # succeed only if it passed.
 #
 # Used by android.yml and ios.yml immediately before tester distribution. Those
@@ -19,10 +19,10 @@ poll_s="${CI_WAIT_POLL_SECONDS:-20}"
 deadline=$(( $(date +%s) + timeout_s ))
 
 while :; do
-  # Newest CI run for this commit's push. A re-run reuses the same run id, so
+  # Newest CI run for this commit. A re-run reuses the same run id, so
   # its latest attempt is what we see here.
   line="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow ci.yml \
-            --commit "$SHA" --event push --limit 1 \
+            --commit "$SHA" --event workflow_dispatch --limit 1 \
             --json status,conclusion,url \
             --jq '.[0] // empty | "\(.status) \(.conclusion // "none") \(.url)"')"
   if [ -n "$line" ]; then

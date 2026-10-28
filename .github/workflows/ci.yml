@@ -1,9 +1,7 @@
 name: CI
 
 on:
-  push:
-    branches: [master]
-  pull_request:
+  workflow_dispatch:
 
 # Least privilege. Nothing here writes to the repo, comments on PRs, or
 # publishes packages, so the default read/write token is more authority than any
@@ -12,12 +10,8 @@ on:
 permissions:
   contents: read
 
-# Pull requests: one live run per PR — a force-push or rapid second push
-# supersedes the first, whose result is about code nobody is looking at any more.
-# master pushes: keyed on the COMMIT and never cancelled. Every master commit
-# needs its own complete result, because android.yml/ios.yml wait on CI for that
-# exact commit before distributing to testers; a ref-keyed group would cancel
-# (or drop as superseded-pending) an earlier commit's run and fail its gate.
+# Dispatch CI first for a commit before starting the Android or iOS distribution
+# workflows; those lanes wait for this exact commit's successful CI run.
 concurrency:
   group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || github.sha }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}

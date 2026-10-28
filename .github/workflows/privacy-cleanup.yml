@@ -1,11 +1,13 @@
 name: Privacy cleanup
 
 on:
-  # Offset from the hour to reduce contention on shared GitHub runners.
-  schedule:
-    - cron: '17 * * * *'
-  # Manual execution is always read-only; scheduled runs apply retention.
   workflow_dispatch:
+    inputs:
+      apply_retention:
+        description: Apply retention changes after the dry run
+        required: false
+        type: boolean
+        default: false
 
 permissions: {}
 
@@ -19,7 +21,7 @@ jobs:
       github.repository_id == '1410906868' &&
       github.repository_owner_id == '333371985' &&
       github.ref == 'refs/heads/master' &&
-      (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+      github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
@@ -53,10 +55,11 @@ jobs:
         env:
           GOOGLE_OAUTH_ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
           CLEANUP_EVENT: ${{ github.event_name }}
+          CLEANUP_APPLY: ${{ inputs.apply_retention }}
         run: |
           set -euo pipefail
           args=(--project backgammon-buddy-freevia)
-          if [ "$CLEANUP_EVENT" = 'schedule' ]; then
+          if [ "$CLEANUP_EVENT" = 'workflow_dispatch' ] && [ "$CLEANUP_APPLY" = 'true' ]; then
             args+=(--apply --confirm-project backgammon-buddy-freevia)
           fi
           node firebase/admin/privacy_cleanup.mjs "${args[@]}" | tee "$RUNNER_TEMP/privacy-cleanup-counts.json"
