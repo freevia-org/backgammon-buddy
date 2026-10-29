@@ -2,9 +2,9 @@
 
 | Workflow | File | Trigger | Purpose |
 |---|---|---|---|
-| CI | `ci.yml` | push to `master`, all PRs | Package, app, native, emulator and release-preflight checks — see the breakdown below |
-| Android | `android.yml` | push to `master`, PRs touching app/native/packages/tool, `workflow_dispatch` | Build ARM/ARM64 APKs in parallel with CI; on `master`, distribute only after CI passes for the same commit and only with release signing and Firebase configured; optionally prepare a signed Play bundle artifact (dispatch) |
-| iOS | `ios.yml` | push to `master`, PRs touching app/native/packages/tool, `workflow_dispatch` | Build the Rust engine staticlib, statically link it into `Runner`, produce an unsigned `Runner.app`, and (when configured) build a signed IPA and push it to Firebase App Distribution after CI passes |
+| CI | `ci.yml` | `workflow_dispatch` | Package, app, native, emulator and release-preflight checks — see the breakdown below |
+| Android | `android.yml` | `workflow_dispatch` | Build ARM/ARM64 APKs; on `master`, distribute only after CI passes for the same commit and only with release signing and Firebase configured; optionally prepare a signed Play bundle artifact |
+| iOS | `ios.yml` | `workflow_dispatch` | Build the Rust engine staticlib, statically link it into `Runner`, produce an unsigned `Runner.app`, and (when configured) build a signed IPA and push it to Firebase App Distribution after CI passes |
 
 ## `ci.yml` — test jobs
 
@@ -12,13 +12,13 @@ Five can start independently; `online` waits on `rules`.
 
 | Job | Runner | What it does |
 |---|---|---|
-| `release-preflight` | Linux | Offline model/Rust-notice hashes and synthetic artifact/profile/build-number validator tests. |
-| `packages` | Linux | One job definition, **four matrix legs** — `backgammon_core`, `board_vision`, `lan_play`, `match_transport` — each `dart analyze --fatal-infos` + `dart test`. `fail-fast: false`, so a push that breaks two packages reports both. `lan_play` alone runs under its `-P ci` retry preset: it is the only suite that binds real sockets. |
-| `engine` | Linux | `cargo fmt --check`, `cargo clippy -p aigammon_engine -- -D warnings`, `cargo build --release` and `cargo test --release` in `native/engine_shim`, then `engine_bindings` analyze, unit tests, and `dart test -P engine` against the freshly built `.so` with the production nets. |
-| `app` | Linux | `flutter analyze` + `flutter test -x golden`. The goldens are excluded here on purpose and run in `goldens` instead; between the two jobs the app suite is covered whole. |
-| `goldens` | **Windows** | `flutter test --tags golden`, on a **pinned** Flutter version. The golden PNGs are Windows-generated and the comparison is byte-for-byte, so the runner compares like with like rather than needing a tolerance wide enough to swallow a real regression. |
-| `rules` | Linux | **Emulator leg 1**, and first: the `firestore.rules` mocha suite against a firestore-only emulator. Seconds. `online` `needs:` this, so a broken rules file goes red before four toolchains are installed. |
-| `online` | Linux | `online_client` analyze + unit tests, then **emulator legs 2–4** inside one `firebase emulators:exec` (`firebase/ci-emulator-suites.sh`): the `online_client -P emulator` transport suite, the app's two-client E2E on the real-time listener path, and that same E2E once more with `AIGAMMON_E2E_LISTEN=0` so the polling fallback is actually exercised. The heaviest leg — Node + Java + Dart + Flutter. |
+| `release-preflight` | Hosted Ubuntu | Offline model/Rust-notice hashes and synthetic artifact/profile/build-number validator tests. |
+| `packages` | Hosted Ubuntu | One job definition, **four matrix legs** — `backgammon_core`, `board_vision`, `lan_play`, `match_transport` — each `dart analyze --fatal-infos` + `dart test`. `fail-fast: false`, so a push that breaks two packages reports both. `lan_play` alone runs under its `-P ci` retry preset: it is the only suite that binds real sockets. |
+| `engine` | Hosted Ubuntu | `cargo fmt --check`, `cargo clippy -p aigammon_engine -- -D warnings`, `cargo build --release` and `cargo test --release` in `native/engine_shim`, then `engine_bindings` analyze, unit tests, and `dart test -P engine` against the freshly built `.so` with the production nets. |
+| `app` | Hosted Ubuntu | `flutter analyze` + `flutter test -x golden`. The goldens are excluded here on purpose and run in `goldens` instead; between the two jobs the app suite is covered whole. |
+| `goldens` | **Hosted Windows** | `flutter test --tags golden`, on a **pinned** Flutter version. The golden PNGs are Windows-generated and the comparison is byte-for-byte, so the runner compares like with like rather than needing a tolerance wide enough to swallow a real regression. |
+| `rules` | Hosted Ubuntu | **Emulator leg 1**, and first: the `firestore.rules` mocha suite against a firestore-only emulator. Seconds. `online` `needs:` this, so a broken rules file goes red before four toolchains are installed. |
+| `online` | Hosted Ubuntu | `online_client` analyze + unit tests, then **emulator legs 2–4** inside one `firebase emulators:exec` (`firebase/ci-emulator-suites.sh`): the `online_client -P emulator` transport suite, the app's two-client E2E on the real-time listener path, and that same E2E once more with `AIGAMMON_E2E_LISTEN=0` so the polling fallback is actually exercised. The heaviest leg — Node + Java + Dart + Flutter. |
 
 `firebase-tools` is pinned to the same exact version (`15.25.1`) in `rules` and
 `online`; the two must not drift onto different emulator versions.
@@ -26,53 +26,38 @@ Five can start independently; `online` waits on `rules`.
 All Flutter test and distribution jobs use **Flutter 3.44.8**, including the
 golden tests. Upgrade those pins together and regenerate goldens deliberately.
 
+CI and Android distribution use GitHub-hosted Ubuntu runners. The Windows
+golden job uses a GitHub-hosted Windows runner so Flutter plugins can create
+symlinks without requiring a machine-level change on the self-hosted I5 host.
+The dedicated Mac runner remains in use for iOS builds, and the operational
+privacy-cleanup workflow remains on its configured I5 runner.
+
 ## Distribution is gated on CI
 
-`android.yml` and `ios.yml` build **in parallel with** `ci.yml` and gate only
-the tester **upload** on it. Each workflow's `Wait for CI to pass on this
-commit` step (`.github/scripts/wait-for-ci.sh`) polls the `ci.yml` run for the
-same commit's push and fails the job unless it concluded `success`; the
-distribution steps run only after it. A commit that breaks the test suite is
-therefore still never distributed. Because CI (~4–5 min) finishes well before
-the mobile builds (~8–10 min), the wait is normally zero.
-
-History: until 2026-10 these workflows chained off CI via `workflow_run`.
-That serialised CI in front of the builds (master push → all platforms done
-took ~14–15 min; it now takes ~10–11 min) and gave pull requests no Android/iOS
-signal at all, so a mobile build break surfaced only after merge (for example
-eight consecutive red master iOS runs on 2026-10-14/15). Before that, all three
-workflows raced the same push with no gate, so a commit that broke the tests
-still reached testers.
+These workflows are dispatched manually for a selected ref. Dispatch `ci.yml`
+and then `android.yml` or `ios.yml` for the same commit. Each mobile workflow's
+`Wait for CI to pass on this commit` step (`.github/scripts/wait-for-ci.sh`)
+polls the `workflow_dispatch` CI run for that SHA and fails unless it concluded
+`success`; Firebase tester distribution runs only after that gate. Android does
+not upload to Google Play: a signed Play bundle is produced as an artifact for
+the Publishing session to verify and upload.
 
 Trust boundaries:
 
-* Automatic runs with secrets happen only on `push` to `master` (merges, which
-  the ruleset requires to come through a PR with green CI). No workflow uses
-  `workflow_run` or `pull_request_target`, so a fork PR — even one whose head
-  branch is named `master` — never runs with secrets.
-* Pull requests run a **build-only** job. Every secret reference is written as
-  `${{ github.event_name != 'pull_request' && secrets.X || '' }}`, so even a
-  same-repository PR build gets no signing keystore, certificate or Firebase
-  credentials: the APK falls back to the debug keystore, iOS stays unsigned,
-  and nothing is distributed. `app/test/release_workflows_test.dart` enforces
-  this shape.
-* `workflow_dispatch` still builds unconditionally from the selected ref, with
-  no CI wait — the manual escape hatch is intact.
-* If CI for a master commit fails and is then re-run to green, re-run the
-  mobile job too: its gate already failed for that commit.
+* There are no `push`, `pull_request`, `workflow_run` or `pull_request_target`
+  triggers. CI and release builds start only when explicitly dispatched.
+* Release signing and Firebase configuration are supplied only when the
+  selected ref is `master`. A feature-branch dispatch builds without release
+  credentials; it cannot produce a Play bundle that passes the signing gate or
+  distribute to testers.
+* If CI fails, rerun CI for the same SHA and then rerun the mobile workflow;
+  the earlier mobile run has already failed its distribution gate.
+* Android build numbers use the release-specific `build_number` input or
+  `RELEASE_BUILD_NUMBER_BASE`, not CI's run counter.
 
-Folding the mobile builds into `ci.yml` behind `needs:` would also run them in
-parallel, but `github.run_number` there is CI's counter, so automatic builds and
-manual `workflow_dispatch` builds would draw build numbers from two different
-counters and a dispatch could produce a lower build number than the previous
-master build. Keeping separate workflows keeps one monotonic counter per
-platform.
-
-Concurrency: `ci.yml` cancels superseded runs only for pull requests; master
-runs are keyed on the commit and never cancelled, because each master commit's
-mobile gate waits on that commit's CI result. The mobile workflows key master
-and dispatch runs on the **commit** (so a newer master commit never cancels an
-older one's distribution mid-upload) and PR runs on the PR number.
+CI and mobile workflows key concurrency by commit, so a newer commit does not
+cancel a build for a different SHA. The mobile workflows cancel an earlier
+dispatch for the same SHA if it is still running.
 
 All workflows declare least-privilege `permissions` (the mobile workflows add
 `actions: read` for the CI gate) and per-job `timeout-minutes`.
@@ -88,8 +73,8 @@ All workflows declare least-privilege `permissions` (the mobile workflows add
 | SwiftPM repositories + `DerivedData/*/SourcePackages` | ios | exact `Package.resolved` + Xcode version (no prefix fallback: the dependency inventory scans DerivedData) |
 | npm | privacy monitor, rules | `package-lock.json` |
 
-Caches written by `master` are readable from PRs; PR runs write only PR-scoped
-entries.
+Actions caches are scoped by runner OS and dependency inputs, not by app
+secrets; cache contents do not carry signing or Firebase credentials.
 
 ## `android.yml` — how it builds
 

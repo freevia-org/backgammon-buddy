@@ -64,28 +64,29 @@ void main() {
     );
   });
 
-  test('release workflows target the maintained Freevia runner fleet', () {
-    for (final name in ['android', 'privacy-cleanup']) {
-      final source = workflow(name);
-      final labels = RegExp(
-        r'^\s*runs-on:\s*([^\s]+)',
-        multiLine: true,
-      ).allMatches(source).map((match) => match.group(1)!);
-      expect(labels, isNotEmpty);
-      expect(labels, everyElement('backgammon-buddy-i5-linux'));
-    }
+  test('portable jobs use hosted runners and iOS uses the dedicated Mac', () {
+    final android = workflow('android');
+    final androidLabels = RegExp(
+      r'^\s*runs-on:\s*([^\s]+)',
+      multiLine: true,
+    ).allMatches(android).map((match) => match.group(1)!);
+    expect(androidLabels, everyElement('ubuntu-latest'));
+    expect(android, contains('actions/setup-java@v6'));
+    expect(android, contains('java-version: 21'));
+
+    final privacy = workflow('privacy-cleanup');
+    final privacyLabels = RegExp(
+      r'^\s*runs-on:\s*([^\s]+)',
+      multiLine: true,
+    ).allMatches(privacy).map((match) => match.group(1)!);
+    expect(privacyLabels, everyElement('backgammon-buddy-i5-linux'));
 
     final ciLabels = RegExp(
       r'^\s*runs-on:\s*([^\s]+)',
       multiLine: true,
     ).allMatches(workflow('ci')).map((match) => match.group(1)!);
     expect(ciLabels, isNotEmpty);
-    expect(
-      ciLabels,
-      everyElement(
-        isIn({'backgammon-buddy-i5-linux', 'backgammon-buddy-i5-windows'}),
-      ),
-    );
+    expect(ciLabels, everyElement(isIn({'ubuntu-latest', 'windows-latest'})));
 
     final iosLabels = RegExp(
       r'^\s*runs-on:\s*([^\s]+)',
