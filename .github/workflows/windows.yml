@@ -27,6 +27,12 @@ jobs:
         with:
           workspaces: native/engine_shim
 
+      - name: Set up MSVC build environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+          vsversion: '2022'
+
       - name: Build Windows checker engine
         shell: pwsh
         run: ./native/engine_shim/build-windows.ps1
