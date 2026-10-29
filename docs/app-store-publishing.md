@@ -1,14 +1,18 @@
-# App Store publishing status — 2026-10-29 (ASC status last checked October 27)
+# App Store publishing status — 2026-10-29
 
-**Apple accepted the signed iOS candidate into App Store Connect.** Backgammon
+**The signed iOS candidate was uploaded to App Store Connect.** Backgammon
 Buddy `org.freevia.backgammonbuddy`, version `0.16.2` build `26`, was built from
 `5577f0b3f8f16f105d69dfb46f105e3f970df68f` (CI run
 [40311504947](https://github.com/freevia-org/backgammon-buddy/actions/runs/40311504947)).
 The exact IPA uploaded to Apple has SHA-256
 `c664e83656f29fdc6d31befb449aa086b7c0bc434a19b3384147e745af88646f`.
 Independent checks confirmed its signature, App Store provisioning profile,
-bundle/version/build identity and all 11 required native FFI exports. App Store
-Connect reports build 26 **Ready to Submit** in TestFlight.
+bundle/version/build identity and all 11 required native FFI exports. Build 26
+was last confirmed **Ready to Submit** in TestFlight on October 26. On October
+29, the authorized Publishing session could read the app list/version page
+(0.16.0 Rejected), but TestFlight and review-submissions views rendered only
+the App Store Connect shell, so the current TestFlight status could not be
+reverified.
 
 Version `0.16.0` build `22` is **Rejected** under Apple Guidelines 4.3 (Spam)
 and 4.2.6 (App Generation Services). The review is complete; the version was
@@ -20,13 +24,13 @@ concept/content/branding. The prepared product and technical facts are in
 `app/store/ios/submission-answers.md`; several business and testing answers
 still require owner confirmation. No reply has been sent.
 
-Build 26 remains **Ready to Submit** in TestFlight, but no App Store version
-`0.16.2` record exists. Apple’s current guidance says the existing App Store
-version must be **Ready for Distribution** before creating a new version. The
-rejected 0.16.0 release therefore blocks creation/submission of 0.16.2 until
-the rejection is resolved. No new version was created or submitted, and build
-26 has not received physical-device acceptance. Do not represent TestFlight
-availability as App Store review or release. [Apple's version-creation guide](https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version).
+The October 29 app list showed only version `0.16.0` (Rejected); no
+`0.16.2` App Store version record was visible. Build 26 was last confirmed
+**Ready to Submit** in TestFlight on October 26, but its current status is
+unverified because the TestFlight details page did not render. The rejection
+and required factual response remain unresolved. No new version was created or
+submitted, and build 26 has not received physical-device acceptance. Do not
+represent its last-confirmed TestFlight status as App Store review or release. [Apple's version-creation guide](https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version).
 
 GitHub release [v0.16.2](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.2)
 contains Android build 10150 and the Windows x64 ZIP. A fresh read-only check in
