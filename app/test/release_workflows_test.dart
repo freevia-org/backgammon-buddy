@@ -64,7 +64,7 @@ void main() {
     );
   });
 
-  test('portable jobs use hosted runners and iOS uses the dedicated Mac', () {
+  test('release jobs use their designated runners', () {
     final android = workflow('android');
     final androidLabels = RegExp(
       r'^\s*runs-on:\s*([^\s]+)',
@@ -79,7 +79,7 @@ void main() {
       r'^\s*runs-on:\s*([^\s]+)',
       multiLine: true,
     ).allMatches(windows).map((match) => match.group(1)!);
-    expect(windowsLabels, everyElement('windows-latest'));
+    expect(windowsLabels, everyElement('backgammon-buddy-i5-windows'));
     expect(
       windows,
       contains('msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e'),
