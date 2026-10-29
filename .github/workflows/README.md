@@ -8,7 +8,7 @@
 
 ## `ci.yml` — test jobs
 
-Five can start independently; `online` waits on `rules`.
+All CI jobs except `online` can start independently; `online` waits on `rules`.
 
 | Job | Runner | What it does |
 |---|---|---|
@@ -38,9 +38,10 @@ These workflows are dispatched manually for a selected ref. Dispatch `ci.yml`
 and then `android.yml` or `ios.yml` for the same commit. Each mobile workflow's
 `Wait for CI to pass on this commit` step (`.github/scripts/wait-for-ci.sh`)
 polls the `workflow_dispatch` CI run for that SHA and fails unless it concluded
-`success`; Firebase tester distribution runs only after that gate. Android does
-not upload to Google Play: a signed Play bundle is produced as an artifact for
-the Publishing session to verify and upload.
+`success`; Firebase tester distribution runs only after that gate, regardless
+of which build finishes first. Android does not upload to Google Play: a signed
+Play bundle is produced as an artifact for the Publishing session to verify and
+upload.
 
 Trust boundaries:
 
