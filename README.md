@@ -13,13 +13,14 @@ position, and revisit decisions worth learning from.
 ## See the app
 
 <p align="center">
-  <img src="docs/tutor-experience/screenshots/phone-10023-next-roll.png" width="235" alt="Android game screen with the backgammon board, move log and tutor guidance">
+  <img src="docs/tutor-experience/screenshots/backgammon-0162-tutor-hint.png" width="235" alt="Backgammon Buddy 0.16.2 computer match with the board and a tutor hint">
   <img src="docs/tutor-experience/screenshots/phone-10023-hint-why.png" width="235" alt="Android tutor screen explaining a suggested play and its tradeoffs">
   <img src="docs/tutor-experience/screenshots/phone-10023-ai-history-review.png" width="235" alt="Android game-history screen reviewing a selected move">
 </p>
 
-These are real Android screenshots from an earlier 0.14.0 internal test build;
-the current build may differ. [See the screenshots on the website](https://freevia.org/backgammon-buddy/#screenshots).
+The first image is a real Android 0.16.2 screenshot captured from the public
+GitHub APK. The other two are from an earlier 0.14.0 internal test build and
+may differ from the current app. [See the screenshots on the website](https://freevia.org/backgammon-buddy/#screenshots).
 
 ## Get the app
 
