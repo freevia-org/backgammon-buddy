@@ -32,7 +32,6 @@ jobs:
         with:
           arch: x64
 
-
       - name: Build Windows checker engine
         shell: pwsh
         run: ./native/engine_shim/build-windows.ps1
