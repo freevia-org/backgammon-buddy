@@ -74,6 +74,20 @@ void main() {
     expect(android, contains('actions/setup-java@v6'));
     expect(android, contains('java-version: 21'));
 
+    final windows = workflow('windows');
+    final windowsLabels = RegExp(
+      r'^\s*runs-on:\s*([^\s]+)',
+      multiLine: true,
+    ).allMatches(windows).map((match) => match.group(1)!);
+    expect(windowsLabels, everyElement('windows-latest'));
+    expect(
+      windows,
+      contains('msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e'),
+    );
+    expect(windows, contains('mingw-w64-x86_64-cmake'));
+    expect(windows, contains('mingw-w64-x86_64-ninja'));
+    expect(windows, contains('mingw-w64-x86_64-gcc'));
+
     final privacy = workflow('privacy-cleanup');
     final privacyLabels = RegExp(
       r'^\s*runs-on:\s*([^\s]+)',
