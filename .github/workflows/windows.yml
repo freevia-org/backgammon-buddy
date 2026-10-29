@@ -13,7 +13,7 @@ concurrency:
 jobs:
   windows:
     name: build portable Windows app
-    runs-on: windows-2025-vs2026
+    runs-on: backgammon-buddy-i5-windows
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
@@ -26,6 +26,12 @@ jobs:
       - uses: Swatinem/rust-cache@v2
         with:
           workspaces: native/engine_shim
+
+      - name: Set up MSVC build environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+          vsversion: '2022'
 
       - name: Build Windows checker engine
         shell: pwsh
