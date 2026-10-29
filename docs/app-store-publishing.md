@@ -33,8 +33,10 @@ contains Android build 10150 and the Windows x64 ZIP. The October 26 Publishing
 note reported build 10150 on Internal testing and at 100% production rollout
 across 178 countries. A separate October 29 audit found conflicting reports:
 one says 0.16.1 remains live and 0.16.2 production submission is pending; the
-other reports 0.16.2 in production. No current Play Console detail page was
-available to reconcile them. Treat production status as **unverified**; the last
+other reports 0.16.2 in production. The authorized publisher account currently
+stops at a new Play Console Terms of Service acceptance screen, so no current
+track details were available to reconcile them. The terms have not been
+accepted. Treat production status as **unverified**; the last
 independent public listing check found 0.16.1 live in Bulgaria on October 25.
 The reported internal status for 0.16.2/build 10150 is also unverified today.
 Do not claim 0.16.2 is live in Play until Publishing confirms the current track
