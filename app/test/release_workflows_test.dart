@@ -64,21 +64,34 @@ void main() {
     );
   });
 
-  test('Node 24 actions run only on GitHub-hosted runner labels', () {
-    const supportedHostedLabels = {
-      'ubuntu-24.04',
-      'windows-latest',
-      'macos-26',
-    };
-    for (final name in ['ci', 'android', 'ios', 'privacy-cleanup']) {
+  test('release workflows target the maintained Freevia runner fleet', () {
+    for (final name in ['android', 'privacy-cleanup']) {
       final source = workflow(name);
       final labels = RegExp(
         r'^\s*runs-on:\s*([^\s]+)',
         multiLine: true,
       ).allMatches(source).map((match) => match.group(1)!);
       expect(labels, isNotEmpty);
-      expect(labels, everyElement(isIn(supportedHostedLabels)));
+      expect(labels, everyElement('backgammon-buddy-i5-linux'));
     }
+
+    final ciLabels = RegExp(
+      r'^\s*runs-on:\s*([^\s]+)',
+      multiLine: true,
+    ).allMatches(workflow('ci')).map((match) => match.group(1)!);
+    expect(ciLabels, isNotEmpty);
+    expect(
+      ciLabels,
+      everyElement(
+        isIn({'backgammon-buddy-i5-linux', 'backgammon-buddy-i5-windows'}),
+      ),
+    );
+
+    final iosLabels = RegExp(
+      r'^\s*runs-on:\s*([^\s]+)',
+      multiLine: true,
+    ).allMatches(workflow('ios')).map((match) => match.group(1)!);
+    expect(iosLabels, ['backgammon-buddy-macmini']);
   });
 
   test('Freevia mobile identity agrees across builds and signing validation', () {
@@ -106,8 +119,8 @@ void main() {
 
   test('iOS distribution uses native CLI and retains ad-hoc signing gates', () {
     final source = workflow('ios');
-    // Pinned image and pinned Xcode: `macos-latest` drifts under the build.
-    expect(source, contains('runs-on: macos-26'));
+    // Dedicated pinned image and pinned Xcode avoid silent image drift.
+    expect(source, contains('runs-on: backgammon-buddy-macmini'));
     expect(source, contains('sudo xcode-select -s'));
     expect(
       source,

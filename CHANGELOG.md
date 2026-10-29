@@ -17,6 +17,12 @@ set by CI from the workflow run number and is not tracked here.
 
 ## [Unreleased]
 
+## [0.16.3] — 2026-10-29
+
+### Added
+
+- Show the installed app version and platform build in Settings > About.
+
 ## [0.16.2] — 2026-10-25
 
 ### Added
