@@ -36,12 +36,12 @@ jobs:
         id: msys2
         uses: msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e # v2.33.0
         with:
-          msystem: MINGW64
+          msystem: UCRT64
           update: true
           install: >-
-            mingw-w64-x86_64-cmake
-            mingw-w64-x86_64-ninja
-            mingw-w64-x86_64-gcc
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-gcc
 
       - name: Build Windows checker engine
         shell: pwsh
@@ -52,7 +52,7 @@ jobs:
         env:
           MSYS2_LOCATION: ${{ steps.msys2.outputs.msys2-location }}
         run: |
-          $env:Path = "$env:MSYS2_LOCATION\mingw64\bin;$env:Path"
+          $env:Path = "$env:MSYS2_LOCATION\ucrt64\bin;$env:Path"
           cmake --version
           ninja --version
           gcc --version

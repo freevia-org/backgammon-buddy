@@ -84,9 +84,11 @@ void main() {
       windows,
       contains('msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e'),
     );
-    expect(windows, contains('mingw-w64-x86_64-cmake'));
-    expect(windows, contains('mingw-w64-x86_64-ninja'));
-    expect(windows, contains('mingw-w64-x86_64-gcc'));
+    expect(windows, contains('msystem: UCRT64'));
+    expect(windows, contains('mingw-w64-ucrt-x86_64-cmake'));
+    expect(windows, contains('mingw-w64-ucrt-x86_64-ninja'));
+    expect(windows, contains('mingw-w64-ucrt-x86_64-gcc'));
+    expect(windows, contains('ucrt64\\bin'));
 
     final privacy = workflow('privacy-cleanup');
     final privacyLabels = RegExp(
