@@ -1,1 +1,1 @@
-Play backgammon, review your decisions and practise positions from your own games.
+Play against the computer with optional Tutor hints. Review your games and practise the positions that mattered.
