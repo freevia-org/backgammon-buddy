@@ -91,11 +91,15 @@ void main() {
     expect(windows, contains('ucrt64\\bin'));
     expect(
       windows,
-      contains(
-        'NuGet/setup-nuget@fd55a6f3b34392fa83fde1454582407d8c714123',
-      ),
+      contains('NuGet/setup-nuget@fd55a6f3b34392fa83fde1454582407d8c714123'),
     );
     expect(windows, contains("nuget-version: '7.9.0'"));
+    expect(
+      windows.indexOf(
+        'NuGet/setup-nuget@fd55a6f3b34392fa83fde1454582407d8c714123',
+      ),
+      lessThan(windows.indexOf('flutter build windows --release --no-pub')),
+    );
 
     final privacy = workflow('privacy-cleanup');
     final privacyLabels = RegExp(
