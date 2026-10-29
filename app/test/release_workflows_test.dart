@@ -64,28 +64,45 @@ void main() {
     );
   });
 
-  test('release workflows target the maintained Freevia runner fleet', () {
-    for (final name in ['android', 'privacy-cleanup']) {
-      final source = workflow(name);
-      final labels = RegExp(
-        r'^\s*runs-on:\s*([^\s]+)',
-        multiLine: true,
-      ).allMatches(source).map((match) => match.group(1)!);
-      expect(labels, isNotEmpty);
-      expect(labels, everyElement('backgammon-buddy-i5-linux'));
-    }
+  test('portable jobs use hosted runners and iOS uses the dedicated Mac', () {
+    final android = workflow('android');
+    final androidLabels = RegExp(
+      r'^\s*runs-on:\s*([^\s]+)',
+      multiLine: true,
+    ).allMatches(android).map((match) => match.group(1)!);
+    expect(androidLabels, everyElement('ubuntu-latest'));
+    expect(android, contains('actions/setup-java@v6'));
+    expect(android, contains('java-version: 21'));
+
+    final windows = workflow('windows');
+    final windowsLabels = RegExp(
+      r'^\s*runs-on:\s*([^\s]+)',
+      multiLine: true,
+    ).allMatches(windows).map((match) => match.group(1)!);
+    expect(windowsLabels, everyElement('windows-latest'));
+    expect(
+      windows,
+      contains('msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e'),
+    );
+    expect(windows, contains('msystem: UCRT64'));
+    expect(windows, contains('mingw-w64-ucrt-x86_64-cmake'));
+    expect(windows, contains('mingw-w64-ucrt-x86_64-ninja'));
+    expect(windows, contains('mingw-w64-ucrt-x86_64-gcc'));
+    expect(windows, contains('ucrt64\\bin'));
+
+    final privacy = workflow('privacy-cleanup');
+    final privacyLabels = RegExp(
+      r'^\s*runs-on:\s*([^\s]+)',
+      multiLine: true,
+    ).allMatches(privacy).map((match) => match.group(1)!);
+    expect(privacyLabels, everyElement('backgammon-buddy-i5-linux'));
 
     final ciLabels = RegExp(
       r'^\s*runs-on:\s*([^\s]+)',
       multiLine: true,
     ).allMatches(workflow('ci')).map((match) => match.group(1)!);
     expect(ciLabels, isNotEmpty);
-    expect(
-      ciLabels,
-      everyElement(
-        isIn({'backgammon-buddy-i5-linux', 'backgammon-buddy-i5-windows'}),
-      ),
-    );
+    expect(ciLabels, everyElement(isIn({'ubuntu-latest', 'windows-latest'})));
 
     final iosLabels = RegExp(
       r'^\s*runs-on:\s*([^\s]+)',
