@@ -11,9 +11,13 @@ initialization flag does not permit a safe shutdown/reopen cycle.
 Windows (MinGW GCC, CMake and Ninja on PATH):
 
 ```
-cmake -S native/gnubg -B native/gnubg/build/windows -G Ninja -DCMAKE_BUILD_TYPE=Release
-cmake --build native/gnubg/build/windows --parallel 4
+cmake -S native/gnubg -B native/gnubg/build/windows-mingw -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+cmake --build native/gnubg/build/windows-mingw --parallel 4
 ```
+
+The PowerShell staging script selects `gcc`/`g++` explicitly and uses a separate
+`build/windows-mingw` directory. This keeps CMake from reusing an MSVC cache when
+the Visual Studio environment is also needed for the Flutter app and Rust shim.
 
 `native/gnubg/build-windows.ps1` also stages the DLL for Flutter packaging.
 Build/stage wildbg with native/engine_shim/build-windows.ps1 as usual.
