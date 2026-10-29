@@ -34,15 +34,12 @@ requires the current App Store version to be Ready for Distribution before
 creating another version; recheck this gate in App Store Connect after
 resolving the rejection.
 
-GitHub release [v0.16.2](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.2)
-contains Android build 10150 and the Windows x64 ZIP. A fresh read-only check in
-the authorized Publishing session on October 29 confirmed version 0.16.2
-(build 10150) active in Internal testing (released October 25 at 10:19 AM) and
-**Available on Google Play** in Production (released October 25 at 10:50 AM) at
-100% rollout across 178 of 178 countries/regions and 19,488 supported devices.
-There are no unpublished Play changes. No store changes were made during the
-check. The app source version is `0.16.2+24`; Android code 10150 and iOS build
-26 are platform-specific build numbers.
+GitHub release [v0.16.3](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.3)
+contains Android build 10151 and the portable Windows x64 ZIP. An authenticated
+Play Console check on October 29 confirmed 0.16.3 (code 10151) available on
+Production across 178 countries and regions after Submission 16 was published;
+Internal testing also serves 0.16.3. The separate iOS candidate remains
+version 0.16.2, build 26, as described above.
 
 Physical-device iOS acceptance remains outstanding. No App Store release or
 public iOS availability is claimed.
