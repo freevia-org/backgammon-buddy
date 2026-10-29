@@ -89,6 +89,13 @@ void main() {
     expect(windows, contains('mingw-w64-ucrt-x86_64-ninja'));
     expect(windows, contains('mingw-w64-ucrt-x86_64-gcc'));
     expect(windows, contains('ucrt64\\bin'));
+    expect(
+      windows,
+      contains(
+        'NuGet/setup-nuget@fd55a6f3b34392fa83fde1454582407d8c714123',
+      ),
+    );
+    expect(windows, contains("nuget-version: '7.9.0'"));
 
     final privacy = workflow('privacy-cleanup');
     final privacyLabels = RegExp(
