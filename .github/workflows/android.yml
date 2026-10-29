@@ -28,7 +28,7 @@ concurrency:
 jobs:
   apk:
     name: build APK + distribute
-    runs-on: ubuntu-latest
+    runs-on: backgammon-buddy-i5-linux
     # Cold path: NDK download, Rust Android targets and Gradle dependencies
     # fetched from scratch, then a release APK, plus up to ~40 min waiting for CI
     # before distribution (normally zero: CI finishes first).
@@ -76,7 +76,7 @@ jobs:
       # (`ndkVersion = "28.2.13676358"`, no longer `flutter.ndkVersion`), and this
       # step is the other half of that pin: the two must be edited together, or
       # cargo-ndk cross-compiles the engine against one NDK while Gradle packages
-      # it for another. The ubuntu-latest image ships several NDKs under
+      # it for another. The local runner’s Android SDK may have other NDKs under
       # $ANDROID_SDK_ROOT/ndk, but not necessarily this exact revision, and both
       # cargo-ndk (engine .so) and Flutter's gradle build must agree on the NDK.
       # Simplest reliable path: install the exact version via sdkmanager and
