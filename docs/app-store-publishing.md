@@ -1,18 +1,26 @@
-# App Store publishing status — 2026-10-29
+# App Store publishing status — 2026-10-30
 
-**The signed iOS candidate was uploaded to App Store Connect.** Backgammon
+**Version 0.16.2 build 26 was uploaded to App Store Connect.** Backgammon
 Buddy `org.freevia.backgammonbuddy`, version `0.16.2` build `26`, was built from
 `5577f0b3f8f16f105d69dfb46f105e3f970df68f` (CI run
 [40311504947](https://github.com/freevia-org/backgammon-buddy/actions/runs/40311504947)).
 The exact IPA uploaded to Apple has SHA-256
 `c664e83656f29fdc6d31befb449aa086b7c0bc434a19b3384147e745af88646f`.
 Independent checks confirmed its signature, App Store provisioning profile,
-bundle/version/build identity and all 11 required native FFI exports. Build 26
-was confirmed in TestFlight as **Waiting for Review** on October 29. The
-authorized Publishing session reported it attached to the external group
-**Freevia Testers** (2 testers); sign-in is not required. The TestFlight details
-page showed **Remove from Review** and a disabled Save button. This is a
-TestFlight external-beta review status, not confirmation of App Store review.
+bundle/version/build identity and all 11 required native FFI exports. A fresh
+authenticated App Store Connect check on October 30 showed build 26 as
+**Complete** and **Testing** in the external group **Freevia Testers** (2 invited
+testers). This is TestFlight beta availability, not an App Store release.
+
+A newer signed candidate, version `0.16.3` build `27`, was independently checked
+for bundle ID, version/build identity and code signature. Its SHA-256 is
+`f3a2b987f7105005dbf33f00b18a1331ed89a1a7ad871b3a66b723d1309f7b4c`. The IPA
+is preserved in the Mac release evidence folder, but build 27 is **not present**
+in App Store Connect. No upload was attempted. The Mac has `altool` but no
+configured App Store Connect upload credential or Transporter installation;
+the authenticated Publishing browser can read the app record but does not
+authenticate the Mac upload tool. Keep build 26 unchanged while preparing an
+internal-only upload of build 27.
 
 Version `0.16.0` build `22` is **Rejected** under Apple Guidelines 4.3 (Spam)
 and 4.2.6 (App Generation Services). The review is complete; the version was
@@ -24,10 +32,10 @@ concept/content/branding. The prepared product and technical facts are in
 `app/store/ios/submission-answers.md`; several business and testing answers
 still require owner confirmation. No reply has been sent.
 
-The October 29 app list showed only version `0.16.0` (Rejected); no
-`0.16.2` App Store version record was visible. Build 26 is in **TestFlight
-external beta review**, but it has not been submitted for App Store review and
-is not approved or cleared for public release. The rejection and required
+The October 30 app list showed only version `0.16.0` (Rejected); no
+`0.16.3` App Store version record was visible. Build 26 is in external
+TestFlight testing, but neither build 26 nor build 27 has been submitted for
+App Store review or cleared for public release. The rejection and required
 owner-confirmed factual response remain unresolved. Build 26 has not received
 physical-device acceptance. [Apple's version-creation guide](https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version)
 requires the current App Store version to be Ready for Distribution before
@@ -41,8 +49,8 @@ Production across 178 countries and regions after Submission 16 was published;
 Internal testing also served 0.16.3 at that time. A read-only check on October
 30 confirmed build 10151 remains active in Production, released October 29 at
 11:49 PM. The current source version is `0.16.3+25`; Android code 10151 is
-independent of the iOS build number. The separate iOS candidate remains version
-0.16.2, build 26, as described above.
+independent of the iOS build number. iOS build 27 uses the same marketing
+version, `0.16.3`.
 Physical-device iOS acceptance remains outstanding. No App Store release or
 public iOS availability is claimed.
 
@@ -133,9 +141,9 @@ Android evidence; revalidate it for this iOS artifact.
 No advertising or cross-app tracking purpose is implemented by first-party code.
 Recheck all embedded SDKs and their manifests before selecting “no tracking.”
 Do not choose “Data Not Collected” for a build enabling online/support collection.
-This record does not verify that the final App Privacy answers for version 0.16.2
+This record does not verify that the final App Privacy answers for version 0.16.3
 are complete. Reconfirm the exact version's answers in App Store Connect before
-submission; do not infer completion from an earlier version or the source inventory.
+submission; do not infer completion from build 26 or the source inventory.
 
 ## Remaining App Store steps
 
@@ -148,10 +156,11 @@ submission; do not infer completion from an earlier version or the source invent
    requires the existing App Store version to be **Ready for Distribution** to
    create a new version. Do not attempt a workaround that cancels, edits, or
    misrepresents the rejected record.
-3. Only after Apple permits a new version, verify version 0.16.2 metadata,
+3. Before an App Store submission, and only after Apple permits a new version,
+   verify version 0.16.3 metadata,
    privacy answers, export compliance, rating, review contact, URLs, screenshots,
    territories, pricing and agreements for the exact build. Determine whether
-   build 26 remains eligible or a newer signed build is required. Preserve the
+   build 27 remains eligible or a newer signed build is required. Preserve the
    exact IPA, source commit/submodules, Dart symbols, dSYMs, dependency inventory
    and hashes outside expiring CI artifacts.
 4. Keep physical iPhone/iPad acceptance checks below visible as outstanding;
