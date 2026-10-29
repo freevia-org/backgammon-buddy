@@ -34,14 +34,12 @@ represent its last-confirmed TestFlight status as App Store review or release. [
 
 GitHub release [v0.16.2](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.2)
 contains Android build 10150 and the Windows x64 ZIP. A fresh read-only check in
-the authorized Publishing session on October 29 confirmed build 10150 is active
-in Internal testing (released October 25 at 10:19 AM) and marked **Available on
-Google Play** in Production (released October 25 at 10:50 AM) at 100% rollout
-across 178 of 178 countries/regions and 19,488 supported devices. The
-Production releases list also shows a separate Draft row for the same version
-and build; it is not marked queued or rolling out. No store changes were made
-during this check. The app source version
-is `0.16.2+24`; Android code 10150 and iOS build
+the authorized Publishing session on October 29 confirmed version 0.16.2
+(build 10150) active in Internal testing (released October 25 at 10:19 AM) and
+**Available on Google Play** in Production (released October 25 at 10:50 AM) at
+100% rollout across 178 of 178 countries/regions and 19,488 supported devices.
+There are no unpublished Play changes. No store changes were made during the
+check. The app source version is `0.16.2+24`; Android code 10150 and iOS build
 26 are platform-specific build numbers.
 
 Physical-device iOS acceptance remains outstanding. No App Store release or
