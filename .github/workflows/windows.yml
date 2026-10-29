@@ -13,7 +13,7 @@ concurrency:
 jobs:
   windows:
     name: build portable Windows app
-    runs-on: windows-latest
+    runs-on: backgammon-buddy-i5-windows
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
