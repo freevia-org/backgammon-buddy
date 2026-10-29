@@ -1,6 +1,7 @@
 import 'package:aigammon_app/physical_buddy_availability.dart';
 import 'dart:async';
 
+import 'package:aigammon_app/branding/app_version.dart';
 import 'package:aigammon_app/buddy/phrasing.dart';
 import 'package:aigammon_app/data/app_settings.dart';
 import 'package:aigammon_app/data/database.dart';
@@ -80,6 +81,18 @@ void main() {
     expect(find.text('Buddy Mode'), findsNothing);
     expect(find.widgetWithText(SwitchListTile, 'Listen for the dice'),
         findsNothing);
+
+    // Version details belong to About, separately from the action that opens
+    // third-party licenses. The package-info plugin is absent in this widget
+    // test, so the screen displays the bundled version as a fallback.
+    expect(find.text('Backgammon Buddy $appVersion'), findsOneWidget);
+    final licensesTile = t.widget<ListTile>(
+      find.ancestor(
+        of: find.text('Open-source licenses'),
+        matching: find.byType(ListTile),
+      ),
+    );
+    expect(licensesTile.subtitle, isNull);
   });
 
   testWidgets('About opens the Flutter licenses page', (t) async {

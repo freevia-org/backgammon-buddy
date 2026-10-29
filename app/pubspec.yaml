@@ -1,7 +1,7 @@
 name: aigammon_app
 description: Backgammon Buddy — backgammon with a neural-net engine.
 publish_to: 'none'
-version: 0.16.2+24
+version: 0.16.3+25
 
 environment:
   sdk: ^3.12.2
@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  package_info_plus: ^10.2.2
   intl: any
   flutter_riverpod: ^2.5.1
   path: ^1.9.0

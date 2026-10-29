@@ -8,11 +8,11 @@ The exact IPA uploaded to Apple has SHA-256
 `c664e83656f29fdc6d31befb449aa086b7c0bc434a19b3384147e745af88646f`.
 Independent checks confirmed its signature, App Store provisioning profile,
 bundle/version/build identity and all 11 required native FFI exports. Build 26
-was last confirmed **Ready to Submit** in TestFlight on October 26. On October
-29, the authorized Publishing session could read the app list/version page
-(0.16.0 Rejected), but TestFlight and review-submissions views rendered only
-the App Store Connect shell, so the current TestFlight status could not be
-reverified.
+was confirmed in TestFlight as **Waiting for Review** on October 29. The
+authorized Publishing session reported it attached to the external group
+**Freevia Testers** (2 testers); sign-in is not required. The TestFlight details
+page showed **Remove from Review** and a disabled Save button. This is a
+TestFlight external-beta review status, not confirmation of App Store review.
 
 Version `0.16.0` build `22` is **Rejected** under Apple Guidelines 4.3 (Spam)
 and 4.2.6 (App Generation Services). The review is complete; the version was
@@ -25,25 +25,24 @@ concept/content/branding. The prepared product and technical facts are in
 still require owner confirmation. No reply has been sent.
 
 The October 29 app list showed only version `0.16.0` (Rejected); no
-`0.16.2` App Store version record was visible. Build 26 was last confirmed
-**Ready to Submit** in TestFlight on October 26, but its current status is
-unverified because the TestFlight details page did not render. The rejection
-and required factual response remain unresolved. No new version was created or
-submitted, and build 26 has not received physical-device acceptance. Do not
-represent its last-confirmed TestFlight status as App Store review or release. [Apple's version-creation guide](https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version).
+`0.16.2` App Store version record was visible. Build 26 is in **TestFlight
+external beta review**, but it has not been submitted for App Store review and
+is not approved or cleared for public release. The rejection and required
+owner-confirmed factual response remain unresolved. Build 26 has not received
+physical-device acceptance. [Apple's version-creation guide](https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version)
+requires the current App Store version to be Ready for Distribution before
+creating another version; recheck this gate in App Store Connect after
+resolving the rejection.
 
-GitHub release [v0.16.2](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.2)
-contains Android build 10150 and the Windows x64 ZIP. A fresh read-only check in
-the authorized Publishing session on October 29 confirmed build 10150 is active
-in Internal testing (released October 25 at 10:19 AM) and marked **Available on
-Google Play** in Production (released October 25 at 10:50 AM) at 100% rollout
-across 178 of 178 countries/regions and 19,488 supported devices. The
-Production releases list also shows a separate Draft row for the same version
-and build; it is not marked queued or rolling out. No store changes were made
-during this check. The app source version
-is `0.16.2+24`; Android code 10150 and iOS build
-26 are platform-specific build numbers.
-
+GitHub release [v0.16.3](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.3)
+contains Android build 10151 and the portable Windows x64 ZIP. An authenticated
+Play Console check on October 29 confirmed 0.16.3 (code 10151) available on
+Production across 178 countries and regions after Submission 16 was published;
+Internal testing also served 0.16.3 at that time. A read-only check on October
+30 confirmed build 10151 remains active in Production, released October 29 at
+11:49 PM. The current source version is `0.16.3+25`; Android code 10151 is
+independent of the iOS build number. The separate iOS candidate remains version
+0.16.2, build 26, as described above.
 Physical-device iOS acceptance remains outstanding. No App Store release or
 public iOS availability is claimed.
 

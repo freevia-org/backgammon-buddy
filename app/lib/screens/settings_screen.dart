@@ -4,6 +4,7 @@ import 'package:engine_bindings/engine_bindings.dart'
     show Difficulty, EvaluationEngine;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../analytics/analytics_events.dart';
 import '../analytics/analytics_screen_view.dart';
@@ -21,6 +22,8 @@ import '../l10n/localization_lookup.dart';
 import '../privacy/privacy_settings_section.dart';
 import '../tutor/coaching_widgets.dart';
 import 'diagnostics_screen.dart';
+
+Future<PackageInfo>? _packageInfoFuture;
 
 /// The preferences screen. Every control autosaves on change (there is no save
 /// button); a "Reset to defaults" action in the app bar restores
@@ -487,13 +490,46 @@ class SettingsScreen extends ConsumerWidget {
                     const SizedBox(height: 24),
                     _Section(
                       label: l10n.settingsAbout,
-                      child: ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        leading: const Icon(Icons.description_outlined),
-                        title: Text(l10n.settingsOpenSourceLicenses),
-                        subtitle: Text(l10n.settingsAppVersion(appVersion)),
-                        trailing: const Icon(Icons.chevron_right),
-                        onTap: () => showAppLicenses(context),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: const Icon(Icons.description_outlined),
+                            title: Text(l10n.settingsOpenSourceLicenses),
+                            trailing: const Icon(Icons.chevron_right),
+                            onTap: () => showAppLicenses(context),
+                          ),
+                          FutureBuilder<PackageInfo>(
+                            future: _packageInfoFuture ??=
+                                PackageInfo.fromPlatform(),
+                            builder: (context, snapshot) {
+                              final packageInfo = snapshot.data;
+                              final version =
+                                  packageInfo?.version ?? appVersion;
+                              final buildNumber = packageInfo?.buildNumber;
+                              final versionAndBuild =
+                                  buildNumber == null || buildNumber.isEmpty
+                                  ? version
+                                  : '$version+$buildNumber';
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 8,
+                                ),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    l10n.settingsAppVersion(versionAndBuild),
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodySmall,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   ],
