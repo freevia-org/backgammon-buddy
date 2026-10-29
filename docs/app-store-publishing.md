@@ -185,4 +185,3 @@ accurate microphone purpose string and add a separate acceptance/release review.
 See [submission answers](../app/store/ios/submission-answers.md) and the
 [validation/deployment record](ios-submission-validation.md). Deployment statements
 in older historical reports are superseded by this record.
-
