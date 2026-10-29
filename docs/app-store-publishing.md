@@ -38,9 +38,11 @@ GitHub release [v0.16.3](https://github.com/freevia-org/backgammon-buddy/release
 contains Android build 10151 and the portable Windows x64 ZIP. An authenticated
 Play Console check on October 29 confirmed 0.16.3 (code 10151) available on
 Production across 178 countries and regions after Submission 16 was published;
-Internal testing also serves 0.16.3. The separate iOS candidate remains
-version 0.16.2, build 26, as described above.
-
+Internal testing also served 0.16.3 at that time. A read-only check on October
+30 confirmed build 10151 remains active in Production, released October 29 at
+11:49 PM. The current source version is `0.16.3+25`; Android code 10151 is
+independent of the iOS build number. The separate iOS candidate remains version
+0.16.2, build 26, as described above.
 Physical-device iOS acceptance remains outstanding. No App Store release or
 public iOS availability is claimed.
 
