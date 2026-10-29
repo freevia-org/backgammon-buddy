@@ -81,6 +81,77 @@ This is the remaining owner/compliance decision, not an unavailable coding task.
 Reference:
 https://developer.apple.com/help/app-store-connect/manage-app-information/determine-and-upload-app-encryption-documentation/
 
+## Rejection response: Guidelines 4.3 and 4.2.6
+
+**Owner review required. Do not paste or submit this section as written.** The
+exact nine questions are not preserved in this repository; copy their wording
+from App Store Connect before preparing the final response. The notes below
+separate repository-supported product facts from facts only the account holder
+can attest to.
+
+### Supported product description
+
+Backgammon Buddy is a playable backgammon game and tutor published under the
+Freevia brand. It supports offline solo games against the computer, shared-device
+hot-seat games, practice, and review of moves and completed games. Tutoring
+explains positions and move choices in solo play. Online play sends structured
+game actions; the app does not provide free-form chat, public profiles, wagering,
+or prizes. The README and in-app documentation describe these capabilities.
+
+Possible factual wording, after the account holder confirms it:
+
+> Backgammon Buddy is a standalone backgammon game and learning product. Its
+> primary use is playing and improving at backgammon through practice, move
+> explanations, and game review. It is designed for people who want a playable
+> backgammon app with optional coaching, including offline solo play and
+> shared-device play.
+
+This describes the product; it does **not** establish market research or a
+unique market gap. Do not claim a market gap, customer demand, beta feedback,
+or competitive distinction unless the account holder can substantiate it.
+
+### Owner confirmations needed before answering Apple
+
+- **Target audience and age:** Google Play currently uses 13+, but that does not
+  establish Apple's age rating or intended audience. Confirm intended users and
+  whether children are targeted.
+- **Beta participation and feedback:** the release record checked on 2026-10-29
+  said TestFlight build 26 was Waiting for Review. This is a dated snapshot, not
+  a live App Store Connect check. The repository does not establish whether
+  testers installed or used it or what feedback they gave. Android
+  internal testers were invited, but participation and feedback are not
+  evidenced here. State “no feedback received” only if confirmed by the owner.
+- **Market rationale:** provide the owner's real rationale or research for
+  releasing this product. No market-size, competitor, or demand claims are
+  documented here.
+- **Standalone product rationale:** confirm why Backgammon Buddy is maintained
+  as its own game rather than a feature inside another Freevia app. The product
+  scope above is documented; the publisher's business rationale is not.
+- **Shared material across Freevia apps:** this repository documents the
+  Backgammon Buddy implementation but cannot establish whether other Freevia
+  products share source code, assets, branding, accounts, or hosted services.
+  Confirm each category. Do not describe a shared element as “only common
+  Flutter/third-party code” without checking the other products.
+- **Origin and rights:** confirm who conceived the app and supplied its content,
+  art, name, and branding; whether a client or partner contributed; and why
+  Freevia is the publisher. The app identifies itself as Freevia, but the
+  origin/ownership history is not recorded here. Separately confirm the rights
+  to distribute included engines and assets; bundled license notices are not a
+  substitute for confirming compliance with each license.
+
+### Release evidence to attach or quote
+
+- The public product description and screenshots for the submitted build.
+- A concise feature list matching the signed binary, distinguishing offline
+  play, tutoring/review, and structured online play.
+- Verifiable tester participation and feedback records, if any.
+- Owner-confirmed product-origin, shared-material, and distribution-rights
+  statements.
+
+Keep factual statements narrow and specific to the exact build under review.
+Do not imply that build 26 was reviewed as an App Store submission: its recorded
+state was TestFlight external beta Waiting for Review.
+
 ## Accessibility declarations
 
 Do not advertise full VoiceOver, Voice Control, Larger Text, Sufficient Contrast
