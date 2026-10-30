@@ -33,6 +33,18 @@ jobs:
           arch: x64
           vsversion: '2022'
 
+      - name: Verify MSVC ATL headers for Windows plugins
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ([string]::IsNullOrWhiteSpace($env:VCToolsInstallDir)) {
+            throw 'MSVC did not expose VCToolsInstallDir; the Windows C++ build environment is unavailable.'
+          }
+          $atlHeader = Join-Path $env:VCToolsInstallDir 'atlmfc/include/atlstr.h'
+          if (-not (Test-Path -LiteralPath $atlHeader)) {
+            throw "Missing $atlHeader. Install Visual Studio Build Tools component Microsoft.VisualStudio.Component.VC.ATL (C++ ATL for latest v143 build tools, x86 and x64)."
+          }
+
       - name: Install MinGW CMake, Ninja and GCC
         id: msys2
         uses: msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e # v2.33.0
