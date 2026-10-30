@@ -31,6 +31,19 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x64
+          vsversion: '2022'
+
+      - name: Verify MSVC ATL headers for Windows plugins
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ([string]::IsNullOrWhiteSpace($env:VCToolsInstallDir)) {
+            throw 'MSVC did not expose VCToolsInstallDir; the Windows C++ build environment is unavailable.'
+          }
+          $atlHeader = Join-Path $env:VCToolsInstallDir 'atlmfc/include/atlstr.h'
+          if (-not (Test-Path -LiteralPath $atlHeader)) {
+            throw "Missing $atlHeader. Install Visual Studio Build Tools component Microsoft.VisualStudio.Component.VC.ATL (C++ ATL for latest v143 build tools, x86 and x64)."
+          }
 
       - name: Install MinGW CMake, Ninja and GCC
         id: msys2
@@ -64,6 +77,11 @@ jobs:
           channel: stable
           flutter-version: 3.44.8
           cache: true
+
+      - name: Set up NuGet CLI for flutter_tts
+        uses: NuGet/setup-nuget@fd55a6f3b34392fa83fde1454582407d8c714123 # v4.0
+        with:
+          nuget-version: '7.9.0'
 
       - run: flutter pub get
         working-directory: app

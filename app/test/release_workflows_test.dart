@@ -64,7 +64,7 @@ void main() {
     );
   });
 
-  test('portable jobs use hosted runners and iOS uses the dedicated Mac', () {
+  test('release jobs use their designated runners', () {
     final android = workflow('android');
     final androidLabels = RegExp(
       r'^\s*runs-on:\s*([^\s]+)',
@@ -79,7 +79,13 @@ void main() {
       r'^\s*runs-on:\s*([^\s]+)',
       multiLine: true,
     ).allMatches(windows).map((match) => match.group(1)!);
-    expect(windowsLabels, everyElement('windows-latest'));
+    expect(windowsLabels, everyElement('backgammon-buddy-i5-windows'));
+    expect(windows, contains('Verify MSVC ATL headers for Windows plugins'));
+    expect(windows, contains('Microsoft.VisualStudio.Component.VC.ATL'));
+    expect(
+      windows.indexOf('Verify MSVC ATL headers for Windows plugins'),
+      lessThan(windows.indexOf('Build Windows checker engine')),
+    );
     expect(
       windows,
       contains('msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e'),
@@ -89,6 +95,17 @@ void main() {
     expect(windows, contains('mingw-w64-ucrt-x86_64-ninja'));
     expect(windows, contains('mingw-w64-ucrt-x86_64-gcc'));
     expect(windows, contains('ucrt64\\bin'));
+    expect(
+      windows,
+      contains('NuGet/setup-nuget@fd55a6f3b34392fa83fde1454582407d8c714123'),
+    );
+    expect(windows, contains("nuget-version: '7.9.0'"));
+    expect(
+      windows.indexOf(
+        'NuGet/setup-nuget@fd55a6f3b34392fa83fde1454582407d8c714123',
+      ),
+      lessThan(windows.indexOf('flutter build windows --release --no-pub')),
+    );
 
     final privacy = workflow('privacy-cleanup');
     final privacyLabels = RegExp(
