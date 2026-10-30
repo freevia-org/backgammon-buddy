@@ -80,6 +80,12 @@ void main() {
       multiLine: true,
     ).allMatches(windows).map((match) => match.group(1)!);
     expect(windowsLabels, everyElement('backgammon-buddy-i5-windows'));
+    expect(windows, contains('Verify MSVC ATL headers for Windows plugins'));
+    expect(windows, contains('Microsoft.VisualStudio.Component.VC.ATL'));
+    expect(
+      windows.indexOf('Verify MSVC ATL headers for Windows plugins'),
+      lessThan(windows.indexOf('Build Windows checker engine')),
+    );
     expect(
       windows,
       contains('msys2/setup-msys2@ec48f7c5447b3140e2b088413ae3a55687bccb6e'),
