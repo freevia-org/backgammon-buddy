@@ -79,7 +79,7 @@ void main() {
       r'^\s*runs-on:\s*([^\s]+)',
       multiLine: true,
     ).allMatches(windows).map((match) => match.group(1)!);
-    expect(windowsLabels, everyElement('backgammon-buddy-i5-windows'));
+    expect(windowsLabels, everyElement('windows-2025'));
     expect(windows, contains('Verify MSVC ATL headers for Windows plugins'));
     expect(windows, contains('Microsoft.VisualStudio.Component.VC.ATL'));
     expect(

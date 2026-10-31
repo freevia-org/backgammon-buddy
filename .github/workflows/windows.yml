@@ -13,7 +13,9 @@ concurrency:
 jobs:
   windows:
     name: build portable Windows app
-    runs-on: backgammon-buddy-i5-windows
+    # The I5 Windows runner is suitable for golden tests but does not have
+    # Visual Studio installed. Use the hosted image for the native release build.
+    runs-on: windows-2025
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
@@ -31,7 +33,6 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x64
-          vsversion: '2022'
 
       - name: Verify MSVC ATL headers for Windows plugins
         shell: pwsh
