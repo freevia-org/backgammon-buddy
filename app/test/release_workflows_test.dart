@@ -70,7 +70,7 @@ void main() {
       r'^\s*runs-on:\s*([^\s]+)',
       multiLine: true,
     ).allMatches(android).map((match) => match.group(1)!);
-    expect(androidLabels, everyElement('ubuntu-latest'));
+    expect(androidLabels, everyElement('backgammon-buddy-i5-linux'));
     expect(android, contains('actions/setup-java@v6'));
     expect(android, contains('java-version: 21'));
 
@@ -119,7 +119,12 @@ void main() {
       multiLine: true,
     ).allMatches(workflow('ci')).map((match) => match.group(1)!);
     expect(ciLabels, isNotEmpty);
-    expect(ciLabels, everyElement(isIn({'ubuntu-latest', 'windows-latest'})));
+    expect(
+      ciLabels,
+      everyElement(
+        isIn({'backgammon-buddy-i5-linux', 'backgammon-buddy-i5-windows'}),
+      ),
+    );
 
     final iosLabels = RegExp(
       r'^\s*runs-on:\s*([^\s]+)',
