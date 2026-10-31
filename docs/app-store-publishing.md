@@ -26,17 +26,21 @@ submission as **Unresolved Issues** and the version as Rejected. Apple's only
 review message is dated October 26 at 6:33 PM. The account holder's reply dated
 October 30 at 5:10 AM appears in the posted message history. A later reply dated
 October 30 at 6:28 PM is still a draft and says it supersedes the earlier reply.
-There has been no newer Apple message or question in the latest review record
-available in the repository. The prepared product and technical facts are in
+The repository snapshot records no newer Apple message after that draft. A live
+ASC check on November 1 again showed 0.16.0 as Rejected, but the Resolution
+Center page did not render in the available browser session; whether the
+October 30 draft was later sent, or whether Apple added a message, remains
+unverified. The prepared product and technical facts are in
 `app/store/ios/submission-answers.md`. Do not change or withdraw this rejected
 version while resolving its review response.
 
-The October 31 App Store Connect app list still shows only version `0.16.0`
+The November 1 live App Store Connect check still shows only version `0.16.0`
 (Rejected); no `0.16.3` App Store version record is visible. TestFlight build 26
-(0.16.2) is **Testing** in the external **Freevia Testers** group with 2
-invitations and no recorded installations. Build 27 is uploaded but blocked by
-Missing Compliance. Neither build has been submitted for public App Store review
-or cleared for release. Build 26 has not received physical-device acceptance.
+(0.16.2) remains **Testing** in **Freevia Testers** and now shows 2 installs.
+Build 27 (0.16.3) is uploaded but blocked by **Missing Compliance**. Neither
+build has been submitted for public App Store review or cleared for release.
+Build 26 has not received recorded product-acceptance results from those
+installations.
 The review rejection remains unresolved. [Apple's version-creation guide](https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version)
 requires the current App Store version to be Ready for Distribution before
 creating another version; recheck this gate in App Store Connect after
@@ -50,14 +54,15 @@ required; see `docs/ios-privacy-encryption-handoff.md` and the private filing
 packet.
 
 GitHub release [v0.16.3](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.3)
-contains Android build 10151 and the portable Windows x64 ZIP. An authenticated
-Play Console check on October 29 confirmed 0.16.3 (code 10151) available on
-Production across 178 countries and regions after Submission 16 was published;
-Internal testing also served 0.16.3 at that time. A read-only check on October
-30 confirmed build 10151 remains active in Production, released October 29 at
-11:49 PM. The current source version is `0.16.3+25`; Android code 10151 is
-independent of the iOS build number. iOS build 27 uses the same marketing
-version, `0.16.3`.
+contains Android build 10151 and the portable Windows x64 ZIP. A live Play
+Console check on November 1 confirms 0.16.3/code 10151 active in Production
+across 178 countries and regions, with 7 installs; Internal testing also serves
+0.16.3/code 10151. Production was released October 29 at 11:49 PM; Internal
+testing at 11:28 PM. The current source version is `0.16.3+25`; Android code
+10151 is independent of the iOS build number. A comparison of `v0.16.3` to
+current master found no app/runtime source changes, only workflow, tests,
+README and release/compliance documentation. iOS build 27 uses the same
+marketing version, `0.16.3`.
 Physical-device iOS acceptance remains outstanding. No App Store release or
 public iOS availability is claimed.
 
