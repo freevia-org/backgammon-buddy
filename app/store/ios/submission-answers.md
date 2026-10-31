@@ -64,7 +64,7 @@ References:
 https://developer.apple.com/help/app-store-connect/reference/app-information/age-ratings-values-and-definitions/
 https://developer.apple.com/news/?id=tlur8uvi
 
-## Encryption questionnaire
+## Encryption questionnaire — build 27
 
 The application uses encryption: HTTPS/TLS for Google services (including Dart's
 network implementation), OS Keychain protection for credentials/receipts, secure
@@ -73,10 +73,19 @@ No proprietary content cipher, VPN or general-purpose encryption feature is
 identified in the first-party implementation. Prepare the standard/exempt-use
 assessment using the inventory in `docs/ios-privacy-encryption-handoff.md`.
 
-Leave `ITSAppUsesNonExemptEncryption` unset until the account holder records the
-classification for the exact signed artifact and selected territories. Do not
-answer “no cryptography,” “OS only,” or invent an exemption/documentation code.
-This is the remaining owner/compliance decision, not an unavailable coding task.
+The Freevia representative confirmed that build 27 uses standard encryption
+outside Apple's operating-system APIs. Publishing selected that classification
+in the App Store Connect flow. Selecting France caused Apple to require an
+approved export-compliance document in App Encryption Documentation before it
+will save the answer; the form had no Save action, so build 27 remains Missing
+Compliance. This owner-confirmed classification does not establish an ANSSI
+filing outcome, Apple's acceptance, or an export-compliance key.
+
+The authorized representative must sign and submit the prepared French ANSSI
+declaration. After the official document is issued, upload it to App Store
+Connect, obtain Apple's key value, then make any required plist/build change and
+complete the exact build's compliance flow. Do not set
+`ITSAppUsesNonExemptEncryption` or invent a key before Apple issues it.
 
 Reference:
 https://developer.apple.com/help/app-store-connect/manage-app-information/determine-and-upload-app-encryption-documentation/
