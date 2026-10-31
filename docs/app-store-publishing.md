@@ -1,4 +1,4 @@
-# App Store publishing status — 2026-10-30
+# App Store publishing status — 2026-10-31
 
 **Version 0.16.2 build 26 was uploaded to App Store Connect.** Backgammon
 Buddy `org.freevia.backgammonbuddy`, version `0.16.2` build `26`, was built from
@@ -7,40 +7,41 @@ Buddy `org.freevia.backgammonbuddy`, version `0.16.2` build `26`, was built from
 The exact IPA uploaded to Apple has SHA-256
 `c664e83656f29fdc6d31befb449aa086b7c0bc434a19b3384147e745af88646f`.
 Independent checks confirmed its signature, App Store provisioning profile,
-bundle/version/build identity and all 11 required native FFI exports. A fresh
-authenticated App Store Connect check on October 30 showed build 26 as
-**Complete** and **Testing** in the external group **Freevia Testers** (2 invited
-testers). This is TestFlight beta availability, not an App Store release.
+bundle/version/build identity and all 11 required native FFI exports. The
+October 31 App Store Connect check shows build 26 **Testing** in the external
+group **Freevia Testers**, with 2 invitations and no recorded installations.
+This is TestFlight beta availability, not an App Store release.
 
 A newer signed candidate, version `0.16.3` build `27`, was independently checked
 for bundle ID, version/build identity and code signature. Its SHA-256 is
-`f3a2b987f7105005dbf33f00b18a1331ed89a1a7ad871b3a66b723d1309f7b4c`. The IPA
-is preserved in the Mac release evidence folder, but build 27 is **not present**
-in App Store Connect. No upload was attempted. The Mac has `altool` but no
-configured App Store Connect upload credential or Transporter installation;
-the authenticated Publishing browser can read the app record but does not
-authenticate the Mac upload tool. Keep build 26 unchanged while preparing an
-internal-only upload of build 27.
+`f3a2b987f7105005dbf33f00b18a1331ed89a1a7ad871b3a66b723d1309f7b4c`. A fresh
+App Store Connect check on October 31 shows build 27 uploaded on October 30 at
+5:49 PM, but its status is **Missing Compliance**. It is not available to test
+until the app encryption questions are answered. The TestFlight build list shows
+no group or invitations for build 27.
 
 Version `0.16.0` build `22` is **Rejected** under Apple Guidelines 4.3 (Spam)
-and 4.2.6 (App Generation Services). The review is complete; the version was
-not modified after rejection. Apple requests either significant changes before
-resubmission if the cited concerns apply, or a reply to App Review answering
-nine questions about the product, audience, market gap, beta testing, product
-structure, shared code/assets, third-party components, and the origin of the
-concept/content/branding. The prepared product and technical facts are in
-`app/store/ios/submission-answers.md`; several business and testing answers
-still require owner confirmation. No reply has been sent.
+and 4.2.6 (App Generation Services). App Store Connect still shows the
+submission as **Unresolved Issues** and the version as Rejected. Apple's only
+review message is dated October 26 at 6:33 PM. The account holder's reply dated
+October 30 at 5:10 AM appears in the posted message history. A later reply dated
+October 30 at 6:28 PM is still a draft and says it supersedes the earlier reply.
+There has been no newer Apple message or question as of this check. The prepared
+product and technical facts are in `app/store/ios/submission-answers.md`.
 
-The October 30 app list showed only version `0.16.0` (Rejected); no
-`0.16.3` App Store version record was visible. Build 26 is in external
-TestFlight testing, but neither build 26 nor build 27 has been submitted for
-App Store review or cleared for public release. The rejection and required
-owner-confirmed factual response remain unresolved. Build 26 has not received
-physical-device acceptance. [Apple's version-creation guide](https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version)
+The October 31 App Store Connect app list still shows only version `0.16.0`
+(Rejected); no `0.16.3` App Store version record is visible. TestFlight build 26
+(0.16.2) is **Testing** in the external **Freevia Testers** group with 2
+invitations and no recorded installations. Build 27 is uploaded but blocked by
+Missing Compliance. Neither build has been submitted for public App Store review
+or cleared for release. Build 26 has not received physical-device acceptance.
+The review rejection remains unresolved. [Apple's version-creation guide](https://developer.apple.com/help/app-store-connect/update-your-app/create-a-new-version)
 requires the current App Store version to be Ready for Distribution before
 creating another version; recheck this gate in App Store Connect after
-resolving the rejection.
+resolving the rejection. The TestFlight compliance dialog asks which encryption
+algorithms the app implements. The repository's encryption classification is
+still pending; do not guess or save an answer until the account holder confirms
+the classification for the uploaded build.
 
 GitHub release [v0.16.3](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.3)
 contains Android build 10151 and the portable Windows x64 ZIP. An authenticated
