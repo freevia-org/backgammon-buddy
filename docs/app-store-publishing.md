@@ -1,4 +1,4 @@
-# App Store publishing status — 2026-10-31
+# App Store publishing status — 2026-11-01
 
 **Version 0.16.2 build 26 was uploaded to App Store Connect.** Backgammon
 Buddy `org.freevia.backgammonbuddy`, version `0.16.2` build `26`, was built from
@@ -26,8 +26,10 @@ submission as **Unresolved Issues** and the version as Rejected. Apple's only
 review message is dated October 26 at 6:33 PM. The account holder's reply dated
 October 30 at 5:10 AM appears in the posted message history. A later reply dated
 October 30 at 6:28 PM is still a draft and says it supersedes the earlier reply.
-There has been no newer Apple message or question as of this check. The prepared
-product and technical facts are in `app/store/ios/submission-answers.md`.
+There has been no newer Apple message or question in the latest review record
+available in the repository. The prepared product and technical facts are in
+`app/store/ios/submission-answers.md`. Do not change or withdraw this rejected
+version while resolving its review response.
 
 The October 31 App Store Connect app list still shows only version `0.16.0`
 (Rejected); no `0.16.3` App Store version record is visible. TestFlight build 26
@@ -39,9 +41,13 @@ The review rejection remains unresolved. [Apple's version-creation guide](https:
 requires the current App Store version to be Ready for Distribution before
 creating another version; recheck this gate in App Store Connect after
 resolving the rejection. The TestFlight compliance dialog asks which encryption
-algorithms the app implements. The repository's encryption classification is
-still pending; do not guess or save an answer until the account holder confirms
-the classification for the uploaded build.
+algorithms the app implements. For build 27, the Freevia representative confirmed
+standard encryption outside Apple's OS APIs. When Publishing selected that
+answer and France, ASC required an approved French export-compliance document in
+App Encryption Documentation and provided no Save action. Build 27 remains
+Missing Compliance. The signed ANSSI filing and Apple's approval/key are still
+required; see `docs/ios-privacy-encryption-handoff.md` and the private filing
+packet.
 
 GitHub release [v0.16.3](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.3)
 contains Android build 10151 and the portable Windows x64 ZIP. An authenticated

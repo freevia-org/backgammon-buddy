@@ -1,4 +1,4 @@
-# iOS privacy and encryption handoff — 2026-10-19
+# iOS privacy and encryption handoff — 2026-11-01
 
 This is a source/configuration assessment, not submitted App Store Connect answers.
 Repository variable/secret **names only** were checked through GitHub: the two
@@ -54,13 +54,23 @@ SDK configuration and manifests before answering tracking questions. Do not clai
 
 Apple's [export compliance guidance](https://developer.apple.com/help/app-store-connect/manage-app-information/overview-of-export-compliance/)
 and [documentation decision flow](https://developer.apple.com/help/app-store-connect/manage-app-information/determine-and-upload-app-encryption-documentation/)
-distinguish exempt uses from non-exempt encryption. The evidence above supports
-reviewing the standard/exempt path; it does not establish an owner-approved legal
-classification or region-specific filing decision. `ITSAppUsesNonExemptEncryption`
-is intentionally unset until that assessment is recorded. Do not invent an export
-compliance code, set it to “no encryption,” or assume a GitHub CI pass is approval.
-Account access is needed to record Apple's final questions, but not to gather this
-inventory. Reassess after any licensing-driven engine or distribution change.
+distinguish exempt uses from non-exempt encryption. For the signed iOS candidate
+0.16.3 (27), the Freevia representative confirmed on 2026-11-01 that the app uses
+standard encryption outside Apple's operating-system APIs. This is the selected
+export classification for App Store Connect; it is not a claim that ANSSI has
+approved a filing or that Apple has accepted documentation.
+
+Publishing opened build 27's Manage Compliance form and selected this answer.
+After France was selected as a distribution territory, Apple stated that export
+compliance documentation must first be uploaded in App Encryption Documentation
+and approved, after which Apple supplies a key value to enter in Xcode. The form
+had no Save action, so build 27 remains Missing Compliance and no answer was
+saved. Do not set `ITSAppUsesNonExemptEncryption` or invent Apple's key value.
+The authorized Freevia representative must sign and submit the prepared French
+ANSSI declaration; once ANSSI issues the required document, Publishing can upload
+it to ASC, obtain Apple's key, apply it to a new signed build if required, and
+complete the build compliance questions. Reassess after any engine, encryption,
+territory, or distribution change.
 
 ## Public policy/support publication — 2026-10-19
 
