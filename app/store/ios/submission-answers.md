@@ -98,6 +98,21 @@ from App Store Connect before preparing the final response. The notes below
 separate repository-supported product facts from facts only the account holder
 can attest to.
 
+### Source-level comparison available for review
+
+The repository contains a source baseline at commit
+`f983d2e2f995420d44c44d2acebdeb7b008976a2`, whose `app/pubspec.yaml` reports
+`0.16.0+22`, and the current `v0.16.3` source at commit
+`2ce8cfae7263690c11254d5a9e9a8bc3219b0484`, whose app version reports
+`0.16.3+25`. The source diff includes the game HUD/dialogs and end-of-game
+summary, match setup and settings, tutor analysis, 28-language interface
+localization, online deletion confirmation, and the switch to GNUbg as the
+default evaluation engine. This is repository source evidence only: the exact
+signed IPA provenance for build 22 and build 27 has not been tied to these
+commits. Do not describe this as a verified binary-to-binary comparison or claim
+that any change answers Apple's 4.3/4.2.6 concern without checking the exact
+review wording and signed artifacts.
+
 ### Supported product description
 
 Backgammon Buddy is a playable backgammon game and tutor published under the
