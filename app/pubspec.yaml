@@ -8,12 +8,16 @@ environment:
 
 dependencies:
   crypto: ^3.0.7
+  # iOS online API requests use Apple's URLSession via CupertinoClient; other
+  # platforms continue using package:http's standard client.
+  cupertino_http: ^3.1.0
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
   package_info_plus: ^10.2.2
   intl: any
+  http: ^1.6.0
   flutter_riverpod: ^2.5.1
   path: ^1.9.0
   path_provider: ^2.1.5

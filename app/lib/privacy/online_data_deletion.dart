@@ -33,8 +33,18 @@ enum DeletionConfirmation { none, pending, complete }
 
 final deletionReceiptReaderProvider =
     Provider<Future<DeletionReceiptStatus> Function(OnlineConfig, String)>(
-      (_) =>
-          (config, receipt) => readDeletionReceipt(config, receipt),
+      (ref) => (config, receipt) async {
+        final client = ref.read(onlineHttpClientFactoryProvider)();
+        try {
+          return await readDeletionReceipt(
+            config,
+            receipt,
+            inner: client,
+          );
+        } finally {
+          client.close();
+        }
+      },
     );
 
 final checkOnlineDeletionProvider =
@@ -91,10 +101,19 @@ final requestOnlineDeletionProvider =
             'Online play is not configured.',
           );
         }
-        final auth = AuthClient(config, store: store);
+        final makeClient = ref.read(onlineHttpClientFactoryProvider);
+        final auth = AuthClient(
+          config,
+          store: store,
+          inner: makeClient(),
+        );
         final api = MatchApi(
           auth: auth,
-          docs: FirestoreDocs(config, token: auth.validToken),
+          docs: FirestoreDocs(
+            config,
+            token: auth.validToken,
+            inner: makeClient(),
+          ),
         );
         try {
           if (await auth.restoreExistingSession() == null) {
