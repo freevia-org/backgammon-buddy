@@ -26,11 +26,11 @@ All CI jobs except `online` can start independently; `online` waits on `rules`.
 All Flutter test and distribution jobs use **Flutter 3.44.8**, including the
 golden tests. Upgrade those pins together and regenerate goldens deliberately.
 
-CI and Android distribution use GitHub-hosted Ubuntu runners. The Windows
-golden job uses a GitHub-hosted Windows runner so Flutter plugins can create
-symlinks without requiring a machine-level change on the self-hosted I5 host.
-The dedicated Mac runner remains in use for iOS builds, and the operational
-privacy-cleanup workflow remains on its configured I5 runner.
+CI and Android distribution run on the registered I5 Linux runner. CI's
+Windows golden job and the manually dispatched Windows release build use the
+registered I5 Windows runner, which has VS 2022 Build Tools, ATL, and the
+Windows SDK installed. iOS builds run on the dedicated MacMini runner. The
+operational privacy-cleanup workflow also runs on its configured I5 runner.
 
 ## Distribution is gated on CI
 
