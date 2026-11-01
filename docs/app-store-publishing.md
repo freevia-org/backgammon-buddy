@@ -1,5 +1,26 @@
 # App Store publishing status — 2026-11-01
 
+## Owner decision: Apple OS networking only — 2026-11-01
+
+The owner directed that iOS encrypted networking use Apple's operating-system
+APIs and explicitly declined an ANSSI/French cryptology filing. This is the
+target architecture, not a claim that an iOS binary has passed validation.
+SHA-256 used for fair-dice commitments and asset-integrity checks is hashing,
+not encrypted transport.
+
+The previously signed local candidate 0.16.3 (30), SHA-256
+`92a8d94a701d2389a8c23df7f17fd302362cc65b05d15bb59cb7e84e95696d72`, is not
+qualified: its app binary retained Dart SecureSocket/TLS markers and its
+Flutter framework showed BoringSSL material. Validation run
+[41342251343](https://github.com/freevia-org/backgammon-buddy/actions/runs/41342251343)
+failed in the lipo architecture check after both host Impeller tools built,
+before producing an app. The fix is on `codex/ios-no-third-party-crypto` at
+`e7f6a2a`; unsigned validation run
+[41348301614](https://github.com/freevia-org/backgammon-buddy/actions/runs/41348301614)
+is in progress. It has produced no candidate yet. Do not file ANSSI paperwork,
+change App Store Connect compliance answers, or submit a build until the exact
+packaged binary and its linked libraries pass the Apple-OS-only audit.
+
 **Version 0.16.2 build 26 was uploaded to App Store Connect.** Backgammon
 Buddy `org.freevia.backgammonbuddy`, version `0.16.2` build `26`, was built from
 `5577f0b3f8f16f105d69dfb46f105e3f970df68f` (CI run
@@ -49,9 +70,10 @@ algorithms the app implements. For build 27, the Freevia representative confirme
 standard encryption outside Apple's OS APIs. When Publishing selected that
 answer and France, ASC required an approved French export-compliance document in
 App Encryption Documentation and provided no Save action. Build 27 remains
-Missing Compliance. The signed ANSSI filing and Apple's approval/key are still
-required; see `docs/ios-privacy-encryption-handoff.md` and the private filing
-packet.
+Missing Compliance. This describes the pre-rework state. The owner's Apple-OS-
+only decision above supersedes the earlier recommendation to file with ANSSI.
+No filing was submitted; re-evaluate this gate for an eligible, audited
+candidate and its exact App Store Connect requirements.
 
 GitHub release [v0.16.3](https://github.com/freevia-org/backgammon-buddy/releases/tag/v0.16.3)
 contains Android build 10151 and the portable Windows x64 ZIP. A live Play
