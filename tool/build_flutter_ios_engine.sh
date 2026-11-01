@@ -28,9 +28,10 @@ git init "$DEPOT_TOOLS"
 git -C "$DEPOT_TOOLS" remote add origin https://chromium.googlesource.com/chromium/tools/depot_tools.git
 git -C "$DEPOT_TOOLS" fetch --depth=1 origin "$DEPOT_TOOLS_REVISION"
 git -C "$DEPOT_TOOLS" checkout --detach FETCH_HEAD
-DEPOT_TOOLS_DIR="$DEPOT_TOOLS" "$DEPOT_TOOLS/ensure_bootstrap"
 export DEPOT_TOOLS_UPDATE=0
 export DEPOT_TOOLS_METRICS=0
+test "$(git -C "$DEPOT_TOOLS" rev-parse HEAD)" = "$DEPOT_TOOLS_REVISION"
+DEPOT_TOOLS_DIR="$DEPOT_TOOLS" "$DEPOT_TOOLS/ensure_bootstrap"
 export PATH="$DEPOT_TOOLS:$PATH"
 (
   cd "$FLUTTER_SOURCE"
@@ -38,6 +39,7 @@ export PATH="$DEPOT_TOOLS:$PATH"
   gclient runhooks
 )
 test -f "$DEPOT_TOOLS/python3_bin_reldir.txt"
+test "$(git -C "$DEPOT_TOOLS" rev-parse HEAD)" = "$DEPOT_TOOLS_REVISION"
 ACTUAL_FRAMEWORK_REVISION="$(git -C "$FLUTTER_SOURCE" rev-parse HEAD)"
 ACTUAL_ENGINE_REVISION="$(cat "$FLUTTER_SOURCE/bin/internal/engine.version")"
 if [ "$ACTUAL_FRAMEWORK_REVISION" != "$FRAMEWORK_REVISION" ]; then
