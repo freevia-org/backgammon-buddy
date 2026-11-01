@@ -80,6 +80,16 @@ def app_binaries(app):
 
 
 def verify_app(app, generated_config, link_map, symbol_files):
+    app_info = app / 'Info.plist'
+    if not app_info.is_file():
+        raise SystemExit('Built app is missing Info.plist')
+    with app_info.open('rb') as stream:
+        app_plist = plistlib.load(stream)
+    if app_plist.get('ITSAppUsesNonExemptEncryption') is not False:
+        raise SystemExit(
+            'Runner Info.plist must declare ITSAppUsesNonExemptEncryption=false'
+        )
+
     config = generated_config.read_text()
     define_line = next(
         (line.split('=', 1)[1] for line in config.splitlines()
@@ -160,6 +170,7 @@ def verify_app(app, generated_config, link_map, symbol_files):
     ):
         raise SystemExit('cupertino_http.framework has no URLSession markers')
 
+    print('Runner Info.plist encryption declaration: false')
     print('iOS URLSession compile-time define: verified')
     print('App AOT gRPC protocol markers: absent')
     print('App AOT Dart SecureSocket/TLS markers: absent')

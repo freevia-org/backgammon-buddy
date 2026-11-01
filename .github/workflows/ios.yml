@@ -31,7 +31,7 @@ jobs:
     # Pinned image + pinned Xcode (below) rather than macos-latest: the
     # `-latest` label moves to a new macOS/Xcode under the build without any
     # change in the repo. Bump both deliberately, together.
-    runs-on: backgammon-buddy-macmini
+    runs-on: macos-26-arm64
     # macOS runners are the slowest in the fleet: Flutter builds the release
     # app, Xcode archives it, and configured signing exports it. The job can
     # also wait up to ~40 min for CI before Firebase distribution (normally
@@ -54,7 +54,9 @@ jobs:
           set -eu
           XCODE="/Applications/Xcode_${XCODE_VERSION}.app"
           if [ ! -d "$XCODE" ]; then
-            echo "::error::$XCODE is not installed on this image. Installed: $(printf '%s ' /Applications/Xcode*.app)"
+            echo "::error::$XCODE is not installed. Installed: $(printf '%s ' /Applications/Xcode*.app)"
+            xcodebuild -version || true
+            xcrun --sdk iphoneos --show-sdk-version || true
             exit 1
           fi
           sudo xcode-select -s "$XCODE/Contents/Developer"
