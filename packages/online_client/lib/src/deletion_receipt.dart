@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:http/http.dart' as http;
 
+import 'default_http_client.dart';
 import 'online_config.dart';
 import 'online_exception.dart';
 import 'request_deadline.dart';
@@ -30,7 +31,7 @@ Future<DeletionReceiptStatus> readDeletionReceipt(
   http.Client? inner,
 }) async {
   if (!validDeletionReceipt(receipt)) throw ArgumentError('Invalid receipt');
-  final client = inner ?? http.Client();
+  final client = inner ?? createDefaultHttpClient();
   try {
     final response = await sendWithDeadline(
       client,

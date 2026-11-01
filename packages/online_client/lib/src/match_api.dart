@@ -7,6 +7,7 @@ import 'package:match_transport/match_transport.dart'
     show CompletedRoll, FairDicePhase;
 
 import 'auth_client.dart';
+import 'default_http_client.dart';
 import 'deletion_receipt.dart';
 import 'firestore_docs.dart';
 import 'online_config.dart';
@@ -321,7 +322,7 @@ class MatchApi {
     TokenStore? tokenStore,
     http.Client Function()? httpClientFactory,
   }) {
-    final makeClient = httpClientFactory ?? http.Client.new;
+    final makeClient = httpClientFactory ?? createDefaultHttpClient;
     final auth = AuthClient(
       config,
       store: tokenStore,

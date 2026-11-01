@@ -72,6 +72,55 @@ it to ASC, obtain Apple's key, apply it to a new signed build if required, and
 complete the build compliance questions. Reassess after any engine, encryption,
 territory, or distribution change.
 
+## Local URLSession transport audit — 2026-11-01
+
+Candidate 0.16.3 (30) was built in Xcode Release with Flutter 3.44.8, signed
+locally with the Freevia Apple Distribution identity and the existing App Store
+profile, and exported to an IPA for local handoff only. The IPA passed strict
+deep signature verification, profile identity/expiry checks, and all 11 FFI
+export checks. It was not uploaded, and no App Store Connect declaration or
+review state was changed. The carried app plist still has
+`ITSAppUsesNonExemptEncryption=false`; this build did not edit that value.
+
+The iOS release workflow now always passes
+`BGB_IOS_URLSESSION_TRANSPORT=true` and verifies the generated define and App
+AOT markers with `tool/verify_ios_transport.py`. Local release instructions use
+the same define. With it set, the app's REST provider selects
+`CupertinoClient.defaultSessionConfiguration`, the gRPC listener provider
+returns no listener, and implicit `online_client` HTTP clients fail fast unless
+an explicit client is injected. The Cupertino framework contains URLSession
+symbols, and the Firebase native frameworks remain packaged for opted-in
+telemetry.
+
+Binary distinction from the stock Flutter engine:
+
+- The candidate App.framework AOT no longer contains the gRPC protocol markers
+  (`dart-grpc`, `grpc-timeout`, `grpc-encoding`, and `google.firestore.v1`); each
+  appeared once in build 28. This agrees with the compile-time gRPC-off branch.
+- App.framework AOT still has 10 `SecureSocket_` strings, 2 `HttpClient` strings,
+  and 2 `TlsException` strings, exactly the same counts as build 28. Those
+  strings alone do not establish reachable first-party call paths, but they do
+  mean the binary audit cannot claim that Dart TLS/HTTP identifiers disappeared.
+  No app runtime source call to Dart `SecureSocket` or `HttpClient` was found;
+  the online REST clients are explicitly injected through URLSession.
+- The packaged stock Flutter.framework still has Dart SecureSocket hooks and
+  BoringSSL material (`boringssl/src` and `crypto/fipsmodule` strings). Engine
+  source also calls BoringSSL SHA-1 for Flutter graphics-cache keys, an
+  integrity use. There is no separate OpenSSL/BoringSSL dynamic framework;
+  this code is within Flutter.framework. The final app therefore uses Apple
+  URLSession/OS TLS for its configured online REST path but still packages Dart
+  SecureSocket/BoringSSL capability. It is not accurate to classify the whole
+  IPA as containing only Apple OS networking or cryptography.
+- An isolated upstream custom-engine attempt confirmed the iOS GN flag can set
+  `dart_disable_secure_socket=true`, but its required host tool build fails on
+  an ANGLE warning promoted to an error by the pinned engine/toolchain and
+  Xcode 27.2 SDK. No upstream source edits or generated engine binaries were
+  added to the project.
+
+The signed local artifact and audit logs are under
+`/Users/tony/Documents/ChatGPT/Backgammon Buddy/.release-evidence/ios-0.16.3-30/`.
+IPA SHA-256: `92a8d94a701d2389a8c23df7f17fd302362cc65b05d15bb59cb7e84e95696d72`.
+
 ## Public policy/support publication — 2026-10-19
 
 Matching Firestore rules are deployed and independently match the committed source

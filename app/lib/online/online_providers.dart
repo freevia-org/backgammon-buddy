@@ -7,14 +7,24 @@ import 'package:online_client/online_client.dart';
 import '../data/database.dart';
 import 'online_session_store.dart';
 
+/// Set for iOS Release builds to select URLSession transports and prune the
+/// Dart gRPC and implicit HTTP fallback paths from the app AOT.
+const bool _iosURLSessionTransportBuild =
+    bool.fromEnvironment('BGB_IOS_URLSESSION_TRANSPORT');
+
 typedef OnlineHttpClientFactory = http.Client Function();
 
 /// iOS online REST traffic uses Apple's Foundation URL Loading System. Other
 /// platforms keep the standard Dart HTTP client.
 final onlineHttpClientFactoryProvider = Provider<OnlineHttpClientFactory>(
-  (ref) => defaultTargetPlatform == TargetPlatform.iOS
-      ? CupertinoClient.defaultSessionConfiguration
-      : http.Client.new,
+  (ref) {
+    if (_iosURLSessionTransportBuild) {
+      return CupertinoClient.defaultSessionConfiguration;
+    }
+    return defaultTargetPlatform == TargetPlatform.iOS
+        ? CupertinoClient.defaultSessionConfiguration
+        : http.Client.new;
+  },
 );
 
 /// The Web API key for the production Firebase project, injected at build time
@@ -100,6 +110,10 @@ typedef ListenChannelBuilder = FirestoreListenChannelFactory? Function(
 /// Returning a FACTORY rather than a channel is the transport's contract: one
 /// channel carries one stream, so every re-listen builds a fresh one.
 final listenChannelBuilderProvider = Provider<ListenChannelBuilder>((ref) {
+  // This compile-time branch lets the iOS release AOT omit Dart gRPC and its
+  // SecureSocket path. Android and desktop builds keep the original path.
+  if (_iosURLSessionTransportBuild) return (_) => null;
+
   final config = ref.watch(onlineConfigProvider);
   if (config == null) return (_) => null;
   // Apple's URLSession does not expose the bidirectional gRPC stream used by

@@ -69,7 +69,9 @@ git submodule update --init --recursive
 (cd native/engine_shim && cargo build --locked --release --target aarch64-apple-ios)
 bash native/gnubg/build-ios.sh iphoneos
 cp native/engine_shim/target/aarch64-apple-ios/release/libaigammon_engine.a app/ios/Frameworks/
-(cd app && FIREBASE_ANALYTICS_WITHOUT_ADID=true flutter build ios --release --no-codesign)
+(cd app && FIREBASE_ANALYTICS_WITHOUT_ADID=true \
+  flutter build ios --release --no-codesign \
+  --dart-define=BGB_IOS_URLSESSION_TRANSPORT=true)
 ```
 
 Output: `app/build/ios/iphoneos/Runner.app`. Both engine archives must be
@@ -78,6 +80,16 @@ The linker also uses `-export_dynamic` so dead-code stripping preserves the
 engine entry points resolved by `DynamicLibrary.process()`; force-loading alone
 produced a successful compile with missing runtime exports on Xcode 27.
 This unsigned app cannot be installed on a physical iPhone.
+
+Every iOS Release build must pass `--dart-define=BGB_IOS_URLSESSION_TRANSPORT=true`.
+The iOS GitHub Actions build sets and verifies it as well. After building, run
+`python3 tool/verify_ios_transport.py app/build/ios/iphoneos/Runner.app`.
+This compile-time profile selects
+the Cupertino URLSession transport, disables the Dart gRPC listener, and makes
+the online client's implicit Dart HTTP fallbacks unreachable. Leave the define
+unset for Android and desktop builds so they keep their default Dart transports.
+The stock Flutter engine still packages Dart SecureSocket and BoringSSL code;
+this app-level define does not remove those engine capabilities.
 
 The completed build is also packaged as
 `app/build/ios/iphoneos/Backgammon-Buddy-0.16.0-22-unsigned.app.zip`.
