@@ -42,12 +42,17 @@ test -f "$DEPOT_TOOLS/python3_bin_reldir.txt"
 test "$(git -C "$DEPOT_TOOLS" rev-parse HEAD)" = "$DEPOT_TOOLS_REVISION"
 ACTUAL_FRAMEWORK_REVISION="$(git -C "$FLUTTER_SOURCE" rev-parse HEAD)"
 ACTUAL_ENGINE_REVISION="$(cat "$FLUTTER_SOURCE/bin/internal/engine.version")"
+ACTUAL_ENGINE_SOURCE_REVISION="$(git -C "$ENGINE_SOURCE/flutter" rev-parse HEAD)"
 if [ "$ACTUAL_FRAMEWORK_REVISION" != "$FRAMEWORK_REVISION" ]; then
   echo "Flutter framework checkout mismatch: expected $FRAMEWORK_REVISION, got $ACTUAL_FRAMEWORK_REVISION" >&2
   exit 1
 fi
 if [ "$ACTUAL_ENGINE_REVISION" != "$ENGINE_REVISION" ]; then
   echo "Engine version mismatch: Flutter SDK expects $ENGINE_REVISION, checkout has $ACTUAL_ENGINE_REVISION" >&2
+  exit 1
+fi
+if [ "$ACTUAL_ENGINE_SOURCE_REVISION" != "$ENGINE_REVISION" ]; then
+  echo "Engine source checkout mismatch: Flutter SDK expects $ENGINE_REVISION, checkout has $ACTUAL_ENGINE_SOURCE_REVISION" >&2
   exit 1
 fi
 
@@ -78,6 +83,7 @@ package_resolved_sha256=$PACKAGE_RESOLVED_SHA256
 flutter_version=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["frameworkVersion"])' "$RUNNER_TEMP/flutter-version.json")
 framework_revision=$FRAMEWORK_REVISION
 engine_revision=$ENGINE_REVISION
+engine_source_revision=$ACTUAL_ENGINE_SOURCE_REVISION
 depot_tools_revision=$ACTUAL_DEPOT_TOOLS_REVISION
 xcode=$XCODE_VERSION
 ios_sdk=$IOS_SDK_VERSION

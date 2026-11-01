@@ -114,6 +114,12 @@ jobs:
         working-directory: app
         run: flutter pub get
 
+      - name: Verify iOS transport provider selection
+        working-directory: app
+        run: >-
+          flutter test test/online/ios_transport_provider_test.dart
+          --dart-define=BGB_IOS_URLSESSION_TRANSPORT=true
+
       # Swift Package Manager: Xcode spent ~2 min per run cloning
       # firebase-ios-sdk, grpc/abseil binaries etc. Cache SwiftPM's shared
       # repository cache and the resolved checkouts in DerivedData. EXACT key
@@ -206,14 +212,21 @@ jobs:
             LD_GENERATE_MAP_FILE=YES
           ARCHIVED_APP="$RUNNER_TEMP/Runner.xcarchive/Products/Applications/Runner.app"
           python3 ../tool/verify_ios_ffi_exports.py --binary "$ARCHIVED_APP/Runner"
-          LINK_MAP="$(find "$RUNNER_TEMP/RunnerArchiveDerivedData" -name 'Runner-LinkMap-normal-arm64.txt' -print -quit)"
+          LINK_MAPS=()
+          while IFS= read -r LINK_MAP; do LINK_MAPS+=("$LINK_MAP"); done < <(find "$RUNNER_TEMP/RunnerArchiveDerivedData" -type f -name '*LinkMap*.txt' -print | sort)
+          SYMBOL_FILES=()
+          while IFS= read -r SYMBOL_FILE; do SYMBOL_FILES+=("$SYMBOL_FILE"); done < <(find "$RUNNER_TEMP/Runner.xcarchive/dSYMs" -type f -path '*/Contents/Resources/DWARF/*' -print | sort)
           RUNNER_DSYM="$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM/Contents/Resources/DWARF/Runner"
-          test -n "$LINK_MAP"
+          test "${#LINK_MAPS[@]}" -gt 0
+          test "${#SYMBOL_FILES[@]}" -gt 0
           test -f "$RUNNER_DSYM"
+          TRANSPORT_ARGS=()
+          for LINK_MAP in "${LINK_MAPS[@]}"; do TRANSPORT_ARGS+=(--link-map "$LINK_MAP"); done
+          for SYMBOL_FILE in "${SYMBOL_FILES[@]}"; do TRANSPORT_ARGS+=(--symbol-file "$SYMBOL_FILE"); done
           python3 ../tool/verify_ios_transport.py "$ARCHIVED_APP" \
             --generated-config ios/Flutter/Generated.xcconfig \
-            --link-map "$LINK_MAP" \
-            --symbol-file "$RUNNER_DSYM"
+            --require-link-maps --require-symbol-files \
+            "${TRANSPORT_ARGS[@]}"
 
       # Runner.app is a directory containing symlinks; upload-artifact would
       # mangle them, so package it with ditto (the macOS archive idiom) first.
@@ -393,14 +406,21 @@ jobs:
 
           IPA="$(find build/ios/ipa -maxdepth 1 -name '*.ipa' | sort | head -1)"
           python3 ../tool/verify_ios_ffi_exports.py --ipa "$IPA"
-          LINK_MAP="$(find "$RUNNER_TEMP/RunnerArchiveDerivedData" -name 'Runner-LinkMap-normal-arm64.txt' -print -quit)"
+          LINK_MAPS=()
+          while IFS= read -r LINK_MAP; do LINK_MAPS+=("$LINK_MAP"); done < <(find "$RUNNER_TEMP/RunnerArchiveDerivedData" -type f -name '*LinkMap*.txt' -print | sort)
+          SYMBOL_FILES=()
+          while IFS= read -r SYMBOL_FILE; do SYMBOL_FILES+=("$SYMBOL_FILE"); done < <(find "$RUNNER_TEMP/Runner.xcarchive/dSYMs" -type f -path '*/Contents/Resources/DWARF/*' -print | sort)
           RUNNER_DSYM="$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM/Contents/Resources/DWARF/Runner"
-          test -n "$LINK_MAP"
+          test "${#LINK_MAPS[@]}" -gt 0
+          test "${#SYMBOL_FILES[@]}" -gt 0
           test -f "$RUNNER_DSYM"
+          TRANSPORT_ARGS=()
+          for LINK_MAP in "${LINK_MAPS[@]}"; do TRANSPORT_ARGS+=(--link-map "$LINK_MAP"); done
+          for SYMBOL_FILE in "${SYMBOL_FILES[@]}"; do TRANSPORT_ARGS+=(--symbol-file "$SYMBOL_FILE"); done
           python3 ../tool/verify_ios_transport.py --ipa "$IPA" \
             --generated-config ios/Flutter/Generated.xcconfig \
-            --link-map "$LINK_MAP" \
-            --symbol-file "$RUNNER_DSYM"
+            --require-link-maps --require-symbol-files \
+            "${TRANSPORT_ARGS[@]}"
           echo "Built IPA: $IPA"
           echo "ipa_path=app/$IPA" >> "$GITHUB_OUTPUT"
 
