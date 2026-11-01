@@ -61,6 +61,9 @@ jobs:
           sudo xcode-select -s "$XCODE/Contents/Developer"
           xcodebuild -version
 
+      - name: Install Metal Toolchain
+        run: xcodebuild -downloadComponent MetalToolchain
+
       - name: Resolve build number
         env:
           REQUESTED_BUILD_NUMBER: ${{ inputs.build_number }}
