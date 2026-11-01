@@ -13,9 +13,9 @@ concurrency:
 jobs:
   windows:
     name: build portable Windows app
-    # The registered I5 runner has Visual Studio Build Tools, MSVC x86/x64, and
-    # ATL installed for the native release build.
-    runs-on: backgammon-buddy-i5-windows
+    # Keep the native build on the known-good hosted image until the I5
+    # runner's Visual Studio Developer Command Prompt is reliably discoverable.
+    runs-on: windows-2025
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
