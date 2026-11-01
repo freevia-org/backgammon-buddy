@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import 'default_http_client.dart';
 import 'firestore_value.dart';
 import 'online_config.dart';
 import 'online_exception.dart';
@@ -73,7 +74,7 @@ class FirestoreDocs {
     http.Client? inner,
     this.requestTimeout = const Duration(seconds: 15),
   })  : _token = token,
-        _http = inner ?? http.Client();
+        _http = inner ?? createDefaultHttpClient();
 
   Future<Map<String, String>> _headers() async => {
         'Content-Type': 'application/json',

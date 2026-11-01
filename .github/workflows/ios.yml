@@ -165,6 +165,7 @@ jobs:
           flutter build ios --release --no-codesign \
             --build-number="$BUILD_NUMBER" \
             --obfuscate --split-debug-info=build/symbols/ios \
+            --dart-define=BGB_IOS_URLSESSION_TRANSPORT=true \
             $DEFINES
 
       # The main executable is the dynamic library used by dart:ffi on iOS.
@@ -172,6 +173,9 @@ jobs:
       # before a broken .app can be distributed.
       - name: Verify unsigned iOS FFI exports
         run: python3 tool/verify_ios_ffi_exports.py --binary app/build/ios/iphoneos/Runner.app/Runner
+
+      - name: Verify iOS URLSession transport profile
+        run: python3 tool/verify_ios_transport.py app/build/ios/iphoneos/Runner.app
 
       # Exercise the actual Xcode archive on PRs too. This is unsigned so the
       # secret-free build can verify archive stripping without a profile; the

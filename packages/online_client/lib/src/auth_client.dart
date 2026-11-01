@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import 'default_http_client.dart';
 import 'online_config.dart';
 import 'online_exception.dart';
 import 'request_deadline.dart';
@@ -58,7 +59,7 @@ class AuthClient {
     DateTime Function()? now,
     TokenStore? store,
     this.requestTimeout = const Duration(seconds: 15),
-  })  : _http = inner ?? http.Client(),
+  })  : _http = inner ?? createDefaultHttpClient(),
         _now = now ?? (() => DateTime.now().toUtc()),
         store = store ?? InMemoryTokenStore();
 
