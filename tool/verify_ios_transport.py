@@ -53,7 +53,10 @@ THIRD_PARTY_CRYPTO_MARKERS = (
     'x509_store_ctx',
 )
 THIRD_PARTY_CRYPTO_SYMBOL = re.compile(
-    r'(?<![a-z0-9])(?:ssl_|tls_|evp_|crypto_|openssl_|bio_|x509_|'
+    # CommonCrypto's public CC_SHA*/CC_MD5* symbols are OS-provided hashing,
+    # not a bundled TLS implementation. Do not match the SHA/MD5 suffix in
+    # those symbol names; bare SHA/MD5 implementations remain suspicious.
+    r'(?<!cc_)(?<![a-z0-9])(?:ssl_|tls_|evp_|crypto_|openssl_|bio_|x509_|'
     r'asn1_|rsa_|ecdsa_|ecdh_|ec_key_|bn_|hmac_|md5_|sha[0-9]*_)'
     r'[a-z0-9_]+\b'
 )
