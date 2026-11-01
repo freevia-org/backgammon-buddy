@@ -74,7 +74,12 @@ git -C "$ENGINE_SOURCE/flutter" diff --check
 
 python3 "$ENGINE_SOURCE/flutter/tools/gn" \
   --ios --runtime-mode=release --no-dart-secure-socket
-test -f "$ENGINE_SOURCE/out/ios_release/args.gn"
+IOS_ARGS="$ENGINE_SOURCE/out/ios_release/args.gn"
+test -f "$IOS_ARGS"
+if ! grep -Eq '^[[:space:]]*dart_disable_secure_socket = true[[:space:]]*$' "$IOS_ARGS"; then
+  echo "Pinned iOS engine args do not disable Dart secure sockets: $IOS_ARGS" >&2
+  exit 1
+fi
 python3 "$ENGINE_SOURCE/flutter/tools/gn" \
   --runtime-mode=release --mac-cpu arm64 --no-build-engine-artifacts
 HOST_OUT="$ENGINE_SOURCE/out/host_release_arm64"
@@ -162,6 +167,7 @@ depot_tools_revision=$ACTUAL_DEPOT_TOOLS_REVISION
 xcode=$XCODE_VERSION
 ios_sdk=$IOS_SDK_VERSION
 target_gn_args=--ios --runtime-mode=release --no-dart-secure-socket
+target_dart_disable_secure_socket=true
 host_gn_args=--runtime-mode=release --mac-cpu arm64 --no-build-engine-artifacts
 host_engine_revision=$ACTUAL_HOST_ENGINE_REVISION
 host_artifact_directory=out/host_release_arm64
