@@ -18,9 +18,9 @@ const nodeTest = require('node:test');
 const TEST_TIMEOUT_MS = 20_000;
 const describe = nodeTest.describe;
 const it = (name, fn) => nodeTest.it(name, { timeout: TEST_TIMEOUT_MS }, fn);
-const before = (fn) => nodeTest.before({ timeout: 30_000 }, fn);
-const after = (fn) => nodeTest.after({ timeout: TEST_TIMEOUT_MS }, fn);
-const beforeEach = (fn) => nodeTest.beforeEach({ timeout: TEST_TIMEOUT_MS }, fn);
+const before = (fn) => nodeTest.before(fn, { timeout: 30_000 });
+const after = (fn) => nodeTest.after(fn, { timeout: TEST_TIMEOUT_MS });
+const beforeEach = (fn) => nodeTest.beforeEach(fn, { timeout: TEST_TIMEOUT_MS });
 
 const {
   initializeTestEnvironment,
