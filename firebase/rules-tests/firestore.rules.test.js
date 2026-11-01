@@ -11,6 +11,16 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert');
+const nodeTest = require('node:test');
+
+// Keep the timeout behavior previously provided by Mocha while using Node's
+// built-in runner, so the security-rules tests add no third-party test runner.
+const TEST_TIMEOUT_MS = 20_000;
+const describe = nodeTest.describe;
+const it = (name, fn) => nodeTest.it(name, { timeout: TEST_TIMEOUT_MS }, fn);
+const before = (fn) => nodeTest.before({ timeout: 30_000 }, fn);
+const after = (fn) => nodeTest.after({ timeout: TEST_TIMEOUT_MS }, fn);
+const beforeEach = (fn) => nodeTest.beforeEach({ timeout: TEST_TIMEOUT_MS }, fn);
 
 const {
   initializeTestEnvironment,
@@ -126,8 +136,7 @@ function newRollPayload(overrides = {}) {
 
 // --- lifecycle --------------------------------------------------------
 
-before(async function () {
-  this.timeout(30000);
+before(async () => {
   testEnv = await initializeTestEnvironment({
     projectId: 'demo-aigammon',
     firestore: {
