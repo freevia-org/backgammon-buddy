@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:backgammon_core/backgammon_core.dart';
+import 'package:http/http.dart' as http;
 import 'package:match_transport/match_transport.dart'
     show CompletedRoll, FairDicePhase;
 
@@ -318,11 +319,21 @@ class MatchApi {
     OnlineConfig config, {
     Random? codeRandom,
     TokenStore? tokenStore,
+    http.Client Function()? httpClientFactory,
   }) {
-    final auth = AuthClient(config, store: tokenStore);
+    final makeClient = httpClientFactory ?? http.Client.new;
+    final auth = AuthClient(
+      config,
+      store: tokenStore,
+      inner: makeClient(),
+    );
     return MatchApi(
       auth: auth,
-      docs: FirestoreDocs(config, token: auth.validToken),
+      docs: FirestoreDocs(
+        config,
+        token: auth.validToken,
+        inner: makeClient(),
+      ),
       codeRandom: codeRandom,
     );
   }

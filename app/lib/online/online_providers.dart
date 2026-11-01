@@ -1,9 +1,21 @@
+import 'package:cupertino_http/cupertino_http.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
 import 'package:online_client/online_client.dart';
 
 import '../data/database.dart';
 import 'online_session_store.dart';
+
+typedef OnlineHttpClientFactory = http.Client Function();
+
+/// iOS online REST traffic uses Apple's Foundation URL Loading System. Other
+/// platforms keep the standard Dart HTTP client.
+final onlineHttpClientFactoryProvider = Provider<OnlineHttpClientFactory>(
+  (ref) => defaultTargetPlatform == TargetPlatform.iOS
+      ? CupertinoClient.defaultSessionConfiguration
+      : http.Client.new,
+);
 
 /// The Web API key for the production Firebase project, injected at build time
 /// via `--dart-define=AIGAMMON_FIREBASE_API_KEY=...`. Empty when unset.
@@ -64,14 +76,16 @@ final matchApiProvider = FutureProvider<MatchApi>((ref) async {
   final api = MatchApi.forConfig(
     config,
     tokenStore: ref.watch(onlineSessionStoreProvider),
+    httpClientFactory: ref.watch(onlineHttpClientFactoryProvider),
   );
   ref.onDispose(api.close);
   await api.signIn();
   return api;
 });
 
-/// Builds the real-time Firestore [FirestoreListenChannelFactory] for a match, or
-/// null when this build has no online backend at all.
+/// Builds the real-time Firestore [FirestoreListenChannelFactory] for a match.
+/// Returns null when online play is unconfigured or on iOS, where the app keeps
+/// network TLS on Apple's URLSession and uses Firestore polling instead.
 typedef ListenChannelBuilder = FirestoreListenChannelFactory? Function(
     MatchApi api);
 
@@ -88,6 +102,10 @@ typedef ListenChannelBuilder = FirestoreListenChannelFactory? Function(
 final listenChannelBuilderProvider = Provider<ListenChannelBuilder>((ref) {
   final config = ref.watch(onlineConfigProvider);
   if (config == null) return (_) => null;
+  // Apple's URLSession does not expose the bidirectional gRPC stream used by
+  // the Dart channel. On iOS, use Firestore's existing bounded poll fallback so
+  // every online request stays on the native URLSession transport.
+  if (defaultTargetPlatform == TargetPlatform.iOS) return (_) => null;
   return (api) =>
       () => GrpcFirestoreListenChannel(config: config, token: api.auth.validToken);
 });
