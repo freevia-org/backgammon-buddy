@@ -180,7 +180,7 @@ host_gn_args=--runtime-mode=release --mac-cpu arm64 --no-build-engine-artifacts
 host_engine_revision=$ACTUAL_HOST_ENGINE_REVISION
 host_artifact_directory=out/host_release_arm64
 host_artifact_source=pinned_engine_source
-host_gn_targets=flutter/impeller/compiler:impellerc,flutter/impeller/tessellator:tessellator_shared
+host_gn_targets=flutter/tools/const_finder:const_finder,flutter/tools/font_subset:_font-subset,flutter/impeller/compiler:impellerc,flutter/impeller/tessellator:tessellator_shared
 host_dart_sdk_version=$ACTUAL_DART_SDK_VERSION
 host_dart_sha256=$HOST_DART_SHA256
 host_impellerc_sha256=$HOST_IMPELLERC_SHA256
