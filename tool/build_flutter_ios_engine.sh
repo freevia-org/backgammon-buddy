@@ -42,7 +42,7 @@ test -f "$DEPOT_TOOLS/python3_bin_reldir.txt"
 test "$(git -C "$DEPOT_TOOLS" rev-parse HEAD)" = "$DEPOT_TOOLS_REVISION"
 ACTUAL_FRAMEWORK_REVISION="$(git -C "$FLUTTER_SOURCE" rev-parse HEAD)"
 ACTUAL_ENGINE_REVISION="$(cat "$FLUTTER_SOURCE/bin/internal/engine.version")"
-ACTUAL_ENGINE_SOURCE_REVISION="$(git -C "$ENGINE_SOURCE/flutter" rev-parse HEAD)"
+ACTUAL_ENGINE_SOURCE_CHECKOUT_REVISION="$(git -C "$ENGINE_SOURCE/flutter" rev-parse HEAD)"
 if [ "$ACTUAL_FRAMEWORK_REVISION" != "$FRAMEWORK_REVISION" ]; then
   echo "Flutter framework checkout mismatch: expected $FRAMEWORK_REVISION, got $ACTUAL_FRAMEWORK_REVISION" >&2
   exit 1
@@ -51,8 +51,18 @@ if [ "$ACTUAL_ENGINE_REVISION" != "$ENGINE_REVISION" ]; then
   echo "Engine version mismatch: Flutter SDK expects $ENGINE_REVISION, checkout has $ACTUAL_ENGINE_REVISION" >&2
   exit 1
 fi
-if [ "$ACTUAL_ENGINE_SOURCE_REVISION" != "$ENGINE_REVISION" ]; then
-  echo "Engine source checkout mismatch: Flutter SDK expects $ENGINE_REVISION, checkout has $ACTUAL_ENGINE_SOURCE_REVISION" >&2
+if [ "$ACTUAL_ENGINE_SOURCE_CHECKOUT_REVISION" != "$FRAMEWORK_REVISION" ]; then
+  echo "Engine source is not from the pinned Flutter checkout: expected $FRAMEWORK_REVISION, checkout has $ACTUAL_ENGINE_SOURCE_CHECKOUT_REVISION" >&2
+  exit 1
+fi
+# engine.version names the Flutter-framework commit that last changed the
+# engine subtree; engine/src/flutter is part of this Flutter checkout, not a
+# separate Git repository. Compare the subtree trees at both pinned commits.
+git -C "$FLUTTER_SOURCE" fetch --depth=1 origin "$ENGINE_REVISION"
+ENGINE_SOURCE_TREE_SHA="$(git -C "$FLUTTER_SOURCE" rev-parse "$FRAMEWORK_REVISION:engine")"
+ENGINE_VERSION_TREE_SHA="$(git -C "$FLUTTER_SOURCE" rev-parse "$ENGINE_REVISION:engine")"
+if [ "$ENGINE_SOURCE_TREE_SHA" != "$ENGINE_VERSION_TREE_SHA" ]; then
+  echo "Engine source tree does not match engine.version $ENGINE_REVISION: expected tree $ENGINE_VERSION_TREE_SHA, checkout has $ENGINE_SOURCE_TREE_SHA" >&2
   exit 1
 fi
 
@@ -83,7 +93,9 @@ package_resolved_sha256=$PACKAGE_RESOLVED_SHA256
 flutter_version=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["frameworkVersion"])' "$RUNNER_TEMP/flutter-version.json")
 framework_revision=$FRAMEWORK_REVISION
 engine_revision=$ENGINE_REVISION
-engine_source_revision=$ACTUAL_ENGINE_SOURCE_REVISION
+engine_source_checkout_revision=$ACTUAL_ENGINE_SOURCE_CHECKOUT_REVISION
+engine_source_tree_sha=$ENGINE_SOURCE_TREE_SHA
+engine_version_engine_tree_sha=$ENGINE_VERSION_TREE_SHA
 depot_tools_revision=$ACTUAL_DEPOT_TOOLS_REVISION
 xcode=$XCODE_VERSION
 ios_sdk=$IOS_SDK_VERSION

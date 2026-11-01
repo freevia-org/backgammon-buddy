@@ -88,18 +88,6 @@ def strings(path):
     )
 
 
-def bundle_executable(bundle):
-    info = bundle / 'Info.plist'
-    if not info.is_file():
-        return None
-    with info.open('rb') as stream:
-        executable = plistlib.load(stream).get('CFBundleExecutable')
-    if not executable:
-        return None
-    binary = bundle / executable
-    return binary if binary.is_file() else None
-
-
 def is_macho(path):
     try:
         with path.open('rb') as stream:
