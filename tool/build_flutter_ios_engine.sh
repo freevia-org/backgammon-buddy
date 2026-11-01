@@ -77,7 +77,18 @@ python3 "$ENGINE_SOURCE/flutter/tools/gn" \
 test -f "$ENGINE_SOURCE/out/ios_release/args.gn"
 python3 "$ENGINE_SOURCE/flutter/tools/gn" \
   --runtime-mode=release --mac-cpu arm64 --no-build-engine-artifacts
-test -f "$ENGINE_SOURCE/out/host_release_arm64/args.gn"
+HOST_OUT="$ENGINE_SOURCE/out/host_release_arm64"
+test -f "$HOST_OUT/args.gn"
+HOST_TARGETS="$RUNNER_TEMP/flutter-host-targets.txt"
+ninja -C "$HOST_OUT" -t targets all > "$HOST_TARGETS"
+for target in \
+  flutter/impeller/compiler:impellerc \
+  flutter/impeller/tessellator:tessellator_shared; do
+  if ! grep -Eq "^${target}:" "$HOST_TARGETS"; then
+    echo "Pinned host target missing from generated Ninja graph: $target" >&2
+    exit 1
+  fi
+done
 echo 'Building the iOS release engine and its target-local gen_snapshot.'
 ninja -C "$ENGINE_SOURCE/out/ios_release"
 IOS_GEN_SNAPSHOT="$ENGINE_SOURCE/out/ios_release/clang_arm64/gen_snapshot"
@@ -101,7 +112,6 @@ if [ "$ACTUAL_DART_SDK_VERSION" != "$EXPECTED_DART_SDK_VERSION" ]; then
 fi
 test -x "$DART_SDK/bin/dart"
 test -f "$DART_SDK/bin/snapshots/frontend_server_aot.dart.snapshot"
-HOST_OUT="$ENGINE_SOURCE/out/host_release_arm64"
 if [ -e "$HOST_OUT/dart-sdk" ]; then
   echo "Expected a no-build host GN output, found $HOST_OUT/dart-sdk" >&2
   exit 1
@@ -109,8 +119,8 @@ fi
 ln -s "$DART_SDK" "$HOST_OUT/dart-sdk"
 echo 'Building only the pinned host Impeller compiler and tessellator targets.'
 ninja -C "$HOST_OUT" \
-  //flutter/impeller/compiler:impellerc \
-  //flutter/impeller/tessellator:tessellator_shared
+  flutter/impeller/compiler:impellerc \
+  flutter/impeller/tessellator:tessellator_shared
 HOST_IMPELLERC="$HOST_OUT/impellerc"
 HOST_TESSELLATOR="$HOST_OUT/libtessellator.dylib"
 if [ ! -x "$HOST_IMPELLERC" ] || [ ! -f "$HOST_TESSELLATOR" ]; then
@@ -147,7 +157,7 @@ host_gn_args=--runtime-mode=release --mac-cpu arm64 --no-build-engine-artifacts
 host_engine_revision=$ACTUAL_HOST_ENGINE_REVISION
 host_artifact_directory=out/host_release_arm64
 host_artifact_source=pinned_engine_source
-host_gn_targets=//flutter/impeller/compiler:impellerc,//flutter/impeller/tessellator:tessellator_shared
+host_gn_targets=flutter/impeller/compiler:impellerc,flutter/impeller/tessellator:tessellator_shared
 host_dart_sdk_version=$ACTUAL_DART_SDK_VERSION
 host_dart_sha256=$HOST_DART_SHA256
 host_impellerc_sha256=$HOST_IMPELLERC_SHA256
