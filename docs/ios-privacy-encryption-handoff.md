@@ -1,5 +1,19 @@
 # iOS privacy and encryption handoff — 2026-11-01
 
+## Superseding owner decision — 2026-11-01
+
+The owner directed iOS encrypted networking to use Apple's operating-system
+APIs and explicitly declined an ANSSI/French filing. The earlier assessment
+and proposed filing step below are historical; do not follow the proposed
+filing step. The dependency table and Apple assessment describe pre-rework
+build 27. The target architecture is
+not yet validated in a packaged candidate: the previous signed build retained
+Dart TLS markers and BoringSSL material, and the current unsigned build is still
+in progress. Do not change store compliance answers or submit a build until its
+actual binaries and link maps pass the Apple-OS-only audit. App-level SHA-256
+for fair-dice integrity and asset verification is hashing, not encrypted
+transport.
+
 This is a source/configuration assessment, not submitted App Store Connect answers.
 Repository variable/secret **names only** were checked through GitHub: the two
 online REST configuration variables and release-number baseline are present;
@@ -52,7 +66,7 @@ SDK configuration and manifests before answering tracking questions. Do not clai
 | Native evaluators | wildbg and GNUbg compute game evaluation; no application network encryption identified in their bridges | Reconfirm final dependency inventory, engine assets and any replacement engine before signing |
 | Nearby transport | UDP/WebSocket on trusted LAN without app-level encryption | No TLS or encrypted-transfer claim for nearby matches |
 
-Apple's [export compliance guidance](https://developer.apple.com/help/app-store-connect/manage-app-information/overview-of-export-compliance/)
+The following describes the pre-rework state for build 27. Apple's [export compliance guidance](https://developer.apple.com/help/app-store-connect/manage-app-information/overview-of-export-compliance/)
 and [documentation decision flow](https://developer.apple.com/help/app-store-connect/manage-app-information/determine-and-upload-app-encryption-documentation/)
 distinguish exempt uses from non-exempt encryption. For the signed iOS candidate
 0.16.3 (27), the Freevia representative confirmed on 2026-11-01 that the app uses
@@ -65,12 +79,13 @@ After France was selected as a distribution territory, Apple stated that export
 compliance documentation must first be uploaded in App Encryption Documentation
 and approved, after which Apple supplies a key value to enter in Xcode. The form
 had no Save action, so build 27 remains Missing Compliance and no answer was
-saved. Do not set `ITSAppUsesNonExemptEncryption` or invent Apple's key value.
-The authorized Freevia representative must sign and submit the prepared French
-ANSSI declaration; once ANSSI issues the required document, Publishing can upload
-it to ASC, obtain Apple's key, apply it to a new signed build if required, and
-complete the build compliance questions. Reassess after any engine, encryption,
-territory, or distribution change.
+saved. That old selection is not evidence for the reworked candidate's
+classification; do not invent or reuse an Apple-provided key value.
+The earlier proposed next step was to file with ANSSI. The owner has since
+explicitly declined that filing and directed an Apple-OS-only network stack.
+No French filing was submitted. Keep build 27's Missing Compliance state
+untouched; first validate a new candidate's actual encryption implementation,
+then reassess the requirements for that exact build in App Store Connect.
 
 ## Local URLSession transport audit — 2026-11-01
 
