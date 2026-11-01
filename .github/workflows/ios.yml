@@ -172,7 +172,7 @@ jobs:
           fi
           # DEFINES is a flag list and must word-split.
           # shellcheck disable=SC2086
-          flutter build ios --release --no-codesign \
+          flutter build ios --verbose --release --no-codesign \
             --build-number="$BUILD_NUMBER" \
             --local-engine-src-path="$FLUTTER_ENGINE_SRC_PATH" \
             --local-engine=ios_release \
