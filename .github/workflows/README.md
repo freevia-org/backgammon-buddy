@@ -167,11 +167,13 @@ and the Xcode build both need macOS). Bump the image and Xcode together.
    passed to archive targets.
 6. `Runner.app` is a directory tree with internal symlinks, so the archived app
    is packaged with `ditto -c -k --keepParent` (upload-artifact mangles the
-   symlinks otherwise) and uploaded as the **`aigammon-ios-unsigned`** artifact.
+   symlinks otherwise). Build binaries, symbols, and dependency evidence are
+   uploaded only when the manual `publish_artifacts` input is explicitly enabled.
+   Because the repository is public, anyone can download those artifacts.
 
 > An **unsigned `.app` cannot be installed on an iPhone.** Signing is the
 > user-gated step below; without the secrets, CI stops after the unsigned
-> artifact.
+> build.
 
 ### Signing + Firebase distribution (secret-gated)
 
@@ -198,7 +200,11 @@ because Xcode's default archive stripping removed symbols used by
 `DynamicLibrary.process()` even though the ordinary Flutter release build kept
 them. The final exported IPA is checked again for all 11 symbols before it can
 be uploaded as `aigammon-ios-<export-method>-<run>`. Only configured ad-hoc
-exports are distributed to the Firebase **`testers`** group.
+exports are distributed to the Firebase **`testers`** group. Binary, IPA,
+symbol and dependency-evidence uploads are disabled by default and require
+`publish_artifacts=true`; they are publicly downloadable in this public
+repository. A store upload should be handled by the Publishing session after
+the candidate has been reviewed.
 
 The macOS job uses exact-pinned `firebase-tools@15.25.1` on Node 22 for ad-hoc
 distribution. The Linux-only Docker action used by Android cannot execute on a

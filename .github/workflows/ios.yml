@@ -11,6 +11,10 @@ on:
         type: choice
         options: [ad-hoc, app-store-connect]
         default: ad-hoc
+      publish_artifacts:
+        description: Upload build binaries to GitHub Actions (publicly downloadable because this repository is public)
+        type: boolean
+        default: false
   # On-demand release lane. Dispatch ci.yml first for this commit; this lane
   # waits for its successful result before distributing to testers.
 
@@ -239,18 +243,21 @@ jobs:
           app/build/ios/iphoneos/Runner.app.zip
 
       - uses: actions/upload-artifact@v7
+        if: inputs.publish_artifacts == true
         with:
           name: aigammon-ios-unsigned
           path: app/build/ios/iphoneos/Runner.app.zip
           if-no-files-found: error
 
       - uses: actions/upload-artifact@v7
+        if: inputs.publish_artifacts == true
         with:
           name: aigammon-ios-engine-profile-${{ github.run_number }}
           path: ${{ runner.temp }}/flutter-engine-build-profile.txt
           if-no-files-found: error
 
       - name: Upload Dart debug symbols
+        if: inputs.publish_artifacts == true
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-symbols-ios-${{ github.run_number }}
@@ -269,7 +276,7 @@ jobs:
           xcrun --sdk iphoneos --show-sdk-version > app/build/mobile-dependencies/ios-unsigned/sdk-version.txt
 
       - name: Upload iOS dependency evidence
-        if: always()
+        if: always() && inputs.publish_artifacts == true
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-ios-dependencies-${{ github.run_number }}
@@ -427,7 +434,7 @@ jobs:
           echo "ipa_path=app/$IPA" >> "$GITHUB_OUTPUT"
 
       - name: Upload signed IPA artifact
-        if: steps.ios.outputs.has_signing == 'true'
+        if: steps.ios.outputs.has_signing == 'true' && inputs.publish_artifacts == true
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-ios-${{ inputs.export_method || 'ad-hoc' }}-${{ github.run_number }}
@@ -443,7 +450,7 @@ jobs:
             --require-no-apple-ad-support --out-dir app/build/mobile-dependencies/ios-signed
 
       - name: Upload signed IPA dependency evidence
-        if: steps.ios.outputs.has_signing == 'true'
+        if: steps.ios.outputs.has_signing == 'true' && inputs.publish_artifacts == true
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-ios-signed-dependencies-${{ github.run_number }}
@@ -451,6 +458,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload iOS archive symbols
+        if: inputs.publish_artifacts == true
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-ios-archive-symbols-${{ github.run_number }}
@@ -498,7 +506,8 @@ jobs:
       - name: Skip signing + distribution (secrets not set)
         if: steps.ios.outputs.has_signing != 'true'
         run: |
-          echo "iOS signing secrets not set — built an UNSIGNED .app only (artifact aigammon-ios-unsigned)."
+          echo "iOS signing secrets not set — built an UNSIGNED .app only."
+          echo "Binary artifacts are uploaded only when publish_artifacts is explicitly enabled."
           echo "An unsigned .app CANNOT be installed on an iPhone. To produce a signed, installable"
           echo "IPA and push it to Firebase App Distribution, add the four iOS secrets described in"
           echo ".github/workflows/README.md (iOS) and firebase/DEPLOY.md (iOS distribution)."
