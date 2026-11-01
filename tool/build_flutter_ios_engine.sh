@@ -127,8 +127,17 @@ if [ ! -x "$HOST_IMPELLERC" ] || [ ! -f "$HOST_TESSELLATOR" ]; then
   echo "Pinned host targets did not produce impellerc and libtessellator in $HOST_OUT" >&2
   exit 1
 fi
-lipo -verify_arch arm64 "$HOST_IMPELLERC"
-lipo -verify_arch arm64 "$HOST_TESSELLATOR"
+verify_arm64_arch() {
+  local binary="$1"
+  local architectures
+  architectures="$(lipo -archs "$binary")"
+  if ! grep -qw arm64 <<< "$architectures"; then
+    echo "Expected an arm64 host tool at $binary; lipo reported: $architectures" >&2
+    return 1
+  fi
+}
+verify_arm64_arch "$HOST_IMPELLERC"
+verify_arm64_arch "$HOST_TESSELLATOR"
 
 XCODE_VERSION="$(xcodebuild -version | tr '\n' ' ')"
 ACTUAL_DEPOT_TOOLS_REVISION="$(git -C "$DEPOT_TOOLS" rev-parse HEAD)"
