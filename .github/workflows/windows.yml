@@ -13,9 +13,9 @@ concurrency:
 jobs:
   windows:
     name: build portable Windows app
-    # Keep the native build on the known-good hosted image until the I5
-    # runner's Visual Studio Developer Command Prompt is reliably discoverable.
-    runs-on: windows-2025
+    # The registered I5 runner now has discoverable VS 2022 Build Tools,
+    # ATL, and the Windows SDK required by the native Windows plugins.
+    runs-on: backgammon-buddy-i5-windows
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
