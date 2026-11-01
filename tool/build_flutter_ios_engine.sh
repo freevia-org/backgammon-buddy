@@ -80,8 +80,11 @@ if ! grep -Eq '^[[:space:]]*dart_disable_secure_socket = true[[:space:]]*$' "$IO
   echo "Pinned iOS engine args do not disable Dart secure sockets: $IOS_ARGS" >&2
   exit 1
 fi
+# Keep Flutter's host engine-artifact targets in the GN graph: the release
+# asset bundler needs const_finder and font-subset. We still build only the
+# explicit tools below, rather than the broad default artifact set.
 python3 "$ENGINE_SOURCE/flutter/tools/gn" \
-  --runtime-mode=release --mac-cpu arm64 --no-build-engine-artifacts
+  --runtime-mode=release --mac-cpu arm64
 HOST_OUT="$ENGINE_SOURCE/out/host_release_arm64"
 test -f "$HOST_OUT/args.gn"
 HOST_TARGETS="$RUNNER_TEMP/flutter-host-targets.txt"
@@ -176,7 +179,7 @@ xcode=$XCODE_VERSION
 ios_sdk=$IOS_SDK_VERSION
 target_gn_args=--ios --runtime-mode=release --no-dart-secure-socket
 target_dart_disable_secure_socket=true
-host_gn_args=--runtime-mode=release --mac-cpu arm64 --no-build-engine-artifacts
+host_gn_args=--runtime-mode=release --mac-cpu arm64
 host_engine_revision=$ACTUAL_HOST_ENGINE_REVISION
 host_artifact_directory=out/host_release_arm64
 host_artifact_source=pinned_engine_source
