@@ -88,6 +88,7 @@ HOST_TARGETS="$RUNNER_TEMP/flutter-host-targets.txt"
 ninja -C "$HOST_OUT" -t targets all > "$HOST_TARGETS"
 for target in \
   flutter/tools/const_finder:const_finder \
+  flutter/tools/font_subset:_font-subset \
   flutter/impeller/compiler:impellerc \
   flutter/impeller/tessellator:tessellator_shared; do
   if ! grep -Eq "^${target}:" "$HOST_TARGETS"; then
@@ -123,16 +124,18 @@ if [ -e "$HOST_OUT/dart-sdk" ]; then
   exit 1
 fi
 ln -s "$DART_SDK" "$HOST_OUT/dart-sdk"
-echo 'Building the pinned host const finder, Impeller compiler, and tessellator targets.'
+echo 'Building the pinned host const finder, font subsetter, Impeller compiler, and tessellator targets.'
 ninja -C "$HOST_OUT" \
   flutter/tools/const_finder:const_finder \
+  flutter/tools/font_subset:_font-subset \
   flutter/impeller/compiler:impellerc \
   flutter/impeller/tessellator:tessellator_shared
 HOST_CONST_FINDER="$HOST_OUT/gen/const_finder.dart.snapshot"
+HOST_FONT_SUBSET="$HOST_OUT/font-subset"
 HOST_IMPELLERC="$HOST_OUT/impellerc"
 HOST_TESSELLATOR="$HOST_OUT/libtessellator.dylib"
-if [ ! -f "$HOST_CONST_FINDER" ] || [ ! -x "$HOST_IMPELLERC" ] || [ ! -f "$HOST_TESSELLATOR" ]; then
-  echo "Pinned host targets did not produce const_finder.dart.snapshot, impellerc, and libtessellator in $HOST_OUT" >&2
+if [ ! -f "$HOST_CONST_FINDER" ] || [ ! -x "$HOST_FONT_SUBSET" ] || [ ! -x "$HOST_IMPELLERC" ] || [ ! -f "$HOST_TESSELLATOR" ]; then
+  echo "Pinned host targets did not produce const_finder.dart.snapshot, font-subset, impellerc, and libtessellator in $HOST_OUT" >&2
   exit 1
 fi
 verify_arm64_arch() {
@@ -155,6 +158,7 @@ IOS_GEN_SNAPSHOT_SHA256="$(shasum -a 256 "$IOS_GEN_SNAPSHOT" | awk '{print $1}')
 HOST_IMPELLERC_SHA256="$(shasum -a 256 "$HOST_IMPELLERC" | awk '{print $1}')"
 HOST_TESSELLATOR_SHA256="$(shasum -a 256 "$HOST_TESSELLATOR" | awk '{print $1}')"
 HOST_CONST_FINDER_SHA256="$(shasum -a 256 "$HOST_CONST_FINDER" | awk '{print $1}')"
+HOST_FONT_SUBSET_SHA256="$(shasum -a 256 "$HOST_FONT_SUBSET" | awk '{print $1}')"
 HOST_DART_SHA256="$(shasum -a 256 "$DART_SDK/bin/dart" | awk '{print $1}')"
 REPOSITORY_REVISION="${GITHUB_SHA:-$(git -C "$GITHUB_WORKSPACE" rev-parse HEAD)}"
 PACKAGE_RESOLVED_SHA256="$(shasum -a 256 "$GITHUB_WORKSPACE/app/ios/Runner.xcworkspace/xcshareddata/swiftpm/Package.resolved" | awk '{print $1}')"
@@ -182,6 +186,7 @@ host_dart_sha256=$HOST_DART_SHA256
 host_impellerc_sha256=$HOST_IMPELLERC_SHA256
 host_libtessellator_sha256=$HOST_TESSELLATOR_SHA256
 host_const_finder_sha256=$HOST_CONST_FINDER_SHA256
+host_font_subset_sha256=$HOST_FONT_SUBSET_SHA256
 ios_gen_snapshot_sha256=$IOS_GEN_SNAPSHOT_SHA256
 engine_patch_sha256=$PATCH_SHA256
 EOF
