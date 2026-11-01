@@ -88,7 +88,6 @@ test -x "$IOS_GEN_SNAPSHOT"
 # Flutter SDK's prebuilt host tools, pinned by the same engine.version stamp.
 flutter precache --macos
 FLUTTER_ENGINE_STAMP="$FLUTTER_ROOT/bin/cache/engine.stamp"
-HOST_ARTIFACTS="$FLUTTER_ROOT/bin/cache/artifacts/engine/darwin-x64"
 DART_SDK="$FLUTTER_ROOT/bin/cache/dart-sdk"
 ACTUAL_HOST_ENGINE_REVISION="$(cat "$FLUTTER_ENGINE_STAMP")"
 EXPECTED_DART_SDK_VERSION="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["dartSdkVersion"])' "$RUNNER_TEMP/flutter-version.json")"
@@ -101,12 +100,23 @@ if [ "$ACTUAL_DART_SDK_VERSION" != "$EXPECTED_DART_SDK_VERSION" ]; then
   echo "Flutter host Dart SDK mismatch: expected $EXPECTED_DART_SDK_VERSION, cache has $ACTUAL_DART_SDK_VERSION" >&2
   exit 1
 fi
-test -x "$HOST_ARTIFACTS/impellerc"
-test -f "$HOST_ARTIFACTS/libtessellator.dylib"
 test -x "$DART_SDK/bin/dart"
 test -f "$DART_SDK/bin/snapshots/frontend_server_aot.dart.snapshot"
-lipo -verify_arch arm64 "$HOST_ARTIFACTS/impellerc"
-lipo -verify_arch arm64 "$HOST_ARTIFACTS/libtessellator.dylib"
+HOST_IMPELLERC="$(find "$FLUTTER_ROOT/bin/cache/artifacts/engine" -type f -name impellerc -print | sort | while IFS= read -r candidate; do
+  candidate_dir="$(dirname "$candidate")"
+  if [ -f "$candidate_dir/libtessellator.dylib" ] \
+     && lipo -verify_arch arm64 "$candidate" >/dev/null 2>&1 \
+     && lipo -verify_arch arm64 "$candidate_dir/libtessellator.dylib" >/dev/null 2>&1; then
+    echo "$candidate"
+    break
+  fi
+done)"
+if [ -z "$HOST_IMPELLERC" ]; then
+  echo "No arm64 Flutter host impellerc/libtessellator pair found for engine $ENGINE_REVISION" >&2
+  exit 1
+fi
+HOST_ARTIFACTS="$(dirname "$HOST_IMPELLERC")"
+HOST_TESSELLATOR="$HOST_ARTIFACTS/libtessellator.dylib"
 HOST_OUT="$ENGINE_SOURCE/out/host_release_arm64"
 if [ -e "$HOST_OUT/dart-sdk" ]; then
   echo "Expected a no-build host GN output, found $HOST_OUT/dart-sdk" >&2
@@ -119,8 +129,8 @@ ACTUAL_DEPOT_TOOLS_REVISION="$(git -C "$DEPOT_TOOLS" rev-parse HEAD)"
 IOS_SDK_VERSION="$(xcrun --sdk iphoneos --show-sdk-version)"
 PATCH_SHA256="$(shasum -a 256 "$GITHUB_WORKSPACE/tool/patches/flutter-ios-commoncrypto-cache-hash.patch" | awk '{print $1}')"
 IOS_GEN_SNAPSHOT_SHA256="$(shasum -a 256 "$IOS_GEN_SNAPSHOT" | awk '{print $1}')"
-HOST_IMPELLERC_SHA256="$(shasum -a 256 "$HOST_ARTIFACTS/impellerc" | awk '{print $1}')"
-HOST_TESSELLATOR_SHA256="$(shasum -a 256 "$HOST_ARTIFACTS/libtessellator.dylib" | awk '{print $1}')"
+HOST_IMPELLERC_SHA256="$(shasum -a 256 "$HOST_IMPELLERC" | awk '{print $1}')"
+HOST_TESSELLATOR_SHA256="$(shasum -a 256 "$HOST_TESSELLATOR" | awk '{print $1}')"
 HOST_DART_SHA256="$(shasum -a 256 "$DART_SDK/bin/dart" | awk '{print $1}')"
 REPOSITORY_REVISION="${GITHUB_SHA:-$(git -C "$GITHUB_WORKSPACE" rev-parse HEAD)}"
 PACKAGE_RESOLVED_SHA256="$(shasum -a 256 "$GITHUB_WORKSPACE/app/ios/Runner.xcworkspace/xcshareddata/swiftpm/Package.resolved" | awk '{print $1}')"
@@ -139,6 +149,7 @@ ios_sdk=$IOS_SDK_VERSION
 target_gn_args=--ios --runtime-mode=release --no-dart-secure-socket
 host_gn_args=--runtime-mode=release --mac-cpu arm64 --no-build-engine-artifacts
 host_engine_revision=$ACTUAL_HOST_ENGINE_REVISION
+host_artifact_directory=$(basename "$HOST_ARTIFACTS")
 host_dart_sdk_version=$ACTUAL_DART_SDK_VERSION
 host_dart_sha256=$HOST_DART_SHA256
 host_impellerc_sha256=$HOST_IMPELLERC_SHA256
