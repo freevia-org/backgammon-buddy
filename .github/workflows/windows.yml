@@ -13,9 +13,9 @@ concurrency:
 jobs:
   windows:
     name: build portable Windows app
-    # The I5 Windows runner is suitable for golden tests but does not have
-    # Visual Studio installed. Use the hosted image for the native release build.
-    runs-on: windows-2025
+    # The registered I5 runner has Visual Studio Build Tools, MSVC x86/x64, and
+    # ATL installed for the native release build.
+    runs-on: backgammon-buddy-i5-windows
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
