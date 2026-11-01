@@ -125,6 +125,9 @@ jobs:
             ~/Library/Developer/Xcode/DerivedData/Runner-*/SourcePackages
           key: spm-${{ runner.os }}-${{ runner.arch }}-xcode${{ env.XCODE_VERSION }}-${{ hashFiles('app/ios/Runner.xcworkspace/xcshareddata/swiftpm/Package.resolved', 'app/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
 
+      - name: Build Flutter iOS engine with Apple OS TLS only
+        run: bash tool/build_flutter_ios_engine.sh
+
       # Unsigned build — always runs, and is the gate for a GREEN job. Same
       # online-play dart-define pattern as android.yml: repo VARIABLES
       # AIGAMMON_FIREBASE_PROJECT / AIGAMMON_FIREBASE_API_KEY enable production
@@ -164,6 +167,9 @@ jobs:
           # shellcheck disable=SC2086
           flutter build ios --release --no-codesign \
             --build-number="$BUILD_NUMBER" \
+            --local-engine-src-path="$FLUTTER_ENGINE_SRC_PATH" \
+            --local-engine=ios_release \
+            --local-engine-host=host_release_arm64 \
             --obfuscate --split-debug-info=build/symbols/ios \
             --dart-define=BGB_IOS_URLSESSION_TRANSPORT=true \
             $DEFINES
@@ -171,6 +177,9 @@ jobs:
       # The main executable is the dynamic library used by dart:ffi on iOS.
       # Check the actual dynamic export trie so CI catches linker/strip changes
       # before a broken .app can be distributed.
+      - name: Verify CommonCrypto cache hash compatibility
+        run: bash tool/verify_ios_cache_hash_equivalence.sh
+
       - name: Verify unsigned iOS FFI exports
         run: python3 tool/verify_ios_ffi_exports.py --binary app/build/ios/iphoneos/Runner.app/Runner
 
@@ -184,16 +193,25 @@ jobs:
         working-directory: app
         run: |
           xcodebuild \
+            -derivedDataPath "$RUNNER_TEMP/RunnerArchiveDerivedData" \
             -workspace ios/Runner.xcworkspace \
             -scheme Runner \
             -configuration Release \
             -archivePath "$RUNNER_TEMP/Runner.xcarchive" \
             archive \
             CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO
-          python3 ../tool/verify_ios_ffi_exports.py \
-            --binary "$RUNNER_TEMP/Runner.xcarchive/Products/Applications/Runner.app/Runner"
-          test -d "$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM"
+            CODE_SIGNING_REQUIRED=NO \
+            LD_GENERATE_MAP_FILE=YES
+          ARCHIVED_APP="$RUNNER_TEMP/Runner.xcarchive/Products/Applications/Runner.app"
+          python3 ../tool/verify_ios_ffi_exports.py --binary "$ARCHIVED_APP/Runner"
+          LINK_MAP="$(find "$RUNNER_TEMP/RunnerArchiveDerivedData" -name 'Runner-LinkMap-normal-arm64.txt' -print -quit)"
+          RUNNER_DSYM="$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM/Contents/Resources/DWARF/Runner"
+          test -n "$LINK_MAP"
+          test -f "$RUNNER_DSYM"
+          python3 ../tool/verify_ios_transport.py "$ARCHIVED_APP" \
+            --generated-config ios/Flutter/Generated.xcconfig \
+            --link-map "$LINK_MAP" \
+            --symbol-file "$RUNNER_DSYM"
 
       # Runner.app is a directory containing symlinks; upload-artifact would
       # mangle them, so package it with ditto (the macOS archive idiom) first.
@@ -207,6 +225,12 @@ jobs:
         with:
           name: aigammon-ios-unsigned
           path: app/build/ios/iphoneos/Runner.app.zip
+          if-no-files-found: error
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: aigammon-ios-engine-profile-${{ github.run_number }}
+          path: ${{ runner.temp }}/flutter-engine-build-profile.txt
           if-no-files-found: error
 
       - name: Upload Dart debug symbols
@@ -367,6 +391,14 @@ jobs:
 
           IPA="$(find build/ios/ipa -maxdepth 1 -name '*.ipa' | sort | head -1)"
           python3 ../tool/verify_ios_ffi_exports.py --ipa "$IPA"
+          LINK_MAP="$(find "$RUNNER_TEMP/RunnerArchiveDerivedData" -name 'Runner-LinkMap-normal-arm64.txt' -print -quit)"
+          RUNNER_DSYM="$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM/Contents/Resources/DWARF/Runner"
+          test -n "$LINK_MAP"
+          test -f "$RUNNER_DSYM"
+          python3 ../tool/verify_ios_transport.py --ipa "$IPA" \
+            --generated-config ios/Flutter/Generated.xcconfig \
+            --link-map "$LINK_MAP" \
+            --symbol-file "$RUNNER_DSYM"
           echo "Built IPA: $IPA"
           echo "ipa_path=app/$IPA" >> "$GITHUB_OUTPUT"
 

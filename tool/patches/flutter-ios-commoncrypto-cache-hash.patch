@@ -1,0 +1,53 @@
+diff --git a/common/graphics/persistent_cache.cc b/common/graphics/persistent_cache.cc
+index d304fa6adc314354ff772160a979926fb5b30c0b..7e5595a8237675c5eda8d5bce48b6f647f24f612 100644
+--- a/common/graphics/persistent_cache.cc
++++ b/common/graphics/persistent_cache.cc
+@@ -21,5 +21,12 @@
+ #include "flutter/shell/common/base64.h"
+ #include "flutter/shell/version/version.h"
++#if defined(__APPLE__)
++#include <TargetConditionals.h>
++#endif
++#if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
++#include <CommonCrypto/CommonDigest.h>
++#else
+ #include "openssl/sha.h"
++#endif
+ #include "rapidjson/document.h"
+ #include "third_party/skia/include/gpu/ganesh/GrDirectContext.h"
+@@ -38,11 +45,17 @@
+   if (key.data() == nullptr || key.size() == 0) {
+     return "";
+   }
+ 
++#if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
++  uint8_t sha_digest[CC_SHA1_DIGEST_LENGTH];
++  CC_SHA1(static_cast<const uint8_t*>(key.data()),
++          static_cast<CC_LONG>(key.size()), sha_digest);
++#else
+   uint8_t sha_digest[SHA_DIGEST_LENGTH];
+   SHA1(static_cast<const uint8_t*>(key.data()), key.size(), sha_digest);
++#endif
+ 
+   std::string_view view(reinterpret_cast<const char*>(sha_digest),
+-                        SHA_DIGEST_LENGTH);
++                        sizeof(sha_digest));
+   return fml::HexEncode(view);
+ }
+diff --git a/common/graphics/BUILD.gn b/common/graphics/BUILD.gn
+index a18b23b466f8c95729aa86aa214e2490400f4711..e30ccf583ad255b4dc993b225a3a0f72a977a5d3 100644
+--- a/common/graphics/BUILD.gn
++++ b/common/graphics/BUILD.gn
+@@ -22,8 +22,10 @@ source_set("graphics") {
+     "//flutter/fml",
+     "//flutter/shell/common:base64",
+     "//flutter/shell/version",
+     "//flutter/skia",
+-    "//flutter/third_party/boringssl",
+     "//flutter/third_party/rapidjson",
+   ]
++  if (!is_ios) {
++    deps += [ "//flutter/third_party/boringssl" ]
++  }
+ 
+   public_configs = [ "//flutter:config" ]
