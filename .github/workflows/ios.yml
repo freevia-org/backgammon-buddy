@@ -32,11 +32,10 @@ jobs:
     # `-latest` label moves to a new macOS/Xcode under the build without any
     # change in the repo. Bump both deliberately, together.
     runs-on: macos-26
-    # macOS runners are the slowest in the fleet: Flutter builds the release
-    # app, Xcode archives it, and configured signing exports it. The job can
-    # also wait up to ~40 min for CI before Firebase distribution (normally
-    # zero). Generous by design.
-    timeout-minutes: 75
+    # The pinned Flutter iOS engine is built from source, then the release app
+    # is archived and audited. Allow time for both engine and app builds plus
+    # the optional CI/distribution gate.
+    timeout-minutes: 120
     env:
       # Supported by the locked FlutterFire SPM package; this app has no ads.
       # Select FirebaseAnalyticsCore instead of the identity/ad conversion product.

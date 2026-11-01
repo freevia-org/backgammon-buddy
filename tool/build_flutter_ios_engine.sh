@@ -83,17 +83,16 @@ ninja -C "$ENGINE_SOURCE/out/ios_release"
 IOS_GEN_SNAPSHOT="$ENGINE_SOURCE/out/ios_release/clang_arm64/gen_snapshot"
 test -x "$IOS_GEN_SNAPSHOT"
 
-# Flutter's release build needs host Impeller tools, but building the host
-# default target compiles thousands of unrelated engine/test targets. Use the
-# Flutter SDK's prebuilt host tools, pinned by the same engine.version stamp.
-flutter precache --macos
+# Flutter's release build needs host Impeller tools. Build only those two
+# targets from the same pinned engine source instead of relying on host tools
+# that may not be published for the runner's architecture.
 FLUTTER_ENGINE_STAMP="$FLUTTER_ROOT/bin/cache/engine.stamp"
 DART_SDK="$FLUTTER_ROOT/bin/cache/dart-sdk"
 ACTUAL_HOST_ENGINE_REVISION="$(cat "$FLUTTER_ENGINE_STAMP")"
 EXPECTED_DART_SDK_VERSION="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["dartSdkVersion"])' "$RUNNER_TEMP/flutter-version.json")"
 ACTUAL_DART_SDK_VERSION="$("$DART_SDK/bin/dart" --version 2>&1 | sed -E 's/^Dart SDK version: ([^ ]+).*/\1/')"
 if [ "$ACTUAL_HOST_ENGINE_REVISION" != "$ENGINE_REVISION" ]; then
-  echo "Flutter host artifacts mismatch: expected engine $ENGINE_REVISION, cache has $ACTUAL_HOST_ENGINE_REVISION" >&2
+  echo "Flutter SDK engine stamp mismatch: expected $ENGINE_REVISION, cache has $ACTUAL_HOST_ENGINE_REVISION" >&2
   exit 1
 fi
 if [ "$ACTUAL_DART_SDK_VERSION" != "$EXPECTED_DART_SDK_VERSION" ]; then
@@ -102,27 +101,24 @@ if [ "$ACTUAL_DART_SDK_VERSION" != "$EXPECTED_DART_SDK_VERSION" ]; then
 fi
 test -x "$DART_SDK/bin/dart"
 test -f "$DART_SDK/bin/snapshots/frontend_server_aot.dart.snapshot"
-HOST_IMPELLERC="$(find "$FLUTTER_ROOT/bin/cache/artifacts/engine" -type f -name impellerc -print | sort | while IFS= read -r candidate; do
-  candidate_dir="$(dirname "$candidate")"
-  if [ -f "$candidate_dir/libtessellator.dylib" ] \
-     && lipo -verify_arch arm64 "$candidate" >/dev/null 2>&1 \
-     && lipo -verify_arch arm64 "$candidate_dir/libtessellator.dylib" >/dev/null 2>&1; then
-    echo "$candidate"
-    break
-  fi
-done)"
-if [ -z "$HOST_IMPELLERC" ]; then
-  echo "No arm64 Flutter host impellerc/libtessellator pair found for engine $ENGINE_REVISION" >&2
-  exit 1
-fi
-HOST_ARTIFACTS="$(dirname "$HOST_IMPELLERC")"
-HOST_TESSELLATOR="$HOST_ARTIFACTS/libtessellator.dylib"
 HOST_OUT="$ENGINE_SOURCE/out/host_release_arm64"
 if [ -e "$HOST_OUT/dart-sdk" ]; then
   echo "Expected a no-build host GN output, found $HOST_OUT/dart-sdk" >&2
   exit 1
 fi
 ln -s "$DART_SDK" "$HOST_OUT/dart-sdk"
+echo 'Building only the pinned host Impeller compiler and tessellator targets.'
+ninja -C "$HOST_OUT" \
+  //flutter/impeller/compiler:impellerc \
+  //flutter/impeller/tessellator:tessellator_shared
+HOST_IMPELLERC="$HOST_OUT/impellerc"
+HOST_TESSELLATOR="$HOST_OUT/libtessellator.dylib"
+if [ ! -x "$HOST_IMPELLERC" ] || [ ! -f "$HOST_TESSELLATOR" ]; then
+  echo "Pinned host targets did not produce impellerc and libtessellator in $HOST_OUT" >&2
+  exit 1
+fi
+lipo -verify_arch arm64 "$HOST_IMPELLERC"
+lipo -verify_arch arm64 "$HOST_TESSELLATOR"
 
 XCODE_VERSION="$(xcodebuild -version | tr '\n' ' ')"
 ACTUAL_DEPOT_TOOLS_REVISION="$(git -C "$DEPOT_TOOLS" rev-parse HEAD)"
@@ -149,7 +145,9 @@ ios_sdk=$IOS_SDK_VERSION
 target_gn_args=--ios --runtime-mode=release --no-dart-secure-socket
 host_gn_args=--runtime-mode=release --mac-cpu arm64 --no-build-engine-artifacts
 host_engine_revision=$ACTUAL_HOST_ENGINE_REVISION
-host_artifact_directory=$(basename "$HOST_ARTIFACTS")
+host_artifact_directory=out/host_release_arm64
+host_artifact_source=pinned_engine_source
+host_gn_targets=//flutter/impeller/compiler:impellerc,//flutter/impeller/tessellator:tessellator_shared
 host_dart_sdk_version=$ACTUAL_DART_SDK_VERSION
 host_dart_sha256=$HOST_DART_SHA256
 host_impellerc_sha256=$HOST_IMPELLERC_SHA256
