@@ -76,15 +76,52 @@ python3 "$ENGINE_SOURCE/flutter/tools/gn" \
   --ios --runtime-mode=release --no-dart-secure-socket
 test -f "$ENGINE_SOURCE/out/ios_release/args.gn"
 python3 "$ENGINE_SOURCE/flutter/tools/gn" \
-  --runtime-mode=release --mac-cpu arm64
+  --runtime-mode=release --mac-cpu arm64 --no-build-engine-artifacts
 test -f "$ENGINE_SOURCE/out/host_release_arm64/args.gn"
+echo 'Building the iOS release engine and its target-local gen_snapshot.'
 ninja -C "$ENGINE_SOURCE/out/ios_release"
-ninja -C "$ENGINE_SOURCE/out/host_release_arm64"
+IOS_GEN_SNAPSHOT="$ENGINE_SOURCE/out/ios_release/clang_arm64/gen_snapshot"
+test -x "$IOS_GEN_SNAPSHOT"
+
+# Flutter's release build needs host Impeller tools, but building the host
+# default target compiles thousands of unrelated engine/test targets. Use the
+# Flutter SDK's prebuilt host tools, pinned by the same engine.version stamp.
+flutter precache --macos
+FLUTTER_ENGINE_STAMP="$FLUTTER_ROOT/bin/cache/engine.stamp"
+HOST_ARTIFACTS="$FLUTTER_ROOT/bin/cache/artifacts/engine/darwin-x64"
+DART_SDK="$FLUTTER_ROOT/bin/cache/dart-sdk"
+ACTUAL_HOST_ENGINE_REVISION="$(cat "$FLUTTER_ENGINE_STAMP")"
+EXPECTED_DART_SDK_VERSION="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["dartSdkVersion"])' "$RUNNER_TEMP/flutter-version.json")"
+ACTUAL_DART_SDK_VERSION="$("$DART_SDK/bin/dart" --version 2>&1 | sed -E 's/^Dart SDK version: ([^ ]+).*/\1/')"
+if [ "$ACTUAL_HOST_ENGINE_REVISION" != "$ENGINE_REVISION" ]; then
+  echo "Flutter host artifacts mismatch: expected engine $ENGINE_REVISION, cache has $ACTUAL_HOST_ENGINE_REVISION" >&2
+  exit 1
+fi
+if [ "$ACTUAL_DART_SDK_VERSION" != "$EXPECTED_DART_SDK_VERSION" ]; then
+  echo "Flutter host Dart SDK mismatch: expected $EXPECTED_DART_SDK_VERSION, cache has $ACTUAL_DART_SDK_VERSION" >&2
+  exit 1
+fi
+test -x "$HOST_ARTIFACTS/impellerc"
+test -f "$HOST_ARTIFACTS/libtessellator.dylib"
+test -x "$DART_SDK/bin/dart"
+test -f "$DART_SDK/bin/snapshots/frontend_server_aot.dart.snapshot"
+lipo -verify_arch arm64 "$HOST_ARTIFACTS/impellerc"
+lipo -verify_arch arm64 "$HOST_ARTIFACTS/libtessellator.dylib"
+HOST_OUT="$ENGINE_SOURCE/out/host_release_arm64"
+if [ -e "$HOST_OUT/dart-sdk" ]; then
+  echo "Expected a no-build host GN output, found $HOST_OUT/dart-sdk" >&2
+  exit 1
+fi
+ln -s "$DART_SDK" "$HOST_OUT/dart-sdk"
 
 XCODE_VERSION="$(xcodebuild -version | tr '\n' ' ')"
 ACTUAL_DEPOT_TOOLS_REVISION="$(git -C "$DEPOT_TOOLS" rev-parse HEAD)"
 IOS_SDK_VERSION="$(xcrun --sdk iphoneos --show-sdk-version)"
 PATCH_SHA256="$(shasum -a 256 "$GITHUB_WORKSPACE/tool/patches/flutter-ios-commoncrypto-cache-hash.patch" | awk '{print $1}')"
+IOS_GEN_SNAPSHOT_SHA256="$(shasum -a 256 "$IOS_GEN_SNAPSHOT" | awk '{print $1}')"
+HOST_IMPELLERC_SHA256="$(shasum -a 256 "$HOST_ARTIFACTS/impellerc" | awk '{print $1}')"
+HOST_TESSELLATOR_SHA256="$(shasum -a 256 "$HOST_ARTIFACTS/libtessellator.dylib" | awk '{print $1}')"
+HOST_DART_SHA256="$(shasum -a 256 "$DART_SDK/bin/dart" | awk '{print $1}')"
 REPOSITORY_REVISION="${GITHUB_SHA:-$(git -C "$GITHUB_WORKSPACE" rev-parse HEAD)}"
 PACKAGE_RESOLVED_SHA256="$(shasum -a 256 "$GITHUB_WORKSPACE/app/ios/Runner.xcworkspace/xcshareddata/swiftpm/Package.resolved" | awk '{print $1}')"
 cat > "$PROFILE" <<EOF
@@ -100,7 +137,13 @@ depot_tools_revision=$ACTUAL_DEPOT_TOOLS_REVISION
 xcode=$XCODE_VERSION
 ios_sdk=$IOS_SDK_VERSION
 target_gn_args=--ios --runtime-mode=release --no-dart-secure-socket
-host_gn_args=--runtime-mode=release --mac-cpu arm64
+host_gn_args=--runtime-mode=release --mac-cpu arm64 --no-build-engine-artifacts
+host_engine_revision=$ACTUAL_HOST_ENGINE_REVISION
+host_dart_sdk_version=$ACTUAL_DART_SDK_VERSION
+host_dart_sha256=$HOST_DART_SHA256
+host_impellerc_sha256=$HOST_IMPELLERC_SHA256
+host_libtessellator_sha256=$HOST_TESSELLATOR_SHA256
+ios_gen_snapshot_sha256=$IOS_GEN_SNAPSHOT_SHA256
 engine_patch_sha256=$PATCH_SHA256
 EOF
 cat "$PROFILE" >> "$GITHUB_STEP_SUMMARY"
