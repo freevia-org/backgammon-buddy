@@ -28,7 +28,7 @@ concurrency:
 jobs:
   apk:
     name: build APK + distribute
-    runs-on: backgammon-buddy-i5-linux
+    runs-on: ubuntu-24.04
     # Cold path: NDK download, Rust Android targets and Gradle dependencies
     # fetched from scratch, then a release APK, plus up to ~40 min waiting for CI
     # before distribution (normally zero: CI finishes first).

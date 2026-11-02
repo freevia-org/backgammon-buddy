@@ -12,13 +12,13 @@ All CI jobs except `online` can start independently; `online` waits on `rules`.
 
 | Job | Runner | What it does |
 |---|---|---|
-| `release-preflight` | Hosted Ubuntu | Offline model/Rust-notice hashes and synthetic artifact/profile/build-number validator tests. |
-| `packages` | Hosted Ubuntu | One job definition, **four matrix legs** — `backgammon_core`, `board_vision`, `lan_play`, `match_transport` — each `dart analyze --fatal-infos` + `dart test`. `fail-fast: false`, so a push that breaks two packages reports both. `lan_play` alone runs under its `-P ci` retry preset: it is the only suite that binds real sockets. |
-| `engine` | Hosted Ubuntu | `cargo fmt --check`, `cargo clippy -p aigammon_engine -- -D warnings`, `cargo build --release` and `cargo test --release` in `native/engine_shim`, then `engine_bindings` analyze, unit tests, and `dart test -P engine` against the freshly built `.so` with the production nets. |
-| `app` | Hosted Ubuntu | `flutter analyze` + `flutter test -x golden`. The goldens are excluded here on purpose and run in `goldens` instead; between the two jobs the app suite is covered whole. |
-| `goldens` | **Hosted Windows** | `flutter test --tags golden`, on a **pinned** Flutter version. The golden PNGs are Windows-generated and the comparison is byte-for-byte, so the runner compares like with like rather than needing a tolerance wide enough to swallow a real regression. |
-| `rules` | Hosted Ubuntu | **Emulator leg 1**, and first: the `firestore.rules` mocha suite against a firestore-only emulator. Seconds. `online` `needs:` this, so a broken rules file goes red before four toolchains are installed. |
-| `online` | Hosted Ubuntu | `online_client` analyze + unit tests, then **emulator legs 2–4** inside one `firebase emulators:exec` (`firebase/ci-emulator-suites.sh`): the `online_client -P emulator` transport suite, the app's two-client E2E on the real-time listener path, and that same E2E once more with `AIGAMMON_E2E_LISTEN=0` so the polling fallback is actually exercised. The heaviest leg — Node + Java + Dart + Flutter. |
+| `release-preflight` | GitHub-hosted Ubuntu 24.04 | Offline model/Rust-notice hashes and synthetic artifact/profile/build-number validator tests. |
+| `packages` | GitHub-hosted Ubuntu 24.04 | One job definition, **four matrix legs** — `backgammon_core`, `board_vision`, `lan_play`, `match_transport` — each `dart analyze --fatal-infos` + `dart test`. `fail-fast: false`, so a push that breaks two packages reports both. `lan_play` alone runs under its `-P ci` retry preset: it is the only suite that binds real sockets. |
+| `engine` | GitHub-hosted Ubuntu 24.04 | `cargo fmt --check`, `cargo clippy -p aigammon_engine -- -D warnings`, `cargo build --release` and `cargo test --release` in `native/engine_shim`, then `engine_bindings` analyze, unit tests, and `dart test -P engine` against the freshly built `.so` with the production nets. |
+| `app` | GitHub-hosted Ubuntu 24.04 | `flutter analyze` + `flutter test -x golden`. The goldens are excluded here on purpose and run in `goldens` instead; between the two jobs the app suite is covered whole. |
+| `goldens` | **GitHub-hosted Windows Server 2025** | `flutter test --tags golden`, on a **pinned** Flutter version. The golden PNGs are Windows-generated and the comparison is byte-for-byte, so the runner compares like with like rather than needing a tolerance wide enough to swallow a real regression. |
+| `rules` | GitHub-hosted Ubuntu 24.04 | **Emulator leg 1**, and first: the `firestore.rules` mocha suite against a firestore-only emulator. Seconds. `online` `needs:` this, so a broken rules file goes red before four toolchains are installed. |
+| `online` | GitHub-hosted Ubuntu 24.04 | `online_client` analyze + unit tests, then **emulator legs 2–4** inside one `firebase emulators:exec` (`firebase/ci-emulator-suites.sh`): the `online_client -P emulator` transport suite, the app's two-client E2E on the real-time listener path, and that same E2E once more with `AIGAMMON_E2E_LISTEN=0` so the polling fallback is actually exercised. The heaviest leg — Node + Java + Dart + Flutter. |
 
 `firebase-tools` is pinned to the same exact version (`15.25.1`) in `rules` and
 `online`; the two must not drift onto different emulator versions.
@@ -26,11 +26,11 @@ All CI jobs except `online` can start independently; `online` waits on `rules`.
 All Flutter test and distribution jobs use **Flutter 3.44.8**, including the
 golden tests. Upgrade those pins together and regenerate goldens deliberately.
 
-CI and Android distribution run on the registered I5 Linux runner. CI's
-Windows golden job and the manually dispatched Windows release build use the
-registered I5 Windows runner, which has VS 2022 Build Tools, ATL, and the
-Windows SDK installed. iOS builds run on the dedicated MacMini runner. The
-operational privacy-cleanup workflow also runs on its configured I5 runner.
+CI and Android distribution use GitHub-hosted Ubuntu 24.04 runners. The Windows
+golden job uses GitHub-hosted Windows Server 2025; the manually dispatched
+Windows release build and privacy-cleanup workflow remain on their registered
+I5 runners. iOS builds use the pinned GitHub-hosted `macos-26` image with Xcode
+26.6.
 
 ## Distribution is gated on CI
 
@@ -161,17 +161,27 @@ and the Xcode build both need macOS). Bump the image and Xcode together.
    `AIGAMMON_FIREBASE_PROJECT` / `AIGAMMON_FIREBASE_API_KEY`). CI inspects the
    executable's Mach-O export trie and fails if any of the 11 required native
    engine exports (including all Dart FFI lookups) are missing.
+   Online REST traffic uses `cupertino_http`/Apple `URLSession`; iOS Firestore
+   listeners use bounded REST polling instead of Dart gRPC. The pinned Flutter
+   engine is built with `--no-dart-secure-socket`, which compiles out Dart's
+   OpenSSL-backed secure-socket implementation. Retained Dart entrypoint names
+   resolve to unsupported stubs and are informational in the AOT audit; CI
+   separately checks the engine profile plus app Mach-O files, symbols, and
+   linker maps for third-party TLS/crypto implementations. The app declares
+   `ITSAppUsesNonExemptEncryption=false` for this OS-only transport profile.
 5. Xcode creates an unsigned `.xcarchive` on every run, including PRs. CI audits
    the archive's executable and checks its dSYM. When signing inputs are
    configured, export signs this same archive; no provisioning profile is
    passed to archive targets.
 6. `Runner.app` is a directory tree with internal symlinks, so the archived app
    is packaged with `ditto -c -k --keepParent` (upload-artifact mangles the
-   symlinks otherwise) and uploaded as the **`aigammon-ios-unsigned`** artifact.
+   symlinks otherwise). Build binaries, symbols, and dependency evidence are
+   uploaded only when the manual `publish_artifacts` input is explicitly enabled.
+   Because the repository is public, anyone can download those artifacts.
 
 > An **unsigned `.app` cannot be installed on an iPhone.** Signing is the
 > user-gated step below; without the secrets, CI stops after the unsigned
-> artifact.
+> build.
 
 ### Signing + Firebase distribution (secret-gated)
 
@@ -198,7 +208,11 @@ because Xcode's default archive stripping removed symbols used by
 `DynamicLibrary.process()` even though the ordinary Flutter release build kept
 them. The final exported IPA is checked again for all 11 symbols before it can
 be uploaded as `aigammon-ios-<export-method>-<run>`. Only configured ad-hoc
-exports are distributed to the Firebase **`testers`** group.
+exports are distributed to the Firebase **`testers`** group. Binary, IPA,
+symbol and dependency-evidence uploads are disabled by default and require
+`publish_artifacts=true`; they are publicly downloadable in this public
+repository. A store upload should be handled by the Publishing session after
+the candidate has been reviewed.
 
 The macOS job uses exact-pinned `firebase-tools@15.25.1` on Node 22 for ad-hoc
 distribution. The Linux-only Docker action used by Android cannot execute on a

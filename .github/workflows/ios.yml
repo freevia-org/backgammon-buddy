@@ -11,6 +11,10 @@ on:
         type: choice
         options: [ad-hoc, app-store-connect]
         default: ad-hoc
+      publish_artifacts:
+        description: Upload build binaries to GitHub Actions (publicly downloadable because this repository is public)
+        type: boolean
+        default: false
   # On-demand release lane. Dispatch ci.yml first for this commit; this lane
   # waits for its successful result before distributing to testers.
 
@@ -31,12 +35,11 @@ jobs:
     # Pinned image + pinned Xcode (below) rather than macos-latest: the
     # `-latest` label moves to a new macOS/Xcode under the build without any
     # change in the repo. Bump both deliberately, together.
-    runs-on: backgammon-buddy-macmini
-    # macOS runners are the slowest in the fleet: Flutter builds the release
-    # app, Xcode archives it, and configured signing exports it. The job can
-    # also wait up to ~40 min for CI before Firebase distribution (normally
-    # zero). Generous by design.
-    timeout-minutes: 75
+    runs-on: macos-26
+    # The pinned Flutter iOS engine is built from source, then the release app
+    # is archived and audited. Allow time for both engine and app builds plus
+    # the optional CI/distribution gate.
+    timeout-minutes: 120
     env:
       # Supported by the locked FlutterFire SPM package; this app has no ads.
       # Select FirebaseAnalyticsCore instead of the identity/ad conversion product.
@@ -54,11 +57,16 @@ jobs:
           set -eu
           XCODE="/Applications/Xcode_${XCODE_VERSION}.app"
           if [ ! -d "$XCODE" ]; then
-            echo "::error::$XCODE is not installed on this image. Installed: $(printf '%s ' /Applications/Xcode*.app)"
+            echo "::error::$XCODE is not installed. Installed: $(printf '%s ' /Applications/Xcode*.app)"
+            xcodebuild -version || true
+            xcrun --sdk iphoneos --show-sdk-version || true
             exit 1
           fi
           sudo xcode-select -s "$XCODE/Contents/Developer"
           xcodebuild -version
+
+      - name: Install Metal Toolchain
+        run: xcodebuild -downloadComponent MetalToolchain
 
       - name: Resolve build number
         env:
@@ -112,6 +120,12 @@ jobs:
         working-directory: app
         run: flutter pub get
 
+      - name: Verify iOS transport provider selection
+        working-directory: app
+        run: >-
+          flutter test test/online/ios_transport_provider_test.dart
+          --dart-define=BGB_IOS_URLSESSION_TRANSPORT=true
+
       # Swift Package Manager: Xcode spent ~2 min per run cloning
       # firebase-ios-sdk, grpc/abseil binaries etc. Cache SwiftPM's shared
       # repository cache and the resolved checkouts in DerivedData. EXACT key
@@ -124,6 +138,9 @@ jobs:
             ~/Library/Caches/org.swift.swiftpm
             ~/Library/Developer/Xcode/DerivedData/Runner-*/SourcePackages
           key: spm-${{ runner.os }}-${{ runner.arch }}-xcode${{ env.XCODE_VERSION }}-${{ hashFiles('app/ios/Runner.xcworkspace/xcshareddata/swiftpm/Package.resolved', 'app/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+
+      - name: Build Flutter iOS engine with Apple OS TLS only
+        run: bash tool/build_flutter_ios_engine.sh
 
       # Unsigned build — always runs, and is the gate for a GREEN job. Same
       # online-play dart-define pattern as android.yml: repo VARIABLES
@@ -162,8 +179,11 @@ jobs:
           fi
           # DEFINES is a flag list and must word-split.
           # shellcheck disable=SC2086
-          flutter build ios --release --no-codesign \
+          flutter build ios --verbose --release --no-codesign \
             --build-number="$BUILD_NUMBER" \
+            --local-engine-src-path="$FLUTTER_ENGINE_SRC_PATH" \
+            --local-engine=ios_release \
+            --local-engine-host=host_release_arm64 \
             --obfuscate --split-debug-info=build/symbols/ios \
             --dart-define=BGB_IOS_URLSESSION_TRANSPORT=true \
             $DEFINES
@@ -171,11 +191,16 @@ jobs:
       # The main executable is the dynamic library used by dart:ffi on iOS.
       # Check the actual dynamic export trie so CI catches linker/strip changes
       # before a broken .app can be distributed.
+      - name: Verify CommonCrypto cache hash known-answer vectors
+        run: bash tool/verify_ios_cache_hash_equivalence.sh
+
       - name: Verify unsigned iOS FFI exports
         run: python3 tool/verify_ios_ffi_exports.py --binary app/build/ios/iphoneos/Runner.app/Runner
 
       - name: Verify iOS URLSession transport profile
-        run: python3 tool/verify_ios_transport.py app/build/ios/iphoneos/Runner.app
+        run: >-
+          python3 tool/verify_ios_transport.py app/build/ios/iphoneos/Runner.app
+          --engine-profile "$FLUTTER_ENGINE_PROFILE"
 
       # Exercise the actual Xcode archive on PRs too. This is unsigned so the
       # secret-free build can verify archive stripping without a profile; the
@@ -184,16 +209,33 @@ jobs:
         working-directory: app
         run: |
           xcodebuild \
+            -derivedDataPath "$RUNNER_TEMP/RunnerArchiveDerivedData" \
             -workspace ios/Runner.xcworkspace \
             -scheme Runner \
             -configuration Release \
             -archivePath "$RUNNER_TEMP/Runner.xcarchive" \
             archive \
             CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO
-          python3 ../tool/verify_ios_ffi_exports.py \
-            --binary "$RUNNER_TEMP/Runner.xcarchive/Products/Applications/Runner.app/Runner"
-          test -d "$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM"
+            CODE_SIGNING_REQUIRED=NO \
+            LD_GENERATE_MAP_FILE=YES
+          ARCHIVED_APP="$RUNNER_TEMP/Runner.xcarchive/Products/Applications/Runner.app"
+          python3 ../tool/verify_ios_ffi_exports.py --binary "$ARCHIVED_APP/Runner"
+          LINK_MAPS=()
+          while IFS= read -r LINK_MAP; do LINK_MAPS+=("$LINK_MAP"); done < <(find "$RUNNER_TEMP/RunnerArchiveDerivedData" -type f -name '*LinkMap*.txt' -print | sort)
+          SYMBOL_FILES=()
+          while IFS= read -r SYMBOL_FILE; do SYMBOL_FILES+=("$SYMBOL_FILE"); done < <(find "$RUNNER_TEMP/Runner.xcarchive/dSYMs" -type f -path '*/Contents/Resources/DWARF/*' -print | sort)
+          RUNNER_DSYM="$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM/Contents/Resources/DWARF/Runner"
+          test "${#LINK_MAPS[@]}" -gt 0
+          test "${#SYMBOL_FILES[@]}" -gt 0
+          test -f "$RUNNER_DSYM"
+          TRANSPORT_ARGS=()
+          for LINK_MAP in "${LINK_MAPS[@]}"; do TRANSPORT_ARGS+=(--link-map "$LINK_MAP"); done
+          for SYMBOL_FILE in "${SYMBOL_FILES[@]}"; do TRANSPORT_ARGS+=(--symbol-file "$SYMBOL_FILE"); done
+          python3 ../tool/verify_ios_transport.py "$ARCHIVED_APP" \
+            --generated-config ios/Flutter/Generated.xcconfig \
+            --engine-profile "$FLUTTER_ENGINE_PROFILE" \
+            --require-link-maps --require-symbol-files \
+            "${TRANSPORT_ARGS[@]}"
 
       # Runner.app is a directory containing symlinks; upload-artifact would
       # mangle them, so package it with ditto (the macOS archive idiom) first.
@@ -204,12 +246,21 @@ jobs:
           app/build/ios/iphoneos/Runner.app.zip
 
       - uses: actions/upload-artifact@v7
+        if: inputs.publish_artifacts == true
         with:
           name: aigammon-ios-unsigned
           path: app/build/ios/iphoneos/Runner.app.zip
           if-no-files-found: error
 
+      - uses: actions/upload-artifact@v7
+        if: inputs.publish_artifacts == true
+        with:
+          name: aigammon-ios-engine-profile-${{ github.run_number }}
+          path: ${{ runner.temp }}/flutter-engine-build-profile.txt
+          if-no-files-found: error
+
       - name: Upload Dart debug symbols
+        if: inputs.publish_artifacts == true
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-symbols-ios-${{ github.run_number }}
@@ -228,7 +279,7 @@ jobs:
           xcrun --sdk iphoneos --show-sdk-version > app/build/mobile-dependencies/ios-unsigned/sdk-version.txt
 
       - name: Upload iOS dependency evidence
-        if: always()
+        if: always() && inputs.publish_artifacts == true
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-ios-dependencies-${{ github.run_number }}
@@ -367,11 +418,27 @@ jobs:
 
           IPA="$(find build/ios/ipa -maxdepth 1 -name '*.ipa' | sort | head -1)"
           python3 ../tool/verify_ios_ffi_exports.py --ipa "$IPA"
+          LINK_MAPS=()
+          while IFS= read -r LINK_MAP; do LINK_MAPS+=("$LINK_MAP"); done < <(find "$RUNNER_TEMP/RunnerArchiveDerivedData" -type f -name '*LinkMap*.txt' -print | sort)
+          SYMBOL_FILES=()
+          while IFS= read -r SYMBOL_FILE; do SYMBOL_FILES+=("$SYMBOL_FILE"); done < <(find "$RUNNER_TEMP/Runner.xcarchive/dSYMs" -type f -path '*/Contents/Resources/DWARF/*' -print | sort)
+          RUNNER_DSYM="$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM/Contents/Resources/DWARF/Runner"
+          test "${#LINK_MAPS[@]}" -gt 0
+          test "${#SYMBOL_FILES[@]}" -gt 0
+          test -f "$RUNNER_DSYM"
+          TRANSPORT_ARGS=()
+          for LINK_MAP in "${LINK_MAPS[@]}"; do TRANSPORT_ARGS+=(--link-map "$LINK_MAP"); done
+          for SYMBOL_FILE in "${SYMBOL_FILES[@]}"; do TRANSPORT_ARGS+=(--symbol-file "$SYMBOL_FILE"); done
+          python3 ../tool/verify_ios_transport.py --ipa "$IPA" \
+            --generated-config ios/Flutter/Generated.xcconfig \
+            --engine-profile "$FLUTTER_ENGINE_PROFILE" \
+            --require-link-maps --require-symbol-files \
+            "${TRANSPORT_ARGS[@]}"
           echo "Built IPA: $IPA"
           echo "ipa_path=app/$IPA" >> "$GITHUB_OUTPUT"
 
       - name: Upload signed IPA artifact
-        if: steps.ios.outputs.has_signing == 'true'
+        if: steps.ios.outputs.has_signing == 'true' && inputs.publish_artifacts == true
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-ios-${{ inputs.export_method || 'ad-hoc' }}-${{ github.run_number }}
@@ -387,7 +454,7 @@ jobs:
             --require-no-apple-ad-support --out-dir app/build/mobile-dependencies/ios-signed
 
       - name: Upload signed IPA dependency evidence
-        if: steps.ios.outputs.has_signing == 'true'
+        if: steps.ios.outputs.has_signing == 'true' && inputs.publish_artifacts == true
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-ios-signed-dependencies-${{ github.run_number }}
@@ -395,6 +462,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload iOS archive symbols
+        if: inputs.publish_artifacts == true
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-ios-archive-symbols-${{ github.run_number }}
@@ -442,7 +510,8 @@ jobs:
       - name: Skip signing + distribution (secrets not set)
         if: steps.ios.outputs.has_signing != 'true'
         run: |
-          echo "iOS signing secrets not set — built an UNSIGNED .app only (artifact aigammon-ios-unsigned)."
+          echo "iOS signing secrets not set — built an UNSIGNED .app only."
+          echo "Binary artifacts are uploaded only when publish_artifacts is explicitly enabled."
           echo "An unsigned .app CANNOT be installed on an iPhone. To produce a signed, installable"
           echo "IPA and push it to Firebase App Distribution, add the four iOS secrets described in"
           echo ".github/workflows/README.md (iOS) and firebase/DEPLOY.md (iOS distribution)."
