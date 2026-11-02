@@ -299,7 +299,8 @@ jobs:
     needs: rules
     # The heaviest leg: Node + Java + Flutter + Dart toolchains, then the
     # Firestore-emulator E2E legs behind emulators:exec.
-    timeout-minutes: 45
+    # The shared runner gate can wait up to 60 minutes; leave time after admission for toolchain startup and emulator E2E work.
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v7
       # Node is here for the Firebase CLI. The backend itself is rules-only —
