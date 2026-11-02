@@ -60,6 +60,16 @@ THIRD_PARTY_CRYPTO_SYMBOL = re.compile(
     r'asn1_|rsa_|ecdsa_|ecdh_|ec_key_|bn_|hmac_|md5_|sha[0-9]*_)'
     r'[a-z0-9_]+\b'
 )
+
+
+def third_party_crypto_symbols(symbol_table):
+    """Return the exact suspicious symbols for actionable audit failures."""
+    return sorted(
+        {
+            match.group(0)
+            for match in THIRD_PARTY_CRYPTO_SYMBOL.finditer(symbol_table)
+        }
+    )
 LINK_MAP_CRYPTO_MARKERS = (
     'boringssl',
     'bssl_g3',
@@ -257,8 +267,10 @@ def verify_app(app, generated_config, engine_profile, link_maps, symbol_files,
             marker for marker in THIRD_PARTY_CRYPTO_MARKERS
             if marker in binary_strings
         ]
-        if THIRD_PARTY_CRYPTO_SYMBOL.search(binary_symbols):
-            markers.append('third-party TLS/crypto API symbol')
+        markers.extend(
+            f'third-party TLS/crypto API symbol {symbol}'
+            for symbol in third_party_crypto_symbols(binary_symbols)
+        )
         violations.extend(
             f'{binary.relative_to(app)}: {marker}' for marker in markers
         )
@@ -274,8 +286,10 @@ def verify_app(app, generated_config, engine_profile, link_maps, symbol_files,
             marker for marker in THIRD_PARTY_CRYPTO_MARKERS
             if marker in symbol_strings
         ]
-        if THIRD_PARTY_CRYPTO_SYMBOL.search(symbol_table):
-            markers.append('third-party TLS/crypto API symbol')
+        markers.extend(
+            f'third-party TLS/crypto API symbol {symbol}'
+            for symbol in third_party_crypto_symbols(symbol_table)
+        )
         violations.extend(
             f'{symbol_file.name}: {marker}' for marker in markers
         )

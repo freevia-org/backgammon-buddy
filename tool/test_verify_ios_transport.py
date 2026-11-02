@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from verify_ios_transport import verify_engine_profile
+from verify_ios_transport import third_party_crypto_symbols, verify_engine_profile
 
 
 REVISION = 'a' * 40
@@ -58,6 +58,14 @@ class VerifyIosTransportTests(unittest.TestCase):
         profile['engine_source_checkout_revision'] = 'c' * 40
         with self.assertRaisesRegex(SystemExit, 'source checkout'):
             self.verify_profile(profile)
+
+    def test_reports_exact_tls_symbols_but_not_os_commoncrypto_hashes(self):
+        self.assertEqual(
+            third_party_crypto_symbols(
+                '0000 T ssl_do_handshake\n0000 T cc_sha256_update\n'
+            ),
+            ['ssl_do_handshake'],
+        )
 
 
 if __name__ == '__main__':
