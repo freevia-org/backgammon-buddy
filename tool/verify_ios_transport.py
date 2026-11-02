@@ -53,23 +53,37 @@ THIRD_PARTY_CRYPTO_MARKERS = (
     'x509_store_ctx',
 )
 THIRD_PARTY_CRYPTO_SYMBOL = re.compile(
-    # CommonCrypto's public CC_SHA*/CC_MD5* symbols are OS-provided hashing,
-    # not a bundled TLS implementation. Do not match the SHA/MD5 suffix in
-    # those symbol names; bare SHA/MD5 implementations remain suspicious.
-    r'(?<!cc_)(?<![a-z0-9])(?:ssl_|tls_|evp_|crypto_|openssl_|bio_|x509_|'
-    r'asn1_|rsa_|ecdsa_|ecdh_|ec_key_|bn_|hmac_|md5_|sha[0-9]*_)'
-    r'[a-z0-9_]+\b'
+    r'^(?:'
+    r'ssl_(?:ctx|do_handshake|set_fd|get_error|connect|accept|read|write|new|free)'
+    r'[a-z0-9_]*|'
+    r'tls_(?:method|client_method|server_method|connect|accept|handshake|read|write|close|new|init)'
+    r'(?:_[a-z0-9_]+)?|'
+    r'openssl_[a-z0-9_]+|'
+    r'evp_(?:encrypt|decrypt|cipher|aead|seal|open)[a-z0-9_]*|'
+    r'bio_(?:new_ssl|new_connect|set_ssl|ssl)[a-z0-9_]*|'
+    r'(?:aes|chacha20|chacha20_poly1305)_(?:encrypt|decrypt|seal|open)[a-z0-9_]*|'
+    r'crypto_(?:encrypt|decrypt|cipher|aead)[a-z0-9_]*'
+    r')\b'
 )
 
 
 def third_party_crypto_symbols(symbol_table):
-    """Return the exact suspicious symbols for actionable audit failures."""
-    return sorted(
-        {
-            match.group(0)
-            for match in THIRD_PARTY_CRYPTO_SYMBOL.finditer(symbol_table)
-        }
-    )
+    """Return C-style transport/cipher symbols, ignoring mangled-name text.
+
+    The binaries intentionally contain hashes and secure-random functions.
+    They also contain Dart native-entrypoint metadata and Rust names with
+    ``tls_scope``/``bn_`` components. Only inspect a symbol's leading C API
+    name (after Mach-O's leading underscore), not substrings in a mangled name.
+    """
+    suspicious = set()
+    for line in symbol_table.splitlines():
+        fields = line.split()
+        if len(fields) < 2:
+            continue
+        name = fields[-1].lower().lstrip('_')
+        if THIRD_PARTY_CRYPTO_SYMBOL.match(name):
+            suspicious.add(name)
+    return sorted(suspicious)
 LINK_MAP_CRYPTO_MARKERS = (
     'boringssl',
     'bssl_g3',

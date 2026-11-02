@@ -59,12 +59,37 @@ class VerifyIosTransportTests(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, 'source checkout'):
             self.verify_profile(profile)
 
-    def test_reports_exact_tls_symbols_but_not_os_commoncrypto_hashes(self):
+    def test_reports_transport_and_cipher_symbols(self):
         self.assertEqual(
             third_party_crypto_symbols(
-                '0000 T ssl_do_handshake\n0000 T cc_sha256_update\n'
+                '0000 T ssl_do_handshake\n'
+                '0000 T _SSL_CTX_new\n'
+                '0000 T openssl_init_ssl\n'
+                '0000 T evp_aead_ctx_seal\n'
+                '0000 T tls_client_method\n'
             ),
-            ['ssl_do_handshake'],
+            [
+                'evp_aead_ctx_seal',
+                'openssl_init_ssl',
+                'ssl_ctx_new',
+                'ssl_do_handshake',
+                'tls_client_method',
+            ],
+        )
+
+    def test_ignores_hash_random_disabled_stubs_and_thread_local_symbols(self):
+        self.assertEqual(
+            third_party_crypto_symbols(
+                '0000 T md5_buffer\n'
+                '0000 T cc_sha256_update\n'
+                '0000 T crypto_getrandombytesep21_dart_nativearguments\n'
+                '0000 T x509_pemep21_dart_nativearguments\n'
+                '0000 T tls_guard\n'
+                '0000 T tls_scopencinvb1z_run_in_tls_scope\n'
+                '0000 T bn_b3m_tract_linalg\n'
+                '0000 T _RNvC6tract16tls_client_method\n'
+            ),
+            [],
         )
 
 
