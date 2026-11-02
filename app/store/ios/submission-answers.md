@@ -64,31 +64,31 @@ References:
 https://developer.apple.com/help/app-store-connect/reference/app-information/age-ratings-values-and-definitions/
 https://developer.apple.com/news/?id=tlur8uvi
 
-## Encryption questionnaire — build 27
+## Encryption status and App Store Connect handling
 
-The application uses encryption: HTTPS/TLS for Google services (including Dart's
-network implementation), OS Keychain protection for credentials/receipts, secure
-random generation, and SHA-256 fair-dice commitments. Nearby transport is plaintext.
-No proprietary content cipher, VPN or general-purpose encryption feature is
-identified in the first-party implementation. Prepare the standard/exempt-use
-assessment using the inventory in `docs/ios-privacy-encryption-handoff.md`.
+Build 27's prior classification is historical. On 2026-11-02, the owner directed
+that iOS network encryption use Apple's operating-system APIs only and that no
+French ANSSI declaration be filed. The earlier confirmation of standard
+encryption outside Apple's OS applies only to build 27; it is not a description
+of the intended replacement build. Leave any existing review state unchanged.
 
-The Freevia representative confirmed that build 27 uses standard encryption
-outside Apple's operating-system APIs. Publishing selected that classification
-in the App Store Connect flow. Selecting France caused Apple to require an
-approved export-compliance document in App Encryption Documentation before it
-will save the answer; the form had no Save action, so build 27 remains Missing
-Compliance. This owner-confirmed classification does not establish an ANSSI
-filing outcome, Apple's acceptance, or an export-compliance key.
+The replacement candidate is not yet release-verified. Its iOS networking path
+uses Apple's URLSession, and its custom Flutter engine disables Dart secure
+sockets. The first binary audit stopped on TLS/crypto symbol matches; the exact
+symbols are being identified before deciding whether they are hashing or an
+active non-Apple encryption implementation. Do not submit a new build or change
+its App Store Connect compliance answer until the packaged binary and linker
+evidence pass that audit.
 
-The authorized representative must sign and submit the prepared French ANSSI
-declaration. After the official document is issued, upload it to App Store
-Connect, obtain Apple's key value, then make any required plist/build change and
-complete the exact build's compliance flow. Do not set
-`ITSAppUsesNonExemptEncryption` or invent a key before Apple issues it.
+If the final candidate uses only Apple OS encryption for network transport, set
+`ITSAppUsesNonExemptEncryption` to `false` and answer the matching OS-only
+export-compliance questions for that build. SHA-256 fair-dice commitments,
+secure random generation and Keychain storage remain in the app; they are not
+encrypted network transport. Nearby LAN transport remains plaintext. Do not
+submit the existing ANSSI draft or describe it as approved or filed.
 
 Reference:
-https://developer.apple.com/help/app-store-connect/manage-app-information/determine-and-upload-app-encryption-documentation/
+https://developer.apple.com/help/app-store-connect/reference/app-information/export-compliance-documentation-for-encryption/
 
 ## Rejection response: Guidelines 4.3 and 4.2.6
 
