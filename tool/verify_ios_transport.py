@@ -241,7 +241,7 @@ def verify_app(app, generated_config, engine_profile, link_maps, symbol_files,
     # implementation. These names alone do not prove a TLS implementation is
     # linked; the engine profile plus Mach-O, symbol, and linker-map scans
     # below are the evidence for that. Keep reporting the names for review.
-    present = [
+    tls_metadata_present = [
         marker for marker in DART_TLS_METADATA_MARKERS if marker in aot_strings
     ]
 
@@ -289,14 +289,14 @@ def verify_app(app, generated_config, engine_profile, link_maps, symbol_files,
         raise SystemExit('Archive contains no linker map files to audit')
     for link_map in link_maps:
         link_map_text = link_map.read_text(errors='replace').lower()
-        present = [
+        link_map_markers = [
             marker for marker in LINK_MAP_CRYPTO_MARKERS
             if marker in link_map_text
         ]
-        if present:
+        if link_map_markers:
             raise SystemExit(
                 f'{link_map.name} contains non-OS crypto/gRPC objects: '
-                + ', '.join(present)
+                + ', '.join(link_map_markers)
             )
 
     urlsession_strings = strings(urlsession)
@@ -314,10 +314,10 @@ def verify_app(app, generated_config, engine_profile, link_maps, symbol_files,
         f'({engine["engine_revision"]}); Dart resolves any retained '
         'SecureSocket entrypoint names to unsupported stubs'
     )
-    if present:
+    if tls_metadata_present:
         print(
             'App AOT SecureSocket/TLS names (metadata only; implementation '
-            'audited separately): ' + ', '.join(present)
+            'audited separately): ' + ', '.join(tls_metadata_present)
         )
     else:
         print('App AOT SecureSocket/TLS names: absent')
