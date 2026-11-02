@@ -6,22 +6,26 @@ The owner directed iOS encrypted networking to use Apple's operating-system
 APIs and explicitly declined an ANSSI/French filing. The earlier assessment
 and proposed filing step below are historical; do not follow the proposed
 filing step. The dependency table and Apple assessment describe pre-rework
-build 27. The target architecture is
-not yet validated in a packaged candidate: the previous signed build retained
-Dart TLS markers and BoringSSL material, and the current unsigned build is still
-in progress. Do not change store compliance answers or submit a build until its
-actual binaries and link maps pass the Apple-OS-only audit. App-level SHA-256
-for fair-dice integrity and asset verification is hashing, not encrypted
-transport.
+build 27. The target architecture is not yet release-verified. Unsigned build
+28 compiled, but its first audit stopped on broad symbol matches: Dart
+secure-random/disabled-certificate entrypoint names, GNU Backgammon's
+board-state MD5 hash, and Rust thread-local/kernel symbols. The scanner now
+targets actual C-style transport/cipher APIs and retains strict third-party
+library and linker-map checks; seven local tests pass. The run ended before
+archive/link-map validation and has not been rerun. Do not change store
+compliance answers or submit a build until that complete audit passes. App-level
+SHA-256/MD5 for fairness, integrity and evaluator board hashing is hashing, not
+encrypted transport.
 
 This is a source/configuration assessment, not submitted App Store Connect answers.
-Repository variable/secret **names only** were checked through GitHub: the two
-online REST configuration variables and release-number baseline are present;
-there is no Firebase sender/iOS-app configuration or Apple signing secret.
-Accordingly the current CI configuration enables online REST play and leaves
-optional native telemetry unconfigured. Recheck these inputs and the final signed
-artifact before upload. Do not change the labels based solely on the simulator's
-debug configuration (which defaults to the local demo emulator).
+Repository variable/secret **names only** were checked through GitHub on
+2026-11-02: online REST configuration and the release-number baseline are
+present; App Store signing inputs `IOS_APP_STORE_PROFILE_BASE64`,
+`IOS_CERT_P12_BASE64` and `IOS_CERT_PASSWORD` are present. Firebase sender/iOS
+app telemetry configuration is absent, so optional native telemetry remains
+unconfigured. Recheck these inputs and the final signed artifact before upload.
+Do not change the labels based solely on the simulator's debug configuration
+(which defaults to the local demo emulator).
 
 ## App Privacy draft for current online-only configuration
 

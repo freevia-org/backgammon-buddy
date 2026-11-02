@@ -74,11 +74,15 @@ of the intended replacement build. Leave any existing review state unchanged.
 
 The replacement candidate is not yet release-verified. Its iOS networking path
 uses Apple's URLSession, and its custom Flutter engine disables Dart secure
-sockets. The first binary audit stopped on TLS/crypto symbol matches; the exact
-symbols are being identified before deciding whether they are hashing or an
-active non-Apple encryption implementation. Do not submit a new build or change
-its App Store Connect compliance answer until the packaged binary and linker
-evidence pass that audit.
+sockets. Build 28 compiled, but its first binary audit stopped on false-positive
+symbol matches: Dart secure-random and disabled-certificate entrypoint names,
+GNU Backgammon's board-state MD5 hash, and Rust thread-local/kernel symbols.
+The scan now targets leading C-style transport/cipher APIs while retaining
+third-party library and linker-map checks. Its seven local tests pass. The run
+ended before archive and linker-map validation, and no follow-up build has run;
+the replacement is therefore still unverified. Do not submit it or change its
+App Store Connect compliance answer until the full binary and linker audit
+passes.
 
 If the final candidate uses only Apple OS encryption for network transport, set
 `ITSAppUsesNonExemptEncryption` to `false` and answer the matching OS-only
