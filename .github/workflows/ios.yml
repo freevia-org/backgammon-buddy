@@ -191,7 +191,7 @@ jobs:
       # The main executable is the dynamic library used by dart:ffi on iOS.
       # Check the actual dynamic export trie so CI catches linker/strip changes
       # before a broken .app can be distributed.
-      - name: Verify CommonCrypto cache hash compatibility
+      - name: Verify CommonCrypto cache hash known-answer vectors
         run: bash tool/verify_ios_cache_hash_equivalence.sh
 
       - name: Verify unsigned iOS FFI exports
