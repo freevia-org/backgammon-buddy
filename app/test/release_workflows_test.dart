@@ -122,8 +122,16 @@ void main() {
     expect(
       ciLabels,
       everyElement(
-        isIn({'ubuntu-24.04', 'windows-2025'}),
+        isIn({'backgammon-buddy-i5-linux', 'backgammon-buddy-i5-windows'}),
       ),
+    );
+    expect(ciLabels, contains('backgammon-buddy-i5-linux'));
+    expect(ciLabels, contains('backgammon-buddy-i5-windows'));
+    expect(
+      RegExp(
+        r'name:\s*golden comparisons \(windows\)\s+runs-on:\s*backgammon-buddy-i5-windows',
+      ).hasMatch(workflow('ci')),
+      isTrue,
     );
 
     final iosLabels = RegExp(
