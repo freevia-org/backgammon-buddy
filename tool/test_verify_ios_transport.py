@@ -67,10 +67,14 @@ class VerifyIosTransportTests(unittest.TestCase):
                 '0000 T openssl_init_ssl\n'
                 '0000 T evp_aead_ctx_seal\n'
                 '0000 T tls_client_method\n'
+                '0000 T _AES_set_encrypt_key\n'
+                '0000 T _RSA_public_encrypt\n'
             ),
             [
+                'aes_set_encrypt_key',
                 'evp_aead_ctx_seal',
                 'openssl_init_ssl',
+                'rsa_public_encrypt',
                 'ssl_ctx_new',
                 'ssl_do_handshake',
                 'tls_client_method',
