@@ -70,7 +70,7 @@ void main() {
       r'^\s*runs-on:\s*([^\s]+)',
       multiLine: true,
     ).allMatches(android).map((match) => match.group(1)!);
-    expect(androidLabels, everyElement('backgammon-buddy-i5-linux'));
+    expect(androidLabels, everyElement('ubuntu-24.04'));
     expect(android, contains('actions/setup-java@v6'));
     expect(android, contains('java-version: 21'));
 
@@ -125,12 +125,20 @@ void main() {
         isIn({'backgammon-buddy-i5-linux', 'backgammon-buddy-i5-windows'}),
       ),
     );
+    expect(ciLabels, contains('backgammon-buddy-i5-linux'));
+    expect(ciLabels, contains('backgammon-buddy-i5-windows'));
+    expect(
+      RegExp(
+        r'name:\s*golden comparisons \(windows\)\s+runs-on:\s*backgammon-buddy-i5-windows',
+      ).hasMatch(workflow('ci')),
+      isTrue,
+    );
 
     final iosLabels = RegExp(
       r'^\s*runs-on:\s*([^\s]+)',
       multiLine: true,
     ).allMatches(workflow('ios')).map((match) => match.group(1)!);
-    expect(iosLabels, ['backgammon-buddy-macmini']);
+    expect(iosLabels, ['macos-26']);
   });
 
   test('Freevia mobile identity agrees across builds and signing validation', () {
@@ -159,7 +167,7 @@ void main() {
   test('iOS distribution uses native CLI and retains ad-hoc signing gates', () {
     final source = workflow('ios');
     // Dedicated pinned image and pinned Xcode avoid silent image drift.
-    expect(source, contains('runs-on: backgammon-buddy-macmini'));
+    expect(source, contains('runs-on: macos-26'));
     expect(source, contains('sudo xcode-select -s'));
     expect(
       source,

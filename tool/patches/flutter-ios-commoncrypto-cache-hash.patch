@@ -1,0 +1,34 @@
+diff --git a/common/graphics/persistent_cache.cc b/common/graphics/persistent_cache.cc
+index d304fa6adc314354ff772160a979926fb5b30c0b..7e5595a8237675c5eda8d5bce48b6f647f24f612 100644
+--- a/common/graphics/persistent_cache.cc
++++ b/common/graphics/persistent_cache.cc
+@@ -24,0 +25,6 @@
++#if defined(__APPLE__)
++#include <TargetConditionals.h>
++#endif
++#if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
++#include <CommonCrypto/CommonDigest.h>
++#else
+@@ -25,0 +32 @@
++#endif
+@@ -42,0 +50,5 @@
++#if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
++  uint8_t sha_digest[CC_SHA1_DIGEST_LENGTH];
++  CC_SHA1(static_cast<const uint8_t*>(key.data()),
++          static_cast<CC_LONG>(key.size()), sha_digest);
++#else
+@@ -44,0 +57 @@
++#endif
+@@ -47 +60 @@
+-                        SHA_DIGEST_LENGTH);
++                        sizeof(sha_digest));
+diff --git a/common/graphics/BUILD.gn b/common/graphics/BUILD.gn
+index a18b23b466f8c95729aa86aa214e2490400f4711..e30ccf583ad255b4dc993b225a3a0f72a977a5d3 100644
+--- a/common/graphics/BUILD.gn
++++ b/common/graphics/BUILD.gn
+@@ -29 +28,0 @@
+-    "//flutter/third_party/boringssl",
+@@ -31,0 +31,3 @@
++  if (!is_ios) {
++    deps += [ "//flutter/third_party/boringssl" ]
++  }
