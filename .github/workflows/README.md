@@ -161,6 +161,14 @@ and the Xcode build both need macOS). Bump the image and Xcode together.
    `AIGAMMON_FIREBASE_PROJECT` / `AIGAMMON_FIREBASE_API_KEY`). CI inspects the
    executable's Mach-O export trie and fails if any of the 11 required native
    engine exports (including all Dart FFI lookups) are missing.
+   Online REST traffic uses `cupertino_http`/Apple `URLSession`; iOS Firestore
+   listeners use bounded REST polling instead of Dart gRPC. The pinned Flutter
+   engine is built with `--no-dart-secure-socket`, which compiles out Dart's
+   OpenSSL-backed secure-socket implementation. Retained Dart entrypoint names
+   resolve to unsupported stubs and are informational in the AOT audit; CI
+   separately checks the engine profile plus app Mach-O files, symbols, and
+   linker maps for third-party TLS/crypto implementations. The app declares
+   `ITSAppUsesNonExemptEncryption=false` for this OS-only transport profile.
 5. Xcode creates an unsigned `.xcarchive` on every run, including PRs. CI audits
    the archive's executable and checks its dSYM. When signing inputs are
    configured, export signs this same archive; no provisioning profile is

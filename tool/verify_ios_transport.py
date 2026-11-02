@@ -19,7 +19,7 @@ GRPC_MARKERS = (
     'google.firestore.v1',
     'GrpcFirestoreListenChannel',
 )
-DART_TLS_MARKERS = (
+DART_TLS_METADATA_MARKERS = (
     'SecureSocket_Connect',
     'SecureSocket_Handshake',
     'TlsException',
@@ -143,8 +143,63 @@ def binary_evidence(path):
     return '\n'.join(outputs).lower(), symbols
 
 
-def verify_app(app, generated_config, link_maps, symbol_files,
+def verify_engine_profile(engine_profile):
+    if engine_profile is None:
+        raise SystemExit(
+            'Missing Flutter engine profile; iOS TLS audit requires the '
+            'profile from the custom --no-dart-secure-socket engine build'
+        )
+    profile = {}
+    for line in engine_profile.read_text().splitlines():
+        if '=' in line:
+            key, value = line.split('=', 1)
+            profile[key] = value
+    if profile.get('target_dart_disable_secure_socket') != 'true':
+        raise SystemExit(
+            'Flutter engine profile does not prove '
+            'dart_disable_secure_socket=true'
+        )
+    if '--no-dart-secure-socket' not in profile.get('target_gn_args', ''):
+        raise SystemExit(
+            'Flutter engine profile is missing --no-dart-secure-socket'
+        )
+    if not re.fullmatch(r'[0-9a-f]{40}', profile.get('engine_revision', '')):
+        raise SystemExit(
+            'Flutter engine profile is missing its pinned 40-character '
+            'engine revision'
+        )
+    for key in (
+        'framework_revision',
+        'engine_source_checkout_revision',
+        'engine_source_tree_sha',
+        'engine_version_engine_tree_sha',
+        'host_engine_revision',
+    ):
+        if not re.fullmatch(r'[0-9a-f]{40}', profile.get(key, '')):
+            raise SystemExit(
+                f'Flutter engine profile is missing a valid {key}'
+            )
+    if profile['engine_source_tree_sha'] != profile['engine_version_engine_tree_sha']:
+        raise SystemExit(
+            'Flutter engine source tree does not match the pinned engine '
+            'version'
+        )
+    if profile['engine_source_checkout_revision'] != profile['framework_revision']:
+        raise SystemExit(
+            'Flutter engine source checkout does not match its pinned '
+            'framework revision'
+        )
+    if profile['host_engine_revision'] != profile['engine_revision']:
+        raise SystemExit(
+            'Flutter host engine artifacts do not match the pinned engine '
+            'revision'
+        )
+    return profile
+
+
+def verify_app(app, generated_config, engine_profile, link_maps, symbol_files,
                require_link_maps, require_symbol_files):
+    engine = verify_engine_profile(engine_profile)
     app_info = app / 'Info.plist'
     if not app_info.is_file():
         raise SystemExit('Built app is missing Info.plist')
@@ -181,12 +236,14 @@ def verify_app(app, generated_config, link_maps, symbol_files,
     if present:
         raise SystemExit('gRPC markers remain in App AOT: ' + ', '.join(present))
 
-    present = [marker for marker in DART_TLS_MARKERS if marker in aot_strings]
-    if present:
-        raise SystemExit(
-            'Dart SecureSocket/TLS markers remain in App AOT: '
-            + ', '.join(present)
-        )
+    # AOT snapshots can retain native-entrypoint/type names as metadata even
+    # when the pinned engine has compiled out Dart's native SecureSocket
+    # implementation. These names alone do not prove a TLS implementation is
+    # linked; the engine profile plus Mach-O, symbol, and linker-map scans
+    # below are the evidence for that. Keep reporting the names for review.
+    present = [
+        marker for marker in DART_TLS_METADATA_MARKERS if marker in aot_strings
+    ]
 
     binaries = sorted(set(app_binaries(app)))
     if app / 'Runner' not in binaries:
@@ -252,7 +309,18 @@ def verify_app(app, generated_config, link_maps, symbol_files,
     print('Runner Info.plist encryption declaration: false')
     print('iOS URLSession compile-time define: verified')
     print('App AOT gRPC protocol markers: absent')
-    print('App AOT Dart SecureSocket/TLS markers: absent')
+    print(
+        'Pinned Flutter engine secure socket implementation: disabled '
+        f'({engine["engine_revision"]}); Dart resolves any retained '
+        'SecureSocket entrypoint names to unsupported stubs'
+    )
+    if present:
+        print(
+            'App AOT SecureSocket/TLS names (metadata only; implementation '
+            'audited separately): ' + ', '.join(present)
+        )
+    else:
+        print('App AOT SecureSocket/TLS names: absent')
     print(f'All {len(binaries)} shipped Mach-O executables: no third-party crypto markers')
     print(f'All {len(symbol_files)} supplied dSYM symbol files: no third-party crypto markers')
     print(f'All {len(link_maps)} supplied link maps: no third-party crypto/gRPC objects')
@@ -272,6 +340,10 @@ def main():
         type=Path,
         default=Path('app/ios/Flutter/Generated.xcconfig'),
     )
+    parser.add_argument(
+        '--engine-profile', type=Path,
+        help='Profile emitted by tool/build_flutter_ios_engine.sh',
+    )
     parser.add_argument('--link-map', type=Path, action='append', default=[])
     parser.add_argument('--symbol-file', type=Path, action='append', default=[])
     parser.add_argument('--require-link-maps', action='store_true')
@@ -285,13 +357,15 @@ def main():
             if not app.is_dir():
                 raise SystemExit('IPA does not contain Payload/Runner.app')
             verify_app(
-                app, args.generated_config, args.link_map, args.symbol_file,
-                args.require_link_maps, args.require_symbol_files,
+                app, args.generated_config, args.engine_profile,
+                args.link_map, args.symbol_file, args.require_link_maps,
+                args.require_symbol_files,
             )
     else:
         verify_app(
-            args.app, args.generated_config, args.link_map, args.symbol_file,
-            args.require_link_maps, args.require_symbol_files,
+            args.app, args.generated_config, args.engine_profile,
+            args.link_map, args.symbol_file, args.require_link_maps,
+            args.require_symbol_files,
         )
 
 

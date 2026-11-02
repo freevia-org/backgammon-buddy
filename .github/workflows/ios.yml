@@ -198,7 +198,9 @@ jobs:
         run: python3 tool/verify_ios_ffi_exports.py --binary app/build/ios/iphoneos/Runner.app/Runner
 
       - name: Verify iOS URLSession transport profile
-        run: python3 tool/verify_ios_transport.py app/build/ios/iphoneos/Runner.app
+        run: >-
+          python3 tool/verify_ios_transport.py app/build/ios/iphoneos/Runner.app
+          --engine-profile "$FLUTTER_ENGINE_PROFILE"
 
       # Exercise the actual Xcode archive on PRs too. This is unsigned so the
       # secret-free build can verify archive stripping without a profile; the
@@ -231,6 +233,7 @@ jobs:
           for SYMBOL_FILE in "${SYMBOL_FILES[@]}"; do TRANSPORT_ARGS+=(--symbol-file "$SYMBOL_FILE"); done
           python3 ../tool/verify_ios_transport.py "$ARCHIVED_APP" \
             --generated-config ios/Flutter/Generated.xcconfig \
+            --engine-profile "$FLUTTER_ENGINE_PROFILE" \
             --require-link-maps --require-symbol-files \
             "${TRANSPORT_ARGS[@]}"
 
@@ -428,6 +431,7 @@ jobs:
           for SYMBOL_FILE in "${SYMBOL_FILES[@]}"; do TRANSPORT_ARGS+=(--symbol-file "$SYMBOL_FILE"); done
           python3 ../tool/verify_ios_transport.py --ipa "$IPA" \
             --generated-config ios/Flutter/Generated.xcconfig \
+            --engine-profile "$FLUTTER_ENGINE_PROFILE" \
             --require-link-maps --require-symbol-files \
             "${TRANSPORT_ARGS[@]}"
           echo "Built IPA: $IPA"
