@@ -11,6 +11,9 @@ permissions:
 
 jobs:
   analyze:
+    # CodeQL runs on persistent self-hosted runners; keep analysis scoped to
+    # the protected default branch even when a dispatcher selects another ref.
+    if: github.ref == 'refs/heads/master'
     name: Analyze (${{ matrix.language }})
     runs-on: ${{ matrix.runner }}
     timeout-minutes: ${{ contains(matrix.runner, '-i5-') && 210 || 120 }}
