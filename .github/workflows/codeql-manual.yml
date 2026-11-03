@@ -38,7 +38,9 @@ jobs:
             runner: backgammon-buddy-i5-linux
             build-mode: none
           - language: swift
-            runner: backgammon-buddy-macmini
+            # CodeQL's traced Swift build has architecture issues on our
+            # self-hosted Apple Silicon runner. Keep Swift on an Intel Mac.
+            runner: macos-15-intel
             build-mode: autobuild
     steps:
       - name: Checkout repository
