@@ -37,9 +37,9 @@ concurrency:
 jobs:
   ios:
     name: build .app + (gated) signed distribute
-    # Use the persistent Mac mini only for the trusted default branch. Manual
-    # dispatches from other refs stay on GitHub-hosted macOS even if macmini is
-    # selected, so branch builds cannot occupy the local release runner.
+    # Default to the Mac mini for master and hosted macOS for other refs.
+    # This routing follows the workflow version selected for the dispatch; it
+    # is an operational default, not a security boundary.
     runs-on: ${{ inputs.runner == 'macmini' && github.ref == 'refs/heads/master' && 'backgammon-buddy-macmini' || 'macos-26' }}
     # The pinned Flutter iOS engine is built from source, then the release app
     # is archived and audited. Allow time for both engine and app builds plus
@@ -66,6 +66,8 @@ jobs:
             echo '| Requested | Resolved label | Runner | OS | Architecture | Xcode |'
             echo '|---|---|---|---|---|---|'
             echo "| $REQUESTED_RUNNER | $RESOLVED_RUNNER | $RUNNER_NAME | $RUNNER_OS | $RUNNER_ARCH | $XCODE_VERSION |"
+            echo
+            echo 'Routing is based on the selected ref and this workflow version; it is an operational default, not a security boundary.'
           } >> "$GITHUB_STEP_SUMMARY"
 
       - uses: actions/checkout@v7
