@@ -33,9 +33,42 @@
 #include "sigmoid.h"
 
 static int
+NeuralNetFloatArraySize(size_t count, size_t *size)
+{
+    if (count > (size_t) -1 / sizeof(float))
+        return -1;
+
+    *size = count * sizeof(float);
+    return 0;
+}
+
+static int
+NeuralNetFloatMatrixSize(unsigned int rows, unsigned int columns, size_t *count, size_t *size)
+{
+    if (columns != 0 && (size_t) rows > (size_t) -1 / (size_t) columns)
+        return -1;
+
+    *count = (size_t) rows * (size_t) columns;
+    return NeuralNetFloatArraySize(*count, size);
+}
+
+static int
 NeuralNetCreate(neuralnet * pnn, unsigned int cInput, unsigned int cHidden,
                 unsigned int cOutput, float rBetaHidden, float rBetaOutput)
 {
+    size_t hiddenWeightSize;
+    size_t outputWeightSize;
+    size_t hiddenWeightCount;
+    size_t outputWeightCount;
+    size_t hiddenThresholdSize;
+    size_t outputThresholdSize;
+
+    if (NeuralNetFloatMatrixSize(cHidden, cInput, &hiddenWeightCount, &hiddenWeightSize) != 0 ||
+        NeuralNetFloatMatrixSize(cOutput, cHidden, &outputWeightCount, &outputWeightSize) != 0 ||
+        NeuralNetFloatArraySize(cHidden, &hiddenThresholdSize) != 0 ||
+        NeuralNetFloatArraySize(cOutput, &outputThresholdSize) != 0)
+        return -1;
+
     pnn->cInput = cInput;
     pnn->cHidden = cHidden;
     pnn->cOutput = cOutput;
@@ -43,21 +76,21 @@ NeuralNetCreate(neuralnet * pnn, unsigned int cInput, unsigned int cHidden,
     pnn->rBetaOutput = rBetaOutput;
     pnn->nTrained = 0;
 
-    if ((pnn->arHiddenWeight = sse_malloc(cHidden * cInput * sizeof(float))) == NULL)
+    if ((pnn->arHiddenWeight = sse_malloc(hiddenWeightSize)) == NULL)
         return -1;
 
-    if ((pnn->arOutputWeight = sse_malloc(cOutput * cHidden * sizeof(float))) == NULL) {
+    if ((pnn->arOutputWeight = sse_malloc(outputWeightSize)) == NULL) {
         sse_free(pnn->arHiddenWeight);
         return -1;
     }
 
-    if ((pnn->arHiddenThreshold = sse_malloc(cHidden * sizeof(float))) == NULL) {
+    if ((pnn->arHiddenThreshold = sse_malloc(hiddenThresholdSize)) == NULL) {
         sse_free(pnn->arOutputWeight);
         sse_free(pnn->arHiddenWeight);
         return -1;
     }
 
-    if ((pnn->arOutputThreshold = sse_malloc(cOutput * sizeof(float))) == NULL) {
+    if ((pnn->arOutputThreshold = sse_malloc(outputThresholdSize)) == NULL) {
         sse_free(pnn->arHiddenThreshold);
         sse_free(pnn->arOutputWeight);
         sse_free(pnn->arHiddenWeight);
@@ -265,7 +298,10 @@ extern int
 NeuralNetLoad(neuralnet * pnn, FILE * pf)
 {
 
-    unsigned int i;
+    size_t i;
+    size_t hiddenWeightCount;
+    size_t outputWeightCount;
+    size_t weightSize;
     float *pr;
     char dummy[16];
 
@@ -277,16 +313,18 @@ NeuralNetLoad(neuralnet * pnn, FILE * pf)
         return -1;
     }
 
-    if (NeuralNetCreate(pnn, pnn->cInput, pnn->cHidden, pnn->cOutput, pnn->rBetaHidden, pnn->rBetaOutput))
+    if (NeuralNetFloatMatrixSize(pnn->cHidden, pnn->cInput, &hiddenWeightCount, &weightSize) != 0 ||
+        NeuralNetFloatMatrixSize(pnn->cOutput, pnn->cHidden, &outputWeightCount, &weightSize) != 0 ||
+        NeuralNetCreate(pnn, pnn->cInput, pnn->cHidden, pnn->cOutput, pnn->rBetaHidden, pnn->rBetaOutput))
         return -1;
 
     pnn->nTrained = 1;
 
-    for (i = pnn->cInput * pnn->cHidden, pr = pnn->arHiddenWeight; i; i--)
+    for (i = hiddenWeightCount, pr = pnn->arHiddenWeight; i; i--)
         if (fscanf(pf, "%f\n", pr++) < 1)
             return -1;
 
-    for (i = pnn->cHidden * pnn->cOutput, pr = pnn->arOutputWeight; i; i--)
+    for (i = outputWeightCount, pr = pnn->arOutputWeight; i; i--)
         if (fscanf(pf, "%f\n", pr++) < 1)
             return -1;
 
@@ -306,9 +344,12 @@ NeuralNetLoadBinary(neuralnet * pnn, FILE * pf)
 {
 
     int dummy;
+    size_t hiddenWeightCount;
+    size_t outputWeightCount;
+    size_t weightSize;
 
 #define FREAD( p, c ) \
-    if ( fread( (p), sizeof( *(p) ), (c), pf ) < (unsigned int)(c) ) return -1
+    if ( fread( (p), sizeof( *(p) ), (c), pf ) < (size_t)(c) ) return -1
 
     FREAD(&pnn->cInput, 1);
     FREAD(&pnn->cHidden, 1);
@@ -322,13 +363,15 @@ NeuralNetLoadBinary(neuralnet * pnn, FILE * pf)
         return -1;
     }
 
-    if (NeuralNetCreate(pnn, pnn->cInput, pnn->cHidden, pnn->cOutput, pnn->rBetaHidden, pnn->rBetaOutput))
+    if (NeuralNetFloatMatrixSize(pnn->cHidden, pnn->cInput, &hiddenWeightCount, &weightSize) != 0 ||
+        NeuralNetFloatMatrixSize(pnn->cOutput, pnn->cHidden, &outputWeightCount, &weightSize) != 0 ||
+        NeuralNetCreate(pnn, pnn->cInput, pnn->cHidden, pnn->cOutput, pnn->rBetaHidden, pnn->rBetaOutput))
         return -1;
 
     pnn->nTrained = 1;
 
-    FREAD(pnn->arHiddenWeight, pnn->cInput * pnn->cHidden);
-    FREAD(pnn->arOutputWeight, pnn->cHidden * pnn->cOutput);
+    FREAD(pnn->arHiddenWeight, hiddenWeightCount);
+    FREAD(pnn->arOutputWeight, outputWeightCount);
     FREAD(pnn->arHiddenThreshold, pnn->cHidden);
     FREAD(pnn->arOutputThreshold, pnn->cOutput);
 #undef FREAD
