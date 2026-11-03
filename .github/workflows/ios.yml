@@ -15,6 +15,11 @@ on:
         description: Upload build binaries to GitHub Actions (publicly downloadable because this repository is public)
         type: boolean
         default: false
+      runner:
+        description: Use the Mac mini on master, or select the hosted macOS 26 fallback
+        type: choice
+        options: [macmini, hosted]
+        default: macmini
   # On-demand release lane. Dispatch ci.yml first for this commit; this lane
   # waits for its successful result before distributing to testers.
 
@@ -32,10 +37,10 @@ concurrency:
 jobs:
   ios:
     name: build .app + (gated) signed distribute
-    # Pinned image + pinned Xcode (below) rather than macos-latest: the
-    # `-latest` label moves to a new macOS/Xcode under the build without any
-    # change in the repo. Bump both deliberately, together.
-    runs-on: macos-26
+    # Use the persistent Mac mini only for the trusted default branch. Manual
+    # dispatches from other refs stay on GitHub-hosted macOS even if macmini is
+    # selected, so branch builds cannot occupy the local release runner.
+    runs-on: ${{ inputs.runner == 'macmini' && github.ref == 'refs/heads/master' && 'backgammon-buddy-macmini' || 'macos-26' }}
     # The pinned Flutter iOS engine is built from source, then the release app
     # is archived and audited. Allow time for both engine and app builds plus
     # the optional CI/distribution gate.
@@ -44,25 +49,46 @@ jobs:
       # Supported by the locked FlutterFire SPM package; this app has no ads.
       # Select FirebaseAnalyticsCore instead of the identity/ad conversion product.
       FIREBASE_ANALYTICS_WITHOUT_ADID: 'true'
-      XCODE_VERSION: '26.6'
+      XCODE_VERSION: ${{ inputs.runner == 'macmini' && github.ref == 'refs/heads/master' && '27.2' || '26.6' }}
+      DEVELOPER_DIR: ${{ inputs.runner == 'macmini' && github.ref == 'refs/heads/master' && '/Applications/Xcode.app/Contents/Developer' || '/Applications/Xcode_26.6.app/Contents/Developer' }}
     steps:
+      - name: Summarize runner selection
+        env:
+          REQUESTED_RUNNER: ${{ inputs.runner || 'macmini' }}
+          RESOLVED_RUNNER: ${{ inputs.runner == 'macmini' && github.ref == 'refs/heads/master' && 'backgammon-buddy-macmini' || 'macos-26' }}
+          RUNNER_NAME: ${{ runner.name }}
+          RUNNER_OS: ${{ runner.os }}
+          RUNNER_ARCH: ${{ runner.arch }}
+          XCODE_VERSION: ${{ inputs.runner == 'macmini' && github.ref == 'refs/heads/master' && '27.2' || '26.6' }}
+        run: |
+          {
+            echo '### iOS runner selection'
+            echo '| Requested | Resolved label | Runner | OS | Architecture | Xcode |'
+            echo '|---|---|---|---|---|---|'
+            echo "| $REQUESTED_RUNNER | $RESOLVED_RUNNER | $RUNNER_NAME | $RUNNER_OS | $RUNNER_ARCH | $XCODE_VERSION |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - uses: actions/checkout@v7
         with:
           submodules: recursive
 
-      # Explicit Xcode, so an image update that changes the default Xcode cannot
-      # silently change the SDK/toolchain the app is built and signed with.
+      # Select the hosted runner's pinned Xcode or the Mac mini's current
+      # Xcode.app per process. DEVELOPER_DIR avoids changing global
+      # xcode-select state on the persistent self-hosted runner.
       - name: Select Xcode ${{ env.XCODE_VERSION }}
         run: |
           set -eu
-          XCODE="/Applications/Xcode_${XCODE_VERSION}.app"
-          if [ ! -d "$XCODE" ]; then
-            echo "::error::$XCODE is not installed. Installed: $(printf '%s ' /Applications/Xcode*.app)"
+          if [ ! -d "$DEVELOPER_DIR" ]; then
+            echo "::error::Selected Xcode developer directory is missing: $DEVELOPER_DIR"
             xcodebuild -version || true
             xcrun --sdk iphoneos --show-sdk-version || true
             exit 1
           fi
-          sudo xcode-select -s "$XCODE/Contents/Developer"
+          ACTUAL_XCODE_VERSION="$(xcodebuild -version | sed -n 's/^Xcode //p')"
+          if [ "$ACTUAL_XCODE_VERSION" != "$XCODE_VERSION" ]; then
+            echo "::error::Expected Xcode $XCODE_VERSION, found $ACTUAL_XCODE_VERSION"
+            exit 1
+          fi
           xcodebuild -version
 
       - name: Install Metal Toolchain
