@@ -33,9 +33,42 @@
 #include "sigmoid.h"
 
 static int
+NeuralNetFloatArraySize(size_t count, size_t *size)
+{
+    if (count > (size_t) -1 / sizeof(float))
+        return -1;
+
+    *size = count * sizeof(float);
+    return 0;
+}
+
+static int
+NeuralNetFloatMatrixSize(unsigned int rows, unsigned int columns, size_t *size)
+{
+    size_t count;
+
+    if (columns != 0 && (size_t) rows > (size_t) -1 / (size_t) columns)
+        return -1;
+
+    count = (size_t) rows * (size_t) columns;
+    return NeuralNetFloatArraySize(count, size);
+}
+
+static int
 NeuralNetCreate(neuralnet * pnn, unsigned int cInput, unsigned int cHidden,
                 unsigned int cOutput, float rBetaHidden, float rBetaOutput)
 {
+    size_t hiddenWeightSize;
+    size_t outputWeightSize;
+    size_t hiddenThresholdSize;
+    size_t outputThresholdSize;
+
+    if (NeuralNetFloatMatrixSize(cHidden, cInput, &hiddenWeightSize) != 0 ||
+        NeuralNetFloatMatrixSize(cOutput, cHidden, &outputWeightSize) != 0 ||
+        NeuralNetFloatArraySize(cHidden, &hiddenThresholdSize) != 0 ||
+        NeuralNetFloatArraySize(cOutput, &outputThresholdSize) != 0)
+        return -1;
+
     pnn->cInput = cInput;
     pnn->cHidden = cHidden;
     pnn->cOutput = cOutput;
@@ -43,21 +76,21 @@ NeuralNetCreate(neuralnet * pnn, unsigned int cInput, unsigned int cHidden,
     pnn->rBetaOutput = rBetaOutput;
     pnn->nTrained = 0;
 
-    if ((pnn->arHiddenWeight = sse_malloc(cHidden * cInput * sizeof(float))) == NULL)
+    if ((pnn->arHiddenWeight = sse_malloc(hiddenWeightSize)) == NULL)
         return -1;
 
-    if ((pnn->arOutputWeight = sse_malloc(cOutput * cHidden * sizeof(float))) == NULL) {
+    if ((pnn->arOutputWeight = sse_malloc(outputWeightSize)) == NULL) {
         sse_free(pnn->arHiddenWeight);
         return -1;
     }
 
-    if ((pnn->arHiddenThreshold = sse_malloc(cHidden * sizeof(float))) == NULL) {
+    if ((pnn->arHiddenThreshold = sse_malloc(hiddenThresholdSize)) == NULL) {
         sse_free(pnn->arOutputWeight);
         sse_free(pnn->arHiddenWeight);
         return -1;
     }
 
-    if ((pnn->arOutputThreshold = sse_malloc(cOutput * sizeof(float))) == NULL) {
+    if ((pnn->arOutputThreshold = sse_malloc(outputThresholdSize)) == NULL) {
         sse_free(pnn->arHiddenThreshold);
         sse_free(pnn->arOutputWeight);
         sse_free(pnn->arHiddenWeight);
