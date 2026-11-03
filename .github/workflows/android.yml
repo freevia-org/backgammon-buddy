@@ -2,6 +2,11 @@ name: Android
 on:
   workflow_dispatch:
     inputs:
+      runner:
+        description: Use the local I5 Linux runner on master, or select GitHub-hosted Ubuntu
+        type: choice
+        options: [local, hosted]
+        default: local
       build_number:
         description: Explicit version code above every previous release (or set RELEASE_BUILD_NUMBER_BASE)
         type: string
@@ -28,12 +33,30 @@ concurrency:
 jobs:
   apk:
     name: build APK + distribute
-    runs-on: ubuntu-24.04
+    # Prefer the local I5 Linux runner for the trusted default branch. Other
+    # refs use hosted Ubuntu by default; this ref-based choice is an operational
+    # default, not a security boundary, because the selected ref supplies YAML.
+    runs-on: ${{ (inputs.runner == 'hosted' || github.ref != 'refs/heads/master') && 'ubuntu-24.04' || 'backgammon-buddy-i5-linux' }}
     # Cold path: NDK download, Rust Android targets and Gradle dependencies
     # fetched from scratch, then a release APK, plus up to ~40 min waiting for CI
     # before distribution (normally zero: CI finishes first).
     timeout-minutes: 75
     steps:
+      - name: Summarize runner selection
+        env:
+          REQUESTED_RUNNER: ${{ inputs.runner || 'local' }}
+          RESOLVED_RUNNER: ${{ (inputs.runner == 'hosted' || github.ref != 'refs/heads/master') && 'ubuntu-24.04' || 'backgammon-buddy-i5-linux' }}
+          RUNNER_NAME: ${{ runner.name }}
+          RUNNER_OS: ${{ runner.os }}
+          RUNNER_ARCH: ${{ runner.arch }}
+        run: |
+          {
+            echo '### Android runner selection'
+            echo '| Requested | Resolved label | Runner | OS | Architecture |'
+            echo '|---|---|---|---|---|'
+            echo "| $REQUESTED_RUNNER | $RESOLVED_RUNNER | $RUNNER_NAME | $RUNNER_OS | $RUNNER_ARCH |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - uses: actions/checkout@v7
         with:
           submodules: recursive
