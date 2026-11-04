@@ -7,6 +7,19 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+private fun playVersionCode(versionName: String, buildNumber: Int): Int {
+    val parts = Regex("^(\\d+)\\.(\\d+)\\.(\\d+)$").matchEntire(versionName)
+        ?.groupValues?.drop(1)?.map { it.toLong() }
+        ?: throw GradleException("Release version must be MAJOR.MINOR.CODE: $versionName")
+    val (major, minor, code) = parts
+    require(major in 0L..20L && minor in 0L..99L && code in 0L..999L && buildNumber in 1..999) {
+        "Release version components exceed the supported Play versionCode range"
+    }
+    val value = major * 100_000_000L + minor * 1_000_000L + code * 1_000L + buildNumber
+    require(value <= 2_100_000_000L) { "Derived Play versionCode exceeds Google's limit" }
+    return value.toInt()
+}
+
 // --- Firebase telemetry, config-file-gated -----------------------------------
 //
 // `android/app/google-services.json` is GIT-IGNORED and generated, exactly like
@@ -119,7 +132,7 @@ android {
         // native engine .so ABI expectations don't silently shift with Flutter.
         minSdk = 24
         targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
+        versionCode = playVersionCode(flutter.versionName, flutter.versionCode)
         versionName = flutter.versionName
         externalNativeBuild {
             cmake {
