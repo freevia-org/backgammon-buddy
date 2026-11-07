@@ -32,7 +32,7 @@ concurrency:
 
 jobs:
   apk:
-    name: build APK + distribute
+    name: build Android release artifacts
     # Prefer the local I5 Linux runner for the trusted default branch. Other
     # refs use hosted Ubuntu by default; this ref-based choice is an operational
     # default, not a security boundary, because the selected ref supplies YAML.
@@ -41,6 +41,9 @@ jobs:
     # fetched from scratch, then a release APK, plus up to ~40 min waiting for CI
     # before distribution (normally zero: CI finishes first).
     timeout-minutes: 75
+    outputs:
+      has_firebase: ${{ steps.fb.outputs.has_firebase }}
+      has_signing: ${{ steps.signing.outputs.has_signing }}
     steps:
       - name: Summarize runner selection
         env:
@@ -431,34 +434,36 @@ jobs:
             echo "has_firebase=false" >> "$GITHUB_OUTPUT"
           fi
 
-      # The gate that used to be the `workflow_run` trigger: block the tester
-      # upload until CI has passed for THIS commit. Builds start in parallel
-      # with CI, and CI (~4-5 min) normally finishes long before the APK
-      # (~8-10 min), so this usually returns immediately. A red or cancelled CI
-      # fails the job here and nothing is distributed; after re-running CI to
-      # green, re-run this job. Manual dispatch stays the ungated escape hatch.
+  firebase-distribution:
+    name: distribute APK to Firebase testers
+    needs: apk
+    if: github.ref == 'refs/heads/master' && needs.apk.outputs.has_firebase == 'true' && needs.apk.outputs.has_signing == 'true'
+    runs-on: backgammon-buddy-i5-linux
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: false
+
+      # The gate that used to run after artifact creation. Keeping distribution
+      # in a separate job means its Docker image cannot block signed Play builds.
       - name: Wait for CI to pass on this commit
-        if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master' && steps.fb.outputs.has_firebase == 'true' && steps.signing.outputs.has_signing == 'true'
+        if: github.event_name == 'workflow_dispatch'
         env:
           GH_TOKEN: ${{ github.token }}
           SHA: ${{ github.sha }}
         run: bash .github/scripts/wait-for-ci.sh
 
+      - uses: actions/download-artifact@v7
+        with:
+          name: aigammon-apk
+          path: downloaded
+
       - name: Distribute to Firebase App Distribution
-        if: steps.fb.outputs.has_firebase == 'true' && steps.signing.outputs.has_signing == 'true'
-        # Pinned to a commit SHA, not the `v1` tag: a mutable tag can be
-        # repointed at any commit by the action's owner (or by anyone who
-        # compromises that account), and this step is handed the Firebase
-        # service-account key. `v1` resolved to this commit on 2026-07-31.
-        # Re-pin deliberately when upgrading; do not switch back to a tag.
+        # Keep this Docker-based action isolated from the signed release build.
         uses: wzieba/Firebase-Distribution-Github-Action@bd494989dd4bec0343f78adee87fe66e48279ad6 # v1
         with:
-          appId: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_ANDROID_APP_ID || '' }}
-          serviceCredentialsFileContent: ${{ github.ref == 'refs/heads/master' && secrets.FIREBASE_SERVICE_ACCOUNT || '' }}
+          appId: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           groups: testers
-          file: app/build/app/outputs/flutter-apk/app-release.apk
-
-      - name: Skip Firebase distribution (Firebase or signing secrets not set)
-        if: steps.fb.outputs.has_firebase != 'true' || steps.signing.outputs.has_signing != 'true'
-        run: |
-          echo "Firebase or Android signing secrets not set — skipping distribution (see .github/workflows/README.md: Firebase App Distribution setup)"
+          file: downloaded/app-release.apk
