@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from ios_sdk_stub_overlay import allow_sdk_attribute_warning, patch_ninja, prepare, transform
+from ios_sdk_stub_overlay import allow_sdk_attribute_warning, patch_ninja, prepare, transform, verify
 
 
 class StubOverlayTest(unittest.TestCase):
@@ -12,6 +12,8 @@ class StubOverlayTest(unittest.TestCase):
                          b'targets: [ arm64-ios, arm64e-ios ]\nsymbols: [ _foo ]\n')
         with self.assertRaises(ValueError):
             transform(b'targets: [ arm64e.x1-ios ]', 'ios')
+        with self.assertRaises(ValueError):
+            transform(b'symbols: [ _foo, arm64e.x1-ios ]', 'ios')
         self.assertEqual(transform(b'targets: [ arm64-macos, arm64e-macos, \n arm64e.x1-macos, arm64e.x1-maccatalyst ]', 'macos'),
                          b'targets: [ arm64-macos, arm64e-macos ]')
 
@@ -48,10 +50,14 @@ class StubOverlayTest(unittest.TestCase):
                 path = sdk / name; path.parent.mkdir(parents=True, exist_ok=True); path.write_bytes(data)
             result = prepare(sdk, overlay, 'macos')
             self.assertEqual(len(result['files']), 2)
+            self.assertEqual(verify(sdk, overlay, 'macos', result), 2)
             for name, data in inputs.items():
                 self.assertEqual((sdk / name).read_bytes(), data)
                 expected = transform(data, 'macos') if name.endswith('.tbd') else data
                 self.assertEqual((overlay / name).read_bytes(), expected)
+            (overlay / 'usr/lib/system/libcache.tbd').write_bytes(b'tampered')
+            with self.assertRaises(ValueError):
+                verify(sdk, overlay, 'macos', result)
 
     def test_warning_scope_is_limited_to_timeline(self):
         with tempfile.TemporaryDirectory() as tmp:

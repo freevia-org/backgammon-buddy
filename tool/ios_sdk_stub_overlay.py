@@ -1,6 +1,13 @@
 """Create isolated linker stubs for LLVM versions unable to parse arm64e.x1.
 
 Affected text stubs are copied; all other SDK files remain linked to Apple's originals.
+
+The linker parses SDK stubs before selecting a target and follows system
+re-exports and Swift library search paths. Those transitive inputs vary with
+SDK and toolchain versions, so the overlay conservatively includes every stub
+containing an unsupported selector, rather than maintaining a brittle list of
+observed files. Only selector entries inside TAPI targets lists are removed;
+all other bytes are checked against the source and recorded in the manifest.
 """
 import argparse
 import hashlib
@@ -14,7 +21,9 @@ import subprocess
 
 def transform(data, platform):
     targets = b'(?:macos|maccatalyst)' if platform == 'macos' else b'ios'
-    result = re.sub(rb',\s*arm64e\.x1-' + targets + rb'\b', b'', data)
+    selector = rb',\s*arm64e\.x1-' + targets + rb'\b'
+    result = re.sub(rb'\btargets:\s*\[[^\]]*\]',
+                    lambda match: re.sub(selector, b'', match.group()), data)
     if b'arm64e.x1-' in result:
         raise ValueError('Unexpected arm64e.x1 selector syntax or platform')
     return result
@@ -61,6 +70,36 @@ def prepare(sdk, out, platform):
                 target.symlink_to(src, target_is_directory=src.is_dir())
     shadow(Path('.'))
     return {'platform': platform, 'files': sorted(evidence, key=lambda e: e['path'])}
+
+
+def verify(sdk, out, platform, record):
+    """Recheck every source stub and the exact manifest, including unchanged stubs."""
+    files = {item['path']: item for item in record['files']}
+    if len(files) != len(record['files']) or record['platform'] != platform:
+        raise ValueError('Invalid overlay manifest')
+    seen = set()
+    for src in sdk.rglob('*.tbd'):
+        if src.is_symlink():
+            continue
+        rel = str(src.relative_to(sdk))
+        original = src.read_bytes()
+        expected = transform(original, platform) if b'arm64e.x1-' in original else original
+        target = out / rel
+        if target.read_bytes() != expected:
+            raise ValueError(f'Unexpected overlay contents: {rel}')
+        if expected != original:
+            item = files.get(rel)
+            if (item is None or target.is_symlink() or
+                item['source_sha256'] != hashlib.sha256(original).hexdigest() or
+                item['overlay_sha256'] != hashlib.sha256(expected).hexdigest() or
+                item['removed'] != original.count(b'arm64e.x1-') - expected.count(b'arm64e.x1-')):
+                raise ValueError(f'Invalid overlay evidence: {rel}')
+            seen.add(rel)
+        elif rel in files:
+            raise ValueError(f'Unexpected manifest entry: {rel}')
+    if seen != set(files):
+        raise ValueError('Overlay manifest does not match source SDK')
+    return len(seen)
 
 
 def patch_ninja(out, overlays):
@@ -128,6 +167,7 @@ def main():
         result = prepare(sdk, directory, platform)
         if result:
             overlays[platform] = directory.resolve()
+            verify(sdk, directory, platform, result)
             evidence.append(result)
     for out in args.ninja_dir:
         patch_ninja(out, overlays)
