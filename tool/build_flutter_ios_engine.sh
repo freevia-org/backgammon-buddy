@@ -87,6 +87,10 @@ python3 "$ENGINE_SOURCE/flutter/tools/gn" \
   --runtime-mode=release --mac-cpu arm64
 HOST_OUT="$ENGINE_SOURCE/out/host_release_arm64"
 test -f "$HOST_OUT/args.gn"
+python3 "$GITHUB_WORKSPACE/tool/ios_sdk_stub_overlay.py" \
+  --overlay-dir "$RUNNER_TEMP/sdk-stub-overlay" \
+  --ninja-dir "$ENGINE_SOURCE/out/ios_release" --ninja-dir "$HOST_OUT" \
+  > "$RUNNER_TEMP/sdk-stub-overlay.json"
 HOST_TARGETS="$RUNNER_TEMP/flutter-host-targets.txt"
 ninja -C "$HOST_OUT" -t targets all > "$HOST_TARGETS"
 for target in \
@@ -192,6 +196,7 @@ host_const_finder_sha256=$HOST_CONST_FINDER_SHA256
 host_font_subset_sha256=$HOST_FONT_SUBSET_SHA256
 ios_gen_snapshot_sha256=$IOS_GEN_SNAPSHOT_SHA256
 engine_patch_sha256=$PATCH_SHA256
+sdk_stub_overlay_sha256=$(shasum -a 256 "$RUNNER_TEMP/sdk-stub-overlay.json" | awk '{print $1}')
 EOF
 cat "$PROFILE" >> "$GITHUB_STEP_SUMMARY"
 echo "FLUTTER_ENGINE_SRC_PATH=$ENGINE_SOURCE" >> "$GITHUB_ENV"
