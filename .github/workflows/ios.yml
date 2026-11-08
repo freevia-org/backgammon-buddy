@@ -73,6 +73,19 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Prepare dedicated build storage
+        env:
+          USE_MAC_MINI: ${{ inputs.runner == 'macmini' && github.event_name == 'workflow_dispatch' }}
+        run: |
+          set -eu
+          if [ "$USE_MAC_MINI" = 'true' ]; then
+            python3 tool/prepare_ios_runner_storage.py \
+              --workspace "$GITHUB_WORKSPACE" --mount '/Volumes/MacMini Work' \
+              --env-file "$GITHUB_ENV"
+          else
+            echo "BGB_BUILD_TEMP=$RUNNER_TEMP" >> "$GITHUB_ENV"
+          fi
+
       # Xcode 27.2 on the Mac mini exercises the SDK-stub overlay; the
       # hosted fallback remains pinned to 26.6. Select the appropriate
       # Xcode.app per process. DEVELOPER_DIR avoids changing global
@@ -134,7 +147,7 @@ jobs:
       - name: Stage staticlib into app/ios/Frameworks
         run: |
           mkdir -p app/ios/Frameworks
-          cp native/engine_shim/target/aarch64-apple-ios/release/libaigammon_engine.a \
+          cp "${CARGO_TARGET_DIR:-native/engine_shim/target}/aarch64-apple-ios/release/libaigammon_engine.a" \
              app/ios/Frameworks/libaigammon_engine.a
           ls -l app/ios/Frameworks/libaigammon_engine.a
 
@@ -237,22 +250,22 @@ jobs:
         working-directory: app
         run: |
           xcodebuild \
-            -derivedDataPath "$RUNNER_TEMP/RunnerArchiveDerivedData" \
+            -derivedDataPath "$BGB_BUILD_TEMP/RunnerArchiveDerivedData" \
             -workspace ios/Runner.xcworkspace \
             -scheme Runner \
             -configuration Release \
-            -archivePath "$RUNNER_TEMP/Runner.xcarchive" \
+            -archivePath "$BGB_BUILD_TEMP/Runner.xcarchive" \
             archive \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             LD_GENERATE_MAP_FILE=YES
-          ARCHIVED_APP="$RUNNER_TEMP/Runner.xcarchive/Products/Applications/Runner.app"
+          ARCHIVED_APP="$BGB_BUILD_TEMP/Runner.xcarchive/Products/Applications/Runner.app"
           python3 ../tool/verify_ios_ffi_exports.py --binary "$ARCHIVED_APP/Runner"
           LINK_MAPS=()
-          while IFS= read -r LINK_MAP; do LINK_MAPS+=("$LINK_MAP"); done < <(find "$RUNNER_TEMP/RunnerArchiveDerivedData" -type f -name '*LinkMap*.txt' -print | sort)
+          while IFS= read -r LINK_MAP; do LINK_MAPS+=("$LINK_MAP"); done < <(find "$BGB_BUILD_TEMP/RunnerArchiveDerivedData" -type f -name '*LinkMap*.txt' -print | sort)
           SYMBOL_FILES=()
-          while IFS= read -r SYMBOL_FILE; do SYMBOL_FILES+=("$SYMBOL_FILE"); done < <(find "$RUNNER_TEMP/Runner.xcarchive/dSYMs" -type f -path '*/Contents/Resources/DWARF/*' -print | sort)
-          RUNNER_DSYM="$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM/Contents/Resources/DWARF/Runner"
+          while IFS= read -r SYMBOL_FILE; do SYMBOL_FILES+=("$SYMBOL_FILE"); done < <(find "$BGB_BUILD_TEMP/Runner.xcarchive/dSYMs" -type f -path '*/Contents/Resources/DWARF/*' -print | sort)
+          RUNNER_DSYM="$BGB_BUILD_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM/Contents/Resources/DWARF/Runner"
           test "${#LINK_MAPS[@]}" -gt 0
           test "${#SYMBOL_FILES[@]}" -gt 0
           test -f "$RUNNER_DSYM"
@@ -269,8 +282,8 @@ jobs:
       # mangle them, so package it with ditto (the macOS archive idiom) first.
       - name: Zip Runner.app
         run: >-
-          ditto -c -k --keepParent
-          "$RUNNER_TEMP/Runner.xcarchive/Products/Applications/Runner.app"
+          ditto --norsrc -c -k --keepParent
+          "$BGB_BUILD_TEMP/Runner.xcarchive/Products/Applications/Runner.app"
           app/build/ios/iphoneos/Runner.app.zip
 
       - uses: actions/upload-artifact@v7
@@ -284,7 +297,7 @@ jobs:
         if: inputs.publish_artifacts == true
         with:
           name: aigammon-ios-engine-profile-${{ github.run_number }}
-          path: ${{ runner.temp }}/flutter-engine-build-profile.txt
+          path: ${{ env.BGB_BUILD_TEMP }}/flutter-engine-build-profile.txt
           if-no-files-found: error
 
       - name: Upload Dart debug symbols
@@ -440,17 +453,17 @@ jobs:
 
           xcodebuild \
             -exportArchive \
-            -archivePath "$RUNNER_TEMP/Runner.xcarchive" \
+            -archivePath "$BGB_BUILD_TEMP/Runner.xcarchive" \
             -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist" \
             -exportPath build/ios/ipa
 
           IPA="$(find build/ios/ipa -maxdepth 1 -name '*.ipa' | sort | head -1)"
           python3 ../tool/verify_ios_ffi_exports.py --ipa "$IPA"
           LINK_MAPS=()
-          while IFS= read -r LINK_MAP; do LINK_MAPS+=("$LINK_MAP"); done < <(find "$RUNNER_TEMP/RunnerArchiveDerivedData" -type f -name '*LinkMap*.txt' -print | sort)
+          while IFS= read -r LINK_MAP; do LINK_MAPS+=("$LINK_MAP"); done < <(find "$BGB_BUILD_TEMP/RunnerArchiveDerivedData" -type f -name '*LinkMap*.txt' -print | sort)
           SYMBOL_FILES=()
-          while IFS= read -r SYMBOL_FILE; do SYMBOL_FILES+=("$SYMBOL_FILE"); done < <(find "$RUNNER_TEMP/Runner.xcarchive/dSYMs" -type f -path '*/Contents/Resources/DWARF/*' -print | sort)
-          RUNNER_DSYM="$RUNNER_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM/Contents/Resources/DWARF/Runner"
+          while IFS= read -r SYMBOL_FILE; do SYMBOL_FILES+=("$SYMBOL_FILE"); done < <(find "$BGB_BUILD_TEMP/Runner.xcarchive/dSYMs" -type f -path '*/Contents/Resources/DWARF/*' -print | sort)
+          RUNNER_DSYM="$BGB_BUILD_TEMP/Runner.xcarchive/dSYMs/Runner.app.dSYM/Contents/Resources/DWARF/Runner"
           test "${#LINK_MAPS[@]}" -gt 0
           test "${#SYMBOL_FILES[@]}" -gt 0
           test -f "$RUNNER_DSYM"
@@ -494,7 +507,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-ios-archive-symbols-${{ github.run_number }}
-          path: ${{ runner.temp }}/Runner.xcarchive/dSYMs
+          path: ${{ env.BGB_BUILD_TEMP }}/Runner.xcarchive/dSYMs
           if-no-files-found: error
 
       # Distribution gate: block until CI has passed for this commit (see

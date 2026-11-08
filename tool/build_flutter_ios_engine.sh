@@ -3,18 +3,19 @@ set -euo pipefail
 
 : "${RUNNER_TEMP:?RUNNER_TEMP is required}"
 : "${GITHUB_WORKSPACE:?GITHUB_WORKSPACE is required}"
+BUILD_TEMP="${BGB_BUILD_TEMP:-$RUNNER_TEMP}"
 
-FLUTTER_SOURCE="$RUNNER_TEMP/flutter-engine-source"
-DEPOT_TOOLS="$RUNNER_TEMP/depot_tools"
+FLUTTER_SOURCE="$BUILD_TEMP/flutter-engine-source"
+DEPOT_TOOLS="$BUILD_TEMP/depot_tools"
 ENGINE_SOURCE="$FLUTTER_SOURCE/engine/src"
-PROFILE="$RUNNER_TEMP/flutter-engine-build-profile.txt"
+PROFILE="$BUILD_TEMP/flutter-engine-build-profile.txt"
 
-flutter --version --machine > "$RUNNER_TEMP/flutter-version.json"
-FRAMEWORK_REVISION="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["frameworkRevision"])' "$RUNNER_TEMP/flutter-version.json")"
-ENGINE_REVISION="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["engineRevision"])' "$RUNNER_TEMP/flutter-version.json")"
+flutter --version --machine > "$BUILD_TEMP/flutter-version.json"
+FRAMEWORK_REVISION="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["frameworkRevision"])' "$BUILD_TEMP/flutter-version.json")"
+ENGINE_REVISION="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["engineRevision"])' "$BUILD_TEMP/flutter-version.json")"
 
 if [ -e "$FLUTTER_SOURCE" ] || [ -e "$DEPOT_TOOLS" ]; then
-  echo "Temporary Flutter engine paths already exist under $RUNNER_TEMP" >&2
+  echo "Temporary Flutter engine paths already exist under $BUILD_TEMP" >&2
   exit 1
 fi
 git init "$FLUTTER_SOURCE"
@@ -88,10 +89,10 @@ python3 "$ENGINE_SOURCE/flutter/tools/gn" \
 HOST_OUT="$ENGINE_SOURCE/out/host_release_arm64"
 test -f "$HOST_OUT/args.gn"
 python3 "$GITHUB_WORKSPACE/tool/ios_sdk_stub_overlay.py" \
-  --overlay-dir "$RUNNER_TEMP/sdk-stub-overlay" \
+  --overlay-dir "$BUILD_TEMP/sdk-stub-overlay" \
   --ninja-dir "$ENGINE_SOURCE/out/ios_release" --ninja-dir "$HOST_OUT" \
-  > "$RUNNER_TEMP/sdk-stub-overlay.json"
-HOST_TARGETS="$RUNNER_TEMP/flutter-host-targets.txt"
+  > "$BUILD_TEMP/sdk-stub-overlay.json"
+HOST_TARGETS="$BUILD_TEMP/flutter-host-targets.txt"
 ninja -C "$HOST_OUT" -t targets all > "$HOST_TARGETS"
 for target in \
   flutter/tools/const_finder:const_finder \
@@ -114,7 +115,7 @@ test -x "$IOS_GEN_SNAPSHOT"
 FLUTTER_ENGINE_STAMP="$FLUTTER_ROOT/bin/cache/engine.stamp"
 DART_SDK="$FLUTTER_ROOT/bin/cache/dart-sdk"
 ACTUAL_HOST_ENGINE_REVISION="$(cat "$FLUTTER_ENGINE_STAMP")"
-EXPECTED_DART_SDK_VERSION="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["dartSdkVersion"])' "$RUNNER_TEMP/flutter-version.json")"
+EXPECTED_DART_SDK_VERSION="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["dartSdkVersion"])' "$BUILD_TEMP/flutter-version.json")"
 ACTUAL_DART_SDK_VERSION="$("$DART_SDK/bin/dart" --version 2>&1 | sed -E 's/^Dart SDK version: ([^ ]+).*/\1/')"
 if [ "$ACTUAL_HOST_ENGINE_REVISION" != "$ENGINE_REVISION" ]; then
   echo "Flutter SDK engine stamp mismatch: expected $ENGINE_REVISION, cache has $ACTUAL_HOST_ENGINE_REVISION" >&2
@@ -172,7 +173,7 @@ PACKAGE_RESOLVED_SHA256="$(shasum -a 256 "$GITHUB_WORKSPACE/app/ios/Runner.xcwor
 cat > "$PROFILE" <<EOF
 repository_revision=$REPOSITORY_REVISION
 package_resolved_sha256=$PACKAGE_RESOLVED_SHA256
-flutter_version=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["frameworkVersion"])' "$RUNNER_TEMP/flutter-version.json")
+flutter_version=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["frameworkVersion"])' "$BUILD_TEMP/flutter-version.json")
 framework_revision=$FRAMEWORK_REVISION
 engine_revision=$ENGINE_REVISION
 engine_source_checkout_revision=$ACTUAL_ENGINE_SOURCE_CHECKOUT_REVISION
@@ -196,7 +197,7 @@ host_const_finder_sha256=$HOST_CONST_FINDER_SHA256
 host_font_subset_sha256=$HOST_FONT_SUBSET_SHA256
 ios_gen_snapshot_sha256=$IOS_GEN_SNAPSHOT_SHA256
 engine_patch_sha256=$PATCH_SHA256
-sdk_stub_overlay_sha256=$(shasum -a 256 "$RUNNER_TEMP/sdk-stub-overlay.json" | awk '{print $1}')
+sdk_stub_overlay_sha256=$(shasum -a 256 "$BUILD_TEMP/sdk-stub-overlay.json" | awk '{print $1}')
 EOF
 cat "$PROFILE" >> "$GITHUB_STEP_SUMMARY"
 echo "FLUTTER_ENGINE_SRC_PATH=$ENGINE_SOURCE" >> "$GITHUB_ENV"
