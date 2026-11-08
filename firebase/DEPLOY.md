@@ -179,6 +179,10 @@ play in distributed builds — no workflow edit.
 
 ## Telemetry: Analytics, Performance Monitoring, Crashlytics
 
+Store-form categories, opt-in behavior, retention limits, data-location caveats,
+and the remaining release validation steps are tracked in
+[`docs/telemetry-release-disclosures.md`](../docs/telemetry-release-disclosures.md).
+
 Since v0.13 the app also reports **usage analytics, performance traces and
 crashes** to the same Firebase project, through the real FlutterFire SDKs
 (`firebase_core`, `firebase_analytics`, `firebase_performance`,

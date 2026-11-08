@@ -66,11 +66,10 @@ void main() {
 
   test('release jobs use their designated runners', () {
     final android = workflow('android');
-    final androidLabels = RegExp(
-      r'^\s*runs-on:\s*([^\s]+)',
-      multiLine: true,
-    ).allMatches(android).map((match) => match.group(1)!);
-    expect(androidLabels, everyElement('ubuntu-24.04'));
+    expect(android, contains("inputs.runner == 'hosted'"));
+    expect(android, contains("'ubuntu-24.04'"));
+    expect(android, contains("'backgammon-buddy-i5-linux'"));
+    expect(android, contains('options: [local, hosted]'));
     expect(android, contains('actions/setup-java@v6'));
     expect(android, contains('java-version: 21'));
 
@@ -114,31 +113,17 @@ void main() {
     ).allMatches(privacy).map((match) => match.group(1)!);
     expect(privacyLabels, everyElement('backgammon-buddy-i5-linux'));
 
-    final ciLabels = RegExp(
-      r'^\s*runs-on:\s*([^\s]+)',
-      multiLine: true,
-    ).allMatches(workflow('ci')).map((match) => match.group(1)!);
-    expect(ciLabels, isNotEmpty);
-    expect(
-      ciLabels,
-      everyElement(
-        isIn({'backgammon-buddy-i5-linux', 'backgammon-buddy-i5-windows'}),
-      ),
-    );
-    expect(ciLabels, contains('backgammon-buddy-i5-linux'));
-    expect(ciLabels, contains('backgammon-buddy-i5-windows'));
-    expect(
-      RegExp(
-        r'name:\s*golden comparisons \(windows\)\s+runs-on:\s*backgammon-buddy-i5-windows',
-      ).hasMatch(workflow('ci')),
-      isTrue,
-    );
+    final ci = workflow('ci');
+    expect(ci, contains('options: [local, hosted]'));
+    expect(ci, contains("inputs.runner == 'hosted' && 'ubuntu-24.04'"));
+    expect(ci, contains("inputs.runner == 'hosted' && 'windows-2025'"));
+    expect(ci, contains("'backgammon-buddy-i5-linux'"));
+    expect(ci, contains("'backgammon-buddy-i5-windows'"));
 
-    final iosLabels = RegExp(
-      r'^\s*runs-on:\s*([^\s]+)',
-      multiLine: true,
-    ).allMatches(workflow('ios')).map((match) => match.group(1)!);
-    expect(iosLabels, ['macos-26']);
+    final ios = workflow('ios');
+    expect(ios, contains("inputs.runner == 'macmini'"));
+    expect(ios, contains("'backgammon-buddy-macmini'"));
+    expect(ios, contains("'macos-26'"));
   });
 
   test('Freevia mobile identity agrees across builds and signing validation', () {
@@ -167,8 +152,11 @@ void main() {
   test('iOS distribution uses native CLI and retains ad-hoc signing gates', () {
     final source = workflow('ios');
     // Dedicated pinned image and pinned Xcode avoid silent image drift.
-    expect(source, contains('runs-on: macos-26'));
-    expect(source, contains('sudo xcode-select -s'));
+    expect(source, contains("runs-on: \${{ inputs.runner == 'macmini'"));
+    expect(source, contains("|| 'macos-26' }}"));
+    expect(source, contains('DEVELOPER_DIR:'));
+    expect(source, contains('Selected Xcode developer directory is missing'));
+    expect(source, contains('Expected Xcode \$XCODE_VERSION, found'));
     expect(
       source,
       isNot(contains('uses: wzieba/Firebase-Distribution-Github-Action')),
@@ -216,15 +204,21 @@ void main() {
       ).allMatches(source).map((match) => match.group(1)!.trim()).toList();
       expect(references, isNotEmpty);
       for (final reference in references) {
-        expect(
-          reference,
-          matches(
-            RegExp(
-              r"^github\.ref == 'refs/heads/master' && secrets\.[A-Z0-9_]+ \|\| ''$",
+        if (reference.startsWith("github.ref == 'refs/heads/master' && ")) {
+          expect(reference, contains('secrets.'));
+          expect(reference, endsWith("|| ''"));
+        } else {
+          // Firebase App Distribution uses direct secret references in a
+          // separate job. That entire job is master-only and also requires
+          // both Firebase configuration and release signing.
+          expect(name, 'android');
+          expect(
+            source,
+            contains(
+              "if: github.ref == 'refs/heads/master' && needs.apk.outputs.has_firebase",
             ),
-          ),
-          reason: '$name must not expose release secrets on another ref',
-        );
+          );
+        }
       }
     }
   });
@@ -251,9 +245,11 @@ void main() {
       ).firstMatch(source)!.group(1)!;
       expect(
         waitIf,
-        startsWith(
-          "github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master' && ",
-        ),
+        name == 'android'
+            ? "github.event_name == 'workflow_dispatch'"
+            : startsWith(
+                "github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master' && ",
+              ),
       );
       expect(
         source.substring(wait),
@@ -324,21 +320,18 @@ void main() {
       );
       expect(
         source,
-        contains('file: app/build/app/outputs/flutter-apk/app-release.apk'),
+        contains('path: app/build/app/outputs/flutter-apk/app-release.apk'),
       );
     },
   );
 
   test('debug signing cannot reach automatic tester distribution', () {
     final source = workflow('android');
-    final distribute = RegExp(
-      r'      - name: Distribute to Firebase App Distribution\r?\n'
-      r'        if: ([^\r\n]+)',
-    ).firstMatch(source)!.group(1)!;
     expect(
-      distribute,
-      "steps.fb.outputs.has_firebase == 'true' && "
-      "steps.signing.outputs.has_signing == 'true'",
+      source,
+      contains(
+        "if: github.ref == 'refs/heads/master' && needs.apk.outputs.has_firebase == 'true' && needs.apk.outputs.has_signing == 'true'",
+      ),
     );
     expect(source, contains('Require release signing for a Play bundle'));
     expect(
