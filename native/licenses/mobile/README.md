@@ -1,6 +1,6 @@
 # Mobile native dependency notices
 
-`manifest.json` records the exact 134 Android `releaseRuntimeClasspath` module
+`manifest.json` records the exact 135 Android `releaseRuntimeClasspath` module
 coordinates and artifact hashes, plus 14 Apple Swift Package Manager pins from
 the successful iOS workflow run 37855133199 (commit 426ced1). This is a
 conservative build-resolution set; it includes unlinked Firebase products,

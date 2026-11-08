@@ -2556,6 +2556,31 @@
         ]
       },
       {
+        "id": "com.google.firebase:firebase-crashlytics-ndk:20.0.6",
+        "artifacts": [
+          {
+            "name": "firebase-crashlytics-ndk-20.0.6.aar",
+            "sha256": "89416aac9bee2cd49a8a76a915c1226af45a046089b5817dd5bf016b894fba6f"
+          }
+        ],
+        "declared_licenses": [
+          {
+            "name": "The Apache Software License, Version 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+          }
+        ],
+        "notices": [
+          "Apache-2.0"
+        ],
+        "pom_evidence": [
+          {
+            "coordinate": "com.google.firebase:firebase-crashlytics-ndk:20.0.6",
+            "sha256": "f63286a59e31deb82213965be9c0b41bfc4b8a4a955887dfa6229fcfde61cd9b",
+            "source": "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-crashlytics-ndk/20.0.6/firebase-crashlytics-ndk-20.0.6.pom"
+          }
+        ]
+      },
+      {
         "artifacts": [
           {
             "name": "firebase-crashlytics-20.0.6.aar",

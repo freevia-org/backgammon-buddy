@@ -12,13 +12,13 @@ All CI jobs except `online` can start independently; `online` waits on `rules`.
 
 | Job | Runner | What it does |
 |---|---|---|
-| `release-preflight` | GitHub-hosted Ubuntu 24.04 | Offline model/Rust-notice hashes and synthetic artifact/profile/build-number validator tests. |
-| `packages` | GitHub-hosted Ubuntu 24.04 | One job definition, **four matrix legs** — `backgammon_core`, `board_vision`, `lan_play`, `match_transport` — each `dart analyze --fatal-infos` + `dart test`. `fail-fast: false`, so a push that breaks two packages reports both. `lan_play` alone runs under its `-P ci` retry preset: it is the only suite that binds real sockets. |
-| `engine` | GitHub-hosted Ubuntu 24.04 | `cargo fmt --check`, `cargo clippy -p aigammon_engine -- -D warnings`, `cargo build --release` and `cargo test --release` in `native/engine_shim`, then `engine_bindings` analyze, unit tests, and `dart test -P engine` against the freshly built `.so` with the production nets. |
-| `app` | GitHub-hosted Ubuntu 24.04 | `flutter analyze` + `flutter test -x golden`. The goldens are excluded here on purpose and run in `goldens` instead; between the two jobs the app suite is covered whole. |
-| `goldens` | **GitHub-hosted Windows Server 2025** | `flutter test --tags golden`, on a **pinned** Flutter version. The golden PNGs are Windows-generated and the comparison is byte-for-byte, so the runner compares like with like rather than needing a tolerance wide enough to swallow a real regression. |
-| `rules` | GitHub-hosted Ubuntu 24.04 | **Emulator leg 1**, and first: the `firestore.rules` mocha suite against a firestore-only emulator. Seconds. `online` `needs:` this, so a broken rules file goes red before four toolchains are installed. |
-| `online` | GitHub-hosted Ubuntu 24.04 | `online_client` analyze + unit tests, then **emulator legs 2–4** inside one `firebase emulators:exec` (`firebase/ci-emulator-suites.sh`): the `online_client -P emulator` transport suite, the app's two-client E2E on the real-time listener path, and that same E2E once more with `AIGAMMON_E2E_LISTEN=0` so the polling fallback is actually exercised. The heaviest leg — Node + Java + Dart + Flutter. |
+| `release-preflight` | I5 Linux (`local`) or GitHub-hosted Ubuntu 24.04 (`hosted`) | Offline model/Rust-notice hashes and synthetic artifact/profile/build-number validator tests. |
+| `packages` | I5 Linux or GitHub-hosted Ubuntu 24.04 | One job definition, **four matrix legs** — `backgammon_core`, `board_vision`, `lan_play`, `match_transport` — each `dart analyze --fatal-infos` + `dart test`. `fail-fast: false`, so a push that breaks two packages reports both. `lan_play` alone runs under its `-P ci` retry preset: it is the only suite that binds real sockets. |
+| `engine` | I5 Linux or GitHub-hosted Ubuntu 24.04 | `cargo fmt --check`, `cargo clippy -p aigammon_engine -- -D warnings`, `cargo build --release` and `cargo test --release` in `native/engine_shim`, then `engine_bindings` analyze, unit tests, and `dart test -P engine` against the freshly built `.so` with the production nets. |
+| `app` | I5 Linux or GitHub-hosted Ubuntu 24.04 | `flutter analyze` + `flutter test -x golden`. The goldens are excluded here on purpose and run in `goldens` instead; between the two jobs the app suite is covered whole. |
+| `goldens` | I5 Windows or GitHub-hosted Windows Server 2025 | `flutter test --tags golden`, on a **pinned** Flutter version. The golden PNGs are Windows-generated and the comparison is byte-for-byte, so the runner compares like with like rather than needing a tolerance wide enough to swallow a real regression. |
+| `rules` | I5 Linux or GitHub-hosted Ubuntu 24.04 | **Emulator leg 1**, and first: the `firestore.rules` mocha suite against a firestore-only emulator. Seconds. `online` `needs:` this, so a broken rules file goes red before four toolchains are installed. |
+| `online` | I5 Linux or GitHub-hosted Ubuntu 24.04 | `online_client` analyze + unit tests, then **emulator legs 2–4** inside one `firebase emulators:exec` (`firebase/ci-emulator-suites.sh`): the `online_client -P emulator` transport suite, the app's two-client E2E on the real-time listener path, and that same E2E once more with `AIGAMMON_E2E_LISTEN=0` so the polling fallback is actually exercised. The heaviest leg — Node + Java + Dart + Flutter. |
 
 `firebase-tools` is pinned to the same exact version (`15.25.1`) in `rules` and
 `online`; the two must not drift onto different emulator versions.
@@ -26,11 +26,12 @@ All CI jobs except `online` can start independently; `online` waits on `rules`.
 All Flutter test and distribution jobs use **Flutter 3.44.8**, including the
 golden tests. Upgrade those pins together and regenerate goldens deliberately.
 
-CI and Android distribution use GitHub-hosted Ubuntu 24.04 runners. The Windows
-golden job uses GitHub-hosted Windows Server 2025; the manually dispatched
-Windows release build and privacy-cleanup workflow remain on their registered
-I5 runners. iOS builds use the pinned GitHub-hosted `macos-26` image with Xcode
-26.6.
+`ci.yml` accepts a `runner` input. `local` (the default) uses the registered
+I5 Linux and Windows runners; select `hosted` when those runners are unavailable
+or stuck in setup to use Ubuntu 24.04 and Windows Server 2025. Android release
+builds support the same local/hosted selection. The manually dispatched Windows
+release build and privacy-cleanup workflow remain on I5. iOS builds use the
+pinned GitHub-hosted `macos-26` image with Xcode 26.6.
 
 ## Distribution is gated on CI
 
