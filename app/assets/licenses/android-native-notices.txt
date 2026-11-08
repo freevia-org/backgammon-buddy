@@ -402,6 +402,10 @@ com.google.firebase:firebase-config:23.1.0
 Published license declaration: The Apache Software License, Version 2.0 — http://www.apache.org/licenses/LICENSE-2.0.txt
 Notices: Apache-2.0
 
+com.google.firebase:firebase-crashlytics-ndk:20.0.6
+Published license declaration: The Apache Software License, Version 2.0 — http://www.apache.org/licenses/LICENSE-2.0.txt
+Notices: Apache-2.0
+
 com.google.firebase:firebase-crashlytics:20.0.6
 Published license declaration: The Apache Software License, Version 2.0 — http://www.apache.org/licenses/LICENSE-2.0.txt
 Notices: Android-published-notice-ac63c586da5581e1, Apache-2.0
@@ -48161,6 +48165,7 @@ com.google.firebase:firebase-common:22.1.0
 com.google.firebase:firebase-components:19.0.0
 com.google.firebase:firebase-config-interop:16.0.1
 com.google.firebase:firebase-config:23.1.0
+com.google.firebase:firebase-crashlytics-ndk:20.0.6
 com.google.firebase:firebase-crashlytics:20.0.6
 com.google.firebase:firebase-datatransport:19.0.0
 com.google.firebase:firebase-encoders-json:18.0.1

@@ -11,9 +11,12 @@ name `info-org`, administered by the same Freevia account). Firestore is Standar
 Native, `eur3` (EU), free tier, database delete protection enabled and PITR
 disabled. No billing account is attached. Authentication enables only anonymous
 sign-in; its reported subtype is `IDENTITY_PLATFORM`. Do not infer paid billing
-from that subtype. No Analytics property or optional telemetry configuration was
-created for this candidate. Authentication processes sign-in data in the United
-States, so the EU statement applies to Firestore records, not every Firebase
+from that subtype. Google Analytics was enabled on 2026-11-08 under the Freevia
+Firebase account; the Android, iOS, and web app registrations are present.
+Crashlytics and Performance Monitoring are configured in the app build, but
+their Firebase dashboards still await the first consented app report. No
+telemetry event is sent until the player opts in. Authentication processes
+sign-in data in the United States, so the EU statement applies to Firestore records, not every Firebase
 operation. [Firebase's privacy documentation](https://firebase.google.com/support/privacy)
 states that Auth IP logs last a few weeks and that, after account deletion is
 initiated, Authentication data is removed from live and backup systems within
@@ -26,8 +29,9 @@ The first natural GitHub scheduled cleanup apply completed at
 Independent API reads confirmed deletion of both disposable Auth identities and
 the entire test match tree, with completed protective markers retained. The two
 public REST online repository variables were subsequently set and read back for
-the next signed candidate. Optional telemetry platform values remain unset;
-updated-device acceptance and store distribution are separate steps.
+the next signed candidate. Firebase telemetry build values are configured for
+both mobile apps; an updated-device build and a tester opt-in are still required
+before telemetry appears in the dashboards.
 
 Cloud matches become inaccessible 30 days after server-stamped creation,
 including unfinished games and unclaimed invitations. The hourly cleanup job
@@ -203,15 +207,15 @@ crashes** to the same Firebase project, through the real FlutterFire SDKs
 |---|---|---|
 | `AIGAMMON_FIREBASE_PROJECT` | repo **Variable**, already set in §4 | ⚙ *Project settings* → **General** → *Project ID* |
 | `AIGAMMON_FIREBASE_API_KEY` | repo **Variable**, already set in §4 | ⚙ *Project settings* → **General** → *Web API Key* |
-| `AIGAMMON_FIREBASE_SENDER_ID` | repo **Variable**, **NEW — set this** | ⚙ *Project settings* → **General** → **Project number** (a ~12-digit number; the Cloud Messaging tab calls the identical value *Sender ID*) |
+| `AIGAMMON_FIREBASE_SENDER_ID` | repo **Variable**, already set | ⚙ *Project settings* → **General** → **Project number** (a ~12-digit number; the Cloud Messaging tab calls the identical value *Sender ID*) |
 | `AIGAMMON_FIREBASE_ANDROID_APP_ID` | repo **Secret** `FIREBASE_ANDROID_APP_ID`, already exists | ⚙ *Project settings* → **General** → *Your apps* → the Android app → *App ID* (`1:<project-number>:android:<hash>`) |
 | `AIGAMMON_FIREBASE_IOS_APP_ID` | repo **Secret** `FIREBASE_IOS_APP_ID`, already exists | same page, the iOS app (`1:<project-number>:ios:<hash>`) |
 
-**Only one new repository Variable is needed:** `AIGAMMON_FIREBASE_SENDER_ID`.
-It is a value to *read* out of the console, not a credential to create. Set it
-under **Settings → Secrets and variables → Actions → Variables → New repository
-variable**. Like the Web API key it is not a secret — it ships in every client
-binary and identifies the project, nothing more.
+The public project values and platform app IDs are configured in GitHub Actions.
+The Web API key and sender ID are not secrets in the credential sense: they ship
+inside each client binary and identify the Firebase project. Platform app IDs
+are stored as repository secrets so configuration is supplied consistently by
+CI.
 
 The two App IDs are **deliberately reused** from the Firebase App Distribution
 secrets configured earlier; the app being distributed and the app reporting
@@ -286,19 +290,19 @@ symbols outside CI's artifact retention window for any distributed build.
 
 ### Console steps
 
-1. **Analytics** — ⚙ *Project settings* → **Integrations** → *Google Analytics*,
-   or **Analytics → Dashboard** → follow the enable prompt. A Google Analytics
-   property must be linked to the project or events are accepted and discarded.
-   (§1 says Analytics is "not needed" for online play; that is still true — it
-   is needed for *this*.)
-2. **Crashlytics** — **Release & Monitor → Crashlytics → Enable Crashlytics**,
-   then select the Android and iOS apps. The first report from a real device
-   completes the setup.
-3. **Performance Monitoring** — **Release & Monitor → Performance → Get
-   started**. Custom traces appear under *Custom traces* once builds report.
-4. Confirm both the Android and iOS apps exist under ⚙ *Project settings →
-   General → Your apps* (they already do if App Distribution is working) and
-   copy their App IDs into the two secrets if those are not set yet.
+1. **Analytics** — enabled on 2026-11-08 using the project's *Default Account
+   for Firebase*. The app still needs a current mobile build and explicit player
+   opt-in before reports appear.
+2. **Crashlytics** — Firebase Console currently shows *Add SDK* for Android and
+   iOS. The Dart SDK, Android NDK capture plugin, and iOS SDK are configured in
+   source; a consented report from an updated build is still required to verify
+   the console connection.
+3. **Performance Monitoring** — Firebase Console currently shows *Add SDK* for
+   Android and iOS. The Dart SDK and Android Gradle instrumentation are
+   configured; traces should appear after the updated build receives consent
+   and sends its first report.
+4. The Android and iOS app registrations are present under ⚙ *Project settings
+   → General → Your apps*, with their App IDs configured in CI.
 
 Nothing here leaves the **Spark** plan: Analytics, Performance Monitoring and
 Crashlytics are all free and unmetered.
@@ -308,8 +312,9 @@ Crashlytics are all free and unmetered.
 `android.yml` and `ios.yml` inject the telemetry defines from the Variable and
 the existing secret, in a block right beside the online-play one, and print
 `Telemetry ENABLED` / `Telemetry config incomplete` so a build log says which
-binary reports and which does not. Setting `AIGAMMON_FIREBASE_SENDER_ID` is the
-only action required; no workflow edit.
+binary reports and which does not. The required project values and Android/iOS
+app IDs are configured; current source builds log `Telemetry configured
+(collection requires user opt-in)`.
 
 ### Local
 
