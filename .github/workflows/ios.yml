@@ -16,7 +16,7 @@ on:
         type: boolean
         default: false
       runner:
-        description: Use the Mac mini on master, or select the hosted macOS 26 fallback
+        description: Choose the Mac mini or the hosted macOS 26 fallback
         type: choice
         options: [macmini, hosted]
         default: macmini
@@ -37,10 +37,9 @@ concurrency:
 jobs:
   ios:
     name: build .app + (gated) signed distribute
-    # Default to the Mac mini for master and hosted macOS for other refs.
-    # This routing follows the workflow version selected for the dispatch; it
-    # is an operational default, not a security boundary.
-    runs-on: ${{ inputs.runner == 'macmini' && github.ref == 'refs/heads/master' && 'backgammon-buddy-macmini' || 'macos-26' }}
+    # Explicit dispatch can test a branch on the Mac mini. Signing secrets
+    # and distribution remain restricted to master below.
+    runs-on: ${{ inputs.runner == 'macmini' && github.event_name == 'workflow_dispatch' && 'backgammon-buddy-macmini' || 'macos-26' }}
     # The pinned Flutter iOS engine is built from source, then the release app
     # is archived and audited. Allow time for both engine and app builds plus
     # the optional CI/distribution gate.
@@ -49,17 +48,17 @@ jobs:
       # Supported by the locked FlutterFire SPM package; this app has no ads.
       # Select FirebaseAnalyticsCore instead of the identity/ad conversion product.
       FIREBASE_ANALYTICS_WITHOUT_ADID: 'true'
-      XCODE_VERSION: ${{ inputs.runner == 'macmini' && github.ref == 'refs/heads/master' && '27.2' || '26.6' }}
-      DEVELOPER_DIR: ${{ inputs.runner == 'macmini' && github.ref == 'refs/heads/master' && '/Applications/Xcode.app/Contents/Developer' || '/Applications/Xcode_26.6.app/Contents/Developer' }}
+      XCODE_VERSION: ${{ inputs.runner == 'macmini' && github.event_name == 'workflow_dispatch' && '27.2' || '26.6' }}
+      DEVELOPER_DIR: ${{ inputs.runner == 'macmini' && github.event_name == 'workflow_dispatch' && '/Applications/Xcode.app/Contents/Developer' || '/Applications/Xcode_26.6.app/Contents/Developer' }}
     steps:
       - name: Summarize runner selection
         env:
           REQUESTED_RUNNER: ${{ inputs.runner || 'macmini' }}
-          RESOLVED_RUNNER: ${{ inputs.runner == 'macmini' && github.ref == 'refs/heads/master' && 'backgammon-buddy-macmini' || 'macos-26' }}
+          RESOLVED_RUNNER: ${{ inputs.runner == 'macmini' && github.event_name == 'workflow_dispatch' && 'backgammon-buddy-macmini' || 'macos-26' }}
           RUNNER_NAME: ${{ runner.name }}
           RUNNER_OS: ${{ runner.os }}
           RUNNER_ARCH: ${{ runner.arch }}
-          XCODE_VERSION: ${{ inputs.runner == 'macmini' && github.ref == 'refs/heads/master' && '27.2' || '26.6' }}
+          XCODE_VERSION: ${{ inputs.runner == 'macmini' && github.event_name == 'workflow_dispatch' && '27.2' || '26.6' }}
         run: |
           {
             echo '### iOS runner selection'
@@ -74,7 +73,8 @@ jobs:
         with:
           submodules: recursive
 
-      # Select the hosted runner's pinned Xcode or the Mac mini's current
+      # Xcode 27.2 on the Mac mini exercises the SDK-stub overlay; the
+      # hosted fallback remains pinned to 26.6. Select the appropriate
       # Xcode.app per process. DEVELOPER_DIR avoids changing global
       # xcode-select state on the persistent self-hosted runner.
       - name: Select Xcode ${{ env.XCODE_VERSION }}

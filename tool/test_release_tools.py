@@ -17,6 +17,13 @@ from release_build_number import resolve
 
 
 class ReleaseToolsTest(unittest.TestCase):
+    def test_ios_branch_dispatch_can_use_mac_without_signing_secrets(self):
+        workflow = (Path(__file__).resolve().parents[1] / '.github/workflows/ios.yml').read_text()
+        self.assertIn("inputs.runner == 'macmini' && github.event_name == 'workflow_dispatch' && 'backgammon-buddy-macmini'", workflow)
+        self.assertIn("inputs.runner == 'macmini' && github.event_name == 'workflow_dispatch' && '27.2'", workflow)
+        for secret in ('IOS_CERT_P12_BASE64', 'IOS_CERT_PASSWORD', 'IOS_APP_STORE_PROFILE_BASE64'):
+            self.assertIn("github.ref == 'refs/heads/master' && secrets." + secret, workflow)
+
     def test_android_removes_unused_advertising_and_parked_microphone_permissions(self):
         manifest = ET.parse(Path(__file__).resolve().parents[1] /
                             'app/android/app/src/main/AndroidManifest.xml')
