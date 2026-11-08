@@ -23,6 +23,8 @@ class ReleaseToolsTest(unittest.TestCase):
         self.assertIn("inputs.runner == 'macmini' && github.event_name == 'workflow_dispatch' && '27.2'", workflow)
         for secret in ('IOS_CERT_P12_BASE64', 'IOS_CERT_PASSWORD', 'IOS_APP_STORE_PROFILE_BASE64'):
             self.assertIn("github.ref == 'refs/heads/master' && secrets." + secret, workflow)
+        self.assertIn('RUBYOPT=-rlogger "$POD_BIN" --version', workflow)
+        self.assertIn('"$HOME/.gem/ruby/2.6.0/bin" >> "$GITHUB_PATH"', workflow)
 
     def test_android_removes_unused_advertising_and_parked_microphone_permissions(self):
         manifest = ET.parse(Path(__file__).resolve().parents[1] /

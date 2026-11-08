@@ -110,6 +110,19 @@ jobs:
       - name: Install Metal Toolchain
         run: xcodebuild -downloadComponent MetalToolchain
 
+      - name: Check Mac mini CocoaPods
+        if: inputs.runner == 'macmini' && github.event_name == 'workflow_dispatch'
+        run: |
+          set -eu
+          POD_BIN="$HOME/.gem/ruby/2.6.0/bin/pod"
+          if [ ! -x "$POD_BIN" ]; then
+            echo '::error::Mac mini CocoaPods executable is missing.'
+            exit 1
+          fi
+          RUBYOPT=-rlogger "$POD_BIN" --version
+          echo "$HOME/.gem/ruby/2.6.0/bin" >> "$GITHUB_PATH"
+          echo 'RUBYOPT=-rlogger' >> "$GITHUB_ENV"
+
       - name: Resolve build number
         env:
           REQUESTED_BUILD_NUMBER: ${{ inputs.build_number }}
