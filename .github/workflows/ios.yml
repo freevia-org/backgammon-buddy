@@ -74,6 +74,7 @@ jobs:
           submodules: recursive
 
       - name: Prepare dedicated build storage
+        timeout-minutes: 2
         env:
           USE_MAC_MINI: ${{ inputs.runner == 'macmini' && github.event_name == 'workflow_dispatch' }}
         run: |
