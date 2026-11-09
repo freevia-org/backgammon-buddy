@@ -298,10 +298,11 @@ tutoring improvements, fixes and remaining learning roadmap. Android's manual
 workflow can prepare a signed Play bundle with `build_appbundle`; it does not
 submit it to a store. Automatic Android tester distribution requires release
 signing as well as Firebase credentials.
-Both signed mobile paths require an explicit build-number override or an
-owner-selected baseline above previous uploads; a migrated repository's workflow
-counter alone is not sufficient. See the workflow guide for native symbols and
-artifact alignment checks.
+Both signed mobile workflows use the shared `+N` sequence committed in
+`app/pubspec.yaml`. Apple uses `N` directly; Android encodes the app version and
+`N` into its Play version code. Before incrementing it, the release owner must
+verify the sequence is above the latest build uploaded to both stores. See the
+workflow guide for native symbols and artifact alignment checks.
 
 Every release is a merge to `master` that bumps `version:` in `app/pubspec.yaml`
 — **and `appVersion` in `app/lib/branding/app_version.dart` with it**, since the
@@ -322,8 +323,8 @@ git push origin v0.14.0
 Annotated (`-a`), not lightweight: an annotated tag is a real object carrying a
 tagger, a date and a message, so `git describe` names builds sensibly and the
 release's own summary survives independently of the merge commit. The name is
-`v` + the exact `pubspec.yaml` version, with no build number — the `+n` suffix is
-CI's run counter and changes on every rebuild of the same source.
+`v` + the semantic app version, without the `+N` build sequence. The sequence
+is intentionally shared by Android and iOS and changes for each store upload.
 
 Releases before v0.13.0 are **not** tagged retroactively. Their merge commits all
 carry the version in the subject line (`Merge feature/… (v0.11.0)`), which is

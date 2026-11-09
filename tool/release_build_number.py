@@ -1,25 +1,41 @@
-"""Resolve a build number without assuming a new repository's counter is newer.
+"""Resolve aligned store build identifiers from the committed pubspec version.
 
-The owner must choose a baseline/override above all previous published builds.
-This validates representation only; it cannot inspect Play/App Store history.
+The +N suffix is the shared release sequence: iOS uses N directly, while
+Android encodes the semantic version and N into its monotonically increasing
+Play versionCode. This tool cannot inspect store history; release owners must
+keep the committed sequence above every previously uploaded build.
 """
 import os
+import re
 
 
-def resolve(run, override='', base=''):
-    for value in [run, override, base]:
-        if value and not (value.isascii() and value.isdecimal()):
-            raise ValueError('Build numbers must be decimal integers')
-    number = int(override) if override else int(base or '0') + int(run)
-    if not 0 < number <= 2100000000:
-        raise ValueError('Build number is outside supported Android range')
-    return number, bool(override or base)
+def aligned_build(version, platform):
+    match = re.fullmatch(r'(\d+)\.(\d+)\.(\d+)\+(\d+)', version.strip())
+    if not match:
+        raise ValueError('pubspec version must be MAJOR.MINOR.PATCH+SEQUENCE')
+    major, minor, patch, sequence = map(int, match.groups())
+    if not 0 < sequence <= 999:
+        raise ValueError('Shared build sequence must be between 1 and 999')
+    if platform == 'ios':
+        return sequence
+    if platform != 'android':
+        raise ValueError('RELEASE_PLATFORM must be android or ios')
+    if minor > 99 or patch > 999:
+        raise ValueError('Version fields exceed Android versionCode encoding limits')
+    number = major * 100_000_000 + minor * 1_000_000 + patch * 1_000 + sequence
+    if number > 2_100_000_000:
+        raise ValueError('Android versionCode exceeds Google Play maximum')
+    return number
 
 
 if __name__ == '__main__':
-    number, explicit = resolve(os.environ['GITHUB_RUN_NUMBER'],
-                               os.environ.get('REQUESTED_BUILD_NUMBER', ''),
-                               os.environ.get('BUILD_NUMBER_BASE', ''))
+    with open('app/pubspec.yaml', encoding='utf-8') as stream:
+        version_line = next(line for line in stream if line.startswith('version:'))
+    version = version_line.split(':', 1)[1].strip().strip("'\"")
+    platform = os.environ['RELEASE_PLATFORM']
+    number = aligned_build(version, platform)
+    sequence = int(version.rsplit('+', 1)[1])
     with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as stream:
-        stream.write(f'BUILD_NUMBER={number}\nHAS_RELEASE_BUILD_NUMBER={str(explicit).lower()}\n')
-    print(f'Build number: {number}; owner-selected history baseline: {explicit}')
+        stream.write(f'BUILD_NUMBER={number}\nBUILD_SEQUENCE={sequence}\n')
+        stream.write('HAS_RELEASE_BUILD_NUMBER=true\n')
+    print(f'{platform} build number: {number} (shared sequence {sequence}, version {version})')

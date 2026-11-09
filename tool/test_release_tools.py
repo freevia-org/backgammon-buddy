@@ -13,7 +13,7 @@ import zipfile
 
 from ios_export_options import export_options
 from release_preflight import check_android, elf_16kb
-from release_build_number import resolve
+from release_build_number import aligned_build
 
 
 class ReleaseToolsTest(unittest.TestCase):
@@ -48,20 +48,25 @@ class ReleaseToolsTest(unittest.TestCase):
                    for node in manifest.findall('./queries/intent/action')]
         self.assertIn('android.intent.action.TTS_SERVICE', actions)
 
-    def test_build_number_requires_explicit_history_baseline(self):
-        self.assertEqual(resolve('1'), (1, False))
-        self.assertEqual(resolve('1', base='500'), (501, True))
-        self.assertEqual(resolve('1', override='600', base='500'), (600, True))
-        for value in ['0', '-1', '1;echo fail', '2100000001']:
+    def test_platform_build_numbers_share_pubspec_sequence(self):
+        self.assertEqual(aligned_build('0.16.4+32', 'ios'), 32)
+        self.assertEqual(aligned_build('0.16.4+32', 'android'), 16004032)
+        for version, platform in [
+            ('0.16.4+0', 'ios'),
+            ('0.16.4+1000', 'android'),
+            ('0.16.4+32', 'windows'),
+            ('0.16.4;bad+32', 'ios'),
+            ('21.0.0+1', 'android'),
+        ]:
             with self.assertRaises((AssertionError, ValueError)):
-                resolve('1', override=value)
+                aligned_build(version, platform)
 
     def test_release_gates_stay_active_with_optimized_python(self):
         tool_dir = Path(__file__).resolve().parent
         script = (
             f"import sys; sys.path.insert(0, {str(tool_dir)!r}); "
-            "from release_build_number import resolve; "
-            "resolve('1', override='-1')"
+            "from release_build_number import aligned_build; "
+            "aligned_build('0.16.4+0', 'ios')"
         )
         result = subprocess.run([sys.executable, '-O', '-c', script],
                                 capture_output=True, text=True)
