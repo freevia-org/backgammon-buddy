@@ -50,7 +50,7 @@ class ReleaseToolsTest(unittest.TestCase):
 
     def test_platform_build_numbers_share_pubspec_sequence(self):
         self.assertEqual(aligned_build('0.16.4+32', 'ios'), 32)
-        self.assertEqual(aligned_build('0.16.4+32', 'android'), 16004032)
+        self.assertEqual(aligned_build('0.16.4+32', 'android'), 32)
         for version, platform in [
             ('0.16.4+0', 'ios'),
             ('0.16.4+1000', 'android'),
