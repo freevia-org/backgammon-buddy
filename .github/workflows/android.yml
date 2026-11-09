@@ -7,10 +7,6 @@ on:
         type: choice
         options: [local, hosted]
         default: local
-      build_number:
-        description: Explicit version code above every previous release (or set RELEASE_BUILD_NUMBER_BASE)
-        type: string
-        default: ''
       build_appbundle:
         description: Build a signed Google Play bundle artifact (does not upload to Play)
         type: boolean
@@ -71,8 +67,7 @@ jobs:
 
       - name: Resolve build number
         env:
-          REQUESTED_BUILD_NUMBER: ${{ inputs.build_number }}
-          BUILD_NUMBER_BASE: ${{ vars.RELEASE_BUILD_NUMBER_BASE }}
+          RELEASE_PLATFORM: android
         run: python3 tool/release_build_number.py
 
       # Two ABIs, not three. `x86_64-linux-android` is an EMULATOR target: no
@@ -216,7 +211,7 @@ jobs:
         if: steps.signing.outputs.has_signing == 'true'
         run: |
           if [ "$HAS_RELEASE_BUILD_NUMBER" != 'true' ]; then
-            echo '::error::Set RELEASE_BUILD_NUMBER_BASE or a build_number above prior published versions before signing.'
+            echo '::error::The committed shared build sequence must be above every previously uploaded build.'
             exit 1
           fi
 

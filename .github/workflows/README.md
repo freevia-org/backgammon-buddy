@@ -54,8 +54,10 @@ Trust boundaries:
   distribute to testers.
 * If CI fails, rerun CI for the same SHA and then rerun the mobile workflow;
   the earlier mobile run has already failed its distribution gate.
-* Android build numbers use the release-specific `build_number` input or
-  `RELEASE_BUILD_NUMBER_BASE`, not CI's run counter.
+* Android and iOS use the shared `+N` build sequence in `app/pubspec.yaml`.
+  Android encodes the app version and sequence into its Play version code;
+  iOS uses the sequence as its build number. Neither depends on workflow run
+  counters or separately entered platform values.
 
 CI and mobile workflows key concurrency by commit, so a newer commit does not
 cancel a build for a different SHA. The mobile workflows cancel an earlier
@@ -290,15 +292,16 @@ Preserve these outside GitHub's artifact retention window. Native symbol upload
 and a deliberately symbolicated test crash remain acceptance steps; producing an
 artifact does not verify that Firebase can resolve it.
 
-## Build numbers after repository migration
+## Shared build numbers
 
-`github.run_number` restarts in a new repository. Every **signed** path therefore
-requires either manual `build_number` or repository variable
-`RELEASE_BUILD_NUMBER_BASE`. The latter resolves to `base + github.run_number`.
-The release owner must first inspect prior Android/iOS uploads and select values
-that exceed them; this tool validates integers/range, not external store history.
-Without either value, unsigned/debug diagnostic artifacts still use the run
-number, but signing fails. Artifact names remain keyed by the workflow run.
+Every release sequence is committed in the `+N` suffix of `app/pubspec.yaml`.
+Both mobile workflows read that same value. Apple uses `N` as its build number;
+Android encodes it as `major * 100000000 + minor * 1000000 + patch * 1000 + N`
+for the Google Play version code, so either platform can be uploaded
+independently without drifting counters.
+Before incrementing `N`, the release owner must verify it exceeds the latest
+uploaded build on both stores. This tool checks format and range, not store
+history. Artifact names remain keyed by the workflow run.
 
 ## Native artifact checks
 
