@@ -35,11 +35,25 @@ export DEPOT_TOOLS_METRICS=0
 # flag to run public gsutil downloads directly instead of invoking interactive
 # luci-auth, which is not installed on the runner.
 export SWARMING_HEADLESS=1
+# The Mac mini is not a LUCI bot and its depot_tools vpython package points at
+# LUCI's absent /Volumes/Work Python prefix. gsutil's public-download path uses
+# its bundled dependencies, so use the runner's managed Python as depot_tools'
+# documented bypass for this CI-only checkout.
+export VPYTHON_BYPASS="manually managed python not supported by chrome operations"
 test "$(git -C "$DEPOT_TOOLS" rev-parse HEAD)" = "$DEPOT_TOOLS_REVISION"
+DEPOT_TOOLS_GSUTIL_PATCH="$GITHUB_WORKSPACE/tool/patches/depot-tools-gsutil-vpython-absolute.patch"
+git -C "$DEPOT_TOOLS" apply --check "$DEPOT_TOOLS_GSUTIL_PATCH"
+git -C "$DEPOT_TOOLS" apply "$DEPOT_TOOLS_GSUTIL_PATCH"
+grep -Fq 'os.path.join(THIS_DIR, "vpython3")' "$DEPOT_TOOLS/gsutil.py"
+# depot_tools prepends its own python3 wrapper to PATH. Point that name at the
+# managed 3.11 interpreter so vpython's CI bypass and gclient use the same one.
+PYTHON311="$(command -v python3.11)"
+PYTHON3_SHIM_DIR="$BUILD_TEMP/python3-shim"
+mkdir -p "$PYTHON3_SHIM_DIR"
+ln -sf "$PYTHON311" "$PYTHON3_SHIM_DIR/python3"
+export PATH="$PYTHON3_SHIM_DIR:$DEPOT_TOOLS:$DEPOT_TOOLS/.cipd_bin:$PATH"
+python3 -c 'import enum; assert hasattr(enum, "StrEnum"); print("depot_tools Python", __import__("sys").version)'
 DEPOT_TOOLS_DIR="$DEPOT_TOOLS" "$DEPOT_TOOLS/ensure_bootstrap"
-# gclient's gsutil subprocess resolves vpython3 from PATH on macOS. Keep both
-# depot_tools' launcher and its CIPD-installed binaries visible to descendants.
-export PATH="$DEPOT_TOOLS:$DEPOT_TOOLS/.cipd_bin:$PATH"
 command -v vpython3 >/dev/null || {
   echo "depot_tools vpython3 is missing from PATH: $PATH" >&2
   exit 1
@@ -172,6 +186,7 @@ XCODE_VERSION="$(xcodebuild -version | tr '\n' ' ')"
 ACTUAL_DEPOT_TOOLS_REVISION="$(git -C "$DEPOT_TOOLS" rev-parse HEAD)"
 IOS_SDK_VERSION="$(xcrun --sdk iphoneos --show-sdk-version)"
 PATCH_SHA256="$(shasum -a 256 "$GITHUB_WORKSPACE/tool/patches/flutter-ios-commoncrypto-cache-hash.patch" | awk '{print $1}')"
+DEPOT_TOOLS_GSUTIL_PATCH_SHA256="$(shasum -a 256 "$DEPOT_TOOLS_GSUTIL_PATCH" | awk '{print $1}')"
 IOS_GEN_SNAPSHOT_SHA256="$(shasum -a 256 "$IOS_GEN_SNAPSHOT" | awk '{print $1}')"
 HOST_IMPELLERC_SHA256="$(shasum -a 256 "$HOST_IMPELLERC" | awk '{print $1}')"
 HOST_TESSELLATOR_SHA256="$(shasum -a 256 "$HOST_TESSELLATOR" | awk '{print $1}')"
@@ -207,6 +222,7 @@ host_const_finder_sha256=$HOST_CONST_FINDER_SHA256
 host_font_subset_sha256=$HOST_FONT_SUBSET_SHA256
 ios_gen_snapshot_sha256=$IOS_GEN_SNAPSHOT_SHA256
 engine_patch_sha256=$PATCH_SHA256
+depot_tools_gsutil_patch_sha256=$DEPOT_TOOLS_GSUTIL_PATCH_SHA256
 sdk_stub_overlay_sha256=$(shasum -a 256 "$BUILD_TEMP/sdk-stub-overlay.json" | awk '{print $1}')
 EOF
 cat "$PROFILE" >> "$GITHUB_STEP_SUMMARY"

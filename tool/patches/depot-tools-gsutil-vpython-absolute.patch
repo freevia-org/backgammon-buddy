@@ -1,0 +1,12 @@
+diff --git a/gsutil.py b/gsutil.py
+--- a/gsutil.py
++++ b/gsutil.py
+@@ -334,7 +334,7 @@ def run_gsutil(target, args, clean=False):
+ 
+     cmd = (
+         [
+-            _resolve_depot_tools_exe("vpython3"),
++            os.path.join(THIS_DIR, "vpython3"),
+             "-vpython-spec",
+             os.path.join(THIS_DIR, "gsutil.vpython.toml"),
+             "--",

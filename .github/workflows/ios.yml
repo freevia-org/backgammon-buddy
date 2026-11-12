@@ -170,6 +170,21 @@ jobs:
         working-directory: app
         run: flutter pub get
 
+      # The Mac mini's system Python is 3.9, while pinned depot_tools requires
+      # Python 3.11+ (StrEnum). Use Homebrew because setup-python's macOS
+      # distribution is fixed to /Users/runner/hostedtoolcache.
+      - name: Set up Python for depot_tools
+        run: |
+          python311="$(command -v python3.11 || true)"
+          if [ -z "$python311" ]; then
+            command -v brew >/dev/null || { echo 'Homebrew is required for Python 3.11 on the Mac mini.' >&2; exit 1; }
+            brew install python@3.11
+            python311="$(brew --prefix python@3.11)/bin/python3.11"
+          fi
+          test -x "$python311"
+          "$python311" -c 'import enum; assert hasattr(enum, "StrEnum"); print("Python", __import__("sys").version)'
+          dirname "$python311" >> "$GITHUB_PATH"
+
       - name: Verify iOS transport provider selection
         working-directory: app
         run: >-
