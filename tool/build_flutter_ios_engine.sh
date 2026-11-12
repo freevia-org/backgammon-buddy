@@ -36,6 +36,10 @@ export DEPOT_TOOLS_METRICS=0
 # luci-auth, which is not installed on the runner.
 export SWARMING_HEADLESS=1
 test "$(git -C "$DEPOT_TOOLS" rev-parse HEAD)" = "$DEPOT_TOOLS_REVISION"
+DEPOT_TOOLS_GSUTIL_PATCH="$GITHUB_WORKSPACE/tool/patches/depot-tools-gsutil-vpython-absolute.patch"
+git -C "$DEPOT_TOOLS" apply --check "$DEPOT_TOOLS_GSUTIL_PATCH"
+git -C "$DEPOT_TOOLS" apply "$DEPOT_TOOLS_GSUTIL_PATCH"
+grep -Fq 'os.path.join(THIS_DIR, "vpython3")' "$DEPOT_TOOLS/gsutil.py"
 DEPOT_TOOLS_DIR="$DEPOT_TOOLS" "$DEPOT_TOOLS/ensure_bootstrap"
 # gclient's gsutil subprocess resolves vpython3 from PATH on macOS. Keep both
 # depot_tools' launcher and its CIPD-installed binaries visible to descendants.
@@ -44,9 +48,6 @@ command -v vpython3 >/dev/null || {
   echo "depot_tools vpython3 is missing from PATH: $PATH" >&2
   exit 1
 }
-DEPOT_TOOLS_GSUTIL_PATCH="$GITHUB_WORKSPACE/tool/patches/depot-tools-gsutil-vpython-absolute.patch"
-git -C "$DEPOT_TOOLS" apply --check "$DEPOT_TOOLS_GSUTIL_PATCH"
-git -C "$DEPOT_TOOLS" apply "$DEPOT_TOOLS_GSUTIL_PATCH"
 (
   cd "$FLUTTER_SOURCE"
   gclient sync --no-history --nohooks --verbose
