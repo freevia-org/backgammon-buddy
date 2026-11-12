@@ -93,6 +93,22 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
       appBar: AppBar(
         title: Text(widget.vsComputer ? l10n.playVsComputer : l10n.twoPlayers),
       ),
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+          child: SizedBox(
+            width: double.infinity,
+            child: FilledButton(
+              onPressed: _startMatch,
+              style: FilledButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+              ),
+              child: Text(l10n.startMatch),
+            ),
+          ),
+        ),
+      ),
       body: SafeArea(
         // Top-aligned under the app bar: a setup form reads as a list of
         // decisions, so it starts where the eye already is. (Centring it left a
@@ -104,7 +120,7 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 480),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 16, 24, 32),
+                padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,7 +130,7 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
                       onChanged: (v) => setState(() => _matchLength = v),
                     ),
                     if (widget.vsComputer) ...[
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 12),
                       DifficultyOptions(
                         value: _difficulty,
                         onChanged: (v) => setState(() {
@@ -128,7 +144,7 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
                           }
                         }),
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 12),
                       SetupSection(
                         label: l10n.newMatchYourSide,
                         child: SegmentedButton<_SideChoice>(
@@ -158,7 +174,7 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
                     // and the opt-in rotation is an app-wide preference
                     // ("Rotate board between turns") rather than a per-match
                     // choice — see [GameScreen.tabletop].
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 4),
                     SwitchListTile(
                       contentPadding: EdgeInsets.zero,
                       title: Text(l10n.newMatchTutorMode),
@@ -184,17 +200,6 @@ class _NewMatchScreenState extends ConsumerState<NewMatchScreen> {
                     CubelessSwitch(
                       value: _cubeless,
                       onChanged: (v) => setState(() => _cubeless = v),
-                    ),
-                    const SizedBox(height: 40),
-                    SizedBox(
-                      width: double.infinity,
-                      child: FilledButton(
-                        onPressed: _startMatch,
-                        style: FilledButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 18),
-                        ),
-                        child: Text(l10n.startMatch),
-                      ),
                     ),
                   ],
                 ),

@@ -17,6 +17,11 @@ set by CI from the workflow run number and is not tracked here.
 
 ## [Unreleased]
 
+### Fixed
+
+- Keep the new-match start action pinned and tighten setup spacing on phones.
+
+
 ## [0.16.3] — 2026-10-29
 
 ### Added
