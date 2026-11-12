@@ -45,10 +45,15 @@ DEPOT_TOOLS_GSUTIL_PATCH="$GITHUB_WORKSPACE/tool/patches/depot-tools-gsutil-vpyt
 git -C "$DEPOT_TOOLS" apply --check "$DEPOT_TOOLS_GSUTIL_PATCH"
 git -C "$DEPOT_TOOLS" apply "$DEPOT_TOOLS_GSUTIL_PATCH"
 grep -Fq 'os.path.join(THIS_DIR, "vpython3")' "$DEPOT_TOOLS/gsutil.py"
+# depot_tools prepends its own python3 wrapper to PATH. Point that name at the
+# managed 3.11 interpreter so vpython's CI bypass and gclient use the same one.
+PYTHON311="$(command -v python3.11)"
+PYTHON3_SHIM_DIR="$BUILD_TEMP/python3-shim"
+mkdir -p "$PYTHON3_SHIM_DIR"
+ln -sf "$PYTHON311" "$PYTHON3_SHIM_DIR/python3"
+export PATH="$PYTHON3_SHIM_DIR:$DEPOT_TOOLS:$DEPOT_TOOLS/.cipd_bin:$PATH"
+python3 -c 'import enum; assert hasattr(enum, "StrEnum"); print("depot_tools Python", __import__("sys").version)'
 DEPOT_TOOLS_DIR="$DEPOT_TOOLS" "$DEPOT_TOOLS/ensure_bootstrap"
-# gclient's gsutil subprocess resolves vpython3 from PATH on macOS. Keep both
-# depot_tools' launcher and its CIPD-installed binaries visible to descendants.
-export PATH="$DEPOT_TOOLS:$DEPOT_TOOLS/.cipd_bin:$PATH"
 command -v vpython3 >/dev/null || {
   echo "depot_tools vpython3 is missing from PATH: $PATH" >&2
   exit 1
