@@ -31,6 +31,10 @@ git -C "$DEPOT_TOOLS" fetch --depth=1 origin "$DEPOT_TOOLS_REVISION"
 git -C "$DEPOT_TOOLS" checkout --detach FETCH_HEAD
 export DEPOT_TOOLS_UPDATE=0
 export DEPOT_TOOLS_METRICS=0
+# This build runs on GitHub-hosted or self-hosted CI. depot_tools uses this
+# flag to run public gsutil downloads directly instead of invoking interactive
+# luci-auth, which is not installed on the runner.
+export SWARMING_HEADLESS=1
 test "$(git -C "$DEPOT_TOOLS" rev-parse HEAD)" = "$DEPOT_TOOLS_REVISION"
 DEPOT_TOOLS_DIR="$DEPOT_TOOLS" "$DEPOT_TOOLS/ensure_bootstrap"
 export PATH="$DEPOT_TOOLS:$PATH"
