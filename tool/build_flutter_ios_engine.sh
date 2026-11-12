@@ -44,6 +44,9 @@ command -v vpython3 >/dev/null || {
   echo "depot_tools vpython3 is missing from PATH: $PATH" >&2
   exit 1
 }
+DEPOT_TOOLS_GSUTIL_PATCH="$GITHUB_WORKSPACE/tool/patches/depot-tools-gsutil-vpython-absolute.patch"
+git -C "$DEPOT_TOOLS" apply --check "$DEPOT_TOOLS_GSUTIL_PATCH"
+git -C "$DEPOT_TOOLS" apply "$DEPOT_TOOLS_GSUTIL_PATCH"
 (
   cd "$FLUTTER_SOURCE"
   gclient sync --no-history --nohooks --verbose
@@ -172,6 +175,7 @@ XCODE_VERSION="$(xcodebuild -version | tr '\n' ' ')"
 ACTUAL_DEPOT_TOOLS_REVISION="$(git -C "$DEPOT_TOOLS" rev-parse HEAD)"
 IOS_SDK_VERSION="$(xcrun --sdk iphoneos --show-sdk-version)"
 PATCH_SHA256="$(shasum -a 256 "$GITHUB_WORKSPACE/tool/patches/flutter-ios-commoncrypto-cache-hash.patch" | awk '{print $1}')"
+DEPOT_TOOLS_GSUTIL_PATCH_SHA256="$(shasum -a 256 "$DEPOT_TOOLS_GSUTIL_PATCH" | awk '{print $1}')"
 IOS_GEN_SNAPSHOT_SHA256="$(shasum -a 256 "$IOS_GEN_SNAPSHOT" | awk '{print $1}')"
 HOST_IMPELLERC_SHA256="$(shasum -a 256 "$HOST_IMPELLERC" | awk '{print $1}')"
 HOST_TESSELLATOR_SHA256="$(shasum -a 256 "$HOST_TESSELLATOR" | awk '{print $1}')"
@@ -207,6 +211,7 @@ host_const_finder_sha256=$HOST_CONST_FINDER_SHA256
 host_font_subset_sha256=$HOST_FONT_SUBSET_SHA256
 ios_gen_snapshot_sha256=$IOS_GEN_SNAPSHOT_SHA256
 engine_patch_sha256=$PATCH_SHA256
+depot_tools_gsutil_patch_sha256=$DEPOT_TOOLS_GSUTIL_PATCH_SHA256
 sdk_stub_overlay_sha256=$(shasum -a 256 "$BUILD_TEMP/sdk-stub-overlay.json" | awk '{print $1}')
 EOF
 cat "$PROFILE" >> "$GITHUB_STEP_SUMMARY"
