@@ -37,7 +37,13 @@ export DEPOT_TOOLS_METRICS=0
 export SWARMING_HEADLESS=1
 test "$(git -C "$DEPOT_TOOLS" rev-parse HEAD)" = "$DEPOT_TOOLS_REVISION"
 DEPOT_TOOLS_DIR="$DEPOT_TOOLS" "$DEPOT_TOOLS/ensure_bootstrap"
-export PATH="$DEPOT_TOOLS:$PATH"
+# gclient's gsutil subprocess resolves vpython3 from PATH on macOS. Keep both
+# depot_tools' launcher and its CIPD-installed binaries visible to descendants.
+export PATH="$DEPOT_TOOLS:$DEPOT_TOOLS/.cipd_bin:$PATH"
+command -v vpython3 >/dev/null || {
+  echo "depot_tools vpython3 is missing from PATH: $PATH" >&2
+  exit 1
+}
 (
   cd "$FLUTTER_SOURCE"
   gclient sync --no-history --nohooks --verbose
