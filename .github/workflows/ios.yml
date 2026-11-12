@@ -172,10 +172,13 @@ jobs:
 
       # The Mac mini's system Python is 3.9, while pinned depot_tools requires
       # Python 3.11+ (StrEnum). Use an explicit interpreter for its CI bypass.
+      - name: Prepare setup-python cache on the Mac mini
+        run: |
+          sudo mkdir -p /Users/runner/hostedtoolcache
+          sudo chown -R "$(id -un)" /Users/runner/hostedtoolcache
+
       - name: Set up Python for depot_tools
         uses: actions/setup-python@v6
-        env:
-          RUNNER_TOOL_CACHE: ${{ runner.temp }}/toolcache
         with:
           python-version: '3.11'
 
