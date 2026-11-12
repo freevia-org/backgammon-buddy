@@ -35,6 +35,11 @@ export DEPOT_TOOLS_METRICS=0
 # flag to run public gsutil downloads directly instead of invoking interactive
 # luci-auth, which is not installed on the runner.
 export SWARMING_HEADLESS=1
+# The Mac mini is not a LUCI bot and its depot_tools vpython package points at
+# LUCI's absent /Volumes/Work Python prefix. gsutil's public-download path uses
+# its bundled dependencies, so use the runner's managed Python as depot_tools'
+# documented bypass for this CI-only checkout.
+export VPYTHON_BYPASS="manually managed python not supported by chrome operations"
 test "$(git -C "$DEPOT_TOOLS" rev-parse HEAD)" = "$DEPOT_TOOLS_REVISION"
 DEPOT_TOOLS_GSUTIL_PATCH="$GITHUB_WORKSPACE/tool/patches/depot-tools-gsutil-vpython-absolute.patch"
 git -C "$DEPOT_TOOLS" apply --check "$DEPOT_TOOLS_GSUTIL_PATCH"
