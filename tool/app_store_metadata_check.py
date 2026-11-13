@@ -26,7 +26,7 @@ def check_png(path, expected):
 
 def main():
     store = ROOT / 'app/store/ios'
-    info = json.loads((store / 'app-information.json').read_text())
+    info = json.loads((store / 'app-information.json').read_text(encoding='utf-8'))
     assert info['bundle_id'] == 'org.freevia.backgammonbuddy'
     assert info['status'] == 'preparation-draft-not-submitted'
     for key in ('marketing_url', 'support_url', 'privacy_policy_url'):
@@ -35,7 +35,7 @@ def main():
     limits = {'name': 30, 'subtitle': 30, 'keywords': 100,
               'promotional_text': 170, 'description': 4000, 'review_notes': 4000}
     for name, limit in limits.items():
-        text = (store / f'en-US/{name}.txt').read_text().strip()
+        text = (store / f'en-US/{name}.txt').read_text(encoding='utf-8').strip()
         assert 0 < len(text) <= limit, f'{name}: {len(text)}/{limit}'
         print(f'{name}: {len(text)}/{limit} characters')
     with (ROOT / 'app/ios/Runner/Info.plist').open('rb') as stream:
@@ -44,10 +44,10 @@ def main():
     assert 'QR' in plist['NSCameraUsageDescription']
     assert 'NSLocalNetworkUsageDescription' in plist
     icons = ROOT / 'app/ios/Runner/Assets.xcassets/AppIcon.appiconset'
-    catalog = json.loads((icons / 'Contents.json').read_text())
+    catalog = json.loads((icons / 'Contents.json').read_text(encoding='utf-8'))
     icon = next(i for i in catalog['images'] if i['idiom'] == 'ios-marketing')
     check_png(icons / icon['filename'], (1024, 1024))
-    manifest = json.loads((store / 'screenshots/manifest.json').read_text())
+    manifest = json.loads((store / 'screenshots/manifest.json').read_text(encoding='utf-8'))
     for family, expected in {'iphone-6.9': (1320, 2868), 'ipad-13': (2064, 2752)}.items():
         images = sorted((store / f'screenshots/en-US/{family}').glob('*.png'))
         assert 1 <= len(images) <= 10, f'{family}: provide 1–10 screenshots'

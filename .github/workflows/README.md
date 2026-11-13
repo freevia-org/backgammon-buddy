@@ -5,6 +5,15 @@
 | CI | `ci.yml` | `workflow_dispatch` | Package, app, native, emulator and release-preflight checks — see the breakdown below |
 | Android | `android.yml` | `workflow_dispatch` | Build ARM/ARM64 APKs; on `master`, distribute only after CI passes for the same commit and only with release signing and Firebase configured; optionally prepare a signed Play bundle artifact |
 | iOS | `ios.yml` | `workflow_dispatch` | Build the Rust engine staticlib, statically link it into `Runner`, produce an unsigned `Runner.app`, and (when configured) build a signed IPA and push it to Firebase App Distribution after CI passes |
+| Windows | `windows.yml` | `workflow_dispatch` | Build the portable Windows x64 release zip on the I5 Windows runner |
+| Manual CodeQL security scan | `codeql-manual.yml` | `workflow_dispatch` | CodeQL analysis per language; runs only when dispatched on `master` |
+| Privacy cleanup | `privacy-cleanup.yml` | `workflow_dispatch` | Dry-run (or, with `apply_retention`, apply) online retention and erasure requests through a short-lived workload-identity token; `master` only |
+
+Third-party actions are pinned to full commit SHAs with the release in a
+trailing comment; GitHub-owned `actions/*` and `github/codeql-action` follow
+their major tag. Bump a pin by replacing the SHA and the comment together.
+`dtolnay/rust-toolchain` is pinned to a `master` commit and takes the channel
+from its `toolchain: stable` input (the ref name no longer selects it).
 
 ## `ci.yml` — test jobs
 
@@ -30,8 +39,9 @@ golden tests. Upgrade those pins together and regenerate goldens deliberately.
 I5 Linux and Windows runners; select `hosted` when those runners are unavailable
 or stuck in setup to use Ubuntu 24.04 and Windows Server 2025. Android release
 builds support the same local/hosted selection. The manually dispatched Windows
-release build and privacy-cleanup workflow remain on I5. iOS builds use the
-pinned GitHub-hosted `macos-26` image with Xcode 26.6.
+release build and privacy-cleanup workflow remain on I5. iOS builds default to
+the self-hosted Mac mini (Xcode 27.2); its `runner` input selects the pinned
+GitHub-hosted `macos-26` image with Xcode 26.6 as the fallback.
 
 ## Distribution is gated on CI
 
@@ -119,7 +129,9 @@ before a store submission.
 Release signing is **repository-secret gated**, like the Firebase and iOS paths.
 The `Configure release signing` step decodes the upload keystore and writes
 `app/android/key.properties`; `app/android/app/build.gradle.kts` picks it up and
-selects the real `release` signing config. When the secrets are absent the step
+selects the real `release` signing config. Both files are deleted again by an
+`always()` step once the last Gradle invocation has finished, so they do not
+linger in the persistent runner's workspace. When the secrets are absent the step
 prints a `::warning::` and Gradle falls back to Flutter's **debug** keystore, so
 the job stays green — but that APK cannot be published and is not automatically
 distributed to testers. This keeps a temporary runner's debug key from creating
@@ -145,9 +157,18 @@ APK bundles them automatically. No CI work is needed for nets.
 
 ## `ios.yml` — how it builds
 
-Runs on the pinned `macos-26` image with Xcode **26.6** selected explicitly
+Runs on the Mac mini with Xcode **27.2** by default, or on the pinned
+`macos-26` image with Xcode **26.6** when `runner: hosted` is selected
 (`XCODE_VERSION` in `ios.yml`; Rust cross-compilation to `aarch64-apple-ios`
 and the Xcode build both need macOS). Bump the image and Xcode together.
+
+On the Mac mini each run gets a private directory on the external work volume
+(`tool/prepare_ios_runner_storage.py`). The job's final step deletes its heavy
+outputs (engine checkout, app and GNUbg builds); the Cargo and pub directories
+stay for the cache actions' post steps and are pruned by the next run's storage
+preparation once a day old. A cleanup step also removes the signing keychain
+and the installed provisioning profile after export, including when the run
+fails or is cancelled.
 
 1. Checks out with `submodules: recursive` (the engine needs `native/wildbg`).
 2. Installs the Rust `aarch64-apple-ios` target and builds the engine staticlib:
@@ -286,7 +307,7 @@ be matched to the exact build that produced it:
 | `aigammon-symbols-android-<run>` | `android.yml` |
 | `aigammon-symbols-ios-<run>` | `ios.yml` |
 | `aigammon-native-symbols-android-<run>` | Unstripped Rust engine shared libraries with release line tables |
-| `aigammon-ios-signed-symbols-<run>` | Signed archive dSYMs plus its exact Dart symbols |
+| `aigammon-ios-archive-symbols-<run>` | Archive dSYMs (`ios.yml`, only with `publish_artifacts`) |
 
 Preserve these outside GitHub's artifact retention window. Native symbol upload
 and a deliberately symbolicated test crash remain acceptance steps; producing an

@@ -96,7 +96,7 @@ def apple_sources(roots, output):
                                                    'Intermediates.noindex', 'Products')]
             here = Path(folder)
             if 'Package.resolved' in files:
-                record = json.loads((here / 'Package.resolved').read_text())
+                record = json.loads((here / 'Package.resolved').read_text(encoding='utf-8'))
                 for pin in record.get('pins', record.get('object', {}).get('pins', [])):
                     normalized = {'identity': pin.get('identity', pin.get('package')),
                         'location': public_url(pin.get('location', pin.get('repositoryURL', ''))),
