@@ -166,5 +166,8 @@ internal class OfflineBuddyTts(context: Context, messenger: BinaryMessenger) :
     fun close() {
         release()
         channel.setMethodCallHandler(null)
+        // The init and utterance watchdogs would otherwise keep this object
+        // (and the detached engine's messenger) reachable for up to a minute.
+        main.removeCallbacksAndMessages(null)
     }
 }
