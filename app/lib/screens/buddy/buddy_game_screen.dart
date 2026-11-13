@@ -888,7 +888,7 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
         message: appLocalizationsOf(context).buddyWaitingForOpening,
       );
     }
-    final (whiteDice, blackDice) = persistentDice(c.game.events);
+    final (whiteDice, blackDice) = _persistentDice(c.game.events);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: BoardView(
@@ -905,6 +905,22 @@ class _BuddyGameScreenState extends ConsumerState<_EnabledBuddyGameScreen>
         highlightMovingPlayer: _discrepantSide,
       ),
     );
+  }
+
+  /// [persistentDice] of the current log, folded once per log rather than once
+  /// per rebuild — this screen rebuilds for every spoken line and every session
+  /// notification, and the fold walks the whole game. `Game` hands out a fresh
+  /// list per append and never mutates one, so the same instance is the same
+  /// content (the digital game screen keys its own copy the same way).
+  List<GameEvent>? _foldedEvents;
+  (Dice?, Dice?) _foldedDice = (null, null);
+
+  (Dice?, Dice?) _persistentDice(List<GameEvent> events) {
+    if (!identical(events, _foldedEvents)) {
+      _foldedEvents = events;
+      _foldedDice = persistentDice(events);
+    }
+    return _foldedDice;
   }
 
   /// Where the last placement check and the board disagree, as board locations

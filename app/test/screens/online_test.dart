@@ -82,6 +82,21 @@ class DelayedMissingMatchApi extends FakeMatchApi {
   }
 }
 
+/// Holds every read of [heldCode] open until [release] completes — a poll that
+/// is still in flight when the user cancels the wait it belongs to.
+class HeldFetchApi extends FakeMatchApi {
+  HeldFetchApi(super.backend, super.uid);
+
+  String? heldCode;
+  final release = Completer<void>();
+
+  @override
+  Future<MatchDoc> fetchMatch(String code) async {
+    if (code == heldCode) await release.future;
+    return super.fetchMatch(code);
+  }
+}
+
 class DelayedRememberStore extends OnlineSessionStore {
   DelayedRememberStore(super.db);
 
@@ -505,6 +520,57 @@ void main() {
     // No poll timer outlives the cancel (advancing time triggers nothing).
     await t.pump(const Duration(seconds: 6));
     expect(find.byType(GameScreen), findsNothing);
+  });
+
+  testWidgets('a cancelled wait cannot launch once a new match is created', (
+    t,
+  ) async {
+    // Cancel while the poll's read is in flight, then create again: the new
+    // flow clears the cancelled flag, and the OLD loop used to come back from
+    // its read, find the flag clear, and carry on — here straight into a board
+    // for a match whose code is no longer the one on screen.
+    await t.binding.setSurfaceSize(surface);
+    addTearDown(() => t.binding.setSurfaceSize(null));
+
+    final api = HeldFetchApi(backend, 'me')
+      ..nextCode = 'OLD111'
+      ..heldCode = 'OLD111'
+      ..autoSeedOpening = true;
+    await t.pumpWidget(_app(api, db: db));
+    await t.pumpAndSettle();
+
+    await t.tap(find.widgetWithText(FilledButton, 'Create'));
+    await t.pump();
+    await t.pump();
+    await t.pump();
+    expect(find.text('OLD111'), findsOneWidget);
+
+    await t.tap(find.widgetWithText(TextButton, 'Cancel'));
+    await t.pump();
+
+    api.nextCode = 'NEW222';
+    await t.tap(find.widgetWithText(FilledButton, 'Create'));
+    await t.pump();
+    await t.pump();
+    await t.pump();
+    expect(find.text('NEW222'), findsOneWidget);
+
+    // The abandoned match fills up, and only now does its held read return.
+    final old = backend.matches['OLD111']!
+      ..guestUid = 'guest'
+      ..status = 'active';
+    seedOpening(old, whiteDie: 6, blackDie: 3);
+    api.release.complete();
+    await t.pump();
+    await t.pump(const Duration(seconds: 2));
+    await t.pump(const Duration(seconds: 2));
+
+    expect(find.byType(GameScreen), findsNothing);
+    expect(find.text('NEW222'), findsOneWidget);
+
+    // Stop the live wait so no poll timer outlives the test.
+    await t.tap(find.widgetWithText(TextButton, 'Cancel'));
+    await t.pump();
   });
 
   group('rejoin after a restart', () {

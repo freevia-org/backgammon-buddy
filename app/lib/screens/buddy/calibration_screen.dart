@@ -930,7 +930,7 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
                     key: const Key('buddy-board-outline'),
                     painter: BoardOutlinePainter(
                       handles: _handles,
-                      columns: _handles.outlines(_orientation),
+                      columns: _outlines(),
                       edge: scheme.primary,
                       column: scheme.primary.withValues(alpha: 0.55),
                     ),
@@ -961,6 +961,25 @@ class _CalibrationScreenState extends ConsumerState<_EnabledCalibrationScreen>
         ),
       ),
     );
+  }
+
+  /// The derived columns for the current handles and seat, re-derived only when
+  /// one of the two changes. This screen rebuilds for every camera frame, and
+  /// each derivation builds a board geometry and maps a hundred points through
+  /// it — for an outline that, between drags, has not moved.
+  BoardHandles? _outlinedHandles;
+  BoardOrientation? _outlinedOrientation;
+  List<List<Offset>> _outlineRings = const <List<Offset>>[];
+
+  List<List<Offset>> _outlines() {
+    final orientation = _orientation;
+    if (!identical(_outlinedHandles, _handles) ||
+        _outlinedOrientation != orientation) {
+      _outlinedHandles = _handles;
+      _outlinedOrientation = orientation;
+      _outlineRings = _handles.outlines(orientation);
+    }
+    return _outlineRings;
   }
 
   List<Widget> _handleWidgets(Size box) {
