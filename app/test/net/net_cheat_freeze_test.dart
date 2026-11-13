@@ -99,6 +99,18 @@ void main() {
       expect(c.state.cube.value, 1);
     });
 
+    test('an event before any opening roll freezes rather than escaping the '
+        'fold', () async {
+      // Nothing seeded: the log's FIRST event is the host's move, with no game
+      // for it to belong to. That is a rules violation like any other, not a
+      // null-check error thrown out of the inbound listener.
+      final rig = await ScriptedRig.guest();
+      rig.forge(MoveEvent(Player.white, Move.none));
+      await pumpUntil(() => rig.controller.frozen);
+      expect(rig.controller.cheatError!.code, 'illegal-event');
+      expect(rig.controller.isReady, isFalse);
+    });
+
     test('an event from a stranger freezes', () async {
       final rig =
           await ScriptedRig.guest(openingWhiteDie: 6, openingBlackDie: 3);

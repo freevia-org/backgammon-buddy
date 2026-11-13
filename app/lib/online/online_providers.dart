@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cupertino_http/cupertino_http.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -89,7 +91,24 @@ final matchApiProvider = FutureProvider<MatchApi>((ref) async {
     httpClientFactory: ref.watch(onlineHttpClientFactoryProvider),
   );
   ref.onDispose(api.close);
-  await api.signIn();
+  try {
+    await api.signIn();
+  } catch (_) {
+    // Do not cache a FAILED sign-in for the app lifetime: this provider is not
+    // autoDispose, so without this one offline attempt would fail every later
+    // Create/Join with the same stale error until the app is restarted. Callers
+    // `read` this (never `watch`), so the retry happens on their next attempt.
+    //
+    // Invalidated on a later event-loop turn, not here: invalidating while the
+    // build is still pending makes `.future` wait for the NEXT build instead of
+    // reporting this failure, and with no listener there would never be one.
+    var disposed = false;
+    ref.onDispose(() => disposed = true);
+    Timer.run(() {
+      if (!disposed) ref.invalidateSelf();
+    });
+    rethrow;
+  }
   return api;
 });
 
