@@ -17,15 +17,33 @@ set -euo pipefail
 timeout_s="${CI_WAIT_TIMEOUT_SECONDS:-2400}"
 poll_s="${CI_WAIT_POLL_SECONDS:-20}"
 deadline=$(( $(date +%s) + timeout_s ))
+# A single failed status query (API blip, rate limit, runner network) must not
+# fail the gate: under `set -e` the bare command substitution used to abort the
+# whole distribution job. Keep polling, but give up on a persistent failure
+# (bad token, missing permission) instead of spinning until the deadline.
+max_query_failures=5
+query_failures=0
 
 while :; do
   # Newest CI run for this commit. A re-run reuses the same run id, so
   # its latest attempt is what we see here.
-  line="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow ci.yml \
+  if line="$(gh run list --repo "$GITHUB_REPOSITORY" --workflow ci.yml \
             --commit "$SHA" --event workflow_dispatch --limit 1 \
             --json status,conclusion,url \
-            --jq '.[0] // empty | "\(.status) \(.conclusion // "none") \(.url)"')"
-  if [ -n "$line" ]; then
+            --jq '.[0] // empty | "\(.status) \(.conclusion // "none") \(.url)"')"; then
+    query_failures=0
+  else
+    query_failures=$(( query_failures + 1 ))
+    if [ "$query_failures" -ge "$max_query_failures" ]; then
+      echo "::error::Could not query CI status for $SHA ($query_failures consecutive failures). Not distributing without a confirmed green CI run."
+      exit 1
+    fi
+    echo "::warning::CI status query failed ($query_failures/$max_query_failures); retrying in ${poll_s}s..."
+    line=""
+  fi
+  if [ "$query_failures" -gt 0 ]; then
+    :
+  elif [ -n "$line" ]; then
     read -r status conclusion url <<<"$line"
     if [ "$status" = completed ]; then
       if [ "$conclusion" = success ]; then

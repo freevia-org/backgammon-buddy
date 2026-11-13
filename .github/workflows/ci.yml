@@ -32,6 +32,8 @@ jobs:
         working-directory: ops/privacy-monitor
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v7
         with:
           node-version: 22
@@ -50,18 +52,15 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - run: python3 tool/release_preflight.py
       - run: python3 tool/app_store_metadata_check.py
-      - run: python3 -m unittest discover -s tool -p test_release_tools.py
-      - run: python3 -m unittest discover -s tool -p test_mobile_dependency_inventory.py
-      - run: python3 -m unittest discover -s tool -p test_mobile_notices.py
       - run: python3 tool/mobile_notices.py --check
-      - run: python3 -m unittest discover -s tool -p test_okhttp_publicsuffix.py
-      - run: python3 -m unittest discover -s tool -p test_verify_native_symbols.py
-      - run: python3 -m unittest discover -s tool -p test_verify_ios_ffi_exports.py
-      - run: python3 -m unittest discover -s tool -p test_verify_ios_transport.py
-      - run: python3 -m unittest discover -s tool -p test_ios_sdk_stub_overlay.py
-      - run: python3 -m unittest discover -s tool -p test_prepare_ios_runner_storage.py
+      # One discovery over every tool/test_*.py. This was nine hand-listed
+      # single-file invocations, so a new test module ran nowhere until someone
+      # remembered to add another line here.
+      - run: python3 -m unittest discover -s tool -p 'test_*.py'
 
   # The pure-Dart packages. One job definition, one leg each: they were
   # near-identical copies of the same six steps, and every change to the shape
@@ -105,7 +104,9 @@ jobs:
           - package: match_transport
     steps:
       - uses: actions/checkout@v7
-      - uses: dart-lang/setup-dart@v1
+        with:
+          persist-credentials: false
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1.8.1
         with:
           sdk: stable
       # dart-lang/setup-dart has no cache input of its own (its inputs are
@@ -137,14 +138,16 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
+          persist-credentials: false
           submodules: recursive
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # master; toolchain selected by the input below
         with:
+          toolchain: stable
           # Both are in the stable profile already; naming them makes the job
           # fail loudly at setup rather than at the first `cargo fmt` if that
           # ever stops being true.
           components: rustfmt, clippy
-      - uses: Swatinem/rust-cache@v2
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
         with:
           workspaces: native/engine_shim
 
@@ -170,7 +173,7 @@ jobs:
         run: cargo test --release
         working-directory: native/engine_shim
 
-      - uses: dart-lang/setup-dart@v1
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1.8.1
         with:
           sdk: stable
       - uses: actions/cache@v6
@@ -209,9 +212,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
+          persist-credentials: false
           # License exactness checks compare bundled texts with pinned upstream.
           submodules: recursive
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
         with:
           channel: stable
           flutter-version: 3.44.8
@@ -234,7 +238,9 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
-      - uses: subosito/flutter-action@v2
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
         with:
           channel: stable
           # Same pin as app tests and distribution builds. The
@@ -275,6 +281,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v7
         with:
           node-version: 22
@@ -321,9 +329,9 @@ jobs:
       # Same exact pin as the `rules` job — the two must not drift onto
       # different emulator versions.
       - run: npm install -g firebase-tools@15.25.1
-      - uses: dart-lang/setup-dart@v1
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1.8.1
         with: { sdk: stable }
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
         with:
           channel: stable
           flutter-version: 3.44.8
