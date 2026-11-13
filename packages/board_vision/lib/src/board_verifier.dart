@@ -7,7 +7,6 @@ import 'color_model.dart';
 import 'frame.dart';
 import 'occupancy.dart';
 import 'roi_atlas.dart';
-import 'roi_sampler.dart';
 
 /// What one region had to say about what the game expects of it.
 enum RegionVerdict {
@@ -445,14 +444,14 @@ class BoardVerifier {
 
   final Frame frame;
 
+  /// The one instrument behind every verdict. It used to share the work with
+  /// a sampler and a colour model of this class's own, which were the same
+  /// sampler and — at the cost of measuring the frame's light a second time —
+  /// the same colours.
   final OccupancyReader _reader;
-  final RoiSampler _sampler;
-  final ColorModel _colors;
 
   BoardVerifier(this.calibration, this.frame)
-      : _reader = OccupancyReader(calibration, frame),
-        _sampler = RoiSampler(frame, calibration.geometry, calibration.atlas),
-        _colors = calibration.colorsIn(frame);
+      : _reader = OccupancyReader(calibration, frame);
 
   /// How far the measured stack height may sit from the expected one, in
   /// checkers, before the region is called wrong.
@@ -652,11 +651,9 @@ class BoardVerifier {
 
     // Both colours down this region's own axis, in one pass, so the question
     // "is the OTHER colour standing here?" is answered by a measurement rather
-    // than by the absence of one.
-    final measured = _sampler.measureStack(
-      StackAxis.forRegion(calibration.atlas, region, color: side),
-      _colors,
-    );
+    // than by the absence of one. The same walk the blind read above was
+    // resolved from, which the reader kept rather than have it made twice.
+    final measured = _reader.measure(region, color: side);
     final other = side == CheckerColor.white
         ? CheckerColor.black
         : CheckerColor.white;

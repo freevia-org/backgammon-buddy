@@ -216,6 +216,11 @@ class DiceReader {
   static const int maxLatticeAcross = 2400;
 
   static int _scaledLattice(int base, double dieSide) {
+    // A size that is not a positive number has no lattice to scale — and a
+    // NaN would otherwise reach `round()` below and throw out of the
+    // constructor. [read] refuses such a session outright; this only has to
+    // hand back something harmless.
+    if (!(dieSide > 0) || !dieSide.isFinite) return 1;
     final scale = BoardCalibration.defaultDieSide / dieSide;
     final capped =
         math.min(scale, maxLatticeAcross / baseLatticeAcross);
@@ -470,8 +475,14 @@ class DiceReader {
   /// The dice on the board, or null when there are not exactly two of them.
   DiceReading? read() {
     // Nothing below can be trusted at a size the sensor never resolved, and a
-    // guess here goes into the authoritative game state.
-    if (diePixels < minDiePixels) return null;
+    // guess here goes into the authoritative game state. Nor at a size that
+    // is not a size at all: `dieSide` is measured outside this package, and a
+    // zero, a negative or a NaN there must come back as "no reading" rather
+    // than slip past a comparison every NaN fails.
+    final side = calibration.dieSide;
+    if (!(side > 0) || !side.isFinite) return null;
+    final pixels = diePixels;
+    if (!pixels.isFinite || pixels < minDiePixels) return null;
 
     final grid = _sampleSurface();
     if (grid == null) return null;
@@ -535,7 +546,13 @@ class DiceReader {
   /// are about what a die IS, and a size that moved with where a die happened
   /// to land would make them mean something different in each half of the
   /// board.
-  ({double across, double down, double pixels}) get _dieOnLattice {
+  ///
+  /// Worked out once per reader: it depends on the calibration alone, and
+  /// every candidate blob asks for it.
+  late final ({double across, double down, double pixels}) _dieOnLattice =
+      _measureDieOnLattice();
+
+  ({double across, double down, double pixels}) _measureDieOnLattice() {
     final b = boundsOf(calibration.atlas.roi(RoiId.diceZone));
     final midX = (b.minX + b.maxX) / 2, midY = (b.minY + b.maxY) / 2;
     final cellX = (b.maxX - b.minX) / latticeAcross;
@@ -619,29 +636,62 @@ class DiceReader {
       foreign: Uint8List(n),
     );
 
+    // The hot loop of the whole package: every cell of the lattice, a few
+    // hundred thousand of them for the bed's dice and millions for small
+    // ones. So everything that is the same along a row or down a column is
+    // worked out once for it, and a cell's feature is looked up rather than
+    // computed — [ColorModel.featureTable] holds the very doubles
+    // [ColorModel.feature] would return, so the mask comes out cell for cell
+    // what the plain loop made it.
+    final geometry = calibration.geometry;
+    final rgb = frame.rgb;
+    final width = frame.width, height = frame.height;
+    final exposure = colors.exposure;
+    final columnX = Float64List(latticeAcross);
+    for (var col = 0; col < latticeAcross; col++) {
+      columnX[col] = _boardXAt(surface, col);
+    }
+    final tables = <RoiBackground, Float64List>{};
+    final feature = Float64List(3);
+    RoiBackground? tabulated;
+    late Float64List table;
+
     var seen = 0;
-    for (var i = 0; i < n; i++) {
-      final p = _imageAt(surface, i);
-      if (!p.x.isFinite || !p.y.isFinite) continue;
-      final px = p.x.round(), py = p.y.round();
-      if (px < 0 || py < 0 || px >= frame.width || py >= frame.height) {
-        continue;
-      }
-      final background = _referenceOf(surface, i);
-      // The atlas's points and bar tile the surface, so a cell with no
-      // owner is a board this code has never met; not counting it as seen
-      // lets the visibility gate below say so rather than reading around
-      // the hole.
-      if (background == null) continue;
-      seen++;
-      final sample = frame.pixelAt(px, py);
-      final f = ColorModel.feature(
-        sample,
-        background.color,
-        exposure: colors.exposure,
-      );
-      if (background.distanceTo(f) > minForeignDistance) {
-        surface.foreign[i] = 1;
+    for (var row = 0; row < latticeDown; row++) {
+      final rowStart = row * latticeAcross;
+      final y = _boardYAt(surface, rowStart);
+      // What this row's cells are judged against — the band's own two
+      // surfaces inside the band, the owning point's or the bar's outside
+      // it. Decided here and nowhere else.
+      final inBand = y >= surface.bandMinY && y <= surface.bandMaxY;
+      final rowOwners =
+          y >= RoiAtlas.midline ? surface.ownersNear : surface.ownersFar;
+      for (var col = 0; col < latticeAcross; col++) {
+        final p = geometry.imagePointOf(Pt(columnX[col], y));
+        if (!p.x.isFinite || !p.y.isFinite) continue;
+        final px = p.x.round(), py = p.y.round();
+        if (px < 0 || py < 0 || px >= width || py >= height) continue;
+        final background = inBand ? surface.bandBackground : rowOwners[col];
+        // The atlas's points and bar tile the surface, so a cell with no
+        // owner is a board this code has never met; not counting it as seen
+        // lets the visibility gate below say so rather than reading around
+        // the hole.
+        if (background == null) continue;
+        seen++;
+        if (!identical(background, tabulated)) {
+          tabulated = background;
+          table = tables[background] ??= ColorModel.featureTable(
+            background.color,
+            exposure: exposure,
+          );
+        }
+        final offset = (py * width + px) * 3;
+        feature[0] = table[rgb[offset]];
+        feature[1] = table[256 + rgb[offset + 1]];
+        feature[2] = table[512 + rgb[offset + 2]];
+        if (background.distanceTo(feature) > minForeignDistance) {
+          surface.foreign[rowStart + col] = 1;
+        }
       }
     }
     // A board hanging over the edge of the picture is not one to read dice
@@ -679,17 +729,6 @@ class DiceReader {
       }
     }
     return (far: far, near: near);
-  }
-
-  /// The background cell [i] is judged against — the band's own two
-  /// surfaces inside the band, the owning point's or the bar's outside it.
-  /// One rule, used by the sampling pass and by every later question about a
-  /// cell, so the two can never quietly disagree.
-  RoiBackground? _referenceOf(_Surface s, int i) {
-    final y = _boardYAt(s, i);
-    if (y >= s.bandMinY && y <= s.bandMaxY) return s.bandBackground;
-    final col = i % latticeAcross;
-    return y >= RoiAtlas.midline ? s.ownersNear[col] : s.ownersFar[col];
   }
 
   /// One die's y-extent in board units.
@@ -983,7 +1022,7 @@ class DiceReader {
     // The picture positions and brightness only this blob needs, computed
     // here: the surface keeps nothing per cell but the foreign mask (see
     // [_Surface] for the arithmetic that says why).
-    final image = <int, Pt>{for (final i in cells) i: _imageAt(surface, i)};
+    final image = <Pt>[for (final i in cells) _imageAt(surface, i)];
     final outline = _outlineOf(image);
     if (outline == null || outline.scatter < minSquareness) return null;
 
@@ -1126,9 +1165,9 @@ class DiceReader {
   /// to a small patch — leaves the number alone. A circle comes out near zero
   /// however it is squashed, and a square near an eighth however it is
   /// sheared.
-  ({double scatter, double radius})? _outlineOf(Map<int, Pt> image) {
+  ({double scatter, double radius})? _outlineOf(List<Pt> image) {
     var mx = 0.0, my = 0.0;
-    for (final p in image.values) {
+    for (final p in image) {
       mx += p.x;
       my += p.y;
     }
@@ -1136,7 +1175,7 @@ class DiceReader {
     my /= image.length;
 
     var sxx = 0.0, sxy = 0.0, syy = 0.0;
-    for (final p in image.values) {
+    for (final p in image) {
       final dx = p.x - mx, dy = p.y - my;
       sxx += dx * dx;
       sxy += dx * dy;
@@ -1162,7 +1201,7 @@ class DiceReader {
     final sMajor = math.sqrt(major), sMinor = math.sqrt(minor);
 
     final reach = List<double>.filled(outlineBins, 0);
-    for (final p in image.values) {
+    for (final p in image) {
       final dx = p.x - mx, dy = p.y - my;
       final u = (dx * ex + dy * ey) / sMajor;
       final v = (-dx * ey + dy * ex) / sMinor;
@@ -1288,14 +1327,21 @@ class DiceReader {
         final i = stack.removeLast();
         run.add(i);
         final col = i % latticeAcross;
-        for (final j in <int>[
-          if (col > 0) i - 1,
-          if (col < latticeAcross - 1) i + 1,
-          i - latticeAcross,
-          i + latticeAcross,
-        ]) {
+        // Left, right, up, down — in that order, which is the order the run
+        // comes out in and so the order its cells are summed in. No bounds
+        // check on the rows: a cell above the first or below the last is in
+        // no set.
+        if (col > 0) {
+          final j = i - 1;
           if (cells.contains(j) && seen.add(j)) stack.add(j);
         }
+        if (col < latticeAcross - 1) {
+          final j = i + 1;
+          if (cells.contains(j) && seen.add(j)) stack.add(j);
+        }
+        final up = i - latticeAcross, down = i + latticeAcross;
+        if (cells.contains(up) && seen.add(up)) stack.add(up);
+        if (cells.contains(down) && seen.add(down)) stack.add(down);
       }
       out.add(run);
     }
@@ -1330,9 +1376,8 @@ class _Surface {
   final double x0, x1, y0, y1;
 
   /// The band's extent and reference, and each column's owning region per
-  /// half — everything `DiceReader._referenceOf` needs to answer for any
-  /// cell, carried so the sampling pass and the pip gates judge colour
-  /// against the very same surfaces.
+  /// half — everything `DiceReader._sampleSurface` needs to say what any
+  /// cell is judged against.
   final double bandMinY, bandMaxY;
   final RoiBackground bandBackground;
   final List<RoiBackground?> ownersFar, ownersNear;
