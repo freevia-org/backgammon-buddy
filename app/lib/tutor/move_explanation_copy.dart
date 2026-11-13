@@ -104,11 +104,14 @@ class MoveExplanationCopySet {
   /// The full plan remains available separately.
   final TutorPhrase? shortSummaryReason;
 
+  /// [forced] is whether the roll left no choice, when the caller has already
+  /// worked that out (it costs a full move generation to find out here).
   static MoveExplanationCopySet forCandidate(
     GameState before,
     ScoredMove candidate,
-    ScoredMove best,
-  ) {
+    ScoredMove best, {
+    bool? forced,
+  }) {
     final loss = (best.rankingValue - candidate.rankingValue).clamp(
       0.0,
       double.infinity,
@@ -116,7 +119,7 @@ class MoveExplanationCopySet {
     final metric = candidate.matchWinningChance == null
         ? AssessmentMetric.cubelessEquity
         : AssessmentMetric.matchWinningChance;
-    final forced =
+    forced ??=
         before.phase == GamePhase.moving && before.legalMoves.length <= 1;
     final isBest = markForMetric(loss, metric) == MoveMark.best;
     final applied = before.board.applyMove(before.turn, candidate.move);
@@ -343,7 +346,9 @@ class MoveExplanationCopySet {
       );
     } else {
       final shots = legalHittingRolls(after, Player.white);
-      final example = shots == 0 ? null : _firstHitExample(after);
+      final example = shots == 0
+          ? null
+          : firstHittingReply(after, Player.white);
       result.add(
         MoveExplanationCopy(
           shots == 0
@@ -546,24 +551,6 @@ class MoveExplanationCopySet {
       },
       parts: [summary, ...factors.take(3)],
     );
-  }
-
-  static (int, int, int)? _firstHitExample(BoardState board) {
-    for (var first = 1; first <= 6; first++) {
-      for (var second = first; second <= 6; second++) {
-        final plays = MoveGenerator.legalMoves(
-          board,
-          Player.black,
-          Dice(first, second),
-        );
-        for (final play in plays) {
-          for (final step in play.checkerMoves) {
-            if (step.isHit) return (first, second, step.to + 1);
-          }
-        }
-      }
-    }
-    return null;
   }
 
   static bool _samePoints(List<int> a, List<int> b) {

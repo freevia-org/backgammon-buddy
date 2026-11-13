@@ -91,6 +91,41 @@ void main() {
     },
   );
 
+  test('names longer than their fields are truncated, not run into the '
+      'fields behind them', () {
+    final sample = _sampleMatch();
+    final header = _gameStream(
+      exportMatchXg(
+        ExportableMatch(
+          whitePlayer: 'W' * 60,
+          blackPlayer: 'B' * 300,
+          length: 5,
+          date: sample.date,
+          event: 'E' * 200,
+          games: sample.games,
+        ),
+      ),
+    );
+    final view = ByteData.sublistView(header);
+
+    // string[40] at 9 and at 50: a length byte, then at most 40 characters.
+    expect(header[9], 40);
+    expect(header.sublist(10, 50), everyElement('W'.codeUnitAt(0)));
+    expect(header[50], 40);
+    expect(header.sublist(51, 91), everyElement('B'.codeUnitAt(0)));
+    expect(header[91], 0);
+    // What sits behind them is still what the match says it is.
+    expect(view.getInt32(92, Endian.little), 5, reason: 'match length');
+    expect(view.getInt32(96, Endian.little), 0, reason: 'variation');
+    expect(header.sublist(100, 104), [1, 0, 0, 0],
+        reason: 'Crawford on; Jacoby, beaver and auto-double untouched');
+    expect(header.sublist(104, 128), everyElement(0), reason: 'ratings');
+    // string[128] at 136.
+    expect(header[136], 128);
+    expect(header.sublist(137, 265), everyElement('E'.codeUnitAt(0)));
+    expect(header[265], 0);
+  });
+
   test('rejects empty matches and malformed games before writing output', () {
     expect(
       () => exportMatchXg(
@@ -124,6 +159,24 @@ void main() {
       throwsFormatException,
     );
   });
+}
+
+/// The uncompressed `temp.xg` record stream out of an exported file.
+Uint8List _gameStream(Uint8List bytes) {
+  final archive = bytes.sublist(8232);
+  final footer = ByteData.sublistView(archive, archive.length - 36);
+  final registry = Uint8List.fromList(
+    ZLibCodec().decode(
+      archive.sublist(footer.getInt32(16, Endian.little), archive.length - 36),
+    ),
+  );
+  final entry = ByteData.sublistView(registry);
+  final start = entry.getInt32(520, Endian.little);
+  return Uint8List.fromList(
+    ZLibCodec().decode(
+      archive.sublist(start, start + entry.getInt32(516, Endian.little)),
+    ),
+  );
 }
 
 List<int> _positionBytes(BoardState board) => [

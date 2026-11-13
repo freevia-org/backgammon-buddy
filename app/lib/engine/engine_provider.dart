@@ -361,7 +361,9 @@ class EngineManager {
       },
       onError: (Object e, StackTrace s) {
         _spawning = null;
-        throw e;
+        // With the spawner's own trace: a bare `throw e` would restart it
+        // here and hide where the spawn actually failed.
+        Error.throwWithStackTrace(e, s);
       },
     );
     _spawning = spawn;

@@ -240,6 +240,12 @@ class PracticeRepository {
     final matches = {
       for (final match in await db.select(db.matches).get()) match.id: match
     };
+    // Grouped once so each game's historical score is rebuilt from rows that
+    // are already in memory instead of two further queries per game.
+    final gamesByMatch = <int, List<GameRow>>{};
+    for (final game in games) {
+      (gamesByMatch[game.matchId] ??= []).add(game);
+    }
     final decisions = <LearningDecision>[];
     var missing = 0;
     for (final row in games) {
@@ -259,7 +265,8 @@ class PracticeRepository {
           continue;
         }
         if (!analysis.matchesContext(
-            await matchBeforeRecordedGame(MatchRepository(db), row),
+            matchBeforeRecordedGameIn(
+                match, gamesByMatch[row.matchId]!, row),
             match.cubeless)) {
           missing++;
           continue;

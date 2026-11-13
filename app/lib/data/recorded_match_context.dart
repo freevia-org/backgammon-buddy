@@ -9,10 +9,23 @@ import 'match_repository.dart';
 Future<MatchState?> matchBeforeRecordedGame(
     MatchRepository repo, GameRow row) async {
   final match = await repo.loadMatch(row.matchId);
+  return matchBeforeRecordedGameIn(
+      match, await repo.gamesFor(row.matchId), row);
+}
+
+/// [matchBeforeRecordedGame] over rows the caller already holds: [match] is
+/// [row]'s match and [matchGames] every recorded game of it, in any order.
+///
+/// The same rule with no queries of its own, for a caller walking the whole
+/// history — two round trips per game there is two thousand for a thousand
+/// games, to re-read rows it loaded in one.
+MatchState? matchBeforeRecordedGameIn(
+    MatchRow match, Iterable<GameRow> matchGames, GameRow row) {
   if (match.matchLength <= 0 || row.gameNumber < 1) return null;
-  final earlier = (await repo.gamesFor(row.matchId))
+  final earlier = matchGames
       .where((game) => game.gameNumber < row.gameNumber)
-      .toList();
+      .toList()
+    ..sort((a, b) => a.gameNumber.compareTo(b.gameNumber));
   if (earlier.length != row.gameNumber - 1) return null;
   var score = MatchState(matchLength: match.matchLength);
   for (var i = 0; i < earlier.length; i++) {

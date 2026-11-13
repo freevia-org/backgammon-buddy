@@ -449,6 +449,7 @@ class DiceSoundListener {
   StreamSubscription<AmplitudeSample>? _amplitudes;
   MicOpening? _state;
   bool _starting = false;
+  bool _stopped = false;
 
   /// How the microphone answered, or null before it was asked.
   MicOpening? get state => _state;
@@ -465,6 +466,15 @@ class DiceSoundListener {
     try {
       final opening = await source.open();
       _state = opening;
+      if (_stopped) {
+        // [stop] ran while the operating system was still answering — the
+        // permission dialog can sit there for as long as the user likes. Its
+        // `close` found nothing open, so the device this call has just
+        // acquired is released here rather than left recording with nobody
+        // listening to it.
+        if (opening == MicOpening.listening) await source.close();
+        return opening;
+      }
       if (opening == MicOpening.listening) {
         _trigger.reset();
         _amplitudes = source.amplitudes.listen(
@@ -501,6 +511,7 @@ class DiceSoundListener {
   }
 
   Future<void> stop() async {
+    _stopped = true;
     try {
       await _amplitudes?.cancel();
     } catch (error) {
@@ -575,12 +586,19 @@ class RecordMicAmplitudeSource implements MicAmplitudeSource {
       echoCancel: false,
       noiseSuppress: false,
     ));
-    _pcm = stream.listen((chunk) {
-      if (_out.isClosed) return;
-      for (final sample in _meter.add(chunk)) {
-        _out.add(sample);
-      }
-    });
+    _pcm = stream.listen(
+      (chunk) {
+        if (_out.isClosed) return;
+        for (final sample in _meter.add(chunk)) {
+          _out.add(sample);
+        }
+      },
+      // Forwarded rather than left unhandled: [DiceSoundListener] already
+      // treats an error on [amplitudes] as a microphone that stopped hinting.
+      onError: (Object error, StackTrace stack) {
+        if (!_out.isClosed) _out.addError(error, stack);
+      },
+    );
     return MicOpening.listening;
   }
 

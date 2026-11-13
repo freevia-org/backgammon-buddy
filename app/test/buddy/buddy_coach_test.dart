@@ -16,10 +16,12 @@ class _DelayedTutor extends TutorService {
   _DelayedTutor() : super(PracticeTestEngine());
   final pending = Completer<MoveAssessment?>();
   int calls = 0;
+  MatchContext? lastContext;
   @override
   Future<MoveAssessment?> assessOrNull(GameState before, Move move,
       {MatchContext? context}) {
     calls++;
+    lastContext = context;
     return pending.future;
   }
 }
@@ -119,4 +121,26 @@ void main() {
     await h.settle();
     expect(h.speech.where((s) => s.startsWith('For your last play')), isEmpty);
   });
+
+  for (final cubeless in [false, true]) {
+    test('the review is asked for under the cube rule of the match '
+        '(cubeless: $cubeless)', () async {
+      final h = Harness(cubeless: cubeless);
+      final tutor = _DelayedTutor();
+      final coach = BuddyCoach(
+          tutor: tutor,
+          options: const TutorOptions(),
+          speaker: h.speaker,
+          userSide: Player.white);
+      h.session.addListener(() => coach.sync(h.session.controller));
+      addTearDown(coach.dispose);
+      h.start();
+      h.session.enterDiceManually(Dice(6, 3));
+      await h.settle();
+      h.session.enterPlayManually(h.controller.state.legalMoves.last);
+      await h.settle();
+      expect(tutor.calls, 1);
+      expect(tutor.lastContext!.cubeless, cubeless);
+    });
+  }
 }

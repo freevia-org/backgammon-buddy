@@ -149,9 +149,13 @@ String _sgfPoint(int index) {
   return String.fromCharCode(97 + index);
 }
 
+/// Escapes a SimpleText property value (player and event names).
+///
+/// A line break becomes a SPACE, which is what FF[4] says a reader does with
+/// one in SimpleText anyway. It must not become backslash-n: SGF has no such
+/// escape — a backslash makes the NEXT character literal — so that spelling
+/// reads back as a stray letter "n" in the name.
 String _sgfEscape(String text) => text
     .replaceAll('\\', '\\\\')
     .replaceAll(']', r'\]')
-    .replaceAll('\r\n', '\n')
-    .replaceAll('\r', '\n')
-    .replaceAll('\n', r'\n');
+    .replaceAll(RegExp(r'\r\n|\r|\n'), ' ');
