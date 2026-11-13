@@ -20,10 +20,13 @@ void main() {
     );
 
     test('escapes SGF delimiters and separates game trees', () {
-      final match = _sample().copyWithPlayers(white: 'W]\n', black: 'B]');
+      final match = _sample().copyWithPlayers(white: 'W]\nX', black: 'B]');
       final sgf = exportMatchSgf(match);
 
-      expect(sgf, contains(r'PW[W\]\n]'));
+      // A line break in SimpleText is a space. Backslash-n is not an SGF
+      // escape: a reader would hand back the letter "n".
+      expect(sgf, contains(r'PW[W\] X]'));
+      expect(sgf, isNot(contains(r'\n')));
       expect(sgf, contains(r'PB[B\]]'));
       expect(RegExp(r'\(;GM\[6\]').allMatches(sgf).length, 2);
     });

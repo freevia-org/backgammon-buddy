@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:aigammon_app/buddy/dice_sound_trigger.dart';
@@ -306,6 +307,28 @@ void main() {
       expect(looks, 0);
     });
 
+    test('a stop that lands while the microphone is still opening releases '
+        'what the opening acquires', () async {
+      // The permission dialog is the long await: the screen can be gone
+      // before the user answers it.
+      var looks = 0;
+      final source = _SlowOpeningSource();
+      final listener =
+          DiceSoundListener(source: source, onLookNow: () => looks++);
+
+      final starting = listener.start();
+      await listener.stop();
+      expect(source.closes, 1, reason: 'nothing was open yet');
+
+      source.answer.complete(MicOpening.listening);
+      expect(await starting, MicOpening.listening);
+      expect(source.closes, 2,
+          reason: 'the device opened after the stop is closed again');
+      expect(source.listeners, 0,
+          reason: 'and nobody subscribed to a microphone that was stopped');
+      expect(looks, 0);
+    });
+
     test('starting twice does not open a second microphone', () async {
       final source = FakeMicSource();
       final listener = DiceSoundListener(source: source, onLookNow: () {});
@@ -315,6 +338,24 @@ void main() {
       await listener.stop();
     });
   });
+}
+
+class _SlowOpeningSource implements MicAmplitudeSource {
+  final answer = Completer<MicOpening>();
+  int closes = 0;
+  int listeners = 0;
+
+  @override
+  Stream<AmplitudeSample> get amplitudes {
+    listeners++;
+    return const Stream<AmplitudeSample>.empty();
+  }
+
+  @override
+  Future<MicOpening> open() => answer.future;
+
+  @override
+  Future<void> close() async => closes++;
 }
 
 class _FailingAmplitudeSource implements MicAmplitudeSource {

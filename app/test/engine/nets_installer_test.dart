@@ -49,12 +49,12 @@ void main() {
       expect(race.readAsBytesSync(), [9, 8, 7]);
     });
 
-    test('skips the copy when a file already exists with matching length',
-        () async {
+    test('skips the copy when a file already holds the asset bytes', () async {
       final target = tmp;
-      // Pre-place a contact.onnx of the SAME length (4) but different bytes.
       final contact = File(p.join(target.path, 'contact.onnx'));
-      contact.writeAsBytesSync([100, 101, 102, 103]);
+      contact.writeAsBytesSync([1, 2, 3, 4]);
+      final installedAt = DateTime(2020);
+      contact.setLastModifiedSync(installedAt);
 
       var contactReads = 0;
       Future<ByteData> reader(String key) async {
@@ -64,11 +64,25 @@ void main() {
 
       await NetsInstaller.ensureInstalledTo(target, reader);
 
-      // The asset is still read (to learn its length) but the file is NOT
-      // overwritten because lengths match.
+      // The asset is still read (to compare against) but the file is NOT
+      // rewritten because it is already current.
       expect(contactReads, 1);
-      expect(contact.readAsBytesSync(), [100, 101, 102, 103],
-          reason: 'matching-length file must be left untouched');
+      expect(contact.lastModifiedSync(), installedAt,
+          reason: 'a current file must be left untouched');
+    });
+
+    test('replaces a same-length file whose content differs', () async {
+      // A retrained net of the same architecture has the same byte length, so
+      // length alone would keep serving the previous release's net.
+      final target = tmp;
+      final contact = File(p.join(target.path, 'contact.onnx'));
+      contact.writeAsBytesSync([100, 101, 102, 103]);
+
+      await NetsInstaller.ensureInstalledTo(target, readerReturning(fakeAssets));
+
+      expect(contact.readAsBytesSync(), [1, 2, 3, 4]);
+      expect(File('${contact.path}.tmp').existsSync(), isFalse,
+          reason: 'the replacement is renamed into place, not left beside it');
     });
 
     test('overwrites when the existing file length differs', () async {
