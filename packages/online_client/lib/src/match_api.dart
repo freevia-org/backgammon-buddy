@@ -61,6 +61,17 @@ String generateInviteCode({Random? rng}) {
   ]);
 }
 
+/// Whether [code] could be a `matches/{code}` document id at all.
+///
+/// Deliberately looser than [kCodeAlphabet] (any ASCII letters and digits, any
+/// reasonable length), because its job is not to police the alphabet: it is to
+/// keep TYPED text out of a URL path. A code read off a text field is spliced
+/// into `…/documents/matches/<code>`, where a `/`, `?`, `#` or `..` would
+/// address a different resource altogether instead of a match nobody has.
+bool isPlausibleInviteCode(String code) => _plausibleCode.hasMatch(code);
+
+final RegExp _plausibleCode = RegExp(r'^[A-Za-z0-9]{1,64}$');
+
 // ---------------------------------------------------------------------------
 // Decoded documents
 // ---------------------------------------------------------------------------
@@ -450,6 +461,7 @@ class MatchApi {
   /// [PermissionDeniedException] when the match exists but is neither waiting
   /// nor ours (the rules only expose a joined match to its two players).
   Future<MatchDoc> fetchMatch(String code) async {
+    _requirePlausibleCode(code);
     final doc = await docs.get('matches/$code');
     if (doc == null) {
       throw NotFoundException('no match with code $code');
@@ -474,6 +486,7 @@ class MatchApi {
   ///
   /// Returns the joined match, with the caller seated as guest.
   Future<MatchDoc> joinMatch(String code) async {
+    _requirePlausibleCode(code);
     final doc = await docs.get('matches/$code');
     if (doc == null) {
       throw NotFoundException('no match with code $code');
@@ -497,6 +510,14 @@ class MatchApi {
           'someone else took the last seat in match $code');
     }
     return match.copyWith(guestUid: uid, status: 'active');
+  }
+
+  /// A code that cannot name a match document is answered exactly as a code
+  /// nobody is using would be, WITHOUT a request: see [isPlausibleInviteCode].
+  void _requirePlausibleCode(String code) {
+    if (!isPlausibleInviteCode(code)) {
+      throw const NotFoundException('that is not a valid invite code');
+    }
   }
 
   /// Mark an active match complete. Either participant may do this; the

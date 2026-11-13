@@ -197,15 +197,23 @@ class MatchRelay {
   // --- reads (the resync pulls) ----------------------------------------------
 
   /// EXACTLY the events with `seq > afterSeq`, ascending and contiguous.
-  List<EventFrame> eventsSince(int afterSeq) =>
-      [for (final e in _events) if (e.seq > afterSeq) e];
+  ///
+  /// A slice, not a scan: [appendEvent] keeps the log contiguous from 1, so the
+  /// entry with seq `s` IS `_events[s - 1]`.
+  List<EventFrame> eventsSince(int afterSeq) => afterSeq >= _events.length
+      ? []
+      : _events.sublist(afterSeq < 0 ? 0 : afterSeq);
 
   /// The current document for roll [n], or null if it does not exist yet.
   RollFrame? roll(int n) => _rolls[n];
 
   /// Every roll with index `>= from`, ascending.
-  List<RollFrame> rollsFrom(int from) =>
-      [for (final r in rollFrames) if (r.n >= from) r];
+  List<RollFrame> rollsFrom(int from) {
+    // Filtered BEFORE sorting: the controller asks from its own watermark, so
+    // late in a match this is a handful of rolls out of hundreds.
+    final ns = [for (final n in _rolls.keys) if (n >= from) n]..sort();
+    return [for (final n in ns) _rolls[n]!];
+  }
 
   /// The frame that answers a `hello`: the match, the guest's seat, the identity
   /// token, and EVERYTHING the relay holds.

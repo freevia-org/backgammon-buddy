@@ -46,7 +46,7 @@ if ($isPackaged -and -not $env:AIGAMMON_EMULATOR_REEXEC) {
 $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') +
   ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
 
-# 1. Firestore security-rules unit tests (@firebase/rules-unit-testing + mocha).
+# 1. Firestore security-rules unit tests (@firebase/rules-unit-testing + node --test).
 #    Firestore-only emulator: the rules suite needs no auth emulator
 #    (rules-unit-testing mints its own auth contexts).
 $rulesTests = (Resolve-Path (Join-Path $PSScriptRoot 'rules-tests')).Path

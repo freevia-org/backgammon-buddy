@@ -230,9 +230,13 @@ class HostServer {
       if (_guest != null) _guest!,
       ..._pending,
     ];
-    for (final c in open) {
-      await _close(c, WebSocketStatus.goingAway, 'host stopped');
-    }
+    // All at once, not one after another: a close waits on the peer's own
+    // close frame, and a peer that never sends one (a half-open socket is the
+    // usual reason a host is being stopped at all) holds it for seconds. In
+    // sequence those waits stacked, and the port stayed bound throughout.
+    await Future.wait([
+      for (final c in open) _close(c, WebSocketStatus.goingAway, 'host stopped'),
+    ]);
     await _server.close(force: true);
     await _presence.close();
     await _frames.close();

@@ -219,6 +219,40 @@ void main() {
     });
   });
 
+  group('a flood of answers', () {
+    test('one machine claiming every port is capped, not listed', () async {
+      // Identity is address + claimed port, so a single peer can pose as
+      // thousands of hosts by counting through port numbers.
+      final liar = await rogue();
+      addTearDown(liar.close);
+      liar.listen((event) async {
+        if (event != RawSocketEvent.read) return;
+        final dg = liar.receive();
+        if (dg == null) return;
+        // Trickled rather than burst: a loopback socket buffer drops a burst,
+        // and the point is how many ARRIVE, not how many were sent.
+        for (var port = 1; port <= maxDiscoveredHosts * 4; port++) {
+          try {
+            liar.send(utf8.encode(jsonEncode({'name': 'H$port', 'port': port})),
+                dg.address, dg.port);
+          } catch (_) {
+            return; // the test finished and closed us mid-flood
+          }
+          if (port % 4 == 0) {
+            await Future<void>.delayed(const Duration(milliseconds: 1));
+          }
+        }
+      });
+
+      final found = await discoverHosts(
+        port: liar.port,
+        targets: [InternetAddress.loopbackIPv4],
+        timeout: const Duration(seconds: 2),
+      );
+      expect(found, hasLength(maxDiscoveredHosts));
+    });
+  });
+
   group('broadcastTargets', () {
     test('always includes the all-networks broadcast address', () async {
       final targets = await broadcastTargets();
