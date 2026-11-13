@@ -38,6 +38,14 @@ const Duration beaconMinAnswerInterval = Duration(milliseconds: 200);
 /// LAN it is unreachable.
 const int maxBeaconSources = 256;
 
+/// The most hosts one [discoverHosts] sweep will report.
+///
+/// A host's identity is its address AND the port it claims, so one machine can
+/// answer a single probe as tens of thousands of "hosts" just by counting
+/// through port numbers. A real network has a handful; past this the extra
+/// answers are dropped rather than handed to a screen to render.
+const int maxDiscoveredHosts = 32;
+
 /// A host that answered a probe: enough to reach it, and nothing else.
 ///
 /// There is deliberately NO room code here — see [HostBeacon].
@@ -245,6 +253,7 @@ Future<List<DiscoveredHost>> discoverHosts({
       if (datagram == null) return;
       final host = _readAnswer(datagram);
       if (host == null) return;
+      if (found.length >= maxDiscoveredHosts) return;
       if (seen.add(host)) found.add(host);
     },
     onError: (Object _) {},

@@ -53,6 +53,11 @@ class AuthClient {
 
   AuthSession? _session;
 
+  /// The sign-in / token exchange currently on the wire, if any — see
+  /// [signInAnonymously] and [validToken] for why each is single-flight.
+  Future<AuthSession>? _signingIn;
+  Future<String>? _refreshing;
+
   AuthClient(
     this.config, {
     http.Client? inner,
@@ -78,10 +83,25 @@ class AuthClient {
   /// there is nothing stored, or the server refuses what was stored, is a brand
   /// new anonymous user signed up — which does orphan whatever the old uid was
   /// a participant of, so it is the last resort rather than the first move.
-  Future<AuthSession> signInAnonymously() async {
-    final restored = await _restore();
-    if (restored != null) return restored;
-    return _signUp();
+  ///
+  /// SINGLE-FLIGHT: callers that overlap share one attempt. Two concurrent
+  /// sign-ins with nothing stored would otherwise each sign up their OWN
+  /// anonymous user, and the slower response would silently replace the uid the
+  /// faster caller had already started acting as (creating or joining a match
+  /// it could then no longer read).
+  Future<AuthSession> signInAnonymously() {
+    final inFlight = _signingIn;
+    if (inFlight != null) return inFlight;
+    late final Future<AuthSession> attempt;
+    attempt = () async {
+      final restored = await _restore();
+      if (restored != null) return restored;
+      return _signUp();
+    }()
+        .whenComplete(() {
+      if (identical(_signingIn, attempt)) _signingIn = null;
+    });
+    return _signingIn = attempt;
   }
 
   /// Exchange a stored refresh token for a live session, or null when there is
@@ -160,6 +180,12 @@ class AuthClient {
 
   /// Return a valid id token, refreshing first if it is within [refreshWindow]
   /// of expiry. Throws [StateError] if not signed in.
+  ///
+  /// The refresh is SINGLE-FLIGHT. Every request asks for a token, and a match
+  /// has several in the air at once (the poll's two queries, a write, the Listen
+  /// stream), so an expiring token used to be exchanged once per waiting caller
+  /// — a burst of identical secure-token calls, each overwriting the session the
+  /// previous one had just stored.
   Future<String> validToken() async {
     final session = _session;
     if (session == null) {
@@ -168,7 +194,13 @@ class AuthClient {
     if (_now().add(refreshWindow).isBefore(session.expiresAt)) {
       return session.idToken;
     }
-    return _refresh(session);
+    final inFlight = _refreshing;
+    if (inFlight != null) return inFlight;
+    late final Future<String> attempt;
+    attempt = _refresh(session).whenComplete(() {
+      if (identical(_refreshing, attempt)) _refreshing = null;
+    });
+    return _refreshing = attempt;
   }
 
   Future<String> _refresh(AuthSession session) async {

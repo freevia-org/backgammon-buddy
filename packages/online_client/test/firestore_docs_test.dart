@@ -97,6 +97,44 @@ void main() {
     });
   });
 
+  group('no usable response', () {
+    test('a dead network is a typed OnlineException, not a raw client error',
+        () async {
+      // Every layer above maps OnlineException onto its own typed errors;
+      // offline must not be the one failure that slips past that mapping.
+      final docs = FirestoreDocs(
+        OnlineConfig.emulator(),
+        token: () async => 'tok',
+        inner: MockClient(
+            (req) async => throw http.ClientException('no route', req.url)),
+      );
+      addTearDown(docs.close);
+      await expectLater(
+        docs.get('matches/C'),
+        throwsA(isA<OnlineException>()
+            .having((e) => e.code, 'code', 'network-error')),
+      );
+    });
+
+    test('a 2xx body that is not JSON is an OnlineException on every read',
+        () async {
+      // A captive portal answers 200 with HTML.
+      final docs = FirestoreDocs(
+        OnlineConfig.emulator(),
+        token: () async => 'tok',
+        inner:
+            MockClient((_) async => http.Response('<html>sign in</html>', 200)),
+      );
+      addTearDown(docs.close);
+      final malformed = throwsA(isA<OnlineException>()
+          .having((e) => e.code, 'code', 'malformed-response')
+          .having((e) => e, 'transient, not a bad document',
+              isNot(isA<MalformedDocumentException>())));
+      await expectLater(docs.get('matches/C'), malformed);
+      await expectLater(docs.query('matches/C', 'events'), malformed);
+    });
+  });
+
   group('create', () {
     test('commits an exists:false write with a server-timestamp transform',
         () async {

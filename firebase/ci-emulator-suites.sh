@@ -8,7 +8,7 @@ set -euo pipefail
 
 # NOTE: the rules unit tests used to be step 1 here. They now run as their own
 # `rules` job in .github/workflows/ci.yml, which this job `needs:` — seconds of
-# mocha against a firestore-only emulator, ahead of the four toolchains and the
+# `node --test` against a firestore-only emulator, ahead of the four toolchains and the
 # two E2E legs below, so a broken firestore.rules is red before any of this
 # starts. run-emulator-tests.ps1 still runs all of it in one sitting locally.
 
