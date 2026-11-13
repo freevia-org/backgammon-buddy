@@ -590,12 +590,12 @@ Future<void> _leaveMatch(WidgetTester tester) async {
 /// History list → match detail → per-game analysis (with the Played/Best
 /// toggle, the metric explainer and a mid-game cursor row).
 Future<void> _historyAndAnalysis(WidgetTester tester) async {
-  final history = find.widgetWithText(OutlinedButton, 'History');
+  final history = find.text('Games Archive');
   if (history.evaluate().isEmpty) {
-    _skipped.add('history screen (no History entry on home)');
+    _skipped.add('history screen (no Games Archive entry on home)');
     return;
   }
-  await tester.tap(history);
+  await tester.tap(history.first);
   await _beat(tester, const Duration(milliseconds: 900));
   await _shot(tester, 'history_screen');
 

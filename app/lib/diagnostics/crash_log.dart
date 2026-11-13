@@ -108,6 +108,10 @@ class CrashLog {
   File? _file;
   Future<void> _flushChain = Future.value();
 
+  /// A write is queued but has not started. It serializes when it RUNS, so it
+  /// already covers anything recorded since — see [flush].
+  bool _flushQueued = false;
+
   /// Oldest first.
   List<CrashLogEntry> get entries => List.unmodifiable(_entries);
 
@@ -120,10 +124,17 @@ class CrashLog {
     if (trace != null && trace.length > maxStackChars) {
       trace = '${trace.substring(0, maxStackChars)}\n… (truncated)';
     }
+    String text;
+    try {
+      text = error.toString();
+    } catch (_) {
+      // A `toString` that itself throws must not escape a crash handler.
+      text = 'Instance of ${error.runtimeType} (toString() threw)';
+    }
     _entries.add(CrashLogEntry(
       time: DateTime.now().toUtc(),
       source: source,
-      error: error.toString(),
+      error: text,
       stack: trace,
     ));
     _applyCaps();
@@ -175,19 +186,31 @@ class CrashLog {
   /// starts, the handlers are installed synchronously, an early error is
   /// recorded, and only then does `getApplicationSupportDirectory()` resolve.
   Future<void> attachFile(File file) async {
-    _file = file;
+    // Read BEFORE pointing the log at the file: an error recorded while the
+    // read is in flight would otherwise schedule a write of the in-memory
+    // entries alone, which can truncate the file before it has been read and
+    // lose the previous session's log.
     final fromDisk = await _readFile(file);
+    _file = file;
     _entries.insertAll(0, fromDisk);
     _applyCaps();
     await flush();
   }
 
   /// Writes the current entries out. Failures are swallowed.
+  ///
+  /// At most ONE write waits behind the one in progress: every write is the
+  /// whole log, so a burst of errors (a build that throws on every frame) needs
+  /// one more rewrite, not one per error queued up behind a slow disk.
   Future<void> flush() {
-    final file = _file;
-    if (file == null) return Future.value();
-    final payload = serialize();
+    if (_file == null) return Future.value();
+    if (_flushQueued) return _flushChain;
+    _flushQueued = true;
     _flushChain = _flushChain.then((_) async {
+      _flushQueued = false;
+      final file = _file;
+      if (file == null) return;
+      final payload = serialize();
       try {
         await file.parent.create(recursive: true);
         await file.writeAsString(payload, flush: true);
@@ -234,10 +257,19 @@ class CrashLog {
     }
     // Keep at least the newest entry even if it alone exceeds the byte cap:
     // the crash you are holding is the one worth reporting.
-    while (_entries.length > 1 &&
-        utf8.encode(serialize()).length > maxBytes) {
-      _entries.removeAt(0);
+    //
+    // Sized per entry, once: [serialize] is the lines joined by a one-byte
+    // newline, so re-encoding the whole log after every eviction is not needed.
+    final sizes = [
+      for (final e in _entries) utf8.encode(jsonEncode(e.toJson())).length,
+    ];
+    var total = sizes.fold<int>(0, (a, b) => a + b) + sizes.length - 1;
+    var drop = 0;
+    while (_entries.length - drop > 1 && total > maxBytes) {
+      total -= sizes[drop] + 1;
+      drop++;
     }
+    if (drop > 0) _entries.removeRange(0, drop);
   }
 
   void _scheduleFlush() {
