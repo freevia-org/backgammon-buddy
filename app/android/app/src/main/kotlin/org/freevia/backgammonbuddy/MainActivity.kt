@@ -8,6 +8,9 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        // Never leave a previous bridge (and its bound TTS service) behind if
+        // the embedding configures an engine again without a clean-up first.
+        offlineSpeech?.close()
         offlineSpeech = OfflineBuddyTts(this, flutterEngine.dartExecutor.binaryMessenger)
     }
 
