@@ -233,6 +233,40 @@ void main() {
           reason: '$found rolls came back from dice too small to resolve, and '
               'measured without the floor most of them are wrong');
     });
+
+    test('a die size that is not a size is refused, not thrown on', () {
+      // `dieSide` is measured outside this package and handed in. A NaN there
+      // used to throw out of the reader's constructor — `round()` of a NaN —
+      // and an infinity out of the blob pass, on the one query a session runs
+      // unprimed. Every one of them is "no reading", like any other die the
+      // reader cannot stand behind.
+      final good = calibrationFor(BoardPalette.classic);
+      final shot = renderShot(board: BoardState.initial(), dice: Dice(5, 6));
+      expect(BoardVision(good).readDice(shot.frame), isNotNull,
+          reason: 'this frame reads at a real die size');
+
+      for (final side in <double>[
+        double.nan,
+        double.infinity,
+        double.negativeInfinity,
+        0,
+        -0.075,
+      ]) {
+        final broken = BoardCalibration(
+          geometry: good.geometry,
+          orientation: good.orientation,
+          colors: good.colors,
+          fingerprint: good.fingerprint,
+          stacks: good.stacks,
+          proportions: good.proportions,
+          dieSide: side,
+          surfaceAspect: good.surfaceAspect,
+          pipSpan: good.pipSpan,
+        );
+        expect(BoardVision(broken).readDice(shot.frame), isNull,
+            reason: 'a die side of $side');
+      }
+    });
   });
 
   group('anything that is not two dice is nothing', () {

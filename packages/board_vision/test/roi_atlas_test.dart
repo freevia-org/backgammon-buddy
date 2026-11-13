@@ -336,6 +336,69 @@ void main() {
       );
     });
 
+    test('a measured board\'s atlas is built once and then shared too', () {
+      // `BoardCalibration.atlas` asks for this on every region of every
+      // frame, and a folding case never has the standard proportions — so an
+      // atlas rebuilt per call was twenty-six rectangles of work per region
+      // read, all session.
+      for (final orientation in BoardOrientation.values) {
+        final first =
+            RoiAtlas.forOrientation(orientation, proportions: trayless);
+        final again = RoiAtlas.forOrientation(
+          orientation,
+          // An equal value, not the same object: the session rebuilds its
+          // proportions from the eight tapped points each time it asks.
+          proportions: BoardProportions(
+            trayWidth: trayless.trayWidth,
+            barWidth: trayless.barWidth,
+          ),
+        );
+        expect(identical(first, again), isTrue, reason: orientation.name);
+        expect(first.orientation, orientation);
+        expect(first.proportions, trayless);
+      }
+      expect(
+        identical(
+          RoiAtlas.forOrientation(
+            BoardOrientation.whiteHomeNear,
+            proportions: trayless,
+          ),
+          RoiAtlas.forOrientation(
+            BoardOrientation.whiteHomeFar,
+            proportions: trayless,
+          ),
+        ),
+        isFalse,
+        reason: 'the two seatings are different atlases',
+      );
+
+      // What is remembered is bounded, and forgetting costs nothing but a
+      // rebuild: after a sweep over more boards than are kept, the first one
+      // still comes back describing itself.
+      final before = boundsOf(
+        RoiAtlas.forOrientation(
+          BoardOrientation.whiteHomeNear,
+          proportions: trayless,
+        ).roi(RoiId.point0),
+      );
+      for (var i = 1; i <= 40; i++) {
+        final swept = BoardProportions(trayWidth: 0, barWidth: 0.03 + i / 1000);
+        expect(
+          RoiAtlas.forOrientation(
+            BoardOrientation.whiteHomeNear,
+            proportions: swept,
+          ).proportions,
+          swept,
+        );
+      }
+      final after = RoiAtlas.forOrientation(
+        BoardOrientation.whiteHomeNear,
+        proportions: trayless,
+      );
+      expect(after.proportions, trayless);
+      expect(boundsOf(after.roi(RoiId.point0)), before);
+    });
+
     test('a board with no wells gives the whole width to its columns', () {
       expect(trayless.hasTrays, isFalse);
       expect(trayless.columnWidth, closeTo((1 - 0.03) / 12, 1e-15));

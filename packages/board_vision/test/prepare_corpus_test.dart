@@ -103,7 +103,6 @@ void main() {
     });
 
     test('over budget is a warning with advice, not a silent pass', () {
-      photograph('001');
       // The budget is the spec's, so it cannot be lowered to make a point; the
       // report's own arithmetic is what is checked here.
       const huge = PrepareReport(
