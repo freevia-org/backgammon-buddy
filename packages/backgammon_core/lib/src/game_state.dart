@@ -226,9 +226,20 @@ class GameState {
     );
   }
 
+  /// The offer [acceptResign]/[declineResign] act on, or a [StateError] — the
+  /// one failure every verb here promises. [offerResign] always records it, but
+  /// [GameState.testState] can build the phase without one, and that must not
+  /// surface as a null-check `TypeError` no caller is watching for.
+  ResignOffer _pendingResignOffer() {
+    final offer = resignOffer;
+    if (phase != GamePhase.resignOffered || offer == null) {
+      throw StateError('no resignation is pending');
+    }
+    return offer;
+  }
+
   GameState acceptResign() {
-    _require(phase == GamePhase.resignOffered, 'no resignation is pending');
-    final offer = resignOffer!;
+    final offer = _pendingResignOffer();
     return _copy(
       phase: GamePhase.gameOver,
       clearResignOffer: true,
@@ -241,8 +252,7 @@ class GameState {
   }
 
   GameState declineResign() {
-    _require(phase == GamePhase.resignOffered, 'no resignation is pending');
-    final offer = resignOffer!;
+    final offer = _pendingResignOffer();
     // Prior phase is inferred from dice in exactly this one place.
     return _copy(
       phase: dice == null ? GamePhase.awaitingRoll : GamePhase.moving,

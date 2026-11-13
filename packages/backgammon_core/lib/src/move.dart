@@ -58,9 +58,15 @@ class Move {
   /// the code of the legal 4/off — aliasing a bogus play onto a real one across
   /// the trust boundary. Out of range means "no key", and [sameAs] compares
   /// such moves the slow, exact way instead.
+  ///
+  /// Likewise `null` for MORE than four hops — longer than any turn the rules
+  /// allow, so again only a foreign submission. A fifth base-2600 digit leaves
+  /// the exact-integer range on the web and a sixth wraps a 64-bit int, at which
+  /// point two different hop sets could share a key.
   late final int? hopSetKey = _computeHopSetKey();
 
   int? _computeHopSetKey() {
+    if (checkerMoves.length > 4) return null;
     final codes = <int>[];
     for (final h in checkerMoves) {
       final fromOk = h.from == CheckerMove.bar || (h.from >= 0 && h.from < 24);
