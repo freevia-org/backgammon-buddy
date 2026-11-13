@@ -36,6 +36,9 @@ ScoredMove pickMove(List<ScoredMove> ranked, Difficulty level, Random rng) {
           best - (s.cubefulEquity ?? s.equity) <= level.equityWindow)
         s,
   ];
+  // A NaN equity fails every comparison above, the top move's included. Play
+  // the engine's first choice rather than throwing on an empty reduce.
+  if (candidates.isEmpty) return ranked.first;
   final weights = [
     for (final s in candidates)
       exp(-(best - (s.cubefulEquity ?? s.equity)) / level.temperature),

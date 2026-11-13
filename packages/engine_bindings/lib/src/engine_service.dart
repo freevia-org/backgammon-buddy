@@ -347,11 +347,14 @@ class EngineService {
 
   /// Shuts the service down. Idempotent. Sequence: the 'dispose' message is
   /// queued to the worker, then the isolate is killed with
-  /// [Isolate.beforeNextEvent] — which lets the already-queued 'dispose'
-  /// message run first, so the worker frees the native Wildbg handle and
-  /// closes its port before the isolate is reaped. (An immediate kill would
-  /// preempt that message and leak one native engine per dispose/re-spawn
-  /// cycle.) All in-flight requests error with
+  /// [Isolate.beforeNextEvent]. The two RACE: the VM puts that kill at the
+  /// head of the worker's event queue, ahead of a 'dispose' message it has not
+  /// started yet, so the worker's own handler runs only some of the time
+  /// (measured: 29 of 40 disposals). Freeing the native Wildbg handle
+  /// therefore does not depend on it — [Engine] attaches the handle to a
+  /// native finalizer, which the VM runs when the isolate shuts down, however
+  /// it shuts down. Whichever side wins, the engine is freed exactly once.
+  /// All in-flight requests error with
   /// `StateError('EngineService disposed')`; subsequent verb calls throw
   /// synchronously.
   ///

@@ -101,6 +101,15 @@ class WildbgFfi {
   late final BestMoveDart bestMove;
   late final CubeInfoDart cubeInfo;
 
+  /// Frees a `Wildbg` handle when the Dart object it is attached to is
+  /// collected or its isolate shuts down — the backstop for an [Engine] that
+  /// never reaches `dispose()` (a killed or crashed worker isolate).
+  late final NativeFinalizer handleFinalizer;
+
+  /// One finalizer per `wildbg_free` address, and never collected: a finalizer
+  /// that becomes unreachable is not obliged to run its callbacks.
+  static final Map<int, NativeFinalizer> _handleFinalizers = {};
+
   /// Loads the native library via [loadEngineLibrary], which picks the
   /// per-platform strategy: `DynamicLibrary.open([libraryPath])` on
   /// Windows/Linux/Android, `DynamicLibrary.process()` on iOS/macOS (where the
@@ -118,6 +127,9 @@ class WildbgFfi {
         _lib.lookupFunction<_BestMoveNative, BestMoveDart>('best_move');
     cubeInfo =
         _lib.lookupFunction<_CubeInfoNative, CubeInfoDart>('cube_info');
+    final free = _lib.lookup<NativeFunction<_WildbgFreeNative>>('wildbg_free');
+    handleFinalizer = _handleFinalizers.putIfAbsent(
+        free.address, () => NativeFinalizer(free));
   }
 
   /// Resolves the native library path.

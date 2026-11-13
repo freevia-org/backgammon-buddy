@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:typed_data';
 
 import 'package:backgammon_core/backgammon_core.dart';
 import 'package:ffi/ffi.dart';
@@ -13,7 +14,13 @@ import 'scored_move.dart';
 ///
 /// NOT thread-safe: a single reused pips buffer is shared across calls, so a
 /// single [Engine] instance must only be used from one isolate at a time.
-class Engine {
+///
+/// [dispose] is the way to release the native engine. As a backstop the handle
+/// and the scratch buffer are also attached to native finalizers, which run
+/// when the instance is collected or its isolate shuts down — so an [Engine]
+/// whose isolate is killed or crashes before `dispose()` does not leak the
+/// loaded nets.
+class Engine implements Finalizable {
   final WildbgFfi _ffi;
   Pointer<Void> _handle;
   bool _disposed = false;
@@ -22,7 +29,17 @@ class Engine {
   /// single-threaded, so one buffer per instance is safe.
   final Pointer<Int32> _pips = calloc<Int32>(26);
 
-  Engine._(this._ffi, this._handle);
+  /// Dart view of [_pips], created once so loading a position is one bulk
+  /// copy rather than 26 pointer stores.
+  late final Int32List _pipsView = _pips.asTypedList(26);
+
+  static final NativeFinalizer _bufferFinalizer =
+      NativeFinalizer(calloc.nativeFree);
+
+  Engine._(this._ffi, this._handle) {
+    _ffi.handleFinalizer.attach(this, _handle, detach: this);
+    _bufferFinalizer.attach(this, _pips.cast(), detach: this);
+  }
 
   /// Opens the library and initializes with nets from [netsPath] (a
   /// directory containing contact.onnx and race.onnx). Throws StateError
@@ -51,10 +68,7 @@ class Engine {
 
   /// Loads [board] from [mover]'s perspective into the reused pips buffer.
   void _loadPips(BoardState board, Player mover) {
-    final encoded = encodePips(board, mover);
-    for (var i = 0; i < 26; i++) {
-      _pips[i] = encoded[i];
-    }
+    _pipsView.setAll(0, encodePips(board, mover));
   }
 
   /// Cubeless win/gammon/backgammon probabilities for [mover] ON ROLL in
@@ -73,10 +87,21 @@ class Engine {
     );
   }
 
-  /// Engine's best move in real coordinates; Move.none when detail_count==0.
+  /// Engine's best move in real coordinates; [Move.none] on a dance.
+  ///
+  /// wildbg itself only scores money games (`0/0`) and 1-pointers (`1/1`); the
+  /// shim rejects every other away pair. Throws [ArgumentError] for a negative
+  /// away score and [StateError] if the native call fails — the shim reports a
+  /// failure as `detail_count == 0`, the same value as a dance, so the two are
+  /// told apart here instead of handing the caller "no move" for a position
+  /// that has one.
   Move bestMove(BoardState board, Player mover, Dice dice,
       {int xAway = 0, int oAway = 0}) {
     _checkAlive();
+    if (xAway < 0 || oAway < 0) {
+      // BgConfig's fields are unsigned: a negative value would wrap.
+      throw ArgumentError('away scores must be >= 0, got $xAway/$oAway');
+    }
     _loadPips(board, mover);
     final config = calloc<BgConfig>();
     config.ref.xAway = xAway;
@@ -85,7 +110,14 @@ class Engine {
       final cMove =
           _ffi.bestMove(_handle, _pips, dice.die1, dice.die2, config);
       final count = cMove.detailCount;
-      if (count == 0) return Move.none;
+      if (count == 0) {
+        if (MoveGenerator.legalMoves(board, mover, dice).isNotEmpty) {
+          throw StateError('best_move failed for dice ${dice.die1}/${dice.die2}'
+              ' at $xAway-away/$oAway-away (the native engine rejected the '
+              'request; wildbg supports only money and 1-pointer scores).');
+        }
+        return Move.none;
+      }
       final moves = <CheckerMove>[
         for (var i = 0; i < count; i++)
           decodeDetail(cMove.details[i].from, cMove.details[i].to, mover),
@@ -130,6 +162,8 @@ class Engine {
   void dispose() {
     if (_disposed) return;
     _disposed = true;
+    _ffi.handleFinalizer.detach(this);
+    _bufferFinalizer.detach(this);
     _ffi.wildbgFree(_handle);
     _handle = nullptr;
     calloc.free(_pips);

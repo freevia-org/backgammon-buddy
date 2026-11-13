@@ -101,7 +101,14 @@ class GnuBgEngine {
           final count = _rank(p, c, dice.die1, dice.die2, capacity, details,
               scores, playedMove == null ? nullptr : after);
           if (count < 0) throw StateError('GNUbg ranking failed ($count)');
-          final legal = MoveGenerator.legalMoves(b, mover, dice);
+          // Resulting board -> the core's canonical move, built once.
+          // legalMoves yields one move per distinct resulting position, so
+          // this is the same match a linear scan per native move would find,
+          // without re-applying every legal move for each of them.
+          final canonicalByTarget = <BoardState, Move>{};
+          for (final m in MoveGenerator.legalMoves(b, mover, dice)) {
+            canonicalByTarget.putIfAbsent(b.applyMove(mover, m), () => m);
+          }
           final ranked = <ScoredMove>[];
           for (var i = 0; i < count; i++) {
             final hops = <CheckerMove>[];
@@ -113,8 +120,7 @@ class GnuBgEngine {
             final target = b.applyMove(mover, nativeMove);
             // Match the resulting board to the core's canonical legal move.
             // This also reconstructs hit flags and rejects an ABI/orientation bug.
-            final canonical =
-                legal.where((m) => b.applyMove(mover, m) == target).firstOrNull;
+            final canonical = canonicalByTarget[target];
             if (canonical == null) {
               throw StateError('GNUbg returned an illegal move');
             }
