@@ -1,6 +1,22 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
 import '../l10n/localization_lookup.dart';
+import '../tutor/move_assessment.dart';
+
+/// Mark → (colour, label): best/good green, dubious amber, error orange,
+/// blunder red. The single source of truth for the mark vocabulary — the score
+/// sheet's dots, the analysis screen's chips and this file's threshold legend
+/// all read it, so a mark can never be one colour in the list and another in
+/// the explanation of the list.
+(Color, String) moveMarkStyle(MoveMark mark, AppLocalizations l10n) =>
+    switch (mark) {
+      MoveMark.best => (Colors.green.shade700, l10n.analysisMarkBest),
+      MoveMark.good => (Colors.green.shade600, l10n.analysisMarkGood),
+      MoveMark.dubious => (Colors.amber.shade800, l10n.analysisMarkDubious),
+      MoveMark.error => (Colors.orange.shade800, l10n.analysisMarkError),
+      MoveMark.blunder => (Colors.red.shade700, l10n.analysisMarkBlunder),
+    };
 
 /// Opens the plain-language [MetricExplainerDialog].
 ///
@@ -54,36 +70,14 @@ class MetricExplainerDialog extends StatelessWidget {
             const SizedBox(height: 4),
             Text(l10n.metricExplainerMoveMarksBody),
             const SizedBox(height: 8),
-            _threshold(
-              context,
-              Colors.green.shade700,
-              l10n.analysisMarkBest,
-              l10n.metricExplainerThresholdBest,
-            ),
-            _threshold(
-              context,
-              Colors.green.shade600,
-              l10n.analysisMarkGood,
-              l10n.metricExplainerThresholdGood,
-            ),
-            _threshold(
-              context,
-              Colors.amber.shade800,
-              l10n.analysisMarkDubious,
-              l10n.metricExplainerThresholdDubious,
-            ),
-            _threshold(
-              context,
-              Colors.orange.shade800,
-              l10n.analysisMarkError,
-              l10n.metricExplainerThresholdError,
-            ),
-            _threshold(
-              context,
-              Colors.red.shade700,
-              l10n.analysisMarkBlunder,
-              l10n.metricExplainerThresholdBlunder,
-            ),
+            for (final (mark, range) in [
+              (MoveMark.best, l10n.metricExplainerThresholdBest),
+              (MoveMark.good, l10n.metricExplainerThresholdGood),
+              (MoveMark.dubious, l10n.metricExplainerThresholdDubious),
+              (MoveMark.error, l10n.metricExplainerThresholdError),
+              (MoveMark.blunder, l10n.metricExplainerThresholdBlunder),
+            ])
+              _threshold(context, moveMarkStyle(mark, l10n), range),
           ],
         ),
       ),
@@ -98,10 +92,10 @@ class MetricExplainerDialog extends StatelessWidget {
 
   Widget _threshold(
     BuildContext context,
-    Color color,
-    String label,
+    (Color, String) style,
     String range,
   ) {
+    final (color, label) = style;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Row(

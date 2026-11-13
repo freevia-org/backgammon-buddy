@@ -363,7 +363,7 @@ class _LearningScreenState extends ConsumerState<LearningScreen> {
                       Text(l10n.learningAnswerContext),
                       if (positions.isEmpty)
                         Padding(
-                          padding: EdgeInsets.only(top: 12),
+                          padding: const EdgeInsets.only(top: 12),
                           child: Text(l10n.learningNoSavedPositions),
                         ),
                       for (final position in positions)

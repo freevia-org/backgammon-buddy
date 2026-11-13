@@ -24,6 +24,7 @@ import '../lan/qr_payload.dart';
 import '../lan/qr_scanner.dart';
 import '../net/net_match_controller.dart';
 import 'game_screen.dart';
+import 'lobby_widgets.dart';
 
 /// How often the JOIN tab sweeps for hosts while it is on screen.
 const Duration _probeInterval = Duration(seconds: 3);
@@ -345,7 +346,7 @@ class _HostTabState extends ConsumerState<_HostTab> {
     final theme = Theme.of(context);
     final l10n = appLocalizationsOf(context);
     return [
-      _SectionCard(
+      LobbySectionCard(
         title: l10n.lanHostTitle,
         children: [
           Text(
@@ -384,7 +385,7 @@ class _HostTabState extends ConsumerState<_HostTab> {
               padding: const EdgeInsets.symmetric(vertical: 16),
             ),
             child: _starting
-                ? const _ButtonSpinner()
+                ? const LobbyButtonSpinner()
                 : Text(l10n.lanStartHosting),
           ),
           if (_error != null) _ErrorRow(_error!),
@@ -398,7 +399,7 @@ class _HostTabState extends ConsumerState<_HostTab> {
     final l10n = appLocalizationsOf(context);
     final address = _localAddress;
     return [
-      _SectionCard(
+      LobbySectionCard(
         title: l10n.lanWaitingPlayerTitle,
         children: [
           // The QR code is the fast path and the text below it is the reliable
@@ -437,18 +438,7 @@ class _HostTabState extends ConsumerState<_HostTab> {
           const SizedBox(height: 20),
           _AddressRow(address: _localAddress, port: session.port),
           const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 18,
-                width: 18,
-                child: CircularProgressIndicator(strokeWidth: 2),
-              ),
-              SizedBox(width: 12),
-              Text(l10n.lanWaitingPlayer),
-            ],
-          ),
+          _StatusRow(text: l10n.lanWaitingPlayer),
           const SizedBox(height: 8),
           TextButton(
             onPressed: () =>
@@ -796,6 +786,11 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
   /// throw into nobody: this is a tap, not an await. The connecting card is
   /// where a join failure belongs, and it already carries Try again and Back.
   void _startConnect(_Target target, String code) {
+    // One join at a time. Two presses inside one frame both run the callback
+    // that frame built, and the second [_connect] would overwrite [_session]
+    // and [_statesSub] without releasing the first — a socket and a
+    // subscription nothing on this screen could reach again.
+    if (_session != null) return;
     unawaited(
       _connect(target, code).catchError((Object e, StackTrace stack) {
         CrashLog.instance.record(e, stack: stack, source: 'lan-join');
@@ -965,7 +960,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
   Widget _scanCard() {
     final theme = Theme.of(context);
     final l10n = appLocalizationsOf(context);
-    return _SectionCard(
+    return LobbySectionCard(
       title: l10n.lanScanHostTitle,
       children: [
         Text(
@@ -991,7 +986,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
   Widget _hostsCard() {
     final theme = Theme.of(context);
     final l10n = appLocalizationsOf(context);
-    return _SectionCard(
+    return LobbySectionCard(
       title: l10n.lanNearbyGames,
       children: [
         if (_hosts.isEmpty && _probing)
@@ -1015,7 +1010,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
             ),
         if (_hosts.isNotEmpty && _probing)
           Padding(
-            padding: EdgeInsets.only(top: 8),
+            padding: const EdgeInsets.only(top: 8),
             child: _StatusRow(text: l10n.lanStillSearching),
           ),
       ],
@@ -1025,7 +1020,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
   Widget _manualCard() {
     final theme = Theme.of(context);
     final l10n = appLocalizationsOf(context);
-    return _SectionCard(
+    return LobbySectionCard(
       title: l10n.lanEnterAddress,
       children: [
         Text(
@@ -1094,7 +1089,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
     final theme = Theme.of(context);
     final l10n = appLocalizationsOf(context);
     final target = _target!;
-    return _SectionCard(
+    return LobbySectionCard(
       title: l10n.lanJoinTarget(target.name),
       children: [
         Text(
@@ -1137,7 +1132,7 @@ class _JoinTabState extends ConsumerState<_JoinTab> {
     final target = _target!;
     final failure = _failure;
     final l10n = appLocalizationsOf(context);
-    return _SectionCard(
+    return LobbySectionCard(
       title: l10n.lanJoiningTarget(target.name),
       children: [
         if (failure != null) ...[
@@ -1285,32 +1280,6 @@ class _TabBody extends StatelessWidget {
   }
 }
 
-/// A titled card, matching the online screen's sections.
-class _SectionCard extends StatelessWidget {
-  const _SectionCard({required this.title, required this.children});
-
-  final String title;
-  final List<Widget> children;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 16),
-            ...children,
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 /// A spinner and a line of copy — "still working, nothing is wrong".
 class _StatusRow extends StatelessWidget {
   const _StatusRow({required this.text});
@@ -1356,15 +1325,4 @@ class _ErrorRow extends StatelessWidget {
       ),
     );
   }
-}
-
-class _ButtonSpinner extends StatelessWidget {
-  const _ButtonSpinner();
-
-  @override
-  Widget build(BuildContext context) => const SizedBox(
-    height: 20,
-    width: 20,
-    child: CircularProgressIndicator(strokeWidth: 2),
-  );
 }

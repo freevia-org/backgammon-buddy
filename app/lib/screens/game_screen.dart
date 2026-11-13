@@ -1047,6 +1047,10 @@ class _GameScreenState extends State<GameScreen> {
     // Each player's persistent dice pair (their most recent roll this game), so
     // both stay visible after the turn passes.
     final (whiteDice, blackDice) = _persistentDice();
+    // The tutor's heading and reason, derived ONCE per build: the panel's
+    // prompt, its summary and its details all print from the same copy, and
+    // deriving it can replay the log or coach the position.
+    final tutorCopy = _tutor == null ? null : _tutorCopy();
 
     return PopScope<Object?>(
       canPop: _c.matchOver || !_hasLocalHuman,
@@ -1177,7 +1181,7 @@ class _GameScreenState extends State<GameScreen> {
                     constraints: BoxConstraints(maxHeight: tutorMaxHeight),
                     child: TutorPanel(
                       prompt: Text(
-                        _tutorCopy().heading,
+                        tutorCopy!.heading,
                         key: const ValueKey('tutorSummaryHeading'),
                       ),
                       expanded: _tutorExpanded,
@@ -1185,8 +1189,8 @@ class _GameScreenState extends State<GameScreen> {
                           setState(() => _tutorExpanded = expanded),
                       collapsedHeight: tutorHeight,
                       expandedHeight: tutorMaxHeight,
-                      summary: _tutorSummary(),
-                      details: _tutorDetails(),
+                      summary: _tutorSummary(tutorCopy),
+                      details: _tutorDetails(tutorCopy),
                       onOpenSettings: _openTutorSettings,
                     ),
                   ),
@@ -1229,16 +1233,18 @@ class _GameScreenState extends State<GameScreen> {
     if (_c.awaitingNextGame) {
       if (_modalDismissed) return const [];
       final displayedState = _c.state;
+      // One fold of the log for all four figures (the getter walks every event).
+      final rolls = _rollTotals;
       return [
         gameEndDialog(
           l10n: l10n,
           result: _c.state.result!,
           score: scoreLine(_c, l10n),
           gameNumber: _c.gameNumber,
-          whiteRolls: _rollTotals.whiteCount,
-          blackRolls: _rollTotals.blackCount,
-          whitePips: _rollTotals.whitePips,
-          blackPips: _rollTotals.blackPips,
+          whiteRolls: rolls.whiteCount,
+          blackRolls: rolls.blackCount,
+          whitePips: rolls.whitePips,
+          blackPips: rolls.blackPips,
           assessmentsByPlayer: _resultAssessmentsByPlayer,
           expectedMoveAssessments: _c.game.events.whereType<MoveEvent>().length,
           metric:
@@ -1614,22 +1620,28 @@ class _GameScreenState extends State<GameScreen> {
 
   // --- Tutor UI --------------------------------------------------------------
 
-  List<int> get _reviewIndices => [
-    for (var i = 0; i < _c.game.events.length; i++)
-      if (_c.game.events[i] is MoveEvent) i,
-  ];
-
   int? get _visibleReviewIndex {
     final selected = _tutorPresentation.selectedEventIndex;
     if (selected != null) return selected;
     if (!_c.awaitingHumanTurn) return null;
-    final indices = _reviewIndices;
-    return indices.isEmpty ? null : indices.last;
+    // The most recent move, found from the END of the log: this is read on
+    // every rebuild while a gate is open, and the answer is almost always
+    // within the last two or three events.
+    final events = _c.game.events;
+    for (var i = events.length - 1; i >= 0; i--) {
+      if (events[i] is MoveEvent) return i;
+    }
+    return null;
   }
 
+  /// The position the move at [index] was played from. The tutor saves it for
+  /// every move it assesses; a move that predates its cursor (a resumed log) is
+  /// replayed ONCE and filed in the same map, rather than replayed on every
+  /// rebuild that shows it. The map is cleared with the log it indexes.
   GameState _beforeReview(int index) =>
-      _tutorSync.positionsByEventIndex[index] ??
-      Game.replay(_c.game.events.sublist(0, index)).state;
+      _tutorSync.positionsByEventIndex[index] ??= Game.replay(
+        _c.game.events.sublist(0, index),
+      ).state;
 
   MoveExplanation? _explanation(GameState before, MoveAssessment assessment) {
     if (_moveExplanations.containsKey(assessment)) {
@@ -1758,8 +1770,7 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  Widget _tutorSummary() {
-    final copy = _tutorCopy();
+  Widget _tutorSummary(({String heading, String reason}) copy) {
     return Column(
       key: const ValueKey('tutorSummary'),
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1783,7 +1794,7 @@ class _GameScreenState extends State<GameScreen> {
     _markSheetDirty();
   }
 
-  Widget _tutorDetails() {
+  Widget _tutorDetails(({String heading, String reason}) copy) {
     final review = _visibleReviewIndex;
     final staged = _stagedTutorMove;
     final complete = staged != null && _entryControl.canConfirm;
@@ -1807,7 +1818,7 @@ class _GameScreenState extends State<GameScreen> {
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Text(
-              _tutorCopy().heading,
+              copy.heading,
               key: const ValueKey('tutorDetailHeading'),
               style: Theme.of(context).textTheme.titleSmall,
             ),
@@ -1964,6 +1975,9 @@ class _GameScreenState extends State<GameScreen> {
                     child: TutorOptionControls(
                       options: _tutorOptions,
                       onChanged: (options) {
+                        // The dialog is a route of its own and can outlive this
+                        // screen (the match's route removed underneath it).
+                        if (!mounted) return;
                         setState(() => _tutorOptions = options);
                         _syncTutorPresentation();
                         _markSheetDirty();

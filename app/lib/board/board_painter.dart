@@ -376,33 +376,41 @@ class BoardPainter extends CustomPainter {
     }
   }
 
-  void _drawChecker(Canvas canvas, Offset center, bool isWhite) {
+  /// The three paints of one colour's checker (fill, rim, inner ring). Built
+  /// once per painter rather than once per checker: a frame draws up to thirty
+  /// checkers, and during a move animation it does so on every tick.
+  late final ({Paint fill, Paint rim, Paint inner}) _whiteCheckerPaints =
+      _checkerPaints(isWhite: true);
+  late final ({Paint fill, Paint rim, Paint inner}) _blackCheckerPaints =
+      _checkerPaints(isWhite: false);
+
+  ({Paint fill, Paint rim, Paint inner}) _checkerPaints({
+    required bool isWhite,
+  }) {
     final r = geometry.checkerRadius;
     // Per-player rim: a light checker gets a dark rim, a dark checker a light
     // rim, so the silhouette reads on any surface (the contrast-matrix guard).
     final rim = isWhite ? theme.whiteCheckerBorder : theme.blackCheckerBorder;
-    canvas.drawCircle(
-      center,
-      r,
-      Paint()..color = isWhite ? theme.whiteChecker : theme.blackChecker,
-    );
-    canvas.drawCircle(
-      center,
-      r,
-      Paint()
+    return (
+      fill: Paint()..color = isWhite ? theme.whiteChecker : theme.blackChecker,
+      rim: Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = r * 0.15
         ..color = rim,
-    );
-    // Inner ring for a little depth.
-    canvas.drawCircle(
-      center,
-      r * 0.62,
-      Paint()
+      // Inner ring for a little depth.
+      inner: Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = r * 0.08
         ..color = rim.withValues(alpha: 0.35),
     );
+  }
+
+  void _drawChecker(Canvas canvas, Offset center, bool isWhite) {
+    final r = geometry.checkerRadius;
+    final paints = isWhite ? _whiteCheckerPaints : _blackCheckerPaints;
+    canvas.drawCircle(center, r, paints.fill);
+    canvas.drawCircle(center, r, paints.rim);
+    canvas.drawCircle(center, r * 0.62, paints.inner);
   }
 
   void _drawCountLabel(Canvas canvas, Offset center, int count, bool isWhite) {
@@ -606,6 +614,9 @@ class BoardPainter extends CustomPainter {
       canvas,
       center - Offset(tp.width / 2, tp.height / 2),
     );
+    // A TextPainter owns a native paragraph; release it rather than leaving
+    // one per label per repaint to the garbage collector.
+    tp.dispose();
   }
 
   /// Draws [text] centred at [center] with a [fill] over a contrasting [outline]
@@ -641,6 +652,8 @@ class BoardPainter extends CustomPainter {
     final origin = center - Offset(fillTp.width / 2, fillTp.height / 2);
     stroke.paint(canvas, origin);
     fillTp.paint(canvas, origin);
+    stroke.dispose();
+    fillTp.dispose();
   }
 
   @override
