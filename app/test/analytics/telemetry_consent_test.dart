@@ -128,6 +128,58 @@ void main() {
     },
   );
 
+  test('a duration reported while opt-in is still initializing is delivered',
+      () async {
+    // Cold start is reported at the first frame, which main() does not hold
+    // back for Firebase: the metric must wait for the pending enable instead of
+    // being handed to the no-op sink.
+    final initializeGate = Completer<Observability>();
+    final performance = RecordingPerformance();
+    final controller = TelemetryController(
+      initialize: () => initializeGate.future,
+      disable: () async {},
+    );
+    final enabling = controller.setEnabled(true);
+    controller.recordDuration('cold_start', const Duration(milliseconds: 420));
+    expect(performance.durations, isEmpty);
+    initializeGate.complete(
+      Observability(
+        analytics: const NoopAnalytics(),
+        performance: performance,
+        crashReporter: const NoopCrashReporter(),
+        isEnabled: true,
+      ),
+    );
+    await enabling;
+    await Future<void>.delayed(Duration.zero);
+    expect(performance.durations, {
+      'cold_start': const Duration(milliseconds: 420),
+    });
+  });
+
+  test('a trace never makes its operation wait for the stop round trip',
+      () async {
+    final stopGate = Completer<void>();
+    final controller = TelemetryController(
+      initialize: () async => Observability(
+        analytics: const NoopAnalytics(),
+        performance: _SlowStopPerformance(stopGate.future),
+        crashReporter: const NoopCrashReporter(),
+        isEnabled: true,
+      ),
+      disable: () async {},
+    );
+    await controller.setEnabled(true);
+    // Completes although the trace's stop is still pending.
+    expect(
+      await controller
+          .trace('slow-stop', () async => 42)
+          .timeout(const Duration(seconds: 5)),
+      42,
+    );
+    stopGate.complete();
+  });
+
   test('repeated preference notifications do not initialize twice', () async {
     var starts = 0;
     final controller = TelemetryController(
@@ -164,4 +216,35 @@ void main() {
       expect(ios, matches('<key>$name</key>\\s*<false/>'));
     }
   });
+}
+
+/// A performance sink whose traces take [stopped] to stop.
+class _SlowStopPerformance implements AppPerformance {
+  _SlowStopPerformance(this.stopped);
+
+  final Future<void> stopped;
+
+  @override
+  Future<AppTrace> startTrace(String name) async => _SlowStopTrace(stopped);
+
+  @override
+  Future<T> trace<T>(String name, Future<T> Function() body) => body();
+
+  @override
+  void recordDuration(String name, Duration duration) {}
+}
+
+class _SlowStopTrace implements AppTrace {
+  _SlowStopTrace(this.stopped);
+
+  final Future<void> stopped;
+
+  @override
+  void setMetric(String name, int value) {}
+
+  @override
+  void putAttribute(String name, String value) {}
+
+  @override
+  Future<void> stop() => stopped;
 }

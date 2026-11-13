@@ -250,6 +250,11 @@ class LiveNearbyTransport implements NearbyTransport {
   }
 }
 
+final _virtualInterface = RegExp(
+  r'(vpn|tun|tap|utun|wireguard|(^|[^a-z])wg\d|docker|veth|virtual|bridge|tailscale|zerotier|hamachi)',
+);
+final _lanInterface = RegExp(r'^(wlan|wifi|wi-fi|en\d+|eth\d+|ethernet|lan)');
+
 /// Select a plausible same-LAN IPv4 address when the OS reports more than one.
 /// Wi-Fi and Ethernet interfaces are preferred; common VPN/virtual interface
 /// names are deprioritized. Stable input order breaks ties for deterministic
@@ -266,12 +271,8 @@ String? selectLanAddress(
       continue;
     }
     final name = candidate.interfaceName.toLowerCase();
-    final isVirtual = RegExp(
-      r'(vpn|tun|tap|utun|wireguard|(^|[^a-z])wg\d|docker|veth|virtual|bridge|tailscale|zerotier|hamachi)',
-    ).hasMatch(name);
-    final isLanAdapter = RegExp(
-      r'^(wlan|wifi|wi-fi|en\d+|eth\d+|ethernet|lan)',
-    ).hasMatch(name);
+    final isVirtual = _virtualInterface.hasMatch(name);
+    final isLanAdapter = _lanInterface.hasMatch(name);
     final octets = address.rawAddress;
     final isPrivate =
         octets[0] == 10 ||
@@ -346,10 +347,18 @@ class _LiveHostSession implements HostSession {
   Future<void> stop() async {
     if (_stopped) return;
     _stopped = true;
-    _beacon?.stop();
-    await _presence.cancel();
-    await _server.stop();
-    await _relay.close();
+    // Each step runs even if an earlier one fails: a server that will not stop
+    // cleanly must not leave the relay (and its log) open behind it.
+    try {
+      _beacon?.stop();
+      await _presence.cancel();
+    } finally {
+      try {
+        await _server.stop();
+      } finally {
+        await _relay.close();
+      }
+    }
   }
 }
 

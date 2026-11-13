@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/services.dart' show ByteData, rootBundle;
+import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
@@ -33,10 +33,18 @@ class NetsInstaller {
   ///
   /// The directory is created recursively if missing. For each asset the
   /// destination filename is the asset's basename (e.g. `contact.onnx`). A copy
-  /// is skipped when the destination already exists AND its length matches the
-  /// asset's byte length — a cheap, good-enough freshness check that avoids
-  /// rewriting ~1.5 MB on every launch. On any length mismatch (partial write,
-  /// upgraded net) the file is overwritten.
+  /// is skipped when the destination already holds exactly the asset's bytes,
+  /// which avoids rewriting ~1.5 MB on every launch.
+  ///
+  /// The comparison is on CONTENT, not length: a retrained net of the same
+  /// architecture serializes to the same number of bytes, so a length check
+  /// would leave an app upgrade evaluating with the previous release's nets
+  /// for good. The asset is already in memory here, so the compare costs one
+  /// read of a file the engine is about to read anyway.
+  ///
+  /// A replacement is written beside the destination and renamed over it, so
+  /// an interrupted install leaves the old file or the new one — never a
+  /// truncated net for the native loader to open.
   static Future<String> ensureInstalledTo(
       Directory targetDir, AssetReader readAsset) async {
     await targetDir.create(recursive: true);
@@ -47,12 +55,24 @@ class NetsInstaller {
         data.lengthInBytes,
       );
       final dest = File(p.join(targetDir.path, p.basename(assetKey)));
-      if (await dest.exists() && await dest.length() == bytes.length) {
+      if (await dest.exists() &&
+          await dest.length() == bytes.length &&
+          _sameBytes(await dest.readAsBytes(), bytes)) {
         continue;
       }
-      await dest.writeAsBytes(bytes, flush: true);
+      final temp = File('${dest.path}.tmp');
+      await temp.writeAsBytes(bytes, flush: true);
+      await temp.rename(dest.path);
     }
     return targetDir.path;
+  }
+
+  static bool _sameBytes(Uint8List a, Uint8List b) {
+    if (a.length != b.length) return false;
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) return false;
+    }
+    return true;
   }
 
   /// Resolves a real nets directory for the running platform.

@@ -553,7 +553,9 @@ class _GuestSocketTransport with TransportChannels implements SocketTransport {
   @override
   Future<List<EventFrame>> eventsSince(int afterSeq) async {
     _ensureLive();
-    return [for (final e in _events) if (e.seq > afterSeq) e];
+    // The mirror is contiguous from 1 (see [_events]), so this is a slice.
+    if (afterSeq >= _events.length) return [];
+    return _events.sublist(afterSeq < 0 ? 0 : afterSeq);
   }
 
   @override
@@ -666,6 +668,11 @@ class _GuestSocketTransport with TransportChannels implements SocketTransport {
       case EventMessage(:final entry):
         _onEvent(entry);
       case RollMessage(:final roll):
+        // The relay refuses an index past [MatchRelay.maxRollIndex], so an
+        // honest host never sends one. The host is the untrusted peer here, and
+        // without the same bound on THIS side it could grow the mirror (and the
+        // controller's roll table behind it) one invented index at a time.
+        if (roll.n > MatchRelay.maxRollIndex) return;
         _rolls[roll.n] = roll;
         publish(roll);
       case AckMessage():
@@ -757,6 +764,10 @@ class _GuestSocketTransport with TransportChannels implements SocketTransport {
 
   void _onEvent(EventFrame entry) {
     if (entry.seq == _lastSeq + 1) {
+      // The relay's own ceiling, mirrored for the same reason as the roll
+      // bound in [_onFrame]: a log longer than an honest relay can hold is a
+      // host inflating this device's memory, not a match.
+      if (_events.length >= MatchRelay.maxEventCount) return;
       _events.add(entry);
       publish(entry);
       return;

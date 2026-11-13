@@ -172,7 +172,10 @@ Widget gameEndDialog({
 }) => ModalCard(
   title: l10n.gameDialogGameOverTitle,
   message: l10n.gameResultMatchScore(score),
-  leading: _OutcomeBanner(result: result, l10n: l10n),
+  leading: _OutcomeBanner(
+    winner: result.winner,
+    text: gameEndSummary(result, l10n),
+  ),
   details: _GameResultDetails(
     l10n: l10n,
     gameNumber: gameNumber,
@@ -212,7 +215,7 @@ Widget matchEndDialog({
       '${l10n.gameDialogMatchWinner(winner == null ? l10n.gameDialogNobody : playerName(winner, l10n))}\n$score',
   leading: winner == null
       ? null
-      : _MatchOutcomeBanner(winner: winner, l10n: l10n),
+      : _OutcomeBanner(winner: winner, text: playerName(winner, l10n)),
   footnote: savedToHistory ? l10n.gameDialogSavedToHistory : null,
   actions: [
     ?summaryAction,
@@ -221,48 +224,12 @@ Widget matchEndDialog({
   ],
 );
 
+/// The trophy banner both end-of-game cards open with, tinted for the winner:
+/// the game card says what happened, the match card names who won.
 class _OutcomeBanner extends StatelessWidget {
-  const _OutcomeBanner({required this.result, required this.l10n});
-  final GameResult result;
-  final AppLocalizations l10n;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final color = result.winner == Player.white
-        ? theme.colorScheme.primary
-        : theme.colorScheme.tertiary;
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(
-        children: [
-          Icon(Icons.emoji_events_rounded, size: 34, color: color),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              gameEndSummary(result, l10n),
-              style: theme.textTheme.titleMedium?.copyWith(
-                color: color,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _MatchOutcomeBanner extends StatelessWidget {
-  const _MatchOutcomeBanner({required this.winner, required this.l10n});
+  const _OutcomeBanner({required this.winner, required this.text});
   final Player winner;
-  final AppLocalizations l10n;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -284,7 +251,7 @@ class _MatchOutcomeBanner extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              playerName(winner, l10n),
+              text,
               style: theme.textTheme.titleMedium?.copyWith(
                 color: color,
                 fontWeight: FontWeight.bold,

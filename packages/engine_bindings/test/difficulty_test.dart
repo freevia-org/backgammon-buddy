@@ -57,6 +57,12 @@ void main() {
     expect(pickMove(only, Difficulty.easy, rng), same(only.first));
   });
 
+  test('a NaN evaluation falls back to the top move instead of throwing', () {
+    // NaN fails every window comparison, so no candidate survives the filter.
+    final broken = [scored(23, double.nan), scored(22, 0.1)];
+    expect(pickMove(broken, Difficulty.easy, Random(6)), same(broken.first));
+  });
+
   test('empty list throws', () {
     expect(() => pickMove(const [], Difficulty.expert, Random(5)),
         throwsArgumentError);

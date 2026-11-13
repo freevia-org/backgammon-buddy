@@ -8,6 +8,12 @@ import 'online_exception.dart';
 /// response headers and body. AbortableRequest lets IOClient stop the socket
 /// work when the deadline expires; injected clients that do not support
 /// abortion still get a bounded wait at this call site.
+///
+/// A request that never produced a response at all (no route, DNS failure, a
+/// reset socket) surfaces as an [OnlineException] `network-error`, like the
+/// deadline does. Every caller above this maps `OnlineException` onto its own
+/// typed errors, so letting the client's raw [http.ClientException] through
+/// meant being OFFLINE was the one failure that escaped that mapping.
 Future<http.Response> sendWithDeadline(
   http.Client client, {
   required String method,
@@ -43,5 +49,7 @@ Future<http.Response> sendWithDeadline(
       'request-timeout',
       'The online request timed out. Check your connection and try again.',
     );
+  } on http.ClientException catch (e) {
+    throw OnlineException('network-error', e.message);
   }
 }

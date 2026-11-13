@@ -397,8 +397,23 @@ class BuddySession extends ChangeNotifier {
   /// warns about. Closing the QUESTION leaves nothing able to submit:
   /// [enterDiceManually] refuses on this same getter, and the frame loop asks
   /// a session at [BuddyPhase.over] nothing at all.
-  bool get awaitingRoll =>
-      _roller.isPending && !(_controller?.matchOver ?? false);
+  ///
+  /// **And the gate has to be OPEN, not merely asked for.** The request can
+  /// outlive the gate it was raised at without the match ending: the user's
+  /// own Double is offered from the pre-roll gate too, and while Buddy is
+  /// deciding whether to take, the controller is parked on a cube response
+  /// with no roll verb to give. A throw typed in that window used to reach
+  /// `GameController.rollDice` on a closed gate — a `StateError` inside the
+  /// unawaited [_requestRoll], and a roll the user then had to enter twice.
+  /// The request stays where it is here as well, and is answered once the
+  /// cube is settled and the gate (or the next game's opening) asks again.
+  bool get awaitingRoll {
+    if (!_roller.isPending) return false;
+    final c = _controller;
+    if (c == null) return true;
+    if (c.matchOver) return false;
+    return c.awaitingNextGame || c.awaitingHumanTurn;
+  }
 
   /// Whether Buddy's double is on the table and the user has not answered it.
   ///
@@ -487,6 +502,9 @@ class BuddySession extends ChangeNotifier {
     if (_candidates.isEmpty) {
       throw StateError('no play candidates are on offer');
     }
+    if (!_candidates.any((candidate) => candidate.sameAs(move))) {
+      throw ArgumentError.value(move, 'move', 'is not one of the candidates');
+    }
     final c = _controller!;
     _foldPlay(c.state.turn, move, _candidateFrame);
     notifyListeners();
@@ -497,6 +515,12 @@ class BuddySession extends ChangeNotifier {
     final c = _controller;
     if (c == null || _humanAgent.pendingMove.value == null) {
       throw StateError('no play is being waited for');
+    }
+    // Refused HERE, before it is spoken or folded: the controller treats an
+    // illegal move from an agent as a fatal loop error, so a mistyped play
+    // would otherwise be announced and then end the match.
+    if (c.state.canonicalPlay(move) == null) {
+      throw ArgumentError.value(move, 'move', 'is not a legal play here');
     }
     _foldPlay(c.state.turn, move, _lastStableFrame);
     notifyListeners();
@@ -1036,6 +1060,14 @@ class BuddySession extends ChangeNotifier {
       _lastDice[first] = dice;
       policy.onDiceRead(first, dice, _lastConfidence);
       c.continueToNextGame();
+      return;
+    }
+    if (!c.awaitingHumanTurn) {
+      // The gate closed under the throw (see [awaitingRoll], which is what
+      // keeps both submitters out of this window). Dropped rather than rolled
+      // into a controller that cannot take it; the gate asks again when it
+      // reopens.
+      _advance();
       return;
     }
     final roller = c.state.turn;

@@ -840,6 +840,42 @@ void main() {
       expect(h.speech, containsAllInOrder(<String>['You double.', 'I take.']));
     });
 
+    test('a throw typed while buddy is still deciding is not rolled into '
+        'a closed gate', () async {
+      // The pre-roll gate asked for a throw; the user doubled from that same
+      // gate instead, and the engine has not answered yet. The controller is
+      // parked on the cube response and has no roll verb to give.
+      final h = Harness(matchLength: 3);
+      h.vision
+        ..willReadDice([diceShowing(6, 3)])
+        ..willMatchPlay([matchesPlay(0)]);
+
+      h.start();
+      await h.pumpUntil(() => h.preRollFor(Player.white));
+      expect(h.session.awaitingRoll, isTrue);
+
+      h.engine.holdCubeAnswer = Completer<void>();
+      h.session.offerDouble();
+      await h.settle();
+      expect(h.controller.state.phase, GamePhase.cubeOffered);
+
+      expect(h.session.awaitingRoll, isFalse,
+          reason: 'the throw is still wanted, but nothing can take it yet');
+      expect(() => h.session.enterDiceManually(Dice(3, 1)), throwsStateError,
+          reason: 'rather than reaching rollDice on a gate that is not open');
+
+      h.engine.holdCubeAnswer!.complete();
+      await h.settle();
+      expect(h.controller.state.cube.value, 2);
+      expect(h.session.awaitingRoll, isTrue,
+          reason: 'the cube is settled and the same request is live again');
+
+      h.session.enterDiceManually(Dice(3, 1));
+      await h.settle();
+      expect(h.controller.state.dice, Dice(3, 1));
+      expect(h.controller.error, isNull);
+    });
+
     // The two below are about a verb that did NOT happen. In this mode the
     // transcript is the user's record of the match and the physical cube is
     // their ritual, so a spoken line instructs a real-world action: "You
@@ -1338,6 +1374,36 @@ void main() {
           reason: 'the turn moves on, so the next roll may be asked for');
     });
 
+    test('refuses a play that is not legal, and the match survives it',
+        () async {
+      final h = Harness();
+      h.vision
+        ..willReadDice([diceShowing(6, 3)])
+        ..willMatchPlay([matchesNothing])
+        ..willVerify([boardAgrees]);
+
+      h.start();
+      await h.stableFrame(); // the opening roll
+      await h.stableFrame(); // the picture cannot say what the hand did
+      final linesBefore = h.speech.length;
+
+      // 24/23 is not a play of a 6-3.
+      final illegal = Move(const [CheckerMove(23, 22)]);
+      expect(() => h.session.enterPlayManually(illegal), throwsArgumentError);
+      await h.settle();
+
+      expect(h.policy.observedPlays, isEmpty,
+          reason: 'nothing is acknowledged that the game did not take');
+      expect(h.speech, hasLength(linesBefore));
+      expect(h.controller.error, isNull,
+          reason: 'an illegal move handed to the controller ends its loop');
+      expect(h.session.awaitingPlay, isTrue);
+
+      h.session.enterPlayManually(h.controller.state.legalMoves.first);
+      await h.settle();
+      expect(h.controller.game.events.whereType<MoveEvent>(), hasLength(1));
+    });
+
     test('refuses a play when none is being waited for', () async {
       final h = Harness();
       h.vision
@@ -1582,9 +1648,16 @@ class ScriptedEngine implements PlayerAgent {
     return true;
   }
 
+  /// When set, the answer to a double waits for this to complete — the engine
+  /// isolate taking its time over a cube, which is when the user can reach for
+  /// the dice pad in the meantime.
+  Completer<void>? holdCubeAnswer;
+
   @override
-  Future<CubeAction> chooseCubeResponse(GameState state, MatchContext ctx) async =>
-      takes ? CubeAction.take : CubeAction.drop;
+  Future<CubeAction> chooseCubeResponse(GameState state, MatchContext ctx) async {
+    await holdCubeAnswer?.future;
+    return takes ? CubeAction.take : CubeAction.drop;
+  }
 
   @override
   Future<bool> chooseResignResponse(

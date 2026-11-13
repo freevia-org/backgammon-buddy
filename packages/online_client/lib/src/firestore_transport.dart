@@ -258,6 +258,11 @@ class FirestoreTransport with TransportChannels implements MatchTransport {
   bool _disposed = false;
   bool _polling = false;
 
+  /// Names the poll loop that is allowed to run. Bumped on every start, so a
+  /// loop that was stopped while a read of its own was still in flight cannot
+  /// carry on once a NEWER loop has been started — see [_pollLoop].
+  int _pollGeneration = 0;
+
   @override
   bool get isDisposed => _disposed;
 
@@ -589,30 +594,50 @@ class FirestoreTransport with TransportChannels implements MatchTransport {
     }
     _pollNow = immediate;
     _polling = true;
-    unawaited(_pollLoop());
+    unawaited(_pollLoop(++_pollGeneration));
   }
 
-  Future<void> _pollLoop() async {
-    while (_polling && !_disposed) {
+  /// The loop, as generation [gen].
+  ///
+  /// [_polling] alone cannot say WHICH loop may run. Stopping is only a flag,
+  /// so a loop stopped mid-read (the listener went live) is still suspended in
+  /// its `await`; if the listener then drops before that read returns, a second
+  /// loop is started and the first one wakes to find `_polling` true again.
+  /// Two loops over the one [_sleep] slot do not merely double the reads — each
+  /// one's sleep WAKES the other's, so they hand off with no pause at all, a
+  /// spin against a backend that bills per query. Hence the generation: a loop
+  /// that is no longer the newest stops at its next check, whatever the flag
+  /// says.
+  Future<void> _pollLoop(int gen) async {
+    bool live() => _polling && !_disposed && gen == _pollGeneration;
+    while (live()) {
       if (_pollNow) {
         _pollNow = false;
       } else {
         await _sleep(inboundCadence);
       }
-      if (!_polling || _disposed) return;
+      if (!live()) return;
       try {
         await _pollOnce();
+        // The read itself is harmless whoever asked for it (the watermarks
+        // deduplicate), but its VERDICT belongs to the loop that is running
+        // now: a superseded loop must not clear or raise a status.
+        if (!live()) return;
         if (status != TransportStatus.connected) {
           setStatus(TransportStatus.connected);
         }
       } on OnlineException catch (e) {
         final fault = _mapRead(e);
         if (fault is TransportRejected) {
+          // Terminal whichever loop found it: the document will not decode
+          // (or the rules will not relent) for the next loop either.
           _onTerminalRead(fault);
           return;
         }
+        if (!live()) return;
         _onPollFailure(fault);
       } catch (e) {
+        if (!live()) return;
         _onPollFailure(TransportUnavailable('io', '$e'));
       }
     }

@@ -49,6 +49,30 @@ class FakeEngine implements EngineFacade {
       throw UnimplementedError();
 }
 
+/// A [FakeEngine] that also answers the score-aware cube question natively.
+class _NativeCubeEngine extends FakeEngine implements ContextualEngineFacade {
+  _NativeCubeEngine(this.cube);
+
+  final CubeAdvice? cube;
+  int cubeCalls = 0;
+
+  @override
+  Future<List<ScoredMove>?> rankForState(
+    GameState state,
+    MatchContext context,
+  ) async => null;
+
+  @override
+  Future<CubeAdvice?> cubeForState(
+    GameState state,
+    Player mover,
+    MatchContext context,
+  ) async {
+    cubeCalls++;
+    return cube;
+  }
+}
+
 /// An engine that fails every call — a dead isolate, or one whose reply timed
 /// out. What the live tutor must survive.
 class BrokenEngine implements EngineFacade {
@@ -661,6 +685,28 @@ void main() {
         ),
         isNull,
       );
+    });
+
+    test('a native cube answer with no pass value falls back to the advisor',
+        () async {
+      final engine = _NativeCubeEngine(
+        const CubeAdvice(
+          shouldDouble: true,
+          shouldAccept: true,
+          equityCubeless: 0,
+          equityNoDouble: 0.5,
+          equityDoubleTake: 0.6,
+        ),
+      );
+      final a = await TutorService(engine).assessCube(
+        _awaitingRollState(),
+        _ctx(5, 5),
+        playerDoubled: false,
+      );
+      expect(engine.cubeCalls, 1);
+      expect(engine.evaluateCalls, 1,
+          reason: 'the advisor answered from a plain evaluation instead');
+      expect(a.equityLoss.isFinite, isTrue);
     });
 
     test('a working engine is untouched by the variants', () async {

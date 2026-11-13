@@ -30,7 +30,7 @@ class VerifyIosFfiExportsTests(unittest.TestCase):
         )
         dart_symbols = set()
         for source in sources:
-            dart_symbols.update(re.findall(r"'([A-Za-z_][A-Za-z0-9_]*)'", source.read_text()))
+            dart_symbols.update(re.findall(r"'([A-Za-z_][A-Za-z0-9_]*)'", source.read_text(encoding='utf-8')))
         dart_symbols = {name for name in dart_symbols
                         if name.startswith(('wildbg_', 'buddy_gnubg_'))
                         or name in {'best_move', 'probabilities', 'cube_info'}}

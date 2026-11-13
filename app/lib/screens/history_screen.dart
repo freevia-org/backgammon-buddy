@@ -232,7 +232,7 @@ class _DeleteBackground extends StatelessWidget {
 /// or from the game screen's post-match "Match summary" button with only a
 /// [matchId] (the row is then loaded via [MatchRepository.loadMatch]). Exactly
 /// one of [match] / [matchId] must be provided.
-class MatchDetailScreen extends ConsumerWidget {
+class MatchDetailScreen extends ConsumerStatefulWidget {
   const MatchDetailScreen({super.key, this.match, this.matchId})
     : assert(
         match != null || matchId != null,
@@ -247,13 +247,63 @@ class MatchDetailScreen extends ConsumerWidget {
   final int? matchId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MatchDetailScreen> createState() => _MatchDetailScreenState();
+}
+
+class _MatchDetailScreenState extends ConsumerState<MatchDetailScreen> {
+  /// The two loads, started ONCE. They used to be created inside `build`, so
+  /// every rebuild (a locale or theme change, a route above this one settling)
+  /// handed the [FutureBuilder]s a fresh future: the list fell back to its
+  /// spinner and the database was queried again for rows it already had.
+  Future<MatchRow>? _matchLoad;
+  Future<List<GameRow>>? _gamesLoad;
+  int? _gamesLoadedFor;
+
+  MatchRepository get _repo => ref.read(matchRepositoryProvider);
+
+  @override
+  void initState() {
+    super.initState();
+    _startLoads();
+  }
+
+  @override
+  void didUpdateWidget(MatchDetailScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.match?.id != widget.match?.id ||
+        oldWidget.matchId != widget.matchId) {
+      _matchLoad = null;
+      _gamesLoad = null;
+      _gamesLoadedFor = null;
+      _startLoads();
+    }
+  }
+
+  void _startLoads() {
+    final row = widget.match;
+    if (row == null) {
+      _matchLoad = _repo.loadMatch(widget.matchId!);
+    } else {
+      _gamesFor(row.id);
+    }
+  }
+
+  /// The games of match [id], loaded once per match id.
+  Future<List<GameRow>> _gamesFor(int id) {
+    if (_gamesLoadedFor != id || _gamesLoad == null) {
+      _gamesLoadedFor = id;
+      _gamesLoad = _repo.gamesFor(id);
+    }
+    return _gamesLoad!;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = appLocalizationsOf(context);
-    final row = match;
-    if (row != null) return _detail(context, ref, row, l10n);
-    final repo = ref.watch(matchRepositoryProvider);
+    final row = widget.match;
+    if (row != null) return _detail(context, row, l10n);
     return FutureBuilder<MatchRow>(
-      future: repo.loadMatch(matchId!),
+      future: _matchLoad,
       builder: (context, snap) {
         if (snap.hasError) {
           return Scaffold(
@@ -269,18 +319,13 @@ class MatchDetailScreen extends ConsumerWidget {
             body: const Center(child: CircularProgressIndicator()),
           );
         }
-        return _detail(context, ref, snap.data!, l10n);
+        return _detail(context, snap.data!, l10n);
       },
     );
   }
 
-  Widget _detail(
-    BuildContext context,
-    WidgetRef ref,
-    MatchRow match,
-    AppLocalizations l10n,
-  ) {
-    final repo = ref.watch(matchRepositoryProvider);
+  Widget _detail(BuildContext context, MatchRow match, AppLocalizations l10n) {
+    final repo = _repo;
     return Scaffold(
       appBar: AppBar(
         title: Text(_scoreLine(match, l10n)),
@@ -337,7 +382,7 @@ class MatchDetailScreen extends ConsumerWidget {
         ],
       ),
       body: FutureBuilder<List<GameRow>>(
-        future: repo.gamesFor(match.id),
+        future: _gamesFor(match.id),
         builder: (context, snap) {
           if (snap.hasError) {
             return Center(

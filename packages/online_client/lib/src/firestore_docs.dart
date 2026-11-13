@@ -216,7 +216,7 @@ class FirestoreDocs {
       body: jsonEncode({'structuredQuery': structuredQuery}),
     );
     if (_isError(res)) throw onlineExceptionFor(res.statusCode, res.body);
-    final decoded = jsonDecode(res.body);
+    final decoded = _decodeJson(res);
     if (decoded is! List) {
       throw const MalformedDocumentException(
         'malformed-firestore-query',
@@ -270,11 +270,24 @@ class FirestoreDocs {
 
   Map<String, Object?> _decodeObject(http.Response res) {
     if (_isError(res)) throw onlineExceptionFor(res.statusCode, res.body);
-    final decoded = jsonDecode(res.body);
+    final decoded = _decodeJson(res);
     if (decoded is! Map) {
       throw OnlineException('malformed-response', res.body);
     }
     return decoded.cast<String, Object?>();
+  }
+
+  /// A 2xx body as JSON. One that is not JSON at all (a captive portal or a
+  /// proxy answering in HTML) is a plain [OnlineException] — transient, since
+  /// it says nothing about the document — rather than a bare
+  /// `FormatException` that no caller's `on OnlineException` would map.
+  Object? _decodeJson(http.Response res) {
+    try {
+      return jsonDecode(res.body);
+    } on FormatException {
+      throw OnlineException(
+          'malformed-response', 'HTTP ${res.statusCode} body is not JSON');
+    }
   }
 
   FirestoreDoc _docFrom(Map<String, Object?> body) {

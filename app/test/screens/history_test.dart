@@ -70,6 +70,26 @@ class _FailingDeleteRepo extends MatchRepository {
   }
 }
 
+/// A repository that counts the two reads the match-detail screen makes.
+class _CountingRepo extends MatchRepository {
+  _CountingRepo(super.db);
+
+  int matchLoads = 0;
+  int gameLoads = 0;
+
+  @override
+  Future<MatchRow> loadMatch(int matchId) {
+    matchLoads++;
+    return super.loadMatch(matchId);
+  }
+
+  @override
+  Future<List<GameRow>> gamesFor(int matchId) {
+    gameLoads++;
+    return super.gamesFor(matchId);
+  }
+}
+
 late AppDatabase _db;
 late MatchRepository _repo;
 
@@ -149,6 +169,51 @@ void main() {
     expect(find.byType(MatchDetailScreen), findsOneWidget);
     expect(find.text('Game 1'), findsOneWidget);
     expect(find.textContaining('Black wins 1'), findsOneWidget);
+  });
+
+  testWidgets('the match detail loads its rows once, not once per rebuild',
+      (t) async {
+    // The two loads were created inside `build`, so any rebuild handed the
+    // FutureBuilders a fresh future: the games list dropped back to a spinner
+    // and the database was queried again for rows already on screen.
+    await t.binding.setSurfaceSize(_surface);
+    addTearDown(() => t.binding.setSurfaceSize(null));
+
+    late int matchId;
+    await t.runAsync(() async {
+      matchId = await _repo.startMatch(
+        matchLength: 1,
+        mode: 'vsComputer',
+        whiteType: 'human',
+        blackType: 'ai:expert',
+      );
+      final game = _sampleGame();
+      await _repo.recordGame(
+        matchId: matchId,
+        gameNumber: 1,
+        isCrawford: game.state.isCrawfordGame,
+        events: game.events,
+        result: game.state.result!,
+      );
+    });
+
+    final repo = _CountingRepo(_db);
+    await t.pumpWidget(_app(MatchDetailScreen(matchId: matchId),
+        matches: const [], repo: repo));
+    await _settle(t);
+    expect(find.text('Game 1'), findsOneWidget);
+    expect(repo.matchLoads, 1);
+    expect(repo.gameLoads, 1);
+
+    // A new widget instance for the same match: a plain rebuild.
+    await t.pumpWidget(_app(MatchDetailScreen(matchId: matchId),
+        matches: const [], repo: repo));
+    await t.pump();
+    expect(find.byType(CircularProgressIndicator), findsNothing);
+    expect(find.text('Game 1'), findsOneWidget);
+    await _settle(t);
+    expect(repo.matchLoads, 1);
+    expect(repo.gameLoads, 1);
   });
 
   testWidgets('every mode a match can be saved under has a name', (t) async {

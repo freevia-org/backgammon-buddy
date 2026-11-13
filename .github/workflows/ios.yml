@@ -67,6 +67,7 @@ jobs:
 
       - uses: actions/checkout@v7
         with:
+          persist-credentials: false
           submodules: recursive
 
       - name: Prepare dedicated build storage
@@ -125,11 +126,12 @@ jobs:
         run: python3 tool/release_build_number.py
 
       - name: Rust toolchain (iOS device target)
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # master; toolchain selected by the input below
         with:
+          toolchain: stable
           targets: aarch64-apple-ios
 
-      - uses: Swatinem/rust-cache@v2
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
         with:
           workspaces: native/engine_shim
           shared-key: ios-deployment-target-15
@@ -160,7 +162,7 @@ jobs:
              app/ios/Frameworks/libaigammon_engine.a
           ls -l app/ios/Frameworks/libaigammon_engine.a
 
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
         with:
           channel: stable
           flutter-version: 3.44.8
@@ -455,6 +457,9 @@ jobs:
           PROFILES_DIR="$HOME/Library/MobileDevice/Provisioning Profiles"
           mkdir -p "$PROFILES_DIR"
           cp "$RUNNER_TEMP/profile.mobileprovision" "$PROFILES_DIR/$UUID.mobileprovision"
+          # Recorded for the cleanup step; a file rather than a step output so
+          # the (masked) UUID never has to leave this job's temp directory.
+          printf '%s\n' "$PROFILES_DIR/$UUID.mobileprovision" > "$RUNNER_TEMP/installed-profile-path"
 
           # Register all three with the runner's log scrubber BEFORE anything
           # can print them. These are derived from a SECRET (the base64
@@ -501,6 +506,25 @@ jobs:
             "${TRANSPORT_ARGS[@]}"
           echo "Built IPA: $IPA"
           echo "ipa_path=app/$IPA" >> "$GITHUB_OUTPUT"
+
+      # The Mac mini is a persistent runner. Without this the signing keychain
+      # stayed in the user's keychain search list (pointing at a file the
+      # runner deletes with RUNNER_TEMP) and every run left another copy of the
+      # provisioning profile installed under ~/Library. Nothing after the
+      # export needs either. `delete-keychain` also drops the search-list entry.
+      - name: Remove signing keychain and provisioning profile
+        if: always() && steps.ios.outputs.has_signing == 'true'
+        run: |
+          KEYCHAIN="$RUNNER_TEMP/aigammon-signing.keychain-db"
+          if [ -f "$KEYCHAIN" ]; then
+            security delete-keychain "$KEYCHAIN" || true
+          fi
+          if [ -f "$RUNNER_TEMP/installed-profile-path" ]; then
+            rm -f "$(cat "$RUNNER_TEMP/installed-profile-path")"
+          fi
+          rm -f "$RUNNER_TEMP/cert.p12" "$RUNNER_TEMP/profile.mobileprovision" \
+            "$RUNNER_TEMP/profile.plist" "$RUNNER_TEMP/ExportOptions.plist" \
+            "$RUNNER_TEMP/installed-profile-path"
 
       - name: Upload signed IPA artifact
         if: steps.ios.outputs.has_signing == 'true' && inputs.publish_artifacts == true
@@ -580,3 +604,35 @@ jobs:
           echo "An unsigned .app CANNOT be installed on an iPhone. To produce a signed, installable"
           echo "IPA and push it to Firebase App Distribution, add the four iOS secrets described in"
           echo ".github/workflows/README.md (iOS) and firebase/DEPLOY.md (iOS distribution)."
+
+      # prepare_ios_runner_storage.py gives each Mac mini run a fresh directory
+      # on the external volume and refuses to reuse one, so nothing in it is
+      # ever read again: without this, every run left its Flutter engine
+      # checkout and build outputs behind until the volume failed the
+      # free-space check. Last step, because the artifact uploads above read
+      # from this storage.
+      #
+      # `cargo` and `pub` are deliberately left: the Rust and Flutter cache
+      # actions save from CARGO_TARGET_DIR / PUB_CACHE in their POST steps,
+      # which run after this one. The next run's storage preparation prunes
+      # those remnants (and anything a crashed run left) once they are a day old.
+      - name: Remove dedicated Mac mini build storage
+        if: always() && inputs.runner == 'macmini' && github.event_name == 'workflow_dispatch'
+        run: |
+          for LINK in app/build native/gnubg/build; do
+            if [ -L "$LINK" ]; then rm -f "$LINK"; fi
+          done
+          case "${BGB_BUILD_TEMP:-}" in
+            '/Volumes/MacMini Work/backgammon-buddy-ios-'*/temp)
+              STORAGE="$(dirname "$BGB_BUILD_TEMP")"
+              for NAME in temp tmp app-build gnubg-build; do
+                # Some fetched toolchain trees are read-only; retry writable.
+                rm -rf "${STORAGE:?}/$NAME" 2>/dev/null \
+                  || { chmod -R u+w "$STORAGE/$NAME"; rm -rf "${STORAGE:?}/$NAME"; }
+              done
+              echo "Removed the heavy build outputs for this run."
+              ;;
+            *)
+              echo "No dedicated build storage was prepared for this run."
+              ;;
+          esac

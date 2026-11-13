@@ -263,6 +263,46 @@ void main() {
         isTrue);
   });
 
+  test('learning rebuilds a later game\'s score from the rows it loaded',
+      () async {
+    final firstId = await seedPracticeGame(db);
+    final repo = MatchRepository(db);
+    final first = await repo.loadGame(firstId);
+    final match = await repo.loadMatch(first.matchId);
+    var game = Game.start(const OpeningRollEvent(whiteDie: 6, blackDie: 1));
+    game = game.append(MoveEvent(Player.white, game.state.legalMoves.last));
+    game = game.append(const RollEvent(Player.black, 3, 2));
+    game = game.append(MoveEvent(Player.black, game.state.legalMoves.last));
+    game =
+        game.append(const ResignOfferEvent(Player.white, ResignValue.single));
+    game = game.append(const ResignAcceptEvent(Player.black));
+    final afterFirst =
+        const MatchState(matchLength: 5).applyResult(game.state.result!);
+    final secondId = await repo.recordGameAndScore(
+        matchId: match.id,
+        gameNumber: 2,
+        isCrawford: false,
+        events: game.events,
+        result: game.state.result!,
+        matchAfter: afterFirst.applyResult(game.state.result!));
+    final analysis = await GameAnalyzer(TutorService(PracticeTestEngine()))
+        .analyze(game.events,
+            isCrawford: false, matchBefore: afterFirst, cubeless: true);
+    await repo.saveAnalysis(secondId, jsonEncode(analysis.toJson()));
+
+    final second = await repo.loadGame(secondId);
+    final rows = await repo.gamesFor(match.id);
+    expect(matchBeforeRecordedGameIn(match, rows.reversed, second), afterFirst,
+        reason: 'the in-memory rule does not depend on the order it is fed');
+    expect(matchBeforeRecordedGameIn(match, rows, second),
+        await matchBeforeRecordedGame(repo, second));
+
+    final learning = await practice.loadLearning();
+    expect(learning.gamesNeedingAnalysis, 0);
+    expect(learning.decisions.map((d) => d.gameId).toSet(),
+        {firstId, secondId});
+  });
+
   test('game and score writes roll back together if the score write fails',
       () async {
     final repo = _FailScoreRepository(db);

@@ -34,8 +34,8 @@ jobs:
     # default, not a security boundary, because the selected ref supplies YAML.
     runs-on: ${{ (inputs.runner == 'hosted' || github.ref != 'refs/heads/master') && 'ubuntu-24.04' || 'backgammon-buddy-i5-linux' }}
     # Cold path: NDK download, Rust Android targets and Gradle dependencies
-    # fetched from scratch, then a release APK, plus up to ~40 min waiting for CI
-    # before distribution (normally zero: CI finishes first).
+    # fetched from scratch, then a release APK (and optionally a bundle). The
+    # wait for CI happens in the firebase-distribution job, not here.
     timeout-minutes: 75
     outputs:
       has_firebase: ${{ steps.fb.outputs.has_firebase }}
@@ -58,6 +58,7 @@ jobs:
 
       - uses: actions/checkout@v7
         with:
+          persist-credentials: false
           submodules: recursive
 
       - uses: actions/setup-java@v6
@@ -76,11 +77,12 @@ jobs:
       # a universal APK. Re-add it (here and in the cargo-ndk step below) if the
       # app ever has to run on an x86_64 emulator or a Chromebook.
       - name: Rust toolchain (Android targets)
-        uses: dtolnay/rust-toolchain@stable
+        uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # master; toolchain selected by the input below
         with:
+          toolchain: stable
           targets: aarch64-linux-android,armv7-linux-androideabi
 
-      - uses: Swatinem/rust-cache@v2
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
         with:
           workspaces: native/engine_shim
 
@@ -140,7 +142,7 @@ jobs:
 
       # cache: true restores the Flutter SDK + pub cache (same key as ci.yml's
       # Linux jobs) instead of downloading the SDK on every run (~1 min).
-      - uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
         with:
           channel: stable
           flutter-version: 3.44.8
@@ -388,6 +390,16 @@ jobs:
         if: always()
         run: (cd app/android && ./gradlew --stop) || true
 
+      # The upload keystore and its passwords were written into the workspace
+      # above. The local I5 runner is persistent and ci.yml runs any dispatched
+      # ref in this same workspace, so signing material must not outlive the
+      # job (the next checkout's `git clean` is not a guarantee: a job is free
+      # to read the workspace before, or without, checking out). Runs after the
+      # last Gradle invocation, and on failure or cancellation too.
+      - name: Remove release signing material
+        if: always()
+        run: rm -f app/android/freevia-backgammon-buddy-upload.jks app/android/key.properties
+
       - name: Upload Android dependency evidence
         uses: actions/upload-artifact@v7
         with:
@@ -449,10 +461,14 @@ jobs:
     needs: apk
     if: github.ref == 'refs/heads/master' && needs.apk.outputs.has_firebase == 'true' && needs.apk.outputs.has_signing == 'true'
     runs-on: backgammon-buddy-i5-linux
-    timeout-minutes: 15
+    # The CI gate below polls for up to 40 minutes (wait-for-ci.sh default).
+    # This ceiling was 15, so a CI run still in progress got the job killed by
+    # the timeout instead of distributing once CI went green.
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
         with:
+          persist-credentials: false
           submodules: false
 
       # The gate that used to run after artifact creation. Keeping distribution

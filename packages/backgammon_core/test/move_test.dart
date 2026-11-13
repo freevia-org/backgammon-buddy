@@ -52,6 +52,22 @@ void main() {
     expect(bogus.sameAs(Move(const [CheckerMove(2, 98)])), isFalse);
   });
 
+  test('a move longer than any legal turn gets no packed key', () {
+    // Four sorted hop codes fit one exact integer; a fifth leaves the range
+    // that is exact on the web and a sixth wraps a 64-bit int, where distinct
+    // hop sets could collide. Only a foreign submission is ever that long, and
+    // it is compared the exact way instead.
+    List<CheckerMove> hops(int n, {int lastTo = 4}) => [
+          for (var i = 0; i < n - 1; i++) const CheckerMove(7, 4),
+          CheckerMove(7, lastTo),
+        ];
+    expect(Move(hops(4)).hopSetKey, isNotNull);
+    expect(Move(hops(5)).hopSetKey, isNull);
+    expect(Move(hops(7)).hopSetKey, isNull);
+    expect(Move(hops(7)).sameAs(Move(hops(7).reversed.toList())), isTrue);
+    expect(Move(hops(7)).sameAs(Move(hops(7, lastTo: 3))), isFalse);
+  });
+
   test('the hop-set key is order-insensitive and hop-sensitive', () {
     final a = Move(const [CheckerMove(23, 20), CheckerMove(20, 19)]);
     final b = Move(const [CheckerMove(20, 19), CheckerMove(23, 20)]);

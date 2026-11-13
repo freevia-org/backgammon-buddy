@@ -3,7 +3,26 @@ set -euo pipefail
 
 : "${RUNNER_TEMP:?RUNNER_TEMP is required}"
 : "${GITHUB_WORKSPACE:?GITHUB_WORKSPACE is required}"
+# Used only after the long engine build; fail in seconds rather than an hour in.
+: "${FLUTTER_ROOT:?FLUTTER_ROOT is required (set by the Flutter setup step)}"
 BUILD_TEMP="${BGB_BUILD_TEMP:-$RUNNER_TEMP}"
+
+# The fetches below pull from GitHub and chromium.googlesource.com; one dropped
+# connection used to discard the whole job. Each retried command is idempotent.
+retry() {
+  local attempt
+  for attempt in 1 2 3; do
+    if "$@"; then
+      return 0
+    fi
+    if [ "$attempt" -lt 3 ]; then
+      echo "Attempt $attempt failed: $*; retrying in $(( attempt * 20 ))s" >&2
+      sleep $(( attempt * 20 ))
+    fi
+  done
+  echo "Giving up after 3 attempts: $*" >&2
+  return 1
+}
 
 FLUTTER_SOURCE="$BUILD_TEMP/flutter-engine-source"
 DEPOT_TOOLS="$BUILD_TEMP/depot_tools"
@@ -20,14 +39,14 @@ if [ -e "$FLUTTER_SOURCE" ] || [ -e "$DEPOT_TOOLS" ]; then
 fi
 git init "$FLUTTER_SOURCE"
 git -C "$FLUTTER_SOURCE" remote add origin https://github.com/flutter/flutter.git
-git -C "$FLUTTER_SOURCE" fetch --depth=1 origin "$FRAMEWORK_REVISION"
+retry git -C "$FLUTTER_SOURCE" fetch --depth=1 origin "$FRAMEWORK_REVISION"
 git -C "$FLUTTER_SOURCE" checkout --detach FETCH_HEAD
 cp "$FLUTTER_SOURCE/engine/scripts/standard.gclient" "$FLUTTER_SOURCE/.gclient"
 
 DEPOT_TOOLS_REVISION=a20039648c0de69d8156906b18052bd47e9bf230
 git init "$DEPOT_TOOLS"
 git -C "$DEPOT_TOOLS" remote add origin https://chromium.googlesource.com/chromium/tools/depot_tools.git
-git -C "$DEPOT_TOOLS" fetch --depth=1 origin "$DEPOT_TOOLS_REVISION"
+retry git -C "$DEPOT_TOOLS" fetch --depth=1 origin "$DEPOT_TOOLS_REVISION"
 git -C "$DEPOT_TOOLS" checkout --detach FETCH_HEAD
 export DEPOT_TOOLS_UPDATE=0
 export DEPOT_TOOLS_METRICS=0
@@ -60,7 +79,7 @@ command -v vpython3 >/dev/null || {
 }
 (
   cd "$FLUTTER_SOURCE"
-  gclient sync --no-history --nohooks --verbose
+  retry gclient sync --no-history --nohooks --verbose
   gclient runhooks
 )
 test -f "$DEPOT_TOOLS/python3_bin_reldir.txt"
@@ -83,7 +102,7 @@ fi
 # engine.version names the Flutter-framework commit that last changed the
 # engine subtree; engine/src/flutter is part of this Flutter checkout, not a
 # separate Git repository. Compare the subtree trees at both pinned commits.
-git -C "$FLUTTER_SOURCE" fetch --depth=1 origin "$ENGINE_REVISION"
+retry git -C "$FLUTTER_SOURCE" fetch --depth=1 origin "$ENGINE_REVISION"
 ENGINE_SOURCE_TREE_SHA="$(git -C "$FLUTTER_SOURCE" rev-parse "$FRAMEWORK_REVISION:engine")"
 ENGINE_VERSION_TREE_SHA="$(git -C "$FLUTTER_SOURCE" rev-parse "$ENGINE_REVISION:engine")"
 if [ "$ENGINE_SOURCE_TREE_SHA" != "$ENGINE_VERSION_TREE_SHA" ]; then

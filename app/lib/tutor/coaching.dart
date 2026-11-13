@@ -121,10 +121,22 @@ class PositionFeatures {
 int legalHittingRolls(BoardState board, Player mover) =>
     _replyThreat(board, mover).rolls;
 
+/// The first hitting reply found for [legalHittingRolls]' position, as
+/// `(die, die, point)` with the point numbered 1-24 from [mover]'s side, or
+/// null when no roll hits. Answered from the same cached scan as the count, so
+/// asking for both generates the opponent's replies once.
+(int, int, int)? firstHittingReply(BoardState board, Player mover) =>
+    _replyThreat(board, mover).hit;
+
 class _ReplyThreat {
-  const _ReplyThreat(this.rolls, this.example);
+  const _ReplyThreat(this.rolls, this.hit);
   final int rolls;
-  final String? example;
+  final (int, int, int)? hit;
+  String? get example => switch (hit) {
+    (final a, final b, final point) =>
+      'For example, $a–$b allows a legal hit on your $point-point.',
+    null => null,
+  };
 }
 
 final Map<BoardState, _ReplyThreat> _replyCache = {};
@@ -135,9 +147,10 @@ _ReplyThreat _replyThreat(BoardState board, Player mover) {
   if (board.whiteOff == 15 || board.blackOff == 15 || features.isRace) {
     return const _ReplyThreat(0, null);
   }
-  if (_replyCache.containsKey(normalized)) return _replyCache[normalized]!;
+  final cached = _replyCache[normalized];
+  if (cached != null) return cached;
   var total = 0;
-  String? example;
+  (int, int, int)? example;
   for (var a = 1; a <= 6; a++) {
     for (var b = a; b <= 6; b++) {
       final legal = MoveGenerator.legalMoves(
@@ -152,8 +165,7 @@ _ReplyThreat _replyThreat(BoardState board, Player mover) {
             (m) => m.checkerMoves.any((h) => h.isHit),
           );
           final hit = play.checkerMoves.firstWhere((h) => h.isHit);
-          example =
-              'For example, $a–$b allows a legal hit on your ${hit.to + 1}-point.';
+          example = (a, b, hit.to + 1);
         }
       }
     }
@@ -195,11 +207,15 @@ class MoveExplanation {
       'not the neural engine’s internal reasoning. Near ties are not a claim '
       'of certainty; there is no calibrated confidence interval.';
 
+  /// [legalMoveCount] is `before.legalMoves.length` when the caller already
+  /// has it; the list is regenerated on every read, so passing it saves a
+  /// move generation here and another in the structured copy.
   static MoveExplanation forCandidate(
     GameState before,
     ScoredMove candidate,
-    ScoredMove best,
-  ) {
+    ScoredMove best, {
+    int? legalMoveCount,
+  }) {
     final loss = (best.rankingValue - candidate.rankingValue).clamp(
       0.0,
       double.infinity,
@@ -210,7 +226,8 @@ class MoveExplanation {
     final p = candidate.probabilities;
     final isBest = markForMetric(loss, metric) == MoveMark.best;
     final forced =
-        before.phase == GamePhase.moving && before.legalMoves.length <= 1;
+        before.phase == GamePhase.moving &&
+        (legalMoveCount ?? before.legalMoves.length) <= 1;
     final after = before.board.applyMove(before.turn, candidate.move);
     final comparison = isBest || forced
         ? null
@@ -235,7 +252,12 @@ class MoveExplanation {
       shortReason:
           comparison?.summary ??
           _shortPlanAfter(before.board, after, before.turn),
-      copy: MoveExplanationCopySet.forCandidate(before, candidate, best),
+      copy: MoveExplanationCopySet.forCandidate(
+        before,
+        candidate,
+        best,
+        forced: forced,
+      ),
     );
   }
 
@@ -357,11 +379,27 @@ class MoveExplanation {
     // Cached assessments are derived data and may be stale or malformed. Map
     // every hop back to the legal representative for this exact position before
     // any board application; BoardState.applyMove assumes its input is legal.
-    final played = before.canonicalPlay(a.played);
+    //
+    // The legal list is generated ONCE and matched by hop set first, which is
+    // `canonicalPlay`'s own first step. Calling it per candidate regenerated
+    // every legal move for each of them — quadratic in a list that runs to
+    // hundreds of plays on a double — and only a transit-equivalent spelling
+    // needs its second step at all.
+    final legal = before.phase == GamePhase.moving
+        ? before.legalMoves
+        : const <Move>[];
+    Move? canonicalOf(Move move) {
+      for (final m in legal) {
+        if (m.sameAs(move)) return m;
+      }
+      return before.canonicalPlay(move);
+    }
+
+    final played = canonicalOf(a.played);
     if (played == null) return null;
     final ranked = <ScoredMove>[];
     for (final candidate in a.ranked) {
-      final canonical = before.canonicalPlay(candidate.move);
+      final canonical = canonicalOf(candidate.move);
       if (canonical == null) return null;
       ranked.add(
         ScoredMove(
@@ -373,7 +411,12 @@ class MoveExplanation {
     }
     final selected = ranked.where((candidate) => candidate.move.sameAs(played));
     if (selected.isEmpty) return null;
-    return forCandidate(before, selected.first, ranked.first);
+    return forCandidate(
+      before,
+      selected.first,
+      ranked.first,
+      legalMoveCount: legal.length,
+    );
   }
 
   static List<String> describeMove(GameState before, Move move) {

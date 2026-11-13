@@ -70,6 +70,9 @@ class BuddyCoach {
               match.matchLength -
               (userSide == Player.white ? match.blackScore : match.whiteScore),
           crawfordPlayed: match.crawfordPlayed,
+          // The same context the controller hands the agents, so a cubeless
+          // match is reviewed against the cubeless ranking it was played to.
+          cubeless: controller.cubeless,
         );
         unawaited(
           _review(

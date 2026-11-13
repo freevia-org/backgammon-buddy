@@ -12,8 +12,9 @@ import 'player.dart';
 /// always knows the position it is entering moves from. The builder narrows
 /// candidates as hops are chosen: a candidate survives while some permutation of
 /// its hops starts with the chosen hops (compared by from/to, ignoring hit
-/// flags). Because turns are at most 4 hops, permutation matching is
-/// brute-force.
+/// flags). "Some permutation starts with the chosen hops" is just "the chosen
+/// hops are a sub-multiset of the candidate's", so matching is a multiset
+/// subtraction over at most 4 hops (see [_computeNextHops]).
 ///
 /// The builder offers only hops that appear in surviving candidates, so a
 /// completed sequence always corresponds to a legal move (possibly entered as
@@ -135,7 +136,7 @@ class MoveBuilder {
         _candidates = [
           for (final v in variants)
             for (final d in v.decompositions)
-              _Candidate(d.checkerMoves, v.canonical),
+              _Candidate(d, v.canonical),
         ],
         _board = board,
         _player = player,
@@ -275,7 +276,7 @@ class MoveBuilder {
     // The entered hops are one of the offered decompositions (in some order);
     // commit the canonical move it maps to.
     for (final c in _candidates) {
-      if (Move(c.hops).sameAs(entered)) return c.move;
+      if (c.entry.sameAs(entered)) return c.move;
     }
     return _legal.firstWhere((m) => m.sameAs(entered));
   }
@@ -303,6 +304,16 @@ class MoveBuilder {
   /// in the turn is skipped — a permutation may reorder a transit chain into an
   /// unplayable order.
   ///
+  /// No permutation is ever built. Some ordering of a candidate starts with
+  /// [prefix] exactly when [prefix] is a sub-multiset of its hops, and the hops
+  /// that can come next are then whatever the subtraction leaves — so each
+  /// candidate costs one pass over at most four hops instead of the up-to-24
+  /// freshly allocated orderings this used to enumerate. That matters because
+  /// this runs once per node of the chain DFS, over every candidate of a doubles
+  /// roll. Hops are offered in the order the enumeration produced them (a
+  /// candidate's leftover hops, in its own order), so `selectableSources.first`
+  /// and friends answer exactly as before.
+  ///
   /// [position] is the board [prefix] produces.
   ///
   /// Used both for the live prefix (via [_recompute]) and for the hypothetical
@@ -315,10 +326,27 @@ class MoveBuilder {
     final seen = <int>{};
     for (final candidate in _candidates) {
       final hops = candidate.hops;
-      if (k >= hops.length) continue;
-      for (final perm in _permutations(hops)) {
-        if (!_prefixMatches(perm, prefix)) continue;
-        final hop = perm[k];
+      final n = hops.length;
+      if (k >= n) continue;
+      // Bit i set = the candidate's hop i is spoken for by a prefix hop. Turns
+      // are at most 4 hops, so one int is plenty.
+      var used = 0;
+      var matched = true;
+      for (var p = 0; p < k && matched; p++) {
+        final want = prefix[p];
+        matched = false;
+        for (var i = 0; i < n; i++) {
+          if (used & (1 << i) != 0) continue;
+          if (hops[i].from != want.from || hops[i].to != want.to) continue;
+          used |= 1 << i;
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) continue;
+      for (var i = 0; i < n; i++) {
+        if (used & (1 << i) != 0) continue;
+        final hop = hops[i];
         // Sentinels: bar == 24, off == -1; both fit in a single stable key.
         final key = (hop.from + 1) * 100 + (hop.to + 1);
         if (!seen.add(key)) continue; // already decided about this hop
@@ -438,40 +466,18 @@ class MoveBuilder {
     if (hop.to == CheckerMove.off) return white ? from + 1 : 24 - from;
     return white ? from - hop.to : hop.to - from;
   }
-
-  /// Whether the first `prefix.length` hops of [perm] equal [prefix] by from/to.
-  bool _prefixMatches(List<CheckerMove> perm, List<CheckerMove> prefix) {
-    if (perm.length < prefix.length) return false;
-    for (var i = 0; i < prefix.length; i++) {
-      if (perm[i].from != prefix[i].from || perm[i].to != prefix[i].to) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  /// All orderings of [items]. Turns are at most 4 hops, so this is at most
-  /// 4! = 24 permutations per candidate — cheap to enumerate exhaustively.
-  Iterable<List<CheckerMove>> _permutations(List<CheckerMove> items) sync* {
-    if (items.length <= 1) {
-      yield List.of(items);
-      return;
-    }
-    for (var i = 0; i < items.length; i++) {
-      final rest = [...items.sublist(0, i), ...items.sublist(i + 1)];
-      for (final tail in _permutations(rest)) {
-        yield [items[i], ...tail];
-      }
-    }
-  }
 }
 
 /// One enterable hop sequence and the legal move it commits. Several candidates
 /// can share a [move] — the different ways to enter the same resulting position
 /// (see [MoveVariants]).
 class _Candidate {
-  _Candidate(this.hops, this.move);
+  _Candidate(this.entry, this.move);
 
-  final List<CheckerMove> hops;
+  /// The decomposition itself, kept as a [Move] so [MoveBuilder.build] compares
+  /// against its cached [Move.hopSetKey] rather than re-packing the hops.
+  final Move entry;
   final Move move;
+
+  List<CheckerMove> get hops => entry.checkerMoves;
 }

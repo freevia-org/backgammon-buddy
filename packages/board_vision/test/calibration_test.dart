@@ -426,6 +426,47 @@ void main() {
       );
     });
 
+    test('an exposure that is not a number leaves the model as learned', () {
+      // A NaN let through would turn every feature into a NaN, every distance
+      // comparison false, and every sample on the board into a black checker.
+      final shot = renderShot(board: BoardState.initial());
+      final colors = _calibrate(shot).colors;
+      for (final exposure in <double>[
+        double.nan,
+        double.infinity,
+        double.negativeInfinity,
+        0,
+        -2,
+      ]) {
+        final model = colors.renormalized(exposure);
+        expect(model.exposure, 1.0, reason: 'renormalized($exposure)');
+        _expectEveryCheckerReadsBack(shot, model);
+      }
+      expect(colors.renormalized(0.6).exposure, 0.6);
+    });
+
+    test('a tabulated feature is the computed one, to the bit', () {
+      // The dice reader looks features up instead of taking three logarithms
+      // per cell, and its mask is only the same mask if every entry is the
+      // very double `feature` would have returned — floor at one included.
+      for (final (reference, exposure) in <(Rgb, double)>[
+        (const (110, 74, 42), 1.0),
+        (const (0, 255, 1), 0.63),
+        (const (245, 243, 236), 1.27),
+      ]) {
+        final table = ColorModel.featureTable(reference, exposure: exposure);
+        expect(table, hasLength(3 * 256));
+        for (var v = 0; v < 256; v++) {
+          final direct =
+              ColorModel.feature((v, v, v), reference, exposure: exposure);
+          for (var c = 0; c < 3; c++) {
+            expect(table[c * 256 + v], direct[c],
+                reason: 'channel $c at $v against $reference x$exposure');
+          }
+        }
+      }
+    });
+
     test('confirmation survives the camera exposing for itself', () {
       // The calibration shot and the confirmation frame are seconds apart on a
       // live preview, and a phone's auto-exposure moves this much between two
@@ -825,6 +866,33 @@ void main() {
 
       expect(calibration.fingerprint.geometryMatches(after), isFalse);
       expect(calibration.fingerprint.matches(after), isFalse);
+    });
+
+    test('a fingerprint cut short is a mismatch, not a crash', () {
+      // A fingerprint is plain data and is meant to be storable. One that
+      // comes back from a store missing part of a patch used to walk off the
+      // end of its own list; it is simply not the calibrated scene.
+      final shot = renderShot(board: BoardState.initial());
+      final whole = _calibrate(shot).fingerprint;
+      CalibrationFingerprint cut(List<int> patches) => CalibrationFingerprint(
+            cornerPatches: patches,
+            meanLuma: whole.meanLuma,
+            lumaSpread: whole.lumaSpread,
+            redRatio: whole.redRatio,
+            blueRatio: whole.blueRatio,
+            clippedFraction: whole.clippedFraction,
+            sharpness: whole.sharpness,
+          );
+
+      final ragged =
+          cut(whole.cornerPatches.sublist(0, whole.cornerPatches.length - 5));
+      expect(ragged.geometryMatches(ragged), isFalse);
+      expect(ragged.matches(ragged), isFalse);
+      expect(whole.geometryMatches(ragged), isFalse);
+      expect(ragged.geometryMatches(whole), isFalse);
+
+      // The whole one, rebuilt the same way, is still itself.
+      expect(cut(whole.cornerPatches).geometryMatches(whole), isTrue);
     });
 
     test('an over-exposed board shows up in the exposure stats', () {

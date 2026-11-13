@@ -426,6 +426,31 @@ void main() {
       expect(shot.board.dice, isEmpty);
     });
 
+    test('the far seat reports the pips it was asked to paint', () {
+      // The half turn used to rebuild each die's ground truth without its
+      // painted pips, so a far-seat die drawn with an illegal pattern claimed
+      // the plain face it was labelled with.
+      const line = <(double, double)>[(0.0, -1.0), (0.0, 0.0), (0.0, 1.0)];
+      const wash = <(double, double)>[(1.0, 1.0)];
+      for (final orientation in BoardOrientation.values) {
+        final board = renderTopDown(
+          board: BoardState.initial(),
+          orientation: orientation,
+          dicePlacements: const <DicePlacement>[
+            DicePlacement(
+              face: 6,
+              center: Pt(0.7, 0.5),
+              pipOffsets: line,
+              faintPipOffsets: wash,
+            ),
+          ],
+        );
+        expect(board.dice.single.pipOffsets, line, reason: orientation.name);
+        expect(board.dice.single.faintPipOffsets, wash,
+            reason: orientation.name);
+      }
+    });
+
     test('placements put any number of dice anywhere, at any angle', () {
       // The dice reader has to FIND dice, not be handed them in the one spot
       // the default path always uses — and it has to answer "not two dice" for

@@ -550,6 +550,46 @@ void main() {
     });
   });
 
+  group('a joiner and a host that inflates the match', () {
+    test('a roll index no honest relay would hold is not mirrored', () async {
+      // The relay refuses anything past MatchRelay.maxRollIndex, so only a
+      // modified host can send one — and unbounded, it is a memory lever.
+      final scripted = await _ScriptedRelay.start();
+      addTearDown(scripted.stop);
+      final client = GuestClient.connect(
+        InternetAddress.loopbackIPv4.address,
+        scripted.port,
+        roomCode: testCode,
+        name: 'Bo',
+        timings: LanTimings.test,
+      );
+      final transport = SocketTransport.guest(client: client);
+      addTearDown(() async {
+        await transport.dispose();
+        await client.dispose();
+      });
+      final frames = <InboundFrame>[];
+      transport.inbound.listen(frames.add);
+      await transport.connect();
+
+      const commit =
+          'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+      RollFrame roll(int n) =>
+          RollFrame(n: n, roller: MatchRelay.hostAuthor, commit: commit);
+      scripted.push(RollMessage(roll(MatchRelay.maxRollIndex + 1)));
+      scripted.push(RollMessage(roll(999999)));
+      scripted.push(RollMessage(roll(MatchRelay.maxRollIndex)));
+      await waitFor(() => frames.whereType<RollFrame>().isNotEmpty,
+          what: 'the in-range roll');
+
+      expect(frames.whereType<RollFrame>().map((r) => r.n),
+          [MatchRelay.maxRollIndex],
+          reason: 'frames arrive in order, so the two before it were dropped');
+      expect((await transport.rollsSince(1)).map((r) => r.n),
+          [MatchRelay.maxRollIndex]);
+    });
+  });
+
   group('the bound peer and repeated hellos', () {
     test('a resync hello is answered with the log but does NOT reset the host',
         () async {

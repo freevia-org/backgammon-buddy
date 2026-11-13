@@ -59,7 +59,14 @@ void main() {
         server.port,
         roomCode: testCode,
         name: 'Bo',
-        timings: LanTimings.test,
+        // This test asserts the guest NEVER had to retry, so the compressed
+        // 250-300ms connect and handshake deadlines are a liability: on a busy
+        // machine they fire on their own and report the very retry the fix is
+        // being checked against. Production-sized here; nothing waits on them.
+        timings: LanTimings.test.copyWith(
+          connectTimeout: const Duration(seconds: 5),
+          handshakeTimeout: const Duration(seconds: 5),
+        ),
       );
       // The guest has claimed the playing slot: its hello reached the server and
       // was published to a stream with no subscriber.

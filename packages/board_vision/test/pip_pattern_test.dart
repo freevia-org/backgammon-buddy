@@ -171,6 +171,24 @@ void main() {
     expect(PipPattern.faceOf(mergedSix, span: 0.5), isNull);
   });
 
+  test('a number that is not a number is no face', () {
+    // Every comparison with a NaN is false, so a test written as "refuse when
+    // the miss is BEYOND tolerance" accepts a NaN miss — and a pip position
+    // divided by a die extent of nothing used to match every face from two
+    // to six. A face the arithmetic could not measure is not a reading.
+    for (var face = 2; face <= 6; face++) {
+      expect(
+        PipPattern.faceOf(<Pt>[
+          const Pt(double.nan, double.nan),
+          ...canonical(face).skip(1),
+        ]),
+        isNull,
+        reason: 'face $face with a pip nowhere',
+      );
+    }
+    expect(PipPattern.faceOf(const <Pt>[Pt(double.nan, 0.5)]), isNull);
+  });
+
   test('nothing, or too much, is no face', () {
     expect(PipPattern.faceOf(const <Pt>[]), isNull);
     expect(

@@ -47,6 +47,12 @@ void main() {
       expect(log.entries.single.stack, contains('truncated'));
     });
 
+    test('an error whose toString throws is still recorded', () {
+      final log = CrashLog();
+      expect(() => log.record(_ThrowingToString()), returnsNormally);
+      expect(log.entries.single.error, contains('_ThrowingToString'));
+    });
+
     test('drops the oldest entries until the log fits maxBytes', () {
       final log = CrashLog(maxEntries: 100, maxBytes: 400);
       for (var i = 0; i < 40; i++) {
@@ -86,6 +92,45 @@ void main() {
       final b = CrashLog();
       await b.attachFile(logFile());
       expect(b.entries.map((e) => e.error), contains('early'));
+    });
+
+    test('an error recorded WHILE the file is attaching keeps the old log',
+        () async {
+      final a = CrashLog();
+      await a.attachFile(logFile());
+      a.record('previous session');
+      await a.flush();
+
+      // The write this record schedules must not be able to overtake the read
+      // of what the previous session left behind.
+      final b = CrashLog();
+      final attaching = b.attachFile(logFile());
+      b.record('during attach');
+      await attaching;
+      await b.flush();
+
+      expect(b.entries.map((e) => e.error),
+          ['previous session', 'during attach']);
+      final c = CrashLog();
+      await c.attachFile(logFile());
+      expect(c.entries.map((e) => e.error),
+          ['previous session', 'during attach']);
+    });
+
+    test('a burst of errors still leaves the newest one on disk', () async {
+      // Writes are coalesced, so the last record must ride on a queued write
+      // rather than be dropped with it.
+      final a = CrashLog(maxEntries: 5);
+      await a.attachFile(logFile());
+      for (var i = 0; i < 200; i++) {
+        a.record('burst $i');
+      }
+      await a.flush();
+
+      final b = CrashLog(maxEntries: 5);
+      await b.attachFile(logFile());
+      expect(b.entries.map((e) => e.error),
+          [for (var i = 195; i < 200; i++) 'burst $i']);
     });
 
     test('attaching merges the newest entries and re-applies the cap',
@@ -186,4 +231,9 @@ void main() {
       expect(CrashLog.instance.entries.length, before);
     });
   });
+}
+
+class _ThrowingToString {
+  @override
+  String toString() => throw StateError('toString is broken');
 }

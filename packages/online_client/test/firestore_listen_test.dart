@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:online_client/online_client.dart';
@@ -16,6 +17,37 @@ import 'package:test/test.dart';
 /// `emulator_integration_test.dart`, which runs the same encoder against a real
 /// Firestore.
 void main() {
+  // =========================================================================
+  group('GrpcFirestoreListenChannel', () {
+    test('close completes when the stream never connected', () async {
+      // gRPC subscribes to the request stream only once the connection is up,
+      // and closing a stream nobody listened to never completes — so a close()
+      // that awaited it hung for good exactly when the device was offline.
+      final probe = await ServerSocket.bind(InternetAddress.loopbackIPv4, 0);
+      final deadPort = probe.port;
+      await probe.close();
+
+      final channel = GrpcFirestoreListenChannel(
+        config: OnlineConfig.emulator(firestorePort: deadPort),
+        token: () async => 'tok',
+      );
+      final sub = channel.listen(const [
+        ListenTarget(
+          targetId: 1,
+          parentPath: 'matches/C',
+          collectionId: 'events',
+          field: 'seq',
+          from: -1,
+          inclusive: false,
+        ),
+      ]).listen((_) {}, onError: (Object _) {});
+      addTearDown(sub.cancel);
+
+      await channel.close().timeout(const Duration(seconds: 10));
+      await channel.close(); // idempotent
+    });
+  });
+
   // =========================================================================
   group('protobuf primitives', () {
     test('a small varint field is tag-then-value', () {

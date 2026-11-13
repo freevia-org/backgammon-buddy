@@ -1283,6 +1283,9 @@ RenderedBoard renderTopDown({
             center: _halfTurn(d.center, width, height),
             side: d.side,
             angle: d.angle + math.pi,
+            // In the die's own frame, so the half turn above carries them.
+            pipOffsets: d.pipOffsets,
+            faintPipOffsets: d.faintPipOffsets,
           ),
       ],
     );

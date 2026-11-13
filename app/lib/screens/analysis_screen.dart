@@ -785,12 +785,14 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
               ],
               if (cube != null)
                 Flexible(
-                  child: Text(
-                    '${_markStyle(cube.mark, l10n).$2} −${cube.lossLabel}',
-                    style: TextStyle(
-                      color: _markStyle(cube.mark, l10n).$1,
-                      fontSize: 12,
-                    ),
+                  child: Builder(
+                    builder: (context) {
+                      final (color, label) = _markStyle(cube.mark, l10n);
+                      return Text(
+                        '$label −${cube.lossLabel}',
+                        style: TextStyle(color: color, fontSize: 12),
+                      );
+                    },
                   ),
                 ),
             ],
@@ -830,13 +832,7 @@ class _AnalysisScreenState extends ConsumerState<AnalysisScreen> {
   }
 
   (Color, String) _markStyle(MoveMark mark, AppLocalizations l10n) =>
-      switch (mark) {
-        MoveMark.best => (Colors.green.shade700, l10n.analysisMarkBest),
-        MoveMark.good => (Colors.green.shade600, l10n.analysisMarkGood),
-        MoveMark.dubious => (Colors.amber.shade800, l10n.analysisMarkDubious),
-        MoveMark.error => (Colors.orange.shade800, l10n.analysisMarkError),
-        MoveMark.blunder => (Colors.red.shade700, l10n.analysisMarkBlunder),
-      };
+      moveMarkStyle(mark, l10n);
 }
 
 /// The per-player summary: error rate (mean equity loss) and blunder count.

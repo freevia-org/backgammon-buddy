@@ -92,7 +92,14 @@ class PipPattern {
     final measured = _sortedDistances(pips);
     final expected = _sortedDistances(_canonical(face));
     for (var i = 0; i < measured.length; i++) {
-      if ((measured[i] - expected[i] * scale).abs() > tolerance) return null;
+      // Written as "not within" rather than "beyond" so that a distance that
+      // is not a number refuses: every comparison with a NaN is false, and
+      // `> tolerance` therefore let a pip position that was not a number —
+      // one divided by a die extent of nothing — match every face from two
+      // to six.
+      if (!((measured[i] - expected[i] * scale).abs() <= tolerance)) {
+        return null;
+      }
     }
     return face;
   }

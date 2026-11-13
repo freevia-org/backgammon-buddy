@@ -22,6 +22,7 @@ import '../l10n/localization_lookup.dart';
 import '../privacy/privacy_settings_section.dart';
 import '../tutor/coaching_widgets.dart';
 import 'diagnostics_screen.dart';
+import 'setup_options.dart';
 
 Future<PackageInfo>? _packageInfoFuture;
 
@@ -78,7 +79,7 @@ class SettingsScreen extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _Section(
+                    SetupSection(
                       label: l10n.evaluationEngine,
                       child: DropdownButtonFormField<EvaluationEngine>(
                         initialValue: settings.evaluationEngine,
@@ -110,7 +111,7 @@ class SettingsScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    _Section(
+                    SetupSection(
                       label: l10n.settingsAppLanguage,
                       child: DropdownButtonFormField<String>(
                         initialValue: settings.localeCode ?? 'system',
@@ -127,7 +128,7 @@ class SettingsScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    _Section(
+                    SetupSection(
                       label: l10n.settingsTheme,
                       child: SegmentedButton<ThemeMode>(
                         showSelectedIcon: false,
@@ -152,7 +153,7 @@ class SettingsScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    _Section(
+                    SetupSection(
                       label: l10n.settingsAnimationSpeed,
                       child: SegmentedButton<AnimationSpeed>(
                         showSelectedIcon: false,
@@ -192,7 +193,7 @@ class SettingsScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    _Section(
+                    SetupSection(
                       label: l10n.settingsDefaultMatchLength,
                       child: SegmentedButton<int>(
                         showSelectedIcon: false,
@@ -210,7 +211,7 @@ class SettingsScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    _Section(
+                    SetupSection(
                       label: l10n.settingsDefaultDifficulty,
                       child: SegmentedButton<Difficulty>(
                         showSelectedIcon: false,
@@ -240,7 +241,7 @@ class SettingsScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    _Section(
+                    SetupSection(
                       label: l10n.settingsTutorModeDefault,
                       child: SegmentedButton<_TutorChoice>(
                         showSelectedIcon: false,
@@ -297,7 +298,7 @@ class SettingsScreen extends ConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: 24),
-                    _Section(
+                    SetupSection(
                       label: l10n.settingsGameplay,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -377,7 +378,7 @@ class SettingsScreen extends ConsumerWidget {
                     // Retain v2 preferences in storage, without exposing their
                     // controls while physical-board play is unavailable.
                     if (ref.watch(physicalBuddyEnabledProvider)) ...[
-                      _Section(
+                      SetupSection(
                         label: l10n.settingsBuddyMode,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -444,7 +445,7 @@ class SettingsScreen extends ConsumerWidget {
                     // only one a tester can read. Crashlytics reports the same
                     // errors remotely on mobile, but nothing here depends on
                     // it having been configured.
-                    _Section(
+                    SetupSection(
                       label: l10n.settingsDiagnostics,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -488,7 +489,7 @@ class SettingsScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 24),
-                    _Section(
+                    SetupSection(
                       label: l10n.settingsAbout,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -612,25 +613,4 @@ enum _TutorChoice {
     _TutorChoice.off => false,
     _TutorChoice.auto => null,
   };
-}
-
-/// A labelled settings row: a caption above its control (mirrors the new-match
-/// screen's section styling).
-class _Section extends StatelessWidget {
-  const _Section({required this.label, required this.child});
-
-  final String label;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: Theme.of(context).textTheme.titleMedium),
-        const SizedBox(height: 12),
-        child,
-      ],
-    );
-  }
 }

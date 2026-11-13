@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:isolate';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart' as p;
@@ -38,12 +39,14 @@ class GnuBgInstaller {
     AssetReader read,
   ) async {
     await directory.create(recursive: true);
-    for (final entry in assets.entries) {
+    // Every installed file is re-hashed on each first use — ~8.7 MB through a
+    // pure-Dart SHA-256, which is a visibly dropped frame or several on the
+    // isolate that draws the board. The check needs nothing but paths and the
+    // expected digests, so it runs on a worker and only the (one-time) install
+    // of a missing or damaged file stays here.
+    for (final name in await _staleAssets(directory.path)) {
+      final entry = MapEntry(name, assets[name]!);
       final file = File(p.join(directory.path, entry.key));
-      if (await file.exists() &&
-          sha256.convert(await file.readAsBytes()).toString() == entry.value) {
-        continue;
-      }
       final data = await read('assets/gnubg/${entry.key}');
       final bytes = data.buffer.asUint8List(
         data.offsetInBytes,
@@ -54,9 +57,26 @@ class GnuBgInstaller {
       }
       final temp = File('${file.path}.tmp');
       await temp.writeAsBytes(bytes, flush: true);
-      if (await file.exists()) await file.delete();
+      // `rename` replaces an existing destination itself; deleting it first
+      // only opened a window in which an interrupted install had no file.
       await temp.rename(file.path);
     }
     return directory.path;
   }
+
+  /// The asset names missing from [directoryPath] or failing their digest.
+  ///
+  /// In a function of its own so the closure sent to the worker can capture
+  /// nothing but a path — never the caller's asset reader.
+  static Future<List<String>> _staleAssets(String directoryPath) => Isolate.run(
+    () => [
+      for (final entry in assets.entries)
+        if (!_isInstalled(File(p.join(directoryPath, entry.key)), entry.value))
+          entry.key,
+    ],
+  );
+
+  static bool _isInstalled(File file, String digest) =>
+      file.existsSync() &&
+      sha256.convert(file.readAsBytesSync()).toString() == digest;
 }

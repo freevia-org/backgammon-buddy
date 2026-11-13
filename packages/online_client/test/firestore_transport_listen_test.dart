@@ -656,6 +656,73 @@ void main() {
   });
 
   // =========================================================================
+  group('one poll loop at a time', () {
+    test('a loop stopped mid-read does not run on beside its replacement',
+        () async {
+      // The interleaving: a poll read is on the wire when the listener goes
+      // live (which only FLAGS the loop to stop), and the listener drops again
+      // before that read returns (which starts a second loop). The first loop
+      // then wakes to a flag that says "polling" — and two loops sharing the
+      // one sleep slot wake each other on every cycle, so they spin.
+      var eventQueries = 0;
+      final gate = Completer<void>();
+      final t = await connected((req) async {
+        if (req.url.path.endsWith(':runQuery')) {
+          if (queriedCollection(req) == 'events') {
+            eventQueries++;
+            if (!gate.isCompleted) await gate.future;
+          }
+          return http.Response('[]', 200);
+        }
+        return quiet(req);
+      }, poll: const Duration(milliseconds: 40));
+
+      await waitFor(() => eventQueries == 1,
+          reason: 'the first cycle never read');
+      goLive(); // stops the loop — but its read is still in flight
+      await waitFor(() => t.listenerLive);
+      channel().fail(); // …and the listener drops before that read returns
+      await waitFor(() => eventQueries == 2,
+          reason: 'the drop must poll immediately');
+      gate.complete();
+
+      // Six resting cycles' worth of wall clock. One loop reads about six
+      // times; two loops handing off without sleeping read hundreds.
+      final before = eventQueries;
+      await Future<void>.delayed(const Duration(milliseconds: 240));
+      expect(eventQueries - before, lessThanOrEqualTo(10),
+          reason: 'exactly one loop may be polling');
+    });
+
+    test('a read that fails after the listener went live raises no status',
+        () async {
+      // Its verdict is stale: nothing would ever clear a "reconnecting" raised
+      // by a loop that has already been stopped.
+      final gate = Completer<void>();
+      var eventQueries = 0;
+      final t = await connected((req) async {
+        if (req.url.path.endsWith(':runQuery')) {
+          if (queriedCollection(req) == 'events') {
+            eventQueries++;
+            await gate.future;
+            return err(503, 'UNAVAILABLE');
+          }
+          return http.Response('[]', 200);
+        }
+        return quiet(req);
+      }, poll: const Duration(milliseconds: 20));
+
+      await waitFor(() => eventQueries == 1);
+      goLive();
+      await waitFor(() => t.listenerLive);
+      gate.complete();
+      await Future<void>.delayed(const Duration(milliseconds: 60));
+      expect(t.status, TransportStatus.connected);
+      expect(eventQueries, 1, reason: 'a live listener means no more cycles');
+    });
+  });
+
+  // =========================================================================
   group('read accounting', () {
     test('documentsRead counts both paths', () async {
       final t = await connected((req) async {

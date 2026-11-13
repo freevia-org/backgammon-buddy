@@ -307,7 +307,14 @@ class GrpcFirestoreListenChannel implements FirestoreListenChannel {
   Future<void> close() async {
     if (_closed) return;
     _closed = true;
-    await _requests?.close();
+    // NOT awaited, and that is load-bearing. A single-subscription controller's
+    // close() only completes once its stream has been listened to and drained,
+    // and gRPC subscribes to the request stream only when the connection comes
+    // up (and the token provider has answered). Offline — exactly when a
+    // listener is torn down most — that never happens, so awaiting here hung
+    // this method for good: the call was never cancelled, the channel never
+    // shut down, and `FirestoreTransport.dispose` never returned.
+    unawaited(_requests?.close());
     _requests = null;
     // cancel() surfaces a "cancelled" error on the response stream; the consumer
     // is already tearing down, and it guards on its own disposed flag.

@@ -23,7 +23,7 @@ class PhysicalBuddyGate extends ConsumerWidget {
       ),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24),
           child: Text(
             appLocalizationsOf(context).physicalBuddyUnavailableBody,
             textAlign: TextAlign.center,

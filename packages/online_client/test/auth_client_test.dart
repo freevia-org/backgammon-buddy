@@ -255,6 +255,89 @@ void main() {
     });
   });
 
+  group('single-flight', () {
+    String signUp(String uid) => jsonEncode({
+          'idToken': 'tok-$uid',
+          'refreshToken': 'r-$uid',
+          'localId': uid,
+          'expiresIn': '3600',
+        });
+
+    test('overlapping sign-ins share ONE anonymous user', () async {
+      // Two sign-ups would mint two uids, and the slower response would replace
+      // the identity the faster caller was already acting as.
+      var signUps = 0;
+      final release = Completer<void>();
+      final auth =
+          AuthClient(OnlineConfig.emulator(), inner: MockClient((req) async {
+        final n = ++signUps;
+        await release.future;
+        return http.Response(signUp('uid-$n'), 200);
+      }));
+      addTearDown(auth.close);
+
+      final first = auth.signInAnonymously();
+      final second = auth.signInAnonymously();
+      release.complete();
+      expect((await first).uid, 'uid-1');
+      expect((await second).uid, 'uid-1');
+      expect(signUps, 1);
+      expect(auth.session!.uid, 'uid-1');
+    });
+
+    test('a failed sign-in is not remembered: the next call tries again',
+        () async {
+      var calls = 0;
+      final auth =
+          AuthClient(OnlineConfig.emulator(), inner: MockClient((req) async {
+        if (++calls == 1) return http.Response('{}', 503);
+        return http.Response(signUp('u'), 200);
+      }));
+      addTearDown(auth.close);
+
+      await expectLater(
+          auth.signInAnonymously(), throwsA(isA<OnlineException>()));
+      expect((await auth.signInAnonymously()).uid, 'u');
+    });
+
+    test('an expiring token is exchanged once, however many callers wait',
+        () async {
+      var clock = DateTime.utc(2026, 1, 1);
+      var refreshes = 0;
+      final release = Completer<void>();
+      final auth = AuthClient(OnlineConfig.emulator(), now: () => clock,
+          inner: MockClient((req) async {
+        if (req.url.path.contains('accounts:signUp')) {
+          return http.Response(signUp('u'), 200);
+        }
+        refreshes++;
+        await release.future;
+        return http.Response(
+          jsonEncode({
+            'id_token': 'new-tok',
+            'refresh_token': 'refresh-B',
+            'expires_in': '3600',
+            'user_id': 'u',
+          }),
+          200,
+        );
+      }));
+      addTearDown(auth.close);
+      await auth.signInAnonymously();
+
+      clock = clock.add(const Duration(minutes: 59));
+      final waiting = [for (var i = 0; i < 4; i++) auth.validToken()];
+      release.complete();
+      expect(await Future.wait(waiting), everyElement('new-tok'));
+      expect(refreshes, 1);
+
+      // …and the slot is free again for the NEXT expiry.
+      clock = clock.add(const Duration(minutes: 59));
+      expect(await auth.validToken(), 'new-tok');
+      expect(refreshes, 2);
+    });
+  });
+
   group('durable sessions (TokenStore)', () {
     /// A signUp response body for [uid].
     String signUpBody(String uid) => jsonEncode({
