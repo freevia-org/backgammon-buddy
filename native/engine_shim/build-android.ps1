@@ -5,7 +5,12 @@
 #   - rustup target add aarch64-linux-android armv7-linux-androideabi x86_64-linux-android
 $ErrorActionPreference = 'Stop'
 Push-Location $PSScriptRoot
-$out = Join-Path $PSScriptRoot '..\..\app\android\app\src\main\jniLibs'
-cargo ndk -t arm64-v8a -t armeabi-v7a -t x86_64 -o $out build --release
-Pop-Location
+try {
+    $out = Join-Path $PSScriptRoot '..\..\app\android\app\src\main\jniLibs'
+    cargo ndk -t arm64-v8a -t armeabi-v7a -t x86_64 -o $out build --release
+    # A native command's exit code does not trip $ErrorActionPreference.
+    if ($LASTEXITCODE -ne 0) { throw 'Rust engine build failed' }
+} finally {
+    Pop-Location
+}
 Write-Host "Staged Android .so files -> $out"

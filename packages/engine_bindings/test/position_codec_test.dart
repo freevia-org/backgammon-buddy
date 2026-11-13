@@ -67,6 +67,23 @@ void main() {
     );
   });
 
+  // GnuBgEngine.rankMoves keys the core's legal moves by resulting board to
+  // canonicalise native moves in one lookup each. That needs BoardState to be
+  // a sound map key and legalMoves to yield one move per resulting position.
+  test('legal moves map one-to-one onto their resulting boards', () {
+    final board = BoardState.initial();
+    for (final dice in [Dice(3, 1), Dice(6, 6), Dice(2, 2)]) {
+      for (final mover in Player.values) {
+        final legal = MoveGenerator.legalMoves(board, mover, dice);
+        final byTarget = {for (final m in legal) board.applyMove(mover, m): m};
+        expect(byTarget, hasLength(legal.length));
+        for (final m in legal) {
+          expect(byTarget[board.applyMove(mover, m)], same(m));
+        }
+      }
+    }
+  });
+
   test('decodeDetail maps pips back to CheckerMove for both movers', () {
     // White mover: pip 8 -> 5 is index 7 -> 4.
     expect(decodeDetail(8, 5, Player.white), const CheckerMove(7, 4));

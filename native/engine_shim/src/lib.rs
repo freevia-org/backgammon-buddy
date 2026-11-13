@@ -74,9 +74,13 @@ pub unsafe extern "C" fn wildbg_free(ptr: *mut Wildbg) {
     if ptr.is_null() {
         return;
     }
-    unsafe {
+    // SAFETY: non-null and, per the contract above, a live pointer obtained
+    // from `wildbg_new_with_path` that has not been freed yet. The drop runs
+    // under the panic guard like every other export: a panicking destructor
+    // must not unwind out of an `extern "C"` frame.
+    let _ = catch_engine_panic("wildbg_free", || unsafe {
         drop(Box::from_raw(ptr));
-    }
+    });
 }
 
 #[repr(C)]
@@ -187,8 +191,32 @@ type Error = &'static str;
 /// the caller receives the API's normal failure value.
 fn catch_engine_panic<T>(operation: &str, call: impl FnOnce() -> T) -> Result<T, ()> {
     std::panic::catch_unwind(std::panic::AssertUnwindSafe(call)).map_err(|_| {
-        eprintln!("{operation}: engine panicked");
+        log_error(format_args!("{operation}: engine panicked"));
     })
+}
+
+/// Writes one diagnostic line to stderr and ignores a failed write.
+/// `eprintln!` PANICS when stderr cannot be written (a closed or broken pipe),
+/// and every caller is on an error path of an `extern "C"` function, outside
+/// the panic guard — where that panic would abort the host process over a log
+/// line.
+fn log_error(message: std::fmt::Arguments) {
+    use std::io::Write;
+    let _ = writeln!(std::io::stderr(), "{message}");
+}
+
+/// Runs one fallible engine call under the panic guard and collapses both
+/// failure modes — a validation error and a contained panic — into the API's
+/// default failure value, logging the reason.
+fn guarded<T: Default>(operation: &str, call: impl FnOnce() -> Result<T, Error>) -> T {
+    match catch_engine_panic(operation, call) {
+        Ok(Ok(value)) => value,
+        Ok(Err(error)) => {
+            log_error(format_args!("{operation}: {error}"));
+            T::default()
+        }
+        Err(()) => T::default(),
+    }
 }
 
 /// Validates the C integer board before converting it to the engine's i8
@@ -246,21 +274,13 @@ pub unsafe extern "C" fn best_move(
     // SAFETY: non-null pointers are part of this function's documented C ABI
     // precondition; the fixed-size board and config are read-only for the call.
     let (wildbg, pips, config) = unsafe { (&*wildbg, &*(pips as *const [c_int; 26]), &*config) };
-    let move_result = || -> Result<CMove, Error> {
+    guarded("best_move", || {
         let position = Position::try_from(checked_pips(pips)?)?;
         let dice = Dice::try_from((die1 as usize, die2 as usize))?;
         let score_config = ScoreConfig::try_from((config.x_away, config.o_away))?;
         let bg_move = wildbg.api.best_move(&position, &dice, &score_config);
         Ok(CMove::from(bg_move))
-    };
-    match catch_engine_panic("best_move", move_result) {
-        Ok(Ok(c_move)) => c_move,
-        Ok(Err(error)) => {
-            eprintln!("{error}");
-            CMove::default()
-        }
-        Err(_) => CMove::default(),
-    }
+    })
 }
 
 /// Returns cubeless money game probabilities for a certain position.
@@ -285,19 +305,11 @@ pub unsafe extern "C" fn probabilities(
     // SAFETY: guarded against null; callers must provide readable objects of
     // the declared ABI sizes for the duration of this call.
     let (wildbg, pips) = unsafe { (&*wildbg, &*(pips as *const [c_int; 26])) };
-    let result = catch_engine_panic("probabilities", || {
+    guarded("probabilities", || {
         checked_pips(pips)
             .and_then(Position::try_from)
             .map(|position| CProbabilities::from(&wildbg.api.probabilities(&position)))
-    });
-    match result {
-        Ok(Ok(probabilities)) => probabilities,
-        Ok(Err(error)) => {
-            eprintln!("{error}");
-            CProbabilities::default()
-        }
-        Err(_) => CProbabilities::default(),
-    }
+    })
 }
 
 /// # Safety
@@ -312,19 +324,11 @@ pub unsafe extern "C" fn cube_info(wildbg: *const Wildbg, pips: *const c_int) ->
     // SAFETY: guarded against null; callers must provide readable objects of
     // the declared ABI sizes for the duration of this call.
     let (wildbg, pips) = unsafe { (&*wildbg, &*(pips as *const [c_int; 26])) };
-    let result = catch_engine_panic("cube_info", || {
+    guarded("cube_info", || {
         checked_pips(pips)
             .and_then(Position::try_from)
             .map(|position| CCubeInfo::from(&wildbg.api.cube_info(&position)))
-    });
-    match result {
-        Ok(Ok(info)) => info,
-        Ok(Err(error)) => {
-            eprintln!("{error}");
-            CCubeInfo::default()
-        }
-        Err(_) => CCubeInfo::default(),
-    }
+    })
 }
 
 // ---------------------------------------------------------------------------
@@ -356,23 +360,30 @@ pub unsafe extern "C" fn wildbg_new_with_path(path: *const c_char) -> *mut Wildb
     }
     let dir = match unsafe { CStr::from_ptr(path) }.to_str() {
         Ok(s) => s,
-        Err(_) => return std::ptr::null_mut(),
+        Err(_) => {
+            log_error(format_args!(
+                "wildbg_new_with_path failed: path is not valid UTF-8"
+            ));
+            return std::ptr::null_mut();
+        }
     };
     let contact = format!("{dir}/contact.onnx");
     let race = format!("{dir}/race.onnx");
-    let evaluator = catch_engine_panic("wildbg_new_with_path", || {
-        CompositeEvaluator::from_file_paths_optimized(&contact, &race)
-    });
-    match evaluator {
-        Ok(Ok(evaluator)) => {
+    // Everything that can panic — loading and optimizing the nets, building the
+    // API and boxing it — stays inside the guard.
+    let wildbg = catch_engine_panic("wildbg_new_with_path", || {
+        CompositeEvaluator::from_file_paths_optimized(&contact, &race).map(|evaluator| {
             let api = WildbgApi::with_evaluator(evaluator);
             Box::into_raw(Box::new(Wildbg { api }))
-        }
+        })
+    });
+    match wildbg {
+        Ok(Ok(wildbg)) => wildbg,
         Ok(Err(e)) => {
-            eprintln!("wildbg_new_with_path failed: {e}");
+            log_error(format_args!("wildbg_new_with_path failed: {e}"));
             std::ptr::null_mut()
         }
-        Err(_) => std::ptr::null_mut(),
+        Err(()) => std::ptr::null_mut(),
     }
 }
 
@@ -389,6 +400,61 @@ mod tests {
     #[test]
     fn ffi_panic_guard_contains_panics() {
         assert!(super::catch_engine_panic("test", || panic!("simulated engine failure")).is_err());
+    }
+
+    #[test]
+    fn guarded_maps_errors_and_panics_to_the_default_failure_value() {
+        assert_eq!(super::guarded("test", || Ok(7_i32)), 7);
+        assert_eq!(super::guarded::<i32>("test", || Err("invalid input")), 0);
+        assert_eq!(
+            super::guarded::<i32>("test", || panic!("simulated engine failure")),
+            0
+        );
+    }
+
+    // The exported constructor is the only way a caller obtains a `Wildbg`, so
+    // its failure paths and its success path are exercised through the C ABI
+    // itself (`tests/smoke.rs` cannot: a cdylib/staticlib has no rlib to link).
+    #[test]
+    fn new_with_path_returns_null_for_unusable_paths() {
+        assert!(unsafe { super::wildbg_new_with_path(std::ptr::null()) }.is_null());
+        // 0xFF can never appear in UTF-8.
+        let not_utf8 = [0xFF_u8, 0xFE, 0x00];
+        assert!(unsafe { super::wildbg_new_with_path(not_utf8.as_ptr().cast()) }.is_null());
+        let missing = c"definitely/not/a/nets/directory";
+        assert!(unsafe { super::wildbg_new_with_path(missing.as_ptr()) }.is_null());
+    }
+
+    #[test]
+    fn new_with_path_loads_production_nets_through_the_c_abi() {
+        let nets = c"../wildbg-nets/neural-nets";
+        let wildbg = unsafe { super::wildbg_new_with_path(nets.as_ptr()) };
+        assert!(!wildbg.is_null());
+        let start = [
+            0, -2, 0, 0, 0, 0, 5, 0, 3, 0, 0, 0, -5, 5, 0, 0, 0, -3, 0, -5, 0, 0, 0, 0, 2, 0,
+        ];
+        let probabilities = unsafe { super::probabilities(wildbg, start.as_ptr()) };
+        assert!(probabilities.win > 0.4 && probabilities.win < 0.6);
+        let config = BgConfig {
+            x_away: 0,
+            o_away: 0,
+        };
+        let opening = unsafe { best_move(wildbg, start.as_ptr(), 3, 1, &config) };
+        assert_eq!(opening.detail_count, 2);
+        // Unsupported match scores and impossible dice fail closed.
+        let unsupported = BgConfig {
+            x_away: 5,
+            o_away: 3,
+        };
+        assert_eq!(
+            unsafe { best_move(wildbg, start.as_ptr(), 3, 1, &unsupported) },
+            CMove::default()
+        );
+        assert_eq!(
+            unsafe { best_move(wildbg, start.as_ptr(), 7, 1, &config) },
+            CMove::default()
+        );
+        unsafe { super::wildbg_free(wildbg) };
     }
 
     #[test]

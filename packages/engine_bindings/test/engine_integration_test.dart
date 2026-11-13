@@ -1,9 +1,18 @@
 @Tags(['engine'])
 library;
 
+import 'dart:io';
+import 'dart:isolate';
+
 import 'package:backgammon_core/backgammon_core.dart';
 import 'package:engine_bindings/engine_bindings.dart';
 import 'package:test/test.dart';
+
+/// Top-level so the closure sent to the isolate captures nothing.
+void _openAndAbandon() {
+  Engine.open(netsPath: '../../native/wildbg-nets/neural-nets')
+      .evaluate(BoardState.initial(), Player.white);
+}
 
 void main() {
   late Engine engine;
@@ -47,6 +56,40 @@ void main() {
         BoardState.initial(), Player.black, Dice(6, 5));
     expect(legal.any((m) => m.sameAs(best)), isTrue,
         reason: 'black best move must be legal: $best');
+  });
+
+  test('bestMove plays a 1-pointer, the only match score wildbg scores', () {
+    final best = engine.bestMove(BoardState.initial(), Player.white, Dice(3, 1),
+        xAway: 1, oAway: 1);
+    final legal = MoveGenerator.legalMoves(
+        BoardState.initial(), Player.white, Dice(3, 1));
+    expect(legal.any((m) => m.sameAs(best)), isTrue);
+  });
+
+  // The shim reports a rejected request as detail_count == 0 — the same value
+  // as a dance. This used to come back as Move.none for a position with plenty
+  // of legal moves.
+  test('bestMove throws when the native call fails, not Move.none', () {
+    expect(
+        () => engine.bestMove(BoardState.initial(), Player.white, Dice(3, 1),
+            xAway: 5, oAway: 3),
+        throwsStateError);
+    expect(
+        () => engine.bestMove(BoardState.initial(), Player.white, Dice(3, 1),
+            xAway: -1, oAway: 0),
+        throwsArgumentError);
+  });
+
+  test('bestMove still returns Move.none on a genuine dance', () {
+    // White on the bar against a closed black home board.
+    final pts = List<int>.filled(24, 0);
+    for (var i = 18; i < 24; i++) {
+      pts[i] = -2;
+    }
+    pts[0] = 14;
+    final b = BoardState(points: pts, whiteBar: 1, blackOff: 3);
+    expect(MoveGenerator.legalMoves(b, Player.white, Dice(3, 1)), isEmpty);
+    expect(engine.bestMove(b, Player.white, Dice(3, 1)).checkerMoves, isEmpty);
   });
 
   test('rankMoves ranks every legal move, best first', () {
@@ -159,6 +202,23 @@ void main() {
     expect(advice.equityNoDouble.isFinite, isTrue);
     expect(advice.equityDoubleTake.isFinite, isTrue);
   });
+
+  // An Engine whose isolate ends without dispose() — a killed or crashed
+  // worker, or EngineService.dispose() losing its race with the kill — used to
+  // leak the whole loaded evaluator (tens of MB each; 40 service disposals
+  // grew the process by 1.9 GB). The native finalizer frees it at isolate
+  // shutdown. The bound sits far from both outcomes: at most an engine or two
+  // still in flight when freed, well over 500 MB when leaked.
+  test('an engine abandoned by a dying isolate is freed', () async {
+    Future<void> abandon() => Isolate.run(_openAndAbandon);
+    await abandon(); // warm-up: allocator and isolate-group overhead
+    final before = ProcessInfo.currentRss;
+    for (var i = 0; i < 12; i++) {
+      await abandon();
+    }
+    final grownMb = (ProcessInfo.currentRss - before) / (1024 * 1024);
+    expect(grownMb, lessThan(300));
+  }, timeout: const Timeout(Duration(minutes: 3)));
 
   test('dispose then use throws', () {
     final e = Engine.open(netsPath: '../../native/wildbg-nets/neural-nets');
