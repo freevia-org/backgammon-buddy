@@ -26,12 +26,12 @@ All CI jobs except `online` can start independently; `online` waits on `rules`.
 All Flutter test and distribution jobs use **Flutter 3.44.8**, including the
 golden tests. Upgrade those pins together and regenerate goldens deliberately.
 
-`ci.yml` accepts a `runner` input. `local` (the default) uses the registered
-I5 Linux and Windows runners; select `hosted` when those runners are unavailable
-or stuck in setup to use Ubuntu 24.04 and Windows Server 2025. Android release
-builds support the same local/hosted selection. The manually dispatched Windows
-release build and privacy-cleanup workflow remain on I5. iOS builds use the
-pinned GitHub-hosted `macos-26` image with Xcode 26.6.
+`ci.yml` accepts a `runner` input. `hosted` (the default) uses GitHub-hosted
+Ubuntu 24.04 and Windows Server 2025. Select `local` to use the registered I5
+Linux and Windows runners when their listeners and capacity controller are
+healthy. Android release builds use the same hosted-by-default selection. The
+manually dispatched Windows release build and privacy-cleanup workflow remain
+on I5. iOS builds use the pinned GitHub-hosted `macos-26` image with Xcode 26.6.
 
 ## Distribution is gated on CI
 

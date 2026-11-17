@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       runner:
-        description: Use the self-hosted I5 runners or GitHub-hosted runners
+        description: Use GitHub-hosted runners by default; choose self-hosted I5 runners only when needed
         type: choice
         options: [local, hosted]
-        default: local
+        default: hosted
 
 # Least privilege. Nothing here writes to the repo, comments on PRs, or
 # publishes packages, so the default read/write token is more authority than any
