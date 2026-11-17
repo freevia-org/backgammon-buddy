@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
     inputs:
       runner:
-        description: Use the local I5 Linux runner on master, or select GitHub-hosted Ubuntu
+        description: Use GitHub-hosted Ubuntu by default; choose local I5 Linux only when needed
         type: choice
         options: [local, hosted]
-        default: local
+        default: hosted
       build_appbundle:
         description: Build a signed Google Play bundle artifact (does not upload to Play)
         type: boolean
