@@ -15,7 +15,7 @@ set by CI from the workflow run number and is not tracked here.
 > section. No git tags exist for them either; see "Releasing" in the README for
 > the tagging convention that starts with the next release.
 
-## [Unreleased]
+## [0.16.5] — 2026-11-21
 
 ### Fixed
 
