@@ -32,12 +32,12 @@ full toolchain note.
 
 ### Mobile (deferred verification)
 
-Two scripts stage mobile artifacts into `packages/engine_bindings/native/`:
+Two scripts stage mobile artifacts:
 
 | Platform | Script | Status |
 |---|---|---|
-| Android (`arm64-v8a`, `armeabi-v7a`, `x86_64`) | `native/engine_shim/build-android.ps1` | **Authored — verification deferred.** Android is verified in Plan 3 once the NDK lands. Needs `cargo install cargo-ndk`, the three Android rustup targets, and `$env:ANDROID_NDK_HOME`. Stages `.so` files into `native/android/jniLibs`. |
-| iOS (device + simulator XCFramework) | `native/engine_shim/build-ios.sh` | **Authored — verification deferred to CI/macOS.** macOS only. Needs Xcode CLT and the two `aarch64-apple-ios` / `-sim` rustup targets. Builds `aigammon_engine.xcframework` into `native/ios`. |
+| Android (`arm64-v8a`, `armeabi-v7a`, `x86_64`) | `native/engine_shim/build-android.ps1` | **Authored — verification deferred.** Android is verified in Plan 3 once the NDK lands. Needs `cargo install cargo-ndk`, the three Android rustup targets, and `$env:ANDROID_NDK_HOME`. Stages `.so` files into `app/android/app/src/main/jniLibs`. |
+| iOS (device + simulator XCFramework) | `native/engine_shim/build-ios.sh` | **Authored — verification deferred to CI/macOS.** macOS only. Needs Xcode CLT and the two `aarch64-apple-ios` / `-sim` rustup targets. Builds `aigammon_engine.xcframework` into `packages/engine_bindings/native/ios`. |
 
 Inference is tract-onnx (pure Rust), so mobile builds carry **no ONNX Runtime
 binaries** — the engine is a single self-contained static/shared library per ABI.
@@ -89,9 +89,9 @@ loaded from disk at runtime.
 
 ## Running tests
 
-- `dart test` — the default suite (11 tests): pure-logic tests (codec,
+- `dart test` — the default suite: pure-logic tests (codec,
   difficulty sampling, service wiring) that need **no** native library or nets.
-- `dart test -P engine` — the `engine` profile (16 tests): end-to-end tests that
+- `dart test -P engine` — the `engine` profile: end-to-end tests that
   load the real DLL and production nets. Requires the Windows DLL built
   (`build-windows.ps1`) and the vendored nets present under `native/`.
 
@@ -102,7 +102,9 @@ Exported from `package:engine_bindings/engine_bindings.dart`:
 - **`Engine`** (`src/engine.dart`) — synchronous, blocking facade over the FFI.
   `Engine.open({libraryPath, required netsPath})`; `evaluate`, `bestMove`,
   `rankMoves`, `cubeInfo`, `dispose`. Not thread-safe (one reused pip buffer per
-  instance); use from a single isolate.
+  instance); use from a single isolate. `bestMove` supports only the scores
+  wildbg does (money `0/0` and 1-pointer `1/1`) and throws `StateError` for any
+  other. A native finalizer frees the engine if its isolate dies undisposed.
 - **`EngineService`** (`src/engine_service.dart`) — async facade hosting an
   `Engine` in a dedicated isolate so inference never blocks the caller.
   `EngineService.spawn({libraryPath, required netsPath})` returns a `Future`;

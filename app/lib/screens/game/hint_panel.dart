@@ -192,7 +192,7 @@ class HintPanel extends StatelessWidget {
                       )
                     else if (top.isEmpty)
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         child: Text(l10n.tutorNoHintsAvailable),
                       )
                     else ...[
@@ -321,6 +321,21 @@ class _CandidateExplanation extends StatefulWidget {
 
 class _CandidateExplanationState extends State<_CandidateExplanation> {
   bool _expanded = false;
+
+  /// Computed on first expansion and kept: the panel rebuilds for reasons that
+  /// have nothing to do with this row, and the count is 36 move generations.
+  MoveExplanation? _explanation;
+
+  @override
+  void didUpdateWidget(_CandidateExplanation oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(widget.position, oldWidget.position) ||
+        !identical(widget.candidate, oldWidget.candidate) ||
+        !identical(widget.best, oldWidget.best)) {
+      _explanation = null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) => ExpansionTile(
     tilePadding: EdgeInsets.zero,
@@ -335,7 +350,7 @@ class _CandidateExplanationState extends State<_CandidateExplanation> {
         Padding(
           padding: const EdgeInsets.only(bottom: 12),
           child: MoveExplanationView(
-            explanation: MoveExplanation.forCandidate(
+            explanation: _explanation ??= MoveExplanation.forCandidate(
               widget.position,
               widget.candidate,
               widget.best,

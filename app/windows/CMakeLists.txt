@@ -76,12 +76,14 @@ set(INSTALL_BUNDLE_LIB_DIR "${CMAKE_INSTALL_PREFIX}")
 # them beside Runner so a packaged app does not depend on a source checkout.
 set(BUDDY_ENGINE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../packages/engine_bindings/native/windows")
 foreach(BUDDY_ENGINE_DLL aigammon_engine.dll libbuddy_gnubg.dll)
-  if(EXISTS "${BUDDY_ENGINE_DIR}/${BUDDY_ENGINE_DLL}")
-    install(FILES "${BUDDY_ENGINE_DIR}/${BUDDY_ENGINE_DLL}"
-      DESTINATION "${INSTALL_BUNDLE_LIB_DIR}" COMPONENT Runtime)
-  else()
+  if(NOT EXISTS "${BUDDY_ENGINE_DIR}/${BUDDY_ENGINE_DLL}")
     message(WARNING "Native engine ${BUDDY_ENGINE_DLL} is missing; run its native Windows build script before packaging.")
   endif()
+  # OPTIONAL defers the existence check to install time. A configure-time
+  # check alone would bake "missing" into an already-generated build tree, so
+  # a library staged afterwards would never be bundled until a re-configure.
+  install(FILES "${BUDDY_ENGINE_DIR}/${BUDDY_ENGINE_DLL}"
+    DESTINATION "${INSTALL_BUNDLE_LIB_DIR}" COMPONENT Runtime OPTIONAL)
 endforeach()
 
 install(TARGETS ${BINARY_NAME} RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}"

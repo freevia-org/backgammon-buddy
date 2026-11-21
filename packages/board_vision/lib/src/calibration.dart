@@ -454,6 +454,15 @@ class CalibrationFingerprint {
   bool geometryMatches(CalibrationFingerprint other) {
     if (other.cornerPatches.length != cornerPatches.length) return false;
     if (other.seamPatches.length != seamPatches.length) return false;
+    // A fingerprint is plain data and is meant to be storable, so one may come
+    // back from a log or a preference store cut short. A list that is not a
+    // whole number of patches cannot be compared patch by patch — and is not
+    // the scene that was calibrated, whatever else it is.
+    const patchCells = cornerCells * cornerCells * 3;
+    if (cornerPatches.length % patchCells != 0 ||
+        seamPatches.length % patchCells != 0) {
+      return false;
+    }
     final mine = math.max(meanLuma, 1.0);
     final theirs = math.max(other.meanLuma, 1.0);
     var patches = 0, drifted = 0;
@@ -461,7 +470,7 @@ class CalibrationFingerprint {
       (cornerPatches, other.cornerPatches),
       (seamPatches, other.seamPatches),
     ]) {
-      const cells = cornerCells * cornerCells * 3;
+      const cells = patchCells;
       for (var start = 0; start < ours.length; start += cells) {
         patches++;
         var sum = 0.0;
@@ -1552,6 +1561,49 @@ class Calibrator {
         if (atlas.hasTrays) ...<RoiId>[RoiId.offWhite, RoiId.offBlack],
       ];
 
+  /// The surface's width-to-height ratio, from the starting position's own
+  /// checkers — see [BoardCalibration.surfaceAspect] for what leans on it
+  /// and why no pixel estimate can serve.
+  ///
+  /// A checker is a disc: as wide as it is deep on the table. Its depth in
+  /// board-y units is [pitch], the regression the eight labelled stacks just
+  /// produced; its width is measured straight across the first checker of
+  /// each stack, at the disc's widest chord half a pitch behind the edge the
+  /// finder settled on. The median width over the stacks that measured
+  /// carries the ratio. Fewer than four of the eight measuring, a pitch that
+  /// was no regression, or a ratio shaped like no backgammon board — wider
+  /// than four to one, or taller than wide past a fifth — and the answer is
+  /// null, said honestly, rather than a number that would quietly misshape
+  /// every die frame of the session.
+  static double? _measureSurfaceAspect({
+    required RoiSampler sampler,
+    required RoiAtlas atlas,
+    required ColorModel colors,
+    required Map<int, CheckerColor> occupied,
+    required double pitch,
+  }) {
+    if (pitch <= 0) return null;
+    final widths = <double>[];
+    for (final entry in occupied.entries) {
+      final axis = StackAxis.forRegion(atlas, RoiId.point(entry.key));
+      final found = sampler.findChecker(entry.key, colors: colors);
+      if (!found.settled) continue;
+      final width = sampler.checkerWidth(
+        axis,
+        depth: found.depth + pitch / 2,
+        centreX: (axis.minX + axis.maxX) / 2 +
+            found.offset * (axis.maxX - axis.minX),
+        color: entry.value,
+        colors: colors,
+      );
+      if (width > 0) widths.add(width);
+    }
+    if (widths.length < 4) return null;
+    widths.sort();
+    final aspect = pitch / widths[widths.length ~/ 2];
+    return aspect < 0.8 || aspect > 4.0 ? null : aspect;
+  }
+
   /// Settles the regions the starting position labels empty, and refuses the
   /// frame when one of them is not.
   ///
@@ -1598,49 +1650,6 @@ class Calibrator {
   /// tray with checkers in it shows exactly two surfaces, its felt and the
   /// men, which is exactly what the region model has room for. Both were
   /// learned, the read-back agreed, and the calibration was handed over.
-  /// The surface's width-to-height ratio, from the starting position's own
-  /// checkers — see [BoardCalibration.surfaceAspect] for what leans on it
-  /// and why no pixel estimate can serve.
-  ///
-  /// A checker is a disc: as wide as it is deep on the table. Its depth in
-  /// board-y units is [pitch], the regression the eight labelled stacks just
-  /// produced; its width is measured straight across the first checker of
-  /// each stack, at the disc's widest chord half a pitch behind the edge the
-  /// finder settled on. The median width over the stacks that measured
-  /// carries the ratio. Fewer than four of the eight measuring, a pitch that
-  /// was no regression, or a ratio shaped like no backgammon board — wider
-  /// than four to one, or taller than wide past a fifth — and the answer is
-  /// null, said honestly, rather than a number that would quietly misshape
-  /// every die frame of the session.
-  static double? _measureSurfaceAspect({
-    required RoiSampler sampler,
-    required RoiAtlas atlas,
-    required ColorModel colors,
-    required Map<int, CheckerColor> occupied,
-    required double pitch,
-  }) {
-    if (pitch <= 0) return null;
-    final widths = <double>[];
-    for (final entry in occupied.entries) {
-      final axis = StackAxis.forRegion(atlas, RoiId.point(entry.key));
-      final found = sampler.findChecker(entry.key, colors: colors);
-      if (!found.settled) continue;
-      final width = sampler.checkerWidth(
-        axis,
-        depth: found.depth + pitch / 2,
-        centreX: (axis.minX + axis.maxX) / 2 +
-            found.offset * (axis.maxX - axis.minX),
-        color: entry.value,
-        colors: colors,
-      );
-      if (width > 0) widths.add(width);
-    }
-    if (widths.length < 4) return null;
-    widths.sort();
-    final aspect = pitch / widths[widths.length ~/ 2];
-    return aspect < 0.8 || aspect > 4.0 ? null : aspect;
-  }
-
   static ({CalibrationResult? refused, ColorModel colors}) _settleEmptyRegions({
     required RoiSampler sampler,
     required RoiAtlas atlas,

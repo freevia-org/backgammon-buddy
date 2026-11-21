@@ -865,6 +865,28 @@ void main() {
       expect(find.text('Joining 10.0.0.4'), findsOneWidget);
     });
 
+    testWidgets('two Connect presses inside one frame dial once', (t) async {
+      // Both presses run the callback the last frame built. The second used to
+      // open a second session over the first, which nothing could then release.
+      await t.binding.setSurfaceSize(surface);
+      addTearDown(() => t.binding.setSurfaceSize(null));
+
+      await t.pumpWidget(app());
+      await t.pump();
+      await openJoinTab(t);
+
+      final fields = find.byType(TextField);
+      await t.enterText(fields.at(0), '10.0.0.4');
+      await t.enterText(fields.at(2), '1234');
+      final connect = find.widgetWithText(FilledButton, 'Connect');
+      await t.tap(connect);
+      await t.tap(connect, warnIfMissed: false);
+      await t.pump();
+
+      expect(transport.joins, hasLength(1));
+      expect(find.text('Joining 10.0.0.4'), findsOneWidget);
+    });
+
     testWidgets('manual entry refuses an empty address', (t) async {
       await t.binding.setSurfaceSize(surface);
       addTearDown(() => t.binding.setSurfaceSize(null));

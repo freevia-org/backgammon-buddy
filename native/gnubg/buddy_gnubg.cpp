@@ -52,6 +52,9 @@ API int buddy_gnubg_version(){return 108003;}
 API int buddy_gnubg_abi_version(){return 1;}
 API int buddy_gnubg_init(const char *path){
  std::lock_guard<std::mutex> lock(gate);if(!path)return -1;
+ // A C++ exception (std::bad_alloc from the path strings) must never unwind
+ // through the C ABI into the Dart FFI caller: that is undefined behaviour.
+ try{
  if(ready)return ready>0&&data_dir==path?0:-2;
  data_dir=path;
  const char *files[]={"gnubg.wd","gnubg_os0.bd","gnubg_ts0.bd","kazaross-xg2.xml"};
@@ -69,6 +72,7 @@ API int buddy_gnubg_init(const char *path){
  InitMatchEquity((data_dir+"/kazaross-xg2.xml").c_str());
  if(!pbc1||!pbc2||miCurrent.nLength!=25)return -5;
  ready=1;return 0;
+ }catch(...){return -6;}
 }
 API int buddy_gnubg_evaluate(const int *p,const int *c,float *out){
  std::lock_guard<std::mutex> lock(gate);TanBoard b;cubeinfo ci;evalcontext ec;

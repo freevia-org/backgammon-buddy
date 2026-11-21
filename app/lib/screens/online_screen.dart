@@ -20,6 +20,7 @@ import '../net/net_match_controller.dart';
 import '../online/online_providers.dart';
 import '../online/online_session_store.dart';
 import 'game_screen.dart';
+import 'lobby_widgets.dart';
 
 /// The online-play entry screen: create a match (share a code, wait for an
 /// opponent) or join one by code.
@@ -173,6 +174,14 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
   /// Waits completed in the current [_pollUntilActive] run, for the backoff.
   int _pollCycles = 0;
 
+  /// Which create-flow wait is the CURRENT one. [_cancelled] alone cannot say:
+  /// every flow resets it to false when it starts, so a wait that was cancelled
+  /// while its read was in flight came back to find the flag clear again and
+  /// carried on — polling (and, if that seat was ever taken, launching) a match
+  /// whose code is no longer on screen. Bumped by every cancel and every new
+  /// wait, so a superseded loop can tell it is one.
+  int _pollGeneration = 0;
+
   @override
   void initState() {
     super.initState();
@@ -202,6 +211,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
   /// there is nothing else to release.
   void _cancelWaiting() {
     _cancelled = true;
+    _pollGeneration++;
     _pollTimer?.cancel();
     _pollTimer = null;
   }
@@ -324,17 +334,19 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
   /// read, plus the rules-get it evaluates).
   Future<void> _pollUntilActive(MatchApi api, String code) async {
     _pollCycles = 0;
-    while (mounted && !_cancelled) {
+    final generation = ++_pollGeneration;
+    bool live() => mounted && !_cancelled && generation == _pollGeneration;
+    while (live()) {
       MatchDoc doc;
       try {
         doc = await api.fetchMatch(code);
       } catch (e) {
-        if (!mounted || _cancelled) return;
+        if (!live()) return;
         setState(() => _createError = _errorText(e));
         await _wait();
         continue;
       }
-      if (!mounted || _cancelled) return;
+      if (!live()) return;
       if (doc.isActive) {
         // The other two flows (join, rejoin) reach _launch inside their own
         // try/catch; this one is reached from a loop nobody awaits, so a throw
@@ -594,7 +606,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
   Widget _rejoinCard(String code) {
     final l10n = appLocalizationsOf(context);
     final theme = Theme.of(context);
-    return _SectionCard(
+    return LobbySectionCard(
       title: l10n.onlineMatchInProgress,
       children: [
         Text(
@@ -609,11 +621,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
             padding: const EdgeInsets.symmetric(vertical: 14),
           ),
           child: _rejoining
-              ? const SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2),
-                )
+              ? const LobbyButtonSpinner()
               : Text(l10n.onlineRejoin),
         ),
         TextButton(
@@ -629,7 +637,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
     final l10n = appLocalizationsOf(context);
     final theme = Theme.of(context);
     if (_createdCode != null) return _waitingCard();
-    return _SectionCard(
+    return LobbySectionCard(
       title: l10n.onlineCreateTitle,
       children: [
         Text(l10n.onlineMatchLength, style: theme.textTheme.titleSmall),
@@ -664,11 +672,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
             padding: const EdgeInsets.symmetric(vertical: 14),
           ),
           child: _creating
-              ? const SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2),
-                )
+              ? const LobbyButtonSpinner()
               : Text(l10n.onlineCreate),
         ),
         if (_createError != null) _errorRow(_createError!),
@@ -679,7 +683,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
   Widget _waitingCard() {
     final l10n = appLocalizationsOf(context);
     final theme = Theme.of(context);
-    return _SectionCard(
+    return LobbySectionCard(
       title: l10n.onlineWaitingOpponent,
       children: [
         Text(l10n.onlineShareCode, style: theme.textTheme.titleSmall),
@@ -711,12 +715,12 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 18,
               width: 18,
               child: CircularProgressIndicator(strokeWidth: 2),
             ),
-            SizedBox(width: 12),
+            const SizedBox(width: 12),
             Text(l10n.onlineWaitingOpponent),
           ],
         ),
@@ -738,7 +742,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
 
   Widget _joinCard() {
     final l10n = appLocalizationsOf(context);
-    return _SectionCard(
+    return LobbySectionCard(
       title: l10n.onlineJoinTitle,
       children: [
         TextField(
@@ -763,11 +767,7 @@ class _OnlineBodyState extends ConsumerState<_OnlineBody> {
             padding: const EdgeInsets.symmetric(vertical: 14),
           ),
           child: _joining
-              ? const SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: CircularProgressIndicator(strokeWidth: 2),
-                )
+              ? const LobbyButtonSpinner()
               : Text(l10n.onlineJoin),
         ),
         if (_joinError != null) _errorRow(_joinError!),
@@ -799,30 +799,4 @@ class _UpperCaseFormatter extends TextInputFormatter {
     TextEditingValue oldValue,
     TextEditingValue newValue,
   ) => newValue.copyWith(text: newValue.text.toUpperCase());
-}
-
-/// A titled card wrapper for the create / join / waiting sections.
-class _SectionCard extends StatelessWidget {
-  const _SectionCard({required this.title, required this.children});
-
-  final String title;
-  final List<Widget> children;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 16),
-            ...children,
-          ],
-        ),
-      ),
-    );
-  }
 }

@@ -170,7 +170,7 @@ class _TutorPanelState extends State<TutorPanel> {
                       key: const ValueKey('tutorPanelSummary'),
                       height: summaryHeight,
                       child: Padding(
-                        padding: EdgeInsets.only(left: 12, right: 12),
+                        padding: const EdgeInsets.only(left: 12, right: 12),
                         child: NotificationListener<ScrollNotification>(
                           onNotification: _summaryScroll,
                           child: SingleChildScrollView(

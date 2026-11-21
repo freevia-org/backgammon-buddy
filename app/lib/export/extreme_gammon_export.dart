@@ -19,14 +19,25 @@ Uint8List exportMatchXg(ExportableMatch match) {
   final lastScore = _scoresAfter(match.games);
   final winner = _matchWinner(match);
   records.add(_footerMatch(lastScore.$1, lastScore.$2, winner));
-  final stream = Uint8List.fromList(records.expand((r) => r).toList());
+  final stream = _concat(records);
   final archive = _archive({
     'temp.xg': stream,
-    'temp.xgi': Uint8List.fromList([...records.first, ...records.last]),
+    'temp.xgi': _concat([records.first, records.last]),
     'temp.xgr': Uint8List(0),
     'temp.xgc': Uint8List(0),
   });
-  return Uint8List.fromList([..._richHeader(), ...archive]);
+  return _concat([_richHeader(), archive]);
+}
+
+/// Joins [parts] into one buffer. A match is a 2560-byte record per move, so
+/// spreading them through a growable `List<int>` boxed and re-copied on the
+/// order of a megabyte several times over for one export.
+Uint8List _concat(Iterable<Uint8List> parts) {
+  final builder = BytesBuilder(copy: false);
+  for (final part in parts) {
+    builder.add(part);
+  }
+  return builder.takeBytes();
 }
 
 List<Uint8List> _gameRecords(ExportableMatch match, ExportableGame game) {
@@ -94,13 +105,16 @@ List<Uint8List> _gameRecords(ExportableMatch match, ExportableGame game) {
 
 Uint8List _matchHeader(ExportableMatch match) {
   final r = _record(0);
-  _shortString(r, 9, match.whitePlayer);
-  _shortString(r, 50, match.blackPlayer);
+  // Each is a Pascal string[N]: one length byte and N characters, with the
+  // next field packed directly behind it. Writing past N would run a long
+  // name into the opponent's, the match length and the rule flags.
+  _shortString(r, 9, match.whitePlayer, max: 40);
+  _shortString(r, 50, match.blackPlayer, max: 40);
   _i32(r, 92, match.length == 0 ? 99999 : match.length);
   _i32(r, 96, 0); // standard backgammon
   r[100] = 1; // Crawford rule enabled
   _f64(r, 128, match.date == null ? 0 : _oleDate(match.date!));
-  _shortString(r, 136, match.event ?? '');
+  _shortString(r, 136, match.event ?? '', max: 128);
   _i32(r, 412, 0); // normal game mode
   _i32(r, 548, 1); // not inverted
   _i32(r, 552, 30); // SaveFileVersion
@@ -318,11 +332,9 @@ Uint8List _archive(Map<String, Uint8List> files) {
     entries.add(e);
     start += compressed.length.toInt();
   }
-  final payload = Uint8List.fromList(chunks.expand((x) => x).toList());
-  final registry = ZLibCodec().encode(
-    Uint8List.fromList(entries.expand((x) => x).toList()),
-  );
-  final preFooter = Uint8List.fromList([...payload, ...registry]);
+  final payload = _concat(chunks);
+  final registry = Uint8List.fromList(ZLibCodec().encode(_concat(entries)));
+  final preFooter = _concat([payload, registry]);
   final footer = Uint8List(36);
   final d = ByteData.sublistView(footer);
   d.setUint32(0, crc32(preFooter), Endian.little);
@@ -331,12 +343,14 @@ Uint8List _archive(Map<String, Uint8List> files) {
   d.setInt32(12, registry.length, Endian.little);
   d.setInt32(16, payload.length, Endian.little);
   footer[20] = 1;
-  return Uint8List.fromList([...preFooter, ...footer]);
+  return _concat([preFooter, footer]);
 }
 
-void _shortString(Uint8List b, int offset, String text) {
+/// Writes [text] as a Pascal short string of capacity [max] at [offset],
+/// truncating what does not fit.
+void _shortString(Uint8List b, int offset, String text, {int max = 255}) {
   final raw = latin1.encode(text.replaceAll(RegExp(r'[^\x00-\xff]'), '?'));
-  final n = raw.length.clamp(0, 255);
+  final n = raw.length.clamp(0, max);
   b[offset] = n;
   b.setRange(offset + 1, offset + 1 + n, raw.take(n));
 }

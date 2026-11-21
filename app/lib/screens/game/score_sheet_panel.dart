@@ -6,6 +6,7 @@ import '../../game/game_record.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/localization_lookup.dart';
 import '../../tutor/move_assessment.dart';
+import '../metric_explainer.dart';
 
 /// The always-visible two-column score sheet under the board.
 ///
@@ -448,13 +449,7 @@ class _ScoreSheetPanelState extends State<ScoreSheetPanel> {
   /// fits in a ~180pt column) but it is what the dot's semantics node says, so
   /// the verdict is not colour-only.
   (Color, String) _markStyle(MoveMark mark, AppLocalizations l10n) =>
-      switch (mark) {
-        MoveMark.best => (Colors.green.shade700, l10n.analysisMarkBest),
-        MoveMark.good => (Colors.green.shade600, l10n.analysisMarkGood),
-        MoveMark.dubious => (Colors.amber.shade800, l10n.analysisMarkDubious),
-        MoveMark.error => (Colors.orange.shade800, l10n.analysisMarkError),
-        MoveMark.blunder => (Colors.red.shade700, l10n.analysisMarkBlunder),
-      };
+      moveMarkStyle(mark, l10n);
 
   /// A small leading dot in the actor's checker colour (ivory for White, ebony
   /// for Black), or an empty transparent slot for a neutral line (the opening).

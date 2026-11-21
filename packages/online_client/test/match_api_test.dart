@@ -213,6 +213,23 @@ void main() {
       expect(joined.createdAt, DateTime.utc(2026, 7, 27, 10));
     });
 
+    test('text that cannot be a document id never reaches a URL', () async {
+      // A typed code is spliced into the request path, where `/`, `?`, `#` and
+      // `..` would address some OTHER resource. Refused as "no such match".
+      var requests = 0;
+      final api = await apiFor((req) async {
+        requests++;
+        return matchRow();
+      });
+      for (final code in ['', 'AB/CD', '..', 'ABCD?x=1', 'AB CD', 'ABCD#', 'É']) {
+        await expectLater(api.fetchMatch(code), throwsA(isA<NotFoundException>()),
+            reason: 'fetchMatch("$code")');
+        await expectLater(api.joinMatch(code), throwsA(isA<NotFoundException>()),
+            reason: 'joinMatch("$code")');
+      }
+      expect(requests, 0);
+    });
+
     test('an unknown code is NotFound and never attempts a write', () async {
       var writes = 0;
       final api = await apiFor((req) async {

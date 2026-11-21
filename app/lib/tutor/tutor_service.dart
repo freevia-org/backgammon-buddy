@@ -153,7 +153,7 @@ class TutorService {
     }
 
     final best = ranked.first;
-    final playedScored = _resolvePlayed(before, played, ranked);
+    final playedScored = _resolvePlayed(before, played, ranked, legal);
 
     // Equity is from the mover's perspective (higher is better), so the loss is
     // best minus played; a resolved play at the top gives 0 (clamped against
@@ -183,13 +183,25 @@ class TutorService {
     GameState before,
     Move played,
     List<ScoredMove> ranked,
+    List<Move> legal,
   ) {
     // Never apply a submitted/replayed move directly. BoardState.applyMove
     // intentionally assumes legality and indexes its hops without bounds
     // checks; a malformed event can otherwise escape as RangeError here.
     // GameState is the authority for both ordinary and transit-equivalent
     // legal moves, and returns the generator's canonical representative.
-    final canonical = before.canonicalPlay(played);
+    //
+    // [legal] is the list [assess] already generated: an exact hop-set match
+    // in it is `canonicalPlay`'s own first answer, without generating every
+    // legal move a second time for each move of an analysed game.
+    Move? canonical;
+    for (final m in legal) {
+      if (m.sameAs(played)) {
+        canonical = m;
+        break;
+      }
+    }
+    canonical ??= before.canonicalPlay(played);
     if (canonical == null) return null;
     for (final sm in ranked) {
       if (sm.move.sameAs(canonical)) return sm;
@@ -289,13 +301,18 @@ class TutorService {
       mover,
       c,
     );
-    if (advice == null) return null;
+    // The pass value is optional on the wire. An answer without it cannot be
+    // turned into a loss, so it is treated like no native answer at all and
+    // the advisor decides — rather than a null assertion failing the whole
+    // game's analysis over one cube decision.
+    final pass = advice?.equityDoublePass;
+    if (advice == null || pass == null) return null;
     return MatchCubeAdvice(
       shouldDouble: advice.shouldDouble,
       shouldTake: advice.shouldAccept,
       equityNoDouble: advice.equityNoDouble,
       equityDoubleTake: advice.equityDoubleTake,
-      equityDoubleDrop: advice.equityDoublePass!,
+      equityDoubleDrop: pass,
     );
   }
 

@@ -305,8 +305,11 @@ class RoiAtlas {
   /// The atlas for a seating and a board.
   ///
   /// The two standard-board atlases are built once and shared, so the common
-  /// case costs nothing; anything else is built on the spot. All of them are
-  /// immutable.
+  /// case costs nothing. Anything else is built the first time it is asked
+  /// for and remembered: `BoardCalibration.atlas` comes through here on every
+  /// region of every frame, and a folding case — whose proportions are never
+  /// the standard ones — used to pay for twenty-six rectangles and two maps
+  /// each time. All of them are immutable, so sharing one is safe.
   factory RoiAtlas.forOrientation(
     BoardOrientation orientation, {
     BoardProportions proportions = BoardProportions.standard,
@@ -314,8 +317,23 @@ class RoiAtlas {
     if (proportions == BoardProportions.standard) {
       return orientation == BoardOrientation.whiteHomeNear ? _near : _far;
     }
-    return _build(orientation, proportions);
+    final key = (orientation, proportions);
+    final known = _measured[key];
+    if (known != null) return known;
+    // A session has one board, so this holds one entry in practice. The bound
+    // is for a sweep over many proportions — and for a NaN width, which never
+    // equals itself and would otherwise add an entry per call.
+    if (_measured.length >= _maxMeasured) {
+      _measured.remove(_measured.keys.first);
+    }
+    return _measured[key] = _build(orientation, proportions);
   }
+
+  /// Atlases of boards that are not the standard shape, most recent last.
+  static final Map<(BoardOrientation, BoardProportions), RoiAtlas> _measured =
+      <(BoardOrientation, BoardProportions), RoiAtlas>{};
+
+  static const int _maxMeasured = 8;
 
   static final RoiAtlas _near =
       _build(BoardOrientation.whiteHomeNear, BoardProportions.standard);

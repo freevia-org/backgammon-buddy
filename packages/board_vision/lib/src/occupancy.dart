@@ -160,12 +160,31 @@ class OccupancyReader {
       if (white.count == 0 && black.count == 0) return white;
       return white.mass >= black.mass ? white : black;
     }
-    final measured = _sampler.measureStack(
-      StackAxis.forRegion(calibration.atlas, region),
-      colors,
-    );
+    final measured = measure(region);
     return _resolve(region, measured, measured.dominant(minPresenceMass));
   }
+
+  /// What [region]'s stack axis showed in this frame, both colours at once —
+  /// the raw measurement [read] and [readFor] are resolved from.
+  ///
+  /// [color] chooses the axis and matters only on the bar, exactly as in
+  /// [StackAxis.forRegion]. Each axis is walked once per reader and the result
+  /// kept: a reader is one frame through one set of colours, so asking again
+  /// can only give the same answer, and the board verifier asks about every
+  /// occupied region twice — once blind and once against the game's count.
+  StackMeasurement measure(
+    RoiId region, {
+    CheckerColor color = CheckerColor.white,
+  }) {
+    final axisColor = region == RoiId.bar ? color : CheckerColor.white;
+    return _measured[(region, axisColor)] ??= _sampler.measureStack(
+      StackAxis.forRegion(calibration.atlas, region, color: axisColor),
+      colors,
+    );
+  }
+
+  final Map<(RoiId, CheckerColor), StackMeasurement> _measured =
+      <(RoiId, CheckerColor), StackMeasurement>{};
 
   /// What [region] holds of [color] alone.
   ///
@@ -183,10 +202,7 @@ class OccupancyReader {
         mass: 0,
       );
     }
-    final measured = _sampler.measureStack(
-      StackAxis.forRegion(calibration.atlas, region, color: color),
-      colors,
-    );
+    final measured = measure(region, color: color);
     final present = measured.massOf(color) >= minPresenceMass;
     return _resolve(
       region,

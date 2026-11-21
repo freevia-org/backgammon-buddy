@@ -61,6 +61,18 @@ void main() {
     expect(() => turnOf(Player.white).declineResign(), throwsStateError);
   });
 
+  test('a resignOffered phase with no recorded offer is a StateError', () {
+    // Only testState can build this; the verbs must still fail the documented
+    // way rather than with a null-check TypeError.
+    final orphan = GameState.testState(
+      board: BoardState.initial(),
+      turn: Player.white,
+      phase: GamePhase.resignOffered,
+    );
+    expect(() => orphan.acceptResign(), throwsStateError);
+    expect(() => orphan.declineResign(), throwsStateError);
+  });
+
   test('no other verbs while a resignation is pending', () {
     final pending = turnOf(Player.white).offerResign(ResignValue.single);
     expect(() => pending.roll(Dice(3, 1)), throwsStateError);

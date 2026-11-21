@@ -110,9 +110,17 @@ mixin TransportChannels {
 
   /// Close all three channels. Call LAST in the host class's `dispose()`, after
   /// it has set its disposal flag and cancelled whatever it owns.
+  ///
+  /// All three closes are STARTED before any is awaited. A close completes only
+  /// once every listener has taken its `done`, and a paused listener (an
+  /// `await for` whose body is itself awaiting this very dispose) holds that
+  /// back indefinitely — awaiting them one after another would leave the later
+  /// channels open, and their listeners waiting, behind the first.
   Future<void> closeChannels() async {
-    await _inboundChannel.close();
-    await _statusChannel.close();
-    await _presenceChannel.close();
+    await Future.wait([
+      _inboundChannel.close(),
+      _statusChannel.close(),
+      _presenceChannel.close(),
+    ]);
   }
 }

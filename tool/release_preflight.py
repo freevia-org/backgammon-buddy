@@ -26,7 +26,7 @@ def sha(data):
 
 def check_sources(root=ROOT):
     assets = root / 'app/assets/licenses'
-    inventory = json.loads((root / 'native/licenses/inventory.json').read_text())
+    inventory = json.loads((root / 'native/licenses/inventory.json').read_text(encoding='utf-8'))
     _require(sha((root / 'native/engine_shim/Cargo.lock').read_bytes().replace(b'\r\n', b'\n')) == inventory['cargo_lock_sha256'], 'Cargo lock changed: regenerate native notices')
     _require(sha((assets / 'native-dependencies.txt').read_bytes()) == inventory['notice_sha256'], 'Native notices changed')
     for package in inventory['packages']:

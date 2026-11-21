@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:match_transport/match_transport.dart';
 
 import '../data/persistence_hooks.dart';
+import '../diagnostics/crash_log.dart';
 import '../game/applied_move.dart';
 import '../game/match_controller.dart';
 import '../game/player_agent.dart';
@@ -712,7 +713,9 @@ class NetMatchController extends ChangeNotifier implements MatchController {
     _presenceSub = null;
     // The controller OWNS the transport — see the class doc. One owner, so a
     // screen only ever has to dispose the controller.
-    unawaited(transport.dispose());
+    // A link that will not close cleanly is recorded, not left as an unhandled
+    // async error.
+    recordFailures(transport.dispose(), source: 'net-transport-dispose');
     _pendingMove.dispose();
     _pendingCube.dispose();
     _pendingResign.dispose();
@@ -1390,12 +1393,19 @@ class NetMatchController extends ChangeNotifier implements MatchController {
       _game = Game.start(event, isCrawfordGame: _match.isCrawfordNext);
       return;
     }
+    final game = _game;
+    if (game == null) {
+      // A log whose first event is not an opening roll. Raised as the rules
+      // violation it is, so [_applyEvent] routes it to a freeze (or a resync for
+      // our own event) instead of a null-check error escaping the fold.
+      throw StateError('no game has started — an opening roll must come first');
+    }
     // The board the event is about to fold onto — the animation's starting
     // position, knowable only here (several events may fold between two painted
     // frames, so an observer cannot recover it from [state]). See [AppliedMove].
-    final preBoard = _game!.state.board;
+    final preBoard = game.state.board;
     event = _canonicalise(event);
-    final next = _game!.append(event);
+    final next = game.append(event);
     _game = next;
     // NOT published during a full replace: [lastMove] drives a cosmetic
     // animation, and a rebuild replaying fifty historical moves must snap to the

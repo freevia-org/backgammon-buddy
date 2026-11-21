@@ -90,13 +90,25 @@ class TelemetryController
     try {
       return await body();
     } finally {
-      await trace.stop();
+      // Not awaited: stopping is a platform round trip, and a trace must never
+      // delay the operation it measures (see [AppPerformance.trace]).
+      unawaited(trace.stop());
     }
   }
 
   @override
-  void recordDuration(String name, Duration duration) =>
-      _current.performance.recordDuration(name, duration);
+  void recordDuration(String name, Duration duration) {
+    // Forwarded only once any pending preference change has settled. The one
+    // caller is cold start, reported at the first frame — which main() does not
+    // hold back for the opt-in initialization it has just queued, so forwarding
+    // at once would always hand the metric to the no-op sink. Consent is still
+    // read at forwarding time: a withdrawal in between drops the metric.
+    unawaited(
+      _updates.then(
+        (_) => _current.performance.recordDuration(name, duration),
+      ),
+    );
+  }
 }
 
 class _ConsentTrace implements AppTrace {
@@ -117,7 +129,10 @@ class _ConsentTrace implements AppTrace {
   @override
   Future<void> stop() async {
     // Native collection is disabled separately; always release the live trace.
-    await _trace.stop();
+    // Callers do not await this, so a failure must end here.
+    try {
+      await _trace.stop();
+    } catch (_) {}
   }
 }
 

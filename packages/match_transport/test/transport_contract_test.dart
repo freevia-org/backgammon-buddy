@@ -730,6 +730,28 @@ void main() {
       await expectLater(rig.host.complete(), completes);
     });
 
+    test('dispose() closes every channel even while one listener is paused',
+        () async {
+      // A paused subscription holds its `done` back, so the close of THAT
+      // channel cannot complete until it resumes. That must not leave the
+      // status and presence channels open behind it.
+      final t = InMemoryTransport.host(InMemoryBackend());
+      await t.connect();
+      final paused = t.inbound.listen((_) {})..pause();
+      var statusDone = false;
+      var presenceDone = false;
+      t.statusStream.listen((_) {}, onDone: () => statusDone = true);
+      t.opponentPresence.listen((_) {}, onDone: () => presenceDone = true);
+
+      final disposed = t.dispose();
+      await Future<void>.delayed(Duration.zero);
+      expect(statusDone, isTrue);
+      expect(presenceDone, isTrue);
+
+      paused.resume();
+      await disposed;
+    });
+
     test('dispose() is idempotent and stops delivery', () async {
       final rig = _Rig();
       addTearDown(rig.dispose);

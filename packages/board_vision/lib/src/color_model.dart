@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:typed_data';
 
 import 'package:backgammon_core/backgammon_core.dart';
 
@@ -260,13 +261,18 @@ class ColorModel {
   /// detail a bright frame clipped away, and it does not touch a change of
   /// colour cast. Judging when the drift has gone past what this can absorb is
   /// the fingerprint's job, not this method's — it will happily scale by ten.
+  ///
+  /// An [exposure] that is not a positive, finite number leaves the model as
+  /// learned. A NaN in particular must never get in: it would make every
+  /// feature a NaN, every distance comparison false, and [classify] would
+  /// then call every sample on the board a black checker.
   ColorModel renormalized(double exposure) => ColorModel(
         white: white,
         black: black,
         backgrounds: _backgrounds,
         boardModes: boardModes,
         boardSpread: boardSpread,
-        exposure: exposure <= 0 ? 1.0 : exposure,
+        exposure: exposure > 0 && exposure.isFinite ? exposure : 1.0,
       );
 
   /// What [region] looks like bare, as measured under the calibration frame's
@@ -370,13 +376,30 @@ class ColorModel {
     double exposure = 1.0,
   }) =>
       <double>[
-        math.log(_atLeastOne(sample.$1) / //
-            (_atLeastOne(reference.$1) * exposure)),
-        math.log(_atLeastOne(sample.$2) / //
-            (_atLeastOne(reference.$2) * exposure)),
-        math.log(_atLeastOne(sample.$3) / //
-            (_atLeastOne(reference.$3) * exposure)),
+        _channelFeature(sample.$1, reference.$1, exposure),
+        _channelFeature(sample.$2, reference.$2, exposure),
+        _channelFeature(sample.$3, reference.$3, exposure),
       ];
+
+  /// [feature] against one [reference], tabulated for every byte a channel
+  /// can hold: entry `c * 256 + v` is channel `c`'s feature for a sample
+  /// whose channel reads `v`.
+  ///
+  /// For a caller judging a great many samples against the same reference —
+  /// the dice reader, which asks about every cell of a lattice hundreds of
+  /// thousands strong — so that it pays for 768 logarithms once instead of
+  /// three per sample. Each entry is computed by the very expression
+  /// [feature] uses, so a looked-up feature is the same double, bit for bit.
+  static Float64List featureTable(Rgb reference, {double exposure = 1.0}) {
+    final table = Float64List(3 * 256);
+    final channels = <int>[reference.$1, reference.$2, reference.$3];
+    for (var c = 0; c < 3; c++) {
+      for (var v = 0; v < 256; v++) {
+        table[c * 256 + v] = _channelFeature(v, channels[c], exposure);
+      }
+    }
+    return table;
+  }
 
   @override
   String toString() => 'ColorModel(separation: '
@@ -384,6 +407,11 @@ class ColorModel {
 }
 
 double _atLeastOne(int channel) => channel < 1 ? 1.0 : channel.toDouble();
+
+/// One channel of [ColorModel.feature] — the single place the ratio is
+/// written, so the list form and the tabulated form cannot drift apart.
+double _channelFeature(int sample, int reference, double exposure) =>
+    math.log(_atLeastOne(sample) / (_atLeastOne(reference) * exposure));
 
 double _distanceToModes(
   List<double> feature,
