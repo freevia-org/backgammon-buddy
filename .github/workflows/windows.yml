@@ -13,9 +13,10 @@ concurrency:
 jobs:
   windows:
     name: build portable Windows app
-    # The registered I5 runner now has discoverable VS 2022 Build Tools,
-    # ATL, and the Windows SDK required by the native Windows plugins.
-    runs-on: backgammon-buddy-i5-windows
+    # The hosted runner provides a short workspace path. MSBuild's CppWinRT
+    # generator canonicalizes subst drive mappings back to the physical path,
+    # which exceeded Windows' legacy path limit on the self-hosted I5 runner.
+    runs-on: windows-latest
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v7
@@ -91,26 +92,13 @@ jobs:
         working-directory: b/app
 
       - name: Build release app
-        shell: pwsh
-        run: |
-          $ErrorActionPreference = 'Stop'
-          if (Test-Path 'R:\') { subst R: /d | Out-Null }
-          subst R: $env:GITHUB_WORKSPACE
-          if ($LASTEXITCODE -ne 0) { throw 'Could not map the runner workspace to R:.' }
-          Push-Location 'R:\b\app'
-          try {
-            flutter build windows --release --no-pub
-          } finally {
-            Pop-Location
-          }
+        run: flutter build windows --release --no-pub
+        working-directory: b/app
 
       - name: Package portable Windows app
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-          if (-not (Test-Path 'R:\')) { subst R: $env:GITHUB_WORKSPACE }
-          if ($LASTEXITCODE -ne 0) { throw 'Could not access the short runner workspace at R:.' }
-          Push-Location 'R:\'
           $releaseDir = 'b/app/build/windows/x64/runner/Release'
           foreach ($required in @('aigammon_app.exe', 'aigammon_engine.dll', 'libbuddy_gnubg.dll', 'data/flutter_assets')) {
             if (-not (Test-Path (Join-Path $releaseDir $required))) {
@@ -125,9 +113,9 @@ jobs:
           This is a portable build; it does not install shortcuts or add an uninstaller.
           "@ | Set-Content -Path (Join-Path $releaseDir 'README.txt') -Encoding utf8
           $archive = "BackgammonBuddy-$version-Windows-x64.zip"
-          Compress-Archive -Path "$releaseDir/*" -DestinationPath $archive -CompressionLevel Optimal
-          Get-Item $archive | Select-Object Name, Length
-          Pop-Location
+          $archivePath = Join-Path $env:GITHUB_WORKSPACE $archive
+          Compress-Archive -Path "$releaseDir/*" -DestinationPath $archivePath -CompressionLevel Optimal
+          Get-Item $archivePath | Select-Object Name, Length
 
       - uses: actions/upload-artifact@v7
         with:
