@@ -5,7 +5,7 @@
 | CI | `ci.yml` | `workflow_dispatch` | Package, app, native, emulator and release-preflight checks — see the breakdown below |
 | Android | `android.yml` | `workflow_dispatch` | Build ARM/ARM64 APKs; on `master`, distribute only after CI passes for the same commit and only with release signing and Firebase configured; optionally prepare a signed Play bundle artifact |
 | iOS | `ios.yml` | `workflow_dispatch` | Build the Rust engine staticlib, statically link it into `Runner`, produce an unsigned `Runner.app`, and (when configured) build a signed IPA and push it to Firebase App Distribution after CI passes |
-| Windows | `windows.yml` | `workflow_dispatch` | Build the portable Windows x64 release zip on the I5 Windows runner |
+| Windows | `windows.yml` | `workflow_dispatch` | Build the portable Windows x64 release zip on GitHub-hosted Windows |
 | Manual CodeQL security scan | `codeql-manual.yml` | `workflow_dispatch` | CodeQL analysis per language; runs only when dispatched on `master` |
 | Privacy cleanup | `privacy-cleanup.yml` | `workflow_dispatch` | Dry-run (or, with `apply_retention`, apply) online retention and erasure requests through a short-lived workload-identity token; `master` only |
 
@@ -39,8 +39,10 @@ golden tests. Upgrade those pins together and regenerate goldens deliberately.
 Ubuntu 24.04 and Windows Server 2025. Select `local` to use the registered I5
 Linux and Windows runners when their listeners and capacity controller are
 healthy. Android release builds use the same hosted-by-default selection. The
-manually dispatched Windows release build and privacy-cleanup workflow remain
-on I5. iOS builds use the pinned GitHub-hosted `macos-26` image with Xcode 26.6.
+manually dispatched Windows release build uses GitHub-hosted Windows; the
+privacy-cleanup workflow remains on I5. iOS builds default to the Mac mini with
+Xcode 27.2 and can select the pinned GitHub-hosted `macos-26` image with Xcode
+26.6 as a fallback.
 
 ## Distribution is gated on CI
 
