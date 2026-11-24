@@ -313,11 +313,12 @@ jobs:
           app/build/ios/iphoneos/Runner.app.zip
 
       - uses: actions/upload-artifact@v7
-        if: inputs.publish_artifacts == true
+        if: inputs.publish_artifacts == true && steps.ios.outputs.has_signing != 'true'
         with:
           name: aigammon-ios-unsigned
           path: app/build/ios/iphoneos/Runner.app.zip
           if-no-files-found: error
+          retention-days: 30
 
       - uses: actions/upload-artifact@v7
         if: inputs.publish_artifacts == true
@@ -325,6 +326,7 @@ jobs:
           name: aigammon-ios-engine-profile-${{ github.run_number }}
           path: ${{ env.BGB_BUILD_TEMP }}/flutter-engine-build-profile.txt
           if-no-files-found: error
+          retention-days: 14
 
       - name: Upload Dart debug symbols
         if: inputs.publish_artifacts == true
@@ -333,6 +335,7 @@ jobs:
           name: aigammon-symbols-ios-${{ github.run_number }}
           path: app/build/symbols/ios
           if-no-files-found: error
+          retention-days: 90
 
       - name: Capture iOS native dependencies and privacy manifests
         run: |
@@ -352,6 +355,7 @@ jobs:
           name: aigammon-ios-dependencies-${{ github.run_number }}
           path: app/build/mobile-dependencies/ios-unsigned
           if-no-files-found: warn
+          retention-days: 14
 
       - name: Validate iOS native dependencies and privacy manifests
         run: |
@@ -533,6 +537,7 @@ jobs:
           name: aigammon-ios-${{ inputs.export_method || 'ad-hoc' }}-${{ github.run_number }}
           path: ${{ steps.ipa.outputs.ipa_path }}
           if-no-files-found: error
+          retention-days: 30
 
       - name: Capture signed IPA dependency evidence
         if: steps.ios.outputs.has_signing == 'true'
@@ -549,6 +554,7 @@ jobs:
           name: aigammon-ios-signed-dependencies-${{ github.run_number }}
           path: app/build/mobile-dependencies/ios-signed
           if-no-files-found: error
+          retention-days: 14
 
       - name: Upload iOS archive symbols
         if: inputs.publish_artifacts == true
@@ -557,6 +563,7 @@ jobs:
           name: aigammon-ios-archive-symbols-${{ github.run_number }}
           path: ${{ env.BGB_BUILD_TEMP }}/Runner.xcarchive/dSYMs
           if-no-files-found: error
+          retention-days: 90
 
       # Distribution gate: block until CI has passed for this commit (see
       # android.yml). Manual dispatch stays the ungated escape hatch.
