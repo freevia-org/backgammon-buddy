@@ -406,16 +406,16 @@ jobs:
           name: aigammon-android-dependencies-${{ github.run_number }}
           path: app/build/mobile-dependencies/android
           if-no-files-found: error
+          retention-days: 14
 
       - name: Upload signed Google Play bundle
         if: inputs.build_appbundle
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-play-bundle-${{ github.run_number }}
-          path: |
-            app/build/app/outputs/bundle/release/app-release.aab
-            app/build/symbols/android-bundle
+          path: app/build/app/outputs/bundle/release/app-release.aab
           if-no-files-found: error
+          retention-days: 30
 
       - uses: actions/upload-artifact@v7
         with:
@@ -423,6 +423,7 @@ jobs:
           # Universal ARM/ARM64 APK; version code matches the optional AAB.
           path: app/build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
+          retention-days: 30
 
       # Keyed by run number: the build number in the APK is the same value, so
       # a trace from a tester's build maps to exactly one symbols artifact.
@@ -430,8 +431,11 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: aigammon-symbols-android-${{ github.run_number }}
-          path: app/build/symbols/android
+          path: |
+            app/build/symbols/android
+            app/build/symbols/android-bundle
           if-no-files-found: error
+          retention-days: 90
 
       - name: Upload unstripped native engine symbols
         uses: actions/upload-artifact@v7
@@ -441,6 +445,7 @@ jobs:
             app/android/app/src/main/jniLibs
             app/build/app/intermediates/cxx/**/obj/**/libbuddy_gnubg.so
           if-no-files-found: error
+          retention-days: 90
 
       # Secrets can't be referenced in a step-level `if:`, so gate on an env var
       # exported from a prior shell step.
