@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       export_method:
-        description: Signed export type (App Store option creates an artifact only)
+        description: Signed export type (App Store export requires Xcode 27 / iOS 27 SDK)
         type: choice
         options: [ad-hoc, app-store-connect]
         default: ad-hoc
@@ -103,6 +103,22 @@ jobs:
             exit 1
           fi
           xcodebuild -version
+
+      # Apple announced that uploads from April 2027 require the iOS 27 SDK.
+      # The hosted fallback is pinned to Xcode 26.6, so reject it for an App
+      # Store export before starting the expensive engine/app build.
+      - name: Require Xcode 27 and iOS 27 SDK for App Store Connect
+        if: inputs.export_method == 'app-store-connect'
+        run: |
+          set -eu
+          XCODE_MAJOR="${XCODE_VERSION%%.*}"
+          SDK_VERSION="$(xcrun --sdk iphoneos --show-sdk-version)"
+          SDK_MAJOR="${SDK_VERSION%%.*}"
+          if [ "$XCODE_MAJOR" -lt 27 ] || [ "$SDK_MAJOR" -lt 27 ]; then
+            echo "::error::App Store Connect exports require Xcode 27+ and iOS 27 SDK+. Selected Xcode $XCODE_VERSION with iOS SDK $SDK_VERSION. Choose the Mac mini runner."
+            exit 1
+          fi
+          echo "App Store Connect SDK preflight passed: Xcode $XCODE_VERSION, iOS SDK $SDK_VERSION" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Install Metal Toolchain
         run: xcodebuild -downloadComponent MetalToolchain
@@ -274,6 +290,8 @@ jobs:
       # signed path below exports this same archive when credentials exist.
       - name: Archive app without signing and verify archived FFI exports
         working-directory: app
+        env:
+          EXPORT_METHOD: ${{ inputs.export_method || 'ad-hoc' }}
         run: |
           xcodebuild \
             -derivedDataPath "$BGB_BUILD_TEMP/RunnerArchiveDerivedData" \
@@ -286,6 +304,22 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             LD_GENERATE_MAP_FILE=YES
           ARCHIVED_APP="$BGB_BUILD_TEMP/Runner.xcarchive/Products/Applications/Runner.app"
+          if [ "$EXPORT_METHOD" = 'app-store-connect' ]; then
+            BUILD_INFO="$(xcrun vtool -show-build "$ARCHIVED_APP/Runner")"
+            ARCHIVE_SDK="$(printf '%s\n' "$BUILD_INFO" | awk '$1 == "sdk" { print $2; exit }')"
+            case "$ARCHIVE_SDK" in
+              ''|*[!0-9.]*|.*|*.)
+                echo "::error::Could not read the compiled iOS SDK from the archived Runner binary. vtool output: $BUILD_INFO"
+                exit 1
+                ;;
+            esac
+            ARCHIVE_SDK_MAJOR="${ARCHIVE_SDK%%.*}"
+            if [ "$ARCHIVE_SDK_MAJOR" -lt 27 ]; then
+              echo "::error::The archived Runner binary uses iOS SDK $ARCHIVE_SDK; App Store Connect exports require SDK 27+."
+              exit 1
+            fi
+            echo "Archived App Store binary SDK verified: iOS $ARCHIVE_SDK" >> "$GITHUB_STEP_SUMMARY"
+          fi
           python3 ../tool/verify_ios_ffi_exports.py --binary "$ARCHIVED_APP/Runner"
           LINK_MAPS=()
           while IFS= read -r LINK_MAP; do LINK_MAPS+=("$LINK_MAP"); done < <(find "$BGB_BUILD_TEMP/RunnerArchiveDerivedData" -type f -name '*LinkMap*.txt' -print | sort)
