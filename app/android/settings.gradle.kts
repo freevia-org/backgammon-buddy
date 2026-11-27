@@ -36,7 +36,7 @@ plugins {
     // others — it is what generates the `google_app_id` string resource they
     // read. The FlutterFire example projects pin much older versions (4.3.15 /
     // 2.8.1 / 1.4.1); those predate AGP 9 and must not be copied.
-    id("com.google.gms.google-services") version "4.5.0" apply false
+    id("com.google.gms.google-services") version "4.6.0" apply false
     id("com.google.firebase.crashlytics") version "3.0.7" apply false
     id("com.google.firebase.firebase-perf") version "2.0.2" apply false
 }
