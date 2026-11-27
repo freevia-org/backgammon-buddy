@@ -485,7 +485,7 @@ jobs:
           SHA: ${{ github.sha }}
         run: bash .github/scripts/wait-for-ci.sh
 
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: aigammon-apk
           path: downloaded
