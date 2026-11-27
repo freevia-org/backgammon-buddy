@@ -121,7 +121,7 @@ dev_dependencies:
   # directly. That conversion — the luma row stride, and iOS's two-plane NV12
   # layout — is the most bug-prone code in lib/buddy/camera_frame_source.dart
   # and the least likely to be caught on a device, so it is worth the entry.
-  camera_platform_interface: ^2.13.1
+  camera_platform_interface: ^2.15.1
 
 flutter:
   uses-material-design: true
