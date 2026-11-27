@@ -57,7 +57,7 @@ dependencies:
   board_vision:
     path: ../packages/board_vision
   # Shared by Buddy board perception and nearby QR scanning on separate screens.
-  camera: ^0.12.0+2
+  camera: ^0.12.2
   # Buddy's voice. Wraps the platform TTS engine on each OS, so it adds no
   # model or asset weight; lib/buddy/speaker.dart still guards it to Android/iOS
   # the way lib/analytics/firebase_observability.dart guards FlutterFire,
