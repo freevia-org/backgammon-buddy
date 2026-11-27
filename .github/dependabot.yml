@@ -56,19 +56,3 @@ updates:
       time: "09:00"
       timezone: "Europe/Kyiv"
     open-pull-requests-limit: 5
-  - package-ecosystem: "swift"
-    directory: "/app/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/swiftpm"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-      timezone: "Europe/Kyiv"
-    open-pull-requests-limit: 5
-  - package-ecosystem: "swift"
-    directory: "/app/ios/Runner.xcworkspace/xcshareddata/swiftpm"
-    schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-      timezone: "Europe/Kyiv"
-    open-pull-requests-limit: 5
