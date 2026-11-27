@@ -226,7 +226,7 @@ dependencies {
         // never captured. The BOM version tracks `FirebaseSDKVersion` in
         // firebase_core's android/gradle.properties — bump both together when
         // firebase_core is upgraded, or Gradle reports a version conflict.
-        implementation(platform("com.google.firebase:firebase-bom:34.15.0"))
+        implementation(platform("com.google.firebase:firebase-bom:35.2.0"))
         implementation("com.google.firebase:firebase-crashlytics-ndk")
     }
 }
